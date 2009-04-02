@@ -17,6 +17,7 @@ LiveSupport 是一个提供先进的在线交流服务的系统。
 
 = 系统架构 =
  * LiveSupportPortal 门户网站，用户通过该网站注册使用LiveSupport服务
+ * OperatorConsole 客服软件客户端
  * LiveChat Service 在线即时消息的服务
  * LiveVoice Service 在线语音通信的服务
  * LiveVideo Service 在线视频通信的服务
