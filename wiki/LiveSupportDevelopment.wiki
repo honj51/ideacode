@@ -7,6 +7,8 @@ LiveSupport 开发
  # ASP.NET 2.0
  # Web Serivce
  # Window Forms
+ # VOIP
+ # SIP 协议
 
 开发工具
  # Visual Studio 2008
