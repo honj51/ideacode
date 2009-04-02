@@ -27,4 +27,5 @@ LiveSupport 开发
  * [http://www.codeplex.com/iReaper MSDN webcast 下载工具iReaper ]
 
 = 参考 =
+ * [.NET 开源项目 http://www.codeplex.com/]
  * [file://\\rd01\ShareFolder MSDN Webcast]
