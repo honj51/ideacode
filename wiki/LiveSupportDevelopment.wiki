@@ -25,4 +25,4 @@ LiveSupport 开发
 == 工具 ==
 
 = 参考 =
- * [\\rd01\ShareFolder MSDN Webcast]
+ * [MSDN Webcast \\rd01\ShareFolder]
