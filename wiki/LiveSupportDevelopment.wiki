@@ -1,0 +1,22 @@
+LiveSupport 开发
+
+= 开发简介 =
+
+技术需求
+1. .NET Framework 和 C#
+2. ASP.NET 2.0
+3. Web Serivce
+4. Window Forms
+
+开发工具
+1. Visual Studio 2008
+2. Subversion
+
+= 开发者指南 =
+
+== ASP.NET 学习 == 
+ * http://windowsclient.net/default.aspx
+ * http://www.
+ * [http://www.microsoft.com/china/msdn/events/webcasts/shared/webcast/Series.aspx MSDN Webcast 系列课程]
+
+== 工具 ==
