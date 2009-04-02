@@ -3,20 +3,23 @@ LiveSupport 开发
 = 开发简介 =
 
 技术需求
-1. .NET Framework 和 C#
-2. ASP.NET 2.0
-3. Web Serivce
-4. Window Forms
+ # .NET Framework 和 C#
+ # ASP.NET 2.0
+ # Web Serivce
+ # Window Forms
 
 开发工具
-1. Visual Studio 2008
-2. Subversion
+ # Visual Studio 2008
+ # Subversion
 
 = 开发者指南 =
 
 == ASP.NET 学习 == 
- * http://windowsclient.net/default.aspx
  * http://www.
  * [http://www.microsoft.com/china/msdn/events/webcasts/shared/webcast/Series.aspx MSDN Webcast 系列课程]
+
+== Windows Forms 学习 == 
+ * http://code.google.com/p/ideal-lab/wiki/WinFormLearning
+ * http://windowsclient.net/default.aspx 
 
 == 工具 ==
