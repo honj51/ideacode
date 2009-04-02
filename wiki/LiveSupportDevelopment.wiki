@@ -16,6 +16,7 @@ LiveSupport 开发
 == .NET Framework 学习 == 
  * http://code.google.com/p/ideal-lab/wiki/DotNetOpenSourceProject
 == ASP.NET 学习 == 
+ * [file://\\rd01\ShareFolder MSDN Webcast]
  * [http://www.microsoft.com/china/msdn/events/webcasts/shared/webcast/Series.aspx MSDN Webcast 系列课程]
 
 == Windows Forms 学习 == 
@@ -23,6 +24,7 @@ LiveSupport 开发
  * http://windowsclient.net/default.aspx 
 
 == 工具 ==
+ * [http://www.codeplex.com/iReaper MSDN webcast 下载工具iReaper ]
 
 = 参考 =
  * [file://\\rd01\ShareFolder MSDN Webcast]
