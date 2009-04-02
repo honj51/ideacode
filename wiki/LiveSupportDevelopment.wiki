@@ -13,8 +13,10 @@ LiveSupport 开发
  # Subversion
 
 = 开发者指南 =
+
 == .NET Framework 学习 == 
  * http://code.google.com/p/ideal-lab/wiki/DotNetOpenSourceProject
+
 == ASP.NET 学习 == 
  * [file://\\rd01\ShareFolder MSDN Webcast]
  * [http://www.microsoft.com/china/msdn/events/webcasts/shared/webcast/Series.aspx MSDN Webcast 系列课程]
@@ -27,5 +29,5 @@ LiveSupport 开发
  * [http://www.codeplex.com/iReaper MSDN webcast 下载工具iReaper ]
 
 = 参考 =
- * [.NET 开源项目 http://www.codeplex.com/]
+ * [http://www.codeplex.com/ .NET 开源项目]
  * [file://\\rd01\ShareFolder MSDN Webcast]
