@@ -1,0 +1,8 @@
+
+= Connection String =
+{{{
+	<connectionStrings>
+		<add name="LiveChatSK" connectionString="Server=ocs;Database=Modulus;uid=sa;pwd=Motorola12;"/>
+	</connectionStrings>
+
+}}}
