@@ -62,7 +62,8 @@
   "Server=.\SQLExpress;AttachDbFilename=c:\asd\qwe\mydbfile.mdf;Database=dbname;Trusted_Connection=Yes;"     
 }}}
         -   or   -   
-{{{  "Server=.\SQLExpress;AttachDbFilename=|DataDirectory|mydbfile.mdf;Database=dbname;Trusted_Connection=Yes;"     
+{{{  
+"Server=.\SQLExpress;AttachDbFilename=|DataDirectory|mydbfile.mdf;Database=dbname;Trusted_Connection=Yes;"     
 }}}
         (use   |DataDirectory|   when   your   database   file   resides   in   the   data   directory)     
   Why   is   the   "Database"   parameter   needed?   Answer:   If   the   database   was   previously   attached,   SQL   Server   does   not   reattach   it   (it   uses   the   attached   database   as   the   default   for   the   connection).   
