@@ -46,7 +46,8 @@
   (use   serverName\instanceName   as   Data   Source   to   use   an   specifik   SQLServer   instance)   
 
     Connect   via   an   IP   address:   
-{{{  "Data   Source=190.190.200.100,1433;Network   Library=DBMSSOCN;Initial   Catalog=pubs;User   ID=sa;Password=asdasd;"
+{{{  
+"Data   Source=190.190.200.100,1433;Network   Library=DBMSSOCN;Initial   Catalog=pubs;User   ID=sa;Password=asdasd;"
 }}}     
   (DBMSSOCN=TCP/IP   instead   of   Named   Pipes,   at   the   end   of   the   Data   Source   is   the   port   to   use   (1433   is   the   default))   
     Enabling   MARS   (multiple   active   result   sets):   
