@@ -44,20 +44,25 @@
         (both   connection   strings   produces   the   same   result)   
     
   (use   serverName\instanceName   as   Data   Source   to   use   an   specifik   SQLServer   instance)   
+
     Connect   via   an   IP   address:   
-  "Data   Source=190.190.200.100,1433;Network   Library=DBMSSOCN;Initial   Catalog=pubs;User   ID=sa;Password=asdasd;"     
+{{{  "Data   Source=190.190.200.100,1433;Network   Library=DBMSSOCN;Initial   Catalog=pubs;User   ID=sa;Password=asdasd;"
+}}}     
   (DBMSSOCN=TCP/IP   instead   of   Named   Pipes,   at   the   end   of   the   Data   Source   is   the   port   to   use   (1433   is   the   default))   
     Enabling   MARS   (multiple   active   result   sets):   
-    
+{{{    
   "Server=Aron1;Database=pubs;Trusted_Connection=True;MultipleActiveResultSets=true"     
+}}}
   Note!   Use   ADO.NET   2.0   for   MARS   functionality.   MARS   is   not   supported   in   ADO.NET   1.0   nor   ADO.NET   1.1   
     
   Streamline   your   Data   Connections   by   Moving   to   MARS,   by   Laurence   Moroney,   DevX.com   >>   
     Attach   a   database   file   on   connect   to   a   local   SQL   Server   Express   instance:   
-    
+{{{    
   "Server=.\SQLExpress;AttachDbFilename=c:\asd\qwe\mydbfile.mdf;Database=dbname;Trusted_Connection=Yes;"     
+}}}
         -   or   -   
-  "Server=.\SQLExpress;AttachDbFilename=|DataDirectory|mydbfile.mdf;Database=dbname;Trusted_Connection=Yes;"     
+{{{  "Server=.\SQLExpress;AttachDbFilename=|DataDirectory|mydbfile.mdf;Database=dbname;Trusted_Connection=Yes;"     
+}}}
         (use   |DataDirectory|   when   your   database   file   resides   in   the   data   directory)     
   Why   is   the   "Database"   parameter   needed?   Answer:   If   the   database   was   previously   attached,   SQL   Server   does   not   reattach   it   (it   uses   the   attached   database   as   the   default   for   the   connection).   
 
