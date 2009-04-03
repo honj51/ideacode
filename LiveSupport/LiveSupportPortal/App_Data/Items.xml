@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+  <category>
+    <id>c01</id>
+    <visible>true</visible>
+    <title>Amet</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>cat01.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>NULL</parentCategoryId>
+  </category>
+  
+  <category>
+    <id>c02</id>
+    <visible>true</visible>
+    <title>Consectetuer</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>cat02.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>NULL</parentCategoryId>
+  </category>
+
+  <category>
+    <id>c03</id>
+    <visible>true</visible>
+    <title>Adipiscing</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>cat03.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>NULL</parentCategoryId>
+  </category>
+
+  <category>
+    <id>c04</id>
+    <visible>true</visible>
+    <title>Pharetra Diam</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>cat04.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>NULL</parentCategoryId>
+  </category>
+
+
+  <category>
+    <id>c05</id>
+    <visible>true</visible>
+    <title>Ullamcorper</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>cat06.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>NULL</parentCategoryId>
+    <childItemId>01</childItemId>
+    <childItemId>02</childItemId>
+    <childItemId>03</childItemId>
+    <childItemId>04</childItemId>
+    <childItemId>05</childItemId>
+    <childItemId>06</childItemId>
+  </category>
+
+  <category>
+    <id>c11</id>
+    <visible>true</visible>
+    <title>Sed eget Magna</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-1.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c01</parentCategoryId>
+    <childItemId>01</childItemId>
+    <childItemId>02</childItemId>
+    <childItemId>03</childItemId>
+  </category>
+
+  <category>
+    <id>c12</id>
+    <visible>true</visible>
+    <title>Vestibulum</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-2.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c01</parentCategoryId>
+    <childItemId>04</childItemId>
+    <childItemId>05</childItemId>
+    <childItemId>06</childItemId>
+  </category>
+
+  <category>
+    <id>c13</id>
+    <visible>true</visible>
+    <title>Proin Feugiat Enim</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-3.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c01</parentCategoryId>
+    <childItemId>07</childItemId>
+  </category>
+
+  <category>
+    <id>c14</id>
+    <visible>true</visible>
+    <title>Vivamus Gravida</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-4.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c01</parentCategoryId>
+    <childItemId>01</childItemId>
+    <childItemId>02</childItemId>
+    <childItemId>03</childItemId>
+  </category>
+
+
+  <category>
+    <id>c21</id>
+    <visible>true</visible>
+    <title>Pellentesque</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-5.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c02</parentCategoryId>
+    <childItemId>06</childItemId>
+    <childItemId>07</childItemId>
+    <childItemId>08</childItemId>
+    <childItemId>09</childItemId>
+    <childItemId>10</childItemId>
+  </category>
+
+  <category>
+    <id>c31</id>
+    <visible>true</visible>
+    <title>Maecenas auctor Luctus</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-6.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c03</parentCategoryId>
+  </category>
+  <category>
+    <id>c32</id>
+    <visible>true</visible>
+    <title>Blandit</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-7.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c03</parentCategoryId>
+    <childItemId>06</childItemId>
+    <childItemId>07</childItemId>
+    <childItemId>08</childItemId>
+    <childItemId>09</childItemId>
+    <childItemId>10</childItemId>
+  </category>
+  <category>
+    <id>c41</id>
+    <visible>true</visible>
+    <title>Eu Mollis Nunc</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-8.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c04</parentCategoryId>
+  </category>
+  <category>
+    <id>c42</id>
+    <visible>true</visible>
+    <title>Luctus Dictum</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-9.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c04</parentCategoryId>
+    <childItemId>06</childItemId>
+    <childItemId>07</childItemId>
+    <childItemId>08</childItemId>
+    <childItemId>09</childItemId>
+    <childItemId>10</childItemId>
+  </category>
+  <category>
+    <id>c51</id>
+    <visible>true</visible>
+    <title>Rhoncus</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-10.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c05</parentCategoryId>
+  </category>
+  <category>
+    <id>c52</id>
+    <visible>true</visible>
+    <title>Elementum</title>
+    <description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</description>
+    <imageUrl>product-small-11.jpg</imageUrl>
+    <imageAltText></imageAltText>
+    <parentCategoryId>c05</parentCategoryId>
+  </category>
+
+
+
+  <item>
+    <id>01</id>
+    <visible>true</visible>
+    <title>Proin vitae</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>100.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item01.jpg</imageUrl>
+    <imageAltText>Item 1 of LiveSupport</imageAltText>
+  </item>
+
+  <item>
+    <id>02</id>
+    <visible>true</visible>
+    <title>Felis Non Purus</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>200.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item02.jpg</imageUrl>
+    <imageAltText>Item 2 of LiveSupport</imageAltText>
+  </item>
+
+  <item>
+    <id>03</id>
+    <visible>true</visible>
+    <title>Eleifend Consequat</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>300.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item01.jpg</imageUrl>
+    <imageAltText>Item 3 of LiveSupport</imageAltText>
+  </item>
+  <item>
+    <id>04</id>
+    <visible>true</visible>
+    <title>Pellentesque</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>400.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item02.jpg</imageUrl>
+    <imageAltText>Item 4 of LiveSupport</imageAltText>
+  </item>
+  <item>
+    <id>05</id>
+    <visible>true</visible>
+    <title>Sodales Mollis</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>599.99</price>
+    <inStock>true</inStock>
+    <imageUrl>item01.jpg</imageUrl>
+    <imageAltText>Item 5 of LiveSupport</imageAltText>
+  </item>
+  <item>
+    <id>06</id>
+    <visible>true</visible>
+    <title>Vel Purus</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>600.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item02.jpg</imageUrl>
+    <imageAltText>Item 6 of LiveSupport</imageAltText>
+  </item>
+  <item>
+    <id>07</id>
+    <visible>true</visible>
+    <title>Mollis</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>700.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item01.jpg</imageUrl>
+    <imageAltText>Item 7 of LiveSupport</imageAltText>
+  </item>
+  <item>
+    <id>08</id>
+    <visible>true</visible>
+    <title>Tincidunt</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>800.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item02.jpg</imageUrl>
+    <imageAltText>Item 8 of LiveSupport</imageAltText>
+  </item>
+  <item>
+    <id>09</id>
+    <visible>true</visible>
+    <title>Nullam Tellus</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>900.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item01.jpg</imageUrl>
+    <imageAltText>Item 9 of LiveSupport</imageAltText>
+  </item>
+  <item>
+    <id>10</id>
+    <visible>true</visible>
+    <title>Fusce Vulputate</title>
+    <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </description>
+    <price>1000.00</price>
+    <inStock>true</inStock>
+    <imageUrl>item02.jpg</imageUrl>
+    <imageAltText>Item 10 of LiveSupport</imageAltText>
+  </item>
+
+
+</items>
