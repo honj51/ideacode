@@ -2,8 +2,14 @@
     MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content1" runat="Server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <div id="registar-container">
-        <asp:Login ID="Login1" runat="server" BackColor="#EFF3FB" BorderColor="#B5C7DE" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" CreateUserText="注册新用户" CreateUserUrl="~/Register.aspx" Font-Names="Verdana" Font-Size="12px" ForeColor="#333333" OnLoggedIn="Login1_LoggedIn">
+    <div id="registar-container" style="text-align: center">
+        <asp:Login ID="Login1" runat="server" BackColor="#EFF3FB" BorderColor="#B5C7DE" 
+            BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" 
+            CreateUserText="&#27880;&#20876;&#26032;&#29992;&#25143;" 
+            CreateUserUrl="~/Register.aspx" Font-Names="Verdana" Font-Size="12px" 
+            ForeColor="#333333" 
+            onloginerror="Login1_LoginError" 
+            DestinationPageUrl="~/AccountAdmin/AccountHome.aspx">
             <TextBoxStyle Font-Size="12px" />
             <LoginButtonStyle BackColor="White" BorderColor="#507CD1" BorderStyle="Solid" BorderWidth="1px"
                 Font-Names="Verdana" Font-Size="12px" ForeColor="#284E98" />

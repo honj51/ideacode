@@ -15,4 +15,8 @@ public partial class Register : System.Web.UI.Page
     {
 
     }
+    protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+    {
+
+    }
 }
