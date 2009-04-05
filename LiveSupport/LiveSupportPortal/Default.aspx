@@ -83,7 +83,7 @@ CONTENT SIDE COLUMN
         </div>
     </form>--%>
     <script type="text/javascript">
-			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://ocs:8001/ProcessImage.ashx?referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
+			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://service.livesupport.cn/LiveChatService/ProcessImage.ashx?referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
             </script>
             <h3>
                 客服座席软件下载
