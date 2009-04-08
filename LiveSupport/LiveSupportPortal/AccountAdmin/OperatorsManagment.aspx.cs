@@ -19,8 +19,6 @@ public partial class AccountAdmin_OperatorsManangment : System.Web.UI.Page
         }
         else
         {
-            SqlCommand
-            Membership.GetUser().UserName
         }
         
     }
