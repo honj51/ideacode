@@ -7,14 +7,19 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Configuration.Provider;
-using System.Collections.Generic;
 
 /// <summary>
-///AccountProvider 的摘要说明
+///Payment 的摘要说明
 /// </summary>
-public abstract class AccountsProvider : ProviderBase
+public class Payment
 {
-    public abstract List<Account> GetAllAccounts();
-
+    private Guid id;
+    private Guid AccountId;
+    private Guid Service
+	public Payment()
+	{
+		//
+		//TODO: 在此处添加构造函数逻辑
+		//
+	}
 }

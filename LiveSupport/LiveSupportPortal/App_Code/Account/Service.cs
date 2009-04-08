@@ -7,14 +7,16 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Configuration.Provider;
-using System.Collections.Generic;
 
 /// <summary>
-///AccountProvider 的摘要说明
+///OrderedService 的摘要说明
 /// </summary>
-public abstract class AccountsProvider : ProviderBase
+public class Service
 {
-    public abstract List<Account> GetAllAccounts();
-
+	public Service()
+	{
+		//
+		//TODO: 在此处添加构造函数逻辑
+		//
+	}
 }
