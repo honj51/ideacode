@@ -19,18 +19,7 @@ public class SqlAccountsProvider : AccountsProvider
     private string connectionString()
     {
         return WebConfigurationManager.ConnectionStrings["SQLConnectionString"].ConnectionString;
-
-        //SmallBusinessDataProvidersSection sec = (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
-        //string connectionStringName = sec.CatalogProviders[sec.CatalogProviderName].Parameters["connectionStringName"];
-        //return WebConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
     }
-
-	public SqlAccountsProvider()
-	{
-		//
-		//TODO: 在此处添加构造函数逻辑
-		//
-	}
 
     public override List<Account> GetAllAccounts()
     {
@@ -51,7 +40,7 @@ public class SqlAccountsProvider : AccountsProvider
                 //if (r["id"] is DBNull || r["visible"] is DBNull || r["title"] is DBNull)
                 //    throw new InvalidOperationException(Messages.ItemRequiredAttributesMissing);
 
-                curr = new Account(r.GetInt32(0), r.GetGuid(1), r.GetInt32(2));
+                curr = new Account(r.GetInt32(0), r.GetGuid(1));
 
                 list.Add(curr);
             }
@@ -59,22 +48,53 @@ public class SqlAccountsProvider : AccountsProvider
         return list;
     }
 
-    public override Account GetAccountByAdminUserName(string name)
+    public override Account FindAccountByAdminUserName(string name)
     {
-        Account account= null;
+        Account account = null;
+        MembershipUser user = Membership.GetUser(name);
+        if (user == null)
+        {
+            return null;
+        }
+
         using (SqlConnection con = new SqlConnection(connectionString()))
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Operators_GetOperatorsByAccountId, con);
+            SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Accounts_FindAccountByAdminUserId, con);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@AdminUserId", SqlDbType.UniqueIdentifier).Value = user.ProviderUserKey;
 
             SqlDataReader r = cmd.ExecuteReader();
             if (r.Read())
             {
-                account = new Account(r.GetInt32(0), r.GetGuid(1), r.GetInt32(2));
+                account = new Account(r.GetInt32(0), r.GetGuid(1));
             }
 
             return account;
+        } 
+    }
+
+    public override Account CreateAccount(string adminUserName)
+    {
+        Account account = null;
+        MembershipUser user = Membership.GetUser(adminUserName);
+        if (user == null)
+        {
+            return null;
         }
+
+        using (SqlConnection con = new SqlConnection(connectionString()))
+        {
+            SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Accounts_CreateAccount, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@AdminUserName", SqlDbType.NVarChar, 256).Value = user.UserName;
+
+            con.Open();
+            cmd.ExecuteScalar();
+
+            account = FindAccountByAdminUserName(user.UserName);
+
+            return account;
+        } 
     }
 }

@@ -30,7 +30,8 @@ public class SqlOperatorsProvider : OperatorsProvider
 
     private List<Operator> getOperators(string sqlcmd)
     {
-        List<Operator> list = new List<Operator>();
+        List<Operator> list = new List<Operator>();    
+
         // connect to the database
         using (SqlConnection con = new SqlConnection(connectionString()))
         {
@@ -58,10 +59,26 @@ public class SqlOperatorsProvider : OperatorsProvider
         return list;
     }
 
-    public override List<Operator> GetOperatorsByAccountId(Guid accountId)
+    public override List<Operator> FindOperatorsByAccountId(int accountId)
     {
-        string sqlcmd = "Select * from LiveChat_Operators where AccountId =" + accountId.ToString();
+        List<Operator> list = new List<Operator>();
+        using (SqlConnection con = new SqlConnection(connectionString()))
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Operators_FindOperatorsByAccountId, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = accountId;
 
-        return getOperators(sqlcmd);
+            SqlDataReader r = cmd.ExecuteReader();
+            Operator curr;
+
+            while (r.Read())
+            {
+                curr = new Operator(r.GetInt32(0), r.GetInt32(1));
+                list.Add(curr);
+            }
+
+            return list;
+        }
     }
 }

@@ -15,6 +15,7 @@ public class SqlDataAccessConstant
 {
     // store procedure
     public const string SP_LiveSupport_Accounts_CreateAccount = "LiveSupport_Accounts_CreateAccount";
+    public const string SP_LiveSupport_Accounts_FindAccountByAdminUserId = "LiveSupport_Accounts_FindAccountByAdminUserId";
     public const string SP_LiveSupport_Operators_CreateOperator = "LiveSupport_Operators_CreateOperator";
-    public const string SP_LiveSupport_Operators_GetOperatorsByAccountId = "LiveSupport_Operators_GetOperatorsByAccountId";
+    public const string SP_LiveSupport_Operators_FindOperatorsByAccountId = "LiveSupport_Operators_FindOperatorsByAccountId";
 }

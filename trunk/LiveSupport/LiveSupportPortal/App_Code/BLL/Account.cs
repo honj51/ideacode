@@ -73,10 +73,9 @@ public class Account
     private string country;
     private string phone;
 
-    public Account(int id, Guid userId, int paymentId)
+    public Account(int id, Guid userId)
 	{
-		//
-		//TODO: 在此处添加构造函数逻辑
-		//
+        this.id = id;
+        this.userId = userId;
 	}
 }

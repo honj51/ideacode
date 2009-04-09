@@ -11,7 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 /// <summary>
 ///Account 的摘要说明
 /// </summary>
-public static class Accounts
+public static class AccountsManager
 {
     private static bool _isInitialized = false;
     private static AccountsProvider _provider;
@@ -36,20 +36,26 @@ public static class Accounts
     {
         if (!_isInitialized)
         {
-            //_providersSection = (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
-            //if (_providersSection == null)
-            //{
-            //    throw new InvalidOperationException(Messages.ItemConfigNotFound);
-            //}
-            //_provider = ProvidersHelper.InstantiateProvider(_providersSection.CatalogProviders[_providersSection.CatalogProviderName],
-            //    typeof(CatalogProvider)) as CatalogProvider;
-
-            //if (_provider == null)
-            //{
-            //    throw new InvalidOperationException(Messages.ItemProviderInstantiationError);
-            //}
+            _provider = new SqlAccountsProvider();
             _isInitialized = true;
         }
+    }
+
+    public static Account CreateAccount(string adminUserName)
+    {
+        return Provider.CreateAccount(adminUserName);
+
+    }
+
+    public static Account GetAccount()
+    {
+        MembershipUser user = Membership.GetUser();
+        if (user != null)
+        {
+            return Provider.FindAccountByAdminUserName(user.UserName);
+        }
+        else
+            return null;
     }
 
 }
