@@ -19,6 +19,13 @@ public partial class AccountAdmin_OperatorsManangment : System.Web.UI.Page
         }
         else
         {
+            MembershipUser user = Membership.GetUser();
+            this.ObjectDataSource1.SelectParameters.Clear();
+            QueryStringParameter p = new QueryStringParameter("accountId", TypeCode.Int32, AccountsManager.GetAccount().Id.ToString());
+            p.DefaultValue = "3";
+            this.ObjectDataSource1.SelectParameters.Add(p);
+            //this.ObjectDataSource1.SelectParameters["accountId"] = AccountsManager.GetAccount().Id.ToString();
+            this.ObjectDataSource1.DataBind();
         }
         
     }

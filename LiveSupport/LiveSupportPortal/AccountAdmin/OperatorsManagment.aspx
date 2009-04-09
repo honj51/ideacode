@@ -13,12 +13,30 @@
             </ul>
         </div>
         <div id="content-main-three-column">
-            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" 
-                onselectedindexchanged="GridView1_SelectedIndexChanged">
+            <asp:GridView ID="GridView1" runat="server" DataSourceID="ObjectDataSource1" 
+                onselectedindexchanged="GridView1_SelectedIndexChanged" 
+                AutoGenerateColumns="False">
+                <Columns>
+                    <asp:CheckBoxField DataField="Disabled" HeaderText="Disabled" 
+                        SortExpression="Disabled" />
+                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
+                    <asp:BoundField DataField="AccountId" HeaderText="AccountId" 
+                        SortExpression="AccountId" />
+                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                    <asp:BoundField DataField="Password" HeaderText="Password" 
+                        SortExpression="Password" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                    <asp:CheckBoxField DataField="IsOnline" HeaderText="IsOnline" 
+                        SortExpression="IsOnline" />
+                </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
         </div>
         <div id="content-side2-three-column">
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+                SelectMethod="FindOperatorsByAccountId" TypeName="OperatorsManager">
+                <SelectParameters>
+                </SelectParameters>
+            </asp:ObjectDataSource>
         </div>
         <div class="clear">
         </div>
