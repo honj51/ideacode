@@ -11,10 +11,11 @@ using System.Configuration.Provider;
 using System.Collections.Generic;
 
 /// <summary>
-///OperatorsProvider 的摘要说明
+///AccountProvider 的摘要说明
 /// </summary>
-public abstract class OperatorsProvider : ProviderBase
+public abstract class AccountsProvider : ProviderBase
 {
-    public abstract List<Operator> GetAllOperators();
-    public abstract List<Operator> GetOperatorsByAccountId(int accountId);
+    public abstract List<Account> GetAllAccounts();
+    public abstract Account FindAccountByAdminUserName(string name);
+    public abstract Account CreateAccount(string adminUserName);
 }
