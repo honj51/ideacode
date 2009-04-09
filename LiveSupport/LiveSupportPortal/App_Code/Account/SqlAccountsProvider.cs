@@ -51,19 +51,30 @@ public class SqlAccountsProvider : AccountsProvider
                 //if (r["id"] is DBNull || r["visible"] is DBNull || r["title"] is DBNull)
                 //    throw new InvalidOperationException(Messages.ItemRequiredAttributesMissing);
 
-                curr = new Account((Guid)r["ID"], (Guid)r["UserID"], (Guid)r["PaymentID"]);
+                curr = new Account(r.GetInt32(0), r.GetGuid(1), r.GetInt32(2));
 
-                curr = new Item((string)r["id"],
-                                (Boolean)r["visible"],
-                                (string)r["title"]);
-                curr.Description = (r["description"] is DBNull) ? String.Empty : (string)r["description"];
-                curr.Price = (r["price"] is DBNull) ? Double.MinValue : (double)r["price"];
-                curr.InStock = (r["inStock"] is DBNull) ? true : (Boolean)r["inStock"];
-                curr.ImageUrl = (r["imageUrl"] is DBNull) ? String.Empty : (string)r["imageUrl"];
-                curr.ImageAltText = (r["imageAltText"] is DBNull) ? String.Empty : (string)r["imageAltText"];
                 list.Add(curr);
             }
         }
         return list;
+    }
+
+    public override Account GetAccountByAdminUserName(string name)
+    {
+        Account account= null;
+        using (SqlConnection con = new SqlConnection(connectionString()))
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Operators_GetOperatorsByAccountId, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader r = cmd.ExecuteReader();
+            if (r.Read())
+            {
+                account = new Account(r.GetInt32(0), r.GetGuid(1), r.GetInt32(2));
+            }
+
+            return account;
+        }
     }
 }
