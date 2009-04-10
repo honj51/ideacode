@@ -81,4 +81,24 @@ public class SqlOperatorsProvider : OperatorsProvider
             return list;
         }
     }
+
+    public override Operator CreateOperator(int accountId)
+    {
+        Operator op = null;
+
+        //using (SqlConnection con = new SqlConnection(connectionString()))
+        //{
+        //    SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Operators_CreateOperator, con);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.Add("@AdminUserName", SqlDbType.NVarChar, 256).Value = user.UserName;
+
+        //    con.Open();
+        //    cmd.ExecuteScalar();
+
+        //    account = FindAccountByAdminUserName(user.UserName);
+
+        //    return account;
+        //} 
+        return op;
+    }
 }
