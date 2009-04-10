@@ -68,4 +68,9 @@ public static class OperatorsManager
     {
         Provider.UpdateOperator(op);
     }
+
+    public static void DeleteOperator(int operatorId)
+    {
+        Provider.DeleteOperator(operatorId);
+    }
 }
