@@ -160,11 +160,11 @@ public class SqlOperatorsProvider : OperatorsProvider
         }
     }
 
-    public override void DeleteOperator(Operator op)
+    public override void DeleteOperator(int operatorId)
     {
         using (SqlConnection con = new SqlConnection(connectionString()))
         {
-            string sqlCmdString = string.Format("delete from LiveChat_Operators where Id = {0}", op.Id.ToString());
+            string sqlCmdString = string.Format("delete from LiveChat_Operators where Id = {0}", operatorId.ToString());
             SqlCommand cmd = new SqlCommand(sqlCmdString, con);
             cmd.CommandType = CommandType.Text;
 

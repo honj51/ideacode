@@ -21,5 +21,5 @@ public abstract class OperatorsProvider : ProviderBase
     public abstract Operator CreateOperator(int accountId);
     public abstract void InsertOperator(Operator op);
     public abstract void UpdateOperator(Operator op);
-    public abstract void DeleteOperator(Operator op);
+    public abstract void DeleteOperator(int operatorId);
 }
