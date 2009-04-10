@@ -57,13 +57,14 @@ public class Account
         set { registerData = value; }
     }
 
-    private List<Operator> operators;
+    private List<Operator> operators = new List<Operator>();
 
     public List<Operator> Operators
     {
         get { return operators; }
-        set { operators = value; }
     }
+
+
 
     // Address
     private string address;
@@ -78,4 +79,14 @@ public class Account
         this.id = id;
         this.userId = userId;
 	}
+
+    public void AddOperator(Operator op)
+    {
+        operators.Add(op);
+    }
+
+    public void RemoveOperator(Operator op)
+    {
+        operators.Remove(op);
+    }
 }

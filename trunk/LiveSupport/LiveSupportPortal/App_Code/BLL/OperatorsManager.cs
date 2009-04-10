@@ -47,4 +47,18 @@ public static class OperatorsManager
         return Provider.FindOperatorsByAccountId(accountId);
     }
 
+    public static Operator GetOperatorById(int operatorId)
+    {
+        return null;
+    }
+
+    public static Operator CreateOperator(int accountId)
+    {
+        //return Provider.CreateAccount(adminUserName);
+        return  new Operator(0, accountId);
+    }
+
+    public static void SaveOperator(Operator op)
+    {
+    }
 }
