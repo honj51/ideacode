@@ -47,10 +47,10 @@ public partial class AccountAdmin_OperatorCreate : System.Web.UI.Page
     }
     protected void DetailsView1_ItemInserted(object sender, DetailsViewInsertedEventArgs e)
     {
-        Response.Redirect("AccountHome.aspx");
+        Response.Redirect("OperatorsManagment.aspx");
     }
     protected void DetailsView1_ItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
     {
-        Response.Redirect("AccountHome.aspx");
+        Response.Redirect("OperatorsManagment.aspx");
     }
 }

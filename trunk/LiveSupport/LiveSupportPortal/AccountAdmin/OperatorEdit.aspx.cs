@@ -11,24 +11,15 @@ using System.Web.UI.WebControls.WebParts;
 
 public partial class AccountAdmin_OperatorEdit : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
+    protected void DetailsView1_ItemCommand(object sender, DetailsViewCommandEventArgs e)
     {
-
+        if (e.CommandName == "Cancel")
+        {
+            Response.Redirect("OperatorsManagment.aspx");
+        }
     }
-    protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
+    protected void DetailsView1_ItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
     {
-
-    }
-    protected void ObjectDataSource1_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
-    {
-
-    }
-    protected void ObjectDataSource1_Selected(object sender, ObjectDataSourceStatusEventArgs e)
-    {
-        
-    }
-    protected void DetailsView1_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
-    {
-        Operator op = this.DetailsView1.DataItem as Operator;
+        Response.Redirect("OperatorsManagment.aspx");
     }
 }
