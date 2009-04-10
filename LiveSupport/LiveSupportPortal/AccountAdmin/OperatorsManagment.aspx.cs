@@ -34,4 +34,39 @@ public partial class AccountAdmin_OperatorsManangment : System.Web.UI.Page
     {
 
     }
+    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "cmdEdit")
+        {            
+            Response.Redirect("OperatorEdit.aspx?operatorId="+e.CommandArgument.ToString());
+        }
+        else if (e.CommandName == "cmdDelete")
+        {
+
+        }
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OperatorCreate.aspx?cmd=cmdInsert");
+    }
+
+    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            int operatorId = (int)this.GridView1.DataKeys[e.Row.RowIndex].Value;
+            ImageButton imbtnEdit;
+            imbtnEdit = (ImageButton)e.Row.FindControl("ImageButtonEdit");
+            imbtnEdit.AlternateText = "编辑";
+            imbtnEdit.CommandArgument = operatorId.ToString();
+
+            ImageButton imbtnDelete = (ImageButton)e.Row.FindControl("ImageButtonDelete");
+            //assigning alternate text for w3c validation
+            imbtnDelete.AlternateText = "删除";
+            imbtnDelete.CommandArgument = e.Row.RowIndex.ToString(System.Globalization.CultureInfo.CurrentCulture.NumberFormat);
+            imbtnDelete.Attributes.Add("onclick", "javascript:return confirm('Are you sure you want to delete?');");
+        }
+
+    }
 }
