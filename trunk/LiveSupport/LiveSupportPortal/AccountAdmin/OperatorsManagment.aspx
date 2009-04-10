@@ -13,35 +13,54 @@
             </ul>
         </div>
         <div id="content-main-three-column">
+            &#24403;&#21069;&#22352;&#24109;&#36134;&#25143;&#21015;&#34920;:<br />
             <asp:GridView ID="GridView1" runat="server" DataSourceID="ObjectDataSource1" 
-                onselectedindexchanged="GridView1_SelectedIndexChanged" 
+                onselectedindexchanged="GridView1_SelectedIndexChanged" onrowcommand="GridView1_RowCommand" 
+                onrowdatabound="GridView1_RowDataBound" DataKeyNames="Id" 
                 AutoGenerateColumns="False">
                 <Columns>
-                    <asp:CheckBoxField DataField="Disabled" HeaderText="Disabled" 
-                        SortExpression="Disabled" />
-                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
-                    <asp:BoundField DataField="AccountId" HeaderText="AccountId" 
-                        SortExpression="AccountId" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                     <asp:BoundField DataField="Password" HeaderText="Password" 
                         SortExpression="Password" />
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:CheckBoxField DataField="IsOnline" HeaderText="IsOnline" 
                         SortExpression="IsOnline" />
+                    <asp:CheckBoxField DataField="Disabled" HeaderText="Disabled" 
+                        SortExpression="Disabled" />
+                    <asp:TemplateField>
+                        <HeaderTemplate>
+                            &#20462;&#25913;
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:ImageButton ID="ImageButtonEdit" runat="server" CommandName="cmdEdit" 
+                                ImageUrl="~/images/edit_icon.gif" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <HeaderTemplate>
+                            &#21024;&#38500;
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:ImageButton ID="ImageButtonDelete" runat="server" CommandName="cmdDelete" 
+                                ImageUrl="~/images/ico_delete2.gif" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
-                <PagerTemplate>
-                    <a href="OperatorCreate.aspx">Create Operator</a>
-                </PagerTemplate>
                 <EmptyDataTemplate>
                     <a href="OperatorCreate.aspx">Create Operator</a>
                 </EmptyDataTemplate>
             </asp:GridView>
+            <br />
+            <asp:Button ID="Button1" runat="server" CommandArgument="cmdInsert" 
+                CommandName="cmd" 
+                Text="&#22686;&#21152;&#22352;&#24109;" onclick="Button1_Click" />
         </div>
         <div id="content-side2-three-column">
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
                 onselecting="ObjectDataSource1_Selecting" 
                 SelectMethod="FindOperatorsByAccountId" TypeName="OperatorsManager" 
-                InsertMethod="CreateOperator">
+                DataObjectTypeName="Operator" 
+                UpdateMethod="UpdateOperator">
                 <SelectParameters>
                     <asp:QueryStringParameter Name="accountId" QueryStringField="accountId" 
                         Type="Int32" />

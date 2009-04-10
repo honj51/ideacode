@@ -63,6 +63,11 @@ public class Operator
         set { isOnline = value; }
     }
 
+    public Operator()
+    {
+
+    }
+
     public Operator(int id, int accountId)
 	{
         this.id = id;

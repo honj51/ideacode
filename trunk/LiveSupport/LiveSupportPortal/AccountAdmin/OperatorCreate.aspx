@@ -18,41 +18,38 @@
     <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
         CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" 
         GridLines="None" Height="50px" Width="125px" DefaultMode="Edit" 
-                onpageindexchanging="DetailsView1_PageIndexChanging">
+                onpageindexchanging="DetailsView1_PageIndexChanging" 
+                oniteminserting="DetailsView1_ItemInserting" 
+                oniteminserted="DetailsView1_ItemInserted" 
+                onitemupdated="DetailsView1_ItemUpdated">
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <CommandRowStyle BackColor="#D1DDF1" Font-Bold="True" />
         <RowStyle BackColor="#EFF3FB" />
         <FieldHeaderStyle BackColor="#DEE8F5" Font-Bold="True" />
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-        <FooterTemplate>
-            &nbsp;<asp:Button ID="Button1" runat="server" Text="&#30830;&#23450;" onclick="Button1_Click" />
-            &nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="&#21462;&#28040;" />
-        </FooterTemplate>
         <Fields>
-            <asp:CheckBoxField DataField="Disabled" HeaderText="Disabled" 
-                SortExpression="Disabled" />
-            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
-            <asp:BoundField DataField="AccountId" HeaderText="AccountId" 
-                SortExpression="AccountId" />
-            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-            <asp:BoundField DataField="Password" HeaderText="Password" 
+            <asp:BoundField DataField="Name" HeaderText="&#22352;&#24109;&#29992;&#25143;&#21517;" SortExpression="Name" />
+            <asp:BoundField DataField="Password" HeaderText="&#23494;&#30721;" 
                 SortExpression="Password" />
-            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-            <asp:CheckBoxField DataField="IsOnline" HeaderText="IsOnline" 
-                SortExpression="IsOnline" />
+            <asp:BoundField DataField="Email" HeaderText="Email&#22320;&#22336;" SortExpression="Email" />
+            <asp:CheckBoxField DataField="Disabled" HeaderText="&#26159;&#21542;&#31105;&#29992;" 
+                SortExpression="Disabled" />
+            <asp:CommandField ShowInsertButton="True" ShowEditButton="True" />
         </Fields>
         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <EditRowStyle BackColor="#2461BF" />
         <AlternatingRowStyle BackColor="White" />
     </asp:DetailsView>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-        onselecting="ObjectDataSource1_Selecting" SelectMethod="CreateOperator" 
-        TypeName="OperatorsManager">
+        onselecting="ObjectDataSource1_Selecting" SelectMethod="FindOperatorsByAccountId" 
+        TypeName="OperatorsManager" DataObjectTypeName="Operator" 
+                InsertMethod="InsertOperator" UpdateMethod="UpdateOperator">
+                
         <SelectParameters>
             <asp:QueryStringParameter Name="accountId" QueryStringField="accountId" 
                 Type="Int32" />
         </SelectParameters>
+        
     </asp:ObjectDataSource>
 </div>
 

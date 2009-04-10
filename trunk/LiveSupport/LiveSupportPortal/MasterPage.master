@@ -38,6 +38,12 @@ TOP INFORMTION
                 <a href="Default.aspx">首页</a></div>
             <div id="top-information-login">
                 <asp:LoginName ID="LoginName1" runat="server" FormatString="欢迎您 {0}, " />
+                <asp:LoginView ID="LoginView1" runat="server">
+                    <LoggedInTemplate>
+                        <asp:LinkButton ID="LinkButton1" runat="server" 
+                            PostBackUrl="~/AccountAdmin/AccountHome.aspx">我的账户</asp:LinkButton>
+                    </LoggedInTemplate>
+                </asp:LoginView>
                 <asp:LoginStatus ID="LoginStatus2" runat="server" />
             </div>
         </div>

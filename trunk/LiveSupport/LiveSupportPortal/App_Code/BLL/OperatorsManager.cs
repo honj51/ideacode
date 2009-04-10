@@ -49,7 +49,7 @@ public static class OperatorsManager
 
     public static Operator GetOperatorById(int operatorId)
     {
-        return null;
+        return Provider.GetOperatorById(operatorId);        
     }
 
     public static Operator CreateOperator(int accountId)
@@ -58,7 +58,14 @@ public static class OperatorsManager
         return  new Operator(0, accountId);
     }
 
-    public static void SaveOperator(Operator op)
+    public static void InsertOperator(Operator op)
     {
+        op.AccountId = AccountsManager.GetAccount().Id;
+        Provider.InsertOperator(op);
+    }
+
+    public static void UpdateOperator(Operator op)
+    {
+        Provider.UpdateOperator(op);
     }
 }
