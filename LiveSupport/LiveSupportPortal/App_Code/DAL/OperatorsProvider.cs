@@ -17,4 +17,5 @@ public abstract class OperatorsProvider : ProviderBase
 {
     public abstract List<Operator> GetAllOperators();
     public abstract List<Operator> FindOperatorsByAccountId(int accountId);
+    public abstract Operator CreateOperator(int accountId);
 }
