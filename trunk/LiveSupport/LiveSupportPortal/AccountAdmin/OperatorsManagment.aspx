@@ -29,13 +29,26 @@
                     <asp:CheckBoxField DataField="IsOnline" HeaderText="IsOnline" 
                         SortExpression="IsOnline" />
                 </Columns>
+                <PagerTemplate>
+                    <a href="OperatorCreate.aspx">Create Operator</a>
+                </PagerTemplate>
+                <EmptyDataTemplate>
+                    <a href="OperatorCreate.aspx">Create Operator</a>
+                </EmptyDataTemplate>
             </asp:GridView>
         </div>
         <div id="content-side2-three-column">
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-                SelectMethod="FindOperatorsByAccountId" TypeName="OperatorsManager">
+                onselecting="ObjectDataSource1_Selecting" 
+                SelectMethod="FindOperatorsByAccountId" TypeName="OperatorsManager" 
+                InsertMethod="CreateOperator">
                 <SelectParameters>
+                    <asp:QueryStringParameter Name="accountId" QueryStringField="accountId" 
+                        Type="Int32" />
                 </SelectParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="accountId" Type="Int32" />
+                </InsertParameters>
             </asp:ObjectDataSource>
         </div>
         <div class="clear">
