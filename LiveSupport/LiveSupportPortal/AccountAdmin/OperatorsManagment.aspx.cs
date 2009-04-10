@@ -42,7 +42,8 @@ public partial class AccountAdmin_OperatorsManangment : System.Web.UI.Page
         }
         else if (e.CommandName == "cmdDelete")
         {
-
+            OperatorsManager.DeleteOperator(int.Parse(e.CommandArgument.ToString()));
+            Response.Redirect("OperatorsManagment.aspx");
         }
     }
 
@@ -64,8 +65,9 @@ public partial class AccountAdmin_OperatorsManangment : System.Web.UI.Page
             ImageButton imbtnDelete = (ImageButton)e.Row.FindControl("ImageButtonDelete");
             //assigning alternate text for w3c validation
             imbtnDelete.AlternateText = "删除";
-            imbtnDelete.CommandArgument = e.Row.RowIndex.ToString(System.Globalization.CultureInfo.CurrentCulture.NumberFormat);
-            imbtnDelete.Attributes.Add("onclick", "javascript:return confirm('Are you sure you want to delete?');");
+            //imbtnDelete.CommandArgument = e.Row.RowIndex.ToString(System.Globalization.CultureInfo.CurrentCulture.NumberFormat);
+            imbtnDelete.CommandArgument = operatorId.ToString();
+            imbtnDelete.Attributes.Add("onclick", "javascript:return confirm('确定删除客服账户?');");
         }
 
     }

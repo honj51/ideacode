@@ -16,8 +16,8 @@
             <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
                 DataSourceID="ObjectDataSource1" DefaultMode="Edit" Height="50px" 
                 Width="125px" DataKeyNames="Id,AccountId" 
-                onitemupdating="DetailsView1_ItemUpdating" 
-                onpageindexchanging="DetailsView1_PageIndexChanging">
+                onitemcommand="DetailsView1_ItemCommand" 
+                onitemupdated="DetailsView1_ItemUpdated">
                 <Fields>
                     <asp:BoundField DataField="Name" HeaderText="&#23458;&#26381;&#29992;&#25143;&#21517;" SortExpression="Name" >
                         <HeaderStyle HorizontalAlign="Justify" />
@@ -36,9 +36,7 @@
             </asp:DetailsView>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
                 DataObjectTypeName="Operator" SelectMethod="GetOperatorById" 
-                TypeName="OperatorsManager" UpdateMethod="UpdateOperator" 
-                onselected="ObjectDataSource1_Selected" 
-                onselecting="ObjectDataSource1_Selecting">
+                TypeName="OperatorsManager" UpdateMethod="UpdateOperator" >
                 <SelectParameters>
                     <asp:QueryStringParameter Name="operatorId" QueryStringField="operatorId" 
                         Type="Int32" />
