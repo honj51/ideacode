@@ -83,13 +83,13 @@ CONTENT SIDE COLUMN
         </div>
     </form>--%>
     <script type="text/javascript">
-			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://service.livesupport.cn/LiveChatService/ProcessImage.ashx?referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
+			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://service.livesupport.cn/LiveChatService/ProcessImage.ashx?aid=4&referrer=' + document.referrer + '" border="0" alt="点击在线交谈" /></a>');
             </script>
             <h3>
                 客服座席软件下载
             </h3>
             <ul class="list-of-links">
-                <li><a href="Download/OperatorConsole.zip">客户软件 LiveOperatorConsole V1.0</a></li>
+                <li><a href="Download/OperatorConsole.msi">客户软件 LiveOperatorConsole V1.0</a></li>
                 <li><a href="#">LiveOperatorConsole V1.0 用户手册</a></li>
             </ul>
         </div>
