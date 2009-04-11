@@ -8,8 +8,8 @@
     <ProjectGuid>{3A928111-2371-40AD-9D95-062B1AFEAC96}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>LiveSupport.DAL</RootNamespace>
+    <AssemblyName>LiveSupport.DAL</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,12 +32,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AccountsProvider.cs" />
+    <Compile Include="Entity\Account.cs" />
+    <Compile Include="Entity\Operator.cs" />
+    <Compile Include="Entity\Payment.cs" />
+    <Compile Include="Entity\Service.cs" />
+    <Compile Include="OperatorsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlAccountsProvider.cs" />
+    <Compile Include="SqlConstant.cs" />
+    <Compile Include="SqlOperatorsProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
