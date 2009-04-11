@@ -58,8 +58,8 @@
         <div id="content-side2-three-column">
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
                 onselecting="ObjectDataSource1_Selecting" 
-                SelectMethod="FindOperatorsByAccountId" TypeName="OperatorsManager" 
-                DataObjectTypeName="Operator" 
+                SelectMethod="FindOperatorsByAccountId" TypeName="LiveSupport.BLL.OperatorsManager" 
+                DataObjectTypeName="LiveSupport.DAL.Entity.Operator" 
                 UpdateMethod="UpdateOperator">
                 <SelectParameters>
                     <asp:QueryStringParameter Name="accountId" QueryStringField="accountId" 

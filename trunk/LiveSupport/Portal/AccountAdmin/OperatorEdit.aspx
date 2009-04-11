@@ -35,8 +35,8 @@
                 </Fields>
             </asp:DetailsView>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-                DataObjectTypeName="Operator" SelectMethod="GetOperatorById" 
-                TypeName="OperatorsManager" UpdateMethod="UpdateOperator" >
+                DataObjectTypeName="LiveSupport.DAL.Entity.Operator" SelectMethod="GetOperatorById" 
+                TypeName="LiveSupport.BLL.OperatorsManager" UpdateMethod="UpdateOperator" >
                 <SelectParameters>
                     <asp:QueryStringParameter Name="operatorId" QueryStringField="operatorId" 
                         Type="Int32" />
