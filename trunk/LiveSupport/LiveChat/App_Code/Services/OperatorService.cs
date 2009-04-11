@@ -14,81 +14,82 @@ using System.Configuration;
 using System.Configuration.Provider;
 using System.Web.Configuration;
 using System.Collections.Generic;
+using LiveSupport.BLL;
+using LiveSupport.DAL.Entity;
 
 /// <summary>
 /// Summary description for OperatorService
 /// </summary>
 public class OperatorService
 {
-	private static OperatorProvider _provider = null;
+    //private static OperatorProvider _provider = null;
 	private static object _lock = new object();
 
-	public OperatorProvider Provider
-	{
-		get { return _provider; }
-	}
+    //public OperatorProvider Provider
+    //{
+    //    get { return _provider; }
+    //}
 
 	public static void UpdateStatus(int operatorId, bool isOnline)
 	{
-		// Load the provider
-		LoadProvider();
-
-		_provider.UpdateStatus(operatorId, isOnline);
+        OperatorsManager.UpdateStatus(operatorId, isOnline);
 	}
 
-	public static bool GetOperatorStatus()
+	public static bool GetOperatorStatus(int accountId)
 	{
 		// Load the provider
-		LoadProvider();
+        //LoadProvider();
 
-		return _provider.GetOperatorStatus();
+        return OperatorsManager.GetOperatorStatus(accountId);
 	}
 
-	public static OperatorInfo LogIn(string userName, string password, string customerName)
+	public static Operator LogIn(string userName, string password, string customerName)
 	{
 		// Load the provider
-		LoadProvider();
+        //LoadProvider();
 
-        return _provider.LogIn(userName, password, customerName);
+        //return _provider.LogIn(userName, password, customerName);
+        return OperatorsManager.LoginOperator(userName, password, customerName);
 	}
 
 	public static List<ChatRequestInfo> GetChatRequests(int operatorId)
 	{
 		// Load the provider
-		LoadProvider();
+        //LoadProvider();
 
-		return _provider.GetChatRequest(operatorId);
+		//return OperatorsManager.GetChatRequest(operatorId);
+        return ChatService.GetRequests(operatorId);
 	}
 
-    public static List<OperatorInfo> GetOnlineOperator()
+    public static List<Operator> GetOnlineOperator()
     {
         // Load the provider
-        LoadProvider();
+        //LoadProvider();
 
-        return _provider.GetOnlineOperator();
+        return OperatorsManager.GetOnlineOperator();
     }
 
-	private static void LoadProvider()
-	{
-		// if we do not have initiated the provider
-		if (_provider == null)
-		{
-			lock (_lock)
-			{
-				// Do this again to make sure _provider is still null
-				if (_provider == null)
-				{
-					// Get a reference to the <requestService> section
-					OperatorServiceSection section = (OperatorServiceSection)WebConfigurationManager.GetSection("system.web/operatorService");
+    //private static void LoadProvider()
+    //{
+    //    // if we do not have initiated the provider
+    //    if (_provider == null)
+    //    {
+    //        lock (_lock)
+    //        {
+    //            // Do this again to make sure _provider is still null
+    //            if (_provider == null)
+    //            {
+    //                // Get a reference to the <requestService> section
+    //                OperatorServiceSection section = (OperatorServiceSection)WebConfigurationManager.GetSection("system.web/operatorService");
 
-					// Load the default provider
-					if (section.Providers.Count > 0 && !string.IsNullOrEmpty(section.DefaultProvider) && section.Providers[section.DefaultProvider] != null)
-						_provider = (OperatorProvider)ProvidersHelper.InstantiateProvider(section.Providers[section.DefaultProvider], typeof(OperatorProvider));
+    //                // Load the default provider
+    //                if (section.Providers.Count > 0 && !string.IsNullOrEmpty(section.DefaultProvider) && section.Providers[section.DefaultProvider] != null)
+    //                    _provider = (OperatorProvider)ProvidersHelper.InstantiateProvider(section.Providers[section.DefaultProvider], typeof(OperatorProvider));
 
-					if (_provider == null)
-						throw new ProviderException("Unable to load the OperatorProvider");
-				}
-			}
-		}
-	}
+    //                if (_provider == null)
+    //                    throw new ProviderException("Unable to load the OperatorProvider");
+    //            }
+    //        }
+    //    }
+    //}
 }

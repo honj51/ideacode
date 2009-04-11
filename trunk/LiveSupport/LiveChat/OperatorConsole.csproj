@@ -180,7 +180,7 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\Operator.disco" />
-    <None Include="Web References\LiveChatWS\OperatorInfo.datasource">
+    <None Include="Web References\LiveChatWS\Operator.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\Reference.map">

@@ -17,6 +17,7 @@ using System.Web.Services.Protocols;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Caching;
+using LiveSupport.DAL.Entity;
 
 
     /// <summary>
@@ -25,11 +26,11 @@ using System.Web.Caching;
     /// </summary>
 [WebService(Namespace = "http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-public class Operator : System.Web.Services.WebService
+public class OperatorWS : System.Web.Services.WebService
 {
     public AuthenticationHeader Authentication;
 
-	public Operator()
+    public OperatorWS()
 	{
 
 		//Uncomment the following line if using designed components 
@@ -38,18 +39,19 @@ public class Operator : System.Web.Services.WebService
 
     [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
-	public OperatorInfo LogIn(string userName, string password)
+	public Operator LogIn(string userName, string password)
 	{
         checkAuthentication();
+
 		return OperatorService.LogIn(userName, password, Authentication.userName);
 	}
 
     [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
-	public List<RequestInfo> GetWebSiteRequests(DateTime lastRequestTime)
+	public List<RequestInfo> GetWebSiteRequests(int accountId, DateTime lastRequestTime)
 	{
         checkAuthentication();
-        return RequestService.GetRequest(lastRequestTime);
+        return RequestService.GetRequest(accountId, lastRequestTime);
 	}
     
     [SoapHeader("Authentication", Required = true)]
@@ -62,10 +64,10 @@ public class Operator : System.Web.Services.WebService
 
     [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
-	public List<ChatRequestInfo> GetChatRequests(OperatorInfo op)
+	public List<ChatRequestInfo> GetChatRequests(Operator op)
 	{
         checkAuthentication();
-        return OperatorService.GetChatRequests(op.OperatorId);
+        return OperatorService.GetChatRequests(op.Id);
 	}
 
     [SoapHeader("Authentication", Required = true)]
@@ -153,7 +155,7 @@ public class Operator : System.Web.Services.WebService
 
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public List<OperatorInfo> GetOnlineOperator()
+    public List<Operator> GetOnlineOperator()
     {
         checkAuthentication();
         return OperatorService.GetOnlineOperator();

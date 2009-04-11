@@ -1,1 +1,1 @@
-<%@ WebService Language="C#" CodeBehind="~/App_Code/Operator.cs" class="Operator" %>
+<%@ WebService Language="C#" CodeBehind="~/App_Code/OperatorWS.cs" class="OperatorWS" %>
