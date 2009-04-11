@@ -72,5 +72,41 @@ namespace LiveSupport.BLL
         {
             Provider.DeleteOperator(operatorId);
         }
+
+        public static Operator LoginOperator(string name, string password, string accountName)
+        {
+            try
+            {
+                Account account = AccountsManager.FindAccountByAdminUserName(accountName);
+                if (account == null)
+                {
+                    return null;
+                }
+                return Provider.LoginOperator(name, password, account.Id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #region 
+        public static void UpdateStatus(int operatorId, bool isOnline)
+        {
+            Provider.UpdateStatus(operatorId, isOnline);
+        }
+        public static bool GetOperatorStatus(int accountId)
+        {
+            return Provider.GetOperatorStatus(accountId);
+        }
+        public static List<ChatRequestInfo> GetChatRequest(int operatorId)
+        {
+            return Provider.GetChatRequest(operatorId);
+        }
+        public static List<Operator> GetOnlineOperator()
+        {
+            return Provider.GetOnlineOperator();
+        }
+        #endregion
     }
 }
