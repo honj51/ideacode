@@ -14,6 +14,7 @@ using System.Configuration;
 using System.Web;
 using System.Web.Caching;
 using System.Collections.Generic;
+using LiveSupport.DAL.Entity;
 
 /// <summary>
 /// Summary description for MemoryOperatorProvider
@@ -55,18 +56,18 @@ public class MemoryOperatorProvider : OperatorProvider
 		base.Initialize(name, config);
 	}
 
-    public override OperatorInfo LogIn(string userName, string password, string customerName)
+    public override Operator LogIn(string userName, string password, string customerName)
 	{
-		OperatorInfo op = new OperatorInfo(1, opName, opPassword, opEmail, false);
+        //Operator op = new Operator(1, opName, opPassword, opEmail, false);
 
-		// Try to match the password
-		if (password == opPassword)
-		{
-			op.IsOnline = true;
-			UpdateStatus(op.OperatorId, true);
-			return op;
-		}
-		else
+        //// Try to match the password
+        //if (password == opPassword)
+        //{
+        //    op.IsOnline = true;
+        //    UpdateStatus(op.OperatorId, true);
+        //    return op;
+        //}
+        //else
 			return null;
 	}
 
@@ -98,10 +99,11 @@ public class MemoryOperatorProvider : OperatorProvider
 		}
 
 		return results;*/
-        return ChatService.GetRequests(-1);
+        //return ChatService.GetRequests(-1);
+        throw new NotImplementedException();
 	}
 
-    public override List<OperatorInfo> GetOnlineOperator()
+    public override List<Operator> GetOnlineOperator()
     {
         return null;
     }
