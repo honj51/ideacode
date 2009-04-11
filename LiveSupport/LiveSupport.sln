@@ -1,29 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveSupportPortal", "LiveSupportPortal\", "{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{7C3330D8-935E-4808-8803-6CE5A46D6F90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{3A928111-2371-40AD-9D95-062B1AFEAC96}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "2.0"
-		Debug.AspNetCompiler.VirtualPath = "/LiveSupportPortal"
-		Debug.AspNetCompiler.PhysicalPath = "LiveSupportPortal\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\LiveSupportPortal\"
+		Debug.AspNetCompiler.VirtualPath = "/Portal"
+		Debug.AspNetCompiler.PhysicalPath = "Portal\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Portal\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/LiveSupportPortal"
-		Release.AspNetCompiler.PhysicalPath = "LiveSupportPortal\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\LiveSupportPortal\"
+		Release.AspNetCompiler.VirtualPath = "/Portal"
+		Release.AspNetCompiler.PhysicalPath = "Portal\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Portal\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1180"
+		VWDPort = "1220"
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{7C3330D8-935E-4808-8803-6CE5A46D6F90}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{3A928111-2371-40AD-9D95-062B1AFEAC96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,16 +35,6 @@ Global
 		Release|Mixed Platforms = Release|Mixed Platforms
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Debug|.NET.ActiveCfg = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Debug|.NET.Build.0 = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Release|.NET.ActiveCfg = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Release|.NET.Build.0 = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{8DF8A371-D506-41D5-8CA5-3F6CF53E547E}.Release|Mixed Platforms.Build.0 = Debug|.NET
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -65,6 +55,16 @@ Global
 		{3A928111-2371-40AD-9D95-062B1AFEAC96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A928111-2371-40AD-9D95-062B1AFEAC96}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3A928111-2371-40AD-9D95-062B1AFEAC96}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Debug|.NET.ActiveCfg = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Debug|.NET.Build.0 = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Release|.NET.ActiveCfg = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Release|.NET.Build.0 = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}.Release|Mixed Platforms.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
