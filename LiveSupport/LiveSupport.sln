@@ -29,6 +29,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C4903BEF-9491-492A-AC4A-8244790DAFE3}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
+		ProjectReferences = "{3A928111-2371-40AD-9D95-062B1AFEAC96}|LiveSupport.DAL.dll;{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/LiveChat"
 		Debug.AspNetCompiler.PhysicalPath = "LiveChat\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\LiveChat\"
@@ -47,6 +48,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorConsole", "OperatorConsole\OperatorConsole.csproj", "{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "OperatorConsole\Installer\Installer.vdproj", "{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +111,18 @@ Global
 		{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|.NET.ActiveCfg = Debug
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|.NET.Build.0 = Debug
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Any CPU.ActiveCfg = Debug
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Any CPU.Build.0 = Debug
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Mixed Platforms.Build.0 = Debug
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|.NET.ActiveCfg = Release
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|.NET.Build.0 = Release
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Any CPU.ActiveCfg = Release
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Any CPU.Build.0 = Release
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Mixed Platforms.ActiveCfg = Release
+		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Mixed Platforms.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
