@@ -26,8 +26,8 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="OperatorSoap", Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
-    public partial class Operator : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    [System.Web.Services.WebServiceBindingAttribute(Name="OperatorWSSoap", Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
+    public partial class OperatorWS : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private AuthenticationHeader authenticationHeaderValueField;
         
@@ -58,7 +58,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public Operator() {
+        public OperatorWS() {
             this.Url = global::LiveChatStarterKit.OperatorConsole.Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
@@ -141,11 +141,11 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/LogIn", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public OperatorInfo LogIn(string userName, string password) {
+        public Operator LogIn(string userName, string password) {
             object[] results = this.Invoke("LogIn", new object[] {
                         userName,
                         password});
-            return ((OperatorInfo)(results[0]));
+            return ((Operator)(results[0]));
         }
         
         /// <remarks/>
@@ -173,23 +173,25 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/GetWebSiteRequests", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public RequestInfo[] GetWebSiteRequests(System.DateTime lastRequestTime) {
+        public RequestInfo[] GetWebSiteRequests(int accountId, System.DateTime lastRequestTime) {
             object[] results = this.Invoke("GetWebSiteRequests", new object[] {
+                        accountId,
                         lastRequestTime});
             return ((RequestInfo[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetWebSiteRequestsAsync(System.DateTime lastRequestTime) {
-            this.GetWebSiteRequestsAsync(lastRequestTime, null);
+        public void GetWebSiteRequestsAsync(int accountId, System.DateTime lastRequestTime) {
+            this.GetWebSiteRequestsAsync(accountId, lastRequestTime, null);
         }
         
         /// <remarks/>
-        public void GetWebSiteRequestsAsync(System.DateTime lastRequestTime, object userState) {
+        public void GetWebSiteRequestsAsync(int accountId, System.DateTime lastRequestTime, object userState) {
             if ((this.GetWebSiteRequestsOperationCompleted == null)) {
                 this.GetWebSiteRequestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetWebSiteRequestsOperationCompleted);
             }
             this.InvokeAsync("GetWebSiteRequests", new object[] {
+                        accountId,
                         lastRequestTime}, this.GetWebSiteRequestsOperationCompleted, userState);
         }
         
@@ -234,19 +236,19 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/GetChatRequests", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ChatRequestInfo[] GetChatRequests(OperatorInfo op) {
+        public ChatRequestInfo[] GetChatRequests(Operator op) {
             object[] results = this.Invoke("GetChatRequests", new object[] {
                         op});
             return ((ChatRequestInfo[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetChatRequestsAsync(OperatorInfo op) {
+        public void GetChatRequestsAsync(Operator op) {
             this.GetChatRequestsAsync(op, null);
         }
         
         /// <remarks/>
-        public void GetChatRequestsAsync(OperatorInfo op, object userState) {
+        public void GetChatRequestsAsync(Operator op, object userState) {
             if ((this.GetChatRequestsOperationCompleted == null)) {
                 this.GetChatRequestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetChatRequestsOperationCompleted);
             }
@@ -419,9 +421,9 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/GetOnlineOperator", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public OperatorInfo[] GetOnlineOperator() {
+        public Operator[] GetOnlineOperator() {
             object[] results = this.Invoke("GetOnlineOperator", new object[0]);
-            return ((OperatorInfo[])(results[0]));
+            return ((Operator[])(results[0]));
         }
         
         /// <remarks/>
@@ -765,6 +767,8 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
     public partial class RequestInfo {
         
+        private int accoutIdField;
+        
         private int requestIdField;
         
         private string pageRequestedField;
@@ -778,6 +782,16 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         private string visitorUserAgentField;
         
         private string visitorIPField;
+        
+        /// <remarks/>
+        public int AccoutId {
+            get {
+                return this.accoutIdField;
+            }
+            set {
+                this.accoutIdField = value;
+            }
+        }
         
         /// <remarks/>
         public int RequestId {
@@ -856,55 +870,79 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
-    public partial class OperatorInfo {
+    public partial class Operator {
         
-        private int operatorIdField;
+        private bool disabledField;
         
-        private string operatorNameField;
+        private int idField;
         
-        private string operatorPasswordField;
+        private int accountIdField;
         
-        private string operatorEmailField;
+        private string nameField;
+        
+        private string passwordField;
+        
+        private string emailField;
         
         private bool isOnlineField;
         
         /// <remarks/>
-        public int OperatorId {
+        public bool Disabled {
             get {
-                return this.operatorIdField;
+                return this.disabledField;
             }
             set {
-                this.operatorIdField = value;
+                this.disabledField = value;
             }
         }
         
         /// <remarks/>
-        public string OperatorName {
+        public int Id {
             get {
-                return this.operatorNameField;
+                return this.idField;
             }
             set {
-                this.operatorNameField = value;
+                this.idField = value;
             }
         }
         
         /// <remarks/>
-        public string OperatorPassword {
+        public int AccountId {
             get {
-                return this.operatorPasswordField;
+                return this.accountIdField;
             }
             set {
-                this.operatorPasswordField = value;
+                this.accountIdField = value;
             }
         }
         
         /// <remarks/>
-        public string OperatorEmail {
+        public string Name {
             get {
-                return this.operatorEmailField;
+                return this.nameField;
             }
             set {
-                this.operatorEmailField = value;
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
             }
         }
         
@@ -937,10 +975,10 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public OperatorInfo Result {
+        public Operator Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((OperatorInfo)(this.results[0]));
+                return ((Operator)(this.results[0]));
             }
         }
     }
@@ -1083,10 +1121,10 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public OperatorInfo[] Result {
+        public Operator[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((OperatorInfo[])(this.results[0]));
+                return ((Operator[])(this.results[0]));
             }
         }
     }

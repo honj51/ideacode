@@ -11,7 +11,7 @@ namespace LiveChatStarterKit.OperatorConsole
 {
     public partial class TabInfo : UserControl
     {
-        private Operator ws = new Operator();
+        private OperatorWS ws = new OperatorWS();
 
         private string entryPage = string.Empty;
         private string entryTime = string.Empty;
@@ -79,7 +79,7 @@ namespace LiveChatStarterKit.OperatorConsole
             if (MessageBox.Show("Are you sure you want to transfer the chat session?", "Transfering chat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ChatRequestInfo newReq = new ChatRequestInfo();
-                newReq.AcceptByOpereratorId = Program.CurrentOperator.OperatorId;
+                newReq.AcceptByOpereratorId = Program.CurrentOperator.Id;
 
                 if (chkWarnVisitor.Checked)
                 {
