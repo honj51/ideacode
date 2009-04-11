@@ -13,7 +13,7 @@ namespace LiveChatStarterKit.OperatorConsole
 {
     public partial class ControlPanel : Form
     {
-        Operator ws = new Operator();
+        OperatorWS ws = new OperatorWS();
         private DateTime lastRequestTime = DateTime.Now.AddMinutes(-30);
         private Hashtable currentVisitors = new Hashtable();
         private Hashtable myChats = new Hashtable();
@@ -52,7 +52,7 @@ namespace LiveChatStarterKit.OperatorConsole
                 PlayChatReqSound();
 
             // we get the latest website requests
-            RequestInfo[] requests = ws.GetWebSiteRequests(lastRequestTime);
+            RequestInfo[] requests = ws.GetWebSiteRequests(Program.CurrentOperator.AccountId, lastRequestTime);
             if (requests != null && requests.Length > 0)
             {
                 // set the last request time
@@ -102,7 +102,7 @@ namespace LiveChatStarterKit.OperatorConsole
 
                     numberOfChatWaiting++;
 
-                    if (!myChats.ContainsKey(req.ChatId) && req.AcceptByOpereratorId != Program.CurrentOperator.OperatorId)
+                    if (!myChats.ContainsKey(req.ChatId) && req.AcceptByOpereratorId != Program.CurrentOperator.Id)
                     {
                         myChats.Add(req.ChatId, req);
 
@@ -145,7 +145,7 @@ namespace LiveChatStarterKit.OperatorConsole
 
         private void ControlPanel_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ws.SetOperatorStatus(Program.CurrentOperator.OperatorId, false);
+            ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
             Application.Exit();
         }
 
@@ -250,14 +250,14 @@ namespace LiveChatStarterKit.OperatorConsole
         {
             connectToolStripMenuItem.Checked = true;
             disconnectToolStripMenuItem.Checked = false;
-            ws.SetOperatorStatus(Program.CurrentOperator.OperatorId, false);
+            ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
         }
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             connectToolStripMenuItem.Checked = false;
             disconnectToolStripMenuItem.Checked = true;
-            ws.SetOperatorStatus(Program.CurrentOperator.OperatorId, true);
+            ws.SetOperatorStatus(Program.CurrentOperator.Id, true);
         }
 
         private void playSoundOnChatRequestToolStripMenuItem_Click(object sender, EventArgs e)

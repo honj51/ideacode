@@ -11,7 +11,7 @@ namespace LiveChatStarterKit.OperatorConsole
 {
     public partial class LiveChat : UserControl
     {
-        Operator ws = new Operator();
+        OperatorWS ws = new OperatorWS();
 
         private ChatRequestInfo myChatRequest;
 
@@ -116,7 +116,7 @@ namespace LiveChatStarterKit.OperatorConsole
 
         private void WriteMessage(string message)
         {
-            WriteMessage(message, Program.CurrentOperator.OperatorName);
+            WriteMessage(message, Program.CurrentOperator.Name);
         }
 
         private void WriteMessage(string message, string From)
@@ -155,7 +155,7 @@ namespace LiveChatStarterKit.OperatorConsole
             }
 
             // Send accept message
-            WriteMessage("您正在同: " + Program.CurrentOperator.OperatorName + " 进行对话");
+            WriteMessage("您正在同: " + Program.CurrentOperator.Name + " 进行对话");
         }
 
         private void contextMenu_Click(object sender, EventArgs e)

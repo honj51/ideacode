@@ -39,7 +39,7 @@ namespace LiveChatStarterKit.OperatorConsole
 
                     Properties.Settings.Default.Save();
                 }
-				Operator ws = new Operator();
+				OperatorWS ws = new OperatorWS();
                 // Simple authentication
                 AuthenticationHeader auth = new AuthenticationHeader();
                 auth.userName = Properties.Settings.Default.WSUser;
