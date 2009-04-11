@@ -1,7 +1,3 @@
-
-
-
-
 using System;
 using System.Data;
 using System.Configuration;
@@ -18,6 +14,7 @@ using System.Web.Services;
 using System.Xml;
 using System.Web.Services.Protocols;
 using System.Web.Script.Services;
+using LiveSupport.DAL.Entity;
 
 public partial class Chat : System.Web.UI.Page
 {
@@ -78,7 +75,13 @@ public partial class Chat : System.Web.UI.Page
         {
             pnlNoOperator.Visible = pnlChat.Visible = pnlRequest.Visible = false;
 
-            if (OperatorService.GetOperatorStatus())
+            int accountId = -1;
+            if (Request.QueryString["aid"] != null)
+            {
+                int.TryParse(Request.QueryString["aid"].ToString(), out accountId);
+            }
+
+            if (OperatorService.GetOperatorStatus(accountId))
             {
                 pnlRequest.Visible = true;
             }
@@ -172,7 +175,7 @@ public partial class Chat : System.Web.UI.Page
     {
         if (!string.IsNullOrEmpty(chatId))
         {
-            Operator ws = new Operator();
+            OperatorWS ws = new OperatorWS();
             AuthenticationHeader auth = new AuthenticationHeader();
             auth.userName = ConfigurationManager.AppSettings["WSUser"].ToString();
             ws.Authentication = auth;
@@ -190,7 +193,7 @@ public partial class Chat : System.Web.UI.Page
     [ScriptMethod(UseHttpGet = true)]
     public static string SetTypingNotification(string chatId, string msg)
     {
-        Operator ws = new Operator();
+        OperatorWS ws = new OperatorWS();
         AuthenticationHeader auth = new AuthenticationHeader();
         auth.userName = ConfigurationManager.AppSettings["WSUser"].ToString();
         ws.Authentication = auth;
@@ -211,7 +214,7 @@ public partial class Chat : System.Web.UI.Page
             ChatMessageInfo mesg = new ChatMessageInfo(chatId, VName, msg);
             ChatService.AddMessage(mesg);
 
-            Operator ws = new Operator();
+            OperatorWS ws = new OperatorWS();
             ws.SetTyping(chatId, false, false);
         }
         return "";

@@ -37,12 +37,12 @@ public class RequestService
 		return _provider.LogRequest(req);
 	}
 
-	public static List<RequestInfo> GetRequest(DateTime lastRequest)
+	public static List<RequestInfo> GetRequest(int accountId, DateTime lastRequest)
 	{
 		// Load the provider
 		LoadProvider();
 
-		return _provider.GetRequest(lastRequest);
+        return _provider.GetRequest(accountId,lastRequest);
 	}
 
 	private static void LoadProvider()

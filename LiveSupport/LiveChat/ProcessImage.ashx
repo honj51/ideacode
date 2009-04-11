@@ -20,6 +20,7 @@ public class ProcessImage : IHttpHandler
 	public void ProcessRequest(HttpContext context)
 	{
 		string referrer = string.Empty;
+        string accountId = string.Empty;
 		string pageRequested = string.Empty;
 		string domainRequested = string.Empty;
 		string visitorUserAgent = string.Empty;
@@ -30,6 +31,10 @@ public class ProcessImage : IHttpHandler
 		// Add Request Log
 		if (context.Request.QueryString["referrer"] != null)
 			referrer = context.Request.QueryString["referrer"].ToString();
+        if (context.Request.QueryString["aid"] != null)
+        {
+            accountId = context.Request.QueryString["aid"].ToString();
+        }
 
 		if (context.Request.UserHostAddress != null)
 			visitorIP = context.Request.UserHostAddress.ToString();
@@ -45,6 +50,16 @@ public class ProcessImage : IHttpHandler
 
 		// Log the request
 		RequestInfo req = new RequestInfo();
+        int aid;
+        if (int.TryParse(accountId, out aid))
+        {
+            req.AccoutId = aid; 		 
+        }
+        else
+        {
+            // TODO: catch exception
+        }
+            
 		req.DomainRequested = domainRequested;
 		req.PageRequested = pageRequested;
 		req.Referrer = referrer;
@@ -55,7 +70,7 @@ public class ProcessImage : IHttpHandler
 		RequestService.LogRequest(req);
 
 		// we get the status of the operators
-		opOnline = OperatorService.GetOperatorStatus();
+		opOnline = OperatorService.GetOperatorStatus(aid);
 
 		if (opOnline)
 			imgName = "online.jpg";
