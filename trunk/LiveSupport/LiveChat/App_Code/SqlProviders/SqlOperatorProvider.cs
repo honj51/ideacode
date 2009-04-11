@@ -16,6 +16,9 @@ using System.Web.Caching;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Security;
+using LiveSupport.DAL;
+using LiveSupport.DAL.Entity;
 
 /// <summary>
 /// Summary description for SqlOperatorProvider
@@ -46,23 +49,23 @@ public class SqlOperatorProvider : OperatorProvider
 		base.Initialize(name, config);
 	}
 
-    public override OperatorInfo LogIn(string userName, string password, string customerName)
+    public override Operator LogIn(string userName, string password, string customerName)
     {
         SqlConnection sqlC = new SqlConnection(connectionString);
         // check if cusomterName exsit
-        SqlCommand cmd = new SqlCommand("LiveSupport_CustomersGet", sqlC);
+        SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Accounts_FindAccountByAdminUserId, sqlC);
         cmd.CommandType = CommandType.StoredProcedure;
         SqlDataReader data = null;
-        CustomerInfo customerVal = null;
-        OperatorInfo retVal = null;
+        Account account = null;
+        Operator retVal = null;
 
         try
         {
-            cmd.Parameters.Add("@Name", SqlDbType.VarChar, 100).Value = customerName;
+            //cmd.Parameters.Add("@AdminUserId", SqlDbType.UniqueIdentifier).Value = (Guid)user.ProviderUserKey;
             sqlC.Open();
             data = cmd.ExecuteReader();
             if (data.Read())
-                customerVal = new CustomerInfo(data);
+                account = new Account(data.GetInt32(0),data.GetGuid(1));
             else
                 return retVal;
             data.Close();
@@ -95,12 +98,12 @@ public class SqlOperatorProvider : OperatorProvider
         {
             cmd.Parameters.Add("@OperatorName", SqlDbType.VarChar, 100).Value = userName;
             cmd.Parameters.Add("@OperatorPassword", SqlDbType.VarChar, 50).Value = password;
-            cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerVal.CustomerID;
+            //cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = account.CustomerID;
            
             sqlC.Open();
             data = cmd.ExecuteReader();
             if (data.Read())
-                retVal = new OperatorInfo(data);
+                //retVal = new Operator(data);
 
             data.Close();
             data.Dispose();
@@ -194,23 +197,24 @@ public class SqlOperatorProvider : OperatorProvider
 
 	public override List<ChatRequestInfo> GetChatRequest(int operatorId)
 	{
-        return ChatService.GetRequests(operatorId);
+        //return ChatService.GetRequests(operatorId);
+        throw new NotImplementedException();
 	}
 
-    public override List<OperatorInfo> GetOnlineOperator()
+    public override List<Operator> GetOnlineOperator()
     {
         SqlConnection sqlC = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand("LiveChat_OperatorsGetAllOnline", sqlC);
         cmd.CommandType = CommandType.StoredProcedure;
         SqlDataReader data = null;
-        List<OperatorInfo> retList = new List<OperatorInfo>();
+        List<Operator> retList = new List<Operator>();
 
         try
         {
             sqlC.Open();
             data = cmd.ExecuteReader();
             while (data.Read())
-                retList.Add(new OperatorInfo(data));
+                //retList.Add(new Operator(data));
 
             data.Close();
             data.Dispose();

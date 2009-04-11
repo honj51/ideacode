@@ -59,6 +59,7 @@ public class SqlRequestProvider : RequestProvider
 
         try
         {
+            cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = req.AccoutId;
             cmd.Parameters.Add("@PageRequested", SqlDbType.VarChar, 500).Value = req.PageRequested;
             cmd.Parameters.Add("@DomainRequested", SqlDbType.VarChar, 250).Value = req.DomainRequested;
             cmd.Parameters.Add("@RequestedTime", SqlDbType.SmallDateTime).Value = req.RequestTime;
@@ -91,7 +92,7 @@ public class SqlRequestProvider : RequestProvider
 	}
 
 
-    public override List<RequestInfo> GetRequest(DateTime lastRequestDate)
+    public override List<RequestInfo> GetRequest(int accountId, DateTime lastRequestDate)
     {
         SqlConnection sqlC = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand("LiveChat_LogAccessGet", sqlC);
@@ -101,6 +102,7 @@ public class SqlRequestProvider : RequestProvider
 
         try
         {
+            cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = accountId;
             cmd.Parameters.Add("@RequestedTime", SqlDbType.SmallDateTime).Value = lastRequestDate;
 
             sqlC.Open();
