@@ -126,7 +126,7 @@ namespace LiveSupport.DAL
             {
                 SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Operators_GetOperatorById, con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@OperatorId", SqlDbType.Int).Value = operatorId; ;
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = operatorId; ;
 
                 con.Open();
                 SqlDataReader r = cmd.ExecuteReader();
@@ -169,6 +169,156 @@ namespace LiveSupport.DAL
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public override Operator LoginOperator(string name, string password, int accountId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString()))
+            {
+                SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_LiveSupport_Operators_LoginOperator, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Name", SqlDbType.VarChar, 100).Value = name;
+                cmd.Parameters.Add("@Password", SqlDbType.VarChar, 50).Value = password;
+                cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = accountId;
+
+                con.Open();
+                SqlDataReader r = cmd.ExecuteReader();
+                if (r.Read())
+                {
+                    Operator op = new Operator(r.GetInt32(0), r.GetInt32(1));
+                    op.Name = r.GetString(2);
+                    op.Password = r.GetString(3);
+                    op.Email = r.GetString(4);
+                    op.IsOnline = r.GetBoolean(5);
+                    return op;
+                }
+                else
+                    return null;
+
+            }
+        }
+
+
+
+        public override void UpdateStatus(int operatorId, bool isOnline)
+        {
+            SqlConnection sqlC = new SqlConnection(connectionString());
+            SqlCommand cmd = new SqlCommand("LiveChat_OperatorsUpdate", sqlC);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                cmd.Parameters.Add("@ID", SqlDbType.Int).Value = operatorId;
+                cmd.Parameters.Add("@IsOnline", SqlDbType.Bit).Value = isOnline;
+
+                sqlC.Open();
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                sqlC.Close();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (sqlC != null)
+                {
+                    if (sqlC.State == ConnectionState.Open)
+                        sqlC.Close();
+
+                    sqlC.Dispose();
+                    sqlC = null;
+                }
+            }
+        }
+
+        public override bool GetOperatorStatus(int accountId)
+        {
+            SqlConnection sqlC = new SqlConnection(connectionString());
+            SqlCommand cmd = new SqlCommand("LiveChat_OperatorsGetStatus", sqlC);
+            cmd.CommandType = CommandType.StoredProcedure;
+            bool retVal = false;
+
+            try
+            {
+                cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = accountId;
+                sqlC.Open();
+                retVal = Convert.ToBoolean(cmd.ExecuteScalar().ToString());
+
+                cmd.Dispose();
+                sqlC.Close();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (sqlC != null)
+                {
+                    if (sqlC.State == ConnectionState.Open)
+                        sqlC.Close();
+
+                    sqlC.Dispose();
+                    sqlC = null;
+                }
+            }
+            return retVal;
+
+        }
+
+        public override List<ChatRequestInfo> GetChatRequest(int operatorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Operator> GetOnlineOperator()
+        {
+            SqlConnection sqlC = new SqlConnection(connectionString());
+            SqlCommand cmd = new SqlCommand("LiveChat_OperatorsGetAllOnline", sqlC);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader data = null;
+            List<Operator> retList = new List<Operator>();
+
+            try
+            {
+                sqlC.Open();
+                data = cmd.ExecuteReader();
+                while (data.Read())
+                {
+                    Operator curr = new Operator(data.GetInt32(0), data.GetInt32(1));
+                    curr.Name = data.GetString(2);
+                    curr.Password = data.GetString(3);
+                    curr.Email = data.GetString(4);
+                    curr.IsOnline = data.GetBoolean(5);
+                    retList.Add(curr);
+                }
+
+                    data.Close();
+                data.Dispose();
+                data = null;
+                cmd.Dispose();
+                sqlC.Close();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (sqlC != null)
+                {
+                    if (sqlC.State == ConnectionState.Open)
+                        sqlC.Close();
+
+                    sqlC.Dispose();
+                    sqlC = null;
+                }
+            }
+            return retList;
+
         }
     }
 }
