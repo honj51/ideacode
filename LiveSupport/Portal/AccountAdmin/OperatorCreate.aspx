@@ -42,7 +42,7 @@
     </asp:DetailsView>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
         onselecting="ObjectDataSource1_Selecting" SelectMethod="FindOperatorsByAccountId" 
-        TypeName="OperatorsManager" DataObjectTypeName="Operator" 
+        TypeName="LiveSupport.BLL.OperatorsManager" DataObjectTypeName="LiveSupport.DAL.Entity.Operator" 
                 InsertMethod="InsertOperator" UpdateMethod="UpdateOperator">
                 
         <SelectParameters>
