@@ -16,5 +16,6 @@ namespace LiveSupport.DAL
         public const string SP_LiveSupport_Operators_CreateOperator = "LiveSupport_Operators_CreateOperator";
         public const string SP_LiveSupport_Operators_FindOperatorsByAccountId = "LiveSupport_Operators_FindOperatorsByAccountId";
         public const string SP_LiveSupport_Operators_GetOperatorById = "LiveSupport_Operators_GetOperatorById";
+        public const string SP_LiveSupport_LiveSupport_Operators_LoginOperator = "LiveSupport_Operators_LoginOperator";
     }
 }

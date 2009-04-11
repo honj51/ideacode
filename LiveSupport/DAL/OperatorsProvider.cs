@@ -20,5 +20,13 @@ namespace LiveSupport.DAL
         public abstract void InsertOperator(Operator op);
         public abstract void UpdateOperator(Operator op);
         public abstract void DeleteOperator(int operatorId);
+
+        #region service logic
+        public abstract Operator LoginOperator(string name, string password, int accountId);
+        public abstract void UpdateStatus(int operatorId, bool isOnline);
+        public abstract bool GetOperatorStatus(int accountId);
+        public abstract List<ChatRequestInfo> GetChatRequest(int operatorId);
+        public abstract List<Operator> GetOnlineOperator();
+        #endregion
     }
 }
