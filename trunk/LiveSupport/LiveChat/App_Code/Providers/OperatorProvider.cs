@@ -13,15 +13,16 @@ using System;
 using System.Configuration;
 using System.Configuration.Provider;
 using System.Collections.Generic;
+using LiveSupport.DAL.Entity;
 
 /// <summary>
 /// Manage all action regarding an operator
 /// </summary>
 public abstract class OperatorProvider : ProviderBase
 {
-	public abstract OperatorInfo LogIn(string userName, string password, string customerName);
+	public abstract Operator LogIn(string userName, string password, string customerName);
 	public abstract void UpdateStatus(int operatorId, bool isOnline);
 	public abstract bool GetOperatorStatus();
 	public abstract List<ChatRequestInfo> GetChatRequest(int operatorId);
-    public abstract List<OperatorInfo> GetOnlineOperator();
+    public abstract List<Operator> GetOnlineOperator();
 }

@@ -20,5 +20,5 @@ using System.Collections.Generic;
 public abstract class RequestProvider : ProviderBase
 {
 	public abstract bool LogRequest(RequestInfo req);
-	public abstract List<RequestInfo> GetRequest(DateTime lastRequestDate);
+    public abstract List<RequestInfo> GetRequest(int accountId, DateTime lastRequestDate);
 }
