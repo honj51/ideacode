@@ -58,5 +58,9 @@ namespace LiveSupport.BLL
                 return null;
         }
 
+        public static Account FindAccountByAdminUserName(string userName)
+        {
+            return Provider.FindAccountByAdminUserName(userName);
+        }
     }
 }
