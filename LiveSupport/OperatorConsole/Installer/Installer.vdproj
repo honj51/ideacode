@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_6386B048A3A249C3BBC84088D3A64B0E"
+        "MsmKey" = "8:_8DF87B35917B4BE1B52154FDD7B41E28"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8DF87B35917B4BE1B52154FDD7B41E28"
+        "MsmKey" = "8:_EF72B16C87EE4ACF95DAD05A9D58052E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -136,9 +136,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6386B048A3A249C3BBC84088D3A64B0E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EF72B16C87EE4ACF95DAD05A9D58052E"
             {
-            "SourcePath" = "8:C:\\Documents and Settings\\All Users\\Documents\\My Pictures\\icons\\Web Application ico\\ico\\Profile.ico"
+            "SourcePath" = "8:Profile.ico"
             "TargetName" = "8:Profile.ico"
             "Tag" = "8:"
             "Folder" = "8:_8076C35169FB4400BAC4E17FB35CCA8F"
@@ -354,7 +354,7 @@
             "Target" = "8:_8DF87B35917B4BE1B52154FDD7B41E28"
             "Folder" = "8:_7634B6C26330434BAA926EDC2E79E340"
             "WorkingFolder" = "8:_8076C35169FB4400BAC4E17FB35CCA8F"
-            "Icon" = "8:_6386B048A3A249C3BBC84088D3A64B0E"
+            "Icon" = "8:_EF72B16C87EE4ACF95DAD05A9D58052E"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_625643C6DFED4B22801666D50872E196"
@@ -368,7 +368,7 @@
             "Target" = "8:_8DF87B35917B4BE1B52154FDD7B41E28"
             "Folder" = "8:_AF9968DA99824099BB5FAFD3414D2023"
             "WorkingFolder" = "8:_8076C35169FB4400BAC4E17FB35CCA8F"
-            "Icon" = "8:_6386B048A3A249C3BBC84088D3A64B0E"
+            "Icon" = "8:_EF72B16C87EE4ACF95DAD05A9D58052E"
             "Feature" = "8:"
             }
         }
