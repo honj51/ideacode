@@ -6,10 +6,10 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using LiveChatStarterKit.OperatorConsole.LiveChatWS;
+using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Media;
 
-namespace LiveChatStarterKit.OperatorConsole
+namespace LiveSupport.OperatorConsole
 {
     public partial class ControlPanel : Form
     {

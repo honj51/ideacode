@@ -1,4 +1,4 @@
-namespace LiveChatStarterKit.OperatorConsole
+namespace LiveSupport.OperatorConsole
 {
 	partial class CannedMessages
 	{

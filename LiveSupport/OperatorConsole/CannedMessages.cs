@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace LiveChatStarterKit.OperatorConsole
+namespace LiveSupport.OperatorConsole
 {
 	public partial class CannedMessages : Form
 	{

@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
+namespace LiveSupport.OperatorConsole.LiveChatWS {
     using System.Diagnostics;
     using System.Web.Services;
     using System.ComponentModel;
@@ -26,7 +26,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="OperatorWSSoap", Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
+    [System.Web.Services.WebServiceBindingAttribute(Name="OperatorWSSoap", Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
     public partial class OperatorWS : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private AuthenticationHeader authenticationHeaderValueField;
@@ -59,7 +59,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public OperatorWS() {
-            this.Url = global::LiveChatStarterKit.OperatorConsole.Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator;
+            this.Url = global::LiveSupport.OperatorConsole.Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -140,7 +140,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/LogIn", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/LogIn", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Operator LogIn(string userName, string password) {
             object[] results = this.Invoke("LogIn", new object[] {
                         userName,
@@ -172,7 +172,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/GetWebSiteRequests", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetWebSiteRequests", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public RequestInfo[] GetWebSiteRequests(int accountId, System.DateTime lastRequestTime) {
             object[] results = this.Invoke("GetWebSiteRequests", new object[] {
                         accountId,
@@ -204,7 +204,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/SetOperatorStatus", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/SetOperatorStatus", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SetOperatorStatus(int operatorId, bool isOnline) {
             this.Invoke("SetOperatorStatus", new object[] {
                         operatorId,
@@ -235,7 +235,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/GetChatRequests", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetChatRequests", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public ChatRequestInfo[] GetChatRequests(Operator op) {
             object[] results = this.Invoke("GetChatRequests", new object[] {
                         op});
@@ -265,7 +265,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/AddMessage", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/AddMessage", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void AddMessage(ChatMessageInfo msg) {
             this.Invoke("AddMessage", new object[] {
                         msg});
@@ -294,7 +294,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/RemoveChatRequest", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/RemoveChatRequest", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void RemoveChatRequest(ChatRequestInfo req) {
             this.Invoke("RemoveChatRequest", new object[] {
                         req});
@@ -323,7 +323,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/GetChatMessages", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetChatMessages", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public ChatMessageInfo[] GetChatMessages(string chatId, long lastCheck) {
             object[] results = this.Invoke("GetChatMessages", new object[] {
                         chatId,
@@ -355,7 +355,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/IsTyping", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/IsTyping", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public bool IsTyping(string chatId, bool isOperator) {
             object[] results = this.Invoke("IsTyping", new object[] {
                         chatId,
@@ -387,7 +387,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/SetTyping", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/SetTyping", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SetTyping(string chatId, bool isOperator, bool typing) {
             this.Invoke("SetTyping", new object[] {
                         chatId,
@@ -420,7 +420,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/GetOnlineOperator", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOnlineOperator", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Operator[] GetOnlineOperator() {
             object[] results = this.Invoke("GetOnlineOperator", new object[0]);
             return ((Operator[])(results[0]));
@@ -448,7 +448,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/TransferChat", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/TransferChat", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void TransferChat(ChatRequestInfo chatRequest) {
             this.Invoke("TransferChat", new object[] {
                         chatRequest});
@@ -477,7 +477,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.dominicstpierre.net/LiveChatStarterKit/2007/09/HasNewMessage", RequestNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", ResponseNamespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/HasNewMessage", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public bool HasNewMessage(string chatId, long lastMessageId) {
             object[] results = this.Invoke("HasNewMessage", new object[] {
                         chatId,
@@ -531,8 +531,8 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", IsNullable=false)]
     public partial class AuthenticationHeader : System.Web.Services.Protocols.SoapHeader {
         
         private string userNameField;
@@ -566,7 +566,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
     public partial class ChatMessageInfo {
         
         private long messageIdField;
@@ -635,10 +635,12 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
     public partial class ChatRequestInfo {
         
         private string chatIdField;
+        
+        private string accountIdField;
         
         private System.DateTime requestDateField;
         
@@ -665,6 +667,16 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
             }
             set {
                 this.chatIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AccountId {
+            get {
+                return this.accountIdField;
+            }
+            set {
+                this.accountIdField = value;
             }
         }
         
@@ -764,7 +776,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
     public partial class RequestInfo {
         
         private int accoutIdField;
@@ -869,7 +881,7 @@ namespace LiveChatStarterKit.OperatorConsole.LiveChatWS {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
     public partial class Operator {
         
         private bool disabledField;
