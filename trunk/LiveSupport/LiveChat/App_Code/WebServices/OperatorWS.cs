@@ -24,7 +24,7 @@ using LiveSupport.DAL.Entity;
     /// Contains all functionality for an operator to maintain
     /// a chat session with a client.
     /// </summary>
-[WebService(Namespace = "http://www.dominicstpierre.net/LiveChatStarterKit/2007/09")]
+[WebService(Namespace = "http://www.LiveSupport.cn/LiveSupportService/2009/04")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 public class OperatorWS : System.Web.Services.WebService
 {
@@ -67,7 +67,7 @@ public class OperatorWS : System.Web.Services.WebService
 	public List<ChatRequestInfo> GetChatRequests(Operator op)
 	{
         checkAuthentication();
-        return OperatorService.GetChatRequests(op.Id);
+        return OperatorService.GetChatRequests(op);
 	}
 
     [SoapHeader("Authentication", Required = true)]

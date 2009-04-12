@@ -74,24 +74,25 @@ public partial class Chat : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             pnlNoOperator.Visible = pnlChat.Visible = pnlRequest.Visible = false;
-
-            int accountId = -1;
+            
             if (Request.QueryString["aid"] != null)
             {
-                int.TryParse(Request.QueryString["aid"].ToString(), out accountId);
-            }
-
-            if (OperatorService.GetOperatorStatus(accountId))
-            {
-                pnlRequest.Visible = true;
-            }
-            else
-            {
-                pnlNoOperator.Visible = true;
-            }
+                int accountId;
+                if (int.TryParse(Request.QueryString["aid"].ToString(), out accountId))
+                {
+                    if (OperatorService.GetOperatorStatus(accountId))
+                    {
+                        pnlRequest.Visible = true;
+                    }
+                    else
+                    {
+                        pnlNoOperator.Visible = true;
+                    }                    
+                }
+            }            
         }
-
     }
+    
     protected void lnkStartChat_Click(object sender, EventArgs e)
     {
         // Initiate a chat request
@@ -118,6 +119,7 @@ public partial class Chat : System.Web.UI.Page
 
         ChatRequestInfo request = new ChatRequestInfo();
         request.AcceptByOpereratorId = -1;
+        request.AccountId = Request.QueryString["aid"];
         request.ChatId = chatId;
         request.RequestDate = DateTime.Now;
         request.VisitorEmail = txtEmail.Text;
