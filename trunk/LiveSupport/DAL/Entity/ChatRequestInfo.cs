@@ -30,6 +30,15 @@ public class ChatRequestInfo
 		set { chatId = value; }
 	}
 
+    private string accountId;
+    [XmlElement]
+    public string AccountId
+    {
+        get { return accountId; }
+        set { accountId = value; }
+    }
+
+
 	private DateTime requestDate;
 	[XmlElement]
 	public DateTime RequestDate
@@ -101,9 +110,7 @@ public class ChatRequestInfo
     {
         get { return closedDate; }
         set { closedDate = value; }
-    }
-	
-	
+    }	
 
 	public ChatRequestInfo()
 	{
@@ -112,6 +119,7 @@ public class ChatRequestInfo
     public ChatRequestInfo(SqlDataReader data)
     {
         if (!Convert.IsDBNull(data["ChatID"])) chatId = data["ChatID"].ToString().TrimEnd();
+        if (!Convert.IsDBNull(data["AccountId"])) accountId = data["AccountId"].ToString().TrimEnd();
         if (!Convert.IsDBNull(data["VisitorIP"])) visitorIP = (string)data["VisitorIP"];
         if (!Convert.IsDBNull(data["VisitorName"])) visitorName = (string)data["VisitorName"];
         if (!Convert.IsDBNull(data["VisitorEmail"])) visitorEmail = (string)data["VisitorEmail"];
