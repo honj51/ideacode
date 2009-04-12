@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LiveChatStarterKit.OperatorConsole.Properties {
+namespace LiveSupport.OperatorConsole.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,7 +26,7 @@ namespace LiveChatStarterKit.OperatorConsole.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1497/LiveChat/Operator.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:3355/LiveChat/Operator.asmx")]
         public string OperatorConsole_LiveChatWS_Operator {
             get {
                 return ((string)(this["OperatorConsole_LiveChatWS_Operator"]));

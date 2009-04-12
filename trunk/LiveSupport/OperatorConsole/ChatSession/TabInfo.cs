@@ -5,9 +5,9 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using LiveChatStarterKit.OperatorConsole.LiveChatWS;
+using LiveSupport.OperatorConsole.LiveChatWS;
 
-namespace LiveChatStarterKit.OperatorConsole
+namespace LiveSupport.OperatorConsole
 {
     public partial class TabInfo : UserControl
     {
@@ -101,8 +101,8 @@ namespace LiveChatStarterKit.OperatorConsole
         private void TabInfo_Load(object sender, EventArgs e)
         {
             cboOperators.DataSource = ws.GetOnlineOperator();
-            cboOperators.DisplayMember = "OperatorName";
-            cboOperators.ValueMember = "OperatorID";
+            cboOperators.DisplayMember = "Name";
+            cboOperators.ValueMember = "Id";
         }
     }
 }

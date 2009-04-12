@@ -5,9 +5,9 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using LiveChatStarterKit.OperatorConsole.LiveChatWS;
+using LiveSupport.OperatorConsole.LiveChatWS;
 
-namespace LiveChatStarterKit.OperatorConsole
+namespace LiveSupport.OperatorConsole
 {
     public partial class LiveChat : UserControl
     {
