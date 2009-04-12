@@ -14,6 +14,7 @@ using System.Configuration;
 using System.Configuration.Provider;
 using System.Web.Configuration;
 using System.Collections.Generic;
+using LiveSupport.DAL.Entity;
 
 /// <summary>
 /// Chat Service
@@ -52,12 +53,12 @@ public class ChatService
 		return _provider.GetMessages(chatId, lastCheck);
 	}
 
-	public static List<ChatRequestInfo> GetRequests(int operatorId)
+	public static List<ChatRequestInfo> GetRequests(Operator op)
 	{
 		// Load the provider
 		LoadProvider();
 
-		return _provider.GetChatRequests(operatorId);
+		return _provider.GetChatRequests(op);
 	}
 
 	public static void RemoveChatRequest(ChatRequestInfo req)

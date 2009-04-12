@@ -52,13 +52,13 @@ public class OperatorService
         return OperatorsManager.LoginOperator(userName, password, customerName);
 	}
 
-	public static List<ChatRequestInfo> GetChatRequests(int operatorId)
+	public static List<ChatRequestInfo> GetChatRequests(Operator op)
 	{
 		// Load the provider
         //LoadProvider();
 
 		//return OperatorsManager.GetChatRequest(operatorId);
-        return ChatService.GetRequests(operatorId);
+        return ChatService.GetRequests(op);
 	}
 
     public static List<Operator> GetOnlineOperator()
