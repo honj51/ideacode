@@ -23,9 +23,18 @@ LiveSupport 开发
  * [file://\\rd01\ShareFolder MSDN Webcast]
  * [http://www.microsoft.com/china/msdn/events/webcasts/shared/webcast/Series.aspx MSDN Webcast 系列课程]
 
+推荐msdn webcast 
+ * ASP.NET AJAX深入浅出系列课程
+ * ASP.NET 2.0快速入门
+
 == Windows Forms 学习 == 
  * http://code.google.com/p/ideal-lab/wiki/WinFormLearning
  * http://windowsclient.net/default.aspx 
+
+== Web Service ==
+MSDN Webcast 视频课程
+ * ASP.NET AJAX深入浅出系列课程 4，5，6讲
+ * ASP.NET 开发实践 - ASP.NET中的WEB服务
 
 == 工具 ==
  * [http://www.codeplex.com/iReaper MSDN webcast 下载工具iReaper ]
