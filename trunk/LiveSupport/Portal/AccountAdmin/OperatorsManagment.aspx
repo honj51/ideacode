@@ -17,7 +17,7 @@
             <asp:GridView ID="GridView1" runat="server" DataSourceID="ObjectDataSource1" 
                 onselectedindexchanged="GridView1_SelectedIndexChanged" onrowcommand="GridView1_RowCommand" 
                 onrowdatabound="GridView1_RowDataBound" DataKeyNames="Id" 
-                AutoGenerateColumns="False">
+                AutoGenerateColumns="False" Width="455px">
                 <Columns>
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                     <asp:BoundField DataField="Password" HeaderText="Password" 
