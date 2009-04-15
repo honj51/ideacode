@@ -17,7 +17,7 @@
 
     <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
         CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" 
-        GridLines="None" Height="50px" Width="125px" DefaultMode="Edit" 
+        GridLines="None" Height="50px" Width="493px" DefaultMode="Edit" 
                 onpageindexchanging="DetailsView1_PageIndexChanging" 
                 oniteminserting="DetailsView1_ItemInserting" 
                 oniteminserted="DetailsView1_ItemInserted" 

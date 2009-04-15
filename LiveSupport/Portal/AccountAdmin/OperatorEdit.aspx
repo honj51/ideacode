@@ -15,7 +15,7 @@
         <div id="content-main-three-column">
             <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
                 DataSourceID="ObjectDataSource1" DefaultMode="Edit" Height="50px" 
-                Width="125px" DataKeyNames="Id,AccountId" 
+                Width="368px" DataKeyNames="Id,AccountId" 
                 onitemcommand="DetailsView1_ItemCommand" 
                 onitemupdated="DetailsView1_ItemUpdated">
                 <Fields>
