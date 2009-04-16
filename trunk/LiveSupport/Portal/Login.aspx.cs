@@ -16,23 +16,25 @@ public partial class Login : System.Web.UI.Page
 
     }
 
+    //用户登录
     protected void Login1_LoginError(object sender, EventArgs e)
     {
         System.Web.UI.WebControls.Login l = (System.Web.UI.WebControls.Login)sender;
         MembershipUser u = Membership.GetUser(l.UserName);
-
-        if (!u.IsApproved)
+        if (u != null)
         {
-            l.FailureText = "帐户证在审核中";
-            return;
-        }
+            if (!u.IsApproved)
+            {
+                l.FailureText = "帐户证在审核中";
+                return;
+            }
 
-        if (u.IsLockedOut)
-        {
-            l.FailureText = "您的帐户已经被锁定";
-            return;
+            if (u.IsLockedOut)
+            {
+                l.FailureText = "您的帐户已经被锁定";
+                return;
+            }
         }
-
         // 默认错误消息提示
         l.FailureText = "您的登录尝试失败，请重试。";
 
