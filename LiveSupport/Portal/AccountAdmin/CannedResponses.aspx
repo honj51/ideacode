@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CannedResponses.aspx.cs" Inherits="AccountAdmin_CannedResponses" Title="&#26080;&#26631;&#39064;&#39029;" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CannedResponses.aspx.cs" Inherits="AccountAdmin_CannedResponses" Title="预置消息" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="pagetitle">&#39044;&#32622;&#28040;&#24687;</div>

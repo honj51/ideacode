@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AccountSettings.aspx.cs" Inherits="AccountAdmin_AccountSettings" Title="&#26080;&#26631;&#39064;&#39029;" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AccountSettings.aspx.cs" Inherits="AccountAdmin_AccountSettings" Title="帐户设置" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="pagetitle">&#36134;&#25143;&#35774;&#32622;</div>
