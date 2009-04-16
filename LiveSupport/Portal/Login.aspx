@@ -9,7 +9,7 @@
             CreateUserUrl="~/Register.aspx" Font-Names="Verdana" Font-Size="12px" 
             ForeColor="#333333" 
             onloginerror="Login1_LoginError" 
-            DestinationPageUrl="~/AccountAdmin/AccountHome.aspx">
+            DestinationPageUrl="~/AccountAdmin/AccountHome.aspx" >
             <TextBoxStyle Font-Size="12px" />
             <LoginButtonStyle BackColor="White" BorderColor="#507CD1" BorderStyle="Solid" BorderWidth="1px"
                 Font-Names="Verdana" Font-Size="12px" ForeColor="#284E98" />
