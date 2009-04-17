@@ -37,12 +37,5 @@ public partial class Login : System.Web.UI.Page
         }
         // 默认错误消息提示
         l.FailureText = "您的登录尝试失败，请重试。";
-
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        string aaa = Server.MapPath("Download\\11.exe");
-        //this.Button1.Text = aaa;
-        System.Diagnostics.Process.Start(aaa);
     }
 }
