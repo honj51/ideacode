@@ -16,7 +16,6 @@
             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
             <TitleTextStyle BackColor="#507CD1" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
         </asp:Login>
-        <asp:Button ID="Button1" runat="server" Text="Button" onclick="Button1_Click" />
     
     </div>
 </asp:Content>
