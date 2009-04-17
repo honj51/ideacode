@@ -31,7 +31,7 @@ namespace LiveSupport.OperatorConsole
             AuthenticationHeader auth = new AuthenticationHeader();
             auth.userName = Properties.Settings.Default.WSUser;
             ws.AuthenticationHeaderValue = auth;
-
+     
             drpChatRequest.DisplayMember = "VisitorIP";
             drpChatRequest.ValueMember = "ChatId";
 
@@ -41,7 +41,7 @@ namespace LiveSupport.OperatorConsole
 
 
         }
-
+        //时间方法
         private void tmrCheckRequests_Tick(object sender, EventArgs e)
         {
             // Disable the timer
@@ -136,11 +136,13 @@ namespace LiveSupport.OperatorConsole
 
         private void PlayChatReqSound()
         {
+            
             if (Properties.Settings.Default.PlaySoundOnChatReq)
             {
                 player.Stream = Properties.Resources.newchatreq;
                 player.Play();
             }
+            
         }
 
         private void ControlPanel_FormClosing(object sender, FormClosingEventArgs e)
@@ -323,6 +325,11 @@ namespace LiveSupport.OperatorConsole
                     splitContainer1.Panel1.Controls.Add(tabInfo);
                 }
             }
+        }
+
+        private void 邀请对话ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("aaa");
         }
     }
 }
