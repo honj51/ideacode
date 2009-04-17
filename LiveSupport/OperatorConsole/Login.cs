@@ -36,7 +36,6 @@ namespace LiveSupport.OperatorConsole
                 {
                     Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = txtWSUrl.Text;
                     Properties.Settings.Default.WSUser = txtUserName.Text;
-
                     Properties.Settings.Default.Save();
                 }
 				OperatorWS ws = new OperatorWS();
