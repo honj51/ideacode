@@ -28,7 +28,7 @@
     {
         
         i=i+1;
-        if(i==8){
+        if(i==10){
         document.getElementById("panel2").style.display="block"; 
         clearTimeout();
         return;
