@@ -151,6 +151,7 @@ public class MemoryChatProvider : ChatProvider
     {
         bool cacheExists;
         List<ChatRequestInfo> results = new List<ChatRequestInfo>();
+
         foreach (ChatRequestInfo req in GetCurrentRequest(out cacheExists))
         {
             if (req.AcceptByOpereratorId == op.Id)
@@ -158,6 +159,11 @@ public class MemoryChatProvider : ChatProvider
         }
 
         return results;
+    }
+
+    public override List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip)
+    {
+        throw new NotImplementedException();
     }
 
 	public override void RemoveChatRequest(ChatRequestInfo req)
@@ -190,8 +196,6 @@ public class MemoryChatProvider : ChatProvider
         }
         else
             return false;
-
-        
     }
 
     private int SortByIDDescending(ChatMessageInfo x, ChatMessageInfo y)
