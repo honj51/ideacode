@@ -88,8 +88,8 @@ public partial class Chat : System.Web.UI.Page
                     }
                     else
                     {
-                      // pnlNoOperator.Visible = true;
-                       pnlRequest.Visible = true;
+                      pnlNoOperator.Visible = true;
+                      
                         
                     }                    
                 }
