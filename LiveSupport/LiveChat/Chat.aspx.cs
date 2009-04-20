@@ -82,67 +82,22 @@ public partial class Chat : System.Web.UI.Page
                 {
                     if (OperatorService.GetOperatorStatus(accountId))
                     {
-                        pnlRequest.Visible = true;
+                       pnlRequest.Visible = true;
+                       
+                        
                     }
                     else
                     {
-                        pnlNoOperator.Visible = true;
+                      // pnlNoOperator.Visible = true;
+                       pnlRequest.Visible = true;
+                        
                     }                    
                 }
             }            
         }
     }
     
-    protected void lnkStartChat_Click(object sender, EventArgs e)
-    {
-        // Initiate a chat request
-        string chatId = Guid.NewGuid().ToString();
-        if (Request.Cookies["chatId"] != null)
-        {
-            Response.Cookies["chatId"].Value = chatId;
-        }
-        else
-        {
-            HttpCookie cookie = new HttpCookie("chatId", chatId);
-            Response.Cookies.Add(cookie);
-        }
-
-        if (Request.Cookies[chatId + "_lastCheck"] != null)
-        {
-            Response.Cookies[chatId + "_lastCheck"].Value = "0";
-        }
-        else
-        {
-            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
-            Response.Cookies.Add(cookie);
-        }
-
-        ChatRequestInfo request = new ChatRequestInfo();
-        request.AcceptByOpereratorId = -1;
-        request.AccountId = Request.QueryString["aid"];
-        request.ChatId = chatId;
-        request.RequestDate = DateTime.Now;
-        request.VisitorEmail = txtEmail.Text;
-        if (Request.UserHostAddress != null)
-            request.VisitorIP = Request.UserHostAddress.ToString();
-        request.VisitorName = txtName.Text;
-        if (Request.ServerVariables["HTTP_USER_AGENT"] != null)
-            request.VisitorUserAgent = Request.ServerVariables["HTTP_USER_AGENT"].ToString();
-        request.WasAccept = false;
-
-        ChatService.RequestChat(request);
-
-        
-        ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, string.Empty, "等待客服接受您的请求");
-        ChatService.AddMessage(msg);
-
-        // we set the visitor name in the ViewState
-        VisitorName = request.VisitorName;
-        VName = request.VisitorName;
-
-        pnlChat.Visible = true;
-        pnlRequest.Visible = false;
-    }
+   
 
     protected void timerRefresh_Tick(object sender, EventArgs e)
     {
@@ -223,8 +178,7 @@ public partial class Chat : System.Web.UI.Page
     }
 
 
-
-    protected void lnkSendEmail_Click(object sender, EventArgs e)
+    protected void btnSendEmail_Click(object sender, EventArgs e)
     {
         // we send an email to the configured email on the web.config
         MailMessage mail = new MailMessage();
@@ -239,5 +193,54 @@ public partial class Chat : System.Web.UI.Page
         lblConfirmation.Visible = true;
         lblConfirmation.Text = "Thank you, we will answer your email as soon as possible.";
     }
+    protected void btnStarChat_Click(object sender, EventArgs e)
+    {
+        // Initiate a chat request
+        string chatId = Guid.NewGuid().ToString();
+        if (Request.Cookies["chatId"] != null)
+        {
+            Response.Cookies["chatId"].Value = chatId;
+        }
+        else
+        {
+            HttpCookie cookie = new HttpCookie("chatId", chatId);
+            Response.Cookies.Add(cookie);
+        }
 
+        if (Request.Cookies[chatId + "_lastCheck"] != null)
+        {
+            Response.Cookies[chatId + "_lastCheck"].Value = "0";
+        }
+        else
+        {
+            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
+            Response.Cookies.Add(cookie);
+        }
+
+        ChatRequestInfo request = new ChatRequestInfo();
+        request.AcceptByOpereratorId = -1;
+        request.AccountId = Request.QueryString["aid"];
+        request.ChatId = chatId;
+        request.RequestDate = DateTime.Now;
+        request.VisitorEmail = txtEmail.Text;
+        if (Request.UserHostAddress != null)
+            request.VisitorIP = Request.UserHostAddress.ToString();
+        request.VisitorName = txtName.Text;
+        if (Request.ServerVariables["HTTP_USER_AGENT"] != null)
+            request.VisitorUserAgent = Request.ServerVariables["HTTP_USER_AGENT"].ToString();
+        request.WasAccept = false;
+
+        ChatService.RequestChat(request);
+
+
+        ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, string.Empty, "等待客服接受您的请求");
+        ChatService.AddMessage(msg);
+
+        // we set the visitor name in the ViewState
+        VisitorName = request.VisitorName;
+        VName = request.VisitorName;
+
+        pnlChat.Visible = true;
+        pnlRequest.Visible = false;
+    }
 }
