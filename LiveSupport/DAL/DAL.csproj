@@ -48,7 +48,9 @@
     <Compile Include="Entity\Payment.cs" />
     <Compile Include="Entity\RequestInfo.cs" />
     <Compile Include="Entity\Service.cs" />
-    <Compile Include="MemoryProviders\MemoryChatProvider.cs" />
+    <Compile Include="MemoryProviders\MemoryChatProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MemoryProviders\MemoryOperatorProvider.cs" />
     <Compile Include="OperatorsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

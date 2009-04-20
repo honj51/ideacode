@@ -167,16 +167,59 @@ public class SqlChatProvider : ChatProvider
 
     public override List<ChatRequestInfo> GetChatRequests(Operator op)
 	{
+            // 页面访问者请求对话
+            SqlConnection sqlC = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsGetFromVisitors", sqlC);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader data = null;
+            List<ChatRequestInfo> retList = new List<ChatRequestInfo>();
+
+            try
+            {
+                cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = op.AccountId;
+                cmd.Parameters.Add("@OperatorID", SqlDbType.Int).Value = op.Id;
+
+                sqlC.Open();
+                data = cmd.ExecuteReader();
+                while (data.Read())
+                    retList.Add(new ChatRequestInfo(data));
+
+                data.Close();
+                data.Dispose();
+                data = null;
+                cmd.Dispose();
+                sqlC.Close();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (sqlC != null)
+                {
+                    if (sqlC.State == ConnectionState.Open)
+                        sqlC.Close();
+
+                    sqlC.Dispose();
+                    sqlC = null;
+                }
+            }
+            return retList;
+	}
+    //服务发出邀请
+    public override List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip)
+    {
         SqlConnection sqlC = new SqlConnection(connectionString);
-        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsGetFromVisitors", sqlC);
+        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsGetFrompage", sqlC);
         cmd.CommandType = CommandType.StoredProcedure;
         SqlDataReader data = null;
         List<ChatRequestInfo> retList = new List<ChatRequestInfo>();
 
         try
         {
-            cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = op.AccountId;
-            cmd.Parameters.Add("@OperatorID", SqlDbType.Int).Value = op.Id;
+            cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = AccountId;
+            cmd.Parameters.Add("@IP", SqlDbType.Int).Value = ip;
 
             sqlC.Open();
             data = cmd.ExecuteReader();
@@ -205,7 +248,7 @@ public class SqlChatProvider : ChatProvider
             }
         }
         return retList;
-	}
+    }
 
 	public override void RemoveChatRequest(ChatRequestInfo req)
 	{

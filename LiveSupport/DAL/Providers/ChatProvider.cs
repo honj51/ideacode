@@ -24,6 +24,7 @@ public abstract class ChatProvider  : ProviderBase
 	public abstract void AddChatMessage(ChatMessageInfo msg);
 	public abstract List<ChatMessageInfo> GetMessages(string chatId, long lastCheck);
     public abstract List<ChatRequestInfo> GetChatRequests(Operator op);
+    public abstract List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip);
 	public abstract void RemoveChatRequest(ChatRequestInfo req);
     public abstract bool HasNewMessage(string chatId, long lastMessageId);
 }
