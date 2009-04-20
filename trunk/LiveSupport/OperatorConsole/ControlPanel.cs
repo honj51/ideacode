@@ -20,8 +20,8 @@ namespace LiveSupport.OperatorConsole
         private bool hasCheckedChatRequests = false;
         private int numberOfChatWaiting = 0;
         private List<TabInfo> chatInfo = new List<TabInfo>();
-
         private SoundPlayer player = new SoundPlayer();
+        private string IsIP = null;
 
         public ControlPanel()
         {
@@ -38,8 +38,6 @@ namespace LiveSupport.OperatorConsole
             playSoundOnChatRequestToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatReq;
             playSoundOnChatMessageToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatMsg;
             whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked = Properties.Settings.Default.GetWebRequestOffline;
-
-
         }
         //时间方法
         private void tmrCheckRequests_Tick(object sender, EventArgs e)
@@ -79,6 +77,8 @@ namespace LiveSupport.OperatorConsole
                     item.SubItems.Add(imgBrowser);
                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, requests[i].Referrer));
                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, requests[i].DomainRequested));
+
+                    item.Tag = requests[i];
 
                     lstVisitors.Items.Insert(0, item);
 
@@ -150,7 +150,7 @@ namespace LiveSupport.OperatorConsole
             ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
             Application.Exit();
         }
-
+        //接受请求
         private void btnAccept_Click(object sender, EventArgs e)
         {
             // Accept a new chat request
@@ -158,9 +158,10 @@ namespace LiveSupport.OperatorConsole
             {
                 player.Stop();
 
-
                 ChatRequestInfo req = (ChatRequestInfo)drpChatRequest.SelectedItem;
-
+                //string aa = req.AcceptByOpereratorId + "-" + req.AcceptDate + "-" + req.AccountId + "-" + req.ChatId+"-"+req.ClosedDate+"-"+req.RequestDate ;
+                //MessageBox.Show(aa);
+                
                 // Remove the chat request from the combo
                 drpChatRequest.Items.Remove(req);
                 drpChatRequest.Text = string.Empty;
@@ -329,7 +330,40 @@ namespace LiveSupport.OperatorConsole
 
         private void 邀请对话ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("aaa");
+            if (IsIP == lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[2].ToString())
+            {
+                DialogResult choice = MessageBox.Show("你以向该用户发出请求", "是否重发?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (choice == DialogResult.OK)
+                {
+                    RequestInfo info = this.lstVisitors.SelectedItems[0].Tag as RequestInfo;
+                    ChatRequestInfo requestinfo = new ChatRequestInfo();
+                    requestinfo.ChatId = Guid.NewGuid().ToString();//chatid
+                    requestinfo.AccountId = info.AccoutId.ToString();
+                    requestinfo.VisitorIP = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[2].ToString();//IP
+                    requestinfo.AcceptByOpereratorId = Program.CurrentOperator.Id; //服务人员
+                    requestinfo.RequestDate = DateTime.Now;
+                    requestinfo.VisitorName = "";
+                    requestinfo.VisitorEmail = "";
+                    requestinfo.VisitorUserAgent = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[4].ToString();//浏览器
+                    requestinfo.WasAccept = false;
+                    ws.TransferChat(requestinfo);
+                }
+            }
+            else
+            {
+                RequestInfo info = this.lstVisitors.SelectedItems[0].Tag as RequestInfo;
+                ChatRequestInfo requestinfo = new ChatRequestInfo();
+                requestinfo.ChatId = Guid.NewGuid().ToString();//chatid
+                requestinfo.AccountId = info.AccoutId.ToString();
+                requestinfo.VisitorIP = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[2].ToString();//IP
+                requestinfo.AcceptByOpereratorId = Program.CurrentOperator.Id; //服务人员
+                requestinfo.RequestDate = DateTime.Now;
+                requestinfo.VisitorName = "";
+                requestinfo.VisitorEmail = "";
+                requestinfo.VisitorUserAgent = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[4].ToString();//浏览器
+                requestinfo.WasAccept = false;
+                ws.TransferChat(requestinfo);
+            }
         }
     }
 }

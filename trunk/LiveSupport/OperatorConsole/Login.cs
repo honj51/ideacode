@@ -69,6 +69,8 @@ namespace LiveSupport.OperatorConsole
 
         private void Login_Load(object sender, EventArgs e)
         {
+            this.txtOpName.Text = "user1op1";
+            txtOpPassword.Text = "abc123";
             if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator.Length == 0)
             {
                 gbConfig.Visible = true;

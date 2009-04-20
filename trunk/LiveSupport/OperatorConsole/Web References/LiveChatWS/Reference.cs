@@ -55,6 +55,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback HasNewMessageOperationCompleted;
         
+        private System.Threading.SendOrPostCallback InviteOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -137,6 +139,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event HasNewMessageCompletedEventHandler HasNewMessageCompleted;
+        
+        /// <remarks/>
+        public event InviteCompletedEventHandler InviteCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -504,6 +509,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.HasNewMessageCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HasNewMessageCompleted(this, new HasNewMessageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/Invite", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool Invite(RequestInfo info) {
+            object[] results = this.Invoke("Invite", new object[] {
+                        info});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InviteAsync(RequestInfo info) {
+            this.InviteAsync(info, null);
+        }
+        
+        /// <remarks/>
+        public void InviteAsync(RequestInfo info, object userState) {
+            if ((this.InviteOperationCompleted == null)) {
+                this.InviteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInviteOperationCompleted);
+            }
+            this.InvokeAsync("Invite", new object[] {
+                        info}, this.InviteOperationCompleted, userState);
+        }
+        
+        private void OnInviteOperationCompleted(object arg) {
+            if ((this.InviteCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InviteCompleted(this, new InviteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1158,6 +1193,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private object[] results;
         
         internal HasNewMessageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void InviteCompletedEventHandler(object sender, InviteCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InviteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InviteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -59,18 +59,18 @@ namespace LiveSupport.OperatorConsole
             this.colBrowser = new System.Windows.Forms.ColumnHeader();
             this.colReferrer = new System.Windows.Forms.ColumnHeader();
             this.colDomain = new System.Windows.Forms.ColumnHeader();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.邀请对话ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.接受请求ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tmrCheckRequests = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.邀请对话ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.接受请求ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.pnlChat.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -250,6 +250,7 @@ namespace LiveSupport.OperatorConsole
             this.drpChatRequest.Name = "drpChatRequest";
             this.drpChatRequest.Size = new System.Drawing.Size(140, 20);
             this.drpChatRequest.TabIndex = 1;
+            this.drpChatRequest.Text = " ";
             // 
             // lblChatRequest
             // 
@@ -318,6 +319,27 @@ namespace LiveSupport.OperatorConsole
             this.colDomain.Text = "域名";
             this.colDomain.Width = 115;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.邀请对话ToolStripMenuItem,
+            this.接受请求ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
+            // 
+            // 邀请对话ToolStripMenuItem
+            // 
+            this.邀请对话ToolStripMenuItem.Name = "邀请对话ToolStripMenuItem";
+            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.邀请对话ToolStripMenuItem.Text = "邀请对话";
+            this.邀请对话ToolStripMenuItem.Click += new System.EventHandler(this.邀请对话ToolStripMenuItem_Click);
+            // 
+            // 接受请求ToolStripMenuItem
+            // 
+            this.接受请求ToolStripMenuItem.Name = "接受请求ToolStripMenuItem";
+            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.接受请求ToolStripMenuItem.Text = "接受请求";
+            // 
             // imgIconSet
             // 
             this.imgIconSet.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgIconSet.ImageStream")));
@@ -355,27 +377,6 @@ namespace LiveSupport.OperatorConsole
             this.tmrCheckRequests.Interval = 3500;
             this.tmrCheckRequests.Tick += new System.EventHandler(this.tmrCheckRequests_Tick);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.邀请对话ToolStripMenuItem,
-            this.接受请求ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
-            // 
-            // 邀请对话ToolStripMenuItem
-            // 
-            this.邀请对话ToolStripMenuItem.Name = "邀请对话ToolStripMenuItem";
-            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.邀请对话ToolStripMenuItem.Text = "邀请对话";
-            this.邀请对话ToolStripMenuItem.Click += new System.EventHandler(this.邀请对话ToolStripMenuItem_Click);
-            // 
-            // 接受请求ToolStripMenuItem
-            // 
-            this.接受请求ToolStripMenuItem.Name = "接受请求ToolStripMenuItem";
-            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.接受请求ToolStripMenuItem.Text = "接受请求";
-            // 
             // ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -394,9 +395,9 @@ namespace LiveSupport.OperatorConsole
             this.mainMenu.PerformLayout();
             this.pnlChat.ResumeLayout(false);
             this.pnlChat.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

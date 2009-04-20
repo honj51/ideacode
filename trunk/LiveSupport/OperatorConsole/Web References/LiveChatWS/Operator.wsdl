@@ -228,6 +228,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Invite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:RequestInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InviteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LogInSoapIn">
@@ -338,6 +352,15 @@
   <wsdl:message name="HasNewMessageAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="InviteSoapIn">
+    <wsdl:part name="parameters" element="tns:Invite" />
+  </wsdl:message>
+  <wsdl:message name="InviteSoapOut">
+    <wsdl:part name="parameters" element="tns:InviteResponse" />
+  </wsdl:message>
+  <wsdl:message name="InviteAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="LogIn">
       <wsdl:input message="tns:LogInSoapIn" />
@@ -386,6 +409,10 @@
     <wsdl:operation name="HasNewMessage">
       <wsdl:input message="tns:HasNewMessageSoapIn" />
       <wsdl:output message="tns:HasNewMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Invite">
+      <wsdl:input message="tns:InviteSoapIn" />
+      <wsdl:output message="tns:InviteSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -510,6 +537,16 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Invite">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/Invite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:InviteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -628,6 +665,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:HasNewMessageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Invite">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/Invite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:InviteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
