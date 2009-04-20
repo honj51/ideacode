@@ -1,0 +1,133 @@
+#chatbox {
+	SCROLLBAR-FACE-COLOR: #bbddff; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-3DLIGHT-COLOR: #91c6f8; SCROLLBAR-ARROW-COLOR: #0c68ef; SCROLLBAR-TRACK-COLOR: #eeeeee; SCROLLBAR-DARKSHADOW-COLOR: #91c6f8;
+    margin-top: 0px;
+}
+#tdhead {
+	BACKGROUND-IMAGE: url(images/title_bg.gif)
+}
+#head {
+	BACKGROUND-IMAGE: url(images/title.gif)
+}
+.default#banner {
+	BACKGROUND-IMAGE: url(right_column.jpg)
+}
+#logo {
+	BACKGROUND-IMAGE: url(images/logo.gif)
+}
+#notewrap {
+	BACKGROUND: #85c3ff repeat-x 50% bottom
+}
+#tdinput {
+	BACKGROUND: #63b0fe
+}
+#tdfooter {
+	BACKGROUND: url(images/footer_bg.gif)
+}
+#history {
+	BORDER-RIGHT: #4682c0 1px solid; BORDER-TOP: #4682c0 1px solid; BACKGROUND: #e9f3ff; BORDER-LEFT: #4682c0 1px solid; BORDER-BOTTOM: #4682c0 1px solid
+}
+#footer {
+	BACKGROUND-IMAGE: url(images/footer_1.gif); COLOR: #fff
+}
+#footer P {
+	BACKGROUND-POSITION: right 50%; BACKGROUND-IMAGE: url(images/footer_2.gif)
+}
+#enter {
+	BACKGROUND-POSITION: 0px 0px; BACKGROUND-REPEAT: no-repeat
+}
+#enter {
+	BACKGROUND-POSITION: 1px 1px
+}
+.cn#enter {
+	BACKGROUND-IMAGE: url(images/send0.jpg)
+}
+.tw#enter {
+	BACKGROUND-IMAGE: url(images/send1.jpg)
+}
+.en#enter {
+	BACKGROUND-IMAGE: url(images/send2.jpg)
+}
+.ja#enter {
+	BACKGROUND-IMAGE: url(images/send3.jpg)
+}
+#toolsbar LI.hover {
+	BORDER-RIGHT: #aed2fc 1px solid; BORDER-TOP: #aed2fc 1px solid; BORDER-LEFT: #aed2fc 1px solid; COLOR: #fff; BORDER-BOTTOM: #aed2fc 1px solid; BACKGROUND-COLOR: #7db7fa
+}
+.hover#exitChat {
+	BORDER-RIGHT: #aed2fc 1px solid; BORDER-TOP: #aed2fc 1px solid; BORDER-LEFT: #aed2fc 1px solid; COLOR: #fff; BORDER-BOTTOM: #aed2fc 1px solid; BACKGROUND-COLOR: #7db7fa
+}
+.hover#shortcutkey {
+	BACKGROUND-COLOR: #7db7fa
+}
+.hover#enter {
+	FILTER: alpha(opacity=60); BACKGROUND-COLOR: #fff; opacity: .6
+}
+#toolsbar LI {
+	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; COLOR: #fff; BORDER-BOTTOM: #63b0fe 1px solid
+}
+#exitChat {
+	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; COLOR: #fff; BORDER-BOTTOM: #63b0fe 1px solid
+}
+#languageList {
+	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; BORDER-BOTTOM: #63b0fe 1px solid
+}
+#shortKeyMenu {
+	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; BORDER-BOTTOM: #63b0fe 1px solid
+}
+#languageList LI.hover {
+	BACKGROUND: #63b0fe; COLOR: #fff
+}
+#shortKeyMenu LI.hover {
+	BACKGROUND: #63b0fe; COLOR: #fff
+}
+#enter_wrap {
+	BACKGROUND: #63b0fe
+}
+#innerSurveyForm {
+	COLOR: #1571b3
+}
+#chaterInfo {
+	COLOR: #1571b3
+}
+#msg {
+	BACKGROUND-COLOR: #63b0fe
+}
+#inputbox {
+	BORDER-RIGHT: #4682c0 1px solid; BORDER-TOP: #4682c0 1px solid; BORDER-LEFT: #4682c0 1px solid; BORDER-BOTTOM: #4682c0 1px solid
+}
+#wrap {
+	PADDING-BOTTOM: 0px
+}
+#shortKeyMenu LI {
+	COLOR: #55a1f5
+}
+#languageList LI {
+	COLOR: #55a1f5
+}
+#head {
+	FONT-WEIGHT: normal
+}
+#popDiv BUTTON.button {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BACKGROUND: url(images/button.gif) no-repeat center 50%; BORDER-LEFT: medium none; WIDTH: 80px; COLOR: #1571b3; LINE-HEIGHT: 24px; BORDER-BOTTOM: medium none; HEIGHT: 24px
+}
+#preChatForm {
+	COLOR: #1571b3
+}
+#tool_wrap {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+#exitChat {
+	TOP: 3px
+}
+#inputarea {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+#toolsbar {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px
+}
+#dialbackBox {
+	BACKGROUND: url(images/dialback.jpg)
+}
+#dialbackBox .sumbit {
+	BACKGROUND: url(images/bt.jpg) no-repeat
+}
