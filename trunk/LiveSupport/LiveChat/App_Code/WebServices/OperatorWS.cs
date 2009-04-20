@@ -177,6 +177,15 @@ public class OperatorWS : System.Web.Services.WebService
         return ChatService.HasNewMessage(chatId, lastMessageId);
     }
 
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public bool Invite(RequestInfo info)
+    {
+        checkAuthentication();
+        return true;
+    }
+
+
     private void checkAuthentication()
     {
         //if (Authentication.userName != System.Configuration.ConfigurationManager.AppSettings["WSUser"].ToString())
