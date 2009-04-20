@@ -53,13 +53,19 @@ public class ChatService
 		return _provider.GetMessages(chatId, lastCheck);
 	}
 
-	public static List<ChatRequestInfo> GetRequests(Operator op)
-	{
-		// Load the provider
-		LoadProvider();
+    public static List<ChatRequestInfo> GetRequests(Operator op)
+    {
+        // Load the provider
+        LoadProvider();
 
-		return _provider.GetChatRequests(op);
-	}
+        return _provider.GetChatRequests(op);
+    }
+    //页面调用查询是否有消息
+    public static List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip)
+    {
+        LoadProvider();
+        return _provider.GetRequestsByAidandIP(AccountId, ip);
+    }
 
 	public static void RemoveChatRequest(ChatRequestInfo req)
 	{
@@ -76,7 +82,7 @@ public class ChatService
 
         return _provider.HasNewMessage(chatId, lastMessageId);
     }
-
+     
 	private static void LoadProvider()
 	{
 		// if we do not have initiated the provider
