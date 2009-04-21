@@ -299,7 +299,9 @@ legend {
                         <li id="file">传送文件 </li>
                         <li id="save" class="open">保存记录 </li>
                         <li id="switch" class="open">关闭提示音 </li>
-                        <li id="active" class="open">截 屏 </li>
+                        <li id="active" class="open">
+                            <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click">剪切</asp:LinkButton>
+                        </li>
                         </ul>
                         
                    <div id="exitChat">
