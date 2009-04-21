@@ -219,7 +219,7 @@ public class SqlChatProvider : ChatProvider
         try
         {
             cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = AccountId;
-            cmd.Parameters.Add("@IP", SqlDbType.Int).Value = ip;
+            cmd.Parameters.Add("@IP", SqlDbType.VarChar).Value = ip;
 
             sqlC.Open();
             data = cmd.ExecuteReader();
