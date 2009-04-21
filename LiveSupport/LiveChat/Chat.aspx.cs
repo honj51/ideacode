@@ -97,8 +97,6 @@ public partial class Chat : System.Web.UI.Page
         }
     }
     
-   
-
     protected void timerRefresh_Tick(object sender, EventArgs e)
     {
         if (Request.Cookies["chatId"] != null)
