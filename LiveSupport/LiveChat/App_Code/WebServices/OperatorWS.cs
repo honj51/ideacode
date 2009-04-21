@@ -185,6 +185,13 @@ public class OperatorWS : System.Web.Services.WebService
         return true;
     }
 
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip)
+    {
+        checkAuthentication();
+        return ChatService.GetRequestsByAidandIP(AccountId, ip);
+    }
 
     private void checkAuthentication()
     {
