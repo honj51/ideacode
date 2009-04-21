@@ -192,7 +192,6 @@ public class OperatorWS : System.Web.Services.WebService
         checkAuthentication();
         return ChatService.GetRequestsByAidandIP(AccountId, ip);
     }
-
     private void checkAuthentication()
     {
         //if (Authentication.userName != System.Configuration.ConfigurationManager.AppSettings["WSUser"].ToString())
