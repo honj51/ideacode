@@ -14,111 +14,15 @@
    
     
     <%--Add LiveChat services javascript --%>
-    <script type="text/javascript">
-    
-    <!--   
-  var   currentMoveObj   =   null;         //当前拖动对象   
-  var   relLeft;         //鼠标按下位置相对对象位置   
-  var   relTop;   
-  function   f_mdown(obj)   
-  {   
-          currentMoveObj   =   obj;                 //当对象被按下时，记录该对象   
-          currentMoveObj.style.position   =   "absolute";   
-          relLeft   =   event.x   -   currentMoveObj.style.pixelLeft;   
-          relTop   =   event.y   -   currentMoveObj.style.pixelTop;   
-  }   
-  window.document.onmouseup   =   function()   
-  {   
-          currentMoveObj   =   null;         //当鼠标释放时同时释放拖动对象   
-  }   
-  function   f_move(obj)   
-  {   
-          if(currentMoveObj   !=   null)   
-          {   
-                  currentMoveObj.style.pixelLeft=event.x-relLeft;   
-                  currentMoveObj.style.pixelTop=event.y-relTop;   
-          }   
-  }   
-    
-  //-->   
-    function openChat()
-    {
-        panel2Close();//隐藏层
-        var win = window.open('http://rd01/LiveChatService/Chat.aspx?aid=4', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
-        win.focus();
-        win.opener = window;
-        return ;
-    }
-    var i=0;
-    function panel2Show()
-    {
-        
-        i=i+1;
-        if(i==10){
-        document.getElementById("panel2").style.display="block"; 
-        clearTimeout();
-        return;
-        }
-      setTimeout("panel2Show()",1000);
-    }
-    function panel2Close()
-    {
-        document.getElementById("panel2").style.display="none";
-    }
+    <!--导入js文件-->
+    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live.js">
+   
     </script>
-        <style type="text/css">
-        .style1
-        {
-            height: 81px;
-            font-size:12px;
-        }
-        .style3
-        {
-            height: 29px;
-            color:White;
-            font-size:12px;
-                width: 159px;
-            }
-        .style4
-        {
-            height: 81px;
-            width: 159px;
-        }
-        .style5
-        {
-            width: 159px;
-            
-        }
-#panel2
-{
-    cursor:move;
-    background-image:url('images/invite_bg.gif');
-    display:none;
-    border:1px solid #339966;
-    width:300px;
-    width:300px;
-    height:100px;
-    left:50%;
-    top:50%;
-    margin-left:-220px;
-    margin-top:-50px;
-    position:fixed;
+  
     
-    _position:absolute;
-    _left:expression(eval(
-        document.documentElement.clientHeight==0
-        ?document.body.offsetWidth
-        :document.documentElement.clientWidth
-    )/2+"px");
-    _top:expression(eval(
-        document.documentElement.clientHeight==0
-        ?(document.body.scrollTop+document.body.clientHeight/2)
-        :(document.documentElement.scrollTop+document.documentElement.clientHeight/2)
-    )+"px");
-}
-    </style>
 </head>
-<body onload="panel2Show()">
+
+<body>
     <form id="form1" runat="server">
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
         <!--
@@ -130,7 +34,7 @@ TOP INFORMTION
             <div id="logo">
                 <a href="Default.aspx">Live Support Service .Inc</a></div>
             <div id="top-information-home">
-                <a href="../Default.aspx">&#39318;&#39029;</a></div>
+                <a href="Default.aspx">&#39318;&#39029;</a></div>
             <div id="top-information-login">
                 <asp:LoginName ID="LoginName1" runat="server" FormatString="&#27426;&#36814;&#24744; {0}, " />
                 <asp:LoginView ID="LoginView1" runat="server">
@@ -171,18 +75,7 @@ FOOTER
             <asp:Menu ID="Menu2" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal"
                 Width="350px" CssClass="menu-main" MaximumDynamicDisplayLevels="0"/>
         </div>
-      <!--帮助-->  
-      <div id="panel2" onmousedown="f_mdown(this)"   onmousemove="f_move(this)">
-      <table style="width: 436px; height: 158px">
-        <tr><td class="style3">&nbsp; 欢迎您来到Live Support</td></tr>
-        <tr><td class="style4"><td class="style1">亲爱的朋友您好！<br />
-            <br />
-            来到Live Support有什么可以帮您的吗？</td></td></tr>
-        <tr><td class="style5"><td align="right">
-            <a href="javascript:openChat();"><img src="images/1.jpg" /></a><a href="javascript:panel2Close();"><img src="images/2.jpg"/></a>&nbsp;&nbsp;
-            </td></td></tr>
-      </table>
-      </div>
+    
     </form>
 </body>
 </html>
