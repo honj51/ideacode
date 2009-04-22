@@ -259,22 +259,33 @@ public partial class Chat : System.Web.UI.Page
                 this.Response.Write("<script>alert('请选择传送的文件');</script>");
                 return;
             }
-            //this.Response.Write("<script>SendFileState('正在传送 "+file+"文件...');<script>");
-            Response.Write("<script language='javascript' src='SendMsg.js'>SendFileState('正在传送文件');</script>");   
             if (this.fuFile.FileContent.Length >= 4180560)
             {
                 this.Response.Write("<script>alert('传送的文件过大');</script>");
                 return;
             }
+            if (Request.Cookies["chatId"] != null)
+            {
+                string chatId = Request.Cookies["chatId"].Value.ToString();
+                ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...");
+                ChatService.AddMessage(msg);
+            }
             string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
             this.fuFile.PostedFile.SaveAs(path);
-            this.Response.Write("<script>alert('传送成功!');</script>");
+            if (Request.Cookies["chatId"] != null)
+            {
+                string chatId = Request.Cookies["chatId"].Value.ToString();
+                ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!");
+                ChatService.AddMessage(msg);
+            }
+
         }
         catch (Exception ex)
         {
             this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
         }
 
+       
         
     }
 }

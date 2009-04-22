@@ -54,11 +54,6 @@
         //Call server side function
         PageMethods.SendMsg(txt1.value,getCookie('chatId'),OnCallSendMsgComplete);
     }
-    //传送文件状态
-    function SendFileState(msg)
-    {
-       PageMethods.SendMsg(msg,getCookie('chatId'),OnCallSendMsgComplete);
-    }
     function OnCallSendMsgComplete(result,methodName)
     {
         //Get text control
