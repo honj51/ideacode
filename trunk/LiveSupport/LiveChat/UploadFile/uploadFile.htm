@@ -23,43 +23,44 @@ function getObj(objId)
 	else if (document.all) 
 		return document.all(objId);	
 }
-		function CheckUpload(){
-			if(document.uploadFileForm.myFile.value.length<1){
-				alert("请选择要传送的文件");
-				document.uploadFileForm.myFile.focus();
-				return false;
-			}else
-			{
-				getObj('uploadFileForm').action = parent.globalChatHandle.uploadFileOnSubmit(document.uploadFileForm.myFile.value);
-				//getObj('uploadFileForm').action = parent.kf.uploadFileOnSubmit(document.uploadFileForm.myFile.value);
-				return true;
-			}
+//传送
+function CheckUpload(){
+	if(document.uploadFileForm.myFile.value.length<1){
+		alert("请选择要传送的文件");
+		document.uploadFileForm.myFile.focus();
+		return false;
+	}else
+	{
+		getObj('uploadFileForm').action = parent.globalChatHandle.uploadFileOnSubmit(document.uploadFileForm.myFile.value);
+		//getObj('uploadFileForm').action = parent.kf.uploadFileOnSubmit(document.uploadFileForm.myFile.value);
+		return true;
+	}
 			
-		}
+}
 		
-		function CheckFile(){
-			try{
-			   var fso, f, s;
-			   var FilePath = document.uploadFileForm.myFile.value;
-			   fso = new ActiveXObject("Scripting.FileSystemObject");
-			   if(fso.FileExists(FilePath)){
-				   f = fso.GetFile(FilePath);
-				   s = f.size;
-				   if(s>1024*1024*4){
-						alert("文件的大小不能超过4M");
-						return false;
-				   }
-			   }else{
-			       alert("文件不存在");
-				   return false;
-			   }
-			}catch(e){
-			   alert(e);
-			   return false;
-			}
-			return true;
+function CheckFile(){
+try{
+	 var fso, f, s;
+	 var FilePath = document.uploadFileForm.myFile.value;
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+	if(fso.FileExists(FilePath)){
+	  f = fso.GetFile(FilePath);
+	  s = f.size;
+	  if(s>1024*1024*4){
+		alert("文件的大小不能超过4M");
+		return false;
 		}
-		</SCRIPT>
+	}else{
+		   alert("文件不存在");
+		return false;
+	}
+}catch(e){
+	alert(e);
+	return false;
+	}
+		return true;
+}
+</SCRIPT>
 
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META content="MSHTML 6.00.2900.5726" name=GENERATOR></HEAD>
@@ -69,8 +70,13 @@ function getObj(objId)
   <TR>
     <TD width=50></TD>
     <TD align=left width=574>
-      <FORM id=uploadFileForm name=uploadFileForm action="" method=post 
-      encType=multipart/form-data><INPUT class=text id=myFile 
-      onkeydown="return false;" type=file size=12 name=myFile> <INPUT class=btn id=Button1 onclick="javascript:return CheckUpload();" type=submit value=传送 name=Button1> 
-<INPUT class=btn onclick=parent.globalChatHandle.hideUploadFileForm(); type=button value=关闭 name=Submit2> 
-      </FORM></TD></TR></TBODY></TABLE></BODY></HTML>
+      <FORM id=uploadFileForm name=uploadFileForm action="uploadFile.aspx" method=post encType=multipart/form-data>
+        <INPUT class=text id=myFile onkeydown="return false;" type=file size=12 name=myFile> 
+        <INPUT class=btn id=Button1 onclick="javascript:return CheckUpload();" type=submit value=传送 name=Button1> 
+        <INPUT class=btn onclick=parent.globalChatHandle.hideUploadFileForm(); type=button value=关闭 name=Submit2> 
+      </FORM>
+    </TD></TR>
+  </TBODY>
+  </TABLE>
+  </BODY>
+  </HTML>
