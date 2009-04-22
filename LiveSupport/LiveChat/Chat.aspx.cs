@@ -246,4 +246,41 @@ public partial class Chat : System.Web.UI.Page
         string aaa = Server.MapPath("Download\\11.exe");
         System.Diagnostics.Process.Start(aaa);
     }
+    
+//文件传送
+    protected void btnSend_Click(object sender, EventArgs e)
+    {
+        //验证文件路径
+        try
+        {
+            string file = this.fuFile.FileName.ToString();
+            if (file.Trim().Length == 0)//验证上传文件
+            {
+                this.Response.Write("<script>alert('请选择传送的文件');</script>");
+                return;
+            }
+            this.Response.Write("<script>alert('size:"+this.fuFile.FileContent.Length+"');</script>");
+            if (this.fuFile.FileContent.Length >= 230000)
+            {
+                this.Response.Write("<script>alert('传送的文件过大');</script>");
+                return;
+            }
+            this.Response.Write("<script>alert('size:" + this.fuFile.FileContent.Length + "');</script>");
+            //this.Response.Write("<script>alert('size:'"+this.fuFile.FileContent.Length+");</script>");
+            //this.Response.Write("<script>alert('size:" + this.fuFile.FileContent.Length + "');</script>");
+            string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
+            this.fuFile.PostedFile.SaveAs(path);
+            this.Response.Write("<script>alert('传送成功!');</script>");
+        }
+        catch (Exception ex)
+        {
+            this.Response.Write("<script>alert('文件传送失败,错误："+ex.ToString()+"');</script>");
+        }
+
+        
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        this.Response.Write("<script>alert('abc');</script>");
+    }
 }

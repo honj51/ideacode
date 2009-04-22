@@ -63,8 +63,33 @@ legend {
 } 
 
         
+        #Button2
+        {
+            height: 22px;
+            width: 50px;
+        }
+
+        
+        #btnClose
+        {
+            width: 45px;
+            height: 20px;
+        }
+
+        
     </style>  
         <script language="javascript" type="text/javascript">
+		//显示层
+		function divShow(divId)
+		{
+		    document.getElementById(divId).style.display="block";
+		}
+		//关闭层
+		function divClose(divId)
+		{
+		    document.getElementById(divId).style.display="none";
+		}
+		
 		var lastCheck = new Date();
 		 
 		function scrollDiv()
@@ -294,9 +319,16 @@ legend {
         </tr>
         <tr id="tdinput">
             <td id="twrap" colspan="2">
+          <!--上传-->
+          <div id="divSend" style="">&nbsp;&nbsp;
+                <asp:FileUpload ID="fuFile" runat="server" Height="20px" Width="191px" />
+              &nbsp;<asp:Button ID="btnSend" runat="server" Height="20px" Text="传送" 
+                  Width="46px" onclick="btnSend_Click" />&nbsp;<input ID="btnClose" type="button" value="关闭" onclick="divClose('divSend')" /><asp:Button 
+                  ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+                </div>
                 <div id="tool_wrap">
                     <ul id="toolsbar">
-                        <li id="file">传送文件 </li>
+                        <li id="file" onclick="divShow('divSend');">传送文件 </li>
                         <li id="save" class="open">保存记录 </li>
                         <li id="switch" class="open">关闭提示音 </li>
                         <li id="active" class="open">
