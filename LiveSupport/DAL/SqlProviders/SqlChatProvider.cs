@@ -249,6 +249,37 @@ public class SqlChatProvider : ChatProvider
         }
         return retList;
     }
+    //更新IsShow的显示
+    public override void UpIsShowRequestsByAidandIP(int AccountId, string ip,string IsShow)
+    {
+        SqlConnection sqlC = new SqlConnection(connectionString);
+        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsUpdateIsShow", sqlC);
+        cmd.CommandType = CommandType.StoredProcedure;
+        try
+        {
+            cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = AccountId;
+            cmd.Parameters.Add("@IP", SqlDbType.VarChar).Value = ip;
+            cmd.Parameters.Add("@IsShow", SqlDbType.VarChar).Value =IsShow;
+            sqlC.Open();
+            cmd.ExecuteReader();
+            cmd.Dispose();
+            sqlC.Close();
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            if (sqlC != null)
+            {
+                if (sqlC.State == ConnectionState.Open)
+                    sqlC.Close();
+                    sqlC.Dispose();
+                    sqlC = null;
+            }
+        }
+    }
 
 	public override void RemoveChatRequest(ChatRequestInfo req)
 	{
