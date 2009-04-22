@@ -320,11 +320,10 @@ legend {
         <tr id="tdinput">
             <td id="twrap" colspan="2">
           <!--上传-->
-          <div id="divSend" style="">&nbsp;&nbsp;
+          <div id="divSend" style="display:none;">&nbsp;&nbsp;
                 <asp:FileUpload ID="fuFile" runat="server" Height="20px" Width="191px" />
-              &nbsp;<asp:Button ID="btnSend" runat="server" Height="20px" Text="传送" 
-                  Width="46px" onclick="btnSend_Click" />&nbsp;<input ID="btnClose" type="button" value="关闭" onclick="divClose('divSend')" /><asp:Button 
-                  ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+              &nbsp;<asp:Button ID="btnSend" runat="server" Height="20px" Text="传送" Width="46px" onclick="btnSend_Click" />&nbsp;
+              <input ID="btnClose" type="button" value="关闭" onclick="divClose('divSend')" />
                 </div>
                 <div id="tool_wrap">
                     <ul id="toolsbar">
@@ -347,4 +346,5 @@ legend {
                  <textarea id="txtMsg" runat="server" onkeypress="checkEnter(event)" /> </td><td  align="center">
                 <div >
                     <div id="enter" >
+                    <!----发送--->
                         <input type="image" id="btnSend"  src="Images/send.jpg"  onclick="CallSendMsg()"/> </div></div></td></tr></table><img id="track" src="Images/track.gif" /> </div></asp:Panel></div></form></body></html>
