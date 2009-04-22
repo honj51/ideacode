@@ -45,7 +45,6 @@
     function OnSetTypingNotificationComplete(result,methodName)
     {
     } 
-
     function CallSendMsg() 
     {
         //Get text control
