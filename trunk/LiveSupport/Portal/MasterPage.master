@@ -11,11 +11,18 @@
     <link rel="shortcut icon" href="images/favicon.ico" />
     <title>LiveSupport</title>
     
-   
+    <meta name="GENERATOR" Content="Microsoft Visual Studio .Net 7.1">
+
+    <meta name="CODE_LANGUAGE" Content="C#">
+
+    <meta name=vs_defaultClientScript content="JavaScript">
+
+    <meta name=vs_targetSchema content="http://schemas.microsoft.com /intellisense/ie5">
+
     
     <%--Add LiveChat services javascript --%>
     <!--导入js文件-->
-    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live.js">
+    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js">
     </script>
   
     
@@ -23,6 +30,7 @@
 
 <body>
     <form id="form1" runat="server">
+      <div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
         <!--
 
