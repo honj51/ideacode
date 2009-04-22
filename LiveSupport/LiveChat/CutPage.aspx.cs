@@ -17,4 +17,9 @@ public partial class CutPage : System.Web.UI.Page
     {
 
     }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string aaa = Server.MapPath("Download\\11.exe");
+        System.Diagnostics.Process.Start(aaa);
+    }
 }
