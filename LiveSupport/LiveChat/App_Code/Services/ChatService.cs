@@ -61,12 +61,25 @@ public class ChatService
         return _provider.GetChatRequests(op);
     }
     //页面调用查询是否有消息
-    public static List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip)
+    public static string GetRequestsByAidandIP(int AccountId, string ip)
     {
         LoadProvider();
-        return _provider.GetRequestsByAidandIP(AccountId, ip);
+        List<ChatRequestInfo> li = _provider.GetRequestsByAidandIP(AccountId, ip);
+        if (li.Count > 0)
+        {
+            UpIsShowRequestsByAidandIP(AccountId, ip, "2");
+            return "ok";
+        }
+        else
+        {
+            return "no";
+        }
     }
-
+    //更新IsShow的显示
+    public static void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
+    {
+        _provider.UpIsShowRequestsByAidandIP(AccountId, ip, IsShow);
+    }
 	public static void RemoveChatRequest(ChatRequestInfo req)
 	{
 		// Load the provider
