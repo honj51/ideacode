@@ -259,28 +259,22 @@ public partial class Chat : System.Web.UI.Page
                 this.Response.Write("<script>alert('请选择传送的文件');</script>");
                 return;
             }
-            this.Response.Write("<script>alert('size:"+this.fuFile.FileContent.Length+"');</script>");
-            if (this.fuFile.FileContent.Length >= 230000)
+            //this.Response.Write("<script>SendFileState('正在传送 "+file+"文件...');<script>");
+            Response.Write("<script language='javascript' src='SendMsg.js'>SendFileState('正在传送文件');</script>");   
+            if (this.fuFile.FileContent.Length >= 4180560)
             {
                 this.Response.Write("<script>alert('传送的文件过大');</script>");
                 return;
             }
-            this.Response.Write("<script>alert('size:" + this.fuFile.FileContent.Length + "');</script>");
-            //this.Response.Write("<script>alert('size:'"+this.fuFile.FileContent.Length+");</script>");
-            //this.Response.Write("<script>alert('size:" + this.fuFile.FileContent.Length + "');</script>");
             string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
             this.fuFile.PostedFile.SaveAs(path);
             this.Response.Write("<script>alert('传送成功!');</script>");
         }
         catch (Exception ex)
         {
-            this.Response.Write("<script>alert('文件传送失败,错误："+ex.ToString()+"');</script>");
+            this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
         }
 
         
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        this.Response.Write("<script>alert('abc');</script>");
     }
 }
