@@ -26,6 +26,8 @@ using LiveSupport.DAL.Entity;
     /// </summary>
 [WebService(Namespace = "http://www.LiveSupport.cn/LiveSupportService/2009/04")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+[System.Web.Script.Services.ScriptService()]
+
 public class OperatorWS : System.Web.Services.WebService
 {
     public AuthenticationHeader Authentication;
@@ -187,10 +189,17 @@ public class OperatorWS : System.Web.Services.WebService
 
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip)
+    public string GetRequestsByAidandIP(int AccountId, string ip)
     {
         checkAuthentication();
         return ChatService.GetRequestsByAidandIP(AccountId, ip);
+    }
+    [WebMethod]
+    //更新IsShow的显示
+    public void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
+    {
+        checkAuthentication();
+        ChatService.UpIsShowRequestsByAidandIP(AccountId, ip, IsShow);
     }
     private void checkAuthentication()
     {
