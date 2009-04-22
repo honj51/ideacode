@@ -166,6 +166,10 @@ public class MemoryChatProvider : ChatProvider
         throw new NotImplementedException();
     }
 
+    public override void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
+    {
+        throw new NotImplementedException();
+    }
 	public override void RemoveChatRequest(ChatRequestInfo req)
 	{
 		bool cacheExists;
