@@ -39,6 +39,7 @@
         var txt1 = $get("txtMsg");
        
         //Call server side method
+        
         PageMethods.SetTypingNotification(getCookie('chatId'), txt1.value, OnSetTypingNotificationComplete);
     }
     
@@ -52,6 +53,8 @@
 
         //Call server side function
         PageMethods.SendMsg(txt1.value,getCookie('chatId'),OnCallSendMsgComplete);
+        txt1.value="";
+         
     }
     function OnCallSendMsgComplete(result,methodName)
     {

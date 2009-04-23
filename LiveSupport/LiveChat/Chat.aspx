@@ -6,15 +6,28 @@
     <title>在线交流</title>
      <link href="Images/mainCN.css" type="text/css" rel="Stylesheet" />
     <link href="Images/skin.css" type="text/css" rel="stylesheet" />
-    <script src="Images/init.js" type="text/javascript"></script>
+   
   
     <style type="text/css">
-    body
-    {
-		font-family: Arial;
+       
+        BODY 
+        {
+            font-family: Arial;
 		color: black;
 		font-size: 10pt;
-    }
+   	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 1px; BORDER-BOTTOM: 0px; FONT-FAMILY: Tahoma
+}
+TD {
+	FONT-SIZE: 9pt; FONT-FAMILY: Tahoma
+}
+    .file{
+	BORDER-RIGHT: #70b4e0 1px solid; BORDER-TOP: #70b4e0 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #70b4e0 1px solid; COLOR: #007ac8; BORDER-BOTTOM: #70b4e0 1px solid; BACKGROUND-COLOR: #d4eeff
+}
+    .btn{
+	BORDER-RIGHT: #70b4e0 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #70b4e0 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #70b4e0 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #70b4e0 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: 18px
+}
+        
+     
     #Welcome
     {
 		font-weight: bold;
@@ -79,6 +92,9 @@ legend {
         
     </style>  
         <script language="javascript" type="text/javascript">
+
+
+
 		//显示层
 		function divShow(divId)
 		{
@@ -90,6 +106,7 @@ legend {
 		    document.getElementById(divId).style.display="none";
 		}
 		
+
 		var lastCheck = new Date();
 		 
 		function scrollDiv()
@@ -129,9 +146,9 @@ legend {
     </script>
 
 </head>
-<body topmargin="0" leftmargin="0">
+<body topmargin="0" leftmargin="0" >
     <form id="formMain" runat="server">
-    <div style="background-color:#85c3ff ;">   
+    <div style="background-color:#85c3ff ;height:510px; width:603px;">   
          <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="True" >
             <Scripts>
                 <asp:ScriptReference Path="SendMsg.js" />
@@ -257,19 +274,26 @@ legend {
           
            
            
-           <asp:Panel ID="pnlChat" runat="server">
-               <div>
+           <asp:Panel Height="100%" Width="100%"  ID="pnlChat" runat="server">
+               <div >
                <table id="chatbox" cellpadding="0" cellspacing="0">
                 
                 <tr id="tdhead">
     <td>
       <div id="head">
       <span id="headerBox">
-      XX客服人员接待您！
+       <asp:UpdatePanel ID="UpdatePanel1" runat="server"  UpdateMode="Conditional" ChildrenAsTriggers="False">
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="timerRefresh" EventName="Tick" />
+                </Triggers>
+                <ContentTemplate>
+          <asp:Label ID="lblOp" runat="server"   ></asp:Label> 
+          </ContentTemplate>
+            </asp:UpdatePanel>
       </span>
       <span 
     id="headerBoxTime">
-    连接时间：
+     
     </span></div></td>
     <td align="right"><a id="logo" href="#" 
       target="_blank">
@@ -280,71 +304,86 @@ legend {
                 
            <tr id="notewrap">
             
-            <td id="wrap">
+            <td id="wrap" >
                 
-                <table border="1" cellpadding="0" cellspacing="0" 
-                    style="height:100%;TABLE-LAYOUT: fixed;" 
+                <table cellpadding="0" cellspacing="0" 
+                    style="height:100%;TABLE-LAYOUT: fixed; background-color:#d4eeff;" 
                     width="100%">
                     
                     <tr  style="height:100%">
-                        <td height="100%">
-                            <div id="chat"> 
-            <asp:UpdatePanel ID="upChat" runat="server"  UpdateMode="Conditional" ChildrenAsTriggers="False">
+                        <td height="100%"  >
+                            <div id="chat" style=" background-color:#d4eeff;"> 
+            <asp:UpdatePanel ID="upChat" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="False">
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="timerRefresh" EventName="Tick" />
                 </Triggers>
                 <ContentTemplate>
                     
                      <%--<textarea  id="litChat" runat="server" style="height:100% ; width:100%"  readonly="readonly" /> --%>
-                         <asp:Literal ID="litChat" runat="server"></asp:Literal>
-                        <asp:Timer ID="timerRefresh" Interval="2123" runat="server" OnTick="timerRefresh_Tick">
+                         <asp:Literal  ID="litChat" runat="server"></asp:Literal>
+                        <asp:Timer ID="timerRefresh" Interval="1000" runat="server" 
+                         OnTick="timerRefresh_Tick">
                     </asp:Timer>
                 </ContentTemplate>
             </asp:UpdatePanel>
+               
              </div>
-                            <div id="uploadFileBox" style="DISPLAY: none">
-                                <iframe id="uploadFileFrame" 
-                                    src="uploadFile.htm">
-                                </iframe>
-                            </div>
+           
+                 <!--上传-->
+          <div id="divSend" style="display:none; background-color:#d4eeff;" >&nbsp;&nbsp;
+                <asp:FileUpload CssClass="file"  ID="fuFile" runat="server" Height="20px" Width="191"  />
+              &nbsp;<asp:Button  ID="btnUpload" CssClass="btn" runat="server" Height="20px" Text="传送" Width="46px" onclick="btnUpload_Click" />&nbsp;
+              <input ID="btnClose" class="btn" type="button" value="关闭" onclick="divClose('divSend')" />
+                </div>  
+            
+                      
                         </td>
+                        
                     </tr>
+                  
+                   
+                   
                 </table>
+              
             </td>
            
             <td id="bwrap" valign="top">
                 <div id="banner">
+                  
                 </div>
             </td>
         </tr>
         <tr id="tdinput">
             <td id="twrap" colspan="2">
-          <!--上传-->
-          <div id="divSend" style="display:none;">&nbsp;&nbsp;
-                <asp:FileUpload ID="fuFile" runat="server" Height="20px" Width="191px" />
-              &nbsp;<asp:Button ID="btnSend" runat="server" Height="20px" Text="传送" Width="46px" onclick="btnSend_Click" />&nbsp;
-              <input ID="btnClose" type="button" value="关闭" onclick="divClose('divSend')" />
-                </div>
+         
                 <div id="tool_wrap">
                     <ul id="toolsbar">
                         <li id="file" onclick="divShow('divSend');">传送文件 </li>
                         <li id="save" class="open">保存记录 </li>
                         <li id="switch" class="open">关闭提示音 </li>
                         <li id="active" class="open">
-                            <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click">剪切</asp:LinkButton>
+                            <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click" 
+                                Font-Underline="False" ForeColor="White">剪切</asp:LinkButton>
                         </li>
                         </ul>
                         
-                   <div id="exitChat">
-                        结束对话</div>
+                   <div id="exitChat" >
+                       
+                          <asp:LinkButton ID="lkbExit" runat="server" Font-Underline="False" 
+                              ForeColor="White" onclick="lkbExit_Click" >结束对话</asp:LinkButton>
+                        </div>
                         </div>
                         </td>
                         </tr><tr id="msg">
             <td id="inputarea">
                
                  
-                 <textarea id="txtMsg" runat="server" onkeypress="checkEnter(event)" /> </td><td  align="center">
+                 <textarea id="txtMsg" rows="2" runat="server" cols="50"  onkeypress="checkEnter(event)" /> </td><td  align="center">
                 <div >
                     <div id="enter" >
+
+                    
+          <input type="image" id="btnSend"  src="Images/send.jpg"  onclick="CallSendMsg()"/> </div></div></td></tr></table>
+          <img id="track" src="Images/track.gif" /> </div></asp:Panel></div></form></body></html>
                     <!----发送--->
-                        <input type="image" id="btnSend"  src="Images/send.jpg"  onclick="CallSendMsg()"/> </div></div></td></tr></table><img id="track" src="Images/track.gif" /> </div></asp:Panel></div></form></body></html>
+                  

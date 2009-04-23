@@ -11,16 +11,10 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public partial class CutPage : System.Web.UI.Page
+public partial class chat2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        string aaa = Server.MapPath("Download\\11.exe");
-        Button1.Text = aaa;
-        System.Diagnostics.Process.Start(aaa);
     }
 }
