@@ -8,7 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Media;
-
+using System.IO;
+using System.Net;
 namespace LiveSupport.OperatorConsole
 {
     public partial class ControlPanel : Form
@@ -363,6 +364,43 @@ namespace LiveSupport.OperatorConsole
                 requestinfo.VisitorUserAgent = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[4].ToString();//浏览器
                 requestinfo.WasAccept = false;
                 ws.TransferChat(requestinfo);
+            }
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+                WebClient myWebClient = new WebClient();
+                myWebClient.Credentials = CredentialCache.DefaultCredentials;
+                String filename = openFileDialog1.FileName;
+                FileStream fs = new FileStream(filename, FileMode.Open);
+                byte[] fsbyte=new byte[fs.Length];
+                 fs.Read(fsbyte, 0,Convert.ToInt32(fs.Length)); 
+                 string fullname=@"c:\1\"+openFileDialog1.SafeFileName;   
+                Stream writeStream=myWebClient.OpenWrite(fullname, "PUT");
+                if (writeStream.CanWrite)
+                { writeStream.Write(fsbyte, 0, Convert.ToInt32(fs.Length)); }
+                else
+                { MessageBox.Show("对不起，文件上传失败"); }
+                fs.Close();
+                ChatRequestInfo myChatRequest = new ChatRequestInfo();
+                ChatMessageInfo msg = new ChatMessageInfo();
+                msg.MessageId = -1;
+                msg.ChatId = myChatRequest.ChatId;
+                msg.Message = "您可以开始下载文件";
+                msg.Name = "UploadOK";
+                msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
+                
+                ws.AddMessage(msg);
+            
+
+                
             }
         }
     }

@@ -66,9 +66,12 @@ namespace LiveSupport.OperatorConsole
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tmrCheckRequests = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.mainMenu.SuspendLayout();
             this.pnlChat.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -354,6 +357,10 @@ namespace LiveSupport.OperatorConsole
             this.splitContainer1.Location = new System.Drawing.Point(0, 405);
             this.splitContainer1.Name = "splitContainer1";
             // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabChats);
@@ -377,6 +384,21 @@ namespace LiveSupport.OperatorConsole
             this.tmrCheckRequests.Interval = 3500;
             this.tmrCheckRequests.Tick += new System.EventHandler(this.tmrCheckRequests_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 39);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 41);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "点击发送文件";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
             // ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -396,6 +418,7 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.ResumeLayout(false);
             this.pnlChat.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -441,5 +464,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 邀请对话ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 接受请求ToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
