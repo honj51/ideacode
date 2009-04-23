@@ -113,7 +113,7 @@ LI.close {
 	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; CURSOR: pointer; TEXT-INDENT: 0px; LINE-HEIGHT: 24px; PADDING-TOP: 0px
 }
 DIV.block_wrap {
-	Z-INDEX: 11; BACKGROUND: #000; FILTER: alpha(opacity=50); WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; opacity: .5
+	Z-INDEX: 11; BACKGROUND: #000;  FILTER: alpha(opacity=50); WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; opacity: .5
 }
 DIV.pop {
 	Z-INDEX: 13; LEFT: 50%; LINE-HEIGHT: 24px; POSITION: absolute; TOP: 50%

@@ -15,6 +15,8 @@ using System.Xml;
 using System.Web.Services.Protocols;
 using System.Web.Script.Services;
 using LiveSupport.DAL.Entity;
+using System.Windows.Forms;
+using System.Windows;
 
 public partial class Chat : System.Web.UI.Page
 {
@@ -99,6 +101,7 @@ public partial class Chat : System.Web.UI.Page
     
     protected void timerRefresh_Tick(object sender, EventArgs e)
     {
+       
         if (Request.Cookies["chatId"] != null)
         {
             string chatId = Request.Cookies["chatId"].Value.ToString();
@@ -108,12 +111,30 @@ public partial class Chat : System.Web.UI.Page
                 if (ChatService.HasNewMessage(chatId, lastCheck))
                 {
                     List<ChatMessageInfo> messages = ChatService.GetMessages(chatId, lastCheck);
+                  
+
                     if (messages.Count > 0)
                     {
+                       
                         for (int i = messages.Count - 1; i >= 0; i--)
                         {
-                            litChat.Text += string.Format("<span class=\"chatName\">{0} :</span>{1}<br />", messages[i].Name, messages[i].Message);
-                            lastCheck = messages[i].MessageId;
+
+                            if (messages[i].Name != VisitorName && lblOp.Text.Equals("等待客服接受您的请求"))
+                            {
+
+                                lblOp.Text = messages[i].Message;
+
+                                break;
+                            }
+                            if(lblOp.Text==messages[i].Message.ToString())
+                            {
+                                break;
+                              
+                            }
+                          
+                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, messages[i].Message);
+                                lastCheck = messages[i].MessageId;
+                           
                         }
 
                         // set the lastId
@@ -233,11 +254,11 @@ public partial class Chat : System.Web.UI.Page
 
         ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, string.Empty, "等待客服接受您的请求");
         ChatService.AddMessage(msg);
-
+        lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
         VisitorName = request.VisitorName;
         VName = request.VisitorName;
-
+       
         pnlChat.Visible = true;
         pnlRequest.Visible = false;
     }
@@ -246,9 +267,20 @@ public partial class Chat : System.Web.UI.Page
         string aaa = Server.MapPath("Download\\11.exe");
         System.Diagnostics.Process.Start(aaa);
     }
+
+    protected void lkbExit_Click(object sender, EventArgs e)
+    {
+
+        int i = (int)MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+        if (i == 6)
+        {
+            Response.Write("<script language=javascript>window.close();</script>");
+        }
+    }
+
     
 //文件传送
-    protected void btnSend_Click(object sender, EventArgs e)
+    protected void btnUpload_Click(object sender, EventArgs e)
     {
         //验证文件路径
         try
@@ -288,4 +320,5 @@ public partial class Chat : System.Web.UI.Page
        
         
     }
+
 }
