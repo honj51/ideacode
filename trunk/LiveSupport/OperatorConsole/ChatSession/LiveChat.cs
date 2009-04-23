@@ -54,6 +54,13 @@ namespace LiveSupport.OperatorConsole
                 {
                     for (int i = messages.Length - 1; i >= 0; i--)
                     {
+                        //if(messages[i].Message.Equals("等待客服接受您的请求"))
+                        //{
+                        //wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} <br />", messages[i].Name));
+                        
+                        //}
+
+
                         wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", messages[i].Name, messages[i].Message));
                         lastCheck = messages[i].MessageId;
                     }

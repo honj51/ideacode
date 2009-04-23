@@ -57,6 +57,10 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback InviteOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetRequestsByAidandIPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpIsShowRequestsByAidandIPOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -142,6 +146,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event InviteCompletedEventHandler InviteCompleted;
+        
+        /// <remarks/>
+        public event GetRequestsByAidandIPCompletedEventHandler GetRequestsByAidandIPCompleted;
+        
+        /// <remarks/>
+        public event UpIsShowRequestsByAidandIPCompletedEventHandler UpIsShowRequestsByAidandIPCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -539,6 +549,70 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.InviteCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.InviteCompleted(this, new InviteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetRequestsByAidandIP", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetRequestsByAidandIP(int AccountId, string ip) {
+            object[] results = this.Invoke("GetRequestsByAidandIP", new object[] {
+                        AccountId,
+                        ip});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetRequestsByAidandIPAsync(int AccountId, string ip) {
+            this.GetRequestsByAidandIPAsync(AccountId, ip, null);
+        }
+        
+        /// <remarks/>
+        public void GetRequestsByAidandIPAsync(int AccountId, string ip, object userState) {
+            if ((this.GetRequestsByAidandIPOperationCompleted == null)) {
+                this.GetRequestsByAidandIPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetRequestsByAidandIPOperationCompleted);
+            }
+            this.InvokeAsync("GetRequestsByAidandIP", new object[] {
+                        AccountId,
+                        ip}, this.GetRequestsByAidandIPOperationCompleted, userState);
+        }
+        
+        private void OnGetRequestsByAidandIPOperationCompleted(object arg) {
+            if ((this.GetRequestsByAidandIPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetRequestsByAidandIPCompleted(this, new GetRequestsByAidandIPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UpIsShowRequestsByAidandIP", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow) {
+            this.Invoke("UpIsShowRequestsByAidandIP", new object[] {
+                        AccountId,
+                        ip,
+                        IsShow});
+        }
+        
+        /// <remarks/>
+        public void UpIsShowRequestsByAidandIPAsync(int AccountId, string ip, string IsShow) {
+            this.UpIsShowRequestsByAidandIPAsync(AccountId, ip, IsShow, null);
+        }
+        
+        /// <remarks/>
+        public void UpIsShowRequestsByAidandIPAsync(int AccountId, string ip, string IsShow, object userState) {
+            if ((this.UpIsShowRequestsByAidandIPOperationCompleted == null)) {
+                this.UpIsShowRequestsByAidandIPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpIsShowRequestsByAidandIPOperationCompleted);
+            }
+            this.InvokeAsync("UpIsShowRequestsByAidandIP", new object[] {
+                        AccountId,
+                        ip,
+                        IsShow}, this.UpIsShowRequestsByAidandIPOperationCompleted, userState);
+        }
+        
+        private void OnUpIsShowRequestsByAidandIPOperationCompleted(object arg) {
+            if ((this.UpIsShowRequestsByAidandIPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpIsShowRequestsByAidandIPCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1231,6 +1305,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetRequestsByAidandIPCompletedEventHandler(object sender, GetRequestsByAidandIPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetRequestsByAidandIPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetRequestsByAidandIPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void UpIsShowRequestsByAidandIPCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

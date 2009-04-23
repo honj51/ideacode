@@ -331,8 +331,10 @@ namespace LiveSupport.OperatorConsole
 
         private void 邀请对话ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (IsIP == lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[2].ToString())
+            MessageBox.Show(lstVisitors.SelectedItems[0].SubItems[2].Text);
+            if (IsIP ==lstVisitors.SelectedItems[0].SubItems[2].Text)
             {
+
                 DialogResult choice = MessageBox.Show("你以向该用户发出请求", "是否重发?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (choice == DialogResult.OK)
                 {
@@ -340,12 +342,12 @@ namespace LiveSupport.OperatorConsole
                     ChatRequestInfo requestinfo = new ChatRequestInfo();
                     requestinfo.ChatId = Guid.NewGuid().ToString();//chatid
                     requestinfo.AccountId = info.AccoutId.ToString();
-                    requestinfo.VisitorIP = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[2].ToString();//IP
+                    requestinfo.VisitorIP = lstVisitors.SelectedItems[0].SubItems[2].Text;//IP
                     requestinfo.AcceptByOpereratorId = Program.CurrentOperator.Id; //服务人员
                     requestinfo.RequestDate = DateTime.Now;
                     requestinfo.VisitorName = "";
                     requestinfo.VisitorEmail = "";
-                    requestinfo.VisitorUserAgent = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[4].ToString();//浏览器
+                    requestinfo.VisitorUserAgent =lstVisitors.SelectedItems[0].SubItems[4].Text;//浏览器
                     requestinfo.WasAccept = false;
                     ws.TransferChat(requestinfo);
                 }
