@@ -66,9 +66,9 @@ public class ProcessImage : IHttpHandler
 		req.VisitorIP = visitorIP;
 		req.VisitorUserAgent = visitorUserAgent;
 		req.RequestTime = DateTime.Now;
-
 		RequestService.LogRequest(req);
-
+        HttpContext aa = HttpContext.Current;
+        aa.Response.Cookies["myip"].Value = visitorIP;
 		// we get the status of the operators
 		opOnline = OperatorService.GetOperatorStatus(aid);
 
