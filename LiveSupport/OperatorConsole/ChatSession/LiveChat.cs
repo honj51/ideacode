@@ -6,7 +6,8 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
-
+using System.Net;
+using System.IO;
 namespace LiveSupport.OperatorConsole
 {
     public partial class LiveChat : UserControl
@@ -176,6 +177,34 @@ namespace LiveSupport.OperatorConsole
             if (buffer.Length == 2)
             {
                 WriteMessage(string.Format("<a href=\"javascript:window.opener.document.location.href = '{0}';return false;\">{1}</a>", buffer[1], buffer[0]));
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                WebClient myWebClient = new WebClient();
+                myWebClient.Credentials = CredentialCache.DefaultCredentials;
+                String filename = openFileDialog1.FileName;
+                FileStream fs = new FileStream(filename, FileMode.Open);
+                byte[] fsbyte = new byte[fs.Length];
+                fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
+                ws.UploadFile(fsbyte, openFileDialog1.SafeFileName);
+
+                ChatMessageInfo msg = new ChatMessageInfo();
+                msg.ChatId = this.ChatRequest.ChatId;
+                msg.Message = "<a href=" + "http://localhost/LiveChatService/download/" + openFileDialog1.SafeFileName + ">" + openFileDialog1.SafeFileName + "</a>";
+                msg.Name = "UploadOK";
+                msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
+
+                ws.AddMessage(msg);
+               
+
+
+
+
+
             }
         }
     }
