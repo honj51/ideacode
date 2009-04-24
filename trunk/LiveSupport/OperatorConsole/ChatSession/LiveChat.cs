@@ -12,6 +12,10 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class LiveChat : UserControl
     {
+        private const int MessageType_ToAll = 1;
+        private const int MessageType_ToOperator = 2;
+        private const int MessageType_ToChatPage = 3;
+
         OperatorWS ws = new OperatorWS();
 
         private ChatRequestInfo myChatRequest;
@@ -41,7 +45,7 @@ namespace LiveSupport.OperatorConsole
 
             txtMsg.Focus();
         }
-
+        //获取聊天消息
         private void tmrGetMsg_Tick(object sender, EventArgs e)
         {
             // Prevent from entering multiple times in the event
@@ -53,17 +57,15 @@ namespace LiveSupport.OperatorConsole
                 ChatMessageInfo[] messages = ws.GetChatMessages(myChatRequest.ChatId, lastCheck);
                 if (messages.Length > 0)
                 {
-                    for (int i = messages.Length - 1; i >= 0; i--)
+                    //for (int i = messages.Length - 1; i >= 0; i--)
+                    for (int i = 0; i < messages.Length; i++)
                     {
-                        //if(messages[i].Message.Equals("等待客服接受您的请求"))
-                        //{
-                        //wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} <br />", messages[i].Name));
-                        
-                        //}
+                        if (messages[i].Type == MessageType_ToAll || messages[i].Type == MessageType_ToOperator)
+                        {
 
-
-                        wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", messages[i].Name, messages[i].Message));
-                        lastCheck = messages[i].MessageId;
+                            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", messages[i].Name, messages[i].Message));
+                            lastCheck = messages[i].MessageId;
+                        }
                     }
 
                     // Should we play a sound
@@ -121,12 +123,12 @@ namespace LiveSupport.OperatorConsole
                 txtMsg.Clear();
             }
         }
-
+        //写信息
         private void WriteMessage(string message)
         {
             WriteMessage(message, Program.CurrentOperator.Name);
         }
-
+        //写信息
         private void WriteMessage(string message, string From)
         {
             ChatMessageInfo msg = new ChatMessageInfo();
@@ -135,7 +137,7 @@ namespace LiveSupport.OperatorConsole
             msg.Message = message;
             msg.Name = From;
             msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
-
+            msg.Type = MessageType_ToAll;//*	
             ws.AddMessage(msg);
         }
 
@@ -194,9 +196,10 @@ namespace LiveSupport.OperatorConsole
 
                 ChatMessageInfo msg = new ChatMessageInfo();
                 msg.ChatId = this.ChatRequest.ChatId;
-                msg.Message = "<a href=" + "http://localhost/LiveChatService/download/" + openFileDialog1.SafeFileName + ">" + openFileDialog1.SafeFileName + "</a>";
+                msg.Message = "<a target='_blank' href=" + "http://localhost/LiveChatService/download/" + openFileDialog1.SafeFileName + ">" + openFileDialog1.SafeFileName + "</a>";
                 msg.Name = "UploadOK";
                 msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
+                msg.Type = MessageType_ToChatPage;
 
                 ws.AddMessage(msg);
                
