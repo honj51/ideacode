@@ -64,9 +64,9 @@ namespace LiveSupport.OperatorConsole
             this.接受请求ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tmrCheckRequests = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.mainMenu.SuspendLayout();
             this.pnlChat.SuspendLayout();
@@ -368,6 +368,16 @@ namespace LiveSupport.OperatorConsole
             this.splitContainer1.SplitterDistance = 326;
             this.splitContainer1.TabIndex = 3;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 39);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 41);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "点击发送文件";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // tabChats
             // 
             this.tabChats.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -383,16 +393,6 @@ namespace LiveSupport.OperatorConsole
             this.tmrCheckRequests.Enabled = true;
             this.tmrCheckRequests.Interval = 3500;
             this.tmrCheckRequests.Tick += new System.EventHandler(this.tmrCheckRequests_Tick);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(14, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 41);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "点击发送文件";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // openFileDialog1
             // 
@@ -412,6 +412,7 @@ namespace LiveSupport.OperatorConsole
             this.MainMenuStrip = this.mainMenu;
             this.Name = "ControlPanel";
             this.Text = "LiveSupport Operator";
+            this.Load += new System.EventHandler(this.ControlPanel_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlPanel_FormClosing);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
