@@ -331,41 +331,51 @@ namespace LiveSupport.OperatorConsole
 
         private void 邀请对话ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(lstVisitors.SelectedItems[0].SubItems[2].Text);
-            if (IsIP ==lstVisitors.SelectedItems[0].SubItems[2].Text)
+            if (lstVisitors.SelectedItems.Count>0)
             {
-
-                DialogResult choice = MessageBox.Show("你以向该用户发出请求", "是否重发?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (choice == DialogResult.OK)
+                if (IsIP == lstVisitors.SelectedItems[0].SubItems[2].Text)
                 {
-                    RequestInfo info = this.lstVisitors.SelectedItems[0].Tag as RequestInfo;
-                    ChatRequestInfo requestinfo = new ChatRequestInfo();
-                    requestinfo.ChatId = Guid.NewGuid().ToString();//chatid
-                    requestinfo.AccountId = info.AccoutId.ToString();
-                    requestinfo.VisitorIP = lstVisitors.SelectedItems[0].SubItems[2].Text;//IP
-                    requestinfo.AcceptByOpereratorId = Program.CurrentOperator.Id; //服务人员
-                    requestinfo.RequestDate = DateTime.Now;
-                    requestinfo.VisitorName = "";
-                    requestinfo.VisitorEmail = "";
-                    requestinfo.VisitorUserAgent =lstVisitors.SelectedItems[0].SubItems[4].Text;//浏览器
-                    requestinfo.WasAccept = false;
-                    ws.TransferChat(requestinfo);
+                    DialogResult choice = MessageBox.Show("你已向该用户发出请求", "是否重发?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (choice == DialogResult.OK)
+                    {
+                        RequestInfo info = this.lstVisitors.SelectedItems[0].Tag as RequestInfo;
+                        ChatRequestInfo requestinfo = new ChatRequestInfo();
+                        requestinfo.ChatId = Guid.NewGuid().ToString();//chatid
+                        requestinfo.AccountId = info.AccoutId.ToString();
+                        requestinfo.VisitorIP = lstVisitors.SelectedItems[0].SubItems[2].Text;//IP
+                        requestinfo.AcceptByOpereratorId = Program.CurrentOperator.Id; //服务人员
+                        requestinfo.RequestDate = DateTime.Now;
+                        requestinfo.VisitorName = "";
+                        requestinfo.VisitorEmail = "";
+                        requestinfo.VisitorUserAgent = lstVisitors.SelectedItems[0].SubItems[4].Text;//浏览器
+                        requestinfo.WasAccept = false;
+                        ws.TransferChat(requestinfo);
+                    }
+                }
+                else
+                {
+                    DialogResult choice = MessageBox.Show("是否确认发出邀请", "YesNo?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (choice == DialogResult.Yes)
+                    {
+                        RequestInfo info = this.lstVisitors.SelectedItems[0].Tag as RequestInfo;
+                        ChatRequestInfo requestinfo = new ChatRequestInfo();
+                        requestinfo.ChatId = Guid.NewGuid().ToString();//chatid
+                        requestinfo.AccountId = info.AccoutId.ToString();
+                        requestinfo.VisitorIP = lstVisitors.SelectedItems[0].SubItems[2].Text;//IP
+                        requestinfo.AcceptByOpereratorId = Program.CurrentOperator.Id; //服务人员
+                        requestinfo.RequestDate = DateTime.Now;
+                        requestinfo.VisitorName = "";
+                        requestinfo.VisitorEmail = "";
+                        requestinfo.VisitorUserAgent = lstVisitors.SelectedItems[0].SubItems[4].Text;//浏览器
+                        requestinfo.WasAccept = false;
+                        ws.TransferChat(requestinfo);
+                        IsIP = lstVisitors.SelectedItems[0].SubItems[2].Text;
+                    }
                 }
             }
             else
             {
-                RequestInfo info = this.lstVisitors.SelectedItems[0].Tag as RequestInfo;
-                ChatRequestInfo requestinfo = new ChatRequestInfo();
-                requestinfo.ChatId = Guid.NewGuid().ToString();//chatid
-                requestinfo.AccountId = info.AccoutId.ToString();
-                requestinfo.VisitorIP = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[2].ToString();//IP
-                requestinfo.AcceptByOpereratorId = Program.CurrentOperator.Id; //服务人员
-                requestinfo.RequestDate = DateTime.Now;
-                requestinfo.VisitorName = "";
-                requestinfo.VisitorEmail = "";
-                requestinfo.VisitorUserAgent = lstVisitors.Items[lstVisitors.SelectedItems[0].Index].SubItems[4].ToString();//浏览器
-                requestinfo.WasAccept = false;
-                ws.TransferChat(requestinfo);
+                MessageBox.Show("你还没有选择跟谁进行对话","请选择",MessageBoxButtons.OK,MessageBoxIcon.Stop);
             }
         }
 
