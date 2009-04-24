@@ -18,7 +18,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Caching;
 using LiveSupport.DAL.Entity;
-
+using System.IO;
 
     /// <summary>
     /// Contains all functionality for an operator to maintain
@@ -47,7 +47,20 @@ public class OperatorWS : System.Web.Services.WebService
 
 		return OperatorService.LogIn(userName, password, Authentication.userName);
 	}
+   
 
+    
+     [WebMethod]
+     [SoapHeader("Authentication", Required = true)]
+     public void UploadFile(byte[] bs, string filename)
+     {
+         checkAuthentication();
+         MemoryStream mo = new MemoryStream(bs);
+         FileStream fs = new FileStream(Server.MapPath("~/Download/") +filename,FileMode.Create);
+         mo.WriteTo(fs);
+         mo.Close();
+         fs.Close();
+     }
     [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
 	public List<RequestInfo> GetWebSiteRequests(int accountId, DateTime lastRequestTime)
