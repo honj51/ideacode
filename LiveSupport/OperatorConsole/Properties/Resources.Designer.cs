@@ -60,6 +60,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap file_sent {
+            get {
+                object obj = ResourceManager.GetObject("file_sent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream newchatreq {
             get {
                 return ResourceManager.GetStream("newchatreq", resourceCulture);
