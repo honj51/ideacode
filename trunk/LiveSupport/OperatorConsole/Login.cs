@@ -45,19 +45,31 @@ namespace LiveSupport.OperatorConsole
                 ws.AuthenticationHeaderValue = auth;
 
 				Program.CurrentOperator = ws.LogIn(txtOpName.Text, txtOpPassword.Text);
-
+                 
 				// if we got an OperatorInfo, we continue
 				if (Program.CurrentOperator != null)
 				{
-					this.Hide();
-                    ControlPanel c = new ControlPanel();
-					c.Show();
+                    if (Program.CurrentOperator.IsOnline)
+                    {
+                        MessageBox.Show("用户已经登录,\r\n\r\n请用其他用户登录...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
+                    else
+                    {
+                        this.Hide();
+                        ControlPanel c = new ControlPanel();
+                        c.Show();
+                    }
 				}
 				else
 				{
-					// Invalid credentials
-					MessageBox.Show("用户名或密码错误\r\n\r\n请重试", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				}
+                   
+                        //Invalid credentials
+                       MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  
+                     
+                   
+                    }
 			}
         }
 
