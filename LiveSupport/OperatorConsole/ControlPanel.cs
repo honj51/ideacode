@@ -379,9 +379,6 @@ namespace LiveSupport.OperatorConsole
 
         private void button1_Click(object sender, EventArgs e)
         {
-<<<<<<< .mine
-           
-=======
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 WebClient myWebClient = new WebClient();
@@ -406,11 +403,7 @@ namespace LiveSupport.OperatorConsole
                 msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
 
                 ws.AddMessage(msg);
-
-
-
             }
->>>>>>> .r174
         }
 
         private void ControlPanel_Load(object sender, EventArgs e)
