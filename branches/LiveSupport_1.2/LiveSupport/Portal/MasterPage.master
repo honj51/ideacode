@@ -1,0 +1,88 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="generator" content="Microsoft Visual Studio, see http://msdn.microsoft.com/vstudio/" />
+    <meta name="Keywords" content="LiveSupport, 在线客服" />
+    <meta name="Description" content="关于 LiveSupport., 提供先进的在线客服软件和服务" />
+    <meta name="copyright" content="Copyright (c) 2009 LiveSupport, Inc. All rights reserved." />
+    <link href="App_Themes/css-print.css" rel="stylesheet" type="text/css" media="print" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <title>LiveSupport</title>
+    
+    <meta name="GENERATOR" Content="Microsoft Visual Studio .Net 7.1">
+
+    <meta name="CODE_LANGUAGE" Content="C#">
+
+    <meta name=vs_defaultClientScript content="JavaScript">
+
+    <meta name=vs_targetSchema content="http://schemas.microsoft.com /intellisense/ie5">
+
+    
+    <%--Add LiveChat services javascript --%>
+    <!--导入js文件-->
+    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js">
+    </script>
+  
+    
+</head>
+
+<body>
+    <form id="form1" runat="server">
+      <div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
+        <!--
+
+TOP INFORMTION
+
+-->
+        <div id="top-information">
+            <div id="logo">
+                <a href="Default.aspx">Live Support Service .Inc</a></div>
+            <div id="top-information-home">
+                <a href="Default.aspx">&#39318;&#39029;</a></div>
+            <div id="top-information-login">
+                <asp:LoginName ID="LoginName1" runat="server" FormatString="&#27426;&#36814;&#24744; {0}, " />
+                <asp:LoginView ID="LoginView1" runat="server">
+                    <LoggedInTemplate>
+                        <asp:LinkButton ID="LinkButton1" runat="server" 
+                            PostBackUrl="~/AccountAdmin/AccountHome.aspx">&#25105;&#30340;&#36134;&#25143;</asp:LinkButton>
+                    </LoggedInTemplate>
+                </asp:LoginView>
+                <asp:LoginStatus ID="LoginStatus2" runat="server" />
+            </div>
+        </div>
+        <!--
+
+TOP NAV
+
+-->
+        <div class="none"><a href="#maincontent">skip to the main content area of this page</a></div>
+        <div id="nav-main">
+                       <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal"
+                Width="400px" CssClass="menu-main" MaximumDynamicDisplayLevels="0" StaticSelectedStyle-CssClass="StaticSelectedStyle" />
+            <div>
+                &nbsp;</div>
+        </div>
+        <a id="maincontent"></a>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <!--
+
+FOOTER
+
+-->
+        <div id="footer">
+            Copyright &copy; 2009 LiveSupport, Inc. <a href="LegalNotice.aspx">Terms of Use</a>
+            <div>
+                &nbsp;</div>
+        </div>
+        <div id="footer-sub">
+            <asp:Menu ID="Menu2" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal"
+                Width="350px" CssClass="menu-main" MaximumDynamicDisplayLevels="0"/>
+        </div>
+    
+    </form>
+</body>
+</html>
