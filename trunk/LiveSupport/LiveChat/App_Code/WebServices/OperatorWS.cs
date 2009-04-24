@@ -82,12 +82,12 @@ public class OperatorWS : System.Web.Services.WebService
 	}
 
     [SoapHeader("Authentication", Required = true)]
-	[WebMethod]
-	public void RemoveChatRequest(ChatRequestInfo req)
-	{
+    [WebMethod]
+    public void RemoveChatRequest(ChatRequestInfo req)
+    {
         checkAuthentication();
         ChatService.RemoveChatRequest(req);
-	}
+    }
 
     [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
@@ -205,5 +205,19 @@ public class OperatorWS : System.Web.Services.WebService
     {
         //if (Authentication.userName != System.Configuration.ConfigurationManager.AppSettings["WSUser"].ToString())
         //    throw new AccessViolationException("invalid user");
+    }
+
+    [WebMethod] 
+    //通过用户编号获得客户编号
+    public bool getOperatorIDByChatID(string chatId)
+    {
+       return ChatService.getOperatorIDByChatID(chatId);
+    }
+
+    [WebMethod]
+    //通过ChatId修改客服人员ID
+    public void UpdateOperatorIDByChatID(string chatId, int operatorId)
+    {
+        ChatService.UpdateOperatorIDByChatID(chatId, operatorId);
     }
 }

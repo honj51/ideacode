@@ -1,7 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <title>在线交流</title>
      <link href="Images/mainCN.css" type="text/css" rel="Stylesheet" />
@@ -106,7 +108,7 @@ legend {
 		    document.getElementById(divId).style.display="none";
 		}
 		
-
+        
 		var lastCheck = new Date();
 		 
 		function scrollDiv()
@@ -146,6 +148,7 @@ legend {
     </script>
 
 </head>
+
 <body topmargin="0" leftmargin="0" >
     <form id="formMain" runat="server">
     <div style="background-color:#85c3ff ;height:510px; width:603px;">   
