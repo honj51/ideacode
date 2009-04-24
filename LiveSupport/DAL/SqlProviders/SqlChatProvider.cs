@@ -281,8 +281,8 @@ public class SqlChatProvider : ChatProvider
         }
     }
 
-	public override void RemoveChatRequest(ChatRequestInfo req)
-	{
+    public override void RemoveChatRequest(ChatRequestInfo req)
+    {
         SqlConnection sqlC = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsDelete", sqlC);
         cmd.CommandType = CommandType.StoredProcedure;
@@ -311,7 +311,76 @@ public class SqlChatProvider : ChatProvider
                 sqlC = null;
             }
         }
-	}
+    }
+    //通过ChatId修改客服人员ID
+    public override void UpdateOperatorIDByChatID(string chatId,int operatorId)
+    {
+        SqlConnection conn = new SqlConnection(connectionString);
+        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsUpdate", conn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        bool b = false;
+        try
+        {
+            cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
+            cmd.Parameters.Add("@OperatorID", SqlDbType.Int).Value = operatorId;
+            cmd.Parameters.Add("@AcceptDate", SqlDbType.SmallDateTime).Value = DateTime.Now.ToString();
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+                conn.Dispose();
+                conn = null;
+            }
+        }
+    }
+
+    //通过用户编号获得客户编号
+    public override bool getOperatorIDByChatID(string chatId)
+    {
+        SqlConnection conn = new SqlConnection(connectionString);
+        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequests_GetOperatorIDByChatID", conn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        bool b = false;
+        try
+        {
+            cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
+            conn.Open();
+            object obj=cmd.ExecuteScalar();
+            if (obj != null)
+                b = true;
+            else
+                b = false;
+            cmd.Dispose();
+            conn.Close();
+            return b;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+                conn.Dispose();
+                conn = null;
+            }
+        }
+    }
 
     public override bool HasNewMessage(string chatId, long lastMessageId)
     {

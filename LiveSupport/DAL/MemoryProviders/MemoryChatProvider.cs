@@ -165,27 +165,36 @@ public class MemoryChatProvider : ChatProvider
     {
         throw new NotImplementedException();
     }
-
+    //通过用户编号获得客服编号
+    public override bool getOperatorIDByChatID(string chatId)
+    {
+        throw new NotImplementedException();
+    }
+    //通过用户编号修改客服编号
+    public override void UpdateOperatorIDByChatID(string chatId, int operatorId)
+    {
+        throw new NotImplementedException();
+    }
     public override void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
     {
         throw new NotImplementedException();
     }
-	public override void RemoveChatRequest(ChatRequestInfo req)
-	{
-		bool cacheExists;
-		List<ChatRequestInfo> requests = GetCurrentRequest(out cacheExists);
+    public override void RemoveChatRequest(ChatRequestInfo req)
+    {
+        bool cacheExists;
+        List<ChatRequestInfo> requests = GetCurrentRequest(out cacheExists);
 
-		for (int i = 0; i < requests.Count; i++)
-		{
-			if (requests[i].ChatId == req.ChatId)
-			{
-				requests.RemoveAt(i);
-				break;
-			}
-		}
+        for (int i = 0; i < requests.Count; i++)
+        {
+            if (requests[i].ChatId == req.ChatId)
+            {
+                requests.RemoveAt(i);
+                break;
+            }
+        }
 
-		SaveRequests(cacheExists, requests);
-	}
+        SaveRequests(cacheExists, requests);
+    }
 
     public override bool HasNewMessage(string chatId, long lastMessageId)
     {
