@@ -19,6 +19,8 @@ using LiveSupport.DAL.Entity;
 /// <summary>
 /// Chat Service
 /// </summary>
+/// 存储对话请求。
+/// 
 public class ChatService
 {
 	private static ChatProvider _provider = null;
@@ -80,13 +82,13 @@ public class ChatService
     {
         _provider.UpIsShowRequestsByAidandIP(AccountId, ip, IsShow);
     }
-	public static void RemoveChatRequest(ChatRequestInfo req)
-	{
-		// Load the provider
-		LoadProvider();
-
-		_provider.RemoveChatRequest(req);
-	}
+    public static void RemoveChatRequest(ChatRequestInfo req)
+    {
+        // Load the provider
+        LoadProvider();
+         
+        _provider.RemoveChatRequest(req);
+    }
 
     public static bool HasNewMessage(string chatId, long lastMessageId)
     {
@@ -119,4 +121,14 @@ public class ChatService
 			}
 		}
 	}
+    //通过用户编号获得客户编号
+    public static bool getOperatorIDByChatID(string chatId)
+    {
+        return _provider.getOperatorIDByChatID(chatId);
+    }
+     //通过ChatId修改客服人员ID
+    public static void UpdateOperatorIDByChatID(string chatId, int operatorId)
+    {
+        _provider.UpdateOperatorIDByChatID(chatId, operatorId);
+    }
 }

@@ -285,30 +285,38 @@ public partial class Chat : System.Web.UI.Page
         //验证文件路径
         try
         {
-            string file = this.fuFile.FileName.ToString();
-            if (file.Trim().Length == 0)//验证上传文件
-            {
-                this.Response.Write("<script>alert('请选择传送的文件');</script>");
-                return;
-            }
-            if (this.fuFile.FileContent.Length >= 4180560)
-            {
-                this.Response.Write("<script>alert('传送的文件过大');</script>");
-                return;
-            }
+            
             if (Request.Cookies["chatId"] != null)
             {
                 string chatId = Request.Cookies["chatId"].Value.ToString();
-                ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...");
-                ChatService.AddMessage(msg);
-            }
-            string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
-            this.fuFile.PostedFile.SaveAs(path);
-            if (Request.Cookies["chatId"] != null)
-            {
-                string chatId = Request.Cookies["chatId"].Value.ToString();
-                ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!");
-                ChatService.AddMessage(msg);
+                OperatorWS ow = new OperatorWS();
+                bool b=ow.getOperatorIDByChatID(chatId);
+                if (b)
+                {
+                    string file = this.fuFile.FileName.ToString();
+                    if (file.Trim().Length == 0)//验证上传文件
+                    {
+                        this.Response.Write("<script>alert('请选择传送的文件');</script>");
+                        return;
+                    }
+                    if (this.fuFile.FileContent.Length >= 4180560)
+                    {
+                        this.Response.Write("<script>alert('传送的文件过大');</script>");
+                        return;
+                    }
+
+                    ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...");
+                    ChatService.AddMessage(msg);
+
+                    string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
+                    this.fuFile.PostedFile.SaveAs(path);
+
+                    ChatMessageInfo msg2 = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!");
+                    ChatService.AddMessage(msg2);
+
+                    ChatMessageInfo msg3 = new ChatMessageInfo(chatId, VisitorName, "<a href='UploadFile/" + file + "'>保存</a>");
+                    ChatService.AddMessage(msg3);
+                }
             }
 
         }
