@@ -10,6 +10,7 @@
       var   currentMoveObj   =   null;         //当前拖动对象   
       var   relLeft;                           //鼠标按下位置相对对象位置   
       var   relTop;   
+      var   comname=4;
       function   f_mdown(obj)   
       {   
               currentMoveObj   =   obj;                 //当对象被按下时，记录该对象   
@@ -33,7 +34,7 @@
     function openChat()
     {
         panel2Close();//隐藏层
-        var win = window.open('http://rd01/LiveChatService/Chat.aspx?aid=4', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
+        var win = window.open('http://rd01/LiveChatService/Chat.aspx?aid='+comname+'', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
         win.focus();
         win.opener = window;
         return ;
@@ -80,7 +81,7 @@
    function callMethod()
     {
         service.useService("http://localhost:3355/LiveChat/Operator.asmx?wsdl","calService");                                       //创建服务对象
-        var parm1 = 4;   //取公司ID           
+        var parm1 =comname;   //取公司ID           
         var parm2 =getCookie('myip'); //取IP
         service.calService.callService(callback,"GetRequestsByAidandIP",parm1,parm2);                                                            //调用方法
     }
