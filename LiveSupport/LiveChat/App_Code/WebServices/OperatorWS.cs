@@ -72,6 +72,7 @@ public class OperatorWS : System.Web.Services.WebService
         return OperatorService.GetChatRequests(op);
 	}
 
+    
     [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
 	public void AddMessage(ChatMessageInfo msg)

@@ -20,6 +20,9 @@ using System.Windows;
 
 public partial class Chat : System.Web.UI.Page
 {
+    private const int MessageType_ToAll = 1;
+    private const int MessageType_ToOperator = 2;
+    private const int MessageType_ToChatPage = 3;
 
     public string VisitorName
     {
@@ -98,7 +101,7 @@ public partial class Chat : System.Web.UI.Page
             }            
         }
     }
-    
+    //获取聊天消息
     protected void timerRefresh_Tick(object sender, EventArgs e)
     {
        
@@ -110,31 +113,33 @@ public partial class Chat : System.Web.UI.Page
                 long lastCheck = long.Parse(Request.Cookies[chatId + "_lastCheck"].Value.ToString());
                 if (ChatService.HasNewMessage(chatId, lastCheck))
                 {
-                    List<ChatMessageInfo> messages = ChatService.GetMessages(chatId, lastCheck);
+                    List<ChatMessageInfo> messages = ChatService.GetMessages(chatId, lastCheck);//*
                   
 
                     if (messages.Count > 0)
                     {
                        
-                        for (int i = messages.Count - 1; i >= 0; i--)
+                        //for (int i = messages.Count - 1; i >= 0; i--)
+                        for (int i =0; i<messages.Count; i++)
                         {
-
-                            if (messages[i].Name != VisitorName && lblOp.Text.Equals("等待客服接受您的请求"))
+                            if (messages[i].Type == MessageType_ToAll || messages[i].Type == MessageType_ToChatPage)
                             {
 
-                                lblOp.Text = messages[i].Message;
 
-                                break;
+
+                                if (messages[i].Name != VisitorName && lblOp.Text.Equals("等待客服接受您的请求"))
+                                {
+
+                                    lblOp.Text = messages[i].Message;
+
+                                    break;
+                                }
+                                
+
+                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, messages[i].Message);                                
                             }
-                            if(lblOp.Text==messages[i].Message.ToString())
-                            {
-                                break;
-                              
-                            }
-                          
-                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, messages[i].Message);
-                                lastCheck = messages[i].MessageId;
-                           
+
+                            lastCheck = messages[i].MessageId;                          
                         }
 
                         // set the lastId
@@ -178,6 +183,7 @@ public partial class Chat : System.Web.UI.Page
         return string.Empty;
     }
 
+    //发送聊天信息
     [System.Web.Services.WebMethod]
     [ScriptMethod(UseHttpGet = true)]
     public static string SendMsg(string msg, string chtID)
@@ -186,9 +192,9 @@ public partial class Chat : System.Web.UI.Page
         {
             // Add a new message to the discussion
             string chatId = chtID;
-
-            ChatMessageInfo mesg = new ChatMessageInfo(chatId, VName, msg);
-            ChatService.AddMessage(mesg);
+            //创建一个聊天消息实例
+            ChatMessageInfo mesg = new ChatMessageInfo(chatId, VName, msg,1);
+            ChatService.AddMessage(mesg);//添加聊天信息
 
             OperatorWS ws = new OperatorWS();
             ws.SetTyping(chatId, false, false);
@@ -252,8 +258,8 @@ public partial class Chat : System.Web.UI.Page
         ChatService.RequestChat(request);
 
 
-        ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, string.Empty, "等待客服接受您的请求");
-        ChatService.AddMessage(msg);
+        ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, string.Empty, "等待客服接受您的请求",3);
+        ChatService.AddMessage(msg);//添加聊天信息
         lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
         VisitorName = request.VisitorName;
@@ -305,17 +311,17 @@ public partial class Chat : System.Web.UI.Page
                         return;
                     }
 
-                    ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...");
-                    ChatService.AddMessage(msg);
+                    ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...",3);
+                    ChatService.AddMessage(msg);//添加聊天信息 
 
                     string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
                     this.fuFile.PostedFile.SaveAs(path);
 
-                    ChatMessageInfo msg2 = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!");
-                    ChatService.AddMessage(msg2);
+                    ChatMessageInfo msg2 = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!",3);
+                    ChatService.AddMessage(msg2);//添加聊天信息
 
-                    ChatMessageInfo msg3 = new ChatMessageInfo(chatId, VisitorName, "<a href='UploadFile/" + file + "'>保存</a>");
-                    ChatService.AddMessage(msg3);
+                    ChatMessageInfo msg3 = new ChatMessageInfo(chatId, VisitorName, "<a href='UploadFile/" + file + "'>保存</a>",2);
+                    ChatService.AddMessage(msg3);//添加聊天信息
                 }
             }
 

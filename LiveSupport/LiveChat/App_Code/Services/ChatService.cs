@@ -39,14 +39,14 @@ public class ChatService
 		_provider.RequestChat(request);
 	}
 
+    //添加聊天信息
 	public static void AddMessage(ChatMessageInfo msg)
 	{
 		// Load the provider
 		LoadProvider();
-
 		_provider.AddChatMessage(msg);
 	}
-
+    //获取聊天信息
 	public static List<ChatMessageInfo> GetMessages(string chatId, long lastCheck)
 	{
 		// Load the provider
