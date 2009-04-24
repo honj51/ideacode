@@ -33,6 +33,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback LogInOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UploadFileOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetWebSiteRequestsOperationCompleted;
         
         private System.Threading.SendOrPostCallback SetOperatorStatusOperationCompleted;
@@ -60,6 +62,10 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private System.Threading.SendOrPostCallback GetRequestsByAidandIPOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpIsShowRequestsByAidandIPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getOperatorIDByChatIDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateOperatorIDByChatIDOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -112,6 +118,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event LogInCompletedEventHandler LogInCompleted;
         
         /// <remarks/>
+        public event UploadFileCompletedEventHandler UploadFileCompleted;
+        
+        /// <remarks/>
         public event GetWebSiteRequestsCompletedEventHandler GetWebSiteRequestsCompleted;
         
         /// <remarks/>
@@ -154,6 +163,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event UpIsShowRequestsByAidandIPCompletedEventHandler UpIsShowRequestsByAidandIPCompleted;
         
         /// <remarks/>
+        public event getOperatorIDByChatIDCompletedEventHandler getOperatorIDByChatIDCompleted;
+        
+        /// <remarks/>
+        public event UpdateOperatorIDByChatIDCompletedEventHandler UpdateOperatorIDByChatIDCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/LogIn", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Operator LogIn(string userName, string password) {
@@ -182,6 +197,37 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.LogInCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.LogInCompleted(this, new LogInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UploadFile([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] bs, string filename) {
+            this.Invoke("UploadFile", new object[] {
+                        bs,
+                        filename});
+        }
+        
+        /// <remarks/>
+        public void UploadFileAsync(byte[] bs, string filename) {
+            this.UploadFileAsync(bs, filename, null);
+        }
+        
+        /// <remarks/>
+        public void UploadFileAsync(byte[] bs, string filename, object userState) {
+            if ((this.UploadFileOperationCompleted == null)) {
+                this.UploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadFileOperationCompleted);
+            }
+            this.InvokeAsync("UploadFile", new object[] {
+                        bs,
+                        filename}, this.UploadFileOperationCompleted, userState);
+        }
+        
+        private void OnUploadFileOperationCompleted(object arg) {
+            if ((this.UploadFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UploadFileCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -613,6 +659,65 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.UpIsShowRequestsByAidandIPCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpIsShowRequestsByAidandIPCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool getOperatorIDByChatID(string chatId) {
+            object[] results = this.Invoke("getOperatorIDByChatID", new object[] {
+                        chatId});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getOperatorIDByChatIDAsync(string chatId) {
+            this.getOperatorIDByChatIDAsync(chatId, null);
+        }
+        
+        /// <remarks/>
+        public void getOperatorIDByChatIDAsync(string chatId, object userState) {
+            if ((this.getOperatorIDByChatIDOperationCompleted == null)) {
+                this.getOperatorIDByChatIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetOperatorIDByChatIDOperationCompleted);
+            }
+            this.InvokeAsync("getOperatorIDByChatID", new object[] {
+                        chatId}, this.getOperatorIDByChatIDOperationCompleted, userState);
+        }
+        
+        private void OngetOperatorIDByChatIDOperationCompleted(object arg) {
+            if ((this.getOperatorIDByChatIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getOperatorIDByChatIDCompleted(this, new getOperatorIDByChatIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateOperatorIDByChatID", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateOperatorIDByChatID(string chatId, int operatorId) {
+            this.Invoke("UpdateOperatorIDByChatID", new object[] {
+                        chatId,
+                        operatorId});
+        }
+        
+        /// <remarks/>
+        public void UpdateOperatorIDByChatIDAsync(string chatId, int operatorId) {
+            this.UpdateOperatorIDByChatIDAsync(chatId, operatorId, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateOperatorIDByChatIDAsync(string chatId, int operatorId, object userState) {
+            if ((this.UpdateOperatorIDByChatIDOperationCompleted == null)) {
+                this.UpdateOperatorIDByChatIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateOperatorIDByChatIDOperationCompleted);
+            }
+            this.InvokeAsync("UpdateOperatorIDByChatID", new object[] {
+                        chatId,
+                        operatorId}, this.UpdateOperatorIDByChatIDOperationCompleted, userState);
+        }
+        
+        private void OnUpdateOperatorIDByChatIDOperationCompleted(object arg) {
+            if ((this.UpdateOperatorIDByChatIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateOperatorIDByChatIDCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1106,6 +1211,10 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void UploadFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void GetWebSiteRequestsCompletedEventHandler(object sender, GetWebSiteRequestsCompletedEventArgs e);
     
     /// <remarks/>
@@ -1335,6 +1444,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void UpIsShowRequestsByAidandIPCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void getOperatorIDByChatIDCompletedEventHandler(object sender, getOperatorIDByChatIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getOperatorIDByChatIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getOperatorIDByChatIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void UpdateOperatorIDByChatIDCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

@@ -35,6 +35,17 @@
         </s:sequence>
         <s:anyAttribute />
       </s:complexType>
+      <s:element name="UploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bs" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="GetWebSiteRequests">
         <s:complexType>
           <s:sequence>
@@ -269,6 +280,31 @@
       <s:element name="UpIsShowRequestsByAidandIPResponse">
         <s:complexType />
       </s:element>
+      <s:element name="getOperatorIDByChatID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOperatorIDByChatIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getOperatorIDByChatIDResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOperatorIDByChatID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="operatorId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOperatorIDByChatIDResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LogInSoapIn">
@@ -278,6 +314,15 @@
     <wsdl:part name="parameters" element="tns:LogInResponse" />
   </wsdl:message>
   <wsdl:message name="LogInAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
   <wsdl:message name="GetWebSiteRequestsSoapIn">
@@ -403,10 +448,26 @@
   <wsdl:message name="UpIsShowRequestsByAidandIPSoapOut">
     <wsdl:part name="parameters" element="tns:UpIsShowRequestsByAidandIPResponse" />
   </wsdl:message>
+  <wsdl:message name="getOperatorIDByChatIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getOperatorIDByChatID" />
+  </wsdl:message>
+  <wsdl:message name="getOperatorIDByChatIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getOperatorIDByChatIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOperatorIDByChatIDSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateOperatorIDByChatID" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOperatorIDByChatIDSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateOperatorIDByChatIDResponse" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="LogIn">
       <wsdl:input message="tns:LogInSoapIn" />
       <wsdl:output message="tns:LogInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input message="tns:UploadFileSoapIn" />
+      <wsdl:output message="tns:UploadFileSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetWebSiteRequests">
       <wsdl:input message="tns:GetWebSiteRequestsSoapIn" />
@@ -464,6 +525,14 @@
       <wsdl:input message="tns:UpIsShowRequestsByAidandIPSoapIn" />
       <wsdl:output message="tns:UpIsShowRequestsByAidandIPSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="getOperatorIDByChatID">
+      <wsdl:input message="tns:getOperatorIDByChatIDSoapIn" />
+      <wsdl:output message="tns:getOperatorIDByChatIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOperatorIDByChatID">
+      <wsdl:input message="tns:UpdateOperatorIDByChatIDSoapIn" />
+      <wsdl:output message="tns:UpdateOperatorIDByChatIDSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -472,6 +541,16 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:LogInAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UploadFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -616,6 +695,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getOperatorIDByChatID">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOperatorIDByChatID">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateOperatorIDByChatID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -624,6 +721,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:LogInAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UploadFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
@@ -761,6 +868,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpIsShowRequestsByAidandIP">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpIsShowRequestsByAidandIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOperatorIDByChatID">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOperatorIDByChatID">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateOperatorIDByChatID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

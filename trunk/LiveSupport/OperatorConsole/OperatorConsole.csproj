@@ -191,6 +191,7 @@
     <Content Include="Profile.ico" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
+    <None Include="Resources\file_sent.png" />
     <Content Include="Resources\ie.jpg" />
     <None Include="Resources\Profile.ico" />
     <None Include="Resources\type.wav" />
