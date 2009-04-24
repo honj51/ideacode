@@ -351,19 +351,22 @@ public class SqlChatProvider : ChatProvider
         SqlConnection conn = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand("LiveChat_ChatRequests_GetOperatorIDByChatID", conn);
         cmd.CommandType = CommandType.StoredProcedure;
-        bool b = false;
         try
         {
             cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
             conn.Open();
-            object obj=cmd.ExecuteScalar();
-            if (obj != null)
-                b = true;
+            SqlDataReader sdr= cmd.ExecuteReader();
+            if (sdr.Read())
+            {
+                if (Convert.ToInt32(sdr["OperatorID"].ToString()) == -1)
+                    return false;
+                else
+                    return true;
+            }
             else
-                b = false;
-            cmd.Dispose();
-            conn.Close();
-            return b;
+            {
+                return false;
+            }
         }
         catch (Exception ex)
         {
