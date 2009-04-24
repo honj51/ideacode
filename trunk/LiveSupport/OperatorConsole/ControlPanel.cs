@@ -158,19 +158,21 @@ namespace LiveSupport.OperatorConsole
         {
             if (drpChatRequest.SelectedItem != null)
             {
+                //声音
                 player.Stop();
-
+                //请求信息
                 ChatRequestInfo req = (ChatRequestInfo)drpChatRequest.SelectedItem;
                 drpChatRequest.Items.Remove(req);
                 drpChatRequest.Text = string.Empty;
+
                 TabPage tab = new TabPage(req.VisitorIP);
-                
                 LiveChat lc = new LiveChat();
                 lc.ChatRequest = req;
                 lc.Dock = DockStyle.Fill;
                 tab.Controls.Add(lc);
                 tabChats.TabPages.Add(tab);
                 tab.Focus();
+
                 TabInfo tabInfo = new TabInfo();
                 tabInfo.ChatId = req.ChatId;
                 tabInfo.Dock = DockStyle.Fill;
@@ -178,7 +180,7 @@ namespace LiveSupport.OperatorConsole
                 {
                     tabInfo.RequestEntity = currentVisitors[req.VisitorIP] as RequestInfo;
                 }
-                //修改请求信息
+                //添加请求信息
                 chatInfo.Add(tabInfo);
                 RefreshTabInfo();
                 //修改客服编号
@@ -282,12 +284,12 @@ namespace LiveSupport.OperatorConsole
             player.Stream = Properties.Resources.newmsg;
             player.Play();
         }
-
+        //
         private void tabChats_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshTabInfo();
         }
-
+        //取消息
         private void RefreshTabInfo()
         {
             if (tabChats.TabPages.Count > 0)
@@ -377,6 +379,7 @@ namespace LiveSupport.OperatorConsole
 
         }
 
+        //点击传送文件
         private void button1_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -392,7 +395,8 @@ namespace LiveSupport.OperatorConsole
                 if (writeStream.CanWrite)
                 { writeStream.Write(fsbyte, 0, Convert.ToInt32(fs.Length)); }
                 else
-                { MessageBox.Show("对不起，文件上传失败"); }
+                { 
+                MessageBox.Show("对不起，文件上传失败"); }
                 fs.Close();
                 ChatRequestInfo myChatRequest = new ChatRequestInfo();
                 ChatMessageInfo msg = new ChatMessageInfo();
@@ -401,7 +405,7 @@ namespace LiveSupport.OperatorConsole
                 msg.Message = "您可以开始下载文件";
                 msg.Name = "UploadOK";
                 msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
-
+                msg.Type = 3;//*
                 ws.AddMessage(msg);
             }
         }
