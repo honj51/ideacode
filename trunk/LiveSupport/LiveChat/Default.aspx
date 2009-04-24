@@ -24,7 +24,6 @@
             <script type="text/javascript">
 			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="ProcessImage.ashx?aid=4&referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
             </script>
-
         </div>
     </form>
 </body>
