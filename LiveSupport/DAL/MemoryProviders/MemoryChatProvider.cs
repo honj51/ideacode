@@ -76,7 +76,7 @@ public class MemoryChatProvider : ChatProvider
 
 		return requests;
 	}
-
+    //添加聊天信息
 	public override void AddChatMessage(ChatMessageInfo msg)
 	{
 		bool cacheExists = false;
@@ -107,7 +107,7 @@ public class MemoryChatProvider : ChatProvider
 			HttpContext.Current.Cache.Add("_lcsk_" + chatId, messages, null, Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(2), CacheItemPriority.Normal, null);
 		}
 	}
-
+    //获取消息
 	private static List<ChatMessageInfo> GetChatMessages(string chatId, out bool cacheExists)
 	{
 		// get the current in-memory list
@@ -124,7 +124,7 @@ public class MemoryChatProvider : ChatProvider
 		}
 		return messages;
 	}
-
+    //获取消息
 	public override List<ChatMessageInfo> GetMessages(string chatId, long lastCheck)
 	{
 		bool cacheExists = false;
