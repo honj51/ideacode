@@ -18,8 +18,11 @@ using System.Data.SqlClient;
 /// <summary>
 /// Entity representing a chat message
 /// </summary>
+/// 聊天信息类
+/// 
+
 [Serializable()]
-public class ChatMessageInfo
+public class ChatMessageInfo 
 {
 	private long myMsgId = 0;
 	[XmlElement]
@@ -60,6 +63,13 @@ public class ChatMessageInfo
 		get { return myMessage; }
 		set { myMessage = value; }
 	}
+    private int myType;
+    [XmlElement]
+    public int Type
+    {
+        get { return myType; }
+        set { myType = value; }
+    }
 
 	public ChatMessageInfo()
 	{
@@ -68,17 +78,19 @@ public class ChatMessageInfo
 		myName = string.Empty;
 		mySentDate = DateTime.MinValue.Ticks;
 		myMessage = string.Empty;
+        myType = 1;
 	}
 
-	public ChatMessageInfo(string chatId, string name,  string message)
+	public ChatMessageInfo(string chatId, string name,  string message,int type)
 	{
 		myMsgId = -1;
 		myChatId = chatId;
 		myName = name;
 		mySentDate = DateTime.Now.ToUniversalTime().Ticks;
 		myMessage = message;
+        myType = type;
 	}
-
+    //获取数据库聊天信息
     public ChatMessageInfo(SqlDataReader data)
     {
         if (!Convert.IsDBNull(data["MessageID"])) myMsgId = (long)data["MessageID"];
@@ -86,6 +98,7 @@ public class ChatMessageInfo
         if (!Convert.IsDBNull(data["FromName"])) myName = (string)data["FromName"];
         if (!Convert.IsDBNull(data["Message"])) myMessage = (string)data["Message"];
         if (!Convert.IsDBNull(data["SentDate"])) mySentDate = (long)data["SentDate"];
+        if (!Convert.IsDBNull(data["Type"])) myType = (int)data["Type"];
     }
 
 	public static int SortByDate(ChatMessageInfo x, ChatMessageInfo y)

@@ -87,6 +87,7 @@ public class SqlChatProvider : ChatProvider
         return retVal;
 	}
 
+    //添加聊天信息
 	public override void AddChatMessage(ChatMessageInfo msg)
 	{
         SqlConnection sqlC = new SqlConnection(connectionString);
@@ -99,7 +100,7 @@ public class SqlChatProvider : ChatProvider
             cmd.Parameters.Add("@FromName", SqlDbType.VarChar, 100).Value = msg.Name;
             cmd.Parameters.Add("@Message", SqlDbType.VarChar, 3000).Value = msg.Message;
             cmd.Parameters.Add("@SentDate", SqlDbType.BigInt).Value = msg.SentDate;
-
+            cmd.Parameters.Add("@Type", SqlDbType.Int).Value = msg.Type;
             sqlC.Open();
             cmd.ExecuteNonQuery();
 
@@ -123,6 +124,7 @@ public class SqlChatProvider : ChatProvider
         }
 	}
 
+    //获得信息  lastCheck最后一次取消息
 	public override List<ChatMessageInfo> GetMessages(string chatId, long lastCheck)
     {
         SqlConnection sqlC = new SqlConnection(connectionString);
@@ -135,7 +137,6 @@ public class SqlChatProvider : ChatProvider
         {
             cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
             cmd.Parameters.Add("@LastCheck", SqlDbType.BigInt).Value = lastCheck;
-
             sqlC.Open();
             data = cmd.ExecuteReader();
             while (data.Read())
