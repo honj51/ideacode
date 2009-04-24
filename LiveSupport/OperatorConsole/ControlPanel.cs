@@ -90,7 +90,7 @@ namespace LiveSupport.OperatorConsole
                         currentVisitors[requests[i].VisitorIP] = requests[i];
                 }
             }
-
+            //获得请求
             // Should we get the chat requests
             if (!hasCheckedChatRequests)
             {
@@ -98,6 +98,7 @@ namespace LiveSupport.OperatorConsole
 
                 foreach (ChatRequestInfo req in ws.GetChatRequests(Program.CurrentOperator))
                 {
+                    //闪光
                     // Flash the window
                     API.FlashWindowEx(this.Handle);
 
@@ -110,7 +111,7 @@ namespace LiveSupport.OperatorConsole
                         drpChatRequest.Items.Add(req);
 
                         // Remove the chat request to avoid multiple operator to getting the chat.
-                        ws.RemoveChatRequest(req);
+                        //ws.RemoveChatRequest(req);
 
                         // Should we play a sound?
                         PlayChatReqSound();
@@ -151,48 +152,39 @@ namespace LiveSupport.OperatorConsole
             ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
             Application.Exit();
         }
+        
         //接受请求
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            // Accept a new chat request
             if (drpChatRequest.SelectedItem != null)
             {
                 player.Stop();
 
                 ChatRequestInfo req = (ChatRequestInfo)drpChatRequest.SelectedItem;
-                //string aa = req.AcceptByOpereratorId + "-" + req.AcceptDate + "-" + req.AccountId + "-" + req.ChatId+"-"+req.ClosedDate+"-"+req.RequestDate ;
-                //MessageBox.Show(aa);
-                
-                // Remove the chat request from the combo
                 drpChatRequest.Items.Remove(req);
                 drpChatRequest.Text = string.Empty;
-
-                // Add a new tab page that will contain the chat session
                 TabPage tab = new TabPage(req.VisitorIP);
+                
                 LiveChat lc = new LiveChat();
                 lc.ChatRequest = req;
                 lc.Dock = DockStyle.Fill;
                 tab.Controls.Add(lc);
                 tabChats.TabPages.Add(tab);
                 tab.Focus();
-
-                // Add a new TabInfo control
                 TabInfo tabInfo = new TabInfo();
                 tabInfo.ChatId = req.ChatId;
                 tabInfo.Dock = DockStyle.Fill;
-
-
-
-                // Get the request
                 if (currentVisitors.ContainsKey(req.VisitorIP))
                 {
                     tabInfo.RequestEntity = currentVisitors[req.VisitorIP] as RequestInfo;
                 }
-
-
+                //修改请求信息
                 chatInfo.Add(tabInfo);
                 RefreshTabInfo();
+                //修改客服编号
+                ws.UpdateOperatorIDByChatID(req.ChatId,Program.CurrentOperator.Id);//服务人员
             }
+
         }
 
         public void EndChat(TabPage tab, string chatId)
@@ -379,6 +371,7 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
+
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
@@ -386,16 +379,16 @@ namespace LiveSupport.OperatorConsole
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog()==DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 WebClient myWebClient = new WebClient();
                 myWebClient.Credentials = CredentialCache.DefaultCredentials;
                 String filename = openFileDialog1.FileName;
                 FileStream fs = new FileStream(filename, FileMode.Open);
-                byte[] fsbyte=new byte[fs.Length];
-                 fs.Read(fsbyte, 0,Convert.ToInt32(fs.Length)); 
-                 string fullname=@"c:\1\"+openFileDialog1.SafeFileName;   
-                Stream writeStream=myWebClient.OpenWrite(fullname, "PUT");
+                byte[] fsbyte = new byte[fs.Length];
+                fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
+                string fullname = @"c:\1\" + openFileDialog1.SafeFileName;
+                Stream writeStream = myWebClient.OpenWrite(fullname, "PUT");
                 if (writeStream.CanWrite)
                 { writeStream.Write(fsbyte, 0, Convert.ToInt32(fs.Length)); }
                 else
@@ -408,12 +401,17 @@ namespace LiveSupport.OperatorConsole
                 msg.Message = "您可以开始下载文件";
                 msg.Name = "UploadOK";
                 msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
-                
-                ws.AddMessage(msg);
-            
 
-                
+                ws.AddMessage(msg);
+
+
+
             }
+        }
+
+        private void ControlPanel_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
