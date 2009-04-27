@@ -12,6 +12,8 @@
   
     <style type="text/css">
        
+      
+      
         BODY 
         {
             font-family: Arial;
@@ -58,7 +60,7 @@ TD {
         }
         .litChat
         {
-        OVERFLOW-Y: scroll; DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 11pt; WIDTH: 100%; LINE-HEIGHT: 1.5em; FONT-FAMILY: "宋体","MS Gothic","Times New Roman","PMingLiU"; HEIGHT: 100px; mso-ascii-theme-font: minor-fareast
+        OVERFLOW-Y: scroll; DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 11pt; WIDTH: 100%; LINE-HEIGHT: 1.5em; FONT-FAMILY: "宋体","MS Gothic","Times New Roman","PMingLiU"; HEIGHT: 100px; 
 
             
             }
@@ -94,7 +96,8 @@ legend {
         
     </style>  
         <script language="javascript" type="text/javascript">
-
+         
+        
 
 
 		//显示层
@@ -297,14 +300,16 @@ legend {
       <span 
     id="headerBoxTime">
      
-    </span></div></td>
+    </span></div>
+    
+    </td>
     <td align="right"><a id="logo" href="#" 
       target="_blank">
       logo
       </a>
       </td>
       </tr>
-                
+           
            <tr id="notewrap">
             
             <td id="wrap" >
@@ -344,14 +349,11 @@ legend {
                         
                     </tr>
                   
-                   
-                   
                 </table>
               
             </td>
-           
             <td id="bwrap" valign="top">
-                <div id="banner">
+                <div id="banner" style="display:none;">
                   
                 </div>
             </td>
@@ -378,15 +380,29 @@ legend {
                         </div>
                         </td>
                         </tr><tr id="msg">
-            <td id="inputarea">
-               
+            <td id="inputarea" style="height:100px; width:490px;">
+              
                  
-                 <textarea id="txtMsg" rows="2" runat="server" cols="50"  onkeypress="checkEnter(event)" /> </td><td  align="center">
-                <div >
+                 <textarea id="txtMsg" rows="2" runat="server" cols="50"   onkeypress="checkEnter(event)" />
+                 
+                  </td>
+                 
+                 <td  align="center">
+                
+                
                     <div id="enter" >
-
-                    
-          <input type="image" id="btnSend"  src="Images/send.jpg"  onclick="CallSendMsg()"/> </div></div></td></tr></table>
-          <img id="track" src="Images/track.gif" /> </div></asp:Panel></div></form></body></html>
                     <!----发送--->
+                    
+          <input  type="image" id="btnSend"  src="Images/send.jpg"  onclick="Send()"/>
+          
+           </div>
+         
+          
+          </td>
+          
+          </tr></table>
+          <img id="track" src="Images/track.gif" /> </div></asp:Panel>
+          
+          </div></form></body></html>
+
                   

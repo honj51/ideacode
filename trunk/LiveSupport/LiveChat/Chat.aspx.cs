@@ -87,14 +87,14 @@ public partial class Chat : System.Web.UI.Page
                 {
                     if (OperatorService.GetOperatorStatus(accountId))
                     {
-                       pnlRequest.Visible = true;
-                       
-                        
+                       //pnlRequest.Visible = true;
+
+                       pnlNoOperator.Visible = true;
                     }
                     else
                     {
                       pnlNoOperator.Visible = true;
-                      
+                       
                         
                     }                    
                 }
@@ -139,7 +139,10 @@ public partial class Chat : System.Web.UI.Page
                                 litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, messages[i].Message);                                
                             }
 
+                           
+                            
                             lastCheck = messages[i].MessageId;                          
+
                         }
 
                         // set the lastId
@@ -150,6 +153,36 @@ public partial class Chat : System.Web.UI.Page
             }
         }
     }
+
+    public string CutStr(string str, int len)
+    {
+        string s = "";
+
+        for (int i = 0; i < str.Length; i++)
+        {
+            int r = i % len;
+            int last = (str.Length / len) * len;
+            if (i != 0 && i <= last)
+            {
+
+                if (r == 0)
+                {
+                    s += str.Substring(i - len, len) + "<br>";
+                }
+
+            }
+            else if (i > last)
+            {
+                s += str.Substring(i - 1);
+                break;
+            }
+
+        }
+
+        return s;
+    } 
+
+
     [System.Web.Services.WebMethod]
     [ScriptMethod(UseHttpGet = true)]
     public static string CheckTypingNotification(string chatId)
@@ -205,6 +238,9 @@ public partial class Chat : System.Web.UI.Page
 
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
+        
+        Response.Write("<script>alert('dfasfasdfasdf');</script>");
+            Response.End();
         // we send an email to the configured email on the web.config
         MailMessage mail = new MailMessage();
         mail.From = new MailAddress(txtSendBy.Text);
