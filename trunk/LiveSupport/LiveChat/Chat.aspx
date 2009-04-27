@@ -148,6 +148,15 @@ legend {
 		}
 		
 		window.onload = scrollDiv;
+	    function Save(){    
+            var txt = document.getElementById("upChat").innerHTML
+            b = window.open();   
+            b.document.open();   
+            b.document.write(txt);   
+            b.document.close(); 
+            b.document.execCommand('saveas',true,''); 
+            b.window.close(); 
+         }
     </script>
 
 </head>
@@ -364,7 +373,7 @@ legend {
                 <div id="tool_wrap">
                     <ul id="toolsbar">
                         <li id="file" onclick="divShow('divSend');">传送文件 </li>
-                        <li id="save" class="open">保存记录 </li>
+                        <li id="save" class="open" onclick="Save();">保存记录 </li>
                         <li id="switch" class="open">关闭提示音 </li>
                         <li id="active" class="open">
                             <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click" 
