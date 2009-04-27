@@ -87,9 +87,9 @@ public partial class Chat : System.Web.UI.Page
                 {
                     if (OperatorService.GetOperatorStatus(accountId))
                     {
-                       //pnlRequest.Visible = true;
+                       pnlRequest.Visible = true;
 
-                       pnlNoOperator.Visible = true;
+                       
                     }
                     else
                     {
@@ -136,7 +136,7 @@ public partial class Chat : System.Web.UI.Page
                                 }
                                 
 
-                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, messages[i].Message);                                
+                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name,CutStr(messages[i].Message,100));                                
                             }
 
                            

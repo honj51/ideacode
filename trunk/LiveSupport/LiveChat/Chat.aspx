@@ -6,17 +6,17 @@
 
 <head runat="server">
     <title>在线交流</title>
-     <link href="Images/mainCN.css" type="text/css" rel="Stylesheet" />
+        <link href="Images/mainCN.css" type="text/css" rel="Stylesheet" />
     <link href="Images/skin.css" type="text/css" rel="stylesheet" />
-   
   
     <style type="text/css">
        
       
       
+      
         BODY 
         {
-            font-family: Arial;
+            font-family: Arial; b
 		color: black;
 		font-size: 10pt;
    	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 1px; BORDER-BOTTOM: 0px; FONT-FAMILY: Tahoma
@@ -393,7 +393,7 @@ legend {
                     <div id="enter" >
                     <!----发送--->
                     
-          <input  type="image" id="btnSend"  src="Images/send.jpg"  onclick="Send()"/>
+          <input  type="image" id="btnSend"  src="Images/send.jpg"  onclick="CallSendMsg()"/>
           
            </div>
          
