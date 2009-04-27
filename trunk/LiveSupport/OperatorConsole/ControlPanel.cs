@@ -167,6 +167,7 @@ namespace LiveSupport.OperatorConsole
 
                 TabPage tab = new TabPage(req.VisitorIP);
                 LiveChat lc = new LiveChat();
+                lc.Tag = tabChats;
                 lc.ChatRequest = req;
                 lc.Dock = DockStyle.Fill;
                 tab.Controls.Add(lc);
@@ -184,7 +185,7 @@ namespace LiveSupport.OperatorConsole
                 chatInfo.Add(tabInfo);
                 RefreshTabInfo();
                 //修改客服编号
-                ws.UpdateOperatorIDByChatID(req.ChatId,Program.CurrentOperator.Id);//服务人员
+                //ws.UpdateOperatorIDByChatID(req.ChatId,Program.CurrentOperator.Id);//服务人员
             }
 
         }
@@ -343,6 +344,26 @@ namespace LiveSupport.OperatorConsole
                         requestinfo.VisitorEmail = "";
                         requestinfo.VisitorUserAgent = lstVisitors.SelectedItems[0].SubItems[4].Text;//浏览器
                         requestinfo.WasAccept = false;
+                        //信息显示
+                        TabPage tab = new TabPage(requestinfo.VisitorIP);
+                        LiveChat lc = new LiveChat();
+                        lc.Tag = tabChats;
+                        lc.ChatRequest = requestinfo;
+                        lc.Dock = DockStyle.Fill;
+                        tab.Controls.Add(lc);
+                        tabChats.TabPages.Add(tab);
+                        tab.Focus();
+                        TabInfo tabInfo = new TabInfo();
+                        tabInfo.ChatId = requestinfo.ChatId;
+                        tabInfo.Dock = DockStyle.Fill;
+                        if (currentVisitors.ContainsKey(requestinfo.VisitorIP))
+                        {
+                            tabInfo.RequestEntity = currentVisitors[requestinfo.VisitorIP] as RequestInfo;
+                        }
+                        //修改请求信息
+                        chatInfo.Add(tabInfo);
+                        RefreshTabInfo();
+                        IsIP = lstVisitors.SelectedItems[0].SubItems[2].Text;
                         ws.TransferChat(requestinfo);
                     }
                 }
@@ -364,6 +385,25 @@ namespace LiveSupport.OperatorConsole
                         requestinfo.WasAccept = false;
                         ws.TransferChat(requestinfo);
                         IsIP = lstVisitors.SelectedItems[0].SubItems[2].Text;
+                        //信息显示
+                        TabPage tab = new TabPage(requestinfo.VisitorIP);
+                        LiveChat lc = new LiveChat();
+                        lc.Tag = tabChats;
+                        lc.ChatRequest = requestinfo;
+                        lc.Dock = DockStyle.Fill;
+                        tab.Controls.Add(lc);
+                        tabChats.TabPages.Add(tab);
+                        tab.Focus();
+                        TabInfo tabInfo = new TabInfo();
+                        tabInfo.ChatId = requestinfo.ChatId;
+                        tabInfo.Dock = DockStyle.Fill;
+                        if (currentVisitors.ContainsKey(requestinfo.VisitorIP))
+                        {
+                            tabInfo.RequestEntity = currentVisitors[requestinfo.VisitorIP] as RequestInfo;
+                        }
+                        //修改请求信息
+                        chatInfo.Add(tabInfo);
+                        RefreshTabInfo();
                     }
                 }
             }
@@ -372,8 +412,6 @@ namespace LiveSupport.OperatorConsole
                 MessageBox.Show("你还没有选择跟谁进行对话","请选择",MessageBoxButtons.OK,MessageBoxIcon.Stop);
             }
         }
-
-
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
@@ -413,6 +451,12 @@ namespace LiveSupport.OperatorConsole
         private void ControlPanel_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void 接受请求ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabChats.TabPages.Remove(tabChats.SelectedTab);
+            
         }
     }
 }
