@@ -328,20 +328,21 @@ namespace LiveSupport.OperatorConsole
             this.邀请对话ToolStripMenuItem,
             this.接受请求ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // 邀请对话ToolStripMenuItem
             // 
             this.邀请对话ToolStripMenuItem.Name = "邀请对话ToolStripMenuItem";
-            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.邀请对话ToolStripMenuItem.Text = "邀请对话";
             this.邀请对话ToolStripMenuItem.Click += new System.EventHandler(this.邀请对话ToolStripMenuItem_Click);
             // 
             // 接受请求ToolStripMenuItem
             // 
             this.接受请求ToolStripMenuItem.Name = "接受请求ToolStripMenuItem";
-            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.接受请求ToolStripMenuItem.Text = "接受请求";
+            this.接受请求ToolStripMenuItem.Click += new System.EventHandler(this.接受请求ToolStripMenuItem_Click);
             // 
             // imgIconSet
             // 
