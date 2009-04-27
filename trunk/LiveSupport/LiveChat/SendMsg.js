@@ -15,8 +15,7 @@
 
             if(characterCode == 13){ //if generated character code is equal to ascii 13 (if enter key)
                
-               Send();
-               
+              CallSendMsg() 
                 return false 
             }
             else{
