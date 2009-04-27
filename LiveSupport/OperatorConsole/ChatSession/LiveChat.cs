@@ -140,7 +140,7 @@ namespace LiveSupport.OperatorConsole
             msg.Type = MessageType_ToAll;//*	
             ws.AddMessage(msg);
         }
-
+        //加载聊天窗口
         private void LiveChat_Load(object sender, EventArgs e)
         {
             // Build the context menu
@@ -202,13 +202,16 @@ namespace LiveSupport.OperatorConsole
                 msg.Type = MessageType_ToChatPage;
 
                 ws.AddMessage(msg);
-               
-
-
-
-
-
             }
+        }
+        //关闭
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            ChatRequestInfo chatrequest=new ChatRequestInfo();
+            chatrequest.ChatId=myChatRequest.ChatId;
+            ws.RemoveChatRequest(chatrequest);
+            TabControl tc = this.Tag as TabControl;
+            tc.TabPages.Remove(tc.SelectedTab);
         }
     }
 }
