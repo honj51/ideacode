@@ -1,0 +1,61 @@
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+go
+
+
+
+
+
+ALTER PROCEDURE [dbo].[LiveChat_ChatRequests_GetOperatorIDByChatID] 
+@ChatID char(39)
+AS
+BEGIN
+	select AccountId from LiveChat_ChatRequests where ChatID=@ChatID
+END
+
+
+
+
+
+
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+go
+
+
+
+ALTER PROCEDURE [dbo].[LiveChat_ChatRequestsAdd]
+	@ChatID	char(39),
+	@AccountId int,
+	@VisitorIP varchar(50),
+	@VisitorName varchar(100),
+	@VisitorEmail varchar(225),
+	@VisitorUserAgent varchar(125),
+	@OperatorID int,
+	@RequestDate smalldatetime
+AS
+
+DECLARE
+	@ExistingRequest char(39)
+
+SELECT 
+	@ExistingRequest = ChatID
+FROM 
+	LiveChat_ChatRequests 
+WHERE 
+	ChatID=@ChatID
+
+IF @ExistingRequest IS NULL  BEGIN
+
+	INSERT INTO LiveChat_ChatRequests (ChatID, AccountId, VisitorIP, VisitorName, VisitorEmail, VisitorUserAgent, OperatorID, RequestDate)
+	VALUES (@ChatID, @AccountId, @VisitorIP, @VisitorName, @VisitorEmail, @VisitorUserAgent, @OperatorID, @RequestDate)
+
+END ELSE BEGIN
+
+	SET @ChatID = @ExistingRequest
+
+END
+
+SELECT @ChatID
+
+

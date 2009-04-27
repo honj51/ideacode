@@ -14,7 +14,6 @@
           <asp:Panel ID="pnlRequest1" Visible="true" runat="server">
             <div style=" height:100%; width:100%">
             <fieldset>
-                
                 <legend>
                 
                 <span id="Welcome">清输入下面的内容进行对话.</span>
