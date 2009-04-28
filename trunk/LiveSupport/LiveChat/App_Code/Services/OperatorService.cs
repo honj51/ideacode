@@ -69,6 +69,11 @@ public class OperatorService
         return OperatorsManager.GetOnlineOperator();
     }
 
+    public static Operator GetOperatorById(int id)
+    {
+        return OperatorsManager.GetOperatorById(id);
+    }
+
     //private static void LoadProvider()
     //{
     //    // if we do not have initiated the provider

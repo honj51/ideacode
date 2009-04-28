@@ -15,6 +15,7 @@ using System.Configuration.Provider;
 using System.Web.Configuration;
 using System.Collections.Generic;
 using LiveSupport.DAL.Entity;
+using LiveSupport.BLL;
 
 /// <summary>
 /// Chat Service
@@ -33,10 +34,15 @@ public class ChatService
 
 	public static void RequestChat(ChatRequestInfo request)
 	{
-		// Load the provider
-		LoadProvider();
+        // Load the provider
+        LoadProvider();
 
-		_provider.RequestChat(request);
+        _provider.RequestChat(request);
+        //添加系统提示信息
+        
+        ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, Consts.ChatSystemName, 
+            "欢迎光临"+AccountsManager.GetAccountId(int.Parse(request.AccountId)).Name+",请稍候...", Consts.MessageType_ToChatPage);
+        AddMessage(msg);        
 	}
 
     //添加聊天信息

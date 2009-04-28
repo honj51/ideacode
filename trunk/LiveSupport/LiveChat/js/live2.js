@@ -84,7 +84,8 @@
         service.useService("http://localhost:3355/LiveChat/Operator.asmx?wsdl","calService");                                       //创建服务对象
         var parm1 =comname;   //取公司ID           
         var parm2 =getCookie('myip'); //取IP
-        service.calService.callService(callback,"GetRequestsByAidandIP",parm1,parm2);                                                            //调用方法
+        service.calService.callService(callback,"GetRequestsByAidandIP",parm1,parm2);      
+                                                              //调用方法
     }
     function callMethodclose()
     {
@@ -114,6 +115,6 @@
         }
         else
         { 
-           alert("发生错误"); //发生错误
+           //alert("发生错误"); //发生错误
         }
     }
