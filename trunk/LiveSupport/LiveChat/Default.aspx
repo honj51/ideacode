@@ -8,7 +8,7 @@
     <script type="text/javascript">
     function openChat()
     {
-        var win = window.open('Chat.aspx?aid=4', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
+        var win = window.open('Chat.aspx?chatid=''&aid=4', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
         win.focus();
         win.opener = window;
         return false;
