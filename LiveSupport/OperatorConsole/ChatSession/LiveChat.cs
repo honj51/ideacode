@@ -140,6 +140,7 @@ namespace LiveSupport.OperatorConsole
             msg.Type = MessageType_ToAll;//*	
             ws.AddMessage(msg);
         }
+
         //加载聊天窗口
         private void LiveChat_Load(object sender, EventArgs e)
         {
@@ -165,7 +166,7 @@ namespace LiveSupport.OperatorConsole
             }
 
             // Send accept message
-            WriteMessage("您正在同: " + Program.CurrentOperator.Name + " 进行对话");
+            //WriteMessage("您正在同: " + Program.CurrentOperator.Name + " 进行对话");
         }
 
         private void contextMenu_Click(object sender, EventArgs e)

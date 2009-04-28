@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04">
-      <s:import namespace="http://microsoft.com/wsdl/types/" />
       <s:element name="LogIn">
         <s:complexType>
           <s:sequence>
@@ -36,6 +35,17 @@
         </s:sequence>
         <s:anyAttribute />
       </s:complexType>
+      <s:element name="UploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bs" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="GetWebSiteRequests">
         <s:complexType>
           <s:sequence>
@@ -127,6 +137,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="SentDate" type="s:long" />
           <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="AddMessageResponse">
@@ -273,7 +284,7 @@
       <s:element name="getOperatorIDByChatID">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="chatId" type="s1:char" />
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -284,11 +295,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-    </s:schema>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
-      <s:simpleType name="char">
-        <s:restriction base="s:unsignedShort" />
-      </s:simpleType>
+      <s:element name="AcceptChatRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="operatorId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcceptChatRequestResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LogInSoapIn">
@@ -298,6 +315,15 @@
     <wsdl:part name="parameters" element="tns:LogInResponse" />
   </wsdl:message>
   <wsdl:message name="LogInAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
   <wsdl:message name="GetWebSiteRequestsSoapIn">
@@ -429,10 +455,20 @@
   <wsdl:message name="getOperatorIDByChatIDSoapOut">
     <wsdl:part name="parameters" element="tns:getOperatorIDByChatIDResponse" />
   </wsdl:message>
+  <wsdl:message name="AcceptChatRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:AcceptChatRequest" />
+  </wsdl:message>
+  <wsdl:message name="AcceptChatRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:AcceptChatRequestResponse" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="LogIn">
       <wsdl:input message="tns:LogInSoapIn" />
       <wsdl:output message="tns:LogInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input message="tns:UploadFileSoapIn" />
+      <wsdl:output message="tns:UploadFileSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetWebSiteRequests">
       <wsdl:input message="tns:GetWebSiteRequestsSoapIn" />
@@ -494,6 +530,10 @@
       <wsdl:input message="tns:getOperatorIDByChatIDSoapIn" />
       <wsdl:output message="tns:getOperatorIDByChatIDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="AcceptChatRequest">
+      <wsdl:input message="tns:AcceptChatRequestSoapIn" />
+      <wsdl:output message="tns:AcceptChatRequestSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -502,6 +542,16 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:LogInAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UploadFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -655,6 +705,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AcceptChatRequest">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -663,6 +722,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:LogInAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UploadFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
@@ -809,6 +878,15 @@
     </wsdl:operation>
     <wsdl:operation name="getOperatorIDByChatID">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptChatRequest">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
