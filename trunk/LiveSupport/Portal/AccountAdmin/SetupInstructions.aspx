@@ -2,7 +2,9 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<script language="JavaScript"> 
+
+    <script language="JavaScript"> 
+   
 function copyToClipboard(a2,a3){
 //var textArea=document.forms[a2].elements[a3];
 //textArea.focus();
@@ -14,6 +16,18 @@ function trimString(a4)
 {
 return a4.replace(/^\s+/,'').replace(/\s+$/,'');
 }
+function getid()
+{
+   
+   
+}
+  
+  window.onload=function(){
+      var hidden=document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value;
+      document.getElementById("TextArea1").value="<%--Add LiveChat services javascript --%>"+hidden;
+    }
+   
+      
 </script>
 
     <div id="pagetitle">&#23433;&#35013;&#25351;&#21335;</div>
@@ -24,41 +38,46 @@ return a4.replace(/^\s+/,'').replace(/\s+$/,'');
                 <li><a href="SetupInstructions.aspx">&#23433;&#35013;&#25351;&#21335;</a></li>
                 <li><a href="OperatorsManagment.aspx">&#22352;&#24109;&#31649;&#29702;</a></li>
                 <li><a href="AccountSettings.aspx">&#36134;&#25143;&#35774;&#32622;</a></li>
-                <li><a href="CannedResponses.aspx">&#39044;&#32622;&#28040;&#24687;</a></li>
+                <li><a href="CannedResponses.aspx">&#39044;&#32622;&#28040;&#24687;</a><asp:HiddenField 
+                        ID="HiddenField1" runat="server" />
+                </li>
             </ul>
         </div>
         <div id="content-main-three-column">
             &#23433;&#35013;&#27493;&#39588;:<br />
             1. &#23558;&#36825;&#27573;&#20195;&#30721;&#25918;&#20837;&#20840;&#23616;&#33021;&#35775;&#38382;&#30340;&#39029;&#38754;&#37324;:<br />
             <form name="button_html_form">
-            <textarea id="TextArea1" name="S1" style="height: 202px; width: 536px"><%--Add LiveChat services javascript --%>
-    <script type="text/javascript">
-    function openChat()
-    {
-        var win = window.open('http://ocs:8001/Chat.aspx', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
-        win.focus();
-        win.opener = window;
-        return false;
-    }
-    </script></textarea><br />
+            <asp:TextBox ID="TextBox1" runat="server" Height="184px" TextMode="MultiLine" 
+                Width="460px">&lt;%--Add LiveChat services javascript --%&gt; &lt;script 
+            type=\&quot;text/javascript\&quot;&gt; function openChat() { var win = 
+            window.open('http://ocs:8001/Chat.aspx?aid=','chat', 
+            'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510'); 
+            win.focus(); win.opener = window; return false; } &lt;/script&gt;
+            </asp:TextBox>
+            <br />
             <input id="Button1" style="width: 225px" type="button" 
                 value="Copy Chat Link Code to Clipboard" 
                 onclick="copyToClipboard('button_html_form', 'content')" /><br />
                 </form>
             2. &#23558;&#19979;&#38754;&#30340;&#20195;&#30721;&#25918;&#21040;&#20320;&#30340;&#32593;&#31449;&#24819;&#26174;&#31034;LiveSupport&#38142;&#25509;&#30340;&#20301;&#32622;:<br />
             <br />
-            <textarea id="TextArea2" name="S2" style="width: 535px; height: 115px"><script type="text/javascript">
-			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://ocs:8001/ProcessImage.ashx?referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
-function TextArea1_onclick() {
-
-}
-
-            </script></textarea><br />
+            <asp:TextBox ID="TextBox2" runat="server" Height="151px" TextMode="MultiLine" 
+                Width="449px">&lt;script type=&quot;text/javascript&quot;&gt; document.write('&lt;a 
+            href=&quot;javascript://&quot; onclick=&quot;openChat();&quot;&gt;&lt;img id=&quot;_imgLC&quot; 
+            src=&quot;http://ocs:8001/ProcessImage.ashx?aid=&amp;referrer=' + document.referrer + '&quot; 
+            border=&quot;0&quot; alt=&quot;Click here for live chat&quot; /&gt;&lt;/a&gt;'); function TextArea1_onclick() 
+            { } &lt;/script&gt;</asp:TextBox>
+            <br />
+            <br />
             3. &#23436;&#25104;<br />
         </div>
 <%--        <div id="content-side2-three-column">
         </div>
---%>        <div class="clear">
+        
+--%>      <div class="clear">
+            
+            
+            
         </div>
     </div>
 </asp:Content>
