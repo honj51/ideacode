@@ -18,7 +18,5 @@ public class Consts
     public const int MessageType_ToAll = 1;
     public const int MessageType_ToOperator = 2;
     public const int MessageType_ToChatPage = 3;
-
-
     public const string ChatSystemName = "LiveSupport系统";
 }
