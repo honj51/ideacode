@@ -185,7 +185,7 @@ namespace LiveSupport.OperatorConsole
                 chatInfo.Add(tabInfo);
                 RefreshTabInfo();
                 //修改客服编号
-                //ws.UpdateOperatorIDByChatID(req.ChatId,Program.CurrentOperator.Id);//服务人员
+                ws.AcceptChatRequest(req.ChatId,Program.CurrentOperator.Id);//服务人员
             }
 
         }
