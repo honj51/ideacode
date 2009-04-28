@@ -69,8 +69,13 @@ public class ChatService
         List<ChatRequestInfo> li = _provider.GetRequestsByAidandIP(AccountId, ip);
         if (li.Count > 0)
         {
+            string aa = null;
+            foreach (ChatRequestInfo c in li)
+            {
+                aa = c.ChatId;
+            }
             UpIsShowRequestsByAidandIP(AccountId, ip, "2");
-            return "ok";
+            return aa;
         }
         else
         {
