@@ -126,7 +126,7 @@ namespace LiveSupport.DAL
             {
                 SqlCommand cmd = new SqlCommand(SqlDataAccessConstant.SP_LiveSupport_Operators_GetOperatorById, con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = operatorId; ;
+                cmd.Parameters.Add("@OperatorId", SqlDbType.Int).Value = operatorId; ;
 
                 con.Open();
                 SqlDataReader r = cmd.ExecuteReader();
