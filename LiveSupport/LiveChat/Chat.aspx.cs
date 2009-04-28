@@ -83,7 +83,7 @@ public partial class Chat : System.Web.UI.Page
                 {
                     if (OperatorService.GetOperatorStatus(accountId))
                     {
-                        if (Request.QueryString["chatid"].ToString() != null)
+                        if (Request.QueryString["chatid"].ToString() !="")
                         {
                             pnlChat.Visible = true;
                             this.dialog();
