@@ -33,8 +33,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback LogInOperationCompleted;
         
-        private System.Threading.SendOrPostCallback UploadFileOperationCompleted;
-        
         private System.Threading.SendOrPostCallback GetWebSiteRequestsOperationCompleted;
         
         private System.Threading.SendOrPostCallback SetOperatorStatusOperationCompleted;
@@ -44,8 +42,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private System.Threading.SendOrPostCallback AddMessageOperationCompleted;
         
         private System.Threading.SendOrPostCallback RemoveChatRequestOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback RemoveChatRequestByChatIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetChatMessagesOperationCompleted;
         
@@ -66,8 +62,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private System.Threading.SendOrPostCallback UpIsShowRequestsByAidandIPOperationCompleted;
         
         private System.Threading.SendOrPostCallback getOperatorIDByChatIDOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback UpdateOperatorIDByChatIDOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -120,9 +114,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event LogInCompletedEventHandler LogInCompleted;
         
         /// <remarks/>
-        public event UploadFileCompletedEventHandler UploadFileCompleted;
-        
-        /// <remarks/>
         public event GetWebSiteRequestsCompletedEventHandler GetWebSiteRequestsCompleted;
         
         /// <remarks/>
@@ -136,9 +127,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event RemoveChatRequestCompletedEventHandler RemoveChatRequestCompleted;
-        
-        /// <remarks/>
-        public event RemoveChatRequestByChatIdCompletedEventHandler RemoveChatRequestByChatIdCompleted;
         
         /// <remarks/>
         public event GetChatMessagesCompletedEventHandler GetChatMessagesCompleted;
@@ -171,9 +159,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event getOperatorIDByChatIDCompletedEventHandler getOperatorIDByChatIDCompleted;
         
         /// <remarks/>
-        public event UpdateOperatorIDByChatIDCompletedEventHandler UpdateOperatorIDByChatIDCompleted;
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/LogIn", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Operator LogIn(string userName, string password) {
@@ -202,37 +187,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.LogInCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.LogInCompleted(this, new LogInCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UploadFile([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] bs, string filename) {
-            this.Invoke("UploadFile", new object[] {
-                        bs,
-                        filename});
-        }
-        
-        /// <remarks/>
-        public void UploadFileAsync(byte[] bs, string filename) {
-            this.UploadFileAsync(bs, filename, null);
-        }
-        
-        /// <remarks/>
-        public void UploadFileAsync(byte[] bs, string filename, object userState) {
-            if ((this.UploadFileOperationCompleted == null)) {
-                this.UploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadFileOperationCompleted);
-            }
-            this.InvokeAsync("UploadFile", new object[] {
-                        bs,
-                        filename}, this.UploadFileOperationCompleted, userState);
-        }
-        
-        private void OnUploadFileOperationCompleted(object arg) {
-            if ((this.UploadFileCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UploadFileCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -384,35 +338,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.RemoveChatRequestCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.RemoveChatRequestCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/RemoveChatRequestByChatId", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RemoveChatRequestByChatId(string chatid) {
-            this.Invoke("RemoveChatRequestByChatId", new object[] {
-                        chatid});
-        }
-        
-        /// <remarks/>
-        public void RemoveChatRequestByChatIdAsync(string chatid) {
-            this.RemoveChatRequestByChatIdAsync(chatid, null);
-        }
-        
-        /// <remarks/>
-        public void RemoveChatRequestByChatIdAsync(string chatid, object userState) {
-            if ((this.RemoveChatRequestByChatIdOperationCompleted == null)) {
-                this.RemoveChatRequestByChatIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRemoveChatRequestByChatIdOperationCompleted);
-            }
-            this.InvokeAsync("RemoveChatRequestByChatId", new object[] {
-                        chatid}, this.RemoveChatRequestByChatIdOperationCompleted, userState);
-        }
-        
-        private void OnRemoveChatRequestByChatIdOperationCompleted(object arg) {
-            if ((this.RemoveChatRequestByChatIdCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RemoveChatRequestByChatIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -698,19 +623,19 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool getOperatorIDByChatID(string chatId) {
+        public bool getOperatorIDByChatID(char chatId) {
             object[] results = this.Invoke("getOperatorIDByChatID", new object[] {
                         chatId});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void getOperatorIDByChatIDAsync(string chatId) {
+        public void getOperatorIDByChatIDAsync(char chatId) {
             this.getOperatorIDByChatIDAsync(chatId, null);
         }
         
         /// <remarks/>
-        public void getOperatorIDByChatIDAsync(string chatId, object userState) {
+        public void getOperatorIDByChatIDAsync(char chatId, object userState) {
             if ((this.getOperatorIDByChatIDOperationCompleted == null)) {
                 this.getOperatorIDByChatIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetOperatorIDByChatIDOperationCompleted);
             }
@@ -722,36 +647,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.getOperatorIDByChatIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getOperatorIDByChatIDCompleted(this, new getOperatorIDByChatIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateOperatorIDByChatID", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateOperatorIDByChatID(string chatId, int operatorId) {
-            this.Invoke("UpdateOperatorIDByChatID", new object[] {
-                        chatId,
-                        operatorId});
-        }
-        
-        /// <remarks/>
-        public void UpdateOperatorIDByChatIDAsync(string chatId, int operatorId) {
-            this.UpdateOperatorIDByChatIDAsync(chatId, operatorId, null);
-        }
-        
-        /// <remarks/>
-        public void UpdateOperatorIDByChatIDAsync(string chatId, int operatorId, object userState) {
-            if ((this.UpdateOperatorIDByChatIDOperationCompleted == null)) {
-                this.UpdateOperatorIDByChatIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateOperatorIDByChatIDOperationCompleted);
-            }
-            this.InvokeAsync("UpdateOperatorIDByChatID", new object[] {
-                        chatId,
-                        operatorId}, this.UpdateOperatorIDByChatIDOperationCompleted, userState);
-        }
-        
-        private void OnUpdateOperatorIDByChatIDOperationCompleted(object arg) {
-            if ((this.UpdateOperatorIDByChatIDCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UpdateOperatorIDByChatIDCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -827,8 +722,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private string messageField;
         
-        private int typeField;
-        
         /// <remarks/>
         public long MessageId {
             get {
@@ -876,16 +769,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.messageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Type {
-            get {
-                return this.typeField;
-            }
-            set {
-                this.typeField = value;
             }
         }
     }
@@ -1257,10 +1140,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void UploadFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void GetWebSiteRequestsCompletedEventHandler(object sender, GetWebSiteRequestsCompletedEventArgs e);
     
     /// <remarks/>
@@ -1322,10 +1201,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void RemoveChatRequestCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void RemoveChatRequestByChatIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
@@ -1520,10 +1395,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
         }
     }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void UpdateOperatorIDByChatIDCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591
