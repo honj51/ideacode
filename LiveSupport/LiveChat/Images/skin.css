@@ -1,133 +1,181 @@
-#chatbox {
-	SCROLLBAR-FACE-COLOR: #bbddff; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-3DLIGHT-COLOR: #91c6f8; SCROLLBAR-ARROW-COLOR: #0c68ef; SCROLLBAR-TRACK-COLOR: #eeeeee; SCROLLBAR-DARKSHADOW-COLOR: #91c6f8;
-    margin-top: 0px;
+#chatbox
+{
+    
+    scrollbar-face-color: #bbddff;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #91c6f8;
+    scrollbar-darkshadow-color: #91c6f8;
+    scrollbar-track-color: #EEEEEE;
+    scrollbar-arrow-color: #0c68ef;
 }
-#tdhead {
-	BACKGROUND-IMAGE: url(images/title_bg.gif)
+#tdhead
+{
+    background-image: url(Images/title_bg.gif);
 }
-#head {
-	BACKGROUND-IMAGE: url(images/title.gif)
+#head
+{
+    background-image: url(Images/title.gif);
 }
-.default#banner {
-	BACKGROUND-IMAGE: url(right_column.jpg)
+#banner.default
+{
+    background-image: url(Images/right_column.jpg);
 }
-#logo {
-	BACKGROUND-IMAGE: url(images/logo.gif)
+#logo
+{
+    background-image: url(Images/logo.gif);
 }
-#notewrap {
-	BACKGROUND: #85c3ff repeat-x 50% bottom
+#notewrap
+{
+    background: #85c3ff url(Images/chat_bg.jpg) bottom repeat-x;
 }
-#tdinput {
-	BACKGROUND: #63b0fe
+#tdinput
+{
+    background: #63B0FE;
 }
-#tdfooter {
-	BACKGROUND: url(images/footer_bg.gif)
+#tdfooter
+{
+    background: url(Images/footer_bg.gif);
 }
-#history {
-	BORDER-RIGHT: #4682c0 1px solid; BORDER-TOP: #4682c0 1px solid; BACKGROUND: #e9f3ff; BORDER-LEFT: #4682c0 1px solid; BORDER-BOTTOM: #4682c0 1px solid
+#history
+{
+    background: #E9F3FF;
+    border: 1px solid #4682C0;
 }
-#footer {
-	BACKGROUND-IMAGE: url(images/footer_1.gif); COLOR: #fff
+#footer
+{
+    background-image: url(Images/footer_1.gif);
+    color: #fff;
 }
-#footer P {
-	BACKGROUND-POSITION: right 50%; BACKGROUND-IMAGE: url(images/footer_2.gif)
+#footer p
+{
+    background-image: url(Images/footer_2.gif);
+    background-position: right;
 }
-#enter {
-	BACKGROUND-POSITION: 0px 0px; BACKGROUND-REPEAT: no-repeat
+#enter
+{
+    background-position: 0 0;
+    background-repeat: no-repeat;
 }
-#enter {
-	BACKGROUND-POSITION: 1px 1px
+#enter
+{
+    background-position: 1px 1px;
 }
-.cn#enter {
-	BACKGROUND-IMAGE: url(images/send0.jpg)
+#enter.cn
+{
+    background-image: url(Images/send0.jpg);
 }
-.tw#enter {
-	BACKGROUND-IMAGE: url(images/send1.jpg)
+#enter.tw
+{
+    background-image: url(Images/send1.jpg);
 }
-.en#enter {
-	BACKGROUND-IMAGE: url(images/send2.jpg)
+#enter.en
+{
+    background-image: url(Images/send2.jpg);
 }
-.ja#enter {
-	BACKGROUND-IMAGE: url(images/send3.jpg)
+#enter.ja
+{
+    background-image: url(Images/send3.jpg);
 }
-#toolsbar LI.hover {
-	BORDER-RIGHT: #aed2fc 1px solid; BORDER-TOP: #aed2fc 1px solid; BORDER-LEFT: #aed2fc 1px solid; COLOR: #fff; BORDER-BOTTOM: #aed2fc 1px solid; BACKGROUND-COLOR: #7db7fa
+#toolsbar li.hover, #exitChat.hover
+{
+    border: 1px solid #AED2FC;
+    background-color: #7DB7FA;
+    color: #fff;
 }
-.hover#exitChat {
-	BORDER-RIGHT: #aed2fc 1px solid; BORDER-TOP: #aed2fc 1px solid; BORDER-LEFT: #aed2fc 1px solid; COLOR: #fff; BORDER-BOTTOM: #aed2fc 1px solid; BACKGROUND-COLOR: #7db7fa
+#shortcutkey.hover
+{
+    background-color: #7DB7FA;
 }
-.hover#shortcutkey {
-	BACKGROUND-COLOR: #7db7fa
+#enter.hover
+{
+    background-color: #fff;
+    opacity: .6;
+    filter: alpha(opacity=60);
 }
-.hover#enter {
-	FILTER: alpha(opacity=60); BACKGROUND-COLOR: #fff; opacity: .6
+#toolsbar li, #exitChat
+{
+    border: 1px #63B0FE solid;
+    color: #fff;
 }
-#toolsbar LI {
-	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; COLOR: #fff; BORDER-BOTTOM: #63b0fe 1px solid
+#languageList, #shortKeyMenu
+{
+    border: 1px #63B0FE solid;
 }
-#exitChat {
-	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; COLOR: #fff; BORDER-BOTTOM: #63b0fe 1px solid
+#languageList li.hover
+{
+    background: #63B0FE;
+    color: #fff;
 }
-#languageList {
-	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; BORDER-BOTTOM: #63b0fe 1px solid
+#shortKeyMenu li.hover
+{
+    background: #63B0FE;
+    color: #fff;
 }
-#shortKeyMenu {
-	BORDER-RIGHT: #63b0fe 1px solid; BORDER-TOP: #63b0fe 1px solid; BORDER-LEFT: #63b0fe 1px solid; BORDER-BOTTOM: #63b0fe 1px solid
+#enter_wrap
+{
+    background: #63b0fe;
 }
-#languageList LI.hover {
-	BACKGROUND: #63b0fe; COLOR: #fff
+#innerSurveyForm, #chaterInfo
+{
+    color: #1571B3;
 }
-#shortKeyMenu LI.hover {
-	BACKGROUND: #63b0fe; COLOR: #fff
+#msg
+{
+    background-color: #63b0fe;
 }
-#enter_wrap {
-	BACKGROUND: #63b0fe
+#inputbox
+{
+    border: 1px solid #4682C0;
 }
-#innerSurveyForm {
-	COLOR: #1571b3
+#wrap
+{
+    padding-bottom: 0;
+    top: 41px;
+    left: 0px;
 }
-#chaterInfo {
-	COLOR: #1571b3
+#shortKeyMenu li, #languageList li
+{
+    color: #55a1f5;
 }
-#msg {
-	BACKGROUND-COLOR: #63b0fe
+#head
+{
+    font-weight: normal;
 }
-#inputbox {
-	BORDER-RIGHT: #4682c0 1px solid; BORDER-TOP: #4682c0 1px solid; BORDER-LEFT: #4682c0 1px solid; BORDER-BOTTOM: #4682c0 1px solid
+#popDiv button.button
+{
+    background: url(Images/button.gif) no-repeat center;
+    width: 80px;
+    height: 24;
+    line-height: 24px;
+    border: none;
+    color: #1571B3;
 }
-#wrap {
-	PADDING-BOTTOM: 0px
+#preChatForm
+{
+    color: #1571B3;
 }
-#shortKeyMenu LI {
-	COLOR: #55a1f5
+#tool_wrap
+{
+    padding: 0;
 }
-#languageList LI {
-	COLOR: #55a1f5
+#exitChat
+{
+    top: 3px;
 }
-#head {
-	FONT-WEIGHT: normal
+#inputarea
+{
+    padding: 0 3px;
 }
-#popDiv BUTTON.button {
-	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BACKGROUND: url(images/button.gif) no-repeat center 50%; BORDER-LEFT: medium none; WIDTH: 80px; COLOR: #1571b3; LINE-HEIGHT: 24px; BORDER-BOTTOM: medium none; HEIGHT: 24px
+#toolsbar
+{
+    padding: 1px 2px;
 }
-#preChatForm {
-	COLOR: #1571b3
+#dialbackBox
+{
+    background: url(Images/dialback.jpg);
 }
-#tool_wrap {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
-}
-#exitChat {
-	TOP: 3px
-}
-#inputarea {
-	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
-}
-#toolsbar {
-	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px
-}
-#dialbackBox {
-	BACKGROUND: url(images/dialback.jpg)
-}
-#dialbackBox .sumbit {
-	BACKGROUND: url(images/bt.jpg) no-repeat
+#dialbackBox .sumbit
+{
+    background: url(Images/bt.jpg) no-repeat;
 }
