@@ -422,4 +422,35 @@ public class SqlChatProvider : ChatProvider
             }
         }
     }
+
+
+    public override void CloseChat(string chatId)
+    {
+        SqlConnection conn = new SqlConnection(connectionString);
+        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequests_GetOperatorIDByChatID", conn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        try
+        {
+            cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
+            conn.Open();
+
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+                conn.Dispose();
+                conn = null;
+            }
+        }
+
+
+    }
 }

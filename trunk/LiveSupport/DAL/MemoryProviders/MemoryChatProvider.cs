@@ -218,4 +218,9 @@ public class MemoryChatProvider : ChatProvider
         else
             return 1;
     }
+
+    public override void CloseChat(string chatId)
+    {
+        throw new NotImplementedException();
+    }
 }

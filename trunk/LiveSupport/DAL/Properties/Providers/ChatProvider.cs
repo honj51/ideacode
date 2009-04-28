@@ -30,4 +30,6 @@ public abstract class ChatProvider  : ProviderBase
     public abstract bool HasNewMessage(string chatId, long lastMessageId);
     public abstract bool getOperatorIDByChatID(string chatId);
     public abstract void UpdateOperatorIDByChatID(string chatId, int operatorId);
+
+    public abstract void CloseChat(string chatId);
 }
