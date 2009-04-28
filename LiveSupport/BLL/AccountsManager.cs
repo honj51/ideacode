@@ -46,7 +46,7 @@ namespace LiveSupport.BLL
             return Provider.CreateAccount(adminUserName);
         }
 
-        public static Account GetAccountId(int accountId)
+        public static Account GetAccountById(int accountId)
         {
             foreach (var item in Provider.GetAllAccounts())
             {
