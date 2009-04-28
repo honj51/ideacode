@@ -1,23 +1,28 @@
 ﻿<%@ Page Language="C#" ValidateRequest="false"   AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
     <title>在线交流</title>
-        <link href="Images/mainCN.css" type="text/css" rel="Stylesheet" />
-    <link href="Images/skin.css" type="text/css" rel="stylesheet" />
-  
+        	<link href="Images/mainCN.css" rel="stylesheet" type="text/css"/>
+        <link href="Images/skin.css" rel="stylesheet" type="text/css" />
+        
+    <script type="text/javascript" src="js/blockey.js"></script>
+        <script type="text/javascript" src="js/shared.js"></script>
+        <script type="text/javascript" src="js/areaCode.js"></script>
+        <script type="text/javascript" src="js/init.js"></script>
     <style type="text/css">
        
-      
-      
-      
+ 
         BODY 
         {
-            font-family: Arial; b
-		color: black;
+             margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+            font-family: Arial;  
 		font-size: 10pt;
    	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 1px; BORDER-BOTTOM: 0px; FONT-FAMILY: Tahoma
 }
@@ -96,7 +101,13 @@ legend {
         
     </style>  
         <script language="javascript" type="text/javascript">
+         function Exit()
          
+         {
+          if(confirm('是否关闭')==true) 
+          window.close();
+         
+          }
         
 
 
@@ -161,9 +172,9 @@ legend {
 
 </head>
 
-<body topmargin="0" leftmargin="0" >
+<body  topmargin="0" leftmargin="0" >
     <form id="formMain" runat="server">
-    <div style="background-color:#85c3ff ;height:510px; width:603px;">   
+    <div style="background-color:#85c3ff ;">   
          <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="True" >
             <Scripts>
                 <asp:ScriptReference Path="SendMsg.js" />
@@ -206,7 +217,7 @@ legend {
         </asp:Panel>
         
         <asp:Panel ID="pnlRequest" Visible="true" runat="server">
-            <div style="height:100%; width:100%">
+            <div  style="height:100%; width:100%">
             <fieldset style="height:92.5%; width:93%">
                 
                 <legend>
@@ -244,55 +255,60 @@ legend {
             
                           
         </asp:Panel>
-
-           <asp:Panel Height="100%" Width="100%"  ID="pnlChat" runat="server">
-               <div >
-               <table id="chatbox" cellpadding="0" cellspacing="0">
-                
-                <tr id="tdhead">
-    <td>
-      <div id="head">
+        
+           <asp:Panel   ID="pnlChat" runat="server">
+              
+       <table id="chatbox" cellpadding="0" cellspacing="0"  style=" height:100%; width:100%">
+ 
+          <tr id="tdhead" style=" background-image: url(Images/title_bg.gif);">
+    
+    <td  style=" width:80%; height:30px;">
+     
+    <div id="head" style="background-image: url(Images/title.gif);" >
       <span id="headerBox">
        <asp:UpdatePanel ID="UpdatePanel1" runat="server"  UpdateMode="Conditional" ChildrenAsTriggers="False">
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="timerRefresh" EventName="Tick" />
                 </Triggers>
                 <ContentTemplate>
-          <asp:Label ID="lblOp" runat="server"   ></asp:Label> 
+          <asp:Label ID="lblOp" runat="server"></asp:Label> 
           </ContentTemplate>
             </asp:UpdatePanel>
       </span>
-      <span 
-    id="headerBoxTime">
+      <span id="headerBoxTime">
      
     </span></div>
     
     </td>
-    <td align="right"><a id="logo" href="#" 
-      target="_blank">
-      logo
-      </a>
-      </td>
-      </tr>
-           
-           <tr id="notewrap">
-            
-            <td id="wrap" >
-                
-                <table cellpadding="0" cellspacing="0" 
-                    style="height:100%;TABLE-LAYOUT: fixed; background-color:#d4eeff;" 
-                    width="100%">
+    
+     <td   align="right" style=" width:40px;  height:30px;">
+      <a href="" target="_blank" id="logo" style="background-image: url(Images/logo.gif);" />
+				
+    
+    </td>
+    
+  </tr>
+  
+ <%-- <tr>
+  <td colspan="2" style=" width:85%; height:80%;">
+    --%>
+    <tr id="notewrap">
+			<td  style=" width:85%; height:80%;">
+  <table  height="100%" width="100%" style="break:break-all;word-wrap:break-word;table-layout:fixed" cellpadding="0" cellspacing="0">
+   <%-- <table cellpadding="0" cellspacing="0" style="height:100%;TABLE-LAYOUT: fixed; background-color:#d4eeff;"  width="100%">--%>
                     
                     <tr  style="height:100%">
                         <td height="100%"  >
-                            <div id="chat" style=" background-color:#d4eeff;"> 
+                            <div id="history" >
+				
+				
             <asp:UpdatePanel ID="upChat" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="False">
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="timerRefresh" EventName="Tick" />
                 </Triggers>
                 <ContentTemplate>
                     
-                     <%--<textarea  id="litChat" runat="server" style="height:100% ; width:100%"  readonly="readonly" /> --%>
+                    
                          <asp:Literal  ID="litChat" runat="server"></asp:Literal>
                         <asp:Timer ID="timerRefresh" Interval="1000" runat="server" 
                          OnTick="timerRefresh_Tick">
@@ -300,14 +316,16 @@ legend {
                 </ContentTemplate>
             </asp:UpdatePanel>
                
-             </div>
-           
-                 <!--上传-->
-          <div id="divSend" style="display:none; background-color:#d4eeff;" >&nbsp;&nbsp;
+               
+                    <!--上传-->
+          <div id="uploadFileBox" style="display:none; background-color:#d4eeff;" >&nbsp;&nbsp;
                 <asp:FileUpload CssClass="file"  ID="fuFile" runat="server" Height="20px" Width="191"  />
               &nbsp;<asp:Button  ID="btnUpload" CssClass="btn" runat="server" Height="20px" Text="传送" Width="46px" onclick="btnUpload_Click" />&nbsp;
-              <input ID="btnClose" class="btn" type="button" value="关闭" onclick="divClose('divSend')" />
-                </div>  
+              <input ID="btnClose" class="btn" type="button" value="关闭" onclick="divClose('uploadFileBox')" />
+                </div> 
+             </div>
+           
+             
             
                       
                         </td>
@@ -315,58 +333,102 @@ legend {
                     </tr>
                   
                 </table>
-              
-            </td>
-            <td id="bwrap" valign="top">
-                <div id="banner" style="display:none;">
-                  
-                </div>
-            </td>
-        </tr>
-        <tr id="tdinput">
-            <td id="twrap" colspan="2">
-         
-                <div id="tool_wrap">
+  
+  
+  
+  </td>
+  
+  <td valign="top" id="bwrap" style=" width:40px; height:80%;">
+				<div id="banner"></div>
+  
+  </td>
+  </tr>
+  
+  <tr id="tdinput">
+  <td id="twrap" colspan="2" style=" width:100%; height:30px;">
+  <div id="tool_wrap">
                     <ul id="toolsbar">
-                        <li id="file" onclick="divShow('divSend');">传送文件 </li>
-                        <li id="save" class="open" onclick="Save();">保存记录 </li>
-                        <li id="switch" class="open">关闭提示音 </li>
-                        <li id="active" class="open">
+                        <li style="background-image: url(Images/tools_icn.gif);" id="file" onclick="divShow('uploadFileBox');">传送文件 </li>
+                        <li style="background-image: url(Images/tools_icn.gif);" id="save" class="open">保存记录 </li>
+                        <li style="background-image: url(Images/tools_icn.gif);" id="switch" class="open" style='display:none'>关闭提示音 </li>
+                        <li style="background-image: url(Images/tools_icn.gif);" id="language" style="display:none;">语言选择</li>
+                        <li style="background-image: url(Images/tools_icn.gif);" id="active" class="open">
                             <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click" 
                                 Font-Underline="False" ForeColor="White">剪切</asp:LinkButton>
                         </li>
-                        </ul>
+                         <li style="background-image: url(Images/tools_icn.gif);" id="dialback" style="display:none;">免费电话</li>
+                    <%--  <li id="file">传送文件</li>
+						<li id="save" >保存记录</li>
+						<li id="switch" class="open" style='display:none'>关闭提示音</li>
+						<li id="language">语言选择</li>
+						<li id="active" style='display:none'>截 屏</li>
+						<li id="dialback" >免费电话</li>--%>
                         
-                   <div id="exitChat" >
-                       
+                        </ul>
+                        <ul id="languageList" style="display:none;">
+						<li lang:value="0">简体中文</li>
+						<li lang:value="1">繁体中文</li>
+						<li lang:value="2">English</li>
+						<li lang:value="3">日 本 語</li>
+						<li lang:value="4">한 국 말</li>
+					</ul>
+					<div id="exitChat"  style="background-image: url(Images/tools_icn.gif);" onclick="Exit()">
+					<%--<asp:LinkButton ID="lkbExit" runat="server" Font-Underline="False" 
+                              ForeColor="White" onclick="lkbExit_Click" >结束对话</asp:LinkButton>--%>
+                              结束对话
+                              </div>
+                   <%--<div id="exitChat" >
                           <asp:LinkButton ID="lkbExit" runat="server" Font-Underline="False" 
                               ForeColor="White" onclick="lkbExit_Click" >结束对话</asp:LinkButton>
+                        </div>--%>
                         </div>
-                        </div>
-                        </td>
-                        </tr><tr id="msg">
-            <td id="inputarea" style="height:100px; width:490px;">
-              
+  </td>
+  
+  </tr>
+  <tr id="msg">
+    <td id="inputarea"   style=" width:85%; height:90px">
+    
+     <textarea id="txtMsg" rows="2" runat="server" cols="100" style=" width:100%; height:100%"  onkeypress="checkEnter(event)" />
                  
-                 <textarea id="txtMsg"  rows="2" runat="server"  cols="50"  onkeypress="checkEnter(event)" />
+    </td>
+    <td align="center" id="enter_wrap"  style=" width:40px; height:90px">
+        
+
                  
-                  </td>
-                 
-                 <td  align="center">
-                
-                
-                    <div id="enter" >
-                    <!----发送--->
-                    
-          <input  type="image" id="btnSend"  src="Images/send.jpg"  onclick="CallSendMsg()"/>
+                    <div id="ewrap">
+				<div id="enter" style="background-image:url(Images/send0.jpg)" onclick="CallSendMsg()"></div></div>
+         <%-- <input  type="image" id="btnSend"  src="Images/send0.jpg"  onclick="CallSendMsg()"/>--%>
           
-           </div>
+          
+    
+    </td>
+  </tr>
+  
+  <tr>
+  <td id="tdfooter" style="background: url(Images/footer_bg.gif);" colspan="2" valign="top"  style=" width:100%;" > 
+  
+  <div id="footer">
+  <p>
+  <span id="shortKeyTip" >[发送快捷键:Enter]:
+  </span>
+  <span id="footerBox"></span>
+  </p>
+				<div id="shortcutkey">消息发送方式</div>
+				<ul id="shortKeyMenu" style="display:none;">
+				<li>按Enter键发送消息</li>
+				<li>按Ctrl+Enter键发送消息</li>
+				</ul>
+				</div>
+  </td>
+  
+  
+  </tr>
+  </table>
          
+         </asp:Panel>
           
-          </td>
           
-          </tr></table>
-          <img id="track" src="Images/track.gif" /> </div></asp:Panel>
+          
           
           </div></form></body></html>
 

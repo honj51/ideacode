@@ -92,7 +92,7 @@ public partial class Chat : System.Web.UI.Page
                         {
                             pnlRequest.Visible = true;
                         }
-
+                      
                     }
                     else
                     {
@@ -337,11 +337,12 @@ public partial class Chat : System.Web.UI.Page
     protected void lkbExit_Click(object sender, EventArgs e)
     {
 
-        int i = (int)MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-        if (i == 6)
-        {
-            Response.Write("<script language=javascript>window.close();</script>");
-        }
+        //int i = (int)MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+        //if (i == 6)
+        //{
+            Response.Write("<script language=javascript>if(confirm('是否关闭')==false) window.close();</script>");
+        //}
+        
     }
 
     
