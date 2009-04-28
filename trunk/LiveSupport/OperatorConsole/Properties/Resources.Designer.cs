@@ -60,6 +60,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap file_sent {
             get {
                 object obj = ResourceManager.GetObject("file_sent", resourceCulture);
