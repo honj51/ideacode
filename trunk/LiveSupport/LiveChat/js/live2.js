@@ -11,6 +11,7 @@
       var   relLeft;                           //鼠标按下位置相对对象位置   
       var   relTop;   
       var   comname=4;
+      var   chatid=null;
       function   f_mdown(obj)   
       {   
               currentMoveObj   =   obj;                 //当对象被按下时，记录该对象   
@@ -34,7 +35,7 @@
     function openChat()
     {
         panel2Close();//隐藏层
-        var win = window.open('http://rd01/LiveChatService/Chat.aspx?aid='+comname+'', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
+        var win = window.open('http://rd01/LiveChatService/Chat.aspx?chatid='+chatid+'&aid='+comname+'', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
         win.focus();
         win.opener = window;
         return ;
@@ -85,18 +86,29 @@
         var parm2 =getCookie('myip'); //取IP
         service.calService.callService(callback,"GetRequestsByAidandIP",parm1,parm2);                                                            //调用方法
     }
+    function callMethodclose()
+    {
+        service.useService("http://localhost:3355/LiveChat/Operator.asmx?wsdl","calService");                                       //创建服务对象
+        var parm1 =chatid;   //chatid       
+        service.calService.callService(callbackclose,"RemoveChatRequestByChatId",parm1);   
+    }
+    function callbackclose(res)
+    {
+        // TODO: SLDKFLSDJ
+    }
     function callback(res)
     {
         if (!res.error)//判断是否发生错误
         {
                 //alert(res.value);
-                if(res.value=="ok")//判断返回的值
+                if(res.value!=null&&res.value!="no")//判断返回的值
                 {
-                     panel2Show();//显示方法
+                    panel2Show();//显示方法
+                    chatid=res.value;
                 }
                 else
                 {
-                 // alert(res.value);
+                   // alert(res.value);
                 }
         }
         else
