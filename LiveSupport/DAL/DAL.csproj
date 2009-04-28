@@ -61,13 +61,6 @@
     <Compile Include="Properties\Providers\OperatorServiceSection.cs" />
     <Compile Include="Properties\Providers\RequestProvider.cs" />
     <Compile Include="Properties\Providers\RequestServiceSection.cs" />
-    <Compile Include="Providers\ChatProvider.cs" />
-    <Compile Include="Providers\ChatServiceSection.cs" />
-    <Compile Include="Providers\CustomerProvider.cs" />
-    <Compile Include="Providers\OperatorProvider.cs" />
-    <Compile Include="Providers\OperatorServiceSection.cs" />
-    <Compile Include="Providers\RequestProvider.cs" />
-    <Compile Include="Providers\RequestServiceSection.cs" />
     <Compile Include="SqlAccountsProvider.cs" />
     <Compile Include="SqlConstant.cs" />
     <Compile Include="SqlOperatorsProvider.cs" />
