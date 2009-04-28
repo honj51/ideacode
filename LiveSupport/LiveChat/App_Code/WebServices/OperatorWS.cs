@@ -240,8 +240,15 @@ public class OperatorWS : System.Web.Services.WebService
 
     [WebMethod]
     //通过ChatId修改客服人员ID
-    public void UpdateOperatorIDByChatID(string chatId, int operatorId)
+    public void AcceptChatRequest(string chatId, int operatorId)
     {
         ChatService.UpdateOperatorIDByChatID(chatId, operatorId);
+        ChatMessageInfo msg = new ChatMessageInfo(chatId, Consts.ChatSystemName, 
+            "您正在和"+OperatorService.GetOperatorById(operatorId).Name+"对话", Consts.MessageType_ToChatPage);
+        ChatService.AddMessage(msg);
+
+
+        msg = new ChatMessageInfo(chatId,Consts.ChatSystemName ,"你正在和客户对话", Consts.MessageType_ToOperator);
+        ChatService.AddMessage(msg);
     }
 }

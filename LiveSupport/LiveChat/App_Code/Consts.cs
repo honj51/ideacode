@@ -20,5 +20,5 @@ public class Consts
     public const int MessageType_ToChatPage = 3;
 
 
-
+    public const string ChatSystemName = "LiveSupport系统";
 }
