@@ -104,6 +104,16 @@ public class OperatorWS : System.Web.Services.WebService
     }
 
     [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public void RemoveChatRequestByChatId(int chatid)
+    {
+        ChatRequestInfo req = new ChatRequestInfo();
+        req.ChatId = chatid;
+        checkAuthentication();
+        ChatService.RemoveChatRequest(req);
+    }
+
+    [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
 	public List<ChatMessageInfo> GetChatMessages(string chatId, long lastCheck)
 	{
