@@ -320,7 +320,7 @@ public partial class Chat : System.Web.UI.Page
             HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
             Response.Cookies.Add(cookie);
         }
-        ChatMessageInfo msg = new ChatMessageInfo(chatId, "Guest", "同意了你的请求!", Consts.MessageType_ToOperator);
+        ChatMessageInfo msg = new ChatMessageInfo(chatId, "Gusst", "同意了你的请求!", Consts.MessageType_ToOperator);
         ChatMessageInfo msg1 = new ChatMessageInfo(chatId, "Guest", "你同意客服"+VisitorName+"对话!", Consts.MessageType_ToChatPage);
         ChatService.AddMessage(msg);//添加聊天信息
         ChatService.AddMessage(msg1);//添加聊天信息
@@ -336,13 +336,19 @@ public partial class Chat : System.Web.UI.Page
 
     protected void lkbExit_Click(object sender, EventArgs e)
     {
+        if (MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+        {
+            ChatService.CloseChat(Request.Cookies["chatId"].Value.ToString());
 
-        //int i = (int)MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-        //if (i == 6)
-        //{
+
+            //int i = (int)MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            //if (i == 6)
+            //{
             Response.Write("<script language=javascript>if(confirm('是否关闭')==false) window.close();</script>");
-        //}
+            //}
+        }
         
+
     }
 
     
