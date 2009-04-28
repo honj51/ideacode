@@ -87,15 +87,20 @@ public partial class Chat : System.Web.UI.Page
                 {
                     if (OperatorService.GetOperatorStatus(accountId))
                     {
-                       pnlRequest.Visible = true;
+                        if (Request.QueryString["chatid"].ToString() != null)
+                        {
+                            pnlChat.Visible = true;
+                            this.dialog();
+                        }
+                        else
+                        {
+                            pnlRequest.Visible = true;
+                        }
 
-                       
                     }
                     else
                     {
                       pnlNoOperator.Visible = true;
-                       
-                        
                     }                    
                 }
             }            
@@ -115,7 +120,6 @@ public partial class Chat : System.Web.UI.Page
                 {
                     List<ChatMessageInfo> messages = ChatService.GetMessages(chatId, lastCheck);//*
                   
-
                     if (messages.Count > 0)
                     {
                        
@@ -136,7 +140,7 @@ public partial class Chat : System.Web.UI.Page
                                 }
                                 
 
-                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name,CutStr(messages[i].Message,100));                                
+                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, messages[i].Message);                                
                             }
 
                            
@@ -303,6 +307,37 @@ public partial class Chat : System.Web.UI.Page
        
         pnlChat.Visible = true;
         pnlRequest.Visible = false;
+    }
+    //会话
+    public void dialog()
+    {
+        string chatId = Request.QueryString["chatid"].ToString();
+        if (Request.Cookies["chatId"] != null)
+        {
+            Response.Cookies["chatId"].Value = chatId;
+        }
+        else
+        {
+            HttpCookie cookie = new HttpCookie("chatId", chatId);
+            Response.Cookies.Add(cookie);
+        }
+
+        if (Request.Cookies[chatId + "_lastCheck"] != null)
+        {
+            Response.Cookies[chatId + "_lastCheck"].Value = "0";
+        }
+        else
+        {
+            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
+            Response.Cookies.Add(cookie);
+        }
+        ChatMessageInfo msg = new ChatMessageInfo(chatId, "Guest", "同意了你的请求!", Consts.MessageType_ToOperator);
+        ChatMessageInfo msg1 = new ChatMessageInfo(chatId, "Guest", "你同意客服"+VisitorName+"对话!", Consts.MessageType_ToChatPage);
+        ChatService.AddMessage(msg);//添加聊天信息
+        ChatService.AddMessage(msg1);//添加聊天信息
+        VName = "Guest";
+        OperatorWS ws = new OperatorWS();
+        ws.SetTyping(chatId, false, false);
     }
     protected void CutLBtn_Click(object sender, EventArgs e)
     {
