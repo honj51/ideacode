@@ -142,7 +142,7 @@ legend {
 			if( result != '' )
 			{
 				var v = document.getElementById('typingNotification');
-				if( v != 'undefined' ) 
+				if( v != 'undefined' &&  v != null) 
 					v.innerText = result; 
 			}
 		}
@@ -244,51 +244,7 @@ legend {
             
                           
         </asp:Panel>
-        
-        
-       <%-- <asp:Panel ID="pnlRequest" Visible="true" runat="server">
-            <div style="padding-left: 5px;">
-                <span id="Welcome">清输入下面的内容进行对话.</span><br />
-                <span class="formField">您的名字</span><br />
-                <asp:TextBox ID="txtName" runat="server"></asp:TextBox><br />
-                <br />
-                <span class="formField">您的电子邮件</span><br />
-                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
-                <br />
-               
-            </div>
-        </asp:Panel>--%>
-        
-     
-        <%--<asp:Panel ID="pnlChat" Visible="false" runat="server" style="width: 175px" 
-            Height="463px" Width="172px">
-			<div id="chat"> 
-            <asp:UpdatePanel ID="upChat" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="False">
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="timerRefresh" EventName="Tick" />
-                </Triggers>
-                <ContentTemplate>
-                    
-                        <asp:Literal ID="litChat" runat="server"></asp:Literal>
-            
-                    <asp:Timer ID="timerRefresh" Interval="2123" runat="server" OnTick="timerRefresh_Tick">
-                    </asp:Timer>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-             </div>
-             
-             <br /> 
-            <br />
-            <input type="text" id="txtMsg" runat="server" 
-                style="width:500px; height: 76px;"   
-                onkeypress="checkEnter(event)" />
-           
-           <input type="image" id="btnSend"  src="Images/send.jpg"  onclick="CallSendMsg()"/>
-            <input type="button" id="btnSend" value="发送" onclick="CallSendMsg()" /><br />
-           <span id="typingNotification">状态: </span></asp:Panel>--%>
-          
-           
-           
+
            <asp:Panel Height="100%" Width="100%"  ID="pnlChat" runat="server">
                <div >
                <table id="chatbox" cellpadding="0" cellspacing="0">

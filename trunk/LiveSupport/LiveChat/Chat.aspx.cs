@@ -20,10 +20,6 @@ using System.Windows;
 
 public partial class Chat : System.Web.UI.Page
 {
-    private const int MessageType_ToAll = 1;
-    private const int MessageType_ToOperator = 2;
-    private const int MessageType_ToChatPage = 3;
-
     public string VisitorName
     {
         get
@@ -122,30 +118,25 @@ public partial class Chat : System.Web.UI.Page
                   
                     if (messages.Count > 0)
                     {
-                       
-                        //for (int i = messages.Count - 1; i >= 0; i--)
-                        for (int i =0; i<messages.Count; i++)
+                        for (int i = 0; i < messages.Count; i++)
                         {
-                            if (messages[i].Type == MessageType_ToAll || messages[i].Type == MessageType_ToChatPage)
+                            if (messages[i].Type == Consts.MessageType_ToAll || messages[i].Type == Consts.MessageType_ToChatPage)
                             {
 
 
 
-                                if (messages[i].Name != VisitorName && lblOp.Text.Equals("等待客服接受您的请求"))
-                                {
+                                //if (messages[i].Name != VisitorName && lblOp.Text.Equals("等待客服接受您的请求"))
+                                //{
 
-                                    lblOp.Text = messages[i].Message;
+                                //    lblOp.Text = messages[i].Message;
 
-                                    break;
-                                }
-                                
+                                //    break;
+                                //}
 
-                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, messages[i].Message);                                
+                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, CutStr(messages[i].Message, 100));
                             }
 
-                           
-                            
-                            lastCheck = messages[i].MessageId;                          
+                            lastCheck = messages[i].MessageId;
 
                         }
 
@@ -258,6 +249,7 @@ public partial class Chat : System.Web.UI.Page
         lblConfirmation.Visible = true;
         lblConfirmation.Text = "Thank you, we will answer your email as soon as possible.";
     }
+    //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
     {
         // Initiate a chat request
@@ -297,10 +289,7 @@ public partial class Chat : System.Web.UI.Page
 
         ChatService.RequestChat(request);
 
-
-        ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, string.Empty, "等待客服接受您的请求",3);
-        ChatService.AddMessage(msg);//添加聊天信息
-        lblOp.Text = msg.Message;
+        //lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
         VisitorName = request.VisitorName;
         VName = request.VisitorName;
@@ -401,9 +390,6 @@ public partial class Chat : System.Web.UI.Page
         {
             this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
         }
-
-       
-        
     }
 
 }
