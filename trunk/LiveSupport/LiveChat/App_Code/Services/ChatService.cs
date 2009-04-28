@@ -132,7 +132,7 @@ public class ChatService
 			}
 		}
 	}
-    //通过用户编号获得客户编号
+    //通过对话编号获得客户编号
     public static bool getOperatorIDByChatID(string chatId)
     {
         return _provider.getOperatorIDByChatID(chatId);
