@@ -105,7 +105,7 @@ public class OperatorWS : System.Web.Services.WebService
 
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public void RemoveChatRequestByChatId(int chatid)
+    public void RemoveChatRequestByChatId(string chatid)
     {
         ChatRequestInfo req = new ChatRequestInfo();
         req.ChatId = chatid;
