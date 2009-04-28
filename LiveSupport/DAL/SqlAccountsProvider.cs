@@ -28,7 +28,7 @@ namespace LiveSupport.DAL
             using (SqlConnection con = new SqlConnection(connectionString()))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Select * from LiveSupport_Customers", con);
+                SqlCommand cmd = new SqlCommand("Select * from LiveSupport_Accounts" , con);
                 cmd.CommandType = CommandType.Text;
 
                 SqlDataReader r = cmd.ExecuteReader();
@@ -40,6 +40,9 @@ namespace LiveSupport.DAL
                     //    throw new InvalidOperationException(Messages.ItemRequiredAttributesMissing);
 
                     curr = new Account(r.GetInt32(0), r.GetGuid(1));
+                    curr.Name = r["Name"].ToString();
+                    curr.Email = r["Email"].ToString();
+                    curr.UserId = (Guid) r["AdminUserId"];
 
                     list.Add(curr);
                 }
