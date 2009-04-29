@@ -33,7 +33,7 @@
                 return true 
             }                              
         }   
-       
+     
 	function SetTypingNotification() 
     {
 		//Get text control
@@ -116,13 +116,16 @@
                 else
                 {
                  alert('客服还未应答!!/r/n/r/n请稍后..');
-                 
-                  return false 
-                
+                 return false   
                 }
         }
         else
         { 
            alert("发生错误"); //发生错误
         }
+    }
+    function UpdateCloseDate()
+    {
+         var chatId =getCookie('chatId'); //取浏览客户请求对话ID
+         PageMethods.UpdateCloseDate(chatId,OnCallSendMsgComplete);
     }
