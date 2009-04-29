@@ -45,8 +45,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback RemoveChatRequestOperationCompleted;
         
-        private System.Threading.SendOrPostCallback RemoveChatRequestByChatIdOperationCompleted;
-        
         private System.Threading.SendOrPostCallback GetChatMessagesOperationCompleted;
         
         private System.Threading.SendOrPostCallback IsTypingOperationCompleted;
@@ -61,11 +59,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback InviteOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetRequestsByAidandIPOperationCompleted;
-        
         private System.Threading.SendOrPostCallback UpIsShowRequestsByAidandIPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback getOperatorIDByChatIDOperationCompleted;
+        private System.Threading.SendOrPostCallback GetOperatorIDByChatIDOperationCompleted;
         
         private System.Threading.SendOrPostCallback AcceptChatRequestOperationCompleted;
         
@@ -140,9 +136,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event RemoveChatRequestCompletedEventHandler RemoveChatRequestCompleted;
         
         /// <remarks/>
-        public event RemoveChatRequestByChatIdCompletedEventHandler RemoveChatRequestByChatIdCompleted;
-        
-        /// <remarks/>
         public event GetChatMessagesCompletedEventHandler GetChatMessagesCompleted;
         
         /// <remarks/>
@@ -164,13 +157,10 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event InviteCompletedEventHandler InviteCompleted;
         
         /// <remarks/>
-        public event GetRequestsByAidandIPCompletedEventHandler GetRequestsByAidandIPCompleted;
-        
-        /// <remarks/>
         public event UpIsShowRequestsByAidandIPCompletedEventHandler UpIsShowRequestsByAidandIPCompleted;
         
         /// <remarks/>
-        public event getOperatorIDByChatIDCompletedEventHandler getOperatorIDByChatIDCompleted;
+        public event GetOperatorIDByChatIDCompletedEventHandler GetOperatorIDByChatIDCompleted;
         
         /// <remarks/>
         public event AcceptChatRequestCompletedEventHandler AcceptChatRequestCompleted;
@@ -394,35 +384,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/RemoveChatRequestByChatId", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RemoveChatRequestByChatId(string chatid) {
-            this.Invoke("RemoveChatRequestByChatId", new object[] {
-                        chatid});
-        }
-        
-        /// <remarks/>
-        public void RemoveChatRequestByChatIdAsync(string chatid) {
-            this.RemoveChatRequestByChatIdAsync(chatid, null);
-        }
-        
-        /// <remarks/>
-        public void RemoveChatRequestByChatIdAsync(string chatid, object userState) {
-            if ((this.RemoveChatRequestByChatIdOperationCompleted == null)) {
-                this.RemoveChatRequestByChatIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRemoveChatRequestByChatIdOperationCompleted);
-            }
-            this.InvokeAsync("RemoveChatRequestByChatId", new object[] {
-                        chatid}, this.RemoveChatRequestByChatIdOperationCompleted, userState);
-        }
-        
-        private void OnRemoveChatRequestByChatIdOperationCompleted(object arg) {
-            if ((this.RemoveChatRequestByChatIdCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RemoveChatRequestByChatIdCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetChatMessages", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public ChatMessageInfo[] GetChatMessages(string chatId, long lastCheck) {
             object[] results = this.Invoke("GetChatMessages", new object[] {
@@ -638,38 +599,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetRequestsByAidandIP", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetRequestsByAidandIP(int AccountId, string ip) {
-            object[] results = this.Invoke("GetRequestsByAidandIP", new object[] {
-                        AccountId,
-                        ip});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetRequestsByAidandIPAsync(int AccountId, string ip) {
-            this.GetRequestsByAidandIPAsync(AccountId, ip, null);
-        }
-        
-        /// <remarks/>
-        public void GetRequestsByAidandIPAsync(int AccountId, string ip, object userState) {
-            if ((this.GetRequestsByAidandIPOperationCompleted == null)) {
-                this.GetRequestsByAidandIPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetRequestsByAidandIPOperationCompleted);
-            }
-            this.InvokeAsync("GetRequestsByAidandIP", new object[] {
-                        AccountId,
-                        ip}, this.GetRequestsByAidandIPOperationCompleted, userState);
-        }
-        
-        private void OnGetRequestsByAidandIPOperationCompleted(object arg) {
-            if ((this.GetRequestsByAidandIPCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetRequestsByAidandIPCompleted(this, new GetRequestsByAidandIPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UpIsShowRequestsByAidandIP", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow) {
             this.Invoke("UpIsShowRequestsByAidandIP", new object[] {
@@ -702,31 +631,31 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool getOperatorIDByChatID(string chatId) {
-            object[] results = this.Invoke("getOperatorIDByChatID", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperatorIDByChatID", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool GetOperatorIDByChatID(string chatId) {
+            object[] results = this.Invoke("GetOperatorIDByChatID", new object[] {
                         chatId});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void getOperatorIDByChatIDAsync(string chatId) {
-            this.getOperatorIDByChatIDAsync(chatId, null);
+        public void GetOperatorIDByChatIDAsync(string chatId) {
+            this.GetOperatorIDByChatIDAsync(chatId, null);
         }
         
         /// <remarks/>
-        public void getOperatorIDByChatIDAsync(string chatId, object userState) {
-            if ((this.getOperatorIDByChatIDOperationCompleted == null)) {
-                this.getOperatorIDByChatIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetOperatorIDByChatIDOperationCompleted);
+        public void GetOperatorIDByChatIDAsync(string chatId, object userState) {
+            if ((this.GetOperatorIDByChatIDOperationCompleted == null)) {
+                this.GetOperatorIDByChatIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetOperatorIDByChatIDOperationCompleted);
             }
-            this.InvokeAsync("getOperatorIDByChatID", new object[] {
-                        chatId}, this.getOperatorIDByChatIDOperationCompleted, userState);
+            this.InvokeAsync("GetOperatorIDByChatID", new object[] {
+                        chatId}, this.GetOperatorIDByChatIDOperationCompleted, userState);
         }
         
-        private void OngetOperatorIDByChatIDOperationCompleted(object arg) {
-            if ((this.getOperatorIDByChatIDCompleted != null)) {
+        private void OnGetOperatorIDByChatIDOperationCompleted(object arg) {
+            if ((this.GetOperatorIDByChatIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getOperatorIDByChatIDCompleted(this, new getOperatorIDByChatIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetOperatorIDByChatIDCompleted(this, new GetOperatorIDByChatIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1358,10 +1287,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void RemoveChatRequestByChatIdCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void GetChatMessagesCompletedEventHandler(object sender, GetChatMessagesCompletedEventArgs e);
     
     /// <remarks/>
@@ -1500,47 +1425,21 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void GetRequestsByAidandIPCompletedEventHandler(object sender, GetRequestsByAidandIPCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetRequestsByAidandIPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetRequestsByAidandIPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void UpIsShowRequestsByAidandIPCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void getOperatorIDByChatIDCompletedEventHandler(object sender, getOperatorIDByChatIDCompletedEventArgs e);
+    public delegate void GetOperatorIDByChatIDCompletedEventHandler(object sender, GetOperatorIDByChatIDCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getOperatorIDByChatIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetOperatorIDByChatIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal getOperatorIDByChatIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetOperatorIDByChatIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

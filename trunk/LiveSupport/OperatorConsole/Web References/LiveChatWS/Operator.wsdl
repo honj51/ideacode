@@ -153,16 +153,6 @@
       <s:element name="RemoveChatRequestResponse">
         <s:complexType />
       </s:element>
-      <s:element name="RemoveChatRequestByChatId">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="chatid" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="RemoveChatRequestByChatIdResponse">
-        <s:complexType />
-      </s:element>
       <s:element name="GetChatMessages">
         <s:complexType>
           <s:sequence>
@@ -264,21 +254,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetRequestsByAidandIP">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="AccountId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetRequestsByAidandIPResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetRequestsByAidandIPResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="UpIsShowRequestsByAidandIP">
         <s:complexType>
           <s:sequence>
@@ -291,17 +266,17 @@
       <s:element name="UpIsShowRequestsByAidandIPResponse">
         <s:complexType />
       </s:element>
-      <s:element name="getOperatorIDByChatID">
+      <s:element name="GetOperatorIDByChatID">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="getOperatorIDByChatIDResponse">
+      <s:element name="GetOperatorIDByChatIDResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="getOperatorIDByChatIDResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="GetOperatorIDByChatIDResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -391,15 +366,6 @@
   <wsdl:message name="RemoveChatRequestAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
-  <wsdl:message name="RemoveChatRequestByChatIdSoapIn">
-    <wsdl:part name="parameters" element="tns:RemoveChatRequestByChatId" />
-  </wsdl:message>
-  <wsdl:message name="RemoveChatRequestByChatIdSoapOut">
-    <wsdl:part name="parameters" element="tns:RemoveChatRequestByChatIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="RemoveChatRequestByChatIdAuthenticationHeader">
-    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
-  </wsdl:message>
   <wsdl:message name="GetChatMessagesSoapIn">
     <wsdl:part name="parameters" element="tns:GetChatMessages" />
   </wsdl:message>
@@ -463,26 +429,17 @@
   <wsdl:message name="InviteAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
-  <wsdl:message name="GetRequestsByAidandIPSoapIn">
-    <wsdl:part name="parameters" element="tns:GetRequestsByAidandIP" />
-  </wsdl:message>
-  <wsdl:message name="GetRequestsByAidandIPSoapOut">
-    <wsdl:part name="parameters" element="tns:GetRequestsByAidandIPResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetRequestsByAidandIPAuthenticationHeader">
-    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
-  </wsdl:message>
   <wsdl:message name="UpIsShowRequestsByAidandIPSoapIn">
     <wsdl:part name="parameters" element="tns:UpIsShowRequestsByAidandIP" />
   </wsdl:message>
   <wsdl:message name="UpIsShowRequestsByAidandIPSoapOut">
     <wsdl:part name="parameters" element="tns:UpIsShowRequestsByAidandIPResponse" />
   </wsdl:message>
-  <wsdl:message name="getOperatorIDByChatIDSoapIn">
-    <wsdl:part name="parameters" element="tns:getOperatorIDByChatID" />
+  <wsdl:message name="GetOperatorIDByChatIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOperatorIDByChatID" />
   </wsdl:message>
-  <wsdl:message name="getOperatorIDByChatIDSoapOut">
-    <wsdl:part name="parameters" element="tns:getOperatorIDByChatIDResponse" />
+  <wsdl:message name="GetOperatorIDByChatIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOperatorIDByChatIDResponse" />
   </wsdl:message>
   <wsdl:message name="AcceptChatRequestSoapIn">
     <wsdl:part name="parameters" element="tns:AcceptChatRequest" />
@@ -525,10 +482,6 @@
       <wsdl:input message="tns:RemoveChatRequestSoapIn" />
       <wsdl:output message="tns:RemoveChatRequestSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="RemoveChatRequestByChatId">
-      <wsdl:input message="tns:RemoveChatRequestByChatIdSoapIn" />
-      <wsdl:output message="tns:RemoveChatRequestByChatIdSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetChatMessages">
       <wsdl:input message="tns:GetChatMessagesSoapIn" />
       <wsdl:output message="tns:GetChatMessagesSoapOut" />
@@ -557,17 +510,13 @@
       <wsdl:input message="tns:InviteSoapIn" />
       <wsdl:output message="tns:InviteSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetRequestsByAidandIP">
-      <wsdl:input message="tns:GetRequestsByAidandIPSoapIn" />
-      <wsdl:output message="tns:GetRequestsByAidandIPSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="UpIsShowRequestsByAidandIP">
       <wsdl:input message="tns:UpIsShowRequestsByAidandIPSoapIn" />
       <wsdl:output message="tns:UpIsShowRequestsByAidandIPSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="getOperatorIDByChatID">
-      <wsdl:input message="tns:getOperatorIDByChatIDSoapIn" />
-      <wsdl:output message="tns:getOperatorIDByChatIDSoapOut" />
+    <wsdl:operation name="GetOperatorIDByChatID">
+      <wsdl:input message="tns:GetOperatorIDByChatIDSoapIn" />
+      <wsdl:output message="tns:GetOperatorIDByChatIDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AcceptChatRequest">
       <wsdl:input message="tns:AcceptChatRequestSoapIn" />
@@ -650,16 +599,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RemoveChatRequestByChatId">
-      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/RemoveChatRequestByChatId" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-        <soap:header message="tns:RemoveChatRequestByChatIdAuthenticationHeader" part="AuthenticationHeader" use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetChatMessages">
       <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetChatMessages" style="document" />
       <wsdl:input>
@@ -730,16 +669,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetRequestsByAidandIP">
-      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetRequestsByAidandIP" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-        <soap:header message="tns:GetRequestsByAidandIPAuthenticationHeader" part="AuthenticationHeader" use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpIsShowRequestsByAidandIP">
       <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpIsShowRequestsByAidandIP" style="document" />
       <wsdl:input>
@@ -749,8 +678,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getOperatorIDByChatID">
-      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID" style="document" />
+    <wsdl:operation name="GetOperatorIDByChatID">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperatorIDByChatID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -849,16 +778,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RemoveChatRequestByChatId">
-      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/RemoveChatRequestByChatId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-        <soap12:header message="tns:RemoveChatRequestByChatIdAuthenticationHeader" part="AuthenticationHeader" use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetChatMessages">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetChatMessages" style="document" />
       <wsdl:input>
@@ -929,16 +848,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetRequestsByAidandIP">
-      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetRequestsByAidandIP" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-        <soap12:header message="tns:GetRequestsByAidandIPAuthenticationHeader" part="AuthenticationHeader" use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpIsShowRequestsByAidandIP">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpIsShowRequestsByAidandIP" style="document" />
       <wsdl:input>
@@ -948,8 +857,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getOperatorIDByChatID">
-      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/getOperatorIDByChatID" style="document" />
+    <wsdl:operation name="GetOperatorIDByChatID">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperatorIDByChatID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
