@@ -182,7 +182,7 @@ public class OperatorWS : System.Web.Services.WebService
     public void TransferChat(ChatRequestInfo chatRequest)
     {
         checkAuthentication();
-        ChatService.RequestChat(chatRequest);
+        ChatService.OperatorRequestChat(chatRequest);
     }
 
     [SoapHeader("Authentication", Required = true)]
@@ -234,10 +234,15 @@ public class OperatorWS : System.Web.Services.WebService
         msg = new ChatMessageInfo(chatId,Consts.ChatSystemName ,"你正在和客户对话", Consts.MessageType_ToOperator);
         ChatService.AddMessage(msg);
     }
+
     [WebMethod]
-    //设置对话关闭时间
-    public void UpdateCloseDate(string chatId)
+    public void CloseChat(string chatId)
     {
+        //设置对话关闭时间
         ChatService.UpdateCloseDate(chatId);
+        // 发送客服关闭消息
+        ChatMessageInfo msg = new ChatMessageInfo(chatId, Consts.ChatSystemName,
+            "客服已关闭该对话", Consts.MessageType_ToChatPage);
+        ChatService.AddMessage(msg);
     }
 }
