@@ -5,13 +5,8 @@
         	<link href="Images/mainCN.css" rel="stylesheet" type="text/css"/>
         <link href="Images/skin.css" rel="stylesheet" type="text/css" />
         
-    <script type="text/javascript" src="js/blockey.js"></script>
-        <script type="text/javascript" src="js/shared.js"></script>
-        <script type="text/javascript" src="js/areaCode.js"></script>
-        <script type="text/javascript" src="js/init.js"></script>
     <style type="text/css">
        
- 
         BODY 
         {
              margin-left: 0px;
@@ -97,6 +92,11 @@ legend {
         
     </style>  
         <script language="javascript" type="text/javascript">
+       
+   
+        
+        
+        ///窗体关闭提示
          function Exit()
          
          {
@@ -105,6 +105,12 @@ legend {
          
           }
         
+        //交流方式
+        function shortKeyMenu()
+        {
+           document.getElementById(shortKeyMenu).style.display="block"
+        
+        }
 
 
 		//显示层
@@ -213,7 +219,7 @@ legend {
         </asp:Panel>
         
         <asp:Panel ID="pnlRequest" Visible="true" runat="server">
-            <div  style="height:100%; width:100%">
+            <div   style="height:100%; width:100%">
             <fieldset style="height:92.5%; width:93%">
                 
                 <legend>
@@ -277,21 +283,25 @@ legend {
     
     </td>
     
-     <td   align="right" style=" width:40px;  height:30px;">
-      <a href="" target="_blank" id="logo" style="background-image: url(Images/logo.gif);" />
-				
+    
+       <td align="center" style="  width:40px;  height:30px;">
+      <div>
+      
+      <a href="" target="_blank" id="logo" 
+             style="font-family: 微软雅黑; font-weight:100px; font-size:20px; text-decoration: none">
+             
+             LiveSupport</a>
+		</div>		
     
     </td>
     
   </tr>
   
- <%-- <tr>
-  <td colspan="2" style=" width:85%; height:80%;">
-    --%>
+ 
     <tr id="notewrap">
 			<td  style=" width:85%; height:80%;">
   <table  height="100%" width="100%" style="break:break-all;word-wrap:break-word;table-layout:fixed" cellpadding="0" cellspacing="0">
-   <%-- <table cellpadding="0" cellspacing="0" style="height:100%;TABLE-LAYOUT: fixed; background-color:#d4eeff;"  width="100%">--%>
+  
                     
                     <tr  style="height:100%">
                         <td height="100%"  >
@@ -353,12 +363,7 @@ legend {
                                 Font-Underline="False" ForeColor="White">剪切</asp:LinkButton>
                         </li>
                          <li style="background-image: url(Images/tools_icn.gif);" id="dialback" style="display:none;">免费电话</li>
-                    <%--  <li id="file">传送文件</li>
-						<li id="save" >保存记录</li>
-						<li id="switch" class="open" style='display:none'>关闭提示音</li>
-						<li id="language">语言选择</li>
-						<li id="active" style='display:none'>截 屏</li>
-						<li id="dialback" >免费电话</li>--%>
+                 
                         
                         </ul>
                         <ul id="languageList" style="display:none;">
@@ -369,14 +374,11 @@ legend {
 						<li lang:value="4">한 국 말</li>
 					</ul>
 					<div id="exitChat"  style="background-image: url(Images/tools_icn.gif);" onclick="Exit()">
-					<%--<asp:LinkButton ID="lkbExit" runat="server" Font-Underline="False" 
-                              ForeColor="White" onclick="lkbExit_Click" >结束对话</asp:LinkButton>--%>
+				
                               结束对话
                               </div>
-                   <%--<div id="exitChat" >
-                          <asp:LinkButton ID="lkbExit" runat="server" Font-Underline="False" 
-                              ForeColor="White" onclick="lkbExit_Click" >结束对话</asp:LinkButton>
-                        </div>--%>
+                
+                        </div>
                         </div>
   </td>
   
@@ -384,17 +386,13 @@ legend {
   <tr id="msg">
     <td id="inputarea"   style=" width:85%; height:90px">
     
-     <textarea id="txtMsg" rows="2" runat="server" cols="100" style=" width:100%; height:100%"  onkeypress="checkEnter(event)" />
-                 
-    </td>
-    <td align="center" id="enter_wrap"  style=" width:40px; height:90px">
+     <textarea name="message" id="txtMsg" rows="2" runat="server" cols="100" style=" width:100%; height:100%"  onkeypress="checkEnter(event)" /> </td><td align="center" id="enter_wrap"  style=" width:40px; height:90px">
         
 
                  
                     <div id="ewrap">
 				<div id="enter" style="background-image:url(Images/send0.jpg)" onclick="CallSendMsg()"></div></div>
-         <%-- <input  type="image" id="btnSend"  src="Images/send0.jpg"  onclick="CallSendMsg()"/>--%>
-          
+    
           
     
     </td>
@@ -405,27 +403,5 @@ legend {
   
   <div id="footer">
   <p>
-  <span id="shortKeyTip" >[发送快捷键:Enter]:
-  </span>
-  <span id="footerBox"></span>
-  </p>
-				<div id="shortcutkey">消息发送方式</div>
-				<ul id="shortKeyMenu" style="display:none;">
-				<li>按Enter键发送消息</li>
-				<li>按Ctrl+Enter键发送消息</li>
-				</ul>
-				</div>
-  </td>
-  
-  
-  </tr>
-  </table>
-         
-         </asp:Panel>
-          
-          
-          
-          
-          </div></form></body></html>
-
-                  
+  <span id="shortKeyTip" >[发送快捷键:Enter]: </span><span id="footerBox"></span></p><div id="shortcutkey" onclick="">消息发送方式</div><ul id="shortKeyMenu" style="display:none;">
+				<li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul></div></td></tr></table></asp:Panel></div></form></body></html>
