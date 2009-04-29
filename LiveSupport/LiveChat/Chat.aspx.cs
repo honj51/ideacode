@@ -222,6 +222,12 @@ public partial class Chat : System.Web.UI.Page
         return "";
     }
 
+    [System.Web.Services.WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static void UpdateCloseDate(string chtID)
+    {
+        ChatService.UpdateCloseDate(chtID);
+    }
 
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
