@@ -170,6 +170,11 @@ public class MemoryChatProvider : ChatProvider
     {
         throw new NotImplementedException();
     }
+    //设置对话关闭时间
+    public override void UpdateChatRequestCloseDateByChatId(string chatId)
+    {
+        throw new NotImplementedException();
+    }
     //通过用户编号修改客服编号
     public override void UpdateOperatorIDByChatID(string chatId, int operatorId)
     {
