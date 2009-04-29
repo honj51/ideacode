@@ -4,7 +4,12 @@
     <title>在线交流</title>
         <link href="Images/mainCN.css" rel="stylesheet" type="text/css"/>
         <link href="Images/skin.css" rel="stylesheet" type="text/css" />
+
+        <script  src="SendMsg.js" type="text/javascript" language="javascript"></script>
+
+       
 <style type="text/css">
+
         BODY 
         {
              margin-left: 0px;
@@ -31,7 +36,7 @@ TD {
 		font-weight: bold;
 		color: gray;
 		font-size: 12pt;
-		width: 500px;
+		
     }
     .formField
     {
@@ -58,21 +63,18 @@ TD {
 
             
             }
-            
-   fieldset {
-    padding:10px;
-    margin:10px;
-    
-    color:#333; 
-    border:1;
-    
-} 
-legend {
-    color:#06c;
-    font-weight:800; 
-    
-} 
 
+      fieldset
+      {
+           margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+          
+           border:1;
+          
+          } 
+       
         
         #Button2
         {
@@ -86,6 +88,9 @@ legend {
             width: 45px;
             height: 20px;
         }
+
+        
+        
 
         
     </style>  
@@ -169,9 +174,20 @@ b.document.execCommand('saveas',true,'');
         </asp:ScriptManager>
        
         <asp:Panel ID="pnlNoOperator" Visible="false"  runat="server">
-            <div  style=" height:92.5%; width:93%">
+     
+                <table cellpadding="0" cellspacing="0"  style="background-image:url(Images/bg.jpg); background-position:center;    height:100%; width:100%">
+                <tr>
+                <td  align="center">
                 
-                <fieldset style="height:100%; width:100%" > 
+                  <span class="formField">   感谢您的关注！</span>
+                </td>
+                </tr>
+                
+                <tr>
+                <td align="center">
+                
+                
+                <fieldset > 
                 <legend > 
                 <asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
                  
@@ -199,49 +215,98 @@ b.document.execCommand('saveas',true,'');
                 </fieldset>
                    
                 </fieldset>
-               <br />
-            </div>
+           
+               </td>
+                </tr>
+            </table>
         </asp:Panel>
         
-        <asp:Panel ID="pnlRequest" Visible="true" runat="server">
-            <div   style="height:100%; width:100%">
-            <fieldset style="height:92.5%; width:93%">
-                
-                <legend>
-                
-                <span id="Welcome">清输入下面的内容进行对话.</span>
-                </legend>
+      
+        <asp:Panel  ID="pnlRequest" Visible="true" runat="server">
+        
+           <table  cellpadding="0" cellspacing="0"  style="background-image:url(Images/bg.jpg); background-position:center;    height:100%; width:100%">
+           <tr>
+           <td valign="top" colspan="2" style=" height:30px; width:100%"  align="center">
+           欢迎进入XXX公司客服服务
+           </td>
+           
+         
+           </tr>
+           
+           <tr  >
+           
+         
+           <td align="center" >
             
-            <fieldset style=" width:40%">
-            <legend>
-            <span class="formField">您的名字</span>
-            </legend>
+            <table   cellpadding="0" cellspacing="0"  style=" margin:200 150 40 50;   height:40%; width:50%"  align="center">
+            <tr>
+            <td align="center" colspan="2">
+             <span id="Welcome"  >清输入下面的内容进行对话.</span>
+            </td>
+            </tr>
+            
+            <tr>
+            <td align="right" >
+             <span class="formField">您的名字:</span>
+            </td>
+            
+            <td align="left">
             <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-            </fieldset>
-            <br />
-            <fieldset style=" width:40%">
-            <legend>
+        
+            </td>
+            </tr>
             
-                <span class="formField">您的电子邮件</span>
-            </legend>
-             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-            </fieldset>
-          
-          
-         <br />
             
-            <fieldset style=" width:40%">
+            <tr valign="top">
+            
+            <td align="right" >
+             <span class="formField">您的电子邮件:</span>
+            
+            </td>
+            
+            <td align="left">
+              <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            
+            </td>
+            </tr>
+            <tr>
+             <td>
              
-            <asp:Button  ID="btnStarChat" Text="开始对话" runat="server" onclick="btnStarChat_Click" />
-            <br />
+             </td>
             
-            </fieldset>
-            </fieldset>
+            <td >
+                <asp:Button  ID="btnStarChat" Text="开始对话" runat="server" onclick="btnStarChat_Click" />
+            </td>
+            
+           
+            </tr>
+            </table>
+            
+            
+        
+          
+           
+           </td>
+             <td style=" width:50px"  valign="baseline">
+              <img  alt=""  src="Images/right_column_0.jpg" />
+            
                 
-                </div>
+           </td>
+           
+           </tr>
+           <tr>
+           <td colspan="2"  align="center">
+           
+           版权所有
+           </td>
+           
+           </tr>
+           </table>
             
                           
         </asp:Panel>
+        
+        
         
            <asp:Panel   ID="pnlChat" runat="server">
               
