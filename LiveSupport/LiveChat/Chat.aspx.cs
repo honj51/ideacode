@@ -89,6 +89,7 @@ public partial class Chat : System.Web.UI.Page
                         {
                             pnlChat.Visible = true;
                             this.dialog();
+                            pnlNoOperator.Visible = true;
                         }
                         else
                         {
