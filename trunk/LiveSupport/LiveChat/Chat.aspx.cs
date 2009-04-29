@@ -282,12 +282,20 @@ public partial class Chat : System.Web.UI.Page
         request.VisitorEmail = txtEmail.Text;
         if (Request.UserHostAddress != null)
             request.VisitorIP = Request.UserHostAddress.ToString();
-        request.VisitorName = txtName.Text;
+        if (txtName.Text != "")
+        {
+            request.VisitorName = txtName.Text;
+        }
+        else
+        {
+            request.VisitorName = "Guest";
+        }
         if (Request.ServerVariables["HTTP_USER_AGENT"] != null)
             request.VisitorUserAgent = Request.ServerVariables["HTTP_USER_AGENT"].ToString();
         request.WasAccept = false;
 
         ChatService.RequestChat(request);
+        ChatService.AddSystemMessage(request.ChatId,int.Parse(request.AccountId));
 
         //lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
@@ -301,6 +309,7 @@ public partial class Chat : System.Web.UI.Page
     public void dialog()
     {
         string chatId = Request.QueryString["chatid"].ToString();
+        int AccountId=int.Parse(Request.QueryString["aid"].ToString());
         if (Request.Cookies["chatId"] != null)
         {
             Response.Cookies["chatId"].Value = chatId;
@@ -320,11 +329,8 @@ public partial class Chat : System.Web.UI.Page
             HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
             Response.Cookies.Add(cookie);
         }
-        ChatMessageInfo msg = new ChatMessageInfo(chatId, "Gusst", "同意了你的请求!", Consts.MessageType_ToOperator);
-        ChatMessageInfo msg1 = new ChatMessageInfo(chatId, "Guest", "你同意客服"+VisitorName+"对话!", Consts.MessageType_ToChatPage);
-        ChatService.AddMessage(msg);//添加聊天信息
-        ChatService.AddMessage(msg1);//添加聊天信息
         VName = "Guest";
+        ChatService.AddSystemMessage(chatId, AccountId, VName);
         OperatorWS ws = new OperatorWS();
         ws.SetTyping(chatId, false, false);
     }
