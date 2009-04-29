@@ -166,7 +166,7 @@ legend {
             b.document.write(txt);   
             b.document.close(); 
             b.document.execCommand('saveas',true,''); 
-            b.window.close(); 
+           
          }
     </script>
 
