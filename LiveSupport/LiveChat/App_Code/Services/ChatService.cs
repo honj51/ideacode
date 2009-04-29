@@ -76,40 +76,23 @@ public class ChatService
 
         return _provider.GetChatRequests(op);
     }
+
     //页面调用查询是否有消息
-    public static string GetRequestsByAidandIP(int AccountId, string ip)
+    public static string GetChatRequestByAccountIdAndIP(int accountId, string ip)
     {
         LoadProvider();
-        string aa = null;
-        ChatRequestInfo chatinfo=null;
-        List<ChatRequestInfo> li = _provider.GetRequestsByAidandIP(AccountId, ip);
-        if (aa != null)
+        string chatid = null;
+        List<ChatRequestInfo> li = _provider.GetRequestsByAidandIP(accountId, ip);
+        if (li.Count > 0)
         {
-            chatinfo = _provider.GetChatRequestsByChatId(aa);
+            chatid = li[li.Count - 1].ChatId;            
         }
-        else if (li.Count > 0)
-        {
-            foreach (ChatRequestInfo c in li)
-            {
-                aa = c.ChatId;
-            }
-            UpIsShowRequestsByAidandIP(AccountId, ip, "2");
-            return aa;
-        }
-        else if (chatinfo.ClosedDate!=null)
-        {
-            return "nowclose";
-        }
-        else
-        {
-            return "no";
-        }
-
+        return chatid;
     }
     //更新IsShow的显示
-    public static void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
+    public static void UpdateIsShowRequestsByAidandIP(int accountId, string ip, string isShow)
     {
-        _provider.UpIsShowRequestsByAidandIP(AccountId, ip, IsShow);
+        _provider.UpIsShowRequestsByAidandIP(accountId, ip, isShow);
     }
     public static void RemoveChatRequest(ChatRequestInfo req)
     {
@@ -151,7 +134,7 @@ public class ChatService
 		}
 	}
     //通过对话编号获得客户编号
-    public static bool getOperatorIDByChatID(string chatId)
+    public static bool GetOperatorIDByChatID(string chatId)
     {
         return _provider.getOperatorIDByChatID(chatId);
     }
