@@ -80,16 +80,21 @@ public class ChatService
     public static string GetRequestsByAidandIP(int AccountId, string ip)
     {
         LoadProvider();
+        string aa = null;
         List<ChatRequestInfo> li = _provider.GetRequestsByAidandIP(AccountId, ip);
+        ChatRequestInfo chatinfo = _provider.GetChatRequestsByChatId(aa);
         if (li.Count > 0)
         {
-            string aa = null;
             foreach (ChatRequestInfo c in li)
             {
                 aa = c.ChatId;
             }
             UpIsShowRequestsByAidandIP(AccountId, ip, "2");
             return aa;
+        }
+        else if (chatinfo.ClosedDate != "")
+        {
+            return "nowclose";
         }
         else
         {
