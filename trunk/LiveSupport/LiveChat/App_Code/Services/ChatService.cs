@@ -81,9 +81,13 @@ public class ChatService
     {
         LoadProvider();
         string aa = null;
+        ChatRequestInfo chatinfo=null;
         List<ChatRequestInfo> li = _provider.GetRequestsByAidandIP(AccountId, ip);
-        ChatRequestInfo chatinfo = _provider.GetChatRequestsByChatId(aa);
-        if (li.Count > 0)
+        if (aa != null)
+        {
+            chatinfo = _provider.GetChatRequestsByChatId(aa);
+        }
+        else if (li.Count > 0)
         {
             foreach (ChatRequestInfo c in li)
             {
@@ -92,7 +96,7 @@ public class ChatService
             UpIsShowRequestsByAidandIP(AccountId, ip, "2");
             return aa;
         }
-        else if (chatinfo.ClosedDate != null)
+        else if (chatinfo.ClosedDate!=null)
         {
             return "nowclose";
         }
@@ -100,6 +104,7 @@ public class ChatService
         {
             return "no";
         }
+
     }
     //更新IsShow的显示
     public static void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
