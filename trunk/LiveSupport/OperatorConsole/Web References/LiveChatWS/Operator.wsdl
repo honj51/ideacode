@@ -316,6 +316,16 @@
       <s:element name="AcceptChatRequestResponse">
         <s:complexType />
       </s:element>
+      <s:element name="UpdateCloseDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCloseDateResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LogInSoapIn">
@@ -480,6 +490,12 @@
   <wsdl:message name="AcceptChatRequestSoapOut">
     <wsdl:part name="parameters" element="tns:AcceptChatRequestResponse" />
   </wsdl:message>
+  <wsdl:message name="UpdateCloseDateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCloseDate" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCloseDateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCloseDateResponse" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="LogIn">
       <wsdl:input message="tns:LogInSoapIn" />
@@ -556,6 +572,10 @@
     <wsdl:operation name="AcceptChatRequest">
       <wsdl:input message="tns:AcceptChatRequestSoapIn" />
       <wsdl:output message="tns:AcceptChatRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCloseDate">
+      <wsdl:input message="tns:UpdateCloseDateSoapIn" />
+      <wsdl:output message="tns:UpdateCloseDateSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -747,6 +767,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateCloseDate">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateCloseDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -930,6 +959,15 @@
     </wsdl:operation>
     <wsdl:operation name="AcceptChatRequest">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCloseDate">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateCloseDate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
