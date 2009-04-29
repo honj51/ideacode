@@ -81,16 +81,16 @@
    //调用webservece方法
    function callMethod()
     {
-        service.useService("http://localhost:3355/LiveChat/Operator.asmx?wsdl","calService");                                       //创建服务对象
+        service.useService("http://localhost:3355/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象
         var parm1 =comname;   //取公司ID           
         var parm2 =getCookie('myip'); //取IP
-        service.calService.callService(callback,"GetRequestsByAidandIP",parm1,parm2);      
+        service.calService.callService(callback,"GetOperatorInvitation",parm1,parm2);      
                                                               //调用方法
     }
     function callMethodclose()
     {
         panel2Close();
-        service.useService("http://localhost:3355/LiveChat/Operator.asmx?wsdl","calService");                                       //创建服务对象
+        service.useService("http://localhost:3355/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象
         var parm1 =chatid;   //chatid       
         service.calService.callService(callbackclose,"RemoveChatRequestByChatId",parm1);   
     }
@@ -102,23 +102,15 @@
     {
         if (!res.error)//判断是否发生错误
         {
-                //alert(res.value);
-                if(res.value!=null&&res.value!="no")//判断返回的值
+             //   alert(res.value);
+                if(res.value !="")//判断返回的值
                 {
                     panel2Show();//显示方法
                     chatid=res.value;
                 }
-                else if(res.value=="nowclose")
-                {
-                   panel2Close();
-                }
-                else
-                {
-                  
-                }
         }
         else
         { 
-           //alert("发生错误"); //发生错误
+           alert("发生错误"); //发生错误
         }
     }
