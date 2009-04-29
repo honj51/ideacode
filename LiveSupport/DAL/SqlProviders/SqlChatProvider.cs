@@ -482,4 +482,44 @@ public class SqlChatProvider : ChatProvider
             }
         }
     }
+    //跟据ChatID查询一行数据 
+     public override ChatRequestInfo GetChatRequestsByChatId(ChatRequestInfo c)
+     {
+        SqlConnection sqlC = new SqlConnection(connectionString);
+        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsGetByChatID", sqlC);
+        cmd.CommandType = CommandType.StoredProcedure;
+        SqlDataReader data = null;
+        ChatRequestInfo chat;
+        try
+        {
+            cmd.Parameters.Add("@ChatID", SqlDbType.Int).Value = c.ChatId;
+            sqlC.Open();
+            data = cmd.ExecuteReader();
+            if (data.Read())
+            {
+                chat = new ChatRequestInfo(data);
+            }
+            data.Close();
+            data.Dispose();
+            data = null;
+            cmd.Dispose();
+            sqlC.Close();
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            if (sqlC != null)
+            {
+                if (sqlC.State == ConnectionState.Open)
+                    sqlC.Close();
+
+                sqlC.Dispose();
+                sqlC = null;
+            }
+        }
+        return chat;
+     }
 }
