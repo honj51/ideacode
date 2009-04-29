@@ -153,6 +153,16 @@
       <s:element name="RemoveChatRequestResponse">
         <s:complexType />
       </s:element>
+      <s:element name="RemoveChatRequestByChatId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveChatRequestByChatIdResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="GetChatMessages">
         <s:complexType>
           <s:sequence>
@@ -371,6 +381,15 @@
   <wsdl:message name="RemoveChatRequestAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="RemoveChatRequestByChatIdSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveChatRequestByChatId" />
+  </wsdl:message>
+  <wsdl:message name="RemoveChatRequestByChatIdSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveChatRequestByChatIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveChatRequestByChatIdAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:message name="GetChatMessagesSoapIn">
     <wsdl:part name="parameters" element="tns:GetChatMessages" />
   </wsdl:message>
@@ -490,6 +509,10 @@
       <wsdl:input message="tns:RemoveChatRequestSoapIn" />
       <wsdl:output message="tns:RemoveChatRequestSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="RemoveChatRequestByChatId">
+      <wsdl:input message="tns:RemoveChatRequestByChatIdSoapIn" />
+      <wsdl:output message="tns:RemoveChatRequestByChatIdSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetChatMessages">
       <wsdl:input message="tns:GetChatMessagesSoapIn" />
       <wsdl:output message="tns:GetChatMessagesSoapOut" />
@@ -602,6 +625,16 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:RemoveChatRequestAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveChatRequestByChatId">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/RemoveChatRequestByChatId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RemoveChatRequestByChatIdAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -787,6 +820,16 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RemoveChatRequestByChatId">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/RemoveChatRequestByChatId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RemoveChatRequestByChatIdAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetChatMessages">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetChatMessages" style="document" />
       <wsdl:input>
@@ -897,10 +940,10 @@
   </wsdl:binding>
   <wsdl:service name="OperatorWS">
     <wsdl:port name="OperatorWSSoap" binding="tns:OperatorWSSoap">
-      <soap:address location="http://localhost:21027/LiveChat/Operator.asmx" />
+      <soap:address location="http://localhost:3355/LiveChat/Operator.asmx" />
     </wsdl:port>
     <wsdl:port name="OperatorWSSoap12" binding="tns:OperatorWSSoap12">
-      <soap12:address location="http://localhost:21027/LiveChat/Operator.asmx" />
+      <soap12:address location="http://localhost:3355/LiveChat/Operator.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
