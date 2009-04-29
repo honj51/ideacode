@@ -7,6 +7,7 @@
         
     <style type="text/css">
        
+       
         BODY 
         {
              margin-left: 0px;
@@ -284,11 +285,11 @@ legend {
     </td>
     
     
-       <td align="center" style="  width:40px;  height:30px;">
-      <div>
+       <td  valign="middle" style="  width:40px;  height:30px;">
+      <div >
       
       <a href="" target="_blank" id="logo" 
-             style="font-family: 微软雅黑; font-weight:100px; font-size:20px; text-decoration: none">
+             style="font-family: 微软雅黑; font-weight:100px; font-size:15px; text-decoration: none">
              
              LiveSupport</a>
 		</div>		
@@ -364,7 +365,6 @@ legend {
                         </li>
                          <li style="background-image: url(Images/tools_icn.gif);" id="dialback" style="display:none;">免费电话</li>
                  
-                        
                         </ul>
                         <ul id="languageList" style="display:none;">
 						<li lang:value="0">简体中文</li>
@@ -373,7 +373,7 @@ legend {
 						<li lang:value="3">日 本 語</li>
 						<li lang:value="4">한 국 말</li>
 					</ul>
-					<div id="exitChat"  style="background-image: url(Images/tools_icn.gif);" onclick="Exit()">
+					  <div id="exitChat"  style="background-image: url(Images/tools_icn.gif);" onclick="Exit()">
 				
                               结束对话
                               </div>
