@@ -2,12 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>在线交流</title>
-        	<link href="Images/mainCN.css" rel="stylesheet" type="text/css"/>
+        <link href="Images/mainCN.css" rel="stylesheet" type="text/css"/>
         <link href="Images/skin.css" rel="stylesheet" type="text/css" />
-        
-    <style type="text/css">
-       
-       
+<style type="text/css">
         BODY 
         {
              margin-left: 0px;
@@ -92,86 +89,73 @@ legend {
 
         
     </style>  
-        <script language="javascript" type="text/javascript">
-       
-   
-        
-        
-        ///窗体关闭提示
-         function Exit()
-         
-         {
-          if(confirm('是否关闭')==true) 
-          window.close();
-         
-          }
-        
-        //交流方式
-        function shortKeyMenu()
-        {
-           document.getElementById(shortKeyMenu).style.display="block"
-        
-        }
+<script language="javascript" type="text/javascript">
+///窗体关闭提示
+function Exit()
+{
+    if(confirm('是否关闭')==true) 
+    {
+      UpdateCloseDate();
+      window.close();
+    }
+}
 
+//交流方式
+function shortKeyMenu()
+{
+    document.getElementById(shortKeyMenu).style.display="block"
+}
+//显示层
+function divShow(divId)
+{
+    document.getElementById(divId).style.display="block";
+}
+//关闭层
+function divClose(divId)
+{
+    document.getElementById(divId).style.display="none";
+}
+var lastCheck = new Date(); 
+function scrollDiv()
+{
+    var d;
+    if ((d = document.getElementById('chat')) && ('undefined' != typeof d.scrollTop))
+{
+	//d.scrollTop = 0;
+	d.scrollTop = 5000;
+}
+window.setTimeout("scrollDiv()", 950);
 
-		//显示层
-		function divShow(divId)
-		{
-		    document.getElementById(divId).style.display="block";
-		}
-		//关闭层
-		function divClose(divId)
-		{
-		    document.getElementById(divId).style.display="none";
-		}
-		
-        
-		var lastCheck = new Date();
-		 
-		function scrollDiv()
-		{
-			var d;
-			if ((d = document.getElementById('chat')) && ('undefined' != typeof d.scrollTop))
-			{
-				//d.scrollTop = 0;
-				d.scrollTop = 5000;
-			}
-			
-			window.setTimeout("scrollDiv()", 950);
-			
-			var now = new Date();
-			var elapse = now.getSeconds() - lastCheck.getSeconds();
-			var sameMinute = now.getMinutes - lastCheck.getMinutes();
-			if( sameMinute != 0 || elapse >= 2 )
-			{
-				// Check for typing notification
-				PageMethods.CheckTypingNotification(getCookie('chatId'), OnCheckTypingNotificationComplete);
-				
-				lastCheck = new Date();
-			}
-		}
-		
-		function OnCheckTypingNotificationComplete(result, methodName)
-		{
-			if( result != '' )
-			{
-				var v = document.getElementById('typingNotification');
-				if( v != 'undefined' &&  v != null) 
-					v.innerText = result; 
-			}
-		}
-		
-		window.onload = scrollDiv;
-	    function Save(){    
-            var txt = document.getElementById("upChat").innerHTML
-            b = window.open();   
-            b.document.open();   
-            b.document.write(txt);   
-            b.document.close(); 
-            b.document.execCommand('saveas',true,''); 
-           
-         }
-    </script>
+var now = new Date();
+var elapse = now.getSeconds() - lastCheck.getSeconds();
+var sameMinute = now.getMinutes - lastCheck.getMinutes();
+if( sameMinute != 0 || elapse >= 2 )
+{
+	// Check for typing notification
+	PageMethods.CheckTypingNotification(getCookie('chatId'), OnCheckTypingNotificationComplete);
+	
+	lastCheck = new Date();
+}
+}
+function OnCheckTypingNotificationComplete(result, methodName)
+{
+if( result != '' )
+{
+	var v = document.getElementById('typingNotification');
+	if( v != 'undefined' &&  v != null) 
+		v.innerText = result; 
+}
+}
+window.onload = scrollDiv;
+function Save(){    
+var txt = document.getElementById("upChat").innerHTML
+b = window.open();   
+b.document.open();   
+b.document.write(txt);   
+b.document.close(); 
+b.document.execCommand('saveas',true,''); 
+}
+</script>
 
 </head>
 
