@@ -26,6 +26,7 @@ public abstract class ChatProvider  : ProviderBase
     public abstract List<ChatRequestInfo> GetChatRequests(Operator op);
     public abstract List<ChatRequestInfo> GetRequestsByAidandIP(int AccountId, string ip);
     public abstract void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow);
+    public abstract void UpdateChatRequestCloseDateByChatId(string chatId);
     public abstract void RemoveChatRequest(ChatRequestInfo req);
     public abstract bool HasNewMessage(string chatId, long lastMessageId);
     public abstract bool getOperatorIDByChatID(string chatId);
