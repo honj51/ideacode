@@ -78,7 +78,10 @@ namespace LiveSupport.OperatorConsole
                     wb.Document.Window.ScrollTo(new Point(0, 5000));
 
                     // Flash the window
-                    API.FlashWindowEx(((ControlPanel)this.ParentForm).Handle);
+                    if (this.ParentForm != null)
+                    {
+                        API.FlashWindowEx(((ControlPanel)this.ParentForm).Handle);
+                    }
                 }
             }
 
@@ -205,10 +208,11 @@ namespace LiveSupport.OperatorConsole
                 ws.AddMessage(msg);
             }
         }
+
         //¹Ø±Õ
         private void toolStripButton2_Click(object sender, EventArgs e)
         { 
-            ws.UpdateCloseDate(myChatRequest.ChatId);
+            ws.CloseChat(myChatRequest.ChatId);
             TabControl tc = this.Tag as TabControl;
             tc.TabPages.Remove(tc.SelectedTab);
         }
