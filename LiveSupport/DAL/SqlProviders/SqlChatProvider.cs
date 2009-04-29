@@ -453,4 +453,32 @@ public class SqlChatProvider : ChatProvider
 
 
     }
+    //设置关闭对话时间
+    public override void UpdateChatRequestCloseDateByChatId(string chatId)
+    {
+        SqlConnection conn = new SqlConnection(connectionString);
+        SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsUpdateClosedDate", conn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        try
+        {
+            cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
+            conn.Open();
+
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+                conn.Dispose();
+                conn = null;
+            }
+        }
+    }
 }
