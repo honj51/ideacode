@@ -291,14 +291,14 @@
       <s:element name="AcceptChatRequestResponse">
         <s:complexType />
       </s:element>
-      <s:element name="UpdateCloseDate">
+      <s:element name="CloseChat">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UpdateCloseDateResponse">
+      <s:element name="CloseChatResponse">
         <s:complexType />
       </s:element>
     </s:schema>
@@ -447,11 +447,11 @@
   <wsdl:message name="AcceptChatRequestSoapOut">
     <wsdl:part name="parameters" element="tns:AcceptChatRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="UpdateCloseDateSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateCloseDate" />
+  <wsdl:message name="CloseChatSoapIn">
+    <wsdl:part name="parameters" element="tns:CloseChat" />
   </wsdl:message>
-  <wsdl:message name="UpdateCloseDateSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateCloseDateResponse" />
+  <wsdl:message name="CloseChatSoapOut">
+    <wsdl:part name="parameters" element="tns:CloseChatResponse" />
   </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="LogIn">
@@ -522,9 +522,9 @@
       <wsdl:input message="tns:AcceptChatRequestSoapIn" />
       <wsdl:output message="tns:AcceptChatRequestSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateCloseDate">
-      <wsdl:input message="tns:UpdateCloseDateSoapIn" />
-      <wsdl:output message="tns:UpdateCloseDateSoapOut" />
+    <wsdl:operation name="CloseChat">
+      <wsdl:input message="tns:CloseChatSoapIn" />
+      <wsdl:output message="tns:CloseChatSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -696,8 +696,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateCloseDate">
-      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateCloseDate" style="document" />
+    <wsdl:operation name="CloseChat">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -875,8 +875,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateCloseDate">
-      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateCloseDate" style="document" />
+    <wsdl:operation name="CloseChat">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
