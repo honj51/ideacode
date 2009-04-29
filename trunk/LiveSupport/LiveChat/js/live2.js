@@ -108,9 +108,13 @@
                     panel2Show();//显示方法
                     chatid=res.value;
                 }
+                else if(res.value=="nowclose")
+                {
+                   panel2Close();
+                }
                 else
                 {
-                   // alert(res.value);
+                  
                 }
         }
         else
