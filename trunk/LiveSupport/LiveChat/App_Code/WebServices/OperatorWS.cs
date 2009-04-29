@@ -104,16 +104,6 @@ public class OperatorWS : System.Web.Services.WebService
     }
 
     [SoapHeader("Authentication", Required = true)]
-    [WebMethod]
-    public void RemoveChatRequestByChatId(string chatid)
-    {
-        ChatRequestInfo req = new ChatRequestInfo();
-        req.ChatId = chatid;
-        checkAuthentication();
-        ChatService.RemoveChatRequest(req);
-    }
-
-    [SoapHeader("Authentication", Required = true)]
 	[WebMethod]
 	public List<ChatMessageInfo> GetChatMessages(string chatId, long lastCheck)
 	{
@@ -211,19 +201,12 @@ public class OperatorWS : System.Web.Services.WebService
         return true;
     }
 
-    [SoapHeader("Authentication", Required = true)]
-    [WebMethod]
-    public string GetRequestsByAidandIP(int AccountId, string ip)
-    {
-        checkAuthentication();
-        return ChatService.GetRequestsByAidandIP(AccountId, ip);
-    }
     [WebMethod]
     //更新IsShow的显示
     public void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
     {
         checkAuthentication();
-        ChatService.UpIsShowRequestsByAidandIP(AccountId, ip, IsShow);
+        ChatService.UpdateIsShowRequestsByAidandIP(AccountId, ip, IsShow);
     }
     private void checkAuthentication()
     {
@@ -233,9 +216,9 @@ public class OperatorWS : System.Web.Services.WebService
 
     [WebMethod] 
     //通过用户编号获得客户编号
-    public bool getOperatorIDByChatID(string chatId)
+    public bool GetOperatorIDByChatID(string chatId)
     {
-       return ChatService.getOperatorIDByChatID(chatId);
+       return ChatService.GetOperatorIDByChatID(chatId);
     }
 
     [WebMethod]
