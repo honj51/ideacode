@@ -461,9 +461,8 @@ public class SqlChatProvider : ChatProvider
         cmd.CommandType = CommandType.StoredProcedure;
         try
         {
-            cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
+            cmd.Parameters.Add("@ChatID", SqlDbType.Char, 40).Value = chatId;
             conn.Open();
-
         }
         catch (Exception ex)
         {
