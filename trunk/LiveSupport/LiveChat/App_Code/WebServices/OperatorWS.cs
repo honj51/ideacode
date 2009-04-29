@@ -251,4 +251,10 @@ public class OperatorWS : System.Web.Services.WebService
         msg = new ChatMessageInfo(chatId,Consts.ChatSystemName ,"你正在和客户对话", Consts.MessageType_ToOperator);
         ChatService.AddMessage(msg);
     }
+    [WebMethod]
+    //设置对话关闭时间
+    public void UpdateCloseDate(string chatId)
+    {
+        ChatService.UpdateCloseDate(chatId);
+    }
 }
