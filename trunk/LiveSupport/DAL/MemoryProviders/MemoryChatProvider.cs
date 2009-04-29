@@ -180,6 +180,10 @@ public class MemoryChatProvider : ChatProvider
     {
         throw new NotImplementedException();
     }
+    public override ChatRequestInfo GetChatRequestsByChatId(ChatRequestInfo c)
+    {
+        throw new NotImplementedException();
+    }
     public override void UpIsShowRequestsByAidandIP(int AccountId, string ip, string IsShow)
     {
         throw new NotImplementedException();
