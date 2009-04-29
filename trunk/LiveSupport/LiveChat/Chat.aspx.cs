@@ -287,14 +287,14 @@ public partial class Chat : System.Web.UI.Page
         }
         else
         {
-            request.VisitorName = "Guest";
+            request.VisitorName = "你说";
         }
         if (Request.ServerVariables["HTTP_USER_AGENT"] != null)
             request.VisitorUserAgent = Request.ServerVariables["HTTP_USER_AGENT"].ToString();
         request.WasAccept = false;
 
-        ChatService.RequestChat(request);
-        ChatService.AddSystemMessage(request.ChatId,int.Parse(request.AccountId));
+        ChatService.ChatPageRequestChat(request);
+        
 
         //lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
@@ -304,7 +304,8 @@ public partial class Chat : System.Web.UI.Page
         pnlChat.Visible = true;
         pnlRequest.Visible = false;
     }
-    //会话
+
+    // 页面同意客服的对话邀请后调用
     public void dialog()
     {
         string chatId = Request.QueryString["chatid"].ToString();
@@ -328,10 +329,8 @@ public partial class Chat : System.Web.UI.Page
             HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
             Response.Cookies.Add(cookie);
         }
-        VName = "Guest";
-        ChatService.AddSystemMessage(chatId, AccountId, VName);
-        OperatorWS ws = new OperatorWS();
-        ws.SetTyping(chatId, false, false);
+        VName = "您说";
+        ChatService.AddSystemMessage(chatId, AccountId);
     }
     protected void CutLBtn_Click(object sender, EventArgs e)
     {
