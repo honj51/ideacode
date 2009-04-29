@@ -92,7 +92,7 @@ public class ChatService
             UpIsShowRequestsByAidandIP(AccountId, ip, "2");
             return aa;
         }
-        else if (chatinfo.ClosedDate != "")
+        else if (chatinfo.ClosedDate != null)
         {
             return "nowclose";
         }
