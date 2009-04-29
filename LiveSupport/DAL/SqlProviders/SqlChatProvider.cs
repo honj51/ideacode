@@ -483,7 +483,7 @@ public class SqlChatProvider : ChatProvider
         }
     }
     //跟据ChatID查询一行数据 
-     public override ChatRequestInfo GetChatRequestsByChatId(ChatRequestInfo c)
+     public override ChatRequestInfo GetChatRequestsByChatId(string chatId)
      {
         SqlConnection sqlC = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsGetByChatID", sqlC);
@@ -492,7 +492,7 @@ public class SqlChatProvider : ChatProvider
         ChatRequestInfo chat;
         try
         {
-            cmd.Parameters.Add("@ChatID", SqlDbType.Int).Value = c.ChatId;
+            cmd.Parameters.Add("@ChatID", SqlDbType.Int).Value = chatId;
             sqlC.Open();
             data = cmd.ExecuteReader();
             if (data.Read())
