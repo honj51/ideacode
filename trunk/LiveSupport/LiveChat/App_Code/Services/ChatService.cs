@@ -153,9 +153,10 @@ public class ChatService
 
     public static void CloseChat(string chatId)
     {
-        // 1. ·¢
-        //ChatMessageInfo msg = new ChatMessageInfo(chatId, Consts.
-        //AddMessage(
         _provider.CloseChat(chatId);
+    }
+    public static void UpdateCloseDate(string chatId)
+    {
+        _provider.UpdateChatRequestCloseDateByChatId(chatId);
     }
 }
