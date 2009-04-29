@@ -207,10 +207,8 @@ namespace LiveSupport.OperatorConsole
         }
         //¹Ø±Õ
         private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            ChatRequestInfo chatrequest=new ChatRequestInfo();
-            chatrequest.ChatId=myChatRequest.ChatId;
-            ws.RemoveChatRequest(chatrequest);
+        { 
+            ws.UpdateCloseDate(myChatRequest.ChatId);
             TabControl tc = this.Tag as TabControl;
             tc.TabPages.Remove(tc.SelectedTab);
         }
