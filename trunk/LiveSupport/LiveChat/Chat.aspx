@@ -349,7 +349,7 @@ legend {
   <div id="tool_wrap">
                     <ul id="toolsbar">
                         <li style="background-image: url(Images/tools_icn.gif);" id="file" onclick="divShow('uploadFileBox');">传送文件 </li>
-                        <li style="background-image: url(Images/tools_icn.gif);" id="save" class="open">保存记录 </li>
+                        <li style="background-image: url(Images/tools_icn.gif);" id="save" class="open" onclick="Save();">保存记录 </li>
                         <li style="background-image: url(Images/tools_icn.gif);" id="switch" class="open" style='display:none'>关闭提示音 </li>
                         <li style="background-image: url(Images/tools_icn.gif);" id="language" style="display:none;">语言选择</li>
                         <li style="background-image: url(Images/tools_icn.gif);" id="active" class="open">
