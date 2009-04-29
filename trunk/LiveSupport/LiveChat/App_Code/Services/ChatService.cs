@@ -32,19 +32,27 @@ public class ChatService
 		get { return _provider; }
 	}
 
-	public static void RequestChat(ChatRequestInfo request)
+    public static void RequestChat(ChatRequestInfo request)
 	{
         // Load the provider
         LoadProvider();
 
         _provider.RequestChat(request);
-        //添加系统提示信息
-        
-        ChatMessageInfo msg = new ChatMessageInfo(request.ChatId, Consts.ChatSystemName, 
-            "欢迎光临"+AccountsManager.GetAccountById(int.Parse(request.AccountId)).Name+",请稍候...", Consts.MessageType_ToChatPage);
-        AddMessage(msg);        
 	}
-
+    public static void AddSystemMessage(string ChatId,int AccountId)
+    {
+        //添加系统提示信息      
+        ChatMessageInfo msg = new ChatMessageInfo(ChatId, Consts.ChatSystemName,
+        "欢迎光临" + AccountsManager.GetAccountById(AccountId).Name + ",请稍候...", Consts.MessageType_ToChatPage);
+        AddMessage(msg);
+    }
+    public static void AddSystemMessage(string ChatId, int AccountId, string VName)
+    {
+        ChatMessageInfo msg = new ChatMessageInfo(ChatId, VName, "同意了你的请求!", Consts.MessageType_ToOperator);
+        ChatMessageInfo msg1 = new ChatMessageInfo(ChatId, VName, "你同意客服" + AccountsManager.GetAccountById(AccountId).Name + "客服对话!", Consts.MessageType_ToChatPage);
+        ChatService.AddMessage(msg);//添加聊天信息
+        ChatService.AddMessage(msg1);//添加聊天信息
+    }
     //添加聊天信息
 	public static void AddMessage(ChatMessageInfo msg)
 	{
