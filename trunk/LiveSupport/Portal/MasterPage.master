@@ -9,17 +9,12 @@
     <meta name="copyright" content="Copyright (c) 2009 LiveSupport, Inc. All rights reserved." />
     <link href="App_Themes/css-print.css" rel="stylesheet" type="text/css" media="print" />
     <link rel="shortcut icon" href="images/favicon.ico" />
-    <title>LiveSupport</title>
-    
+    <title>LiveSupport</title> 
     <meta name="GENERATOR" Content="Microsoft Visual Studio .Net 7.1">
-
     <meta name="CODE_LANGUAGE" Content="C#">
-
     <meta name=vs_defaultClientScript content="JavaScript">
-
     <meta name=vs_targetSchema content="http://schemas.microsoft.com /intellisense/ie5">
-
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <%--Add LiveChat services javascript --%>
     <!--导入js文件-->
     <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js">
