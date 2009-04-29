@@ -54,13 +54,35 @@ body
     margin: 3px 3px 3px 0;
     cursor: pointer;
 }
-#logo
+#logo 
 {
     display: block;
     width: 90px;
     height: 41px;
-    margin: 0 0 0 14px;
+    margin: 0 0 0 0;
+     
+   
+    
+    
 }
+
+ a:link {
+	color: #05418f;
+	text-decoration: none;
+}
+ a:visited {
+	text-decoration: none;
+	color: #05418f;
+}
+ a:hover {
+	text-decoration: none;
+	color:#05418f;
+}
+ a:active {
+	text-decoration: none;
+	color: #05418f;
+}
+
 #history
 {
     height: 100%;
