@@ -489,7 +489,7 @@ public class SqlChatProvider : ChatProvider
         SqlCommand cmd = new SqlCommand("LiveChat_ChatRequestsGetByChatID", sqlC);
         cmd.CommandType = CommandType.StoredProcedure;
         SqlDataReader data = null;
-        ChatRequestInfo chat;
+        ChatRequestInfo chat=null;
         try
         {
             cmd.Parameters.Add("@ChatID", SqlDbType.Int).Value = chatId;
