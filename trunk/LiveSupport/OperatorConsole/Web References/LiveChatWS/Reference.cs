@@ -65,7 +65,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback AcceptChatRequestOperationCompleted;
         
-        private System.Threading.SendOrPostCallback UpdateCloseDateOperationCompleted;
+        private System.Threading.SendOrPostCallback CloseChatOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -166,7 +166,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event AcceptChatRequestCompletedEventHandler AcceptChatRequestCompleted;
         
         /// <remarks/>
-        public event UpdateCloseDateCompletedEventHandler UpdateCloseDateCompleted;
+        public event CloseChatCompletedEventHandler CloseChatCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -690,30 +690,30 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateCloseDate", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateCloseDate(string chatId) {
-            this.Invoke("UpdateCloseDate", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void CloseChat(string chatId) {
+            this.Invoke("CloseChat", new object[] {
                         chatId});
         }
         
         /// <remarks/>
-        public void UpdateCloseDateAsync(string chatId) {
-            this.UpdateCloseDateAsync(chatId, null);
+        public void CloseChatAsync(string chatId) {
+            this.CloseChatAsync(chatId, null);
         }
         
         /// <remarks/>
-        public void UpdateCloseDateAsync(string chatId, object userState) {
-            if ((this.UpdateCloseDateOperationCompleted == null)) {
-                this.UpdateCloseDateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateCloseDateOperationCompleted);
+        public void CloseChatAsync(string chatId, object userState) {
+            if ((this.CloseChatOperationCompleted == null)) {
+                this.CloseChatOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCloseChatOperationCompleted);
             }
-            this.InvokeAsync("UpdateCloseDate", new object[] {
-                        chatId}, this.UpdateCloseDateOperationCompleted, userState);
+            this.InvokeAsync("CloseChat", new object[] {
+                        chatId}, this.CloseChatOperationCompleted, userState);
         }
         
-        private void OnUpdateCloseDateOperationCompleted(object arg) {
-            if ((this.UpdateCloseDateCompleted != null)) {
+        private void OnCloseChatOperationCompleted(object arg) {
+            if ((this.CloseChatCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UpdateCloseDateCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.CloseChatCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1459,7 +1459,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void UpdateCloseDateCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void CloseChatCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591
