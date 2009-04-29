@@ -83,7 +83,9 @@ public partial class Chat : System.Web.UI.Page
                 {
                     if (OperatorService.GetOperatorStatus(accountId))
                     {
-                        if (Request.QueryString["chatid"].ToString() !="")
+
+                        if (Request.QueryString["chatid"].ToString() != "")
+
                         {
                             pnlChat.Visible = true;
                             this.dialog();
@@ -122,16 +124,6 @@ public partial class Chat : System.Web.UI.Page
                         {
                             if (messages[i].Type == Consts.MessageType_ToAll || messages[i].Type == Consts.MessageType_ToChatPage)
                             {
-
-
-
-                                //if (messages[i].Name != VisitorName && lblOp.Text.Equals("等待客服接受您的请求"))
-                                //{
-
-                                //    lblOp.Text = messages[i].Message;
-
-                                //    break;
-                                //}
 
                                 litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, CutStr(messages[i].Message, 100));
                             }
@@ -340,22 +332,7 @@ public partial class Chat : System.Web.UI.Page
         System.Diagnostics.Process.Start(aaa);
     }
 
-    protected void lkbExit_Click(object sender, EventArgs e)
-    {
-        if (MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-        {
-            ChatService.CloseChat(Request.Cookies["chatId"].Value.ToString());
-
-
-            //int i = (int)MessageBox.Show("是否结束对话", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            //if (i == 6)
-            //{
-            Response.Write("<script language=javascript>if(confirm('是否关闭')==false) window.close();</script>");
-            //}
-        }
-        
-
-    }
+   
 
     
 //文件传送
