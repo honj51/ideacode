@@ -155,6 +155,7 @@ public class ChatService
     {
         _provider.CloseChat(chatId);
     }
+    //设置对话关闭时间
     public static void UpdateCloseDate(string chatId)
     {
         _provider.UpdateChatRequestCloseDateByChatId(chatId);
