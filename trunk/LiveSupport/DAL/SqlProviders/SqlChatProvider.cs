@@ -433,7 +433,7 @@ public class SqlChatProvider : ChatProvider
         {
             cmd.Parameters.Add("@ChatID", SqlDbType.Char, 39).Value = chatId;
             conn.Open();
-
+            cmd.ExecuteNonQuery();
         }
         catch (Exception ex)
         {
@@ -463,6 +463,8 @@ public class SqlChatProvider : ChatProvider
         {
             cmd.Parameters.Add("@ChatID", SqlDbType.Char, 40).Value = chatId;
             conn.Open();
+            cmd.ExecuteScalar();
+            cmd.Dispose();
         }
         catch (Exception ex)
         {
