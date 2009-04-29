@@ -353,7 +353,7 @@ public partial class Chat : System.Web.UI.Page
             {
                 string chatId = Request.Cookies["chatId"].Value.ToString();
                 OperatorWS ow = new OperatorWS();
-                bool b=ow.getOperatorIDByChatID(chatId);
+                bool b=ow.GetOperatorIDByChatID(chatId);
                 if (b)
                 {
                     string file = this.fuFile.FileName.ToString();
