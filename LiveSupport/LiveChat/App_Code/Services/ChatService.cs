@@ -90,7 +90,9 @@ public class ChatService
         {
             chatid = li[li.Count - 1].ChatId;            
         }
+
         return chatid;
+
     }
     //更新IsShow的显示
     public static void UpdateIsShowRequestsByAidandIP(int accountId, string ip, string isShow)
