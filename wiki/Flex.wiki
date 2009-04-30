@@ -1,0 +1,6 @@
+
+
+= Flex 技术资源下载 =
+
+ * [http://download.macromedia.com/pub/developer/air/TourDeFlex.air Flex 例子程序]
+ * [http://www.adobe.com/devnet/flashmediaserver/articles/fmis_feature_explorer.html Flash Media Server 例子]
