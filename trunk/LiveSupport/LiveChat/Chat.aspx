@@ -9,7 +9,10 @@
 
        
 <style type="text/css">
-
+    
+    
+    
+    
         BODY 
         {
              margin-left: 0px;
@@ -95,6 +98,18 @@ TD {
         
     </style>  
 <script language="javascript" type="text/javascript">
+
+document.onkeydown = function()
+ {
+          if(event.keyCode==116) {
+          event.keyCode=0;
+          event.returnValue = false;
+          }
+}
+document.oncontextmenu = function() {event.returnValue = false;} 
+
+
+
 ///窗体关闭提示
 function Exit()
 {
