@@ -144,14 +144,14 @@ namespace LiveSupport.OperatorConsole
             // cannedMessagesToolStripMenuItem
             // 
             this.cannedMessagesToolStripMenuItem.Name = "cannedMessagesToolStripMenuItem";
-            this.cannedMessagesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.cannedMessagesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cannedMessagesToolStripMenuItem.Text = "常用消息(&C)";
             this.cannedMessagesToolStripMenuItem.Click += new System.EventHandler(this.cannedMessagesToolStripMenuItem_Click);
             // 
             // presetLinksToolStripMenuItem
             // 
             this.presetLinksToolStripMenuItem.Name = "presetLinksToolStripMenuItem";
-            this.presetLinksToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.presetLinksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.presetLinksToolStripMenuItem.Text = "预置链接(&P)";
             this.presetLinksToolStripMenuItem.Click += new System.EventHandler(this.presetLinksToolStripMenuItem_Click);
             // 
