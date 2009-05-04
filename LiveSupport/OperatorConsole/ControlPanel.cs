@@ -365,6 +365,8 @@ namespace LiveSupport.OperatorConsole
                         RefreshTabInfo();
                         IsIP = lstVisitors.SelectedItems[0].SubItems[2].Text;
                         ws.TransferChat(requestinfo);
+                        //修改客服编号
+                        ws.AcceptChatRequest(requestinfo.ChatId, Program.CurrentOperator.Id);//服务人员
                     }
                 }
                 else
