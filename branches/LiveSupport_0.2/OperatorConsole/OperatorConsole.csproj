@@ -181,10 +181,10 @@
     <None Include="Web References\LiveChatWS\Operator.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3355/LiveChat/Operator.asmx">
+    <WebReferenceUrl Include="http://localhost:49739/LiveChat/Operator.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LiveChatWS\</RelPath>
-      <UpdateFromURL>http://localhost:3355/LiveChat/Operator.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:49739/LiveChat/Operator.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -210,10 +210,16 @@
   <ItemGroup>
     <Content Include="Profile.ico" />
     <None Include="Resources\cat_sh_button.gif" />
+    <None Include="Resources\alarmd.png" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\sc.jpg" />
+    <None Include="Resources\logfile_24.png" />
+    <None Include="Resources\logfile_48.png" />
+    <None Include="Resources\live800.bmp" />
+    <None Include="Resources\user1_message_24.png" />
     <None Include="Resources\leave_title_bg.jpg" />
     <None Include="Resources\PI Diagona Web Application 04 10.png" />
     <None Include="Resources\PI Diagona Web Application 04 09.png" />

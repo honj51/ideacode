@@ -31,6 +31,8 @@
             this.acceptButton = new System.Windows.Forms.Button();
             this.declineButton = new System.Windows.Forms.Button();
             this.messageLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // acceptButton
@@ -66,6 +68,17 @@
             this.messageLabel.TabIndex = 2;
             this.messageLabel.Text = "显示消息";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::LiveSupport.OperatorConsole.Properties.Resources.user1_message_24;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // NotifyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -74,6 +87,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(250, 104);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.declineButton);
             this.Controls.Add(this.acceptButton);
@@ -85,6 +99,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "NotifyForm";
             this.TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,5 +110,6 @@
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button declineButton;
         private System.Windows.Forms.Label messageLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

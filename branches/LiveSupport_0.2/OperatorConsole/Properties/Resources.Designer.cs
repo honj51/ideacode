@@ -60,6 +60,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap alarmd {
+            get {
+                object obj = ResourceManager.GetObject("alarmd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap cancel {
             get {
                 object obj = ResourceManager.GetObject("cancel", resourceCulture);
@@ -84,6 +91,27 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.Drawing.Bitmap leave_title_bg {
             get {
                 object obj = ResourceManager.GetObject("leave_title_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap live800 {
+            get {
+                object obj = ResourceManager.GetObject("live800", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap logfile_24 {
+            get {
+                object obj = ResourceManager.GetObject("logfile_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap logfile_48 {
+            get {
+                object obj = ResourceManager.GetObject("logfile_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -180,6 +208,20 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.Drawing.Bitmap purchase {
             get {
                 object obj = ResourceManager.GetObject("purchase", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap sc {
+            get {
+                object obj = ResourceManager.GetObject("sc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap user1_message_24 {
+            get {
+                object obj = ResourceManager.GetObject("user1_message_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
