@@ -168,6 +168,12 @@ public class Visitor
         get { return isVIP; }
         set { isVIP = value; }
     }
+
+    public Visitor()
+    {
+        
+    }
+
     public Visitor(SqlDataReader data)
     {
         if (!Convert.IsDBNull(data["VisitorId"])) VisitorId = (int)data["VisitorId"];
