@@ -28,5 +28,9 @@ namespace LiveSupport.DAL.SqlProviders
 
             base.Initialize(name, config);
         }
+        public override List<Province> GetAllProvince()
+        {
+
+        }
     }
 }
