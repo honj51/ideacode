@@ -9,5 +9,5 @@ using LiveSupport.DAL.Entity;
 /// </summary>
 public abstract class ProvinceProvider : ProviderBase
 {
-    public abstract Province GetAllProvince();
+    //public abstract Province GetAllProvince();
 }

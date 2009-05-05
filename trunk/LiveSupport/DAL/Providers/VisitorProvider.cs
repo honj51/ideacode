@@ -9,5 +9,5 @@ using LiveSupport.DAL.Entity;
 /// </summary>
 public abstract class VisitorProvider : ProviderBase
 {
-    public abstract Visitor GetAllVisitor();
+    public abstract List<Visitor> GetVistorByStatus(Visitor visitor);
 }
