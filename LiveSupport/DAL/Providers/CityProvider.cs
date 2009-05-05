@@ -9,5 +9,5 @@ using LiveSupport.DAL.Entity;
 /// </summary>
 public abstract class CityProvider : ProviderBase
 {
-    public abstract City GetCityByPid(int pid);
+    //public abstract City GetCityByPid(int pid);
 }

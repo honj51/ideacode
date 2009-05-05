@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Configuration;
+using System.Web;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using LiveSupport.DAL.Entity;
 
 namespace LiveSupport.DAL.SqlProviders
 {
@@ -28,9 +32,9 @@ namespace LiveSupport.DAL.SqlProviders
 
             base.Initialize(name, config);
         }
-        public override List<Province> GetAllProvince()
-        {
+        //public override List<Province> GetAllProvince()
+        //{
 
-        }
+        //}
     }
 }

@@ -33,7 +33,7 @@ public class MemoryChatProvider : ChatProvider
 
 		base.Initialize(name, config);
 	}
-
+     
 	public override string RequestChat(ChatRequestInfo request)
 	{
 		bool cacheExists;
