@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://localhost:3355/LiveChat/Operator.asmx</Value>
+      <Value Profile="(Default)">http://localhost:1553/LiveChat/Operator.asmx</Value>
     </Setting>
     <Setting Name="CannedMsg" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
