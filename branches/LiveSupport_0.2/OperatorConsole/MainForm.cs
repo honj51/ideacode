@@ -513,6 +513,12 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
+        private void ø’œ–ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChatForm f = new ChatForm();
+            f.Show();
+        }
+
 
   }
 }
