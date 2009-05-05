@@ -33,7 +33,7 @@ public class MemoryChatProvider : ChatProvider
 
 		base.Initialize(name, config);
 	}
-
+     
 	public override string RequestChat(ChatRequestInfo request)
 	{
 		bool cacheExists;
@@ -166,7 +166,7 @@ public class MemoryChatProvider : ChatProvider
         throw new NotImplementedException();
     }
     //通过用户编号获得客服编号
-    public override bool getOperatorIDByChatID(string chatId)
+    public override bool GetOperatorIDByChatID(string chatId)
     {
         throw new NotImplementedException();
     }
