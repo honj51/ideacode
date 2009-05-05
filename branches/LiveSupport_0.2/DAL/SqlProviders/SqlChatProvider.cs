@@ -482,6 +482,7 @@ public class SqlChatProvider : ChatProvider
             }
         }
     }
+
     //跟据ChatID查询一行数据 
      public override ChatRequestInfo GetChatRequestByChatId(string chatId)
      {

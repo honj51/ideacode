@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{3
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECFC88-DB34-4D16-A9AA-9D03CACB1C27}"
 	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "Svn"
+		SccAuxPath = "Svn"
+		SccLocalPath = "Svn"
+		SccProvider = "SubversionScc"
 		TargetFramework = "2.0"
 		ProjectReferences = "{3A928111-2371-40AD-9D95-062B1AFEAC96}|LiveSupport.DAL.dll;{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Portal"
@@ -28,6 +32,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECF
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C4903BEF-9491-492A-AC4A-8244790DAFE3}"
 	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "Svn"
+		SccAuxPath = "Svn"
+		SccLocalPath = "Svn"
+		SccProvider = "SubversionScc"
 		TargetFramework = "3.5"
 		ProjectReferences = "{3A928111-2371-40AD-9D95-062B1AFEAC96}|LiveSupport.DAL.dll;{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/LiveChat"
@@ -49,9 +57,13 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorConsole", "OperatorConsole\OperatorConsole.csproj", "{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "OperatorConsole\Installer\Installer.vdproj", "{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "OperatorConsole.Installer\Installer.vdproj", "{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
 		Debug|Any CPU = Debug|Any CPU
@@ -111,18 +123,18 @@ Global
 		{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|.NET.ActiveCfg = Debug
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|.NET.Build.0 = Debug
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Any CPU.ActiveCfg = Debug
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Any CPU.Build.0 = Debug
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Debug|Mixed Platforms.Build.0 = Debug
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|.NET.ActiveCfg = Release
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|.NET.Build.0 = Release
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Any CPU.ActiveCfg = Release
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Any CPU.Build.0 = Release
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Mixed Platforms.ActiveCfg = Release
-		{CA30AB7A-8C6D-49F9-9D5E-0686C8B2F5A9}.Release|Mixed Platforms.Build.0 = Release
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Debug|.NET.ActiveCfg = Debug
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Debug|.NET.Build.0 = Debug
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Debug|Any CPU.ActiveCfg = Debug
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Debug|Any CPU.Build.0 = Debug
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Debug|Mixed Platforms.Build.0 = Debug
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Release|.NET.ActiveCfg = Release
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Release|.NET.Build.0 = Release
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Release|Any CPU.ActiveCfg = Release
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Release|Any CPU.Build.0 = Release
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Release|Mixed Platforms.ActiveCfg = Release
+		{C77A2D9F-5E3C-4953-9E09-54DF7345D4E3}.Release|Mixed Platforms.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
