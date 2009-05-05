@@ -347,7 +347,7 @@ public class SqlChatProvider : ChatProvider
     }
 
     //通过用户编号获得客户编号
-    public override bool getOperatorIDByChatID(string chatId)
+    public override bool GetOperatorIDByChatID(string chatId)
     {
         SqlConnection conn = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand("LiveChat_ChatRequests_GetOperatorIDByChatID", conn);
