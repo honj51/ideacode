@@ -176,25 +176,25 @@ public class Visitor
 
     public Visitor(SqlDataReader data)
     {
-        if (!Convert.IsDBNull(data["VisitorId"])) VisitorId = (int)data["VisitorId"];
-        if (!Convert.IsDBNull(data["AccountId"])) AccountId = (int)data["AccountId"];
-        if (!Convert.IsDBNull(data["Name"])) Name = (string)data["Name"];
-        if (!Convert.IsDBNull(data["IP"])) IP = (string)data["IP"];
-        if (!Convert.IsDBNull(data["Email"])) Email = (string)data["Email"];
-        if (!Convert.IsDBNull(data["Browser"])) Browser = (string)data["Browser"];
-        if (!Convert.IsDBNull(data["Status"])) Status = (string)data["Status"];
-        if (!Convert.IsDBNull(data["Location"])) Location = (string)data["Location"];
-        if (!Convert.IsDBNull(data["Operator"])) Operators = (int)data["Operator"];
-        if (!Convert.IsDBNull(data["VisitingTime"])) VisitingTime = (DateTime)data["VisitingTime"];
-        if (!Convert.IsDBNull(data["LeaveTime"])) LeaveTime = (DateTime)data["LeaveTime"];
-        if (!Convert.IsDBNull(data["RequestTime"])) RequestTime = (DateTime)data["RequestTime"];
-        if (!Convert.IsDBNull(data["ChatingTime"])) ChatingTime = (DateTime)data["ChatingTime"];
-        if (!Convert.IsDBNull(data["WaitingDuring"])) WaitingDuring = (DateTime)data["WaitingDuring"];
-        if (!Convert.IsDBNull(data["ChattingDuring"])) ChattingDuring = (DateTime)data["ChattingDuring"];
-        if (!Convert.IsDBNull(data["VisitCount"])) VisitCount = (int)data["MessageID"];
-        if (!Convert.IsDBNull(data["Mark"])) Mark = (string)data["Mark"];
+        if (!Convert.IsDBNull(data["VisitorId"])) visitorId  = (int)data["VisitorId"];
+        if (!Convert.IsDBNull(data["AccountId"])) accountId = (int)data["AccountId"];
+        if (!Convert.IsDBNull(data["Name"])) name = (string)data["Name"];
+        if (!Convert.IsDBNull(data["IP"])) iP = (string)data["IP"];
+        if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
+        if (!Convert.IsDBNull(data["Browser"])) browser = (string)data["Browser"];
+        if (!Convert.IsDBNull(data["Status"])) status = (string)data["Status"];
+        if (!Convert.IsDBNull(data["Location"])) location = (string)data["Location"];
+        if (!Convert.IsDBNull(data["Operator"])) operators = (int)data["Operator"];
+        if (!Convert.IsDBNull(data["VisitingTime"])) visitingTime = (DateTime)data["VisitingTime"];
+        if (!Convert.IsDBNull(data["LeaveTime"])) leaveTime = (DateTime)data["LeaveTime"];
+        if (!Convert.IsDBNull(data["RequestTime"])) requestTime = (DateTime)data["RequestTime"];
+        if (!Convert.IsDBNull(data["ChatingTime"])) chatingTime = (DateTime)data["ChatingTime"];
+        if (!Convert.IsDBNull(data["WaitingDuring"])) waitingDuring = (DateTime)data["WaitingDuring"];
+        if (!Convert.IsDBNull(data["ChattingDuring"])) chattingDuring = (DateTime)data["ChattingDuring"];
+        if (!Convert.IsDBNull(data["VisitCount"])) visitCount = (int)data["MessageID"];
+        if (!Convert.IsDBNull(data["Mark"])) mark = (string)data["Mark"];
         if (!Convert.IsDBNull(data["PageRequestCount"])) PageRequestCount = (int)data["PageRequestCount"];
-        if (!Convert.IsDBNull(data["IsVIP"])) IsVIP = (bool)data["IsVIP"];
+        if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
     }
 }
 
