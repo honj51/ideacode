@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EFB3C861-A039-419D-B2A5-D0BB46C16A0B}"
+	ProjectSection(SolutionItems) = preProject
+		Application1.sdm = Application1.sdm
+		Database1.sdm = Database1.sdm
+		LiveSupport_1.0_SD.ad = LiveSupport_1.0_SD.ad
+		LiveSupport_1.0_SD.sd = LiveSupport_1.0_SD.sd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System1", "System1", "{AED7151E-5652-44B3-BB14-E929E5D67188}"
+	ProjectSection(SolutionItems) = preProject
+		System1.sd = System1.sd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AED7151E-5652-44B3-BB14-E929E5D67188} = {EFB3C861-A039-419D-B2A5-D0BB46C16A0B}
+	EndGlobalSection
+EndGlobal

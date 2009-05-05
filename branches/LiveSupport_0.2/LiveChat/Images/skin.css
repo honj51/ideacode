@@ -1,0 +1,181 @@
+#chatbox
+{
+    
+    scrollbar-face-color: #bbddff;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #91c6f8;
+    scrollbar-darkshadow-color: #91c6f8;
+    scrollbar-track-color: #EEEEEE;
+    scrollbar-arrow-color: #0c68ef;
+}
+#tdhead
+{
+    background-image: url(Images/title_bg.gif);
+}
+#head
+{
+    background-image: url(Images/title.gif);
+}
+#banner.default
+{
+    background-image: url(Images/right_column.jpg);
+}
+#logo
+{
+    background-image: url(Images/logo.gif);
+}
+#notewrap
+{
+    background: #85c3ff url(Images/chat_bg.jpg) bottom repeat-x;
+}
+#tdinput
+{
+    background: #63B0FE;
+}
+#tdfooter
+{
+    background: url(Images/footer_bg.gif);
+}
+#history
+{
+    background: #E9F3FF;
+    border: 1px solid #4682C0;
+}
+#footer
+{
+    background-image: url(Images/footer_1.gif);
+    color: #fff;
+}
+#footer p
+{
+    background-image: url(Images/footer_2.gif);
+    background-position: right;
+}
+#enter
+{
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+#enter
+{
+    background-position: 1px 1px;
+}
+#enter.cn
+{
+    background-image: url(Images/send0.jpg);
+}
+#enter.tw
+{
+    background-image: url(Images/send1.jpg);
+}
+#enter.en
+{
+    background-image: url(Images/send2.jpg);
+}
+#enter.ja
+{
+    background-image: url(Images/send3.jpg);
+}
+#toolsbar li.hover, #exitChat.hover
+{
+    border: 1px solid #AED2FC;
+    background-color: #7DB7FA;
+    color: #fff;
+}
+#shortcutkey.hover
+{
+    background-color: #7DB7FA;
+}
+#enter.hover
+{
+    background-color: #fff;
+    opacity: .6;
+    filter: alpha(opacity=60);
+}
+#toolsbar li, #exitChat
+{
+    border: 1px #63B0FE solid;
+    color: #fff;
+}
+#languageList, #shortKeyMenu
+{
+    border: 1px #63B0FE solid;
+}
+#languageList li.hover
+{
+    background: #63B0FE;
+    color: #fff;
+}
+#shortKeyMenu li.hover
+{
+    background: #63B0FE;
+    color: #fff;
+}
+#enter_wrap
+{
+    background: #63b0fe;
+}
+#innerSurveyForm, #chaterInfo
+{
+    color: #1571B3;
+}
+#msg
+{
+    background-color: #63b0fe;
+}
+#inputbox
+{
+    border: 1px solid #4682C0;
+}
+#wrap
+{
+    padding-bottom: 0;
+    top: 41px;
+    left: 0px;
+}
+#shortKeyMenu li, #languageList li
+{
+    color: #55a1f5;
+}
+#head
+{
+    font-weight: normal;
+}
+#popDiv button.button
+{
+    background: url(Images/button.gif) no-repeat center;
+    width: 80px;
+    height: 24;
+    line-height: 24px;
+    border: none;
+    color: #1571B3;
+}
+#preChatForm
+{
+    color: #1571B3;
+}
+#tool_wrap
+{
+    padding: 0;
+}
+#exitChat
+{
+    top: 3px;
+}
+#inputarea
+{
+    padding: 0 3px;
+}
+#toolsbar
+{
+    padding: 1px 2px;
+}
+#dialbackBox
+{
+    background: url(Images/dialback.jpg);
+}
+#dialbackBox .sumbit
+{
+    background: url(Images/bt.jpg) no-repeat;
+}

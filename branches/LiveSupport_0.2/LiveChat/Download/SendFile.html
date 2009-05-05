@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0058)http://chat8.live800.com/live800/chatClient/uploadFile.htm -->
+<HTML><HEAD><TITLE>UploadFile</TITLE>
+<STYLE type=text/css>BODY {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 1px; BORDER-BOTTOM: 0px; FONT-FAMILY: Tahoma
+}
+TD {
+	FONT-SIZE: 9pt; FONT-FAMILY: Tahoma
+}
+INPUT.text {
+	BORDER-RIGHT: #70b4e0 1px solid; BORDER-TOP: #70b4e0 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #70b4e0 1px solid; COLOR: #007ac8; BORDER-BOTTOM: #70b4e0 1px solid; BACKGROUND-COLOR: #d4eeff
+}
+INPUT.btn {
+	BORDER-RIGHT: #70b4e0 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #70b4e0 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #70b4e0 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #70b4e0 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: 18px
+}
+</STYLE>
+
+<SCRIPT language=JavaScript type=text/JavaScript>
+function getObj(objId)
+{
+	if (document.getElementById) 
+		return document.getElementById(objId); 
+	else if (document.all) 
+		return document.all(objId);	
+}
+//传送
+function CheckUpload(){
+	if(document.uploadFileForm.myFile.value.length<1){
+		alert("请选择要传送的文件");
+		document.uploadFileForm.myFile.focus();
+		return false;
+	}else
+	{
+		getObj('uploadFileForm').action = parent.globalChatHandle.uploadFileOnSubmit(document.uploadFileForm.myFile.value);
+		//getObj('uploadFileForm').action = parent.kf.uploadFileOnSubmit(document.uploadFileForm.myFile.value);
+		return true;
+	}
+			
+}
+		
+function CheckFile(){
+try{
+	 var fso, f, s;
+	 var FilePath = document.uploadFileForm.myFile.value;
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+	if(fso.FileExists(FilePath)){
+	  f = fso.GetFile(FilePath);
+	  s = f.size;
+	  if(s>1024*1024*4){
+		alert("文件的大小不能超过4M");
+		return false;
+		}
+	}else{
+		   alert("文件不存在");
+		return false;
+	}
+}catch(e){
+	alert(e);
+	return false;
+	}
+		return true;
+}
+</SCRIPT>
+
+<META http-equiv=Content-Type content="text<html; charset=utf-8">
+<META content="MSHTML 6.00.2900.5726" name=GENERATOR></HEAD>
+<BODY>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD width=50></TD>
+    <TD align=left width=574>
+      <FORM id=uploadFileForm name=uploadFileForm action="" method=post encType=multipart/form-data>
+        <INPUT class=text id=myFile onkeydown="return false;" type=file size=12 name=myFile> 
+        <INPUT class=btn id=Button1 onclick="javascript:return CheckUpload();" type=submit value=传送 name=Button1> 
+        <INPUT class=btn onclick=parent.globalChatHandle.hideUploadFileForm(); type=button value=关闭 name=Submit2> 
+      </FORM>
+    </TD></TR>
+  </TBODY>
+  </TABLE>
+  </BODY>
+  <Html>
