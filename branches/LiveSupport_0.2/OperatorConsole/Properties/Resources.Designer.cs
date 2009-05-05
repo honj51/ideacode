@@ -67,9 +67,23 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cat_sh_button {
+            get {
+                object obj = ResourceManager.GetObject("cat_sh_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap file_sent {
             get {
                 object obj = ResourceManager.GetObject("file_sent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap leave_title_bg {
+            get {
+                object obj = ResourceManager.GetObject("leave_title_bg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,6 +97,76 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.IO.UnmanagedMemoryStream newmsg {
             get {
                 return ResourceManager.GetStream("newmsg", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_01 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_02 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_03 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_04 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_05 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_05", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_06 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_07 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_07", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_08 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_08", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_09 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_10 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

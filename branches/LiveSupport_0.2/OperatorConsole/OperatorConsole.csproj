@@ -72,6 +72,12 @@
     <Compile Include="CannedMessages.Designer.cs">
       <DependentUpon>CannedMessages.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChatSession\LiveChat.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,11 +90,17 @@
     <Compile Include="ChatSession\TabInfo.Designer.cs">
       <DependentUpon>TabInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlPanel.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlPanel.Designer.cs">
-      <DependentUpon>ControlPanel.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifyForm.Designer.cs">
+      <DependentUpon>NotifyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PresetLinks.cs">
       <SubType>Form</SubType>
@@ -108,6 +120,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>CannedMessages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChatSession\LiveChat.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LiveChat.cs</DependentUpon>
@@ -116,9 +132,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>TabInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlPanel.resx">
+    <EmbeddedResource Include="MainForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ControlPanel.cs</DependentUpon>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifyForm.resx">
+      <DependentUpon>NotifyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PresetLinks.resx">
       <DependentUpon>PresetLinks.cs</DependentUpon>
@@ -189,10 +209,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Profile.ico" />
+    <None Include="Resources\cat_sh_button.gif" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\leave_title_bg.jpg" />
+    <None Include="Resources\PI Diagona Web Application 04 10.png" />
+    <None Include="Resources\PI Diagona Web Application 04 09.png" />
+    <None Include="Resources\PI Diagona Web Application 04 08.png" />
+    <None Include="Resources\PI Diagona Web Application 04 07.png" />
+    <None Include="Resources\PI Diagona Web Application 04 06.png" />
+    <None Include="Resources\PI Diagona Web Application 04 05.png" />
+    <None Include="Resources\PI Diagona Web Application 04 04.png" />
+    <None Include="Resources\PI Diagona Web Application 04 03.png" />
+    <None Include="Resources\PI Diagona Web Application 04 02.png" />
+    <None Include="Resources\PI Diagona Web Application 04 01.png" />
     <None Include="Resources\Profile.ico" />
     <None Include="Resources\type.wav" />
     <None Include="Resources\ringout.wav" />

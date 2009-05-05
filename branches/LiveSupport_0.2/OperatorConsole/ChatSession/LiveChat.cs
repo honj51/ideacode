@@ -71,7 +71,7 @@ namespace LiveSupport.OperatorConsole
                     // Should we play a sound
                     if (Properties.Settings.Default.PlaySoundOnChatMsg)
                     {
-                        ((ControlPanel)this.ParentForm).PlayMsgSound();
+                        ((MainForm)this.ParentForm).PlayMsgSound();
                     }
 
                     //TODO: Make this more flexible
@@ -80,7 +80,7 @@ namespace LiveSupport.OperatorConsole
                     // Flash the window
                     if (this.ParentForm != null)
                     {
-                        API.FlashWindowEx(((ControlPanel)this.ParentForm).Handle);
+                        API.FlashWindowEx(((MainForm)this.ParentForm).Handle);
                     }
                 }
             }
@@ -112,7 +112,7 @@ namespace LiveSupport.OperatorConsole
 
                 ws.AddMessage(msg);
 
-                ((ControlPanel)this.ParentForm).EndChat((TabPage)this.Parent, myChatRequest.ChatId);
+                ((MainForm)this.ParentForm).EndChat((TabPage)this.Parent, myChatRequest.ChatId);
             }
         }
 

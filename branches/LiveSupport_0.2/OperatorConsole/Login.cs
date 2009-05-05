@@ -29,48 +29,48 @@ namespace LiveSupport.OperatorConsole
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-			if (txtOpName.Text.Length > 0 && txtOpPassword.Text.Length > 0)
-			{
-                // Check to see if we need to save the config
-                if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator != txtWSUrl.Text || Properties.Settings.Default.WSUser != txtUserName.Text)
-                {
-                    Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = txtWSUrl.Text;
-                    Properties.Settings.Default.WSUser = txtUserName.Text;
-                    Properties.Settings.Default.Save();
-                }
-				OperatorWS ws = new OperatorWS();
-                // Simple authentication
-                AuthenticationHeader auth = new AuthenticationHeader();
-                auth.userName = Properties.Settings.Default.WSUser;
-                ws.AuthenticationHeaderValue = auth;
+            //if (txtOpName.Text.Length > 0 && txtOpPassword.Text.Length > 0)
+            //{
+            //    // Check to see if we need to save the config
+            //    if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator != txtWSUrl.Text || Properties.Settings.Default.WSUser != txtUserName.Text)
+            //    {
+            //        Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = txtWSUrl.Text;
+            //        Properties.Settings.Default.WSUser = txtUserName.Text;
+            //        Properties.Settings.Default.Save();
+            //    }
+            //    OperatorWS ws = new OperatorWS();
+            //    // Simple authentication
+            //    AuthenticationHeader auth = new AuthenticationHeader();
+            //    auth.userName = Properties.Settings.Default.WSUser;
+            //    ws.AuthenticationHeaderValue = auth;
 
-				Program.CurrentOperator = ws.LogIn(txtOpName.Text, txtOpPassword.Text);
+            //    Program.CurrentOperator = ws.LogIn(txtOpName.Text, txtOpPassword.Text);
                  
-				// if we got an OperatorInfo, we continue
-				if (Program.CurrentOperator != null)
-				{
-                    if (Program.CurrentOperator.IsOnline)
-                    {
-                        MessageBox.Show("用户已经登录,\r\n\r\n请用其他用户登录...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    // if we got an OperatorInfo, we continue
+            //    if (Program.CurrentOperator != null)
+            //    {
+            //        if (Program.CurrentOperator.IsOnline)
+            //        {
+            //            MessageBox.Show("用户已经登录,\r\n\r\n请用其他用户登录...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    }
-                    else
-                    {
+            //        }
+            //        else
+            //        {
                         this.Hide();
-                        ControlPanel c = new ControlPanel();
+                        MainForm c = new MainForm();
                         c.Show();
-                    }
-				}
-				else
-				{
+            //        }
+            //    }
+            //    else
+            //    {
                    
-                        //Invalid credentials
-                       MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //            //Invalid credentials
+            //           MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                   
                      
                    
-                    }
-			}
+            //        }
+            //}
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

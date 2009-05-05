@@ -23,5 +23,8 @@
     <Setting Name="WSUser" Type="System.String" Scope="User">
       <Value Profile="(Default)">wspass</Value>
     </Setting>
+    <Setting Name="StartWithWindows" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
