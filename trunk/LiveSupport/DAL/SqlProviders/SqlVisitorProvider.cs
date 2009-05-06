@@ -18,7 +18,7 @@ public class SqlVisitorProvider : VisitorProvider
             throw new ArgumentNullException("config");
 
         if (string.IsNullOrEmpty(name))
-            name = "SqlChatProvider";
+            name = "SqlVisitorProvider";
 
         // Check for the connection string
         if (config["connectionStringName"] != null && !string.IsNullOrEmpty(config["connectionStringName"].ToString()) && !string.IsNullOrEmpty(ConfigurationManager.ConnectionStrings[config["connectionStringName"].ToString()].ToString()))
