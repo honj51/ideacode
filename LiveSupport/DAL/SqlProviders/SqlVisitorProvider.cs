@@ -33,24 +33,65 @@ public class SqlVisitorProvider : VisitorProvider
     }
 
     //跟据状态查询某公司的访客
-    public override List<Visitor> GetVistorsByStatus(int accountId, VisitSessionStatus status)
+    //public override List<Visitor> GetVistorsByStatus(int accountId, VisitSessionStatus status)
+    //{
+    //    SqlConnection sqlC = new SqlConnection(connectionString);
+    //    SqlCommand cmd = new SqlCommand("LiveChat_GetVisitorByStatus", sqlC);
+    //    cmd.CommandType = CommandType.StoredProcedure;
+    //    SqlDataReader data = null;
+    //    List<Visitor> retList = new List<Visitor>();
+
+    //    try
+    //    {
+    //        cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = accountId;
+    //        cmd.Parameters.Add("@Status", SqlDbType.VarChar).Value = status.ToString();
+
+    //        sqlC.Open();
+    //        data = cmd.ExecuteReader();
+    //        while (data.Read())
+    //            retList.Add(new Visitor(data));
+
+    //        data.Close();
+    //        data.Dispose();
+    //        data = null;
+    //        cmd.Dispose();
+    //        sqlC.Close();
+    //    }
+    //    catch
+    //    {
+    //        throw;
+    //    }
+    //    finally
+    //    {
+    //        if (sqlC != null)
+    //        {
+    //            if (sqlC.State == ConnectionState.Open)
+    //                sqlC.Close();
+
+    //            sqlC.Dispose();
+    //            sqlC = null;
+    //        }
+    //    }
+    //    return retList;
+    //}
+
+
+    public override Visitor GetVisitorById(string visitorId)
     {
         SqlConnection sqlC = new SqlConnection(connectionString);
-        SqlCommand cmd = new SqlCommand("LiveChat_GetVisitorByStatus", sqlC);
-        cmd.CommandType = CommandType.StoredProcedure;
+        string sql = "select * from Visitor where VisitorId=" + visitorId;
+        SqlCommand cmd = new SqlCommand(sql, sqlC);
         SqlDataReader data = null;
-        List<Visitor> retList = new List<Visitor>();
+        Visitor visitor = null;
 
         try
-        {
-            cmd.Parameters.Add("@AccountId", SqlDbType.Int).Value = accountId;
-            cmd.Parameters.Add("@Status", SqlDbType.VarChar).Value = status.ToString();
-
+        {            
             sqlC.Open();
             data = cmd.ExecuteReader();
-            while (data.Read())
-                retList.Add(new Visitor(data));
-
+            if (data.Read())
+            {
+                visitor = new Visitor(data);
+            }
             data.Close();
             data.Dispose();
             data = null;
@@ -72,8 +113,28 @@ public class SqlVisitorProvider : VisitorProvider
                 sqlC = null;
             }
         }
-        return retList;
+
+        return visitor;
     }
 
+    public override void NewVisitor(Visitor visitor)
+    {
+        // TODO:  没有数据库
+        return;
+    }
+
+    public override List<Visitor> GetAllOnlineVisitors(int accountId)
+    {
+        // Test only
+		List<Visitor> visitors = new List<Visitor>();
+		for (int i = 0; i < 10; i++)
+		{
+            Visitor v = new Visitor();
+            v.AccountId = accountId;
+            v.Name = "Test" + i;            
+			visitors.Add(v);
+		}
+		return visitors;
+    }
 }
 

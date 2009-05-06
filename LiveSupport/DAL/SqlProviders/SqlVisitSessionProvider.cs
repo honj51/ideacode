@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Configuration;
 
 namespace LiveSupport.DAL.SqlProviders
 {
-    public class SqlVisitSessionProvider
+    public class SqlVisitSessionProvider : VisitSessionProvider
     {
         private string connectionString = string.Empty;
 
