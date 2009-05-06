@@ -39,6 +39,7 @@ public class ChatService
 
         _provider.RequestChat(request);        
 	}
+
     public static void ChatPageRequestChat(ChatRequestInfo request)
     {
         // Load the provider
@@ -141,7 +142,7 @@ public class ChatService
     //通过对话编号获得客户编号
     public static bool GetOperatorIDByChatID(string chatId)
     {
-        return _provider.getOperatorIDByChatID(chatId);
+        return _provider.GetOperatorIDByChatID(chatId);
     }
      //通过ChatId修改客服人员ID
     public static void UpdateOperatorIDByChatID(string chatId, int operatorId)
@@ -157,5 +158,9 @@ public class ChatService
     public static void UpdateCloseDate(string chatId)
     {
         _provider.UpdateChatRequestCloseDateByChatId(chatId);
+    }
+    public static ChatRequestInfo GetChatRequestByChatId(string chatId)
+    {
+       return _provider.GetChatRequestByChatId(chatId);
     }
 }
