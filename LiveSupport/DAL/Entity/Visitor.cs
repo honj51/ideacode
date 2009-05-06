@@ -112,6 +112,7 @@ namespace LiveSupport.DAL.Entity
             if (!Convert.IsDBNull(data["Name"])) name = (string)data["Name"];
             if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
             if (!Convert.IsDBNull(data["VisitCount"])) visitCount = (int)data["VisitCount"];
+            if (!Convert.IsDBNull(data["Company"])) company = (int)data["Company"];
             if (!Convert.IsDBNull(data["Remark"])) remark = (string)data["Remark"];
             if (!Convert.IsDBNull(data["CurrentSessionId"])) currentSessionId = (string)data["CurrentSessionId"];
             if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
