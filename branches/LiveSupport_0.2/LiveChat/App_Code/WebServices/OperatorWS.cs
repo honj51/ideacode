@@ -245,4 +245,10 @@ public class OperatorWS : System.Web.Services.WebService
             "客服已关闭该对话", Consts.MessageType_ToChatPage);
         ChatService.AddMessage(msg);
     }
+
+    [WebMethod]
+    public List<Visitor> GetAllVisitors(int accountId)
+    {
+        return VisitorService.GetAllOnlineVisitors(accountId);
+    }
 }
