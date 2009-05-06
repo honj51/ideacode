@@ -9,5 +9,6 @@ using LiveSupport.DAL.Entity;
 /// </summary>
 public abstract class VisitSessionProvider : ProviderBase
 {
-  //  public abstract List<VisitSession> GetVistorsByStatus(int accountId, VisitSessionStatus status);
+    public abstract void NewSession(VisitSession session);
+    public abstract VisitSession GetSessionById(string sessionId);
 }
