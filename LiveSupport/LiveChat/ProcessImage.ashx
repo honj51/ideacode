@@ -13,14 +13,21 @@ using System;
 using System.Web;
 using System.Drawing;
 using System.Drawing.Imaging;
+using LiveSupport.DAL.Entity;
 
 public class ProcessImage : IHttpHandler
 {
 
 	public void ProcessRequest(HttpContext context)
 	{
-		string referrer = string.Empty;
-        string accountId = string.Empty;
+        // 检查QueryString 参数
+        int accountId = 0;
+        if (context.Request.QueryString["aid"] == null || !int.TryParse(context.Request.QueryString["aid"].ToString(), out accountId) || accountId <= 0)
+        {
+            return;
+        }
+              
+		string referrer = string.Empty;        
 		string pageRequested = string.Empty;
 		string domainRequested = string.Empty;
 		string visitorUserAgent = string.Empty;
@@ -28,49 +35,53 @@ public class ProcessImage : IHttpHandler
 		string imgName = string.Empty;
 		bool opOnline = false;
 
-		// Add Request Log
-		if (context.Request.QueryString["referrer"] != null)
-			referrer = context.Request.QueryString["referrer"].ToString();
-        if (context.Request.QueryString["aid"] != null)
+        // Add Request Log
+        if (context.Request.QueryString["referrer"] != null)
+            referrer = context.Request.QueryString["referrer"].ToString();
+        
+        if (context.Request.UserHostAddress != null)
+            visitorIP = context.Request.UserHostAddress.ToString();
+
+        if (context.Request.UrlReferrer != null)
         {
-            accountId = context.Request.QueryString["aid"].ToString();
+            pageRequested = context.Request.UrlReferrer.ToString();
+            domainRequested = Lib.GetDomainName(context.Request.UrlReferrer.ToString());
         }
 
-		if (context.Request.UserHostAddress != null)
-			visitorIP = context.Request.UserHostAddress.ToString();
+        if (context.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+            visitorUserAgent = context.Request.ServerVariables["HTTP_USER_AGENT"].ToString();
 
-		if (context.Request.UrlReferrer != null)
-		{
-			pageRequested = context.Request.UrlReferrer.ToString();
-			domainRequested = Lib.GetDomainName(context.Request.UrlReferrer.ToString());
-		}
 
-		if (context.Request.ServerVariables["HTTP_USER_AGENT"] != null)
-			visitorUserAgent = context.Request.ServerVariables["HTTP_USER_AGENT"].ToString();
-
-		// Log the request
-		RequestInfo req = new RequestInfo();
-        int aid;
-        if (int.TryParse(accountId, out aid))
-        {
-            req.AccoutId = aid; 		 
+        // 建立 Visitor 和 VisitSession对象
+        Visitor visitor;
+        if (context.Request.Cookies["VisitorId"] == null)
+        {            
+            visitor = new Visitor();
+            context.Response.Cookies["VisitorId"].Value = visitor.VisitorId;
         }
         else
         {
-            // TODO: catch exception
+            string visitorId = context.Request.Cookies["VisitorId"].Value.ToString();
+            visitor = VisitorService.GetVisitor(visitorId);
         }
-            
-		req.DomainRequested = domainRequested;
-		req.PageRequested = pageRequested;
-		req.Referrer = referrer;
-		req.VisitorIP = visitorIP;
-		req.VisitorUserAgent = visitorUserAgent;
-		req.RequestTime = DateTime.Now;
-		RequestService.LogRequest(req);
-        HttpContext aa = HttpContext.Current;
-        aa.Response.Cookies["myip"].Value = visitorIP;
+        visitor.AccountId = accountId;            
+
+        VisitSession session = new VisitSession();
+        session.Browser = visitorUserAgent;
+        session.IP = visitorIP;
+        session.VisitingTime = DateTime.Now;
+        session.VisitorId = visitor.VisitorId;
+        session.DomainRequested = domainRequested;
+        session.PageRequested = pageRequested;
+        session.Referrer = referrer;
+
+        visitor.CurrentSession = session;
+        visitor.CurrentSessionId = session.SessionId;
+
+        VisitorService.NewVisit(visitor, session);
+                    
 		// we get the status of the operators
-		opOnline = OperatorService.GetOperatorStatus(aid);
+		opOnline = OperatorService.GetOperatorStatus(accountId);
 
 		if (opOnline)
 			imgName = "online.jpg";

@@ -10,9 +10,9 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
-    
     </div>
+    <asp:GridView ID="GridView1" runat="server">
+    </asp:GridView>
     </form>
 </body>
 </html>
