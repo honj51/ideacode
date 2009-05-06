@@ -67,6 +67,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback CloseChatOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAllVisitorsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -167,6 +169,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event CloseChatCompletedEventHandler CloseChatCompleted;
+        
+        /// <remarks/>
+        public event GetAllVisitorsCompletedEventHandler GetAllVisitorsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -718,6 +723,35 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllVisitors", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Visitor[] GetAllVisitors(int accountId) {
+            object[] results = this.Invoke("GetAllVisitors", new object[] {
+                        accountId});
+            return ((Visitor[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllVisitorsAsync(int accountId) {
+            this.GetAllVisitorsAsync(accountId, null);
+        }
+        
+        /// <remarks/>
+        public void GetAllVisitorsAsync(int accountId, object userState) {
+            if ((this.GetAllVisitorsOperationCompleted == null)) {
+                this.GetAllVisitorsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllVisitorsOperationCompleted);
+            }
+            this.InvokeAsync("GetAllVisitors", new object[] {
+                        accountId}, this.GetAllVisitorsOperationCompleted, userState);
+        }
+        
+        private void OnGetAllVisitorsOperationCompleted(object arg) {
+            if ((this.GetAllVisitorsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllVisitorsCompleted(this, new GetAllVisitorsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -767,6 +801,355 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class VisitSession {
+        
+        private string sessionIdField;
+        
+        private string visitorIdField;
+        
+        private string ipField;
+        
+        private string browserField;
+        
+        private VisitSessionStatus statusField;
+        
+        private string locationField;
+        
+        private int operatorsField;
+        
+        private System.DateTime visitingTimeField;
+        
+        private System.DateTime leaveTimeField;
+        
+        private System.DateTime chatRequestTimeField;
+        
+        private System.DateTime chatingTimeField;
+        
+        private System.DateTime waitingDuringField;
+        
+        private System.DateTime chattingDuringField;
+        
+        private int pageRequestCountField;
+        
+        private string domainRequestedField;
+        
+        private string pageRequestedField;
+        
+        private string referrerField;
+        
+        /// <remarks/>
+        public string SessionId {
+            get {
+                return this.sessionIdField;
+            }
+            set {
+                this.sessionIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VisitorId {
+            get {
+                return this.visitorIdField;
+            }
+            set {
+                this.visitorIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IP {
+            get {
+                return this.ipField;
+            }
+            set {
+                this.ipField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Browser {
+            get {
+                return this.browserField;
+            }
+            set {
+                this.browserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public VisitSessionStatus Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Location {
+            get {
+                return this.locationField;
+            }
+            set {
+                this.locationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Operators {
+            get {
+                return this.operatorsField;
+            }
+            set {
+                this.operatorsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime VisitingTime {
+            get {
+                return this.visitingTimeField;
+            }
+            set {
+                this.visitingTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LeaveTime {
+            get {
+                return this.leaveTimeField;
+            }
+            set {
+                this.leaveTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ChatRequestTime {
+            get {
+                return this.chatRequestTimeField;
+            }
+            set {
+                this.chatRequestTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ChatingTime {
+            get {
+                return this.chatingTimeField;
+            }
+            set {
+                this.chatingTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime WaitingDuring {
+            get {
+                return this.waitingDuringField;
+            }
+            set {
+                this.waitingDuringField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ChattingDuring {
+            get {
+                return this.chattingDuringField;
+            }
+            set {
+                this.chattingDuringField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int PageRequestCount {
+            get {
+                return this.pageRequestCountField;
+            }
+            set {
+                this.pageRequestCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DomainRequested {
+            get {
+                return this.domainRequestedField;
+            }
+            set {
+                this.domainRequestedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PageRequested {
+            get {
+                return this.pageRequestedField;
+            }
+            set {
+                this.pageRequestedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Referrer {
+            get {
+                return this.referrerField;
+            }
+            set {
+                this.referrerField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public enum VisitSessionStatus {
+        
+        /// <remarks/>
+        Visiting,
+        
+        /// <remarks/>
+        ChatRequesting,
+        
+        /// <remarks/>
+        Chatting,
+        
+        /// <remarks/>
+        Leave,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class Visitor {
+        
+        private string visitorIdField;
+        
+        private int accountIdField;
+        
+        private string nameField;
+        
+        private string emailField;
+        
+        private int visitCountField;
+        
+        private string reMarkField;
+        
+        private bool isVIPField;
+        
+        private VisitSession currentSessionField;
+        
+        private string currentSessionIdField;
+        
+        /// <remarks/>
+        public string VisitorId {
+            get {
+                return this.visitorIdField;
+            }
+            set {
+                this.visitorIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int AccountId {
+            get {
+                return this.accountIdField;
+            }
+            set {
+                this.accountIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int VisitCount {
+            get {
+                return this.visitCountField;
+            }
+            set {
+                this.visitCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReMark {
+            get {
+                return this.reMarkField;
+            }
+            set {
+                this.reMarkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsVIP {
+            get {
+                return this.isVIPField;
+            }
+            set {
+                this.isVIPField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public VisitSession CurrentSession {
+            get {
+                return this.currentSessionField;
+            }
+            set {
+                this.currentSessionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CurrentSessionId {
+            get {
+                return this.currentSessionIdField;
+            }
+            set {
+                this.currentSessionIdField = value;
             }
         }
     }
@@ -1460,6 +1843,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void CloseChatCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetAllVisitorsCompletedEventHandler(object sender, GetAllVisitorsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllVisitorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllVisitorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Visitor[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Visitor[])(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

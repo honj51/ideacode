@@ -25,8 +25,8 @@ namespace LiveSupport.OperatorConsole
         private SoundPlayer player = new SoundPlayer();
         private string IsIP = null;
         private NotifyForm notifyForm = new NotifyForm();
-
-        public MainForm()
+        
+        public MainForm(Operator op,DateTime LoginTime)
         {
             InitializeComponent();
 
@@ -34,15 +34,24 @@ namespace LiveSupport.OperatorConsole
             AuthenticationHeader auth = new AuthenticationHeader();
             auth.userName = Properties.Settings.Default.WSUser;
             ws.AuthenticationHeaderValue = auth;
-     
-            //drpChatRequest.DisplayMember = "VisitorIP";
+
+            this.operatorToolStripStatusLabel.Text = "登录客服为：" + op.Name;
+            if(op.IsOnline)
+            this.stateToolStripStatusLabel.Text = "目前状态：在线";
+            Properties.Settings.Default.OperatorLoginTime = LoginTime;
+                //drpChatRequest.DisplayMember = "VisitorIP";
             //drpChatRequest.ValueMember = "ChatId";
 
             playSoundOnChatRequestToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatReq;
             playSoundOnChatMessageToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatMsg;
             whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked = Properties.Settings.Default.GetWebRequestOffline;
             autostartToolStripMenuItem.Checked = Properties.Settings.Default.StartWithWindows;
+           
         }
+
+
+
+
         //时间方法
         private void tmrCheckRequests_Tick(object sender, EventArgs e)
         {
@@ -134,7 +143,7 @@ namespace LiveSupport.OperatorConsole
 
         private void DisplayStatus()
         {
-            lblCurrentVisitors.Text = "当前访客数: " + currentVisitors.Count.ToString();
+            lblCurrentVisitors.Text = "当前访客数: ";//+ currentVisitors.Count.ToString();
             lblVisitorOnChat.Text = "对话中的访客数: n/a";
             lblMyChat.Text = "我的对话数: " + myChats.Count.ToString();
         }
@@ -416,10 +425,7 @@ namespace LiveSupport.OperatorConsole
                 MessageBox.Show("你还没有选择跟谁进行对话","请选择",MessageBoxButtons.OK,MessageBoxIcon.Stop);
             }
         }
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
+       
 
         //点击传送文件
         private void button1_Click(object sender, EventArgs e)
@@ -454,7 +460,7 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void 接受请求ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -516,9 +522,97 @@ namespace LiveSupport.OperatorConsole
         private void 空闲ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChatForm f = new ChatForm();
-            f.Show();
+            f.ShowDialog();
         }
 
+        /// <summary>
+        /// 计算登录时长
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void loginTimer_Tick(object sender, EventArgs e)
+        {
+            DateTime dtime = DateTime.Now; ;
+
+            this.stickToolStripStatusLabel.Text = DateDiff(Properties.Settings.Default.OperatorLoginTime, dtime);
+            
+        }
+
+         private string DateDiff(DateTime DateTime1, DateTime DateTime2)
+        {
+            string dateDiff = null;
+            
+            TimeSpan ts1 = new TimeSpan(DateTime1.Ticks);
+            TimeSpan ts2 = new TimeSpan(DateTime2.Ticks);
+            TimeSpan ts = ts1.Subtract(ts2).Duration();
+            dateDiff = ts.Days.ToString()+"天"
+                + ts.Hours.ToString()+"小时"
+                + ts.Minutes.ToString()+"分钟"
+                + ts.Seconds.ToString()+"秒";
+            
+            return dateDiff;
+        }
+
+         private void timer1_Tick(object sender, EventArgs e)
+         {
+             Visitor[] visitors = ws.GetAllVisitors(Program.CurrentOperator.AccountId);
+             if (visitors != null && visitors.Length> 0)
+             {
+                 // set the last request time
+                // lastRequestTime = requests[0].RequestTime.AddSeconds(1);
+
+                 ListViewItem item;
+                 for (int i = visitors.Length - 1; i >= 0; i--)
+                 {
+                     item = new ListViewItem(visitors[i].Name);
+
+                     //if (myChats.ContainsKey(visitors[i].CurrentSession.IP))
+                     //{
+                     //    item.ImageIndex = 2;
+                     //    item.ToolTipText = "Double-click to access chat session";
+                     //}
+                     
+                     //item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].Name));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Location));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Browser));
+                     //ListViewItem.ListViewSubItem imgBrowser = new ListViewItem.ListViewSubItem();
+                     //if (visitors[i].VisitorUserAgent.ToLower().IndexOf("explorer") > -1)
+                     //    imgBrowser.Text = "IE";
+                     //else
+                     //    imgBrowser.Text = "FF";
+                     //item.SubItems.Add(imgBrowser);
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].VisitCount.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Operators.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Status.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.VisitingTime.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.LeaveTime.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatRequestTime.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatingTime.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.WaitingDuring.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChattingDuring.ToString()));
+                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.PageRequestCount.ToString()));
+                     item.Tag = visitors[i];
+
+                     lstVisitors.Items.Insert(0, item);
+
+                    //  Add the visitor to the visitor hashtable
+                     //if (!currentVisitors.ContainsKey(visitors[i].VisitorIP))
+                     //    currentVisitors.Add(requests[i].VisitorIP, requests[i]);
+                     //else
+                     //    currentVisitors[requests[i].VisitorIP] = requests[i];
+                 }
+             }
+         }
+
+         private void lstVisitors_SelectedIndexChanged(object sender, EventArgs e)
+         {
+             if (lstVisitors.SelectedItems.Count > 0)
+             {
+                 Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
+                 visitorBindingSource.DataSource = v;
+             }             
+         }
 
   }
 }

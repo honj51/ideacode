@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("您好！");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("您好，欢迎光临我们的网站！");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("欢迎词", new System.Windows.Forms.TreeNode[] {
@@ -39,17 +40,18 @@
             System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("技术问题");
             System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("联系信息");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
+            this.cutSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.wb = new System.Windows.Forms.WebBrowser();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.txtMsg = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.uploadToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ExitToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.flashToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ringToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toollblIsTyping = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,6 +61,8 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this.uploadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -73,6 +77,11 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // saveFileDialog1
+            // 
+            this.cutSaveFileDialog.FileName = "image1";
+            this.cutSaveFileDialog.Filter = "jpg Files(*.jpg) |*.jpg |jpeg Files(*.*) |*.jpeg |bmp Files(*.bmp) |*.bmp";
             // 
             // splitContainer1
             // 
@@ -144,62 +153,69 @@
             this.txtMsg.Name = "txtMsg";
             this.txtMsg.Size = new System.Drawing.Size(428, 90);
             this.txtMsg.TabIndex = 9;
+            this.txtMsg.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMsg_KeyUp);
+            this.txtMsg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMsg_KeyPress);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton5,
-            this.toolStripButton4});
+            this.uploadToolStripButton,
+            this.ExitToolStripButton,
+            this.cutToolStripButton,
+            this.flashToolStripButton,
+            this.ringToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(428, 25);
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // uploadToolStripButton
             // 
-            this.toolStripButton1.Image = global::LiveSupport.OperatorConsole.Properties.Resources.file_sent;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton1.Text = "发送文件";
-            this.toolStripButton1.ToolTipText = "发送文件";
+            this.uploadToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.file_sent;
+            this.uploadToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uploadToolStripButton.Name = "uploadToolStripButton";
+            this.uploadToolStripButton.Size = new System.Drawing.Size(73, 22);
+            this.uploadToolStripButton.Text = "发送文件";
+            this.uploadToolStripButton.ToolTipText = "发送文件";
+            this.uploadToolStripButton.Click += new System.EventHandler(this.uploadToolStripButton_Click);
             // 
-            // toolStripButton2
+            // ExitToolStripButton
             // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.Image = global::LiveSupport.OperatorConsole.Properties.Resources.cancel;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(52, 22);
-            this.toolStripButton2.Text = "关闭";
+            this.ExitToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.ExitToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.cancel;
+            this.ExitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExitToolStripButton.Name = "ExitToolStripButton";
+            this.ExitToolStripButton.Size = new System.Drawing.Size(49, 22);
+            this.ExitToolStripButton.Text = "关闭";
+            this.ExitToolStripButton.Click += new System.EventHandler(this.ExitToolStripButton_Click);
             // 
-            // toolStripButton3
+            // cutToolStripButton
             // 
-            this.toolStripButton3.Image = global::LiveSupport.OperatorConsole.Properties.Resources.sc;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Teal;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(52, 22);
-            this.toolStripButton3.Text = "截屏";
+            this.cutToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.sc;
+            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Teal;
+            this.cutToolStripButton.Name = "cutToolStripButton";
+            this.cutToolStripButton.Size = new System.Drawing.Size(49, 22);
+            this.cutToolStripButton.Text = "截屏";
+            this.cutToolStripButton.Click += new System.EventHandler(this.cutToolStripButton_Click);
             // 
-            // toolStripButton5
+            // flashToolStripButton
             // 
-            this.toolStripButton5.Image = global::LiveSupport.OperatorConsole.Properties.Resources.logfile_24;
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton5.Text = "消息提示";
+            this.flashToolStripButton.CheckOnClick = true;
+            this.flashToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.logfile_24;
+            this.flashToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.flashToolStripButton.Name = "flashToolStripButton";
+            this.flashToolStripButton.Size = new System.Drawing.Size(73, 22);
+            this.flashToolStripButton.Text = "消息提示";
             // 
-            // toolStripButton4
+            // ringToolStripButton
             // 
-            this.toolStripButton4.Image = global::LiveSupport.OperatorConsole.Properties.Resources.alarmd;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton4.Text = "响铃提示";
+            this.ringToolStripButton.CheckOnClick = true;
+            this.ringToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.alarmd;
+            this.ringToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ringToolStripButton.Name = "ringToolStripButton";
+            this.ringToolStripButton.Size = new System.Drawing.Size(73, 22);
+            this.ringToolStripButton.Text = "响铃提示";
             // 
             // statusStrip1
             // 
@@ -214,7 +230,7 @@
             // toollblIsTyping
             // 
             this.toollblIsTyping.Name = "toollblIsTyping";
-            this.toollblIsTyping.Size = new System.Drawing.Size(56, 17);
+            this.toollblIsTyping.Size = new System.Drawing.Size(53, 17);
             this.toollblIsTyping.Text = "对话客户";
             // 
             // panel1
@@ -251,10 +267,10 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.treeView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(220, 415);
+            this.tabPage1.Size = new System.Drawing.Size(220, 416);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "快捷回复";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -287,16 +303,17 @@
             treeNode6,
             treeNode7,
             treeNode8});
-            this.treeView1.Size = new System.Drawing.Size(214, 409);
+            this.treeView1.Size = new System.Drawing.Size(214, 410);
             this.treeView1.TabIndex = 0;
+            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(220, 415);
+            this.tabPage2.Size = new System.Drawing.Size(220, 416);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -309,6 +326,16 @@
             this.label1.Size = new System.Drawing.Size(125, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "将该对话转到其他客服";
+            // 
+            // uploadOpenFileDialog
+            // 
+            this.uploadOpenFileDialog.FileName = "uploadOpenFileDialog";
+            // 
+            // tmrGetMsg
+            // 
+            this.tmrGetMsg.Enabled = true;
+            this.tmrGetMsg.Interval = 5000;
+            this.tmrGetMsg.Tick += new System.EventHandler(this.tmrGetMsg_Tick);
             // 
             // ChatForm
             // 
@@ -347,8 +374,8 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.WebBrowser wb;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton uploadToolStripButton;
+        private System.Windows.Forms.ToolStripButton ExitToolStripButton;
         private System.Windows.Forms.TextBox txtMsg;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toollblIsTyping;
@@ -358,10 +385,12 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton cutToolStripButton;
+        private System.Windows.Forms.ToolStripButton ringToolStripButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton flashToolStripButton;
+        private System.Windows.Forms.OpenFileDialog uploadOpenFileDialog;
+        private System.Windows.Forms.Timer tmrGetMsg;
     }
 }

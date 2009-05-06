@@ -45,7 +45,13 @@ namespace LiveSupport.OperatorConsole
             //    ws.AuthenticationHeaderValue = auth;
 
             //    Program.CurrentOperator = ws.LogIn(txtOpName.Text, txtOpPassword.Text);
-                 
+           
+            Operator op = new Operator();
+            op.Name = txtOpName.Text;
+            op.Password = txtOpPassword.Text;
+            op.IsOnline = true;
+            op.AccountId = 4;
+            Program.CurrentOperator = op;
             //    // if we got an OperatorInfo, we continue
             //    if (Program.CurrentOperator != null)
             //    {
@@ -57,7 +63,8 @@ namespace LiveSupport.OperatorConsole
             //        else
             //        {
                         this.Hide();
-                        MainForm c = new MainForm();
+                        MainForm c = new MainForm(op, DateTime.Now);
+                        
                         c.Show();
             //        }
             //    }

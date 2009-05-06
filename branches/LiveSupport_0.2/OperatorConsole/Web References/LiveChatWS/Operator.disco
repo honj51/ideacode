@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://localhost:49739/LiveChat/Operator.asmx?wsdl" docRef="http://localhost:49739/LiveChat/Operator.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://localhost:49739/LiveChat/Operator.asmx" xmlns:q1="http://www.LiveSupport.cn/LiveSupportService/2009/04" binding="q1:OperatorWSSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://localhost:49739/LiveChat/Operator.asmx" xmlns:q2="http://www.LiveSupport.cn/LiveSupportService/2009/04" binding="q2:OperatorWSSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <contractRef ref="http://localhost:1575/LiveChat/Operator.asmx?wsdl" docRef="http://localhost:1575/LiveChat/Operator.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://localhost:1575/LiveChat/Operator.asmx" xmlns:q1="http://www.LiveSupport.cn/LiveSupportService/2009/04" binding="q1:OperatorWSSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://localhost:1575/LiveChat/Operator.asmx" xmlns:q2="http://www.LiveSupport.cn/LiveSupportService/2009/04" binding="q2:OperatorWSSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
 </discovery>
