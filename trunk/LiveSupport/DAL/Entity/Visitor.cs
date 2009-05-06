@@ -19,14 +19,9 @@ namespace LiveSupport.DAL.Entity
 {
     public class Visitor
     {
-        public enum VisitorStatus
-        {
-            Visiting, ChatRequesting, Chatting, Leave
-        }
-
-        private int visitorId;
+        private string visitorId;
         [XmlElement]
-        public int VisitorId
+        public string VisitorId
         {
             get { return visitorId; }
             set { visitorId = value; }
@@ -48,100 +43,12 @@ namespace LiveSupport.DAL.Entity
             set { name = value; }
         }
 
-        private string iP;
-        [XmlElement]
-        public string IP
-        {
-            get { return iP; }
-            set { iP = value; }
-        }
-
         private string email;
         [XmlElement]
         public string Email
         {
             get { return email; }
             set { email = value; }
-        }
-
-        private string browser;
-        [XmlElement]
-        public string Browser
-        {
-            get { return browser; }
-            set { browser = value; }
-        }
-
-        private string status;
-        [XmlElement]
-        public string Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
-
-        private string location;
-        [XmlElement]
-        public string Location
-        {
-            get { return location; }
-            set { location = value; }
-        }
-
-        private int operators;
-        [XmlElement]
-        public int Operators
-        {
-            get { return operators; }
-            set { operators = value; }
-        }
-
-        private DateTime visitingTime;
-        [XmlElement]
-        public DateTime VisitingTime
-        {
-            get { return visitingTime; }
-            set { visitingTime = value; }
-        }
-
-        private DateTime leaveTime;
-        [XmlElement]
-        public DateTime LeaveTime
-        {
-            get { return leaveTime; }
-            set { leaveTime = value; }
-        }
-
-        private DateTime requestTime;
-        [XmlElement]
-        public DateTime RequestTime
-        {
-            get { return requestTime; }
-            set { requestTime = value; }
-        }
-
-        private DateTime chatingTime;
-        [XmlElement]
-        public DateTime ChatingTime
-        {
-            get { return chatingTime; }
-            set { chatingTime = value; }
-        }
-
-        private DateTime waitingDuring;
-        [XmlElement]
-        public DateTime WaitingDuring
-        {
-            get { return waitingDuring; }
-            set { waitingDuring = value; }
-        }
-
-        private DateTime chattingDuring;
-        [XmlElement]
-        public DateTime ChattingDuring
-        {
-            get { return chattingDuring; }
-            set { chattingDuring = value; }
         }
 
         private int visitCount;
@@ -152,20 +59,12 @@ namespace LiveSupport.DAL.Entity
             set { visitCount = value; }
         }
 
-        private string mark;
+        private string remark;
         [XmlElement]
-        public string Mark
+        public string ReMark
         {
-            get { return mark; }
-            set { mark = value; }
-        }
-
-        private int pageRequestCount;
-        [XmlElement]
-        public int PageRequestCount
-        {
-            get { return pageRequestCount; }
-            set { pageRequestCount = value; }
+            get { return remark; }
+            set { remark = value; }
         }
 
         private bool isVIP;
@@ -176,32 +75,38 @@ namespace LiveSupport.DAL.Entity
             set { isVIP = value; }
         }
 
+        private VisitSession currentSession;
+
+        public VisitSession CurrentSession
+        {
+            get { return currentSession; }
+            set { currentSession = value; }
+        }
+
+        private string currentSessionId;
+        [XmlElement]
+        public string CurrentSessionId
+        {
+            get { return currentSessionId; }
+            set { currentSessionId = value; }
+        }
+
+
         public Visitor()
         {
-
+            this.visitorId = Guid.NewGuid().ToString();
         }
 
         public Visitor(SqlDataReader data)
         {
-            if (!Convert.IsDBNull(data["VisitorId"])) visitorId = (int)data["VisitorId"];
+            if (!Convert.IsDBNull(data["VisitorId"])) visitorId = (string)data["VisitorId"];
             if (!Convert.IsDBNull(data["AccountId"])) accountId = (int)data["AccountId"];
             if (!Convert.IsDBNull(data["Name"])) name = (string)data["Name"];
-            if (!Convert.IsDBNull(data["IP"])) iP = (string)data["IP"];
             if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
-            if (!Convert.IsDBNull(data["Browser"])) browser = (string)data["Browser"];
-            if (!Convert.IsDBNull(data["Status"])) status = (string)data["Status"];
-            if (!Convert.IsDBNull(data["Location"])) location = (string)data["Location"];
-            if (!Convert.IsDBNull(data["Operator"])) operators = (int)data["Operator"];
-            if (!Convert.IsDBNull(data["VisitingTime"])) visitingTime = (DateTime)data["VisitingTime"];
-            if (!Convert.IsDBNull(data["LeaveTime"])) leaveTime = (DateTime)data["LeaveTime"];
-            if (!Convert.IsDBNull(data["RequestTime"])) requestTime = (DateTime)data["RequestTime"];
-            if (!Convert.IsDBNull(data["ChatingTime"])) chatingTime = (DateTime)data["ChatingTime"];
-            if (!Convert.IsDBNull(data["WaitingDuring"])) waitingDuring = (DateTime)data["WaitingDuring"];
-            if (!Convert.IsDBNull(data["ChattingDuring"])) chattingDuring = (DateTime)data["ChattingDuring"];
             if (!Convert.IsDBNull(data["VisitCount"])) visitCount = (int)data["VisitCount"];
-            if (!Convert.IsDBNull(data["Mark"])) mark = (string)data["Mark"];
-            if (!Convert.IsDBNull(data["PageRequestCount"])) PageRequestCount = (int)data["PageRequestCount"];
+            if (!Convert.IsDBNull(data["Remark"])) remark = (string)data["Remark"];
             if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
+            if (!Convert.IsDBNull(data["CurrentSessionId"])) currentSessionId = (string)data["CurrentSessionId"];
         }
     }
 

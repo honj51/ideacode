@@ -6,7 +6,7 @@ using System.Configuration;
 /// <summary>
 /// Summary description for VisitorServiceSection
 /// </summary>
-public class VisitorServiceSection : ConfigurationSection
+public class VisitSessionServiceSection : ConfigurationSection
 {
     [ConfigurationProperty("providers")]
     public ProviderSettingsCollection Providers
