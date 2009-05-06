@@ -116,7 +116,6 @@ namespace LiveSupport.DAL.Entity
             if (!Convert.IsDBNull(data["Remark"])) remark = (string)data["Remark"];
             if (!Convert.IsDBNull(data["CurrentSessionId"])) currentSessionId = (string)data["CurrentSessionId"];
             if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
-
         }
     }
 
