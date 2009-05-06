@@ -73,5 +73,23 @@ namespace LiveSupport.BLL
         {
             return Provider.FindAccountByAdminUserName(userName);
         }
+        
+        
+        //添加
+        public static bool AddAccount(Account at)
+        {
+            int i = 0;
+            i = Provider.AddAccount(at);
+            if (i > 0)
+                return true;
+            else
+                return false;
+        }
+
+        //验证
+        public static Account Login(string loginId, string loginPwd)
+        {           
+            return Provider.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
+        }
     }
 }
