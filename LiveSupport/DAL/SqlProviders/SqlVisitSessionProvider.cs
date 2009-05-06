@@ -15,7 +15,7 @@ namespace LiveSupport.DAL.SqlProviders
                 throw new ArgumentNullException("config");
 
             if (string.IsNullOrEmpty(name))
-                name = "SqlChatProvider";
+                name = "SqlVisitSessionProvider";
 
             // Check for the connection string
             if (config["connectionStringName"] != null && !string.IsNullOrEmpty(config["connectionStringName"].ToString()) && !string.IsNullOrEmpty(ConfigurationManager.ConnectionStrings[config["connectionStringName"].ToString()].ToString()))
