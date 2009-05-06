@@ -33,8 +33,9 @@ namespace LiveSupport.DAL.SqlProviders
         //保存一条新访客会话
         public override void NewSession(VisitSession session)
         {
+          
+            SqlConnection sqlC = new SqlConnection(connectionString); 
             string sql = string.Format("insert into LiveChat_VisitSession values('{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}','{9}','{10}','{11}',{12},'{13}','{14}','{15}','{16}')", session.SessionId, session.VisitorId, session.IP, session.Browser, session.Status, session.Location, session.Operator, session.VisitingTime, session.LeaveTime, session.ChatRequestTime, session.ChatingTime, session.WaitingDuring, session.ChattingDuring, session.PageRequestCount, session.DomainRequested, session.PageRequested, session.Referrer);
-            SqlConnection sqlC = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, sqlC);
             try
             {
