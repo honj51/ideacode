@@ -33,7 +33,7 @@ public class SqlVisitorProvider : VisitorProvider
     }
 
     //跟据状态查询某公司的访客
-    public override List<Visitor> GetVistorsByStatus(int accountId, Visitor.VisitorStatus status)
+    public override List<Visitor> GetVistorsByStatus(int accountId, VisitSessionStatus status)
     {
         SqlConnection sqlC = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand("LiveChat_GetVisitorByStatus", sqlC);
