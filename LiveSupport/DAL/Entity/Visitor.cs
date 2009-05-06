@@ -59,6 +59,14 @@ namespace LiveSupport.DAL.Entity
             set { visitCount = value; }
         }
 
+        private string company;
+        [XmlElement]
+        public string Company
+        {
+            get { return company; }
+            set { company = value; }
+        }
+
         private string remark;
         [XmlElement]
         public string ReMark
@@ -105,8 +113,9 @@ namespace LiveSupport.DAL.Entity
             if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
             if (!Convert.IsDBNull(data["VisitCount"])) visitCount = (int)data["VisitCount"];
             if (!Convert.IsDBNull(data["Remark"])) remark = (string)data["Remark"];
-            if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
             if (!Convert.IsDBNull(data["CurrentSessionId"])) currentSessionId = (string)data["CurrentSessionId"];
+            if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
+
         }
     }
 
