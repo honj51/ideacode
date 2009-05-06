@@ -72,6 +72,7 @@
     <Compile Include="Providers\RequestProvider.cs" />
     <Compile Include="Providers\RequestServiceSection.cs" />
     <Compile Include="Providers\VisitorProvider.cs" />
+    <Compile Include="Providers\VisitorServiceSection.cs" />
     <Compile Include="SqlAccountsProvider.cs" />
     <Compile Include="SqlConstant.cs" />
     <Compile Include="SqlOperatorsProvider.cs" />
