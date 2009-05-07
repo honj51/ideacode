@@ -31,5 +31,45 @@ public class SqlMessageProvider : MessageProvider
 
         base.Initialize(name, config);
     }
+    //跟对话,和最后一点消息取后面的消息
+    public override List<Message> GetMessages(string SessionId, DateTime lastCheck)
+    {
+        SqlConnection sqlC = new SqlConnection(connectionString);
+        string sql = "select * from LiveChat_Message where ChatID="+SessionId+" and SentDate >"+lastCheck;
+        SqlCommand cmd = new SqlCommand("sql", sqlC);
+        SqlDataReader data = null;
+        List<Message> retList = new List<Message>();
+
+        try
+        {
+            sqlC.Open();
+            data = cmd.ExecuteReader();
+            while (data.Read())
+                retList.Add(new Message(data));
+
+            data.Close();
+            data.Dispose();
+            data = null;
+            cmd.Dispose();
+            sqlC.Close();
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            if (sqlC != null)
+            {
+                if (sqlC.State == ConnectionState.Open)
+                    sqlC.Close();
+
+                sqlC.Dispose();
+                sqlC = null;
+            }
+        }
+        return retList;
+    }
+
 }
 
