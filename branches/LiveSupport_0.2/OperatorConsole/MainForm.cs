@@ -24,8 +24,27 @@ namespace LiveSupport.OperatorConsole
         private List<TabInfo> chatInfo = new List<TabInfo>();
         private SoundPlayer player = new SoundPlayer();
         private string IsIP = null;
-        private NotifyForm notifyForm = new NotifyForm();
-        
+
+        private List<ChatForm> chatForms = new List<ChatForm>();
+        private List<Visitor> visitors = new List<Visitor>();
+        private List<Operator> operators = new List<Operator>();
+
+        #region VisitorTreeView_HeaderColumn Index
+        private const int VisitorTreeView_HeaderColumn_VisitorName = 0;
+        private const int VisitorTreeView_HeaderColumn_Location = 1;
+        private const int VisitorTreeView_HeaderColumn_Browser = 2;
+        private const int VisitorTreeView_HeaderColumn_VisitCount = 3;
+        private const int VisitorTreeView_HeaderColumn_Operator = 4;
+        private const int VisitorTreeView_HeaderColumn_Status = 5;
+        private const int VisitorTreeView_HeaderColumn_VisitTime = 6;
+        private const int VisitorTreeView_HeaderColumn_LeaveTime = 7;
+        private const int VisitorTreeView_HeaderColumn_ChatRequestTime = 8;
+        private const int VisitorTreeView_HeaderColumn_ChatStartTime = 9;
+        private const int VisitorTreeView_HeaderColumn_WaitingDuring = 10;
+        private const int VisitorTreeView_HeaderColumn_ChattingDuring = 11;
+        private const int VisitorTreeView_HeaderColumn_PageRequestCount = 12;
+        #endregion
+
         public MainForm(DateTime LoginTime)
         {
             InitializeComponent();
@@ -50,17 +69,14 @@ namespace LiveSupport.OperatorConsole
 
 
                 //drpChatRequest.DisplayMember = "VisitorIP";
+
             //drpChatRequest.ValueMember = "ChatId";
 
             playSoundOnChatRequestToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatReq;
             playSoundOnChatMessageToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatMsg;
             whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked = Properties.Settings.Default.GetWebRequestOffline;
             autostartToolStripMenuItem.Checked = Properties.Settings.Default.StartWithWindows;
-           
         }
-
-
-
 
         //时间方法
         private void tmrCheckRequests_Tick(object sender, EventArgs e)
@@ -160,13 +176,13 @@ namespace LiveSupport.OperatorConsole
 
         private void PlayChatReqSound()
         {
-            
+
             if (Properties.Settings.Default.PlaySoundOnChatReq)
             {
                 player.Stream = Properties.Resources.newchatreq;
                 player.Play();
             }
-            
+
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -175,7 +191,7 @@ namespace LiveSupport.OperatorConsole
             Properties.Settings.Default.Save();
             Application.Exit();
         }
-        
+
         //接受请求
         private void btnAccept_Click(object sender, EventArgs e)
         {
@@ -349,7 +365,7 @@ namespace LiveSupport.OperatorConsole
 
         private void 邀请对话ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (lstVisitors.SelectedItems.Count>0)
+            if (lstVisitors.SelectedItems.Count > 0)
             {
                 if (IsIP == lstVisitors.SelectedItems[0].SubItems[2].Text)
                 {
@@ -432,10 +448,10 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                MessageBox.Show("你还没有选择跟谁进行对话","请选择",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                MessageBox.Show("你还没有选择跟谁进行对话", "请选择", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-       
+
 
         //点击传送文件
         private void button1_Click(object sender, EventArgs e)
@@ -453,8 +469,9 @@ namespace LiveSupport.OperatorConsole
                 if (writeStream.CanWrite)
                 { writeStream.Write(fsbyte, 0, Convert.ToInt32(fs.Length)); }
                 else
-                { 
-                MessageBox.Show("对不起，文件上传失败"); }
+                {
+                    MessageBox.Show("对不起，文件上传失败");
+                }
                 fs.Close();
                 ChatRequestInfo myChatRequest = new ChatRequestInfo();
                 ChatMessageInfo msg = new ChatMessageInfo();
@@ -470,13 +487,13 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void 接受请求ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabChats.TabPages.Remove(tabChats.SelectedTab);
-            
+
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -506,12 +523,12 @@ namespace LiveSupport.OperatorConsole
 
         private void offlineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            notifyForm.ShowNotifier(false, "你好！");
+            NotifyForm.ShowNotifier(false, "你好！");
         }
 
         private void beRightBackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            notifyForm.ShowNotifier(true, "有人请求对话!!!");
+            NotifyForm.ShowNotifier(true, "有人请求对话!!!");
         }
 
         private void autostartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -546,125 +563,175 @@ namespace LiveSupport.OperatorConsole
             DateTime dtime = DateTime.Now; ;
 
             this.stickToolStripStatusLabel.Text = DateDiff(Properties.Settings.Default.OperatorLoginTime, dtime);
-            
+
         }
 
-         private string DateDiff(DateTime DateTime1, DateTime DateTime2)
+        private string DateDiff(DateTime DateTime1, DateTime DateTime2)
         {
             string dateDiff = null;
-            
+
             TimeSpan ts1 = new TimeSpan(DateTime1.Ticks);
             TimeSpan ts2 = new TimeSpan(DateTime2.Ticks);
             TimeSpan ts = ts1.Subtract(ts2).Duration();
-            dateDiff = ts.Days.ToString()+"天"
-                + ts.Hours.ToString()+"小时"
-                + ts.Minutes.ToString()+"分钟"
-                + ts.Seconds.ToString()+"秒";
-            
+            dateDiff = ts.Days.ToString() + "天"
+                + ts.Hours.ToString() + "小时"
+                + ts.Minutes.ToString() + "分钟"
+                + ts.Seconds.ToString() + "秒";
+
             return dateDiff;
         }
 
-         private DateTime lastCheck = DateTime.Today;
-         private void timer1_Tick(object sender, EventArgs e)
-         {
-             //Visitor[] visitors = ws.GetAllVisitors(Program.CurrentOperator.AccountId);
-             //NewChangesResult result = ws.CheckNewChanges(Program.CurrentOperator.Id, lastCheck);
 
-             //foreach (var item in result.NewVisitors)
-             //{
-
-             //}
-
-             //foreach (var item in result.VisitSessionChange)
-             //{
-
-             //}
-
-             //foreach (var item in result.Messages)
-             //{
-                 
-             //}
-
-             //foreach (var item in result.Operators)
-             //{
-
-             //}
-
-             //lastCheck = result.CheckTime;
-
-             //if (visitors != null && visitors.Length> 0)
-             //{
-             //    // set the last request time
-             //   // lastRequestTime = requests[0].RequestTime.AddSeconds(1);
-
-             //    ListViewItem item;
-             //    for (int i = visitors.Length - 1; i >= 0; i--)
-             //    {
-             //        item = new ListViewItem(visitors[i].Name);
-
-             //        //if (myChats.ContainsKey(visitors[i].CurrentSession.IP))
-             //        //{
-             //        //    item.ImageIndex = 2;
-             //        //    item.ToolTipText = "Double-click to access chat session";
-             //        //}
-                     
-             //        //item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].Name));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Location));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Browser));
-             //        //ListViewItem.ListViewSubItem imgBrowser = new ListViewItem.ListViewSubItem();
-             //        //if (visitors[i].VisitorUserAgent.ToLower().IndexOf("explorer") > -1)
-             //        //    imgBrowser.Text = "IE";
-             //        //else
-             //        //    imgBrowser.Text = "FF";
-             //        //item.SubItems.Add(imgBrowser);
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].VisitCount.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Operators.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Status.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.VisitingTime.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.LeaveTime.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatRequestTime.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatingTime.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.WaitingDuring.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChattingDuring.ToString()));
-             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.PageRequestCount.ToString()));
-             //        item.Tag = visitors[i];
-
-             //        lstVisitors.Items.Insert(0, item);
-
-             //       //  Add the visitor to the visitor hashtable
-             //        //if (!currentVisitors.ContainsKey(visitors[i].VisitorIP))
-             //        //    currentVisitors.Add(requests[i].VisitorIP, requests[i]);
-             //        //else
-             //        //    currentVisitors[requests[i].VisitorIP] = requests[i];
-             //    }
-             //}
-         }
-
-         private void lstVisitors_SelectedIndexChanged(object sender, EventArgs e)
-         {
-             if (lstVisitors.SelectedItems.Count > 0)
-             {
-                 Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-                 visitorBindingSource.DataSource = v;
-             }             
-         }
+        private DateTime lastCheck = DateTime.Today;
+        TestFixture testFixture = new TestFixture();
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //NewChangesResult result = ws.CheckNewChanges(Program.CurrentOperator.Id, lastCheck);
+            NewChangesResult result = testFixture.NewResult();
 
 
-         // 更改密码
-         private void rejiggerpasswordToolStripMenuItem_Click(object sender, EventArgs e)
-         {
-             RejiggerOperatorPassword rop = new RejiggerOperatorPassword();
-             rop.ShowDialog();
-         }
 
-         private void resetpasswordToolStripMenuItem_Click(object sender, EventArgs e)
-         {
-             RejiggerOperatorPassword rop = new RejiggerOperatorPassword();
-             rop.ShowDialog();
-         }
+            foreach (ListViewItem item in lstVisitors.Items)
+            {
+                Visitor v = item.Tag as Visitor;
+                VisitSession local = v.CurrentSession;
 
-         
-       
 
-  }
+                VisitSession remote = null;
+                foreach (var c in result.VisitSessionChange)
+                {
+                    if (c == null)
+                    {
+                        continue;
+                    }
+                    else if (c.VisitorId == local.VisitorId && c.Status != local.Status)
+                    {
+                        remote = c;
+                        break;
+                    }
+                }
+
+
+                if (remote == null) continue;
+                if (remote.Status == VisitSessionStatus.ChatRequesting)
+                {
+                    // 新的对话请求
+                    NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！");
+                }
+                local.Status = remote.Status;
+
+
+
+                item.SubItems[VisitorTreeView_HeaderColumn_Status].Text = local.Status.ToString();
+            }
+
+
+
+            if (result.NewVisitors != null)
+            {
+                foreach (var item in result.NewVisitors)
+                {
+                    if (item == null) continue;
+                    ListViewItem lvi = new ListViewItem(new string[]{ item.Name, item.CurrentSession.Location, item.CurrentSession.Browser,
+                     item.VisitCount.ToString(), item.CurrentSession.Operators.ToString(),item.CurrentSession.Status.ToString(),
+                     item.CurrentSession.VisitingTime.ToString(), item.CurrentSession.LeaveTime.ToString(), item.CurrentSession.ChatRequestTime.ToString(),
+                     item.CurrentSession.ChatingTime.ToString(),item.CurrentSession.WaitingDuring.ToString(), item.CurrentSession.ChattingDuring.ToString(),
+                     item.CurrentSession.PageRequestCount.ToString()
+                        });
+                    visitors.Add(item);
+                    lvi.Tag = item;
+                    lstVisitors.Items.Add(lvi);
+
+
+                }
+            }
+
+
+
+            foreach (var item in result.Messages)
+            {
+                ChatForm form = chatForms.Find(f => f.ChatId == item.ChatId);
+                if (form == null) continue;
+                form.RecieveMessage(item);
+            }
+
+
+            if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
+            {
+                operators.Clear();
+                operators.AddRange(result.Operators);
+                operatorsTreeView.Nodes[0].Nodes.Clear();
+                operatorsTreeView.Nodes[1].Nodes.Clear();
+                foreach (var item in operators)
+                {
+                    if (item.IsOnline)
+                    {
+                        operatorsTreeView.Nodes[0].Nodes.Add(item.Name).Tag = item;
+                    }
+                    else
+                    {
+                        operatorsTreeView.Nodes[1].Nodes.Add(item.Name).Tag = item;
+                    }
+                }
+            }
+
+
+
+            lastCheck = result.CheckTime;
+
+
+
+            // 播放声音
+            if (hasChatRequest())
+            {
+                PlayChatReqSound();
+            }
+        }
+
+        private bool hasChatRequest()
+        {
+            foreach (var item in visitors)
+            {
+                if (item.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+        private bool checkIfOperatorStatusChanges(List<Operator> operators, Operator[] p)
+        {
+            return false;
+
+
+
+        }
+
+
+        private void lstVisitors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstVisitors.SelectedItems.Count > 0)
+            {
+                Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
+                visitorBindingSource.DataSource = v;
+            }
+        }
+
+        // 更改密码
+        private void rejiggerpasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RejiggerOperatorPassword rop = new RejiggerOperatorPassword();
+            rop.ShowDialog();
+        }
+
+        private void resetpasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RejiggerOperatorPassword rop = new RejiggerOperatorPassword();
+            rop.ShowDialog();
+        }
+    }
+
 }

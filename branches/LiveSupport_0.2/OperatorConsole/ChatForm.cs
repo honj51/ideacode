@@ -57,6 +57,18 @@ namespace LiveSupport.OperatorConsole
 
         private SoundPlayer player = new SoundPlayer();
         OperatorWS ws = new OperatorWS();
+        private string chatId;
+
+        public string ChatId
+        {
+            get { return chatId; }
+            set { chatId = value; }
+        }
+
+        public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
+        {
+
+        }
         
         public ChatForm()
         {

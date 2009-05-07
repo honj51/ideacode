@@ -79,7 +79,13 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        public void ShowNotifier(bool showCommandButton, string message)
+        public static void ShowNotifier(bool showCommandButton, string message)
+        {
+           NotifyForm f =  new NotifyForm();
+           f.showNotifier(showCommandButton,message);
+        }                
+
+        private void showNotifier(bool showCommandButton, string message)
         {
             this.messageLabel.Text = message;
             this.acceptButton.Visible = showCommandButton;

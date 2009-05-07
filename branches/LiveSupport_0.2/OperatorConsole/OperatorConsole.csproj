@@ -171,6 +171,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TestFixture.cs" />
     <Compile Include="RejiggerOperatorPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,10 +192,10 @@
     <None Include="Web References\LiveChatWS\Operator.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:1575/LiveChat/Operator.asmx">
+    <WebReferenceUrl Include="http://localhost:49739/LiveChat/Operator.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LiveChatWS\</RelPath>
-      <UpdateFromURL>http://localhost:1575/LiveChat/Operator.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:49739/LiveChat/Operator.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
