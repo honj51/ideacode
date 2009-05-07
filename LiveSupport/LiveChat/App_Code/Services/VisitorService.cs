@@ -67,4 +67,9 @@ public class VisitorService
         }
         return visitors;
     }
+
+    public static List<Visitor> GetNewVisitors(DateTime lastCheck)
+    {
+       _visitorProvider.GetNewVisitors(lastCheck);
+    }
 }
