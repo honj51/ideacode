@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using LiveSupport.DAL.Entity;
+using System.Data.SqlClient;
 
 namespace LiveSupport.DAL.SqlProviders
 {
@@ -63,7 +64,41 @@ namespace LiveSupport.DAL.SqlProviders
         //跟据访客会话取一行数据
         public override VisitSession GetSessionById(string sessionId) 
         {
-            return null;
+            SqlConnection sqlC = new SqlConnection(connectionString);
+            string sql = "select * from LiveChat_VisitSession sessionId=" + sessionId;
+            SqlCommand cmd = new SqlCommand("sql", sqlC);
+            SqlDataReader data = null;
+            List<VisitSession> retList = new List<VisitSession>();
+
+            try
+            {
+                sqlC.Open();
+                data = cmd.ExecuteReader();
+                while (data.Read())
+                    retList.Add(new VisitSession(data));
+
+                data.Close();
+                data.Dispose();
+                data = null;
+                cmd.Dispose();
+                sqlC.Close();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (sqlC != null)
+                {
+                    if (sqlC.State == ConnectionState.Open)
+                        sqlC.Close();
+
+                    sqlC.Dispose();
+                    sqlC = null;
+                }
+            }
+            return retList;
         }
     }
 }
