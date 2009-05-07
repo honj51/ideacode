@@ -32,7 +32,7 @@ public class SqlMessageProvider : MessageProvider
         base.Initialize(name, config);
     }
 
-    //跟对话,和最后一点消息取后面的消息
+    //跟据对话id,和最后发送时间后面新添的消息
     public override List<Message> GetMessages(string SessionId, DateTime lastCheck)
     {
         SqlConnection sqlC = new SqlConnection(connectionString);
