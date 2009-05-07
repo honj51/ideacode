@@ -251,4 +251,77 @@ public class OperatorWS : System.Web.Services.WebService
     {
         return VisitorService.GetAllOnlineVisitors(accountId);
     }
+//新表的方法
+
+    [WebMethod]
+    public NewChangesResult CheckNewChanges(int operatorId, DateTime lastCheck)
+    {
+        NewChangesResult result = new NewChangesResult();
+        // 新访客
+        result.NewVisitors = VisitorService.GetNewVisitors(lastCheck);
+
+        // 访问会话状态更新
+        result.VisitSessionChange = VisitSessionService.GetVisitSessionChange(lastCheck);
+
+        // 消息更新
+        List<VisitSession> visitSessions = VisitSessionService.GetActiveSessionsByOperatorId(operatorId);
+        result.Messages = new List<Message>();
+        foreach (var item in visitSessions)
+        {
+            result.Messages.Add(MessageService.GetMessages(item.SessionId, lastCheck));
+        }
+        // 客服状态更新
+        result.CheckTime = DateTime.Now;
+        return result;
+    }
+
+
+//定义一个类
+    public class NewChangesResult
+    {
+        // 客服状态更新
+        private List<Operator> operators;
+
+        public List<Operator> Operators
+        {
+            get { return operators; }
+            set { operators = value; }
+        }
+
+        // 新访客
+        private List<Visitor> newVisitors;
+
+        public List<Visitor> NewVisitors
+        {
+            get { return newVisitors; }
+            set { newVisitors = value; }
+        }
+
+        // 访问会话状态更新
+        private List<VisitSession> visitSessionChange;
+
+        public List<VisitSession> VisitSessionChange
+        {
+            get { return visitSessionChange; }
+            set { visitSessionChange = value; }
+        }
+
+        // 消息更新
+        private List<Message> messages;
+
+        public List<Message> Messages
+        {
+            get { return messages; }
+            set { messages = value; }
+        }
+
+
+        private DateTime checkTime;
+
+        public DateTime CheckTime
+        {
+            get { return checkTime; }
+            set { checkTime = value; }
+        }
+    }
 }
