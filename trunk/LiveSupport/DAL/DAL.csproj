@@ -44,6 +44,7 @@
     <Compile Include="Entity\ChatRequestInfo.cs" />
     <Compile Include="Entity\City.cs" />
     <Compile Include="Entity\CustomerInfo.cs" />
+    <Compile Include="Entity\Message.cs" />
     <Compile Include="Entity\Operator.cs" />
     <Compile Include="Entity\OperatorInfo.cs" />
     <Compile Include="Entity\Payment.cs" />
