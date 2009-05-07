@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using LiveSupport.DAL.Entity;
 using System.Web.Configuration;
 using System.Configuration.Provider;
+using System.Collections.Generic;
 
 /// <summary>
 ///VisitSessionService 的摘要说明
@@ -71,5 +72,15 @@ public class VisitSessionService
 
         return s;
         //return null;
+    }
+
+    public static List<VisitSession> GetActiveSessionsByOperatorId(int operatorId)
+    {
+        _visitSessionProvider.GetActiveSessionsByOperatorId(operatorId);
+    }
+
+    public static List<VisitSession> GetVisitSessionChange(DateTime lastCheck)
+    {
+        _visitSessionProvider.GetVisitSessionChange(lastCheck);
     }
 }
