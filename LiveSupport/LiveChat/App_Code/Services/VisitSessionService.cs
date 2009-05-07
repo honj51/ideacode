@@ -19,6 +19,9 @@ using System.Collections.Generic;
 /// </summary>
 public class VisitSessionService
 {
+    private static List<VisitSession> sessions = new List<VisitSession>();
+    private const int maxVisitorSessionCountInMemory = 200;//定义最大值 
+    #region DB related
     private static VisitSessionProvider _visitSessionProvider = null;
     private static object _lock = new object();
     public static VisitSessionProvider Provider
@@ -40,7 +43,7 @@ public class VisitSessionService
                 if (_visitSessionProvider == null)
                 {
                     // Get a reference to the <requestService> section
-                    VisitorServiceSection section = (VisitorServiceSection)WebConfigurationManager.GetSection("system.web/visitSessionService");
+                    sessionserviceSection section = (sessionserviceSection)WebConfigurationManager.GetSection("system.web/visitSessionService");
 
                     // Load the default provider
                     if (section.Providers.Count > 0 && !string.IsNullOrEmpty(section.DefaultProvider) && section.Providers[section.DefaultProvider] != null)
@@ -52,35 +55,42 @@ public class VisitSessionService
             }
         }
     }
-
-
-
-    internal static void NewSession(VisitSession session)
+    #endregion
+    //保存一条新访客会话
+    public static void NewSession(VisitSession session)
     {
-        // TODO: 没有数据库
-        
+        sessions.Add(session);
+        if (sessions.Count > maxVisitorSessionCountInMemory)
+        {
+            for (int i = sessions.Count; i > 0; i--)
+            {
+                if (sessions[i].Status == VisitSessionStatus.Leave)
+                {
+                    sessions.RemoveAt[i];
+                    break;
+                }
+            }
+        }
+        Provider.NewSession(session);
     }
-
-    internal static VisitSession GetSessionById(string sessionId)
+    //跟据访客会话取一行数据
+    public static VisitSession GetSessionById(string sessionId)
     {
-        // TODO: 没有数据库
-
-        // Test only
-
-        VisitSession s = new VisitSession();
-        s.SessionId = sessionId;
-
+        VisitSession s = sessions.Find(s => s.SessionId = sessionId);
+        if (s == null)
+        {
+            Provider.GetSessionById(sessionId);
+        }
         return s;
-        //return null;
     }
-
-    public static List<VisitSession> GetActiveSessionsByOperatorId(int operatorId)
-    {
-        _visitSessionProvider.GetActiveSessionsByOperatorId(operatorId);
-    }
-
+    //查询在这个时候之后新加的访客会话信息，
     public static List<VisitSession> GetVisitSessionChange(DateTime lastCheck)
     {
-        _visitSessionProvider.GetVisitSessionChange(lastCheck);
+        Provider.GetVisitSessionChange(lastCheck);
+    }
+    //跟据客服ID查还回正在聊天的会话信息
+    public static List<VisitSession> GetActiveSessionsByOperatorId(int operatorId)
+    {
+        return sessions.FindAll(s => s.Operators == operatorId && s.Status == VisitSessionStatus.Chatting);
     }
 }
