@@ -9,6 +9,6 @@ using LiveSupport.DAL.Entity;
 /// </summary>
 public abstract class VisitSessionProvider : ProviderBase
 {
-    public abstract void NewSession(VisitSession session);
-    public abstract VisitSession GetSessionById(string sessionId);
+    public abstract void NewSession(VisitSession session);//保存一条新访客会话
+    public abstract VisitSession GetSessionById(string sessionId); //跟据访客会话取一行数据
 }
