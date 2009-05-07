@@ -49,7 +49,8 @@ public class VisitorService
     }
     #endregion
 
-    private const int maxVisitorCountInMemory = 200;
+    private const int maxVisitorCountInMemory = 200;//定义最大值 
+
     private static List<Visitor> visitors = new List<Visitor>();
 
     public static Visitor GetVisitor(string visitorId)
@@ -69,6 +70,7 @@ public class VisitorService
     {
         Provider.NewVisitor(visitor);
         visitors.Add(visitor);
+
         if (visitors.Count > maxVisitorCountInMemory)
         {
             for (int i = visitors.Count; i > 0 ; i--)
