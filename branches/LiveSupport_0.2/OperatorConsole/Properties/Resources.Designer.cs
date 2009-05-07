@@ -88,13 +88,6 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap head {
-            get {
-                object obj = ResourceManager.GetObject("head", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap leave_title_bg {
             get {
                 object obj = ResourceManager.GetObject("leave_title_bg", resourceCulture);

@@ -32,7 +32,7 @@ namespace LiveSupport.OperatorConsole
             if (txtOpName.Text.Length > 0 && txtOpPassword.Text.Length > 0)
             {
                 // Check to see if we need to save the config
-                if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator != txtWSUrl.Text || Properties.Settings.Default.WSUser != txtUserName.Text)
+                if (Properties.Settings.Default.WSUser != txtUserName.Text)
                 {
                     Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = "http://localhost/operator.asmx";
                     Properties.Settings.Default.WSUser = txtUserName.Text;
@@ -51,6 +51,7 @@ namespace LiveSupport.OperatorConsole
             op.Password = txtOpPassword.Text;
             op.IsOnline = true;
             op.AccountId = 4;
+            
             Program.CurrentOperator = op;
                 // if we got an OperatorInfo, we continue
                 if (Program.CurrentOperator != null)

@@ -214,7 +214,6 @@
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
-    <None Include="Resources\head.jpg" />
     <Content Include="Resources\ie.jpg" />
     <None Include="Resources\sc.jpg" />
     <None Include="Resources\logfile_24.png" />
