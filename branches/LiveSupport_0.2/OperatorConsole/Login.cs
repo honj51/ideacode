@@ -29,22 +29,22 @@ namespace LiveSupport.OperatorConsole
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //if (txtOpName.Text.Length > 0 && txtOpPassword.Text.Length > 0)
-            //{
-            //    // Check to see if we need to save the config
-            //    if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator != txtWSUrl.Text || Properties.Settings.Default.WSUser != txtUserName.Text)
-            //    {
-            //        Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = txtWSUrl.Text;
-            //        Properties.Settings.Default.WSUser = txtUserName.Text;
-            //        Properties.Settings.Default.Save();
-            //    }
-            //    OperatorWS ws = new OperatorWS();
-            //    // Simple authentication
-            //    AuthenticationHeader auth = new AuthenticationHeader();
-            //    auth.userName = Properties.Settings.Default.WSUser;
-            //    ws.AuthenticationHeaderValue = auth;
+            if (txtOpName.Text.Length > 0 && txtOpPassword.Text.Length > 0)
+            {
+                // Check to see if we need to save the config
+                if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator != txtWSUrl.Text || Properties.Settings.Default.WSUser != txtUserName.Text)
+                {
+                    Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = "http://localhost/operator.asmx";
+                    Properties.Settings.Default.WSUser = txtUserName.Text;
+                    Properties.Settings.Default.Save();
+                }
+                OperatorWS ws = new OperatorWS();
+                // Simple authentication
+                AuthenticationHeader auth = new AuthenticationHeader();
+                auth.userName = Properties.Settings.Default.WSUser;
+                ws.AuthenticationHeaderValue = auth;
 
-            //    Program.CurrentOperator = ws.LogIn(txtOpName.Text, txtOpPassword.Text);
+                Program.CurrentOperator = ws.LogIn(txtOpName.Text, txtOpPassword.Text);
            
             Operator op = new Operator();
             op.Name = txtOpName.Text;
@@ -52,32 +52,32 @@ namespace LiveSupport.OperatorConsole
             op.IsOnline = true;
             op.AccountId = 4;
             Program.CurrentOperator = op;
-            //    // if we got an OperatorInfo, we continue
-            //    if (Program.CurrentOperator != null)
-            //    {
-            //        if (Program.CurrentOperator.IsOnline)
-            //        {
-            //            MessageBox.Show("用户已经登录,\r\n\r\n请用其他用户登录...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // if we got an OperatorInfo, we continue
+                if (Program.CurrentOperator != null)
+                {
+                    if (Program.CurrentOperator.IsOnline)
+                    {
+                        MessageBox.Show("用户已经登录,\r\n\r\n请用其他用户登录...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            //        }
-            //        else
-            //        {
+                    }
+                    else
+                    {
                         this.Hide();
                         MainForm c = new MainForm(op, DateTime.Now);
                         
                         c.Show();
-            //        }
-            //    }
-            //    else
-            //    {
+                    }
+                }
+                else
+                {
                    
-            //            //Invalid credentials
-            //           MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //Invalid credentials
+                       MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                   
                      
                    
-            //        }
-            //}
+                    }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -90,37 +90,37 @@ namespace LiveSupport.OperatorConsole
         {
             this.txtOpName.Text = "user1op1";
             txtOpPassword.Text = "abc123";
-            if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator.Length == 0)
-            {
-                gbConfig.Visible = true;
-                this.Height = 354;
-                txtWSUrl.Text = "http://localhost/operator.asmx";
-                txtUserName.Text = "wspass";
-                txtWSUrl.SelectAll();
-                txtWSUrl.Focus();
-            }
-            else
-            {
-                gbConfig.Visible = false;
-                this.Height = 214;
-                txtOpName.Focus();
-                txtWSUrl.Text = Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator;
-                txtUserName.Text = Properties.Settings.Default.WSUser;
-            }
+           // if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator.Length == 0)
+           // {
+                //gbConfig.Visible = true;
+                //this.Height = 354;
+                //txtWSUrl.Text = "http://localhost/operator.asmx";
+                //txtUserName.Text = "wspass";
+                //txtWSUrl.SelectAll();
+                //txtWSUrl.Focus();
+            //}
+            //else
+            //{
+            //    gbConfig.Visible = false;
+            //    this.Height = 214;
+            //    txtOpName.Focus();
+            //    txtWSUrl.Text = Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator;
+            //    txtUserName.Text = Properties.Settings.Default.WSUser;
+            //}
         }
 
-        private void lnkShowConfig_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (gbConfig.Visible)
-            {
-                gbConfig.Visible = false;
-                this.Height = 214;
-            }
-            else
-            {
-                gbConfig.Visible = true;
-                this.Height = 354;
-            }
-        }
+        //private void lnkShowConfig_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //{
+        //    if (gbConfig.Visible)
+        //    {
+        //        gbConfig.Visible = false;
+        //        this.Height = 214;
+        //    }
+        //    else
+        //    {
+        //        gbConfig.Visible = true;
+        //        this.Height = 354;
+        //    }
+        //}
     }
 }

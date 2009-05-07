@@ -39,21 +39,16 @@ namespace LiveSupport.OperatorConsole
             this.lblHint = new System.Windows.Forms.Label();
             this.lblAuthenticate = new System.Windows.Forms.Label();
             this.picLogIn = new System.Windows.Forms.PictureBox();
-            this.lnkShowConfig = new System.Windows.Forms.LinkLabel();
-            this.gbConfig = new System.Windows.Forms.GroupBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.txtWSUrl = new System.Windows.Forms.TextBox();
-            this.lblWSUrl = new System.Windows.Forms.Label();
             this.pnlLogIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
-            this.gbConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblOpName
             // 
             this.lblOpName.AutoSize = true;
-            this.lblOpName.Location = new System.Drawing.Point(11, 68);
+            this.lblOpName.Location = new System.Drawing.Point(24, 89);
             this.lblOpName.Name = "lblOpName";
             this.lblOpName.Size = new System.Drawing.Size(65, 12);
             this.lblOpName.TabIndex = 0;
@@ -62,7 +57,7 @@ namespace LiveSupport.OperatorConsole
             // txtOpName
             // 
             this.txtOpName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOpName.Location = new System.Drawing.Point(132, 66);
+            this.txtOpName.Location = new System.Drawing.Point(133, 87);
             this.txtOpName.Name = "txtOpName";
             this.txtOpName.Size = new System.Drawing.Size(154, 21);
             this.txtOpName.TabIndex = 1;
@@ -70,7 +65,7 @@ namespace LiveSupport.OperatorConsole
             // txtOpPassword
             // 
             this.txtOpPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOpPassword.Location = new System.Drawing.Point(132, 99);
+            this.txtOpPassword.Location = new System.Drawing.Point(133, 120);
             this.txtOpPassword.Name = "txtOpPassword";
             this.txtOpPassword.PasswordChar = '*';
             this.txtOpPassword.Size = new System.Drawing.Size(154, 21);
@@ -79,16 +74,16 @@ namespace LiveSupport.OperatorConsole
             // lblOpPassword
             // 
             this.lblOpPassword.AutoSize = true;
-            this.lblOpPassword.Location = new System.Drawing.Point(11, 102);
+            this.lblOpPassword.Location = new System.Drawing.Point(24, 122);
             this.lblOpPassword.Name = "lblOpPassword";
-            this.lblOpPassword.Size = new System.Drawing.Size(29, 12);
+            this.lblOpPassword.Size = new System.Drawing.Size(65, 12);
             this.lblOpPassword.TabIndex = 2;
-            this.lblOpPassword.Text = "√‹¬Î";
+            this.lblOpPassword.Text = "√‹      ¬Î";
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(211, 134);
+            this.btnCancel.Location = new System.Drawing.Point(212, 155);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
             this.btnCancel.TabIndex = 4;
@@ -98,7 +93,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(132, 134);
+            this.btnOK.Location = new System.Drawing.Point(133, 155);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 21);
             this.btnOK.TabIndex = 5;
@@ -148,61 +143,21 @@ namespace LiveSupport.OperatorConsole
             this.picLogIn.TabIndex = 0;
             this.picLogIn.TabStop = false;
             // 
-            // lnkShowConfig
-            // 
-            this.lnkShowConfig.AutoSize = true;
-            this.lnkShowConfig.Location = new System.Drawing.Point(11, 138);
-            this.lnkShowConfig.Name = "lnkShowConfig";
-            this.lnkShowConfig.Size = new System.Drawing.Size(29, 12);
-            this.lnkShowConfig.TabIndex = 7;
-            this.lnkShowConfig.TabStop = true;
-            this.lnkShowConfig.Text = "…Ë÷√";
-            this.lnkShowConfig.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkShowConfig_LinkClicked);
-            // 
-            // gbConfig
-            // 
-            this.gbConfig.Controls.Add(this.txtUserName);
-            this.gbConfig.Controls.Add(this.lblUserName);
-            this.gbConfig.Controls.Add(this.txtWSUrl);
-            this.gbConfig.Controls.Add(this.lblWSUrl);
-            this.gbConfig.Location = new System.Drawing.Point(14, 182);
-            this.gbConfig.Name = "gbConfig";
-            this.gbConfig.Size = new System.Drawing.Size(286, 103);
-            this.gbConfig.TabIndex = 8;
-            this.gbConfig.TabStop = false;
-            this.gbConfig.Text = "’À∫≈";
-            // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(21, 68);
+            this.txtUserName.Location = new System.Drawing.Point(133, 57);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(226, 21);
+            this.txtUserName.Size = new System.Drawing.Size(154, 21);
             this.txtUserName.TabIndex = 3;
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(18, 54);
+            this.lblUserName.Location = new System.Drawing.Point(24, 60);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(29, 12);
+            this.lblUserName.Size = new System.Drawing.Size(71, 12);
             this.lblUserName.TabIndex = 2;
-            this.lblUserName.Text = "’À∫≈";
-            // 
-            // txtWSUrl
-            // 
-            this.txtWSUrl.Location = new System.Drawing.Point(21, 33);
-            this.txtWSUrl.Name = "txtWSUrl";
-            this.txtWSUrl.Size = new System.Drawing.Size(226, 21);
-            this.txtWSUrl.TabIndex = 1;
-            // 
-            // lblWSUrl
-            // 
-            this.lblWSUrl.AutoSize = true;
-            this.lblWSUrl.Location = new System.Drawing.Point(18, 18);
-            this.lblWSUrl.Name = "lblWSUrl";
-            this.lblWSUrl.Size = new System.Drawing.Size(95, 12);
-            this.lblWSUrl.TabIndex = 0;
-            this.lblWSUrl.Text = "Web Service URL";
+            this.lblUserName.Text = "π´ Àæ ’  ∫≈";
             // 
             // Login
             // 
@@ -210,10 +165,10 @@ namespace LiveSupport.OperatorConsole
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(325, 297);
+            this.ClientSize = new System.Drawing.Size(325, 186);
             this.ControlBox = false;
-            this.Controls.Add(this.gbConfig);
-            this.Controls.Add(this.lnkShowConfig);
+            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.pnlLogIn);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
@@ -231,8 +186,6 @@ namespace LiveSupport.OperatorConsole
             this.pnlLogIn.ResumeLayout(false);
             this.pnlLogIn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).EndInit();
-            this.gbConfig.ResumeLayout(false);
-            this.gbConfig.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,11 +202,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Panel pnlLogIn;
         private System.Windows.Forms.PictureBox picLogIn;
         private System.Windows.Forms.Label lblAuthenticate;
-		private System.Windows.Forms.Label lblHint;
-        private System.Windows.Forms.LinkLabel lnkShowConfig;
-        private System.Windows.Forms.GroupBox gbConfig;
-        private System.Windows.Forms.Label lblWSUrl;
-        private System.Windows.Forms.TextBox txtWSUrl;
+        private System.Windows.Forms.Label lblHint;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label lblUserName;
     }

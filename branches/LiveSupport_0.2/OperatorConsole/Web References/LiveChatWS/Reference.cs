@@ -69,6 +69,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback GetAllVisitorsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback CheckNewChangesOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -172,6 +174,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event GetAllVisitorsCompletedEventHandler GetAllVisitorsCompleted;
+        
+        /// <remarks/>
+        public event CheckNewChangesCompletedEventHandler CheckNewChangesCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -752,6 +757,37 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public NewChangesResult CheckNewChanges(int operatorId, System.DateTime lastCheck) {
+            object[] results = this.Invoke("CheckNewChanges", new object[] {
+                        operatorId,
+                        lastCheck});
+            return ((NewChangesResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckNewChangesAsync(int operatorId, System.DateTime lastCheck) {
+            this.CheckNewChangesAsync(operatorId, lastCheck, null);
+        }
+        
+        /// <remarks/>
+        public void CheckNewChangesAsync(int operatorId, System.DateTime lastCheck, object userState) {
+            if ((this.CheckNewChangesOperationCompleted == null)) {
+                this.CheckNewChangesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckNewChangesOperationCompleted);
+            }
+            this.InvokeAsync("CheckNewChanges", new object[] {
+                        operatorId,
+                        lastCheck}, this.CheckNewChangesOperationCompleted, userState);
+        }
+        
+        private void OnCheckNewChangesOperationCompleted(object arg) {
+            if ((this.CheckNewChangesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckNewChangesCompleted(this, new CheckNewChangesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -801,6 +837,378 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class Message {
+        
+        private string messageIdField;
+        
+        private string chatIdField;
+        
+        private string sourceField;
+        
+        private string destinationField;
+        
+        private string textField;
+        
+        private System.DateTime sentDateField;
+        
+        private string typeField;
+        
+        /// <remarks/>
+        public string MessageId {
+            get {
+                return this.messageIdField;
+            }
+            set {
+                this.messageIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ChatId {
+            get {
+                return this.chatIdField;
+            }
+            set {
+                this.chatIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Source {
+            get {
+                return this.sourceField;
+            }
+            set {
+                this.sourceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Destination {
+            get {
+                return this.destinationField;
+            }
+            set {
+                this.destinationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Text {
+            get {
+                return this.textField;
+            }
+            set {
+                this.textField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime SentDate {
+            get {
+                return this.sentDateField;
+            }
+            set {
+                this.sentDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class NewChangesResult {
+        
+        private Operator[] operatorsField;
+        
+        private Visitor[] newVisitorsField;
+        
+        private VisitSession[] visitSessionChangeField;
+        
+        private Message[] messagesField;
+        
+        private System.DateTime checkTimeField;
+        
+        /// <remarks/>
+        public Operator[] Operators {
+            get {
+                return this.operatorsField;
+            }
+            set {
+                this.operatorsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Visitor[] NewVisitors {
+            get {
+                return this.newVisitorsField;
+            }
+            set {
+                this.newVisitorsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public VisitSession[] VisitSessionChange {
+            get {
+                return this.visitSessionChangeField;
+            }
+            set {
+                this.visitSessionChangeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Message[] Messages {
+            get {
+                return this.messagesField;
+            }
+            set {
+                this.messagesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime CheckTime {
+            get {
+                return this.checkTimeField;
+            }
+            set {
+                this.checkTimeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class Operator {
+        
+        private bool disabledField;
+        
+        private int idField;
+        
+        private int accountIdField;
+        
+        private string nameField;
+        
+        private string passwordField;
+        
+        private string emailField;
+        
+        private bool isOnlineField;
+        
+        /// <remarks/>
+        public bool Disabled {
+            get {
+                return this.disabledField;
+            }
+            set {
+                this.disabledField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int AccountId {
+            get {
+                return this.accountIdField;
+            }
+            set {
+                this.accountIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsOnline {
+            get {
+                return this.isOnlineField;
+            }
+            set {
+                this.isOnlineField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class Visitor {
+        
+        private string visitorIdField;
+        
+        private int accountIdField;
+        
+        private string nameField;
+        
+        private string emailField;
+        
+        private int visitCountField;
+        
+        private string reMarkField;
+        
+        private bool isVIPField;
+        
+        private VisitSession currentSessionField;
+        
+        private string currentSessionIdField;
+        
+        /// <remarks/>
+        public string VisitorId {
+            get {
+                return this.visitorIdField;
+            }
+            set {
+                this.visitorIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int AccountId {
+            get {
+                return this.accountIdField;
+            }
+            set {
+                this.accountIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int VisitCount {
+            get {
+                return this.visitCountField;
+            }
+            set {
+                this.visitCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReMark {
+            get {
+                return this.reMarkField;
+            }
+            set {
+                this.reMarkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsVIP {
+            get {
+                return this.isVIPField;
+            }
+            set {
+                this.isVIPField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public VisitSession CurrentSession {
+            get {
+                return this.currentSessionField;
+            }
+            set {
+                this.currentSessionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CurrentSessionId {
+            get {
+                return this.currentSessionIdField;
+            }
+            set {
+                this.currentSessionIdField = value;
             }
         }
     }
@@ -1035,123 +1443,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         Leave,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
-    public partial class Visitor {
-        
-        private string visitorIdField;
-        
-        private int accountIdField;
-        
-        private string nameField;
-        
-        private string emailField;
-        
-        private int visitCountField;
-        
-        private string reMarkField;
-        
-        private bool isVIPField;
-        
-        private VisitSession currentSessionField;
-        
-        private string currentSessionIdField;
-        
-        /// <remarks/>
-        public string VisitorId {
-            get {
-                return this.visitorIdField;
-            }
-            set {
-                this.visitorIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int AccountId {
-            get {
-                return this.accountIdField;
-            }
-            set {
-                this.accountIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Name {
-            get {
-                return this.nameField;
-            }
-            set {
-                this.nameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Email {
-            get {
-                return this.emailField;
-            }
-            set {
-                this.emailField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int VisitCount {
-            get {
-                return this.visitCountField;
-            }
-            set {
-                this.visitCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ReMark {
-            get {
-                return this.reMarkField;
-            }
-            set {
-                this.reMarkField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsVIP {
-            get {
-                return this.isVIPField;
-            }
-            set {
-                this.isVIPField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public VisitSession CurrentSession {
-            get {
-                return this.currentSessionField;
-            }
-            set {
-                this.currentSessionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CurrentSessionId {
-            get {
-                return this.currentSessionIdField;
-            }
-            set {
-                this.currentSessionIdField = value;
-            }
-        }
     }
     
     /// <remarks/>
@@ -1482,99 +1773,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
-    public partial class Operator {
-        
-        private bool disabledField;
-        
-        private int idField;
-        
-        private int accountIdField;
-        
-        private string nameField;
-        
-        private string passwordField;
-        
-        private string emailField;
-        
-        private bool isOnlineField;
-        
-        /// <remarks/>
-        public bool Disabled {
-            get {
-                return this.disabledField;
-            }
-            set {
-                this.disabledField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int AccountId {
-            get {
-                return this.accountIdField;
-            }
-            set {
-                this.accountIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Name {
-            get {
-                return this.nameField;
-            }
-            set {
-                this.nameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Password {
-            get {
-                return this.passwordField;
-            }
-            set {
-                this.passwordField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Email {
-            get {
-                return this.emailField;
-            }
-            set {
-                this.emailField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsOnline {
-            get {
-                return this.isOnlineField;
-            }
-            set {
-                this.isOnlineField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void LogInCompletedEventHandler(object sender, LogInCompletedEventArgs e);
     
@@ -1866,6 +2064,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Visitor[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void CheckNewChangesCompletedEventHandler(object sender, CheckNewChangesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckNewChangesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckNewChangesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public NewChangesResult Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((NewChangesResult)(this.results[0]));
             }
         }
     }

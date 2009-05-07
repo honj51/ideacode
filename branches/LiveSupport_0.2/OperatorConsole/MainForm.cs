@@ -554,9 +554,34 @@ namespace LiveSupport.OperatorConsole
             return dateDiff;
         }
 
+         private DateTime lastCheck = DateTime.Today;
          private void timer1_Tick(object sender, EventArgs e)
          {
              Visitor[] visitors = ws.GetAllVisitors(Program.CurrentOperator.AccountId);
+             NewChangesResult result = ws.CheckNewChanges(Program.CurrentOperator.Id, lastCheck);
+
+             foreach (var item in result.NewVisitors)
+             {
+
+             }
+
+             foreach (var item in result.VisitSessionChange)
+             {
+
+             }
+
+             foreach (var item in result.Messages)
+             {
+                 
+             }
+
+             foreach (var item in result.Operators)
+             {
+
+             }
+
+             lastCheck = result.CheckTime;
+
              if (visitors != null && visitors.Length> 0)
              {
                  // set the last request time

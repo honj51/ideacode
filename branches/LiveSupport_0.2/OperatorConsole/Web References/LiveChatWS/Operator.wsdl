@@ -362,6 +362,51 @@
           <s:enumeration value="Leave" />
         </s:restriction>
       </s:simpleType>
+      <s:element name="CheckNewChanges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="operatorId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastCheck" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNewChangesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckNewChangesResult" type="tns:NewChangesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NewChangesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Operators" type="tns:ArrayOfOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewVisitors" type="tns:ArrayOfVisitor" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisitSessionChange" type="tns:ArrayOfVisitSession" />
+          <s:element minOccurs="0" maxOccurs="1" name="Messages" type="tns:ArrayOfMessage" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVisitSession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VisitSession" nillable="true" type="tns:VisitSession" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Message">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MessageId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChatId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Destination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SentDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LogInSoapIn">
@@ -520,6 +565,12 @@
   <wsdl:message name="GetAllVisitorsSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllVisitorsResponse" />
   </wsdl:message>
+  <wsdl:message name="CheckNewChangesSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckNewChanges" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewChangesSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckNewChangesResponse" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="LogIn">
       <wsdl:input message="tns:LogInSoapIn" />
@@ -596,6 +647,10 @@
     <wsdl:operation name="GetAllVisitors">
       <wsdl:input message="tns:GetAllVisitorsSoapIn" />
       <wsdl:output message="tns:GetAllVisitorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <wsdl:input message="tns:CheckNewChangesSoapIn" />
+      <wsdl:output message="tns:CheckNewChangesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -785,6 +840,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -966,6 +1030,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllVisitors">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllVisitors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
