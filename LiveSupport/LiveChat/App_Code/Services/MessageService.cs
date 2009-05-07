@@ -51,4 +51,9 @@ public class MessageService
         //TODO: 在此处添加构造函数逻辑
         //
     }
+
+    public static Message GetMessages(string SessionId,DateTime lastCheck)
+    {
+        _messageProvider.GetMessages(SessionId, lastCheck);
+    }
 }
