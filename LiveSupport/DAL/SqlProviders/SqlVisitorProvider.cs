@@ -81,7 +81,7 @@ public class SqlVisitorProvider : VisitorProvider
         try
         {
             sqlC.Open();
-            cmd.ExecuteNonQuery;
+            cmd.ExecuteNonQuery();
             cmd.Dispose();
             sqlC.Close();
         }
@@ -140,6 +140,7 @@ public class SqlVisitorProvider : VisitorProvider
         }
         return retList;
     }
+    //public void GetNewVisitors(DateTime lastCheck);
 }
 
 
