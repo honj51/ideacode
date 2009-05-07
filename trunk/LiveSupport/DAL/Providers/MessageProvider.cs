@@ -9,5 +9,5 @@ using LiveSupport.DAL.Entity;
 /// </summary>
 public abstract class MessageProvider : ProviderBase
 {
-    public List<Message> GetMessages(string SessionId, DateTime lastCheck);
+    public abstract List<Message> GetMessages(string SessionId, DateTime lastCheck);
 }
