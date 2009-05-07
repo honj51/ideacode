@@ -90,6 +90,7 @@ public class ChatMessageInfo
 		myMessage = message;
         myType = type;
 	}
+
     //获取数据库聊天信息
     public ChatMessageInfo(SqlDataReader data)
     {
