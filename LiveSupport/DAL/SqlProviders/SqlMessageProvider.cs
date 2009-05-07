@@ -31,6 +31,7 @@ public class SqlMessageProvider : MessageProvider
 
         base.Initialize(name, config);
     }
+
     //跟对话,和最后一点消息取后面的消息
     public override List<Message> GetMessages(string SessionId, DateTime lastCheck)
     {
