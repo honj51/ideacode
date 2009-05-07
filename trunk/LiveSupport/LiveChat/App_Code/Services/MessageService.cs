@@ -45,6 +45,7 @@ public class MessageService
             }
         }
     }
+    //跟据对话id,和最后发送时间后面新添的消息
     public static List<Message> GetMessages(string SessionId,DateTime lastCheck)
     {
         _messageProvider.GetMessages(SessionId, lastCheck);
