@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace LiveSupport.DAL.Entity
 {
@@ -65,6 +66,17 @@ namespace LiveSupport.DAL.Entity
 
         public Message()
         {
+
+        }
+        public Message(SqlDataReader data)
+        {
+            if (!Convert.IsDBNull(data["MessageId"])) messageId = (int)data["MessageId"];
+            if (!Convert.IsDBNull(data["ChatID"])) chatID = (string)data["ChatID"];
+            if (!Convert.IsDBNull(data["Source"])) source = (string)data["Source"];
+            if (!Convert.IsDBNull(data["Destination"])) destination = (string)data["Destination"];
+            if (!Convert.IsDBNull(data["Text"])) text = (string)data["Text"];
+            if (!Convert.IsDBNull(data["SentDate"])) sentDate = (DateTime)data["SentDate"];
+            if (!Convert.IsDBNull(data["Type"])) type = (string)data["Type"];
 
         }
     }
