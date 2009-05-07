@@ -100,6 +100,45 @@ namespace LiveSupport.DAL.SqlProviders
             }
             return retList;
         }
+        //查询在这个时候之后新加的访客会话信息，
+        public override List<VisitSession> GetVisitSessionChange(DateTime lastCheck)
+        {
+            SqlConnection sqlC = new SqlConnection(connectionString);
+            string sql = "select * from LiveChat_VisitSession where VisitingTime >" + lastCheck;
+            SqlCommand cmd = new SqlCommand("sql", sqlC);
+            SqlDataReader data = null;
+            List<VisitSession> retList = new List<VisitSession>();
+
+            try
+            {
+                sqlC.Open();
+                data = cmd.ExecuteReader();
+                while (data.Read())
+                    retList.Add(new VisitSession(data));
+
+                data.Close();
+                data.Dispose();
+                data = null;
+                cmd.Dispose();
+                sqlC.Close();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (sqlC != null)
+                {
+                    if (sqlC.State == ConnectionState.Open)
+                        sqlC.Close();
+
+                    sqlC.Dispose();
+                    sqlC = null;
+                }
+            }
+            return retList;
+        }
     }
 }
 
