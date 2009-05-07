@@ -12,14 +12,16 @@ using LiveSupport.DAL.Properties;
 /// </summary>
 public class VisitorService
 {
+    #region DB related
     private static VisitorProvider _visitorProvider = null;
     private static object _lock = new object();
-    
     public static VisitorProvider Provider
     {
-        get {
+        get
+        {
             LoadProvider();
-            return VisitorService._visitorProvider; }
+            return VisitorService._visitorProvider;
+        }
     }
 
     private static void LoadProvider()
@@ -45,31 +47,70 @@ public class VisitorService
             }
         }
     }
-    
+    #endregion
+
+    private const int maxVisitorCountInMemory = 200;
+    private static List<Visitor> visitors = new List<Visitor>();
 
     public static Visitor GetVisitor(string visitorId)
     {
+        foreach (var item in visitors)
+        {
+            if (item.VisitorId == visitorId)
+            {
+                return item;
+            }
+        }
+
         return Provider.GetVisitorById(visitorId);
     }
 
     public static void NewVisit(Visitor visitor, VisitSession session)
     {
         Provider.NewVisitor(visitor);
+        visitors.Add(visitor);
+        if (visitors.Count > maxVisitorCountInMemory)
+        {
+            for (int i = visitors.Count; i > 0 ; i--)
+            {
+                if (visitors[i].CurrentSession.Status == VisitSessionStatus.Leave)
+                {
+                    visitors.RemoveAt[i];
+                    break;
+                }
+            }
+        }
+
         VisitSessionService.NewSession(session);
     }
 
     public static List<Visitor> GetAllOnlineVisitors(int accountId)
     {
-        List<Visitor> visitors = Provider.GetAllOnlineVisitors(accountId);
+        List<Visitor> onlineVisitors = new List<Visitor>();
         foreach (var item in visitors)
         {
-            item.CurrentSession = VisitSessionService.GetSessionById(item.CurrentSessionId);
+            if (item.CurrentSession != null && item.CurrentSession.Status != VisitSessionStatus.Leave)
+            {
+                onlineVisitors.Add(item);
+            }
         }
-        return visitors;
+        return onlineVisitors;
     }
 
     public static List<Visitor> GetNewVisitors(DateTime lastCheck)
     {
-       _visitorProvider.GetNewVisitors(lastCheck);
+        List<Visitor> vs = new List<Visitor>();
+        foreach (var item in visitors)
+        {
+            if (item.CurrentSession == null)
+        	{
+                continue;
+	        }
+            else if (item.CurrentSession != null && item.CurrentSession.VisitingTime > lastCheck)
+            {
+                vs.Add(item);
+            }
+        }
+        return vs;       
     }
 }
