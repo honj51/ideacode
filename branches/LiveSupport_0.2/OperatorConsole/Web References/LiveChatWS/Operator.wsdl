@@ -19,6 +19,7 @@
       </s:element>
       <s:complexType name="Operator">
         <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="Disabled" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="AccountId" type="s:int" />

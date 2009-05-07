@@ -1011,6 +1011,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
     public partial class Operator {
         
+        private bool isAdminField;
+        
         private bool disabledField;
         
         private int idField;
@@ -1024,6 +1026,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private string emailField;
         
         private bool isOnlineField;
+        
+        /// <remarks/>
+        public bool IsAdmin {
+            get {
+                return this.isAdminField;
+            }
+            set {
+                this.isAdminField = value;
+            }
+        }
         
         /// <remarks/>
         public bool Disabled {

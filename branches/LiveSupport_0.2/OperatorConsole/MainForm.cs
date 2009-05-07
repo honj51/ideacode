@@ -26,7 +26,7 @@ namespace LiveSupport.OperatorConsole
         private string IsIP = null;
         private NotifyForm notifyForm = new NotifyForm();
         
-        public MainForm(Operator op,DateTime LoginTime)
+        public MainForm(DateTime LoginTime)
         {
             InitializeComponent();
 
@@ -35,10 +35,20 @@ namespace LiveSupport.OperatorConsole
             auth.userName = Properties.Settings.Default.WSUser;
             ws.AuthenticationHeaderValue = auth;
 
-            this.operatorToolStripStatusLabel.Text = "登录客服为：" + op.Name;
-            if(op.IsOnline)
+            this.operatorToolStripStatusLabel.Text = "登录客服为：" + Program.CurrentOperator.Name;
+            if (Program.CurrentOperator.IsOnline)
             this.stateToolStripStatusLabel.Text = "目前状态：在线";
+           
             Properties.Settings.Default.OperatorLoginTime = LoginTime;
+           
+                this.adminToolStripMenuItem.Visible = Program.CurrentOperator.IsAdmin;
+                this.rejiggerpasswordToolStripMenuItem.Enabled = !Program.CurrentOperator.IsAdmin;
+                if (Program.CurrentOperator.IsAdmin)
+                this.powerToolStripStatusLabel.Text = "管理员";
+                else
+                    this.powerToolStripStatusLabel.Text = "普通客服";
+
+
                 //drpChatRequest.DisplayMember = "VisitorIP";
             //drpChatRequest.ValueMember = "ChatId";
 
@@ -522,7 +532,7 @@ namespace LiveSupport.OperatorConsole
         private void 空闲ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChatForm f = new ChatForm();
-            f.ShowDialog();
+            f.Show();
         }
 
         /// <summary>
@@ -557,77 +567,77 @@ namespace LiveSupport.OperatorConsole
          private DateTime lastCheck = DateTime.Today;
          private void timer1_Tick(object sender, EventArgs e)
          {
-             Visitor[] visitors = ws.GetAllVisitors(Program.CurrentOperator.AccountId);
-             NewChangesResult result = ws.CheckNewChanges(Program.CurrentOperator.Id, lastCheck);
+             //Visitor[] visitors = ws.GetAllVisitors(Program.CurrentOperator.AccountId);
+             //NewChangesResult result = ws.CheckNewChanges(Program.CurrentOperator.Id, lastCheck);
 
-             foreach (var item in result.NewVisitors)
-             {
+             //foreach (var item in result.NewVisitors)
+             //{
 
-             }
+             //}
 
-             foreach (var item in result.VisitSessionChange)
-             {
+             //foreach (var item in result.VisitSessionChange)
+             //{
 
-             }
+             //}
 
-             foreach (var item in result.Messages)
-             {
+             //foreach (var item in result.Messages)
+             //{
                  
-             }
+             //}
 
-             foreach (var item in result.Operators)
-             {
+             //foreach (var item in result.Operators)
+             //{
 
-             }
+             //}
 
-             lastCheck = result.CheckTime;
+             //lastCheck = result.CheckTime;
 
-             if (visitors != null && visitors.Length> 0)
-             {
-                 // set the last request time
-                // lastRequestTime = requests[0].RequestTime.AddSeconds(1);
+             //if (visitors != null && visitors.Length> 0)
+             //{
+             //    // set the last request time
+             //   // lastRequestTime = requests[0].RequestTime.AddSeconds(1);
 
-                 ListViewItem item;
-                 for (int i = visitors.Length - 1; i >= 0; i--)
-                 {
-                     item = new ListViewItem(visitors[i].Name);
+             //    ListViewItem item;
+             //    for (int i = visitors.Length - 1; i >= 0; i--)
+             //    {
+             //        item = new ListViewItem(visitors[i].Name);
 
-                     //if (myChats.ContainsKey(visitors[i].CurrentSession.IP))
-                     //{
-                     //    item.ImageIndex = 2;
-                     //    item.ToolTipText = "Double-click to access chat session";
-                     //}
+             //        //if (myChats.ContainsKey(visitors[i].CurrentSession.IP))
+             //        //{
+             //        //    item.ImageIndex = 2;
+             //        //    item.ToolTipText = "Double-click to access chat session";
+             //        //}
                      
-                     //item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].Name));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Location));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Browser));
-                     //ListViewItem.ListViewSubItem imgBrowser = new ListViewItem.ListViewSubItem();
-                     //if (visitors[i].VisitorUserAgent.ToLower().IndexOf("explorer") > -1)
-                     //    imgBrowser.Text = "IE";
-                     //else
-                     //    imgBrowser.Text = "FF";
-                     //item.SubItems.Add(imgBrowser);
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].VisitCount.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Operators.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Status.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.VisitingTime.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.LeaveTime.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatRequestTime.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatingTime.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.WaitingDuring.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChattingDuring.ToString()));
-                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.PageRequestCount.ToString()));
-                     item.Tag = visitors[i];
+             //        //item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].Name));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Location));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Browser));
+             //        //ListViewItem.ListViewSubItem imgBrowser = new ListViewItem.ListViewSubItem();
+             //        //if (visitors[i].VisitorUserAgent.ToLower().IndexOf("explorer") > -1)
+             //        //    imgBrowser.Text = "IE";
+             //        //else
+             //        //    imgBrowser.Text = "FF";
+             //        //item.SubItems.Add(imgBrowser);
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].VisitCount.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Operators.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.Status.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.VisitingTime.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.LeaveTime.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatRequestTime.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChatingTime.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.WaitingDuring.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.ChattingDuring.ToString()));
+             //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, visitors[i].CurrentSession.PageRequestCount.ToString()));
+             //        item.Tag = visitors[i];
 
-                     lstVisitors.Items.Insert(0, item);
+             //        lstVisitors.Items.Insert(0, item);
 
-                    //  Add the visitor to the visitor hashtable
-                     //if (!currentVisitors.ContainsKey(visitors[i].VisitorIP))
-                     //    currentVisitors.Add(requests[i].VisitorIP, requests[i]);
-                     //else
-                     //    currentVisitors[requests[i].VisitorIP] = requests[i];
-                 }
-             }
+             //       //  Add the visitor to the visitor hashtable
+             //        //if (!currentVisitors.ContainsKey(visitors[i].VisitorIP))
+             //        //    currentVisitors.Add(requests[i].VisitorIP, requests[i]);
+             //        //else
+             //        //    currentVisitors[requests[i].VisitorIP] = requests[i];
+             //    }
+             //}
          }
 
          private void lstVisitors_SelectedIndexChanged(object sender, EventArgs e)
@@ -638,6 +648,23 @@ namespace LiveSupport.OperatorConsole
                  visitorBindingSource.DataSource = v;
              }             
          }
+
+
+         // 更改密码
+         private void rejiggerpasswordToolStripMenuItem_Click(object sender, EventArgs e)
+         {
+             RejiggerOperatorPassword rop = new RejiggerOperatorPassword();
+             rop.ShowDialog();
+         }
+
+         private void resetpasswordToolStripMenuItem_Click(object sender, EventArgs e)
+         {
+             RejiggerOperatorPassword rop = new RejiggerOperatorPassword();
+             rop.ShowDialog();
+         }
+
+         
+       
 
   }
 }
