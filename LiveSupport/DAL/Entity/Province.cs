@@ -15,9 +15,9 @@ public class Province
         set { id = value; }
     }
 
-    private int name;
+    private string name;
     [XmlElement]
-    public int Name
+    public string Name
     {
         get { return name; }
         set { name = value; }
