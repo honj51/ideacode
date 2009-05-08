@@ -251,8 +251,7 @@ public class OperatorWS : System.Web.Services.WebService
     {
         return VisitorService.GetAllOnlineVisitors(accountId);
     }
-//新表的方法
-
+    #region DB 新建的方法
     [WebMethod]
     public NewChangesResult CheckNewChanges(int operatorId, DateTime lastCheck)
     {
@@ -324,4 +323,5 @@ public class OperatorWS : System.Web.Services.WebService
             set { checkTime = value; }
         }
     }
+    #endregion
 }
