@@ -11,70 +11,120 @@ namespace LiveSupport.DAL.Entity
     /// </summary>
     public class Account
     {
-        private int id;
+
+        private int id;                 //用户编号
 
         public int Id
         {
             get { return id; }
             set { id = value; }
         }
-        private Guid userId;
+        private string companyName;     //公司名称
 
-        public Guid UserId
+        public string CompanyName
         {
-            get { return userId; }
-            set { userId = value; }
+            get { return companyName; }
+            set { companyName = value; }
         }
-        private int paymentId;
+        private string webAddress;      //公司网址
 
-        public int PaymentId
+        public string WebAddress
         {
-            get { return paymentId; }
-            set { paymentId = value; }
+            get { return webAddress; }
+            set { webAddress = value; }
         }
-        private string email;
+        private string phone;           //电话
+
+        public string Phone
+        {
+            get { return phone; }
+            set { phone = value; }
+        }
+        private string contactName;            //联系人 
+
+        public string ContactName
+        {
+            get { return contactName; }
+            set { contactName = value; }
+        }
+
+
+        private string email;           //电子邮件 
 
         public string Email
         {
             get { return email; }
             set { email = value; }
         }
-        private string name;
+        private string city;            //省份
 
-        public string Name
+        public string City
         {
-            get { return name; }
-            set { name = value; }
+            get { return city; }
+            set { city = value; }
         }
-        private DateTime registerData;
+        private string region;          //城市
 
-        public DateTime RegisterData
+        public string Region
         {
-            get { return registerData; }
-            set { registerData = value; }
+            get { return region; }
+            set { region = value; }
+        }
+        private string calling;         //行业类别
+
+        public string Calling
+        {
+            get { return calling; }
+            set { calling = value; }
+        }
+        private string loginId;         //账号
+
+        public string LoginId
+        {
+            get { return loginId; }
+            set { loginId = value; }
         }
 
+        private string password;        //密码
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+        private string adminUserName;   //昵称
+
+        public string AdminUserName
+        {
+            get { return adminUserName; }
+            set { adminUserName = value; }
+        }
+        private int paymentId;          //支付id
+
+        public int PaymentId
+        {
+            get { return paymentId; }
+            set { paymentId = value; }
+        }
+        private string registerDate;    //注册日期
+
+        public string RegisterDate
+        {
+            get { return registerDate; }
+            set { registerDate = value; }
+        }
+        private string notes;           //
+
+        public string Notes
+        {
+            get { return notes; }
+            set { notes = value; }
+        }
         private List<Operator> operators = new List<Operator>();
 
         public List<Operator> Operators
         {
             get { return operators; }
-        }
-
-
-
-        // Address
-        private string address;
-        private string city;
-        private string region;
-        private string postCode;
-        private string country;
-        private string phone;
-
-        public Account(int id, Guid userId)
-        {
-            this.id = id;
-            this.userId = userId;
         }
 
         public void AddOperator(Operator op)
