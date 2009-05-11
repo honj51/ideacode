@@ -15,12 +15,20 @@ using System.Configuration.Provider;
 using System.Web.Configuration;
 using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
-using LiveSupport.BLL;
-using LiveSupport.LiveSupportDAL.SqlProviders;
 
 public class ChatService
 {
     public static bool HasNewMessage(string chatId, long lastCheck)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static void SendMessage()
+    {
+        throw new NotImplementedException();
+    }
+
+    public static void ChatPageRequestChat(Chat chatRequest)
     {
         throw new NotImplementedException();
     }

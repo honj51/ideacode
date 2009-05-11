@@ -88,7 +88,7 @@ public partial class Chat : System.Web.UI.Page
 
                         {
                             pnlChat.Visible = true;
-                            this.dialog();
+                            //this.dialog();
                            
                         }
                         else
@@ -117,19 +117,19 @@ public partial class Chat : System.Web.UI.Page
                 long lastCheck = long.Parse(Request.Cookies[chatId + "_lastCheck"].Value.ToString());
                 if (ChatService.HasNewMessage(chatId, lastCheck))
                 {
-                    List<ChatMessageInfo> messages = MessageService.GetMessages(chatId, lastCheck);//*
+                    List<LiveSupport.LiveSupportModel.Message> messages = MessageService.GetMessages(chatId, lastCheck);//*
                   
                     if (messages.Count > 0)
                     {
                         for (int i = 0; i < messages.Count; i++)
                         {
-                            if (messages[i].Type == Consts.MessageType_ToAll || messages[i].Type == Consts.MessageType_ToChatPage)
+                            if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor || messages[i].Type == MessageType.SystemMessage_ToVisitor
+                                || messages[i].Type == MessageType.SystemMessage_ToBoth)
                             {
-
-                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Name, CutStr(messages[i].Message, 100));
+                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Source, CutStr(messages[i].Text, 100));
                             }
 
-                            lastCheck = messages[i].MessageId;
+                            lastCheck = messages[i].SentDate.Ticks;
 
                         }
 
@@ -200,7 +200,7 @@ public partial class Chat : System.Web.UI.Page
         auth.userName = ConfigurationManager.AppSettings["WSUser"].ToString();
         ws.Authentication = auth;
 
-        ws.SetTyping(chatId, false, msg.Length > 0);
+        //ws.SetTyping(chatId, false, msg.Length > 0);
         return string.Empty;
     }
 
@@ -214,11 +214,15 @@ public partial class Chat : System.Web.UI.Page
             // Add a new message to the discussion
             string chatId = chtID;
             //创建一个聊天消息实例
-            ChatMessageInfo mesg = new ChatMessageInfo(chatId, VName, msg,1);
-            ChatService.AddMessage(mesg);//添加聊天信息
+            LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
+            m.ChatId = chatId;
+            m.Source = VName;
+            m.Text = msg;
+            m.Type = MessageType.ChatMessage_VistorToOperator;
+            ChatService.SendMessage();
 
-            OperatorWS ws = new OperatorWS();
-            ws.SetTyping(chatId, false, false);
+            //OperatorWS ws = new OperatorWS();
+            //ws.SetTyping(chatId, false, false);
         }
         return "";
     }
@@ -227,7 +231,7 @@ public partial class Chat : System.Web.UI.Page
     [ScriptMethod(UseHttpGet = true)]
     public static void UpdateCloseDate(string chtID)
     {
-        ChatService.UpdateCloseDate(chtID);
+        //ChatService.UpdateCloseDate(chtID);
     }
 
     protected void btnSendEmail_Click(object sender, EventArgs e)
@@ -251,7 +255,6 @@ public partial class Chat : System.Web.UI.Page
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
     {
-        // Initiate a chat request
         string chatId = Guid.NewGuid().ToString();
         if (Request.Cookies["chatId"] != null)
         {
@@ -273,65 +276,51 @@ public partial class Chat : System.Web.UI.Page
             Response.Cookies.Add(cookie);
         }
 
-        ChatRequestInfo request = new ChatRequestInfo();
-        request.AcceptByOpereratorId = -1;
-        request.AccountId = Request.QueryString["aid"];
-        request.ChatId = chatId;
-        request.RequestDate = DateTime.Now;
-        request.VisitorEmail = txtEmail.Text;
-        if (Request.UserHostAddress != null)
-            request.VisitorIP = Request.UserHostAddress.ToString();
-        if (txtName.Text != "")
-        {
-            request.VisitorName = txtName.Text;
-        }
-        else
-        {
-            request.VisitorName = "你说";
-        }
-        if (Request.ServerVariables["HTTP_USER_AGENT"] != null)
-            request.VisitorUserAgent = Request.ServerVariables["HTTP_USER_AGENT"].ToString();
-        request.WasAccept = false;
+        LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
+        chatRequest.AccountId = Request.QueryString["aid"];
+        chatRequest.ChatId = chatId;
+        chatRequest.CreateTime = DateTime.Now;
+        chatRequest.Status = LiveSupport.LiveSupportModel.Chat.ChatStatus.Requested;
 
-        ChatService.ChatPageRequestChat(request);
+        ChatService.ChatPageRequestChat(chatRequest);
         
 
         //lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
-        VisitorName = request.VisitorName;
-        VName = request.VisitorName;
+        //VisitorName = request.VisitorName;
+        //VName = request.VisitorName;
        
         pnlChat.Visible = true;
         pnlRequest.Visible = false;
     }
 
     // 页面同意客服的对话邀请后调用
-    public void dialog()
-    {
-        string chatId = Request.QueryString["chatid"].ToString();
-        int AccountId=int.Parse(Request.QueryString["aid"].ToString());
-        if (Request.Cookies["chatId"] != null)
-        {
-            Response.Cookies["chatId"].Value = chatId;
-        }
-        else
-        {
-            HttpCookie cookie = new HttpCookie("chatId", chatId);
-            Response.Cookies.Add(cookie);
-        }
+    //public void dialog()
+    //{
+    //    string chatId = Request.QueryString["chatid"].ToString();
+    //    int AccountId=int.Parse(Request.QueryString["aid"].ToString());
+    //    if (Request.Cookies["chatId"] != null)
+    //    {
+    //        Response.Cookies["chatId"].Value = chatId;
+    //    }
+    //    else
+    //    {
+    //        HttpCookie cookie = new HttpCookie("chatId", chatId);
+    //        Response.Cookies.Add(cookie);
+    //    }
 
-        if (Request.Cookies[chatId + "_lastCheck"] != null)
-        {
-            Response.Cookies[chatId + "_lastCheck"].Value = "0";
-        }
-        else
-        {
-            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
-            Response.Cookies.Add(cookie);
-        }
-        VName = "您说";
-        ChatService.AddSystemMessage(chatId, AccountId);
-    }
+    //    if (Request.Cookies[chatId + "_lastCheck"] != null)
+    //    {
+    //        Response.Cookies[chatId + "_lastCheck"].Value = "0";
+    //    }
+    //    else
+    //    {
+    //        HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
+    //        Response.Cookies.Add(cookie);
+    //    }
+    //    VName = "您说";
+    //    ChatService.AddSystemMessage(chatId, AccountId);
+    //}
     protected void CutLBtn_Click(object sender, EventArgs e)
     {
         string aaa = Server.MapPath("Download\\11.exe");
@@ -345,47 +334,47 @@ public partial class Chat : System.Web.UI.Page
     protected void btnUpload_Click(object sender, EventArgs e)
     {
         //验证文件路径
-        try
-        {
+        //try
+        //{
             
-            if (Request.Cookies["chatId"] != null)
-            {
-                string chatId = Request.Cookies["chatId"].Value.ToString();
-                OperatorWS ow = new OperatorWS();
-                bool b=ow.GetOperatorIDByChatID(chatId);
-                if (b)
-                {
-                    string file = this.fuFile.FileName.ToString();
-                    if (file.Trim().Length == 0)//验证上传文件
-                    {
-                        this.Response.Write("<script>alert('请选择传送的文件');</script>");
-                        return;
-                    }
-                    if (this.fuFile.FileContent.Length >= 4180560)
-                    {
-                        this.Response.Write("<script>alert('传送的文件过大');</script>");
-                        return;
-                    }
+        //    if (Request.Cookies["chatId"] != null)
+        //    {
+        //        string chatId = Request.Cookies["chatId"].Value.ToString();
+        //        OperatorWS ow = new OperatorWS();
+        //        bool b=ow.GetOperatorIDByChatID(chatId);
+        //        if (b)
+        //        {
+        //            string file = this.fuFile.FileName.ToString();
+        //            if (file.Trim().Length == 0)//验证上传文件
+        //            {
+        //                this.Response.Write("<script>alert('请选择传送的文件');</script>");
+        //                return;
+        //            }
+        //            if (this.fuFile.FileContent.Length >= 4180560)
+        //            {
+        //                this.Response.Write("<script>alert('传送的文件过大');</script>");
+        //                return;
+        //            }
 
-                    ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...",3);
-                    ChatService.AddMessage(msg);//添加聊天信息 
+        //            ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...",3);
+        //            ChatService.AddMessage(msg);//添加聊天信息 
 
-                    string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
-                    this.fuFile.PostedFile.SaveAs(path);
+        //            string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
+        //            this.fuFile.PostedFile.SaveAs(path);
 
-                    ChatMessageInfo msg2 = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!",3);
-                    ChatService.AddMessage(msg2);//添加聊天信息
+        //            ChatMessageInfo msg2 = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!",3);
+        //            ChatService.AddMessage(msg2);//添加聊天信息
 
-                    ChatMessageInfo msg3 = new ChatMessageInfo(chatId, VisitorName, "<a href='UploadFile/" + file + "'>保存</a>",2);
-                    ChatService.AddMessage(msg3);//添加聊天信息
-                }
-            }
+        //            ChatMessageInfo msg3 = new ChatMessageInfo(chatId, VisitorName, "<a href='UploadFile/" + file + "'>保存</a>",2);
+        //            ChatService.AddMessage(msg3);//添加聊天信息
+        //        }
+        //    }
 
-        }
-        catch (Exception ex)
-        {
-            this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
+        //}
     }
 
 }
