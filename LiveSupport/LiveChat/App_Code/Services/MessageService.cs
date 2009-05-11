@@ -21,4 +21,9 @@ public class MessageService
     {
       return  LiveSupport.LiveSupportDAL.SqlProviders.SqlMessageProvider.GetMessages(SessionId, lastCheck);
     }
+
+    public static List<Message> GetMessages(string chatId, long lastCheck)
+    {
+        throw new NotImplementedException();
+    }
 }
