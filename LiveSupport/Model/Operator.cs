@@ -75,7 +75,13 @@ namespace LiveSupport.LiveSupportModel
             get { return aVChatStatus; }
             set { aVChatStatus = value; }
         }
-        
+        private string isAdmin;
+
+        public string IsAdmin
+        {
+            get { return isAdmin; }
+            set { isAdmin = value; }
+        }
         public Operator()
         {
             this.status = OperatorStatus.Offline;
@@ -89,6 +95,7 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["Password"])) password = (string)data["Password"];
             if (!Convert.IsDBNull(data["NickName"])) nickName = (string)data["NickName"];
             if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
+            if (!Convert.IsDBNull(data["IsAdmin"])) isAdmin = (string)data["IsAdmin"];
             if (!Convert.IsDBNull(data["Status"])) status = (string)data["Status"];
             if (!Convert.IsDBNull(data["AVChatStatus"])) aVChatStatus = (string)data["AVChatStatus"];
         }
