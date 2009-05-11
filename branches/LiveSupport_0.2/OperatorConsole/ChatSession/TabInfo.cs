@@ -92,7 +92,7 @@ namespace LiveSupport.OperatorConsole
                     ws.AddMessage(msg);
                 }
 
-                ((MainForm)this.ParentForm).EndChat(null, ChatId);
+                
 
                 ws.TransferChat(newReq);
             }

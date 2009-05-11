@@ -13,7 +13,7 @@ namespace LiveSupport.OperatorConsole
     {
 
         private int SendIndex;
-        private string chatId;
+        private OperatorConsole.LiveChatWS.VisitSession chatSession;
 
         public enum NotifyMessageType
         {
@@ -90,18 +90,18 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        public static void ShowNotifier(bool showCommandButton, string message, string chatId)
+        public static void ShowNotifier(bool showCommandButton, string message, OperatorConsole.LiveChatWS.VisitSession chatSession)
         {
             NotifyForm f = new NotifyForm();
-            f.showNotifier(showCommandButton, message, chatId);
+            f.showNotifier(showCommandButton, message, chatSession);
         }
 
-        private void showNotifier(bool showCommandButton, string message, string chatId)
+        private void showNotifier(bool showCommandButton, string message, OperatorConsole.LiveChatWS.VisitSession chatSession)
         {
             this.messageLabel.Text = message;
             this.acceptButton.Visible = showCommandButton;
             this.declineButton.Visible = showCommandButton;
-            this.chatId = chatId;
+            this.chatSession = chatSession;
             this.notifyMessageType = NotifyMessageType.ChatRequest;
 
             this.Show();
@@ -172,14 +172,10 @@ namespace LiveSupport.OperatorConsole
 
         private void acceptButton_Click(object sender, EventArgs e)
         {           
-            ChatForm cf = new ChatForm(SendIndex);
-            cf.ChatId = this.chatId;
+            ChatForm cf = new ChatForm();
+            cf.ChatSession = this.chatSession;
             Program.ChatForms.Add(cf);
-            if (!MainForm.myChats.ContainsKey(SendIndex))
-            {
-                MainForm.myChats.Add(SendIndex, Program.CurrentOperator.Id);
-                //MessageBox.Show(lstVisitors.SelectedItems[0].Index.ToString());
-            }
+         
             cf.Show();
             this.Hide();
             timer.Stop();

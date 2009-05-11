@@ -29,6 +29,39 @@ namespace LiveSupport.OperatorConsole
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.RememberPassword = this.cbxPassword.Checked;
+            if((!string.IsNullOrEmpty(this.txtOpName.Text))&&(!string.IsNullOrEmpty(this.txtOpPassword.Text)))
+            {
+               
+                Properties.Settings.Default.AutoLogin=this.cbxAutoLogin.Checked;
+            
+               
+            }
+
+
+            if (Properties.Settings.Default.WSUser != txtUserName.Text)
+            {
+                Properties.Settings.Default.WSUser = txtUserName.Text;
+
+            }
+
+
+            if(Properties.Settings.Default.OperatorName!=txtOpName.Text||Properties.Settings.Default.OperatorPassword!=txtOpPassword.Text)
+            {
+                if ((!string.IsNullOrEmpty(txtOpName.Text)) && (!string.IsNullOrEmpty(txtOpPassword.Text)))
+                {
+
+                    Properties.Settings.Default.OperatorName = txtOpName.Text;
+                    Properties.Settings.Default.OperatorPassword = txtOpPassword.Text;
+
+
+                }
+
+              
+               
+           
+          }
+          
             //if (txtOpName.Text.Length > 0 && txtOpPassword.Text.Length > 0)
             //{
                 //// Check to see if we need to save the config
@@ -66,9 +99,25 @@ namespace LiveSupport.OperatorConsole
                 //    else
                 //    {
                         this.Hide();
-                        MainForm c = new MainForm(DateTime.Now);
                         
-                        c.Show();
+                        MainForm c = new MainForm(DateTime.Now);
+                        Program.MainForm = c;
+                        Program.MainForm.ShowDialog();
+                        if (c.Relogin)
+                        {
+                            this.txtOpName.Text = "";
+                            this.txtOpPassword.Text = "";
+                            Properties.Settings.Default.RememberPassword = false;
+                            this.cbxPassword.Checked = false;
+                            this.cbxAutoLogin.Checked = false;
+                            Properties.Settings.Default.AutoLogin=false;
+                            this.Show();                            
+                        }
+                        else
+                        {
+                            this.Close();
+                        }
+       
             //        }
             //    }
             //    else
@@ -81,6 +130,8 @@ namespace LiveSupport.OperatorConsole
                    
             //        }
             //}
+
+                        Properties.Settings.Default.Save();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -91,14 +142,30 @@ namespace LiveSupport.OperatorConsole
 
         private void Login_Load(object sender, EventArgs e)
         {
-            this.txtOpName.Text = "user1op1";
-            txtOpPassword.Text = "abc123";
+            if (Properties.Settings.Default.RememberPassword)
+            {
+                this.cbxPassword.Checked = Properties.Settings.Default.RememberPassword;
+                if ((!string.IsNullOrEmpty(Properties.Settings.Default.OperatorName)) && (!string.IsNullOrEmpty(Properties.Settings.Default.OperatorPassword)))
+                {
+                    this.txtOpName.Text = Properties.Settings.Default.OperatorName;
+                    this.txtOpPassword.Text = Properties.Settings.Default.OperatorPassword;
+                }
+            }
+            else 
+            {
+                txtOpName.Text = "";
+                txtOpPassword.Text= "";
+            
+            }
+
+            //this.txtOpName.Text = "user1op1";
+          //  txtOpPassword.Text = "abc123";
            // if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator.Length == 0)
            // {
                 //gbConfig.Visible = true;
                 //this.Height = 354;
                 //txtWSUrl.Text = "http://localhost/operator.asmx";
-            txtUserName.Text = "wspass";
+            txtUserName.Text = Properties.Settings.Default.WSUser;
                 //txtWSUrl.SelectAll();
                 //txtWSUrl.Focus();
             //}

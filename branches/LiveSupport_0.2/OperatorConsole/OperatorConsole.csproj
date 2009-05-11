@@ -156,8 +156,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RejiggerOperatorPassword.resx">
-      <DependentUpon>RejiggerOperatorPassword.cs</DependentUpon>
+    <EmbeddedResource Include="ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -175,11 +175,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TestFixture.cs" />
-    <Compile Include="RejiggerOperatorPassword.cs">
+    <Compile Include="ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RejiggerOperatorPassword.Designer.cs">
-      <DependentUpon>RejiggerOperatorPassword.cs</DependentUpon>
+    <Compile Include="ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Web References\LiveChatWS\Reference.cs">
       <AutoGen>True</AutoGen>

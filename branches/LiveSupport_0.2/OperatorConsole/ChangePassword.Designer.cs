@@ -1,6 +1,6 @@
 ﻿namespace LiveSupport.OperatorConsole
 {
-    partial class RejiggerOperatorPassword
+    partial class ChangePassword
     {
         /// <summary>
         /// Required designer variable.
@@ -36,8 +36,6 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtNewPassword = new System.Windows.Forms.TextBox();
             this.txtNewPassword2 = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnOk
@@ -115,30 +113,12 @@
             this.txtNewPassword2.Size = new System.Drawing.Size(111, 21);
             this.txtNewPassword2.TabIndex = 7;
             // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(29, 16);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(71, 12);
-            this.lblName.TabIndex = 8;
-            this.lblName.Text = "座 席 帐 号";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(113, 12);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(111, 21);
-            this.txtName.TabIndex = 9;
-            // 
-            // RejiggerOperatorPassword
+            // ChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 157);
+            this.ClientSize = new System.Drawing.Size(250, 153);
             this.ControlBox = false;
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtNewPassword2);
             this.Controls.Add(this.txtNewPassword);
             this.Controls.Add(this.txtPassword);
@@ -149,7 +129,7 @@
             this.Controls.Add(this.btnOk);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "RejiggerOperatorPassword";
+            this.Name = "ChangePassword";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -170,7 +150,5 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtNewPassword;
         private System.Windows.Forms.TextBox txtNewPassword2;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox txtName;
     }
 }

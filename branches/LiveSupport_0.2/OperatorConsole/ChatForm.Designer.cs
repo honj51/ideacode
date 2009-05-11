@@ -336,7 +336,7 @@
             // 
             this.tmrGetMsg.Enabled = true;
             this.tmrGetMsg.Interval = 5000;
-            this.tmrGetMsg.Tick += new System.EventHandler(this.tmrGetMsg_Tick);
+          
             // 
             // ChatForm
             // 
@@ -347,6 +347,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChatForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChatForm_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);

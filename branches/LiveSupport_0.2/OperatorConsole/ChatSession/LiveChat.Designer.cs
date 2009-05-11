@@ -77,7 +77,7 @@ namespace LiveSupport.OperatorConsole
             this.txtMsg.Name = "txtMsg";
             this.txtMsg.Size = new System.Drawing.Size(608, 21);
             this.txtMsg.TabIndex = 5;
-            this.txtMsg.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMsg_KeyUp);
+         
             this.txtMsg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMsg_KeyPress);
             // 
             // toolStrip1

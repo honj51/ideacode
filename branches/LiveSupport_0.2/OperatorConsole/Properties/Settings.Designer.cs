@@ -128,5 +128,53 @@ namespace LiveSupport.OperatorConsole.Properties {
                 this["OperatorLoginTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OperatorName {
+            get {
+                return ((string)(this["OperatorName"]));
+            }
+            set {
+                this["OperatorName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OperatorPassword {
+            get {
+                return ((string)(this["OperatorPassword"]));
+            }
+            set {
+                this["OperatorPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RememberPassword {
+            get {
+                return ((bool)(this["RememberPassword"]));
+            }
+            set {
+                this["RememberPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoLogin {
+            get {
+                return ((bool)(this["AutoLogin"]));
+            }
+            set {
+                this["AutoLogin"] = value;
+            }
+        }
     }
 }

@@ -18,6 +18,21 @@ namespace LiveSupport.OperatorConsole
 {
 	static class Program
 	{
+        private static MainForm mainForm;
+
+        public static MainForm MainForm
+        {
+            get { return Program.mainForm; }
+            set { Program.mainForm = value; }
+        }
+
+        private static List<OperatorConsole.LiveChatWS.Visitor> visitors;
+
+        public static List<OperatorConsole.LiveChatWS.Visitor> Visitors
+        {
+            get { return Program.visitors; }
+            set { Program.visitors = value; }
+        }
 		private static OperatorConsole.LiveChatWS.Operator myOperator;
         private static List<ChatForm> chatForms = new List<ChatForm>();
 
@@ -41,7 +56,8 @@ namespace LiveSupport.OperatorConsole
 			get { return activeChat = 0; }
 			set { activeChat = value; }
 		}
-	
+	    
+        
 	
 		/// <summary>
 		/// The main entry point for the application.

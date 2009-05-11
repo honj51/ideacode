@@ -97,24 +97,7 @@ namespace LiveSupport.OperatorConsole
             tmrGetMsg.Enabled = true;
         }
 
-        private void txtMsg_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape && MessageBox.Show("Are you sure you want to exit the chat session?", "Ending chat session", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                tmrGetMsg.Enabled = false;
-
-                ChatMessageInfo msg = new ChatMessageInfo();
-                msg.MessageId = -1;
-                msg.ChatId = myChatRequest.ChatId;
-                msg.Message = "The operator has left the chat session...";
-                msg.Name = "System";
-                msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
-
-                ws.AddMessage(msg);
-
-                ((MainForm)this.ParentForm).EndChat((TabPage)this.Parent, myChatRequest.ChatId);
-            }
-        }
+      
 
         private void txtMsg_KeyPress(object sender, KeyPressEventArgs e)
         {

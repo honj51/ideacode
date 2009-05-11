@@ -57,15 +57,15 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         private SoundPlayer player = new SoundPlayer();
-        private Hashtable Chats = new Hashtable();
-        private int OperatorChatIndex;
+         
+     
         OperatorWS ws = new OperatorWS();
-        private string chatId;
+        private VisitSession chatSession;
 
-        public string ChatId
+        public VisitSession ChatSession
         {
-            get { return chatId; }
-            set { chatId = value; }
+            get { return chatSession; }
+            set { chatSession = value; }
         }
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
@@ -86,7 +86,7 @@ namespace LiveSupport.OperatorConsole
             }
         }
         
-        public ChatForm(int ChatIndex)
+        public ChatForm()
         {
             InitializeComponent();
 
@@ -96,10 +96,10 @@ namespace LiveSupport.OperatorConsole
             ws.AuthenticationHeaderValue = auth;
 
            
-            OperatorChatIndex = ChatIndex;
+         
             
             // We initialize the document
-            wb.Navigate("about:Initiating the chat session...");
+            wb.Navigate("about:初始会话...");
 
             // We start the timer that will get the messages
             tmrGetMsg.Enabled = true;
@@ -123,7 +123,7 @@ namespace LiveSupport.OperatorConsole
 
             if (MessageBox.Show("是否关闭", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.Yes))
             {
-                MainForm.myChats.Remove(OperatorChatIndex);
+               
                 Program.ChatForms.Remove(this);
                 this.Close();               
             }
@@ -147,67 +147,7 @@ namespace LiveSupport.OperatorConsole
                 ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName);
             }
         }
-        /// <summary>
-        /// 获取聊天信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tmrGetMsg_Tick(object sender, EventArgs e)
-        {
-            // Prevent from entering multiple times in the event
-         //  tmrGetMsg.Enabled = false;
-
-           // We get the last messages
-           //if (ws.HasNewMessage(myChatRequest.ChatId, lastCheck))
-           //{
-          // ChatMessageInfo[] messages =  ws.GetChatMessages(myChatRequest.ChatId, lastCheck);
-             //  if(messages.Length > 0)
-             //  {
-                   //for (int i = messages.Length - 1; i >= 0; i--)
-                     //  for (int i = 0; i < messages.Length; i++)
-                     //  {
-                           //if (messages[i].Type == MessageType_ToAll || messages[i].Type == MessageType_ToOperator)
-                           //{
-
-                          //     wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", messages[i].Name,messages[i].Message));
-                              // lastCheck = messages[i].MessageId;
-                           //}
-                    //   }
-
-            // Should we play a sound
-            //if (Properties.Settings.Default.PlaySoundOnChatMsg)
-            //{
-                //if(!this.ringToolStripButton.Checked)
-                //{
-                //    PlayMsgSound();
-                //}
-            //}
-            //TODO: Make this more flexible
-           // wb.Document.Window.ScrollTo(new Point(0, 5000));
-
-            // Flash the window
-              
-                //if (this.ParentForm != null)
-                //{
-                    //if(!this.flashToolStripButton.Checked){
-
-                    //    API.FlashWindowEx(this.Handle);
-                    // }
-                //}
-             //  }
-           //}
-
-           //// Check for typing notification
-           //if (ws.IsTyping(myChatRequest.ChatId, false))
-           //    toollblIsTyping.Text = "The visitor is typing a message...";
-           //else
-           //    toollblIsTyping.Text = this.Text;
-
-           //// Set if the operator is typing
-           //ws.SetTyping(myChatRequest.ChatId, true, txtMsg.Text.Length > 0);
-
-             //  tmrGetMsg.Enabled = true;
-        }
+      
 
         /// <summary>
         /// 有新信息提示音
@@ -319,7 +259,23 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainForm.myChats.Remove(OperatorChatIndex);
+            
+        }
+
+        private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          
+            if (MessageBox.Show("是否关闭", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.Yes))
+            {
+
+                Program.ChatForms.Remove(this);
+                e.Cancel =false; 
+            }
+            else 
+            {
+                e.Cancel = true;
+            
+            }
         }
 
         
