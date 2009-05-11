@@ -6,7 +6,7 @@ using System.Web.Services.Protocols;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Caching;
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 using System.IO;
 
 /// <summary>

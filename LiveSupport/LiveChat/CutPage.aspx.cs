@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Windows.Forms;
 using System.Windows;
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 public partial class CutPage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
