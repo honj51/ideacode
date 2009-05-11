@@ -5,6 +5,12 @@ using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
+    public enum MessageType
+    {
+        ChatMessage_OperatorToVisitor, ChatMessage_VistorToOperator, SystemMessage_ToOperator, SystemMessage_ToVisitor,
+        SystemMessage_ToBoth
+    }
+
     public class Message
     {
         public const string ChatMessage_OperatorToVisitor = "O2V";
@@ -55,9 +61,9 @@ namespace LiveSupport.LiveSupportModel
             get { return sentDate; }
             set { sentDate = value; }
         }
-        private string type;
+        private MessageType type;
 
-        public string Type
+        public MessageType Type
         {
             get { return type; }
             set { type = value; }
@@ -75,7 +81,7 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["Destination"])) destination = (string)data["Destination"];
             if (!Convert.IsDBNull(data["Text"])) text = (string)data["Text"];
             if (!Convert.IsDBNull(data["SentDate"])) sentDate = (DateTime)data["SentDate"];
-            if (!Convert.IsDBNull(data["Type"])) type = (string)data["Type"];
+            if (!Convert.IsDBNull(data["Type"])) type = (MessageType)Enum.Parse(typeof(MessageType), data["Type"].ToString());
 
         }
     }
