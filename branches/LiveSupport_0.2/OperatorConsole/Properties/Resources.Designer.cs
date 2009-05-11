@@ -60,9 +60,23 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap aim {
+            get {
+                object obj = ResourceManager.GetObject("aim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap alarmd {
             get {
                 object obj = ResourceManager.GetObject("alarmd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap All_software_is_current {
+            get {
+                object obj = ResourceManager.GetObject("All_software_is_current", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

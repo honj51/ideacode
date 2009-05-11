@@ -861,7 +861,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.DateTime sentDateField;
         
-        private string typeField;
+        private MessageType typeField;
         
         /// <remarks/>
         public string MessageId {
@@ -924,7 +924,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public string Type {
+        public MessageType Type {
             get {
                 return this.typeField;
             }
@@ -932,6 +932,28 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
                 this.typeField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public enum MessageType {
+        
+        /// <remarks/>
+        ChatMessage_OperatorToVisitor,
+        
+        /// <remarks/>
+        ChatMessage_VistorToOperator,
+        
+        /// <remarks/>
+        SystemMessage_ToOperator,
+        
+        /// <remarks/>
+        SystemMessage_ToVisitor,
+        
+        /// <remarks/>
+        SystemMessage_ToBoth,
     }
     
     /// <remarks/>

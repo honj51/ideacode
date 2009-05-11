@@ -12,9 +12,13 @@ namespace LiveSupport.OperatorConsole
         private const int AccountId = 100;
         private List<Operator> operators = new List<Operator>();
         private List<Visitor> visitors = new List<Visitor>();
+        private const int operatorsCount = 10;
+        private const int visitorsCount = 1;
+
         public TestFixture()
         {
-            for (int i = 0; i < 10; i++)
+            // 1. creat 10 operator
+            for (int i = 0; i < operatorsCount; i++)
             {
                 Operator o = new Operator();
                 o.Name = i.ToString() + "号客服";
@@ -24,7 +28,7 @@ namespace LiveSupport.OperatorConsole
                 operators.Add(o);
             }
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < visitorsCount; i++)
             {
                 visitors.Add(NewVisitor(i));
             }
@@ -122,7 +126,16 @@ namespace LiveSupport.OperatorConsole
 
         private Message NewMessage()
         {
-            return null;
+            Random r = new Random();
+            int index = r.Next(0, visitors.Count - 1);
+            
+            Message m = new Message();
+            m.Type = MessageType.ChatMessage_VistorToOperator;
+            m.ChatId = visitors[index].CurrentSession.SessionId;
+            m.Source = "访客" + index;
+            m.SentDate = DateTime.Now;
+            m.Text = Guid.NewGuid().ToString();
+            return m;
         }
     }
 }

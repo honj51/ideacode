@@ -90,6 +90,9 @@
     <Compile Include="ChatSession\TabInfo.Designer.cs">
       <DependentUpon>TabInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListViewGroupsExample.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,10 +195,10 @@
     <None Include="Web References\LiveChatWS\Operator.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:49739/LiveChat/Operator.asmx">
+    <WebReferenceUrl Include="http://localhost:1575/LiveChat/Operator.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LiveChatWS\</RelPath>
-      <UpdateFromURL>http://localhost:49739/LiveChat/Operator.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:1575/LiveChat/Operator.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -222,6 +225,8 @@
     <Content Include="Profile.ico" />
     <None Include="Resources\cat_sh_button.gif" />
     <None Include="Resources\alarmd.png" />
+    <None Include="Resources\All software is current.png" />
+    <None Include="Resources\aim.png" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />

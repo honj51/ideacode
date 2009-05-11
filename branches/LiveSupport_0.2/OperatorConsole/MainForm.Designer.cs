@@ -145,11 +145,10 @@ namespace LiveSupport.OperatorConsole
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.inviteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.acceptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.operatorToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -328,7 +327,7 @@ namespace LiveSupport.OperatorConsole
             this.helpToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(958, 25);
+            this.mainMenu.Size = new System.Drawing.Size(958, 24);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -340,26 +339,26 @@ namespace LiveSupport.OperatorConsole
             this.rejiggerpasswordToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.operatorToolStripMenuItem.Name = "operatorToolStripMenuItem";
-            this.operatorToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
+            this.operatorToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.operatorToolStripMenuItem.Text = "操作(&F)";
             // 
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
             this.connectToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.connectToolStripMenuItem.Text = "更改账户(&C)";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(165, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(156, 6);
             // 
             // rejiggerpasswordToolStripMenuItem
             // 
             this.rejiggerpasswordToolStripMenuItem.Name = "rejiggerpasswordToolStripMenuItem";
-            this.rejiggerpasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.rejiggerpasswordToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.rejiggerpasswordToolStripMenuItem.Text = "修改密码(&P)";
             this.rejiggerpasswordToolStripMenuItem.Click += new System.EventHandler(this.rejiggerpasswordToolStripMenuItem_Click);
             // 
@@ -368,7 +367,7 @@ namespace LiveSupport.OperatorConsole
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.exitToolStripMenuItem.Text = "退出(&E)";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -378,19 +377,19 @@ namespace LiveSupport.OperatorConsole
             this.创建交流按钮CToolStripMenuItem,
             this.resetpasswordToolStripMenuItem});
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.adminToolStripMenuItem.Text = "管理员(&A)";
             // 
             // 创建交流按钮CToolStripMenuItem
             // 
             this.创建交流按钮CToolStripMenuItem.Name = "创建交流按钮CToolStripMenuItem";
-            this.创建交流按钮CToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.创建交流按钮CToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.创建交流按钮CToolStripMenuItem.Text = "创建交流按钮(&C)";
             // 
             // resetpasswordToolStripMenuItem
             // 
             this.resetpasswordToolStripMenuItem.Name = "resetpasswordToolStripMenuItem";
-            this.resetpasswordToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.resetpasswordToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.resetpasswordToolStripMenuItem.Text = "重置座席密码(&R)";
             this.resetpasswordToolStripMenuItem.Click += new System.EventHandler(this.resetpasswordToolStripMenuItem_Click);
             // 
@@ -402,33 +401,33 @@ namespace LiveSupport.OperatorConsole
             this.客服栏OToolStripMenuItem,
             this.访客信息栏VToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(60, 21);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.toolsToolStripMenuItem.Text = "视图(&V)";
             // 
             // cannedMessagesToolStripMenuItem
             // 
             this.cannedMessagesToolStripMenuItem.Name = "cannedMessagesToolStripMenuItem";
-            this.cannedMessagesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cannedMessagesToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.cannedMessagesToolStripMenuItem.Text = "常用消息(&C)";
             this.cannedMessagesToolStripMenuItem.Click += new System.EventHandler(this.cannedMessagesToolStripMenuItem_Click);
             // 
             // presetLinksToolStripMenuItem
             // 
             this.presetLinksToolStripMenuItem.Name = "presetLinksToolStripMenuItem";
-            this.presetLinksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.presetLinksToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.presetLinksToolStripMenuItem.Text = "预置链接(&P)";
             this.presetLinksToolStripMenuItem.Click += new System.EventHandler(this.presetLinksToolStripMenuItem_Click);
             // 
             // 客服栏OToolStripMenuItem
             // 
             this.客服栏OToolStripMenuItem.Name = "客服栏OToolStripMenuItem";
-            this.客服栏OToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.客服栏OToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.客服栏OToolStripMenuItem.Text = "客服栏(&O)";
             // 
             // 访客信息栏VToolStripMenuItem
             // 
             this.访客信息栏VToolStripMenuItem.Name = "访客信息栏VToolStripMenuItem";
-            this.访客信息栏VToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.访客信息栏VToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.访客信息栏VToolStripMenuItem.Text = "访客信息栏(&V)";
             // 
             // administrationToolStripMenuItem
@@ -440,7 +439,7 @@ namespace LiveSupport.OperatorConsole
             this.toolStripSeparator1,
             this.autostartToolStripMenuItem});
             this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
-            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(62, 21);
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.administrationToolStripMenuItem.Text = "选项(&O)";
             // 
             // playSoundOnChatRequestToolStripMenuItem
@@ -448,34 +447,34 @@ namespace LiveSupport.OperatorConsole
             this.playSoundOnChatRequestToolStripMenuItem.Checked = true;
             this.playSoundOnChatRequestToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.playSoundOnChatRequestToolStripMenuItem.Name = "playSoundOnChatRequestToolStripMenuItem";
-            this.playSoundOnChatRequestToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.playSoundOnChatRequestToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.playSoundOnChatRequestToolStripMenuItem.Text = "对话请求时播放声音";
             this.playSoundOnChatRequestToolStripMenuItem.Click += new System.EventHandler(this.playSoundOnChatRequestToolStripMenuItem_Click);
             // 
             // playSoundOnChatMessageToolStripMenuItem
             // 
             this.playSoundOnChatMessageToolStripMenuItem.Name = "playSoundOnChatMessageToolStripMenuItem";
-            this.playSoundOnChatMessageToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.playSoundOnChatMessageToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.playSoundOnChatMessageToolStripMenuItem.Text = "新消息时播放声音";
             this.playSoundOnChatMessageToolStripMenuItem.Click += new System.EventHandler(this.playSoundOnChatMessageToolStripMenuItem_Click);
             // 
             // whenOfflineGetWebsiteRequestsToolStripMenuItem
             // 
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Name = "whenOfflineGetWebsiteRequestsToolStripMenuItem";
-            this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Text = "离线时仍获取网站访问记录";
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Click += new System.EventHandler(this.whenOfflineGetWebsiteRequestsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
             // 
             // autostartToolStripMenuItem
             // 
             this.autostartToolStripMenuItem.CheckOnClick = true;
             this.autostartToolStripMenuItem.Name = "autostartToolStripMenuItem";
-            this.autostartToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.autostartToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.autostartToolStripMenuItem.Text = "开机自动运行";
             this.autostartToolStripMenuItem.Click += new System.EventHandler(this.autostartToolStripMenuItem_Click);
             // 
@@ -490,48 +489,48 @@ namespace LiveSupport.OperatorConsole
             this.官方网站ToolStripMenuItem,
             this.关于AToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.helpToolStripMenuItem.Text = "帮助(&H)";
             // 
             // 检查升级CToolStripMenuItem
             // 
             this.检查升级CToolStripMenuItem.Name = "检查升级CToolStripMenuItem";
-            this.检查升级CToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.检查升级CToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.检查升级CToolStripMenuItem.Text = "检查升级(&C)";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(173, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
             // 
             // 购买服务BToolStripMenuItem
             // 
             this.购买服务BToolStripMenuItem.Name = "购买服务BToolStripMenuItem";
-            this.购买服务BToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.购买服务BToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.购买服务BToolStripMenuItem.Text = "购买服务(&B)";
             // 
             // 联系我们UToolStripMenuItem
             // 
             this.联系我们UToolStripMenuItem.Name = "联系我们UToolStripMenuItem";
-            this.联系我们UToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.联系我们UToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.联系我们UToolStripMenuItem.Text = "联系我们(&U)";
             // 
             // 软件手册MToolStripMenuItem
             // 
             this.软件手册MToolStripMenuItem.Name = "软件手册MToolStripMenuItem";
-            this.软件手册MToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.软件手册MToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.软件手册MToolStripMenuItem.Text = "软件手册(&M)";
             // 
             // 官方网站ToolStripMenuItem
             // 
             this.官方网站ToolStripMenuItem.Name = "官方网站ToolStripMenuItem";
-            this.官方网站ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.官方网站ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.官方网站ToolStripMenuItem.Text = "官方网站(&H)";
             // 
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.关于AToolStripMenuItem.Text = "关于座席客户端(&A)";
             // 
             // pnlChat
@@ -547,7 +546,7 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.Controls.Add(this.lblCurrentVisitors);
             this.pnlChat.Controls.Add(this.lblMyChat);
             this.pnlChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlChat.Location = new System.Drawing.Point(0, 50);
+            this.pnlChat.Location = new System.Drawing.Point(0, 49);
             this.pnlChat.Name = "pnlChat";
             this.pnlChat.Size = new System.Drawing.Size(958, 27);
             this.pnlChat.TabIndex = 1;
@@ -604,7 +603,7 @@ namespace LiveSupport.OperatorConsole
             // lblVisitorOnChat
             // 
             this.lblVisitorOnChat.AutoSize = true;
-            this.lblVisitorOnChat.Location = new System.Drawing.Point(112, 7);
+            this.lblVisitorOnChat.Location = new System.Drawing.Point(123, 7);
             this.lblVisitorOnChat.Name = "lblVisitorOnChat";
             this.lblVisitorOnChat.Size = new System.Drawing.Size(107, 12);
             this.lblVisitorOnChat.TabIndex = 3;
@@ -613,7 +612,7 @@ namespace LiveSupport.OperatorConsole
             // lblCurrentVisitors
             // 
             this.lblCurrentVisitors.AutoSize = true;
-            this.lblCurrentVisitors.Location = new System.Drawing.Point(225, 7);
+            this.lblCurrentVisitors.Location = new System.Drawing.Point(260, 7);
             this.lblCurrentVisitors.Name = "lblCurrentVisitors";
             this.lblCurrentVisitors.Size = new System.Drawing.Size(89, 12);
             this.lblCurrentVisitors.TabIndex = 2;
@@ -622,7 +621,7 @@ namespace LiveSupport.OperatorConsole
             // lblMyChat
             // 
             this.lblMyChat.AutoSize = true;
-            this.lblMyChat.Location = new System.Drawing.Point(12, 7);
+            this.lblMyChat.Location = new System.Drawing.Point(23, 7);
             this.lblMyChat.Name = "lblMyChat";
             this.lblMyChat.Size = new System.Drawing.Size(83, 12);
             this.lblMyChat.TabIndex = 4;
@@ -657,6 +656,7 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors.UseCompatibleStateImageBehavior = false;
             this.lstVisitors.View = System.Windows.Forms.View.Details;
             this.lstVisitors.SelectedIndexChanged += new System.EventHandler(this.lstVisitors_SelectedIndexChanged);
+            this.lstVisitors.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstVisitors_ColumnClick);
             // 
             // colName
             // 
@@ -726,19 +726,19 @@ namespace LiveSupport.OperatorConsole
             this.邀请对话ToolStripMenuItem,
             this.接受请求ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
             // 
             // 邀请对话ToolStripMenuItem
             // 
             this.邀请对话ToolStripMenuItem.Name = "邀请对话ToolStripMenuItem";
-            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.邀请对话ToolStripMenuItem.Text = "邀请对话";
             this.邀请对话ToolStripMenuItem.Click += new System.EventHandler(this.邀请对话ToolStripMenuItem_Click);
             // 
             // 接受请求ToolStripMenuItem
             // 
             this.接受请求ToolStripMenuItem.Name = "接受请求ToolStripMenuItem";
-            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.接受请求ToolStripMenuItem.Text = "接受请求";
             this.接受请求ToolStripMenuItem.Click += new System.EventHandler(this.接受请求ToolStripMenuItem_Click);
             // 
@@ -761,17 +761,17 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.Location = new System.Drawing.Point(0, 12);
             this.tabChats.Name = "tabChats";
             this.tabChats.SelectedIndex = 0;
-            this.tabChats.Size = new System.Drawing.Size(750, 347);
+            this.tabChats.Size = new System.Drawing.Size(750, 348);
             this.tabChats.TabIndex = 0;
             this.tabChats.SelectedIndexChanged += new System.EventHandler(this.tabChats_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(742, 321);
+            this.tabPage1.Size = new System.Drawing.Size(742, 323);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "";
             this.tabPage1.Text = "欢迎";
@@ -779,30 +779,30 @@ namespace LiveSupport.OperatorConsole
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(742, 460);
+            this.tabPage2.Size = new System.Drawing.Size(742, 323);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(742, 460);
+            this.tabPage3.Size = new System.Drawing.Size(742, 323);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "访客名片";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(742, 460);
+            this.tabPage4.Size = new System.Drawing.Size(742, 323);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "网页浏览";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -838,10 +838,10 @@ namespace LiveSupport.OperatorConsole
             this.tabPage5.Controls.Add(this.visitCountTextBox);
             this.tabPage5.Controls.Add(visitorIdLabel);
             this.tabPage5.Controls.Add(this.visitorIdTextBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 21);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(742, 460);
+            this.tabPage5.Size = new System.Drawing.Size(742, 323);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "访客详情";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -988,7 +988,7 @@ namespace LiveSupport.OperatorConsole
             // mainSplitContainer
             // 
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainSplitContainer.Location = new System.Drawing.Point(0, 77);
+            this.mainSplitContainer.Location = new System.Drawing.Point(0, 76);
             this.mainSplitContainer.Name = "mainSplitContainer";
             this.mainSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -999,7 +999,7 @@ namespace LiveSupport.OperatorConsole
             // mainSplitContainer.Panel2
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.visitorSessionSplitContainer);
-            this.mainSplitContainer.Size = new System.Drawing.Size(958, 590);
+            this.mainSplitContainer.Size = new System.Drawing.Size(958, 591);
             this.mainSplitContainer.SplitterDistance = 227;
             this.mainSplitContainer.TabIndex = 4;
             // 
@@ -1018,7 +1018,7 @@ namespace LiveSupport.OperatorConsole
             this.visitorSessionSplitContainer.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.visitorSessionSplitContainer.Panel2.Controls.Add(this.tabChats);
             this.visitorSessionSplitContainer.Panel2.Controls.Add(this.访客信息栏);
-            this.visitorSessionSplitContainer.Size = new System.Drawing.Size(958, 359);
+            this.visitorSessionSplitContainer.Size = new System.Drawing.Size(958, 360);
             this.visitorSessionSplitContainer.SplitterDistance = 204;
             this.visitorSessionSplitContainer.TabIndex = 3;
             // 
@@ -1029,7 +1029,7 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(204, 359);
+            this.panel1.Size = new System.Drawing.Size(204, 360);
             this.panel1.TabIndex = 0;
             // 
             // operatorsTreeView
@@ -1044,7 +1044,7 @@ namespace LiveSupport.OperatorConsole
             this.operatorsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2});
-            this.operatorsTreeView.Size = new System.Drawing.Size(204, 347);
+            this.operatorsTreeView.Size = new System.Drawing.Size(204, 348);
             this.operatorsTreeView.TabIndex = 0;
             // 
             // label3
@@ -1104,13 +1104,13 @@ namespace LiveSupport.OperatorConsole
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem2});
             this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(148, 170);
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(143, 170);
             // 
             // 空闲ToolStripMenuItem
             // 
             this.空闲ToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_02;
             this.空闲ToolStripMenuItem.Name = "空闲ToolStripMenuItem";
-            this.空闲ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.空闲ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.空闲ToolStripMenuItem.Text = "空闲";
             this.空闲ToolStripMenuItem.Click += new System.EventHandler(this.空闲ToolStripMenuItem_Click);
             // 
@@ -1118,14 +1118,14 @@ namespace LiveSupport.OperatorConsole
             // 
             this.chattingToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_01;
             this.chattingToolStripMenuItem.Name = "chattingToolStripMenuItem";
-            this.chattingToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.chattingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.chattingToolStripMenuItem.Text = "对话中";
             // 
             // beRightBackToolStripMenuItem
             // 
             this.beRightBackToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_04;
             this.beRightBackToolStripMenuItem.Name = "beRightBackToolStripMenuItem";
-            this.beRightBackToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.beRightBackToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.beRightBackToolStripMenuItem.Text = "一会回来";
             this.beRightBackToolStripMenuItem.Click += new System.EventHandler(this.beRightBackToolStripMenuItem_Click);
             // 
@@ -1133,38 +1133,38 @@ namespace LiveSupport.OperatorConsole
             // 
             this.offlineToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_09;
             this.offlineToolStripMenuItem.Name = "offlineToolStripMenuItem";
-            this.offlineToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.offlineToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.offlineToolStripMenuItem.Text = "离线";
             this.offlineToolStripMenuItem.Click += new System.EventHandler(this.offlineToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
             // 
             // changeAccountToolStripMenuItem
             // 
             this.changeAccountToolStripMenuItem.Name = "changeAccountToolStripMenuItem";
-            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.changeAccountToolStripMenuItem.Text = "更换座席(&C)";
             this.changeAccountToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.openToolStripMenuItem.Text = "显示/隐藏(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem2
             // 
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
-            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(147, 22);
+            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
             this.exitToolStripMenuItem2.Text = "退出(&E)";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1174,49 +1174,45 @@ namespace LiveSupport.OperatorConsole
             this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator7,
             this.toolStripSeparator5,
-            this.toolStripButton2,
+            this.inviteToolStripButton,
             this.toolStripSeparator6,
-            this.toolStripButton3});
+            this.acceptToolStripButton});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(958, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton2
+            // inviteToolStripButton
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButton2.Text = "邀请访客";
+            this.inviteToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.aim;
+            this.inviteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.inviteToolStripButton.Name = "inviteToolStripButton";
+            this.inviteToolStripButton.Size = new System.Drawing.Size(73, 22);
+            this.inviteToolStripButton.Text = "邀请访客";
+            this.inviteToolStripButton.Click += new System.EventHandler(this.inviteToolStripButton_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton3
+            // acceptToolStripButton
             // 
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(100, 22);
-            this.toolStripButton3.Text = "接受对话请求";
+            this.acceptToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.All_software_is_current;
+            this.acceptToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.acceptToolStripButton.Name = "acceptToolStripButton";
+            this.acceptToolStripButton.Size = new System.Drawing.Size(97, 22);
+            this.acceptToolStripButton.Text = "接受对话请求";
+            this.acceptToolStripButton.Click += new System.EventHandler(this.acceptToolStripButton_Click);
             // 
             // statusStrip1
             // 
@@ -1377,9 +1373,9 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem 联系我们UToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 软件手册MToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 官方网站ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton inviteToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton acceptToolStripButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel operatorToolStripStatusLabel;
@@ -1404,7 +1400,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem 客服栏OToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 访客信息栏VToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.Timer loginTimer;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ColumnHeader colName;

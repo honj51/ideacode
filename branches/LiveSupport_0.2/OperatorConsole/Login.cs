@@ -43,7 +43,7 @@ namespace LiveSupport.OperatorConsole
                 //AuthenticationHeader auth = new AuthenticationHeader();
                 //auth.userName = Properties.Settings.Default.WSUser;
                 //ws.AuthenticationHeaderValue = auth;
-                //   Operator op=  ws.LogIn(txtOpName.Text, txtOpPassword.Text);
+                 // Operator op=  ws.LogIn(txtOpName.Text, txtOpPassword.Text);
 
 
                 Operator op = new Operator();

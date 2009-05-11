@@ -78,7 +78,7 @@
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // saveFileDialog1
+            // cutSaveFileDialog
             // 
             this.cutSaveFileDialog.FileName = "image1";
             this.cutSaveFileDialog.Filter = "jpg Files(*.jpg) |*.jpg |jpeg Files(*.*) |*.jpeg |bmp Files(*.bmp) |*.bmp";
@@ -158,6 +158,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uploadToolStripButton,
             this.ExitToolStripButton,
@@ -345,7 +346,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChatForm";
-            this.Text = "ChatForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChatForm_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);

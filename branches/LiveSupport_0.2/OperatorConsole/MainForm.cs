@@ -15,17 +15,23 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class MainForm : Form
     {
+        // Declare a Hashtable array in which to store the groups.
+        private Hashtable[] groupTables;
+
+        // Declare a variable to store the current grouping column.
+        int groupColumn = 0;
+
+
         OperatorWS ws = new OperatorWS();
         private DateTime lastRequestTime = DateTime.Now.AddMinutes(-30);
         private Hashtable currentVisitors = new Hashtable();
-        private Hashtable myChats = new Hashtable();
+        public static Hashtable myChats = new Hashtable();
         private bool hasCheckedChatRequests = false;
         private int numberOfChatWaiting = 0;
         private List<TabInfo> chatInfo = new List<TabInfo>();
         private SoundPlayer player = new SoundPlayer();
         private string IsIP = null;
-
-        private List<ChatForm> chatForms = new List<ChatForm>();
+                
         private List<Visitor> visitors = new List<Visitor>();
         private List<Operator> operators = new List<Operator>();
 
@@ -48,6 +54,10 @@ namespace LiveSupport.OperatorConsole
         public MainForm(DateTime LoginTime)
         {
             InitializeComponent();
+          
+          
+           //// Start with the groups created for the Title column.
+          // SetGroups(0);
 
             // Simple authentication
             AuthenticationHeader auth = new AuthenticationHeader();
@@ -169,8 +179,19 @@ namespace LiveSupport.OperatorConsole
 
         private void DisplayStatus()
         {
-            lblCurrentVisitors.Text = "当前访客数: ";//+ currentVisitors.Count.ToString();
-            lblVisitorOnChat.Text = "对话中的访客数: n/a";
+            int VisitorChatResult = 0;
+         
+            foreach(ListViewItem item in lstVisitors.Items)
+            {
+                if (item.SubItems[VisitorTreeView_HeaderColumn_Status].Text=="Chatting")
+                {
+                    VisitorChatResult++;
+                }
+            
+            }
+           
+            lblCurrentVisitors.Text = "当前访客数: "+ currentVisitors.Count.ToString();
+            lblVisitorOnChat.Text = "对话中的访客数: " + VisitorChatResult;
             lblMyChat.Text = "我的对话数: " + myChats.Count.ToString();
         }
 
@@ -523,12 +544,12 @@ namespace LiveSupport.OperatorConsole
 
         private void offlineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NotifyForm.ShowNotifier(false, "你好！");
+           // NotifyForm.ShowNotifier(false, "你好！");
         }
 
         private void beRightBackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NotifyForm.ShowNotifier(true, "有人请求对话!!!");
+           // NotifyForm.ShowNotifier(true, "有人请求对话!!!");
         }
 
         private void autostartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -548,8 +569,7 @@ namespace LiveSupport.OperatorConsole
 
         private void 空闲ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChatForm f = new ChatForm();
-            f.Show();
+           
         }
 
         /// <summary>
@@ -616,7 +636,9 @@ namespace LiveSupport.OperatorConsole
                 if (remote.Status == VisitSessionStatus.ChatRequesting)
                 {
                     // 新的对话请求
-                    NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！");
+                    //NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", item.Index);
+                    NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote.SessionId);
+
                 }
                 local.Status = remote.Status;
 
@@ -643,14 +665,34 @@ namespace LiveSupport.OperatorConsole
                     lstVisitors.Items.Add(lvi);
 
 
+                    // Add the visitor to the visitor hashtable
+                    if (!currentVisitors.ContainsKey(item.CurrentSession.IP))
+                        currentVisitors.Add(item.CurrentSession.IP, item);
+                    else
+                        currentVisitors[item.CurrentSession.IP] = item;
+
                 }
+
+
+                //// Create the groupsTable array and populate it with one 
+                //// hash table for each column.
+                groupTables = new Hashtable[lstVisitors.Columns.Count];
+                for (int column = 0; column < lstVisitors.Columns.Count; column++)
+                {
+                    // Create a hash table containing all the groups 
+                    // needed for a single column.
+                    groupTables[column] = CreateGroupsTable(column);
+                }        
+               
+                SetGroups(5);
+              
             }
 
-
+        
 
             foreach (var item in result.Messages)
             {
-                ChatForm form = chatForms.Find(f => f.ChatId == item.ChatId);
+                ChatForm form = Program.ChatForms.Find(f => f.ChatId == item.ChatId);
                 if (form == null) continue;
                 form.RecieveMessage(item);
             }
@@ -686,6 +728,8 @@ namespace LiveSupport.OperatorConsole
             {
                 PlayChatReqSound();
             }
+
+            DisplayStatus();
         }
 
         private bool hasChatRequest()
@@ -700,16 +744,10 @@ namespace LiveSupport.OperatorConsole
             return false;
         }
 
-
-
         private bool checkIfOperatorStatusChanges(List<Operator> operators, Operator[] p)
         {
             return false;
-
-
-
         }
-
 
         private void lstVisitors_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -732,6 +770,216 @@ namespace LiveSupport.OperatorConsole
             RejiggerOperatorPassword rop = new RejiggerOperatorPassword();
             rop.ShowDialog();
         }
+
+        // 接受访客请求
+        private void acceptToolStripButton_Click(object sender, EventArgs e)
+        {
+            // Visitor visitor= lstVisitors.SelectedItems[0] as Visitor;
+            //visitor.CurrentSession.IP;
+          
+            lstVisitors.FullRowSelect = true;
+
+            if (lstVisitors.SelectedItems.Count > 0)
+            {
+
+                if (lstVisitors.SelectedItems[0].SubItems[VisitorTreeView_HeaderColumn_Status].Text == "ChatRequesting")
+                {
+
+                    if (!myChats.ContainsKey(lstVisitors.SelectedItems[0].Index))
+                    {
+                        myChats.Add(lstVisitors.SelectedItems[0].Index, Program.CurrentOperator.Id);
+                        //MessageBox.Show(lstVisitors.SelectedItems[0].Index.ToString());
+                    }
+                   //声音
+                   player.Stop();
+                   // MessageBox.Show(lstVisitors.SelectedItems[0].SubItems[VisitorTreeView_HeaderColumn_Status].Text);
+
+                   ChatForm cf = new ChatForm(lstVisitors.SelectedItems[0].Index);
+                    cf.Show();
+                }
+                else
+                {
+                    MessageBox.Show("该访客暂时还未请求对话");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请选择访客");
+
+            }
+        }
+
+        //主动邀请访客
+        private void inviteToolStripButton_Click(object sender, EventArgs e)
+        {
+            lstVisitors.FullRowSelect = true;
+
+            if (lstVisitors.SelectedItems.Count > 0)
+            {
+
+                if (lstVisitors.SelectedItems[0].SubItems[VisitorTreeView_HeaderColumn_Status].Text == "Visiting")
+                {
+                    if (!myChats.ContainsKey(lstVisitors.SelectedItems[0].Index))
+                    {
+                        myChats.Add(lstVisitors.SelectedItems[0].Index, Program.CurrentOperator.Id);
+                        //MessageBox.Show(lstVisitors.SelectedItems[0].Index.ToString());
+                    }
+
+                    ChatForm cf = new ChatForm(lstVisitors.SelectedItems[0].Index);
+                    
+                    cf.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("该访客状态不符合");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请选择访客");
+            }
+        }
+
+
+        // Sorts ListViewGroup objects by header value.
+        private class ListViewGroupSorter : IComparer
+        {
+            private SortOrder order;
+
+            // Stores the sort order.
+            public ListViewGroupSorter(SortOrder theOrder)
+            {
+                order = theOrder;
+            }
+
+            // Compares the groups by header value, using the saved sort
+            // order to return the correct value.
+            public int Compare(object x, object y)
+            {
+                int result = String.Compare(
+                    ((ListViewGroup)x).Header,
+                    ((ListViewGroup)y).Header
+                );
+                if (order == SortOrder.Ascending)
+                {
+                    return result;
+                }
+                else
+                {
+                    return -result;
+                }
+            }
+        }
+
+
+        //单击列名分组
+        private void lstVisitors_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            //// Create the groupsTable array and populate it with one 
+            //// hash table for each column.
+            groupTables = new Hashtable[lstVisitors.Columns.Count];
+            for (int column = 0; column < lstVisitors.Columns.Count; column++)
+            {
+                // Create a hash table containing all the groups 
+                // needed for a single column.
+                groupTables[column] = CreateGroupsTable(column);
+            }
+
+
+            // Set the sort order to ascending when changing
+            // column groups; otherwise, reverse the sort order.
+            if (lstVisitors.Sorting == SortOrder.Descending ||
+                (//isRunningXPOrLater && 
+                (e.Column != groupColumn)))
+            {
+                lstVisitors.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                lstVisitors.Sorting = SortOrder.Descending;
+            }
+            groupColumn = e.Column;
+
+            // Set the groups to those created for the clicked column.
+            // if (isRunningXPOrLater)
+            //{
+                SetGroups(e.Column);
+           // }
+        }
+
+        // Sets lstVisitors to the groups created for the specified column.
+        //设置组
+        private void SetGroups(int column)
+        {
+            // Remove the current groups.
+            lstVisitors.Groups.Clear();
+            
+            // Retrieve the hash table corresponding to the column.
+            Hashtable groups = (Hashtable)groupTables[column];
+
+            // Copy the groups for the column to an array.
+            ListViewGroup[] groupsArray = new ListViewGroup[groups.Count];
+            groups.Values.CopyTo(groupsArray, 0);
+
+            // Sort the groups and add them to lstVisitors.
+            Array.Sort(groupsArray, new ListViewGroupSorter(lstVisitors.Sorting));
+            lstVisitors.Groups.AddRange(groupsArray);
+
+            // Iterate through the items in lstVisitors, assigning each 
+            // one to the appropriate group.
+            foreach (ListViewItem item in lstVisitors.Items)
+            {
+                // Retrieve the subitem text corresponding to the column.
+                string subItemText = item.SubItems[column].Text;
+
+                // For the Title column, use only the first letter.
+                if (column == 0)
+                {
+                    subItemText = subItemText.Substring(0, 1);
+                }
+
+                // Assign the item to the matching group.
+                item.Group = (ListViewGroup)groups[subItemText];
+            }
+        }
+
+        // Creates a Hashtable object with one entry for each unique
+        // subitem value (or initial letter for the parent item)
+        // in the specified column.
+        private Hashtable CreateGroupsTable(int column)
+        {
+            // Create a Hashtable object.
+            Hashtable groups = new Hashtable();
+
+            // Iterate through the items in lstVisitors.
+            foreach (ListViewItem item in lstVisitors.Items)
+            {
+                // Retrieve the text value for the column.
+                string subItemText = item.SubItems[column].Text;
+
+                // Use the initial letter instead if it is the first column.
+               // if (column == 0)
+                //{
+                //  subItemText = subItemText.Substring(0, 1);
+               // }
+
+                // If the groups table does not already contain a group
+                // for the subItemText value, add a new group using the 
+                // subItemText value for the group header and Hashtable key.
+                if (!groups.Contains(subItemText))
+                {
+                    groups.Add(subItemText, new ListViewGroup(subItemText,
+                        HorizontalAlignment.Left));
+                }
+            }
+
+            // Return the Hashtable object.
+            return groups;
+        }
+
+
     }
 
 }

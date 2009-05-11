@@ -10,6 +10,7 @@ using System.IO;
 using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Media;
 using System.Drawing.Imaging;
+using System.Collections;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -56,6 +57,8 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         private SoundPlayer player = new SoundPlayer();
+        private Hashtable Chats = new Hashtable();
+        private int OperatorChatIndex;
         OperatorWS ws = new OperatorWS();
         private string chatId;
 
@@ -67,13 +70,34 @@ namespace LiveSupport.OperatorConsole
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
+            if (!this.IsDisposed)
+            {
+                WriteMessage(message.Text, message.Source);
 
+                if (!this.ringToolStripButton.Checked)
+                {
+                    PlayMsgSound();
+                }
+                if (!this.flashToolStripButton.Checked)
+                {
+
+                    API.FlashWindowEx(this.Handle);
+                }
+            }
         }
         
-        public ChatForm()
+        public ChatForm(int ChatIndex)
         {
             InitializeComponent();
 
+            // Simple authentication
+            AuthenticationHeader auth = new AuthenticationHeader();
+            auth.userName = Properties.Settings.Default.WSUser;
+            ws.AuthenticationHeaderValue = auth;
+
+           
+            OperatorChatIndex = ChatIndex;
+            
             // We initialize the document
             wb.Navigate("about:Initiating the chat session...");
 
@@ -92,22 +116,16 @@ namespace LiveSupport.OperatorConsole
         {
             get { return myChatRequest; }
             set { myChatRequest = value; }
-        }
-
-
-    
-
-      
+        }      
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
         {
 
             if (MessageBox.Show("是否关闭", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.Yes))
             {
-              
-               
-                this.Close();
-               
+                MainForm.myChats.Remove(OperatorChatIndex);
+                Program.ChatForms.Remove(this);
+                this.Close();               
             }
         }
 
@@ -159,10 +177,10 @@ namespace LiveSupport.OperatorConsole
             // Should we play a sound
             //if (Properties.Settings.Default.PlaySoundOnChatMsg)
             //{
-                if(!this.ringToolStripButton.Checked)
-                {
-                    PlayMsgSound();
-                }
+                //if(!this.ringToolStripButton.Checked)
+                //{
+                //    PlayMsgSound();
+                //}
             //}
             //TODO: Make this more flexible
            // wb.Document.Window.ScrollTo(new Point(0, 5000));
@@ -171,10 +189,10 @@ namespace LiveSupport.OperatorConsole
               
                 //if (this.ParentForm != null)
                 //{
-                    if(!this.flashToolStripButton.Checked){
+                    //if(!this.flashToolStripButton.Checked){
 
-                        API.FlashWindowEx(this.Handle);
-                     }
+                    //    API.FlashWindowEx(this.Handle);
+                    // }
                 //}
              //  }
            //}
@@ -297,6 +315,11 @@ namespace LiveSupport.OperatorConsole
                
                 this.Show();
             }
+        }
+
+        private void ChatForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm.myChats.Remove(OperatorChatIndex);
         }
 
         

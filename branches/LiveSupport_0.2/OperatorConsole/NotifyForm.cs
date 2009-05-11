@@ -11,6 +11,17 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class NotifyForm : Form
     {
+
+        private int SendIndex;
+        private string chatId;
+
+        public enum NotifyMessageType
+        {
+            ChatRequest, NewVisitor, SystemMessage, Others
+        }
+
+        private NotifyMessageType notifyMessageType;
+
         public enum TaskbarStates
         {
             Hidden = 0,
@@ -79,14 +90,49 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        public static void ShowNotifier(bool showCommandButton, string message)
+        public static void ShowNotifier(bool showCommandButton, string message, string chatId)
         {
-           NotifyForm f =  new NotifyForm();
-           f.showNotifier(showCommandButton,message);
-        }                
+            NotifyForm f = new NotifyForm();
+            f.showNotifier(showCommandButton, message, chatId);
+        }
 
-        private void showNotifier(bool showCommandButton, string message)
+        private void showNotifier(bool showCommandButton, string message, string chatId)
         {
+            this.messageLabel.Text = message;
+            this.acceptButton.Visible = showCommandButton;
+            this.declineButton.Visible = showCommandButton;
+            this.chatId = chatId;
+            this.notifyMessageType = NotifyMessageType.ChatRequest;
+
+            this.Show();
+            switch (taskbarState)
+            {
+                case TaskbarStates.Hidden:
+                    timer.Stop();
+                    timer.Interval = showFadingTime;
+                    timer.Start();
+                    taskbarState = TaskbarStates.Appearing;
+                    break;
+                case TaskbarStates.Appearing:
+                    break;
+                case TaskbarStates.Visible:
+                    break;
+                case TaskbarStates.Disappearing:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public static void ShowNotifier(bool showCommandButton, string message, int Chatindex)
+        {            
+           NotifyForm f =  new NotifyForm();
+           f.showNotifier(showCommandButton, message, Chatindex);
+        }
+
+        private void showNotifier(bool showCommandButton, string message, int Chatindex)
+        {
+            SendIndex = Chatindex;
             this.messageLabel.Text = message;
             this.acceptButton.Visible = showCommandButton;
             this.declineButton.Visible = showCommandButton;
@@ -125,7 +171,16 @@ namespace LiveSupport.OperatorConsole
         }
 
         private void acceptButton_Click(object sender, EventArgs e)
-        {
+        {           
+            ChatForm cf = new ChatForm(SendIndex);
+            cf.ChatId = this.chatId;
+            Program.ChatForms.Add(cf);
+            if (!MainForm.myChats.ContainsKey(SendIndex))
+            {
+                MainForm.myChats.Add(SendIndex, Program.CurrentOperator.Id);
+                //MessageBox.Show(lstVisitors.SelectedItems[0].Index.ToString());
+            }
+            cf.Show();
             this.Hide();
             timer.Stop();
         }

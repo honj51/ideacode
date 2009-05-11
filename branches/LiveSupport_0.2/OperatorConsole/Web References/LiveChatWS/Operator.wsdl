@@ -405,9 +405,18 @@
           <s:element minOccurs="0" maxOccurs="1" name="Destination" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="SentDate" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:MessageType" />
         </s:sequence>
       </s:complexType>
+      <s:simpleType name="MessageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ChatMessage_OperatorToVisitor" />
+          <s:enumeration value="ChatMessage_VistorToOperator" />
+          <s:enumeration value="SystemMessage_ToOperator" />
+          <s:enumeration value="SystemMessage_ToVisitor" />
+          <s:enumeration value="SystemMessage_ToBoth" />
+        </s:restriction>
+      </s:simpleType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LogInSoapIn">
@@ -1050,10 +1059,10 @@
   </wsdl:binding>
   <wsdl:service name="OperatorWS">
     <wsdl:port name="OperatorWSSoap" binding="tns:OperatorWSSoap">
-      <soap:address location="http://localhost:49739/LiveChat/Operator.asmx" />
+      <soap:address location="http://localhost:1575/LiveChat/Operator.asmx" />
     </wsdl:port>
     <wsdl:port name="OperatorWSSoap12" binding="tns:OperatorWSSoap12">
-      <soap12:address location="http://localhost:49739/LiveChat/Operator.asmx" />
+      <soap12:address location="http://localhost:1575/LiveChat/Operator.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
