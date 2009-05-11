@@ -1,100 +1,87 @@
-#region Header Comment
-/*
- * Project			: LiveChat Starter Kit
- * Created By		: Dominic St-Pierre
- * Created Date	: 2007/04/02
- * Comment		: Operator Provider Helper
- * 
- * History:
- * 
- */
-#endregion
 using System;
 using System.Configuration;
 using System.Configuration.Provider;
 using System.Web.Configuration;
 using System.Collections.Generic;
-using LiveSupport.BLL;
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 
 /// <summary>
 /// Summary description for OperatorService
 /// </summary>
 public class OperatorService
 {
-    //private static OperatorProvider _provider = null;
-	private static object _lock = new object();
-
-    //public OperatorProvider Provider
-    //{
-    //    get { return _provider; }
-    //}
-
-	public static void UpdateStatus(int operatorId, bool isOnline)
-	{
-        OperatorsManager.UpdateStatus(operatorId, isOnline);
-	}
-
-	public static bool GetOperatorStatus(int accountId)
-	{
-		// Load the provider
-        //LoadProvider();
-
-        return OperatorsManager.GetOperatorStatus(accountId);
-	}
-
-	public static Operator LogIn(string userName, string password, string customerName)
-	{
-		// Load the provider
-        //LoadProvider();
-
-        //return _provider.LogIn(userName, password, customerName);
-        return OperatorsManager.LoginOperator(userName, password, customerName);
-	}
-
-	public static List<ChatRequestInfo> GetChatRequests(Operator op)
-	{
-		// Load the provider
-        //LoadProvider();
-
-		//return OperatorsManager.GetChatRequest(operatorId);
-        return ChatService.GetRequests(op);
-	}
-
-    public static List<Operator> GetOnlineOperator()
+    private static List<Operator> operators = new List<Operator>();
+    /// <summary>
+    ///  判定客服是否在线
+    /// </summary>
+    /// <param name="operatorId">客服ID</param>
+    /// <returns>BOOL</returns>
+    public static bool IsOperatorOnline(string operatorId)
     {
-        // Load the provider
-        //LoadProvider();
-
-        return OperatorsManager.GetOnlineOperator();
+        Operator op = operators.Find(o => o.OperatorId == operatorId);
+        if (op != null)
+        {
+            return op.Status != Operator.OperatorStatus.Offline;
+        }
+        return false;
+    }
+    /// <summary>
+    /// 登陆
+    /// </summary>
+    /// <param name="userName">用户名</param>
+    /// <param name="password">密码</param>
+    /// <returns>operator对象</returns>
+    public static Operator Login(string accountName, string operatorName, string password)
+    {
+        Account account = AccountService.FindAccountByLoginName(accountName);
+        Operator op = null;
+        if (account != null)
+        {
+            op = operators.Find(o => o.AccountId == account.AccountId && o.LoginName == operatorName && o.Password == password);
+            op.Status = Operator.OperatorStatus.Idle;
+        }
+        return op;
+    }
+    /// <summary>
+    /// 注销 登陆
+    /// </summary>
+    /// <param name="operatorId">客服ID</param>
+    internal static void Logout(string operatorId)
+    {
+        Operator op = operators.Find(o => o.OperatorId == operatorId);
+        if (op != null)
+        {
+            op.Status = Operator.OperatorStatus.Offline;
+        }
     }
 
-    public static Operator GetOperatorById(int id)
-    {
-        return OperatorsManager.GetOperatorById(id);
-    }
 
-    //private static void LoadProvider()
+
+    //public static List<ChatRequestInfo> GetChatRequests(Operator op)
     //{
-    //    // if we do not have initiated the provider
-    //    if (_provider == null)
-    //    {
-    //        lock (_lock)
-    //        {
-    //            // Do this again to make sure _provider is still null
-    //            if (_provider == null)
-    //            {
-    //                // Get a reference to the <requestService> section
-    //                OperatorServiceSection section = (OperatorServiceSection)WebConfigurationManager.GetSection("system.web/operatorService");
-
-    //                // Load the default provider
-    //                if (section.Providers.Count > 0 && !string.IsNullOrEmpty(section.DefaultProvider) && section.Providers[section.DefaultProvider] != null)
-    //                    _provider = (OperatorProvider)ProvidersHelper.InstantiateProvider(section.Providers[section.DefaultProvider], typeof(OperatorProvider));
-
-    //                if (_provider == null)
-    //                    throw new ProviderException("Unable to load the OperatorProvider");
-    //            }
-    //        }
-    //    }
+    //    return ChatService.GetRequests(op);
     //}
+
+    //public static List<Operator> GetOnlineOperator()
+    //{
+    //    return OperatorsManager.GetOnlineOperator();
+    //}
+
+    //public static Operator GetOperatorById(string id)
+    //{
+    //    return OperatorsManager.GetOperatorById(id);
+    //}
+    //public static void UpdateStatus(int operatorId, bool isOnline)
+    //{
+    //    OperatorsManager.UpdateStatus(operatorId, isOnline);
+    //}
+    //public static bool GetOperatorStatus(int accountId)
+    //{
+    //      return OperatorsManager.GetOperatorStatus(accountId);
+    //}
+
+    public static bool GetOperatorStatus(int accountId)
+    {
+        return true;
+    }
 }
