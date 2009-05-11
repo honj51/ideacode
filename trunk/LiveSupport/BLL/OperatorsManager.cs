@@ -3,8 +3,8 @@ using System.Data;
 using System.Configuration;
 using System.Web;
 using System.Collections.Generic;
-using LiveSupport.DAL;
-using LiveSupport.DAL.Entity;
+using LiveSupport.SqlProviders;
+using LiveSupport.SqlProviders.Entity;
 
 namespace LiveSupport.BLL
 {
@@ -14,12 +14,12 @@ namespace LiveSupport.BLL
     public class OperatorsManager
     {
         private static bool _isInitialized = false;
-        private static OperatorsProvider _provider;
+        private static OperatorProvider _provider;
 
         ///<summary>
         /// returns the current accounts data provider
         ///</summary>    
-        public static OperatorsProvider Provider
+        public static OperatorProvider Provider
         {
             get
             {
@@ -36,7 +36,7 @@ namespace LiveSupport.BLL
         {
             if (!_isInitialized)
             {
-                _provider = new SqlOperatorsProvider();
+                _provider = new SqlOperatorProvider();
                 _isInitialized = true;
             }
         }
@@ -46,7 +46,7 @@ namespace LiveSupport.BLL
             return Provider.FindOperatorsByAccountId(accountId);
         }
 
-        public static Operator GetOperatorById(int operatorId)
+        public static Operator GetOperatorById(string operatorId)
         {
             return Provider.GetOperatorById(operatorId);
         }
@@ -54,12 +54,13 @@ namespace LiveSupport.BLL
         public static Operator CreateOperator(int accountId)
         {
             //return Provider.CreateAccount(adminUserName);
-            return new Operator(0, accountId);
+            //return new Operator(0, accountId);
+            return null;
         }
 
         public static void InsertOperator(Operator op)
         {
-            op.AccountId = AccountsManager.GetAccount().Id;
+            op.AccountId = AccountsManager.GetAccount().AccountId;
             Provider.InsertOperator(op);
         }
 
@@ -82,7 +83,8 @@ namespace LiveSupport.BLL
                 {
                     return null;
                 }
-                return Provider.LoginOperator(name, password, account.Id);
+                return null;
+                //return Provider.LoginOperator(name, password, account.AccountId);
             }
             catch (Exception)
             {
