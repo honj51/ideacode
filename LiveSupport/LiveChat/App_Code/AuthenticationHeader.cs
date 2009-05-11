@@ -15,4 +15,5 @@ using System.Web.Services.Protocols;
 public class AuthenticationHeader : SoapHeader
 {
     public string userName;
+    public string OperatorId;
 }
