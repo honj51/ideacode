@@ -6,7 +6,7 @@ using System.Web.Services.Protocols;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Caching;
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 using System.IO;
 
 /// <summary>
@@ -38,22 +38,22 @@ public class ServiceConnectWS : System.Web.Services.WebService
     [WebMethod]
     public string GetOperatorInvitation(int accountId, string ip)
     {
-        string chatId = ChatService.GetChatRequestByAccountIdAndIP(accountId, ip);
-        if (!string.IsNullOrEmpty(chatId))
-        {
-            // 更新该ChatRequest的状态
-            ChatService.UpdateIsShowRequestsByAidandIP(accountId, ip, ChatRequestStatus_Hide);
-        }
-        return chatId;
+        //string chatId = ChatService.GetChatRequestByAccountIdAndIP(accountId, ip);
+        //if (!string.IsNullOrEmpty(chatId))
+        //{
+        //    // 更新该ChatRequest的状态
+        //    ChatService.UpdateIsShowRequestsByAidandIP(accountId, ip, ChatRequestStatus_Hide);
+        //}
+        return null;
 
     }
 
     [WebMethod]
     public void RemoveChatRequestByChatId(string chatid)
     {
-        ChatRequestInfo req = new ChatRequestInfo();
-        req.ChatId = chatid;
-        ChatService.RemoveChatRequest(req);
+        //ChatRequestInfo req = new ChatRequestInfo();
+        //req.ChatId = chatid;
+        //ChatService.RemoveChatRequest(req);
     }
 
 }

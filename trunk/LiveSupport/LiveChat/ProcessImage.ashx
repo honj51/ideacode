@@ -13,7 +13,7 @@ using System;
 using System.Web;
 using System.Drawing;
 using System.Drawing.Imaging;
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 
 public class ProcessImage : IHttpHandler
 {

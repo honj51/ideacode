@@ -14,7 +14,7 @@ using System.Web.Services;
 using System.Xml;
 using System.Web.Services.Protocols;
 using System.Web.Script.Services;
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 using System.Windows.Forms;
 using System.Windows;
 
@@ -117,7 +117,7 @@ public partial class Chat : System.Web.UI.Page
                 long lastCheck = long.Parse(Request.Cookies[chatId + "_lastCheck"].Value.ToString());
                 if (ChatService.HasNewMessage(chatId, lastCheck))
                 {
-                    List<ChatMessageInfo> messages = ChatService.GetMessages(chatId, lastCheck);//*
+                    List<ChatMessageInfo> messages = MessageService.GetMessages(chatId, lastCheck);//*
                   
                     if (messages.Count > 0)
                     {
