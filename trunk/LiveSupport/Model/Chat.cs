@@ -7,10 +7,11 @@ namespace LiveSupport.LiveSupportModel
 {
     public class Chat
     {
-        public enum MessageStatus
+        public enum ChatStatus
         {
-            Requested,Accepted,Decline
+            Requested,Accepted,Decline,Closed
         }
+
         private string chatId;
         public string ChatId
         {
@@ -52,9 +53,9 @@ namespace LiveSupport.LiveSupportModel
             get { return closeTime; }
             set { closeTime = value; }
         }
-        private int accountId;
+        private string accountId;
          
-        public int AccountId
+        public string AccountId
         {
             get { return accountId; }
             set { accountId = value; }
@@ -73,9 +74,9 @@ namespace LiveSupport.LiveSupportModel
             get { return operatorId; }
             set { operatorId = value; }
         }
-        private string status;
-         
-        public string Status
+        private ChatStatus status;
+
+        public ChatStatus Status
         {
             get { return status; }
             set { status = value; }
@@ -91,10 +92,10 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["CreateTime"])) this.createTime = (DateTime)data["CreateTime"];
             if (!Convert.IsDBNull(data["AcceptTime"])) this.acceptTime = (DateTime)data["AcceptTime"];
             if (!Convert.IsDBNull(data["CloseTime"])) this.closeTime = (DateTime)data["CloseTime"];
-            if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (int)data["AccountId"];
+            if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (string)data["AccountId"];
             if (!Convert.IsDBNull(data["VisitorId"])) this.visitorId = (string)data["VisitorId"];
             if (!Convert.IsDBNull(data["OperatorId"])) this.operatorId = (string)data["OperatorId"];
-            if (!Convert.IsDBNull(data["Status"])) this.status = (string)data["Status"];
+            if (!Convert.IsDBNull(data["Status"])) this.status = (ChatStatus) Enum.Parse(typeof(ChatStatus), data["Status"].ToString());
 
         }
     }
