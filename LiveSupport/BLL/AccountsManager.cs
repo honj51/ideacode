@@ -2,8 +2,8 @@
 using System.Data;
 using System.Configuration;
 using System.Web;
-using LiveSupport.DAL;
-using LiveSupport.DAL.Entity;
+using LiveSupport.SqlProviders;
+using LiveSupport.SqlProviders.Entity;
 using System.Web.Security;
 
 namespace LiveSupport.BLL
@@ -14,12 +14,12 @@ namespace LiveSupport.BLL
     public class AccountsManager
     {
         private static bool _isInitialized = false;
-        private static AccountsProvider _provider;
+        private static AccountProvider _provider;
 
         ///<summary>
         /// returns the current accounts data provider
         ///</summary>    
-        public static AccountsProvider Provider
+        public static AccountProvider Provider
         {
             get
             {
@@ -36,7 +36,7 @@ namespace LiveSupport.BLL
         {
             if (!_isInitialized)
             {
-                _provider = new SqlAccountsProvider();
+                _provider = new SqlAccountProvider();
                 _isInitialized = true;
             }
         }
@@ -46,11 +46,11 @@ namespace LiveSupport.BLL
             return Provider.CreateAccount(adminUserName);
         }
 
-        public static Account GetAccountById(int accountId)
+        public static Account GetAccountById(string accountId)
         {
             foreach (var item in Provider.GetAllAccounts())
             {
-                if (item.Id == accountId)
+                if (item.AccountId == accountId)
                 {
                     return item;
                 }
@@ -79,7 +79,7 @@ namespace LiveSupport.BLL
         public static bool AddAccount(Account at)
         {
             int i = 0;
-            i = Provider.AddAccount(at);
+            //i = Provider.AddAccount(at);
             if (i > 0)
                 return true;
             else
@@ -88,8 +88,9 @@ namespace LiveSupport.BLL
 
         //验证
         public static Account Login(string loginId, string loginPwd)
-        {           
-            return Provider.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
+        {
+            return null;
+            //return Provider.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
         }
     }
 }
