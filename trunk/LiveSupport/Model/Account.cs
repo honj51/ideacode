@@ -86,9 +86,9 @@ namespace LiveSupport.LiveSupportModel
             get { return domain; }
             set { domain = value; }
         }
-        private string operatorCount;
+        private int operatorCount;
 
-        public string OperatorCount
+        public int OperatorCount
         {
             get { return operatorCount; }
             set { operatorCount = value; }
@@ -107,9 +107,9 @@ namespace LiveSupport.LiveSupportModel
             get { return city; }
             set { city = value; }
         }
-        private string registerDate;
+        private DateTime registerDate;
 
-        public string RegisterDate
+        public DateTime RegisterDate
         {
             get { return registerDate; }
             set { registerDate = value; }
@@ -128,5 +128,28 @@ namespace LiveSupport.LiveSupportModel
             get { return paymentId; }
             set { paymentId = value; }
         }
+
+        public Account()
+        {
+            if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (string)data["AccountId"];
+            if (!Convert.IsDBNull(data["LoginName"])) this.loginName = (string)data["LoginName"];
+            if (!Convert.IsDBNull(data["Password"])) this.password = (string)data["Password"];
+            if (!Convert.IsDBNull(data["NickName"])) this.nickName = (string)data["NickName"];
+            if (!Convert.IsDBNull(data["CompanyName"])) this.companyName = (string)data["CompanyName"];
+            if (!Convert.IsDBNull(data["Industry"])) this.industry = (string)data["Industry"];
+            if (!Convert.IsDBNull(data["Email"])) this.email = (string)data["Email"];
+            if (!Convert.IsDBNull(data["ContactName"])) this.contactName = (string)data["ContactName"];
+            if (!Convert.IsDBNull(data["Phone"])) this.phone = (string)data["Phone"];
+            if (!Convert.IsDBNull(data["URL"])) this.url = (string)data["URL"];
+            if (!Convert.IsDBNull(data["Domain"])) this.domain = (string)data["Domain"];
+            if (!Convert.IsDBNull(data["OperatorCount"])) this.operatorCount = (int)data["OperatorCount"];
+            if (!Convert.IsDBNull(data["Province"])) this.province = (string)data["Province"];
+            if (!Convert.IsDBNull(data["City"])) this.city = (string)data["City"];
+            if (!Convert.IsDBNull(data["RegisterDate"])) this.registerDate = (DateTime)data["RegisterDate"];
+            if (!Convert.IsDBNull(data["Remark"])) this.remark = (string)data["Remark"];
+            if (!Convert.IsDBNull(data["PaymentId"])) this.paymentId = (string)data["PaymentId"];
+
+        }
+
     }
 }
