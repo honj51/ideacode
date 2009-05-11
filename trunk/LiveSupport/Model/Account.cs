@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
@@ -129,7 +130,7 @@ namespace LiveSupport.LiveSupportModel
             set { paymentId = value; }
         }
 
-        public Account()
+        public Account(SqlDataReader data)
         {
             if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (string)data["AccountId"];
             if (!Convert.IsDBNull(data["LoginName"])) this.loginName = (string)data["LoginName"];
