@@ -39,8 +39,12 @@ public class VisitorService
     /// <param name="session">VisitSession对象</param>
     public static void NewVisit(Visitor visitor, VisitSession session)
     {
-        LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.NewVisitor(visitor);
-        visitors.Add(visitor);
+        if (GetVisitor(visitor.VisitorId) == null)
+        {
+            LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.NewVisitor(visitor);
+            visitors.Add(visitor);
+        }
+
         if (visitors.Count > maxVisitorCountInMemory)
         {
             for (int i = visitors.Count; i > 0 ; i--)
@@ -76,20 +80,20 @@ public class VisitorService
     /// </summary>
     /// <param name="lastCheck">最后一个访客时间</param>
     /// <returns>Visitor集合</returns>
-    public static List<Visitor> GetNewVisitors(DateTime lastCheck)
+    internal static List<Visitor> GetNewVisitors(string accountId, DateTime lastCheck)
     {
         List<Visitor> vs = new List<Visitor>();
         foreach (var item in visitors)
         {
             if (item.CurrentSession == null)
-        	{
+            {
                 continue;
-	        }
-            else if (item.CurrentSession != null && item.CurrentSession.VisitingTime > lastCheck)
+            }
+            else if (item.AccountId == accountId && item.CurrentSession != null&& item.CurrentSession.VisitingTime > lastCheck)
             {
                 vs.Add(item);
             }
         }
-        return vs;       
+        return vs;     
     }
 }

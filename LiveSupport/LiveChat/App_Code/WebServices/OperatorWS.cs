@@ -132,13 +132,18 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public NewChangesResult CheckNewChanges(DateTime lastCheck)
     {
+        Operator op = OperatorService.GetOperatorById(Authentication.OperatorId);
+        if (op == null)
+        {
+            return null;
+        }
         checkAuthentication();
         NewChangesResult result = new NewChangesResult();
         // 新访客
-        result.NewVisitors = VisitorService.GetNewVisitors(lastCheck);
+        result.NewVisitors = VisitorService.GetNewVisitors(op.AccountId, lastCheck);
 
         // 访问会话状态更新
-        result.VisitSessionChange = VisitSessionService.GetVisitSessionChange(lastCheck);
+        result.VisitSessionChange = VisitSessionService.GetVisitSessionChange(op.AccountId, lastCheck);
 
         // 消息更新
         List<VisitSession> visitSessions = VisitSessionService.GetActiveSessionsByOperatorId(Authentication.OperatorId);

@@ -21,15 +21,13 @@ public class ProcessImage : IHttpHandler
 	public void ProcessRequest(HttpContext context)
 	{
         // ¼ì²éQueryString ²ÎÊý
-        string accountId = null;
-;
-        if (context.Request.QueryString["aid"]!=null)
-        {
-            accountId = context.Request.QueryString["aid"].ToString();
+        
+        if (context.Request.QueryString["aid"] == null)
+        {            
             return;
         }
-              
-		string referrer = string.Empty;        
+        string accountId = context.Request.QueryString["aid"].ToString();
+        string referrer = string.Empty;        
 		string pageRequested = string.Empty;
 		string domainRequested = string.Empty;
 		string visitorUserAgent = string.Empty;
@@ -83,7 +81,7 @@ public class ProcessImage : IHttpHandler
         VisitorService.NewVisit(visitor, session);
                     
 		// we get the status of the operators
-		opOnline = OperatorService.GetOperatorStatus(accountId);
+		opOnline = OperatorService.HasOnlineOperator(accountId);
 
 		if (opOnline)
 			imgName = "online.jpg";

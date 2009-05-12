@@ -82,7 +82,7 @@ public partial class Chat : System.Web.UI.Page
                 if (Request.QueryString["aid"]!=null)
                 {
                     accountId = Request.QueryString["aid"].ToString();
-                    if (OperatorService.GetOperatorStatus(accountId))
+                    if (OperatorService.HasOnlineOperator(accountId))
                     {
 
                         if (Request.QueryString["chatid"].ToString() != "")
@@ -116,28 +116,25 @@ public partial class Chat : System.Web.UI.Page
             if (Request.Cookies[chatId + "_lastCheck"] != null)
             {
                 long lastCheck = long.Parse(Request.Cookies[chatId + "_lastCheck"].Value.ToString());
-                if (ChatService.HasNewMessage(chatId, lastCheck))
+                List<LiveSupport.LiveSupportModel.Message> messages = MessageService.GetMessages(chatId, lastCheck);//*
+
+                if (messages.Count > 0)
                 {
-                    List<LiveSupport.LiveSupportModel.Message> messages = MessageService.GetMessages(chatId, lastCheck);//*
-                  
-                    if (messages.Count > 0)
+                    for (int i = 0; i < messages.Count; i++)
                     {
-                        for (int i = 0; i < messages.Count; i++)
+                        if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor || messages[i].Type == MessageType.SystemMessage_ToVisitor
+                            || messages[i].Type == MessageType.SystemMessage_ToBoth)
                         {
-                            if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor || messages[i].Type == MessageType.SystemMessage_ToVisitor
-                                || messages[i].Type == MessageType.SystemMessage_ToBoth)
-                            {
-                                litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Source, CutStr(messages[i].Text, 100));
-                            }
-
-                            lastCheck = messages[i].SentDate.Ticks;
-
+                            litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Source, CutStr(messages[i].Text, 100));
                         }
 
-                        // set the lastId
-                        Response.Cookies[chatId + "_lastCheck"].Value = lastCheck.ToString();
+                        lastCheck = messages[i].SentDate.Ticks;
 
                     }
+
+                    // set the lastId
+                    Response.Cookies[chatId + "_lastCheck"].Value = lastCheck.ToString();
+
                 }
             }
         }
@@ -256,7 +253,13 @@ public partial class Chat : System.Web.UI.Page
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
     {
-        string chatId = Guid.NewGuid().ToString();
+        string visitorId = Request.Cookies["VisitorId"].Value;
+        if (string.IsNullOrEmpty(visitorId) || VisitorService.GetVisitor(visitorId) == null || VisitorService.GetVisitor(visitorId).CurrentSessionId == null)
+        {
+            return;
+        }
+
+        string chatId = VisitorService.GetVisitor(visitorId).CurrentSessionId;
         if (Request.Cookies["chatId"] != null)
         {
             Response.Cookies["chatId"].Value = chatId;
@@ -282,9 +285,8 @@ public partial class Chat : System.Web.UI.Page
         chatRequest.ChatId = chatId;
         chatRequest.CreateTime = DateTime.Now;
         chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
-
-        ChatService.ChatPageRequestChat(chatRequest);
-        
+        chatRequest.VisitorId = visitorId;
+        VisitSessionService.RequestChat(chatRequest);       
 
         //lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
