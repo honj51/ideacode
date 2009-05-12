@@ -16,7 +16,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <returns>Message集合</returns>
         public static List<Message> GetMessages(string SessionId, DateTime lastCheck)
         {
-            string sql = "select * from dbo.LiveChat_Message where chatid='"+SessionId+"' and SentDate>"+lastCheck;
+            string sql = "select * from dbo.LiveChat_Message where chatid='" + SessionId + "'";
+            sql += lastCheck == DateTime.MinValue ?  "": " and SentDate>'" + lastCheck+"'";
             SqlDataReader data = null;
             List<Message> retList = new List<Message>();
             try

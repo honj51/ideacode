@@ -10,7 +10,21 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 
         public static void NewSession(VisitSession session)
         {
-            throw new NotImplementedException();
+            string sql = string.Format("INSERT INTO LiveChat_VisitSession "
+           +"([SessionId]"
+           +" ,[VisitorId]"
+           +" ,[IP]"
+           +",[Browser]"
+           +" ,[Location]"
+           +" ,[VisitingTime]"
+           +" ,[DomainRequested]"
+           +",[Operator]"
+           +" ,[Referrer]"
+           +" ,[PageRequestCount]"
+           +",[Status])"
+           +"VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')",
+                session.SessionId, session.VisitorId,  session.IP, session.Browser,session.Location,  session.VisitingTime,  session.DomainRequested,  session.OperatorId, session.Referrer, session.PageRequestCount, session.Status);
+            DBHelper.ExecuteCommand(sql);
         }
 
         public static List<VisitSession> GetVisitSessionChange(DateTime lastCheck)
