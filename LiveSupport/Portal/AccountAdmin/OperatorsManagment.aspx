@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="pagetitle">&#22352;&#24109;&#31649;&#29702;</div>
-    <div id="content-container-three-column">
+    <div id="content-container-three-column" style="height: 568px;background-color:#CCCCCC;">
         <div id="content-side1-three-column">
             <ul class="list-of-links">
                 <li class="current"><a href="AccountHome.aspx">&#36134;&#25143;&#39318;&#39029;</a></li>
@@ -13,16 +13,17 @@
             </ul>
         </div>
         <div id="content-main-three-column">
-            &#24403;&#21069;&#22352;&#24109;&#36134;&#25143;&#21015;&#34920;:<br />
+            &#24403;&#21069;&#22352;&#24109;&#36134;&#25143;&#21015;<br />
+            <br />
             <asp:GridView ID="GridView1" runat="server" DataSourceID="ObjectDataSource1" 
                 onselectedindexchanged="GridView1_SelectedIndexChanged" onrowcommand="GridView1_RowCommand" 
                 onrowdatabound="GridView1_RowDataBound" DataKeyNames="Id" 
                 AutoGenerateColumns="False" Width="455px">
                 <Columns>
-                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                    <asp:BoundField DataField="Password" HeaderText="Password" 
+                    <asp:BoundField DataField="Name" HeaderText="客服账号" SortExpression="Name" />
+                    <asp:BoundField DataField="Password" HeaderText="密码" 
                         SortExpression="Password" />
-                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                    <asp:BoundField DataField="Email" HeaderText="电子邮件" SortExpression="Email" />
                     <asp:CheckBoxField DataField="IsOnline" HeaderText="IsOnline" 
                         SortExpression="IsOnline" />
                     <asp:CheckBoxField DataField="Disabled" HeaderText="Disabled" 
@@ -54,6 +55,7 @@
             <asp:Button ID="Button1" runat="server" CommandArgument="cmdInsert" 
                 CommandName="cmd" 
                 Text="&#22686;&#21152;&#22352;&#24109;" onclick="Button1_Click" />
+            <br />
         </div>
         <div id="content-side2-three-column">
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
@@ -65,9 +67,6 @@
                     <asp:QueryStringParameter Name="accountId" QueryStringField="accountId" 
                         Type="Int32" />
                 </SelectParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="accountId" Type="Int32" />
-                </InsertParameters>
             </asp:ObjectDataSource>
         </div>
         <div class="clear">

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="pagetitle">&#36134;&#25143;&#35774;&#32622;</div>
-    <div id="content-container-three-column">
+    <div id="content-container-three-column" style="height: 568px">
         <div id="content-side1-three-column">
             <ul class="list-of-links">
                 <li class="current"><a href="AccountHome.aspx">&#36134;&#25143;&#39318;&#39029;</a></li>

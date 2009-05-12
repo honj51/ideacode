@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <div id="pagetitle">&#22352;&#24109;&#31649;&#29702;</div>
-    <div id="content-container-three-column">
+    <div id="content-container-three-column" style="height: 568px">
         <div id="content-side1-three-column">
             <ul class="list-of-links">
                 <li class="current"><a href="AccountHome.aspx">&#36134;&#25143;&#39318;&#39029;</a></li>
@@ -42,9 +42,7 @@
     </asp:DetailsView>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
         onselecting="ObjectDataSource1_Selecting" SelectMethod="FindOperatorsByAccountId" 
-        TypeName="LiveSupport.BLL.OperatorsManager" DataObjectTypeName="LiveSupport.DAL.Entity.Operator" 
-                InsertMethod="InsertOperator" UpdateMethod="UpdateOperator">
-                
+        TypeName="LiveSupport.BLL.OperatorsManager">
         <SelectParameters>
             <asp:QueryStringParameter Name="accountId" QueryStringField="accountId" 
                 Type="Int32" />

@@ -1,15 +1,18 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="_Default" Title="LiveSupport Inc: Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
        <!--
 
 POSTER PHOTO
 
 -->
     <div id="poster-photo-container">
-        <img src="images/photo-poster.jpg" alt="" class="poster-photo-image" />
-          <div id="feature-area-home">现在使用Live Support <a href="Register.aspx">立即注册</a><br />
+        <div class="poster-photo-image">
+           <img src="Images/1.gif" width="568" height="180" />
+        </div>
+
+        
+          <div id="feature-area-home">现在使用Live Support <a href="Licence.aspx">立即注册</a><br />
     免费试用1个月</div>
     </div>
     <!--
@@ -84,7 +87,7 @@ CONTENT SIDE COLUMN
     <script type="text/javascript">
             var chatid="";
 			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://localhost/LiveChatService/ProcessImage.ashx?chatid='+chatid+'&aid=4&referrer=' + document.referrer + '" border="0" alt="点击在线交谈" /></a>');
-            </script>
+            </script> 
             <h3>
                 客服座席软件下载
             </h3>
