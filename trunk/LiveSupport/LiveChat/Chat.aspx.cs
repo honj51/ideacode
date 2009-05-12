@@ -78,9 +78,10 @@ public partial class Chat : System.Web.UI.Page
             
             if (Request.QueryString["aid"] != null)
             {
-                int accountId;
-                if (int.TryParse(Request.QueryString["aid"].ToString(), out accountId))
+                string accountId;
+                if (Request.QueryString["aid"]!=null)
                 {
+                    accountId = Request.QueryString["aid"].ToString();
                     if (OperatorService.GetOperatorStatus(accountId))
                     {
 
