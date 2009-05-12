@@ -5,12 +5,13 @@ using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
-    public class Chat
+    public enum ChatStatus
     {
-        public enum ChatStatus
-        {
-            Requested,Accepted,Decline,Closed
-        }
+        Requested, Accepted, Decline, Closed
+    }
+
+    public class Chat
+    {     
 
         private string chatId;
         public string ChatId

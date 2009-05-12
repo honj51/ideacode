@@ -5,20 +5,15 @@ using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
+    public enum OperatorStatus
+    {
+        Idle, Chatting, BeRightBack, Away, Offline
+    }
     /// <summary>
     ///Operator 的摘要说明
     /// </summary>
     public class Operator
     {
-        public class OperatorStatus
-        {
-            public const string Idle = "Idle";
-            public const string Chatting = "Chatting ";
-            public const string BeRightBack = "BeRightBack";
-            public const string Away = "Away";
-            public const string Offline = "Offline";
-        }
-
         private string operatorId;
          
         public string OperatorId
@@ -61,9 +56,9 @@ namespace LiveSupport.LiveSupportModel
             get { return email; }
             set { email = value; }
         }
-        private string status;
+        private OperatorStatus status;
          
-        public string Status
+        public OperatorStatus Status
         {
             get { return status; }
             set { status = value; }
@@ -75,9 +70,9 @@ namespace LiveSupport.LiveSupportModel
             get { return aVChatStatus; }
             set { aVChatStatus = value; }
         }
-        private string isAdmin;
+        private bool isAdmin;
 
-        public string IsAdmin
+        public bool IsAdmin
         {
             get { return isAdmin; }
             set { isAdmin = value; }
@@ -95,8 +90,8 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["Password"])) password = (string)data["Password"];
             if (!Convert.IsDBNull(data["NickName"])) nickName = (string)data["NickName"];
             if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
-            if (!Convert.IsDBNull(data["IsAdmin"])) isAdmin = (string)data["IsAdmin"];
-            if (!Convert.IsDBNull(data["Status"])) status = (string)data["Status"];
+            if (!Convert.IsDBNull(data["IsAdmin"])) isAdmin = (bool)data["IsAdmin"];
+            if (!Convert.IsDBNull(data["Status"])) status = (OperatorStatus) Enum.Parse((typeof(OperatorStatus)),data["Status"].ToString());
             if (!Convert.IsDBNull(data["AVChatStatus"])) aVChatStatus = (string)data["AVChatStatus"];
         }
     }
