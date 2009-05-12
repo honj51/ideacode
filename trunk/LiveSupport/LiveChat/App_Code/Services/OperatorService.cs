@@ -55,31 +55,6 @@ public class OperatorService
         }
     }
 
-
-
-    //public static List<ChatRequestInfo> GetChatRequests(Operator op)
-    //{
-    //    return ChatService.GetRequests(op);
-    //}
-
-    //public static List<Operator> GetOnlineOperator()
-    //{
-    //    return OperatorsManager.GetOnlineOperator();
-    //}
-
-    //public static Operator GetOperatorById(string id)
-    //{
-    //    return OperatorsManager.GetOperatorById(id);
-    //}
-    //public static void UpdateStatus(int operatorId, bool isOnline)
-    //{
-    //    OperatorsManager.UpdateStatus(operatorId, isOnline);
-    //}
-    //public static bool GetOperatorStatus(int accountId)
-    //{
-    //      return OperatorsManager.GetOperatorStatus(accountId);
-    //}
-
     public static bool GetOperatorStatus(int accountId)
     {
         return true;
