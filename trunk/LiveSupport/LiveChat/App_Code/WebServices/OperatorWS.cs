@@ -124,6 +124,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<Visitor> GetAllVisitors(int accountId)
     {
+        checkAuthentication();
         return VisitorService.GetAllOnlineVisitors(accountId);
     }
 
@@ -132,7 +133,6 @@ public class OperatorWS : System.Web.Services.WebService
     public NewChangesResult CheckNewChanges(DateTime lastCheck)
     {
         checkAuthentication();
-
         NewChangesResult result = new NewChangesResult();
         // 新访客
         result.NewVisitors = VisitorService.GetNewVisitors(lastCheck);
@@ -193,16 +193,45 @@ public class OperatorWS : System.Web.Services.WebService
         return retVal;
     }
 
+    /// <summary>
+    /// 向访客传送一个文件
+    /// </summary>
+    /// <param name="filePath">文 件路径</param>
+    /// <param name="visitorID">访客ID</param>
+    /// <returns></returns>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public String UploadFile(string filePath,string visitorID)
     {
-        return MessageService.UploadFile(Authentication.OperatorId, visitorID, filePath);
+        return ChatService.UploadFile(Authentication.OperatorId, visitorID, filePath);
     }
+
+    /// <summary>
+    /// 上传文件
+    /// </summary>
+    /// <param name="bs"></param>
+    /// <param name="filename"></param>
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public void UploadFile(byte[] bs, string filename)
+    {
+        checkAuthentication();
+        MemoryStream mo = new MemoryStream(bs);
+        FileStream fs = new FileStream(Server.MapPath("~/Download/") + filename, FileMode.Create);
+        mo.WriteTo(fs);
+        mo.Close();
+        fs.Close();
+    }
+    /// <summary>
+    /// 客服发送一条信息给访客
+    /// </summary>
+    /// <param name="msg">消息对像</param>
+    /// <returns>bool</returns>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public bool SendMessage(Message msg)
     {
+        checkAuthentication();
         if (msg.Type == MessageType.ChatMessage_OperatorToVisitor)
         {
             MessageService.AddMessage(msg);
