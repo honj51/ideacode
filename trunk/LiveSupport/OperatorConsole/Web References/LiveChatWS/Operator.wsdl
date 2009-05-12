@@ -19,6 +19,7 @@
       </s:element>
       <s:complexType name="Operator">
         <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="Disabled" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="AccountId" type="s:int" />
@@ -301,6 +302,121 @@
       <s:element name="CloseChatResponse">
         <s:complexType />
       </s:element>
+      <s:element name="GetAllVisitors">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="accountId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllVisitorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllVisitorsResult" type="tns:ArrayOfVisitor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVisitor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Visitor" nillable="true" type="tns:Visitor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Visitor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VisitorId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VisitCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReMark" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsVIP" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentSession" type="tns:VisitSession" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentSessionId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VisitSession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisitorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Browser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:VisitSessionStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operators" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VisitingTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeaveTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatRequestTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatingTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="WaitingDuring" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChattingDuring" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageRequestCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DomainRequested" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PageRequested" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Referrer" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="VisitSessionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Visiting" />
+          <s:enumeration value="ChatRequesting" />
+          <s:enumeration value="Chatting" />
+          <s:enumeration value="Leave" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CheckNewChanges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="operatorId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastCheck" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNewChangesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckNewChangesResult" type="tns:NewChangesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NewChangesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Operators" type="tns:ArrayOfOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewVisitors" type="tns:ArrayOfVisitor" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisitSessionChange" type="tns:ArrayOfVisitSession" />
+          <s:element minOccurs="0" maxOccurs="1" name="Messages" type="tns:ArrayOfMessage" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVisitSession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VisitSession" nillable="true" type="tns:VisitSession" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Message">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MessageId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChatId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Destination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SentDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:MessageType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MessageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ChatMessage_OperatorToVisitor" />
+          <s:enumeration value="ChatMessage_VistorToOperator" />
+          <s:enumeration value="SystemMessage_ToOperator" />
+          <s:enumeration value="SystemMessage_ToVisitor" />
+          <s:enumeration value="SystemMessage_ToBoth" />
+        </s:restriction>
+      </s:simpleType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LogInSoapIn">
@@ -453,6 +569,18 @@
   <wsdl:message name="CloseChatSoapOut">
     <wsdl:part name="parameters" element="tns:CloseChatResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllVisitorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllVisitors" />
+  </wsdl:message>
+  <wsdl:message name="GetAllVisitorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllVisitorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewChangesSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckNewChanges" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewChangesSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckNewChangesResponse" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="LogIn">
       <wsdl:input message="tns:LogInSoapIn" />
@@ -525,6 +653,14 @@
     <wsdl:operation name="CloseChat">
       <wsdl:input message="tns:CloseChatSoapIn" />
       <wsdl:output message="tns:CloseChatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllVisitors">
+      <wsdl:input message="tns:GetAllVisitorsSoapIn" />
+      <wsdl:output message="tns:GetAllVisitorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <wsdl:input message="tns:CheckNewChangesSoapIn" />
+      <wsdl:output message="tns:CheckNewChangesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -698,6 +834,24 @@
     </wsdl:operation>
     <wsdl:operation name="CloseChat">
       <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllVisitors">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllVisitors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -884,13 +1038,31 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllVisitors">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllVisitors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="OperatorWS">
     <wsdl:port name="OperatorWSSoap" binding="tns:OperatorWSSoap">
-      <soap:address location="http://localhost:3355/LiveChat/Operator.asmx" />
+      <soap:address location="http://localhost:1575/LiveChat/Operator.asmx" />
     </wsdl:port>
     <wsdl:port name="OperatorWSSoap12" binding="tns:OperatorWSSoap12">
-      <soap12:address location="http://localhost:3355/LiveChat/Operator.asmx" />
+      <soap12:address location="http://localhost:1575/LiveChat/Operator.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

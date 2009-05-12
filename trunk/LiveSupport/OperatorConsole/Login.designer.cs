@@ -39,21 +39,20 @@ namespace LiveSupport.OperatorConsole
             this.lblHint = new System.Windows.Forms.Label();
             this.lblAuthenticate = new System.Windows.Forms.Label();
             this.picLogIn = new System.Windows.Forms.PictureBox();
-            this.lnkShowConfig = new System.Windows.Forms.LinkLabel();
-            this.gbConfig = new System.Windows.Forms.GroupBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.txtWSUrl = new System.Windows.Forms.TextBox();
-            this.lblWSUrl = new System.Windows.Forms.Label();
+            this.cbxPassword = new System.Windows.Forms.CheckBox();
+            this.cbxAutoLogin = new System.Windows.Forms.CheckBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.pnlLogIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
-            this.gbConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblOpName
             // 
             this.lblOpName.AutoSize = true;
-            this.lblOpName.Location = new System.Drawing.Point(11, 68);
+            this.lblOpName.Location = new System.Drawing.Point(24, 89);
             this.lblOpName.Name = "lblOpName";
             this.lblOpName.Size = new System.Drawing.Size(65, 12);
             this.lblOpName.TabIndex = 0;
@@ -62,7 +61,7 @@ namespace LiveSupport.OperatorConsole
             // txtOpName
             // 
             this.txtOpName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOpName.Location = new System.Drawing.Point(132, 66);
+            this.txtOpName.Location = new System.Drawing.Point(101, 87);
             this.txtOpName.Name = "txtOpName";
             this.txtOpName.Size = new System.Drawing.Size(154, 21);
             this.txtOpName.TabIndex = 1;
@@ -70,7 +69,7 @@ namespace LiveSupport.OperatorConsole
             // txtOpPassword
             // 
             this.txtOpPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOpPassword.Location = new System.Drawing.Point(132, 99);
+            this.txtOpPassword.Location = new System.Drawing.Point(101, 120);
             this.txtOpPassword.Name = "txtOpPassword";
             this.txtOpPassword.PasswordChar = '*';
             this.txtOpPassword.Size = new System.Drawing.Size(154, 21);
@@ -79,16 +78,16 @@ namespace LiveSupport.OperatorConsole
             // lblOpPassword
             // 
             this.lblOpPassword.AutoSize = true;
-            this.lblOpPassword.Location = new System.Drawing.Point(11, 102);
+            this.lblOpPassword.Location = new System.Drawing.Point(24, 122);
             this.lblOpPassword.Name = "lblOpPassword";
-            this.lblOpPassword.Size = new System.Drawing.Size(29, 12);
+            this.lblOpPassword.Size = new System.Drawing.Size(65, 12);
             this.lblOpPassword.TabIndex = 2;
-            this.lblOpPassword.Text = "ÃÜÂë";
+            this.lblOpPassword.Text = "ÃÜ      Âë";
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(211, 134);
+            this.btnCancel.Location = new System.Drawing.Point(274, 159);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
             this.btnCancel.TabIndex = 4;
@@ -98,7 +97,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(132, 134);
+            this.btnOK.Location = new System.Drawing.Point(195, 159);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 21);
             this.btnOK.TabIndex = 5;
@@ -115,7 +114,7 @@ namespace LiveSupport.OperatorConsole
             this.pnlLogIn.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogIn.Location = new System.Drawing.Point(0, 0);
             this.pnlLogIn.Name = "pnlLogIn";
-            this.pnlLogIn.Size = new System.Drawing.Size(325, 51);
+            this.pnlLogIn.Size = new System.Drawing.Size(369, 51);
             this.pnlLogIn.TabIndex = 6;
             // 
             // lblHint
@@ -148,61 +147,61 @@ namespace LiveSupport.OperatorConsole
             this.picLogIn.TabIndex = 0;
             this.picLogIn.TabStop = false;
             // 
-            // lnkShowConfig
-            // 
-            this.lnkShowConfig.AutoSize = true;
-            this.lnkShowConfig.Location = new System.Drawing.Point(11, 138);
-            this.lnkShowConfig.Name = "lnkShowConfig";
-            this.lnkShowConfig.Size = new System.Drawing.Size(29, 12);
-            this.lnkShowConfig.TabIndex = 7;
-            this.lnkShowConfig.TabStop = true;
-            this.lnkShowConfig.Text = "ÉèÖÃ";
-            this.lnkShowConfig.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkShowConfig_LinkClicked);
-            // 
-            // gbConfig
-            // 
-            this.gbConfig.Controls.Add(this.txtUserName);
-            this.gbConfig.Controls.Add(this.lblUserName);
-            this.gbConfig.Controls.Add(this.txtWSUrl);
-            this.gbConfig.Controls.Add(this.lblWSUrl);
-            this.gbConfig.Location = new System.Drawing.Point(14, 182);
-            this.gbConfig.Name = "gbConfig";
-            this.gbConfig.Size = new System.Drawing.Size(286, 103);
-            this.gbConfig.TabIndex = 8;
-            this.gbConfig.TabStop = false;
-            this.gbConfig.Text = "ÕËºÅ";
-            // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(21, 68);
+            this.txtUserName.Location = new System.Drawing.Point(101, 57);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(226, 21);
+            this.txtUserName.Size = new System.Drawing.Size(154, 21);
             this.txtUserName.TabIndex = 3;
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(18, 54);
+            this.lblUserName.Location = new System.Drawing.Point(24, 60);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(29, 12);
+            this.lblUserName.Size = new System.Drawing.Size(71, 12);
             this.lblUserName.TabIndex = 2;
-            this.lblUserName.Text = "ÕËºÅ";
+            this.lblUserName.Text = "¹« Ë¾ ÕÊ ºÅ";
             // 
-            // txtWSUrl
+            // cbxPassword
             // 
-            this.txtWSUrl.Location = new System.Drawing.Point(21, 33);
-            this.txtWSUrl.Name = "txtWSUrl";
-            this.txtWSUrl.Size = new System.Drawing.Size(226, 21);
-            this.txtWSUrl.TabIndex = 1;
+            this.cbxPassword.AutoSize = true;
+            this.cbxPassword.Location = new System.Drawing.Point(26, 161);
+            this.cbxPassword.Name = "cbxPassword";
+            this.cbxPassword.Size = new System.Drawing.Size(72, 16);
+            this.cbxPassword.TabIndex = 7;
+            this.cbxPassword.Text = "¼Ç×¡ÃÜÂë";
+            this.cbxPassword.UseVisualStyleBackColor = true;
             // 
-            // lblWSUrl
+            // cbxAutoLogin
             // 
-            this.lblWSUrl.AutoSize = true;
-            this.lblWSUrl.Location = new System.Drawing.Point(18, 18);
-            this.lblWSUrl.Name = "lblWSUrl";
-            this.lblWSUrl.Size = new System.Drawing.Size(95, 12);
-            this.lblWSUrl.TabIndex = 0;
-            this.lblWSUrl.Text = "Web Service URL";
+            this.cbxAutoLogin.AutoSize = true;
+            this.cbxAutoLogin.Location = new System.Drawing.Point(104, 161);
+            this.cbxAutoLogin.Name = "cbxAutoLogin";
+            this.cbxAutoLogin.Size = new System.Drawing.Size(72, 16);
+            this.cbxAutoLogin.TabIndex = 8;
+            this.cbxAutoLogin.Text = "×Ô¶¯µÇÂ¼";
+            this.cbxAutoLogin.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(261, 64);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "×¢²áÐÂÕÊºÅ";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(263, 126);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel2.TabIndex = 10;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "È¡»ØÃÜÂë";
             // 
             // Login
             // 
@@ -210,10 +209,14 @@ namespace LiveSupport.OperatorConsole
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(325, 297);
+            this.ClientSize = new System.Drawing.Size(369, 189);
             this.ControlBox = false;
-            this.Controls.Add(this.gbConfig);
-            this.Controls.Add(this.lnkShowConfig);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.cbxAutoLogin);
+            this.Controls.Add(this.cbxPassword);
+            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.pnlLogIn);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
@@ -231,8 +234,6 @@ namespace LiveSupport.OperatorConsole
             this.pnlLogIn.ResumeLayout(false);
             this.pnlLogIn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).EndInit();
-            this.gbConfig.ResumeLayout(false);
-            this.gbConfig.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,12 +250,12 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Panel pnlLogIn;
         private System.Windows.Forms.PictureBox picLogIn;
         private System.Windows.Forms.Label lblAuthenticate;
-		private System.Windows.Forms.Label lblHint;
-        private System.Windows.Forms.LinkLabel lnkShowConfig;
-        private System.Windows.Forms.GroupBox gbConfig;
-        private System.Windows.Forms.Label lblWSUrl;
-        private System.Windows.Forms.TextBox txtWSUrl;
+        private System.Windows.Forms.Label lblHint;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.CheckBox cbxPassword;
+        private System.Windows.Forms.CheckBox cbxAutoLogin;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }

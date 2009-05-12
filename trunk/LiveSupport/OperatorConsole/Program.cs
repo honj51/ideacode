@@ -12,12 +12,34 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using VisualAsterisk.Test.Temp;
 
 namespace LiveSupport.OperatorConsole
 {
 	static class Program
 	{
+        private static MainForm mainForm;
+
+        public static MainForm MainForm
+        {
+            get { return Program.mainForm; }
+            set { Program.mainForm = value; }
+        }
+
+        private static List<OperatorConsole.LiveChatWS.Visitor> visitors;
+
+        public static List<OperatorConsole.LiveChatWS.Visitor> Visitors
+        {
+            get { return Program.visitors; }
+            set { Program.visitors = value; }
+        }
 		private static OperatorConsole.LiveChatWS.Operator myOperator;
+        private static List<ChatForm> chatForms = new List<ChatForm>();
+
+        public static List<ChatForm> ChatForms
+        {
+            get { return chatForms; }
+        }
 
 		public static OperatorConsole.LiveChatWS.Operator CurrentOperator
 		{
@@ -34,7 +56,8 @@ namespace LiveSupport.OperatorConsole
 			get { return activeChat = 0; }
 			set { activeChat = value; }
 		}
-	
+	    
+        
 	
 		/// <summary>
 		/// The main entry point for the application.
@@ -45,7 +68,8 @@ namespace LiveSupport.OperatorConsole
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
-			Application.Run(new Login());
+           Application.Run(new Login());
+           //Application.Run(new ListViewGroupsExample());
 		}
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
