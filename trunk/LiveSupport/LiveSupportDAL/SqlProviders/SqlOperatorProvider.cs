@@ -47,5 +47,31 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
              , op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, op.IsAdmin, op.Status, op.AVChatStatus, op.OperatorId);
             DBHelper.ExecuteCommand(sql);
         }
+        /// <summary>
+        /// 判断用用户名是否存在
+        /// </summary>
+        /// <param name="loginName"></param>
+        public static Operator GetOperatorByLoginName(string loginName)
+        {
+            string sql = "select * from [LiveSupport].[dbo].[LiveChat_Operator] where LoginName=" + loginName;
+            SqlDataReader data = null;
+            Operator op = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    op = new Operator(data);
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return op;
+        }
     }
 }
