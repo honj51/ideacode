@@ -15,9 +15,9 @@ namespace LiveSupport.LiveSupportModel
             set { visitorId = value; }
         }
 
-        private int accountId;
-         
-        public int AccountId
+        private string accountId;
+
+        public string AccountId
         {
             get { return accountId; }
             set { accountId = value; }
@@ -96,7 +96,7 @@ namespace LiveSupport.LiveSupportModel
         public Visitor(SqlDataReader data)
         {
             if (!Convert.IsDBNull(data["VisitorId"])) visitorId = (string)data["VisitorId"];
-            if (!Convert.IsDBNull(data["AccountId"])) accountId = (int)data["AccountId"];
+            if (!Convert.IsDBNull(data["AccountId"])) accountId = (string)data["AccountId"];
             if (!Convert.IsDBNull(data["Name"])) name = (string)data["Name"];
             if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
             if (!Convert.IsDBNull(data["VisitCount"])) visitCount = (int)data["VisitCount"];
