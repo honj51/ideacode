@@ -25,12 +25,6 @@ public class MessageService
     {
         return GetMessages(chatId,new DateTime(lastCheck));
     }
-
-    public static string UploadFile(string p, string visitorID, string filePath)
-    {
-        throw new NotImplementedException();
-    }
-
     public static void AddMessage(Message msg)
     {
         SqlMessageProvider.AddMessage(msg);
