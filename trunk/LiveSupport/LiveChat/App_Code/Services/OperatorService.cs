@@ -4,12 +4,23 @@ using System.Configuration.Provider;
 using System.Web.Configuration;
 using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
+using LiveSupport.LiveSupportDAL.SqlProviders;
 
 /// <summary>
 /// Summary description for OperatorService
 /// </summary>
 public class OperatorService
 {
+    static OperatorService()
+    {
+        operators = SqlOperatorProvider.GetAllOperators();
+    }
+
+    public static List<Operator> GetAllOperators()
+    {
+        return operators;
+    }
+
     private static List<Operator> operators = new List<Operator>();
     /// <summary>
     ///  判定客服是否在线

@@ -6,8 +6,14 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 /// <summary>
 ///AccountService 的摘要说明
 /// </summary>
-public class AccountService
+public static class AccountService
 {
+    static AccountService()
+    { 
+        // Load all Accounts
+        accounts = SqlAccountProvider.GetAllAccounts();
+    }
+
     private static List<Account> accounts = new List<Account>();
     /// <summary>
     /// 根据登录名查询一很记录
