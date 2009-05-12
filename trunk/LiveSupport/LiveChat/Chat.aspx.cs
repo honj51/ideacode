@@ -220,7 +220,7 @@ public partial class Chat : System.Web.UI.Page
             m.Source = VName;
             m.Text = msg;
             m.Type = MessageType.ChatMessage_VistorToOperator;
-            ChatService.SendMessage();
+            ChatService.SendMessage(m);
 
             //OperatorWS ws = new OperatorWS();
             //ws.SetTyping(chatId, false, false);
