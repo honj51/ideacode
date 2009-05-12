@@ -57,7 +57,7 @@ namespace LiveSupport.LiveSupportModel
 
         private string remark;
          
-        public string ReMark
+        public string Remark
         {
             get { return remark; }
             set { remark = value; }

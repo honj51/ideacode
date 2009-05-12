@@ -65,7 +65,8 @@ namespace LiveSupport.LiveSupportModel
 
         public Message()
         {
-
+            sentDate = DateTime.Now;
+            messageId = Guid.NewGuid().ToString();
         }
         public Message(SqlDataReader data)
         {

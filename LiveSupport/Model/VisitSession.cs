@@ -149,6 +149,11 @@ namespace LiveSupport.LiveSupportModel
         public VisitSession()
         {
             sessionId = Guid.NewGuid().ToString();
+            this.ChatingTime = DateTime.MinValue;
+            this.ChatRequestTime = DateTime.MinValue;
+            this.ChattingDuring = DateTime.MinValue;
+            this.LeaveTime = DateTime.MinValue;
+            this.VisitingTime = DateTime.MinValue;
         }
 
         public VisitSession(SqlDataReader data)

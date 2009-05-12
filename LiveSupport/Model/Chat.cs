@@ -83,7 +83,8 @@ namespace LiveSupport.LiveSupportModel
             set { status = value; }
         }
         public Chat()
-        { 
+        {
+            CreateTime = DateTime.Now;
         }
         public Chat(SqlDataReader data)
         {
