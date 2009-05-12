@@ -23,13 +23,13 @@ public class ChatService
         throw new NotImplementedException();
     }
 
-    public static void SendMessage()
+    public static void ChatPageRequestChat(Chat chatRequest)
     {
         throw new NotImplementedException();
     }
 
-    public static void ChatPageRequestChat(Chat chatRequest)
+    public static void SendMessage(Message m)
     {
-        throw new NotImplementedException();
+        MessageService.AddMessage(m);
     }
 }
