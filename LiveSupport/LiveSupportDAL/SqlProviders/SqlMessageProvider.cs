@@ -34,6 +34,13 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return retList;
         }
+
+        public static void AddMessage(Message msg)
+        {
+            string sql = string.Format("insert into dbo.LiveChat_Message values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
+             msg.MessageId, msg.ChatId, msg.Source, msg.Destination, msg.Text, msg.SentDate, msg.Type.ToString());
+            DBHelper.ExecuteCommand(sql);
+        }
     }
 }
 
