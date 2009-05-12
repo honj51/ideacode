@@ -280,7 +280,7 @@ public partial class Chat : System.Web.UI.Page
         chatRequest.AccountId = Request.QueryString["aid"];
         chatRequest.ChatId = chatId;
         chatRequest.CreateTime = DateTime.Now;
-        chatRequest.Status = LiveSupport.LiveSupportModel.Chat.ChatStatus.Requested;
+        chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
 
         ChatService.ChatPageRequestChat(chatRequest);
         
