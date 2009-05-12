@@ -9,7 +9,7 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 /// <summary>
 /// Summary description for OperatorService
 /// </summary>
-public class OperatorService
+public static class OperatorService
 {
     static OperatorService()
     {
@@ -66,10 +66,24 @@ public class OperatorService
         }
     }
 
-    public static bool GetOperatorStatus(string accountId)
+    public static bool HasOnlineOperator(string accountId)
     {
-        return true;
+        foreach (var item in operators)
+        {
+            if (item.AccountId == accountId && item.Status != OperatorStatus.Offline)
+            {
+                return true;
+            }
+        }
+        return false;
     }
+
+
+    internal static Operator GetOperatorById(string p)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// ÐÞ¸ÄÃÜÂë
     /// </summary>
@@ -133,4 +147,5 @@ public class OperatorService
             }
         }
     }
+
 }

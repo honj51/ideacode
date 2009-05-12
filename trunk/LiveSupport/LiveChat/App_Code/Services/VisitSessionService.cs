@@ -61,9 +61,19 @@ public class VisitSessionService
     /// </summary>
     /// <param name="lastCheck">会话ID</param>
     /// <returns>VisitSession对象</returns>
-    public static List<VisitSession> GetVisitSessionChange(DateTime lastCheck)
+    public static List<VisitSession> GetVisitSessionChange(string accountId, DateTime lastCheck)
     {
-        return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetVisitSessionChange(lastCheck);
+        List<VisitSession> vss = new List<VisitSession>();
+        foreach (var item in sessions)
+        {
+            Visitor v = VisitorService.GetVisitor(item.VisitorId);
+            if (v != null && v.AccountId == accountId)
+	        {
+                vss.Add(v.CurrentSession);
+	        }
+        }
+        return vss;
+        //return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetVisitSessionChange(lastCheck);
     }
     /// <summary>
     /// 跟据客服ID查还回正在聊天的会话信息
@@ -74,4 +84,15 @@ public class VisitSessionService
     {
         return sessions.FindAll(s => s.OperatorId == operatorId && s.Status == VisitSessionStatus.Chatting);
     }
+
+    public static void RequestChat(Chat chatRequest)
+    {
+        VisitSession session = sessions.Find(s => s.SessionId == chatRequest.ChatId);
+        if (session != null)
+        {
+            session.Status = VisitSessionStatus.ChatRequesting;
+            ChatService.ChatPageRequestChat(chatRequest);
+        }
+    }
+
 }

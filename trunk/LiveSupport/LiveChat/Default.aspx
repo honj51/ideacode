@@ -8,7 +8,7 @@
     function openChat()
     {
         var chatid="";
-        var win = window.open('Chat.aspx?chatid='+chatid+'&aid=4', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
+        var win = window.open('Chat.aspx?chatid='+chatid+'&aid=2', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
         win.focus();
         win.opener = window;
         return false;
@@ -22,7 +22,7 @@
         <div>
 
             <script type="text/javascript">
-			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="ProcessImage.ashx?aid=4&referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
+			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="ProcessImage.ashx?aid=2&referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
             </script>
         </div>
     </form>
