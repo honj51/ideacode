@@ -60,6 +60,27 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap aim {
+            get {
+                object obj = ResourceManager.GetObject("aim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap alarmd {
+            get {
+                object obj = ResourceManager.GetObject("alarmd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap All_software_is_current {
+            get {
+                object obj = ResourceManager.GetObject("All_software_is_current", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap cancel {
             get {
                 object obj = ResourceManager.GetObject("cancel", resourceCulture);
@@ -67,9 +88,44 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cat_sh_button {
+            get {
+                object obj = ResourceManager.GetObject("cat_sh_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap file_sent {
             get {
                 object obj = ResourceManager.GetObject("file_sent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap leave_title_bg {
+            get {
+                object obj = ResourceManager.GetObject("leave_title_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap live800 {
+            get {
+                object obj = ResourceManager.GetObject("live800", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap logfile_24 {
+            get {
+                object obj = ResourceManager.GetObject("logfile_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap logfile_48 {
+            get {
+                object obj = ResourceManager.GetObject("logfile_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,6 +142,76 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_01 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_02 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_03 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_04 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_05 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_05", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_06 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_07 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_07", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_08 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_08", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_09 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PI_Diagona_Web_Application_04_10 {
+            get {
+                object obj = ResourceManager.GetObject("PI_Diagona_Web_Application_04_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon Profile {
             get {
                 object obj = ResourceManager.GetObject("Profile", resourceCulture);
@@ -96,6 +222,20 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.Drawing.Bitmap purchase {
             get {
                 object obj = ResourceManager.GetObject("purchase", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap sc {
+            get {
+                object obj = ResourceManager.GetObject("sc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap user1_message_24 {
+            get {
+                object obj = ResourceManager.GetObject("user1_message_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

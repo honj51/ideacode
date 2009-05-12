@@ -72,6 +72,12 @@
     <Compile Include="CannedMessages.Designer.cs">
       <DependentUpon>CannedMessages.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChatSession\LiveChat.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,11 +90,20 @@
     <Compile Include="ChatSession\TabInfo.Designer.cs">
       <DependentUpon>TabInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlPanel.cs">
+    <Compile Include="ListViewGroupsExample.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlPanel.Designer.cs">
-      <DependentUpon>ControlPanel.cs</DependentUpon>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifyForm.Designer.cs">
+      <DependentUpon>NotifyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PresetLinks.cs">
       <SubType>Form</SubType>
@@ -108,6 +123,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>CannedMessages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChatSession\LiveChat.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LiveChat.cs</DependentUpon>
@@ -116,9 +135,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>TabInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlPanel.resx">
+    <EmbeddedResource Include="MainForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ControlPanel.cs</DependentUpon>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifyForm.resx">
+      <DependentUpon>NotifyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PresetLinks.resx">
       <DependentUpon>PresetLinks.cs</DependentUpon>
@@ -131,6 +154,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -147,6 +174,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TestFixture.cs" />
+    <Compile Include="ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Web References\LiveChatWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,10 +195,10 @@
     <None Include="Web References\LiveChatWS\Operator.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3355/LiveChat/Operator.asmx">
+    <WebReferenceUrl Include="http://localhost:1575/LiveChat/Operator.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LiveChatWS\</RelPath>
-      <UpdateFromURL>http://localhost:3355/LiveChat/Operator.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:1575/LiveChat/Operator.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -189,10 +223,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Profile.ico" />
+    <None Include="Resources\cat_sh_button.gif" />
+    <None Include="Resources\alarmd.png" />
+    <None Include="Resources\All software is current.png" />
+    <None Include="Resources\aim.png" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\sc.jpg" />
+    <None Include="Resources\logfile_24.png" />
+    <None Include="Resources\logfile_48.png" />
+    <None Include="Resources\live800.bmp" />
+    <None Include="Resources\user1_message_24.png" />
+    <None Include="Resources\leave_title_bg.jpg" />
+    <None Include="Resources\PI Diagona Web Application 04 10.png" />
+    <None Include="Resources\PI Diagona Web Application 04 09.png" />
+    <None Include="Resources\PI Diagona Web Application 04 08.png" />
+    <None Include="Resources\PI Diagona Web Application 04 07.png" />
+    <None Include="Resources\PI Diagona Web Application 04 06.png" />
+    <None Include="Resources\PI Diagona Web Application 04 05.png" />
+    <None Include="Resources\PI Diagona Web Application 04 04.png" />
+    <None Include="Resources\PI Diagona Web Application 04 03.png" />
+    <None Include="Resources\PI Diagona Web Application 04 02.png" />
+    <None Include="Resources\PI Diagona Web Application 04 01.png" />
     <None Include="Resources\Profile.ico" />
     <None Include="Resources\type.wav" />
     <None Include="Resources\ringout.wav" />
@@ -202,10 +256,16 @@
     <None Include="Web References\LiveChatWS\ChatRequestInfo1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\LiveChatWS\NewChangesResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\LiveChatWS\Operator1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\RequestInfo1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LiveChatWS\Visitor.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
