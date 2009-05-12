@@ -21,7 +21,7 @@ public class OperatorService
         Operator op = operators.Find(o => o.OperatorId == operatorId);
         if (op != null)
         {
-            return op.Status != Operator.OperatorStatus.Offline;
+            return op.Status != OperatorStatus.Offline;
         }
         return false;
     }
@@ -38,7 +38,7 @@ public class OperatorService
         if (account != null)
         {
             op = operators.Find(o => o.AccountId == account.AccountId && o.LoginName == operatorName && o.Password == password);
-            op.Status = Operator.OperatorStatus.Idle;
+            op.Status = OperatorStatus.Idle;
         }
         return op;
     }
@@ -51,7 +51,7 @@ public class OperatorService
         Operator op = operators.Find(o => o.OperatorId == operatorId);
         if (op != null)
         {
-            op.Status = Operator.OperatorStatus.Offline;
+            op.Status = OperatorStatus.Offline;
         }
     }
 
