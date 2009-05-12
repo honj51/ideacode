@@ -75,8 +75,8 @@ namespace LiveSupport.OperatorConsole
         }
         public void initForm(DateTime LoginTime) 
         {
-            this.operatorToolStripStatusLabel.Text = "登录客服为：" + Program.CurrentOperator.Name;
-            if (Program.CurrentOperator.IsOnline)
+            this.operatorToolStripStatusLabel.Text = "登录客服为：" + Program.CurrentOperator.NickName;
+            if (Program.CurrentOperator.Status== OperatorStatus.Idle)
                 this.stateToolStripStatusLabel.Text = "目前状态：在线";
 
             Properties.Settings.Default.OperatorLoginTime = LoginTime;
@@ -358,7 +358,7 @@ namespace LiveSupport.OperatorConsole
                 {
                     if (item == null) continue;
                     ListViewItem lvi = new ListViewItem(new string[]{ item.Name, item.CurrentSession.Location, item.CurrentSession.Browser,
-                     item.VisitCount.ToString(), item.CurrentSession.Operators.ToString(),item.CurrentSession.Status.ToString(),
+                     item.VisitCount.ToString(), item.CurrentSession.OperatorId.ToString(),item.CurrentSession.Status.ToString(),
                      item.CurrentSession.VisitingTime.ToString(), item.CurrentSession.LeaveTime.ToString(), item.CurrentSession.ChatRequestTime.ToString(),
                      item.CurrentSession.ChatingTime.ToString(),item.CurrentSession.WaitingDuring.ToString(), item.CurrentSession.ChattingDuring.ToString(),
                      item.CurrentSession.PageRequestCount.ToString()
@@ -413,13 +413,13 @@ namespace LiveSupport.OperatorConsole
                 operatorsTreeView.Nodes[1].Nodes.Clear();
                 foreach (var item in operators)
                 {
-                    if (item.IsOnline)
+                    if (item.Status!= OperatorStatus.Idle)
                     {
-                        operatorsTreeView.Nodes[0].Nodes.Add(item.Name).Tag = item;
+                        operatorsTreeView.Nodes[1].Nodes.Add(item.NickName).Tag = item;   
                     }
                     else
                     {
-                        operatorsTreeView.Nodes[1].Nodes.Add(item.Name).Tag = item;
+                      operatorsTreeView.Nodes[0].Nodes.Add(item.NickName).Tag = item;
                     }
                 }
             }

@@ -30,6 +30,7 @@ namespace LiveSupport.OperatorConsole
         private void btnOK_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.RememberPassword = this.cbxPassword.Checked;
+            Properties.Settings.Default.AutoLogin = this.cbxAutoLogin.Checked;
             if((!string.IsNullOrEmpty(this.txtOpName.Text))&&(!string.IsNullOrEmpty(this.txtOpPassword.Text)))
             {
                
@@ -37,7 +38,7 @@ namespace LiveSupport.OperatorConsole
             
                
             }
-
+              
 
             if (Properties.Settings.Default.WSUser != txtUserName.Text)
             {
@@ -71,26 +72,18 @@ namespace LiveSupport.OperatorConsole
                 //    Properties.Settings.Default.WSUser = txtUserName.Text;
                 //    Properties.Settings.Default.Save();
                 //}
-                //OperatorWS ws = new OperatorWS();
+                OperatorWS ws = new OperatorWS();
                 //// Simple authentication
                 //AuthenticationHeader auth = new AuthenticationHeader();
                 //auth.userName = Properties.Settings.Default.WSUser;
                 //ws.AuthenticationHeaderValue = auth;
                  // Operator op=  ws.LogIn(txtOpName.Text, txtOpPassword.Text);
+                 
 
-
-                Operator op = new Operator();
-                op.Id=19;
-                op.Name = txtOpName.Text;
-                op.Password = txtOpPassword.Text;
-                op.IsOnline = true;
-                op.IsAdmin = true;
-                 Program.CurrentOperator = op;
-                   
-                
+                Program.CurrentOperator=  ws.Login(Properties.Settings.Default.WSUser,txtOpName.Text,txtOpPassword.Text);
                 // if we got an OperatorInfo, we continue
-                //if (Program.CurrentOperator != null)
-                //{
+                if (Program.CurrentOperator != null)
+                {
                 //    if (Program.CurrentOperator.IsOnline)
                 //    {
                 //        MessageBox.Show("用户已经登录,\r\n\r\n请用其他用户登录...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -118,17 +111,17 @@ namespace LiveSupport.OperatorConsole
                             this.Close();
                         }
        
-            //        }
-            //    }
-            //    else
-            //    {
+                  //  }
+               }
+               else
+               {
                    
-            //            //Invalid credentials
-            //           MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //Invalid credentials
+                       MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                   
                      
                    
-            //        }
+                   }
             //}
 
                         Properties.Settings.Default.Save();
@@ -144,7 +137,7 @@ namespace LiveSupport.OperatorConsole
         {
             if (Properties.Settings.Default.RememberPassword)
             {
-                this.cbxPassword.Checked = Properties.Settings.Default.RememberPassword;
+               
                 if ((!string.IsNullOrEmpty(Properties.Settings.Default.OperatorName)) && (!string.IsNullOrEmpty(Properties.Settings.Default.OperatorPassword)))
                 {
                     this.txtOpName.Text = Properties.Settings.Default.OperatorName;
@@ -157,7 +150,8 @@ namespace LiveSupport.OperatorConsole
                 txtOpPassword.Text= "";
             
             }
-
+            
+            this.cbxPassword.Checked = Properties.Settings.Default.RememberPassword;
             //this.txtOpName.Text = "user1op1";
           //  txtOpPassword.Text = "abc123";
            // if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator.Length == 0)
