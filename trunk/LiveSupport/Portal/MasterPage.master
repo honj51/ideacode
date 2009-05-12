@@ -8,6 +8,8 @@
     <meta name="Description" content="关于 LiveSupport., 提供先进的在线客服软件和服务" />
     <meta name="copyright" content="Copyright (c) 2009 LiveSupport, Inc. All rights reserved." />
     <link href="App_Themes/css-print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="App_Themes/form.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="App_Themes/global.css" rel="stylesheet" type="text/css" media="print" />
     <link rel="shortcut icon" href="images/favicon.ico" />
     <title>LiveSupport</title> 
     <meta name="GENERATOR" Content="Microsoft Visual Studio .Net 7.1">
@@ -17,12 +19,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <%--Add LiveChat services javascript --%>
     <!--导入js文件-->
-    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js">
+    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js"\
+    <script type="text/javascript" language="javascript" src="js/JScript.js">
     </script>
 </head>
 
 <body>
     <form id="form1" runat="server">
+    
       <div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
         <!--
@@ -33,18 +37,16 @@ TOP INFORMTION
         <div id="top-information">
             <div id="logo">
                 <a href="Default.aspx">Live Support Service .Inc</a></div>
+                
             <div id="top-information-home">
                 <a href="Default.aspx">&#39318;&#39029;</a></div>
-            <div id="top-information-login">
-                <asp:LoginName ID="LoginName1" runat="server" FormatString="&#27426;&#36814;&#24744; {0}, " />
-                <asp:LoginView ID="LoginView1" runat="server">
-                    <LoggedInTemplate>
-                        <asp:LinkButton ID="LinkButton1" runat="server" 
-                            PostBackUrl="~/AccountAdmin/AccountHome.aspx">&#25105;&#30340;&#36134;&#25143;</asp:LinkButton>
-                    </LoggedInTemplate>
-                </asp:LoginView>
-                <asp:LoginStatus ID="LoginStatus2" runat="server" />
-            </div>
+             <div id="top-information-login">
+                <asp:Panel ID="PanelShow" runat="server" Visible="false">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>&nbsp;<a href="AccountAdmin/AccountHome.aspx">客服管理</a>&nbsp;
+                    &nbsp;<asp:LinkButton 
+                        ID="LinkButton1" runat="server" onclick="LinkButton1_Click">退出</asp:LinkButton>
+                 </asp:Panel>
+                <asp:Panel ID="PanelLogin" runat="server" Visible="false"><a href="Login.aspx">登录</a></asp:Panel>
+             </div>
         </div>
         <!--
 

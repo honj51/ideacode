@@ -10,12 +10,25 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using LiveSupport.BLL;
 using System.Text;
+using LiveSupport.DAL.Entity;
 
 public partial class AccountAdmin_SetupInstructions : System.Web.UI.Page
 {
+    Account account;
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.HiddenField1.Value = AccountsManager.GetAccount().Id.ToString();
+        if (!IsPostBack)
+        {
+            if (Session["User"] != null)
+            {
+                account = (Account)Session["User"];
+            }
+            //else
+            //{
+                //Response.Redirect("../Default.aspx");
+            //}
+        }
+        this.HiddenField1.Value = account.Id.ToString();
 
         string html = this.TextBox1.Text;
         string[] s={"aid="};

@@ -1,0 +1,69 @@
+BODY {
+	BACKGROUND-POSITION: 50% top; CURSOR: default; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #ffffff
+}
+FORM {
+	MARGIN: 0px
+}
+DIV {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-VARIANT: normal
+}
+TD {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-VARIANT: normal
+}
+INPUT {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-VARIANT: normal
+}
+A:link {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff6600; TEXT-DECORATION: none
+}
+A.a_white:link {
+	COLOR: #00ccff; TEXT-DECORATION: none
+}
+A.a_white:visited {
+	COLOR: #00ccff; TEXT-DECORATION: none
+}
+A.a_white:active {
+	COLOR: #00ccff; TEXT-DECORATION: none
+}
+A.a_white:hover {
+	COLOR: #00ccff; TEXT-DECORATION: none
+}
+TABLE.menu {
+	WIDTH: 590px; HEIGHT: 65px
+}
+TABLE.menu TD DIV {
+	MARGIN-TOP: 0px; FONT-WEIGHT: bold; FONT-SIZE: 12px; MARGIN-LEFT: 10px; VERTICAL-ALIGN: top; COLOR: #fff; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-VARIANT: normal
+}
+TABLE.menu TD SPAN {
+	MARGIN-TOP: 13px; DISPLAY: block; FONT: 10px Verdana; MARGIN-RIGHT: 11px; TEXT-ALIGN: right
+}
+TABLE.menu TD.left {
+	BACKGROUND-IMAGE: url(./images/menu/left.gif); WIDTH: 99px; CURSOR: pointer
+}
+TABLE.menu TD.leftHover {
+	BACKGROUND-IMAGE: url(./images/menu/left_hover.gif); WIDTH: 99px; CURSOR: pointer
+}
+TABLE.menu TD.center {
+	BACKGROUND-IMAGE: url(./images/menu/center.gif); WIDTH: 97px; CURSOR: pointer
+}
+TABLE.menu TD.centerHover {
+	BACKGROUND-IMAGE: url(./images/menu/center_hover.gif); WIDTH: 97px; CURSOR: pointer
+}
+TABLE.menu TD.right {
+	BACKGROUND-IMAGE: url(./images/menu/right.gif); WIDTH: 103px; CURSOR: pointer
+}
+TABLE.menu TD.rightHover {
+	BACKGROUND-IMAGE: url(./images/menu/right_hover.gif); WIDTH: 103px; CURSOR: pointer
+}
+.commonBtn {
+	BORDER-RIGHT: 0px; BACKGROUND-POSITION: center 50%; BORDER-TOP: 0px; PADDING-LEFT: 2px; BACKGROUND-IMAGE: url(./images/mylive800_bt/com_bg.gif); BORDER-LEFT: 0px; WIDTH: 120px; CURSOR: hand; COLOR: #ffffff; PADDING-TOP: 3px; BORDER-BOTTOM: 0px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 24px; TEXT-ALIGN: center
+}

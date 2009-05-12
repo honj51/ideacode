@@ -23,6 +23,8 @@ public partial class AccountAdmin_OperatorCreate : System.Web.UI.Page
             }
             else if (HttpContext.Current.Request.QueryString["cmd"] != null && HttpContext.Current.Request.QueryString["cmd"] == "cmdInsert")
             {
+                //string aa = "abc";
+
                 this.DetailsView1.DefaultMode = DetailsViewMode.Insert;
                 this.DetailsView1.ChangeMode(DetailsViewMode.Insert);
             }

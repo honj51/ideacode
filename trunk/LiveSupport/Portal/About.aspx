@@ -2,163 +2,45 @@
     CodeFile="About.aspx.cs" Inherits="About" Title="LiveSupport Inc: About" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <!--
-
-Title Under Menu
-
--->
-    <div id="pagetitle">
-        About</div>
-    <!--
-
-CONTENT CONTAINER
-
--->
-    <div id="content-container-three-column">
-        <!--
-
-  CONTENT SIDE 1 COLUMN
-
-  -->
-        <div id="content-side1-three-column">
-            <ul class="list-of-links">
-                <li class="current"><a href="About.aspx">About Us</a></li>
-                <li><a href="People.aspx">Our Employees</a></li>
-                <li><a href="About.aspx">Our History</a></li>
-                <li><a href="Contact.aspx">Contact Us</a></li>
-                <li><a href="About.aspx">Locations</a></li>
-            </ul>
-        </div>
-        <!--
-
-
-
-  CENTER COLUMN
-
-  -->
-        <div id="content-main-three-column">
-            <h1>
-                About Us</h1>
-            <hr />
-            <h2>
-                <a href="People.aspx">Each and Every Employee</a></h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                minim veniam, quis nostrud exercitation ulliam corper suscipit lobortis nisl ut
-                aliquip ex ea commodo consequat. Duis autem veleum iriure dolor in hendrerit in
-                vulputate velit esse molestie consequat, vel willum lunombro dolore eu feugiat nulla
-                facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
-                luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            </p>
-            <hr />
-            <h2>
-                Corporate Bio
-            </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                minim veniam, quis nostrud exercitation ulliam corper suscipit lobortis nisl ut
-                aliquip ex ea commodo consequat. Duis autem veleum iriure dolor in hendrerit in
-                vulputate velit esse molestie consequat, vel willum lunombro dolore eu feugiat nulla
-                facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
-                luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            </p>
-            <p>
-                Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
-                Por scientie, musica, sport etc., li tot Europa usa li sam vocabularium. Li lingues
-                differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos
-                directe al desirabilit&aacute; de un nov lingua franca: on refusa continuar payar
-                custosi traductores. It solmen va esser necessi far uniform grammatica, pronunciation
-                e plu sommun paroles.
-            </p>
-            <p>
-                Ma quande lingues coalesce, li
-                <img src="images/news-2.jpg" alt="corporate headquaters" class="photo-float-left photo-border" />grammatica
-                del resultant lingue es plu simplic e regulari quam ti del coalescent lingues. Li
-                nov lingua franca va esser plu simplic e regulari quam li existent Europan lingues.
-                It va esser tam simplic quam Occidental: in fact, it va esser Occidental. A un Angleso
-                it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me que
-                Occidental es.
-            </p>
-            <hr />
-            <h2 class="small">
-                CEO Bio</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                minim veniam, quis nostrud exercitation ulliam corper suscipit lobortis nisl ut
-                aliquip ex ea commodo consequat. Duis autem veleum iriure dolor in hendrerit in
-                vulputate velit esse molestie consequat, vel willum lunombro dolore eu feugiat nulla
-                facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
-                luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            </p>
-            <p>
-                Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
-                Por scientie, musica, sport etc., li tot Europa usa li sam vocabularium. Li lingues
-                differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos
-                directe al desirabilit&aacute; de un nov lingua franca: on refusa continuar payar
-                custosi traductores. It solmen va esser necessi far uniform grammatica, pronunciation
-                e plu sommun paroles.
-            </p>
-            <p>
-                Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e
-                regulari quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic
-                e regulari quam li existent Europan lingues. It va esser tam simplic quam Occidental:
-                in fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles,
-                quam un skeptic Cambridge amico dit me que Occidental es.
-            </p>
-            <hr />
-            <h2 class="small">
-                CTO Bio</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                minim veniam, quis nostrud exercitation ulliam corper suscipit lobortis nisl ut
-                aliquip ex ea commodo consequat. Duis autem veleum iriure dolor in hendrerit in
-                vulputate velit esse molestie consequat, vel willum lunombro dolore eu feugiat nulla
-                facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
-                luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            </p>
-            <p>
-                Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
-                Por scientie, musica, sport etc., li tot Europa usa li sam vocabularium. Li lingues
-                differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos
-                directe al desirabilit&aacute; de un nov lingua franca: on refusa continuar payar
-                custosi traductores. It solmen va esser necessi far uniform grammatica, pronunciation
-                e plu sommun paroles.
-            </p>
-            <p>
-                Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e
-                regulari quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic
-                e regulari quam li existent Europan lingues. It va esser tam simplic quam Occidental:
-                in fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles,
-                quam un skeptic Cambridge amico dit me que Occidental es.
-            </p>
-        </div>
-        <!-- END MAIN COLUMN -->
-        <!--
-
-  CONTENT SIDE 2 COLUMN
-
-  -->
-        <div id="content-side2-three-column">
-            <h3 class="small">
-                Recent Milestones</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna volutpat. Ut wisi enim ad minim veniam,
-                quis nostrud exercitation ulliam corper suscipit lobortis nisl ut commodo consequat.
-                Duis autem veleum iriure dolor in hendrerit in vulputate velit esse feugiat nulla
-                facilisis at vero eros et accumsan.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                euismod tincidunt ut laoreet dolore magna volutpat. Ut wisi enim ad minim veniam,
-                quis nostrud exercitation ulliam corper suscipit lobortis nisl ut commodo consequat.
-                Duis autem veleum iriure dolor in hendrerit in vulputate velit esse feugiat nulla
-                facilisis at vero eros et accumsan.</p>
-        </div>
-        <div class="clear">
-        </div>
-    </div>
+<center>
+<img src="Images/banner_2.jpg" style="width: 760px; height: 151px;" />
+<div><img src="Images/guanyu.bmp" style="margin-top:5px;" /></div>
+<table cellpadding="0" cellspacing="0" style=" width:760px; border-style: solid; border-color: inherit; border-width: 1px; position: relative;">
+<tr><td align="left"><b>
+    <br />
+    公司简介：</b>&nbsp;&nbsp;&nbsp;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    江西互动全球科技有限公司(极速工作室)成立于2008年，是一家全球领先的互联网应用软件供应商，业务遍及全中国和美国，并于2008年在美国成立了办事处。公司致力为用户提供最佳解决方案和服务，感谢国家科技部、工业和信息化部、市政府、高新区在公司成长的道路上给予的大力支持。目前客户遍及政府、电信、制造、金融、商贸、教育、旅游等各行业。<br />
+    　　我们始终以超前的创新、出色的服务和健全的管理领导着全球在线在线沟通平台的发展。翘首期盼，展望未来，我们将再接再厉，与时俱进。同时以“开拓创新为动力，回馈社会为已任”。尽心尽力为打造新一代互联网应用谱写辉煌篇章。<br />
+    <br />
+    <br />
+    <b>产品：</b><br />
+    　&nbsp;&nbsp;&nbsp;&nbsp; 我们自主研发的LiveSupport实时在线交流系统，正服务于全球数万用户，是企业进行在线咨询、在线营销、在线客服的有力工具，开辟了新的即时通讯市场，将互联网的应用又一次推向新高。 
+    <p>
+    </p>
+    <p>
+        　　我们自主研发的新一代安全系统GWUAAS获得了国家科技部的支持，具备了高安全性、高稳定性、高灵活性、高性价比等特点，技术跃居国内领先地位。</p>
+                              <br />
+    <b>人才观：</b><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们骄傲，因为拥有一支研发技术过硬、管理执行力强、服务贴心的团队！我们每个人不一定是最优秀的，但我们的团队一定是最优秀的！ 
+    <p>
+    </p>
+    <p>
+        　　我们注重每一位成员个性的成长和发展，这对于我们来说是一笔珍贵的无形财富。我们力求在有限的空间中，积极鼓励成员不断的提高自身道德修养和专业素质。同时为每一位成员提供和谐、平等、人性化的工作环境，使整个团队能真正达到激情工作、协作沟通、积极进取、公平竞争。我们期盼有更多的有志之士能够加入到我们的团队中来，展现卓越的智慧，谱写青春的骄傲。</p>
+    <br />
+    &nbsp;<b>服务观：</b><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    为用户提供最佳的服务是我们义不容辞的职责，我们视用户为公司发展和进步的源泉与动力。“先客户忧而忧，后客户乐而乐”是我们优良的服务宗旨。为客户做到最优是我们的心愿，客户的满意是我们最高的荣誉。<br />
+    <br />
+    <br />
+    <br />
+    <b>合作观：</b><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们与业界数家优秀公司建立了战略联盟关系，包括江西百得、Amenity、Asiainfo、Cafesoft、Softerra等，我们始终相信真诚和专业是共赢的基础。<br />
+    <br />
+    <br />
+    </td></tr>
+</table>
+</center>
 </asp:Content>
