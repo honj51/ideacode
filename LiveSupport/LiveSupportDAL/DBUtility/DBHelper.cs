@@ -15,7 +15,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             get 
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["MyBookShop"].ConnectionString;
+                string connectionString = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ConnectionString;
                 if (connection == null)
                 {
                     connection = new SqlConnection(connectionString);
