@@ -193,11 +193,23 @@ public class OperatorWS : System.Web.Services.WebService
         return retVal;
     }
 
-    //[SoapHeader("Authentication", Required = true)]
-    //[WebMethod]
-    //public String UploadFile(string filePath)
-    //{
-    // //  return VisitorService.UploadFile(Authentication.OperatorId,filePath);
-    //}
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public String UploadFile(string filePath,string visitorID)
+    {
+        return MessageService.UploadFile(Authentication.OperatorId, visitorID, filePath);
+    }
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public bool SendMessage(Message msg)
+    {
+        if (msg.Type == MessageType.ChatMessage_OperatorToVisitor)
+        {
+            MessageService.AddMessage(msg);
+            return true;
+        }
+        else
+            return false;
+    }
 
 }
