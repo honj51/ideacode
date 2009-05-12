@@ -13,12 +13,6 @@ namespace LiveSupport.LiveSupportModel
 
     public class Message
     {
-        public const string ChatMessage_OperatorToVisitor = "O2V";
-        public const string ChatMessage_VistorToOperator = "V2O";
-        public const string SystemMessage_ToOperator = "S2O";
-        public const string SystemMessage_ToVisitor = "S2V";
-        public const string SystemMessage_ToBoth = "S2B";
-
         private string messageId;
 
         public string MessageId
