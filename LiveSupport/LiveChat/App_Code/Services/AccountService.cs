@@ -9,7 +9,11 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 public class AccountService
 {
     private static List<Account> accounts = new List<Account>();
-
+    /// <summary>
+    /// 根据登录名查询一很记录
+    /// </summary>
+    /// <param name="name">登录名</param>
+    /// <returns>Account对象</returns>
     public static Account FindAccountByLoginName(string name)
     {
         return accounts.Find(a => a.LoginName == name);
@@ -21,6 +25,6 @@ public class AccountService
     public static void AddAccount(Account account)
     {
         accounts.Add(account);
-        LiveSupport.LiveSupportDAL.SqlProviders.SqlAccountProvider.AddAccount(account);
+        SqlAccountProvider.AddAccount(account);
     }
 }
