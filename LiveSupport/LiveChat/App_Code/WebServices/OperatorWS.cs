@@ -192,20 +192,6 @@ public class OperatorWS : System.Web.Services.WebService
         }
         return retVal;
     }
-
-    /// <summary>
-    /// 向访客传送一个文件
-    /// </summary>
-    /// <param name="filePath">文 件路径</param>
-    /// <param name="visitorID">访客ID</param>
-    /// <returns></returns>
-    [SoapHeader("Authentication", Required = true)]
-    [WebMethod]
-    public String UploadFile(string filePath,string visitorID)
-    {
-        return ChatService.UploadFile(Authentication.OperatorId, visitorID, filePath);
-    }
-
     /// <summary>
     /// 上传文件
     /// </summary>
@@ -240,5 +226,29 @@ public class OperatorWS : System.Web.Services.WebService
         else
             return false;
     }
-
+    /// <summary>
+    /// 修改密码
+    /// </summary>
+    /// <param name="oldPassword">老密码</param>
+    /// <param name="newPassword">新密码</param>
+    /// <returns></returns>
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public int ChangePassword(string oldPassword, string newPassword)
+    {
+        checkAuthentication();
+        return ChatService.ChangPassword(Authentication.OperatorId,oldPassword,newPassword); 
+    }
+    /// <summary>
+    /// 重置座席密码
+    /// </summary>
+    /// <param name="loginName">登录名</param>
+    /// <returns></returns>
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public int ResetOperatorPassword(string loginName)
+    {
+        checkAuthentication();
+        return ChatService.ResetOperatorPassword(loginName);
+    }
 }
