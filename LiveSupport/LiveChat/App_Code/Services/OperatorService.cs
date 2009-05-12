@@ -70,4 +70,67 @@ public class OperatorService
     {
         return true;
     }
+    /// <summary>
+    /// 修改密码
+    /// </summary>
+    /// <param name="operatorId">operatorId</param>
+    /// <param name="oldPassword">老密码</param>
+    /// <param name="newPassword">新密码</param>
+    /// <returns>(int)信息</returns>
+    public static int ChangPassword(string operatorId, string oldPassword, string newPassword)
+    {
+        Operator op = operators.Find(o => o.OperatorId ==operatorId);
+        if (op != null)
+        {
+            if(op.Password==oldPassword)
+            {
+               op.Password = newPassword;
+               UpdateOperator(op);
+               return 0;
+            }
+            else
+            {
+                return -1;
+            }
+
+        }
+        else
+        {
+            return -3;
+        }
+    }
+    /// <summary>
+    /// 更新客服信息
+    /// </summary>
+    /// <param name="op">Operator对象</param>
+    public static void UpdateOperator(Operator op)
+    {
+        SqlOperatorProvider.UpdateOperator(op);
+    }
+    /// <summary>
+    /// 判断用用户名是否存在
+    /// </summary>
+    /// <param name="loginName">登录名</param>
+    /// <returns></returns>
+    public static Operator GetOperatorByLoginName(string loginName)
+    {
+        Operator op = operators.Find(o => o.LoginName == loginName);
+        if (op != null)
+        {
+            return op;
+        }
+        else
+        {
+            op = null;
+            op=SqlOperatorProvider.GetOperatorByLoginName(loginName);
+            if (op != null)
+            {
+                return op;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
 }
