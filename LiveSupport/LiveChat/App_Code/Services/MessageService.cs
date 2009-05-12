@@ -17,13 +17,12 @@ public class MessageService
     /// <param name="SessionId">ChatId会话ID</param>
     /// <param name="lastCheck">最后发消息的时间</param>
     /// <returns></returns>
-    public static List<Message> GetMessages(string SessionId,DateTime lastCheck)
+    public static List<Message> GetMessages(string sessionId,DateTime lastCheck)
     {
-      return  LiveSupport.LiveSupportDAL.SqlProviders.SqlMessageProvider.GetMessages(SessionId, lastCheck);
+      return  SqlMessageProvider.GetMessages(sessionId, lastCheck);
     }
-
     public static List<Message> GetMessages(string chatId, long lastCheck)
     {
-        throw new NotImplementedException();
+        return GetMessages(chatId,new DateTime(lastCheck));
     }
 }
