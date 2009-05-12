@@ -12,6 +12,7 @@ using System.Media;
 using System.Drawing.Imaging;
 using System.Collections;
 
+
 namespace LiveSupport.OperatorConsole
 {
     public partial class ChatForm : Form
@@ -107,17 +108,6 @@ namespace LiveSupport.OperatorConsole
             txtMsg.Focus();
         }
 
-        
-
-
-        private ChatRequestInfo myChatRequest;
-
-        public ChatRequestInfo ChatRequest
-        {
-            get { return myChatRequest; }
-            set { myChatRequest = value; }
-        }      
-
         private void ExitToolStripButton_Click(object sender, EventArgs e)
         {
 
@@ -144,7 +134,7 @@ namespace LiveSupport.OperatorConsole
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
-                ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName);
+                //ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName);
             }
         }
       
@@ -165,12 +155,9 @@ namespace LiveSupport.OperatorConsole
             {
                 tmrGetMsg.Enabled = false;
 
-                ChatMessageInfo msg = new ChatMessageInfo();
-                msg.MessageId = -1;
-                //msg.ChatId = myChatRequest.ChatId;
-                msg.Message = "The operator has left the chat session...";
-                msg.Name = "System";
-                msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
+                LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
+                msg.ChatId = chatSession.SessionId;                
+                msg.SentDate = DateTime.Now;
 
                 wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", "System", "The operator has left the chat session..."));
                
@@ -195,20 +182,21 @@ namespace LiveSupport.OperatorConsole
         //写信息
         private void WriteMessage(string message)
         { //
-            WriteMessage(message,"1号客服");
+            WriteMessage(message,Program.CurrentOperator.NickName);
         }
         //写信息
         private void WriteMessage(string message, string From)
         {
-            ChatMessageInfo msg = new ChatMessageInfo();
-            msg.MessageId = -1;
+            LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
+            msg.ChatId = chatSession.SessionId; 
             //msg.ChatId = myChatRequest.ChatId;
-            msg.Message = message;
-            msg.Name = From;
-            msg.SentDate = DateTime.Now.ToUniversalTime().Ticks;
+            msg.Text = message;
+            msg.Source = From;
+            msg.SentDate = DateTime.Now;
+            msg.Type = MessageType.ChatMessage_OperatorToVisitor;
 
-
-            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From, message));
+            //ws;
+           // wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From, message));
                 
           
             //msg.Type = MessageType_ToAll;//*	

@@ -9,7 +9,7 @@ namespace LiveSupport.OperatorConsole
     class TestFixture
     {
         private int count = 0;
-        private const int AccountId = 100;
+        private const string AccountId = "100";
         private List<Operator> operators = new List<Operator>();
         private List<Visitor> visitors = new List<Visitor>();
         private const int operatorsCount = 10;
@@ -21,10 +21,10 @@ namespace LiveSupport.OperatorConsole
             for (int i = 0; i < operatorsCount; i++)
             {
                 Operator o = new Operator();
-                o.Name = i.ToString() + "号客服";
-                o.Id = i;
+                o.NickName = i.ToString() + "号客服";
+                o.OperatorId = i.ToString();
                 o.AccountId = AccountId;
-                o.IsOnline = i % 2 == 0;
+                o.Status = i % 2 == 0? OperatorStatus.Idle:OperatorStatus.Offline;
                 operators.Add(o);
             }
 
@@ -101,10 +101,29 @@ namespace LiveSupport.OperatorConsole
             {
                 foreach (var item in operators)
                 {
-                    item.IsOnline = !item.IsOnline;
+                    item.Status = nextOperatorStatus(item.Status);
                 }
             }
             return operators.ToArray();
+        }
+
+        private OperatorStatus nextOperatorStatus(OperatorStatus operatorStatus)
+        {
+            switch (operatorStatus)
+            {
+                case OperatorStatus.Idle:
+                    return OperatorStatus.Chatting;
+                case OperatorStatus.Chatting:
+                    return OperatorStatus.BeRightBack;
+                case OperatorStatus.BeRightBack:
+                    return OperatorStatus.Away;
+                case OperatorStatus.Away:
+                    return OperatorStatus.Offline;
+                case OperatorStatus.Offline:
+                    return OperatorStatus.Idle;
+                default:
+                    return OperatorStatus.Offline;
+            }
         }
 
         private Visitor NewVisitor(int index)
