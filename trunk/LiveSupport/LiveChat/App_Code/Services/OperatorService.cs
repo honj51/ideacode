@@ -55,7 +55,7 @@ public class OperatorService
         }
     }
 
-    public static bool GetOperatorStatus(int accountId)
+    public static bool GetOperatorStatus(string accountId)
     {
         return true;
     }

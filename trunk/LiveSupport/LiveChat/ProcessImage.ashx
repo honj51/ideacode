@@ -21,9 +21,11 @@ public class ProcessImage : IHttpHandler
 	public void ProcessRequest(HttpContext context)
 	{
         // ¼ì²éQueryString ²ÎÊý
-        int accountId = 0;
-        if (context.Request.QueryString["aid"] == null || !int.TryParse(context.Request.QueryString["aid"].ToString(), out accountId) || accountId <= 0)
+        string accountId = null;
+;
+        if (context.Request.QueryString["aid"]!=null)
         {
+            accountId = context.Request.QueryString["aid"].ToString();
             return;
         }
               

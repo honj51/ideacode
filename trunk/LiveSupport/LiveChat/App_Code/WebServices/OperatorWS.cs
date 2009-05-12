@@ -86,7 +86,6 @@ public class OperatorWS : System.Web.Services.WebService
 		//Uncomment the following line if using designed components 
 		//InitializeComponent(); 
 	}
-  #region DB 新建的方法
     private void checkAuthentication()
     {
         if (Authentication == null || !OperatorService.IsOperatorOnline(Authentication.OperatorId))
@@ -152,7 +151,7 @@ public class OperatorWS : System.Web.Services.WebService
         result.CheckTime = DateTime.Now;
         return result;
     }
-    #endregion
+
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public bool IsTyping(string chatId, bool isOperator)
@@ -193,5 +192,12 @@ public class OperatorWS : System.Web.Services.WebService
         }
         return retVal;
     }
+
+    //[SoapHeader("Authentication", Required = true)]
+    //[WebMethod]
+    //public String UploadFile(string filePath)
+    //{
+    // //  return VisitorService.UploadFile(Authentication.OperatorId,filePath);
+    //}
 
 }
