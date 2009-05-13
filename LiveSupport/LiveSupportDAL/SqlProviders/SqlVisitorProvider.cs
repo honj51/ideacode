@@ -42,7 +42,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public static void NewVisitor(Visitor visitor)
         {
             string sql = string.Format("INSERT INTO LiveChat_Visitor VALUES('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}')", 
-                visitor.VisitorId, visitor.AccountId, visitor.Name, visitor.Email, visitor.VisitCount, visitor.Company, visitor.Remark, visitor.IsVIP, visitor.CurrentSessionId);
+                visitor.VisitorId, visitor.AccountId, visitor.Name, visitor.Email, visitor.VisitCount, visitor.Company, visitor.ReMark, visitor.IsVIP, visitor.CurrentSessionId);
             DBHelper.ExecuteCommand(sql);
         }
     }
