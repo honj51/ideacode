@@ -20,8 +20,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 
         public static List<Account> GetAllAccounts()
         {
-            List<Account> accounts = new List<Account>();
+           
             string sql = "select * from LiveSupport_Account";
+            List<Account> accounts = new List<Account>();
             SqlDataReader r = DBHelper.GetReader(sql);
             while (r.Read())
             {
