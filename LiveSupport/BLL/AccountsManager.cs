@@ -5,7 +5,6 @@ using System.Web;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
 using System.Web.Security;
-us
 namespace LiveSupport.BLL
 {
     /// <summary>
