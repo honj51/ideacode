@@ -53,7 +53,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="loginName"></param>
         public static Operator GetOperatorByLoginName(string loginName)
         {
-            string sql = "select * from [LiveSupport].[dbo].[LiveChat_Operator] where LoginName=" + loginName;
+            string sql = "select * from [LiveSupport].[dbo].[LiveChat_Operator] where LoginName='" + loginName+"'";
             SqlDataReader data = null;
             Operator op = null;
             try
