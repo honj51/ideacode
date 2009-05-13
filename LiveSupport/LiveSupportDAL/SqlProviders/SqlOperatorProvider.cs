@@ -105,31 +105,24 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             DBHelper.ExecuteCommand(sql);
         }
         /// <summary>
-        /// 根据公司ID查询所以该公司的客服人员
+        /// 根据公司ID查询所以该公司所有的客服人员
         /// </summary>
         /// <param name="accountId">公司ID</param>
         /// <returns>Operator对象</returns>
-        public static Operator GetOperatorByAccountId(string accountId)
+        public static List<Operator> GetOperatorByAccountId(string accountId)
         {
             string sql = "select * from LiveChat_Operator where AccountId=" + accountId;
-            SqlDataReader data = null;
-            Operator op = null;
-            try
+            List<Operator> operators = new List<Operator>();
+            SqlDataReader r = DBHelper.GetReader(sql);
+            while (r.Read())
             {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
-                {
-                    op = new Operator(data);
-                }
-                data.Close();
-                data.Dispose();
-                data = null;
+                operators.Add(new Operator(r));
+
             }
-            catch
-            {
-                throw;
-            }
-            return op;
+            r.Close();
+            r.Dispose();
+            r = null;
+            return operators;
         }
         /// <summary>
         /// 跟据客服ID查询该客服信息
