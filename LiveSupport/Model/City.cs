@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
@@ -26,6 +27,13 @@ namespace LiveSupport.LiveSupportModel
             get { return pid; }
             set { pid = value; }
         }
+        public City(SqlDataReader data)
+        {
+            if (!Convert.IsDBNull(data["id"])) id = (int)data["id"];
+            if (!Convert.IsDBNull(data["name"])) name = (string)data["name"];
+            if (!Convert.IsDBNull(data["Pid"])) pid = (int)data["Pid"];
+        }
+
     }
 }
 
