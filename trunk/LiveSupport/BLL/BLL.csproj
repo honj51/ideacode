@@ -42,6 +42,16 @@
     <Compile Include="OperatorsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiveSupportDAL\LiveSupportDAL.csproj">
+      <Project>{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}</Project>
+      <Name>LiveSupportDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\LiveSupportModel.csproj">
+      <Project>{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}</Project>
+      <Name>LiveSupportModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
