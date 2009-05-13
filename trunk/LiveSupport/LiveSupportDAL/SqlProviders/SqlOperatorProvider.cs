@@ -73,5 +73,90 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return op;
         }
+        /// <summary>
+        /// 跟据客服ID删除客服信息
+        /// </summary>
+        /// <param name="operatorId">客服ID</param>
+        /// <returns>int</returns>
+        public static int  DeleteOperatorByid(string operatorId)
+        {
+            string sql = "delete  dbo.LiveChat_Operator  where OperatorId="+operatorId;
+            return  DBHelper.ExecuteCommand(sql);
+        }
+        /// <summary>
+        /// 添加一条客服信息
+        /// </summary>
+        /// <param name="op"></param>
+        public static void NewOperator(Operator op)
+        {
+            string sql = string.Format(
+            "INSERT INTO [LiveSupport].[dbo].[LiveChat_Operator]"
+           + "([OperatorId]"
+           + " ,[AccountId]"
+           + " ,[LoginName]"
+           + " ,[Password]"
+           + " ,[NickName]"
+           + " ,[Email]"
+           + " ,[IsAdmin]"
+           + " ,[Status]"
+           + "  ,[AVChatStatus])"
+           + "VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"
+           , op.OperatorId,op.AccountId,op.LoginName,op.Password,op.NickName,op.Email,op.IsAdmin,op.Status,op.AVChatStatus);
+            DBHelper.ExecuteCommand(sql);
+        }
+        /// <summary>
+        /// 根据公司ID查询所以该公司的客服人员
+        /// </summary>
+        /// <param name="accountId">公司ID</param>
+        /// <returns>Operator对象</returns>
+        public static Operator GetOperatorByAccountId(string accountId)
+        {
+            string sql = "select * from LiveChat_Operator where AccountId=" + accountId;
+            SqlDataReader data = null;
+            Operator op = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    op = new Operator(data);
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return op;
+        }
+        /// <summary>
+        /// 跟据客服ID查询该客服信息
+        /// </summary>
+        /// <param name="operatorId">客服ID</param>
+        /// <returns>Operator 对象</returns>
+        public static Operator GetOperatorByOperatorId(string operatorId)
+        {
+            string sql = "select * from  dbo.LiveChat_Operator where OperatorId=" + operatorId;
+            SqlDataReader data = null;
+            Operator op = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    op = new Operator(data);
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return op;
+        }
     }
 }
