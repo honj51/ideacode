@@ -16,5 +16,15 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 chatRequest.ChatId, chatRequest.CreateBy, chatRequest.CreateTime,chatRequest.AccountId, chatRequest.VisitorId, chatRequest.Status);
             DBHelper.ExecuteCommand(sql);
         }
+        /// <summary>
+        /// ¹Ø±Õ¶Ô»°
+        /// </summary>
+        /// <param name="chat">Chat</param>
+        /// <returns></returns>
+        public static int CloseChat(Chat chat)
+        {
+            string sql = string.Format("update dbo.LiveChat_Chat set CloseBy='{0}' and CloseTime='{2}' where ChatId='{3}'",chat.CloseBy,chat.CloseTime,chat.ChatId);
+            return DBHelper.ExecuteCommand(sql);
+        }
     }
 }
