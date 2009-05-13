@@ -64,4 +64,3 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
     }
    
-}
