@@ -10,9 +10,13 @@
     <form id="form1" runat="server">
     <div>
     
+        a:<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <br />
+        b:<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <br />
+        随机数<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+    
     </div>
-    <asp:GridView ID="GridView1" runat="server">
-    </asp:GridView>
     </form>
 </body>
 </html>
