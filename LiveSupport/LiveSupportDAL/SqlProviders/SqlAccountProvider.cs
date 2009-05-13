@@ -33,6 +33,35 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             r = null;
             return accounts;
         }
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="loginId"></param>
+        /// <param name="loginPwd"></param>
+        /// <returns></returns>
+        public static Account CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
+        {
+            string sql = string.Format("select * from dbo.LiveSupport_Account where LoginName='{0}' and Password='{1}'", loginName, loginPwd);
+            SqlDataReader data = null;
+            Account account = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    account = new Account(data);
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return account;
+        }
+        }
     }
    
 }
