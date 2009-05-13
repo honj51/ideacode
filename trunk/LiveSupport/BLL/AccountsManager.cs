@@ -2,10 +2,10 @@
 using System.Data;
 using System.Configuration;
 using System.Web;
-using LiveSupport.SqlProviders;
-using LiveSupport.SqlProviders.Entity;
+using LiveSupport.LiveSupportModel;
+using LiveSupport.LiveSupportDAL.SqlProviders;
 using System.Web.Security;
-
+us
 namespace LiveSupport.BLL
 {
     /// <summary>
@@ -89,8 +89,7 @@ namespace LiveSupport.BLL
         //验证
         public static Account Login(string loginId, string loginPwd)
         {
-            return null;
-            //return Provider.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
+            return  SqlAccountProvider.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
         }
     }
 }
