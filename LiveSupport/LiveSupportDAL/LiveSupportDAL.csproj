@@ -45,6 +45,7 @@
     <Compile Include="SqlProviders\SqlCustomerProvider.cs" />
     <Compile Include="SqlProviders\SqlMessageProvider.cs" />
     <Compile Include="SqlProviders\SqlOperatorProvider.cs" />
+    <Compile Include="SqlProviders\SqlPageRequestProvider.cs" />
     <Compile Include="SqlProviders\SqlProvinceProvider.cs" />
     <Compile Include="SqlProviders\SqlVisitorProvider.cs" />
     <Compile Include="SqlProviders\SqlVisitSessionProvider.cs" />
