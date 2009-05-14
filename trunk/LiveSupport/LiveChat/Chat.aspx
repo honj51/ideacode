@@ -115,7 +115,7 @@ function Exit()
 {
     if(confirm('是否关闭')==true) 
     {
-      UpdateCloseDate();
+      CloseChat();
       window.close();
     }
 }

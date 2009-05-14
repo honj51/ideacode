@@ -38,7 +38,6 @@ public partial class Chat : System.Web.UI.Page
                 ViewState.Add("__visitorName", value);
         }
     }
-
     public static string VName
     {
 
@@ -81,6 +80,19 @@ public partial class Chat : System.Web.UI.Page
             }
             else
                 return AccountService.GetAccountById(Request.QueryString["aid"].ToString()); 
+        }
+    }
+
+    public LiveSupport.LiveSupportModel.Chat CurrentChat
+    {
+        get
+        {
+            if (Request.Cookies["chatId"] == null || ChatService.GetChatById(Request.Cookies["chatId"].Value.ToString()) == null)
+            {
+                return null;
+            }
+            else
+                return ChatService.GetChatById(Request.Cookies["chatId"].Value.ToString()); 
         }
     }
 
@@ -211,10 +223,7 @@ public partial class Chat : System.Web.UI.Page
         {
             OperatorWS ws = new OperatorWS();
             AuthenticationHeader auth = new AuthenticationHeader();
-            auth.userName = ConfigurationManager.AppSettings["WSUser"].ToString();
-            ws.Authentication = auth;
-
-
+            
             if (ws.IsTyping(chatId, true))
                 return "客服正在输入... ";
             else // no one typing...
@@ -229,8 +238,8 @@ public partial class Chat : System.Web.UI.Page
     {
         OperatorWS ws = new OperatorWS();
         AuthenticationHeader auth = new AuthenticationHeader();
-        auth.userName = ConfigurationManager.AppSettings["WSUser"].ToString();
-        ws.Authentication = auth;
+        //auth.userName = ConfigurationManager.AppSettings["WSUser"].ToString();
+        //ws.Authentication = auth;
 
         //ws.SetTyping(chatId, false, msg.Length > 0);
         return string.Empty;
@@ -262,9 +271,10 @@ public partial class Chat : System.Web.UI.Page
 
     [System.Web.Services.WebMethod]
     [ScriptMethod(UseHttpGet = true)]
-    public static void UpdateCloseDate(string chtID)
+    public static void CloseChat(string chtID)
     {
-        //ChatService.UpdateCloseDate(chtID);
+        
+        ChatService.CloseChat(chtID, VName);
     }
 
     protected void btnSendEmail_Click(object sender, EventArgs e)
@@ -380,51 +390,54 @@ public partial class Chat : System.Web.UI.Page
    
 
     
-//文件传送
+    //文件传送
     protected void btnUpload_Click(object sender, EventArgs e)
     {
         //验证文件路径
-        //try
-        //{
-            
-        //    if (Request.Cookies["chatId"] != null)
-        //    {
-        //        string chatId = Request.Cookies["chatId"].Value.ToString();
-        //        OperatorWS ow = new OperatorWS();
-        //        bool b=ow.GetOperatorIDByChatID(chatId);
-        //        if (b)
-        //        {
-        //            string file = this.fuFile.FileName.ToString();
-        //            if (file.Trim().Length == 0)//验证上传文件
-        //            {
-        //                this.Response.Write("<script>alert('请选择传送的文件');</script>");
-        //                return;
-        //            }
-        //            if (this.fuFile.FileContent.Length >= 4180560)
-        //            {
-        //                this.Response.Write("<script>alert('传送的文件过大');</script>");
-        //                return;
-        //            }
+        try
+        {
+            if (CurrentChat == null || CurrentChat.Status != ChatStatus.Accepted)
+            {
+                return;
+            }
 
-        //            ChatMessageInfo msg = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件正在传送 ...",3);
-        //            ChatService.AddMessage(msg);//添加聊天信息 
+            string fileName = this.fuFile.FileName.ToString();
+            if (fileName.Trim().Length == 0)//验证上传文件
+            {
+                this.Response.Write("<script>alert('请选择传送的文件');</script>");
+                return;
+            }
+            if (this.fuFile.FileContent.Length >= 4180560)
+            {
+                this.Response.Write("<script>alert('传送的文件过大');</script>");
+                return;
+            }
+            LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
+            m.ChatId = CurrentChat.ChatId;
+            m.Text = string.Format("正在传送文件 {0} ...",fileName);
+            m.Type = MessageType.SystemMessage_ToVisitor;
+            ChatService.SendMessage(m);
 
-        //            string path = Server.MapPath("UploadFile/" + file.Trim().ToString());
-        //            this.fuFile.PostedFile.SaveAs(path);
+            string path = Server.MapPath("UploadFile/" + fileName.Trim().ToString());
+            this.fuFile.PostedFile.SaveAs(path);
 
-        //            ChatMessageInfo msg2 = new ChatMessageInfo(chatId, VisitorName, "<a href='#'>" + file + "</a>文件发送成功!",3);
-        //            ChatService.AddMessage(msg2);//添加聊天信息
+            m = new LiveSupport.LiveSupportModel.Message();
+            m.ChatId = CurrentChat.ChatId;
+            m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
+            m.Type = MessageType.SystemMessage_ToVisitor;
+            ChatService.SendMessage(m);
 
-        //            ChatMessageInfo msg3 = new ChatMessageInfo(chatId, VisitorName, "<a href='UploadFile/" + file + "'>保存</a>",2);
-        //            ChatService.AddMessage(msg3);//添加聊天信息
-        //        }
-        //    }
+            m = new LiveSupport.LiveSupportModel.Message();
+            m.ChatId = CurrentChat.ChatId;
+            m.Text = string.Format("访客已给您发送文件 {0} <a href=\"UploadFile/{1}\">点击保存</a>", fileName, fileName);
+            m.Type = MessageType.SystemMessage_ToOperator;
+            ChatService.SendMessage(m);
 
-        //}
-        //catch (Exception ex)
-        //{
-        //    this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
-        //}
+        }
+        catch (Exception ex)
+        {
+            this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
+        }
     }
 
 }
