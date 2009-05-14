@@ -13,52 +13,29 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using VisualAsterisk.Test.Temp;
+using LiveSupport.OperatorConsole.LiveChatWS;
 
 namespace LiveSupport.OperatorConsole
 {
 	static class Program
 	{
-        private static MainForm mainForm;
-
-        public static MainForm MainForm
+        public static MainForm MainForm;
+        public static List<OperatorConsole.LiveChatWS.Visitor> Visitors;
+        public static Operator CurrentOperator;
+        public static List<ChatForm> ChatForms = new List<ChatForm>();
+        public static int ActiveChat = 0;
+        public static List<VisitSession> GetMyActiveChatSessions()
         {
-            get { return Program.mainForm; }
-            set { Program.mainForm = value; }
+            List<VisitSession> sessions = new List<VisitSession>();
+            foreach (var item in ChatForms)
+            {
+                if (item.ChatSession.Status != VisitSessionStatus.Leave)
+                {
+                    sessions.Add(item.ChatSession);
+                }
+            }
+            return sessions;
         }
-
-        private static List<OperatorConsole.LiveChatWS.Visitor> visitors;
-
-        public static List<OperatorConsole.LiveChatWS.Visitor> Visitors
-        {
-            get { return Program.visitors; }
-            set { Program.visitors = value; }
-        }
-		private static OperatorConsole.LiveChatWS.Operator myOperator;
-        private static List<ChatForm> chatForms = new List<ChatForm>();
-
-        public static List<ChatForm> ChatForms
-        {
-            get { return chatForms; }
-        }
-
-		public static OperatorConsole.LiveChatWS.Operator CurrentOperator
-		{
-			get { return myOperator; }
-			set { myOperator = value; }
-		}
-
-		private static int activeChat = 0;
-		/// <summary>
-		/// Number of active chat
-		/// </summary>
-		public static int ActiveChat
-		{
-			get { return activeChat = 0; }
-			set { activeChat = value; }
-		}
-	    
-        
-	
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>

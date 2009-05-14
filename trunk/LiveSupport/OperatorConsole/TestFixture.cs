@@ -34,14 +34,14 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        public NewChangesResult NewResult()
+        public NewChangesCheckResult NewResult()
         {
-            NewChangesResult result = new NewChangesResult();
-            result.CheckTime = DateTime.Now;
-            result.Messages = new Message[] { NewMessage(),NewMessage() };
-            result.NewVisitors = new Visitor[] { GetNewVisitor() };
-            result.Operators = GetAllOperators();
-            result.VisitSessionChange = new VisitSession[] { GetVisitSessionChanges() };
+            NewChangesCheckResult result = new NewChangesCheckResult();
+            
+            //result.Messages = new Message[] { NewMessage(),NewMessage() };
+            //result.NewVisitors = new Visitor[] { GetNewVisitor() };
+            //result.Operators = GetAllOperators();
+            //result.VisitSessionChange = new VisitSession[] { GetVisitSessionChanges() };
 
             count++;
             return result;
