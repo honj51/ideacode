@@ -26,5 +26,26 @@ namespace LiveSupport.BLL
         {
            return SqlCityProvider.GetCityByProvinceId(provinceId);
         }
+        /// <summary>
+        ///   通过省份名查询城市信息
+        /// </summary>
+        /// <param name="provinceName">省份名</param>
+        /// <returns>Province对象</returns>
+        public static Province GetProvinceByProvinceName(string provinceName)
+        {
+            return SqlProvinceProvider.GetProvinceByProvinceName(provinceName);
+        }
+        /// <summary>
+        /// //通过省份名字找所有城市
+        /// </summary>
+        /// <param name="provinceName"></param>
+        /// <returns></returns>
+        public List<City> GetCityByProvinceName(string provinceName)
+        {
+            Province p = GetProvinceByProvinceName(provinceName);
+            SqlCityProvider.GetCityByProvinceId(p.Id);
+        }
+
+
     }
 }
