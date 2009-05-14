@@ -66,7 +66,7 @@ public class VisitSessionService
     /// </summary>
     /// <param name="lastCheck">会话ID</param>
     /// <returns>VisitSession对象</returns>
-    public static List<VisitSession> GetVisitSessionChange(string accountId, DateTime lastCheck)
+    public static List<VisitSession> GetVisitSessionChange(string accountId, long lastCheck)
     {
         List<VisitSession> vss = new List<VisitSession>();
         foreach (var item in sessions)

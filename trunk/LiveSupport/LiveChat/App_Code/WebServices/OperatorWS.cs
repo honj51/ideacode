@@ -31,65 +31,47 @@ using System.Diagnostics;
 
 public class OperatorWS : System.Web.Services.WebService
 {
+    public class MessageCheck
+	{
+        public string ChatId;
+        public long LastCheckTime;
+	}  
+
+    public class NewChangesCheck
+    {
+        public List<MessageCheck> ChatSessionChecks;
+        public long NewVisitorLastCheckTime;
+    }
+
+    public class MessageCheckResult
+    {
+        public string ChatId;
+        public List<Message> Messages;
+    }
+
     /// <summary>
     /// 定义一个类
     /// </summary>
-    public class NewChangesResult
+    public class NewChangesCheckResult
     {
-        // 客服状态更新
-        private List<Operator> operators;
-
-        public List<Operator> Operators
-        {
-            get { return operators; }
-            set { operators = value; }
-        }
-
-        // 新访客
-        private List<Visitor> newVisitors;
-
-        public List<Visitor> NewVisitors
-        {
-            get { return newVisitors; }
-            set { newVisitors = value; }
-        }
-
-        // 访问会话状态更新
-        private List<VisitSession> visitSessionChange;
-
-        public List<VisitSession> VisitSessionChange
-        {
-            get { return visitSessionChange; }
-            set { visitSessionChange = value; }
-        }
-
-        // 消息更新
-        private List<Message> messages;
-
-        public List<Message> Messages
-        {
-            get { return messages; }
-            set { messages = value; }
-        }
-
-
-        private DateTime checkTime;
-
-        public DateTime CheckTime
-        {
-            get { return checkTime; }
-            set { checkTime = value; }
-        }
+        public List<Operator> Operators; // 客服状态更新
+        public List<Visitor> NewVisitors; // 新访客
+        public List<VisitSession> VisitSessionChange; // 访问会话状态更新
+        public List<MessageCheckResult> Messages; // // 消息更新
+        public long NewVisitorCheckTime;
     }
+
     public AuthenticationHeader Authentication;
     public OperatorWS()
 	{
 		//Uncomment the following line if using designed components 
 		//InitializeComponent(); 
 	}
+
     private void checkAuthentication()
     {
-        if (Authentication == null || !OperatorService.IsOperatorOnline(Authentication.OperatorId))
+        if (Authentication == null || OperatorService.GetOperatorById(Authentication.OperatorId) == null 
+            || !OperatorService.IsOperatorOnline(Authentication.OperatorId))
         {
             throw new AccessViolationException("CheckAuthentication Failed");
         }
@@ -131,34 +113,40 @@ public class OperatorWS : System.Web.Services.WebService
 
     [SoapHeader("Authentication")]
     [WebMethod]
-    public NewChangesResult CheckNewChanges(DateTime lastCheck)
+    public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
     {
-        Operator op = OperatorService.GetOperatorById(Authentication.OperatorId);
-        if (op == null)
-        {
-            return null;
-        }
         checkAuthentication();
-        NewChangesResult result = new NewChangesResult();
-        result.CheckTime = DateTime.Now;
+        Operator op = OperatorService.GetOperatorById(Authentication.OperatorId);
+        NewChangesCheckResult checkResult = new NewChangesCheckResult();
+        
         // 新访客
-        result.NewVisitors = VisitorService.GetNewVisitors(op.AccountId, lastCheck);
+        checkResult.NewVisitors = VisitorService.GetNewVisitors(op.AccountId, check.NewVisitorLastCheckTime);
 
         // 访问会话状态更新
-        result.VisitSessionChange = VisitSessionService.GetVisitSessionChange(op.AccountId, lastCheck);
+        checkResult.VisitSessionChange = VisitSessionService.GetVisitSessionChange(op.AccountId, check.NewVisitorLastCheckTime);
 
         // 消息更新
-        List<VisitSession> visitSessions = VisitSessionService.GetActiveSessionsByOperatorId(Authentication.OperatorId);
-        result.Messages = new List<Message>();
-        foreach (var item in visitSessions)
-        {
-            result.Messages.AddRange(MessageService.GetMessagesForOperator(item.SessionId, lastCheck));
-        }
+        //List<VisitSession> visitSessions = VisitSessionService.GetActiveSessionsByOperatorId(Authentication.OperatorId);
+        checkResult.Messages = new List<MessageCheckResult>();
+        foreach (var item in check.ChatSessionChecks)
+	    {
+            MessageCheckResult mcr = new MessageCheckResult();
+            mcr.ChatId = item.ChatId;
+            mcr.Messages = MessageService.GetMessagesForOperator(item.ChatId, item.LastCheckTime);
+            checkResult.Messages.Add(mcr);
+	    }
+        //result.Messages = new List<ChatSessionMessages>();
+        //foreach (var item in visitSessions)
+        //{
+        //    ChatSessionMessages ms = new ChatSessionMessages();
+        //    ms.messages = MessageService.GetMessagesForOperator(item.SessionId,
+        //    //result.Messages.AddRange(MessageService.GetMessagesForOperator(item.SessionId, lastCheck));
+        //}
         //Debug.WriteLine(string.Format("CheckNewChanges({0}) MessageCount={1})",lastCheck.Ticks,result.Messages.Count));
 
         // 客服状态更新
         
-        return result;
+        return checkResult;
     }
 
     [SoapHeader("Authentication", Required = true)]
