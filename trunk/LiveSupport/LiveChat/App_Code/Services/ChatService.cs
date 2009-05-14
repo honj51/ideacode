@@ -151,6 +151,10 @@ public class ChatService
     public static bool CloseChat(string chatId, string closeBy)
     {
         Chat chat = chats.Find(c => c.ChatId == chatId);
+        if (chat == null)
+        {
+            return false;
+        }
         if (chat.Status == ChatStatus.Closed)
         {
             return true;
@@ -256,14 +260,12 @@ public class ChatService
         Visitor visitor = VisitorService.GetVisitor(visitorId);
 
         Chat chat = ChatService.GetChatById(visitor.CurrentSessionId);
-        if (chat.Status != ChatStatus.Requested)
-        {
-            return -1;
-        }
+        
         if (chat == null)
         {
             Operator op = OperatorService.GetOperatorById(operatorId);
             chat = new Chat();
+            chat.ChatId = visitor.CurrentSessionId;
             chat.CreateBy = op.NickName;
             chat.CreateTime = DateTime.Now;
             chat.AccountId = op.AccountId;
@@ -271,7 +273,9 @@ public class ChatService
             chat.OperatorId = operatorId;
             chats.Add(chat);
             SqlChatProvider.AddChat(chat);
-        } 
+        }
+         
+
         chat.Status = ChatStatus.Requested;
         Message m = new Message();
         m.ChatId =chat.ChatId;
@@ -288,7 +292,7 @@ public class ChatService
     public static string GetOperatorInvation(string visitorId)
     {
         Chat chat=GetChatById(VisitorService.GetVisitor(visitorId).CurrentSessionId);
-        if (chat.Status == ChatStatus.Requested && string.IsNullOrEmpty(chat.OperatorId))
+        if (chat != null && chat.Status == ChatStatus.Requested && !string.IsNullOrEmpty(chat.OperatorId))
         {
             return chat.ChatId;
         }
