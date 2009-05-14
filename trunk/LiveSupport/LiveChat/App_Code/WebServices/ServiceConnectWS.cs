@@ -30,22 +30,15 @@ public class ServiceConnectWS : System.Web.Services.WebService
     }
 
     /// <summary>
-    /// 通过AccountId和IP查询是否有客服主动邀请的ChatRequest,如果有返回ChatId,没有返回空
+    /// 通过visitorId检查客服是否发出主动邀请返回ChatID
     /// </summary>
     /// <param name="accountId"></param>
     /// <param name="ip"></param>
     /// <returns>ChatId</returns>
     [WebMethod]
-    public string GetOperatorInvitation(int accountId, string ip)
+    public string GetOperatorInvitation(string visitorId)
     {
-        //string chatId = ChatService.GetChatRequestByAccountIdAndIP(accountId, ip);
-        //if (!string.IsNullOrEmpty(chatId))
-        //{
-        //    // 更新该ChatRequest的状态
-        //    ChatService.UpdateIsShowRequestsByAidandIP(accountId, ip, ChatRequestStatus_Hide);
-        //}
-        return null;
-
+        return ChatService.GetOperatorInvation(visitorId);
     }
 
     [WebMethod]
