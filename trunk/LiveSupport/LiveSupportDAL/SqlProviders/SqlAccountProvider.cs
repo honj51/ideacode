@@ -14,8 +14,29 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="account">account对象</param>
         public static void AddAccount(Account account)
         {
-            string sql = string.Format("INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account] VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},'{12}','{14}',{14},'{15}','{16}')", account.AccountId, account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId);
-            DBHelper.ExecuteCommand(sql);
+            string sql = string.Format(
+  "INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account]"
+  + " ([AccountId]"
+  + " ,[LoginName]"
+  + " ,[Password]"
+  + " ,[NickName]"
+  + " ,[CompanyName]"
+  + " ,[Industry]"
+  + ",[Email]"
+  + " ,[ContactName]"
+  + " ,[Phone]"
+  + " ,[URL]"
+  + ",[Domain]"
+  + " ,[OperatorCount]"
+  + " ,[Province]"
+  + " ,[City]"
+  + " ,[RegisterDate]"
+  + " ,[Remark]"
+  + " ,[PaymentId])"
++ " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},'{12}','{13}','{14}','{15}','{16}')",
+account.AccountId, account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId);
+            return DBHelper.ExecuteCommand(sql); 
+
         }
 
         public static List<Account> GetAllAccounts()
@@ -88,7 +109,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                + " ,[Remark] ='{14}'"
                + " ,[PaymentId] ='{15}'"
                + "  WHERE [AccountId] ='{16}'"
-               , account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId, account.AccountId);
+               , account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId,account.AccountId);
            return DBHelper.ExecuteCommand(sql);
         }
         /// <summary>
