@@ -62,6 +62,13 @@ namespace LiveSupport.OperatorConsole
      
         OperatorWS ws = new OperatorWS();
         private VisitSession chatSession;
+        private long lastCheckTime;
+
+        public long LastCheckTime
+        {
+            get { return lastCheckTime; }
+            set { lastCheckTime = value; }
+        }
 
         public VisitSession ChatSession
         {

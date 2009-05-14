@@ -215,6 +215,9 @@ namespace LiveSupport.OperatorConsole
             AuthenticationHeader h = new AuthenticationHeader();
             h.OperatorId = Program.CurrentOperator.OperatorId;
             ws.AuthenticationHeaderValue = h;
+
+            lastCheck.ChatSessionChecks = new MessageCheck[] { };
+            lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -303,11 +306,11 @@ namespace LiveSupport.OperatorConsole
         }
 
 
-        private DateTime lastCheck = DateTime.Today;
+        private NewChangesCheck lastCheck = new NewChangesCheck();
         TestFixture testFixture = new TestFixture();
         private void timer1_Tick(object sender, EventArgs e)
-        {
-            NewChangesResult result = ws.CheckNewChanges(lastCheck);
+        {            
+            NewChangesCheckResult result = ws.CheckNewChanges(lastCheck);
             //Debug.WriteLine(string.Format("CheckNewChanges: NewVisitor={0} Message={1}",result.NewVisitors.Length,result.Messages.Length ));
           //  NewChangesResult result = testFixture.NewResult();
 
@@ -348,7 +351,7 @@ namespace LiveSupport.OperatorConsole
                 item.SubItems[VisitorTreeView_HeaderColumn_Status].Text = local.Status.ToString();
             }
 
-
+            
 
             if (result.NewVisitors != null)
             {
@@ -371,7 +374,7 @@ namespace LiveSupport.OperatorConsole
                         currentVisitors.Add(item.CurrentSession.IP, item);
                     else
                         currentVisitors[item.CurrentSession.IP] = item;
-
+                    lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
                 }
 
 
@@ -389,19 +392,35 @@ namespace LiveSupport.OperatorConsole
               
             }
 
-        
-
-            foreach (var item in result.Messages)
+            List<MessageCheck> nextChecks = new List<MessageCheck>(); 
+            foreach (var cf in Program.ChatForms)
             {
-                foreach (var cf in Program.ChatForms)
+                // find messages with ChatId
+                LiveSupport.OperatorConsole.LiveChatWS.Message[] ms = null;
+                foreach (var item in result.Messages)
                 {
                     if (cf.ChatSession.SessionId == item.ChatId)
                     {
-                        cf.RecieveMessage(item);
+                        ms = item.Messages;                     
                         break;
                     }
                 }
-            }
+                
+                MessageCheck c = new MessageCheck();
+                c.ChatId = cf.ChatSession.SessionId;
+                c.LastCheckTime = cf.LastCheckTime;
+                if (ms != null)
+                {   
+                    foreach (var m in ms)
+                    {
+                        cf.RecieveMessage(m);
+                        c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
+                    }
+                    cf.LastCheckTime = c.LastCheckTime;
+                }
+                nextChecks.Add(c);
+            }          
+            lastCheck.ChatSessionChecks = nextChecks.ToArray();
 
             if (result.Operators != null)
             {
@@ -426,8 +445,8 @@ namespace LiveSupport.OperatorConsole
             }
 
 
-            Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
-            lastCheck = result.CheckTime;
+            //Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
+            //lastCheck = result.CheckTime;
 
 
 

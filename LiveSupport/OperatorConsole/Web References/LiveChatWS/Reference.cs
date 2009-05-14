@@ -222,24 +222,24 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public NewChangesResult CheckNewChanges(System.DateTime lastCheck) {
+        public NewChangesCheckResult CheckNewChanges(NewChangesCheck check) {
             object[] results = this.Invoke("CheckNewChanges", new object[] {
-                        lastCheck});
-            return ((NewChangesResult)(results[0]));
+                        check});
+            return ((NewChangesCheckResult)(results[0]));
         }
         
         /// <remarks/>
-        public void CheckNewChangesAsync(System.DateTime lastCheck) {
-            this.CheckNewChangesAsync(lastCheck, null);
+        public void CheckNewChangesAsync(NewChangesCheck check) {
+            this.CheckNewChangesAsync(check, null);
         }
         
         /// <remarks/>
-        public void CheckNewChangesAsync(System.DateTime lastCheck, object userState) {
+        public void CheckNewChangesAsync(NewChangesCheck check, object userState) {
             if ((this.CheckNewChangesOperationCompleted == null)) {
                 this.CheckNewChangesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckNewChangesOperationCompleted);
             }
             this.InvokeAsync("CheckNewChanges", new object[] {
-                        lastCheck}, this.CheckNewChangesOperationCompleted, userState);
+                        check}, this.CheckNewChangesOperationCompleted, userState);
         }
         
         private void OnCheckNewChangesOperationCompleted(object arg) {
@@ -621,7 +621,40 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
-    public partial class NewChangesResult {
+    public partial class MessageCheckResult {
+        
+        private string chatIdField;
+        
+        private Message[] messagesField;
+        
+        /// <remarks/>
+        public string ChatId {
+            get {
+                return this.chatIdField;
+            }
+            set {
+                this.chatIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Message[] Messages {
+            get {
+                return this.messagesField;
+            }
+            set {
+                this.messagesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class NewChangesCheckResult {
         
         private Operator[] operatorsField;
         
@@ -629,9 +662,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private VisitSession[] visitSessionChangeField;
         
-        private Message[] messagesField;
+        private MessageCheckResult[] messagesField;
         
-        private System.DateTime checkTimeField;
+        private long newVisitorCheckTimeField;
         
         /// <remarks/>
         public Operator[] Operators {
@@ -664,7 +697,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public Message[] Messages {
+        public MessageCheckResult[] Messages {
             get {
                 return this.messagesField;
             }
@@ -674,12 +707,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public System.DateTime CheckTime {
+        public long NewVisitorCheckTime {
             get {
-                return this.checkTimeField;
+                return this.newVisitorCheckTimeField;
             }
             set {
-                this.checkTimeField = value;
+                this.newVisitorCheckTimeField = value;
             }
         }
     }
@@ -1185,6 +1218,72 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class MessageCheck {
+        
+        private string chatIdField;
+        
+        private long lastCheckTimeField;
+        
+        /// <remarks/>
+        public string ChatId {
+            get {
+                return this.chatIdField;
+            }
+            set {
+                this.chatIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long LastCheckTime {
+            get {
+                return this.lastCheckTimeField;
+            }
+            set {
+                this.lastCheckTimeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class NewChangesCheck {
+        
+        private MessageCheck[] chatSessionChecksField;
+        
+        private long newVisitorLastCheckTimeField;
+        
+        /// <remarks/>
+        public MessageCheck[] ChatSessionChecks {
+            get {
+                return this.chatSessionChecksField;
+            }
+            set {
+                this.chatSessionChecksField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long NewVisitorLastCheckTime {
+            get {
+                return this.newVisitorLastCheckTimeField;
+            }
+            set {
+                this.newVisitorLastCheckTimeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void LoginCompletedEventHandler(object sender, LoginCompletedEventArgs e);
     
@@ -1258,10 +1357,10 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public NewChangesResult Result {
+        public NewChangesCheckResult Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((NewChangesResult)(this.results[0]));
+                return ((NewChangesCheckResult)(this.results[0]));
             }
         }
     }

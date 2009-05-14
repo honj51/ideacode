@@ -230,7 +230,7 @@
     <None Include="Resources\Profile.ico" />
     <None Include="Resources\type.wav" />
     <None Include="Resources\ringout.wav" />
-    <None Include="Web References\LiveChatWS\NewChangesResult.datasource">
+    <None Include="Web References\LiveChatWS\NewChangesCheckResult.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\Operator1.datasource">
