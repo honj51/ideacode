@@ -30,7 +30,17 @@ public class MessageService
     {
         SqlMessageProvider.AddMessage(msg);
     }
-
+    /// <summary>
+    /// 获取聊天历史记录
+    /// </summary>
+    /// <param name="visitorId">会话ID</param>
+    /// <param name="begin">开始时间</param>
+    /// <param name="end">结束时间</param>
+    /// <returns>消息集合</returns>
+    public static List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+    {
+       return SqlMessageProvider.GetHistoryChatMessage(visitorId, begin, end);
+    }
     public static List<Message> GetMessagesForOperator(string sessionId, DateTime lastCheck)
     {
         List<Message> ms = GetMessages(sessionId, lastCheck.Ticks).FindAll(m => m.Type == MessageType.ChatMessage_VistorToOperator ||
