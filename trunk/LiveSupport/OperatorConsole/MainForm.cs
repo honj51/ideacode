@@ -542,12 +542,26 @@ namespace LiveSupport.OperatorConsole
 
                 if (lstVisitors.SelectedItems[0].SubItems[VisitorTreeView_HeaderColumn_Status].Text == "Visiting")
                 {
-                    
 
-                    //ChatForm cf = new ChatForm();
-                    
-                    //cf.Show();
+                    Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
+                    ws.InviteChat(v.VisitorId);
+                    ChatForm cf = null;
+                    foreach (var item in Program.ChatForms)
+                    {
+                        if (item.ChatSession.SessionId == v.CurrentSessionId)
+                        {
+                            cf = item;
+                            break;
+                        }
+                    }
 
+                    if (cf == null)
+                    {
+                        cf = new ChatForm(v.CurrentSession);
+                        Program.ChatForms.Add(cf);
+                    }
+
+                    cf.Show();
                 }
                 else
                 {
