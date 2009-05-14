@@ -130,6 +130,11 @@ namespace LiveSupport.LiveSupportModel
             set { paymentId = value; }
         }
 
+        public Account()
+        {
+            accountId = Guid.NewGuid().ToString();
+        }
+
         public Account(SqlDataReader data)
         {
             if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (string)data["AccountId"];
