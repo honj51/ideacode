@@ -23,7 +23,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <returns></returns>
         public static int CloseChat(Chat chat)
         {
-            string sql = string.Format("update dbo.LiveChat_Chat set CloseBy='{0}' and CloseTime='{2}' where ChatId='{3}'",chat.CloseBy,chat.CloseTime,chat.ChatId);
+            string sql = string.Format("update dbo.LiveChat_Chat set CloseBy='{0}', CloseTime='{1}' where ChatId='{2}'",chat.CloseBy,chat.CloseTime,chat.ChatId);
             return DBHelper.ExecuteCommand(sql);
         }
     }
