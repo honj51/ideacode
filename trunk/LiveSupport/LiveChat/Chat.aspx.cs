@@ -17,6 +17,7 @@ using System.Web.Script.Services;
 using LiveSupport.LiveSupportModel;
 using System.Windows.Forms;
 using System.Windows;
+using System.Net;
 
 public partial class Chat : System.Web.UI.Page
 {
@@ -67,6 +68,19 @@ public partial class Chat : System.Web.UI.Page
                     ctx.Response.Cookies.Add(c);
                 }
             }
+        }
+    }
+
+    public Account CurrentAccount
+    {
+        get 
+        {
+            if (Request.QueryString["aid"] == null || AccountService.GetAccountById(Request.QueryString["aid"].ToString()) == null)
+            {
+                return null;
+            }
+            else
+                return AccountService.GetAccountById(Request.QueryString["aid"].ToString()); 
         }
     }
 
@@ -256,20 +270,23 @@ public partial class Chat : System.Web.UI.Page
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
         
-        Response.Write("<script>alert('dfasfasdfasdf');</script>");
-            Response.End();
+        //Response.Write("<script>alert('dfasfasdfasdf');</script>");
+        //Response.End();
+
         // we send an email to the configured email on the web.config
         MailMessage mail = new MailMessage();
-        mail.From = new MailAddress(txtSendBy.Text);
-        mail.To.Add(new MailAddress(ConfigurationManager.AppSettings["Email"].ToString()));
-        mail.Subject = "Message from your LiveChat application";
-        mail.Body = txtComment.Text;
+        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());
+        mail.To.Add(new MailAddress(CurrentAccount.Email));
+        mail.Subject = "LiveSupport 系统 - 客户留言";
+        string emailBody = "该留言客户Email:" + txtSendBy.Text + "\r\n\r\n" + txtComment.Text;
+        mail.Body = emailBody;
 
         SmtpClient mailer = new SmtpClient(ConfigurationManager.AppSettings["SMTPServer"].ToString());
+        mailer.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
         mailer.Send(mail);
 
         lblConfirmation.Visible = true;
-        lblConfirmation.Text = "Thank you, we will answer your email as soon as possible.";
+        lblConfirmation.Text = "谢谢您的留言！";
     }
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
