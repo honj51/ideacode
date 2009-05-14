@@ -14,7 +14,8 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static List<Province> GetProvinceAll()
         {
-           return SqlProvinceProvider.GetAllProvince();
+            return SqlProvinceProvider.GetAllProvince();
+
         }
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static List<City> GetCityByProvinceId(int provinceId)
         {
-           return SqlCityProvider.GetCityByProvinceId(provinceId);
+            return SqlCityProvider.GetCityByProvinceId(provinceId);
         }
         /// <summary>
         ///   通过省份名查询城市信息
@@ -40,7 +41,7 @@ namespace LiveSupport.BLL
         /// </summary>
         /// <param name="provinceName"></param>
         /// <returns></returns>
-        public List<City> GetCityByProvinceName(string provinceName)
+        public static List<City> GetCityByProvinceName(string provinceName)
         {
             Province p = GetProvinceByProvinceName(provinceName);
             return  SqlCityProvider.GetCityByProvinceId(p.Id);
