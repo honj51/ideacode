@@ -70,7 +70,7 @@ public class VisitorService
         VisitSessionService.NewSession(session);
     }
     /// <summary>
-    /// 取所有该公司的在线客服
+    /// 取所有该公司的在在线访客
     /// </summary>
     /// <param name="accountId">公司ID</param>
     /// <returns></returns>
