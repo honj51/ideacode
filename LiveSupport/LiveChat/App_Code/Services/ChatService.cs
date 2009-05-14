@@ -73,7 +73,7 @@ public class ChatService
         mailMsg.Subject = subject;
         mailMsg.Body = body;
         mailMsg.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "1");
-        mailMsg.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", "410396629@qq.com");
+        mailMsg.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", "410396629");
         mailMsg.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", "19870312");
         SmtpMail.SmtpServer = ConfigurationManager.AppSettings["SMTPServer"].ToString();
         try
@@ -86,26 +86,7 @@ public class ChatService
         }
     }
     #endregion
-    public static void ChatPageRequestChat(Chat chatRequest)
-    {
-        Chat ch = chats.Find(c => c.ChatId == chatRequest.ChatId);
-        if (ch != null)
-        {
-            chats.Remove(ch);
-            chats.Add(chatRequest);
-        }
-        else
-        {
-            chats.Add(chatRequest);
-            SqlChatProvider.AddChat(chatRequest);
-        }
-
-        Message m = new Message();
-        m.ChatId = chatRequest.ChatId;
-        m.Text = "正在接入客服，请稍等...";
-        m.Type = MessageType.SystemMessage_ToVisitor;
-        MessageService.AddMessage(m);
-    }
+ 
 
     public static List<Chat> GetAllChatRequest(string accountId)
     {
@@ -243,5 +224,74 @@ public class ChatService
     public static Chat GetChatById(string chatId)
     {
         return chats.Find(c => c.ChatId == chatId);
+    }
+
+    public static void ChatPageRequestChat(Chat chatRequest)
+    {
+        Chat ch = chats.Find(c => c.ChatId == chatRequest.ChatId);
+        if (ch != null)
+        {
+            chats.Remove(ch);
+            chats.Add(chatRequest);
+        }
+        else
+        {
+            chats.Add(chatRequest);
+            SqlChatProvider.AddChat(chatRequest);
+        }
+
+        Message m = new Message();
+        m.ChatId = chatRequest.ChatId;
+        m.Text = "正在接入客服，请稍等...";
+        m.Type = MessageType.SystemMessage_ToVisitor;
+        MessageService.AddMessage(m);
+    }
+    /// <summary>
+    /// 客服主动邀请对话
+    /// </summary>
+    /// <param name="operatorId">客服ID</param>
+    /// <param name="visitorId"></param>
+    public static int OperatorRequestChat(string operatorId, string visitorId)
+    {
+        Visitor visitor = VisitorService.GetVisitor(visitorId);
+
+        Chat chat = ChatService.GetChatById(visitor.CurrentSessionId);
+        if (chat.Status != ChatStatus.Requested)
+        {
+            return -1;
+        }
+        if (chat == null)
+        {
+            Operator op = OperatorService.GetOperatorById(operatorId);
+            chat = new Chat();
+            chat.CreateBy = op.NickName;
+            chat.CreateTime = DateTime.Now;
+            chat.AccountId = op.AccountId;
+            chat.VisitorId = visitorId;
+            chat.OperatorId = operatorId;
+            chats.Add(chat);
+            SqlChatProvider.AddChat(chat);
+        } 
+        chat.Status = ChatStatus.Requested;
+        Message m = new Message();
+        m.ChatId =chat.ChatId;
+        m.Text = "正在邀请访客，请稍等...";
+        m.Type = MessageType.SystemMessage_ToOperator;
+        MessageService.AddMessage(m);
+        return 0;
+    }
+    /// <summary>
+    /// 检查客服是否发出主动邀请
+    /// </summary>
+    /// <param name="visitorId"></param>
+    /// <returns></returns>
+    public static string GetOperatorInvation(string visitorId)
+    {
+        Chat chat=GetChatById(VisitorService.GetVisitor(visitorId).CurrentSessionId);
+        if (chat.Status == ChatStatus.Requested && string.IsNullOrEmpty(chat.OperatorId))
+        {
+            return chat.ChatId;
+        }
+        return null;
     }
 }

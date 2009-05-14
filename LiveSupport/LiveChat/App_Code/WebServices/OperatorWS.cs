@@ -269,7 +269,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public bool CloseChat(string chatId)
     {
-      //  checkAuthentication();
+        checkAuthentication();
         return ChatService.CloseChat(chatId, OperatorService.GetOperatorById(Authentication.OperatorId).NickName);
     }
     /// <summary>
@@ -316,8 +316,7 @@ public class OperatorWS : System.Web.Services.WebService
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public int InviteChat(string visitorId)
-    {
-        return 0;
-        //TODO:目前还没实现
+    {        
+       return ChatService.OperatorRequestChat(Authentication.OperatorId, visitorId);
     }
 }

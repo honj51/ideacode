@@ -81,10 +81,9 @@
    //调用webservece方法
    function callMethod()
     {
-        service.useService("http://localhost:3355/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象
-        var parm1 =comname;   //取公司ID           
-        var parm2 =getCookie('myip'); //取IP
-        service.calService.callService(callback,"GetOperatorInvitation",parm1,parm2);      
+        service.useService("http://localhost:3355/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象      
+        var parm =getCookie('VisitorId'); //访客ID
+        service.calService.callService(callback,"GetOperatorInvitation",parm);      
                                                               //调用方法
     }
     function callMethodclose()
@@ -102,7 +101,6 @@
     {
         if (!res.error)//判断是否发生错误
         {
-             //   alert(res.value);
                 if(res.value !="")//判断返回的值
                 {
                     panel2Show();//显示方法
