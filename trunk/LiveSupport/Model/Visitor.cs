@@ -8,14 +8,14 @@ namespace LiveSupport.LiveSupportModel
     public class Visitor
     {
         private string visitorId;
-         
+
         public string VisitorId
         {
             get { return visitorId; }
             set { visitorId = value; }
         }
 
-        private string accountId;
+        private string accountId = string.Empty;
 
         public string AccountId
         {
@@ -23,16 +23,23 @@ namespace LiveSupport.LiveSupportModel
             set { accountId = value; }
         }
 
-        private string name;
-         
+        private string name = string.Empty;
+
         public string Name
         {
-            get { return name; }
+            get
+            {
+                if (string.IsNullOrEmpty(name) && currentSession != null)
+                {
+                    return currentSession.IP;
+                }
+                return name;
+            }
             set { name = value; }
         }
 
-        private string email;
-         
+        private string email = string.Empty;
+
         public string Email
         {
             get { return email; }
@@ -40,23 +47,23 @@ namespace LiveSupport.LiveSupportModel
         }
 
         private int visitCount;
-         
+
         public int VisitCount
         {
             get { return visitCount; }
             set { visitCount = value; }
         }
 
-        private string company;
-         
+        private string company = string.Empty;
+
         public string Company
         {
             get { return company; }
             set { company = value; }
         }
 
-        private string remark;
-         
+        private string remark = string.Empty;
+
         public string Remark
         {
             get { return remark; }
@@ -64,7 +71,7 @@ namespace LiveSupport.LiveSupportModel
         }
 
         private bool isVIP;
-         
+
         public bool IsVIP
         {
             get { return isVIP; }
@@ -79,8 +86,8 @@ namespace LiveSupport.LiveSupportModel
             set { currentSession = value; }
         }
 
-        private string currentSessionId;
-         
+        private string currentSessionId = string.Empty;
+
         public string CurrentSessionId
         {
             get { return currentSessionId; }

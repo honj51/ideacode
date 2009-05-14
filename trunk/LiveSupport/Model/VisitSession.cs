@@ -154,6 +154,14 @@ namespace LiveSupport.LiveSupportModel
             this.ChattingDuring = DateTime.MinValue;
             this.LeaveTime = DateTime.MinValue;
             this.VisitingTime = DateTime.MinValue;
+            this.browser = string.Empty;
+            this.DomainRequested = string.Empty;
+            this.IP = string.Empty;
+            this.Location = string.Empty;
+            this.OperatorId = string.Empty;
+            this.Referrer = string.Empty;
+            this.Status = VisitSessionStatus.Leave;
+            this.VisitorId = string.Empty;
         }
 
         public VisitSession(SqlDataReader data)
