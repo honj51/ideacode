@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using LiveSupport.BLL;
 using System.Text;
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_SetupInstructions : System.Web.UI.Page
 {
@@ -23,12 +23,8 @@ public partial class AccountAdmin_SetupInstructions : System.Web.UI.Page
             {
                 account = (Account)Session["User"];
             }
-            //else
-            //{
-                //Response.Redirect("../Default.aspx");
-            //}
         }
-        this.HiddenField1.Value = account.Id.ToString();
+        this.HiddenField1.Value = account.AccountId.ToString();
 
         string html = this.TextBox1.Text;
         string[] s={"aid="};

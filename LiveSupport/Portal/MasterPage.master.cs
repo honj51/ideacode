@@ -1,5 +1,5 @@
 
-using LiveSupport.DAL.Entity;
+using LiveSupport.LiveSupportModel;
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, System.EventArgs e)
@@ -7,7 +7,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (Session["User"] != null)
         {
             Account account = (Account)Session["User"];
-            this.lblUserName.Text = account.AdminUserName.ToString();
+            this.lblUserName.Text = account.NickName;
             this.PanelShow.Visible = true;
             this.PanelLogin.Visible = false;
         }

@@ -12,34 +12,37 @@
                 <li><a href="CannedResponses.aspx">&#39044;&#32622;&#28040;&#24687;</a></li>
             </ul>
         </div>
-        <div id="content-main-three-column">
+        <div id="content-main-three-column" style="height: 410px">
             <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
                 DataSourceID="ObjectDataSource1" DefaultMode="Edit" Height="50px" 
-                Width="368px" DataKeyNames="Id,AccountId" 
+                Width="368px" 
                 onitemcommand="DetailsView1_ItemCommand" 
-                onitemupdated="DetailsView1_ItemUpdated">
+                onitemupdated="DetailsView1_ItemUpdated" DataKeyNames="OperatorId">
                 <Fields>
-                    <asp:BoundField DataField="Name" HeaderText="&#23458;&#26381;&#29992;&#25143;&#21517;" SortExpression="Name" >
-                        <HeaderStyle HorizontalAlign="Justify" />
+                    <asp:BoundField DataField="OperatorId" HeaderText="客服编号" 
+                        SortExpression="OperatorId" ReadOnly="True" >
                     </asp:BoundField>
+                    <asp:BoundField DataField="AccountId" HeaderText="公司编号" 
+                        SortExpression="AccountId" ReadOnly="True" />
+<asp:BoundField DataField="LoginName" HeaderText="客服账号" SortExpression="LoginName"></asp:BoundField>
                     <asp:BoundField DataField="Password" HeaderText="&#23494;&#30721;" 
                         SortExpression="Password" />
-                    <asp:BoundField DataField="Email" HeaderText="Email&#22320;&#22336;" SortExpression="Email" />
-                    <asp:CheckBoxField DataField="Disabled" HeaderText="&#26159;&#21542;&#31105;&#29992;" 
-                        SortExpression="Disabled" />
+                    <asp:BoundField DataField="NickName" HeaderText="昵称" 
+                        SortExpression="NickName" />
+                    <asp:BoundField DataField="Email" HeaderText="电子邮件" SortExpression="Email" />
+                    <asp:BoundField DataField="AVChatStatus" HeaderText="音频状态" 
+                        SortExpression="AVChatStatus" Visible="False" />
+                    
                     <asp:CommandField ShowEditButton="True" />
-                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" 
-                        Visible="False" />
-                    <asp:BoundField DataField="AccountId" HeaderText="AccountId" 
-                        SortExpression="AccountId" Visible="False" />
+                    
                 </Fields>
             </asp:DetailsView>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-                DataObjectTypeName="LiveSupport.DAL.Entity.Operator" SelectMethod="GetOperatorById" 
+                DataObjectTypeName="LiveSupport.LiveSupportModel.Operator" SelectMethod="GetOperatorByOperatorId" 
                 TypeName="LiveSupport.BLL.OperatorsManager" UpdateMethod="UpdateOperator" >
                 <SelectParameters>
                     <asp:QueryStringParameter Name="operatorId" QueryStringField="operatorId" 
-                        Type="Int32" />
+                        Type="String" />
                 </SelectParameters>
             </asp:ObjectDataSource>
         </div>
