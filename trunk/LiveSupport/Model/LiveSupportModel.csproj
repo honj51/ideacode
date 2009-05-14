@@ -41,6 +41,7 @@
     <Compile Include="City.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Operator.cs" />
+    <Compile Include="PageRequest .cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="Service.cs" />
