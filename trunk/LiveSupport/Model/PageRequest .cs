@@ -51,7 +51,7 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["AccountId"])) accountId = (string)data["AccountId"];
             if (!Convert.IsDBNull(data["SessionId"])) sessionId = (string)data["SessionId"];
             if (!Convert.IsDBNull(data["Page"])) page = (string)data["Page"];
-            if (!Convert.IsDBNull(data["RequestTime"])) requestTime = (string)data["RequestTime"];
+            if (!Convert.IsDBNull(data["RequestTime"])) requestTime = (DateTime)data["RequestTime"];
             if (!Convert.IsDBNull(data["Referrer"])) referrer = (string)data["Referrer"];
 
         }
