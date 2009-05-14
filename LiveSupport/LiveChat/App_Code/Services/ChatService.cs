@@ -155,6 +155,19 @@ public class ChatService
       else
           return false;
     }
+    /// <summary>
+    /// 关闭对话信息
+    /// </summary>
+    /// <param name="chatId"></param>
+    /// <param name="userName"></param>
+    public static int CloseChat(string chatId, string userName)
+    {
+        Chat chat = new Chat();
+        chat.ChatId = chatId;
+        chat.CloseTime = DateTime.Now;
+        chat.CloseBy = userName;
+        return SqlChatProvider.CloseChat(chat);
+    }
     public const int AcceptChatRequestReturn_OK = 0;
     public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;
     public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;
