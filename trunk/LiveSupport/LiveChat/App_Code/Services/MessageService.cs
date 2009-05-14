@@ -51,7 +51,6 @@ public class MessageService
 
     public static List<Message> GetMessagesForChatPage(string chatId, long lastCheck)
     {
-        // TODO: for some reason, we should include MessageType.ChatMessage_VistorToOperator
         List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => Message.IsChatMessage(m) ||
             m.Type == MessageType.SystemMessage_ToVisitor || m.Type == MessageType.SystemMessage_ToBoth);
         Debug.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
