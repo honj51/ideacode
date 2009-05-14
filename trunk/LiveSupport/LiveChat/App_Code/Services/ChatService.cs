@@ -16,6 +16,10 @@ public class ChatService
     public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;
     public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;
     public const int AcceptChatRequestReturn_Error_Others = -3;
+    public const int ResetOperatorPassword_OK = 0;
+    public const int ResetOperatorPassword_PermissionDenied=-1;
+    public const int ResetOperatorPassword_OtheError=-2;
+
     static ChatService()
     { 
     }
@@ -131,16 +135,16 @@ public class ChatService
                 string body = "你的新密码是：" + RandLetter(8);
                 string subject = "密码激活";
                 SendEmail(op.Email, subject, body);
-                return 0;
+                return ResetOperatorPassword_OK;
             }
             else
             {
-                return -3;
+                return ResetOperatorPassword_PermissionDenied;
             }
         }
         else
         {
-            return -2;
+            return ResetOperatorPassword_OtheError;
         }
     }
     /// <summary>
