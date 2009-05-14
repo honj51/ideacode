@@ -58,8 +58,7 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         private SoundPlayer player = new SoundPlayer();
-         
-     
+        
         OperatorWS ws = new OperatorWS();
         private VisitSession chatSession;
         private long lastCheckTime;
@@ -102,6 +101,11 @@ namespace LiveSupport.OperatorConsole
         }
         
         public ChatForm(VisitSession chatSession)
+            : this(chatSession, false)
+        {           
+        }
+
+        public ChatForm(VisitSession chatSession, bool invite)
         {
             InitializeComponent();
             this.chatSession = chatSession;
@@ -109,8 +113,11 @@ namespace LiveSupport.OperatorConsole
             AuthenticationHeader auth = new AuthenticationHeader();
             auth.OperatorId = Program.CurrentOperator.OperatorId;
             ws.AuthenticationHeaderValue = auth;
-            ws.AcceptChatRequest(chatSession.SessionId);
-            
+
+            if (!invite)
+            {
+                ws.AcceptChatRequest(chatSession.SessionId);
+            }
             // We initialize the document
             wb.Navigate("about:初始会话...");
 

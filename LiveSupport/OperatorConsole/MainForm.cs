@@ -557,7 +557,7 @@ namespace LiveSupport.OperatorConsole
 
                     if (cf == null)
                     {
-                        cf = new ChatForm(v.CurrentSession);
+                        cf = new ChatForm(v.CurrentSession, true);
                         Program.ChatForms.Add(cf);
                     }
 
