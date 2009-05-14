@@ -163,13 +163,26 @@ public class ChatService
     /// </summary>
     /// <param name="chatId"></param>
     /// <param name="userName"></param>
-    public static int CloseChat(string chatId, string userName)
+    public static bool CloseChat(string chatId, string userName)
     {
         Chat chat = new Chat();
         chat.ChatId = chatId;
         chat.CloseTime = DateTime.Now;
         chat.CloseBy = userName;
-        return SqlChatProvider.CloseChat(chat);
+        if (SqlChatProvider.CloseChat(chat) > 0)
+        {
+            Message m = new Message();
+            m.ChatId =chatId;
+            m.SentDate = DateTime.Now;
+            m.Type = MessageType.SystemMessage_ToBoth;
+            m.Text = string.Format("{0}已关闭对话",userName);
+            SendMessage(m);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     /// <summary>
     /// 接受对话请求
