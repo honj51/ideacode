@@ -24,5 +24,32 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             r = null;
             return province;
         }
+        /// <summary>
+        ///   通过省份名查询城市信息
+        /// </summary>
+        /// <param name="provinceName">省份名</param>
+        /// <returns>Province对象</returns>
+        public static Province GetProvinceByProvinceName(string provinceName)
+        {
+            string sql = string.Format("select * from dbo.Portal_Province where name='{0}'", provinceName);
+            SqlDataReader data = null;
+            Province province = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    province = new Province(data);
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return province;
+        }
     }
 }
