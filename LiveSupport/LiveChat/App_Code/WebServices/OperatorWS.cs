@@ -260,11 +260,58 @@ public class OperatorWS : System.Web.Services.WebService
         checkAuthentication();
         return ChatService.ResetOperatorPassword(loginName);
     }
+    /// <summary>
+    /// 关闭对话
+    /// </summary>
+    /// <param name="chatId">chatid</param>
+    /// <returns>int</returns>
+    public bool CloseChat(string chatId)
+    {
+       int i=ChatService.CloseChat(chatId, Authentication.userName);
+        if(i>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    /// <summary>
+    /// 获取聊天历史记录
+    /// </summary>
+    /// <param name="visitorId">会话ID</param>
+    /// <param name="begin">开始时间</param>
+    /// <param name="end">结束时间</param>
+    /// <returns>消息集合</returns>
+    public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+    {
+       return MessageService.GetHistoryChatMessage(visitorId,begin,end);
+    }
+    /// <summary>
+    /// 获取网站页面访问历史记录
+    /// </summary>
+    /// <param name="visitorId">访客ID</param>
+    /// <param name="begin">开始时间</param>
+    /// <param name="end"> 结束时间</param>
+    /// <returns>Pagerequest集合</returns>
+    public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
+    {
+      return PageRequestService.GetHistoryPageRequests(visitorId,begin,end);
+    }
 
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public int AcceptChatRequest(string chatId)
     {
         return ChatService.AcceptChatRequest(Authentication.OperatorId, chatId);
-    }
+    }    /// <summary>
+    /// 主动邀请对话
+    /// </summary>
+    /// <param name="visitorId"></param>
+    /// <returns></returns>
+    //public int InviteChat(string visitorId)
+    //{
+    //    //TODO:目前还没实现
+    //}
 }
