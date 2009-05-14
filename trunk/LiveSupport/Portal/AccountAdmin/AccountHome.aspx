@@ -6,7 +6,7 @@
     <div id="content-container-three-column" style="height: 568px; background-color:#CCCCCC;">
         <div id="content-side1-three-column">
             <ul class="list-of-links">
-                <li class="current"><a href="AccountHome.aspx">&#36134;&#25143;&#39318;&#39029;</a></li>
+                <li style="font-size:12px;  class="current"><a  href="AccountHome.aspx"><b>&#36134;&#25143;&#39318;&#39029;</b></a></li>
                 <li><a href="SetupInstructions.aspx">&#23433;&#35013;&#25351;&#21335;</a></li>
                 <li><a href="OperatorsManagment.aspx">&#22352;&#24109;&#31649;&#29702;</a></li>
                 <li><a href="AccountSettings.aspx">&#36134;&#25143;&#35774;&#32622;</a></li>

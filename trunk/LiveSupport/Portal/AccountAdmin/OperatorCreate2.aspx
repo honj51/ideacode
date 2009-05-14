@@ -14,8 +14,10 @@
             </ul>
         </div>
         <div id="content-main-three-column">
-<table>
-<tr><td colspan="2">增加坐席<br />------------------------------------------------<br /><br /></td></tr>
+<div>
+<img src="Images/tjkf.jpg" />
+<table style="width: 360px; height: 238px;" border="1"  cellpadding="0" 
+        cellspacing="0">
 <tr><td>坐席用户名：</td><td>
     <asp:TextBox ID="txtLoginName" runat="server"></asp:TextBox>
     </td></tr>
@@ -25,20 +27,40 @@
     <tr><td>重置密码：</td><td>
     <asp:TextBox ID="txtPwds" runat="server"></asp:TextBox>
     </td></tr>
+    <tr><td>昵称：</td><td>
+    <asp:TextBox ID="txtNickName" runat="server"></asp:TextBox>
+    </td></tr>
 <tr><td>Email地址：</td><td>
     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
     </td></tr>
-<tr><td>是否禁用：</td><td>
-    <asp:CheckBox ID="cbIs" runat="server" />
+      <tr><td>是否是管理员：</td><td>
+        <asp:DropDownList ID="ddlIsAdmin" runat="server">
+            <asp:ListItem Value="false">否</asp:ListItem>
+            <asp:ListItem Value="true">是</asp:ListItem>
+        </asp:DropDownList>
     </td></tr>
-<tr><td></td><td>
+    <tr><td>客服状态：</td><td>
+        <asp:DropDownList ID="ddlStatus" runat="server">
+            <asp:ListItem Value="Idle">空闲</asp:ListItem>
+            <asp:ListItem Value="Chatting">交谈中</asp:ListItem>
+            <asp:ListItem Value="BeRightBack">一会回来</asp:ListItem>
+            <asp:ListItem Value="Away">离开</asp:ListItem>
+            <asp:ListItem Value="Offline ">离线</asp:ListItem>
+        </asp:DropDownList>
+    </td></tr>
+    <tr><td style="height: 18px">音频状态：</td><td style="height: 18px">
+        <asp:DropDownList ID="ddlAVChatStatus" runat="server">
+            <asp:ListItem Value="Idle">空闲</asp:ListItem>
+            <asp:ListItem Value="Chatting">通话中</asp:ListItem>
+        </asp:DropDownList>
+    </td></tr>
+<tr style="background-image:url('Images/tjkf2.jpg');"><td></td>
+    <td>
     <asp:ImageButton ID="ImageButton1" runat="server" 
-        ImageUrl="~/images/baocun.bmp" onclick="ImageButton1_Click" />
-    <asp:ImageButton ID="ImageButton2" runat="server" 
-        ImageUrl="~/images/fanhui.bmp" onclick="ImageButton2_Click" />
+        ImageUrl="~/AccountAdmin/Images/add.gif" onclick="ImageButton1_Click" />
     </td></tr>
 </table>
-
+</div>
 </div>
 
     </div>
