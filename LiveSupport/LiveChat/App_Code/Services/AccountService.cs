@@ -33,4 +33,9 @@ public static class AccountService
         accounts.Add(account);
         SqlAccountProvider.AddAccount(account);
     }
+
+    public static Account GetAccountById(string accountId)
+    {
+        return accounts.Find(a => a.AccountId == accountId);
+    }
 }
