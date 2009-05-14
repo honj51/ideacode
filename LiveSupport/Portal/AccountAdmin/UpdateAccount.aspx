@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorEdit.aspx.cs" Inherits="AccountAdmin_OperatorEdit" Title="&#26080;&#26631;&#39064;&#39029;" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="UpdateAccount.aspx.cs" Inherits="Default2" Title="无标题页" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
@@ -86,48 +86,47 @@ href="#">自定义LOGO</A>
 <td style="width: 583px;" valign="top">
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     客服信息管理</div>
+     客服账号管理</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; ">
-    <!--头部--->
-    <div style="text-align:left; margin-left:60px; margin-top:50px;">
-            <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
-                DataSourceID="ObjectDataSource1" DefaultMode="Edit" Height="50px" 
-                Width="368px" 
-                onitemcommand="DetailsView1_ItemCommand" 
-                onitemupdated="DetailsView1_ItemUpdated" DataKeyNames="OperatorId">
-                <Fields>
-                    <asp:BoundField DataField="OperatorId" HeaderText="客服编号" 
-                        SortExpression="OperatorId" ReadOnly="True" >
-                    </asp:BoundField>
-                    <asp:BoundField DataField="AccountId" HeaderText="公司编号" 
-                        SortExpression="AccountId" ReadOnly="True" />
-<asp:BoundField DataField="LoginName" HeaderText="客服账号" SortExpression="LoginName"></asp:BoundField>
-                    <asp:BoundField DataField="Password" HeaderText="&#23494;&#30721;" 
-                        SortExpression="Password" />
-                    <asp:BoundField DataField="NickName" HeaderText="昵称" 
-                        SortExpression="NickName" />
-                    <asp:BoundField DataField="Email" HeaderText="电子邮件" SortExpression="Email" />
-                    <asp:BoundField DataField="AVChatStatus" HeaderText="音频状态" 
-                        SortExpression="AVChatStatus" Visible="False" />
-                    
-                    <asp:CommandField ShowEditButton="True" />
-                    
-                </Fields>
-            </asp:DetailsView>
-        </div>
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-                DataObjectTypeName="LiveSupport.LiveSupportModel.Operator" SelectMethod="GetOperatorByOperatorId" 
-                TypeName="LiveSupport.BLL.OperatorsManager" UpdateMethod="UpdateOperator" >
-                <SelectParameters>
-                    <asp:QueryStringParameter Name="operatorId" QueryStringField="operatorId" 
-                        Type="String" />
-                </SelectParameters>
-            </asp:ObjectDataSource>
- <!--尾部-->
- </div>
+ <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
+  <div style="text-align:left;color: #cccccc; border-bottom: 1px solid; position: relative;">&nbsp;&nbsp;&nbsp;<a href="AccountHome.aspx"><img src="Images/zhuce2.jpg" /></a><img src="Images/mima2.jpg" /></div>
+  <!--内容-->
+  <TABLE cellSpacing=0 cellPadding=0 border=0 style="text-align:left;" >
+        <TBODY >
+        <TR>
+          <TD style="width: 30%" >&nbsp;&nbsp; 客服呢称： </TD>
+          <TD ><asp:TextBox ID="txtNickname" runat="server" Width="160px"></asp:TextBox>
+&nbsp;</TD>
+          <TD>对话时显示给访客的名称 </TD></TR>
+        <TR>
+          <TD style="width: 30%"><FONT color=red>*</FONT> 原始密码： </TD>
+          <TD  width="40%"><asp:TextBox ID="txtAgoPwd" runat="server" Width="160px" 
+                  TextMode="Password"></asp:TextBox>
+&nbsp;</TD>
+          <TD width="35%"><SPAN id=result>用于登录到<span>LiveSupport</span> 
+        </SPAN></TD></TR>
+        <TR>
+          <TD style="width: 30%" ><FONT color=red>*</FONT> 新密码： </TD>
+          <TD ><asp:TextBox ID="txtPwd" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
+&nbsp;</TD>
+          <TD >密码长度为6-20的任何字符 </TD></TR>
+        <TR>
+          <TD  noWrap style="width: 30%"><FONT color=red>*</FONT> 密码确认： </TD>
+          <TD ><asp:TextBox ID="txtPwds" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
+&nbsp;</TD>
+          <TD >请再输入一次密码 </TD></TR>
+       
+                  <TR>
+          <TD style="width: 30%" >&nbsp;&nbsp;&nbsp; </TD>
+          <TD >
+              <asp:Button ID="btnSave" runat="server" Text="保存" Width="63px" 
+                  onclick="btnSave_Click" />
+                      </TD>
+          <TD>&nbsp;</TD></TR>
+          </TBODY></TABLE>
+  </div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </td></tr>
    </table>
