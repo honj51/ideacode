@@ -91,7 +91,7 @@ public class VisitorService
     /// </summary>
     /// <param name="lastCheck">最后一个访客时间</param>
     /// <returns>Visitor集合</returns>
-    internal static List<Visitor> GetNewVisitors(string accountId, DateTime lastCheck)
+    internal static List<Visitor> GetNewVisitors(string accountId, long lastCheck)
     {
         List<Visitor> vs = new List<Visitor>();
         foreach (var item in visitors)
@@ -100,8 +100,8 @@ public class VisitorService
             {
                 continue;
             }
-            else if (item.AccountId == accountId && item.CurrentSession != null&& item.CurrentSession.VisitingTime > lastCheck)
-            {
+            else if (item.AccountId == accountId && item.CurrentSession != null&& item.CurrentSession.VisitingTime.Ticks > lastCheck)
+            {                
                 vs.Add(item);
             }
         }

@@ -41,19 +41,20 @@ public class MessageService
     {
        return SqlMessageProvider.GetHistoryChatMessage(visitorId, begin, end);
     }
-    public static List<Message> GetMessagesForOperator(string sessionId, DateTime lastCheck)
-    {
-        List<Message> ms = GetMessages(sessionId, lastCheck.Ticks).FindAll(m => m.Type == MessageType.ChatMessage_VistorToOperator ||
-            m.Type == MessageType.SystemMessage_ToOperator || m.Type == MessageType.SystemMessage_ToBoth);
-        Debug.WriteLine(string.Format("GetMessagesForOperator({0},{1}) Count={2}", sessionId, lastCheck.Ticks, ms.Count));
-        return ms;
-    }
 
     public static List<Message> GetMessagesForChatPage(string chatId, long lastCheck)
     {
         List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => Message.IsChatMessage(m) ||
             m.Type == MessageType.SystemMessage_ToVisitor || m.Type == MessageType.SystemMessage_ToBoth);
         Debug.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
+        return ms;
+    }
+
+    internal static List<Message> GetMessagesForOperator(string chatId, long lastCheck)
+    {
+        List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => m.Type == MessageType.ChatMessage_VistorToOperator ||
+            m.Type == MessageType.SystemMessage_ToOperator || m.Type == MessageType.SystemMessage_ToBoth);
+        Debug.WriteLine(string.Format("GetMessagesForOperator({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
         return ms;
     }
 }
