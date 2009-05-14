@@ -134,7 +134,7 @@ public partial class Default2 : System.Web.UI.Page
             at.LoginName = this.txtLoginId.Text;
             at.Password = this.txtPwd.Text;
             at.NickName = this.txtNickname.Text;
-            bool b= AccountsManager.AddAccount(at);
+            bool b = AccountsManager.AddAccount(at);
             if (b)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('注册成功'); window.location='Login.aspx';</script>");

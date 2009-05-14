@@ -30,13 +30,14 @@
 <DIV class=sdmenu id=my_menu> 
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">基本设置</SPAN> 
-<A href="#" target=_blank>账户首页</A>
+<A href="AccountHome.aspx" >公司信息</A>
+<A href="UpdateAccount.aspx" >公司账号管理</A>
 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客服管理</SPAN> 
 <A href="#">部门设置</A> 
-<A href="OperatorsManagment.aspx">客服管理</A> 
+<A href="OperatorsManagment.aspx" >客服管理</A> 
 <A href="#">客服评分</A> <A href="#">登陆日志</A> 
 </DIV>
 
@@ -85,7 +86,7 @@ href="#">自定义LOGO</A>
 <td style="width: 583px;" valign="top">
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     添加管理</div>
+     添加客服</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>

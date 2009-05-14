@@ -30,13 +30,14 @@
 <DIV class=sdmenu id=my_menu> 
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">基本设置</SPAN> 
-<A href="#" target=_blank>账户首页</A>
+<A href="AccountHome.aspx" >公司信息</A>
+<A href="UpdateAccount.aspx" >公司账号管理</A>
 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客服管理</SPAN> 
 <A href="#">部门设置</A> 
-<A href="OperatorsManagment.aspx">客服管理</A> 
+<A href="OperatorsManagment.aspx" >客服管理</A> 
 <A href="#">客服评分</A> <A href="#">登陆日志</A> 
 </DIV>
 
@@ -96,8 +97,8 @@ href="#">自定义LOGO</A>
                 onrowcommand="GridView1_RowCommand" Width="487px" 
                 onrowdatabound="GridView1_RowDataBound" AllowPaging="True" CellPadding="4" 
                 ForeColor="#333333" GridLines="None">
-                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <RowStyle BackColor="#EFF3FB" />
                 <Columns>
                     <asp:TemplateField HeaderText="客服Id" SortExpression="OperatorId" 
                         Visible="False">
@@ -146,11 +147,11 @@ href="#">自定义LOGO</A>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                <EditRowStyle BackColor="#999999" />
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <EditRowStyle BackColor="#2461BF" />
+                <AlternatingRowStyle BackColor="White" />
             </asp:GridView>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
                 DataObjectTypeName="LiveSupport.LiveSupportModel.Operator" 
