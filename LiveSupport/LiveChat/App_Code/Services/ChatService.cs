@@ -81,9 +81,18 @@ public class ChatService
     #endregion
     public static void ChatPageRequestChat(Chat chatRequest)
     {
-        chats.Add(chatRequest);
+        Chat ch = chats.Find(c => c.ChatId == chatRequest.ChatId);
+        if (ch != null)
+        {
+            chats.Remove(ch);
+            chats.Add(chatRequest);
+        }
+        else
+        {
+            chats.Add(chatRequest);
+            SqlChatProvider.AddChat(chatRequest);
+        }
 
-        SqlChatProvider.AddChat(chatRequest);
         Message m = new Message();
         m.ChatId = chatRequest.ChatId;
         m.Text = "正在接入客服，请稍等...";
@@ -145,5 +154,50 @@ public class ChatService
       }
       else
           return false;
+    }
+    public const int AcceptChatRequestReturn_OK = 0;
+    public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;
+    public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;
+    public const int AcceptChatRequestReturn_Error_Others = -3;
+
+    public static int AcceptChatRequest(string operatorId, string chatId)
+    {
+        Chat chat = chats.Find(c => c.ChatId == chatId);
+        if (chat == null)
+        {
+            return AcceptChatRequestReturn_Error_Others;
+        }
+
+        if (chat.Status == ChatStatus.Accepted)
+        {
+            return AcceptChatRequestReturn_Error_AcceptedByOthers;
+        }
+
+        if (chat.Status == ChatStatus.Requested)
+        {
+            chat.Status = ChatStatus.Accepted;
+            chat.OperatorId = operatorId;
+            chat.AcceptTime = DateTime.Now;
+            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;
+            VisitSessionService.GetSessionById(chat.ChatId).OperatorId = operatorId;
+            Message m1 = new Message();
+            m1.ChatId = chat.ChatId;
+            m1.SentDate = DateTime.Now;
+            m1.Type = MessageType.SystemMessage_ToVisitor;
+            m1.Text = string.Format("客服:{0}已经接受您的对话请求",OperatorService.GetOperatorById(operatorId).NickName);
+            SendMessage(m1);
+
+            Message m2 = new Message();
+            m2.ChatId = chat.ChatId;
+            m2.SentDate = DateTime.Now;
+            m2.Type = MessageType.SystemMessage_ToOperator;
+            m2.Text = string.Format("你已经接受访客{0}的对话请求",VisitorService.GetVisitor(VisitSessionService.GetSessionById(chat.ChatId).VisitorId).Name);
+            SendMessage(m2);
+
+            return AcceptChatRequestReturn_OK;
+        }
+        else
+            return AcceptChatRequestReturn_Error_Others;
+
     }
 }

@@ -18,27 +18,25 @@ using LiveSupport.LiveSupportModel;
 public class ProcessImage : IHttpHandler
 {
 
-	public void ProcessRequest(HttpContext context)
-	{
+    public void ProcessRequest(HttpContext context)
+    {
         // 检查QueryString 参数
-        
         if (context.Request.QueryString["aid"] == null)
-        {            
+        {
             return;
         }
         string accountId = context.Request.QueryString["aid"].ToString();
-        string referrer = string.Empty;        
-		string pageRequested = string.Empty;
-		string domainRequested = string.Empty;
-		string visitorUserAgent = string.Empty;
-		string visitorIP = string.Empty;
-		string imgName = string.Empty;
-		bool opOnline = false;
+        string referrer = string.Empty;
+        string pageRequested = string.Empty;
+        string domainRequested = string.Empty;
+        string visitorUserAgent = string.Empty;
+        string visitorIP = string.Empty;
+        string imgName = string.Empty;
+        bool opOnline = false;
 
-        // Add Request Log
         if (context.Request.QueryString["referrer"] != null)
             referrer = context.Request.QueryString["referrer"].ToString();
-        
+
         if (context.Request.UserHostAddress != null)
             visitorIP = context.Request.UserHostAddress.ToString();
 
@@ -51,52 +49,71 @@ public class ProcessImage : IHttpHandler
         if (context.Request.ServerVariables["HTTP_USER_AGENT"] != null)
             visitorUserAgent = context.Request.ServerVariables["HTTP_USER_AGENT"].ToString();
 
-
         // 建立 Visitor 和 VisitSession对象
+        // 1. 查找Visitor，没有则新增一个
+        Visitor visitor = getVisitor(context, accountId);
+        
+        // 2.查找VisitSession，没有则新增一个
+        if (visitor.CurrentSession == null || visitor.CurrentSession.Status == VisitSessionStatus.Leave)
+        {
+            VisitSession session = new VisitSession();
+            session.Browser = visitorUserAgent;
+            session.IP = visitorIP;
+            session.VisitingTime = DateTime.Now;
+            session.VisitorId = visitor.VisitorId;
+            session.DomainRequested = domainRequested;
+            session.PageRequested = pageRequested;
+            session.Referrer = referrer;
+            session.Status = VisitSessionStatus.Visiting;
+            visitor.CurrentSession = session;
+            visitor.CurrentSessionId = session.SessionId;
+            VisitorService.NewVisit(visitor, session);            
+        }
+        
+        // TODO: 
+
+        // we get the status of the operators
+        opOnline = OperatorService.HasOnlineOperator(accountId);
+
+        if (opOnline)
+            imgName = "online.jpg";
+        else
+            imgName = "offline.jpg";
+
+        System.Drawing.Image returnImg = System.Drawing.Image.FromFile(context.Server.MapPath("Images/" + imgName));
+        returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
+    }
+
+    private static Visitor getVisitor(HttpContext context, string accountId)
+    {
+        System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + "(" + accountId + ")");
         Visitor visitor;
-        if (context.Request.Cookies["VisitorId"] == null)
-        {            
-            visitor = new Visitor();
-            context.Response.Cookies["VisitorId"].Value = visitor.VisitorId;
+        string visitorId = null;
+        if (context.Request.Cookies["VisitorId"] != null)
+        {
+            visitorId = context.Request.Cookies["VisitorId"].Value.ToString();            
+        }
+
+        if (visitorId != null && VisitorService.GetVisitor(visitorId) != null)
+        {
+            visitor = VisitorService.GetVisitor(visitorId);            
         }
         else
         {
-            string visitorId = context.Request.Cookies["VisitorId"].Value.ToString();
-            visitor = VisitorService.GetVisitor(visitorId);
+            visitor = new Visitor();
+            context.Response.Cookies["VisitorId"].Value = visitor.VisitorId;
+            context.Response.Cookies["VisitorId"].Expires = DateTime.Now.AddMonths(12);
+            visitor.AccountId = accountId;
+            System.Diagnostics.Debug.WriteLine("Create new visitor " + visitor.VisitorId);
         }
-        visitor.AccountId = accountId;            
+        return visitor;
+    }
 
-        VisitSession session = new VisitSession();
-        session.Browser = visitorUserAgent;
-        session.IP = visitorIP;
-        session.VisitingTime = DateTime.Now;
-        session.VisitorId = visitor.VisitorId;
-        session.DomainRequested = domainRequested;
-        session.PageRequested = pageRequested;
-        session.Referrer = referrer;
-
-        visitor.CurrentSession = session;
-        visitor.CurrentSessionId = session.SessionId;
-
-        VisitorService.NewVisit(visitor, session);
-                    
-		// we get the status of the operators
-		opOnline = OperatorService.HasOnlineOperator(accountId);
-
-		if (opOnline)
-			imgName = "online.jpg";
-		else
-			imgName = "offline.jpg";
-
-		System.Drawing.Image returnImg = System.Drawing.Image.FromFile(context.Server.MapPath("Images/" + imgName));
-		returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
-	}
-
-	public bool IsReusable
-	{
-		get
-		{
-			return false;
-		}
-	}
+    public bool IsReusable
+    {
+        get
+        {
+            return false;
+        }
+    }
 }

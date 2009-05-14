@@ -79,9 +79,9 @@ public static class OperatorService
     }
 
 
-    internal static Operator GetOperatorById(string p)
+    public static Operator GetOperatorById(string operatorId)
     {
-        throw new NotImplementedException();
+         return operators.Find(o => o.OperatorId == operatorId);
     }
 
     /// <summary>

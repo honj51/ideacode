@@ -116,18 +116,38 @@ public partial class Chat : System.Web.UI.Page
             if (Request.Cookies[chatId + "_lastCheck"] != null)
             {
                 long lastCheck = long.Parse(Request.Cookies[chatId + "_lastCheck"].Value.ToString());
-                List<LiveSupport.LiveSupportModel.Message> messages = MessageService.GetMessages(chatId, lastCheck);//*
+                List<LiveSupport.LiveSupportModel.Message> messages = MessageService.GetMessagesForChatPage(chatId, lastCheck);//*
 
                 if (messages.Count > 0)
                 {
                     for (int i = 0; i < messages.Count; i++)
                     {
-                        if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor || messages[i].Type == MessageType.SystemMessage_ToVisitor
-                            || messages[i].Type == MessageType.SystemMessage_ToBoth)
+                        //if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor || messages[i].Type == MessageType.SystemMessage_ToVisitor
+                        //    || messages[i].Type == MessageType.SystemMessage_ToBoth)
+                        //{
+                        //    if (messages[i].Type == MessageType.SystemMessage_ToVisitor || messages[i].Type == MessageType.SystemMessage_ToBoth)
+                        //    {
+                        //        litChat.Text += string.Format("<span class=\"chatName\">{0}</span>", CutStr(messages[i].Text, 100));
+                        //    }
+                        //    else
+                        //    {
+                        //        litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Source, CutStr(messages[i].Text, 100));
+                        //    }
+                        //}
+                        if (LiveSupport.LiveSupportModel.Message.FromSystem(messages[i]))
+                        {
+                            litChat.Text += string.Format("<span style=\"color: #FF9933\" class=\"chatName\">{0}</span>", CutStr(messages[i].Text, 100));                           
+                        }
+                        if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor)
                         {
                             litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Source, CutStr(messages[i].Text, 100));
                         }
+                        else if (messages[i].Type == MessageType.ChatMessage_VistorToOperator)
+                        {
+                            litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", "ฤ๚หต", CutStr(messages[i].Text, 100));
+                        }
 
+                        // TODO: is this correct?
                         lastCheck = messages[i].SentDate.Ticks;
 
                     }
@@ -223,6 +243,7 @@ public partial class Chat : System.Web.UI.Page
             //ws.SetTyping(chatId, false, false);
         }
         return "";
+
     }
 
     [System.Web.Services.WebMethod]
@@ -290,8 +311,17 @@ public partial class Chat : System.Web.UI.Page
 
         //lblOp.Text = msg.Message;
         // we set the visitor name in the ViewState
-        //VisitorName = request.VisitorName;
-        //VName = request.VisitorName;
+        Visitor v = VisitorService.GetVisitor(visitorId);
+        if (!string.IsNullOrEmpty(txtName.Text))
+        {
+            v.Name = txtName.Text;
+        }
+        if (!string.IsNullOrEmpty(txtEmail.Text))
+        {
+            v.Email = txtEmail.Text;
+        }
+        VisitorName = v.Name;
+        VName = v.Name;
        
         pnlChat.Visible = true;
         pnlRequest.Visible = false;
