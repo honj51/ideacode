@@ -122,13 +122,7 @@ namespace LiveSupport.OperatorConsole
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
         {
-
-            if (MessageBox.Show("是否关闭", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.Yes))
-            {
-               
-                Program.ChatForms.Remove(this);
-                this.Close();               
-            }
+            this.Close();               
         }
 
         /// <summary>
@@ -140,13 +134,13 @@ namespace LiveSupport.OperatorConsole
         {
             if (uploadOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                WebClient myWebClient = new WebClient();
-                myWebClient.Credentials = CredentialCache.DefaultCredentials;
+                //WebClient myWebClient = new WebClient();
+                //myWebClient.Credentials = CredentialCache.DefaultCredentials;
                 String filename = uploadOpenFileDialog.FileName;
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
-                //ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName);
+                ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, chatSession.SessionId);
             }
         }
       
@@ -263,23 +257,11 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-          
             if (MessageBox.Show("是否关闭", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.Yes))
             {
-
+                ws.CloseChat(this.chatSession.SessionId);
                 Program.ChatForms.Remove(this);
-                e.Cancel =false; 
-            }
-            else 
-            {
-                e.Cancel = true;
-            
             }
         }
-
-        
-        
     }
-       
-    
 }

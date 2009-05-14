@@ -230,10 +230,16 @@
     <None Include="Resources\Profile.ico" />
     <None Include="Resources\type.wav" />
     <None Include="Resources\ringout.wav" />
+    <None Include="Web References\LiveChatWS\Message.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\LiveChatWS\NewChangesCheckResult.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\Operator1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LiveChatWS\PageRequest.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\Visitor.datasource">

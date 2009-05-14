@@ -55,12 +55,7 @@ namespace LiveSupport.OperatorConsole
         public MainForm(DateTime LoginTime)
         {
             InitializeComponent();
-          
-          
-            // Simple authentication
-            AuthenticationHeader auth = new AuthenticationHeader();
-            auth.userName = Properties.Settings.Default.WSUser;
-            ws.AuthenticationHeaderValue = auth;
+            
             initForm(LoginTime);
 
             autoLoginToolStripMenuItem.Checked = Properties.Settings.Default.AutoLogin;
