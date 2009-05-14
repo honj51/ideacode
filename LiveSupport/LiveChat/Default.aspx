@@ -15,10 +15,12 @@
     }
     </script>
 
+    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js"></script>
 </head>
 <body>
     <form id="mainForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
+        <div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>
         <div>
 
             <script type="text/javascript">

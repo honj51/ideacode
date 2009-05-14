@@ -81,7 +81,7 @@
    //调用webservece方法
    function callMethod()
     {
-        service.useService("http://localhost:3355/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象      
+        service.useService("http://localhost:19080/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象      
         var parm =getCookie('VisitorId'); //访客ID
         service.calService.callService(callback,"GetOperatorInvitation",parm);      
                                                               //调用方法
@@ -89,7 +89,7 @@
     function callMethodclose()
     {
         panel2Close();
-        service.useService("http://localhost:3355/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象
+        service.useService("http://localhost:19080/LiveChat/ServiceConnect.asmx?wsdl","calService");                                       //创建服务对象
         var parm1 =chatid;   //chatid       
         service.calService.callService(callbackclose,"RemoveChatRequestByChatId",parm1);   
     }
