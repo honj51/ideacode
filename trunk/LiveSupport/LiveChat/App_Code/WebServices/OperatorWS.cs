@@ -19,6 +19,7 @@ using System.Data.SqlClient;
 using System.Web.Caching;
 using LiveSupport.LiveSupportModel;
 using System.IO;
+using System.Diagnostics;
 
     /// <summary>
     /// Contains all functionality for an operator to maintain
@@ -139,6 +140,7 @@ public class OperatorWS : System.Web.Services.WebService
         }
         checkAuthentication();
         NewChangesResult result = new NewChangesResult();
+        result.CheckTime = DateTime.Now;
         // 新访客
         result.NewVisitors = VisitorService.GetNewVisitors(op.AccountId, lastCheck);
 
@@ -150,10 +152,12 @@ public class OperatorWS : System.Web.Services.WebService
         result.Messages = new List<Message>();
         foreach (var item in visitSessions)
         {
-            result.Messages.AddRange(MessageService.GetMessages(item.SessionId, lastCheck));
+            result.Messages.AddRange(MessageService.GetMessagesForOperator(item.SessionId, lastCheck));
         }
+        //Debug.WriteLine(string.Format("CheckNewChanges({0}) MessageCount={1})",lastCheck.Ticks,result.Messages.Count));
+
         // 客服状态更新
-        result.CheckTime = DateTime.Now;
+        
         return result;
     }
 
@@ -161,7 +165,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public bool IsTyping(string chatId, bool isOperator)
     {
-        checkAuthentication();
+        //checkAuthentication(); // chatpage can't call this method
         bool retVal = false;
         HttpContext ctx = HttpContext.Current;
         if (ctx != null)
@@ -255,5 +259,12 @@ public class OperatorWS : System.Web.Services.WebService
     {
         checkAuthentication();
         return ChatService.ResetOperatorPassword(loginName);
+    }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public int AcceptChatRequest(string chatId)
+    {
+        return ChatService.AcceptChatRequest(Authentication.OperatorId, chatId);
     }
 }

@@ -12,8 +12,12 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 /// </summary>
 public class VisitorService
 {
-    private const int maxVisitorCountInMemory = 200;//定义最大值 
+    static VisitorService()
+    { 
+        // Load all Accounts
+    }
 
+    private const int maxVisitorCountInMemory = 200;//定义最大值 
     private static List<Visitor> visitors = new List<Visitor>();
 
     /// <summary>
@@ -23,14 +27,21 @@ public class VisitorService
     /// <returns>Visitorc对象</returns>
     public static Visitor GetVisitor(string visitorId)
     {
+        Visitor v = null;
         foreach (var item in visitors)
         {
             if (item.VisitorId == visitorId)
             {
-                return item;
+                v = item;
+                break;
             }
         }
-       return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.GetVisitorById(visitorId);
+        if (v == null)
+        {
+            v = LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.GetVisitorById(visitorId);
+            visitors.Add(v);
+        }
+        return v;
     }
     /// <summary>
     /// 保存新的访客信息和会话信息

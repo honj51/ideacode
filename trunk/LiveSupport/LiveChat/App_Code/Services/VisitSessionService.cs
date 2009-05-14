@@ -27,6 +27,11 @@ public class VisitSessionService
     /// <param name="session"></param>
     public static void NewSession(VisitSession session)
     {
+        if (sessions.Find(s=>s.SessionId == session.SessionId) != null)
+        {
+            return;
+        }
+
         sessions.Add(session);
         if (sessions.Count > maxVisitorSessionCountInMemory)
         {
