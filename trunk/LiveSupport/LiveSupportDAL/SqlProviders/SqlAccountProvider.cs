@@ -12,7 +12,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// 添加一条新的公司帐号
         /// </summary>
         /// <param name="account">account对象</param>
-        public static void AddAccount(Account account)
+        public static int AddAccount(Account account)
         {
             string sql = string.Format(
   "INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account]"
