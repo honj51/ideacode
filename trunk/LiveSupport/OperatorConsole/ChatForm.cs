@@ -73,8 +73,15 @@ namespace LiveSupport.OperatorConsole
         {
             if (!this.IsDisposed)
             {
-                WriteMessage(message.Text, message.Source);
-
+                //WriteMessage(message.Text, message.Source);
+                if (message.Type == MessageType.SystemMessage_ToBoth || message.Type == MessageType.SystemMessage_ToOperator)
+                {
+                    wb.Document.Write(string.Format("<span style=\"color: #FF9933\">{0}</span><br />", message.Text));
+                }
+                else
+                {
+                    wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", message.Source, message.Text));
+                }
                 if (!this.ringToolStripButton.Checked)
                 {
                     PlayMsgSound();
@@ -87,17 +94,15 @@ namespace LiveSupport.OperatorConsole
             }
         }
         
-        public ChatForm()
+        public ChatForm(VisitSession chatSession)
         {
             InitializeComponent();
-
+            this.chatSession = chatSession;
             // Simple authentication
             AuthenticationHeader auth = new AuthenticationHeader();
-            auth.userName = Properties.Settings.Default.WSUser;
+            auth.OperatorId = Program.CurrentOperator.OperatorId;
             ws.AuthenticationHeaderValue = auth;
-
-           
-         
+            ws.AcceptChatRequest(chatSession.SessionId);
             
             // We initialize the document
             wb.Navigate("about:初始会话...");
@@ -195,9 +200,8 @@ namespace LiveSupport.OperatorConsole
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
 
-            //ws;
-           // wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From, message));
-                
+            ws.SendMessage(msg);
+            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From, message));              
           
             //msg.Type = MessageType_ToAll;//*	
             //ws.AddMessage(msg);
