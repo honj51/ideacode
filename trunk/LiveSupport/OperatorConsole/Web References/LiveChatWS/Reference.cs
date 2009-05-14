@@ -49,7 +49,15 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback ResetOperatorPasswordOperationCompleted;
         
+        private System.Threading.SendOrPostCallback CloseChatOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetHistoryChatMessageOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetHistoryPageRequestsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback AcceptChatRequestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InviteChatOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -126,7 +134,19 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event ResetOperatorPasswordCompletedEventHandler ResetOperatorPasswordCompleted;
         
         /// <remarks/>
+        public event CloseChatCompletedEventHandler CloseChatCompleted;
+        
+        /// <remarks/>
+        public event GetHistoryChatMessageCompletedEventHandler GetHistoryChatMessageCompleted;
+        
+        /// <remarks/>
+        public event GetHistoryPageRequestsCompletedEventHandler GetHistoryPageRequestsCompleted;
+        
+        /// <remarks/>
         public event AcceptChatRequestCompletedEventHandler AcceptChatRequestCompleted;
+        
+        /// <remarks/>
+        public event InviteChatCompletedEventHandler InviteChatCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -284,25 +304,27 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UploadFile([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] bs, string filename) {
+        public void UploadFile([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] bs, string fileName, string chatId) {
             this.Invoke("UploadFile", new object[] {
                         bs,
-                        filename});
+                        fileName,
+                        chatId});
         }
         
         /// <remarks/>
-        public void UploadFileAsync(byte[] bs, string filename) {
-            this.UploadFileAsync(bs, filename, null);
+        public void UploadFileAsync(byte[] bs, string fileName, string chatId) {
+            this.UploadFileAsync(bs, fileName, chatId, null);
         }
         
         /// <remarks/>
-        public void UploadFileAsync(byte[] bs, string filename, object userState) {
+        public void UploadFileAsync(byte[] bs, string fileName, string chatId, object userState) {
             if ((this.UploadFileOperationCompleted == null)) {
                 this.UploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadFileOperationCompleted);
             }
             this.InvokeAsync("UploadFile", new object[] {
                         bs,
-                        filename}, this.UploadFileOperationCompleted, userState);
+                        fileName,
+                        chatId}, this.UploadFileOperationCompleted, userState);
         }
         
         private void OnUploadFileOperationCompleted(object arg) {
@@ -406,6 +428,104 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool CloseChat(string chatId) {
+            object[] results = this.Invoke("CloseChat", new object[] {
+                        chatId});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CloseChatAsync(string chatId) {
+            this.CloseChatAsync(chatId, null);
+        }
+        
+        /// <remarks/>
+        public void CloseChatAsync(string chatId, object userState) {
+            if ((this.CloseChatOperationCompleted == null)) {
+                this.CloseChatOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCloseChatOperationCompleted);
+            }
+            this.InvokeAsync("CloseChat", new object[] {
+                        chatId}, this.CloseChatOperationCompleted, userState);
+        }
+        
+        private void OnCloseChatOperationCompleted(object arg) {
+            if ((this.CloseChatCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CloseChatCompleted(this, new CloseChatCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryChatMessage", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Message[] GetHistoryChatMessage(string visitorId, System.DateTime begin, System.DateTime end) {
+            object[] results = this.Invoke("GetHistoryChatMessage", new object[] {
+                        visitorId,
+                        begin,
+                        end});
+            return ((Message[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetHistoryChatMessageAsync(string visitorId, System.DateTime begin, System.DateTime end) {
+            this.GetHistoryChatMessageAsync(visitorId, begin, end, null);
+        }
+        
+        /// <remarks/>
+        public void GetHistoryChatMessageAsync(string visitorId, System.DateTime begin, System.DateTime end, object userState) {
+            if ((this.GetHistoryChatMessageOperationCompleted == null)) {
+                this.GetHistoryChatMessageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetHistoryChatMessageOperationCompleted);
+            }
+            this.InvokeAsync("GetHistoryChatMessage", new object[] {
+                        visitorId,
+                        begin,
+                        end}, this.GetHistoryChatMessageOperationCompleted, userState);
+        }
+        
+        private void OnGetHistoryChatMessageOperationCompleted(object arg) {
+            if ((this.GetHistoryChatMessageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetHistoryChatMessageCompleted(this, new GetHistoryChatMessageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryPageRequests", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public PageRequest[] GetHistoryPageRequests(string visitorId, System.DateTime begin, System.DateTime end) {
+            object[] results = this.Invoke("GetHistoryPageRequests", new object[] {
+                        visitorId,
+                        begin,
+                        end});
+            return ((PageRequest[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetHistoryPageRequestsAsync(string visitorId, System.DateTime begin, System.DateTime end) {
+            this.GetHistoryPageRequestsAsync(visitorId, begin, end, null);
+        }
+        
+        /// <remarks/>
+        public void GetHistoryPageRequestsAsync(string visitorId, System.DateTime begin, System.DateTime end, object userState) {
+            if ((this.GetHistoryPageRequestsOperationCompleted == null)) {
+                this.GetHistoryPageRequestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetHistoryPageRequestsOperationCompleted);
+            }
+            this.InvokeAsync("GetHistoryPageRequests", new object[] {
+                        visitorId,
+                        begin,
+                        end}, this.GetHistoryPageRequestsOperationCompleted, userState);
+        }
+        
+        private void OnGetHistoryPageRequestsOperationCompleted(object arg) {
+            if ((this.GetHistoryPageRequestsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetHistoryPageRequestsCompleted(this, new GetHistoryPageRequestsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public int AcceptChatRequest(string chatId) {
             object[] results = this.Invoke("AcceptChatRequest", new object[] {
@@ -431,6 +551,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.AcceptChatRequestCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AcceptChatRequestCompleted(this, new AcceptChatRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/InviteChat", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int InviteChat(string visitorId) {
+            object[] results = this.Invoke("InviteChat", new object[] {
+                        visitorId});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InviteChatAsync(string visitorId) {
+            this.InviteChatAsync(visitorId, null);
+        }
+        
+        /// <remarks/>
+        public void InviteChatAsync(string visitorId, object userState) {
+            if ((this.InviteChatOperationCompleted == null)) {
+                this.InviteChatOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInviteChatOperationCompleted);
+            }
+            this.InvokeAsync("InviteChat", new object[] {
+                        visitorId}, this.InviteChatOperationCompleted, userState);
+        }
+        
+        private void OnInviteChatOperationCompleted(object arg) {
+            if ((this.InviteChatCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InviteChatCompleted(this, new InviteChatCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -462,21 +612,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", IsNullable=false)]
     public partial class AuthenticationHeader : System.Web.Services.Protocols.SoapHeader {
         
-        private string userNameField;
-        
         private string operatorIdField;
         
         private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        public string userName {
-            get {
-                return this.userNameField;
-            }
-            set {
-                this.userNameField = value;
-            }
-        }
         
         /// <remarks/>
         public string OperatorId {
@@ -496,6 +634,75 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class PageRequest {
+        
+        private string accountIdField;
+        
+        private string sessionIdField;
+        
+        private string pageField;
+        
+        private System.DateTime requestTimeField;
+        
+        private string referrerField;
+        
+        /// <remarks/>
+        public string AccountId {
+            get {
+                return this.accountIdField;
+            }
+            set {
+                this.accountIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SessionId {
+            get {
+                return this.sessionIdField;
+            }
+            set {
+                this.sessionIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Page {
+            get {
+                return this.pageField;
+            }
+            set {
+                this.pageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime RequestTime {
+            get {
+                return this.requestTimeField;
+            }
+            set {
+                this.requestTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Referrer {
+            get {
+                return this.referrerField;
+            }
+            set {
+                this.referrerField = value;
             }
         }
     }
@@ -1475,6 +1682,84 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void CloseChatCompletedEventHandler(object sender, CloseChatCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CloseChatCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CloseChatCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetHistoryChatMessageCompletedEventHandler(object sender, GetHistoryChatMessageCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetHistoryChatMessageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetHistoryChatMessageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Message[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Message[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetHistoryPageRequestsCompletedEventHandler(object sender, GetHistoryPageRequestsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetHistoryPageRequestsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetHistoryPageRequestsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public PageRequest[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((PageRequest[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void AcceptChatRequestCompletedEventHandler(object sender, AcceptChatRequestCompletedEventArgs e);
     
     /// <remarks/>
@@ -1486,6 +1771,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private object[] results;
         
         internal AcceptChatRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void InviteChatCompletedEventHandler(object sender, InviteChatCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InviteChatCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InviteChatCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -43,7 +43,6 @@
       <s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
       <s:complexType name="AuthenticationHeader">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="OperatorId" type="s:string" />
         </s:sequence>
         <s:anyAttribute />
@@ -221,7 +220,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="bs" type="s:base64Binary" />
-            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -271,6 +271,66 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="CloseChat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseChatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CloseChatResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryChatMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="visitorId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="begin" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="end" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryChatMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHistoryChatMessageResult" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryPageRequests">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="visitorId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="begin" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="end" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryPageRequestsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHistoryPageRequestsResult" type="tns:ArrayOfPageRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPageRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PageRequest" nillable="true" type="tns:PageRequest" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PageRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Page" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Referrer" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AcceptChatRequest">
         <s:complexType>
           <s:sequence>
@@ -282,6 +342,20 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="AcceptChatRequestResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviteChat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="visitorId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviteChatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InviteChatResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -368,6 +442,33 @@
   <wsdl:message name="ResetOperatorPasswordAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="CloseChatSoapIn">
+    <wsdl:part name="parameters" element="tns:CloseChat" />
+  </wsdl:message>
+  <wsdl:message name="CloseChatSoapOut">
+    <wsdl:part name="parameters" element="tns:CloseChatResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloseChatAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryChatMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHistoryChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryChatMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHistoryChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryChatMessageAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryPageRequestsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHistoryPageRequests" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryPageRequestsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHistoryPageRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryPageRequestsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:message name="AcceptChatRequestSoapIn">
     <wsdl:part name="parameters" element="tns:AcceptChatRequest" />
   </wsdl:message>
@@ -375,6 +476,15 @@
     <wsdl:part name="parameters" element="tns:AcceptChatRequestResponse" />
   </wsdl:message>
   <wsdl:message name="AcceptChatRequestAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="InviteChatSoapIn">
+    <wsdl:part name="parameters" element="tns:InviteChat" />
+  </wsdl:message>
+  <wsdl:message name="InviteChatSoapOut">
+    <wsdl:part name="parameters" element="tns:InviteChatResponse" />
+  </wsdl:message>
+  <wsdl:message name="InviteChatAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
@@ -414,9 +524,25 @@
       <wsdl:input message="tns:ResetOperatorPasswordSoapIn" />
       <wsdl:output message="tns:ResetOperatorPasswordSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="CloseChat">
+      <wsdl:input message="tns:CloseChatSoapIn" />
+      <wsdl:output message="tns:CloseChatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryChatMessage">
+      <wsdl:input message="tns:GetHistoryChatMessageSoapIn" />
+      <wsdl:output message="tns:GetHistoryChatMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryPageRequests">
+      <wsdl:input message="tns:GetHistoryPageRequestsSoapIn" />
+      <wsdl:output message="tns:GetHistoryPageRequestsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="AcceptChatRequest">
       <wsdl:input message="tns:AcceptChatRequestSoapIn" />
       <wsdl:output message="tns:AcceptChatRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InviteChat">
+      <wsdl:input message="tns:InviteChatSoapIn" />
+      <wsdl:output message="tns:InviteChatSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -511,11 +637,51 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CloseChat">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CloseChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryChatMessage">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryChatMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetHistoryChatMessageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryPageRequests">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryPageRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetHistoryPageRequestsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AcceptChatRequest">
       <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:AcceptChatRequestAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviteChat">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/InviteChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:InviteChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -614,11 +780,51 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CloseChat">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CloseChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryChatMessage">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryChatMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetHistoryChatMessageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryPageRequests">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryPageRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetHistoryPageRequestsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AcceptChatRequest">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:AcceptChatRequestAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviteChat">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/InviteChat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:InviteChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
