@@ -43,7 +43,7 @@ namespace LiveSupport.BLL
         public List<City> GetCityByProvinceName(string provinceName)
         {
             Province p = GetProvinceByProvinceName(provinceName);
-            SqlCityProvider.GetCityByProvinceId(p.Id);
+            return  SqlCityProvider.GetCityByProvinceId(p.Id);
         }
 
 
