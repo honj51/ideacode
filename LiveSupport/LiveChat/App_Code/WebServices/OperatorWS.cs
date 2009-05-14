@@ -196,14 +196,26 @@ public class OperatorWS : System.Web.Services.WebService
     /// <param name="filename"></param>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public void UploadFile(byte[] bs, string filename)
+    public void UploadFile(byte[] bs, string fileName, string chatId)
     {
         checkAuthentication();
         MemoryStream mo = new MemoryStream(bs);
-        FileStream fs = new FileStream(Server.MapPath("~/Download/") + filename, FileMode.Create);
+        FileStream fs = new FileStream(Server.MapPath("~/Download/") + fileName, FileMode.Create);
         mo.WriteTo(fs);
         mo.Close();
         fs.Close();
+
+        LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
+        m.ChatId = chatId;
+        m.Text = string.Format("客服已给您发送文件 {0} <a href=\"Download/{1}\">点击保存</a>", fileName, fileName);
+        m.Type = MessageType.SystemMessage_ToVisitor;
+        ChatService.SendMessage(m);
+
+        m = new LiveSupport.LiveSupportModel.Message();
+        m.ChatId = chatId;
+        m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
+        m.Type = MessageType.SystemMessage_ToOperator;
+        ChatService.SendMessage(m);
     }
     /// <summary>
     /// 客服发送一条信息给访客
@@ -253,10 +265,12 @@ public class OperatorWS : System.Web.Services.WebService
     /// </summary>
     /// <param name="chatId">chatid</param>
     /// <returns>int</returns>
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
     public bool CloseChat(string chatId)
     {
-       return ChatService.CloseChat(chatId, Authentication.userName);
-
+      //  checkAuthentication();
+        return ChatService.CloseChat(chatId, OperatorService.GetOperatorById(Authentication.OperatorId).NickName);
     }
     /// <summary>
     /// 获取聊天历史记录
@@ -265,6 +279,8 @@ public class OperatorWS : System.Web.Services.WebService
     /// <param name="begin">开始时间</param>
     /// <param name="end">结束时间</param>
     /// <returns>消息集合</returns>
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
     public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
     {
        return MessageService.GetHistoryChatMessage(visitorId,begin,end);
@@ -276,6 +292,8 @@ public class OperatorWS : System.Web.Services.WebService
     /// <param name="begin">开始时间</param>
     /// <param name="end"> 结束时间</param>
     /// <returns>Pagerequest集合</returns>
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
     public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
     {
       return PageRequestService.GetHistoryPageRequests(visitorId,begin,end);
@@ -295,6 +313,8 @@ public class OperatorWS : System.Web.Services.WebService
     /// </summary>
     /// <param name="visitorId"></param>
     /// <returns></returns>
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
     public int InviteChat(string visitorId)
     {
         return 0;

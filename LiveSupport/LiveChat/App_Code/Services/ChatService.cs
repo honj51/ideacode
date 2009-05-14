@@ -167,19 +167,24 @@ public class ChatService
     /// </summary>
     /// <param name="chatId"></param>
     /// <param name="userName"></param>
-    public static bool CloseChat(string chatId, string userName)
+    public static bool CloseChat(string chatId, string closeBy)
     {
-        Chat chat = new Chat();
-        chat.ChatId = chatId;
+        Chat chat = chats.Find(c => c.ChatId == chatId);
+        if (chat.Status == ChatStatus.Closed)
+        {
+            return true;
+        }
+        chat.Status = ChatStatus.Closed;
+        VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Visiting;
         chat.CloseTime = DateTime.Now;
-        chat.CloseBy = userName;
+        chat.CloseBy = closeBy;
         if (SqlChatProvider.CloseChat(chat) > 0)
         {
             Message m = new Message();
             m.ChatId =chatId;
             m.SentDate = DateTime.Now;
             m.Type = MessageType.SystemMessage_ToBoth;
-            m.Text = string.Format("{0}已关闭对话",userName);
+            m.Text = string.Format("{0}已关闭对话", closeBy);
             SendMessage(m);
             return true;
         }
@@ -196,7 +201,7 @@ public class ChatService
     /// <returns></returns>
     public static int AcceptChatRequest(string operatorId, string chatId)
     {
-        Chat chat = chats.Find(c => c.ChatId == chatId);
+        Chat chat = GetChatById(chatId);
         if (chat == null)
         {
             return AcceptChatRequestReturn_Error_Others;
@@ -233,5 +238,10 @@ public class ChatService
         else
             return AcceptChatRequestReturn_Error_Others;
 
+    }
+
+    public static Chat GetChatById(string chatId)
+    {
+        return chats.Find(c => c.ChatId == chatId);
     }
 }
