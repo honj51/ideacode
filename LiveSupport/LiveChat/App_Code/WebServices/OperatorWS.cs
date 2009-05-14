@@ -267,15 +267,8 @@ public class OperatorWS : System.Web.Services.WebService
     /// <returns>int</returns>
     public bool CloseChat(string chatId)
     {
-       int i=ChatService.CloseChat(chatId, Authentication.userName);
-        if(i>0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+       return ChatService.CloseChat(chatId, Authentication.userName);
+
     }
     /// <summary>
     /// 获取聊天历史记录
@@ -299,7 +292,11 @@ public class OperatorWS : System.Web.Services.WebService
     {
       return PageRequestService.GetHistoryPageRequests(visitorId,begin,end);
     }
-
+    /// <summary>
+    /// 接受对话请求
+    /// </summary>
+    /// <param name="chatId"></param>
+    /// <returns></returns>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public int AcceptChatRequest(string chatId)
@@ -310,8 +307,9 @@ public class OperatorWS : System.Web.Services.WebService
     /// </summary>
     /// <param name="visitorId"></param>
     /// <returns></returns>
-    //public int InviteChat(string visitorId)
-    //{
-    //    //TODO:目前还没实现
-    //}
+    public int InviteChat(string visitorId)
+    {
+        return 0;
+        //TODO:目前还没实现
+    }
 }
