@@ -12,10 +12,13 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 
 public class ChatService
 {
+    public const int AcceptChatRequestReturn_OK = 0;
+    public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;
+    public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;
+    public const int AcceptChatRequestReturn_Error_Others = -3;
     static ChatService()
     { 
     }
-
     private static List<Chat> chats = new List<Chat>();
 
     public static bool HasNewMessage(string chatId, long lastCheck)
@@ -168,11 +171,12 @@ public class ChatService
         chat.CloseBy = userName;
         return SqlChatProvider.CloseChat(chat);
     }
-    public const int AcceptChatRequestReturn_OK = 0;
-    public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;
-    public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;
-    public const int AcceptChatRequestReturn_Error_Others = -3;
-
+    /// <summary>
+    /// 接受对话请求
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <param name="chatId"></param>
+    /// <returns></returns>
     public static int AcceptChatRequest(string operatorId, string chatId)
     {
         Chat chat = chats.Find(c => c.ChatId == chatId);
