@@ -73,7 +73,7 @@ namespace LiveSupport.OperatorConsole
             this.txtOpPassword.Name = "txtOpPassword";
             this.txtOpPassword.PasswordChar = '*';
             this.txtOpPassword.Size = new System.Drawing.Size(154, 21);
-            this.txtOpPassword.TabIndex = 3;
+            this.txtOpPassword.TabIndex = 2;
             // 
             // lblOpPassword
             // 
@@ -90,7 +90,7 @@ namespace LiveSupport.OperatorConsole
             this.btnCancel.Location = new System.Drawing.Point(274, 159);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "取消(&C)";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -152,7 +152,7 @@ namespace LiveSupport.OperatorConsole
             this.txtUserName.Location = new System.Drawing.Point(101, 57);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(154, 21);
-            this.txtUserName.TabIndex = 3;
+            this.txtUserName.TabIndex = 0;
             // 
             // lblUserName
             // 
@@ -169,7 +169,7 @@ namespace LiveSupport.OperatorConsole
             this.cbxPassword.Location = new System.Drawing.Point(26, 161);
             this.cbxPassword.Name = "cbxPassword";
             this.cbxPassword.Size = new System.Drawing.Size(72, 16);
-            this.cbxPassword.TabIndex = 7;
+            this.cbxPassword.TabIndex = 3;
             this.cbxPassword.Text = "记住密码";
             this.cbxPassword.UseVisualStyleBackColor = true;
             // 
@@ -179,7 +179,7 @@ namespace LiveSupport.OperatorConsole
             this.cbxAutoLogin.Location = new System.Drawing.Point(104, 161);
             this.cbxAutoLogin.Name = "cbxAutoLogin";
             this.cbxAutoLogin.Size = new System.Drawing.Size(72, 16);
-            this.cbxAutoLogin.TabIndex = 8;
+            this.cbxAutoLogin.TabIndex = 4;
             this.cbxAutoLogin.Text = "自动登录";
             this.cbxAutoLogin.UseVisualStyleBackColor = true;
             // 
@@ -189,7 +189,7 @@ namespace LiveSupport.OperatorConsole
             this.linkLabel1.Location = new System.Drawing.Point(261, 64);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(65, 12);
-            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabIndex = 7;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "注册新帐号";
             // 
@@ -199,7 +199,7 @@ namespace LiveSupport.OperatorConsole
             this.linkLabel2.Location = new System.Drawing.Point(263, 126);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel2.TabIndex = 10;
+            this.linkLabel2.TabIndex = 8;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "取回密码";
             // 

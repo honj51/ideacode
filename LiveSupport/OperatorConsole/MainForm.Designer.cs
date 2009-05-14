@@ -44,10 +44,10 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label visitingTimeLabel;
             System.Windows.Forms.Label domainRequestedLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("在线");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("离线");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("在线");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("离线");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +66,7 @@ namespace LiveSupport.OperatorConsole
             this.playSoundOnChatRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playSoundOnChatMessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.autostartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +111,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.browserTextBox = new System.Windows.Forms.TextBox();
+            this.visitorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.domainRequestedTextBox = new System.Windows.Forms.TextBox();
             this.iPTextBox = new System.Windows.Forms.TextBox();
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -156,7 +158,6 @@ namespace LiveSupport.OperatorConsole
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.visitorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             emailLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -176,6 +177,7 @@ namespace LiveSupport.OperatorConsole
             this.contextMenuStrip1.SuspendLayout();
             this.tabChats.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
             this.mainSplitContainer.SuspendLayout();
@@ -186,7 +188,6 @@ namespace LiveSupport.OperatorConsole
             this.notifyIconContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // emailLabel
@@ -436,6 +437,7 @@ namespace LiveSupport.OperatorConsole
             this.playSoundOnChatRequestToolStripMenuItem,
             this.playSoundOnChatMessageToolStripMenuItem,
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem,
+            this.autoLoginToolStripMenuItem,
             this.toolStripSeparator1,
             this.autostartToolStripMenuItem});
             this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
@@ -464,6 +466,14 @@ namespace LiveSupport.OperatorConsole
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Text = "离线时仍获取网站访问记录";
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Click += new System.EventHandler(this.whenOfflineGetWebsiteRequestsToolStripMenuItem_Click);
+            // 
+            // autoLoginToolStripMenuItem
+            // 
+            this.autoLoginToolStripMenuItem.CheckOnClick = true;
+            this.autoLoginToolStripMenuItem.Name = "autoLoginToolStripMenuItem";
+            this.autoLoginToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.autoLoginToolStripMenuItem.Text = "自动登录";
+            this.autoLoginToolStripMenuItem.Click += new System.EventHandler(this.autoLoginToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -852,6 +862,10 @@ namespace LiveSupport.OperatorConsole
             this.browserTextBox.Size = new System.Drawing.Size(200, 21);
             this.browserTextBox.TabIndex = 17;
             // 
+            // visitorBindingSource
+            // 
+            this.visitorBindingSource.DataSource = typeof(LiveSupport.OperatorConsole.LiveChatWS.Visitor);
+            // 
             // domainRequestedTextBox
             // 
             this.domainRequestedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.DomainRequested", true));
@@ -971,6 +985,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // tmrCheckRequests
             // 
+            this.tmrCheckRequests.Enabled = true;
             this.tmrCheckRequests.Interval = 3500;
             // 
             // openFileDialog1
@@ -1029,13 +1044,13 @@ namespace LiveSupport.OperatorConsole
             this.operatorsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.operatorsTreeView.Location = new System.Drawing.Point(0, 12);
             this.operatorsTreeView.Name = "operatorsTreeView";
-            treeNode17.Name = "节点0";
-            treeNode17.Text = "在线";
-            treeNode18.Name = "节点1";
-            treeNode18.Text = "离线";
+            treeNode1.Name = "节点0";
+            treeNode1.Text = "在线";
+            treeNode2.Name = "节点1";
+            treeNode2.Text = "离线";
             this.operatorsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18});
+            treeNode1,
+            treeNode2});
             this.operatorsTreeView.Size = new System.Drawing.Size(204, 348);
             this.operatorsTreeView.TabIndex = 0;
             // 
@@ -1062,15 +1077,16 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode19.Name = "节点0";
-            treeNode19.Text = "在线客服";
-            treeNode20.Name = "节点1";
-            treeNode20.Text = "离线客服";
+            treeNode3.Name = "节点0";
+            treeNode3.Text = "在线客服";
+            treeNode4.Name = "节点1";
+            treeNode4.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode19,
-            treeNode20});
+            treeNode3,
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1262,17 +1278,15 @@ namespace LiveSupport.OperatorConsole
             // 
             // loginTimer
             // 
+            this.loginTimer.Enabled = true;
             this.loginTimer.Interval = 1000;
             this.loginTimer.Tick += new System.EventHandler(this.loginTimer_Tick);
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // visitorBindingSource
-            // 
-            this.visitorBindingSource.DataSource = typeof(LiveSupport.OperatorConsole.LiveChatWS.Visitor);
             // 
             // MainForm
             // 
@@ -1300,6 +1314,7 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).EndInit();
             this.mainSplitContainer.Panel1.ResumeLayout(false);
             this.mainSplitContainer.Panel2.ResumeLayout(false);
             this.mainSplitContainer.ResumeLayout(false);
@@ -1312,7 +1327,6 @@ namespace LiveSupport.OperatorConsole
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1428,5 +1442,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem 创建交流按钮CToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetpasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rejiggerpasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoLoginToolStripMenuItem;
     }
 }

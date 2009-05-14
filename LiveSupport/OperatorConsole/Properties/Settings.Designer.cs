@@ -108,7 +108,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1558/LiveChat/Operator.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:19080/LiveChat/Operator.asmx")]
         public string OperatorConsole_LiveChatWS_Operator {
             get {
                 return ((string)(this["OperatorConsole_LiveChatWS_Operator"]));

@@ -172,8 +172,7 @@ namespace LiveSupport.OperatorConsole
 
         private void acceptButton_Click(object sender, EventArgs e)
         {           
-            ChatForm cf = new ChatForm();
-            cf.ChatSession = this.chatSession;
+            ChatForm cf = new ChatForm(this.chatSession);
             Program.ChatForms.Add(cf);
          
             cf.Show();

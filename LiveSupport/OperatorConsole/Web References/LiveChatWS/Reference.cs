@@ -41,6 +41,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback IsTypingOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UploadFileOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SendMessageOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChangePasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ResetOperatorPasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AcceptChatRequestOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -102,6 +112,21 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event IsTypingCompletedEventHandler IsTypingCompleted;
+        
+        /// <remarks/>
+        public event UploadFileCompletedEventHandler UploadFileCompleted;
+        
+        /// <remarks/>
+        public event SendMessageCompletedEventHandler SendMessageCompleted;
+        
+        /// <remarks/>
+        public event ChangePasswordCompletedEventHandler ChangePasswordCompleted;
+        
+        /// <remarks/>
+        public event ResetOperatorPasswordCompletedEventHandler ResetOperatorPasswordCompleted;
+        
+        /// <remarks/>
+        public event AcceptChatRequestCompletedEventHandler AcceptChatRequestCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -253,6 +278,159 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.IsTypingCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.IsTypingCompleted(this, new IsTypingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UploadFile([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] bs, string filename) {
+            this.Invoke("UploadFile", new object[] {
+                        bs,
+                        filename});
+        }
+        
+        /// <remarks/>
+        public void UploadFileAsync(byte[] bs, string filename) {
+            this.UploadFileAsync(bs, filename, null);
+        }
+        
+        /// <remarks/>
+        public void UploadFileAsync(byte[] bs, string filename, object userState) {
+            if ((this.UploadFileOperationCompleted == null)) {
+                this.UploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadFileOperationCompleted);
+            }
+            this.InvokeAsync("UploadFile", new object[] {
+                        bs,
+                        filename}, this.UploadFileOperationCompleted, userState);
+        }
+        
+        private void OnUploadFileOperationCompleted(object arg) {
+            if ((this.UploadFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UploadFileCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/SendMessage", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool SendMessage(Message msg) {
+            object[] results = this.Invoke("SendMessage", new object[] {
+                        msg});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SendMessageAsync(Message msg) {
+            this.SendMessageAsync(msg, null);
+        }
+        
+        /// <remarks/>
+        public void SendMessageAsync(Message msg, object userState) {
+            if ((this.SendMessageOperationCompleted == null)) {
+                this.SendMessageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendMessageOperationCompleted);
+            }
+            this.InvokeAsync("SendMessage", new object[] {
+                        msg}, this.SendMessageOperationCompleted, userState);
+        }
+        
+        private void OnSendMessageOperationCompleted(object arg) {
+            if ((this.SendMessageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendMessageCompleted(this, new SendMessageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/ChangePassword", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int ChangePassword(string oldPassword, string newPassword) {
+            object[] results = this.Invoke("ChangePassword", new object[] {
+                        oldPassword,
+                        newPassword});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ChangePasswordAsync(string oldPassword, string newPassword) {
+            this.ChangePasswordAsync(oldPassword, newPassword, null);
+        }
+        
+        /// <remarks/>
+        public void ChangePasswordAsync(string oldPassword, string newPassword, object userState) {
+            if ((this.ChangePasswordOperationCompleted == null)) {
+                this.ChangePasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangePasswordOperationCompleted);
+            }
+            this.InvokeAsync("ChangePassword", new object[] {
+                        oldPassword,
+                        newPassword}, this.ChangePasswordOperationCompleted, userState);
+        }
+        
+        private void OnChangePasswordOperationCompleted(object arg) {
+            if ((this.ChangePasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangePasswordCompleted(this, new ChangePasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/ResetOperatorPassword", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int ResetOperatorPassword(string loginName) {
+            object[] results = this.Invoke("ResetOperatorPassword", new object[] {
+                        loginName});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ResetOperatorPasswordAsync(string loginName) {
+            this.ResetOperatorPasswordAsync(loginName, null);
+        }
+        
+        /// <remarks/>
+        public void ResetOperatorPasswordAsync(string loginName, object userState) {
+            if ((this.ResetOperatorPasswordOperationCompleted == null)) {
+                this.ResetOperatorPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnResetOperatorPasswordOperationCompleted);
+            }
+            this.InvokeAsync("ResetOperatorPassword", new object[] {
+                        loginName}, this.ResetOperatorPasswordOperationCompleted, userState);
+        }
+        
+        private void OnResetOperatorPasswordOperationCompleted(object arg) {
+            if ((this.ResetOperatorPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ResetOperatorPasswordCompleted(this, new ResetOperatorPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int AcceptChatRequest(string chatId) {
+            object[] results = this.Invoke("AcceptChatRequest", new object[] {
+                        chatId});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AcceptChatRequestAsync(string chatId) {
+            this.AcceptChatRequestAsync(chatId, null);
+        }
+        
+        /// <remarks/>
+        public void AcceptChatRequestAsync(string chatId, object userState) {
+            if ((this.AcceptChatRequestOperationCompleted == null)) {
+                this.AcceptChatRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAcceptChatRequestOperationCompleted);
+            }
+            this.InvokeAsync("AcceptChatRequest", new object[] {
+                        chatId}, this.AcceptChatRequestOperationCompleted, userState);
+        }
+        
+        private void OnAcceptChatRequestOperationCompleted(object arg) {
+            if ((this.AcceptChatRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AcceptChatRequestCompleted(this, new AcceptChatRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -665,7 +843,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private string companyField;
         
-        private string reMarkField;
+        private string remarkField;
         
         private bool isVIPField;
         
@@ -734,12 +912,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public string ReMark {
+        public string Remark {
             get {
-                return this.reMarkField;
+                return this.remarkField;
             }
             set {
-                this.reMarkField = value;
+                this.remarkField = value;
             }
         }
         
@@ -1110,6 +1288,114 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void UploadFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void SendMessageCompletedEventHandler(object sender, SendMessageCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SendMessageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SendMessageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void ChangePasswordCompletedEventHandler(object sender, ChangePasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangePasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChangePasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void ResetOperatorPasswordCompletedEventHandler(object sender, ResetOperatorPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ResetOperatorPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ResetOperatorPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void AcceptChatRequestCompletedEventHandler(object sender, AcceptChatRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AcceptChatRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AcceptChatRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
             }
         }
     }

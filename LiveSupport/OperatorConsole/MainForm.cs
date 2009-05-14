@@ -11,6 +11,7 @@ using System.Media;
 using System.IO;
 using System.Net;
 using Microsoft.Win32;
+using System.Diagnostics;
 namespace LiveSupport.OperatorConsole
 {
     public partial class MainForm : Form
@@ -29,7 +30,6 @@ namespace LiveSupport.OperatorConsole
         private bool hasCheckedChatRequests = false;
         private int numberOfChatWaiting = 0;
 
-        public bool Relogin = false;
         private SoundPlayer player = new SoundPlayer();
      
                 
@@ -62,8 +62,8 @@ namespace LiveSupport.OperatorConsole
             auth.userName = Properties.Settings.Default.WSUser;
             ws.AuthenticationHeaderValue = auth;
             initForm(LoginTime);
-           
 
+            autoLoginToolStripMenuItem.Checked = Properties.Settings.Default.AutoLogin;
                 //drpChatRequest.DisplayMember = "VisitorIP";
 
             //drpChatRequest.ValueMember = "ChatId";
@@ -125,8 +125,8 @@ namespace LiveSupport.OperatorConsole
         {
             //ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
 
-            Properties.Settings.Default.Save();
-         
+           Properties.Settings.Default.Save();
+
           
             //Application.Exit();
         }
@@ -170,13 +170,9 @@ namespace LiveSupport.OperatorConsole
            
             if(MessageBox.Show("您确定要退出，更换其他帐号登录吗？","提示",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1)==DialogResult.Yes)
             {
-                //this.Hide();
-                //Login lg = new Login();
-                //lg.Show();
-                Relogin = true;
-                notifyIcon.Dispose();
-                this.Close();               
-                
+                this.Close();
+                Process.Start(new ProcessStartInfo(Application.ExecutablePath));
+                Application.Exit();                
             }
 
            // connectToolStripMenuItem.Checked = false;
@@ -216,7 +212,9 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            AuthenticationHeader h = new AuthenticationHeader();
+            h.OperatorId = Program.CurrentOperator.OperatorId;
+            ws.AuthenticationHeaderValue = h;
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -227,6 +225,7 @@ namespace LiveSupport.OperatorConsole
 
         private void showMainForm(bool show)
         {
+          
             this.Visible = show;
             if (show)
             {
@@ -308,10 +307,9 @@ namespace LiveSupport.OperatorConsole
         TestFixture testFixture = new TestFixture();
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //NewChangesResult result = ws.CheckNewChanges(Program.CurrentOperator.Id, lastCheck);
-            NewChangesResult result = testFixture.NewResult();
-
-
+            NewChangesResult result = ws.CheckNewChanges(lastCheck);
+            //Debug.WriteLine(string.Format("CheckNewChanges: NewVisitor={0} Message={1}",result.NewVisitors.Length,result.Messages.Length ));
+          //  NewChangesResult result = testFixture.NewResult();
 
             foreach (ListViewItem item in lstVisitors.Items)
             {
@@ -405,27 +403,30 @@ namespace LiveSupport.OperatorConsole
                 }
             }
 
-            if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
+            if (result.Operators != null)
             {
-                operators.Clear();
-                operators.AddRange(result.Operators);
-                operatorsTreeView.Nodes[0].Nodes.Clear();
-                operatorsTreeView.Nodes[1].Nodes.Clear();
-                foreach (var item in operators)
+                if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
                 {
-                    if (item.Status!= OperatorStatus.Idle)
+                    operators.Clear();
+                    operators.AddRange(result.Operators);
+                    operatorsTreeView.Nodes[0].Nodes.Clear();
+                    operatorsTreeView.Nodes[1].Nodes.Clear();
+                    foreach (var item in operators)
                     {
-                        operatorsTreeView.Nodes[1].Nodes.Add(item.NickName).Tag = item;   
+                        if (item.Status != OperatorStatus.Idle)
+                        {
+                            operatorsTreeView.Nodes[1].Nodes.Add(item.NickName).Tag = item;
+                        }
+                        else
+                        {
+                            operatorsTreeView.Nodes[0].Nodes.Add(item.NickName).Tag = item;
+                        }
                     }
-                    else
-                    {
-                      operatorsTreeView.Nodes[0].Nodes.Add(item.NickName).Tag = item;
-                    }
-                }
+                } 
             }
 
 
-
+            Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
             lastCheck = result.CheckTime;
 
 
@@ -498,11 +499,8 @@ namespace LiveSupport.OperatorConsole
                     //}
                    //声音
                    player.Stop();
-                 
-                   ChatForm cf = new ChatForm();
                    Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-                   cf.ChatSession = v.CurrentSession;;
-                      
+                   ChatForm cf = new ChatForm(v.CurrentSession);                      
                      
                    Program.ChatForms.Add(cf);
                     cf.Show();
@@ -532,9 +530,9 @@ namespace LiveSupport.OperatorConsole
                 {
                     
 
-                    ChatForm cf = new ChatForm();
+                    //ChatForm cf = new ChatForm();
                     
-                    cf.Show();
+                    //cf.Show();
 
                 }
                 else
@@ -684,6 +682,12 @@ namespace LiveSupport.OperatorConsole
 
             // Return the Hashtable object.
             return groups;
+        }
+
+        private void autoLoginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             Properties.Settings.Default.AutoLogin=autoLoginToolStripMenuItem.Checked;
+            
         }
 
 
