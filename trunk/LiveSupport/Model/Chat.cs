@@ -19,14 +19,14 @@ namespace LiveSupport.LiveSupportModel
             get { return chatId; }
             set { chatId = value; }
         }
-        private string createBy;
+        private string createBy = string.Empty;
 
         public string CreateBy
         {
             get { return createBy; }
             set { createBy = value; }
         }
-        private string closeBy;
+        private string closeBy = string.Empty;
 
         public string CloseBy
         {
@@ -54,21 +54,21 @@ namespace LiveSupport.LiveSupportModel
             get { return closeTime; }
             set { closeTime = value; }
         }
-        private string accountId;
+        private string accountId = string.Empty;
          
         public string AccountId
         {
             get { return accountId; }
             set { accountId = value; }
         }
-        private string visitorId;
+        private string visitorId = string.Empty;
          
         public string VisitorId
         {
             get { return visitorId; }
             set { visitorId = value; }
         }
-        private string operatorId;
+        private string operatorId = string.Empty;
          
         public string OperatorId
         {
@@ -84,7 +84,9 @@ namespace LiveSupport.LiveSupportModel
         }
         public Chat()
         {
-            CreateTime = DateTime.Now;
+            createTime = DateTime.Now;
+            chatId = Guid.NewGuid().ToString();
+            status = ChatStatus.Closed;
         }
         public Chat(SqlDataReader data)
         {
