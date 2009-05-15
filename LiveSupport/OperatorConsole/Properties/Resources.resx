@@ -196,4 +196,7 @@
   <data name="All_software_is_current" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\All software is current.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WelCome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WelCome.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
