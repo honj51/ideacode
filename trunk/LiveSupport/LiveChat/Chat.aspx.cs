@@ -83,6 +83,18 @@ public partial class Chat : System.Web.UI.Page
         }
     }
 
+    public Visitor CurrentVisitor
+    {
+        get
+        {
+            string visitorId = Request.Cookies["VisitorId"].Value;
+            if (string.IsNullOrEmpty(visitorId) || VisitorService.GetVisitor(visitorId) == null || VisitorService.GetVisitor(visitorId) == null)
+                return null;
+            else
+                return VisitorService.GetVisitor(visitorId);
+        }
+    }
+
     public LiveSupport.LiveSupportModel.Chat CurrentChat
     {
         get
@@ -101,35 +113,30 @@ public partial class Chat : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             pnlNoOperator.Visible = pnlChat.Visible = pnlRequest.Visible = false;
-            
-            if (Request.QueryString["aid"] != null)
+
+            if (CurrentAccount == null || CurrentVisitor == null || CurrentVisitor.CurrentSession == null)
             {
-                string accountId;
-                if (Request.QueryString["aid"]!=null)
+                return;
+            }
+
+            // 是否客服邀请的对话
+            if (!string.IsNullOrEmpty(Request.QueryString["chatid"].ToString()))
+            {
+                // 主动邀请
+                pnlChat.Visible = true;
+                setCookie(Request.QueryString["chatid"].ToString());
+            }
+            else
+            {
+                if (OperatorService.HasOnlineOperator(CurrentAccount.AccountId))
                 {
-                    accountId = Request.QueryString["aid"].ToString();
-                    if (OperatorService.HasOnlineOperator(accountId))
-                    {
-
-                        if (Request.QueryString["chatid"].ToString() != "")
-
-                        {
-                            pnlChat.Visible = true;
-                            //this.dialog();
-                           
-                        }
-                        else
-                        {
-                            pnlRequest.Visible = true;
-                        }
-                      
-                    }
-                    else
-                    {
-                      pnlNoOperator.Visible = true;
-                    }                    
+                    pnlRequest.Visible = true;
                 }
-            }            
+                else
+                {
+                    pnlNoOperator.Visible = true;
+                }
+            }
         }
     }
     //获取聊天消息
@@ -272,8 +279,7 @@ public partial class Chat : System.Web.UI.Page
     [System.Web.Services.WebMethod]
     [ScriptMethod(UseHttpGet = true)]
     public static void CloseChat(string chtID)
-    {
-        
+    {        
         ChatService.CloseChat(chtID, VName);
     }
 
@@ -301,13 +307,41 @@ public partial class Chat : System.Web.UI.Page
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
     {
-        string visitorId = Request.Cookies["VisitorId"].Value;
-        if (string.IsNullOrEmpty(visitorId) || VisitorService.GetVisitor(visitorId) == null || VisitorService.GetVisitor(visitorId).CurrentSessionId == null)
+
+        if (CurrentVisitor == null)
         {
             return;
         }
+        string chatId = CurrentVisitor.CurrentSessionId;
+        setCookie(chatId);
 
-        string chatId = VisitorService.GetVisitor(visitorId).CurrentSessionId;
+        LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
+        chatRequest.AccountId = Request.QueryString["aid"];
+        chatRequest.ChatId = chatId;
+        chatRequest.CreateTime = DateTime.Now;
+        chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
+        chatRequest.VisitorId = CurrentVisitor.VisitorId;
+        VisitSessionService.RequestChat(chatRequest);       
+
+        //lblOp.Text = msg.Message;
+        // we set the visitor name in the ViewState
+        if (!string.IsNullOrEmpty(txtName.Text))
+        {
+            CurrentVisitor.Name = txtName.Text;
+        }
+        if (!string.IsNullOrEmpty(txtEmail.Text))
+        {
+            CurrentVisitor.Email = txtEmail.Text;
+        }
+        VisitorName = CurrentVisitor.Name;
+        VName = CurrentVisitor.Name;
+       
+        pnlChat.Visible = true;
+        pnlRequest.Visible = false;
+    }
+
+    private void setCookie(string chatId)
+    {
         if (Request.Cookies["chatId"] != null)
         {
             Response.Cookies["chatId"].Value = chatId;
@@ -327,31 +361,6 @@ public partial class Chat : System.Web.UI.Page
             HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
             Response.Cookies.Add(cookie);
         }
-
-        LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
-        chatRequest.AccountId = Request.QueryString["aid"];
-        chatRequest.ChatId = chatId;
-        chatRequest.CreateTime = DateTime.Now;
-        chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
-        chatRequest.VisitorId = visitorId;
-        VisitSessionService.RequestChat(chatRequest);       
-
-        //lblOp.Text = msg.Message;
-        // we set the visitor name in the ViewState
-        Visitor v = VisitorService.GetVisitor(visitorId);
-        if (!string.IsNullOrEmpty(txtName.Text))
-        {
-            v.Name = txtName.Text;
-        }
-        if (!string.IsNullOrEmpty(txtEmail.Text))
-        {
-            v.Email = txtEmail.Text;
-        }
-        VisitorName = v.Name;
-        VName = v.Name;
-       
-        pnlChat.Visible = true;
-        pnlRequest.Visible = false;
     }
 
     // 页面同意客服的对话邀请后调用

@@ -1,5 +1,11 @@
 ﻿		var lastNotify = new Date();
-			
+        
+        function getCookie(name)//取cookies函数       
+        {
+            var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+            if(arr != null) return unescape(arr[2]); return null;
+        }	
+        
 		function checkEnter(e){ //e is event object passed from function invocation
           
             var characterCode// literal character code will be stored in this variable

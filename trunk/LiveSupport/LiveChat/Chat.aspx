@@ -115,8 +115,8 @@ function Exit()
 {
     if(confirm('是否关闭')==true) 
     {
-      CloseChat();
-      window.close();
+        PageMethods.CloseChat(getCookie("chatId"));
+        window.close();
     }
 }
 
