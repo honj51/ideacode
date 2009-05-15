@@ -70,7 +70,14 @@ public class ProcessImage : IHttpHandler
             VisitorService.NewVisit(visitor, session);            
         }
         
-        // TODO: 
+        // TODO:
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.AccountId = accountId;
+        pageRequest.Page = context.Request.Url.ToString();
+        pageRequest.Referrer = context.Request.UrlReferrer.ToString();
+        pageRequest.RequestTime = DateTime.Now;
+        pageRequest.SessionId = visitor.CurrentSessionId;
+        PageRequestService.AddPageRequest(pageRequest);        
 
         // we get the status of the operators
         opOnline = OperatorService.HasOnlineOperator(accountId);
