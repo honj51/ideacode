@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
+using LiveSupport.SqlProviders;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
@@ -19,7 +20,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             SqlDataReader r = DBHelper.GetReader(sql);
             while (r.Read())
             {
-                ops.Add(new Operator(r));
+                Operator op = new Operator(r);
+                op.Department = SqlDepartmentProvider.GetDepartmentById(r["DepartmentId"].ToString());
+                ops.Add(op);
 
             }
             r.Close();
@@ -31,7 +34,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// 更新客服信息
         /// </summary>
         /// <param name="op">Operator对象</param>
-        public static void UpdateOperator(Operator op)
+        public static int UpdateOperator(Operator op)
         {
             string sql = string.Format(
              "UPDATE [LiveSupport].[dbo].[LiveChat_Operator]"
@@ -40,12 +43,13 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
              + ",[Password] = '{2}'"
              + ",[NickName] = '{3}'"
              + ",[Email] = '{4}'"
-             + ",[IsAdmin] = '{4}'"
-             + ",[Status] = '{5}'"
-             + " ,[AVChatStatus] = {6}"
-             + " WHERE OperatorId={7}"
-             , op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, op.IsAdmin, op.Status, op.AVChatStatus, op.OperatorId);
-            DBHelper.ExecuteCommand(sql);
+             + ",[IsAdmin] = '{5}'"
+             + ",[Status] = '{6}'"
+             + " ,[AVChatStatus] = '{7}'"
+             + " ,[DepartmentId] = '{8}'"
+             + " WHERE OperatorId='{9}'"
+             , op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, op.IsAdmin, op.Status, op.AVChatStatus,op.Department.DepartmentId,op.OperatorId);
+            return DBHelper.ExecuteCommand(sql);
         }
         /// <summary>
         /// 判断用用户名是否存在
@@ -62,6 +66,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 if (data.Read())
                 {
                     op = new Operator(data);
+                    op.Department = SqlDepartmentProvider.GetDepartmentById(data["DepartmentId"].ToString());
                 }
                 data.Close();
                 data.Dispose();
@@ -80,7 +85,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <returns>int</returns>
         public static int  DeleteOperatorByid(string operatorId)
         {
-            string sql = "delete  dbo.LiveChat_Operator  where OperatorId="+operatorId;
+            string sql = "delete  dbo.LiveChat_Operator  where OperatorId='"+operatorId+"'";
             return  DBHelper.ExecuteCommand(sql);
         }
         /// <summary>
@@ -99,9 +104,10 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
            + " ,[Email]"
            + " ,[IsAdmin]"
            + " ,[Status]"
-           + "  ,[AVChatStatus])"
-           + "VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"
-           , op.OperatorId,op.AccountId,op.LoginName,op.Password,op.NickName,op.Email,op.IsAdmin,op.Status,op.AVChatStatus);
+           + "  ,[AVChatStatus]" 
+           + ",[DepartmentId])"
+           + "VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')"
+           , op.OperatorId,op.AccountId,op.LoginName,op.Password,op.NickName,op.Email,op.IsAdmin,op.Status,op.AVChatStatus,op.Department.DepartmentId);
             DBHelper.ExecuteCommand(sql);
         }
         /// <summary>
@@ -111,12 +117,14 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <returns>Operator对象</returns>
         public static List<Operator> GetOperatorByAccountId(string accountId)
         {
-            string sql = "select * from LiveChat_Operator where AccountId=" + accountId;
+            string sql = "select * from LiveChat_Operator where AccountId='" + accountId+"'";
             List<Operator> operators = new List<Operator>();
             SqlDataReader r = DBHelper.GetReader(sql);
             while (r.Read())
             {
-                operators.Add(new Operator(r));
+                Operator op = new Operator(r);
+                op.Department = SqlDepartmentProvider.GetDepartmentById(r["DepartmentId"].ToString());
+                operators.Add(op);
 
             }
             r.Close();
@@ -131,7 +139,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <returns>Operator 对象</returns>
         public static Operator GetOperatorByOperatorId(string operatorId)
         {
-            string sql = "select * from  dbo.LiveChat_Operator where OperatorId=" + operatorId;
+            string sql = "select * from  dbo.LiveChat_Operator where OperatorId='" + operatorId+"'";
             SqlDataReader data = null;
             Operator op = null;
             try
@@ -140,6 +148,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 if (data.Read())
                 {
                     op = new Operator(data);
+                    op.Department = SqlDepartmentProvider.GetDepartmentById(data["DepartmentId"].ToString());
                 }
                 data.Close();
                 data.Dispose();

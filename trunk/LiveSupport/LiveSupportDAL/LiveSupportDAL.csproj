@@ -43,6 +43,7 @@
     <Compile Include="SqlProviders\SqlChatProvider.cs" />
     <Compile Include="SqlProviders\SqlCityProvider.cs" />
     <Compile Include="SqlProviders\SqlCustomerProvider.cs" />
+    <Compile Include="SqlProviders\SqlDepartmentProvider.cs" />
     <Compile Include="SqlProviders\SqlMessageProvider.cs" />
     <Compile Include="SqlProviders\SqlOperatorProvider.cs" />
     <Compile Include="SqlProviders\SqlPageRequestProvider.cs" />
