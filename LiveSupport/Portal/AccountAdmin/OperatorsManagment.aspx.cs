@@ -45,7 +45,7 @@ public partial class AccountAdmin_OperatorsManangment : System.Web.UI.Page
     {
         if (e.CommandName == "cmdEdit")
         {
-            Response.Redirect("OperatorEdit.aspx?operatorId=" + e.CommandArgument.ToString());
+            Response.Redirect("OperatorEdit2.aspx?operatorId=" + e.CommandArgument.ToString());
         }
         else if (e.CommandName == "cmdDelete")
         {

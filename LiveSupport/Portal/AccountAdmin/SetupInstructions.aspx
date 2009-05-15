@@ -37,14 +37,14 @@
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客服管理</SPAN> 
-<A href="#">部门设置</A> 
+<A href="DepartmentManager.aspx">部门设置</A> 
 <A href="OperatorsManagment.aspx" >客服管理</A> 
 <A href="#">客服评分</A> <A href="#">登陆日志</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">风格设置</SPAN> 
 <A href="#">风格基本信息设置</A> 
-<A href="SetupInstructions.aspx">获取代码设置</A> 
+<A href="GetCode.aspx">获取代码设置</A> 
 <A href="#">界面风格设置</A> 
 <A href="#">简介设置</A> 
 <A href="#">对话提示设置</A> 

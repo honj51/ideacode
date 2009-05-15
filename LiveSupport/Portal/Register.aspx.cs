@@ -27,8 +27,8 @@ public partial class Default2 : System.Web.UI.Page
     //绑定所有身份信息
     public void DataBindProvince()
     {
-        List<Province> list=AddressMessager.GetProvinceAll();
-        if ( list != null)
+        List<Province> list = AddressMessager.GetProvinceAll();
+        if (list != null)
         {
             this.ddlSheng.DataSource = list;
             this.ddlSheng.DataValueField = "id";
@@ -39,8 +39,8 @@ public partial class Default2 : System.Web.UI.Page
     //通过省份编号获得所有城市
     public void DataBindCityByPid(int pid)
     {
-        List<City> list=AddressMessager.GetCityByProvinceId(pid);
-        if ( list != null)
+        List<City> list = AddressMessager.GetCityByProvinceId(pid);
+        if (list != null)
         {
             this.ddlShi.DataSource = list;
             this.ddlShi.DataValueField = "id";
@@ -153,7 +153,7 @@ public partial class Default2 : System.Web.UI.Page
         }
 
     }
-    //省份发生改变的时候
+    ////省份发生改变的时候
     protected void ddlSheng_SelectedIndexChanged(object sender, EventArgs e)
     {
         DataBindCityByPid(Convert.ToInt32(this.ddlSheng.SelectedValue.ToString()));

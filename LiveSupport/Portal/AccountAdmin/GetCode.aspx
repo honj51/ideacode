@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorCreate2.aspx.cs" Inherits="Default2" Title="无标题页" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="Default2" Title="无标题页" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
@@ -86,64 +86,52 @@ href="#">自定义LOGO</A>
 <td style="width: 583px;" valign="top">
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     添加客服</div>
+     手动安装代码</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
-<img src="Images/tjkf.jpg" />
-<table style="width: 360px; text-align:left; height: 238px;" border="1"  cellpadding="0" cellspacing="0">
-所在部门<tr><td>坐席用户名：</td><td>
-    </asp:TextBox>
-                                          <asp:DropDownList ID="ddlDepartment" runat="server">
-                                          </asp:DropDownList>
-    </td></tr>
-<tr><td>坐席用户名：</td><td>
-    <asp:TextBox ID="txtLoginName" runat="server"></asp:TextBox>
-    </td></tr>
-<tr><td>密码：</td><td>
-    <asp:TextBox ID="txtPwd" runat="server"></asp:TextBox>
-    </td></tr>
-    <tr><td>重置密码：</td><td>
-    <asp:TextBox ID="txtPwds" runat="server"></asp:TextBox>
-    </td></tr>
-    <tr><td>昵称：</td><td>
-    <asp:TextBox ID="txtNickName" runat="server"></asp:TextBox>
-    </td></tr>
-<tr><td>Email地址：</td><td>
-    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-    </td></tr>
-      <tr><td>是否是管理员：</td><td>
-        <asp:DropDownList ID="ddlIsAdmin" runat="server">
-            <asp:ListItem Value="false">否</asp:ListItem>
-            <asp:ListItem Value="true">是</asp:ListItem>
-        </asp:DropDownList>
-    </td></tr>
-    <tr><td>客服状态：</td><td>
-        <asp:DropDownList ID="ddlStatus" runat="server">
-            <asp:ListItem Value="Idle">空闲</asp:ListItem>
-            <asp:ListItem Value="Chatting">交谈中</asp:ListItem>
-            <asp:ListItem Value="BeRightBack">一会回来</asp:ListItem>
-            <asp:ListItem Value="Away">离开</asp:ListItem>
-            <asp:ListItem Value="Offline ">离线</asp:ListItem>
-        </asp:DropDownList>
-    </td></tr>
-    <tr><td style="height: 18px">音频状态：</td><td style="height: 18px">
-        <asp:DropDownList ID="ddlAVChatStatus" runat="server">
-            <asp:ListItem Value="Idle">空闲</asp:ListItem>
-            <asp:ListItem Value="Chatting">通话中</asp:ListItem>
-        </asp:DropDownList>
-    </td></tr>
-<tr style="background-image:url('Images/tjkf2.jpg');"><td></td>
-    <td>
-    <asp:ImageButton ID="ImageButton1" runat="server" 
-        ImageUrl="~/AccountAdmin/Images/add.gif" onclick="ImageButton1_Click" />
-    </td></tr>
-</table>
- <!--尾部-->
-           </div>
+ <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; ">
+    <!--头部--->
+      <div id="content-main-three-column" style="text-align:left;">
+        <!--内容-->
+      <TABLE style=" width:475px; text-align:left;" cellSpacing=1 cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD colSpan=2>客服图标代码</TD></TR>
+  <TR>
+    <TD >客服图标：</TD>
+    <TD><INPUT onclick=editCode() type=radio value=0 name=kf_fixed> 固定客服图标 &nbsp; &nbsp; 
+      <INPUT onclick=editCode() type=radio CHECKED value=1 name=kf_fixed> 漂浮客服图标 
+<!--
+								<input type="radio" name="kf_fixed" value="2" onclick="editCode()" />	列表形式	
+								--> </TD></TR>
+    <TD >图标位置：</TD>
+    <TD ><INPUT id=pos_1 onclick=editCode() type=radio CHECKED value=cn name=locate> 左边 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <INPUT id=language onclick=editCode() type=radio value=en name=locate>右边</TD></TR>
+  <TR id=posmodel_tr>
+    <TD >代码：</TD>
+    <TD ><TEXTAREA class=textarea id=codepic0 name=codepic0 rows=5 readOnly cols=45> &lt;script src="http://kf.5251.net/js/yh.jsp?companyId=6707&amp;style=15131&amp;keyword=1"&gt;&lt;/script&gt;</TEXTAREA></TD></TR>
+  <TR>
+    <TD id=kflogo vAlign=top align=middle colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD scope=col colSpan=2 
+height=22>&nbsp;</TD></TR>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD><INPUT id=kf_city type=hidden name=kf_city> <INPUT class=green id=Submit onclick=editCode(); type=button value=获取代码 name=Submit> 
+<INPUT onClick="javascript:Dr_copy(document.getElementById('codepic0'))" type=button value=复制 name=Submit2> 
+      &nbsp;&nbsp;
+      <P></P></TD></TR></TBODY></TABLE>
+      </div>
+       <!--导航结束-->
+       </div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </td></tr>
    </table>
    </center>
 </asp:Content>
+
