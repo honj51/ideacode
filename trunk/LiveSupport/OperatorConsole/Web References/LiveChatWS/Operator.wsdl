@@ -833,10 +833,10 @@
   </wsdl:binding>
   <wsdl:service name="OperatorWS">
     <wsdl:port name="OperatorWSSoap" binding="tns:OperatorWSSoap">
-      <soap:address location="http://localhost:19080/LiveChat/Operator.asmx" />
+      <soap:address location="http://localhost:3355/LiveChat/Operator.asmx" />
     </wsdl:port>
     <wsdl:port name="OperatorWSSoap12" binding="tns:OperatorWSSoap12">
-      <soap12:address location="http://localhost:19080/LiveChat/Operator.asmx" />
+      <soap12:address location="http://localhost:3355/LiveChat/Operator.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
