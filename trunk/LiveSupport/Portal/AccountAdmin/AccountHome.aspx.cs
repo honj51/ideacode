@@ -39,15 +39,18 @@ public partial class AccountAdmin_AccountHome : System.Web.UI.Page
     //通过Account获得公司信息
     public void GetAccount(Account account)
     {
-        this.txtCompanyName.Text = account.CompanyName;
-        this.txtUrl.Text = account.Url;
-        this.txtCompanyPhone.Text = account.Phone;
-        this.txtName.Text = account.ContactName;
-        this.txtMail.Text = account.Email;
-        this.ddlVocation.SelectedValue = account.Industry;
-        this.ddlSheng.SelectedValue = account.Province;
-        DataBindCityByPName(account.Province);
-        this.ddlShi.SelectedItem.Text = account.City;
+        if (account != null)
+        {
+            this.txtCompanyName.Text = account.CompanyName;
+            this.txtUrl.Text = account.Url;
+            this.txtCompanyPhone.Text = account.Phone;
+            this.txtName.Text = account.ContactName;
+            this.txtMail.Text = account.Email;
+            this.ddlVocation.SelectedValue = account.Industry;
+            this.ddlSheng.SelectedValue = account.Province;
+            DataBindCityByPName(account.Province);
+            this.ddlShi.SelectedItem.Text = account.City;
+        }
     }
     //绑定所有身份信息
     public void DataBindProvince()
@@ -76,7 +79,7 @@ public partial class AccountAdmin_AccountHome : System.Web.UI.Page
     //修改
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        //验证
+        ////验证
         if (this.txtCompanyName.Text == "")
         {
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入公司名称');</script>");

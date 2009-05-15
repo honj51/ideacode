@@ -16,22 +16,39 @@ public partial class Default2 : System.Web.UI.Page
     Account account;
     protected void Page_Load(object sender, EventArgs e)
     {
-     
+
+
             if (Session["User"] != null)
             {
-                account =(Account)Session["User"];
+                account = (Account)Session["User"];
+                if(!IsPostBack)
+                DataBindDepartment(account.AccountId);
             }
             else
             {
                 this.Response.Redirect("../Login.aspx");
             }
         
+        
+    }
+    //绑定公司部门
+    public void DataBindDepartment(string accountId)
+    {
+        this.ddlDepartment.DataSource = DepartmentManager.GetDepartmentByAccountId(accountId);
+        this.ddlDepartment.DataTextField = "DepartmentName";
+        this.ddlDepartment.DataValueField = "DepartmentId";
+        this.ddlDepartment.DataBind();
     }
    //增加
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
         try
         {
+            if (this.ddlDepartment.Items.Count <= 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请先添加部门');window.location='AddDepartment.aspx';</script>");
+                return;
+            }
             if (this.txtLoginName.Text == "")
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入坐席用户名');</script>");
@@ -54,7 +71,7 @@ public partial class Default2 : System.Web.UI.Page
             op.Password = this.txtPwd.Text;
             op.NickName = this.txtNickName.Text;
             op.IsAdmin = Boolean.Parse(this.ddlIsAdmin.SelectedValue.Trim());
-            
+            op.Department = DepartmentManager.GetDepartmentById(this.ddlDepartment.SelectedValue);
             op.Status = (OperatorStatus)Enum.Parse((typeof(OperatorStatus)), this.ddlStatus.SelectedValue);
             op.AVChatStatus = this.ddlAVChatStatus.SelectedValue;
             op.Email = this.txtEmail.Text;
