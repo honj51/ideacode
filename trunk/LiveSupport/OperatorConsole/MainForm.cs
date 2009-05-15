@@ -59,10 +59,7 @@ namespace LiveSupport.OperatorConsole
             initForm(LoginTime);
 
             autoLoginToolStripMenuItem.Checked = Properties.Settings.Default.AutoLogin;
-                //drpChatRequest.DisplayMember = "VisitorIP";
-
-            //drpChatRequest.ValueMember = "ChatId";
-
+               
             playSoundOnChatRequestToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatReq;
             playSoundOnChatMessageToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatMsg;
             whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked = Properties.Settings.Default.GetWebRequestOffline;
@@ -477,7 +474,9 @@ namespace LiveSupport.OperatorConsole
             {
                 Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
                 visitorBindingSource.DataSource = v;
+               
             }
+
         }
 
         // 更改密码
@@ -717,6 +716,198 @@ namespace LiveSupport.OperatorConsole
              Properties.Settings.Default.AutoLogin=autoLoginToolStripMenuItem.Checked;
             
         }
+
+        #region 查找访客历史页面请求选择时间
+
+
+        private void txtRequestBeginTime_Leave(object sender, EventArgs e)
+        {
+            this.requestbeginMonthCalendar.Visible = false;
+        }
+
+        private void txtRequestBeginTime_Enter(object sender, EventArgs e)
+        {
+            this.requestbeginMonthCalendar.Visible = true;
+            this.requestbeginMonthCalendar.MaxDate = DateTime.Now;
+           
+             txtRequestBeginTime.Text= this.requestbeginMonthCalendar.SelectionRange.Start.ToString();
+        }
+
+
+        private void requestbeginMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            this.txtRequestBeginTime.Text = this.requestbeginMonthCalendar.SelectionRange.Start.ToString();
+            this.requestbeginMonthCalendar.Visible = false;
+           
+        }
+
+        private void txtRequestEndTime_Enter(object sender, EventArgs e)
+        {
+            this.requestendRMonthCalendar.Visible = true;
+            this.requestendRMonthCalendar.MaxDate = DateTime.Now;
+            txtRequestEndTime.Text= this.requestendRMonthCalendar.SelectionRange.Start.ToString();
+        }
+
+        private void txtRequestEndTime_Leave(object sender, EventArgs e)
+        {
+            this.requestendRMonthCalendar.Visible = false;
+        }
+
+        private void requestendMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            this.txtRequestEndTime.Text = this.requestendRMonthCalendar.SelectionRange.End.ToString();
+            this.requestendRMonthCalendar.Visible = false;
+            
+        }
+
+        #endregion
+
+
+        #region 查找访客历史消息记录选择时间
+
+        private void txtMessageBeginTime_Enter(object sender, EventArgs e)
+        {
+            this.messagebeginMonthCalendar.Visible = true;
+            this.messagebeginMonthCalendar.MaxDate = DateTime.Now;
+            txtMessageBeginTime.Text = this.messagebeginMonthCalendar.SelectionRange.Start.ToString();
+        }
+
+        private void txtMessageBeginTime_Leave(object sender, EventArgs e)
+        {
+            this.messagebeginMonthCalendar.Visible = false;
+        }
+
+        private void txtMessageEndTime_Enter(object sender, EventArgs e)
+        {
+            this.messageendMonthCalendar.Visible = true;
+            this.messageendMonthCalendar.MaxDate = DateTime.Now;
+            txtMessageEndTime.Text = this.messageendMonthCalendar.SelectionRange.Start.ToString();
+        }
+
+        private void txtMessageEndTime_Leave(object sender, EventArgs e)
+        {
+            this.messageendMonthCalendar.Visible = false;
+        }
+
+        private void messagebeginMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            this.txtMessageBeginTime.Text = this.messagebeginMonthCalendar.SelectionRange.Start.ToString();
+            this.messagebeginMonthCalendar.Visible = false;
+        }
+
+        private void messageendMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            this.txtMessageEndTime.Text = this.messageendMonthCalendar.SelectionRange.End.ToString();
+            this.messageendMonthCalendar.Visible = false;
+        }
+
+
+        #endregion
+      
+        
+        /// <summary>
+        /// 访客历史页面请求记录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+           if (lstVisitors.SelectedItems.Count > 0)
+           {
+                if ((!string.IsNullOrEmpty(txtRequestBeginTime.Text)) && (!string.IsNullOrEmpty(txtRequestEndTime.Text)) && Convert.ToDateTime(txtRequestBeginTime.Text) <= Convert.ToDateTime(txtRequestEndTime.Text))
+                {
+                    Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
+                    PageRequest[] pRequest = ws.GetHistoryPageRequests(v.VisitorId, Convert.ToDateTime(txtRequestBeginTime.Text), Convert.ToDateTime(txtRequestEndTime.Text));
+                    if (pRequest.Length > 0)
+                    {
+                        foreach (PageRequest item in pRequest)
+                        {
+                            if (item == null) continue;
+                            ListViewItem pageRequest = new ListViewItem(new string[]
+                         {
+                            item.Page, item.RequestTime.ToString(), item.Referrer
+                            
+                          });
+                            pageRequest.Tag = item;
+                            lstPageRequest.Items.Add(pageRequest);
+
+                        }
+                    }
+                    else 
+                    {
+                        MessageBox.Show("该访客暂无访问记录！");
+                    
+                    }
+                   
+                }
+                else
+                {
+
+                    MessageBox.Show("日期选择有误！！");
+                }
+           }
+           else 
+           {
+               MessageBox.Show("请选择访客");
+           }
+        }
+
+        /// <summary>
+        /// 访客历史聊天记录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            if (lstVisitors.SelectedItems.Count > 0)
+            {
+                if ((!string.IsNullOrEmpty(txtMessageBeginTime.Text)) && (!string.IsNullOrEmpty(txtMessageEndTime.Text)) && Convert.ToDateTime(txtMessageBeginTime.Text) <= Convert.ToDateTime(txtMessageEndTime.Text))
+                {
+                    Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
+                    LiveSupport.OperatorConsole.LiveChatWS.Message[] msg = ws.GetHistoryChatMessage(v.VisitorId, Convert.ToDateTime(txtMessageBeginTime.Text), Convert.ToDateTime(txtMessageBeginTime.Text));
+                    if (msg.Length > 0)
+                    {
+                        foreach (LiveSupport.OperatorConsole.LiveChatWS.Message item in msg)
+                        {
+                            if (item == null) continue;
+                            ListViewItem Message = new ListViewItem(new string[]
+                         {
+                            item.ChatId, item.Source, item.Destination,item.Text,item.SentDate.ToString(),item.Type.ToString()
+                            
+                          });
+                            Message.Tag = item;
+                            lstMessage.Items.Add(Message);
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("该访客暂无聊天记录！");
+
+                    }
+
+                }
+                else
+                {
+
+                    MessageBox.Show("日期选择有误！！");
+                }
+            }
+            else
+            {
+                MessageBox.Show("请选择访客");
+            }
+        }
+
+     
+      
+
+     
+
+
+
+
+
 
 
     }

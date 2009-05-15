@@ -88,6 +88,10 @@ namespace LiveSupport.OperatorConsole
                 {
                     wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", message.Source, message.Text));
                 }
+
+                wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
+
+                
                 if (!this.ringToolStripButton.Checked)
                 {
                     PlayMsgSound();
@@ -209,8 +213,8 @@ namespace LiveSupport.OperatorConsole
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
 
             ws.SendMessage(msg);
-            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From, message));              
-          
+            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From, message));
+            wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
             //msg.Type = MessageType_ToAll;//*	
             //ws.AddMessage(msg);
         }

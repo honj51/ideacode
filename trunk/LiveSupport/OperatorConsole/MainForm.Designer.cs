@@ -107,8 +107,33 @@ namespace LiveSupport.OperatorConsole
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.messagebeginMonthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.messageendMonthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.lblMessageEndTime = new System.Windows.Forms.Label();
+            this.lblMessageBeginTime = new System.Windows.Forms.Label();
+            this.txtMessageEndTime = new System.Windows.Forms.TextBox();
+            this.txtMessageBeginTime = new System.Windows.Forms.TextBox();
+            this.lstMessage = new System.Windows.Forms.ListView();
+            this.colChatID = new System.Windows.Forms.ColumnHeader();
+            this.colSource = new System.Windows.Forms.ColumnHeader();
+            this.colDestination = new System.Windows.Forms.ColumnHeader();
+            this.colText = new System.Windows.Forms.ColumnHeader();
+            this.colSentDate = new System.Windows.Forms.ColumnHeader();
+            this.colType = new System.Windows.Forms.ColumnHeader();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.lblREndTime = new System.Windows.Forms.Label();
+            this.lblRBeginTime = new System.Windows.Forms.Label();
+            this.requestendRMonthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.txtRequestEndTime = new System.Windows.Forms.TextBox();
+            this.txtRequestBeginTime = new System.Windows.Forms.TextBox();
+            this.requestbeginMonthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.lstPageRequest = new System.Windows.Forms.ListView();
+            this.colPage = new System.Windows.Forms.ColumnHeader();
+            this.colRTime = new System.Windows.Forms.ColumnHeader();
+            this.colReferrer = new System.Windows.Forms.ColumnHeader();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.browserTextBox = new System.Windows.Forms.TextBox();
             this.visitorBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -176,6 +201,8 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabChats.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -193,61 +220,61 @@ namespace LiveSupport.OperatorConsole
             // emailLabel
             // 
             emailLabel.AutoSize = true;
-            emailLabel.Location = new System.Drawing.Point(26, 224);
+            emailLabel.Location = new System.Drawing.Point(23, 42);
             emailLabel.Name = "emailLabel";
-            emailLabel.Size = new System.Drawing.Size(41, 12);
+            emailLabel.Size = new System.Drawing.Size(59, 12);
             emailLabel.TabIndex = 4;
-            emailLabel.Text = "Email:";
+            emailLabel.Text = "电子邮件:";
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(26, 247);
+            nameLabel.Location = new System.Drawing.Point(23, 65);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(35, 12);
+            nameLabel.Size = new System.Drawing.Size(59, 12);
             nameLabel.TabIndex = 8;
-            nameLabel.Text = "Name:";
+            nameLabel.Text = "访客名称:";
             // 
             // reMarkLabel
             // 
             reMarkLabel.AutoSize = true;
-            reMarkLabel.Location = new System.Drawing.Point(26, 274);
+            reMarkLabel.Location = new System.Drawing.Point(23, 92);
             reMarkLabel.Name = "reMarkLabel";
-            reMarkLabel.Size = new System.Drawing.Size(53, 12);
+            reMarkLabel.Size = new System.Drawing.Size(35, 12);
             reMarkLabel.TabIndex = 10;
-            reMarkLabel.Text = "Re Mark:";
+            reMarkLabel.Text = "备注:";
             // 
             // visitCountLabel
             // 
             visitCountLabel.AutoSize = true;
-            visitCountLabel.Location = new System.Drawing.Point(26, 301);
+            visitCountLabel.Location = new System.Drawing.Point(23, 119);
             visitCountLabel.Name = "visitCountLabel";
-            visitCountLabel.Size = new System.Drawing.Size(77, 12);
+            visitCountLabel.Size = new System.Drawing.Size(59, 12);
             visitCountLabel.TabIndex = 12;
-            visitCountLabel.Text = "Visit Count:";
+            visitCountLabel.Text = "访问次数:";
             // 
             // visitorIdLabel
             // 
             visitorIdLabel.AutoSize = true;
-            visitorIdLabel.Location = new System.Drawing.Point(26, 198);
+            visitorIdLabel.Location = new System.Drawing.Point(23, 16);
             visitorIdLabel.Name = "visitorIdLabel";
-            visitorIdLabel.Size = new System.Drawing.Size(71, 12);
+            visitorIdLabel.Size = new System.Drawing.Size(47, 12);
             visitorIdLabel.TabIndex = 14;
-            visitorIdLabel.Text = "Visitor Id:";
+            visitorIdLabel.Text = "访客ID:";
             // 
             // browserLabel
             // 
             browserLabel.AutoSize = true;
-            browserLabel.Location = new System.Drawing.Point(26, 328);
+            browserLabel.Location = new System.Drawing.Point(23, 146);
             browserLabel.Name = "browserLabel";
-            browserLabel.Size = new System.Drawing.Size(53, 12);
+            browserLabel.Size = new System.Drawing.Size(47, 12);
             browserLabel.TabIndex = 16;
-            browserLabel.Text = "Browser:";
+            browserLabel.Text = "浏览器:";
             // 
             // iPLabel
             // 
             iPLabel.AutoSize = true;
-            iPLabel.Location = new System.Drawing.Point(26, 361);
+            iPLabel.Location = new System.Drawing.Point(23, 179);
             iPLabel.Name = "iPLabel";
             iPLabel.Size = new System.Drawing.Size(23, 12);
             iPLabel.TabIndex = 26;
@@ -256,65 +283,65 @@ namespace LiveSupport.OperatorConsole
             // leaveTimeLabel
             // 
             leaveTimeLabel.AutoSize = true;
-            leaveTimeLabel.Location = new System.Drawing.Point(26, 389);
+            leaveTimeLabel.Location = new System.Drawing.Point(23, 207);
             leaveTimeLabel.Name = "leaveTimeLabel";
-            leaveTimeLabel.Size = new System.Drawing.Size(71, 12);
+            leaveTimeLabel.Size = new System.Drawing.Size(59, 12);
             leaveTimeLabel.TabIndex = 28;
-            leaveTimeLabel.Text = "Leave Time:";
+            leaveTimeLabel.Text = "离开时间:";
             // 
             // locationLabel
             // 
             locationLabel.AutoSize = true;
-            locationLabel.Location = new System.Drawing.Point(26, 422);
+            locationLabel.Location = new System.Drawing.Point(23, 240);
             locationLabel.Name = "locationLabel";
             locationLabel.Size = new System.Drawing.Size(59, 12);
             locationLabel.TabIndex = 30;
-            locationLabel.Text = "Location:";
+            locationLabel.Text = "地理位置:";
             // 
             // pageRequestCountLabel
             // 
             pageRequestCountLabel.AutoSize = true;
-            pageRequestCountLabel.Location = new System.Drawing.Point(26, 453);
+            pageRequestCountLabel.Location = new System.Drawing.Point(23, 271);
             pageRequestCountLabel.Name = "pageRequestCountLabel";
-            pageRequestCountLabel.Size = new System.Drawing.Size(119, 12);
+            pageRequestCountLabel.Size = new System.Drawing.Size(71, 12);
             pageRequestCountLabel.TabIndex = 34;
-            pageRequestCountLabel.Text = "Page Request Count:";
+            pageRequestCountLabel.Text = "浏览页面数:";
             // 
             // pageRequestedLabel
             // 
             pageRequestedLabel.AutoSize = true;
-            pageRequestedLabel.Location = new System.Drawing.Point(26, 486);
+            pageRequestedLabel.Location = new System.Drawing.Point(23, 304);
             pageRequestedLabel.Name = "pageRequestedLabel";
-            pageRequestedLabel.Size = new System.Drawing.Size(95, 12);
+            pageRequestedLabel.Size = new System.Drawing.Size(59, 12);
             pageRequestedLabel.TabIndex = 36;
-            pageRequestedLabel.Text = "Page Requested:";
+            pageRequestedLabel.Text = "请求页面:";
             // 
             // referrerLabel
             // 
             referrerLabel.AutoSize = true;
-            referrerLabel.Location = new System.Drawing.Point(26, 513);
+            referrerLabel.Location = new System.Drawing.Point(23, 337);
             referrerLabel.Name = "referrerLabel";
             referrerLabel.Size = new System.Drawing.Size(59, 12);
             referrerLabel.TabIndex = 38;
-            referrerLabel.Text = "Referrer:";
+            referrerLabel.Text = "引用页面:";
             // 
             // visitingTimeLabel
             // 
             visitingTimeLabel.AutoSize = true;
-            visitingTimeLabel.Location = new System.Drawing.Point(26, 576);
+            visitingTimeLabel.Location = new System.Drawing.Point(23, 394);
             visitingTimeLabel.Name = "visitingTimeLabel";
-            visitingTimeLabel.Size = new System.Drawing.Size(89, 12);
+            visitingTimeLabel.Size = new System.Drawing.Size(83, 12);
             visitingTimeLabel.TabIndex = 44;
-            visitingTimeLabel.Text = "Visiting Time:";
+            visitingTimeLabel.Text = "页面访问时间:";
             // 
             // domainRequestedLabel
             // 
             domainRequestedLabel.AutoSize = true;
-            domainRequestedLabel.Location = new System.Drawing.Point(26, 543);
+            domainRequestedLabel.Location = new System.Drawing.Point(23, 361);
             domainRequestedLabel.Name = "domainRequestedLabel";
-            domainRequestedLabel.Size = new System.Drawing.Size(107, 12);
+            domainRequestedLabel.Size = new System.Drawing.Size(59, 12);
             domainRequestedLabel.TabIndex = 24;
-            domainRequestedLabel.Text = "Domain Requested:";
+            domainRequestedLabel.Text = "请求域名:";
             // 
             // mainMenu
             // 
@@ -774,7 +801,8 @@ namespace LiveSupport.OperatorConsole
             // 
             // tabPage1
             // 
-            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabPage1.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.WelCome;
+            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -786,6 +814,14 @@ namespace LiveSupport.OperatorConsole
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnSend);
+            this.tabPage2.Controls.Add(this.messagebeginMonthCalendar);
+            this.tabPage2.Controls.Add(this.messageendMonthCalendar);
+            this.tabPage2.Controls.Add(this.lblMessageEndTime);
+            this.tabPage2.Controls.Add(this.lblMessageBeginTime);
+            this.tabPage2.Controls.Add(this.txtMessageEndTime);
+            this.tabPage2.Controls.Add(this.txtMessageBeginTime);
+            this.tabPage2.Controls.Add(this.lstMessage);
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -793,6 +829,117 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(578, 20);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.TabIndex = 14;
+            this.btnSend.Text = "确   定";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // messagebeginMonthCalendar
+            // 
+            this.messagebeginMonthCalendar.Location = new System.Drawing.Point(82, 47);
+            this.messagebeginMonthCalendar.Name = "messagebeginMonthCalendar";
+            this.messagebeginMonthCalendar.TabIndex = 8;
+            this.messagebeginMonthCalendar.Visible = false;
+            this.messagebeginMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.messagebeginMonthCalendar_DateSelected);
+            // 
+            // messageendMonthCalendar
+            // 
+            this.messageendMonthCalendar.Location = new System.Drawing.Point(388, 47);
+            this.messageendMonthCalendar.Name = "messageendMonthCalendar";
+            this.messageendMonthCalendar.TabIndex = 11;
+            this.messageendMonthCalendar.Visible = false;
+            this.messageendMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.messageendMonthCalendar_DateSelected);
+            // 
+            // lblMessageEndTime
+            // 
+            this.lblMessageEndTime.AutoSize = true;
+            this.lblMessageEndTime.Location = new System.Drawing.Point(317, 26);
+            this.lblMessageEndTime.Name = "lblMessageEndTime";
+            this.lblMessageEndTime.Size = new System.Drawing.Size(65, 12);
+            this.lblMessageEndTime.TabIndex = 13;
+            this.lblMessageEndTime.Text = "结束时间：";
+            // 
+            // lblMessageBeginTime
+            // 
+            this.lblMessageBeginTime.AutoSize = true;
+            this.lblMessageBeginTime.Location = new System.Drawing.Point(11, 26);
+            this.lblMessageBeginTime.Name = "lblMessageBeginTime";
+            this.lblMessageBeginTime.Size = new System.Drawing.Size(65, 12);
+            this.lblMessageBeginTime.TabIndex = 12;
+            this.lblMessageBeginTime.Text = "开始时间：";
+            // 
+            // txtMessageEndTime
+            // 
+            this.txtMessageEndTime.Location = new System.Drawing.Point(388, 22);
+            this.txtMessageEndTime.Name = "txtMessageEndTime";
+            this.txtMessageEndTime.ReadOnly = true;
+            this.txtMessageEndTime.Size = new System.Drawing.Size(130, 21);
+            this.txtMessageEndTime.TabIndex = 10;
+            this.txtMessageEndTime.Leave += new System.EventHandler(this.txtMessageEndTime_Leave);
+            this.txtMessageEndTime.Enter += new System.EventHandler(this.txtMessageEndTime_Enter);
+            // 
+            // txtMessageBeginTime
+            // 
+            this.txtMessageBeginTime.Location = new System.Drawing.Point(82, 22);
+            this.txtMessageBeginTime.Name = "txtMessageBeginTime";
+            this.txtMessageBeginTime.ReadOnly = true;
+            this.txtMessageBeginTime.Size = new System.Drawing.Size(130, 21);
+            this.txtMessageBeginTime.TabIndex = 9;
+            this.txtMessageBeginTime.Leave += new System.EventHandler(this.txtMessageBeginTime_Leave);
+            this.txtMessageBeginTime.Enter += new System.EventHandler(this.txtMessageBeginTime_Enter);
+            // 
+            // lstMessage
+            // 
+            this.lstMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstMessage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colChatID,
+            this.colSource,
+            this.colDestination,
+            this.colText,
+            this.colSentDate,
+            this.colType});
+            this.lstMessage.GridLines = true;
+            this.lstMessage.Location = new System.Drawing.Point(0, 61);
+            this.lstMessage.Name = "lstMessage";
+            this.lstMessage.Size = new System.Drawing.Size(742, 256);
+            this.lstMessage.TabIndex = 15;
+            this.lstMessage.UseCompatibleStateImageBehavior = false;
+            this.lstMessage.View = System.Windows.Forms.View.Details;
+            // 
+            // colChatID
+            // 
+            this.colChatID.Text = "所属对话";
+            this.colChatID.Width = 233;
+            // 
+            // colSource
+            // 
+            this.colSource.Text = "发送者";
+            this.colSource.Width = 148;
+            // 
+            // colDestination
+            // 
+            this.colDestination.Text = "接受者";
+            this.colDestination.Width = 241;
+            // 
+            // colText
+            // 
+            this.colText.Text = "消息内容";
+            // 
+            // colSentDate
+            // 
+            this.colSentDate.Text = "发送时间";
+            // 
+            // colType
+            // 
+            this.colType.Text = "消息类型";
             // 
             // tabPage3
             // 
@@ -806,6 +953,14 @@ namespace LiveSupport.OperatorConsole
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnOk);
+            this.tabPage4.Controls.Add(this.lblREndTime);
+            this.tabPage4.Controls.Add(this.lblRBeginTime);
+            this.tabPage4.Controls.Add(this.requestendRMonthCalendar);
+            this.tabPage4.Controls.Add(this.txtRequestEndTime);
+            this.tabPage4.Controls.Add(this.txtRequestBeginTime);
+            this.tabPage4.Controls.Add(this.requestbeginMonthCalendar);
+            this.tabPage4.Controls.Add(this.lstPageRequest);
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -813,6 +968,102 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "网页浏览";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(578, 18);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 6;
+            this.btnOk.Text = "确   定";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // lblREndTime
+            // 
+            this.lblREndTime.AutoSize = true;
+            this.lblREndTime.Location = new System.Drawing.Point(321, 23);
+            this.lblREndTime.Name = "lblREndTime";
+            this.lblREndTime.Size = new System.Drawing.Size(65, 12);
+            this.lblREndTime.TabIndex = 5;
+            this.lblREndTime.Text = "结束时间：";
+            // 
+            // lblRBeginTime
+            // 
+            this.lblRBeginTime.AutoSize = true;
+            this.lblRBeginTime.Location = new System.Drawing.Point(16, 23);
+            this.lblRBeginTime.Name = "lblRBeginTime";
+            this.lblRBeginTime.Size = new System.Drawing.Size(65, 12);
+            this.lblRBeginTime.TabIndex = 4;
+            this.lblRBeginTime.Text = "开始时间：";
+            // 
+            // requestendRMonthCalendar
+            // 
+            this.requestendRMonthCalendar.Location = new System.Drawing.Point(392, 44);
+            this.requestendRMonthCalendar.Name = "requestendRMonthCalendar";
+            this.requestendRMonthCalendar.TabIndex = 3;
+            this.requestendRMonthCalendar.Visible = false;
+            this.requestendRMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.requestendMonthCalendar_DateSelected);
+            // 
+            // txtRequestEndTime
+            // 
+            this.txtRequestEndTime.Location = new System.Drawing.Point(392, 20);
+            this.txtRequestEndTime.Name = "txtRequestEndTime";
+            this.txtRequestEndTime.ReadOnly = true;
+            this.txtRequestEndTime.Size = new System.Drawing.Size(130, 21);
+            this.txtRequestEndTime.TabIndex = 2;
+            this.txtRequestEndTime.Leave += new System.EventHandler(this.txtRequestEndTime_Leave);
+            this.txtRequestEndTime.Enter += new System.EventHandler(this.txtRequestEndTime_Enter);
+            // 
+            // txtRequestBeginTime
+            // 
+            this.txtRequestBeginTime.Location = new System.Drawing.Point(82, 20);
+            this.txtRequestBeginTime.Name = "txtRequestBeginTime";
+            this.txtRequestBeginTime.ReadOnly = true;
+            this.txtRequestBeginTime.Size = new System.Drawing.Size(130, 21);
+            this.txtRequestBeginTime.TabIndex = 1;
+            this.txtRequestBeginTime.Leave += new System.EventHandler(this.txtRequestBeginTime_Leave);
+            this.txtRequestBeginTime.Enter += new System.EventHandler(this.txtRequestBeginTime_Enter);
+            // 
+            // requestbeginMonthCalendar
+            // 
+            this.requestbeginMonthCalendar.Location = new System.Drawing.Point(82, 44);
+            this.requestbeginMonthCalendar.Name = "requestbeginMonthCalendar";
+            this.requestbeginMonthCalendar.TabIndex = 0;
+            this.requestbeginMonthCalendar.Visible = false;
+            this.requestbeginMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.requestbeginMonthCalendar_DateSelected);
+            // 
+            // lstPageRequest
+            // 
+            this.lstPageRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstPageRequest.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colPage,
+            this.colRTime,
+            this.colReferrer});
+            this.lstPageRequest.GridLines = true;
+            this.lstPageRequest.Location = new System.Drawing.Point(0, 59);
+            this.lstPageRequest.Name = "lstPageRequest";
+            this.lstPageRequest.Size = new System.Drawing.Size(739, 273);
+            this.lstPageRequest.TabIndex = 7;
+            this.lstPageRequest.UseCompatibleStateImageBehavior = false;
+            this.lstPageRequest.View = System.Windows.Forms.View.Details;
+            // 
+            // colPage
+            // 
+            this.colPage.Text = "请求页面";
+            this.colPage.Width = 233;
+            // 
+            // colRTime
+            // 
+            this.colRTime.Text = "请求时间";
+            this.colRTime.Width = 148;
+            // 
+            // colReferrer
+            // 
+            this.colReferrer.Text = "引用页";
+            this.colReferrer.Width = 241;
             // 
             // tabPage5
             // 
@@ -857,7 +1108,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.browserTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.Browser", true));
             this.browserTextBox.Enabled = false;
-            this.browserTextBox.Location = new System.Drawing.Point(151, 325);
+            this.browserTextBox.Location = new System.Drawing.Point(148, 143);
             this.browserTextBox.Name = "browserTextBox";
             this.browserTextBox.Size = new System.Drawing.Size(200, 21);
             this.browserTextBox.TabIndex = 17;
@@ -870,7 +1121,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.domainRequestedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.DomainRequested", true));
             this.domainRequestedTextBox.Enabled = false;
-            this.domainRequestedTextBox.Location = new System.Drawing.Point(151, 543);
+            this.domainRequestedTextBox.Location = new System.Drawing.Point(148, 361);
             this.domainRequestedTextBox.Name = "domainRequestedTextBox";
             this.domainRequestedTextBox.Size = new System.Drawing.Size(200, 21);
             this.domainRequestedTextBox.TabIndex = 25;
@@ -879,7 +1130,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.iPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.IP", true));
             this.iPTextBox.Enabled = false;
-            this.iPTextBox.Location = new System.Drawing.Point(151, 358);
+            this.iPTextBox.Location = new System.Drawing.Point(148, 176);
             this.iPTextBox.Name = "iPTextBox";
             this.iPTextBox.Size = new System.Drawing.Size(200, 21);
             this.iPTextBox.TabIndex = 27;
@@ -888,7 +1139,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.leaveTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitorBindingSource, "CurrentSession.LeaveTime", true));
             this.leaveTimeDateTimePicker.Enabled = false;
-            this.leaveTimeDateTimePicker.Location = new System.Drawing.Point(151, 385);
+            this.leaveTimeDateTimePicker.Location = new System.Drawing.Point(148, 203);
             this.leaveTimeDateTimePicker.Name = "leaveTimeDateTimePicker";
             this.leaveTimeDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.leaveTimeDateTimePicker.TabIndex = 29;
@@ -897,7 +1148,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.locationTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.Location", true));
             this.locationTextBox.Enabled = false;
-            this.locationTextBox.Location = new System.Drawing.Point(151, 419);
+            this.locationTextBox.Location = new System.Drawing.Point(148, 237);
             this.locationTextBox.Name = "locationTextBox";
             this.locationTextBox.Size = new System.Drawing.Size(200, 21);
             this.locationTextBox.TabIndex = 31;
@@ -906,7 +1157,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.pageRequestCountTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.PageRequestCount", true));
             this.pageRequestCountTextBox.Enabled = false;
-            this.pageRequestCountTextBox.Location = new System.Drawing.Point(151, 450);
+            this.pageRequestCountTextBox.Location = new System.Drawing.Point(148, 268);
             this.pageRequestCountTextBox.Name = "pageRequestCountTextBox";
             this.pageRequestCountTextBox.Size = new System.Drawing.Size(200, 21);
             this.pageRequestCountTextBox.TabIndex = 35;
@@ -915,7 +1166,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.pageRequestedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.PageRequested", true));
             this.pageRequestedTextBox.Enabled = false;
-            this.pageRequestedTextBox.Location = new System.Drawing.Point(151, 483);
+            this.pageRequestedTextBox.Location = new System.Drawing.Point(148, 301);
             this.pageRequestedTextBox.Name = "pageRequestedTextBox";
             this.pageRequestedTextBox.Size = new System.Drawing.Size(200, 21);
             this.pageRequestedTextBox.TabIndex = 37;
@@ -924,7 +1175,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.referrerTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.Referrer", true));
             this.referrerTextBox.Enabled = false;
-            this.referrerTextBox.Location = new System.Drawing.Point(151, 510);
+            this.referrerTextBox.Location = new System.Drawing.Point(148, 328);
             this.referrerTextBox.Name = "referrerTextBox";
             this.referrerTextBox.Size = new System.Drawing.Size(200, 21);
             this.referrerTextBox.TabIndex = 39;
@@ -933,7 +1184,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.visitingTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitorBindingSource, "CurrentSession.VisitingTime", true));
             this.visitingTimeDateTimePicker.Enabled = false;
-            this.visitingTimeDateTimePicker.Location = new System.Drawing.Point(151, 572);
+            this.visitingTimeDateTimePicker.Location = new System.Drawing.Point(148, 390);
             this.visitingTimeDateTimePicker.Name = "visitingTimeDateTimePicker";
             this.visitingTimeDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.visitingTimeDateTimePicker.TabIndex = 45;
@@ -942,7 +1193,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "Email", true));
             this.emailTextBox.Enabled = false;
-            this.emailTextBox.Location = new System.Drawing.Point(151, 221);
+            this.emailTextBox.Location = new System.Drawing.Point(148, 39);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(200, 21);
             this.emailTextBox.TabIndex = 5;
@@ -951,7 +1202,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "Name", true));
             this.nameTextBox.Enabled = false;
-            this.nameTextBox.Location = new System.Drawing.Point(151, 244);
+            this.nameTextBox.Location = new System.Drawing.Point(148, 62);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(200, 21);
             this.nameTextBox.TabIndex = 9;
@@ -960,7 +1211,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.reMarkTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "ReMark", true));
             this.reMarkTextBox.Enabled = false;
-            this.reMarkTextBox.Location = new System.Drawing.Point(151, 271);
+            this.reMarkTextBox.Location = new System.Drawing.Point(148, 89);
             this.reMarkTextBox.Name = "reMarkTextBox";
             this.reMarkTextBox.Size = new System.Drawing.Size(200, 21);
             this.reMarkTextBox.TabIndex = 11;
@@ -969,7 +1220,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.visitCountTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "VisitCount", true));
             this.visitCountTextBox.Enabled = false;
-            this.visitCountTextBox.Location = new System.Drawing.Point(151, 298);
+            this.visitCountTextBox.Location = new System.Drawing.Point(148, 116);
             this.visitCountTextBox.Name = "visitCountTextBox";
             this.visitCountTextBox.Size = new System.Drawing.Size(200, 21);
             this.visitCountTextBox.TabIndex = 13;
@@ -978,7 +1229,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.visitorIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "VisitorId", true));
             this.visitorIdTextBox.Enabled = false;
-            this.visitorIdTextBox.Location = new System.Drawing.Point(151, 195);
+            this.visitorIdTextBox.Location = new System.Drawing.Point(148, 13);
             this.visitorIdTextBox.Name = "visitorIdTextBox";
             this.visitorIdTextBox.Size = new System.Drawing.Size(200, 21);
             this.visitorIdTextBox.TabIndex = 15;
@@ -1301,7 +1552,7 @@ namespace LiveSupport.OperatorConsole
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
-            this.Text = "LiveSupport 座席客户端";
+            this.Text = " ";
             this.TransparencyKey = System.Drawing.Color.LightSteelBlue;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -1312,6 +1563,10 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.tabChats.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).EndInit();
@@ -1443,5 +1698,30 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem resetpasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rejiggerpasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoLoginToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtRequestBeginTime;
+        private System.Windows.Forms.MonthCalendar requestbeginMonthCalendar;
+        private System.Windows.Forms.MonthCalendar requestendRMonthCalendar;
+        private System.Windows.Forms.TextBox txtRequestEndTime;
+        private System.Windows.Forms.Label lblREndTime;
+        private System.Windows.Forms.Label lblRBeginTime;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.ListView lstPageRequest;
+        private System.Windows.Forms.ColumnHeader colPage;
+        private System.Windows.Forms.ColumnHeader colRTime;
+        private System.Windows.Forms.ColumnHeader colReferrer;
+        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Label lblMessageEndTime;
+        private System.Windows.Forms.Label lblMessageBeginTime;
+        private System.Windows.Forms.MonthCalendar messageendMonthCalendar;
+        private System.Windows.Forms.TextBox txtMessageEndTime;
+        private System.Windows.Forms.TextBox txtMessageBeginTime;
+        private System.Windows.Forms.MonthCalendar messagebeginMonthCalendar;
+        private System.Windows.Forms.ListView lstMessage;
+        private System.Windows.Forms.ColumnHeader colChatID;
+        private System.Windows.Forms.ColumnHeader colSource;
+        private System.Windows.Forms.ColumnHeader colDestination;
+        private System.Windows.Forms.ColumnHeader colText;
+        private System.Windows.Forms.ColumnHeader colSentDate;
+        private System.Windows.Forms.ColumnHeader colType;
     }
 }
