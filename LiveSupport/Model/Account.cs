@@ -129,7 +129,10 @@ namespace LiveSupport.LiveSupportModel
             get { return paymentId; }
             set { paymentId = value; }
         }
-
+        public Account()
+        {
+            accountId = Guid.NewGuid().ToString();
+        }
         public Account()
         {
             accountId = Guid.NewGuid().ToString();
