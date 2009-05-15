@@ -10,13 +10,14 @@
 <body>
     <form id="mainForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>
+        <%--<div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>--%>
         <div>
-
-            <script type="text/javascript">
+            <%--<script type="text/javascript">
 			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="ProcessImage.ashx?aid=2&referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
-            </script>
+            </script>--%>
         </div>
+    <input id="Text1" type="text" />
+    <input type="button" value="fdsaf" onclick="visitorLeave()" />
     </form>
 </body>
 </html>
