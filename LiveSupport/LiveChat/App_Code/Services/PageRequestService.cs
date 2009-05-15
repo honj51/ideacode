@@ -32,4 +32,12 @@ public class PageRequestService
     {
         return SqlPageRequestProvider.GetHistoryPageRequests(visitorId, begin, end);
     }
+    /// <summary>
+    /// 添加一条页面访问记录
+    /// </summary>
+    /// <param name="pageRequest"></param>
+    public static void AddPageRequest(PageRequest pageRequest)
+    {
+        SqlPageRequestProvider.AddPageRequest(pageRequest);
+    }
 }
