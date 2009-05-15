@@ -4,18 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Demo Page</title>
-    <script type="text/javascript">
-    function openChat()
-    {
-        var chatid="";
-        var win = window.open('Chat.aspx?chatid='+chatid+'&aid=2', 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
-        win.focus();
-        win.opener = window;
-        return false;
-    }
-    </script>
 
-    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js"></script>
+    <script type="text/javascript" language="javascript" src="http://localhost:3355/livechat/js/live2.js"></script>
 </head>
 <body>
     <form id="mainForm" runat="server">

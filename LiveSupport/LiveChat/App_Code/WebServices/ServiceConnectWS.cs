@@ -41,6 +41,23 @@ public class ServiceConnectWS : System.Web.Services.WebService
         return ChatService.GetOperatorInvation(visitorId);
     }
 
+    /// <summary>
+    /// 接受对话邀请
+    /// </summary>
+    /// <param name="chatId"></param>
+    [WebMethod]
+    public void AcceptOperatorInvitation(string chatId)
+    {
+        ChatService.AcceptOperatorInvitation(chatId);
+    }
+
+    [WebMethod]
+    public void DeclineOperatorInvitation(string chatId)
+    {
+       ChatService.DeclineOperatorInvitation(chatId);
+    }
+
+
     [WebMethod]
     public void RemoveChatRequestByChatId(string chatid)
     {

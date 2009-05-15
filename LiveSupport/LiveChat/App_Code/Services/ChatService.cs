@@ -298,4 +298,31 @@ public class ChatService
         }
         return null;
     }
+    /// <summary>
+    /// 拒绝客服会话请求
+    /// </summary>
+    /// <param name="chatId"></param>
+    public static void DeclineOperatorInvitation(string chatId)
+    {
+        Chat chat = GetChatById(chatId);
+        if (chat != null)
+        {
+            chat.Status = ChatStatus.Decline;
+        }
+        MessageService.AddMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
+    }
+    /// <summary>
+    /// 接受客服会话请求
+    /// </summary>
+    /// <param name="chatId"></param>
+    public static void AcceptOperatorInvitation(string chatId)
+    {
+        Chat chat = GetChatById(chatId);
+        if (chat != null)
+        {
+            chat.Status = ChatStatus.Accepted;
+            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;
+        }
+        MessageService.AddMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
+    }
 }
