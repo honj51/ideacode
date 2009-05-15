@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" ValidateRequest="false"   AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
+﻿<%@ Page MaintainScrollPositionOnPostback="true" Language="C#" ValidateRequest="false"   AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>在线交流</title>
@@ -9,8 +9,6 @@
 
        
 <style type="text/css">
-    
-    
     
     
         BODY 
@@ -371,22 +369,22 @@ b.document.execCommand('saveas',true,'');
                     <tr  style="height:100%">
                         <td height="100%"  >
                             <div id="history" >
+				<div id="chat"> 
 				
-				
-            <asp:UpdatePanel ID="upChat" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="False">
+            <asp:UpdatePanel  ID="upChat" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="False">
                 <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="timerRefresh" EventName="Tick" />
+                    <asp:AsyncPostBackTrigger  ControlID="timerRefresh" EventName="Tick" />
                 </Triggers>
                 <ContentTemplate>
                     
                     
-                         <asp:Literal  ID="litChat" runat="server"></asp:Literal>
+                         <asp:Literal   ID="litChat" runat="server"></asp:Literal>
                         <asp:Timer ID="timerRefresh" Interval="1000" runat="server" 
                          OnTick="timerRefresh_Tick">
                     </asp:Timer>
                 </ContentTemplate>
             </asp:UpdatePanel>
-               
+               </div>
                
                     <!--上传-->
           <div id="uploadFileBox" style="display:none; background-color:#d4eeff;" >&nbsp;&nbsp;
