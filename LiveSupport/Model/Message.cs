@@ -67,6 +67,14 @@ namespace LiveSupport.LiveSupportModel
             set { type = value; }
         }
 
+        public Message(string chatId, string text, MessageType type)
+            : this()
+        {
+            this.chatId = chatId;
+            this.text = text;
+            this.type = type;
+        }
+
         public Message()
         {
             sentDate = DateTime.Now;
