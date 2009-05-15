@@ -59,5 +59,9 @@ namespace LiveSupport.BLL
             else
                 return false;
         }
+        public static Account GetAccountByAccountId(string accountId)
+        {
+            return SqlAccountProvider.GetAccountByAccountId(accountId);
+        }
     }
 }

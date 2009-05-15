@@ -43,6 +43,15 @@ namespace LiveSupport.BLL
         {
             return SqlOperatorProvider.GetOperatorByOperatorId(operatorId);
         }
-
+        //修改Operator
+        public static bool UpdateOperator(Operator op)
+        {
+            int i = 0;
+            i = SqlOperatorProvider.UpdateOperator(op);
+            if (i != 0)
+                return true;
+            else
+                return false;
+        }
     }
 }
