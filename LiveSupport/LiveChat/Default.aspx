@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Demo Page</title>
-
+    
     <script type="text/javascript" language="javascript" src="http://localhost:3355/livechat/js/live2.js"></script>
 </head>
 <body>
