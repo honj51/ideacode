@@ -30,6 +30,7 @@ public class VisitorService
         Visitor v = null;
         foreach (var item in visitors)
         {
+            if (item == null) continue;
             if (item.VisitorId == visitorId)
             {
                 v = item;
@@ -96,6 +97,7 @@ public class VisitorService
         List<Visitor> vs = new List<Visitor>();
         foreach (var item in visitors)
         {
+            if (item == null) continue;
             if (item.CurrentSession == null)
             {
                 continue;

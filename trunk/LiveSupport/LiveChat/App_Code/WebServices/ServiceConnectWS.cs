@@ -43,7 +43,7 @@ public class ServiceConnectWS : System.Web.Services.WebService
 
     /// <summary>
     /// 接受对话邀请
-    /// </summary>
+    /// </summary>.
     /// <param name="chatId"></param>
     [WebMethod]
     public void AcceptOperatorInvitation(string chatId)
@@ -57,13 +57,14 @@ public class ServiceConnectWS : System.Web.Services.WebService
        ChatService.DeclineOperatorInvitation(chatId);
     }
 
-
     [WebMethod]
-    public void RemoveChatRequestByChatId(string chatid)
+    public void VisitorLeave(string visitorId)
     {
-        //ChatRequestInfo req = new ChatRequestInfo();
-        //req.ChatId = chatid;
-        //ChatService.RemoveChatRequest(req);
+        Visitor v = VisitorService.GetVisitor(visitorId);
+        if (v != null && v.CurrentSession != null)
+        {
+            v.CurrentSession.Status = VisitSessionStatus.Leave;
+        }
     }
 
 }
