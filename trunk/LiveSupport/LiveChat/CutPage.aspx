@@ -5,6 +5,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>无标题页</title>
+    <script type="text/javascript">
+   function window.onunload()
+	{	
+		alert("closed");
+	}
+	
+//     function   window.onbeforeunload()       
+//     {       
+//            if(event.clientX> document.body.clientWidth&&event.clientY <0||event.altKey)       
+//            {       
+//                    window.event.returnValue= "确定要退出本页吗？ "; 
+//            }       
+//    }  
+    </script>
 </head>
 <body>
   <form id="form1" runat="server">
