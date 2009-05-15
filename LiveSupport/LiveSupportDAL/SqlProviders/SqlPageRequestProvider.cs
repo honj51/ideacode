@@ -34,5 +34,22 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return list;
         }
+        /// <summary>
+        /// 添加一条页面访问记录
+        /// </summary>
+        /// <param name="pageRequest"></param>
+        public static int AddPageRequest(PageRequest pageRequest)
+        {
+            string sql = string.Format(
+           "INSERT INTO [LiveSupport].[dbo].[LiveChat_PageRequest]"
+           + "([AccountId]"
+           + " ,[SessionId]"
+           + " ,[Page]"
+           + " ,[RequestTime]"
+           + " ,[Referrer])"
+           + "VALUES('{0}','{1}','{2}','{3}','{4}')"
+           , pageRequest.AccountId, pageRequest.SessionId, pageRequest.Page, pageRequest.RequestTime, pageRequest.Referrer);
+           return  DBHelper.ExecuteCommand(sql);
+        }
     }
 }
