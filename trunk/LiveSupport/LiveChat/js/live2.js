@@ -2,6 +2,10 @@
     *js显示帮助层
     *
     */
+    
+    document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://localhost/livechatservice/ProcessImage.ashx?aid=2&referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
+    document.write('<div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>');
+    
 
       //输出层
       document.write('<div id="panel2" style="z-index:108;cursor:move;display:none;border:1px solid #339966;width:300px;width:300px;height:100px;left:50%;top:50%;margin-left:-220px;margin-top:-50px;position:fixed;_position:absolute;_left:expression(eval(document.documentElement.clientHeight==0?document.body.offsetWidth:document.documentElement.clientWidth)/2);_top:expression(eval(document.documentElement.clientHeight==0?(document.body.scrollTop+document.body.clientHeight/2):(document.documentElement.scrollTop+document.documentElement.clientHeight/2)));" onmousedown="f_mdown(this)"   onmousemove="f_move(this)"><table style="background-image:url(Images/invite_bg.gif); width:439px; height:157px;" ><tr><td width="159" style="height: 29px;font-size:12px;width: 159px;">&nbsp; 欢迎您来到Live Support</td></tr><tr><td style="height: 81px;width: 159px;"><td width="216" style=" height: 81px;font-size:12px;">亲爱的朋友您好！<br /><br />来到Live Support有什么可以帮您的吗？</td><td width="20"></td></tr><tr><td style="width: 159px;"><td align="right"><a href="javascript:openChat();"><img src="images/1.jpg" style="border:0px;" /></a><a style="border:1px" href="javascript:callMethodclose();"><img src="images/2.jpg" style="border:0px;"/></a></td></td></tr></table></div>');
