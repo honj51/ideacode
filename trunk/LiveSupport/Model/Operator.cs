@@ -77,6 +77,14 @@ namespace LiveSupport.LiveSupportModel
             get { return isAdmin; }
             set { isAdmin = value; }
         }
+        private Department department;
+
+        public Department Department
+        {
+            get { return department; }
+            set { department = value; }
+        } 
+
         public Operator()
         {
             this.status = OperatorStatus.Offline;

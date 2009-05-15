@@ -39,6 +39,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="Chat.cs" />
     <Compile Include="City.cs" />
+    <Compile Include="Department.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="PageRequest .cs" />
