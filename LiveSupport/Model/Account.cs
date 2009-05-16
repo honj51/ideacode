@@ -133,10 +133,6 @@ namespace LiveSupport.LiveSupportModel
         {
             accountId = Guid.NewGuid().ToString();
         }
-        public Account()
-        {
-            accountId = Guid.NewGuid().ToString();
-        }
 
         public Account(SqlDataReader data)
         {
