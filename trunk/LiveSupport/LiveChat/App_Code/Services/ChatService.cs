@@ -204,6 +204,8 @@ public class ChatService
             chat.AcceptTime = DateTime.Now;
             VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;
             VisitSessionService.GetSessionById(chat.ChatId).OperatorId = operatorId;
+            VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
+            chat.AcceptTime = DateTime.Now;
             Message m1 = new Message();
             m1.ChatId = chat.ChatId;
             m1.SentDate = DateTime.Now;
@@ -244,6 +246,8 @@ public class ChatService
             SqlChatProvider.AddChat(chatRequest);
         }
 
+        VisitSession s = VisitSessionService.GetSessionById(chatRequest.ChatId);
+        s.ChatRequestTime = DateTime.Now;
         Message m = new Message();
         m.ChatId = chatRequest.ChatId;
         m.Text = "正在接入客服，请稍等...";
@@ -322,6 +326,7 @@ public class ChatService
         {
             chat.Status = ChatStatus.Accepted;
             VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;
+            VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
         }
         MessageService.AddMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
     }

@@ -64,6 +64,7 @@ public class ServiceConnectWS : System.Web.Services.WebService
         if (v != null && v.CurrentSession != null)
         {
             v.CurrentSession.Status = VisitSessionStatus.Leave;
+            v.CurrentSession.LeaveTime = DateTime.Now;
         }
     }
 

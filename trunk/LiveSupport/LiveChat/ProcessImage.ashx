@@ -66,8 +66,8 @@ public class ProcessImage : IHttpHandler
             session.Referrer = referrer;
             session.Status = VisitSessionStatus.Visiting;
             visitor.CurrentSession = session;
-            visitor.CurrentSessionId = session.SessionId;
-            VisitorService.NewVisit(visitor, session);            
+            VisitSessionService.NewSession(session);
+            System.Diagnostics.Debug.WriteLine("Add new session "+session.SessionId + " for " + visitor.VisitorId);
         }
         
         // TODO:
@@ -77,7 +77,8 @@ public class ProcessImage : IHttpHandler
         pageRequest.Referrer = context.Request.UrlReferrer.ToString();
         pageRequest.RequestTime = DateTime.Now;
         pageRequest.SessionId = visitor.CurrentSessionId;
-        PageRequestService.AddPageRequest(pageRequest);        
+        PageRequestService.AddPageRequest(pageRequest);
+        visitor.VisitCount = visitor.VisitCount + 1;        
 
         // we get the status of the operators
         opOnline = OperatorService.HasOnlineOperator(accountId);
@@ -112,6 +113,7 @@ public class ProcessImage : IHttpHandler
             context.Response.Cookies["VisitorId"].Expires = DateTime.Now.AddMonths(12);
             visitor.AccountId = accountId;
             System.Diagnostics.Debug.WriteLine("Create new visitor " + visitor.VisitorId);
+            VisitorService.NewVisitor(visitor);
         }
         return visitor;
     }

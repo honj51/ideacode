@@ -104,7 +104,7 @@
      //调用webservece方法
    function callMethod()
     {
-        service.useService("http://localhost:3355/LiveChat/Operator.asmx?wsdl","calService");                                       //创建服务对象        
+        service.useService("http://rd01/livechatservice/Operator.asmx?wsdl","calService");                                       //创建服务对象        
         var chatId =getCookie('chatId'); //取浏览客户请求对话ID
         service.calService.callService(callback,"getOperatorIDByChatID",chatId);                                                            //调用方法
     }

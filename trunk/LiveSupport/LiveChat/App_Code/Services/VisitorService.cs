@@ -5,6 +5,9 @@ using System.Web.Configuration;
 using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using System.Diagnostics;
+using System.Reflection;
+using System.Text;
 
 
 /// <summary>
@@ -40,36 +43,15 @@ public class VisitorService
         if (v == null)
         {
             v = LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.GetVisitorById(visitorId);
-            visitors.Add(v);
+            if (v != null)
+            {
+                v.CurrentSession = null;
+                visitors.Add(v);
+            }
         }
         return v;
     }
-    /// <summary>
-    /// 保存新的访客信息和会话信息
-    /// </summary>
-    /// <param name="visitor">visitor对象</param>
-    /// <param name="session">VisitSession对象</param>
-    public static void NewVisit(Visitor visitor, VisitSession session)
-    {
-        if (GetVisitor(visitor.VisitorId) == null)
-        {
-            LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.NewVisitor(visitor);
-            visitors.Add(visitor);
-        }
 
-        if (visitors.Count > maxVisitorCountInMemory)
-        {
-            for (int i = visitors.Count; i > 0 ; i--)
-            {
-                if (visitors[i].CurrentSession.Status == VisitSessionStatus.Leave)
-                {
-                    visitors.RemoveAt(i);
-                    break;
-                }
-            }
-        }
-        VisitSessionService.NewSession(session);
-    }
     /// <summary>
     /// 取所有该公司的在在线访客
     /// </summary>
@@ -94,6 +76,8 @@ public class VisitorService
     /// <returns>Visitor集合</returns>
     internal static List<Visitor> GetNewVisitors(string accountId, long lastCheck)
     {
+        Trace.WriteLine(string.Format("{0}({1},{2})",MethodBase.GetCurrentMethod().Name,accountId,lastCheck));
+        StringBuilder sb = new StringBuilder();
         List<Visitor> vs = new List<Visitor>();
         foreach (var item in visitors)
         {
@@ -105,8 +89,32 @@ public class VisitorService
             else if (item.AccountId == accountId && item.CurrentSession != null&& item.CurrentSession.VisitingTime.Ticks > lastCheck)
             {                
                 vs.Add(item);
+                sb.AppendFormat("VisitId={0},Status={1},SessionId={2} | ", item.VisitorId, item.CurrentSession.Status.ToString(), item.CurrentSession.VisitorId);
             }
         }
+        Trace.WriteLine(string.Format("Return {0} : {1}", vs.Count, sb.ToString()));
+        Trace.Flush();
         return vs;     
+    }
+
+    public static void NewVisitor(Visitor visitor)
+    {
+        if (GetVisitor(visitor.VisitorId) == null)
+        {
+            LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.NewVisitor(visitor);
+            visitors.Add(visitor);
+        }
+
+        if (visitors.Count > maxVisitorCountInMemory)
+        {
+            for (int i = visitors.Count; i > 0; i--)
+            {
+                if (visitors[i].CurrentSession.Status == VisitSessionStatus.Leave)
+                {
+                    visitors.RemoveAt(i);
+                    break;
+                }
+            }
+        }
     }
 }
