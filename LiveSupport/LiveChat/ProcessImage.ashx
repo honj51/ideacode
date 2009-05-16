@@ -69,6 +69,8 @@ public class ProcessImage : IHttpHandler
             VisitSessionService.NewSession(session);
             System.Diagnostics.Debug.WriteLine("Add new session "+session.SessionId + " for " + visitor.VisitorId);
         }
+
+        visitor.CurrentSession.Location = IpSearch.GetAddressWithIP(visitorIP);
         
         // TODO:
         PageRequest pageRequest = new PageRequest();
