@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using VisualAsterisk.Test.Temp;
 using LiveSupport.OperatorConsole.LiveChatWS;
+using System.Diagnostics;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -45,7 +46,8 @@ namespace LiveSupport.OperatorConsole
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
-           Application.Run(new Login());
+            Trace.WriteLine("Main start");
+            Application.Run(new Login());
            //Application.Run(new ListViewGroupsExample());
 		}
 

@@ -303,15 +303,15 @@ namespace LiveSupport.OperatorConsole
         private void timer1_Tick(object sender, EventArgs e)
         {            
             NewChangesCheckResult result = ws.CheckNewChanges(lastCheck);
+            Trace.WriteLine("NewChangesCheck: "+ lastCheck.ToString());
+            Trace.WriteLine("NewChangesCheckResult: " + result.ToString());
             //Debug.WriteLine(string.Format("CheckNewChanges: NewVisitor={0} Message={1}",result.NewVisitors.Length,result.Messages.Length ));
-          //  NewChangesResult result = testFixture.NewResult();
-
+            //  NewChangesResult result = testFixture.NewResult();
+            
             foreach (ListViewItem item in lstVisitors.Items)
             {
                 Visitor v = item.Tag as Visitor;
                 VisitSession local = v.CurrentSession;
-
-
                 VisitSession remote = null;
                 foreach (var c in result.VisitSessionChange)
                 {
@@ -326,40 +326,77 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
 
-
                 if (remote == null) continue;
                 if (remote.Status == VisitSessionStatus.ChatRequesting)
                 {
                     // 新的对话请求
-                    //NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", item.Index);
                     NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote);
-
-
+                }
+                else if (remote.Status == VisitSessionStatus.Leave)
+                {
+                    notifyIcon.ShowBalloonTip(5000, "访客离开", string.Format("访客{0}已离开网站", v.Name), ToolTipIcon.Info);
                 }
                 local.Status = remote.Status;
-
-
-
-                item.SubItems[VisitorTreeView_HeaderColumn_Status].Text = local.Status.ToString();
+                item.SubItems[VisitorTreeView_HeaderColumn_Status].Text = getVisitSessionStatusText(local.Status);
             }
-
-            
-
             if (result.NewVisitors != null)
             {
                 foreach (var item in result.NewVisitors)
                 {
                     if (item == null) continue;
-                    ListViewItem lvi = new ListViewItem(new string[]{ item.Name, item.CurrentSession.Location, item.CurrentSession.Browser,
-                     item.VisitCount.ToString(), item.CurrentSession.OperatorId.ToString(),item.CurrentSession.Status.ToString(),
-                     item.CurrentSession.VisitingTime.ToString(), item.CurrentSession.LeaveTime.ToString(), item.CurrentSession.ChatRequestTime.ToString(),
-                     item.CurrentSession.ChatingTime.ToString(),item.CurrentSession.WaitingDuring.ToString(), item.CurrentSession.ChattingDuring.ToString(),
-                     item.CurrentSession.PageRequestCount.ToString()
-                        });
-                    visitors.Add(item);
-                    lvi.Tag = item;
-                    lstVisitors.Items.Add(lvi);
+                    bool visitorExist = false;
+                    foreach (var v in visitors)
+                    {
+                        if (v.VisitorId == item.VisitorId)
+                        {
+                            visitorExist = true;
+                        }
+                    }
 
+                    string browser;
+                    if (item.CurrentSession.Browser.Contains("MSIE"))
+                    {
+                        browser = "Internet Explorer";
+                    }
+                    else if (item.CurrentSession.Browser.Contains("Firefox"))
+                    {
+                        browser = "FireFox";
+                    }
+                    else
+                    {
+                        browser = "其他";
+
+                    }
+                    string status = getVisitSessionStatusText(item.CurrentSession.Status);
+                    string leaveTime = item.CurrentSession.LeaveTime.Ticks == 0?"":item.CurrentSession.LeaveTime.ToString();
+                    string chatRequestTime = item.CurrentSession.ChatRequestTime.Ticks == 0 ? "" : item.CurrentSession.ChatRequestTime.ToString();
+                    string chattingStartTime = item.CurrentSession.ChatingTime.Ticks == 0 ? "" : item.CurrentSession.ChatingTime.ToString();
+                    string waitingDuring = item.CurrentSession.WaitingDuring.Ticks == 0 ? "" : item.CurrentSession.WaitingDuring.ToString();
+                    string chattingDuring = item.CurrentSession.ChattingDuring.Ticks == 0 ? "" : item.CurrentSession.ChattingDuring.ToString();
+                    if (visitorExist)
+                    {
+                        foreach (ListViewItem vitem in lstVisitors.Items)
+                        {
+                            Visitor v = vitem.Tag as Visitor;
+                            if (v.VisitorId == item.VisitorId)
+                            {
+                                // TODO: other columns
+                                vitem.SubItems[VisitorTreeView_HeaderColumn_Status].Text = status;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ListViewItem lvi = new ListViewItem(new string[]{ item.Name, item.CurrentSession.Location, browser,
+                         item.VisitCount.ToString(), item.CurrentSession.OperatorId.ToString(),status,
+                         item.CurrentSession.VisitingTime.ToString(), leaveTime, chatRequestTime,
+                         chattingStartTime,waitingDuring, chattingDuring,item.CurrentSession.PageRequestCount.ToString()
+                        });
+                        visitors.Add(item);
+                        lvi.Tag = item;
+                        lstVisitors.Items.Add(lvi);
+                    }
 
                     // Add the visitor to the visitor hashtable
                     if (!currentVisitors.ContainsKey(item.CurrentSession.IP))
@@ -367,6 +404,11 @@ namespace LiveSupport.OperatorConsole
                     else
                         currentVisitors[item.CurrentSession.IP] = item;
                     lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
+
+                    if (item.CurrentSession.Status != VisitSessionStatus.Leave)
+                    {
+                        notifyIcon.ShowBalloonTip(5000, "新的访客", string.Format("访客{0}正在访问页面 \r\n {1}", item.Name,item.CurrentSession.PageRequested), ToolTipIcon.Info); 
+                    }
                 }
 
 
@@ -450,7 +492,29 @@ namespace LiveSupport.OperatorConsole
 
             DisplayStatus();
         }
-
+        string getVisitSessionStatusText(VisitSessionStatus s)
+        {
+            string status;
+            switch (s)
+            {
+                case VisitSessionStatus.Visiting:
+                    status = "浏览中";
+                    break;
+                case VisitSessionStatus.ChatRequesting:
+                    status = "请求对话中";
+                    break;
+                case VisitSessionStatus.Chatting:
+                    status = "对话中";
+                    break;
+                case VisitSessionStatus.Leave:
+                    status = "离开";
+                    break;
+                default:
+                    status = "离开";
+                    break;
+            }
+            return status;
+        }
         private bool hasChatRequest()
         {
             foreach (var item in visitors)
@@ -494,7 +558,7 @@ namespace LiveSupport.OperatorConsole
         // 接受访客请求
         private void acceptToolStripButton_Click(object sender, EventArgs e)
         {
-            // Visitor visitor= lstVisitors.SelectedItems[0] as Visitor;
+            Visitor visitor= lstVisitors.SelectedItems[0].Tag as Visitor;
             //visitor.CurrentSession.IP;
           
             lstVisitors.FullRowSelect = true;
@@ -502,7 +566,7 @@ namespace LiveSupport.OperatorConsole
             if (lstVisitors.SelectedItems.Count > 0)
             {
 
-                if (lstVisitors.SelectedItems[0].SubItems[VisitorTreeView_HeaderColumn_Status].Text == "ChatRequesting")
+                if (visitor.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
                 {
 
                     //if (!myChats.ContainsKey(lstVisitors.SelectedItems[0].Index))
@@ -512,8 +576,7 @@ namespace LiveSupport.OperatorConsole
                     //}
                    //声音
                    player.Stop();
-                   Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-                   ChatForm cf = new ChatForm(v.CurrentSession);                      
+                   ChatForm cf = new ChatForm(visitor.CurrentSession);                      
                      
                    Program.ChatForms.Add(cf);
                     cf.Show();
@@ -538,16 +601,14 @@ namespace LiveSupport.OperatorConsole
 
             if (lstVisitors.SelectedItems.Count > 0)
             {
-
-                if (lstVisitors.SelectedItems[0].SubItems[VisitorTreeView_HeaderColumn_Status].Text == "Visiting")
+                Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
+                if (v!= null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
                 {
-
-                    Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
                     ws.InviteChat(v.VisitorId);
                     ChatForm cf = null;
                     foreach (var item in Program.ChatForms)
                     {
-                        if (item.ChatSession.SessionId == v.CurrentSessionId)
+                        if (item.ChatSession.SessionId == v.CurrentSession.SessionId)
                         {
                             cf = item;
                             break;
