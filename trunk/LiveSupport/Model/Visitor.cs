@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace LiveSupport.LiveSupportModel
 {
@@ -83,15 +84,16 @@ namespace LiveSupport.LiveSupportModel
         public VisitSession CurrentSession
         {
             get { return currentSession; }
-            set { currentSession = value; }
+            set 
+            {
+                //Debug.WriteLine(string.Format("Visitor {0} change session {1} => {2}", this.VisitorId, CurrentSessionId, value.SessionId));
+                currentSession = value; 
+            }
         }
-
-        private string currentSessionId = string.Empty;
 
         public string CurrentSessionId
         {
-            get { return currentSessionId; }
-            set { currentSessionId = value; }
+            get { return currentSession == null? null : currentSession.SessionId; }
         }
 
 
@@ -109,7 +111,6 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["VisitCount"])) visitCount = (int)data["VisitCount"];
             if (!Convert.IsDBNull(data["Company"])) company = (string)data["Company"];
             if (!Convert.IsDBNull(data["Remark"])) remark = (string)data["Remark"];
-            if (!Convert.IsDBNull(data["CurrentSessionId"])) currentSessionId = (string)data["CurrentSessionId"];
             if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
         }
     }
