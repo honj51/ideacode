@@ -120,7 +120,7 @@ public partial class Chat : System.Web.UI.Page
             }
 
             // 是否客服邀请的对话
-            if (!string.IsNullOrEmpty(Request.QueryString["chatid"].ToString()))
+            if (Request.QueryString["chatid"] != null && !string.IsNullOrEmpty(Request.QueryString["chatid"].ToString()))
             {
                 // 主动邀请
                 pnlChat.Visible = true;

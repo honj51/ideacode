@@ -5,12 +5,25 @@ using System.Configuration.Provider;
 using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using System.Diagnostics;
+using System.Reflection;
+using System.Text;
 /// <summary>
 ///VisitSessionService 的摘要说明
 /// </summary>
 public class VisitSessionService
 {
-    private static List<VisitSession> sessions = new List<VisitSession>();
+    public class VisitSessionHit
+    {
+        public VisitSessionHit(VisitSession s)
+        {
+            Session = s;
+            LastHitTime = DateTime.Now;
+        }
+        public VisitSession Session;
+        public DateTime LastHitTime;
+    }
+    private static List<VisitSessionHit> sessions = new List<VisitSessionHit>();
     private const int maxVisitorSessionCountInMemory = 200;//定义最大值 
 
     /// <summary>
@@ -19,17 +32,17 @@ public class VisitSessionService
     /// <param name="session"></param>
     public static void NewSession(VisitSession session)
     {
-        if (sessions.Find(s=>s.SessionId == session.SessionId) != null)
+        if (sessions.Find(s=>s.Session.SessionId == session.SessionId) != null)
         {
             return;
         }
 
-        sessions.Add(session);
+        sessions.Add(new VisitSessionHit(session));
         if (sessions.Count > maxVisitorSessionCountInMemory)
         {
             for (int i = sessions.Count; i > 0; i--)
             {
-                if (sessions[i].Status ==VisitSessionStatus.Leave)
+                if (sessions[i].Session.Status ==VisitSessionStatus.Leave)
                 {
                     sessions.RemoveAt(i);
                     break;
@@ -46,12 +59,12 @@ public class VisitSessionService
     /// <returns></returns>
     public static VisitSession GetSessionById(string sessionId)
     {
-        VisitSession s = sessions.Find(a => a.SessionId == sessionId);
+        VisitSessionHit s = sessions.Find(a => a.Session.SessionId == sessionId);
         if (s == null)
         {
           return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetSessionById(sessionId);
         }
-        return s;
+        return s.Session;
     }
     /// <summary>
     /// 查询在这个时候之后新加的访客会话信息
@@ -60,15 +73,22 @@ public class VisitSessionService
     /// <returns>VisitSession对象</returns>
     public static List<VisitSession> GetVisitSessionChange(string accountId, long lastCheck)
     {
+        Trace.WriteLine(string.Format("{0}({1},{2})", MethodBase.GetCurrentMethod().Name, accountId, lastCheck));
+        StringBuilder sb = new StringBuilder();
         List<VisitSession> vss = new List<VisitSession>();
         foreach (var item in sessions)
         {
-            Visitor v = VisitorService.GetVisitor(item.VisitorId);
+            Visitor v = VisitorService.GetVisitor(item.Session.VisitorId);
             if (v != null && v.AccountId == accountId)
 	        {
                 vss.Add(v.CurrentSession);
+                //sb.AppendFormat("SessionId={0},Status={1},VisitId={2} | ",v.CurrentSessionId,v.CurrentSession.Status.ToString(),v.VisitorId);
 	        }
         }
+        
+        Trace.WriteLine(string.Format("Return {0} : {1}", vss.Count, sb.ToString()));
+        Trace.Flush();
+
         return vss;
         //return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetVisitSessionChange(lastCheck);
     }
@@ -79,17 +99,63 @@ public class VisitSessionService
     /// <returns></returns>
     public static List<VisitSession> GetActiveSessionsByOperatorId(string operatorId)
     {
-        return sessions.FindAll(s => s.OperatorId == operatorId && s.Status == VisitSessionStatus.Chatting);
+        List<VisitSession> ss = new List<VisitSession>();
+        foreach (var item in sessions)
+        {
+            if (item.Session.OperatorId == operatorId && item.Session.Status == VisitSessionStatus.Chatting)
+            {
+                ss.Add(item.Session);
+            }
+        }
+        return ss;
     }
 
     public static void RequestChat(Chat chatRequest)
     {
-        VisitSession session = sessions.Find(s => s.SessionId == chatRequest.ChatId);
-        if (session != null)
+        VisitSessionHit h = sessions.Find(s => s.Session.SessionId == chatRequest.ChatId);
+        if (h != null)
         {
-            session.Status = VisitSessionStatus.ChatRequesting;
+            h.Session.Status = VisitSessionStatus.ChatRequesting;
             ChatService.ChatPageRequestChat(chatRequest);
         }
     }
 
+    public static void MaintanStatus()
+    {
+        foreach (var item in sessions)
+        {
+            if (DateTime.Now > item.LastHitTime.AddSeconds(8) && item.Session.Status != VisitSessionStatus.Leave)
+            {
+                item.Session.Status = VisitSessionStatus.Leave;
+                item.Session.LeaveTime = DateTime.Now;
+                
+                //VisitorService.GetVisitor(item.Session.VisitorId).CurrentSession = null;
+                Debug.WriteLine(string.Format("Session {0} Leave",item.Session.SessionId));
+            }
+        }
+    }
+
+    public static void Hit(string visitorId)
+    {
+        // we should find the new session form visitor instance
+        Visitor v = VisitorService.GetVisitor(visitorId);
+        if (v != null && v.CurrentSession != null)
+        {
+            if (v.CurrentSession.Status == VisitSessionStatus.Leave)
+            {
+                v.CurrentSession.Status = VisitSessionStatus.Visiting;
+            }
+            VisitSessionHit h = sessions.Find(sh => sh.Session.SessionId == v.CurrentSessionId);
+            if (h != null)
+            {
+                h.LastHitTime = DateTime.Now;
+            }
+            else
+            {
+                // TODO: throw something
+            }
+        }
+
+        Debug.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
+    }
 }

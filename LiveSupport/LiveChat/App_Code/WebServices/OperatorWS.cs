@@ -20,6 +20,7 @@ using System.Web.Caching;
 using LiveSupport.LiveSupportModel;
 using System.IO;
 using System.Diagnostics;
+using System.Text;
 
     /// <summary>
     /// Contains all functionality for an operator to maintain
@@ -59,6 +60,16 @@ public class OperatorWS : System.Web.Services.WebService
         public List<VisitSession> VisitSessionChange; // 访问会话状态更新
         public List<MessageCheckResult> Messages; // // 消息更新
         public long NewVisitorCheckTime;
+
+        public void ToTraceString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in NewVisitors)
+            {
+                //sb.AppendFormat("VisitorId:",item.VisitorId,item.Name,
+            }
+            //sb.AppendFormat("NewVisitorCheckTime:{0} | NewVisitors []"
+        }
     }
 
     public AuthenticationHeader Authentication;
