@@ -268,11 +268,16 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("是否关闭", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.Yes))
+            if (this.chatSession.Status != VisitSessionStatus.Leave)
             {
-                ws.CloseChat(this.chatSession.SessionId);
-                Program.ChatForms.Remove(this);
+                if (MessageBox.Show("正在对话中，您确定要关闭？", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
+                {
+                    e.Cancel = true;
+                    return;
+                }
             }
+            ws.CloseChat(this.chatSession.SessionId);
+            Program.ChatForms.Remove(this);            
         }
     }
 }
