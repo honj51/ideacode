@@ -17,7 +17,10 @@ public class VisitorHandler : IHttpHandler {
             return;
         }
 
-        context.Response.ContentType = "text/plain";
+        string callback = context.Request.QueryString["callback"];
+        context.Response.ContentType = "application/x-javascript";
+        string data = string.Empty;
+
         // 2. CHECK action parameters
         if (action == Action_Hit)
         {
@@ -28,8 +31,9 @@ public class VisitorHandler : IHttpHandler {
                 string chatId = ChatService.GetOperatorInvation(visitorId);
                 if (chatId != null)
                 {
-                    context.Response.Write(string.Format("{{ \"InviteChatId\" : \"{0}\"}}" , chatId));
+                    data = string.Format("{{ \"InviteChatId\" : \"{0}\"}}", chatId);
                 }   
+                //data = string.Format("{{ 'InviteChatId' : '{0}'}}", 123);
             }                     
         }
         else if (action == Action_AcceptOperatorInvitation)
@@ -38,7 +42,7 @@ public class VisitorHandler : IHttpHandler {
             if (!string.IsNullOrEmpty(chatId))
             {
                 ChatService.AcceptOperatorInvitation(chatId);
-                context.Response.Write("ChatId=" + chatId+" Accpeted");
+                //data = "ChatId=" + chatId+" Accpeted";
             }
             // 
         }
@@ -47,10 +51,11 @@ public class VisitorHandler : IHttpHandler {
             string chatId = context.Request["chatId"];
             if (!string.IsNullOrEmpty(chatId))
             {
-                context.Response.Write("ChatId=" + chatId + " Declined");
+                //data ="ChatId=" + chatId + " Declined";
                 ChatService.DeclineOperatorInvitation(chatId);
             }
         }
+        context.Response.Write(string.Format("{0}({1})", callback, data));
         context.Response.Expires = -1;
         context.Response.End();       
     }

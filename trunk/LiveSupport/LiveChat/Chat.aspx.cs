@@ -87,7 +87,7 @@ public partial class Chat : System.Web.UI.Page
     {
         get
         {
-            string visitorId = Request.Cookies["VisitorId"].Value;
+            string visitorId = Request.QueryString["vid"];
             if (string.IsNullOrEmpty(visitorId) || VisitorService.GetVisitor(visitorId) == null || VisitorService.GetVisitor(visitorId) == null)
                 return null;
             else

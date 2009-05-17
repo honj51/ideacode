@@ -312,8 +312,8 @@ public class ChatService
         if (chat != null)
         {
             chat.Status = ChatStatus.Decline;
-        }
-        MessageService.AddMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
+            MessageService.AddMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
+        }        
     }
     /// <summary>
     /// 接受客服会话请求

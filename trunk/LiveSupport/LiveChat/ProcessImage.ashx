@@ -21,11 +21,12 @@ public class ProcessImage : IHttpHandler
     public void ProcessRequest(HttpContext context)
     {
         // 检查QueryString 参数
-        if (context.Request.QueryString["aid"] == null)
+        if (context.Request.QueryString["aid"] == null || context.Request.QueryString["vid"] == null)
         {
             return;
         }
         string accountId = context.Request.QueryString["aid"].ToString();
+        string visitorId = context.Request.QueryString["vid"].ToString();
         string referrer = string.Empty;
         string pageRequested = string.Empty;
         string domainRequested = string.Empty;
@@ -51,7 +52,11 @@ public class ProcessImage : IHttpHandler
 
         // 建立 Visitor 和 VisitSession对象
         // 1. 查找Visitor，没有则新增一个
-        Visitor visitor = getVisitor(context, accountId);
+        Visitor visitor = getVisitor(accountId, visitorId);
+        if (visitor == null)
+        {
+            return;
+        }
         
         // 2.查找VisitSession，没有则新增一个
         if (visitor.CurrentSession == null || visitor.CurrentSession.Status == VisitSessionStatus.Leave)
@@ -94,30 +99,30 @@ public class ProcessImage : IHttpHandler
         returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
     }
 
-    private static Visitor getVisitor(HttpContext context, string accountId)
+    private static Visitor getVisitor(string accountId, string visitorId)
     {
         System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + "(" + accountId + ")");
-        Visitor visitor;
-        string visitorId = null;
-        if (context.Request.Cookies["VisitorId"] != null)
+        Visitor visitor = VisitorService.GetVisitor(visitorId);
+        if (visitor != null)
         {
-            visitorId = context.Request.Cookies["VisitorId"].Value.ToString();            
-        }
-
-        if (visitorId != null && VisitorService.GetVisitor(visitorId) != null)
-        {
-            visitor = VisitorService.GetVisitor(visitorId);            
+            if (visitor.AccountId == accountId)
+            {
+                return visitor;
+            }
+            else
+            {
+                return null;
+            }
         }
         else
         {
             visitor = new Visitor();
-            context.Response.Cookies["VisitorId"].Value = visitor.VisitorId;
-            context.Response.Cookies["VisitorId"].Expires = DateTime.Now.AddMonths(12);
             visitor.AccountId = accountId;
+            visitor.VisitorId = visitorId;
             System.Diagnostics.Debug.WriteLine("Create new visitor " + visitor.VisitorId);
             VisitorService.NewVisitor(visitor);
-        }
-        return visitor;
+            return visitor;
+        }       
     }
 
     public bool IsReusable
