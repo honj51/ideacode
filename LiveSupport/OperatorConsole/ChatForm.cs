@@ -124,10 +124,21 @@ namespace LiveSupport.OperatorConsole
             }
             // We initialize the document
             wb.Navigate("about:初始会话...");
-
+          
+            foreach (Visitor item in Program.Visitors)
+            {
+                if (item.CurrentSession.SessionId == chatSession.SessionId)
+               {
+                    this.Text ="与你对话的是"+item.Name+"访客";
+                   break;
+               }
+            
+            }
+            
+            
             // We start the timer that will get the messages
             tmrGetMsg.Enabled = true;
-
+            
             txtMsg.Focus();
         }
 
