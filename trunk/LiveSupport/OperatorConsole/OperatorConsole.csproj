@@ -207,6 +207,7 @@
     <None Include="Resources\alarmd.png" />
     <None Include="Resources\All software is current.png" />
     <None Include="Resources\aim.png" />
+    <None Include="Resources\bg02.bmp" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
