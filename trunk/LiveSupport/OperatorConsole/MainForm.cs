@@ -210,6 +210,21 @@ namespace LiveSupport.OperatorConsole
 
             lastCheck.ChatSessionChecks = new MessageCheck[] { };
             lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
+
+            // 获取快捷回复
+            QuickResponseCategory[] cats = ws.GetQuickResponse();
+            if (cats != null)
+            {
+                foreach (var item in cats)
+                {
+
+                }
+            }
+
+            messageendDateTimePicker.MaxDate = DateTime.Now;
+            messageendDateTimePicker.MaxDate = DateTime.Now;
+            requestendDateTimePicker.MaxDate = DateTime.Now;
+            requestbeginDateTimePicker.MaxDate = DateTime.Now;
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -489,6 +504,7 @@ namespace LiveSupport.OperatorConsole
             {
                 PlayChatReqSound();
             }
+            Program.Visitors = visitors;
 
             DisplayStatus();
         }
@@ -778,94 +794,7 @@ namespace LiveSupport.OperatorConsole
             
         }
 
-        #region 查找访客历史页面请求选择时间
-
-
-        private void txtRequestBeginTime_Leave(object sender, EventArgs e)
-        {
-            this.requestbeginMonthCalendar.Visible = false;
-        }
-
-        private void txtRequestBeginTime_Enter(object sender, EventArgs e)
-        {
-            this.requestbeginMonthCalendar.Visible = true;
-            this.requestbeginMonthCalendar.MaxDate = DateTime.Now;
-           
-             txtRequestBeginTime.Text= this.requestbeginMonthCalendar.SelectionRange.Start.ToString();
-        }
-
-
-        private void requestbeginMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            this.txtRequestBeginTime.Text = this.requestbeginMonthCalendar.SelectionRange.Start.ToString();
-            this.requestbeginMonthCalendar.Visible = false;
-           
-        }
-
-        private void txtRequestEndTime_Enter(object sender, EventArgs e)
-        {
-            this.requestendRMonthCalendar.Visible = true;
-            this.requestendRMonthCalendar.MaxDate = DateTime.Now;
-            txtRequestEndTime.Text= this.requestendRMonthCalendar.SelectionRange.Start.ToString();
-        }
-
-        private void txtRequestEndTime_Leave(object sender, EventArgs e)
-        {
-            this.requestendRMonthCalendar.Visible = false;
-        }
-
-        private void requestendMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            this.txtRequestEndTime.Text = this.requestendRMonthCalendar.SelectionRange.End.ToString();
-            this.requestendRMonthCalendar.Visible = false;
-            
-        }
-
-        #endregion
-
-
-        #region 查找访客历史消息记录选择时间
-
-        private void txtMessageBeginTime_Enter(object sender, EventArgs e)
-        {
-            this.messagebeginMonthCalendar.Visible = true;
-            this.messagebeginMonthCalendar.MaxDate = DateTime.Now;
-            txtMessageBeginTime.Text = this.messagebeginMonthCalendar.SelectionRange.Start.ToString();
-        }
-
-        private void txtMessageBeginTime_Leave(object sender, EventArgs e)
-        {
-            this.messagebeginMonthCalendar.Visible = false;
-        }
-
-        private void txtMessageEndTime_Enter(object sender, EventArgs e)
-        {
-            this.messageendMonthCalendar.Visible = true;
-            this.messageendMonthCalendar.MaxDate = DateTime.Now;
-            txtMessageEndTime.Text = this.messageendMonthCalendar.SelectionRange.Start.ToString();
-        }
-
-        private void txtMessageEndTime_Leave(object sender, EventArgs e)
-        {
-            this.messageendMonthCalendar.Visible = false;
-        }
-
-        private void messagebeginMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            this.txtMessageBeginTime.Text = this.messagebeginMonthCalendar.SelectionRange.Start.ToString();
-            this.messagebeginMonthCalendar.Visible = false;
-        }
-
-        private void messageendMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            this.txtMessageEndTime.Text = this.messageendMonthCalendar.SelectionRange.End.ToString();
-            this.messageendMonthCalendar.Visible = false;
-        }
-
-
-        #endregion
-      
-        
+  
         /// <summary>
         /// 访客历史页面请求记录
         /// </summary>
@@ -873,12 +802,15 @@ namespace LiveSupport.OperatorConsole
         /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
+            
+            MessageBox.Show(requestbeginDateTimePicker.Value.ToString());
+            MessageBox.Show(requestbeginDateTimePicker.Value.ToString());
            if (lstVisitors.SelectedItems.Count > 0)
            {
-                if ((!string.IsNullOrEmpty(txtRequestBeginTime.Text)) && (!string.IsNullOrEmpty(txtRequestEndTime.Text)) && Convert.ToDateTime(txtRequestBeginTime.Text) <= Convert.ToDateTime(txtRequestEndTime.Text))
+               if (requestbeginDateTimePicker.Value <= requestendDateTimePicker.Value)
                 {
                     Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-                    PageRequest[] pRequest = ws.GetHistoryPageRequests(v.VisitorId, Convert.ToDateTime(txtRequestBeginTime.Text), Convert.ToDateTime(txtRequestEndTime.Text));
+                    PageRequest[] pRequest = ws.GetHistoryPageRequests(v.VisitorId, requestbeginDateTimePicker.Value,requestbeginDateTimePicker.Value);
                     if (pRequest.Length > 0)
                     {
                         foreach (PageRequest item in pRequest)
@@ -922,10 +854,10 @@ namespace LiveSupport.OperatorConsole
         {
             if (lstVisitors.SelectedItems.Count > 0)
             {
-                if ((!string.IsNullOrEmpty(txtMessageBeginTime.Text)) && (!string.IsNullOrEmpty(txtMessageEndTime.Text)) && Convert.ToDateTime(txtMessageBeginTime.Text) <= Convert.ToDateTime(txtMessageEndTime.Text))
+                if (messagebeginDateTimePicker.Value <= messageendDateTimePicker.Value)
                 {
                     Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-                    LiveSupport.OperatorConsole.LiveChatWS.Message[] msg = ws.GetHistoryChatMessage(v.VisitorId, Convert.ToDateTime(txtMessageBeginTime.Text), Convert.ToDateTime(txtMessageBeginTime.Text));
+                    LiveSupport.OperatorConsole.LiveChatWS.Message[] msg = ws.GetHistoryChatMessage(v.VisitorId,messagebeginDateTimePicker.Value,messageendDateTimePicker.Value);
                     if (msg.Length > 0)
                     {
                         foreach (LiveSupport.OperatorConsole.LiveChatWS.Message item in msg)
