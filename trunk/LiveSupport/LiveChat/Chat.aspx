@@ -116,6 +116,11 @@ function Exit()
         window.close();
     }
 }
+function emailclose() {
+    if (confirm('邮件发送成功 我们会尽快回复你！') == true) {
+        window.close();
+    }
+}
 
 //交流方式
 function shortKeyMenu()
@@ -222,7 +227,7 @@ b.document.execCommand('saveas',true,'');
                <br />
                 <fieldset  style="height:2%; width:92%;">
                 
-                 <asp:Button  ID="btnSendEmail" runat="server"  Text="发送邮件"  onclick="btnSendEmail_Click"/>
+                 <asp:Button  ID="btnSendEmail" runat="server"  Text="发送邮件"  OnClientClick="emailclose()" onclick="btnSendEmail_Click"/>
                                  
                 </fieldset>
                    
