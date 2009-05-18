@@ -324,7 +324,13 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
     {
-       return MessageService.GetHistoryChatMessage(visitorId,begin,end);
+        List<VisitSession> li = VisitSessionService.GetVisitSessionByVisitor(visitorId);
+        List<Message> list = new List<Message>();
+        foreach(VisitSession m in li)
+        {
+            list.AddRange(MessageService.GetHistoryChatMessage(m.SessionId, begin, end));
+        }
+        return list;
     }
     /// <summary>
     /// 获取网站页面访问历史记录
@@ -337,7 +343,13 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
     {
-      return PageRequestService.GetHistoryPageRequests(visitorId,begin,end);
+        List<VisitSession> li = VisitSessionService.GetVisitSessionByVisitor(visitorId);
+        List<PageRequest> list = new List<PageRequest>();
+        foreach(VisitSession m in li)
+        {
+           list.AddRange(PageRequestService.GetHistoryPageRequests(m.SessionId, begin, end));
+        }
+        return list;
     }
     /// <summary>
     /// 接受对话请求
