@@ -46,6 +46,7 @@ public class VisitorService
             if (v != null)
             {
                 v.CurrentSession = null;
+                Debug.WriteLine(string.Format("GetVisitor from DB: VisitorId=", v.VisitorId));
                 visitors.Add(v);
             }
         }
@@ -99,12 +100,18 @@ public class VisitorService
 
     public static void NewVisitor(Visitor visitor)
     {
+        Debug.WriteLine(string.Format("NewVisitor : {0}", visitor.ToString()));
         if (GetVisitor(visitor.VisitorId) == null)
         {
             LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.NewVisitor(visitor);
             visitors.Add(visitor);
         }
+        else
+        {
+            Debug.WriteLine("Visitor Found, will not add to DB");
+        }
 
+        // 删除多出的Visitor
         if (visitors.Count > maxVisitorCountInMemory)
         {
             for (int i = visitors.Count; i > 0; i--)
