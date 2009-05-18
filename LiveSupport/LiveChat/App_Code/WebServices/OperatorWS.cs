@@ -47,10 +47,13 @@ public class OperatorWS : System.Web.Services.WebService
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("NewVisitorLastCheckTime={0} ", NewVisitorLastCheckTime);
-            foreach (MessageCheck item in ChatSessionChecks)
+            if (ChatSessionChecks != null)
             {
-                sb.AppendFormat("ChatId={0} ",item.ChatId);
-                sb.AppendFormat("LastCheckTime={0} ",item.LastCheckTime);
+                foreach (MessageCheck item in ChatSessionChecks)
+                {
+                    sb.AppendFormat("ChatId={0} ", item.ChatId);
+                    sb.AppendFormat("LastCheckTime={0} ", item.LastCheckTime);
+                }
             }
             return sb.ToString();
         }
@@ -73,15 +76,14 @@ public class OperatorWS : System.Web.Services.WebService
         public List<MessageCheckResult> Messages; // // 消息更新
         public long NewVisitorCheckTime;
 
-
         public string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
-             sb.AppendFormat("Operators为{0}个 ",Operators.Count);
-             sb.AppendFormat("NewVisitors为{0}个 ", NewVisitors.Count);
-             sb.AppendFormat("VisitSessionChange为{0}个 ", VisitSessionChange.Count);
-             sb.AppendFormat("Messages为{0}个 ", Messages.Count);
+             sb.AppendFormat("Operators为{0}个 ",Operators == null ? 0: Operators.Count);
+             sb.AppendFormat("NewVisitors为{0}个 ", NewVisitors == null ? 0 : NewVisitors.Count);
+             sb.AppendFormat("VisitSessionChange为{0}个 ", VisitSessionChange == null ? 0 : VisitSessionChange.Count);
+             sb.AppendFormat("Messages为{0}个 ", Messages == null ? 0 : Messages.Count);
              sb.AppendFormat("NewVisitorCheckTime={0}", NewVisitorCheckTime);
              return sb.ToString();
            // foreach (var item in NewVisitors)
