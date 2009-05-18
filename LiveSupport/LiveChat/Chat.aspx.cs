@@ -282,14 +282,13 @@ public partial class Chat : System.Web.UI.Page
     {        
         ChatService.CloseChat(chtID, VName);
     }
-
+    /// <summary>
+    /// 离线时发送邮件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
-        
-        //Response.Write("<script>alert('dfasfasdfasdf');</script>");
-        //Response.End();
-
-        // we send an email to the configured email on the web.config
         MailMessage mail = new MailMessage();
         mail.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());
         mail.To.Add(new MailAddress(CurrentAccount.Email));
@@ -300,9 +299,11 @@ public partial class Chat : System.Web.UI.Page
         SmtpClient mailer = new SmtpClient(ConfigurationManager.AppSettings["SMTPServer"].ToString());
         mailer.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
         mailer.Send(mail);
-
         lblConfirmation.Visible = true;
         lblConfirmation.Text = "谢谢您的留言！";
+        
+       // Response.Write("<script>confirm('邮件发送成功 我们会尽快回复你！')</script>");    
+       // Response.Write("<script> emailclose();</script>");       
     }
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
