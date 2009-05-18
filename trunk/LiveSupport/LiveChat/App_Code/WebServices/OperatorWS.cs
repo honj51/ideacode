@@ -32,6 +32,13 @@ using System.Text;
 
 public class OperatorWS : System.Web.Services.WebService
 {
+    public class QuickResponseCategory
+    {
+        public string Name;
+        public List<string> Responses;        
+    }
+
+    #region NewChangeCheck
     public class MessageCheck
 	{
         public string ChatId;
@@ -65,6 +72,7 @@ public class OperatorWS : System.Web.Services.WebService
         public List<Message> Messages;
     }
 
+    #endregion
     /// <summary>
     /// 定义一个类
     /// </summary>
@@ -352,4 +360,21 @@ public class OperatorWS : System.Web.Services.WebService
     {        
        return ChatService.OperatorRequestChat(Authentication.OperatorId, visitorId);
     }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public void UpdateQuickResponse(List<QuickResponseCategory> response)
+    {
+        
+    }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<QuickResponseCategory> GetQuickResponse()
+    {
+        return null;
+
+    }
+
+
 }
