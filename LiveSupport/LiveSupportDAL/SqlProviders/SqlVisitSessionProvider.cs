@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
+using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
@@ -18,7 +19,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
            +" ,[Location]"
            +" ,[VisitingTime]"
            +" ,[DomainRequested]"
-           +",[Operator]"
+           +",[OperatorId]"
            +" ,[Referrer]"
            +" ,[PageRequestCount]"
            +",[Status])"
@@ -27,16 +28,48 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             DBHelper.ExecuteCommand(sql);
         }
 
-        public static List<VisitSession> GetVisitSessionChange(DateTime lastCheck)
+        public static List<VisitSession> GetVisitSessionByVisitor(string visitorId)
         {
-            throw new NotImplementedException();
-            return null;
-        }
+            string sql = "select * from dbo.LiveChat_VisitSession where visitorid='" + visitorId + "'";
+            List<VisitSession> li = new List<VisitSession>();
+            SqlDataReader r = DBHelper.GetReader(sql);
+            while (r.Read())
+            {
+                li.Add(new VisitSession(r));
 
+            }
+            r.Close();
+            r.Dispose();
+            r = null;
+            return li;
+        }
+        /// <summary>
+        /// 跟据会话ID查询一条会话信息
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <returns></returns>
         public static VisitSession GetSessionById(string sessionId)
         {
-            throw new NotImplementedException();
-            return null;
+            string sql = "select * from dbo.LiveChat_VisitSession where sessionid='" + sessionId + "'";
+            SqlDataReader data = null;
+            VisitSession visitSession = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    visitSession = new VisitSession(data);
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return visitSession;
         }
+
     }
 }
