@@ -14,9 +14,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="begin">开始时间</param>
         /// <param name="end"> 结束时间</param>
         /// <returns>Pagerequest集合</returns>
-        public static List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
+        public static List<PageRequest> GetHistoryPageRequests(string sessionId, DateTime begin, DateTime end)
         {
-            string sql = string.Format("select * from dbo.LiveChat_PageRequest where accountid='{0}' and requesttime>='{1}' and requesttime<='{2}'", visitorId, begin, end);
+            string sql = string.Format("select * from dbo.LiveChat_PageRequest where SessionId='{0}' and requesttime>='{1}' and requesttime<='{2}'", sessionId, begin, end);
             SqlDataReader data = null;
             List<PageRequest> list = new List<PageRequest>();
             try
