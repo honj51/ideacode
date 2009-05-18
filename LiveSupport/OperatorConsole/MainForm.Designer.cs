@@ -107,13 +107,11 @@ namespace LiveSupport.OperatorConsole
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSend = new System.Windows.Forms.Button();
-            this.messagebeginMonthCalendar = new System.Windows.Forms.MonthCalendar();
-            this.messageendMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.lblMessageEndTime = new System.Windows.Forms.Label();
             this.lblMessageBeginTime = new System.Windows.Forms.Label();
-            this.txtMessageEndTime = new System.Windows.Forms.TextBox();
-            this.txtMessageBeginTime = new System.Windows.Forms.TextBox();
             this.lstMessage = new System.Windows.Forms.ListView();
             this.colChatID = new System.Windows.Forms.ColumnHeader();
             this.colSource = new System.Windows.Forms.ColumnHeader();
@@ -123,13 +121,11 @@ namespace LiveSupport.OperatorConsole
             this.colType = new System.Windows.Forms.ColumnHeader();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.requestendDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.requestbeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnOk = new System.Windows.Forms.Button();
             this.lblREndTime = new System.Windows.Forms.Label();
             this.lblRBeginTime = new System.Windows.Forms.Label();
-            this.requestendRMonthCalendar = new System.Windows.Forms.MonthCalendar();
-            this.txtRequestEndTime = new System.Windows.Forms.TextBox();
-            this.txtRequestBeginTime = new System.Windows.Forms.TextBox();
-            this.requestbeginMonthCalendar = new System.Windows.Forms.MonthCalendar();
             this.lstPageRequest = new System.Windows.Forms.ListView();
             this.colPage = new System.Windows.Forms.ColumnHeader();
             this.colRTime = new System.Windows.Forms.ColumnHeader();
@@ -355,7 +351,7 @@ namespace LiveSupport.OperatorConsole
             this.helpToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(958, 24);
+            this.mainMenu.Size = new System.Drawing.Size(958, 25);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -367,26 +363,26 @@ namespace LiveSupport.OperatorConsole
             this.rejiggerpasswordToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.operatorToolStripMenuItem.Name = "operatorToolStripMenuItem";
-            this.operatorToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.operatorToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
             this.operatorToolStripMenuItem.Text = "操作(&F)";
             // 
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
             this.connectToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.connectToolStripMenuItem.Text = "更改账户(&C)";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(156, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(165, 6);
             // 
             // rejiggerpasswordToolStripMenuItem
             // 
             this.rejiggerpasswordToolStripMenuItem.Name = "rejiggerpasswordToolStripMenuItem";
-            this.rejiggerpasswordToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.rejiggerpasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.rejiggerpasswordToolStripMenuItem.Text = "修改密码(&P)";
             this.rejiggerpasswordToolStripMenuItem.Click += new System.EventHandler(this.rejiggerpasswordToolStripMenuItem_Click);
             // 
@@ -395,7 +391,7 @@ namespace LiveSupport.OperatorConsole
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.exitToolStripMenuItem.Text = "退出(&E)";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -405,19 +401,19 @@ namespace LiveSupport.OperatorConsole
             this.创建交流按钮CToolStripMenuItem,
             this.resetpasswordToolStripMenuItem});
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
             this.adminToolStripMenuItem.Text = "管理员(&A)";
             // 
             // 创建交流按钮CToolStripMenuItem
             // 
             this.创建交流按钮CToolStripMenuItem.Name = "创建交流按钮CToolStripMenuItem";
-            this.创建交流按钮CToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.创建交流按钮CToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.创建交流按钮CToolStripMenuItem.Text = "创建交流按钮(&C)";
             // 
             // resetpasswordToolStripMenuItem
             // 
             this.resetpasswordToolStripMenuItem.Name = "resetpasswordToolStripMenuItem";
-            this.resetpasswordToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.resetpasswordToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.resetpasswordToolStripMenuItem.Text = "重置座席密码(&R)";
             this.resetpasswordToolStripMenuItem.Click += new System.EventHandler(this.resetpasswordToolStripMenuItem_Click);
             // 
@@ -429,33 +425,33 @@ namespace LiveSupport.OperatorConsole
             this.客服栏OToolStripMenuItem,
             this.访客信息栏VToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(60, 21);
             this.toolsToolStripMenuItem.Text = "视图(&V)";
             // 
             // cannedMessagesToolStripMenuItem
             // 
             this.cannedMessagesToolStripMenuItem.Name = "cannedMessagesToolStripMenuItem";
-            this.cannedMessagesToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.cannedMessagesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cannedMessagesToolStripMenuItem.Text = "常用消息(&C)";
             this.cannedMessagesToolStripMenuItem.Click += new System.EventHandler(this.cannedMessagesToolStripMenuItem_Click);
             // 
             // presetLinksToolStripMenuItem
             // 
             this.presetLinksToolStripMenuItem.Name = "presetLinksToolStripMenuItem";
-            this.presetLinksToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.presetLinksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.presetLinksToolStripMenuItem.Text = "预置链接(&P)";
             this.presetLinksToolStripMenuItem.Click += new System.EventHandler(this.presetLinksToolStripMenuItem_Click);
             // 
             // 客服栏OToolStripMenuItem
             // 
             this.客服栏OToolStripMenuItem.Name = "客服栏OToolStripMenuItem";
-            this.客服栏OToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.客服栏OToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.客服栏OToolStripMenuItem.Text = "客服栏(&O)";
             // 
             // 访客信息栏VToolStripMenuItem
             // 
             this.访客信息栏VToolStripMenuItem.Name = "访客信息栏VToolStripMenuItem";
-            this.访客信息栏VToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.访客信息栏VToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.访客信息栏VToolStripMenuItem.Text = "访客信息栏(&V)";
             // 
             // administrationToolStripMenuItem
@@ -468,7 +464,7 @@ namespace LiveSupport.OperatorConsole
             this.toolStripSeparator1,
             this.autostartToolStripMenuItem});
             this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
-            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(62, 21);
             this.administrationToolStripMenuItem.Text = "选项(&O)";
             // 
             // playSoundOnChatRequestToolStripMenuItem
@@ -476,21 +472,21 @@ namespace LiveSupport.OperatorConsole
             this.playSoundOnChatRequestToolStripMenuItem.Checked = true;
             this.playSoundOnChatRequestToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.playSoundOnChatRequestToolStripMenuItem.Name = "playSoundOnChatRequestToolStripMenuItem";
-            this.playSoundOnChatRequestToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.playSoundOnChatRequestToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.playSoundOnChatRequestToolStripMenuItem.Text = "对话请求时播放声音";
             this.playSoundOnChatRequestToolStripMenuItem.Click += new System.EventHandler(this.playSoundOnChatRequestToolStripMenuItem_Click);
             // 
             // playSoundOnChatMessageToolStripMenuItem
             // 
             this.playSoundOnChatMessageToolStripMenuItem.Name = "playSoundOnChatMessageToolStripMenuItem";
-            this.playSoundOnChatMessageToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.playSoundOnChatMessageToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.playSoundOnChatMessageToolStripMenuItem.Text = "新消息时播放声音";
             this.playSoundOnChatMessageToolStripMenuItem.Click += new System.EventHandler(this.playSoundOnChatMessageToolStripMenuItem_Click);
             // 
             // whenOfflineGetWebsiteRequestsToolStripMenuItem
             // 
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Name = "whenOfflineGetWebsiteRequestsToolStripMenuItem";
-            this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Text = "离线时仍获取网站访问记录";
             this.whenOfflineGetWebsiteRequestsToolStripMenuItem.Click += new System.EventHandler(this.whenOfflineGetWebsiteRequestsToolStripMenuItem_Click);
             // 
@@ -498,20 +494,20 @@ namespace LiveSupport.OperatorConsole
             // 
             this.autoLoginToolStripMenuItem.CheckOnClick = true;
             this.autoLoginToolStripMenuItem.Name = "autoLoginToolStripMenuItem";
-            this.autoLoginToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.autoLoginToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.autoLoginToolStripMenuItem.Text = "自动登录";
             this.autoLoginToolStripMenuItem.Click += new System.EventHandler(this.autoLoginToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(217, 6);
             // 
             // autostartToolStripMenuItem
             // 
             this.autostartToolStripMenuItem.CheckOnClick = true;
             this.autostartToolStripMenuItem.Name = "autostartToolStripMenuItem";
-            this.autostartToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.autostartToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.autostartToolStripMenuItem.Text = "开机自动运行";
             this.autostartToolStripMenuItem.Click += new System.EventHandler(this.autostartToolStripMenuItem_Click);
             // 
@@ -526,48 +522,48 @@ namespace LiveSupport.OperatorConsole
             this.官方网站ToolStripMenuItem,
             this.关于AToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             this.helpToolStripMenuItem.Text = "帮助(&H)";
             // 
             // 检查升级CToolStripMenuItem
             // 
             this.检查升级CToolStripMenuItem.Name = "检查升级CToolStripMenuItem";
-            this.检查升级CToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.检查升级CToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.检查升级CToolStripMenuItem.Text = "检查升级(&C)";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(173, 6);
             // 
             // 购买服务BToolStripMenuItem
             // 
             this.购买服务BToolStripMenuItem.Name = "购买服务BToolStripMenuItem";
-            this.购买服务BToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.购买服务BToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.购买服务BToolStripMenuItem.Text = "购买服务(&B)";
             // 
             // 联系我们UToolStripMenuItem
             // 
             this.联系我们UToolStripMenuItem.Name = "联系我们UToolStripMenuItem";
-            this.联系我们UToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.联系我们UToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.联系我们UToolStripMenuItem.Text = "联系我们(&U)";
             // 
             // 软件手册MToolStripMenuItem
             // 
             this.软件手册MToolStripMenuItem.Name = "软件手册MToolStripMenuItem";
-            this.软件手册MToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.软件手册MToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.软件手册MToolStripMenuItem.Text = "软件手册(&M)";
             // 
             // 官方网站ToolStripMenuItem
             // 
             this.官方网站ToolStripMenuItem.Name = "官方网站ToolStripMenuItem";
-            this.官方网站ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.官方网站ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.官方网站ToolStripMenuItem.Text = "官方网站(&H)";
             // 
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.关于AToolStripMenuItem.Text = "关于座席客户端(&A)";
             // 
             // pnlChat
@@ -583,7 +579,7 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.Controls.Add(this.lblCurrentVisitors);
             this.pnlChat.Controls.Add(this.lblMyChat);
             this.pnlChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlChat.Location = new System.Drawing.Point(0, 49);
+            this.pnlChat.Location = new System.Drawing.Point(0, 50);
             this.pnlChat.Name = "pnlChat";
             this.pnlChat.Size = new System.Drawing.Size(958, 27);
             this.pnlChat.TabIndex = 1;
@@ -687,7 +683,7 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors.Location = new System.Drawing.Point(0, 0);
             this.lstVisitors.MultiSelect = false;
             this.lstVisitors.Name = "lstVisitors";
-            this.lstVisitors.Size = new System.Drawing.Size(958, 227);
+            this.lstVisitors.Size = new System.Drawing.Size(958, 226);
             this.lstVisitors.SmallImageList = this.imgIconSet;
             this.lstVisitors.TabIndex = 2;
             this.lstVisitors.UseCompatibleStateImageBehavior = false;
@@ -763,18 +759,18 @@ namespace LiveSupport.OperatorConsole
             this.邀请对话ToolStripMenuItem,
             this.接受请求ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
             // 
             // 邀请对话ToolStripMenuItem
             // 
             this.邀请对话ToolStripMenuItem.Name = "邀请对话ToolStripMenuItem";
-            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.邀请对话ToolStripMenuItem.Text = "邀请对话";
             // 
             // 接受请求ToolStripMenuItem
             // 
             this.接受请求ToolStripMenuItem.Name = "接受请求ToolStripMenuItem";
-            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.接受请求ToolStripMenuItem.Text = "接受请求";
             // 
             // imgIconSet
@@ -803,10 +799,10 @@ namespace LiveSupport.OperatorConsole
             // 
             this.tabPage1.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.WelCome;
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage1.Location = new System.Drawing.Point(4, 21);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(742, 323);
+            this.tabPage1.Size = new System.Drawing.Size(742, 322);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "";
             this.tabPage1.Text = "欢迎";
@@ -814,21 +810,35 @@ namespace LiveSupport.OperatorConsole
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.messageendDateTimePicker);
+            this.tabPage2.Controls.Add(this.messagebeginDateTimePicker);
             this.tabPage2.Controls.Add(this.btnSend);
-            this.tabPage2.Controls.Add(this.messagebeginMonthCalendar);
-            this.tabPage2.Controls.Add(this.messageendMonthCalendar);
             this.tabPage2.Controls.Add(this.lblMessageEndTime);
             this.tabPage2.Controls.Add(this.lblMessageBeginTime);
-            this.tabPage2.Controls.Add(this.txtMessageEndTime);
-            this.tabPage2.Controls.Add(this.txtMessageBeginTime);
             this.tabPage2.Controls.Add(this.lstMessage);
-            this.tabPage2.Location = new System.Drawing.Point(4, 21);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(742, 323);
+            this.tabPage2.Size = new System.Drawing.Size(742, 322);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // messageendDateTimePicker
+            // 
+            this.messageendDateTimePicker.Location = new System.Drawing.Point(366, 20);
+            this.messageendDateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.messageendDateTimePicker.Name = "messageendDateTimePicker";
+            this.messageendDateTimePicker.Size = new System.Drawing.Size(200, 21);
+            this.messageendDateTimePicker.TabIndex = 17;
+            // 
+            // messagebeginDateTimePicker
+            // 
+            this.messagebeginDateTimePicker.Location = new System.Drawing.Point(72, 20);
+            this.messagebeginDateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.messagebeginDateTimePicker.Name = "messagebeginDateTimePicker";
+            this.messagebeginDateTimePicker.Size = new System.Drawing.Size(200, 21);
+            this.messagebeginDateTimePicker.TabIndex = 16;
             // 
             // btnSend
             // 
@@ -840,26 +850,10 @@ namespace LiveSupport.OperatorConsole
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // messagebeginMonthCalendar
-            // 
-            this.messagebeginMonthCalendar.Location = new System.Drawing.Point(82, 47);
-            this.messagebeginMonthCalendar.Name = "messagebeginMonthCalendar";
-            this.messagebeginMonthCalendar.TabIndex = 8;
-            this.messagebeginMonthCalendar.Visible = false;
-            this.messagebeginMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.messagebeginMonthCalendar_DateSelected);
-            // 
-            // messageendMonthCalendar
-            // 
-            this.messageendMonthCalendar.Location = new System.Drawing.Point(388, 47);
-            this.messageendMonthCalendar.Name = "messageendMonthCalendar";
-            this.messageendMonthCalendar.TabIndex = 11;
-            this.messageendMonthCalendar.Visible = false;
-            this.messageendMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.messageendMonthCalendar_DateSelected);
-            // 
             // lblMessageEndTime
             // 
             this.lblMessageEndTime.AutoSize = true;
-            this.lblMessageEndTime.Location = new System.Drawing.Point(317, 26);
+            this.lblMessageEndTime.Location = new System.Drawing.Point(293, 25);
             this.lblMessageEndTime.Name = "lblMessageEndTime";
             this.lblMessageEndTime.Size = new System.Drawing.Size(65, 12);
             this.lblMessageEndTime.TabIndex = 13;
@@ -873,26 +867,6 @@ namespace LiveSupport.OperatorConsole
             this.lblMessageBeginTime.Size = new System.Drawing.Size(65, 12);
             this.lblMessageBeginTime.TabIndex = 12;
             this.lblMessageBeginTime.Text = "开始时间：";
-            // 
-            // txtMessageEndTime
-            // 
-            this.txtMessageEndTime.Location = new System.Drawing.Point(388, 22);
-            this.txtMessageEndTime.Name = "txtMessageEndTime";
-            this.txtMessageEndTime.ReadOnly = true;
-            this.txtMessageEndTime.Size = new System.Drawing.Size(130, 21);
-            this.txtMessageEndTime.TabIndex = 10;
-            this.txtMessageEndTime.Leave += new System.EventHandler(this.txtMessageEndTime_Leave);
-            this.txtMessageEndTime.Enter += new System.EventHandler(this.txtMessageEndTime_Enter);
-            // 
-            // txtMessageBeginTime
-            // 
-            this.txtMessageBeginTime.Location = new System.Drawing.Point(82, 22);
-            this.txtMessageBeginTime.Name = "txtMessageBeginTime";
-            this.txtMessageBeginTime.ReadOnly = true;
-            this.txtMessageBeginTime.Size = new System.Drawing.Size(130, 21);
-            this.txtMessageBeginTime.TabIndex = 9;
-            this.txtMessageBeginTime.Leave += new System.EventHandler(this.txtMessageBeginTime_Leave);
-            this.txtMessageBeginTime.Enter += new System.EventHandler(this.txtMessageBeginTime_Enter);
             // 
             // lstMessage
             // 
@@ -943,31 +917,45 @@ namespace LiveSupport.OperatorConsole
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 21);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(742, 323);
+            this.tabPage3.Size = new System.Drawing.Size(742, 322);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "访客名片";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.requestendDateTimePicker);
+            this.tabPage4.Controls.Add(this.requestbeginDateTimePicker);
             this.tabPage4.Controls.Add(this.btnOk);
             this.tabPage4.Controls.Add(this.lblREndTime);
             this.tabPage4.Controls.Add(this.lblRBeginTime);
-            this.tabPage4.Controls.Add(this.requestendRMonthCalendar);
-            this.tabPage4.Controls.Add(this.txtRequestEndTime);
-            this.tabPage4.Controls.Add(this.txtRequestBeginTime);
-            this.tabPage4.Controls.Add(this.requestbeginMonthCalendar);
             this.tabPage4.Controls.Add(this.lstPageRequest);
-            this.tabPage4.Location = new System.Drawing.Point(4, 21);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(742, 323);
+            this.tabPage4.Size = new System.Drawing.Size(742, 322);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "网页浏览";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // requestendDateTimePicker
+            // 
+            this.requestendDateTimePicker.Location = new System.Drawing.Point(372, 20);
+            this.requestendDateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.requestendDateTimePicker.Name = "requestendDateTimePicker";
+            this.requestendDateTimePicker.Size = new System.Drawing.Size(200, 21);
+            this.requestendDateTimePicker.TabIndex = 9;
+            // 
+            // requestbeginDateTimePicker
+            // 
+            this.requestbeginDateTimePicker.Location = new System.Drawing.Point(77, 20);
+            this.requestbeginDateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.requestbeginDateTimePicker.Name = "requestbeginDateTimePicker";
+            this.requestbeginDateTimePicker.Size = new System.Drawing.Size(200, 21);
+            this.requestbeginDateTimePicker.TabIndex = 8;
             // 
             // btnOk
             // 
@@ -982,7 +970,7 @@ namespace LiveSupport.OperatorConsole
             // lblREndTime
             // 
             this.lblREndTime.AutoSize = true;
-            this.lblREndTime.Location = new System.Drawing.Point(321, 23);
+            this.lblREndTime.Location = new System.Drawing.Point(302, 23);
             this.lblREndTime.Name = "lblREndTime";
             this.lblREndTime.Size = new System.Drawing.Size(65, 12);
             this.lblREndTime.TabIndex = 5;
@@ -996,42 +984,6 @@ namespace LiveSupport.OperatorConsole
             this.lblRBeginTime.Size = new System.Drawing.Size(65, 12);
             this.lblRBeginTime.TabIndex = 4;
             this.lblRBeginTime.Text = "开始时间：";
-            // 
-            // requestendRMonthCalendar
-            // 
-            this.requestendRMonthCalendar.Location = new System.Drawing.Point(392, 44);
-            this.requestendRMonthCalendar.Name = "requestendRMonthCalendar";
-            this.requestendRMonthCalendar.TabIndex = 3;
-            this.requestendRMonthCalendar.Visible = false;
-            this.requestendRMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.requestendMonthCalendar_DateSelected);
-            // 
-            // txtRequestEndTime
-            // 
-            this.txtRequestEndTime.Location = new System.Drawing.Point(392, 20);
-            this.txtRequestEndTime.Name = "txtRequestEndTime";
-            this.txtRequestEndTime.ReadOnly = true;
-            this.txtRequestEndTime.Size = new System.Drawing.Size(130, 21);
-            this.txtRequestEndTime.TabIndex = 2;
-            this.txtRequestEndTime.Leave += new System.EventHandler(this.txtRequestEndTime_Leave);
-            this.txtRequestEndTime.Enter += new System.EventHandler(this.txtRequestEndTime_Enter);
-            // 
-            // txtRequestBeginTime
-            // 
-            this.txtRequestBeginTime.Location = new System.Drawing.Point(82, 20);
-            this.txtRequestBeginTime.Name = "txtRequestBeginTime";
-            this.txtRequestBeginTime.ReadOnly = true;
-            this.txtRequestBeginTime.Size = new System.Drawing.Size(130, 21);
-            this.txtRequestBeginTime.TabIndex = 1;
-            this.txtRequestBeginTime.Leave += new System.EventHandler(this.txtRequestBeginTime_Leave);
-            this.txtRequestBeginTime.Enter += new System.EventHandler(this.txtRequestBeginTime_Enter);
-            // 
-            // requestbeginMonthCalendar
-            // 
-            this.requestbeginMonthCalendar.Location = new System.Drawing.Point(82, 44);
-            this.requestbeginMonthCalendar.Name = "requestbeginMonthCalendar";
-            this.requestbeginMonthCalendar.TabIndex = 0;
-            this.requestbeginMonthCalendar.Visible = false;
-            this.requestbeginMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.requestbeginMonthCalendar_DateSelected);
             // 
             // lstPageRequest
             // 
@@ -1096,10 +1048,10 @@ namespace LiveSupport.OperatorConsole
             this.tabPage5.Controls.Add(this.visitCountTextBox);
             this.tabPage5.Controls.Add(visitorIdLabel);
             this.tabPage5.Controls.Add(this.visitorIdTextBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 21);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(742, 323);
+            this.tabPage5.Size = new System.Drawing.Size(742, 322);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "访客详情";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1247,7 +1199,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.mainSplitContainer.BackColor = System.Drawing.Color.Transparent;
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainSplitContainer.Location = new System.Drawing.Point(0, 76);
+            this.mainSplitContainer.Location = new System.Drawing.Point(0, 77);
             this.mainSplitContainer.Name = "mainSplitContainer";
             this.mainSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1259,8 +1211,8 @@ namespace LiveSupport.OperatorConsole
             // 
             this.mainSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.mainSplitContainer.Panel2.Controls.Add(this.visitorSessionSplitContainer);
-            this.mainSplitContainer.Size = new System.Drawing.Size(958, 591);
-            this.mainSplitContainer.SplitterDistance = 227;
+            this.mainSplitContainer.Size = new System.Drawing.Size(958, 590);
+            this.mainSplitContainer.SplitterDistance = 226;
             this.mainSplitContainer.TabIndex = 4;
             // 
             // visitorSessionSplitContainer
@@ -1365,13 +1317,13 @@ namespace LiveSupport.OperatorConsole
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem2});
             this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(143, 170);
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(148, 170);
             // 
             // 空闲ToolStripMenuItem
             // 
             this.空闲ToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_02;
             this.空闲ToolStripMenuItem.Name = "空闲ToolStripMenuItem";
-            this.空闲ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.空闲ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.空闲ToolStripMenuItem.Text = "空闲";
             this.空闲ToolStripMenuItem.Click += new System.EventHandler(this.空闲ToolStripMenuItem_Click);
             // 
@@ -1379,14 +1331,14 @@ namespace LiveSupport.OperatorConsole
             // 
             this.chattingToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_01;
             this.chattingToolStripMenuItem.Name = "chattingToolStripMenuItem";
-            this.chattingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.chattingToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.chattingToolStripMenuItem.Text = "对话中";
             // 
             // beRightBackToolStripMenuItem
             // 
             this.beRightBackToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_04;
             this.beRightBackToolStripMenuItem.Name = "beRightBackToolStripMenuItem";
-            this.beRightBackToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.beRightBackToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.beRightBackToolStripMenuItem.Text = "一会回来";
             this.beRightBackToolStripMenuItem.Click += new System.EventHandler(this.beRightBackToolStripMenuItem_Click);
             // 
@@ -1394,38 +1346,38 @@ namespace LiveSupport.OperatorConsole
             // 
             this.offlineToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_09;
             this.offlineToolStripMenuItem.Name = "offlineToolStripMenuItem";
-            this.offlineToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.offlineToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.offlineToolStripMenuItem.Text = "离线";
             this.offlineToolStripMenuItem.Click += new System.EventHandler(this.offlineToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(144, 6);
             // 
             // changeAccountToolStripMenuItem
             // 
             this.changeAccountToolStripMenuItem.Name = "changeAccountToolStripMenuItem";
-            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.changeAccountToolStripMenuItem.Text = "更换座席(&C)";
             this.changeAccountToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.openToolStripMenuItem.Text = "显示/隐藏(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem2
             // 
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
-            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
+            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(147, 22);
             this.exitToolStripMenuItem2.Text = "退出(&E)";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1440,9 +1392,8 @@ namespace LiveSupport.OperatorConsole
             this.toolStripSeparator6,
             this.acceptToolStripButton});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(958, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
@@ -1457,7 +1408,7 @@ namespace LiveSupport.OperatorConsole
             this.inviteToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.aim;
             this.inviteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.inviteToolStripButton.Name = "inviteToolStripButton";
-            this.inviteToolStripButton.Size = new System.Drawing.Size(73, 22);
+            this.inviteToolStripButton.Size = new System.Drawing.Size(76, 22);
             this.inviteToolStripButton.Text = "邀请访客";
             this.inviteToolStripButton.Click += new System.EventHandler(this.inviteToolStripButton_Click);
             // 
@@ -1471,7 +1422,7 @@ namespace LiveSupport.OperatorConsole
             this.acceptToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.All_software_is_current;
             this.acceptToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.acceptToolStripButton.Name = "acceptToolStripButton";
-            this.acceptToolStripButton.Size = new System.Drawing.Size(97, 22);
+            this.acceptToolStripButton.Size = new System.Drawing.Size(100, 22);
             this.acceptToolStripButton.Text = "接受对话请求";
             this.acceptToolStripButton.Click += new System.EventHandler(this.acceptToolStripButton_Click);
             // 
@@ -1557,7 +1508,7 @@ namespace LiveSupport.OperatorConsole
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
-            this.Text = " ";
+            this.Text = "座席客户端";
             this.TransparencyKey = System.Drawing.Color.LightSteelBlue;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -1703,10 +1654,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem resetpasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rejiggerpasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoLoginToolStripMenuItem;
-        private System.Windows.Forms.TextBox txtRequestBeginTime;
-        private System.Windows.Forms.MonthCalendar requestbeginMonthCalendar;
-        private System.Windows.Forms.MonthCalendar requestendRMonthCalendar;
-        private System.Windows.Forms.TextBox txtRequestEndTime;
         private System.Windows.Forms.Label lblREndTime;
         private System.Windows.Forms.Label lblRBeginTime;
         private System.Windows.Forms.Button btnOk;
@@ -1717,10 +1664,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Label lblMessageEndTime;
         private System.Windows.Forms.Label lblMessageBeginTime;
-        private System.Windows.Forms.MonthCalendar messageendMonthCalendar;
-        private System.Windows.Forms.TextBox txtMessageEndTime;
-        private System.Windows.Forms.TextBox txtMessageBeginTime;
-        private System.Windows.Forms.MonthCalendar messagebeginMonthCalendar;
         private System.Windows.Forms.ListView lstMessage;
         private System.Windows.Forms.ColumnHeader colChatID;
         private System.Windows.Forms.ColumnHeader colSource;
@@ -1728,5 +1671,9 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ColumnHeader colText;
         private System.Windows.Forms.ColumnHeader colSentDate;
         private System.Windows.Forms.ColumnHeader colType;
+        private System.Windows.Forms.DateTimePicker requestendDateTimePicker;
+        private System.Windows.Forms.DateTimePicker requestbeginDateTimePicker;
+        private System.Windows.Forms.DateTimePicker messageendDateTimePicker;
+        private System.Windows.Forms.DateTimePicker messagebeginDateTimePicker;
     }
 }
