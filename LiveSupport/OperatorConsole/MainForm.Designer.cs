@@ -44,10 +44,10 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label visitingTimeLabel;
             System.Windows.Forms.Label domainRequestedLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("在线");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("离线");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("在线");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("离线");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,8 +101,8 @@ namespace LiveSupport.OperatorConsole
             this.colChattingDuring = new System.Windows.Forms.ColumnHeader();
             this.colPageRequestCount = new System.Windows.Forms.ColumnHeader();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.邀请对话ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.接受请求ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inviteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acceptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -113,12 +113,10 @@ namespace LiveSupport.OperatorConsole
             this.lblMessageEndTime = new System.Windows.Forms.Label();
             this.lblMessageBeginTime = new System.Windows.Forms.Label();
             this.lstMessage = new System.Windows.Forms.ListView();
-            this.colChatID = new System.Windows.Forms.ColumnHeader();
             this.colSource = new System.Windows.Forms.ColumnHeader();
             this.colDestination = new System.Windows.Forms.ColumnHeader();
             this.colText = new System.Windows.Forms.ColumnHeader();
             this.colSentDate = new System.Windows.Forms.ColumnHeader();
-            this.colType = new System.Windows.Forms.ColumnHeader();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.requestendDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -756,22 +754,24 @@ namespace LiveSupport.OperatorConsole
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.邀请对话ToolStripMenuItem,
-            this.接受请求ToolStripMenuItem});
+            this.inviteToolStripMenuItem,
+            this.acceptToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
-            // 邀请对话ToolStripMenuItem
+            // inviteToolStripMenuItem
             // 
-            this.邀请对话ToolStripMenuItem.Name = "邀请对话ToolStripMenuItem";
-            this.邀请对话ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.邀请对话ToolStripMenuItem.Text = "邀请对话";
+            this.inviteToolStripMenuItem.Name = "inviteToolStripMenuItem";
+            this.inviteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inviteToolStripMenuItem.Text = "邀请对话";
+            this.inviteToolStripMenuItem.Click += new System.EventHandler(this.inviteToolStripMenuItem_Click);
             // 
-            // 接受请求ToolStripMenuItem
+            // acceptToolStripMenuItem
             // 
-            this.接受请求ToolStripMenuItem.Name = "接受请求ToolStripMenuItem";
-            this.接受请求ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.接受请求ToolStripMenuItem.Text = "接受请求";
+            this.acceptToolStripMenuItem.Name = "acceptToolStripMenuItem";
+            this.acceptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.acceptToolStripMenuItem.Text = "接受请求";
+            this.acceptToolStripMenuItem.Click += new System.EventHandler(this.acceptToolStripMenuItem_Click);
             // 
             // imgIconSet
             // 
@@ -819,7 +819,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(742, 323);
+            this.tabPage2.Size = new System.Drawing.Size(742, 324);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -874,12 +874,10 @@ namespace LiveSupport.OperatorConsole
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lstMessage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colChatID,
             this.colSource,
             this.colDestination,
             this.colText,
-            this.colSentDate,
-            this.colType});
+            this.colSentDate});
             this.lstMessage.GridLines = true;
             this.lstMessage.Location = new System.Drawing.Point(0, 61);
             this.lstMessage.Name = "lstMessage";
@@ -888,39 +886,32 @@ namespace LiveSupport.OperatorConsole
             this.lstMessage.UseCompatibleStateImageBehavior = false;
             this.lstMessage.View = System.Windows.Forms.View.Details;
             // 
-            // colChatID
-            // 
-            this.colChatID.Text = "所属对话";
-            this.colChatID.Width = 233;
-            // 
             // colSource
             // 
             this.colSource.Text = "发送者";
-            this.colSource.Width = 148;
+            this.colSource.Width = 108;
             // 
             // colDestination
             // 
             this.colDestination.Text = "接受者";
-            this.colDestination.Width = 241;
+            this.colDestination.Width = 78;
             // 
             // colText
             // 
             this.colText.Text = "消息内容";
+            this.colText.Width = 213;
             // 
             // colSentDate
             // 
             this.colSentDate.Text = "发送时间";
-            // 
-            // colType
-            // 
-            this.colType.Text = "消息类型";
+            this.colSentDate.Width = 161;
             // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(742, 323);
+            this.tabPage3.Size = new System.Drawing.Size(742, 324);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "访客名片";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -936,7 +927,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(742, 323);
+            this.tabPage4.Size = new System.Drawing.Size(742, 324);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "网页浏览";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1051,7 +1042,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage5.Location = new System.Drawing.Point(4, 21);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(742, 323);
+            this.tabPage5.Size = new System.Drawing.Size(742, 324);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "访客详情";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1249,13 +1240,13 @@ namespace LiveSupport.OperatorConsole
             this.operatorsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.operatorsTreeView.Location = new System.Drawing.Point(0, 12);
             this.operatorsTreeView.Name = "operatorsTreeView";
-            treeNode1.Name = "节点0";
-            treeNode1.Text = "在线";
-            treeNode2.Name = "节点1";
-            treeNode2.Text = "离线";
+            treeNode9.Name = "节点0";
+            treeNode9.Text = "在线";
+            treeNode10.Name = "节点1";
+            treeNode10.Text = "离线";
             this.operatorsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode9,
+            treeNode10});
             this.operatorsTreeView.Size = new System.Drawing.Size(204, 349);
             this.operatorsTreeView.TabIndex = 0;
             // 
@@ -1285,13 +1276,13 @@ namespace LiveSupport.OperatorConsole
             this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "在线客服";
-            treeNode4.Name = "节点1";
-            treeNode4.Text = "离线客服";
+            treeNode11.Name = "节点0";
+            treeNode11.Text = "在线客服";
+            treeNode12.Name = "节点1";
+            treeNode12.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode11,
+            treeNode12});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1567,8 +1558,8 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem playSoundOnChatMessageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whenOfflineGetWebsiteRequestsToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 邀请对话ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 接受请求ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inviteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acceptToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer mainSplitContainer;
         private System.Windows.Forms.ToolStripMenuItem 关于AToolStripMenuItem;
@@ -1665,12 +1656,10 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Label lblMessageEndTime;
         private System.Windows.Forms.Label lblMessageBeginTime;
         private System.Windows.Forms.ListView lstMessage;
-        private System.Windows.Forms.ColumnHeader colChatID;
         private System.Windows.Forms.ColumnHeader colSource;
         private System.Windows.Forms.ColumnHeader colDestination;
         private System.Windows.Forms.ColumnHeader colText;
         private System.Windows.Forms.ColumnHeader colSentDate;
-        private System.Windows.Forms.ColumnHeader colType;
         private System.Windows.Forms.DateTimePicker requestendDateTimePicker;
         private System.Windows.Forms.DateTimePicker requestbeginDateTimePicker;
         private System.Windows.Forms.DateTimePicker messageendDateTimePicker;
