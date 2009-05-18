@@ -48,9 +48,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="visitorId">会话ID</param>
         /// <param name="begin">开始时间</param>
         /// <param name="end">结束时间</param>
-        public static List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+        public static List<Message> GetHistoryChatMessage(string sessionId, DateTime begin, DateTime end)
         {
-            string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}'and SentDate>='{1}'  and SentDate <= '{2}'", visitorId, begin, end);
+            string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}'and SentDate>='{1}'  and SentDate <= '{2}'", sessionId, begin, end);
             SqlDataReader data = null;
             List<Message> retList = new List<Message>();
             try
