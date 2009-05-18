@@ -42,6 +42,18 @@ public class OperatorWS : System.Web.Services.WebService
     {
         public List<MessageCheck> ChatSessionChecks;
         public long NewVisitorLastCheckTime;
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("NewVisitorLastCheckTime={0} ", NewVisitorLastCheckTime);
+            foreach (MessageCheck item in ChatSessionChecks)
+            {
+                sb.AppendFormat("ChatId={0} ",item.ChatId);
+                sb.AppendFormat("LastCheckTime={0} ",item.LastCheckTime);
+            }
+            return sb.ToString();
+        }
     }
 
     public class MessageCheckResult
@@ -61,13 +73,21 @@ public class OperatorWS : System.Web.Services.WebService
         public List<MessageCheckResult> Messages; // // 消息更新
         public long NewVisitorCheckTime;
 
-        public void ToTraceString()
+
+        public string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var item in NewVisitors)
-            {
+
+             sb.AppendFormat("Operators为{0}个 ",Operators.Count);
+             sb.AppendFormat("NewVisitors为{0}个 ", NewVisitors.Count);
+             sb.AppendFormat("VisitSessionChange为{0}个 ", VisitSessionChange.Count);
+             sb.AppendFormat("Messages为{0}个 ", Messages.Count);
+             sb.AppendFormat("NewVisitorCheckTime={0}", NewVisitorCheckTime);
+             return sb.ToString();
+           // foreach (var item in NewVisitors)
+           // {
                 //sb.AppendFormat("VisitorId:",item.VisitorId,item.Name,
-            }
+            //}
             //sb.AppendFormat("NewVisitorCheckTime:{0} | NewVisitors []"
         }
     }
