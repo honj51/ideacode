@@ -28,9 +28,9 @@ public class PageRequestService
     /// <param name="begin">开始时间</param>
     /// <param name="end"> 结束时间</param>
     /// <returns>Pagerequest集合</returns>
-    public static List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
+    public static List<PageRequest> GetHistoryPageRequests(string sessionId, DateTime begin, DateTime end)
     {
-        return SqlPageRequestProvider.GetHistoryPageRequests(visitorId, begin, end);
+        return SqlPageRequestProvider.GetHistoryPageRequests(sessionId, begin, end);
     }
     /// <summary>
     /// 添加一条页面访问记录
