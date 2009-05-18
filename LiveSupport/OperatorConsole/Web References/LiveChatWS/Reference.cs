@@ -59,6 +59,10 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback InviteChatOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateQuickResponseOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetQuickResponseOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -147,6 +151,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event InviteChatCompletedEventHandler InviteChatCompleted;
+        
+        /// <remarks/>
+        public event UpdateQuickResponseCompletedEventHandler UpdateQuickResponseCompleted;
+        
+        /// <remarks/>
+        public event GetQuickResponseCompletedEventHandler GetQuickResponseCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -585,6 +595,63 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateQuickResponse", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateQuickResponse(QuickResponseCategory[] response) {
+            this.Invoke("UpdateQuickResponse", new object[] {
+                        response});
+        }
+        
+        /// <remarks/>
+        public void UpdateQuickResponseAsync(QuickResponseCategory[] response) {
+            this.UpdateQuickResponseAsync(response, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateQuickResponseAsync(QuickResponseCategory[] response, object userState) {
+            if ((this.UpdateQuickResponseOperationCompleted == null)) {
+                this.UpdateQuickResponseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateQuickResponseOperationCompleted);
+            }
+            this.InvokeAsync("UpdateQuickResponse", new object[] {
+                        response}, this.UpdateQuickResponseOperationCompleted, userState);
+        }
+        
+        private void OnUpdateQuickResponseOperationCompleted(object arg) {
+            if ((this.UpdateQuickResponseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateQuickResponseCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public QuickResponseCategory[] GetQuickResponse() {
+            object[] results = this.Invoke("GetQuickResponse", new object[0]);
+            return ((QuickResponseCategory[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetQuickResponseAsync() {
+            this.GetQuickResponseAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetQuickResponseAsync(object userState) {
+            if ((this.GetQuickResponseOperationCompleted == null)) {
+                this.GetQuickResponseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetQuickResponseOperationCompleted);
+            }
+            this.InvokeAsync("GetQuickResponse", new object[0], this.GetQuickResponseOperationCompleted, userState);
+        }
+        
+        private void OnGetQuickResponseOperationCompleted(object arg) {
+            if ((this.GetQuickResponseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetQuickResponseCompleted(this, new GetQuickResponseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -634,6 +701,39 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3053")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class QuickResponseCategory {
+        
+        private string nameField;
+        
+        private string[] responsesField;
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string[] Responses {
+            get {
+                return this.responsesField;
+            }
+            set {
+                this.responsesField = value;
             }
         }
     }
@@ -2064,6 +2164,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void UpdateQuickResponseCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void GetQuickResponseCompletedEventHandler(object sender, GetQuickResponseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetQuickResponseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetQuickResponseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public QuickResponseCategory[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((QuickResponseCategory[])(this.results[0]));
             }
         }
     }
