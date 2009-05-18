@@ -802,9 +802,6 @@ namespace LiveSupport.OperatorConsole
         /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
-            
-            MessageBox.Show(requestbeginDateTimePicker.Value.ToString());
-            MessageBox.Show(requestbeginDateTimePicker.Value.ToString());
            if (lstVisitors.SelectedItems.Count > 0)
            {
                if (requestbeginDateTimePicker.Value <= requestendDateTimePicker.Value)
