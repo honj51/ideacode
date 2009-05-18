@@ -387,6 +387,42 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UpdateQuickResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="response" type="tns:ArrayOfQuickResponseCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfQuickResponseCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuickResponseCategory" nillable="true" type="tns:QuickResponseCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuickResponseCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Responses" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateQuickResponseResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetQuickResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetQuickResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuickResponseResult" type="tns:ArrayOfQuickResponseCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LoginSoapIn">
@@ -515,6 +551,24 @@
   <wsdl:message name="InviteChatAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="UpdateQuickResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateQuickResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuickResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateQuickResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuickResponseAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuickResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuickResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -571,6 +625,14 @@
     <wsdl:operation name="InviteChat">
       <wsdl:input message="tns:InviteChatSoapIn" />
       <wsdl:output message="tns:InviteChatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuickResponse">
+      <wsdl:input message="tns:UpdateQuickResponseSoapIn" />
+      <wsdl:output message="tns:UpdateQuickResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponse">
+      <wsdl:input message="tns:GetQuickResponseSoapIn" />
+      <wsdl:output message="tns:GetQuickResponseSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -715,6 +777,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateQuickResponse">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateQuickResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponse">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -853,6 +935,26 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:InviteChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuickResponse">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateQuickResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponse">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
