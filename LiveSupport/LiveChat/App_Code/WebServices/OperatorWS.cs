@@ -184,7 +184,7 @@ public class OperatorWS : System.Web.Services.WebService
         //    //result.Messages.AddRange(MessageService.GetMessagesForOperator(item.SessionId, lastCheck));
         //}
         //Debug.WriteLine(string.Format("CheckNewChanges({0}) MessageCount={1})",lastCheck.Ticks,result.Messages.Count));
-
+        checkResult.Operators = OperatorService.GetAllOperators();
         // 客服状态更新
         Debug.WriteLine(string.Format("ChecknewChanges(OperatorId={0},NewChangesCheck={{1}},NewChangesCheckResult={{2}}", Authentication.OperatorId, check.ToString(),checkResult.ToString()));
         return checkResult;
