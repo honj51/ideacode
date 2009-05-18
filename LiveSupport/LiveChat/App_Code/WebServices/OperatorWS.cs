@@ -176,7 +176,7 @@ public class OperatorWS : System.Web.Services.WebService
         //Debug.WriteLine(string.Format("CheckNewChanges({0}) MessageCount={1})",lastCheck.Ticks,result.Messages.Count));
 
         // 客服状态更新
-        
+        Debug.WriteLine(string.Format("ChecknewChanges(OperatorId={0},NewChangesCheck={{1}},NewChangesCheckResult={{2}}", Authentication.OperatorId, check.ToString(),checkResult.ToString()));
         return checkResult;
     }
 

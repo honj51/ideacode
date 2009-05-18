@@ -14,8 +14,8 @@ public class LSBanner : IHttpHandler {
         sb.AppendLine("var bannerPos = 0;");// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
         sb.AppendLine(string.Format("var accountId = {0};",aid));
         
-        //sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"http://localhost:3355/livechat/js/live2.js\"></script> ');");
-        sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"http://rd01/livechatservice/js/live2.js\"></script> ');");
+        sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"http://localhost:3355/livechat/js/live2.js\"></script> ');");
+        //sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"http://rd01/livechatservice/js/live2.js\"></script> ');");
         context.Response.ContentType = "text/plain"; // context.Response.ContentType = "application/x-javascript";
         context.Response.Write(sb.ToString());
     }

@@ -32,8 +32,11 @@ public class VisitSessionService
     /// <param name="session"></param>
     public static void NewSession(VisitSession session)
     {
-        if (sessions.Find(s=>s.Session.SessionId == session.SessionId) != null)
+        Debug.WriteLine(string.Format("NewSession : {0}", session.ToString()));
+
+        if (sessions.Find(s => s.Session.SessionId == session.SessionId) != null)
         {
+            Debug.WriteLine("Session Found, will not add to DB");
             return;
         }
 
