@@ -96,6 +96,20 @@ namespace LiveSupport.LiveSupportModel
             get { return currentSession == null? null : currentSession.SessionId; }
         }
 
+        public string ToString() 
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendFormat("VisitorId={0} ", VisitorId);
+            sb.AppendFormat("AccountId={0} ", AccountId);
+            sb.AppendFormat("Name={0} ", Name);
+            sb.AppendFormat("Email={0} ", Email);
+            sb.AppendFormat("VisitCount={0} ", VisitCount);
+            sb.AppendFormat("Company={0} ", Company);
+            sb.AppendFormat("Remark={0} ", Remark);
+            sb.AppendFormat("IsVIP={0}", IsVIP);
+            return sb.ToString();
+        } 
 
         public Visitor()
         {

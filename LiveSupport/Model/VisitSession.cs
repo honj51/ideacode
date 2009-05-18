@@ -145,7 +145,6 @@ namespace LiveSupport.LiveSupportModel
             set { referrer = value; }
         }
 
-
         public VisitSession()
         {
             sessionId = Guid.NewGuid().ToString();
@@ -162,6 +161,29 @@ namespace LiveSupport.LiveSupportModel
             this.Referrer = string.Empty;
             this.Status = VisitSessionStatus.Leave;
             this.VisitorId = string.Empty;
+        }
+
+        public string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("SessionId={0} ", SessionId);
+            sb.AppendFormat("VisitorId={0} ", VisitorId);
+            sb.AppendFormat("IP={0} ", IP);
+            sb.AppendFormat("Browser={0} ", Browser);
+            sb.AppendFormat("Status={0} ", Status);
+            sb.AppendFormat("Location={0} ", Location);
+            sb.AppendFormat("OperatorId={0} ", OperatorId);
+            sb.AppendFormat("VisitingTime={0} ", VisitingTime);
+            sb.AppendFormat("LeaveTime={0} ", LeaveTime);
+            sb.AppendFormat("RequestTime={0} ", RequestTime);
+            sb.AppendFormat("ChatingTime={0} ", ChatingTime);
+            sb.AppendFormat("WaitingDuring={0} ", WaitingDuring);
+            sb.AppendFormat("ChattingDuring={0} ", ChattingDuring);
+            sb.AppendFormat("PageRequestCount={0} ", PageRequestCount);
+            sb.AppendFormat("DomainRequested={0} ", DomainRequested);
+            sb.AppendFormat("PageRequested={0} ", PageRequested);
+            sb.AppendFormat("Referrer={0}", Referrer);
+            return sb.ToString();
         }
 
         public VisitSession(SqlDataReader data)
