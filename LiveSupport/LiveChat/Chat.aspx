@@ -10,7 +10,6 @@
        
 <style type="text/css">
     
-    
         BODY 
         {
              margin-left: 0px;
@@ -46,11 +45,11 @@ TD {
     }
 	#chat
 	{
-	    background-color:#85c3ff;
-		height: 298px;
-		width: 483px;
+	    
+		height: 100%;
+		width: 100%;
 		overflow: auto;
-		padding: 8px;
+		
 	}
 	.chatName { color: gray; }
         #txtMsg
