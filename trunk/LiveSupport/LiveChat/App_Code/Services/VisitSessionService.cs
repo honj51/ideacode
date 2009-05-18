@@ -161,4 +161,13 @@ public class VisitSessionService
 
         Debug.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
     }
+    /// <summary>
+    /// 跟据访客ID查询所有的话话信息
+    /// </summary>
+    /// <param name="visitorId"></param>
+    /// <returns></returns>
+    public static List<VisitSession> GetVisitSessionByVisitor(string visitorId)
+    {
+       return SqlVisitSessionProvider.GetVisitSessionByVisitor(visitorId);
+    }
 }
