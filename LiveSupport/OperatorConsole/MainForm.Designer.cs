@@ -345,7 +345,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // mainMenu
             // 
-            this.mainMenu.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.mainMenu.BackColor = System.Drawing.Color.Transparent;
             this.mainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.operatorToolStripMenuItem,
@@ -572,7 +572,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // pnlChat
             // 
-            this.pnlChat.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlChat.BackColor = System.Drawing.Color.Transparent;
             this.pnlChat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlChat.Controls.Add(this.button1);
             this.pnlChat.Controls.Add(this.label1);
@@ -1245,6 +1245,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // mainSplitContainer
             // 
+            this.mainSplitContainer.BackColor = System.Drawing.Color.Transparent;
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainSplitContainer.Location = new System.Drawing.Point(0, 76);
             this.mainSplitContainer.Name = "mainSplitContainer";
@@ -1256,6 +1257,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // mainSplitContainer.Panel2
             // 
+            this.mainSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.mainSplitContainer.Panel2.Controls.Add(this.visitorSessionSplitContainer);
             this.mainSplitContainer.Size = new System.Drawing.Size(958, 591);
             this.mainSplitContainer.SplitterDistance = 227;
@@ -1307,7 +1309,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
@@ -1317,7 +1319,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // 访客信息栏
             // 
-            this.访客信息栏.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.访客信息栏.BackColor = System.Drawing.Color.Transparent;
             this.访客信息栏.Dock = System.Windows.Forms.DockStyle.Top;
             this.访客信息栏.Location = new System.Drawing.Point(0, 0);
             this.访客信息栏.Name = "访客信息栏";
@@ -1429,7 +1431,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
             this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1475,6 +1477,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.operatorToolStripStatusLabel,
@@ -1543,6 +1546,8 @@ namespace LiveSupport.OperatorConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.bg02;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(958, 689);
             this.Controls.Add(this.mainSplitContainer);
             this.Controls.Add(this.pnlChat);
