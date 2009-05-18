@@ -175,13 +175,13 @@ namespace LiveSupport.LiveSupportModel
             sb.AppendFormat("OperatorId={0} ", OperatorId);
             sb.AppendFormat("VisitingTime={0} ", VisitingTime);
             sb.AppendFormat("LeaveTime={0} ", LeaveTime);
-            sb.AppendFormat("RequestTime={0} ", RequestTime);
+            sb.AppendFormat("RequestTime={0} ", ChatRequestTime);
             sb.AppendFormat("ChatingTime={0} ", ChatingTime);
             sb.AppendFormat("WaitingDuring={0} ", WaitingDuring);
             sb.AppendFormat("ChattingDuring={0} ", ChattingDuring);
             sb.AppendFormat("PageRequestCount={0} ", PageRequestCount);
             sb.AppendFormat("DomainRequested={0} ", DomainRequested);
-            sb.AppendFormat("PageRequested={0} ", PageRequested);
+            //sb.AppendFormat("PageRequested={0} ", PageRequested);
             sb.AppendFormat("Referrer={0}", Referrer);
             return sb.ToString();
         }
@@ -197,13 +197,13 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["OperatorId"])) operatorId = (string)data["OperatorId"];
             if (!Convert.IsDBNull(data["VisitingTime"])) visitingTime = (DateTime)data["VisitingTime"];
             if (!Convert.IsDBNull(data["LeaveTime"])) leaveTime = (DateTime)data["LeaveTime"];
-            if (!Convert.IsDBNull(data["RequestTime"])) chatRequestTime = (DateTime)data["RequestTime"];
+            if (!Convert.IsDBNull(data["ChatRequestTime"])) chatRequestTime = (DateTime)data["ChatRequestTime"];
             if (!Convert.IsDBNull(data["ChatingTime"])) chatingTime = (DateTime)data["ChatingTime"];
             if (!Convert.IsDBNull(data["WaitingDuring"])) waitingDuring = (DateTime)data["WaitingDuring"];
             if (!Convert.IsDBNull(data["ChattingDuring"])) chattingDuring = (DateTime)data["ChattingDuring"];
             if (!Convert.IsDBNull(data["PageRequestCount"])) PageRequestCount = (int)data["PageRequestCount"];
             if (!Convert.IsDBNull(data["DomainRequested"])) this.domainRequested = (string)data["DomainRequested"];
-            if (!Convert.IsDBNull(data["PageRequested"])) this.pageRequested = (string)data["PageRequested"];
+            //if (!Convert.IsDBNull(data["PageRequested"])) this.pageRequested = (string)data["PageRequested"];
             if (!Convert.IsDBNull(data["Referrer"])) this.referrer = (string)data["Referrer"];
         }
 
