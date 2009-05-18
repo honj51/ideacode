@@ -37,9 +37,9 @@ public class MessageService
     /// <param name="begin">开始时间</param>
     /// <param name="end">结束时间</param>
     /// <returns>消息集合</returns>
-    public static List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+    public static List<Message> GetHistoryChatMessage(string sessionid, DateTime begin, DateTime end)
     {
-       return SqlMessageProvider.GetHistoryChatMessage(visitorId, begin, end);
+        return SqlMessageProvider.GetHistoryChatMessage(sessionid, begin, end);
     }
 
     public static List<Message> GetMessagesForChatPage(string chatId, long lastCheck)
