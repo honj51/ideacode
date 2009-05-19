@@ -55,9 +55,10 @@ namespace LiveSupport.OperatorConsole
                 }
  
              }
+          
             login();
-               
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Save(); 
+           
         }
 
         private void login()

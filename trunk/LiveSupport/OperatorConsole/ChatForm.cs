@@ -62,7 +62,14 @@ namespace LiveSupport.OperatorConsole
         OperatorWS ws = new OperatorWS();
         private VisitSession chatSession;
         private long lastCheckTime;
+        private List<Operator> onlineOperators=new List<Operator>();
 
+        public List<Operator> OnlineOperators
+        {
+            get { return onlineOperators; }
+            set { onlineOperators = value; }
+        } 
+ 
         public long LastCheckTime
         {
             get { return lastCheckTime; }
@@ -103,6 +110,41 @@ namespace LiveSupport.OperatorConsole
                 }
             }
         }
+        public void RecieveOperator(List<Operator> Operators)
+        {
+           
+            operatorPannel1.RecieveOperator(Operators);
+            operatorPannel1.chatId = ChatSession.SessionId;
+        
+        }
+        string getOperatorsStatusText(OperatorStatus os)
+        {
+            string status;
+            switch (os)
+            {
+                case OperatorStatus.Idle:
+                    status = "空闲";
+                    break;
+                case OperatorStatus.Away:
+                    status = "离开";
+                    break;
+                case OperatorStatus.Chatting:
+                    status = "对话中";
+                    break;
+                case OperatorStatus.BeRightBack:
+                    status = "一会回来";
+                    break;
+                case OperatorStatus.Offline:
+                    status = "离线";
+                    break;
+                default:
+                    status = "离线";
+                    break;
+
+            }
+            return status;
+
+        }
         
         public ChatForm(VisitSession chatSession)
             : this(chatSession, false)
@@ -112,6 +154,7 @@ namespace LiveSupport.OperatorConsole
         public ChatForm(VisitSession chatSession, bool invite)
         {
             InitializeComponent();
+            tabControl1.TabPages[1].ToolTipText = "如果要转接对话，请双击选中的客服！";
             this.chatSession = chatSession;
             // Simple authentication
             AuthenticationHeader auth = new AuthenticationHeader();
@@ -130,7 +173,7 @@ namespace LiveSupport.OperatorConsole
                 if (item.CurrentSession.SessionId == chatSession.SessionId)
                {
                     this.Text ="与你对话的是"+item.Name+"访客";
-                   break;
+                    break;
                }
             
             }
@@ -140,6 +183,7 @@ namespace LiveSupport.OperatorConsole
             tmrGetMsg.Enabled = true;
             
             txtMsg.Focus();
+          
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
@@ -290,5 +334,7 @@ namespace LiveSupport.OperatorConsole
             ws.CloseChat(this.chatSession.SessionId);
             Program.ChatForms.Remove(this);            
         }
+
+       
     }
 }

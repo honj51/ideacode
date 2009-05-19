@@ -107,19 +107,6 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://miraclew.gicp.net/lcs/Operator.asmx")]
-        public string OperatorConsole_LiveChatWS_Operator {
-            get {
-                return ((string)(this["OperatorConsole_LiveChatWS_Operator"]));
-            }
-            set {
-                this["OperatorConsole_LiveChatWS_Operator"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.DateTime OperatorLoginTime {
             get {
                 return ((global::System.DateTime)(this["OperatorLoginTime"]));
@@ -174,6 +161,19 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
             set {
                 this["AutoLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://miraclew.gicp.net/lcs/Operator.asmx")]
+        public string OperatorConsole_LiveChatWS_Operator {
+            get {
+                return ((string)(this["OperatorConsole_LiveChatWS_Operator"]));
+            }
+            set {
+                this["OperatorConsole_LiveChatWS_Operator"] = value;
             }
         }
     }
