@@ -142,7 +142,6 @@ public partial class Chat : System.Web.UI.Page
     //获取聊天消息
     protected void timerRefresh_Tick(object sender, EventArgs e)
     {
-       
         if (Request.Cookies["chatId"] != null)
         {
             string chatId = Request.Cookies["chatId"].Value.ToString();
@@ -155,36 +154,23 @@ public partial class Chat : System.Web.UI.Page
                 {
                     for (int i = 0; i < messages.Count; i++)
                     {
-                        //if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor || messages[i].Type == MessageType.SystemMessage_ToVisitor
-                        //    || messages[i].Type == MessageType.SystemMessage_ToBoth)
-                        //{
-                        //    if (messages[i].Type == MessageType.SystemMessage_ToVisitor || messages[i].Type == MessageType.SystemMessage_ToBoth)
-                        //    {
-                        //        litChat.Text += string.Format("<span class=\"chatName\">{0}</span>", CutStr(messages[i].Text, 100));
-                        //    }
-                        //    else
-                        //    {
-                        //        litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Source, CutStr(messages[i].Text, 100));
-                        //    }
-                        //}
                         if (LiveSupport.LiveSupportModel.Message.FromSystem(messages[i]))
                         {
-                            litChat.Text += string.Format("<span style=\"color: #FF9933\" class=\"chatName\">{0}</span>", CutStr(messages[i].Text, 100));                           
+                            litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", CutStr(messages[i].Text, 100));
                         }
                         if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor)
                         {
-                            litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", messages[i].Source, CutStr(messages[i].Text, 100));
+                            litChat.Text += string.Format("<div id='chatTitle1'><strong>{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].Source + "&nbsp;&nbsp;" + messages[i].SentDate.ToString("hh:mm:ss"), CutStr(messages[i].Text, 100));
                         }
                         else if (messages[i].Type == MessageType.ChatMessage_VistorToOperator)
                         {
-                            litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", "您说", CutStr(messages[i].Text, 100));
+                          //  litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", "您说", CutStr(messages[i].Text, 100));
+                            litChat.Text += string.Format("<div id='chatTitle'><strong>您说&nbsp;&nbsp;{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].SentDate.ToString("hh:mm:ss"), CutStr(messages[i].Text, 100));
                         }
 
                         // TODO: is this correct?
                         lastCheck = messages[i].SentDate.Ticks;
-
                     }
-
                     // set the lastId
                     Response.Cookies[chatId + "_lastCheck"].Value = lastCheck.ToString();
 
