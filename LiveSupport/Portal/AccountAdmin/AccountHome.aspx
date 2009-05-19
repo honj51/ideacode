@@ -38,25 +38,19 @@
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客服管理</SPAN> 
 <A href="DepartmentManager.aspx">部门设置</A> 
 <A href="OperatorsManagment.aspx" >客服管理</A> 
-<A href="#">客服评分</A> <A href="#">登陆日志</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">风格设置</SPAN> 
-<A href="#">风格基本信息设置</A> 
+ 
 <A href="GetCode.aspx">获取代码设置</A> 
 <A href="#">界面风格设置</A> 
-<A href="#">简介设置</A> 
+ 
 <A href="#">对话提示设置</A> 
-<A href="#">主动发起设置</A> <A 
-href="#">客服图标设置</A> <A 
-href="#">自定义客服图标</A> <A 
-href="#">指定客服设置</A> <A 
-href="#">自定义LOGO</A> 
-<A href="#">自定义URL</A> 
+<A href="#">主动发起设置</A>
 </DIV>
 
 <DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">数据分析 (New)</SPAN> 
-<A onclick=jump_URL() href="#">流量统计 </A>
+<A href="#">流量统计 </A>
 <A href="#">咨询量统计</A> 
 </DIV>
 
@@ -67,8 +61,6 @@ href="#">自定义LOGO</A>
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客户管理</SPAN> 
 <A href="#">添加客户</A> 
 <A href="#">客户列表</A> 
-<A href="#">分组管理</A> 
-<A href="#">IP阻止</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">免费电话管理</SPAN> 
