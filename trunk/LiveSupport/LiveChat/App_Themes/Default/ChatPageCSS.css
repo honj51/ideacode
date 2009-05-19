@@ -1,0 +1,63 @@
+﻿    BODY 
+    {
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        font-family: Arial;  
+        font-size: 10pt;
+        BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 1px; BORDER-BOTTOM: 0px; FONT-FAMILY: Tahoma
+    }
+    TD {
+        FONT-SIZE: 9pt; FONT-FAMILY: Tahoma
+    }
+    .file{
+        BORDER-RIGHT: #70b4e0 1px solid; BORDER-TOP: #70b4e0 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #70b4e0 1px solid; COLOR: #007ac8; BORDER-BOTTOM: #70b4e0 1px solid; BACKGROUND-COLOR: #d4eeff
+    }
+    .btn{
+        BORDER-RIGHT: #70b4e0 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #70b4e0 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #70b4e0 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #70b4e0 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: 18px
+    }
+    #Welcome
+    {
+        font-weight: bold;
+        color: gray;
+        font-size: 12pt;
+    }
+    .formField
+    {
+        font-weight: bold;
+    }
+    #chat
+    {
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+    }
+    .chatName { color: gray; }
+    #txtMsg
+    {
+        width: 164px;
+        height: 117px;
+    }
+    .litChat
+    {
+       OVERFLOW-Y: scroll; DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 11pt; WIDTH: 100%; LINE-HEIGHT: 1.5em; FONT-FAMILY: "宋体","MS Gothic","Times New Roman","PMingLiU"; HEIGHT: 100px;  
+    }
+    fieldset
+    {
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        border:1;
+    } 
+    #Button2
+    {
+        height: 22px;
+        width: 50px;
+    }
+    #btnClose
+    {
+        width: 45px;
+        height: 20px;
+    }
