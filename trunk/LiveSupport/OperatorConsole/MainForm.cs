@@ -129,7 +129,7 @@ namespace LiveSupport.OperatorConsole
            Properties.Settings.Default.Save();
 
           
-            //Application.Exit();
+            Application.Exit();
         }
 
        

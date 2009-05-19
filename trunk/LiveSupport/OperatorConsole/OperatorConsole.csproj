@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -55,6 +55,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IC.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\IC.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -214,14 +218,18 @@
   <ItemGroup>
     <Content Include="Profile.ico" />
     <None Include="Resources\cat_sh_button.gif" />
-    <None Include="Resources\alarmd.png" />
     <None Include="Resources\All software is current.png" />
     <None Include="Resources\aim.png" />
     <None Include="Resources\bg02.bmp" />
+    <None Include="Resources\alert.png" />
+    <None Include="Resources\alarmd.png" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\window_list.png" />
+    <None Include="Resources\ringdevice.png" />
+    <None Include="Resources\windows_16.png" />
     <None Include="Resources\mailreminder.png" />
     <None Include="Resources\mail_foward.png" />
     <None Include="Resources\WelCome.jpg" />
