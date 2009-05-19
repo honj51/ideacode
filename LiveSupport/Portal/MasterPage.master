@@ -19,15 +19,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <%--Add LiveChat services javascript --%>
     <!--导入js文件-->
-    <script type="text/javascript" language="javascript" src="http://localhost/livechatservice/js/live2.js"\
-    <script type="text/javascript" language="javascript" src="js/JScript.js">
+    <script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&bannerType=1"></script> 
     </script>
 </head>
 
 <body>
     <form id="form1" runat="server">
-    
-      <div id="service" style="BEHAVIOR:url(http://localhost/livechatservice/js/webservice.htc)"></div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
         <!--
 
