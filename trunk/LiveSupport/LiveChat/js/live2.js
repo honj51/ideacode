@@ -7,8 +7,8 @@
     var chatId = "";
     var t = setInterval(hitWebSite, 1000);
     //var t = setInterval(acceptInvitation, 1000);
-    var homeUrl = "http://localhost:3355/livechat";
-    //var homeUrl = "http://rd01/livechatservice";
+    //var homeUrl = "http://localhost:3355/livechat";
+    var homeUrl = "http://miraclew.gicp.net/lcs";
     document.write("<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeUrl + "/js/jquery-1.2.6.js\"></script>");
     document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="'+ homeUrl + '/ProcessImage.ashx?aid=' + accountId + '&vid=' + visitorId + '&referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>');
     //$(document).ready(function() { setInterval(hitWebSite, 1000) });
