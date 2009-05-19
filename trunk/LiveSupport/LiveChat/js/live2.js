@@ -1,8 +1,8 @@
 ﻿/// <reference path="jquery-1.2.6-vsdoc.js" />
     var currentMoveObj = null;         //当前拖动对象   
     var relLeft;                           //鼠标按下位置相对对象位置
-    var relTop;  
-
+    var relTop;
+    var accountId = null;
     var visitorId = getVisitorId();
     var chatId = "";
     var t = setInterval(hitWebSite, 1000);
@@ -135,7 +135,9 @@
          val = Math.round(Math.random() * x);
          return val;
     }
-    
+
     function LS_Trace(message) {
-        $("#trace_div").html($("#trace_div").html() + message +"</br>");
+        if ($("#trace_div") != null) {
+            $("#trace_div").html($("#trace_div").html() + message + "</br>");
+        }
     }
