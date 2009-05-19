@@ -1,243 +1,144 @@
 ﻿<%@ Page MaintainScrollPositionOnPostback="true" Language="C#" ValidateRequest="false"   AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>在线交流</title>
-        <link href="Images/mainCN.css" rel="stylesheet" type="text/css"/>
-        <link href="Images/skin.css" rel="stylesheet" type="text/css" />
-
-        <script  src="SendMsg.js" type="text/javascript" language="javascript"></script>
-
-       
+<title>在线交流</title>
+<link href="App_Themes/Default/mainCN.css"rel="stylesheet" type="text/css"/>
+<link href="App_Themes/Default/skin.css"rel="stylesheet" type="text/css" />
+<script  src="js/SendMsg.js"type="text/javascript" language="javascript"></script>
+<script src="js/ChatPageScript.js" type="text/javascript" language=javascript></script>
 <style type="text/css">
-    
-        BODY 
-        {
-             margin-left: 0px;
+    BODY 
+    {
+        margin-left: 0px;
         margin-top: 0px;
         margin-right: 0px;
         margin-bottom: 0px;
-            font-family: Arial;  
-		font-size: 10pt;
-   	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 1px; BORDER-BOTTOM: 0px; FONT-FAMILY: Tahoma
-}
-TD {
-	FONT-SIZE: 9pt; FONT-FAMILY: Tahoma
-}
+        font-family:@新宋体;  
+        font-size: 10pt;
+    }
+     TD {
+        FONT-SIZE: 9pt; FONT-FAMILY: Tahoma
+    }
     .file{
-	BORDER-RIGHT: #70b4e0 1px solid; BORDER-TOP: #70b4e0 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #70b4e0 1px solid; COLOR: #007ac8; BORDER-BOTTOM: #70b4e0 1px solid; BACKGROUND-COLOR: #d4eeff
-}
+        BORDER-RIGHT: #70b4e0 1px solid; BORDER-TOP: #70b4e0 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #70b4e0 1px solid; COLOR: #007ac8; BORDER-BOTTOM: #70b4e0 1px solid; BACKGROUND-COLOR: #d4eeff
+    }
     .btn{
-	BORDER-RIGHT: #70b4e0 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #70b4e0 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #70b4e0 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #70b4e0 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: 18px
-}
-        
-     
-    #Welcome
+        BORDER-RIGHT: #70b4e0 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #70b4e0 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #70b4e0 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #70b4e0 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: 18px
+    }
+    .litChat
     {
-		font-weight: bold;
-		color: gray;
-		font-size: 12pt;
-		
+       text-align:left; overflow:scroll;FONT-SIZE: 11pt; WIDTH: 100%; FONT-FAMILY: "宋体","MS Gothic","Times New Roman","PMingLiU"; HEIGHT: 100px;  
+    }
+    fieldset
+    {
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        border:1;
+    } 
+    #Button2
+    {
+        height: 22px;
+        width: 50px;
+    }
+    #btnClose
+    {
+        width: 45px;
+        height: 20px;
+    }
+     #Welcome
+    {
+        font-weight: bold;
+        color: gray;
+        font-size: 12pt;
     }
     .formField
     {
-		font-weight: bold;
-		
+        font-weight: bold;
     }
-	#chat
-	{
-	    
-		height: 100%;
-		width: 100%;
-		overflow: auto;
-		
-	}
-	.chatName { color: gray; }
-        #txtMsg
-        {
-            width: 164px;
-            height: 117px;
-        }
-        .litChat
-        {
-        OVERFLOW-Y: scroll; DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 11pt; WIDTH: 100%; LINE-HEIGHT: 1.5em; FONT-FAMILY: "宋体","MS Gothic","Times New Roman","PMingLiU"; HEIGHT: 100px; 
-
-            
-            }
-
-      fieldset
-      {
-           margin-left: 0px;
-        margin-top: 0px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-          
-           border:1;
-          
-          } 
-       
-        
-        #Button2
-        {
-            height: 22px;
-            width: 50px;
-        }
-
-        
-        #btnClose
-        {
-            width: 45px;
-            height: 20px;
-        }
-
-        
-        
-
-        
-    </style>  
-<script language="javascript" type="text/javascript">
-
-document.onkeydown = function()
- {
-          if(event.keyCode==116) {
-          event.keyCode=0;
-          event.returnValue = false;
-          }
-}
-document.oncontextmenu = function() {event.returnValue = false;} 
-
-
-
-///窗体关闭提示
-function Exit()
-{
-    if(confirm('是否关闭')==true) 
+    #chat
     {
-        PageMethods.CloseChat(getCookie("chatId"));
-        window.close();
+        overflow:scroll;
+        overflow-x: hidden;
+        overflow:hidden;
+        height:100%;
+        width: 100%;
+        overflow: auto;
     }
-}
-function emailclose() {
-    if (confirm('邮件发送成功 我们会尽快回复你！') == true) {
-        window.close();
+    #chatTitle
+    {
+	    color:#008040;
     }
-}
-
-//交流方式
-function shortKeyMenu()
-{
-    document.getElementById(shortKeyMenu).style.display="block"
-}
-//显示层
-function divShow(divId)
-{
-    document.getElementById(divId).style.display="block";
-}
-//关闭层
-function divClose(divId)
-{
-    document.getElementById(divId).style.display="none";
-}
-var lastCheck = new Date(); 
-function scrollDiv()
-{
-    var d;
-    if ((d = document.getElementById('chat')) && ('undefined' != typeof d.scrollTop))
-{
-	//d.scrollTop = 0;
-	d.scrollTop = 5000;
-}
-window.setTimeout("scrollDiv()", 950);
-
-var now = new Date();
-var elapse = now.getSeconds() - lastCheck.getSeconds();
-var sameMinute = now.getMinutes - lastCheck.getMinutes();
-if( sameMinute != 0 || elapse >= 2 )
-{
-	// Check for typing notification
-	PageMethods.CheckTypingNotification(getCookie('chatId'), OnCheckTypingNotificationComplete);
-	
-	lastCheck = new Date();
-}
-}
-function OnCheckTypingNotificationComplete(result, methodName)
-{
-if( result != '' )
-{
-	var v = document.getElementById('typingNotification');
-	if( v != 'undefined' &&  v != null) 
-		v.innerText = result; 
-}
-}
-window.onload = scrollDiv;
-function Save(){    
-var txt = document.getElementById("upChat").innerHTML
-b = window.open();   
-b.document.open();   
-b.document.write(txt);   
-b.document.close(); 
-b.document.execCommand('saveas',true,''); 
-}
-</script>
-
+    #chatTitle1
+    {
+        font-family:"新宋体";
+        color:#090BAE;
+    }
+    #chatText
+    {
+	    font-size:11px;
+	    color:#333;
+    }
+    #chatSts
+    {
+        font-size:13px;
+        color: #FF9933
+    }
+    #txtMsg
+    {
+        font-family:"新宋体";
+        font-size:11px;
+	    color:#333;
+        width: 164px;
+        height: 117px;
+    }
+</style>
 </head>
-
 <body  topmargin="0" leftmargin="0" >
     <form id="formMain" runat="server">
     <div style="background-color:#85c3ff ;">   
          <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="True" >
             <Scripts>
-                <asp:ScriptReference Path="SendMsg.js" />
+                <asp:ScriptReference Path="~/js/SendMsg.js" />
             </Scripts>
-        </asp:ScriptManager>
-       
-        <asp:Panel ID="pnlNoOperator" Visible="false"  runat="server">
-     
-                <table cellpadding="0" cellspacing="0"  style="background-image:url(Images/bg.jpg); background-position:center;    height:100%; width:100%">
-                <tr>
-                <td  align="center">
-                
-                  <span class="formField">   感谢您的关注！</span>
-                </td>
-                </tr>
-                
-                <tr>
-                <td align="center">
-                
-                
+        </asp:ScriptManager>     
+<%--面板1 star--%>
+<asp:Panel ID="pnlNoOperator" Visible="false"  runat="server">
+    <table cellpadding="0" cellspacing="0"  style="background-image:url(Images/bg.jpg); background-position:center;    height:100%; width:100%">
+        <tr>
+            <td  align="center">
+                <span class="formField">   感谢您的关注！</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
                 <fieldset > 
-                <legend > 
-                <asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
-                 
-                  <span id="Span1">当前没有客服在线.<br />
-                    请留言，我们会尽快给您回复!</span>
-                 </legend> 
-                    
+                    <legend > 
+                    <asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
+                    <span id="Span1">当前没有客服在线.<br />请留言，我们会尽快给您回复!</span>
+                    </legend>
                     <br />
-                     <fieldset style="height:5%; width:87%" > <legend>  <span class="formField">  您的电子邮件</span></legend> 
-                <asp:TextBox ID="txtSendBy" runat="server" Width="100%"   ></asp:TextBox>
-                   </fieldset>
-                   <br />
+                    <fieldset style="height:5%; width:87%" > <legend>  <span class="formField">  您的电子邮件</span></legend> 
+                    <asp:TextBox ID="txtSendBy" runat="server" Width="100%"   ></asp:TextBox>
+                    </fieldset>
+                    <br />
                     <fieldset style="height:230px; width:87%">
-                <legend>
-                 <span class="formField">留言内容</span>
-               
-                </legend>
-                  <asp:TextBox ID="txtComment"  TextMode="MultiLine" Width="100%" Height="230px" runat="server"></asp:TextBox>
+                    <legend>
+                    <span class="formField">留言内容</span>
+                    </legend>
+                    <asp:TextBox ID="txtComment"  TextMode="MultiLine" Width="100%" Height="230px" runat="server"></asp:TextBox>
+                    </fieldset>
+                    <br />
+                    <fieldset  style="height:2%; width:92%;">
+                        <asp:Button  ID="btnSendEmail" runat="server"  Text="发送邮件"  OnClientClick="emailclose()" onclick="btnSendEmail_Click"/>
+                    </fieldset>
                 </fieldset>
-               <br />
-                <fieldset  style="height:2%; width:92%;">
-                
-                 <asp:Button  ID="btnSendEmail" runat="server"  Text="发送邮件"  OnClientClick="emailclose()" onclick="btnSendEmail_Click"/>
-                                 
-                </fieldset>
-                   
-                </fieldset>
-           
-               </td>
-                </tr>
-            </table>
-        </asp:Panel>
-        
+            </td>
+        </tr>
+    </table>
+</asp:Panel>
+<%--面板1 end--%>
       
         <asp:Panel  ID="pnlRequest" Visible="true" runat="server">
         
@@ -372,32 +273,29 @@ b.document.execCommand('saveas',true,'');
                     
                     <tr  style="height:100%">
                         <td height="100%"  >
-                            <div id="history" >
-				<div id="chat"> 
-				
-            <asp:UpdatePanel  ID="upChat" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="False">
-                <Triggers>
-                    <asp:AsyncPostBackTrigger  ControlID="timerRefresh" EventName="Tick" />
-                </Triggers>
-                <ContentTemplate>
-                    
-                    
-                         <asp:Literal   ID="litChat" runat="server"></asp:Literal>
-                        <asp:Timer ID="timerRefresh" Interval="1000" runat="server" 
-                         OnTick="timerRefresh_Tick">
-                    </asp:Timer>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-               </div>
-               
-                    <!--上传-->
-          <div id="uploadFileBox" style="display:none; background-color:#d4eeff;" >&nbsp;&nbsp;
-                <asp:FileUpload CssClass="file"  ID="fuFile" runat="server" Height="20px" Width="191"  />
-              &nbsp;<asp:Button  ID="btnUpload" CssClass="btn" runat="server" Height="20px" Text="传送" Width="46px" onclick="btnUpload_Click" />&nbsp;
-              <input ID="btnClose" class="btn" type="button" value="关闭" onclick="divClose('uploadFileBox')" />
-                </div> 
-             </div>
-           
+<%--  显示消息层--%>
+ <div id="history" >
+    <div id="chat"> 
+        <asp:UpdatePanel  ID="upChat" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="False">
+        <Triggers>
+        <asp:AsyncPostBackTrigger  ControlID="timerRefresh" EventName="Tick" />
+        </Triggers>
+        <ContentTemplate>
+        <asp:Literal   ID="litChat" runat="server"></asp:Literal>
+        <asp:Timer ID="timerRefresh" Interval="1000" runat="server" OnTick="timerRefresh_Tick">
+        </asp:Timer>
+        </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+   <!--上传-->
+    <div id="uploadFileBox" style="display:none; background-color:#d4eeff;" >&nbsp;&nbsp;
+        <asp:FileUpload CssClass="file"  ID="fuFile" runat="server" Height="20px" Width="191"  />
+        &nbsp;<asp:Button  ID="btnUpload" CssClass="btn" runat="server" Height="20px" Text="传送" Width="46px" onclick="btnUpload_Click" />&nbsp;
+        <input ID="btnClose" class="btn" type="button" value="关闭" onclick="divClose('uploadFileBox')" />
+    </div> 
+</div>
+<%--  显示消息层结束--%>          
              
             
                       
@@ -426,11 +324,9 @@ b.document.execCommand('saveas',true,'');
                         <li style="background-image: url(Images/tools_icn.gif);" id="switch" class="open" style='display:none'>关闭提示音 </li>
                         <li style="background-image: url(Images/tools_icn.gif);" id="language" style="display:none;">语言选择</li>
                         <li style="background-image: url(Images/tools_icn.gif);" id="active" class="open">
-                            <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click" 
-                                Font-Underline="False" ForeColor="White">剪切</asp:LinkButton>
+                        <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click" Font-Underline="False" ForeColor="White">剪切</asp:LinkButton>
                         </li>
                          <li style="background-image: url(Images/tools_icn.gif);" id="dialback" style="display:none;">免费电话</li>
-                 
                         </ul>
                         <ul id="languageList" style="display:none;">
 						<li lang:value="0">简体中文</li>
@@ -438,36 +334,23 @@ b.document.execCommand('saveas',true,'');
 						<li lang:value="2">English</li>
 						<li lang:value="3">日 本 語</li>
 						<li lang:value="4">한 국 말</li>
-					</ul>
-					  <div id="exitChat"  style="background-image: url(Images/tools_icn.gif);" onclick="Exit()">
-				
-                              结束对话
-                              </div>
-                
-                        </div>
-                        </div>
+					   </ul>
+					  <div id="exitChat" style="background-image: url(Images/tools_icn.gif);" onclick="Exit()"> 结束对话</div>
+                    </div>
+                    </div>
   </td>
-  
   </tr>
   <tr id="msg">
-    <td id="inputarea"   style=" width:85%; height:90px">
-    
-     <textarea name="message" id="txtMsg" rows="2" runat="server" cols="100" style=" width:100%; height:100%"  onkeypress="checkEnter(event)" /> </td><td align="center" id="enter_wrap"  style=" width:40px; height:90px">
-        
-
-                 
-                    <div id="ewrap">
-				<div id="enter" style="background-image:url(Images/send0.jpg)" onclick="CallSendMsg()"></div></div>
-    
-          
-    
-    </td>
-  </tr>
-  
-  <tr>
+<td id="inputarea"style=" width:85%; height:90px">
+         <textarea name="message" id="txtMsg" rows="2" runat="server" cols="100" onkeypress="checkEnter(event)" /> </td><td align="center" id="enter_wrap"  style=" width:40px; height:90px">
+<div id="ewrap">
+    <div id="enter" style="background-image:url(Images/send0.jpg)" onclick="CallSendMsg()"></div>
+</div>
+</td>
+</tr>
+<tr>
   <td id="tdfooter" style="background: url(Images/footer_bg.gif);" colspan="2" valign="top"  style=" width:100%;" > 
-  
   <div id="footer">
   <p>
   <span id="shortKeyTip" >[发送快捷键:Enter]: </span><span id="footerBox"></span></p><div id="shortcutkey" onclick="">消息发送方式</div><ul id="shortKeyMenu" style="display:none;">
-				<li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul></div></td></tr></table></asp:Panel></div></form></body></html>
+<li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul></div></td></tr></table></asp:Panel></div></form></body></html>
