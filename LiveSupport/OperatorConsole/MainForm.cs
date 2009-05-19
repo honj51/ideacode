@@ -35,6 +35,7 @@ namespace LiveSupport.OperatorConsole
                 
         private List<Visitor> visitors = new List<Visitor>();
         private List<Operator> operators = new List<Operator>();
+        List<Operator> chatOperator = new List<Operator>();
 
         #region VisitorTreeView_HeaderColumn Index
         private const int VisitorTreeView_HeaderColumn_VisitorName = 0;
@@ -88,19 +89,26 @@ namespace LiveSupport.OperatorConsole
         private void DisplayStatus()
         {
             int VisitorChatResult = 0;
+            int Chatting = 0;
          
             foreach(ListViewItem item in lstVisitors.Items)
             {
-                if (item.SubItems[VisitorTreeView_HeaderColumn_Status].Text=="Chatting")
+                 Visitor v= item.Tag as Visitor;
+                if (v.CurrentSession.Status== VisitSessionStatus.Chatting)
                 {
                     VisitorChatResult++;
                 }
+                if(v.CurrentSession.OperatorId==Program.CurrentOperator.OperatorId&&v.CurrentSession.Status== VisitSessionStatus.Chatting)
+                {
+                    Chatting++;
+                }
             
             }
-           
+
             lblCurrentVisitors.Text = "当前访客数: "+ currentVisitors.Count.ToString();
             lblVisitorOnChat.Text = "对话中的访客数: " + VisitorChatResult;
-            lblMyChat.Text = "我的对话数: ";
+            lblMyChat.Text = "我的对话数: "+Chatting;
+          
         }
 
         private void PlayChatReqSound()
@@ -279,10 +287,7 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        private void 空闲ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
+        
 
         /// <summary>
         /// 计算登录时长
@@ -319,6 +324,8 @@ namespace LiveSupport.OperatorConsole
         private void timer1_Tick(object sender, EventArgs e)
         {
            
+
+
             NewChangesCheckResult result = ws.CheckNewChanges(lastCheck);
             Trace.WriteLine("NewChangesCheck: "+ lastCheck.ToString());
             Trace.WriteLine("NewChangesCheckResult: " + result.ToString());
@@ -349,9 +356,6 @@ namespace LiveSupport.OperatorConsole
                 {
                     // 新的对话请求
                     NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote);
-
-                    item.SubItems[VisitorTreeView_HeaderColumn_Status].ForeColor=Color.Red;
-                    
 
                 }
                 else if (remote.Status == VisitSessionStatus.Leave)
@@ -477,29 +481,26 @@ namespace LiveSupport.OperatorConsole
                     cf.LastCheckTime = c.LastCheckTime;
                 }
                 nextChecks.Add(c);
-            }          
+            
+                if (result.Operators.Length > chatOperator.Count || checkIfOperatorStatusChanges(chatOperator, result.Operators))
+                {
+                    chatOperator.Clear();
+                    chatOperator.AddRange(result.Operators);
+                    cf.RecieveOperator(operators);
+                }
+            }
             lastCheck.ChatSessionChecks = nextChecks.ToArray();
 
-            if (result.Operators != null)
+        if (result.Operators != null)
             {
                 if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
                 {
                     operators.Clear();
                     operators.AddRange(result.Operators);
-                    operatorsTreeView.Nodes[0].Nodes.Clear();
-                    operatorsTreeView.Nodes[1].Nodes.Clear();
-                    foreach (var item in operators)
-                    {
-                        if (item.Status != OperatorStatus.Idle)
-                        {
-                            operatorsTreeView.Nodes[1].Nodes.Add(item.NickName).Tag = item;
-                        }
-                        else
-                        {
-                            operatorsTreeView.Nodes[0].Nodes.Add(item.NickName).Tag = item;
-                        }
-                    }
-                } 
+                    operatorPannel1.RecieveOperator(operators);
+                }
+                
+ 
             }
 
 
@@ -515,8 +516,61 @@ namespace LiveSupport.OperatorConsole
             }
             Program.Visitors = visitors;
 
+            foreach (ListViewItem item in lstVisitors.Items)
+            {
+                if (item == null) continue;
+                Visitor v = item.Tag as Visitor;
+                if (v.CurrentSession.Status == VisitSessionStatus.Visiting)
+                {
+                    item.SubItems[0].ForeColor = Color.Green;
+                }
+                if (v.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
+                {
+                    item.SubItems[0].ForeColor = Color.Red;
+                }
+                if (v.CurrentSession.Status == VisitSessionStatus.Chatting)
+                {
+                    item.SubItems[0].ForeColor = Color.Blue;
+                }
+                if (v.CurrentSession.Status == VisitSessionStatus.Leave)
+                {
+                    item.SubItems[0].ForeColor = Color.Gray;
+                }
+            }
+
             DisplayStatus();
+
+
         }
+        string getOperatorsStatusText(OperatorStatus os) 
+        {
+            string status;
+            switch (os)
+            { 
+                case OperatorStatus.Idle:
+                    status = "空闲";
+                     break;
+                case OperatorStatus.Away :
+                     status = "离开";
+                    break;
+                case OperatorStatus.Chatting :
+                    status="对话中";
+                    break;
+                case OperatorStatus.BeRightBack :
+                    status = "一会回来";
+                    break;
+                case OperatorStatus.Offline :
+                    status="离线";
+                    break;
+                default :
+                    status="离线";
+                    break;
+            
+            }
+            return status;
+           
+        }
+
         string getVisitSessionStatusText(VisitSessionStatus s)
         {
             string status;
@@ -986,6 +1040,8 @@ namespace LiveSupport.OperatorConsole
 
             }
         }
+
+      
     }
 
 }

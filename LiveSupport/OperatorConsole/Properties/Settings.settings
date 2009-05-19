@@ -23,9 +23,6 @@
     <Setting Name="StartWithWindows" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://miraclew.gicp.net/lcs/Operator.asmx</Value>
-    </Setting>
     <Setting Name="OperatorLoginTime" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -40,6 +37,9 @@
     </Setting>
     <Setting Name="AutoLogin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">http://miraclew.gicp.net/lcs/Operator.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

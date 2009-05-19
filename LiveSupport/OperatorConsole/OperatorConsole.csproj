@@ -93,6 +93,12 @@
     <Compile Include="NotifyForm.Designer.cs">
       <DependentUpon>NotifyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OperatorPannel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OperatorPannel.Designer.cs">
+      <DependentUpon>OperatorPannel.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresetLinks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotifyForm.resx">
       <DependentUpon>NotifyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperatorPannel.resx">
+      <DependentUpon>OperatorPannel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PresetLinks.resx">
@@ -175,10 +185,10 @@
     <None Include="Web References\LiveChatWS\Operator.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:58852/LiveChat/Operator.asmx">
+    <WebReferenceUrl Include="http://localhost:3355/LiveChat/Operator.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LiveChatWS\</RelPath>
-      <UpdateFromURL>http://localhost:58852/LiveChat/Operator.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:3355/LiveChat/Operator.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -208,13 +218,12 @@
     <None Include="Resources\All software is current.png" />
     <None Include="Resources\aim.png" />
     <None Include="Resources\bg02.bmp" />
-    <None Include="Resources\06.png" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <Content Include="Resources\ie.jpg" />
-    <None Include="Resources\sipphone.png" />
-    <None Include="Resources\info.png" />
+    <None Include="Resources\mailreminder.png" />
+    <None Include="Resources\mail_foward.png" />
     <None Include="Resources\WelCome.jpg" />
     <None Include="Resources\show.jpg" />
     <None Include="Resources\sc.jpg" />

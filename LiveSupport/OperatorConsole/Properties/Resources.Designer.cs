@@ -151,6 +151,20 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap mail_foward {
+            get {
+                object obj = ResourceManager.GetObject("mail_foward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mailreminder {
+            get {
+                object obj = ResourceManager.GetObject("mailreminder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream newchatreq {
             get {
                 return ResourceManager.GetStream("newchatreq", resourceCulture);

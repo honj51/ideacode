@@ -41,6 +41,8 @@
             System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("技术问题");
             System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("联系信息");
             this.cutSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.uploadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.wb = new System.Windows.Forms.WebBrowser();
@@ -64,7 +66,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
+            //this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -92,6 +95,15 @@
             // 
             this.cutSaveFileDialog.FileName = "image1";
             this.cutSaveFileDialog.Filter = "jpg Files(*.jpg) |*.jpg |jpeg Files(*.*) |*.jpeg |bmp Files(*.bmp) |*.bmp";
+            // 
+            // uploadOpenFileDialog
+            // 
+            this.uploadOpenFileDialog.FileName = "uploadOpenFileDialog";
+            // 
+            // tmrGetMsg
+            // 
+            this.tmrGetMsg.Enabled = true;
+            this.tmrGetMsg.Interval = 5000;
             // 
             // splitContainer1
             // 
@@ -323,6 +335,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 117);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.ShowToolTips = true;
             this.tabControl1.Size = new System.Drawing.Size(228, 353);
             this.tabControl1.TabIndex = 0;
             // 
@@ -371,7 +384,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.operatorPannel1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -380,14 +393,13 @@
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // operatorPannel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "将该对话转到其他客服";
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(214, 410);
+            this.operatorPannel1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -478,7 +490,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -502,13 +513,13 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripButton cutToolStripButton;
         private System.Windows.Forms.ToolStripButton ringToolStripButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton flashToolStripButton;
         private System.Windows.Forms.OpenFileDialog uploadOpenFileDialog;
         private System.Windows.Forms.Timer tmrGetMsg;
+        private OperatorPannel operatorPannel1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
