@@ -2,7 +2,6 @@
     var currentMoveObj = null;         //当前拖动对象   
     var relLeft;                           //鼠标按下位置相对对象位置
     var relTop;
-    var accountId = null;
     var visitorId = getVisitorId();
     var chatId = "";
     var t = setInterval(hitWebSite, 1000);
