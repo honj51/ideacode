@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -175,10 +175,10 @@
     <None Include="Web References\LiveChatWS\Operator.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3355/LiveChat/Operator.asmx">
+    <WebReferenceUrl Include="http://localhost:58852/LiveChat/Operator.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LiveChatWS\</RelPath>
-      <UpdateFromURL>http://localhost:3355/LiveChat/Operator.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:58852/LiveChat/Operator.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -208,10 +208,13 @@
     <None Include="Resources\All software is current.png" />
     <None Include="Resources\aim.png" />
     <None Include="Resources\bg02.bmp" />
+    <None Include="Resources\06.png" />
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\sipphone.png" />
+    <None Include="Resources\info.png" />
     <None Include="Resources\WelCome.jpg" />
     <None Include="Resources\show.jpg" />
     <None Include="Resources\sc.jpg" />
@@ -243,6 +246,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\PageRequest.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LiveChatWS\QuickResponseCategory.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\Visitor.datasource">
