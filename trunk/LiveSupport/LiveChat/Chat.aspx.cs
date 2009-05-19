@@ -156,16 +156,16 @@ public partial class Chat : System.Web.UI.Page
                     {
                         if (LiveSupport.LiveSupportModel.Message.FromSystem(messages[i]))
                         {
-                            litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", CutStr(messages[i].Text, 100));
+                            litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", messages[i].Text);
                         }
                         if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor)
                         {
-                            litChat.Text += string.Format("<div id='chatTitle1'><strong>{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].Source + "&nbsp;&nbsp;" + messages[i].SentDate.ToString("hh:mm:ss"), CutStr(messages[i].Text, 100));
+                            litChat.Text += string.Format("<div id='chatTitle1'><strong>{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].Source + "&nbsp;&nbsp;" + messages[i].SentDate.ToString("hh:mm:ss"), messages[i].Text);
                         }
                         else if (messages[i].Type == MessageType.ChatMessage_VistorToOperator)
                         {
                           //  litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", "您说", CutStr(messages[i].Text, 100));
-                            litChat.Text += string.Format("<div id='chatTitle'><strong>您说&nbsp;&nbsp;{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].SentDate.ToString("hh:mm:ss"), CutStr(messages[i].Text, 100));
+                            litChat.Text += string.Format("<div id='chatTitle'><strong>您说&nbsp;&nbsp;{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].SentDate.ToString("hh:mm:ss"), messages[i].Text);
                         }
 
                         // TODO: is this correct?
@@ -179,6 +179,7 @@ public partial class Chat : System.Web.UI.Page
         }
     }
 
+    // TODO: Bug: str为一个字符时返回空
     public string CutStr(string str, int len)
     {
         string s = "";
