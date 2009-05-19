@@ -99,11 +99,11 @@ namespace LiveSupport.OperatorConsole
                 wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
 
                 
-                if (!this.ringToolStripButton.Checked)
+                if (!this.ringToolStripMenuItem.Checked)
                 {
                     PlayMsgSound();
                 }
-                if (!this.flashToolStripButton.Checked)
+                if (!this.flashToolStripMenuItem.Checked)
                 {
 
                     API.FlashWindowEx(this.Handle);
@@ -172,7 +172,12 @@ namespace LiveSupport.OperatorConsole
             {
                 if (item.CurrentSession.SessionId == chatSession.SessionId)
                {
-                    this.Text ="与你对话的是"+item.Name+"访客";
+                    this.Text = "与 " + item.Name + " 对话中";
+                    this.visitorNameLabel.Text += item.Name;
+                    this.visitorCompanyLabel.Text += item.Company;
+                    this.remarkLabel.Text += item.Remark;
+                    this.visitCountLabel.Text += item.VisitCount.ToString() ;
+                    this.visitorLocationLabel.Text += item.CurrentSession.Location;
                     break;
                }
             

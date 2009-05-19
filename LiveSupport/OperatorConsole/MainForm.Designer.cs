@@ -1378,6 +1378,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = global::LiveSupport.OperatorConsole.Properties.Resources.mailreminder;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1472,6 +1473,7 @@ namespace LiveSupport.OperatorConsole
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.statusStrip1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
