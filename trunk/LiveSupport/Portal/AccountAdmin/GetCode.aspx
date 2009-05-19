@@ -1,15 +1,15 @@
-ï»¿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="Default2" Title="æ— æ ‡é¢˜é¡µ" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="Default2" Title="ÎÞ±êÌâÒ³" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
    <center style="">
    <img src="Images/bg3.jpg" style="width: 765px" />
-   <table style="width:765px;" >
+   <table style="width:765px; height: 689px;" >
    <tr>
  <!--Left-->
  <td valign="top">
 <div><img src="Images/left_12.gif" /></div>
-<!--å¯¼èˆª-->
+<!--µ¼º½-->
 <div style="height: 180px; background-image:url('Images/zhongjian.bmp'); ">
 <LINK href="Images/sdmenu.css" type=text/css rel=stylesheet>
 <SCRIPT src="Images/sdmenu.js" type="text/javascript">
@@ -25,60 +25,121 @@
 			var firstSubmenu = myMenu.submenus[1];
 			myMenu.expandMenu(firstSubmenu);  
 			
-		};
+		}
+		function editCode() {
+		    var is = document.getElementById('IcoStyle');
+		    var as = document.getElementById('AutoStyle');
+		    var cs = document.getElementById('ChatStyle');
+		    var str1 = "<script src='http://localhost:3355/livechat/LSBanner.ashx?aid=<%=this.GetAccountId().ToString() %>";
+		    str1 = str1 + "&IconStyle="+is.value+"&InviteStyle="+as.value+"&ChatStyle="+cs.value;
+		    var str2 = "'></s" + "cript>";
+		    var locations = document.getElementsByName('icoLocation');
+		    var kf_fixeds = document.getElementsByName('kf_fixed');
+		    for(var i=0;i<locations.length;i++)
+		    {
+		        if(locations[i].checked) {
+		            str1 = str1 + "&IcoLocation="+locations[i].value;
+		            break;
+		        }
+		    }
+		    for (var i = 0; i < kf_fixeds.length; i++) {
+		        if (kf_fixeds[i].checked) {
+		            str1 =str1+"&KF_fixed=" + kf_fixeds[i].value;
+		            break;
+		        }
+		    }
+		    document.getElementById('codepic0').value = str1 + str2;
+		}
+		//ÏÔÊ¾¿Í·þÍ¼Æ¬
+		function showIcoImg(Ico) {
+		    editCode();
+		    var icos = document.getElementsByName('IcoImage');
+		    var i = 0;
+		    for (i; i <icos.length; i++) {
+		        if (i == Ico.value) {
+		            icos[i].style.display = 'block';
+		        }
+		        else {
+		            icos[i].style.display = 'none';
+		        }
+		    }
+		}
+		function showAutoImg(at) {
+		    editCode();
+		    var icos = document.getElementsByName('AutoImage');
+		    var i = 0;
+		    for (i; i < icos.length; i++) {
+		        if (i == at.value) {
+		            icos[i].style.display = 'block';
+		        }
+		        else {
+		            icos[i].style.display = 'none';
+		        }
+		    }
+		}
+		function showChatImage(ci) {
+
+		    editCode();
+		    var icos = document.getElementsByName('ChatImage');
+		    var i = 0;
+		    for (i; i < icos.length; i++) {
+		        if (i == ci.value) {
+		            icos[i].style.display = 'block';
+		        }
+		        else {
+		            icos[i].style.display = 'none';
+		        }
+		    }
+		}
 	</SCRIPT>
 <DIV class=sdmenu id=my_menu> 
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">åŸºæœ¬è®¾ç½®</SPAN> 
-<A href="AccountHome.aspx" >å…¬å¸ä¿¡æ¯</A>
-<A href="UpdateAccount.aspx" >å…¬å¸è´¦å·ç®¡ç†</A>
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">»ù±¾ÉèÖÃ</SPAN> 
+<A href="AccountHome.aspx" >¹«Ë¾ÐÅÏ¢</A>
+<A href="UpdateAccount.aspx" >¹«Ë¾ÕËºÅ¹ÜÀí</A>
 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">å®¢æœç®¡ç†</SPAN> 
-<A href="DepartmentManager.aspx">éƒ¨é—¨è®¾ç½®</A> 
-<A href="OperatorsManagment.aspx" >å®¢æœç®¡ç†</A> 
-<A href="#">å®¢æœè¯„åˆ†</A> <A href="#">ç™»é™†æ—¥å¿—</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">¿Í·þ¹ÜÀí</SPAN> 
+<A href="DepartmentManager.aspx">²¿ÃÅÉèÖÃ</A> 
+<A href="OperatorsManagment.aspx" >¿Í·þ¹ÜÀí</A> 
+ 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">é£Žæ ¼è®¾ç½®</SPAN> 
-<A href="#">é£Žæ ¼åŸºæœ¬ä¿¡æ¯è®¾ç½®</A> 
-<A href="GetCode.aspx">èŽ·å–ä»£ç è®¾ç½®</A> 
-<A href="#">ç•Œé¢é£Žæ ¼è®¾ç½®</A> 
-<A href="#">ç®€ä»‹è®¾ç½®</A> 
-<A href="#">å¯¹è¯æç¤ºè®¾ç½®</A> 
-<A href="#">ä¸»åŠ¨å‘èµ·è®¾ç½®</A> <A 
-href="#">å®¢æœå›¾æ ‡è®¾ç½®</A> <A 
-href="#">è‡ªå®šä¹‰å®¢æœå›¾æ ‡</A> <A 
-href="#">æŒ‡å®šå®¢æœè®¾ç½®</A> <A 
-href="#">è‡ªå®šä¹‰LOGO</A> 
-<A href="#">è‡ªå®šä¹‰URL</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">·ç¸ñÉèÖÃ</SPAN> 
+ 
+<A href="GetCode.aspx">»ñÈ¡´úÂëÉèÖÃ</A> 
+<A href="#">½çÃæ·ç¸ñÉèÖÃ</A> 
+ 
+<A href="#">¶Ô»°ÌáÊ¾ÉèÖÃ</A> 
+<A href="#">Ö÷¶¯·¢ÆðÉèÖÃ</A>
+ 
 </DIV>
 
-<DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">æ•°æ®åˆ†æž (New)</SPAN> 
-<A onclick=jump_URL() href="#">æµé‡ç»Ÿè®¡ </A>
-<A href="#">å’¨è¯¢é‡ç»Ÿè®¡</A> 
+<DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">Êý¾Ý·ÖÎö (New)</SPAN> 
+<A href="#">Á÷Á¿Í³¼Æ </A>
+<A href="#">×ÉÑ¯Á¿Í³¼Æ</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">èŠå¤©è®°å½•</SPAN> 
-<A href="#">èŠå¤©è®°å½•</A> <A href="#">è®¿å®¢ç•™è¨€</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">ÁÄÌì¼ÇÂ¼</SPAN> 
+<A href="#">ÁÄÌì¼ÇÂ¼</A> <A href="#">·Ã¿ÍÁôÑÔ</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">å®¢æˆ·ç®¡ç†</SPAN> 
-<A href="#">æ·»åŠ å®¢æˆ·</A> 
-<A href="#">å®¢æˆ·åˆ—è¡¨</A> 
-<A href="#">åˆ†ç»„ç®¡ç†</A> 
-<A href="#">IPé˜»æ­¢</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">¿Í»§¹ÜÀí</SPAN> 
+<A href="#">Ìí¼Ó¿Í»§</A> 
+<A href="#">¿Í»§ÁÐ±í</A> 
+ 
+ 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">å…è´¹ç”µè¯ç®¡ç†</SPAN> 
-<A onclick="return open_url('#')" href="#">å…è´¹ç”µè¯ç®¡ç†</A> 
-<A onclick="return open_url('#')" href="#">è®¾ç½®å…¬å¸å…è´¹ç”µè¯</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">Ãâ·Ñµç»°¹ÜÀí</SPAN> 
+<A onclick="return open_url('#')" href="#">Ãâ·Ñµç»°¹ÜÀí</A> 
+<A onclick="return open_url('#')" href="#">ÉèÖÃ¹«Ë¾Ãâ·Ñµç»°</A> 
 </DIV> 
 &nbsp;</DIV>
 </div>
 </div>
-<!--å¯¼èˆªç»“æŸ-->
+<!--µ¼º½½áÊø-->
 <div><img src="Images/abc.bmp" /></div>
  
    </td>
@@ -86,48 +147,80 @@ href="#">è‡ªå®šä¹‰LOGO</A>
 <td style="width: 583px;" valign="top">
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     æ‰‹åŠ¨å®‰è£…ä»£ç </div>
+     ÊÖ¶¯°²×°´úÂë</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; ">
-    <!--å¤´éƒ¨--->
+    <!--Í·²¿--->
       <div id="content-main-three-column" style="text-align:left;">
-        <!--å†…å®¹-->
-      <TABLE style=" width:475px; text-align:left;" cellSpacing=1 cellPadding=0 border=1>
+        <!--ÄÚÈÝ-->
+      <TABLE style=" width:510px; text-align:left;" cellSpacing=1 cellPadding=0 border=1>
   <TBODY>
   <TR>
-    <TD colSpan=2>å®¢æœå›¾æ ‡ä»£ç </TD></TR>
+    <TD colSpan=3>¿Í·þÍ¼±ê´úÂë</TD></TR>
+  <tr><td>¿Í·þÍ¼±ê·ç¸ñ£º</td><td valign="top"><select id="IcoStyle" onchange="showIcoImg(this);">
+    <option value="0">·ç¸ñÒ»</option>
+    <option value="1">·ç¸ñ¶þ</option>
+    <option value="2">·ç¸ñÈý</option>
+    <option value="3">·ç¸ñËÄ</option>
+  </select></td><td align="right"><div>
+          <img name="IcoImage" src="Images/1-2.jpg" style="height: 70px; display:block; width: 160px;" />
+          <img name="IcoImage" src="Images/2-2.gif" style="height: 70px; width: 160px; display:none;" />
+          <img name="IcoImage" src="Images/3-2.gif" style="height: 70px; display:none; width: 160px;" />
+          <img name="IcoImage" src="Images/4-2.gif" style="height: 70px; width:160px; display:none;" /></div></td></tr>
+  <tr><td>Ö÷¶¯ÑûÇë·ç¸ñ£º</td><td valign="top">
+  <select name="AutoStyle" onchange='showAutoImg(this)'>
+    <option value="0">·ç¸ñÒ»</option>
+    <option value="1">·ç¸ñ¶þ</option>
+    <option value="2">·ç¸ñÈý</option>
+    <option value="3">·ç¸ñËÄ</option>
+  </select></td><td align="right">
+          <img name="AutoImage" src="Images/1-3.gif" style="width: 340px; height: 127px; display:block;" />
+          <img name="AutoImage" src="Images/2-3.gif" style="width: 340px; height: 127px; display:none;" />
+          <img name="AutoImage" src="Images/3-3.gif" style="width: 340px; height: 127px; display:none;" />
+          <img name="AutoImage" src="Images/4-3.gif" style="width: 340px; height: 127px; display:none;" />
+          </td></tr>
+   <tr><td>ÁÄÌìÒ³Ãæ·ç¸ñ£º</td><td valign="top"> <select name="ChatStyle" onchange='showChatImage(this);'>
+    <option value="0">·ç¸ñÒ»</option>
+    <option value="1">·ç¸ñ¶þ</option>
+    <option value="2">·ç¸ñÈý</option>
+    <option value="3">·ç¸ñËÄ</option>
+  </select></td><td align="right">
+         <img name="ChatImage" src="Images/1-1.gif" style="height: 229px; width: 337px; display:block;"/>
+         <img name="ChatImage" src="Images/2-1.gif" style="height: 229px; width: 337px; display:none; "/>
+         <img name="ChatImage" src="Images/3-1.gif" style="height: 229px; width: 337px; display:none; "/>
+         <img name="ChatImage" src="Images/4-1.gif" style="height: 229px; width: 337px; display:none; "/>
+  </td></tr>
+  </tr>
   <TR>
-    <TD >å®¢æœå›¾æ ‡ï¼š</TD>
-    <TD><INPUT onclick=editCode() type=radio value=0 name=kf_fixed> å›ºå®šå®¢æœå›¾æ ‡ &nbsp; &nbsp; 
-      <INPUT onclick=editCode() type=radio CHECKED value=1 name=kf_fixed> æ¼‚æµ®å®¢æœå›¾æ ‡ 
+    <TD >¿Í·þÍ¼±ê£º</TD>
+    <TD colspan=2>
+      <INPUT onclick=editCode() type=radio value="1" name="kf_fixed"> ¹Ì¶¨¿Í·þÍ¼±ê &nbsp; &nbsp; 
+      <INPUT onclick=editCode() type=radio value="2" CHECKED name="kf_fixed"> Æ¯¸¡¿Í·þÍ¼±ê 
 <!--
-								<input type="radio" name="kf_fixed" value="2" onclick="editCode()" />	åˆ—è¡¨å½¢å¼	
+								<input type="radio" name="kf_fixed" value="2" onclick="editCode()" />	ÁÐ±íÐÎÊ½	
 								--> </TD></TR>
-    <TD >å›¾æ ‡ä½ç½®ï¼š</TD>
-    <TD ><INPUT id=pos_1 onclick=editCode() type=radio CHECKED value=cn name=locate> å·¦è¾¹ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    <INPUT id=language onclick=editCode() type=radio value=en name=locate>å³è¾¹</TD></TR>
+    <TD >Í¼±êÎ»ÖÃ£º</TD>
+    <TD colspan=2 >
+    <INPUT onclick=editCode() type=radio CHECKED value="1" name="icolocation"> ×óÉÏ½Ç
+    <INPUT onclick=editCode() type=radio  value="2"   name="icoLocation" >×óÖÐ¼ä 
+    <INPUT onclick=editCode() type=radio  value="3"    name="icoLocation" >×óÏÂ½Ç
+    <INPUT onclick=editCode() type=radio  value="4"   name="icoLocation" >ÓÒÉÏ½Ç
+    <INPUT onclick=editCode() type=radio  value="5" name="icoLocation" >ÓÒÖÐ¼ä 
+    <INPUT onclick=editCode() type=radio  value="6"   name="icoLocation" >ÓÒÏÂ½Ç
+    </TD></TR>
   <TR id=posmodel_tr>
-    <TD >ä»£ç ï¼š</TD>
-    <TD ><TEXTAREA class=textarea id=codepic0 name=codepic0 rows=5 readOnly cols=45> &lt;script src="http://kf.5251.net/js/yh.jsp?companyId=6707&amp;style=15131&amp;keyword=1"&gt;&lt;/script&gt;</TEXTAREA></TD></TR>
-  <TR>
-    <TD id=kflogo vAlign=top align=middle colSpan=2>
-      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
-        <TBODY>
-        <TR>
-          <TD scope=col colSpan=2 
-height=22>&nbsp;</TD></TR>
-        <TR>
-          <TD></TD></TR></TBODY></TABLE></TD></TR>
+    <TD >´úÂë£º</TD>
+    <TD colspan=2 ><TEXTAREA class=textarea id='codepic0' name=codepic0 readOnly 
+            style="width: 410px; height: 81px"> </TEXTAREA></TD></TR>
   <TR>
     <TD>&nbsp;</TD>
-    <TD><INPUT id=kf_city type=hidden name=kf_city> <INPUT class=green id=Submit onclick=editCode(); type=button value=èŽ·å–ä»£ç  name=Submit> 
-<INPUT onClick="javascript:Dr_copy(document.getElementById('codepic0'))" type=button value=å¤åˆ¶ name=Submit2> 
+    <TD colspan=2><INPUT id=kf_city type=hidden name=kf_city> <INPUT class=green id=Submit onclick=editCode(); type=button value=»ñÈ¡´úÂë name=Submit>&nbsp; 
       &nbsp;&nbsp;
       <P></P></TD></TR></TBODY></TABLE>
       </div>
-       <!--å¯¼èˆªç»“æŸ-->
+       <!--µ¼º½½áÊø-->
        </div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </td></tr>
