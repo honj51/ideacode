@@ -20,19 +20,14 @@ namespace LiveSupport.OperatorConsole
         private Hashtable[] groupTables;
 
         // Declare a variable to store the current grouping column.
-        int groupColumn = 0;
+        int groupColumn=-1;
 
 
         OperatorWS ws = new OperatorWS();
         private DateTime lastRequestTime = DateTime.Now.AddMinutes(-30);
         private Hashtable currentVisitors = new Hashtable();
      
-        private bool hasCheckedChatRequests = false;
-        private int numberOfChatWaiting = 0;
-
         private SoundPlayer player = new SoundPlayer();
-     
-                
         private List<Visitor> visitors = new List<Visitor>();
         private List<Operator> operators = new List<Operator>();
         List<Operator> chatOperator = new List<Operator>();
@@ -234,6 +229,8 @@ namespace LiveSupport.OperatorConsole
             messageendDateTimePicker.MaxDate = DateTime.Now;
             requestendDateTimePicker.MaxDate = DateTime.Now;
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
+
+
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -384,11 +381,12 @@ namespace LiveSupport.OperatorConsole
                     string browser;
                     if (item.CurrentSession.Browser.Contains("MSIE"))
                     {
-                        browser = "Internet Explorer";
+
+                        browser = "IE";
                     }
                     else if (item.CurrentSession.Browser.Contains("Firefox"))
                     {
-                        browser = "FireFox";
+                        browser = "FF";
                     }
                     else
                     {
@@ -416,8 +414,8 @@ namespace LiveSupport.OperatorConsole
                     }
                     else
                     {
-                        ListViewItem lvi = new ListViewItem(new string[]{ item.Name, item.CurrentSession.Location, browser,
-                         item.VisitCount.ToString(), item.CurrentSession.OperatorId.ToString(),status,
+                        ListViewItem lvi = new ListViewItem(new string[]{ browser,item.Name,item.CurrentSession.Location,
+                         item.VisitCount.ToString(), item.CurrentSession.OperatorId+"号客服".ToString(),status,
                          item.CurrentSession.VisitingTime.ToString(), leaveTime, chatRequestTime,
                          chattingStartTime,waitingDuring, chattingDuring,item.CurrentSession.PageRequestCount.ToString()
                         });
@@ -425,6 +423,21 @@ namespace LiveSupport.OperatorConsole
                         lvi.Tag = item;
                         lstVisitors.Items.Add(lvi);
                     }
+                    for(int i=0;i<lstVisitors.Items.Count;i++)
+                    {
+                        Visitor v= lstVisitors.Items[i].Tag as Visitor;
+                        if (v.CurrentSession.Browser.Contains("MSIE")) 
+                        {
+                            lstVisitors.Items[i].ImageIndex = 1;
+                        
+                        }
+                        if (v.CurrentSession.Browser.Contains("Firefox"))
+                        {
+                            lstVisitors.Items[i].ImageIndex = 0;
+
+                        }
+                    }
+                  
 
                     // Add the visitor to the visitor hashtable
                     if (!currentVisitors.ContainsKey(item.CurrentSession.IP))
@@ -439,18 +452,14 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
 
-
-                //// Create the groupsTable array and populate it with one 
-                //// hash table for each column.
-                groupTables = new Hashtable[lstVisitors.Columns.Count];
-                for (int column = 0; column < lstVisitors.Columns.Count; column++)
+                ////groupColumn大于等于0设置分组
+                if (groupColumn>=0)
                 {
-                    // Create a hash table containing all the groups 
-                    // needed for a single column.
-                    groupTables[column] = CreateGroupsTable(column);
-                }        
-               
-               // SetGroups(5);
+                    groupTables = new Hashtable[groupColumn+1];
+                    groupTables[groupColumn] = CreateGroupsTable(groupColumn);
+
+                    SetGroups(groupColumn);
+                }
               
             }
 
@@ -748,37 +757,17 @@ namespace LiveSupport.OperatorConsole
         //单击列名分组
         private void lstVisitors_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            //// Create the groupsTable array and populate it with one 
-            //// hash table for each column.
-            groupTables = new Hashtable[lstVisitors.Columns.Count];
-            for (int column = 0; column < lstVisitors.Columns.Count; column++)
-            {
-                // Create a hash table containing all the groups 
-                // needed for a single column.
-                groupTables[column] = CreateGroupsTable(column);
-               
-            }
-
-
-            // Set the sort order to ascending when changing
-            // column groups; otherwise, reverse the sort order.
-            if (lstVisitors.Sorting == SortOrder.Descending ||
-                (//isRunningXPOrLater && 
-                (e.Column != groupColumn)))
-            {
-                lstVisitors.Sorting = SortOrder.Ascending;
-            }
-            else
-            {
-                lstVisitors.Sorting = SortOrder.Descending;
-            }
-            groupColumn = e.Column;
-
-            // Set the groups to those created for the clicked column.
-            // if (isRunningXPOrLater)
-            //{
-                SetGroups(e.Column);
-           // }
+            if ( e.Column.Equals(VisitorTreeView_HeaderColumn_VisitorName) || e.Column.Equals(VisitorTreeView_HeaderColumn_Browser) || e.Column.Equals(VisitorTreeView_HeaderColumn_Operator) || e.Column.Equals(VisitorTreeView_HeaderColumn_Status))
+           {
+               groupTables = new Hashtable[e.Column+1];
+               groupTables[e.Column] = CreateGroupsTable(e.Column);
+               groupColumn = e.Column;
+               SetGroups(e.Column);
+           }
+           else
+           {
+               MessageBox.Show("该列不适合分组！");
+           }
         }
 
         // Sets lstVisitors to the groups created for the specified column.
@@ -794,9 +783,7 @@ namespace LiveSupport.OperatorConsole
             // Copy the groups for the column to an array.
             ListViewGroup[] groupsArray = new ListViewGroup[groups.Count];
             groups.Values.CopyTo(groupsArray, 0);
-
-            // Sort the groups and add them to lstVisitors.
-            Array.Sort(groupsArray, new ListViewGroupSorter(lstVisitors.Sorting));
+            
             lstVisitors.Groups.AddRange(groupsArray);
 
             // Iterate through the items in lstVisitors, assigning each 
@@ -805,13 +792,7 @@ namespace LiveSupport.OperatorConsole
             {
                 // Retrieve the subitem text corresponding to the column.
                 string subItemText = item.SubItems[column].Text;
-
-                // For the Title column, use only the first letter.
-                if (column == 0)
-                {
-                    subItemText = subItemText.Substring(0, 1);
-                }
-
+                
                 // Assign the item to the matching group.
                 item.Group = (ListViewGroup)groups[subItemText];
             }
@@ -830,13 +811,7 @@ namespace LiveSupport.OperatorConsole
             {
                 // Retrieve the text value for the column.
                 string subItemText = item.SubItems[column].Text;
-
-                // Use the initial letter instead if it is the first column.
-               // if (column == 0)
-                //{
-                //  subItemText = subItemText.Substring(0, 1);
-               // }
-
+               
                 // If the groups table does not already contain a group
                 // for the subItemText value, add a new group using the 
                 // subItemText value for the group header and Hashtable key.

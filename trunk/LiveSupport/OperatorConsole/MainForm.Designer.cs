@@ -174,6 +174,7 @@ namespace LiveSupport.OperatorConsole
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
             this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             emailLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
@@ -659,9 +660,9 @@ namespace LiveSupport.OperatorConsole
             // lstVisitors
             // 
             this.lstVisitors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colBrowser1,
             this.colName,
             this.colLocation,
-            this.colBrowser1,
             this.colVisitCount,
             this.colOperator,
             this.colStatus,
@@ -680,6 +681,7 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors.MultiSelect = false;
             this.lstVisitors.Name = "lstVisitors";
             this.lstVisitors.Size = new System.Drawing.Size(958, 226);
+            this.lstVisitors.SmallImageList = this.imgIconSet;
             this.lstVisitors.TabIndex = 2;
             this.lstVisitors.UseCompatibleStateImageBehavior = false;
             this.lstVisitors.View = System.Windows.Forms.View.Details;
@@ -688,15 +690,18 @@ namespace LiveSupport.OperatorConsole
             // 
             // colName
             // 
+            this.colName.DisplayIndex = 0;
             this.colName.Text = "访客";
             // 
             // colLocation
             // 
+            this.colLocation.DisplayIndex = 1;
             this.colLocation.Text = "地理位置";
             this.colLocation.Width = 75;
             // 
             // colBrowser1
             // 
+            this.colBrowser1.DisplayIndex = 2;
             this.colBrowser1.Text = "浏览器";
             // 
             // colVisitCount
@@ -1453,6 +1458,20 @@ namespace LiveSupport.OperatorConsole
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // imgIconSet
+            // 
+            this.imgIconSet.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgIconSet.ImageStream")));
+            this.imgIconSet.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgIconSet.Images.SetKeyName(0, "ff.jpg");
+            this.imgIconSet.Images.SetKeyName(1, "ie.jpg");
+            this.imgIconSet.Images.SetKeyName(2, "chat.jpg");
+            this.imgIconSet.Images.SetKeyName(3, "xiongzhang.jpg");
+            this.imgIconSet.Images.SetKeyName(4, "xiongzhang2.jpg");
+            this.imgIconSet.Images.SetKeyName(5, "PI Diagona Web Application 04 08.png");
+            this.imgIconSet.Images.SetKeyName(6, "PI Diagona Web Application 04 09.png");
+            this.imgIconSet.Images.SetKeyName(7, "PI Diagona Web Application 04 02.png");
+            this.imgIconSet.Images.SetKeyName(8, "PI Diagona Web Application 04 05.png");
+            // 
             // operatorPannel1
             // 
             this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1642,5 +1661,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.DateTimePicker messagebeginDateTimePicker;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private OperatorPannel operatorPannel1;
+        private System.Windows.Forms.ImageList imgIconSet;
     }
 }

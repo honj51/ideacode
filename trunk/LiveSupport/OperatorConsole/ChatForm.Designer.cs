@@ -63,16 +63,16 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
+            this.remarkLabel = new System.Windows.Forms.Label();
+            this.visitorCompanyLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.visitCountLabel = new System.Windows.Forms.Label();
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
-            this.visitorCompanyLabel = new System.Windows.Forms.Label();
-            this.remarkLabel = new System.Windows.Forms.Label();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblVisitorInfo = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -363,10 +363,19 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(220, 328);
+            this.tabPage2.Size = new System.Drawing.Size(220, 298);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(214, 292);
+            this.operatorPannel1.TabIndex = 0;
+           
             // 
             // panel1
             // 
@@ -387,13 +396,33 @@
             this.glassPanel1.Controls.Add(this.visitCountLabel);
             this.glassPanel1.Controls.Add(this.visitorNameLabel);
             this.glassPanel1.Controls.Add(this.visitorLocationLabel);
-            this.glassPanel1.Controls.Add(this.label1);
+            this.glassPanel1.Controls.Add(this.lblVisitorInfo);
             this.glassPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.glassPanel1.Location = new System.Drawing.Point(0, 0);
             this.glassPanel1.Name = "glassPanel1";
             this.glassPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.glassPanel1.Size = new System.Drawing.Size(228, 147);
             this.glassPanel1.TabIndex = 4;
+            // 
+            // remarkLabel
+            // 
+            this.remarkLabel.AutoSize = true;
+            this.remarkLabel.ForeColor = System.Drawing.Color.White;
+            this.remarkLabel.Location = new System.Drawing.Point(19, 116);
+            this.remarkLabel.Name = "remarkLabel";
+            this.remarkLabel.Size = new System.Drawing.Size(59, 12);
+            this.remarkLabel.TabIndex = 5;
+            this.remarkLabel.Text = "备注信息:";
+            // 
+            // visitorCompanyLabel
+            // 
+            this.visitorCompanyLabel.AutoSize = true;
+            this.visitorCompanyLabel.ForeColor = System.Drawing.Color.White;
+            this.visitorCompanyLabel.Location = new System.Drawing.Point(80, 61);
+            this.visitorCompanyLabel.Name = "visitorCompanyLabel";
+            this.visitorCompanyLabel.Size = new System.Drawing.Size(59, 12);
+            this.visitorCompanyLabel.TabIndex = 4;
+            this.visitorCompanyLabel.Text = "所属公司:";
             // 
             // pictureBox1
             // 
@@ -436,47 +465,19 @@
             this.visitorLocationLabel.TabIndex = 2;
             this.visitorLocationLabel.Text = "地理位置:";
             // 
-            // visitorCompanyLabel
+            // lblVisitorInfo
             // 
-            this.visitorCompanyLabel.AutoSize = true;
-            this.visitorCompanyLabel.ForeColor = System.Drawing.Color.White;
-            this.visitorCompanyLabel.Location = new System.Drawing.Point(80, 61);
-            this.visitorCompanyLabel.Name = "visitorCompanyLabel";
-            this.visitorCompanyLabel.Size = new System.Drawing.Size(59, 12);
-            this.visitorCompanyLabel.TabIndex = 4;
-            this.visitorCompanyLabel.Text = "所属公司:";
-            // 
-            // remarkLabel
-            // 
-            this.remarkLabel.AutoSize = true;
-            this.remarkLabel.ForeColor = System.Drawing.Color.White;
-            this.remarkLabel.Location = new System.Drawing.Point(19, 116);
-            this.remarkLabel.Name = "remarkLabel";
-            this.remarkLabel.Size = new System.Drawing.Size(59, 12);
-            this.remarkLabel.TabIndex = 5;
-            this.remarkLabel.Text = "备注信息:";
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(214, 322);
-            this.operatorPannel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(8);
-            this.label1.Size = new System.Drawing.Size(228, 35);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "访客信息";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblVisitorInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblVisitorInfo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblVisitorInfo.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblVisitorInfo.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblVisitorInfo.Location = new System.Drawing.Point(0, 0);
+            this.lblVisitorInfo.Name = "lblVisitorInfo";
+            this.lblVisitorInfo.Padding = new System.Windows.Forms.Padding(8);
+            this.lblVisitorInfo.Size = new System.Drawing.Size(228, 35);
+            this.lblVisitorInfo.TabIndex = 6;
+            this.lblVisitorInfo.Text = "访客信息";
+            this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ChatForm
             // 
@@ -548,6 +549,6 @@
         private System.Windows.Forms.ToolStripMenuItem ringToolStripMenuItem;
         private System.Windows.Forms.Label visitorCompanyLabel;
         private System.Windows.Forms.Label remarkLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblVisitorInfo;
     }
 }
