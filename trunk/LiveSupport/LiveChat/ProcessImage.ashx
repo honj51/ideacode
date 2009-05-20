@@ -27,6 +27,7 @@ public class ProcessImage : IHttpHandler
         }
         string accountId = context.Request.QueryString["aid"].ToString();
         string visitorId = context.Request.QueryString["vid"].ToString();
+        string bannerStyle = context.Request.QueryString["bannerstyle"].ToString();
         string referrer = string.Empty;
         string pageRequested = string.Empty;
         string domainRequested = string.Empty;
@@ -91,9 +92,9 @@ public class ProcessImage : IHttpHandler
         opOnline = OperatorService.HasOnlineOperator(accountId);
 
         if (opOnline)
-            imgName = "online.jpg";
+            imgName = "online" + bannerStyle + ".jpg";
         else
-            imgName = "offline.jpg";
+            imgName = "offline" + bannerStyle + ".jpg";
 
         System.Drawing.Image returnImg = System.Drawing.Image.FromFile(context.Server.MapPath("Images/" + imgName));
         returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
