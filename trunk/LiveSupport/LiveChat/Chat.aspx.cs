@@ -112,6 +112,7 @@ public partial class Chat : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            this.welcomeLabel.Text = "欢迎进入 "+ CurrentAccount.CompanyName + " 客服服务";
             pnlNoOperator.Visible = pnlChat.Visible = pnlRequest.Visible = false;
 
             if (CurrentAccount == null || CurrentVisitor == null || CurrentVisitor.CurrentSession == null)

@@ -145,7 +145,7 @@
            <table  cellpadding="0" cellspacing="0"  style="background-image:url(Images/bg.jpg); background-position:center;    height:100%; width:100%">
            <tr>
            <td valign="top" colspan="2" style=" height:30px; width:100%"  align="center">
-           欢迎进入XXX公司客服服务
+           <asp:Label ID="welcomeLabel" runat="server" Text="Label"></asp:Label>
            </td>
            
          
