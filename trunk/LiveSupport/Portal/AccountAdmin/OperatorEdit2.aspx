@@ -127,7 +127,7 @@
         <TR>
           <TD><A </TD><td>
             <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="保存" 
-                Width="67px" />
+                Width="67px" style="height: 26px" />
             </td></TR></TBODY></TABLE>
         </div>
  <!--尾部-->
