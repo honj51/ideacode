@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="_Default" Title="LiveSupport Inc: Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-       <!--
+ <!--
 
 POSTER PHOTO
 
@@ -84,10 +84,7 @@ CONTENT SIDE COLUMN
 
         </div>
     </form>--%>
-    <script type="text/javascript">
-            var chatid="";
-			document.write('<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="http://localhost/LiveChatService/ProcessImage.ashx?chatid='+chatid+'&aid=4&referrer=' + document.referrer + '" border="0" alt="点击在线交谈" /></a>');
-            </script> 
+        <script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&IcoLocation=5"></script>
             <h3>
                 客服座席软件下载
             </h3>
