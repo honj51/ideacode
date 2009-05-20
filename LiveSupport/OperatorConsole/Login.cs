@@ -17,6 +17,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
+using System.Diagnostics;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -55,7 +56,9 @@ namespace LiveSupport.OperatorConsole
                 }
  
              }
-          
+
+         
+            pictureBox1.Show();
             login();
             Properties.Settings.Default.Save(); 
            
@@ -63,6 +66,10 @@ namespace LiveSupport.OperatorConsole
 
         private void login()
         {
+            try
+            {
+
+           
             OperatorWS ws = new OperatorWS();
 
             Program.CurrentOperator = ws.Login(Properties.Settings.Default.WSUser, Properties.Settings.Default.OperatorName, Properties.Settings.Default.OperatorPassword);
@@ -98,6 +105,15 @@ namespace LiveSupport.OperatorConsole
             }
 
             Properties.Settings.Default.Save();
+            }
+            catch (Exception e)
+            {
+
+                Trace.WriteLine("Login“Ï≥£: " + e.Message);
+                pictureBox1.Hide();
+                lblMessage.Text = "¡¨Ω”Õ¯¬Á ß∞‹";
+                return;
+            }
         
         
         }
@@ -110,6 +126,7 @@ namespace LiveSupport.OperatorConsole
 
         private void Login_Load(object sender, EventArgs e)
         {
+            pictureBox1.Hide();
             if(Properties.Settings.Default.AutoLogin)
             {
                 login();

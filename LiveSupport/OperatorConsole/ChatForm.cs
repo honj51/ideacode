@@ -340,6 +340,8 @@ namespace LiveSupport.OperatorConsole
             Program.ChatForms.Remove(this);            
         }
 
+        
+
        
     }
 }

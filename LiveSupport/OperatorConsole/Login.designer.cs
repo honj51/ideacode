@@ -45,8 +45,11 @@ namespace LiveSupport.OperatorConsole
             this.cbxAutoLogin = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.pnlLogIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOpName
@@ -108,6 +111,8 @@ namespace LiveSupport.OperatorConsole
             // pnlLogIn
             // 
             this.pnlLogIn.BackColor = System.Drawing.Color.White;
+            this.pnlLogIn.Controls.Add(this.lblMessage);
+            this.pnlLogIn.Controls.Add(this.pictureBox1);
             this.pnlLogIn.Controls.Add(this.lblHint);
             this.pnlLogIn.Controls.Add(this.lblAuthenticate);
             this.pnlLogIn.Controls.Add(this.picLogIn);
@@ -203,6 +208,27 @@ namespace LiveSupport.OperatorConsole
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "»°ªÿ√‹¬Î";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::LiveSupport.OperatorConsole.Properties.Resources.loading;
+            this.pictureBox1.Location = new System.Drawing.Point(326, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Font = new System.Drawing.Font("ÀŒÃÂ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblMessage.Location = new System.Drawing.Point(262, 9);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 14);
+            this.lblMessage.TabIndex = 10;
+            // 
             // Login
             // 
             this.AcceptButton = this.btnOK;
@@ -235,6 +261,7 @@ namespace LiveSupport.OperatorConsole
             this.pnlLogIn.ResumeLayout(false);
             this.pnlLogIn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +285,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.CheckBox cbxAutoLogin;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblMessage;
     }
 }

@@ -12,6 +12,7 @@ namespace LiveSupport.OperatorConsole
    
     public partial class OperatorPannel : UserControl
     {
+        OperatorWS ws = new OperatorWS();
          public string chatId=null;
         public OperatorPannel()
         {
@@ -105,20 +106,26 @@ namespace LiveSupport.OperatorConsole
 
         private void operatorsTreeView_DoubleClick(object sender, EventArgs e)
         {
-            if (chatId != null)
+            Operator op = operatorsTreeView.SelectedNode.Tag as Operator;
+
+            if (chatId != null && op!=null)
             {
+            
+                  if (op.Status != OperatorStatus.Offline)
+                  {
+                      MessageBox.Show(op.OperatorId);
+                      MessageBox.Show(chatId);
+                  }
+                  else 
+                  {
+                      MessageBox.Show("该客服无法回应你的请求");
+                  
+                  }
+              
 
-                Operator op = operatorsTreeView.SelectedNode.Tag as Operator;
-
-                //chatId;
+             
             }
-            else 
-            {
-
-                MessageBox.Show("此操作失败！");
-                 
-                
-               }
+         
         }
 
         
