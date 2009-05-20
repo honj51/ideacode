@@ -22,11 +22,11 @@ function emailclose() {
 function shortKeyMenu() {
     document.getElementById(shortKeyMenu).style.display = "block"
 }
-//传送文件 ——显示层
+//显示层
 function divShow(divId) {
     document.getElementById(divId).style.display = "block";
 }
-//传送文件 ——关闭层
+//关闭层
 function divClose(divId) {
     document.getElementById(divId).style.display = "none";
 }
