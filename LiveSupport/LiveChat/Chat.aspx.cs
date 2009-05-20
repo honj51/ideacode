@@ -184,7 +184,11 @@ public partial class Chat : System.Web.UI.Page
     public string CutStr(string str, int len)
     {
         string s = "";
-
+        if(str.Length<len)
+        {
+            s = str;
+        
+        }
         for (int i = 0; i < str.Length; i++)
         {
             int r = i % len;
