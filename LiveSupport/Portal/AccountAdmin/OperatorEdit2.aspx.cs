@@ -15,20 +15,24 @@ using System.Collections.Generic;
 public partial class Default2 : System.Web.UI.Page
 {
     Account account;
+    string operatorId=null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User"] != null)
         {
             account = (Account)Session["User"];
-            if (!IsPostBack)
-            {
+
                 if (Request.QueryString["operatorId"] != null)
                 {
-                    DataBindDepartment(account.AccountId);
-                    string operatorId = Request.QueryString["operatorId"].ToString();
-                    DataBindOperator(operatorId);
+                    
+                    operatorId = Request.QueryString["operatorId"].ToString();
+                    if (!IsPostBack)
+                    {
+                        DataBindDepartment(account.AccountId);
+                        DataBindOperator(operatorId);
+                    }
                 }
-            }
+            
         }
         else
         {
@@ -51,6 +55,7 @@ public partial class Default2 : System.Web.UI.Page
     public void DataBindOperator(string operatorId)
     {
         Operator op=OperatorsManager.GetOperatorByOperatorId(operatorId);
+        this.txtCompanyName.Text = account.CompanyName;
         this.ddlDepartment.SelectedValue = op.Department.DepartmentId;
         this.txtLoginName.Text = op.LoginName;
         this.txtNickName.Text = op.NickName;
@@ -59,6 +64,26 @@ public partial class Default2 : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-
+        Operator op = new Operator();
+        op.OperatorId = operatorId;
+        op.AccountId = account.AccountId;
+        op.LoginName = this.txtLoginName.Text;
+        op.Department = DepartmentManager.GetDepartmentById(this.ddlDepartment.SelectedValue);
+        op.Password = this.txtPwd.Text;
+        op.NickName = this.txtNickName.Text;
+        op.Email = this.txtEmail.Text;
+        op.AVChatStatus = "Offline";
+        op.IsAdmin=false;
+        bool b=OperatorsManager.UpdateOperator(op);
+        if (b)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('修改成功');window.location='OperatorsManagment.aspx';</script>");
+            return;
+        }
+        else 
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('修改失败'); </script>");
+            return;
+        }
     }
 }
