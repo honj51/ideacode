@@ -38,7 +38,36 @@
           <br />
           <br />
           <asp:Button ID="Button1" runat="server" Text="发送" OnClick="Button1_Click" />
-          <asp:Button ID="Button2" runat="server" Text="取消" /></div>
+          <asp:Button ID="Button2" runat="server" Text="取消" />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+      </div>
+          <script type="text/javascript" language="javascript">
+//              document.writeln("<div id=\"lovexin12\">fdsafdsa<\/div>");
+//              document.getElementById("lovexin12").style.position = "absolute";
+//              document.getElementById("lovexin12").style.left = "0px";
+//              document.getElementById("lovexin12").style.background = "red";
+//              footBeat();
+//              function footBeat() {
+//                  document.getElementById("lovexin12").style.top = document.documentElement.scrollTop + document.body.clientHeight - 20;
+//                  document.getElementById("lovexin12").style.left = document.documentElement.scrollLeft + document.body.clientWidth - 100;
+//                  setTimeout("footBeat();", 1)
+//              }
+          </script>
       </form>
 </body>
 </html>
