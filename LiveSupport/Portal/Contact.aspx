@@ -22,10 +22,9 @@
                 <TD align=right width=100 bgColor=#f3f7fa height=27>邮政编码：</TD>
                 <TD align=left bgColor=#f3f7fa>&nbsp;330096</TD></TR>
               <TR>
-                <TD align=right width=100 bgColor=#ffffff height=27>联系热线：</TD>
+                <TD align=right width=100 bgColor=#ffffff height=27>联系QQ：</TD>
                 <TD align=left 
-                  bgColor=#ffffff>&nbsp;0791-8161583、8161553、8161773、8161361、8161525、8161370、8161187、、
-8161125</TD></TR>
+                  bgColor=#ffffff>&nbsp;109861161</TD></TR>
               <TR>
                 <TD align=right width=100 bgColor=#f3f7fa height=27>联系手机：</TD>
                 <TD align=left 
