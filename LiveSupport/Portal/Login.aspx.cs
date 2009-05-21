@@ -36,4 +36,5 @@ public partial class Default2 : System.Web.UI.Page
             this.FailureText.Text = "您的登录尝试不成功。请重试。";
         }
     }
+
 }

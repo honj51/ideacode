@@ -1,4 +1,4 @@
-Ôªø<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Default2" Title="Êó†Ê†áÈ¢òÈ°µ" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Default2" Title="Œﬁ±ÍÃ‚“≥" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <center style="height: 606px">
@@ -16,12 +16,12 @@
     </td>
     <td style="width: 23px; ">&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td style="width: 580px;" valign="top"><div style="text-align:left; margin-top:10px;"><img src="images/register.gif" /></div>
-    <!--Áî®Êà∑ÁôªÂΩï--->
+    <!--”√ªßµ«¬º--->
     <div style="margin-top:50px;">
-        <table border="0" cellpadding="0" style="height:189px;width:290px; font-size:14px;">
+        <table border="0" cellpadding="0" style="width:290px; font-size:14px;">
             <tr>
                 <td align="center">
-                    Áî®Êà∑ÁôªÂΩï</td>
+                    ”√ªßµ«¬º</td>
             </tr>
             <tr>
                 <td>
@@ -30,26 +30,21 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="UserNameLabel" runat="server">Áî®Êà∑Âêç:</asp:Label>
+                    <asp:Label ID="UserNameLabel" runat="server">”√ªß√˚:</asp:Label>
                     <asp:TextBox ID="UserName" runat="server" Font-Size="0.8em" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
-                        ControlToValidate="UserName" ErrorMessage="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÁî®Êà∑Âêç‚Äù„ÄÇ" ToolTip="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÁî®Êà∑Âêç‚Äù„ÄÇ" 
+                        ControlToValidate="UserName" ErrorMessage="±ÿ–ÎÃÓ–¥°∞”√ªß√˚°±°£" ToolTip="±ÿ–ÎÃÓ–¥°∞”√ªß√˚°±°£" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">ÂØÜ&nbsp;&nbsp;Á†Å:</asp:Label>
+                    <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">√‹&nbsp;&nbsp;¬Î:</asp:Label>
                     <asp:TextBox ID="Password" runat="server" Font-Size="0.8em" TextMode="Password" 
                         Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
-                        ControlToValidate="Password" ErrorMessage="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÂØÜÁ†Å‚Äù„ÄÇ" ToolTip="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÂØÜÁ†Å‚Äù„ÄÇ" 
+                        ControlToValidate="Password" ErrorMessage="±ÿ–ÎÃÓ–¥°∞√‹¬Î°±°£" ToolTip="±ÿ–ÎÃÓ–¥°∞√‹¬Î°±°£" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
                 </td>
             </tr>
             <tr>
@@ -59,21 +54,15 @@
             </tr>
             <tr>
                 <td align="center" style="color:Red;">
-                    <asp:CheckBox ID="RememberMe" runat="server" Text="‰∏ãÊ¨°ËÆ∞‰ΩèÊàë„ÄÇ" />
                     <asp:Button ID="LoginButton" runat="server" BackColor="White" 
                         BorderColor="#C5BBAF" BorderStyle="Solid" BorderWidth="1px" CommandName="Login" 
                         Font-Names="Verdana" Font-Size="10pt" ForeColor="#1C5E55" Height="20px"  
-                        Text="ÁôªÂΩï" ValidationGroup="Login1" Width="55px" onclick="LoginButton_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td align="center">
-                    &nbsp;
+                        Text="µ«¬º" ValidationGroup="Login1" Width="55px" onclick="LoginButton_Click" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:HyperLink ID="CreateUserLink" runat="server" NavigateUrl="~/Licence.aspx">Ê≥®ÂÜåÊñ∞Áî®Êà∑</asp:HyperLink>
+                    <asp:HyperLink ID="CreateUserLink" runat="server" NavigateUrl="~/Licence.aspx">◊¢≤·–¬”√ªß</asp:HyperLink>
                 </td>
             </tr>
         </table>
