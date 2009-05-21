@@ -8,7 +8,7 @@ POSTER PHOTO
 -->
     <div id="poster-photo-container">
         <div class="poster-photo-image">
-           <img src="Images/1.gif" width="568" height="180" />
+           <img src="Images/photo-poster.jpg" width="568" height="180" />
         </div>
 
         
