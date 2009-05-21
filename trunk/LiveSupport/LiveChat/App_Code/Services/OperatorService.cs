@@ -49,7 +49,9 @@ public static class OperatorService
         if (account != null)
         {
             op = operators.Find(o => o.AccountId == account.AccountId && o.LoginName == operatorName && o.Password == password);
+           if(op!=null){
             op.Status = OperatorStatus.Idle;
+           }
         }
         return op;
     }
