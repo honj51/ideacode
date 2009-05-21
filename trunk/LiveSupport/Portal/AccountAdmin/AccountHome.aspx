@@ -55,7 +55,7 @@
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">聊天记录</SPAN> 
-<A href="#">聊天记录</A> <A href="#">访客留言</A> 
+<A href="ChatAnnal.aspx">聊天记录 </A> <A href="#">访客留言</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客户管理</SPAN> 
