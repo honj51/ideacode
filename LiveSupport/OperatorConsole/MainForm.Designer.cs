@@ -43,9 +43,9 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label referrerLabel;
             System.Windows.Forms.Label visitingTimeLabel;
             System.Windows.Forms.Label domainRequestedLabel;
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("离线客服");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +55,7 @@ namespace LiveSupport.OperatorConsole
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.创建交流按钮CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetpasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settalkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cannedMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.presetLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,13 +69,13 @@ namespace LiveSupport.OperatorConsole
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.autostartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.检查升级CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.购买服务BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.联系我们UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.软件手册MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.官方网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.touchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.handBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.homePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlChat = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -85,9 +86,9 @@ namespace LiveSupport.OperatorConsole
             this.lblCurrentVisitors = new System.Windows.Forms.Label();
             this.lblMyChat = new System.Windows.Forms.Label();
             this.lstVisitors = new System.Windows.Forms.ListView();
+            this.colBrowser1 = new System.Windows.Forms.ColumnHeader();
             this.colName = new System.Windows.Forms.ColumnHeader();
             this.colLocation = new System.Windows.Forms.ColumnHeader();
-            this.colBrowser1 = new System.Windows.Forms.ColumnHeader();
             this.colVisitCount = new System.Windows.Forms.ColumnHeader();
             this.colOperator = new System.Windows.Forms.ColumnHeader();
             this.colStatus = new System.Windows.Forms.ColumnHeader();
@@ -101,6 +102,7 @@ namespace LiveSupport.OperatorConsole
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.inviteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acceptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -146,6 +148,7 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.label3 = new System.Windows.Forms.Label();
             this.访客信息栏 = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -174,8 +177,6 @@ namespace LiveSupport.OperatorConsole
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             emailLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -396,7 +397,8 @@ namespace LiveSupport.OperatorConsole
             // 
             this.adminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.创建交流按钮CToolStripMenuItem,
-            this.resetpasswordToolStripMenuItem});
+            this.resetpasswordToolStripMenuItem,
+            this.settalkToolStripMenuItem});
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
             this.adminToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.adminToolStripMenuItem.Text = "管理员(&A)";
@@ -413,6 +415,13 @@ namespace LiveSupport.OperatorConsole
             this.resetpasswordToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.resetpasswordToolStripMenuItem.Text = "重置座席密码(&R)";
             this.resetpasswordToolStripMenuItem.Click += new System.EventHandler(this.resetpasswordToolStripMenuItem_Click);
+            // 
+            // settalkToolStripMenuItem
+            // 
+            this.settalkToolStripMenuItem.Name = "settalkToolStripMenuItem";
+            this.settalkToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.settalkToolStripMenuItem.Text = "设置快速回复";
+            this.settalkToolStripMenuItem.Click += new System.EventHandler(this.settalkToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -511,57 +520,63 @@ namespace LiveSupport.OperatorConsole
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.检查升级CToolStripMenuItem,
+            this.checkUpdateToolStripMenuItem,
             this.toolStripSeparator4,
-            this.购买服务BToolStripMenuItem,
-            this.联系我们UToolStripMenuItem,
-            this.软件手册MToolStripMenuItem,
-            this.官方网站ToolStripMenuItem,
-            this.关于AToolStripMenuItem});
+            this.paymentToolStripMenuItem,
+            this.touchToolStripMenuItem,
+            this.handBookToolStripMenuItem,
+            this.homePageToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.helpToolStripMenuItem.Text = "帮助(&H)";
             // 
-            // 检查升级CToolStripMenuItem
+            // checkUpdateToolStripMenuItem
             // 
-            this.检查升级CToolStripMenuItem.Name = "检查升级CToolStripMenuItem";
-            this.检查升级CToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.检查升级CToolStripMenuItem.Text = "检查升级(&C)";
+            this.checkUpdateToolStripMenuItem.Name = "checkUpdateToolStripMenuItem";
+            this.checkUpdateToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.checkUpdateToolStripMenuItem.Text = "检查升级(&C)";
+            this.checkUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkUpdateToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
             // 
-            // 购买服务BToolStripMenuItem
+            // paymentToolStripMenuItem
             // 
-            this.购买服务BToolStripMenuItem.Name = "购买服务BToolStripMenuItem";
-            this.购买服务BToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.购买服务BToolStripMenuItem.Text = "购买服务(&B)";
+            this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
+            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.paymentToolStripMenuItem.Text = "购买服务(&B)";
+            this.paymentToolStripMenuItem.Click += new System.EventHandler(this.paymentToolStripMenuItem_Click);
             // 
-            // 联系我们UToolStripMenuItem
+            // touchToolStripMenuItem
             // 
-            this.联系我们UToolStripMenuItem.Name = "联系我们UToolStripMenuItem";
-            this.联系我们UToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.联系我们UToolStripMenuItem.Text = "联系我们(&U)";
+            this.touchToolStripMenuItem.Name = "touchToolStripMenuItem";
+            this.touchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.touchToolStripMenuItem.Text = "联系我们(&U)";
+            this.touchToolStripMenuItem.Click += new System.EventHandler(this.touchToolStripMenuItem_Click);
             // 
-            // 软件手册MToolStripMenuItem
+            // handBookToolStripMenuItem
             // 
-            this.软件手册MToolStripMenuItem.Name = "软件手册MToolStripMenuItem";
-            this.软件手册MToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.软件手册MToolStripMenuItem.Text = "软件手册(&M)";
+            this.handBookToolStripMenuItem.Name = "handBookToolStripMenuItem";
+            this.handBookToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.handBookToolStripMenuItem.Text = "软件手册(&M)";
+            this.handBookToolStripMenuItem.Click += new System.EventHandler(this.handBookToolStripMenuItem_Click);
             // 
-            // 官方网站ToolStripMenuItem
+            // homePageToolStripMenuItem
             // 
-            this.官方网站ToolStripMenuItem.Name = "官方网站ToolStripMenuItem";
-            this.官方网站ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.官方网站ToolStripMenuItem.Text = "官方网站(&H)";
+            this.homePageToolStripMenuItem.Name = "homePageToolStripMenuItem";
+            this.homePageToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.homePageToolStripMenuItem.Text = "官方网站(&H)";
+            this.homePageToolStripMenuItem.Click += new System.EventHandler(this.homePageToolStripMenuItem_Click);
             // 
-            // 关于AToolStripMenuItem
+            // aboutToolStripMenuItem
             // 
-            this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.关于AToolStripMenuItem.Text = "关于座席客户端(&A)";
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.aboutToolStripMenuItem.Text = "关于座席客户端(&A)";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // pnlChat
             // 
@@ -688,6 +703,11 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors.SelectedIndexChanged += new System.EventHandler(this.lstVisitors_SelectedIndexChanged);
             this.lstVisitors.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstVisitors_ColumnClick);
             // 
+            // colBrowser1
+            // 
+            this.colBrowser1.DisplayIndex = 2;
+            this.colBrowser1.Text = "浏览器";
+            // 
             // colName
             // 
             this.colName.DisplayIndex = 0;
@@ -698,11 +718,6 @@ namespace LiveSupport.OperatorConsole
             this.colLocation.DisplayIndex = 1;
             this.colLocation.Text = "地理位置";
             this.colLocation.Width = 75;
-            // 
-            // colBrowser1
-            // 
-            this.colBrowser1.DisplayIndex = 2;
-            this.colBrowser1.Text = "浏览器";
             // 
             // colVisitCount
             // 
@@ -774,6 +789,20 @@ namespace LiveSupport.OperatorConsole
             this.acceptToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.acceptToolStripMenuItem.Text = "接受请求";
             this.acceptToolStripMenuItem.Click += new System.EventHandler(this.acceptToolStripMenuItem_Click);
+            // 
+            // imgIconSet
+            // 
+            this.imgIconSet.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgIconSet.ImageStream")));
+            this.imgIconSet.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgIconSet.Images.SetKeyName(0, "ff.jpg");
+            this.imgIconSet.Images.SetKeyName(1, "ie.jpg");
+            this.imgIconSet.Images.SetKeyName(2, "chat.jpg");
+            this.imgIconSet.Images.SetKeyName(3, "xiongzhang.jpg");
+            this.imgIconSet.Images.SetKeyName(4, "xiongzhang2.jpg");
+            this.imgIconSet.Images.SetKeyName(5, "PI Diagona Web Application 04 08.png");
+            this.imgIconSet.Images.SetKeyName(6, "PI Diagona Web Application 04 09.png");
+            this.imgIconSet.Images.SetKeyName(7, "PI Diagona Web Application 04 02.png");
+            this.imgIconSet.Images.SetKeyName(8, "PI Diagona Web Application 04 05.png");
             // 
             // tabChats
             // 
@@ -1215,6 +1244,14 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Size = new System.Drawing.Size(204, 361);
             this.panel1.TabIndex = 0;
             // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 12);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 349);
+            this.operatorPannel1.TabIndex = 2;
+            // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
@@ -1238,15 +1275,16 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "在线客服";
-            treeNode4.Name = "节点1";
-            treeNode4.Text = "离线客服";
+            treeNode13.Name = "节点0";
+            treeNode13.Text = "在线客服";
+            treeNode14.Name = "节点1";
+            treeNode14.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode13,
+            treeNode14});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1458,28 +1496,6 @@ namespace LiveSupport.OperatorConsole
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // imgIconSet
-            // 
-            this.imgIconSet.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgIconSet.ImageStream")));
-            this.imgIconSet.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgIconSet.Images.SetKeyName(0, "ff.jpg");
-            this.imgIconSet.Images.SetKeyName(1, "ie.jpg");
-            this.imgIconSet.Images.SetKeyName(2, "chat.jpg");
-            this.imgIconSet.Images.SetKeyName(3, "xiongzhang.jpg");
-            this.imgIconSet.Images.SetKeyName(4, "xiongzhang2.jpg");
-            this.imgIconSet.Images.SetKeyName(5, "PI Diagona Web Application 04 08.png");
-            this.imgIconSet.Images.SetKeyName(6, "PI Diagona Web Application 04 09.png");
-            this.imgIconSet.Images.SetKeyName(7, "PI Diagona Web Application 04 02.png");
-            this.imgIconSet.Images.SetKeyName(8, "PI Diagona Web Application 04 05.png");
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 12);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 349);
-            this.operatorPannel1.TabIndex = 2;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1558,7 +1574,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem acceptToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer mainSplitContainer;
-        private System.Windows.Forms.ToolStripMenuItem 关于AToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip notifyIconContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -1573,12 +1589,12 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem autostartToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 检查升级CToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkUpdateToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem 购买服务BToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 联系我们UToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 软件手册MToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 官方网站ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paymentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem touchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem handBookToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem homePageToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton inviteToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton acceptToolStripButton;
@@ -1662,5 +1678,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private OperatorPannel operatorPannel1;
         private System.Windows.Forms.ImageList imgIconSet;
+        private System.Windows.Forms.ToolStripMenuItem settalkToolStripMenuItem;
     }
 }

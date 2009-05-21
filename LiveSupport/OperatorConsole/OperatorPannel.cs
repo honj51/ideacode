@@ -28,16 +28,17 @@ namespace LiveSupport.OperatorConsole
                 if (item.Status != OperatorStatus.Idle)
                 {
                     operatorsTreeView.Nodes[1].ImageIndex = 4;
-                  
+                    operatorsTreeView.Nodes[1].SelectedImageIndex = 4;
                     operatorsTreeView.Nodes[1].Nodes.Add(item.NickName + "(" + getOperatorsStatusText(item.Status) + ")").Tag = item;
                 }
                 else
                 {
                     operatorsTreeView.Nodes[0].ImageIndex = 3;
+                    operatorsTreeView.Nodes[0].SelectedImageIndex = 3;
                     for (int i = 0; i < operatorsTreeView.Nodes[0].Nodes.Count; i++)
                     {
                         operatorsTreeView.Nodes[0].Nodes[i].ImageIndex = 8;
-
+                        operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 8;
                     }
 
                     operatorsTreeView.Nodes[0].Nodes.Add(item.NickName + "(" + getOperatorsStatusText(item.Status) + ")").Tag = item;
@@ -47,6 +48,7 @@ namespace LiveSupport.OperatorConsole
                     for (int i = 0; i < operatorsTreeView.Nodes[1].Nodes.Count; i++)
                     {
                         operatorsTreeView.Nodes[1].Nodes[i].ImageIndex = 6;
+                        operatorsTreeView.Nodes[1].Nodes[i].SelectedImageIndex = 6;
                     }
                 }
                 if (operatorsTreeView.Nodes[0].Nodes.Count > 0)
@@ -57,18 +59,22 @@ namespace LiveSupport.OperatorConsole
                         if (op.Status == OperatorStatus.Chatting)
                         {
                             operatorsTreeView.Nodes[0].Nodes[i].ImageIndex = 8;
+                            operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 8;
                         }
                         if (op.Status == OperatorStatus.BeRightBack)
                         {
                             operatorsTreeView.Nodes[0].Nodes[i].ImageIndex = 5;
+                            operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 5;
                         }
                         if (op.Status == OperatorStatus.Away)
                         {
                             operatorsTreeView.Nodes[0].Nodes[i].ImageIndex = 5;
+                            operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 5;
                         }
                         if (op.Status == OperatorStatus.Idle)
                         {
                             operatorsTreeView.Nodes[0].Nodes[i].ImageIndex = 7;
+                            operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 7;
                         }
                     }
                 }
@@ -113,7 +119,7 @@ namespace LiveSupport.OperatorConsole
             
                   if (op.Status != OperatorStatus.Offline)
                   {
-                      MessageBox.Show(op.OperatorId);
+                      //MessageBox.Show(op.OperatorId);
                       MessageBox.Show(chatId);
                   }
                   else 

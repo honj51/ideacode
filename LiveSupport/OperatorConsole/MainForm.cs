@@ -51,8 +51,8 @@ namespace LiveSupport.OperatorConsole
         public MainForm(DateTime LoginTime)
         {
             InitializeComponent();
-          
-          
+
+       
             initForm(LoginTime);
 
             autoLoginToolStripMenuItem.Checked = Properties.Settings.Default.AutoLogin;
@@ -1015,6 +1015,45 @@ namespace LiveSupport.OperatorConsole
 
             }
         }
+
+        private void settalkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetTalkMainForm settalk = new SetTalkMainForm();
+            settalk.ShowDialog();
+        }
+
+        private void checkUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("目前已为最新版本");
+        }
+
+        private void paymentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("此功能暂未开放");
+        }
+
+        private void touchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("电话：XXX-XXXXXXXX");
+            
+        }
+
+        private void handBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void homePageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
 
       
     }

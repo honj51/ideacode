@@ -38,8 +38,8 @@ namespace LiveSupport.OperatorConsole
                 Properties.Settings.Default.AutoLogin=this.cbxAutoLogin.Checked;
             
             }
-              
-            if (Properties.Settings.Default.WSUser != txtUserName.Text)
+
+            if (Properties.Settings.Default.WSUser != txtUserName.Text )
             {
                 Properties.Settings.Default.WSUser = txtUserName.Text;
 
@@ -57,6 +57,9 @@ namespace LiveSupport.OperatorConsole
  
              }
 
+            txtUserName.Enabled = false;
+            txtOpName.Enabled = false;
+            txtOpPassword.Enabled = false;
          
             pictureBox1.Show();
             login();
@@ -73,9 +76,21 @@ namespace LiveSupport.OperatorConsole
             OperatorWS ws = new OperatorWS();
 
             Program.CurrentOperator = ws.Login(Properties.Settings.Default.WSUser, Properties.Settings.Default.OperatorName, Properties.Settings.Default.OperatorPassword);
-            // if we got an OperatorInfo, we continue
+            }
+            catch (Exception e)
+            {
+
+                Trace.WriteLine("Login异常: " + e.Message);
+                pictureBox1.Hide();
+                lblMessage.Text =  "连接网络失败";
+                return;
+            }
+                // if we got an OperatorInfo, we continue
             if (Program.CurrentOperator != null)
             {
+                txtUserName.Enabled = true;
+                txtOpName.Enabled = true;
+                txtOpPassword.Enabled = true;
                 this.Hide();
                 MainForm c = new MainForm(DateTime.Now);
                 Program.MainForm = c;
@@ -100,20 +115,17 @@ namespace LiveSupport.OperatorConsole
             else
             {
                 //Invalid credentials
-                MessageBox.Show("用户名或密码错误,\r\n\r\n请重试...", "Operator Console", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("登录失败：\r\n\r\n请检查您的帐号密码\r\n\r\n或公司帐号,\r\n\r\n请重试...", "登录信息提示", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                txtUserName.Enabled = true;
+                txtOpName.Enabled = true;
+                txtOpPassword.Enabled = true;
+                pictureBox1.Hide();
+                
 
             }
 
             Properties.Settings.Default.Save();
-            }
-            catch (Exception e)
-            {
-
-                Trace.WriteLine("Login异常: " + e.Message);
-                pictureBox1.Hide();
-                lblMessage.Text = "连接网络失败";
-                return;
-            }
+           
         
         
         }
