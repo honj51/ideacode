@@ -184,32 +184,34 @@ public partial class Chat : System.Web.UI.Page
     public string CutStr(string str, int len)
     {
         string s = "";
-        if(str.Length<len)
+        if (str.Length < len)
         {
             s = str;
-        
-        }
-        for (int i = 0; i < str.Length; i++)
-        {
-            int r = i % len;
-            int last = (str.Length / len) * len;
-            if (i != 0 && i <= last)
-            {
 
-                if (r == 0)
+        }
+        else
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                int r = i % len;
+                int last = (str.Length / len) * len;
+                if (i != 0 && i <= last)
                 {
-                    s += str.Substring(i - len, len) + "<br>";
+
+                    if (r == 0)
+                    {
+                        s += str.Substring(i - len, len) + "<br>";
+                    }
+
+                }
+                else if (i > last)
+                {
+                    s += str.Substring(i - 1);
+                    break;
                 }
 
             }
-            else if (i > last)
-            {
-                s += str.Substring(i - 1);
-                break;
-            }
-
         }
-
         return s;
     } 
 
