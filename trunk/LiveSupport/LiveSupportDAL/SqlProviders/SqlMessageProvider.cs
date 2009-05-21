@@ -68,6 +68,44 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return retList;
         }
+
+        #region 通过ChatId获得聊天记录
+        public static List<Message> GetChatMessageByChatId(string chatId)
+        {
+            string sql = "select * from dbo.LiveChat_Message where ChatID='"+chatId+"'";
+            SqlDataReader data = null;
+            List<Message> retList = new List<Message>();
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                while (data.Read())
+                    retList.Add(new Message(data));
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return retList;
+        }
+        #endregion
+
+        #region  通过ChatId删除所有聊天记录
+        public static int DeleteChatMessageByChatId(string chatId)
+        {
+            try
+            {
+                string sql = "delete from LiveChat_Message where ChatID='" + chatId + "'";
+                return DBHelper.ExecuteCommand(sql);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+        #endregion
     }
 }
 
