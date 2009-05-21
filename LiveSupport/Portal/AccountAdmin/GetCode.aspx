@@ -34,17 +34,9 @@
 		    str1 = str1 + "&IconStyle="+is.value+"&InviteStyle="+as.value+"&ChatStyle="+cs.value;
 		    var str2 = "'></s" + "cript>";
 		    var locations = document.getElementsByName('icoLocation');
-		    var kf_fixeds = document.getElementsByName('kf_fixed');
-		    for(var i=0;i<locations.length;i++)
-		    {
-		        if(locations[i].checked) {
-		            str1 = str1 + "&IcoLocation="+locations[i].value;
-		            break;
-		        }
-		    }
-		    for (var i = 0; i < kf_fixeds.length; i++) {
-		        if (kf_fixeds[i].checked) {
-		            str1 =str1+"&KF_fixed=" + kf_fixeds[i].value;
+		    for (var i = 0; i < locations.length; i++) {
+		        if (locations[i].checked) {
+		            str1 = str1 + "&IcoLocation=" + locations[i].value;
 		            break;
 		        }
 		    }
@@ -122,7 +114,7 @@
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">聊天记录</SPAN> 
-<A href="#">聊天记录</A> <A href="#">访客留言</A> 
+<A href="ChatAnnal.aspx">聊天记录 </A> <A href="#">访客留言</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客户管理</SPAN> 
@@ -193,19 +185,12 @@
          <img name="ChatImage" src="Images/4-1.gif" style="height: 229px; width: 337px; display:none; "/>
   </td></tr>
   </tr>
-  <TR>
-    <TD >客服图标：</TD>
-    <TD colspan=2>
-      <INPUT onclick=editCode() type=radio value="1" name="kf_fixed"> 固定客服图标 &nbsp; &nbsp; 
-      <INPUT onclick=editCode() type=radio value="2" CHECKED name="kf_fixed"> 漂浮客服图标 
-<!--
-								<input type="radio" name="kf_fixed" value="2" onclick="editCode()" />	列表形式	
-								--> </TD></TR>
     <TD >图标位置：</TD>
     <TD colspan=2 >
-    <INPUT onclick=editCode() type=radio CHECKED value="1" name="icolocation"> 左上角
+    <INPUT onclick=editCode() type=radio CHECKED value="0" name="icolocation"> 固定客服图标
+    <INPUT onclick=editCode() type=radio  value="1" name="icolocation"> 左上角
     <INPUT onclick=editCode() type=radio  value="2"   name="icoLocation" >左中间 
-    <INPUT onclick=editCode() type=radio  value="3"    name="icoLocation" >左下角
+    <INPUT onclick=editCode() type=radio  value="3"    name="icoLocation" >左下角<br />
     <INPUT onclick=editCode() type=radio  value="4"   name="icoLocation" >右上角
     <INPUT onclick=editCode() type=radio  value="5" name="icoLocation" >右中间 
     <INPUT onclick=editCode() type=radio  value="6"   name="icoLocation" >右下角
