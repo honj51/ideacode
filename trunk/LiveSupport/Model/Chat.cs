@@ -82,6 +82,15 @@ namespace LiveSupport.LiveSupportModel
             get { return status; }
             set { status = value; }
         }
+        //访问会话
+        private VisitSession vs;
+
+        public VisitSession Vs
+        {
+            get { return vs; }
+            set { vs = value; }
+        }
+
         public Chat()
         {
             createTime = DateTime.Now;
