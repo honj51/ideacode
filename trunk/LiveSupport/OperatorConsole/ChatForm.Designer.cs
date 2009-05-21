@@ -29,16 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("您好！");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("您好，欢迎光临我们的网站！");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("欢迎词", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("稍等");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("再见");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("常见问题回复");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("技术问题");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("联系信息");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.cutSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.uploadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -61,9 +51,7 @@
             this.toollblIsTyping = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
@@ -73,6 +61,8 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
+            this.setTalkForm1 = new LiveSupport.OperatorConsole.SetTalkForm();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -316,7 +306,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.treeView1);
+            this.tabPage1.Controls.Add(this.setTalkForm1);
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -324,38 +314,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "快捷回复";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 3);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "节点4";
-            treeNode1.Text = "您好！";
-            treeNode2.Name = "节点5";
-            treeNode2.Text = "您好，欢迎光临我们的网站！";
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "欢迎词";
-            treeNode4.Name = "节点1";
-            treeNode4.Text = "稍等";
-            treeNode5.Name = "节点2";
-            treeNode5.Text = "再见";
-            treeNode6.Name = "节点6";
-            treeNode6.Text = "常见问题回复";
-            treeNode7.Name = "节点7";
-            treeNode7.Text = "技术问题";
-            treeNode8.Name = "节点8";
-            treeNode8.Text = "联系信息";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8});
-            this.treeView1.Size = new System.Drawing.Size(214, 292);
-            this.treeView1.TabIndex = 0;
-            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // tabPage2
             // 
@@ -367,15 +325,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(214, 292);
-            this.operatorPannel1.TabIndex = 0;
-           
             // 
             // panel1
             // 
@@ -479,6 +428,22 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(214, 292);
+            this.operatorPannel1.TabIndex = 0;
+            // 
+            // setTalkForm1
+            // 
+            this.setTalkForm1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setTalkForm1.Location = new System.Drawing.Point(3, 3);
+            this.setTalkForm1.Name = "setTalkForm1";
+            this.setTalkForm1.Size = new System.Drawing.Size(214, 292);
+            this.setTalkForm1.TabIndex = 0;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -531,7 +496,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStripButton cutToolStripButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.OpenFileDialog uploadOpenFileDialog;
@@ -550,5 +514,6 @@
         private System.Windows.Forms.Label visitorCompanyLabel;
         private System.Windows.Forms.Label remarkLabel;
         private System.Windows.Forms.Label lblVisitorInfo;
+        private SetTalkForm setTalkForm1;
     }
 }

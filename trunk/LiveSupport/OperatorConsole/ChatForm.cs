@@ -279,12 +279,12 @@ namespace LiveSupport.OperatorConsole
             //ws.AddMessage(msg);
         }
 
-        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        { 
-            if(e.Node.Name!="节点0")
-              this.txtMsg.Text=this.treeView1.SelectedNode.Text.ToString();
-            this.txtMsg.Focus();
-        }
+        //private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        //{ 
+        //    if(e.Node.Nodes.Count<0)
+        //      this.txtMsg.Text=this.treeView1.SelectedNode.Text.ToString();
+        //    this.txtMsg.Focus();
+        //}
 
         /// <summary>
         /// 截图
