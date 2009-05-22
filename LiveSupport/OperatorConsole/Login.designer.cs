@@ -36,8 +36,9 @@ namespace LiveSupport.OperatorConsole
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.pnlLogIn = new System.Windows.Forms.Panel();
-            this.lblHint = new System.Windows.Forms.Label();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.lblAuthenticate = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picLogIn = new System.Windows.Forms.PictureBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -45,11 +46,9 @@ namespace LiveSupport.OperatorConsole
             this.cbxAutoLogin = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblMessage = new System.Windows.Forms.Label();
             this.pnlLogIn.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOpName
@@ -112,34 +111,46 @@ namespace LiveSupport.OperatorConsole
             // 
             this.pnlLogIn.BackColor = System.Drawing.Color.White;
             this.pnlLogIn.Controls.Add(this.lblMessage);
-            this.pnlLogIn.Controls.Add(this.pictureBox1);
-            this.pnlLogIn.Controls.Add(this.lblHint);
             this.pnlLogIn.Controls.Add(this.lblAuthenticate);
+            this.pnlLogIn.Controls.Add(this.pictureBox1);
             this.pnlLogIn.Controls.Add(this.picLogIn);
             this.pnlLogIn.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogIn.Location = new System.Drawing.Point(0, 0);
             this.pnlLogIn.Name = "pnlLogIn";
-            this.pnlLogIn.Size = new System.Drawing.Size(369, 51);
+            this.pnlLogIn.Size = new System.Drawing.Size(367, 51);
             this.pnlLogIn.TabIndex = 6;
             // 
-            // lblHint
+            // lblMessage
             // 
-            this.lblHint.AutoSize = true;
-            this.lblHint.Location = new System.Drawing.Point(98, 27);
-            this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(143, 12);
-            this.lblHint.TabIndex = 2;
-            this.lblHint.Text = "请输入座席用户名和密码.";
+            this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(221, 22);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(143, 12);
+            this.lblMessage.TabIndex = 11;
+            this.lblMessage.Text = "请输入座席用户名和密码.";
             // 
             // lblAuthenticate
             // 
             this.lblAuthenticate.AutoSize = true;
             this.lblAuthenticate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAuthenticate.Location = new System.Drawing.Point(73, 9);
+            this.lblAuthenticate.Location = new System.Drawing.Point(63, 22);
             this.lblAuthenticate.Name = "lblAuthenticate";
             this.lblAuthenticate.Size = new System.Drawing.Size(59, 13);
             this.lblAuthenticate.TabIndex = 1;
             this.lblAuthenticate.Text = "登陆认证";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::LiveSupport.OperatorConsole.Properties.Resources.loading;
+            this.pictureBox1.Location = new System.Drawing.Point(315, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 34);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
             // 
             // picLogIn
             // 
@@ -191,7 +202,7 @@ namespace LiveSupport.OperatorConsole
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(261, 64);
+            this.linkLabel1.Location = new System.Drawing.Point(263, 60);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(65, 12);
             this.linkLabel1.TabIndex = 7;
@@ -201,33 +212,12 @@ namespace LiveSupport.OperatorConsole
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(263, 126);
+            this.linkLabel2.Location = new System.Drawing.Point(263, 122);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(53, 12);
             this.linkLabel2.TabIndex = 8;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "取回密码";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::LiveSupport.OperatorConsole.Properties.Resources.loading;
-            this.pictureBox1.Location = new System.Drawing.Point(326, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(262, 9);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 14);
-            this.lblMessage.TabIndex = 10;
             // 
             // Login
             // 
@@ -236,7 +226,7 @@ namespace LiveSupport.OperatorConsole
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(369, 189);
+            this.ClientSize = new System.Drawing.Size(367, 195);
             this.ControlBox = false;
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
@@ -260,8 +250,8 @@ namespace LiveSupport.OperatorConsole
             this.Load += new System.EventHandler(this.Login_Load);
             this.pnlLogIn.ResumeLayout(false);
             this.pnlLogIn.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,9 +266,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Panel pnlLogIn;
-        private System.Windows.Forms.PictureBox picLogIn;
-        private System.Windows.Forms.Label lblAuthenticate;
-        private System.Windows.Forms.Label lblHint;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.CheckBox cbxPassword;
@@ -287,5 +274,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Label lblAuthenticate;
+        private System.Windows.Forms.PictureBox picLogIn;
     }
 }

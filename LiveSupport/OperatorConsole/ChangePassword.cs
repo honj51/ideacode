@@ -40,26 +40,41 @@ namespace LiveSupport.OperatorConsole
             if ( this.txtPassword.Text  == "" || this.txtNewPassword.Text == "" || this.txtNewPassword2.Text == "")
             {
 
-                MessageBox.Show("数据不能为空!\r\n\r\n 注意填写");
-
+                    this.Text = "数据不能为空!";
+                    return;
+               
             }
             else
             {
                 if (this.txtNewPassword.Text == this.txtNewPassword2.Text)
                 {
-                   
-                    
-                        //  ws.ChangePassword(Program.CurrentOperator.Name,this.txtPassword.Text, txtNewPassword.Text);
 
+                    if (ws.ChangePassword(this.txtPassword.Text, txtNewPassword.Text)== 0)
+                    {
                         MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
                         this.Close();
+                    }
+                    else
+                    {
+                        this.Text = "修改失败!";
+                        return;
+                    }
                    
                  }
-                else{
-                    MessageBox.Show("新密码和确认新密码不一致!");
-                }
+                else
+                 {
+                     this.Text = "新密码和确认新密码不一致!";
+                     return;
+                 }
             }
         
+        }
+
+        private void ChangePassword_Load(object sender, EventArgs e)
+        {
+            AuthenticationHeader h = new AuthenticationHeader();
+            h.OperatorId = Program.CurrentOperator.OperatorId;
+            ws.AuthenticationHeaderValue = h;
         }
 
        

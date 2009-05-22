@@ -123,6 +123,12 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream Global {
+            get {
+                return ResourceManager.GetStream("Global", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap info {
             get {
                 object obj = ResourceManager.GetObject("info", resourceCulture);
@@ -165,6 +171,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap lose {
+            get {
+                object obj = ResourceManager.GetObject("lose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap mail_foward {
             get {
                 object obj = ResourceManager.GetObject("mail_foward", resourceCulture);
@@ -188,6 +201,20 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.IO.UnmanagedMemoryStream newmsg {
             get {
                 return ResourceManager.GetStream("newmsg", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap offop {
+            get {
+                object obj = ResourceManager.GetObject("offop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap onlineop {
+            get {
+                object obj = ResourceManager.GetObject("onlineop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

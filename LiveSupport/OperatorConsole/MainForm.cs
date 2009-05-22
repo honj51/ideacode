@@ -85,7 +85,7 @@ namespace LiveSupport.OperatorConsole
         {
             int VisitorChatResult = 0;
             int Chatting = 0;
-         
+            
             foreach(ListViewItem item in lstVisitors.Items)
             {
                  Visitor v= item.Tag as Visitor;
@@ -320,15 +320,21 @@ namespace LiveSupport.OperatorConsole
         TestFixture testFixture = new TestFixture();
         private void timer1_Tick(object sender, EventArgs e)
         {
-           
-
-
             NewChangesCheckResult result = ws.CheckNewChanges(lastCheck);
             Trace.WriteLine("NewChangesCheck: "+ lastCheck.ToString());
             Trace.WriteLine("NewChangesCheckResult: " + result.ToString());
             //Debug.WriteLine(string.Format("CheckNewChanges: NewVisitor={0} Message={1}",result.NewVisitors.Length,result.Messages.Length ));
-            //  NewChangesResult result = testFixture.NewResult();
-            
+            // NewChangesResult result = testFixture.NewResult();
+
+            if (result.Operators != null)
+            {
+                if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
+                {
+                    operators.Clear();
+                    operators.AddRange(result.Operators);
+                    operatorPannel1.RecieveOperator(operators);
+                }
+            }
             foreach (ListViewItem item in lstVisitors.Items)
             {
                 Visitor v = item.Tag as Visitor;
@@ -414,8 +420,20 @@ namespace LiveSupport.OperatorConsole
                     }
                     else
                     {
+                        Operator optoo = new Operator();
+                        if (!string.IsNullOrEmpty(item.CurrentSession.OperatorId)&&operators!=null)
+                        {
+                            foreach (Operator op in operators)
+                            {
+                                if (op.OperatorId == item.CurrentSession.OperatorId)
+                                {
+                                    optoo = op;
+                                    break;
+                                }
+                            }
+                        }
                         ListViewItem lvi = new ListViewItem(new string[]{ browser,item.Name,item.CurrentSession.Location,
-                         item.VisitCount.ToString(), item.CurrentSession.OperatorId+"号客服".ToString(),status,
+                         item.VisitCount.ToString(),string.IsNullOrEmpty(item.CurrentSession.OperatorId) ? "暂无接待" :optoo.NickName,status,
                          item.CurrentSession.VisitingTime.ToString(), leaveTime, chatRequestTime,
                          chattingStartTime,waitingDuring, chattingDuring,item.CurrentSession.PageRequestCount.ToString()
                         });
@@ -500,17 +518,6 @@ namespace LiveSupport.OperatorConsole
             }
             lastCheck.ChatSessionChecks = nextChecks.ToArray();
 
-        if (result.Operators != null)
-            {
-                if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
-                {
-                    operators.Clear();
-                    operators.AddRange(result.Operators);
-                    operatorPannel1.RecieveOperator(operators);
-                }
-                
- 
-            }
 
 
             //Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));

@@ -30,6 +30,7 @@ namespace LiveSupport.OperatorConsole
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            
             Properties.Settings.Default.RememberPassword = this.cbxPassword.Checked;
             Properties.Settings.Default.AutoLogin = this.cbxAutoLogin.Checked;
             if((!string.IsNullOrEmpty(this.txtOpName.Text))&&(!string.IsNullOrEmpty(this.txtOpPassword.Text)))
@@ -60,7 +61,9 @@ namespace LiveSupport.OperatorConsole
             txtUserName.Enabled = false;
             txtOpName.Enabled = false;
             txtOpPassword.Enabled = false;
-         
+            lblMessage.Text = "’˝‘⁄µ«¬º...";
+            lblMessage.ForeColor = Color.Red;
+            lblMessage.SetBounds(221,22, 25, 10);
             pictureBox1.Show();
             login();
             Properties.Settings.Default.Save(); 
@@ -72,10 +75,20 @@ namespace LiveSupport.OperatorConsole
             try
             {
 
-           
+             
             OperatorWS ws = new OperatorWS();
+            if (Properties.Settings.Default.AutoLogin)
+            {
+                Program.CurrentOperator = ws.Login(Properties.Settings.Default.WSUser, Properties.Settings.Default.OperatorName, Properties.Settings.Default.OperatorPassword);
 
-            Program.CurrentOperator = ws.Login(Properties.Settings.Default.WSUser, Properties.Settings.Default.OperatorName, Properties.Settings.Default.OperatorPassword);
+            }
+            else 
+            {
+
+                Program.CurrentOperator = ws.Login(txtUserName.Text, txtOpName.Text, txtOpPassword.Text);
+
+            }
+            
             }
             catch (Exception e)
             {
@@ -115,7 +128,8 @@ namespace LiveSupport.OperatorConsole
             else
             {
                 //Invalid credentials
-                MessageBox.Show("µ«¬º ß∞‹£∫\r\n\r\n«ÎºÏ≤Èƒ˙µƒ’ ∫≈√‹¬Î\r\n\r\nªÚπ´Àæ’ ∫≈,\r\n\r\n«Î÷ÿ ‘...", "µ«¬º–≈œ¢Ã· æ", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                lblMessage.Text = "µ«¬º ß∞‹...\r\n\r\n’ ∫≈ªÚ√‹¬Î”–ŒÛ...";
+                lblMessage.SetBounds(260, 10, 25, 10);
                 txtUserName.Enabled = true;
                 txtOpName.Enabled = true;
                 txtOpPassword.Enabled = true;
