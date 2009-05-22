@@ -22,7 +22,7 @@
 			//myMenu.remember = true
 			myMenu.oneSmOnly = true;  
 			myMenu.init();
-			var firstSubmenu = myMenu.submenus[1];
+			var firstSubmenu = myMenu.submenus[4];
 			myMenu.expandMenu(firstSubmenu);
 
 };

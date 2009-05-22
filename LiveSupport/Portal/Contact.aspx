@@ -2,7 +2,7 @@
     CodeFile="Contact.aspx.cs" Inherits="Contact" Title="LiveSupport Inc: Contact" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<center>
+    <center>
 <img src="Images/banner_2.jpg" style="width: 760px; height: 151px;" />
 <div><img src="Images/lxwm.bmp" style="margin-top:5px;" /></div>
 <table cellpadding="0" cellspacing="0" style=" width:760px; border-style: solid; border-color: inherit; border-width: 1px; position: relative;">
@@ -39,7 +39,7 @@
               <TR>
                 <TD align=right width=100 bgColor=#ffffff height=27>¹Ù·½ÍøÖ·£º</TD>
                 <TD align=left bgColor=#ffffff>&nbsp;<A 
-                  href="http://www.helioeast.com/">http://www.helioeast.com/</A></TD></TR></TBODY></TABLE><br /><br />
+                  href="http://miraclew.gicp.net/livesupport/">http://miraclew.gicp.net/livesupport/</A></TD></TR></TBODY></TABLE><br /><br />
     </td></tr>
 </table>
 </center>
