@@ -17,6 +17,7 @@ namespace LiveSupport.OperatorConsole
         public OperatorPannel()
         {
             InitializeComponent();
+         
         }
 
         public void RecieveOperator(List<Operator> operators)
@@ -78,6 +79,11 @@ namespace LiveSupport.OperatorConsole
                         }
                     }
                 }
+            }
+            if (operatorsTreeView.Nodes.Count > 0)
+            {
+                operatorsTreeView.ExpandAll();
+
             }
         
         }

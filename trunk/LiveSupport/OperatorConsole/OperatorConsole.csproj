@@ -247,7 +247,13 @@
     <Content Include="Resources\chat.jpg" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
+    <None Include="Resources\Global.wav" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\onlineop.png" />
+    <None Include="Resources\lose.png" />
+    <None Include="Resources\offop.png" />
+    <None Include="Resources\type.wav" />
+    <None Include="Resources\msg.wav" />
     <None Include="Resources\loading.gif" />
     <None Include="Resources\window_list.png" />
     <None Include="Resources\ringdevice.png" />
@@ -273,7 +279,6 @@
     <None Include="Resources\PI Diagona Web Application 04 02.png" />
     <None Include="Resources\PI Diagona Web Application 04 01.png" />
     <None Include="Resources\Profile.ico" />
-    <None Include="Resources\type.wav" />
     <None Include="Resources\ringout.wav" />
     <None Include="Web References\LiveChatWS\Message.datasource">
       <DependentUpon>Reference.map</DependentUpon>

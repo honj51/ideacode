@@ -16,6 +16,12 @@ namespace LiveSupport.OperatorConsole
             InitializeComponent();
             setTalkTreeView.ExpandAll();
             List<QuickResponseCategory> cats = new List<QuickResponseCategory>();
+            toolStrip1.Visible = Program.CurrentOperator.IsAdmin;
+            if (toolStrip1.Visible==false)
+            {
+               setTalkTreeView.Dock= DockStyle.Fill;
+            
+            }
             for (int i = 0; i < 10; i++)
             {
                 var v = new QuickResponseCategory();
