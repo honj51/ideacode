@@ -76,6 +76,7 @@ public partial class Default2 : System.Web.UI.Page
     }
     protected void gvDepartment_RowEditing(object sender, GridViewEditEventArgs e)
     {
-        this.gvDepartment.EditIndex = e.NewEditIndex;
+        //this.gvDepartment.EditIndex = e.NewEditIndex;
+        
     }
 }

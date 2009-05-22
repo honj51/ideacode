@@ -1,15 +1,15 @@
-ï»¿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DepartmentManager.aspx.cs" Inherits="Default2" Title="æ— æ ‡é¢˜é¡µ" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DepartmentManager.aspx.cs" Inherits="Default2" Title="ÎÞ±êÌâÒ³" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
-   <center style="">
+    <center style="">
    <img src="Images/bg3.jpg" style="width: 765px" />
    <table style="width:765px;" >
    <tr>
  <!--Left-->
  <td valign="top">
 <div><img src="Images/left_12.gif" /></div>
-<!--å¯¼èˆª-->
+<!--µ¼º½-->
 <div style="height: 180px; background-image:url('Images/zhongjian.bmp'); ">
 <LINK href="Images/sdmenu.css" type=text/css rel=stylesheet>
 <SCRIPT src="Images/sdmenu.js" type="text/javascript">
@@ -29,50 +29,50 @@
 	</SCRIPT>
 <DIV class=sdmenu id=my_menu> 
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">åŸºæœ¬è®¾ç½®</SPAN> 
-<A href="AccountHome.aspx" >å…¬å¸ä¿¡æ¯</A>
-<A href="UpdateAccount.aspx" >å…¬å¸è´¦å·ç®¡ç†</A>
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">»ù±¾ÉèÖÃ</SPAN> 
+<A href="AccountHome.aspx" >¹«Ë¾ÐÅÏ¢</A>
+<A href="UpdateAccount.aspx" >¹«Ë¾ÕËºÅ¹ÜÀí</A>
 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">å®¢æœç®¡ç†</SPAN> 
-<A href="DepartmentManager.aspx">éƒ¨é—¨è®¾ç½®</A> 
-<A href="OperatorsManagment.aspx" >å®¢æœç®¡ç†</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">¿Í·þ¹ÜÀí</SPAN> 
+<A href="DepartmentManager.aspx">²¿ÃÅÉèÖÃ</A> 
+<A href="OperatorsManagment.aspx" >¿Í·þ¹ÜÀí</A> 
  
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">é£Žæ ¼è®¾ç½®</SPAN> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">·ç¸ñÉèÖÃ</SPAN> 
  
-<A href="GetCode.aspx">èŽ·å–ä»£ç è®¾ç½®</A> 
-<A href="#">ç•Œé¢é£Žæ ¼è®¾ç½®</A> 
+<A href="GetCode.aspx">»ñÈ¡´úÂëÉèÖÃ</A> 
+<A href="#">½çÃæ·ç¸ñÉèÖÃ</A> 
  
-<A href="#">å¯¹è¯æç¤ºè®¾ç½®</A> 
-<A href="#">ä¸»åŠ¨å‘èµ·è®¾ç½®</A>
+<A href="#">¶Ô»°ÌáÊ¾ÉèÖÃ</A> 
+<A href="#">Ö÷¶¯·¢ÆðÉèÖÃ</A>
  
 </DIV>
 
-<DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">æ•°æ®åˆ†æž (New)</SPAN> 
-<A href="#">æµé‡ç»Ÿè®¡ </A>
-<A href="#">å’¨è¯¢é‡ç»Ÿè®¡</A> 
+<DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">Êý¾Ý·ÖÎö (New)</SPAN> 
+<A href="#">Á÷Á¿Í³¼Æ </A>
+<A href="#">×ÉÑ¯Á¿Í³¼Æ</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">èŠå¤©è®°å½•</SPAN> 
-<A href="ChatAnnal.aspx">èŠå¤©è®°å½• </A> <A href="#">è®¿å®¢ç•™è¨€</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">ÁÄÌì¼ÇÂ¼</SPAN> 
+<A href="ChatAnnal.aspx">ÁÄÌì¼ÇÂ¼ </A> <A href="#">·Ã¿ÍÁôÑÔ</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">å®¢æˆ·ç®¡ç†</SPAN> 
-<A href="#">æ·»åŠ å®¢æˆ·</A> 
-<A href="#">å®¢æˆ·åˆ—è¡¨</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">¿Í»§¹ÜÀí</SPAN> 
+<A href="#">Ìí¼Ó¿Í»§</A> 
+<A href="#">¿Í»§ÁÐ±í</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">å…è´¹ç”µè¯ç®¡ç†</SPAN> 
-<A onclick="return open_url('#')" href="#">å…è´¹ç”µè¯ç®¡ç†</A> 
-<A onclick="return open_url('#')" href="#">è®¾ç½®å…¬å¸å…è´¹ç”µè¯</A> 
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">Ãâ·Ñµç»°¹ÜÀí</SPAN> 
+<A onclick="return open_url('#')" href="#">Ãâ·Ñµç»°¹ÜÀí</A> 
+<A onclick="return open_url('#')" href="#">ÉèÖÃ¹«Ë¾Ãâ·Ñµç»°</A> 
 </DIV> 
 &nbsp;</DIV>
 </div>
 </div>
-<!--å¯¼èˆªç»“æŸ-->
+<!--µ¼º½½áÊø-->
 <div><img src="Images/abc.bmp" /></div>
  
    </td>
@@ -80,13 +80,13 @@
 <td style="width: 583px;" valign="top">
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     å…¬å¸éƒ¨é—¨ç®¡ç†</div>
+     ¹«Ë¾²¿ÃÅ¹ÜÀí</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
-           <!--å¤´éƒ¨--->
-                <!--å°¾éƒ¨-->
+           <!--Í·²¿--->
+                <!--Î²²¿-->
            <img src="Images/tjkf.jpg" />
 <br />
            <asp:GridView ID="gvDepartment" runat="server"
@@ -98,7 +98,7 @@
                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                <RowStyle BackColor="#EFF3FB" />
                <Columns>
-                   <asp:TemplateField HeaderText="éƒ¨é—¨ç¼–å·" SortExpression="DepartmentId" 
+                   <asp:TemplateField HeaderText="²¿ÃÅ±àºÅ" SortExpression="DepartmentId" 
                        Visible="False">
                        <EditItemTemplate>
                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("DepartmentId") %>'></asp:TextBox>
@@ -108,21 +108,21 @@
                                Text='<%# Bind("DepartmentId") %>'></asp:Label>
                        </ItemTemplate>
                    </asp:TemplateField>
-                   <asp:TemplateField HeaderText="å…¬å¸åç§°">
+                   <asp:TemplateField HeaderText="¹«Ë¾Ãû³Æ">
                        <ItemTemplate>
                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Account.CompanyName") %>'></asp:Label>
                        </ItemTemplate>
                    </asp:TemplateField>
-                   <asp:BoundField DataField="DepartmentName" HeaderText="éƒ¨é—¨åç§°" 
+                   <asp:BoundField DataField="DepartmentName" HeaderText="²¿ÃÅÃû³Æ" 
                        SortExpression="DepartmentName" />
-                   <asp:TemplateField HeaderText="ä¿®æ”¹">
+                   <asp:TemplateField HeaderText="ÐÞ¸Ä" Visible="False">
                        <ItemTemplate>
-                           <asp:ImageButton ID="ImageButtonEdit" runat="server" CommandName="edit" 
-                               ImageUrl="~/Images/edit_icon.gif" />
+                           <asp:ImageButton ID="ImageButtonEdit" runat="server"  
+                               ImageUrl="~/Images/edit_icon.gif" CommandName="edit" />
                        </ItemTemplate>
                    </asp:TemplateField>
-                   <asp:CommandField ShowEditButton="True" Visible="False" />
-                   <asp:TemplateField HeaderText="åˆ é™¤">
+                   <asp:CommandField ShowEditButton="True" EditImageUrl="~/Images/edit_icon.gif" />
+                   <asp:TemplateField HeaderText="É¾³ý">
                        <ItemTemplate>
                            <asp:ImageButton ID="ImageButtonDelete" runat="server" CommandName="cmdDelete" 
                                ImageUrl="~/Images/ico_delete2.gif" />
@@ -150,7 +150,7 @@
                </SelectParameters>
            </asp:ObjectDataSource>
           
-           <a href="AddDepartment.aspx" style="font-size:16px;">æ·»åŠ éƒ¨é—¨</a>
+           <a href="AddDepartment.aspx" style="font-size:16px;">Ìí¼Ó²¿ÃÅ</a>
            <br />
            <br />
            </div>

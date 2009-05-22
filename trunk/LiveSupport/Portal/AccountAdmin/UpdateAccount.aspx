@@ -16,14 +16,14 @@
 </SCRIPT>
 <SCRIPT type="text/javascript">
 		// <![CDATA[
-		var myMenu;
-		window.onload = function() {
-			myMenu = new SDMenu("my_menu");
-			//myMenu.remember = true
-			myMenu.oneSmOnly = true;  
-			myMenu.init();
-			var firstSubmenu = myMenu.submenus[1];
-			myMenu.expandMenu(firstSubmenu);  
+    var myMenu;
+    window.onload = function() {
+        myMenu = new SDMenu("my_menu");
+        //myMenu.remember = true
+        myMenu.oneSmOnly = true;
+        myMenu.init();
+        var firstSubmenu = myMenu.submenus[0];
+        myMenu.expandMenu(firstSubmenu);  
 			
 		};
 	</SCRIPT>
@@ -61,7 +61,10 @@ href="#">自定义客服图标</A>
 <A href="#">添加客户</A> 
 <A href="#">客户列表</A> 
 </DIV>
-
+<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">免费电话管理</SPAN> 
+<A onclick="return open_url('#')" href="#">免费电话管理</A> 
+<A onclick="return open_url('#')" href="#">设置公司免费电话</A> 
+</DIV> 
 &nbsp;</DIV>
 </div>
 </div>

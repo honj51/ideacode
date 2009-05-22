@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
+using System.Collections.Generic;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using LiveSupport.BLL;
 using LiveSupport.LiveSupportModel;
+using LiveSupport.BLL;
 
-public partial class Default2 : System.Web.UI.Page
+public partial class Login2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
-
-    //登录
-    protected void LoginButton_Click(object sender, EventArgs e)
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
         string loginId = this.UserName.Text;
         string loginPwd = this.Password.Text;
@@ -36,6 +29,4 @@ public partial class Default2 : System.Web.UI.Page
             this.FailureText.Text = "您的登录尝试不成功。请重试。";
         }
     }
-
- 
 }
