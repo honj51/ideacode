@@ -1,75 +1,58 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Default2" Title="Œﬁ±ÍÃ‚“≥" %>
+Ôªø<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login2" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <center style="height: 606px">
-<div style="text-align:center;">
-<img src="images/banner_4.jpg" style="width: 760px; height: 151px;" />
-</div>
-<table cellSpacing="0" cellPadding="0" style="height: 466px; ">
-<tr><td style="width: 160px; background-image:url('images/left.jpg');" 
-        valign="top">
-<!--leftMenu-->
-<DIV id=column style="margin-top:30px;">
-    </DIV>
-    
-    
-    </td>
-    <td style="width: 23px; ">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td style="width: 580px;" valign="top"><div style="text-align:left; margin-top:10px;"><img src="images/register.gif" /></div>
-    <!--”√ªßµ«¬º--->
-    <div style="margin-top:50px;">
-        <table border="0" cellpadding="0" style="width:290px; font-size:14px;">
-            <tr>
-                <td align="center">
-                    ”√ªßµ«¬º</td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="UserNameLabel" runat="server">”√ªß√˚:</asp:Label>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .style1
+        {
+            height: 35px;
+        }
+        .style2
+        {
+            height: 22px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+   <table height="100" width="100%"><tr><td valign="middle" align="center">
+   
+    <table style=" background-image:url('Images/login.png'); width: 440px; height: 265px;  margin-top:120px;">
+<tr><td>
+<div style="height: 123px; width: 207px; margin-left:160px;">
+<table>
+<tr><td class="style1" >ÂÖ¨Âè∏Ë¥¶Âè∑Ôºö</td><td class="style1">
                     <asp:TextBox ID="UserName" runat="server" Font-Size="0.8em" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
-                        ControlToValidate="UserName" ErrorMessage="±ÿ–ÎÃÓ–¥°∞”√ªß√˚°±°£" ToolTip="±ÿ–ÎÃÓ–¥°∞”√ªß√˚°±°£" 
+                        ControlToValidate="UserName" ErrorMessage="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÁî®Êà∑Âêç‚Äù„ÄÇ" ToolTip="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÁî®Êà∑Âêç‚Äù„ÄÇ" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">√‹&nbsp;&nbsp;¬Î:</asp:Label>
+    </td></tr>
+<tr><td class="style3" >ÂÖ¨Âè∏ÂØÜÁ†ÅÔºö</td><td class="style3">
                     <asp:TextBox ID="Password" runat="server" Font-Size="0.8em" TextMode="Password" 
                         Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
-                        ControlToValidate="Password" ErrorMessage="±ÿ–ÎÃÓ–¥°∞√‹¬Î°±°£" ToolTip="±ÿ–ÎÃÓ–¥°∞√‹¬Î°±°£" 
+                        ControlToValidate="Password" ErrorMessage="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÂØÜÁ†Å‚Äù„ÄÇ" ToolTip="ÂøÖÈ°ªÂ°´ÂÜô‚ÄúÂØÜÁ†Å‚Äù„ÄÇ" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td>
+    </td></tr>
+    <tr><td colspan="2" align="center" class="style2">
                     <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="color:Red;">
-                    <asp:Button ID="LoginButton" runat="server" BackColor="White" 
-                        BorderColor="#C5BBAF" BorderStyle="Solid" BorderWidth="1px" CommandName="Login" 
-                        Font-Names="Verdana" Font-Size="10pt" ForeColor="#1C5E55" Height="20px"  
-                        Text="µ«¬º" ValidationGroup="Login1" Width="55px" onclick="LoginButton_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:HyperLink ID="CreateUserLink" runat="server" NavigateUrl="~/Licence.aspx">◊¢≤·–¬”√ªß</asp:HyperLink>
-                </td>
-            </tr>
-        </table>
-        </div>
+                </td></tr>
+<tr></td><td colspan="2" align="center" style=" height:30px;">
+    <asp:ImageButton ID="ImageButton1" runat="server" 
+        ImageUrl="~/Images/login_l.gif" onclick="ImageButton1_Click" 
+        ValidationGroup="Login1" />
+<a href="Register.aspx"><img src="Images/login_r.gif" /></a>
     </td></tr>
 </table>
+</div>
 
-</center>
-</asp:Content>
+</td></tr>
+</table>
 
+</td></tr></table>
+    </form>
+</body>
+</html>
