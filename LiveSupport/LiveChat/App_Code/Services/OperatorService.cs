@@ -29,7 +29,12 @@ public static class OperatorService
     /// <returns>BOOL</returns>
     public static bool IsOperatorOnline(string operatorId)
     {
-        Operator op = operators.Find(o => o.OperatorId == operatorId);
+        Operator op = null;
+        op = operators.Find(o => o.OperatorId == operatorId);
+        if (op == null)
+        {
+            op = SqlOperatorProvider.GetAllOperators().Find(o => o.OperatorId == operatorId);
+        }
         if (op != null)
         {
             return op.Status != OperatorStatus.Offline;
@@ -49,7 +54,13 @@ public static class OperatorService
         if (account != null)
         {
             op = operators.Find(o => o.AccountId == account.AccountId && o.LoginName == operatorName && o.Password == password);
-           if(op!=null){
+            if (op == null)
+            {
+                op = SqlOperatorProvider.GetAllOperators().Find(o => o.AccountId == account.AccountId && o.LoginName == operatorName && o.Password == password);
+            }
+
+           if(op!=null)
+           {
             op.Status = OperatorStatus.Idle;
            }
         }
@@ -61,7 +72,12 @@ public static class OperatorService
     /// <param name="operatorId">客服ID</param>
     internal static void Logout(string operatorId)
     {
-        Operator op = operators.Find(o => o.OperatorId == operatorId);
+        Operator op = null;
+        op = operators.Find(o => o.OperatorId == operatorId);
+        if (op == null)
+        {
+            op = SqlOperatorProvider.GetAllOperators().Find(o => o.OperatorId == operatorId);
+        }
         if (op != null)
         {
             op.Status = OperatorStatus.Offline;
@@ -83,7 +99,13 @@ public static class OperatorService
 
     public static Operator GetOperatorById(string operatorId)
     {
-         return operators.Find(o => o.OperatorId == operatorId);
+        Operator op = null;
+        op=operators.Find(o => o.OperatorId == operatorId);
+        if (op == null)
+        {
+            op = SqlOperatorProvider.GetAllOperators().Find(o => o.OperatorId == operatorId);
+        }
+        return op;
     }
 
     /// <summary>
@@ -95,7 +117,12 @@ public static class OperatorService
     /// <returns>(int)信息</returns>
     public static int ChangPassword(string operatorId, string oldPassword, string newPassword)
     {
-        Operator op = operators.Find(o => o.OperatorId ==operatorId);
+        Operator op = null;
+        op = operators.Find(o => o.OperatorId ==operatorId);
+        if (op == null)
+        {
+            op = SqlOperatorProvider.GetAllOperators().Find(o => o.OperatorId == operatorId);
+        }
         if (op != null)
         {
             if(op.Password==oldPassword)
