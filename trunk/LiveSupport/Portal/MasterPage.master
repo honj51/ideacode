@@ -41,7 +41,7 @@ TOP INFORMTION
                     &nbsp;<asp:LinkButton 
                         ID="LinkButton1" runat="server" onclick="LinkButton1_Click">ÍË³ö</asp:LinkButton>
                  </asp:Panel>
-                <asp:Panel ID="PanelLogin" runat="server" Visible="false"><a href="Login.aspx">µÇÂ¼</a></asp:Panel>
+                <asp:Panel ID="PanelLogin" runat="server" Visible="false"><a href="Login2.aspx">µÇÂ¼</a></asp:Panel>
              </div>
         </div>
         <!--

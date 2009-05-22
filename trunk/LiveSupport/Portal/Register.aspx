@@ -9,7 +9,7 @@
         document.getElementById("imgRandom").src = document.getElementById("imgRandom").src + '?temp='+ (new Date().getTime().toString(36)) ;
     }
     </script>
- <img src="images/banner_5.jpg" width="760" style="height: 151px" />
+ <img src="images/tupian-5.gif" width="760" style="height: 151px" />
 <table cellSpacing="0" cellPadding="0" style="height: 568px; background-color:#CCCCCC;">
 
 <tr><td style="width: 160px; background-image:url('images/left.jpg');" 

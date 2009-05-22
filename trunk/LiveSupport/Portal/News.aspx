@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="News.aspx.cs" Inherits="Default2" Title="无标题页" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<center>
-<img src="Images/baner_down.jpg" />
+    <center>
+<img src="Images/tupian-3.gif" style="width: 760px; height: 151px;" />
 <table cellpadding="0" cellspacing="0">
 <tr>
 <td style="width: 499px; height: 304px;" valign="top">

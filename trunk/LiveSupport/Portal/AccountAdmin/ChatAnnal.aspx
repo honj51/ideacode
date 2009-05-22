@@ -22,7 +22,7 @@
 			//myMenu.remember = true
 			myMenu.oneSmOnly = true;  
 			myMenu.init();
-			var firstSubmenu = myMenu.submenus[1];
+			var firstSubmenu = myMenu.submenus[4];
 			myMenu.expandMenu(firstSubmenu);  
 			
 		};
@@ -103,6 +103,18 @@
 			  <input type="button" name="gjcx" value="高级查询" class="setting-but2" onclick="javascript:location.href='chat_msg_search.php?arg=pbetrich2113203';" />--> 
     </TD></TR></TBODY></TABLE>
 <!--聊天记录内容-->
+<TABLE class="setting-chat-tb1 clear-b" style=" width:563px; border:1px; font-size:12px;" cellSpacing=1 
+cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+
+    <TH vAlign=center align=middle style="width: 115px">&nbsp;发起会话者</TH>
+    <TH vAlign=center noWrap align=middle style="width: 93px">开始时间</TH>
+    <TH vAlign=center align=middle style="width: 93px">持续时长</TH>
+    <TH vAlign=center align=middle style="width: 88px">(IP)</TH>
+    <TH vAlign=center align=middle>地理位置</TH>
+    <TH vAlign=center align=middle>&nbsp;</TH>
+    <TH  vAlign=center align=middle>&nbsp;</TH></TR></TBODY></TABLE>
 <table width="570">
 <tr><td align="left" style=" background-color:#ebf1fa; height: 36px;">聊天记录 &gt;&gt;</td>
 <tr><td align="left">
