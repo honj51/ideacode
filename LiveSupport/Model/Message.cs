@@ -31,14 +31,14 @@ namespace LiveSupport.LiveSupportModel
             get { return chatId; }
             set { chatId = value; }
         }
-        private string source;
+        private string source ="";
 
         public string Source
         {
             get { return source; }
             set { source = value; }
         }
-        private string destination;
+        private string destination = "";
 
         public string Destination
         {
