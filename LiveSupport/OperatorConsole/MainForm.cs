@@ -653,6 +653,10 @@ namespace LiveSupport.OperatorConsole
         // 接受访客请求
         private void acceptToolStripButton_Click(object sender, EventArgs e)
         {
+            if (lstVisitors.SelectedItems.Count == 0)
+            {
+                return;
+            }
             Visitor visitor= lstVisitors.SelectedItems[0].Tag as Visitor;
             //visitor.CurrentSession.IP;
           

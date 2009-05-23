@@ -52,6 +52,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
@@ -61,8 +62,7 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
-            this.setTalkForm1 = new LiveSupport.OperatorConsole.SetTalkForm();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -73,7 +73,6 @@
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.glassPanel1.SuspendLayout();
@@ -156,7 +155,8 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
-            this.toolStripSplitButton2});
+            this.toolStripSplitButton2,
+            this.toolStripLabel1});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(426, 39);
@@ -174,6 +174,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(36, 36);
             this.toolStripButton1.Text = "发起语言对话";
+            this.toolStripButton1.Visible = false;
             // 
             // toolStripButton2
             // 
@@ -185,6 +186,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(36, 36);
             this.toolStripButton2.Text = "发送文件";
+            this.toolStripButton2.Visible = false;
             // 
             // toolStripSplitButton2
             // 
@@ -202,24 +204,20 @@
             // 
             // flashToolStripMenuItem
             // 
-            this.flashToolStripMenuItem.Checked = true;
             this.flashToolStripMenuItem.CheckOnClick = true;
-            this.flashToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.flashToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.windows_16;
             this.flashToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.flashToolStripMenuItem.Name = "flashToolStripMenuItem";
-            this.flashToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.flashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.flashToolStripMenuItem.Text = "窗口闪烁";
             // 
             // ringToolStripMenuItem
             // 
-            this.ringToolStripMenuItem.Checked = true;
             this.ringToolStripMenuItem.CheckOnClick = true;
-            this.ringToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ringToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.alarmd;
             this.ringToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ringToolStripMenuItem.Name = "ringToolStripMenuItem";
-            this.ringToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.ringToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ringToolStripMenuItem.Text = "声音提醒";
             // 
             // txtMsg
@@ -268,11 +266,12 @@
             // 
             // cutToolStripButton
             // 
-            this.cutToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.sc;
+            this.cutToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.windows_16;
             this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Teal;
             this.cutToolStripButton.Name = "cutToolStripButton";
             this.cutToolStripButton.Size = new System.Drawing.Size(49, 22);
             this.cutToolStripButton.Text = "截屏";
+            this.cutToolStripButton.Visible = false;
             this.cutToolStripButton.Click += new System.EventHandler(this.cutToolStripButton_Click);
             // 
             // statusStrip1
@@ -306,7 +305,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.setTalkForm1);
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -325,6 +323,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(214, 292);
+            this.operatorPannel1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -357,7 +363,7 @@
             // 
             this.remarkLabel.AutoSize = true;
             this.remarkLabel.ForeColor = System.Drawing.Color.White;
-            this.remarkLabel.Location = new System.Drawing.Point(19, 116);
+            this.remarkLabel.Location = new System.Drawing.Point(17, 118);
             this.remarkLabel.Name = "remarkLabel";
             this.remarkLabel.Size = new System.Drawing.Size(59, 12);
             this.remarkLabel.TabIndex = 5;
@@ -367,7 +373,7 @@
             // 
             this.visitorCompanyLabel.AutoSize = true;
             this.visitorCompanyLabel.ForeColor = System.Drawing.Color.White;
-            this.visitorCompanyLabel.Location = new System.Drawing.Point(80, 61);
+            this.visitorCompanyLabel.Location = new System.Drawing.Point(17, 63);
             this.visitorCompanyLabel.Name = "visitorCompanyLabel";
             this.visitorCompanyLabel.Size = new System.Drawing.Size(59, 12);
             this.visitorCompanyLabel.TabIndex = 4;
@@ -378,7 +384,7 @@
             this.pictureBox1.Image = global::LiveSupport.OperatorConsole.Properties.Resources._06;
             this.pictureBox1.Location = new System.Drawing.Point(4, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -387,7 +393,7 @@
             // 
             this.visitCountLabel.AutoSize = true;
             this.visitCountLabel.ForeColor = System.Drawing.Color.White;
-            this.visitCountLabel.Location = new System.Drawing.Point(80, 78);
+            this.visitCountLabel.Location = new System.Drawing.Point(17, 80);
             this.visitCountLabel.Name = "visitCountLabel";
             this.visitCountLabel.Size = new System.Drawing.Size(59, 12);
             this.visitCountLabel.TabIndex = 3;
@@ -398,7 +404,7 @@
             this.visitorNameLabel.AutoSize = true;
             this.visitorNameLabel.Font = new System.Drawing.Font("宋体", 9F);
             this.visitorNameLabel.ForeColor = System.Drawing.Color.White;
-            this.visitorNameLabel.Location = new System.Drawing.Point(80, 39);
+            this.visitorNameLabel.Location = new System.Drawing.Point(17, 41);
             this.visitorNameLabel.Name = "visitorNameLabel";
             this.visitorNameLabel.Size = new System.Drawing.Size(59, 12);
             this.visitorNameLabel.TabIndex = 1;
@@ -408,7 +414,7 @@
             // 
             this.visitorLocationLabel.AutoSize = true;
             this.visitorLocationLabel.ForeColor = System.Drawing.Color.White;
-            this.visitorLocationLabel.Location = new System.Drawing.Point(80, 95);
+            this.visitorLocationLabel.Location = new System.Drawing.Point(17, 97);
             this.visitorLocationLabel.Name = "visitorLocationLabel";
             this.visitorLocationLabel.Size = new System.Drawing.Size(59, 12);
             this.visitorLocationLabel.TabIndex = 2;
@@ -428,21 +434,13 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // operatorPannel1
+            // toolStripLabel1
             // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(214, 292);
-            this.operatorPannel1.TabIndex = 0;
-            // 
-            // setTalkForm1
-            // 
-            this.setTalkForm1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.setTalkForm1.Location = new System.Drawing.Point(3, 3);
-            this.setTalkForm1.Name = "setTalkForm1";
-            this.setTalkForm1.Size = new System.Drawing.Size(214, 292);
-            this.setTalkForm1.TabIndex = 0;
+            this.toolStripLabel1.IsLink = true;
+            this.toolStripLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(203, 36);
+            this.toolStripLabel1.Text = "欢迎使用LiveSupport在线交流系统！";
             // 
             // ChatForm
             // 
@@ -471,7 +469,6 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.glassPanel1.ResumeLayout(false);
@@ -515,5 +512,6 @@
         private System.Windows.Forms.Label remarkLabel;
         private System.Windows.Forms.Label lblVisitorInfo;
         private SetTalkForm setTalkForm1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }
