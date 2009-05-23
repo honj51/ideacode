@@ -104,6 +104,13 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             conn.Close();
             return i;
         }
+        public static int ExecuteCommand(string sql, params SqlParameter[] values)
+        {
+            SqlConnection conn = DBHelper.Getconn();
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddRange(values);
+            return cmd.ExecuteNonQuery();
+        }
         #endregion
 
         ///执行查询方法
