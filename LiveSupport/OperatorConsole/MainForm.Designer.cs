@@ -109,6 +109,7 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -176,7 +177,6 @@ namespace LiveSupport.OperatorConsole
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -880,6 +880,14 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Size = new System.Drawing.Size(204, 402);
             this.panel1.TabIndex = 0;
             // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 372);
+            this.operatorPannel1.TabIndex = 2;
+            // 
             // panel5
             // 
             this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header;
@@ -1064,7 +1072,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(742, 327);
+            this.tabPage2.Size = new System.Drawing.Size(742, 347);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1162,7 +1170,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(742, 327);
+            this.tabPage4.Size = new System.Drawing.Size(742, 347);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "网页浏览";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1276,6 +1284,7 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
@@ -1290,10 +1299,11 @@ namespace LiveSupport.OperatorConsole
             // 
             // notifyIcon
             // 
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon.BalloonTipText = "座席客户端仍在运行中, 点击图标打开";
             this.notifyIcon.ContextMenuStrip = this.notifyIconContextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "notifyIcon1";
+            this.notifyIcon.Text = "LiveSupport 座席客户端";
             this.notifyIcon.Visible = true;
             this.notifyIcon.DoubleClick += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -1496,14 +1506,6 @@ namespace LiveSupport.OperatorConsole
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 372);
-            this.operatorPannel1.TabIndex = 2;
             // 
             // MainForm
             // 

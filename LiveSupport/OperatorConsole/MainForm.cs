@@ -245,17 +245,18 @@ namespace LiveSupport.OperatorConsole
                 showMainForm(false);
         }
 
+        private FormWindowState saveWindowState = FormWindowState.Normal;
         private void showMainForm(bool show)
-        {
-          
+        { 
             this.Visible = show;
             if (show)
             {
-                this.WindowState = FormWindowState.Normal;
+                this.WindowState = saveWindowState;
                 this.Activate();
             }
             else
             {
+                saveWindowState = this.WindowState;
                 notifyIcon.ShowBalloonTip(500);
             }
         }
