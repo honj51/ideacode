@@ -109,7 +109,6 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.label3 = new System.Windows.Forms.Label();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -175,6 +174,7 @@ namespace LiveSupport.OperatorConsole
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             browserLabel = new System.Windows.Forms.Label();
             domainRequestedLabel = new System.Windows.Forms.Label();
             iPLabel = new System.Windows.Forms.Label();
@@ -830,7 +830,6 @@ namespace LiveSupport.OperatorConsole
             // 
             // mainSplitContainer
             // 
-            this.mainSplitContainer.BackColor = System.Drawing.Color.Transparent;
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainSplitContainer.Location = new System.Drawing.Point(0, 76);
             this.mainSplitContainer.Name = "mainSplitContainer";
@@ -876,14 +875,6 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(204, 361);
             this.panel1.TabIndex = 0;
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 12);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 349);
-            this.operatorPannel1.TabIndex = 2;
             // 
             // label3
             // 
@@ -1261,7 +1252,6 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
@@ -1483,6 +1473,14 @@ namespace LiveSupport.OperatorConsole
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 12);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 349);
+            this.operatorPannel1.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1500,7 +1498,6 @@ namespace LiveSupport.OperatorConsole
             this.MainMenuStrip = this.mainMenu;
             this.Name = "MainForm";
             this.Text = "座席客户端";
-            this.TransparencyKey = System.Drawing.Color.LightSteelBlue;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
