@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
+using System.Data;
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
 
@@ -38,9 +39,40 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 
         public static void AddMessage(Message msg)
         {
-            string sql = string.Format("insert into dbo.LiveChat_Message values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
-             msg.MessageId, msg.ChatId, msg.Source, msg.Destination, msg.Text, msg.SentDate, msg.Type.ToString());
-            DBHelper.ExecuteCommand(sql);
+            SqlConnection conn = DBHelper.Getconn();
+            SqlCommand cmd = new SqlCommand("LiveChat_ChatMessagesAdd", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader data = null;
+            List<Message> retList = new List<Message>();
+            try
+            {
+                cmd.Parameters.Add("@MessageId", SqlDbType.Char, 50).Value = msg.MessageId;
+                cmd.Parameters.Add("@ChatID", SqlDbType.Char, 50).Value = msg.ChatId;
+                cmd.Parameters.Add("@Source", SqlDbType.Char, 50).Value = msg.Source;
+                cmd.Parameters.Add("@Destination", SqlDbType.Char, 50).Value = msg.Destination;
+                cmd.Parameters.Add("@Text", SqlDbType.Char, 50).Value = msg.Text;
+                cmd.Parameters.Add("@SentDate", SqlDbType.Char, 50).Value = msg.SentDate;
+                cmd.Parameters.Add("@Type", SqlDbType.Char, 50).Value = msg.Type.ToString() ;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                conn.Close();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+
+                    conn.Dispose();
+                    conn = null;
+                }
+            }
         }
         /// <summary>
         /// 获取聊天历史记录
