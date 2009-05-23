@@ -169,7 +169,7 @@ public class OperatorWS : System.Web.Services.WebService
         // 消息更新
         //List<VisitSession> visitSessions = VisitSessionService.GetActiveSessionsByOperatorId(Authentication.OperatorId);
         checkResult.Messages = new List<MessageCheckResult>();
-        foreach (var item in check.ChatSessionChecks)
+        foreach (MessageCheck item in check.ChatSessionChecks)
 	    {
             MessageCheckResult mcr = new MessageCheckResult();
             mcr.ChatId = item.ChatId;

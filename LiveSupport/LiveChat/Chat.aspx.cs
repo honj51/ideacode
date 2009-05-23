@@ -69,7 +69,6 @@ public partial class Chat : System.Web.UI.Page
             }
         }
     }
-
     public Account CurrentAccount
     {
         get 
@@ -155,6 +154,7 @@ public partial class Chat : System.Web.UI.Page
                 {
                     for (int i = 0; i < messages.Count; i++)
                     {
+                        
                         if (LiveSupport.LiveSupportModel.Message.FromSystem(messages[i]))
                         {
                             litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", messages[i].Text);
@@ -168,13 +168,11 @@ public partial class Chat : System.Web.UI.Page
                           //  litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", "ฤ๚หต", CutStr(messages[i].Text, 100));
                             litChat.Text += string.Format("<div id='chatTitle'><strong>ฤ๚หต&nbsp;&nbsp;{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].SentDate.ToString("hh:mm:ss"), messages[i].Text);
                         }
-
                         // TODO: is this correct?
                         lastCheck = messages[i].SentDate.Ticks;
                     }
                     // set the lastId
                     Response.Cookies[chatId + "_lastCheck"].Value = lastCheck.ToString();
-
                 }
             }
         }
@@ -349,11 +347,11 @@ public partial class Chat : System.Web.UI.Page
 
         if (Request.Cookies[chatId + "_lastCheck"] != null)
         {
-            Response.Cookies[chatId + "_lastCheck"].Value = "0";
+            Response.Cookies[chatId + "_lastCheck"].Value = DateTime.Now.Ticks.ToString();
         }
         else
         {
-            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
+            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", DateTime.Now.Ticks.ToString());
             Response.Cookies.Add(cookie);
         }
     }

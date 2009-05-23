@@ -140,22 +140,14 @@
 </asp:Panel>
 <%--面板1 end--%>
       
-        <asp:Panel  ID="pnlRequest" Visible="true" runat="server">
+<asp:Panel  ID="pnlRequest" Visible="true" runat="server">
         
            <table  cellpadding="0" cellspacing="0"  style="background-image:url(Images/bg.jpg); background-position:center;    height:100%; width:100%">
            <tr>
-           <td valign="top" colspan="2" style=" height:30px; width:100%"  align="center">
-           <asp:Label ID="welcomeLabel" runat="server" Text="Label"></asp:Label>
-           </td>
-           
-         
+           <td valign="top"  style=" height:30px; width:100%"  align="center"><asp:Label ID="welcomeLabel" runat="server" Text="Label"></asp:Label></td>
            </tr>
-           
            <tr  >
-           
-         
            <td align="center" >
-            
             <table   cellpadding="0" cellspacing="0"  style=" margin:200 150 40 50;   height:40%; width:50%"  align="center">
             <tr>
             <td align="center" colspan="2">
@@ -192,37 +184,16 @@
              
              </td>
             
-            <td >
-                <asp:Button  ID="btnStarChat" Text="开始对话" runat="server" onclick="btnStarChat_Click" />
-            </td>
-            
-           
+            <td ><asp:Button  ID="btnStarChat" Text="开始对话" runat="server" onclick="btnStarChat_Click" /></td>
             </tr>
             </table>
-            
-            
-        
-          
-           
-           </td>
-             <td style=" width:50px"  valign="baseline">
-              <img  alt=""  src="Images/right_column_0.jpg" />
-            
-                
-           </td>
-           
-           </tr>
            <tr>
            <td colspan="2"  align="center">
-           
            版权所有
            </td>
-           
            </tr>
-           </table>
-            
-                          
-        </asp:Panel>
+   </table>
+</asp:Panel>
         
         
         
@@ -310,7 +281,8 @@
   </td>
   
   <td valign="top" id="bwrap" style=" width:40px; height:80%;">
-				<div id="banner"></div>
+				<div id="banner" style="height:305px; width: 135px" ><img  alt=""  src="Images/right_column_0.jpg" width="100%" height="100%"
+                        /></div>
   
   </td>
   </tr>
@@ -323,10 +295,6 @@
                         <li style="background-image: url(Images/tools_icn.gif);" id="save" class="open" onclick="Save();">保存记录 </li>
                         <li style="background-image: url(Images/tools_icn.gif);" id="switch" class="open" style='display:none'>关闭提示音 </li>
                         <li style="background-image: url(Images/tools_icn.gif);" id="language" style="display:none;">语言选择</li>
-                        <li style="background-image: url(Images/tools_icn.gif);" id="active" class="open">
-                        <asp:LinkButton ID="CutLBtn" runat="server" onclick="CutLBtn_Click" Font-Underline="False" ForeColor="White">剪切</asp:LinkButton>
-                        </li>
-                         <li style="background-image: url(Images/tools_icn.gif);" id="dialback" style="display:none;">免费电话</li>
                         </ul>
                         <ul id="languageList" style="display:none;">
 						<li lang:value="0">简体中文</li>
