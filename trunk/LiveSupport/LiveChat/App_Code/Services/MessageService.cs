@@ -44,16 +44,35 @@ public class MessageService
 
     public static List<Message> GetMessagesForChatPage(string chatId, long lastCheck)
     {
-        List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => Message.IsChatMessage(m) ||
-            m.Type == MessageType.SystemMessage_ToVisitor || m.Type == MessageType.SystemMessage_ToBoth);
+        //List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => Message.IsChatMessage(m) ||
+        //    m.Type == MessageType.SystemMessage_ToVisitor || m.Type == MessageType.SystemMessage_ToBoth);
+        //Debug.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
+        //return ms;
+        List<Message> ms = new List<Message>(); ;
+        foreach (Message item in GetMessages(chatId, lastCheck))
+        {
+            if (Message.IsChatMessage(item) || item.Type == MessageType.SystemMessage_ToVisitor || item.Type == MessageType.SystemMessage_ToBoth)
+            {
+                ms.Add(item);
+            }
+        }
         Debug.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
         return ms;
     }
 
     internal static List<Message> GetMessagesForOperator(string chatId, long lastCheck)
     {
-        List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => m.Type == MessageType.ChatMessage_VistorToOperator ||
-            m.Type == MessageType.SystemMessage_ToOperator || m.Type == MessageType.SystemMessage_ToBoth);
+        //List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => m.Type == MessageType.ChatMessage_VistorToOperator ||
+        //    m.Type == MessageType.SystemMessage_ToOperator || m.Type == MessageType.SystemMessage_ToBoth);
+        List<Message> ms = new List<Message>() ;
+        foreach (Message item in GetMessages(chatId, lastCheck))
+        {
+            if (item.Type == MessageType.ChatMessage_VistorToOperator ||
+            item.Type == MessageType.SystemMessage_ToOperator || item.Type == MessageType.SystemMessage_ToBoth)
+            {
+                ms.Add(item);
+            }
+        }
         Debug.WriteLine(string.Format("GetMessagesForOperator({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
         return ms;
     }

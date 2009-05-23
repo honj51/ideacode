@@ -22,7 +22,15 @@ public static class AccountService
     /// <returns>Account对象</returns>
     public static Account FindAccountByLoginName(string name)
     {
-        return accounts.Find(a => a.LoginName == name);
+        foreach (Account item in accounts)
+        {
+            if (item.LoginName == name)
+            {
+                return item;
+            }
+        }
+        return null;
+        //return accounts.Find(a => a.LoginName == name);3.0
     }    
     /// <summary>
     /// 添加一条新的公司帐号
@@ -36,6 +44,14 @@ public static class AccountService
 
     public static Account GetAccountById(string accountId)
     {
-        return accounts.Find(a => a.AccountId == accountId);
+     //   return accounts.Find(a => a.AccountId == accountId);30.0
+        foreach (Account item in accounts)
+        {
+            if (item.AccountId == accountId)
+            {
+                return item;
+            }
+        }
+        return null;
     }
 }

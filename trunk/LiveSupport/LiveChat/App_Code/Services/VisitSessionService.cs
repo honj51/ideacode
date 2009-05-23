@@ -34,11 +34,15 @@ public class VisitSessionService
     {
         Debug.WriteLine(string.Format("NewSession : {0}", session.ToString()));
 
-        if (sessions.Find(s => s.Session.SessionId == session.SessionId) != null)
-        {
-            Debug.WriteLine("Session Found, will not add to DB");
-            return;
-        }
+    //    if (sessions.Find(s => s.Session.SessionId == session.SessionId) != null)
+            foreach (VisitSessionHit item in sessions)
+            {
+                if (item.Session.SessionId == session.SessionId)
+                {
+                    Debug.WriteLine("Session Found, will not add to DB");
+                    return;
+                }
+            }
 
         sessions.Add(new VisitSessionHit(session));
         if (sessions.Count > maxVisitorSessionCountInMemory)
@@ -62,12 +66,15 @@ public class VisitSessionService
     /// <returns></returns>
     public static VisitSession GetSessionById(string sessionId)
     {
-        VisitSessionHit s = sessions.Find(a => a.Session.SessionId == sessionId);
-        if (s == null)
+       // VisitSessionHit s = sessions.Find(a => a.Session.SessionId == sessionId);3.0
+        foreach (VisitSessionHit item in sessions)
         {
-          return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetSessionById(sessionId);
+            if (item.Session.SessionId == sessionId)
+            {
+                return item.Session;
+            }
         }
-        return s.Session;
+        return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetSessionById(sessionId);
     }
     /// <summary>
     /// 查询在这个时候之后新加的访客会话信息
@@ -79,7 +86,7 @@ public class VisitSessionService
         Trace.WriteLine(string.Format("{0}({1},{2})", MethodBase.GetCurrentMethod().Name, accountId, lastCheck));
         StringBuilder sb = new StringBuilder();
         List<VisitSession> vss = new List<VisitSession>();
-        foreach (var item in sessions)
+        foreach (VisitSessionHit item in sessions)
         {
             Visitor v = VisitorService.GetVisitor(item.Session.VisitorId);
             if (v != null && v.AccountId == accountId)
@@ -103,7 +110,7 @@ public class VisitSessionService
     public static List<VisitSession> GetActiveSessionsByOperatorId(string operatorId)
     {
         List<VisitSession> ss = new List<VisitSession>();
-        foreach (var item in sessions)
+        foreach (VisitSessionHit item in sessions)
         {
             if (item.Session.OperatorId == operatorId && item.Session.Status == VisitSessionStatus.Chatting)
             {
@@ -115,17 +122,20 @@ public class VisitSessionService
 
     public static void RequestChat(Chat chatRequest)
     {
-        VisitSessionHit h = sessions.Find(s => s.Session.SessionId == chatRequest.ChatId);
-        if (h != null)
+     //   VisitSessionHit h = sessions.Find(s => s.Session.SessionId == chatRequest.ChatId);
+        foreach (VisitSessionHit item in sessions)
         {
-            h.Session.Status = VisitSessionStatus.ChatRequesting;
-            ChatService.ChatPageRequestChat(chatRequest);
+            if (item.Session.SessionId == chatRequest.ChatId)
+            {
+                item.Session.Status = VisitSessionStatus.ChatRequesting;
+                ChatService.ChatPageRequestChat(chatRequest);
+            }
         }
     }
 
     public static void MaintanStatus()
     {
-        foreach (var item in sessions)
+        foreach (VisitSessionHit item in sessions)
         {
             if (DateTime.Now > item.LastHitTime.AddSeconds(8) && item.Session.Status != VisitSessionStatus.Leave)
             {
@@ -148,14 +158,13 @@ public class VisitSessionService
             {
                 v.CurrentSession.Status = VisitSessionStatus.Visiting;
             }
-            VisitSessionHit h = sessions.Find(sh => sh.Session.SessionId == v.CurrentSessionId);
-            if (h != null)
+          //  VisitSessionHit h = sessions.Find(sh => sh.Session.SessionId == v.CurrentSessionId);
+            foreach (VisitSessionHit item in sessions)
             {
-                h.LastHitTime = DateTime.Now;
-            }
-            else
-            {
-                // TODO: throw something
+                if (item.Session.SessionId == v.CurrentSessionId)
+                {
+                    item.LastHitTime = DateTime.Now;
+                }
             }
         }
 

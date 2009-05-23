@@ -90,7 +90,16 @@ public class ChatService
 
     public static List<Chat> GetAllChatRequest(string accountId)
     {
-        return chats.FindAll(c => c.AccountId == accountId);
+        //return chats.FindAll(c => c.AccountId == accountId);
+        List<Chat> list = new List<Chat>() ;
+        foreach (Chat item in chats)
+        {
+            if (item.AccountId == accountId)
+            {
+                list.Add(item);
+            }
+        }
+        return list;
     }
 
     public static void SendMessage(Message m)
@@ -150,7 +159,14 @@ public class ChatService
     /// <param name="userName"></param>
     public static bool CloseChat(string chatId, string closeBy)
     {
-        Chat chat = chats.Find(c => c.ChatId == chatId);
+        Chat chat = null;
+        foreach (Chat item in chats)
+        {
+            if(item.ChatId == chatId)
+            {
+                chat = item;
+            }
+        }
         if (chat == null)
         {
             return false;
@@ -229,12 +245,27 @@ public class ChatService
 
     public static Chat GetChatById(string chatId)
     {
-        return chats.Find(c => c.ChatId == chatId);
+       // return chats.Find(c => c.ChatId == chatId);
+        foreach (Chat item in chats)
+        {
+            if (item.ChatId==chatId)
+            {
+                return item;
+            }
+        }
+        return null;
     }
 
     public static void ChatPageRequestChat(Chat chatRequest)
     {
-        Chat ch = chats.Find(c => c.ChatId == chatRequest.ChatId);
+        Chat ch = null;
+        foreach (Chat item in chats)
+        {
+            if (item.ChatId==chatRequest.ChatId)
+            {
+                ch = item;
+            }
+        }
         if (ch != null)
         {
             chats.Remove(ch);
@@ -252,6 +283,8 @@ public class ChatService
         m.ChatId = chatRequest.ChatId;
         m.Text = "正在接入客服，请稍等...";
         m.Type = MessageType.SystemMessage_ToVisitor;
+        m.Source = "系统";
+        m.Destination = "访客";
         MessageService.AddMessage(m);
     }
     /// <summary>

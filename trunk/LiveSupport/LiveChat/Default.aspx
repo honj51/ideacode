@@ -31,7 +31,7 @@
     </style>
     
 </head>
-<body>
+<body style="font-size:10px;>
     <form id="mainForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
 <%--        <script type ="text/javascript" >
@@ -43,7 +43,7 @@
         </script> 
 --%>      
         
-        <%--<script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=6"></script> --%>
+        <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=1"></script>
         
         <%--<script type="text/javascript" language="javascript" src="http://rd01/livechatservice/js/live2.js"></script> --%>       
         <input id="Text1" type="text" />
@@ -70,7 +70,8 @@
                     范德萨</td>
                 <td class="style5">
                     范德萨</td>
-                <td> <script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&IcoLocation=4"></script></td>
+                <td>
+                <%--<script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&IcoLocation=3"></script>--%></td>
             </tr>
         </table>
 &nbsp;<div id="trace_div"></div>

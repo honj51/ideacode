@@ -31,7 +31,7 @@ public class VisitorService
     public static Visitor GetVisitor(string visitorId)
     {
         Visitor v = null;
-        foreach (var item in visitors)
+        foreach (Visitor item in visitors)
         {
             if (item == null) continue;
             if (item.VisitorId == visitorId)
@@ -61,7 +61,7 @@ public class VisitorService
     public static List<Visitor> GetAllOnlineVisitors(int accountId)
     {
         List<Visitor> onlineVisitors = new List<Visitor>();
-        foreach (var item in visitors)
+        foreach (Visitor item in visitors)
         {
             if (item.CurrentSession != null && item.CurrentSession.Status != VisitSessionStatus.Leave)
             {
@@ -80,7 +80,7 @@ public class VisitorService
         Trace.WriteLine(string.Format("{0}({1},{2})",MethodBase.GetCurrentMethod().Name,accountId,lastCheck));
         StringBuilder sb = new StringBuilder();
         List<Visitor> vs = new List<Visitor>();
-        foreach (var item in visitors)
+        foreach (Visitor item in visitors)
         {
             if (item == null) continue;
             if (item.CurrentSession == null)
@@ -88,7 +88,7 @@ public class VisitorService
                 continue;
             }
             else if (item.AccountId == accountId && item.CurrentSession != null&& item.CurrentSession.VisitingTime.Ticks > lastCheck)
-            {                
+            {
                 vs.Add(item);
                 sb.AppendFormat("VisitId={0},Status={1},SessionId={2} | ", item.VisitorId, item.CurrentSession.Status.ToString(), item.CurrentSession.VisitorId);
             }

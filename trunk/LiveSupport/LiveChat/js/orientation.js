@@ -1,13 +1,14 @@
 // JavaScript Document
-var contentHtml = '<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="' + homeUrl + '/ProcessImage.ashx?aid=' + accountId + '&vid=' + visitorId + '&referrer=' + document.referrer + '&bannerstyle=' + bannerStyle + '" border="0" alt="Click here for live chat" /></a>';
+var contentHtml = '<a href="#" onclick="openChat();" ><img id="_imgLC" src="' + homeUrl + '/ProcessImage.ashx?aid=' + accountId + '&vid=' + visitorId + '&referrer=' + document.referrer + '&bannerstyle=' + bannerStyle + '" border="0" alt="Click here for live chat" /></a>';
 if (bannerPos != 0) {
     var DIV = document.createElement('div');
     DIV.id = "lovexin12";
     DIV.innerHTML = contentHtml;
-        window.onload = function() {
+    window.onload = function() {
         document.body.appendChild(DIV);
-            moveRight();
-        }
+        document.body.appendChild(invite_div);
+        moveRight();
+    }
 } else {
     document.write(contentHtml);
 }
