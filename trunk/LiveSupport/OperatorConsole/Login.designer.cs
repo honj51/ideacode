@@ -273,8 +273,8 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Label lblAuthenticate;
         private System.Windows.Forms.PictureBox picLogIn;
+        public System.Windows.Forms.Label lblMessage;
     }
 }

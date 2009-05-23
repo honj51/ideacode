@@ -12,6 +12,7 @@ using System.IO;
 using System.Net;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Net.Sockets;
 namespace LiveSupport.OperatorConsole
 {
     public partial class MainForm : Form
@@ -166,14 +167,19 @@ namespace LiveSupport.OperatorConsole
            
             if(MessageBox.Show("您确定要退出，更换其他帐号登录吗？","提示",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1)==DialogResult.Yes)
             {
-                this.Close();
-                Process.Start(new ProcessStartInfo(Application.ExecutablePath));
-                Application.Exit();                
+                restartApp("");                
             }
 
            // connectToolStripMenuItem.Checked = false;
             //disconnectToolStripMenuItem.Checked = true;
             //ws.SetOperatorStatus(Program.CurrentOperator.Id, true);
+        }
+
+        private void restartApp(string args)
+        {
+            this.Close();
+            Process.Start(new ProcessStartInfo(Application.ExecutablePath, args));
+            Application.Exit();
         }
 
         private void playSoundOnChatRequestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -318,10 +324,39 @@ namespace LiveSupport.OperatorConsole
 
         private NewChangesCheck lastCheck = new NewChangesCheck();
         TestFixture testFixture = new TestFixture();
+        
+        private NewChangesCheckResult getNewChanges(NewChangesCheck check)
+        {
+            try
+            {
+                return ws.CheckNewChanges(lastCheck);
+            }
+            catch (WebException ex)
+            {
+                if (ex.InnerException != null && ex.InnerException is SocketException && (ex.InnerException as SocketException).ErrorCode == 10061)
+                {
+                    connectionLost();
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+        private void connectionLost()
+        {
+            timer1.Stop();
+            MessageBox.Show("与服务器的连接中断，需要重新登陆！","连接中断", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            restartApp("-r");
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            NewChangesCheckResult result = ws.CheckNewChanges(lastCheck);
-            Trace.WriteLine("NewChangesCheck: "+ lastCheck.ToString());
+            NewChangesCheckResult result = getNewChanges(lastCheck);
+            if (result == null) return;
+            Trace.WriteLine("NewChangesCheck: " + lastCheck.ToString());
             Trace.WriteLine("NewChangesCheckResult: " + result.ToString());
             //Debug.WriteLine(string.Format("CheckNewChanges: NewVisitor={0} Message={1}",result.NewVisitors.Length,result.Messages.Length ));
             // NewChangesResult result = testFixture.NewResult();
