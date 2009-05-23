@@ -29,20 +29,20 @@ namespace LiveSupport.OperatorConsole
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label browserLabel;
-            System.Windows.Forms.Label domainRequestedLabel;
-            System.Windows.Forms.Label iPLabel;
-            System.Windows.Forms.Label leaveTimeLabel;
-            System.Windows.Forms.Label locationLabel;
-            System.Windows.Forms.Label pageRequestCountLabel;
-            System.Windows.Forms.Label pageRequestedLabel;
-            System.Windows.Forms.Label referrerLabel;
-            System.Windows.Forms.Label visitingTimeLabel;
-            System.Windows.Forms.Label emailLabel;
-            System.Windows.Forms.Label nameLabel;
-            System.Windows.Forms.Label reMarkLabel;
-            System.Windows.Forms.Label visitCountLabel;
             System.Windows.Forms.Label visitorIdLabel;
+            System.Windows.Forms.Label visitCountLabel;
+            System.Windows.Forms.Label reMarkLabel;
+            System.Windows.Forms.Label nameLabel;
+            System.Windows.Forms.Label emailLabel;
+            System.Windows.Forms.Label visitingTimeLabel;
+            System.Windows.Forms.Label referrerLabel;
+            System.Windows.Forms.Label pageRequestedLabel;
+            System.Windows.Forms.Label pageRequestCountLabel;
+            System.Windows.Forms.Label locationLabel;
+            System.Windows.Forms.Label leaveTimeLabel;
+            System.Windows.Forms.Label iPLabel;
+            System.Windows.Forms.Label domainRequestedLabel;
+            System.Windows.Forms.Label browserLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("在线客服");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("离线客服");
@@ -109,7 +109,7 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.browserTextBox = new System.Windows.Forms.TextBox();
@@ -147,7 +147,9 @@ namespace LiveSupport.OperatorConsole
             this.colPage = new System.Windows.Forms.ColumnHeader();
             this.colRTime = new System.Windows.Forms.ColumnHeader();
             this.colReferrer = new System.Windows.Forms.ColumnHeader();
-            this.访客信息栏 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -175,20 +177,20 @@ namespace LiveSupport.OperatorConsole
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
-            browserLabel = new System.Windows.Forms.Label();
-            domainRequestedLabel = new System.Windows.Forms.Label();
-            iPLabel = new System.Windows.Forms.Label();
-            leaveTimeLabel = new System.Windows.Forms.Label();
-            locationLabel = new System.Windows.Forms.Label();
-            pageRequestCountLabel = new System.Windows.Forms.Label();
-            pageRequestedLabel = new System.Windows.Forms.Label();
-            referrerLabel = new System.Windows.Forms.Label();
-            visitingTimeLabel = new System.Windows.Forms.Label();
-            emailLabel = new System.Windows.Forms.Label();
-            nameLabel = new System.Windows.Forms.Label();
-            reMarkLabel = new System.Windows.Forms.Label();
-            visitCountLabel = new System.Windows.Forms.Label();
             visitorIdLabel = new System.Windows.Forms.Label();
+            visitCountLabel = new System.Windows.Forms.Label();
+            reMarkLabel = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
+            emailLabel = new System.Windows.Forms.Label();
+            visitingTimeLabel = new System.Windows.Forms.Label();
+            referrerLabel = new System.Windows.Forms.Label();
+            pageRequestedLabel = new System.Windows.Forms.Label();
+            pageRequestCountLabel = new System.Windows.Forms.Label();
+            locationLabel = new System.Windows.Forms.Label();
+            leaveTimeLabel = new System.Windows.Forms.Label();
+            iPLabel = new System.Windows.Forms.Label();
+            domainRequestedLabel = new System.Windows.Forms.Label();
+            browserLabel = new System.Windows.Forms.Label();
             this.mainMenu.SuspendLayout();
             this.pnlChat.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -204,118 +206,20 @@ namespace LiveSupport.OperatorConsole
             this.tabPage5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.notifyIconContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // browserLabel
+            // visitorIdLabel
             // 
-            browserLabel.AutoSize = true;
-            browserLabel.Location = new System.Drawing.Point(23, 146);
-            browserLabel.Name = "browserLabel";
-            browserLabel.Size = new System.Drawing.Size(47, 12);
-            browserLabel.TabIndex = 16;
-            browserLabel.Text = "浏览器:";
-            // 
-            // domainRequestedLabel
-            // 
-            domainRequestedLabel.AutoSize = true;
-            domainRequestedLabel.Location = new System.Drawing.Point(23, 361);
-            domainRequestedLabel.Name = "domainRequestedLabel";
-            domainRequestedLabel.Size = new System.Drawing.Size(59, 12);
-            domainRequestedLabel.TabIndex = 24;
-            domainRequestedLabel.Text = "请求域名:";
-            // 
-            // iPLabel
-            // 
-            iPLabel.AutoSize = true;
-            iPLabel.Location = new System.Drawing.Point(23, 179);
-            iPLabel.Name = "iPLabel";
-            iPLabel.Size = new System.Drawing.Size(23, 12);
-            iPLabel.TabIndex = 26;
-            iPLabel.Text = "IP:";
-            // 
-            // leaveTimeLabel
-            // 
-            leaveTimeLabel.AutoSize = true;
-            leaveTimeLabel.Location = new System.Drawing.Point(23, 207);
-            leaveTimeLabel.Name = "leaveTimeLabel";
-            leaveTimeLabel.Size = new System.Drawing.Size(59, 12);
-            leaveTimeLabel.TabIndex = 28;
-            leaveTimeLabel.Text = "离开时间:";
-            // 
-            // locationLabel
-            // 
-            locationLabel.AutoSize = true;
-            locationLabel.Location = new System.Drawing.Point(23, 240);
-            locationLabel.Name = "locationLabel";
-            locationLabel.Size = new System.Drawing.Size(59, 12);
-            locationLabel.TabIndex = 30;
-            locationLabel.Text = "地理位置:";
-            // 
-            // pageRequestCountLabel
-            // 
-            pageRequestCountLabel.AutoSize = true;
-            pageRequestCountLabel.Location = new System.Drawing.Point(23, 271);
-            pageRequestCountLabel.Name = "pageRequestCountLabel";
-            pageRequestCountLabel.Size = new System.Drawing.Size(71, 12);
-            pageRequestCountLabel.TabIndex = 34;
-            pageRequestCountLabel.Text = "浏览页面数:";
-            // 
-            // pageRequestedLabel
-            // 
-            pageRequestedLabel.AutoSize = true;
-            pageRequestedLabel.Location = new System.Drawing.Point(23, 304);
-            pageRequestedLabel.Name = "pageRequestedLabel";
-            pageRequestedLabel.Size = new System.Drawing.Size(59, 12);
-            pageRequestedLabel.TabIndex = 36;
-            pageRequestedLabel.Text = "请求页面:";
-            // 
-            // referrerLabel
-            // 
-            referrerLabel.AutoSize = true;
-            referrerLabel.Location = new System.Drawing.Point(23, 337);
-            referrerLabel.Name = "referrerLabel";
-            referrerLabel.Size = new System.Drawing.Size(59, 12);
-            referrerLabel.TabIndex = 38;
-            referrerLabel.Text = "引用页面:";
-            // 
-            // visitingTimeLabel
-            // 
-            visitingTimeLabel.AutoSize = true;
-            visitingTimeLabel.Location = new System.Drawing.Point(23, 394);
-            visitingTimeLabel.Name = "visitingTimeLabel";
-            visitingTimeLabel.Size = new System.Drawing.Size(83, 12);
-            visitingTimeLabel.TabIndex = 44;
-            visitingTimeLabel.Text = "页面访问时间:";
-            // 
-            // emailLabel
-            // 
-            emailLabel.AutoSize = true;
-            emailLabel.Location = new System.Drawing.Point(23, 42);
-            emailLabel.Name = "emailLabel";
-            emailLabel.Size = new System.Drawing.Size(59, 12);
-            emailLabel.TabIndex = 4;
-            emailLabel.Text = "电子邮件:";
-            // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(23, 65);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(59, 12);
-            nameLabel.TabIndex = 8;
-            nameLabel.Text = "访客名称:";
-            // 
-            // reMarkLabel
-            // 
-            reMarkLabel.AutoSize = true;
-            reMarkLabel.Location = new System.Drawing.Point(23, 92);
-            reMarkLabel.Name = "reMarkLabel";
-            reMarkLabel.Size = new System.Drawing.Size(35, 12);
-            reMarkLabel.TabIndex = 10;
-            reMarkLabel.Text = "备注:";
+            visitorIdLabel.AutoSize = true;
+            visitorIdLabel.Location = new System.Drawing.Point(23, 16);
+            visitorIdLabel.Name = "visitorIdLabel";
+            visitorIdLabel.Size = new System.Drawing.Size(47, 12);
+            visitorIdLabel.TabIndex = 14;
+            visitorIdLabel.Text = "访客ID:";
             // 
             // visitCountLabel
             // 
@@ -326,14 +230,113 @@ namespace LiveSupport.OperatorConsole
             visitCountLabel.TabIndex = 12;
             visitCountLabel.Text = "访问次数:";
             // 
-            // visitorIdLabel
+            // reMarkLabel
             // 
-            visitorIdLabel.AutoSize = true;
-            visitorIdLabel.Location = new System.Drawing.Point(23, 16);
-            visitorIdLabel.Name = "visitorIdLabel";
-            visitorIdLabel.Size = new System.Drawing.Size(47, 12);
-            visitorIdLabel.TabIndex = 14;
-            visitorIdLabel.Text = "访客ID:";
+            reMarkLabel.AutoSize = true;
+            reMarkLabel.Location = new System.Drawing.Point(23, 92);
+            reMarkLabel.Name = "reMarkLabel";
+            reMarkLabel.Size = new System.Drawing.Size(35, 12);
+            reMarkLabel.TabIndex = 10;
+            reMarkLabel.Text = "备注:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(23, 65);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(59, 12);
+            nameLabel.TabIndex = 8;
+            nameLabel.Text = "访客名称:";
+            // 
+            // emailLabel
+            // 
+            emailLabel.AutoSize = true;
+            emailLabel.Location = new System.Drawing.Point(23, 42);
+            emailLabel.Name = "emailLabel";
+            emailLabel.Size = new System.Drawing.Size(59, 12);
+            emailLabel.TabIndex = 4;
+            emailLabel.Text = "电子邮件:";
+            // 
+            // visitingTimeLabel
+            // 
+            visitingTimeLabel.AutoSize = true;
+            visitingTimeLabel.Location = new System.Drawing.Point(23, 394);
+            visitingTimeLabel.Name = "visitingTimeLabel";
+            visitingTimeLabel.Size = new System.Drawing.Size(83, 12);
+            visitingTimeLabel.TabIndex = 44;
+            visitingTimeLabel.Text = "页面访问时间:";
+            // 
+            // referrerLabel
+            // 
+            referrerLabel.AutoSize = true;
+            referrerLabel.Location = new System.Drawing.Point(23, 337);
+            referrerLabel.Name = "referrerLabel";
+            referrerLabel.Size = new System.Drawing.Size(59, 12);
+            referrerLabel.TabIndex = 38;
+            referrerLabel.Text = "引用页面:";
+            // 
+            // pageRequestedLabel
+            // 
+            pageRequestedLabel.AutoSize = true;
+            pageRequestedLabel.Location = new System.Drawing.Point(23, 304);
+            pageRequestedLabel.Name = "pageRequestedLabel";
+            pageRequestedLabel.Size = new System.Drawing.Size(59, 12);
+            pageRequestedLabel.TabIndex = 36;
+            pageRequestedLabel.Text = "请求页面:";
+            // 
+            // pageRequestCountLabel
+            // 
+            pageRequestCountLabel.AutoSize = true;
+            pageRequestCountLabel.Location = new System.Drawing.Point(23, 271);
+            pageRequestCountLabel.Name = "pageRequestCountLabel";
+            pageRequestCountLabel.Size = new System.Drawing.Size(71, 12);
+            pageRequestCountLabel.TabIndex = 34;
+            pageRequestCountLabel.Text = "浏览页面数:";
+            // 
+            // locationLabel
+            // 
+            locationLabel.AutoSize = true;
+            locationLabel.Location = new System.Drawing.Point(23, 240);
+            locationLabel.Name = "locationLabel";
+            locationLabel.Size = new System.Drawing.Size(59, 12);
+            locationLabel.TabIndex = 30;
+            locationLabel.Text = "地理位置:";
+            // 
+            // leaveTimeLabel
+            // 
+            leaveTimeLabel.AutoSize = true;
+            leaveTimeLabel.Location = new System.Drawing.Point(23, 207);
+            leaveTimeLabel.Name = "leaveTimeLabel";
+            leaveTimeLabel.Size = new System.Drawing.Size(59, 12);
+            leaveTimeLabel.TabIndex = 28;
+            leaveTimeLabel.Text = "离开时间:";
+            // 
+            // iPLabel
+            // 
+            iPLabel.AutoSize = true;
+            iPLabel.Location = new System.Drawing.Point(23, 179);
+            iPLabel.Name = "iPLabel";
+            iPLabel.Size = new System.Drawing.Size(23, 12);
+            iPLabel.TabIndex = 26;
+            iPLabel.Text = "IP:";
+            // 
+            // domainRequestedLabel
+            // 
+            domainRequestedLabel.AutoSize = true;
+            domainRequestedLabel.Location = new System.Drawing.Point(23, 361);
+            domainRequestedLabel.Name = "domainRequestedLabel";
+            domainRequestedLabel.Size = new System.Drawing.Size(59, 12);
+            domainRequestedLabel.TabIndex = 24;
+            domainRequestedLabel.Text = "请求域名:";
+            // 
+            // browserLabel
+            // 
+            browserLabel.AutoSize = true;
+            browserLabel.Location = new System.Drawing.Point(23, 146);
+            browserLabel.Name = "browserLabel";
+            browserLabel.Size = new System.Drawing.Size(47, 12);
+            browserLabel.TabIndex = 16;
+            browserLabel.Text = "浏览器:";
             // 
             // mainMenu
             // 
@@ -706,7 +709,7 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors.Location = new System.Drawing.Point(0, 0);
             this.lstVisitors.MultiSelect = false;
             this.lstVisitors.Name = "lstVisitors";
-            this.lstVisitors.Size = new System.Drawing.Size(958, 226);
+            this.lstVisitors.Size = new System.Drawing.Size(958, 185);
             this.lstVisitors.SmallImageList = this.imgIconSet;
             this.lstVisitors.TabIndex = 2;
             this.lstVisitors.UseCompatibleStateImageBehavior = false;
@@ -841,10 +844,9 @@ namespace LiveSupport.OperatorConsole
             // 
             // mainSplitContainer.Panel2
             // 
-            this.mainSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.mainSplitContainer.Panel2.Controls.Add(this.visitorSessionSplitContainer);
             this.mainSplitContainer.Size = new System.Drawing.Size(958, 591);
-            this.mainSplitContainer.SplitterDistance = 226;
+            this.mainSplitContainer.SplitterDistance = 185;
             this.mainSplitContainer.TabIndex = 4;
             // 
             // visitorSessionSplitContainer
@@ -855,36 +857,38 @@ namespace LiveSupport.OperatorConsole
             // 
             // visitorSessionSplitContainer.Panel1
             // 
+            this.visitorSessionSplitContainer.Panel1.BackColor = System.Drawing.Color.Transparent;
             this.visitorSessionSplitContainer.Panel1.Controls.Add(this.panel1);
             // 
             // visitorSessionSplitContainer.Panel2
             // 
+            this.visitorSessionSplitContainer.Panel2.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.bg;
             this.visitorSessionSplitContainer.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.visitorSessionSplitContainer.Panel2.Controls.Add(this.tabChats);
-            this.visitorSessionSplitContainer.Panel2.Controls.Add(this.访客信息栏);
-            this.visitorSessionSplitContainer.Size = new System.Drawing.Size(958, 361);
+            this.visitorSessionSplitContainer.Panel2.Controls.Add(this.panel2);
+            this.visitorSessionSplitContainer.Size = new System.Drawing.Size(958, 402);
             this.visitorSessionSplitContainer.SplitterDistance = 204;
             this.visitorSessionSplitContainer.TabIndex = 3;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.operatorPannel1);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(204, 361);
+            this.panel1.Size = new System.Drawing.Size(204, 402);
             this.panel1.TabIndex = 0;
             // 
-            // label3
+            // panel5
             // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(204, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "客服栏";
+            this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header;
+            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(204, 30);
+            this.panel5.TabIndex = 3;
             // 
             // tabChats
             // 
@@ -892,10 +896,10 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.Controls.Add(this.tabPage2);
             this.tabChats.Controls.Add(this.tabPage4);
             this.tabChats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabChats.Location = new System.Drawing.Point(0, 12);
+            this.tabChats.Location = new System.Drawing.Point(0, 30);
             this.tabChats.Name = "tabChats";
             this.tabChats.SelectedIndex = 0;
-            this.tabChats.Size = new System.Drawing.Size(750, 349);
+            this.tabChats.Size = new System.Drawing.Size(750, 372);
             this.tabChats.TabIndex = 0;
             // 
             // tabPage5
@@ -932,7 +936,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage5.Location = new System.Drawing.Point(4, 21);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(742, 324);
+            this.tabPage5.Size = new System.Drawing.Size(742, 347);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "访客详情";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1060,7 +1064,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(742, 324);
+            this.tabPage2.Size = new System.Drawing.Size(742, 327);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1122,7 +1126,7 @@ namespace LiveSupport.OperatorConsole
             this.lstMessage.GridLines = true;
             this.lstMessage.Location = new System.Drawing.Point(0, 61);
             this.lstMessage.Name = "lstMessage";
-            this.lstMessage.Size = new System.Drawing.Size(742, 256);
+            this.lstMessage.Size = new System.Drawing.Size(819, 432);
             this.lstMessage.TabIndex = 15;
             this.lstMessage.UseCompatibleStateImageBehavior = false;
             this.lstMessage.View = System.Windows.Forms.View.Details;
@@ -1158,7 +1162,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(742, 324);
+            this.tabPage4.Size = new System.Drawing.Size(742, 327);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "网页浏览";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1219,7 +1223,7 @@ namespace LiveSupport.OperatorConsole
             this.lstPageRequest.GridLines = true;
             this.lstPageRequest.Location = new System.Drawing.Point(0, 59);
             this.lstPageRequest.Name = "lstPageRequest";
-            this.lstPageRequest.Size = new System.Drawing.Size(739, 273);
+            this.lstPageRequest.Size = new System.Drawing.Size(816, 449);
             this.lstPageRequest.TabIndex = 7;
             this.lstPageRequest.UseCompatibleStateImageBehavior = false;
             this.lstPageRequest.View = System.Windows.Forms.View.Details;
@@ -1239,15 +1243,35 @@ namespace LiveSupport.OperatorConsole
             this.colReferrer.Text = "引用页";
             this.colReferrer.Width = 241;
             // 
-            // 访客信息栏
+            // panel2
             // 
-            this.访客信息栏.BackColor = System.Drawing.Color.Transparent;
-            this.访客信息栏.Dock = System.Windows.Forms.DockStyle.Top;
-            this.访客信息栏.Location = new System.Drawing.Point(0, 0);
-            this.访客信息栏.Name = "访客信息栏";
-            this.访客信息栏.Size = new System.Drawing.Size(750, 12);
-            this.访客信息栏.TabIndex = 0;
-            this.访客信息栏.Text = "访客信息栏";
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(750, 30);
+            this.panel2.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header_bg_right;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(337, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(413, 30);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header_bg_left;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(337, 30);
+            this.panel3.TabIndex = 0;
             // 
             // treeView1
             // 
@@ -1476,9 +1500,9 @@ namespace LiveSupport.OperatorConsole
             // operatorPannel1
             // 
             this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 12);
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
             this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 349);
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 372);
             this.operatorPannel1.TabIndex = 2;
             // 
             // MainForm
@@ -1521,6 +1545,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.notifyIconContextMenuStrip.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -1594,8 +1619,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer visitorSessionSplitContainer;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label 访客信息栏;
         private System.Windows.Forms.ToolStripMenuItem 客服栏OToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 访客信息栏VToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
@@ -1625,6 +1648,21 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ImageList imgIconSet;
         private System.Windows.Forms.ToolStripMenuItem settalkToolStripMenuItem;
         private System.Windows.Forms.TabControl tabChats;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TextBox browserTextBox;
+        private System.Windows.Forms.TextBox domainRequestedTextBox;
+        private System.Windows.Forms.TextBox iPTextBox;
+        private System.Windows.Forms.TextBox locationTextBox;
+        private System.Windows.Forms.TextBox pageRequestCountTextBox;
+        private System.Windows.Forms.TextBox pageRequestedTextBox;
+        private System.Windows.Forms.TextBox referrerTextBox;
+        private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox reMarkTextBox;
+        private System.Windows.Forms.TextBox visitCountTextBox;
+        private System.Windows.Forms.TextBox visitorIdTextBox;
+        private System.Windows.Forms.DateTimePicker leaveTimeDateTimePicker;
+        private System.Windows.Forms.DateTimePicker visitingTimeDateTimePicker;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DateTimePicker messageendDateTimePicker;
         private System.Windows.Forms.DateTimePicker messagebeginDateTimePicker;
@@ -1646,20 +1684,9 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ColumnHeader colPage;
         private System.Windows.Forms.ColumnHeader colRTime;
         private System.Windows.Forms.ColumnHeader colReferrer;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TextBox browserTextBox;
-        private System.Windows.Forms.TextBox domainRequestedTextBox;
-        private System.Windows.Forms.TextBox iPTextBox;
-        private System.Windows.Forms.TextBox locationTextBox;
-        private System.Windows.Forms.TextBox pageRequestCountTextBox;
-        private System.Windows.Forms.TextBox pageRequestedTextBox;
-        private System.Windows.Forms.TextBox referrerTextBox;
-        private System.Windows.Forms.TextBox emailTextBox;
-        private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.TextBox reMarkTextBox;
-        private System.Windows.Forms.TextBox visitCountTextBox;
-        private System.Windows.Forms.TextBox visitorIdTextBox;
-        private System.Windows.Forms.DateTimePicker leaveTimeDateTimePicker;
-        private System.Windows.Forms.DateTimePicker visitingTimeDateTimePicker;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel5;
     }
 }
