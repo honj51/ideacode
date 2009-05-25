@@ -121,10 +121,9 @@ namespace LiveSupport.OperatorConsole
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
+            ws.Logout();
 
-           Properties.Settings.Default.Save();
-
-          
+            Properties.Settings.Default.Save();          
             Application.Exit();
         }
 
