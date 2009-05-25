@@ -21,7 +21,7 @@ using LiveSupport.LiveSupportModel;
 using System.IO;
 using System.Diagnostics;
 using System.Text;
-
+using System.Configuration;
     /// <summary>
     /// Contains all functionality for an operator to maintain
     /// a chat session with a client.
@@ -37,7 +37,14 @@ public class OperatorWS : System.Web.Services.WebService
         public string Name;
         public List<string> Responses;        
     }
-
+    /// <summary>
+    /// 版本信息
+    /// </summary>
+    public class SystemAdvertise
+    {
+        public string AdvertiseUrl;
+        public string AdvertiseMessage;
+    }
     #region NewChangeCheck
     public class MessageCheck
 	{
@@ -387,6 +394,27 @@ public class OperatorWS : System.Web.Services.WebService
         return null;
 
     }
-
-
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
+    {
+        string LatestVersionNumber = ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString();
+        string LatestUrl= ConfigurationManager.AppSettings["LatestOperatorConsoleUrl"].ToString();
+        List<SystemAdvertise> li = new List<SystemAdvertise>();
+        if (versionNumber != LatestVersionNumber)
+        {
+            SystemAdvertise sysinfo = new SystemAdvertise();
+            sysinfo.AdvertiseUrl = LatestUrl;
+            sysinfo.AdvertiseMessage = "你的版本信息过低请及时更新";
+            li.Add(sysinfo);
+        }
+        else
+        {
+            SystemAdvertise sysinfo = new SystemAdvertise();
+            sysinfo.AdvertiseUrl = LatestUrl;
+            sysinfo.AdvertiseMessage = "你现在使用的是最新版本";
+            li.Add(sysinfo);
+        }
+        return li;
+    }
 }
