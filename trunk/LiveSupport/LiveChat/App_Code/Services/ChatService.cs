@@ -212,8 +212,7 @@ public class ChatService
         {
             return AcceptChatRequestReturn_Error_AcceptedByOthers;
         }
-
-        if (chat.Status == ChatStatus.Requested)
+        else if (chat.Status == ChatStatus.Requested)
         {
             chat.Status = ChatStatus.Accepted;
             chat.OperatorId = operatorId;
@@ -238,9 +237,15 @@ public class ChatService
 
             return AcceptChatRequestReturn_OK;
         }
+        else if (chat.Status == ChatStatus.Decline)
+        {
+            return AcceptChatRequestReturn_Error_ChatRequestCanceled;
+        }
         else
-            return AcceptChatRequestReturn_Error_Others;
+        {
 
+            return AcceptChatRequestReturn_Error_Others;
+        }
     }
 
     public static Chat GetChatById(string chatId)
