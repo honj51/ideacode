@@ -23,7 +23,7 @@ namespace LiveChatTest
             at.Industry = "ee";
             at.OperatorCount = 1;
             at.RegisterDate = DateTime.Now;
-            at.LoginName = "ddee";
+            at.LoginName = Guid.NewGuid().ToString();
             at.Password = "eee";
             at.NickName = "eeeee";
             return at;
@@ -32,10 +32,18 @@ namespace LiveChatTest
         public void TestAddAccount()
         {
             DBHelper.ConnectionString = "Server=rd01;Database=LiveSupport;User ID=sa;Password=;Trusted_Connection=False;";
-            
             Account account = createAccount(1111);
             AccountService.AddAccount(account);
             Assert.AreSame(AccountService.FindAccountByLoginName(account.LoginName), account);
+        }
+        [Test]
+        public void testGetAccountById()
+        {
+            DBHelper.ConnectionString = "Server=rd01;Database=LiveSupport;User ID=sa;Password=;Trusted_Connection=False;";
+            Account account = createAccount(1111);
+            AccountService.AddAccount(account);
+            string accountid=AccountService.FindAccountByLoginName(account.LoginName).AccountId;
+            Assert.AreSame(AccountService.GetAccountById(accountid),account);
         }
     }
 }
