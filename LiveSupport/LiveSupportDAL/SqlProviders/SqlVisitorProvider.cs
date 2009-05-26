@@ -41,8 +41,13 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="visitor"></param>
         public static void NewVisitor(Visitor visitor)
         {
-            string sql = string.Format("INSERT INTO LiveChat_Visitor VALUES('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}')", 
-                visitor.VisitorId, visitor.AccountId, visitor.Name, visitor.Email, visitor.VisitCount, visitor.Company, visitor.Remark, visitor.IsVIP, visitor.CurrentSessionId);
+            int isVIP = 0;
+            if (visitor.IsVIP == false)
+                isVIP = 0;
+            else
+                isVIP = 1;
+            string sql = string.Format("INSERT INTO LiveChat_Visitor VALUES('{0}','{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}')",
+                visitor.VisitorId, visitor.AccountId, visitor.Name, visitor.Email, visitor.VisitCount, visitor.Company, visitor.Remark, isVIP, visitor.CurrentSessionId);
             DBHelper.ExecuteCommand(sql);
         }
     }
