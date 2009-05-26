@@ -2,18 +2,21 @@
 using System.Data;
 using LiveSupport.LiveSupportModel;
 using System.Collections.Generic;
+using LiveSupport.BLL.Exceptions;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using LiveSupport.LiveSupportDAL.Providers;
 /// <summary>
 ///AccountService 的摘要说明
 /// </summary>
 public static class AccountService
 {
-    static AccountService()
-    { 
-        // Load all Accounts
-        accounts = SqlAccountProvider.GetAllAccounts();
-    }
+    public static ISqlAccountProvider Provider;
 
+    public static void Init()
+    {
+        accounts = Provider.GetAllAccounts();
+    }
+   
     private static List<Account> accounts = new List<Account>();
     /// <summary>
     /// 根据登录名查询一很记录
@@ -38,8 +41,12 @@ public static class AccountService
     /// <param name="account">account对象</param>
     public static void AddAccount(Account account)
     {
+        if (FindAccountByLoginName(account.LoginName) != null || GetAccountById(account.AccountId) != null)
+        {
+            throw new DuplicateAccountException();
+        }
         accounts.Add(account);
-        SqlAccountProvider.AddAccount(account);
+        Provider.AddAccount(account);
     }
 
     public static Account GetAccountById(string accountId)
