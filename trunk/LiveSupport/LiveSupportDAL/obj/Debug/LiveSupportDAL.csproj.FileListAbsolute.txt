@@ -1,0 +1,7 @@
+D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\LiveSupportDAL.dll
+D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\LiveSupportDAL.pdb
+D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\Model.dll
+D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\Model.pdb
+D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\ResolveAssemblyReference.cache
+D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\LiveSupportDAL.dll
+D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\LiveSupportDAL.pdb
