@@ -340,6 +340,7 @@ namespace LiveSupport.OperatorConsole
                 }
                 else
                 {
+                    MessageBox.Show(ex.Message);
                     throw;
                 }
             }

@@ -87,8 +87,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region
         public static SqlConnection Getconn()
         {
-            string connstring = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ConnectionString;
-            SqlConnection conn = new SqlConnection(connstring);
+            SqlConnection conn = new SqlConnection(ConnectionString);
             return conn;
         }
         #endregion
@@ -137,6 +136,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             return i;
         }
         #endregion
+
+        public static string ConnectionString;
 
     }
 }

@@ -30,7 +30,7 @@ namespace LiveSupport.OperatorConsole
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            
+            //Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = "http://miraclew.gicp.net/lcs/Operator.asmx";
             Properties.Settings.Default.RememberPassword = this.cbxPassword.Checked;
             Properties.Settings.Default.AutoLogin = this.cbxAutoLogin.Checked;
             if((!string.IsNullOrEmpty(this.txtOpName.Text))&&(!string.IsNullOrEmpty(this.txtOpPassword.Text)))

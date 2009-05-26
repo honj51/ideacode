@@ -10,7 +10,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECF
 		SccLocalPath = "Svn"
 		SccProvider = "SubversionScc"
 		TargetFramework = "2.0"
-		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;"
+		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}|LiveSupportDAL.dll;{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}|Model.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Portal"
 		Debug.AspNetCompiler.PhysicalPath = "Portal\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Portal\"
@@ -25,7 +25,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECF
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1220"
+		VWDPort = "1938"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C4903BEF-9491-492A-AC4A-8244790DAFE3}"
@@ -34,7 +34,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C
 		SccAuxPath = "Svn"
 		SccLocalPath = "Svn"
 		SccProvider = "SubversionScc"
-		TargetFramework = "3.5"
+		TargetFramework = "2.0"
 		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}|Model.dll;{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}|LiveSupportDAL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/LiveChat"
 		Debug.AspNetCompiler.PhysicalPath = "LiveChat\"
@@ -51,6 +51,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "3355"
+		VWDDynamicPort = "false"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorConsole", "OperatorConsole\OperatorConsole.csproj", "{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}"
@@ -60,6 +61,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSupportModel", "Model\LiveSupportModel.csproj", "{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSupportDAL", "LiveSupportDAL\LiveSupportDAL.csproj", "{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{84BE2DC7-3AB0-42D4-88CA-561D891C1D6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLTest", "BLLTest\BLLTest.csproj", "{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -79,6 +84,7 @@ Global
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Release|.NET.ActiveCfg = Release|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -140,8 +146,21 @@ Global
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|.NET.ActiveCfg = Release|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB} = {84BE2DC7-3AB0-42D4-88CA-561D891C1D6D}
 	EndGlobalSection
 EndGlobal
