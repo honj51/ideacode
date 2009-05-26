@@ -6,11 +6,29 @@ using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlAccountProvider
+    public class SqlAccountProvider : LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider
     {
+<<<<<<< .mine
+        private static SqlAccountProvider _default;
+
+        public static SqlAccountProvider Default
+        {
+            get {
+                if (_default == null)
+                    _default = new SqlAccountProvider();
+                return _default; 
+            }
+            
+        }
+        /// <summary>
+        /// 添加一条新的公司帐号
+        /// </summary>
+        /// <param name="account">account对象</param>
+=======
 
         #region 添加管理员
-        public static int AddAccount(Account account)
+>>>>>>> .r678
+        public int AddAccount(Account account)
         {
             bool b = CheckCompanyByloginName(account.LoginName);
             if (b)
@@ -46,8 +64,12 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
+<<<<<<< .mine
+        public List<Account> GetAllAccounts()
+=======
         #region 获得所有的管理员
         public static List<Account> GetAllAccounts()
+>>>>>>> .r678
         {
 
             string sql = "select * from LiveSupport_Account";
@@ -66,7 +88,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region 登录
-        public static Account CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
+        public Account CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
         {
             string sql = string.Format("select * from dbo.LiveSupport_Account where LoginName='{0}' and Password='{1}'", loginName, loginPwd);
             SqlDataReader data = null;
@@ -91,7 +113,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region 据据AccountID更新数据
-        public static int UpdateAccount(Account account)
+        public int UpdateAccount(Account account)
         {
             string sql = string.Format(
                "UPDATE [LiveSupport].[dbo].[LiveSupport_Account]"
@@ -118,7 +140,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region 据据accountId查询一行数据
-        public static Account GetAccountByAccountId(string accountId)
+        public Account GetAccountByAccountId(string accountId)
         {
             string sql = string.Format("select * from [LiveSupport].[dbo].[LiveSupport_Account] where  AccountId='{0}'",accountId);
             SqlDataReader data = null;
@@ -140,6 +162,37 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return account;
         }
+<<<<<<< .mine
+
+        #region ISqlAccountProvider 成员
+
+        int LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.AddAccount(Account account)
+        {
+            throw new NotImplementedException();
+        }
+
+        Account LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
+        {
+            throw new NotImplementedException();
+        }
+
+        Account LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.GetAccountByAccountId(string accountId)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Account> LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.GetAllAccounts()
+        {
+            throw new NotImplementedException();
+        }
+
+        int LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.UpdateAccount(Account account)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+=======
         #endregion
 
         #region 判断一个公司是否存在此客服
@@ -171,6 +224,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
         }
         #endregion
+>>>>>>> .r678
     }
 }
    
