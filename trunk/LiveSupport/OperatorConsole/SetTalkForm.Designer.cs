@@ -87,6 +87,8 @@
             treeNode1});
             this.setTalkTreeView.Size = new System.Drawing.Size(230, 302);
             this.setTalkTreeView.TabIndex = 4;
+            this.setTalkTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.setTalkTreeView_NodeMouseDoubleClick);
+            this.setTalkTreeView.DoubleClick += new System.EventHandler(this.setTalkTreeView_DoubleClick);
             // 
             // SetTalkForm
             // 

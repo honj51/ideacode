@@ -423,6 +423,31 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetSystemAdvertise">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="versionNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemAdvertiseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemAdvertiseResult" type="tns:ArrayOfSystemAdvertise" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSystemAdvertise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SystemAdvertise" nillable="true" type="tns:SystemAdvertise" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SystemAdvertise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LoginSoapIn">
@@ -569,6 +594,15 @@
   <wsdl:message name="GetQuickResponseAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="GetSystemAdvertiseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemAdvertise" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemAdvertiseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemAdvertiseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemAdvertiseAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -633,6 +667,10 @@
     <wsdl:operation name="GetQuickResponse">
       <wsdl:input message="tns:GetQuickResponseSoapIn" />
       <wsdl:output message="tns:GetQuickResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemAdvertise">
+      <wsdl:input message="tns:GetSystemAdvertiseSoapIn" />
+      <wsdl:output message="tns:GetSystemAdvertiseSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -797,6 +835,16 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetSystemAdvertise">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetSystemAdvertise" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemAdvertiseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -955,6 +1003,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:GetQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemAdvertise">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetSystemAdvertise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemAdvertiseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

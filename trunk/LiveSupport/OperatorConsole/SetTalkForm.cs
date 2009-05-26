@@ -11,16 +11,51 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class SetTalkForm : UserControl
     {
+        /// <summary>
+        /// 工具条是否显示
+        /// </summary>
+        private bool result=true;
+
+        public bool Result
+        {
+            get { return result;}
+            set { result = value;}
+        }
+        
+        /// <summary>
+        /// 是否双击节点
+        /// </summary>
+        private bool isCheck;
+
+        public bool IsCheck
+        {
+            get { return isCheck; }
+            set { isCheck = value; }
+        }
+
+        /// <summary>
+        /// 选中节点文本
+        /// </summary>
+        private string checkString;
+
+        public string CheckString
+        {
+            get { return checkString; }
+            set { checkString = value; }
+        }
+
+        
+        
         public SetTalkForm()
         {
             InitializeComponent();
             setTalkTreeView.ExpandAll();
             List<QuickResponseCategory> cats = new List<QuickResponseCategory>();
-            toolStrip1.Visible = Program.CurrentOperator.IsAdmin;
+            toolStrip1.Visible = Result;
             if (toolStrip1.Visible==false)
             {
                setTalkTreeView.Dock= DockStyle.Fill;
-            
+              
             }
             for (int i = 0; i < 10; i++)
             {
@@ -100,5 +135,38 @@ namespace LiveSupport.OperatorConsole
 
 
         }
+
+        private void setTalkTreeView_DoubleClick(object sender, EventArgs e)
+        {
+            if (setTalkTreeView.SelectedNode.Nodes.Count == 0)
+            {
+                CheckString = setTalkTreeView.SelectedNode.Text.ToString();
+
+            }
+            else
+            {
+                setTalkTreeView.SelectedNode.ToolTipText = "该节点无法操作";
+            
+            }
+      
+            
+          
+        }
+
+        private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (setTalkTreeView.SelectedNode.Nodes.Count == 0)
+            {
+                CheckString = setTalkTreeView.SelectedNode.Text.ToString();
+
+            }
+            else
+            {
+                setTalkTreeView.SelectedNode.ToolTipText = "该节点无法操作";
+
+            }
+        }
+
+      
     }
 }

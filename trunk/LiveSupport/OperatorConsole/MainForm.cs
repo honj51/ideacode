@@ -22,7 +22,7 @@ namespace LiveSupport.OperatorConsole
 
         // Declare a variable to store the current grouping column.
         int groupColumn=-1;
-
+        private bool isAllowGroup=true;
 
         OperatorWS ws = new OperatorWS();
         private DateTime lastRequestTime = DateTime.Now.AddMinutes(-30);
@@ -121,10 +121,37 @@ namespace LiveSupport.OperatorConsole
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
-            ws.Logout();
 
-            Properties.Settings.Default.Save();          
-            Application.Exit();
+            //foreach (ListViewItem item in lstVisitors.Items)
+            //{
+            //    Visitor v = item.Tag as Visitor;
+            //    if (v.CurrentSession.OperatorId == Program.CurrentOperator.OperatorId)
+            //    {
+                    
+            //        ws.CloseChat(v.CurrentSession.SessionId);
+
+            //    }
+
+            //} 
+               timer1.Enabled = false;
+               loginTimer.Enabled = false;
+               tmrCheckRequests.Enabled = false;
+               if (Program.ChatForms.Count == 0)
+               {
+                   ws.Logout();
+
+               }
+               else
+               {
+                   MessageBox.Show("访客对话存在无法关闭客户端");
+                   e.Cancel = true;
+                   return;
+                  
+                }
+                Properties.Settings.Default.Save();
+
+                 Application.Exit();
+           
         }
 
        
@@ -290,17 +317,14 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        
-
         /// <summary>
         /// 计算登录时长
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void loginTimer_Tick(object sender, EventArgs e)
         {
-            DateTime dtime = DateTime.Now; ;
+            DateTime dtime = DateTime.Now;
 
             this.stickToolStripStatusLabel.Text = DateDiff(Properties.Settings.Default.OperatorLoginTime, dtime);
 
@@ -340,7 +364,6 @@ namespace LiveSupport.OperatorConsole
                 }
                 else
                 {
-                    MessageBox.Show(ex.Message);
                     throw;
                 }
             }
@@ -369,6 +392,7 @@ namespace LiveSupport.OperatorConsole
                     operators.Clear();
                     operators.AddRange(result.Operators);
                     operatorPannel1.RecieveOperator(operators);
+
                 }
             }
             foreach (ListViewItem item in lstVisitors.Items)
@@ -393,9 +417,10 @@ namespace LiveSupport.OperatorConsole
                 if (remote == null) continue;
                 if (remote.Status == VisitSessionStatus.ChatRequesting)
                 {
+                   
                     // 新的对话请求
                     NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote);
-
+                 
                 }
                 else if (remote.Status == VisitSessionStatus.Leave)
                 {
@@ -506,13 +531,19 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
 
-                ////groupColumn大于等于0设置分组
-                if (groupColumn>=0)
-                {
-                    groupTables = new Hashtable[groupColumn+1];
-                    groupTables[groupColumn] = CreateGroupsTable(groupColumn);
 
-                    SetGroups(groupColumn);
+                if (isAllowGroup || VisitorChange(result.VisitSessionChange)&&lstVisitors.Groups.Count>0)
+                {
+                    
+                    ////groupColumn大于等于0设置分组
+                    if (groupColumn >= 0)
+                    {
+                        lstVisitors.Groups.Clear();
+                        groupTables = new Hashtable[groupColumn + 1];
+                        groupTables[groupColumn] = CreateGroupsTable(groupColumn);
+
+                        SetGroups(groupColumn);
+                    }
                 }
               
             }
@@ -592,7 +623,30 @@ namespace LiveSupport.OperatorConsole
 
             DisplayStatus();
 
+            
+        }
 
+        private bool VisitorChange(VisitSession[] visitSession)
+        {
+            foreach (ListViewGroup item in lstVisitors.Groups)
+	        {
+                if (item.Tag == null) continue;
+                Visitor v=item.Tag as Visitor;
+                for (int i = 0; i < visitSession.Length; i++)
+                {
+                    if (v.CurrentSession.Status != visitSession[i].Status)
+                    {
+                        
+                        return true;
+                       
+                    }
+                }
+                
+
+	         }
+            return false;
+            
+        
         }
         string getOperatorsStatusText(OperatorStatus os) 
         {
@@ -707,14 +761,22 @@ namespace LiveSupport.OperatorConsole
                     //if (!myChats.ContainsKey(lstVisitors.SelectedItems[0].Index))
                     //{
                     //    myChats.Add(lstVisitors.SelectedItems[0].Index, Program.CurrentOperator.Id);
-                        
+
                     //}
-                   //声音
-                   player.Stop();
-                   ChatForm cf = new ChatForm(visitor.CurrentSession);                      
-                     
-                   Program.ChatForms.Add(cf);
+                    if (visitor.CurrentSession.OperatorId != null) 
+                    {
+                        MessageBox.Show("访客请求已被接受");
+                        player.Stop();
+                    }
+                    else{
+                   
+                    //声音
+                    player.Stop();
+                    ChatForm cf = new ChatForm(visitor.CurrentSession);
+
+                    Program.ChatForms.Add(cf);
                     cf.Show();
+                    }
                 }
                 else
                 {
@@ -739,24 +801,38 @@ namespace LiveSupport.OperatorConsole
                 Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
                 if (v!= null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
                 {
-                    ws.InviteChat(v.VisitorId);
-                    ChatForm cf = null;
-                    foreach (var item in Program.ChatForms)
+
+                    if (ws.InviteChat(v.VisitorId).Equals(0))
                     {
-                        if (item.ChatSession.SessionId == v.CurrentSession.SessionId)
+                        ChatForm cf = null;
+                        foreach (var item in Program.ChatForms)
                         {
-                            cf = item;
-                            break;
+                            if (item.ChatSession.SessionId == v.CurrentSession.SessionId)
+                            {
+                                cf = item;
+                                break;
+                            }
                         }
-                    }
 
-                    if (cf == null)
+                        if (cf == null)
+                        {
+
+                            cf = new ChatForm(v.CurrentSession, true);
+                            Program.ChatForms.Add(cf);
+                        }
+
+                        cf.Show();
+                    }
+                    if (ws.InviteChat(v.VisitorId).Equals(-1))
                     {
-                        cf = new ChatForm(v.CurrentSession, true);
-                        Program.ChatForms.Add(cf);
+                        MessageBox.Show("该访客已被邀请");
                     }
-
-                    cf.Show();
+                    if (ws.InviteChat(v.VisitorId).Equals(-2))
+                    {
+                        MessageBox.Show("访客拒绝邀请");
+                       
+                    }
+                
                 }
                 else
                 {
@@ -804,17 +880,27 @@ namespace LiveSupport.OperatorConsole
         //单击列名分组
         private void lstVisitors_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if ( e.Column.Equals(VisitorTreeView_HeaderColumn_VisitorName) || e.Column.Equals(VisitorTreeView_HeaderColumn_Browser) || e.Column.Equals(VisitorTreeView_HeaderColumn_Operator) || e.Column.Equals(VisitorTreeView_HeaderColumn_Status))
-           {
-               groupTables = new Hashtable[e.Column+1];
-               groupTables[e.Column] = CreateGroupsTable(e.Column);
-               groupColumn = e.Column;
-               SetGroups(e.Column);
-           }
-           else
-           {
-               MessageBox.Show("该列不适合分组！");
-           }
+            if (lstVisitors.Groups.Count > 0&&e.Column==groupColumn)
+            {
+                lstVisitors.Groups.Clear();
+               
+                isAllowGroup = false;
+               
+            }
+            else
+            {
+                if (e.Column.Equals(VisitorTreeView_HeaderColumn_VisitorName) || e.Column.Equals(VisitorTreeView_HeaderColumn_Browser) || e.Column.Equals(VisitorTreeView_HeaderColumn_Operator) || e.Column.Equals(VisitorTreeView_HeaderColumn_Status))
+                {
+                    groupTables = new Hashtable[e.Column + 1];
+                    groupTables[e.Column] = CreateGroupsTable(e.Column);
+                    groupColumn = e.Column;
+                    SetGroups(e.Column);
+                }
+                else
+                {
+                    MessageBox.Show("该列不适合分组！");
+                }
+            }
         }
 
         // Sets lstVisitors to the groups created for the specified column.
@@ -951,7 +1037,7 @@ namespace LiveSupport.OperatorConsole
                             if (item == null) continue;
                          ListViewItem Message = new ListViewItem(new string[]
                          {
-                            item.ChatId, item.Source, item.Destination,item.Text,item.SentDate.ToString(),item.Type.ToString()
+                             item.Source, item.Destination,item.Text,item.SentDate.ToString()
                             
                           });
                             Message.Tag = item;

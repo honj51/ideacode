@@ -64,7 +64,7 @@ namespace LiveSupport.OperatorConsole
             lblMessage.Text = "ÕıÔÚµÇÂ¼...";
             lblMessage.ForeColor = Color.Red;
             lblMessage.SetBounds(221,22, 25, 10);
-            pictureBox1.Show();
+           
             login();
             Properties.Settings.Default.Save(); 
            
@@ -72,6 +72,7 @@ namespace LiveSupport.OperatorConsole
 
         private void login()
         {
+            pictureBox1.Show();
             try
             {
 
@@ -96,6 +97,9 @@ namespace LiveSupport.OperatorConsole
                 Trace.WriteLine("LoginÒì³£: " + e.Message);
                 pictureBox1.Hide();
                 lblMessage.Text =  "Á¬½ÓÍøÂçÊ§°Ü";
+                txtUserName.Enabled = true;
+                txtOpName.Enabled = true;
+                txtOpPassword.Enabled = true;
                 return;
             }
                 // if we got an OperatorInfo, we continue
@@ -128,7 +132,7 @@ namespace LiveSupport.OperatorConsole
             else
             {
                 //Invalid credentials
-                lblMessage.Text = "µÇÂ¼Ê§°Ü...\r\n\r\nÕÊºÅ»òÃÜÂëÓĞÎó...";
+                lblMessage.Text = "µÇÂ¼Ê§°Ü...\r\n\r\nÊı¾İÌîĞ´ÓĞÎó...";
                 lblMessage.SetBounds(260, 10, 25, 10);
                 txtUserName.Enabled = true;
                 txtOpName.Enabled = true;
