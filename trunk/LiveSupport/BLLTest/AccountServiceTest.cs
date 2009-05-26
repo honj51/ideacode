@@ -4,6 +4,7 @@ using System.Text;
 using NUnit.Framework;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveChatTest
 {
@@ -28,11 +29,46 @@ namespace LiveChatTest
             at.NickName = "eeeee";
             return at;
         }
+
+        class MyAccountProvider : IAccountProvider
+        {
+
+            #region IAccountProvider 成员
+
+            public int AddAccount(Account account)
+            {
+                return 0;
+            }
+
+            public Account CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Account GetAccountByAccountId(string accountId)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<Account> GetAllAccounts()
+            {
+                throw new NotImplementedException();
+            }
+
+            public int UpdateAccount(Account account)
+            {
+                throw new NotImplementedException();
+            }
+
+            #endregion
+        }
+
         [Test]
         public void TestAddAccount()
         {
-            DBHelper.ConnectionString = "Server=rd01;Database=LiveSupport;User ID=sa;Password=;Trusted_Connection=False;";
+            //DBHelper.ConnectionString = "Server=rd01;Database=LiveSupport;User ID=sa;Password=;Trusted_Connection=False;";
             Account account = createAccount(1111);
+            AccountService.Provider = new MyAccountProvider();
             AccountService.AddAccount(account);
             Assert.AreSame(AccountService.FindAccountByLoginName(account.LoginName), account);
         }
