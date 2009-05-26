@@ -1,12 +1,14 @@
 ﻿using System;
+using LiveSupport.LiveSupportModel;
+using System.Collections.Generic;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface IMessageProvider
+    public interface IMessageProvider
     {
-        void AddMessage(LiveSupport.LiveSupportModel.Message msg);
+        void AddMessage(Message msg);
         int DeleteChatMessageByChatId(string chatId);
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.Message> GetChatMessageByChatId(string chatId);
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.Message> GetHistoryChatMessage(string sessionId, DateTime begin, DateTime end);
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.Message> GetMessages(string SessionId, DateTime lastCheck);
+        List<Message> GetChatMessageByChatId(string chatId);
+        List<Message> GetHistoryChatMessage(string sessionId, DateTime begin, DateTime end);
+        List<Message> GetMessages(string SessionId, DateTime lastCheck);
     }
 }

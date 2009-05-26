@@ -1,10 +1,11 @@
 ﻿using System;
+using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
     interface IVisitSessionProvider
     {
-        LiveSupport.LiveSupportModel.VisitSession GetSessionById(string sessionId);
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.VisitSession> GetVisitSessionByVisitor(string visitorId);
-        void NewSession(LiveSupport.LiveSupportModel.VisitSession session);
+        VisitSession GetSessionById(string sessionId);
+        System.Collections.Generic.List<VisitSession> GetVisitSessionByVisitor(string visitorId);
+        void NewSession(VisitSession session);
     }
 }

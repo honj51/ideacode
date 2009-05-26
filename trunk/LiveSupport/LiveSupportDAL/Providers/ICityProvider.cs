@@ -1,8 +1,9 @@
 ﻿using System;
+using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface ICityProvider
+    public interface ICityProvider
     {
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.City> GetCityByProvinceId(int provinceId);
+        System.Collections.Generic.List<City> GetCityByProvinceId(int provinceId);
     }
 }

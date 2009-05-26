@@ -1,11 +1,12 @@
 ﻿using System;
+using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface IChatProvider
+    public interface IChatProvider
     {
-        void AddChat(LiveSupport.LiveSupportModel.Chat chatRequest);
-        int CloseChat(LiveSupport.LiveSupportModel.Chat chat);
+        void AddChat(Chat chatRequest);
+        int CloseChat(Chat chat);
         int DeleteChatById(string chatId);
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate);
+        System.Collections.Generic.List<Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate);
     }
 }
