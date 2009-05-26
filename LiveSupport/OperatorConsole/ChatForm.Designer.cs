@@ -29,6 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("欢迎光临本公司");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("欢迎", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("谢谢您的支持！再会！");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("再见", new System.Windows.Forms.TreeNode[] {
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("未知");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("技术问题", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("快速回复", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode4,
+            treeNode6});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.cutSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.uploadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -42,6 +55,7 @@
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.flashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtMsg = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.uploadToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -51,8 +65,8 @@
             this.toollblIsTyping = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
@@ -62,7 +76,7 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -73,6 +87,7 @@
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.glassPanel1.SuspendLayout();
@@ -208,7 +223,7 @@
             this.flashToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.windows_16;
             this.flashToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.flashToolStripMenuItem.Name = "flashToolStripMenuItem";
-            this.flashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.flashToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.flashToolStripMenuItem.Text = "窗口闪烁";
             // 
             // ringToolStripMenuItem
@@ -217,8 +232,16 @@
             this.ringToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.alarmd;
             this.ringToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ringToolStripMenuItem.Name = "ringToolStripMenuItem";
-            this.ringToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ringToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.ringToolStripMenuItem.Text = "声音提醒";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.IsLink = true;
+            this.toolStripLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(203, 36);
+            this.toolStripLabel1.Text = "欢迎使用LiveSupport在线交流系统！";
             // 
             // txtMsg
             // 
@@ -302,9 +325,11 @@
             this.tabControl1.ShowToolTips = true;
             this.tabControl1.Size = new System.Drawing.Size(228, 323);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Visible = false;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.setTalkTreeView);
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -312,6 +337,31 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "快捷回复";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // setTalkTreeView
+            // 
+            this.setTalkTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setTalkTreeView.Location = new System.Drawing.Point(3, 3);
+            this.setTalkTreeView.Name = "setTalkTreeView";
+            treeNode1.Name = "节点9";
+            treeNode1.Text = "欢迎光临本公司";
+            treeNode2.Name = "节点1";
+            treeNode2.Text = "欢迎";
+            treeNode3.Name = "节点10";
+            treeNode3.Text = "谢谢您的支持！再会！";
+            treeNode4.Name = "节点4";
+            treeNode4.Text = "再见";
+            treeNode5.Name = "节点11";
+            treeNode5.Text = "未知";
+            treeNode6.Name = "节点5";
+            treeNode6.Text = "技术问题";
+            treeNode7.Name = "节点0";
+            treeNode7.Text = "快速回复";
+            this.setTalkTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode7});
+            this.setTalkTreeView.Size = new System.Drawing.Size(214, 292);
+            this.setTalkTreeView.TabIndex = 0;
+            this.setTalkTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.setTalkTreeView_NodeMouseDoubleClick);
             // 
             // tabPage2
             // 
@@ -323,14 +373,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(214, 292);
-            this.operatorPannel1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -434,13 +476,13 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // toolStripLabel1
+            // operatorPannel1
             // 
-            this.toolStripLabel1.IsLink = true;
-            this.toolStripLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(203, 36);
-            this.toolStripLabel1.Text = "欢迎使用LiveSupport在线交流系统！";
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(3, 3);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(214, 292);
+            this.operatorPannel1.TabIndex = 0;
             // 
             // ChatForm
             // 
@@ -452,6 +494,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChatForm";
+            this.Load += new System.EventHandler(this.ChatForm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChatForm_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -469,6 +512,7 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.glassPanel1.ResumeLayout(false);
@@ -497,7 +541,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.OpenFileDialog uploadOpenFileDialog;
         private System.Windows.Forms.Timer tmrGetMsg;
-        private OperatorPannel operatorPannel1;
+      
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -511,7 +555,9 @@
         private System.Windows.Forms.Label visitorCompanyLabel;
         private System.Windows.Forms.Label remarkLabel;
         private System.Windows.Forms.Label lblVisitorInfo;
-        private SetTalkForm setTalkForm1;
+      
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private OperatorPannel operatorPannel1;
+        private System.Windows.Forms.TreeView setTalkTreeView;
     }
 }

@@ -184,6 +184,7 @@ namespace LiveSupport.OperatorConsole
 
             if (cf == null)
             {
+                //this.chatSession.ChatingTime = DateTime.Now;
                 cf = new ChatForm(this.chatSession);
                 Program.ChatForms.Add(cf);
             }

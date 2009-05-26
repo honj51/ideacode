@@ -63,6 +63,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback GetQuickResponseOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetSystemAdvertiseOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -157,6 +159,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event GetQuickResponseCompletedEventHandler GetQuickResponseCompleted;
+        
+        /// <remarks/>
+        public event GetSystemAdvertiseCompletedEventHandler GetSystemAdvertiseCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -652,6 +657,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetSystemAdvertise", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public SystemAdvertise[] GetSystemAdvertise(string versionNumber) {
+            object[] results = this.Invoke("GetSystemAdvertise", new object[] {
+                        versionNumber});
+            return ((SystemAdvertise[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetSystemAdvertiseAsync(string versionNumber) {
+            this.GetSystemAdvertiseAsync(versionNumber, null);
+        }
+        
+        /// <remarks/>
+        public void GetSystemAdvertiseAsync(string versionNumber, object userState) {
+            if ((this.GetSystemAdvertiseOperationCompleted == null)) {
+                this.GetSystemAdvertiseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetSystemAdvertiseOperationCompleted);
+            }
+            this.InvokeAsync("GetSystemAdvertise", new object[] {
+                        versionNumber}, this.GetSystemAdvertiseOperationCompleted, userState);
+        }
+        
+        private void OnGetSystemAdvertiseOperationCompleted(object arg) {
+            if ((this.GetSystemAdvertiseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetSystemAdvertiseCompleted(this, new GetSystemAdvertiseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -701,6 +736,39 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class SystemAdvertise {
+        
+        private string advertiseUrlField;
+        
+        private string advertiseMessageField;
+        
+        /// <remarks/>
+        public string AdvertiseUrl {
+            get {
+                return this.advertiseUrlField;
+            }
+            set {
+                this.advertiseUrlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AdvertiseMessage {
+            get {
+                return this.advertiseMessageField;
+            }
+            set {
+                this.advertiseMessageField = value;
             }
         }
     }
@@ -2194,6 +2262,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((QuickResponseCategory[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetSystemAdvertiseCompletedEventHandler(object sender, GetSystemAdvertiseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetSystemAdvertiseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetSystemAdvertiseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public SystemAdvertise[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((SystemAdvertise[])(this.results[0]));
             }
         }
     }

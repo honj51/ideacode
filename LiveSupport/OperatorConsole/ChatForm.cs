@@ -84,7 +84,7 @@ namespace LiveSupport.OperatorConsole
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
-            if (!this.IsDisposed)
+            if (!this.IsDisposed && receiveMessage)
             {
                 //WriteMessage(message.Text, message.Source);
                 if (message.Type == MessageType.SystemMessage_ToBoth || message.Type == MessageType.SystemMessage_ToOperator)
@@ -113,8 +113,8 @@ namespace LiveSupport.OperatorConsole
         public void RecieveOperator(List<Operator> Operators)
         {
            
-            operatorPannel1.RecieveOperator(Operators);
-            operatorPannel1.chatId = ChatSession.SessionId;
+           operatorPannel1.RecieveOperator(Operators);
+           operatorPannel1.chatId = ChatSession.SessionId;
         
         }
         string getOperatorsStatusText(OperatorStatus os)
@@ -145,7 +145,8 @@ namespace LiveSupport.OperatorConsole
             return status;
 
         }
-        
+
+        private bool receiveMessage = true;
         public ChatForm(VisitSession chatSession)
             : this(chatSession, false)
         {           
@@ -163,7 +164,21 @@ namespace LiveSupport.OperatorConsole
 
             if (!invite)
             {
-                ws.AcceptChatRequest(chatSession.SessionId);
+                int res = ws.AcceptChatRequest(chatSession.SessionId); 
+                if (res == -1) 
+                {
+                    wb.Navigate("about:该访客对话请求已被其他客服接受"); 
+                    receiveMessage = false;
+                    //wb.Document.Write(string.Format("<span style=\"color: #FF9933\">{0}</span><br />","该访客对话请求已被其他客服接受"));
+                  
+                    return;
+                }
+                if(res==-3)
+                {
+                    wb.Navigate("about:服务器错误");
+                    receiveMessage = false;
+                
+                }
             }
             // We initialize the document
             wb.Navigate("about:初始会话...");
@@ -328,6 +343,7 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             if (this.chatSession.Status != VisitSessionStatus.Leave)
             {
                 if (MessageBox.Show("正在对话中，您确定要关闭？", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
@@ -336,10 +352,58 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
             }
-            ws.CloseChat(this.chatSession.SessionId);
-            Program.ChatForms.Remove(this);            
+              if(Program.CurrentOperator.Status!= OperatorStatus.Offline)
+              {
+                  int chatNum = 0;
+                      ws.CloseChat(this.chatSession.SessionId);
+                      Program.ChatForms.Remove(this);
+                      //if (Program.ChatForms.Count==0)
+                      //{
+                         
+                      //}
+                    //  foreach (var cf in Program.ChatForms)
+                    //  {
+                    //      if (cf == null) continue;
+                    //      if (cf.ChatSession.OperatorId == Program.CurrentOperator.OperatorId)
+                    //      {
+                    //          chatNum++; 
+                             
+                    //      }
+                    //  }
+                    //  if (chatNum==0)
+                    //{
+                    // ws.Logout();
+                    //}
+                  
+              }
+              else
+                Program.ChatForms.Remove(this);
+
+
+             
+                     
         }
 
+        private void ChatForm_Load(object sender, EventArgs e)
+        {
+            setTalkTreeView.ExpandAll();
+        }
+
+        private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if(e.Node.Nodes.Count==0)
+            {
+                txtMsg.Text= e.Node.Text.ToString();
+                this.txtMsg.Focus();
+            }
+        }
+
+
+       
+
+    
+
+     
         
 
        

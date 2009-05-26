@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OperatorConsole")]
-[assembly: AssemblyDescription("The console for answering chat request")]
+[assembly: AssemblyTitle("座席客户端")]
+[assembly: AssemblyDescription("LiveSupport 座席客户端程序")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LiveChat Starter Kit")]
+[assembly: AssemblyCompany("江西互动网络技术")]
+[assembly: AssemblyProduct("LiveSupport")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.*")]
+[assembly: AssemblyFileVersion("0.1.*")]
