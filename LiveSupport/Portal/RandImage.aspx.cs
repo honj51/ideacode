@@ -15,7 +15,12 @@ public partial class RandImage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        CreateCheckCodeImage(GenerateCheckCode());
+        if (!IsPostBack)
+        {
+            string str_createRandom = this.GenerateCheckCode();//取出产生的随机数
+            Session["createRandom"] = str_createRandom;
+            CreateCheckCodeImage(GenerateCheckCode());
+        }
     }
 
     private string GenerateCheckCode()

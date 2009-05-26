@@ -2,7 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode>
     <siteMapNode url="~/Default.aspx" title="首页" description="Home Page"/>
-    <siteMapNode url="~/Items.aspx" title="产品与服务" description="Items">
+    <siteMapNode url="~/ProductServe.aspx" title="产品与服务" description="Items">
       <siteMapNode url="~/ItemDetail.aspx" title="Item" description="Item"/>
     </siteMapNode>
     <!--

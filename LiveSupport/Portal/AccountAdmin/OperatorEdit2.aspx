@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorEdit2.aspx.cs" Inherits="Default2" Title="无标题页" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorEdit2.aspx.cs" Inherits="Default2" Title="客服中心-客服管理-编辑客服" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
@@ -112,17 +112,26 @@
         <TR>
           <TD style="width: 109px">密码：</TD>
           <TD>
-              <asp:TextBox ID="txtPwd" runat="server"></asp:TextBox>
+              <asp:TextBox ID="txtPwd" runat="server" TextMode="Password"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                  ControlToValidate="txtPwd" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
           <TD style="width: 109px">昵称：</TD>
           <TD>
               <asp:TextBox ID="txtNickName" runat="server"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                  ControlToValidate="txtNickName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
           <TD style="width: 109px">电子邮件：</TD>
           <TD>
               <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+                  ControlToValidate="txtEmail" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                  ControlToValidate="txtEmail" ErrorMessage="Email有误!" 
+                  ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
             </TD></TR>
         <TR>
           <TD><A </TD><td>

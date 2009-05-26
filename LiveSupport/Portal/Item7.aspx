@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Item7.aspx.cs" Inherits="Default2" Title="无标题页" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Item7.aspx.cs" Inherits="Default2" Title="功能详解" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <center>
 <div style="height:568px;">
-<img src="Images/banner.jpg" style="width: 760px; height: 151px;" />
+<img src="Images/tupian-4.gif" style="width: 760px; height: 151px;" />
 <table style="width: 760px; height: 404px;" cellpadding="0" cellspacing="0">
 
 <tr>

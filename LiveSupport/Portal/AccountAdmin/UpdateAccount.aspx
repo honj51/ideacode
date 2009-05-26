@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="UpdateAccount.aspx.cs" Inherits="Default2" Title="无标题页" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="UpdateAccount.aspx.cs" Inherits="Default2" Title="客服中心-公司账号管理" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
@@ -86,30 +86,43 @@ href="#">自定义客服图标</A>
   <TABLE cellSpacing=0 cellPadding=0 border=0 style="text-align:left;" >
         <TBODY >
         <TR>
-          <TD style="width: 30%" >&nbsp;&nbsp; 客服呢称： </TD>
+          <TD >&nbsp;&nbsp; 管理员呢称： </TD>
           <TD ><asp:TextBox ID="txtNickname" runat="server" Width="160px"></asp:TextBox>
 &nbsp;</TD>
-          <TD>对话时显示给访客的名称 </TD></TR>
+          <TD>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                  ControlToValidate="txtNickname" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
-          <TD style="width: 30%"><FONT color=red>*</FONT> 原始密码： </TD>
-          <TD  width="40%"><asp:TextBox ID="txtAgoPwd" runat="server" Width="160px" 
+          <TD><FONT color=red>*</FONT> 原始密码： </TD>
+          <TD><asp:TextBox ID="txtAgoPwd" runat="server" Width="160px" 
                   TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
-          <TD width="35%"><SPAN id=result>用于登录到<span>LiveSupport</span> 
-        </SPAN></TD></TR>
+          <TD>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                  ControlToValidate="txtAgoPwd" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
-          <TD style="width: 30%" ><FONT color=red>*</FONT> 新密码： </TD>
+          <TD><FONT color=red>*</FONT> 新密码： </TD>
           <TD ><asp:TextBox ID="txtPwd" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
-          <TD >密码长度为6-20的任何字符 </TD></TR>
+          <TD >
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                  ControlToValidate="txtPwd" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
-          <TD  noWrap style="width: 30%"><FONT color=red>*</FONT> 密码确认： </TD>
+          <TD><FONT color=red>*</FONT> 密码确认： </TD>
           <TD ><asp:TextBox ID="txtPwds" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
-          <TD >请再输入一次密码 </TD></TR>
+          <TD >&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                  ControlToValidate="txtPwds" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                  ControlToCompare="txtPwd" ControlToValidate="txtPwds" 
+                  ErrorMessage="确认密码与新密码不一致!"></asp:CompareValidator>
+            </TD></TR>
        
                   <TR>
-          <TD style="width: 30%" >&nbsp;&nbsp;&nbsp; </TD>
+          <TD >&nbsp;&nbsp;&nbsp; </TD>
           <TD >
               <asp:Button ID="btnSave" runat="server" Text="保存" Width="63px" 
                   onclick="btnSave_Click" />

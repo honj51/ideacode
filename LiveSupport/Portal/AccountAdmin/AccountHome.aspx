@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AccountHome.aspx.cs" Inherits="AccountAdmin_AccountHome" Title="帐户管理" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AccountHome.aspx.cs" Inherits="AccountAdmin_AccountHome" Title="客服中心-公司信息管理" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
@@ -90,23 +90,42 @@
         <TR>
           <TD width="25%"><FONT color=red>*</FONT> 公司名称： </TD>
           <TD><asp:TextBox ID="txtCompanyName" runat="server" Width="160px"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                  ControlToValidate="txtCompanyName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD <FONT color=red>* </FONT>公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://</TD>
-          <TD ><asp:TextBox ID="txtUrl" runat="server" Width="250px"></asp:TextBox>
+          <TD <FONT color=red>* </FONT>公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+          <TD ><asp:TextBox ID="txtUrl" runat="server" Width="250px">http://</asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                  ControlToValidate="txtUrl" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                  ControlToValidate="txtUrl" ErrorMessage="网址有误!" 
+                  ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
             </TD></TR>
         <TR>
           <TD ><FONT color=red>*</FONT> 公司电话： </TD>
           <TD > <asp:TextBox ID="txtCompanyPhone" runat="server" Width="160px"></asp:TextBox>
-&nbsp;</TD></TR>
+&nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                  ControlToValidate="txtCompanyPhone" ErrorMessage="电话有误!" 
+                  ValidationExpression="^\d+(\.\d)?$"></asp:RegularExpressionValidator>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                  ControlToValidate="txtCompanyPhone" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
           <TD ><FONT color=red>*</FONT> 联系人： </TD>
           <TD ><asp:TextBox ID="txtName" runat="server" Width="160px"></asp:TextBox>
-&nbsp;</TD></TR>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                  ControlToValidate="txtName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
           <TD ><FONT color=red>*</FONT> Email地址： </TD>
           <TD ><asp:TextBox ID="txtMail" runat="server" Width="160px"></asp:TextBox>
-&nbsp;</TD></TR>
+&nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
+                  ControlToValidate="txtMail" ErrorMessage="Eamil有误!" 
+                  ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                  ControlToValidate="txtMail" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
           <TD><FONT color=red>*</FONT> 所在省：</TD>
           <TD>

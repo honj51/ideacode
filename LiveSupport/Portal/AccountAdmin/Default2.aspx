@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AddDepartment.aspx.cs" Inherits="Default2" Title="客服中心-部门管理-增加部门" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
-   <center style="">
+    <center style="">
    <img src="Images/bg3.jpg" style="width: 765px" />
    <table style="width:765px;" >
    <tr>
@@ -80,30 +80,17 @@
 <td style="width: 583px;" valign="top">
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     添加公司部门</div>
+     公司部门管理</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
-<table style="width: 360px; text-align:left;" border="1"  cellpadding="0" cellspacing="0">
-<tr><td style="height: 25px">公司名称：</td><td style="height: 25px">
-    <asp:TextBox ID="txtCompanyName" runat="server" ReadOnly="True"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-        ControlToValidate="txtCompanyName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
-    </td></tr>
-<tr><td style="height: 20px">部门名称：</td><td style="height: 20px">
-    <asp:TextBox ID="txtDepartmentName" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-        ControlToValidate="txtDepartmentName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
-    </td></tr>
-
-<tr style="background-image:url('Images/tjkf2.jpg');"><td></td>
-    <td>
-    <asp:ImageButton ID="ImageButton1" runat="server" 
-        ImageUrl="~/AccountAdmin/Images/add.gif" onclick="ImageButton1_Click" />
-    </td></tr>
-</table>
-<!--尾部--></div>
+           <!--头部--->
+                <!--尾部-->
+           &nbsp;<br />
+           <br />
+           <br />
+           </div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </td></tr>
    </table>
