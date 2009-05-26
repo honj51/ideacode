@@ -15,7 +15,8 @@ namespace LiveSupport.BLL
         //验证
         public static Account Login(string loginId, string loginPwd)
         {
-            return  SqlAccountProvider.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
+
+            return SqlAccountProvider.Default.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
         }
         /// <summary>
         /// 通过AccountId 修改公司信息
@@ -26,11 +27,11 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static bool UpdateAccountByAccountId(string accountId, string password, string nickName)
         {
-            Account account = SqlAccountProvider.GetAccountByAccountId(accountId);
+            Account account = SqlAccountProvider.Default.GetAccountByAccountId(accountId);
             account.Password = password;
             account.NickName = nickName;
             int i = 0;
-            i=SqlAccountProvider.UpdateAccount(account);
+            i=SqlAccountProvider.Default.UpdateAccount(account);
             if (i != 0)
                 return true;
             else
@@ -40,7 +41,7 @@ namespace LiveSupport.BLL
         public static bool UpdateAccount(Account account)
         {
             int i = 0;
-            i = SqlAccountProvider.UpdateAccount(account);
+            i = SqlAccountProvider.Default.UpdateAccount(account);
             if (i != 0)
                 return true;
             else
@@ -53,7 +54,7 @@ namespace LiveSupport.BLL
         public static bool AddAccount(Account account)
         {
             int i = 0;
-            i = SqlAccountProvider.AddAccount(account);
+            i = SqlAccountProvider.Default.AddAccount(account);
             if (i != 0)
                 return true;
             else
@@ -61,7 +62,7 @@ namespace LiveSupport.BLL
         }
         public static Account GetAccountByAccountId(string accountId)
         {
-            return SqlAccountProvider.GetAccountByAccountId(accountId);
+            return SqlAccountProvider.Default.GetAccountByAccountId(accountId);
         }
     }
 }
