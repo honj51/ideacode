@@ -49,6 +49,7 @@ namespace LiveSupport.SqlProviders
 
         #endregion
 
+        private static SqlAccountProvider accountProvider = new SqlAccountProvider();
         #region 通过公司编号获得所有部门
         public static List<Department> GetDepartmentByAccountId(string AccountId)
         {
@@ -61,7 +62,7 @@ namespace LiveSupport.SqlProviders
                 department.DepartmentId = sdr["DepartmentId"].ToString();
                 department.DepartmentName = sdr["DepartmentName"].ToString();
                 string aid = sdr["AccountId"].ToString();
-                department.Account = SqlAccountProvider.GetAccountByAccountId(aid);
+                department.Account = accountProvider.GetAccountByAccountId(aid);
                 list.Add(department);
             }
             sdr.Close();
@@ -112,7 +113,7 @@ namespace LiveSupport.SqlProviders
                 department.DepartmentId = sdr["DepartmentId"].ToString();
                 department.DepartmentName = sdr["DepartmentName"].ToString();
                 string aid = sdr["AccountId"].ToString();
-                department.Account = SqlAccountProvider.GetAccountByAccountId(aid);
+                department.Account = accountProvider.GetAccountByAccountId(aid);
                 sdr.Close();
                 return department;
             }
