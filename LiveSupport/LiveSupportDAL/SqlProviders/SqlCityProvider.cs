@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using LiveSupport.LiveSupportDAL.Providers;
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlCityProvider : ISqlCityProvider
+    public class SqlCityProvider : ICityProvider
     {
         /// <summary>
         /// 跟据省份ID查询城市信息

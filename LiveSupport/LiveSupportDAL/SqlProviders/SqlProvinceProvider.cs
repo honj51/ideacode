@@ -7,7 +7,7 @@ using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlProvinceProvider : ISqlProvinceProvider
+    public class SqlProvinceProvider : IProvinceProvider
     {
 
         public List<Province> GetAllProvince()

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface ISqlMessageProvider
+    interface IMessageProvider
     {
         void AddMessage(LiveSupport.LiveSupportModel.Message msg);
         int DeleteChatMessageByChatId(string chatId);

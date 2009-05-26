@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using LiveSupport.LiveSupportDAL.Providers;
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlPageRequestProvider : ISqlPageRequestProvider
+    public class SqlPageRequestProvider : IPageRequestProvider
     {
         /// <summary>
         /// 获取网站页面访问历史记录
