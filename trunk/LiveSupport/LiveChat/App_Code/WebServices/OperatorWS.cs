@@ -403,20 +403,21 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
     {
+        string homeRootUrl = ConfigurationManager.AppSettings["HomeRootUrl"].ToString();
         string LatestVersionNumber = ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString();
         string LatestUrl= ConfigurationManager.AppSettings["LatestOperatorConsoleUrl"].ToString();
         List<SystemAdvertise> li = new List<SystemAdvertise>();
         if (versionNumber != LatestVersionNumber)
         {
             SystemAdvertise sysinfo = new SystemAdvertise();
-            sysinfo.AdvertiseUrl = LatestUrl;
+            sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
             sysinfo.AdvertiseMessage = "你的版本信息过低请及时更新";
             li.Add(sysinfo);
         }
         else
         {
             SystemAdvertise sysinfo = new SystemAdvertise();
-            sysinfo.AdvertiseUrl = LatestUrl;
+            sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
             sysinfo.AdvertiseMessage = "你现在使用的是最新版本";
             li.Add(sysinfo);
         }
