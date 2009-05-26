@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DepartmentManager.aspx.cs" Inherits="Default2" Title="无标题页" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DepartmentManager.aspx.cs" Inherits="Default2" Title="客服中心-部门管理" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
@@ -87,7 +87,6 @@
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
            <!--头部--->
                 <!--尾部-->
-           <img src="Images/tjkf.jpg" />
 <br />
            <asp:GridView ID="gvDepartment" runat="server"
                AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Default2" Title="无标题页" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Default2" Title="用户注册" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <center>
@@ -38,23 +38,42 @@
         <TR>
           <TD width="25%"><FONT color=red>*</FONT> 公司名称： </TD>
           <TD><asp:TextBox ID="txtCompanyName" runat="server" Width="160px"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                  ControlToValidate="txtCompanyName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD <FONT color=red>* </FONT>公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://</TD>
-          <TD ><asp:TextBox ID="txtCompanyWebUrl" runat="server" Width="344px"></asp:TextBox>
+          <TD <FONT color=red>* </FONT>公司网址：</TD>
+          <TD ><asp:TextBox ID="txtCompanyWebUrl" runat="server" Width="310px">http://</asp:TextBox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" 
+                  ControlToValidate="txtCompanyWebUrl" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" 
+                  ControlToValidate="txtCompanyWebUrl" ErrorMessage="网址有误!" 
+                  ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
             </TD></TR>
         <TR>
           <TD ><FONT color=red>*</FONT> 公司电话： </TD>
           <TD > <asp:TextBox ID="txtCompanyPhone" runat="server" Width="160px"></asp:TextBox>
-&nbsp;</TD></TR>
+&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                  ControlToValidate="txtCompanyPhone" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                  ControlToValidate="txtCompanyPhone" ErrorMessage="电话有误!" 
+                  ValidationExpression="^\d+(\.\d)?$"></asp:RegularExpressionValidator>
+            </TD></TR>
         <TR>
           <TD ><FONT color=red>*</FONT> 联系人： </TD>
           <TD ><asp:TextBox ID="txtName" runat="server" Width="160px"></asp:TextBox>
-&nbsp;</TD></TR>
+&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                  ControlToValidate="txtName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
           <TD ><FONT color=red>*</FONT> Email地址： </TD>
           <TD ><asp:TextBox ID="txtMail" runat="server" Width="160px"></asp:TextBox>
-&nbsp;</TD></TR>
+&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                  ControlToValidate="txtMail" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                  ControlToValidate="txtMail" ErrorMessage="Email有误!" 
+                  ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+            </TD></TR>
         <TR>
           <TD><FONT color=red>*</FONT> 所在省：</TD>
           <TD>
@@ -69,7 +88,7 @@
             </TD></TR>
         <TR id=ignore_type>
           <TD ><FONT color=red>*</FONT> 所在行业： </TD>
-          <TD><asp:DropDownList ID="ddlVocation" runat="server" Height="16px" Width="349px">
+          <TD><asp:DropDownList ID="ddlVocation" runat="server" Height="16px" Width="310px">
               <asp:ListItem>请选择行业类别</asp:ListItem>
               <asp:ListItem>计算机</asp:ListItem>
               <asp:ListItem>互联网-电子商务</asp:ListItem>
@@ -120,26 +139,40 @@
       <TABLE cellSpacing=0 cellPadding=0 border=0 >
         <TBODY >
         <TR>
-          <TD style="width: 30%"><FONT color=red>*</FONT> 客服ID： </TD>
-          <TD  width="40%"><asp:TextBox ID="txtLoginId" runat="server" Width="160px"></asp:TextBox>
+          <TD style="width: 146px"><FONT color=red>*</FONT> 管理员ID： </TD>
+          <TD><asp:TextBox ID="txtLoginId" runat="server" Width="160px" 
+                  style="margin-left: 0px"></asp:TextBox>
 &nbsp;</TD>
-          <TD width="35%"><SPAN id=result>用于登录到<span>LiveSupport</span> 
-        </SPAN></TD></TR>
+          <TD>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+                  ControlToValidate="txtLoginId" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
-          <TD style="width: 30%" ><FONT color=red>*</FONT> 密码： </TD>
-          <TD ><asp:TextBox ID="txtPwd" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
+          <TD style="width: 146px" ><FONT color=red>*</FONT> 密码： </TD>
+          <TD><asp:TextBox ID="txtPwd" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
-          <TD >密码长度为6-20的任何字符 </TD></TR>
+          <TD >
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+                  ControlToValidate="txtPwd" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR>
         <TR>
-          <TD  noWrap style="width: 30%"><FONT color=red>*</FONT> 密码确认： </TD>
-          <TD ><asp:TextBox ID="txtPwds" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
+          <TD style="width: 146px" ><FONT color=red>*</FONT> 密码确认： </TD>
+          <TD><asp:TextBox ID="txtPwds" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
-          <TD >请再输入一次密码 </TD></TR>
+          <TD >
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
+                  ControlToValidate="txtPwds" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                  ControlToCompare="txtPwd" ControlToValidate="txtPwds" ErrorMessage="密码不一致!"></asp:CompareValidator>
+            </TD></TR>
         <TR>
-          <TD style="width: 30%" >&nbsp;&nbsp; 客服呢称： </TD>
+          <TD style="width: 146px" >&nbsp;&nbsp; 客服呢称： </TD>
           <TD ><asp:TextBox ID="txtNickname" runat="server" Width="160px"></asp:TextBox>
 &nbsp;</TD>
-          <TD>对话时显示给访客的名称 </TD></TR></TBODY></TABLE></TD></TR><!-- 第三步:注册验证 -->
+          <TD>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
+                  ControlToValidate="txtNickname" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+            </TD></TR></TBODY></TABLE></TD></TR><!-- 第三步:注册验证 -->
   <TR>
     <TD align=left><b><SPAN >
         <br />
@@ -157,7 +190,10 @@
           <TD style="width: 26%; height: 28px;" ><FONT color=red>*</FONT> 输入验证码： </TD>
           <TD style="width: 423px; height: 28px;" ><asp:TextBox ID="txtValidate" 
                   runat="server" Width="160px"></asp:TextBox>
-&nbsp;<BR>请输入上面的注册验证码 </TD></TR>
+&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" 
+                  ControlToValidate="txtValidate" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+              <BR>请输入上面的注册验证码 </TD></TR>
              <TR>
           <TD style="width: 26%; height: 67px;" ></TD>
           <TD style="width: 423px; height: 67px;" >

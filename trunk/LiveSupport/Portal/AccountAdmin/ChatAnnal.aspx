@@ -1,8 +1,8 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ChatAnnal.aspx.cs" Inherits="Default2" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ChatAnnal.aspx.cs" Inherits="Default2" Title="客服中心-聊天记录查询" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-  <script language="javascript" type="text/javascript" src="../js/My97DatePicker/WdatePicker.js"charset="gb2312"></script>
-   <center style="">
+    <script language="javascript" type="text/javascript" src="../js/My97DatePicker/WdatePicker.js"charset="gb2312"></script>
+    <center style="">
    <img src="Images/bg3.jpg" style="width: 765px" />
    <table style="width:765px;" >
    <tr>
@@ -15,17 +15,17 @@
 <SCRIPT src="Images/sdmenu.js" type="text/javascript">
 </SCRIPT>
 <SCRIPT type="text/javascript">
-		// <![CDATA[
-		var myMenu;
-		window.onload = function() {
-			myMenu = new SDMenu("my_menu");
-			//myMenu.remember = true
-			myMenu.oneSmOnly = true;  
-			myMenu.init();
-			var firstSubmenu = myMenu.submenus[4];
-			myMenu.expandMenu(firstSubmenu);  
-			
-		};
+    // <![CDATA[
+    var myMenu;
+    window.onload = function() {
+        myMenu = new SDMenu("my_menu");
+        //myMenu.remember = true
+        myMenu.oneSmOnly = true;
+        myMenu.init();
+        var firstSubmenu = myMenu.submenus[4];
+        myMenu.expandMenu(firstSubmenu);
+
+    };
 	</SCRIPT>
 <DIV class=sdmenu id=my_menu> 
 
@@ -38,6 +38,7 @@
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客服管理</SPAN> 
 <A href="DepartmentManager.aspx">部门设置</A> 
 <A href="OperatorsManagment.aspx" >客服管理</A> 
+ 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">风格设置</SPAN> 
@@ -47,6 +48,7 @@
  
 <A href="#">对话提示设置</A> 
 <A href="#">主动发起设置</A>
+ 
 </DIV>
 
 <DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">数据分析 (New)</SPAN> 
@@ -55,8 +57,7 @@
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">聊天记录</SPAN> 
-<A href="ChatAnnal.aspx">聊天记录 </A>
- <A href="#">访客留言</A> 
+<A href="ChatAnnal.aspx">聊天记录 </A> <A href="#">访客留言</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客户管理</SPAN> 
@@ -77,44 +78,33 @@
    </td>
 <!--right-->
 <td style="width: 583px;" valign="top">
-    <!--内容开始-->
-    <TABLE class=setting_tb cellSpacing=1 cellPadding=0 border=0 
+ <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
+ <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
+     聊天记录查询</div>
+ <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+ 
+<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
+ <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
+<!--内容开始-->
+<TABLE class=setting_tb cellSpacing=1 cellPadding=0 border=0 
         style="width: 570px">
   <TBODY>
   <TR>
     <TD class=setting_td_top vAlign=center align=left colSpan=2>聊天记录查询 &gt;&gt;</TD></TR>
-  <TR>
-    <TD class=setting_td_left vAlign=center align=right>客服选择：</TD>
-    <TD class=setting_td_right vAlign=center align=left><asp:DropDownList 
+  <TR id=tr_time>
+    <TD class=setting_td_left vAlign=center align=right>客服选择：<asp:DropDownList 
             ID="ddlOperator" runat="server">
         </asp:DropDownList>
-      </TD></TR>
-  <TR id=tr_time>
-    <TD class=setting_td_left vAlign=center align=right>时间：</TD>
+      &nbsp;时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
-        <asp:TextBox ID="txtBeginDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
-        至<asp:TextBox ID="txtEndDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
+        <asp:TextBox ID="txtBeginDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker
+(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
+        至<asp:TextBox ID="txtEndDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker
+(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
 &nbsp;<asp:Button ID="btnSelect" runat="server" Text="搜索" Width="64px" 
             onclick="btnSelect_Click" />
-      </TD></TR>
-  <TR>
-    <TD class=setting_td_left vAlign=center align=right>&nbsp;</TD>
-    <TD class=setting_td_right vAlign=center align=left><!--
-			  <input type="button" name="gjcx" value="高级查询" class="setting-but2" onclick="javascript:location.href='chat_msg_search.php?arg=pbetrich2113203';" />--> 
-    </TD></TR></TBODY></TABLE>
+      </TD></TR></TBODY></TABLE>
 <!--聊天记录内容-->
-<TABLE class="setting-chat-tb1 clear-b" style=" width:563px; border:1px; font-size:12px;" cellSpacing=1 
-cellPadding=0 border=0>
-  <TBODY>
-  <TR>
-
-    <TH vAlign=center align=middle style="width: 115px">&nbsp;发起会话者</TH>
-    <TH vAlign=center noWrap align=middle style="width: 93px">开始时间</TH>
-    <TH vAlign=center align=middle style="width: 93px">持续时长</TH>
-    <TH vAlign=center align=middle style="width: 88px">(IP)</TH>
-    <TH vAlign=center align=middle>地理位置</TH>
-    <TH vAlign=center align=middle>&nbsp;</TH>
-    <TH  vAlign=center align=middle>&nbsp;</TH></TR></TBODY></TABLE>
 <table width="570">
 <tr><td align="left" style=" background-color:#ebf1fa; height: 36px;">聊天记录 &gt;&gt;</td>
 <tr><td align="left">
@@ -140,7 +130,8 @@ cellPadding=0 border=0>
                 SortExpression="CloseTime" Visible="False" />
             <asp:TemplateField HeaderText="持续时长">
                 <ItemTemplate>
-                    <asp:Label ID="Label3" runat="server" Text='<%# this.DateCompare(Eval("CreateTime").ToString(),Eval("CloseTime").ToString()) %>' ></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text='<%# this.DateCompare(Eval("CreateTime").ToString(),Eval
+("CloseTime").ToString()) %>' ></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="AccountId" HeaderText="AccountId" 
@@ -162,13 +153,15 @@ cellPadding=0 border=0>
             <asp:TemplateField>
                 <ItemTemplate>
                     
-                    <a href="ViewChatAnnal.aspx?chatId=<%# Eval("chatId") %>"><img alt="查看" src="Images/view.gif" /></a>
+                    <a href="ViewChatAnnal.aspx?chatId=<%# Eval("chatId") %>"><img alt="查看" src="Images/view.gif" 
+/></a>
                     
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:ImageButton ID="ibtnImage" runat="server" AlternateText="删除" CommandName="cmdDelete" CommandArgument='<%# Eval("chatId") %>' ImageUrl="~/AccountAdmin/Images/rubbish.gif" />
+                    <asp:ImageButton ID="ibtnImage" runat="server" AlternateText="删除" CommandName="cmdDelete" 
+CommandArgument='<%# Eval("chatId") %>' ImageUrl="~/AccountAdmin/Images/rubbish.gif" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -187,9 +180,11 @@ cellPadding=0 border=0>
     </td></tr>
 </tr>
 </table>
-    <!--内容结束-->
-    </td></tr>
+           
+<!--内容结束-->
+</div>
+ <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+</td></tr>
    </table>
    </center>
 </asp:Content>
-

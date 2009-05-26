@@ -77,12 +77,22 @@ public partial class Default2 : System.Web.UI.Page
             op.Email = this.txtEmail.Text;
 
 
-            OperatorsManager.NewOperator(op);
-            this.Response.Redirect("OperatorsManagment.aspx");
+            bool b=OperatorsManager.NewOperator(op);
+            if (b)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('添加成功!');window.location='OperatorsManagment.aspx';</script>");
+                return;
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('已经存在此客服ID');</script>");
+                return;
+            }
         }
         catch (Exception ex)
         {
-
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('添加失败');</script>");
+            return;
         }
     }
     protected void ImageButton2_Click(object sender, ImageClickEventArgs e)

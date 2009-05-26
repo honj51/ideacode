@@ -43,7 +43,7 @@ CONTENT MAIN COLUMN
                         LiveSupport 产品</h2>
                     <p>
                         LiveSupport是一款企业级的网站实时交流系统，网站访客只需点击网页中的对话图标，无需安装或者下载任何软件，就能直接和网站客服人员进行即时交流。</p>
-                    <a href="Items.aspx">了解更多</a><img class="arrow" src="images/arrow.gif" alt="" /></div>
+                    <a href="ProductServe.aspx">了解更多</a><img class="arrow" src="images/arrow.gif" alt="" /></div>
 
        <!-- 
                 <div id="three-column-side2">
@@ -104,8 +104,10 @@ CONTENT SIDE COLUMN
                 客服座席软件下载
             </h3>
             <ul class="list-of-links">
-                <li><a href="Download/OperatorConsole.msi">客户软件 LiveOperatorConsole V1.0</a></li>
-                <li><a href="#">LiveOperatorConsole V1.0 用户手册</a></li>
+            <img src="Images/fw_download.gif" style="width: 160px; height: 65px;" />
+            <li>软件手册下载</li>
+            <img src="Images/annu1.gif" />
+            <img src="Images/annu2.gif" />
             </ul>
         </div>
         <div class="clear">

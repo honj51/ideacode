@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorsManagment.aspx.cs" Inherits="AccountAdmin_OperatorsManangment" Title="坐席管理" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorsManagment.aspx.cs" Inherits="AccountAdmin_OperatorsManangment" Title="客服中心-客服管理" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
@@ -113,7 +113,7 @@
                     <asp:BoundField DataField="LoginName" HeaderText="客服账号" 
                         SortExpression="LoginName" />
                     <asp:BoundField DataField="Password" HeaderText="密码" 
-                        SortExpression="Password" />
+                        SortExpression="Password" Visible="False" />
                     <asp:BoundField DataField="NickName" HeaderText="昵称" 
                         SortExpression="NickName" />
                     <asp:BoundField DataField="Email" HeaderText="电子邮件" SortExpression="Email" />
