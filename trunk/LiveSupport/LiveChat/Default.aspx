@@ -44,7 +44,7 @@
         </script> 
 --%>      
         
-            <script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&IcoLocation=4&InviteStyle=1&IconStyle=1"></script> 
+            <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=4&InviteStyle=1&IconStyle=1"></script> 
         <input id="Text1" type="text" />
         <input type="button" value="fdsaf" onclick="visitorLeave()" /><table 
             style="width: 100%; height: 733px;">
