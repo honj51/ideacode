@@ -394,6 +394,11 @@ public class OperatorWS : System.Web.Services.WebService
         return null;
 
     }
+    /// <summary>
+    /// 系统信息提示
+    /// </summary>
+    /// <param name="versionNumber"></param>
+    /// <returns></returns>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)

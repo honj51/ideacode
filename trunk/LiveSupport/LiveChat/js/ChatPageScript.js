@@ -7,10 +7,13 @@
 document.oncontextmenu = function() { event.returnValue = false; }
 ///窗体关闭提示
 function Exit() {
-    if (closeConfirm == true) {
-        PageMethods.CloseChat(getCookie("chatId"));
-        window.close();
+    if (confirm('你真的确定要退出吗？') == true) {
+        chatclose();
     }
+}
+function chatclose() {
+    PageMethods.CloseChat(getCookie("chatId"));
+    window.close();
 }
 function emailclose() {
     if (confirm('邮件发送成功 我们会尽快回复你！') == true) {
@@ -64,29 +67,27 @@ function Save() {
     b.document.execCommand('saveas', true, '');
 }
 //刷新和关闭时调用
-function window.onbeforeunload() {
-    if (event.altKey) {
-        Exit();
-        //alert('aa');
+function window.onunload() {
+    if (closeConfirm == true) {
+        closeConfirm = false;
+        chatclose();
     }
-    //window.onbeforeunload = verifyClose;
 }
 
-//var MSG_UNLOAD = "您的文章内容还没有进行保存！";
-//var UnloadConfirm = {};
-//var closeConfirm = false;
-//UnloadConfirm.set = function(confirm_msg) {
-//    window.onbeforeunload = function(event) {
-//        event = event || window.event;
-//        if (event.clientY < 0 || event.altKey) {
-//            event.returnValue = confirm_msg;
-//            
-//            closeConfirm = true;
-//        }
-//    }
-//}
-//UnloadConfirm.clear = function() {
-//    window.onbeforeunload = function() {
-//    };
-//}
-//UnloadConfirm.set(MSG_UNLOAD); 
+var MSG_UNLOAD = "你真的确定要退出吗？";
+var UnloadConfirm = {};
+var closeConfirm = false;
+UnloadConfirm.set = function(confirm_msg) {
+    window.onbeforeunload = function(event) {
+        event = event || window.event;
+        if (event.clientY < 0 || event.altKey) {
+            event.returnValue = confirm_msg;
+            closeConfirm = true;
+        }
+    }
+}
+UnloadConfirm.clear = function() {
+    window.onbeforeunload = function() {
+    };
+}
+UnloadConfirm.set(MSG_UNLOAD); 

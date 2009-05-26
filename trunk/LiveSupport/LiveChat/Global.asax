@@ -4,6 +4,8 @@
 
     void Application_Start(object sender, EventArgs e) 
     {
+        LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = ConfigurationManager.AppSettings["SQLConnectionString"].ToString();       
+        
         //在应用程序启动时运行的代码
         System.Timers.Timer myTimer = new System.Timers.Timer(5000);
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);

@@ -1,6 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="_Default" Title="LiveSupport Inc: Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
  <!--
 
 POSTER PHOTO
@@ -27,6 +28,7 @@ CONTENT MAIN COLUMN
 
 -->
         <div id="content-main-two-column">
+     
             <h1>
                 Live Support, 先进的在线沟通平台</h1>
             <p>
@@ -55,6 +57,7 @@ CONTENT MAIN COLUMN
                         aliquam erat volutpat. Ut wisi enim ad minim veniam.</p>
                     <a href="Contact.aspx">read more</a><img class="arrow" src="images/arrow.gif" alt="" /></div>
                    -->
+
                 <div id="three-column-middle">
                     <a href="About.aspx">
                         <img src="images/home-photo-2.jpg" class="photo-border" alt="Enter Alt Text Here" /></a>
@@ -83,8 +86,20 @@ CONTENT SIDE COLUMN
             </script>
 
         </div>
-    </form>--%>
-        <script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&IcoLocation=5"></script>
+    </form>--%>   
+        <%--<script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=3"></script>--%>
+    
+<%--            <script type ="text/javascript" >
+                var DIV = document.createElement('div');
+                DIV.id = "lovexin12";
+                //DIV.innerHTML = '<a href="javascript://" onclick="openChat();"><img id="_imgLC" src="' + homeUrl + '/ProcessImage.ashx?aid=' + accountId + '&vid=' + visitorId + '&referrer=' + document.referrer + '&bannerstyle=' + bannerStyle + '" border="0" alt="Click here for live chat" /></a>';
+                DIV.innerHTML = "妮妮";
+                window.onload = function() {
+                    document.body.appendChild(DIV);
+                    }
+            </script>--%>
+            
+            
             <h3>
                 客服座席软件下载
             </h3>
