@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
-using LiveSupport.LiveSupportDAL.SqlProviders;
 using System.Data.SqlClient;
-
-namespace LiveSupport.SqlProviders
+using LiveSupport.LiveSupportDAL.Providers;
+namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
     /// <summary>
     /// 公司部门
     /// </summary>
-    public class SqlDepartmentProvider
+    public class SqlDepartmentProvider : ISqlDepartmentProvider
     {
         #region 添加部门
-        public static int AddDepartment(Department department)
+        public int AddDepartment(Department department)
         {
             try
             {
@@ -37,7 +36,7 @@ namespace LiveSupport.SqlProviders
         #endregion
 
         #region 验证公司是否存在部门
-        public static bool CheckAccountByDepartment(string accountId, string departmentName)
+        public bool CheckAccountByDepartment(string accountId, string departmentName)
         {
             string sql = string .Format("select * from LiveSupport_Department where AccountId='{0}' and DepartmentName='{1}'",accountId,departmentName);
             SqlDataReader sdr = DBHelper.GetReader(sql);
@@ -49,9 +48,9 @@ namespace LiveSupport.SqlProviders
 
         #endregion
 
-        private static SqlAccountProvider accountProvider = new SqlAccountProvider();
+        private SqlAccountProvider accountProvider = new SqlAccountProvider();
         #region 通过公司编号获得所有部门
-        public static List<Department> GetDepartmentByAccountId(string AccountId)
+        public List<Department> GetDepartmentByAccountId(string AccountId)
         {
             List<Department> list = new List<Department>();
             string sql = "select * from LiveSupport_Department where AccountId='"+AccountId+"'";
@@ -71,7 +70,7 @@ namespace LiveSupport.SqlProviders
         #endregion
 
         #region 修改部门信息
-        public static int UpdateDepartmentById(string departmentId, string DepartmentName)
+        public int UpdateDepartmentById(string departmentId, string DepartmentName)
         {
             try
             {
@@ -87,7 +86,7 @@ namespace LiveSupport.SqlProviders
         #endregion
 
         #region  删除部门
-        public static int DeleteDepartmentById(string departmentId)
+        public int DeleteDepartmentById(string departmentId)
         {
             try
             {
@@ -103,7 +102,7 @@ namespace LiveSupport.SqlProviders
         #endregion
 
         #region 通过部门编号获得部门
-        public static Department GetDepartmentById(string departmentId)
+        public Department GetDepartmentById(string departmentId)
         {
             string sql = "select * from LiveSupport_Department where DepartmentId='" + departmentId + "'";
             SqlDataReader sdr = DBHelper.GetReader(sql);

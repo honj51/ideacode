@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
+using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlVisitorProvider
+    public class SqlVisitorProvider : ISqlVisitorProvider
     {
         /// <summary>
         /// 跟据访客ID查询一行数据
         /// </summary>
         /// <param name="visitorId">访客ID</param>
         /// <returns>Visitor对象</returns>
-        public static Visitor GetVisitorById(string visitorId)
+        public Visitor GetVisitorById(string visitorId)
         {
             string sql = "select * from dbo.LiveChat_Visitor where visitorid='" + visitorId+"'";
             SqlDataReader data = null;
@@ -39,7 +40,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         ///新增一条访客信息
         /// </summary>
         /// <param name="visitor"></param>
-        public static void NewVisitor(Visitor visitor)
+        public void NewVisitor(Visitor visitor)
         {
             int isVIP = 0;
             if (visitor.IsVIP == false)

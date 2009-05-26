@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
-
+using LiveSupport.LiveSupportDAL.Providers;
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlCityProvider
+    public class SqlCityProvider : ISqlCityProvider
     {
         /// <summary>
         /// 跟据省份ID查询城市信息
         /// </summary>
         /// <param name="provinceId">省份ID</param>
         /// <returns>City集合</returns>
-        public static List<City> GetCityByProvinceId(int provinceId)
+        public  List<City> GetCityByProvinceId(int provinceId)
         {
             string sql = "select * from dbo.Portal_City where Pid=" + provinceId;
             List<City> city = new List<City>();

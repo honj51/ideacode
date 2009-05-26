@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
+using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlAccountProvider : LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider
+    public class SqlAccountProvider : ISqlAccountProvider
     {
         private static SqlAccountProvider _default;
 

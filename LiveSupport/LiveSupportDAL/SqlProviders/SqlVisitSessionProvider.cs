@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
+using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlVisitSessionProvider
+    public class SqlVisitSessionProvider : ISqlVisitSessionProvider
     {
 
-        public static void NewSession(VisitSession session)
+        public void NewSession(VisitSession session)
         {
             string sql = string.Format("INSERT INTO LiveChat_VisitSession "
            +"([SessionId]"
@@ -28,7 +29,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             DBHelper.ExecuteCommand(sql);
         }
 
-        public static List<VisitSession> GetVisitSessionByVisitor(string visitorId)
+        public List<VisitSession> GetVisitSessionByVisitor(string visitorId)
         {
             string sql = "select * from dbo.LiveChat_VisitSession where visitorid='" + visitorId + "'";
             List<VisitSession> li = new List<VisitSession>();
@@ -48,7 +49,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        public static VisitSession GetSessionById(string sessionId)
+        public VisitSession GetSessionById(string sessionId)
         {
             string sql = "select * from dbo.LiveChat_VisitSession where sessionid='" + sessionId + "'";
             SqlDataReader data = null;

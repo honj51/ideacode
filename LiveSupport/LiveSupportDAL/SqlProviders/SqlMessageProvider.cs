@@ -4,10 +4,11 @@ using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
 using System.Data;
+using LiveSupport.LiveSupportDAL.Providers;
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
 
-    public class SqlMessageProvider
+    public class SqlMessageProvider : ISqlMessageProvider
     {
         /// <summary>
         /// 查询会话中某时刻后添加的数据
@@ -15,7 +16,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="SessionId">会话ID</param>
         /// <param name="lastCheck">最后收到信息的时间</param>
         /// <returns>Message集合</returns>
-        public static List<Message> GetMessages(string SessionId, DateTime lastCheck)
+        public List<Message> GetMessages(string SessionId, DateTime lastCheck)
         {
             string sql = "select * from dbo.LiveChat_Message where chatid='" + SessionId + "'";
             sql += lastCheck == DateTime.MinValue ?  "": " and SentDate>'" + lastCheck+"'";
@@ -37,7 +38,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             return retList;
         }
 
-        public static void AddMessage(Message msg)
+        public void AddMessage(Message msg)
         {
             SqlConnection conn = DBHelper.Getconn();
             SqlCommand cmd = new SqlCommand("LiveChat_ChatMessagesAdd", conn);
@@ -80,7 +81,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="visitorId">会话ID</param>
         /// <param name="begin">开始时间</param>
         /// <param name="end">结束时间</param>
-        public static List<Message> GetHistoryChatMessage(string sessionId, DateTime begin, DateTime end)
+        public List<Message> GetHistoryChatMessage(string sessionId, DateTime begin, DateTime end)
         {
             string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}'and SentDate>='{1}'  and SentDate <= '{2}'", sessionId, begin, end);
             SqlDataReader data = null;
@@ -102,7 +103,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
 
         #region 通过ChatId获得聊天记录
-        public static List<Message> GetChatMessageByChatId(string chatId)
+        public List<Message> GetChatMessageByChatId(string chatId)
         {
             string sql = "select * from dbo.LiveChat_Message where ChatID='"+chatId+"'";
             SqlDataReader data = null;
@@ -125,7 +126,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region  通过ChatId删除所有聊天记录
-        public static int DeleteChatMessageByChatId(string chatId)
+        public int DeleteChatMessageByChatId(string chatId)
         {
             try
             {
