@@ -1,9 +1,10 @@
 ﻿using System;
+using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
     interface IVisitorProvider
     {
-        LiveSupport.LiveSupportModel.Visitor GetVisitorById(string visitorId);
-        void NewVisitor(LiveSupport.LiveSupportModel.Visitor visitor);
+        Visitor GetVisitorById(string visitorId);
+        void NewVisitor(Visitor visitor);
     }
 }

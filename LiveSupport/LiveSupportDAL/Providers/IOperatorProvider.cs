@@ -1,14 +1,15 @@
 ﻿using System;
+using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
     interface IOperatorProvider
     {
         int DeleteOperatorByid(string operatorId);
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.Operator> GetAllOperators();
-        System.Collections.Generic.List<LiveSupport.LiveSupportModel.Operator> GetOperatorByAccountId(string accountId);
-        LiveSupport.LiveSupportModel.Operator GetOperatorByLoginName(string loginName);
-        LiveSupport.LiveSupportModel.Operator GetOperatorByOperatorId(string operatorId);
-        void NewOperator(LiveSupport.LiveSupportModel.Operator op);
-        int UpdateOperator(LiveSupport.LiveSupportModel.Operator op);
+        System.Collections.Generic.List<Operator> GetAllOperators();
+        System.Collections.Generic.List<Operator> GetOperatorByAccountId(string accountId);
+        Operator GetOperatorByLoginName(string loginName);
+        Operator GetOperatorByOperatorId(string operatorId);
+        void NewOperator(Operator op);
+        int UpdateOperator(Operator op);
     }
 }
