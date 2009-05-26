@@ -98,7 +98,11 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["Password"])) password = (string)data["Password"];
             if (!Convert.IsDBNull(data["NickName"])) nickName = (string)data["NickName"];
             if (!Convert.IsDBNull(data["Email"])) email = (string)data["Email"];
-            if (!Convert.IsDBNull(data["IsAdmin"])) isAdmin = (bool)data["IsAdmin"];
+            if (!Convert.IsDBNull(data["IsAdmin"]))
+            {
+                IsAdmin=Convert.ToBoolean(data["IsAdmin"].ToString());
+            }
+            
             if (!Convert.IsDBNull(data["Status"])) status = (OperatorStatus) Enum.Parse((typeof(OperatorStatus)),data["Status"].ToString());
             if (!Convert.IsDBNull(data["AVChatStatus"])) aVChatStatus = (string)data["AVChatStatus"];
         }

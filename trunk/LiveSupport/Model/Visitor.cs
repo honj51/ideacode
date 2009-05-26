@@ -125,7 +125,7 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["VisitCount"])) visitCount = (int)data["VisitCount"];
             if (!Convert.IsDBNull(data["Company"])) company = (string)data["Company"];
             if (!Convert.IsDBNull(data["Remark"])) remark = (string)data["Remark"];
-            if (!Convert.IsDBNull(data["IsVIP"])) isVIP = (bool)data["IsVIP"];
+            if (!Convert.IsDBNull(data["IsVIP"])) isVIP =Convert.ToBoolean(data["IsVIP"]);
         }
     }
 
