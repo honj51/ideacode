@@ -5,6 +5,7 @@ using System.Web;
 using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.BLL
 {
@@ -13,9 +14,10 @@ namespace LiveSupport.BLL
     /// </summary>
     public class OperatorsManager
     {
+        private static IOperatorProvider Provider = new SqlOperatorProvider();
         public static int DeleteOperatorByid(string operatorId)
         {
-            return SqlOperatorProvider.DeleteOperatorByid(operatorId);
+            return Provider.DeleteOperatorByid(operatorId);
         }
         /// <summary>
         /// 增加Operator
@@ -23,7 +25,7 @@ namespace LiveSupport.BLL
         /// <param name="op"></param>
         public static void NewOperator(Operator op)
         {
-            SqlOperatorProvider.NewOperator(op);
+            Provider.NewOperator(op);
         }
         /// <summary>
         /// 根据公司ID查询所以该公司的客服人员
@@ -32,7 +34,7 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static List<Operator> GetOperatorByAccountId(string accountId)
         {
-            return SqlOperatorProvider.GetOperatorByAccountId(accountId);
+            return Provider.GetOperatorByAccountId(accountId);
         }
         /// <summary>
         /// 通过OperatorId获得Operator
@@ -41,13 +43,13 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static Operator GetOperatorByOperatorId(string operatorId)
         {
-            return SqlOperatorProvider.GetOperatorByOperatorId(operatorId);
+            return Provider.GetOperatorByOperatorId(operatorId);
         }
         //修改Operator
         public static bool UpdateOperator(Operator op)
         {
             int i = 0;
-            i = SqlOperatorProvider.UpdateOperator(op);
+            i = Provider.UpdateOperator(op);
             if (i != 0)
                 return true;
             else

@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
 using System.Diagnostics;
+using LiveSupport.LiveSupportDAL.Providers;
 
 /// <summary>
 ///MessageService 的摘要说明
 /// </summary>
 public class MessageService
-{ 
+{
+    private static IMessageProvider Provider = new SqlMessageProvider();
     /// <summary>
     /// 跟据对话id,和最后发送时间后面新添的消息
     /// </summary>
@@ -20,7 +22,7 @@ public class MessageService
     /// <returns></returns>
     public static List<Message> GetMessages(string sessionId,DateTime lastCheck)
     {
-      return  SqlMessageProvider.GetMessages(sessionId, lastCheck);
+      return  Provider.GetMessages(sessionId, lastCheck);
     }
     public static List<Message> GetMessages(string chatId, long lastCheck)
     {
@@ -28,7 +30,7 @@ public class MessageService
     }
     public static void AddMessage(Message msg)
     {
-        SqlMessageProvider.AddMessage(msg);
+        Provider.AddMessage(msg);
     }
     /// <summary>
     /// 获取聊天历史记录
@@ -39,7 +41,7 @@ public class MessageService
     /// <returns>消息集合</returns>
     public static List<Message> GetHistoryChatMessage(string sessionid, DateTime begin, DateTime end)
     {
-        return SqlMessageProvider.GetHistoryChatMessage(sessionid, begin, end);
+        return Provider.GetHistoryChatMessage(sessionid, begin, end);
     }
 
     public static List<Message> GetMessagesForChatPage(string chatId, long lastCheck)

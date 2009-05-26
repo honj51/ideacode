@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LiveSupport.LiveSupportDAL.SqlProviders;
+using LiveSupport.LiveSupportDAL.Providers;
 using LiveSupport.LiveSupportModel;
+using LiveSupport.LiveSupportDAL.SqlProviders;
 
 namespace LiveSupport.BLL
 {
     public class ChatManager
     {
+        private static IChatProvider Provider = new SqlChatProvider();
         #region 通过客服编号获得所有对象
         public static List<Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate)
         {
-            return SqlChatProvider.GetChatByOperatorId(operatorId, beginDate, endDate);
+            return GetChatByOperatorId(operatorId, beginDate, endDate);
         }
         #endregion
 
@@ -19,7 +21,7 @@ namespace LiveSupport.BLL
         public static bool DeleteChatById(string chatId)
         {
             int i = 0;
-            i = SqlChatProvider.DeleteChatById(chatId);
+            i = Provider.DeleteChatById(chatId);
             if (i != 0)
                 return true;
             else

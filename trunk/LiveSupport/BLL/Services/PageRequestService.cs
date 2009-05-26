@@ -10,15 +10,13 @@ using System.Web.UI.WebControls.WebParts;
 using LiveSupport.LiveSupportDAL.SqlProviders;
 using LiveSupport.LiveSupportModel;
 using System.Collections.Generic;
+using LiveSupport.LiveSupportDAL.Providers;
 /// <summary>
 ///PageRequestService 的摘要说明
 /// </summary>
 public class PageRequestService
 {
-    public PageRequestService()
-    {
-
-    }
+    private static IPageRequestProvider Provider = new SqlPageRequestProvider();
     /// <summary>
     /// 获取网站页面访问历史记录
     /// </summary>
@@ -28,7 +26,7 @@ public class PageRequestService
     /// <returns>Pagerequest集合</returns>
     public static List<PageRequest> GetHistoryPageRequests(string sessionId, DateTime begin, DateTime end)
     {
-        return SqlPageRequestProvider.GetHistoryPageRequests(sessionId, begin, end);
+        return Provider.GetHistoryPageRequests(sessionId, begin, end);
     }
     /// <summary>
     /// 添加一条页面访问记录
@@ -36,6 +34,6 @@ public class PageRequestService
     /// <param name="pageRequest"></param>
     public static void AddPageRequest(PageRequest pageRequest)
     {
-        SqlPageRequestProvider.AddPageRequest(pageRequest);
+        Provider.AddPageRequest(pageRequest);
     }
 }

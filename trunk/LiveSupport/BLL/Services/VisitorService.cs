@@ -8,6 +8,7 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using LiveSupport.LiveSupportDAL.Providers;
 
 
 /// <summary>
@@ -22,7 +23,7 @@ public class VisitorService
 
     private const int maxVisitorCountInMemory = 200;//定义最大值 
     private static List<Visitor> visitors = new List<Visitor>();
-
+    public static IVisitorProvider Provider = new SqlVisitorProvider();
     /// <summary>
     /// 查询一行访客信息跟据访客ID
     /// </summary>
@@ -42,7 +43,7 @@ public class VisitorService
         }
         if (v == null)
         {
-            v = LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.GetVisitorById(visitorId);
+            v = Provider.GetVisitorById(visitorId);
             if (v != null)
             {
                 v.CurrentSession = null;
@@ -58,12 +59,12 @@ public class VisitorService
     /// </summary>
     /// <param name="accountId">公司ID</param>
     /// <returns></returns>
-    public static List<Visitor> GetAllOnlineVisitors(int accountId)
+    public static List<Visitor> GetAllOnlineVisitors(string accountId)
     {
         List<Visitor> onlineVisitors = new List<Visitor>();
         foreach (Visitor item in visitors)
         {
-            if (item.CurrentSession != null && item.CurrentSession.Status != VisitSessionStatus.Leave)
+            if (item.CurrentSession != null && item.CurrentSession.Status != VisitSessionStatus.Leave && item.AccountId == accountId)
             {
                 onlineVisitors.Add(item);
             }
@@ -103,7 +104,7 @@ public class VisitorService
         Debug.WriteLine(string.Format("NewVisitor : {0}", visitor.ToString()));
         if (GetVisitor(visitor.VisitorId) == null)
         {
-            LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitorProvider.NewVisitor(visitor);
+            Provider.NewVisitor(visitor);
             visitors.Add(visitor);
         }
         else
@@ -114,7 +115,7 @@ public class VisitorService
         // 删除多出的Visitor
         if (visitors.Count > maxVisitorCountInMemory)
         {
-            for (int i = visitors.Count; i > 0; i--)
+            for (int i = visitors.Count-1; i > 0; i--)
             {
                 if (visitors[i].CurrentSession.Status == VisitSessionStatus.Leave)
                 {
