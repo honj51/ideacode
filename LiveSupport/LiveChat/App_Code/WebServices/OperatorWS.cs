@@ -153,7 +153,7 @@ public class OperatorWS : System.Web.Services.WebService
     /// <returns></returns>
     [SoapHeader("Authentication")]
     [WebMethod]
-    public List<Visitor> GetAllVisitors(int accountId)
+    public List<Visitor> GetAllVisitors(string accountId)
     {
         checkAuthentication();
         return VisitorService.GetAllOnlineVisitors(accountId);
