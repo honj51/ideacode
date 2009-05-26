@@ -8,6 +8,7 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using LiveSupport.LiveSupportDAL.Providers;
 /// <summary>
 ///VisitSessionService 的摘要说明
 /// </summary>
@@ -24,8 +25,14 @@ public class VisitSessionService
         public DateTime LastHitTime;
     }
     private static List<VisitSessionHit> sessions = new List<VisitSessionHit>();
-    private const int maxVisitorSessionCountInMemory = 200;//定义最大值 
 
+    public static List<VisitSessionHit> Sessions
+    {
+        get { return VisitSessionService.sessions; }
+    }
+
+    private const int maxVisitorSessionCountInMemory = 200;//定义最大值 
+    public static IVisitSessionProvider Provider = new SqlVisitSessionProvider();
     /// <summary>
     /// 保存一条新访客会话
     /// </summary>
@@ -35,19 +42,19 @@ public class VisitSessionService
         Debug.WriteLine(string.Format("NewSession : {0}", session.ToString()));
 
     //    if (sessions.Find(s => s.Session.SessionId == session.SessionId) != null)
-            foreach (VisitSessionHit item in sessions)
+        foreach (VisitSessionHit item in sessions)
+        {
+            if (item.Session.SessionId == session.SessionId)
             {
-                if (item.Session.SessionId == session.SessionId)
-                {
-                    Debug.WriteLine("Session Found, will not add to DB");
-                    return;
-                }
+                Debug.WriteLine("Session Found, will not add to DB");
+                return;
             }
+        }
 
         sessions.Add(new VisitSessionHit(session));
         if (sessions.Count > maxVisitorSessionCountInMemory)
         {
-            for (int i = sessions.Count; i > 0; i--)
+            for (int i = sessions.Count-1; i >= 0; i--)
             {
                 if (sessions[i].Session.Status ==VisitSessionStatus.Leave)
                 {
@@ -56,7 +63,7 @@ public class VisitSessionService
                 }
             }
         }
-        LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.NewSession(session);
+        Provider.NewSession(session);
     }
 
     /// <summary>
@@ -74,7 +81,7 @@ public class VisitSessionService
                 return item.Session;
             }
         }
-        return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetSessionById(sessionId);
+        return Provider.GetSessionById(sessionId);
     }
     /// <summary>
     /// 查询在这个时候之后新加的访客会话信息
@@ -119,10 +126,12 @@ public class VisitSessionService
         }
         return ss;
     }
-
+    /// <summary>
+    /// 邀请客服对话
+    /// </summary>
+    /// <param name="chatRequest"></param>
     public static void RequestChat(Chat chatRequest)
     {
-     //   VisitSessionHit h = sessions.Find(s => s.Session.SessionId == chatRequest.ChatId);
         foreach (VisitSessionHit item in sessions)
         {
             if (item.Session.SessionId == chatRequest.ChatId)
@@ -177,6 +186,6 @@ public class VisitSessionService
     /// <returns></returns>
     public static List<VisitSession> GetVisitSessionByVisitor(string visitorId)
     {
-       return SqlVisitSessionProvider.GetVisitSessionByVisitor(visitorId);
+        return Provider.GetVisitSessionByVisitor(visitorId);
     }
 }

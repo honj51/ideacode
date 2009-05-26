@@ -10,13 +10,12 @@ using LiveSupport.LiveSupportDAL.Providers;
 /// </summary>
 public static class AccountService
 {
-    public static ISqlAccountProvider Provider;
+    public static IAccountProvider Provider = new SqlAccountProvider();
 
     public static void Init()
-    {
+    {   
         accounts = Provider.GetAllAccounts();
     }
-   
     private static List<Account> accounts = new List<Account>();
     /// <summary>
     /// 根据登录名查询一很记录

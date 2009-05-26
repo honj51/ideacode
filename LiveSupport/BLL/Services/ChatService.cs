@@ -7,11 +7,13 @@ using LiveSupport.LiveSupportModel;
 using System.Text;
 using System.Web.Mail;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using LiveSupport.LiveSupportDAL.Providers;
 
 
 
 public class ChatService
 {
+    #region const int 定义
     public const int AcceptChatRequestReturn_OK = 0;
     public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;
     public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;
@@ -19,11 +21,9 @@ public class ChatService
     public const int ResetOperatorPassword_OK = 0;
     public const int ResetOperatorPassword_PermissionDenied=-1;
     public const int ResetOperatorPassword_OtheError=-2;
-
-    static ChatService()
-    { 
-    }
-    private static List<Chat> chats = new List<Chat>();
+    #endregion 
+    public static IChatProvider Provider = new SqlChatProvider();
+    public static List<Chat> chats = new List<Chat>();
 
     public static bool HasNewMessage(string chatId, long lastCheck)
     {
@@ -179,7 +179,7 @@ public class ChatService
         VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Visiting;
         chat.CloseTime = DateTime.Now;
         chat.CloseBy = closeBy;
-        if (SqlChatProvider.CloseChat(chat) > 0)
+        if (Provider.CloseChat(chat) > 0)
         {
             Message m = new Message();
             m.ChatId =chatId;
@@ -260,7 +260,10 @@ public class ChatService
         }
         return null;
     }
-
+    /// <summary>
+    /// 访客邀请对话
+    /// </summary>
+    /// <param name="chatRequest"></param>
     public static void ChatPageRequestChat(Chat chatRequest)
     {
         Chat ch = null;
@@ -279,7 +282,7 @@ public class ChatService
         else
         {
             chats.Add(chatRequest);
-            SqlChatProvider.AddChat(chatRequest);
+            Provider.AddChat(chatRequest);
         }
 
         VisitSession s = VisitSessionService.GetSessionById(chatRequest.ChatId);
@@ -314,7 +317,7 @@ public class ChatService
             chat.VisitorId = visitorId;
             chat.OperatorId = operatorId;
             chats.Add(chat);
-            SqlChatProvider.AddChat(chat);
+            Provider.AddChat(chat);
         }
          
 

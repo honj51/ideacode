@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportDAL.SqlProviders;
 using LiveSupport.LiveSupportModel;
+using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.BLL
 {
     public class AddressMessager
     {
+        private static IProvinceProvider ProvinceProvider = new SqlProvinceProvider();
+        private static ICityProvider CityProvider = new SqlCityProvider();
+
         /// <summary>
         /// 获得所有省份
         /// </summary>
         /// <returns></returns>
         public static List<Province> GetProvinceAll()
         {
-            return SqlProvinceProvider.GetAllProvince();
 
+            return ProvinceProvider.GetAllProvince();
         }
 
         /// <summary>
@@ -25,7 +29,7 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static List<City> GetCityByProvinceId(int provinceId)
         {
-            return SqlCityProvider.GetCityByProvinceId(provinceId);
+            return CityProvider.GetCityByProvinceId(provinceId);
         }
         /// <summary>
         ///   通过省份名查询城市信息
@@ -34,7 +38,7 @@ namespace LiveSupport.BLL
         /// <returns>Province对象</returns>
         public static Province GetProvinceByProvinceName(string provinceName)
         {
-            return SqlProvinceProvider.GetProvinceByProvinceName(provinceName);
+            return ProvinceProvider.GetProvinceByProvinceName(provinceName);
         }
         /// <summary>
         /// //通过省份名字找所有城市
@@ -44,7 +48,7 @@ namespace LiveSupport.BLL
         public static List<City> GetCityByProvinceName(string provinceName)
         {
             Province p = GetProvinceByProvinceName(provinceName);
-            return  SqlCityProvider.GetCityByProvinceId(p.Id);
+            return  CityProvider.GetCityByProvinceId(p.Id);
         }
 
 

@@ -5,20 +5,23 @@ using System.Web.Configuration;
 using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using LiveSupport.LiveSupportDAL.Providers;
 
 /// <summary>
 /// Summary description for OperatorService
 /// </summary>
 public static class OperatorService
 {
-    static OperatorService()
-    {
-        operators = SqlOperatorProvider.GetAllOperators();
-    }
+    private static IOperatorProvider Provider = new SqlOperatorProvider();
 
     public static List<Operator> GetAllOperators()
     {
         return operators;
+    }
+
+    public static void Init()
+    {
+        operators = Provider.GetAllOperators();
     }
 
     private static List<Operator> operators = new List<Operator>();
@@ -39,7 +42,7 @@ public static class OperatorService
         }
         if (op == null)
         {
-            foreach (Operator item in SqlOperatorProvider.GetAllOperators())
+            foreach (Operator item in Provider.GetAllOperators())
             {
                 if (item.OperatorId == operatorId)
                 {
@@ -75,7 +78,7 @@ public static class OperatorService
             }
             if (op == null)
             {
-                foreach (Operator item in SqlOperatorProvider.GetAllOperators())
+                foreach (Operator item in Provider.GetAllOperators())
                 {
                     if (item.AccountId == account.AccountId && item.LoginName == operatorName && item.Password == password)
                     {
@@ -107,7 +110,7 @@ public static class OperatorService
         }
         if (op == null)
         {
-            foreach (Operator item in SqlOperatorProvider.GetAllOperators())
+            foreach (Operator item in Provider.GetAllOperators())
             {
                 if (item.OperatorId == operatorId)
                 {
@@ -147,7 +150,7 @@ public static class OperatorService
          }
          if (op == null)
          {
-             foreach (Operator item in SqlOperatorProvider.GetAllOperators())
+             foreach (Operator item in Provider.GetAllOperators())
              {
                  if (item.OperatorId == operatorId)
                  {
@@ -177,7 +180,7 @@ public static class OperatorService
         }
         if (op == null)
         {
-            foreach (Operator item in  SqlOperatorProvider.GetAllOperators())
+            foreach (Operator item in Provider.GetAllOperators())
             {
                 if (item.OperatorId == operatorId)
                 {
@@ -206,7 +209,7 @@ public static class OperatorService
     /// <param name="op">Operator对象</param>
     public static void UpdateOperator(Operator op)
     {
-        SqlOperatorProvider.UpdateOperator(op);
+        Provider.UpdateOperator(op);
     }
     /// <summary>
     /// 判断用用户名是否存在
@@ -230,7 +233,7 @@ public static class OperatorService
         else
         {
             op = null;
-            op=SqlOperatorProvider.GetOperatorByLoginName(loginName);
+            op = Provider.GetOperatorByLoginName(loginName);
             if (op != null)
             {
                 return op;
