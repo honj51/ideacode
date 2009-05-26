@@ -1,7 +1,7 @@
 ﻿using System;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface ISqlChatProvider
+    interface IChatProvider
     {
         void AddChat(LiveSupport.LiveSupportModel.Chat chatRequest);
         int CloseChat(LiveSupport.LiveSupportModel.Chat chat);

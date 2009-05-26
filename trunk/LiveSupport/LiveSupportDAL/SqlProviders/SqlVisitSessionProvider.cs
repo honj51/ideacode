@@ -7,7 +7,7 @@ using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlVisitSessionProvider : ISqlVisitSessionProvider
+    public class SqlVisitSessionProvider : IVisitSessionProvider
     {
 
         public void NewSession(VisitSession session)

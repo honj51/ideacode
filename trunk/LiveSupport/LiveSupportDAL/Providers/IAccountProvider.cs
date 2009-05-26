@@ -1,7 +1,7 @@
 ﻿using System;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    public interface ISqlAccountProvider
+    public interface IAccountProvider
     {
         int AddAccount(LiveSupport.LiveSupportModel.Account account);
         LiveSupport.LiveSupportModel.Account CheckAccountByLoginIdAndPwd(string loginName, string loginPwd);

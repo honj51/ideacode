@@ -1,7 +1,7 @@
 ﻿using System;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface ISqlOperatorProvider
+    interface IOperatorProvider
     {
         int DeleteOperatorByid(string operatorId);
         System.Collections.Generic.List<LiveSupport.LiveSupportModel.Operator> GetAllOperators();

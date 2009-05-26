@@ -7,7 +7,7 @@ using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlAccountProvider : ISqlAccountProvider
+    public class SqlAccountProvider : IAccountProvider
     {
         private static SqlAccountProvider _default;
 
@@ -152,35 +152,6 @@ account.AccountId, account.LoginName, account.Password, account.NickName, accoun
             }
             return account;
         }
-
-        #region ISqlAccountProvider 成员
-
-        int LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.AddAccount(Account account)
-        {
-            throw new NotImplementedException();
-        }
-
-        Account LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
-        {
-            throw new NotImplementedException();
-        }
-
-        Account LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.GetAccountByAccountId(string accountId)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Account> LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.GetAllAccounts()
-        {
-            throw new NotImplementedException();
-        }
-
-        int LiveSupport.LiveSupportDAL.Providers.ISqlAccountProvider.UpdateAccount(Account account)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }
    

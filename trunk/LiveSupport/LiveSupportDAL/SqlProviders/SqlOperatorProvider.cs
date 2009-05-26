@@ -7,7 +7,7 @@ using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlOperatorProvider : ISqlOperatorProvider
+    public class SqlOperatorProvider : IOperatorProvider
     {
         /// <summary>
         /// 取所有的客服信息

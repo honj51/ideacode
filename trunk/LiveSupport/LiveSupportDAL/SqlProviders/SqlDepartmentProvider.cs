@@ -9,7 +9,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
     /// <summary>
     /// 公司部门
     /// </summary>
-    public class SqlDepartmentProvider : ISqlDepartmentProvider
+    public class SqlDepartmentProvider : IDepartmentProvider
     {
         #region 添加部门
         public int AddDepartment(Department department)

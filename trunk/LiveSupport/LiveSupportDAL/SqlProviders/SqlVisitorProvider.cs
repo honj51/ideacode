@@ -7,7 +7,7 @@ using LiveSupport.LiveSupportDAL.Providers;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
-    public class SqlVisitorProvider : ISqlVisitorProvider
+    public class SqlVisitorProvider : IVisitorProvider
     {
         /// <summary>
         /// 跟据访客ID查询一行数据
