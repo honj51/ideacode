@@ -147,11 +147,9 @@
     <!--头部--->
       <div id="content-main-three-column" style="text-align:left;">
         <!--内容-->
-      <TABLE style=" width:510px; text-align:left;" cellSpacing=1 cellPadding=0 border=1>
+      <TABLE style=" width:510px; text-align:left;" cellSpacing=1 cellPadding=0 
   <TBODY>
-  <TR>
-    <TD colSpan=3>客服图标代码</TD></TR>
-  <tr><td>客服图标风格：</td><td valign="top"><select id="IcoStyle" onchange="showIcoImg(this);">
+  <tr><td>客服图标风格：</td><td valign="middle"><select id="IcoStyle" onchange="showIcoImg(this);">
     <option value="0">风格一</option>
     <option value="1">风格二</option>
     <option value="2">风格三</option>
@@ -161,28 +159,30 @@
           <img name="IcoImage" src="Images/2-2.gif" style="height: 70px; width: 160px; display:none;" />
           <img name="IcoImage" src="Images/3-2.gif" style="height: 70px; display:none; width: 160px;" />
           <img name="IcoImage" src="Images/4-2.gif" style="height: 70px; width:160px; display:none;" /></div></td></tr>
-  <tr><td>主动邀请风格：</td><td valign="top">
+  <tr><td>主动邀请风格：</td><td valign="middle">
   <select name="AutoStyle" onchange='showAutoImg(this)'>
     <option value="0">风格一</option>
     <option value="1">风格二</option>
     <option value="2">风格三</option>
     <option value="3">风格四</option>
   </select></td><td align="right">
-          <img name="AutoImage" src="Images/1-3.gif" style="width: 340px; height: 127px; display:block;" />
-          <img name="AutoImage" src="Images/2-3.gif" style="width: 340px; height: 127px; display:none;" />
-          <img name="AutoImage" src="Images/3-3.gif" style="width: 340px; height: 127px; display:none;" />
-          <img name="AutoImage" src="Images/4-3.gif" style="width: 340px; height: 127px; display:none;" />
+          <img name="AutoImage" src="Images/1-3.gif" 
+              style="width: 161px; height: 53px; display:block;" />
+          <img name="AutoImage" src="Images/2-3.gif" style="width: 161px; height: 53px; display:none;" />
+          <img name="AutoImage" src="Images/3-3.gif" style="width: 161px; height: 53px; display:none;" />
+          <img name="AutoImage" src="Images/4-3.gif" style="width: 161px; height: 53px; display:none;" />
           </td></tr>
-   <tr><td>聊天页面风格：</td><td valign="top"> <select name="ChatStyle" onchange='showChatImage(this);'>
+   <tr><td>聊天页面风格：</td><td valign="middle"> <select name="ChatStyle" onchange='showChatImage(this);'>
     <option value="0">风格一</option>
     <option value="1">风格二</option>
     <option value="2">风格三</option>
     <option value="3">风格四</option>
   </select></td><td align="right">
-         <img name="ChatImage" src="Images/1-1.gif" style="height: 229px; width: 337px; display:block;"/>
-         <img name="ChatImage" src="Images/2-1.gif" style="height: 229px; width: 337px; display:none; "/>
-         <img name="ChatImage" src="Images/3-1.gif" style="height: 229px; width: 337px; display:none; "/>
-         <img name="ChatImage" src="Images/4-1.gif" style="height: 229px; width: 337px; display:none; "/>
+         <img name="ChatImage" src="Images/1-1.gif" 
+               style="height: 87px; width: 164px; display:block;"/>
+         <img name="ChatImage" src="Images/2-1.gif" style="height: 87px; width: 164px; display:none; "/>
+         <img name="ChatImage" src="Images/3-1.gif" style="height: 87px; width: 164px; display:none; "/>
+         <img name="ChatImage" src="Images/4-1.gif" style="height: 87px; width: 164px; display:none; "/>
   </td></tr>
   </tr>
     <TD >图标位置：</TD>
