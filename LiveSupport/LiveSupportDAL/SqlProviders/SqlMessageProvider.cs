@@ -10,6 +10,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 
     public class SqlMessageProvider : IMessageProvider
     {
+
         /// <summary>
         /// 查询会话中某时刻后添加的数据
         /// </summary>
