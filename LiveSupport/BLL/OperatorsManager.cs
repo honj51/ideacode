@@ -19,14 +19,18 @@ namespace LiveSupport.BLL
         {
             return Provider.DeleteOperatorByid(operatorId);
         }
-        /// <summary>
-        /// 增加Operator
-        /// </summary>
-        /// <param name="op"></param>
-        public static void NewOperator(Operator op)
+
+        #region 增加Operator
+        public static bool NewOperator(Operator op)
         {
-            Provider.NewOperator(op);
+            int i = 0;
+            i=Provider.NewOperator(op);
+            if (i != 0)
+                return true;
+            else
+                return false;
         }
+        #endregion
         /// <summary>
         /// 根据公司ID查询所以该公司的客服人员
         /// </summary>
