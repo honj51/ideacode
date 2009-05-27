@@ -87,7 +87,7 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["Source"])) source = (string)data["Source"];
             if (!Convert.IsDBNull(data["Destination"])) destination = (string)data["Destination"];
             if (!Convert.IsDBNull(data["Text"])) text = (string)data["Text"];
-            if (!Convert.IsDBNull(data["SentDate"])) sentDate = (DateTime)data["SentDate"];
+            if (!Convert.IsDBNull(data["SentDate"])) sentDate = new DateTime((long)data["SentDate"]);
             if (!Convert.IsDBNull(data["Type"])) type = (MessageType)Enum.Parse(typeof(MessageType), data["Type"].ToString());
 
         }
