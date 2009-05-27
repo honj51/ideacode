@@ -169,7 +169,8 @@ public partial class Chat : System.Web.UI.Page
                             litChat.Text += string.Format("<div id='chatTitle'><strong>ฤ๚หต&nbsp;&nbsp;{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].SentDate.ToString("hh:mm:ss"), messages[i].Text);
                         }
                         // TODO: is this correct?
-                        lastCheck = messages[i].SentDate.Ticks;
+                        lastCheck = Math.Max(lastCheck, messages[i].SentDate.Ticks);
+                        //lastCheck = messages[i].SentDate.Ticks;
                     }
                     // set the lastId
                     Response.Cookies[chatId + "_lastCheck"].Value = lastCheck.ToString();
