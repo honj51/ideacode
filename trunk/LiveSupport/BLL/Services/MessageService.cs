@@ -13,7 +13,7 @@ using LiveSupport.LiveSupportDAL.Providers;
 /// </summary>
 public class MessageService
 {
-    private static IMessageProvider Provider = new SqlMessageProvider();
+    public static IMessageProvider Provider = new SqlMessageProvider();
     /// <summary>
     /// 跟据对话id,和最后发送时间后面新添的消息
     /// </summary>
