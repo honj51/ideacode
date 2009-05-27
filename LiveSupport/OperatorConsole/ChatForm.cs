@@ -61,7 +61,7 @@ namespace LiveSupport.OperatorConsole
         
         OperatorWS ws = new OperatorWS();
         private VisitSession chatSession;
-        private long lastCheckTime;
+        private long lastCheckTime=DateTime.Now.Ticks;
         private List<Operator> onlineOperators=new List<Operator>();
 
         public List<Operator> OnlineOperators
@@ -84,16 +84,17 @@ namespace LiveSupport.OperatorConsole
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
-            if (!this.IsDisposed && receiveMessage)
+          
+            if (!this.IsDisposed && receiveMessage&&message.SentDate.Ticks>lastCheckTime)
             {
                 //WriteMessage(message.Text, message.Source);
                 if (message.Type == MessageType.SystemMessage_ToBoth || message.Type == MessageType.SystemMessage_ToOperator)
                 {
-                    wb.Document.Write(string.Format("<span style=\"color: #FF9933\">{0}</span><br />", message.Text));
+                    wb.Document.Write(string.Format("<span style=\"color: #FF9933; FONT-SIZE: 14px\">{0}</span><br />", message.Text + "&nbsp;&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString()));
                 }
                 else
                 {
-                    wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", message.Source, message.Text));
+                    wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} </span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString(), message.Text));
                 }
 
                 wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
@@ -251,7 +252,7 @@ namespace LiveSupport.OperatorConsole
                 msg.ChatId = chatSession.SessionId;                
                 msg.SentDate = DateTime.Now;
 
-                wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", "System", "The operator has left the chat session..."));
+                wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} </span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", "System", "The operator has left the chat session..."));
                
                //ws.AddMessage(msg);
 
@@ -288,18 +289,13 @@ namespace LiveSupport.OperatorConsole
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
 
             ws.SendMessage(msg);
-            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From, message));
+            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;&nbsp;" + msg.SentDate, message));
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
             //msg.Type = MessageType_ToAll;//*	
             //ws.AddMessage(msg);
         }
 
-        //private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        //{ 
-        //    if(e.Node.Nodes.Count<0)
-        //      this.txtMsg.Text=this.treeView1.SelectedNode.Text.ToString();
-        //    this.txtMsg.Focus();
-        //}
+      
 
         /// <summary>
         /// 截图

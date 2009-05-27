@@ -64,7 +64,7 @@ namespace LiveSupport.OperatorConsole
             lblMessage.Text = "正在登录...";
             lblMessage.ForeColor = Color.Red;
             lblMessage.SetBounds(221,22, 25, 10);
-           
+            pictureBox1.Show();
             login();
             Properties.Settings.Default.Save(); 
            
@@ -95,8 +95,9 @@ namespace LiveSupport.OperatorConsole
             {
 
                 Trace.WriteLine("Login异常: " + e.Message);
-                pictureBox1.Hide();
-                lblMessage.Text =  "连接网络失败";
+                
+                lblMessage.Text = "连接网络失败";
+                MessageBox.Show(e.Message);
                 txtUserName.Enabled = true;
                 txtOpName.Enabled = true;
                 txtOpPassword.Enabled = true;
