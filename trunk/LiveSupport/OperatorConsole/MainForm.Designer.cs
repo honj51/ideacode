@@ -797,7 +797,7 @@ namespace LiveSupport.OperatorConsole
             this.inviteToolStripMenuItem.Name = "inviteToolStripMenuItem";
             this.inviteToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.inviteToolStripMenuItem.Text = "ÑûÇë¶Ô»°";
-            this.inviteToolStripMenuItem.Click += new System.EventHandler(this.inviteToolStripMenuItem_Click);
+            this.inviteToolStripMenuItem.Click += new System.EventHandler(this.inviteToolStripButton_Click);
             // 
             // acceptToolStripMenuItem
             // 
