@@ -20,7 +20,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public List<Message> GetMessages(string SessionId, DateTime lastCheck)
         {
             string sql = "select * from dbo.LiveChat_Message where chatid='" + SessionId + "'";
-            sql += lastCheck == DateTime.MinValue ?  "": " and SentDate>'" + lastCheck+"'";
+            sql += lastCheck == DateTime.MinValue ?  "": " and SentDate>'" + lastCheck.Ticks+"'";
+            sql += "order by SentDate";
             SqlDataReader data = null;
             List<Message> retList = new List<Message>();
             try
@@ -53,7 +54,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 cmd.Parameters.Add("@Source", SqlDbType.Char, 50).Value = msg.Source;
                 cmd.Parameters.Add("@Destination", SqlDbType.Char, 50).Value = msg.Destination;
                 cmd.Parameters.Add("@Text", SqlDbType.Char, 50).Value = msg.Text;
-                cmd.Parameters.Add("@SentDate", SqlDbType.Char, 50).Value = msg.SentDate;
+                cmd.Parameters.Add("@SentDate", SqlDbType.BigInt).Value = msg.SentDate.Ticks;
                 cmd.Parameters.Add("@Type", SqlDbType.Char, 50).Value = msg.Type.ToString() ;
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -84,7 +85,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="end">结束时间</param>
         public List<Message> GetHistoryChatMessage(string sessionId, DateTime begin, DateTime end)
         {
-            string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}'and SentDate>='{1}'  and SentDate <= '{2}'", sessionId, begin, end);
+            string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}'and SentDate>='{1}'  and SentDate <= '{2}'", sessionId, begin.Ticks, end.Ticks);
             SqlDataReader data = null;
             List<Message> retList = new List<Message>();
             try
