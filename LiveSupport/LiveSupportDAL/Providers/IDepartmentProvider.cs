@@ -2,7 +2,7 @@
 using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface IDepartmentProvider
+    public interface IDepartmentProvider
     {
         int AddDepartment(Department department);
         bool CheckAccountByDepartment(string accountId, string departmentName);

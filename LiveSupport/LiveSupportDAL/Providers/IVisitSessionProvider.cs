@@ -2,7 +2,7 @@
 using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface IVisitSessionProvider
+    public interface IVisitSessionProvider
     {
         VisitSession GetSessionById(string sessionId);
         System.Collections.Generic.List<VisitSession> GetVisitSessionByVisitor(string visitorId);

@@ -2,7 +2,7 @@
 using LiveSupport.LiveSupportModel;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
-    interface IVisitorProvider
+    public interface IVisitorProvider
     {
         Visitor GetVisitorById(string visitorId);
         void NewVisitor(Visitor visitor);
