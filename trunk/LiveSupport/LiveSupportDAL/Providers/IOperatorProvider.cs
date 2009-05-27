@@ -9,7 +9,7 @@ namespace LiveSupport.LiveSupportDAL.Providers
         System.Collections.Generic.List<Operator> GetOperatorByAccountId(string accountId);
         Operator GetOperatorByLoginName(string loginName);
         Operator GetOperatorByOperatorId(string operatorId);
-        void NewOperator(Operator op);
+        int NewOperator(Operator op);
         int UpdateOperator(Operator op);
     }
 }
