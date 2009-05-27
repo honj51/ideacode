@@ -21,37 +21,46 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             
         }
 
-        /// <summary>
-        /// 添加一条新的公司帐号
-        /// </summary>
-        /// <param name="account">account对象</param>
+        
+        #region 添加一条新的公司帐号
         public int AddAccount(Account account)
         {
-            string sql = string.Format(
-  "INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account]"
-  + " ([AccountId]"
-  + " ,[LoginName]"
-  + " ,[Password]"
-  + " ,[NickName]"
-  + " ,[CompanyName]"
-  + " ,[Industry]"
-  + ",[Email]"
-  + " ,[ContactName]"
-  + " ,[Phone]"
-  + " ,[URL]"
-  + ",[Domain]"
-  + " ,[OperatorCount]"
-  + " ,[Province]"
-  + " ,[City]"
-  + " ,[RegisterDate]"
-  + " ,[Remark]"
-  + " ,[PaymentId])"
-+ " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},'{12}','{13}','{14}','{15}','{16}')",
-account.AccountId, account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId);
-            return DBHelper.ExecuteCommand(sql); 
+            bool b = new SqlAccountProvider().CheckCompanyByloginName(account.LoginName);
+            if (b)
+            {
+                string sql = string.Format(
+                 "INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account]"
+                  + " ([AccountId]"
+                  + " ,[LoginName]"
+                  + " ,[Password]"
+                  + " ,[NickName]"
+                  + " ,[CompanyName]"
+                  + " ,[Industry]"
+                  + ",[Email]"
+                  + " ,[ContactName]"
+                  + " ,[Phone]"
+                  + " ,[URL]"
+                  + ",[Domain]"
+                  + " ,[OperatorCount]"
+                  + " ,[Province]"
+                  + " ,[City]"
+                  + " ,[RegisterDate]"
+                  + " ,[Remark]"
+                  + " ,[PaymentId])"
+                  + " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},'{12}','{13}','{14}','{15}','{16}')",
+                  account.AccountId, account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId);
+                return DBHelper.ExecuteCommand(sql);
+            }
+            else
+            {
+                return 0;
+            }
+
 
         }
+        #endregion
 
+        #region 获得所有公司
         public List<Account> GetAllAccounts()
         {
 
@@ -68,12 +77,10 @@ account.AccountId, account.LoginName, account.Password, account.NickName, accoun
             r = null;
             return accounts;
         }
-        /// <summary>
-        /// 登录
-        /// </summary>
-        /// <param name="loginId"></param>
-        /// <param name="loginPwd"></param>
-        /// <returns></returns>
+        #endregion
+
+
+        #region 登录
         public Account CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
         {
             string sql = string.Format("select * from dbo.LiveSupport_Account where LoginName='{0}' and Password='{1}'", loginName, loginPwd);
@@ -96,11 +103,10 @@ account.AccountId, account.LoginName, account.Password, account.NickName, accoun
             }
             return account;
         }
-        /// <summary>
-        /// 据据AccountID更新数据
-        /// </summary>
-        /// <param name="account"></param>
-        /// <returns></returns>
+        #endregion
+
+
+        #region 据据AccountID更新数据
         public int UpdateAccount(Account account)
         {
             string sql = string.Format(
@@ -125,11 +131,10 @@ account.AccountId, account.LoginName, account.Password, account.NickName, accoun
                , account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId,account.AccountId);
            return DBHelper.ExecuteCommand(sql);
         }
-        /// <summary>
-        /// 据据accountId查询一行数据
-        /// </summary>
-        /// <param name="accountId">accountId</param>
-        /// <returns>account对象</returns>
+        #endregion
+
+
+        #region 据据accountId查询一行数据
         public Account GetAccountByAccountId(string accountId)
         {
             string sql = string.Format("select * from [LiveSupport].[dbo].[LiveSupport_Account] where  AccountId='{0}'",accountId);
@@ -152,6 +157,38 @@ account.AccountId, account.LoginName, account.Password, account.NickName, accoun
             }
             return account;
         }
+        #endregion
+
+        #region 判断一个公司是否存在此用户名
+        public bool CheckCompanyByloginName(string LoginName)
+        {
+            string sql = string.Format("select * from LiveSupport_Account where LoginName='{0}'", LoginName);
+            SqlDataReader data = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    data.Close();
+                    data.Dispose();
+                    data = null;
+                    return false;
+                }
+                else
+                {
+                    data.Close();
+                    data.Dispose();
+                    data = null;
+                    return true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion
+ 
     }
 }
    

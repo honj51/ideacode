@@ -37,6 +37,12 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="op">Operator对象</param>
         public int UpdateOperator(Operator op)
         {
+            int isAdmin = 0;
+            if (op.IsAdmin == false)
+                isAdmin = 0;
+            else
+                isAdmin = 1;
+
             string sql = string.Format(
              "UPDATE [LiveSupport].[dbo].[LiveChat_Operator]"
              + " SET [AccountId] = '{0}'"
@@ -49,8 +55,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
              + " ,[AVChatStatus] = '{7}'"
              + " ,[DepartmentId] = '{8}'"
              + " WHERE OperatorId='{9}'"
-             , op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, op.IsAdmin, op.Status, op.AVChatStatus,op.Department.DepartmentId,op.OperatorId);
+             , op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, isAdmin, op.Status, op.AVChatStatus, op.Department.DepartmentId, op.OperatorId);
             return DBHelper.ExecuteCommand(sql);
+ 
         }
         /// <summary>
         /// 判断用用户名是否存在
@@ -94,23 +101,37 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// 添加一条客服信息
         /// </summary>
         /// <param name="op"></param>
-        public void NewOperator(Operator op)
+        public int  NewOperator(Operator op)
         {
-            string sql = string.Format(
-            "INSERT INTO [LiveSupport].[dbo].[LiveChat_Operator]"
-           + "([OperatorId]"
-           + " ,[AccountId]"
-           + " ,[LoginName]"
-           + " ,[Password]"
-           + " ,[NickName]"
-           + " ,[Email]"
-           + " ,[IsAdmin]"
-           + " ,[Status]"
-           + "  ,[AVChatStatus]" 
-           + ",[DepartmentId])"
-           + "VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')"
-           , op.OperatorId,op.AccountId,op.LoginName,op.Password,op.NickName,op.Email,op.IsAdmin,op.Status,op.AVChatStatus,op.Department.DepartmentId);
-            DBHelper.ExecuteCommand(sql);
+            Operator oper = new SqlOperatorProvider().GetOperatorByAccountIdAndLoginName(op.AccountId, op.LoginName);
+            if (oper == null)
+            {
+                int isAdmin = 0;
+                if (op.IsAdmin == false)
+                    isAdmin = 0;
+                else
+                    isAdmin = 1;
+                string sql = string.Format(
+                "INSERT INTO [LiveSupport].[dbo].[LiveChat_Operator]"
+               + "([OperatorId]"
+               + " ,[AccountId]"
+               + " ,[LoginName]"
+               + " ,[Password]"
+               + " ,[NickName]"
+               + " ,[Email]"
+               + " ,[IsAdmin]"
+               + " ,[Status]"
+               + "  ,[AVChatStatus]"
+               + ",[DepartmentId])"
+               + "VALUES ('{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}','{9}')"
+               , op.OperatorId, op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, isAdmin, op.Status, op.AVChatStatus, op.Department.DepartmentId);
+                return DBHelper.ExecuteCommand(sql);
+            }
+            else
+            {
+                return 0;
+            }
+ 
         }
         /// <summary>
         /// 根据公司ID查询所以该公司所有的客服人员
@@ -164,5 +185,33 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return op;
         }
+        #region 公司是否存在此客服
+        public Operator GetOperatorByAccountIdAndLoginName(string accountId, string loginName)
+        {
+            //string sql = "select * from [LiveSupport].[dbo].[LiveChat_Operator] where LoginName='" + loginName+"'";
+            string sql = string.Format("select * from [LiveSupport].[dbo].[LiveChat_Operator] where AccountId='{0}' and LoginName='{1}'", accountId, loginName);
+            SqlDataReader data = null;
+            Operator op = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    op = new Operator(data);
+                    op.Department = new SqlDepartmentProvider().GetDepartmentById(data["DepartmentId"].ToString());
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return op;
+        }
+        #endregion
+ 
+ 
     }
 }
