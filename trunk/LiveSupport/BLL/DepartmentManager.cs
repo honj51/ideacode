@@ -34,10 +34,13 @@ namespace LiveSupport.BLL
         #endregion
 
         #region 修改部门信息
-        public static bool UpdateDepartmentById(string departmentId, string DepartmentName)
+        public static bool UpdateDepartmentById(string accountId,string departmentId, string DepartmentName)
         {
+            if(DepartmentName==null){
+                return false;
+            }
             int i = 0;
-            i = Provider.UpdateDepartmentById(departmentId, DepartmentName);
+            i = Provider.UpdateDepartmentById(accountId,departmentId, DepartmentName);
             if (i != 0)
                 return true;
             else
