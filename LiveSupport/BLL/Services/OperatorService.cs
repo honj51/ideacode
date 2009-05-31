@@ -33,7 +33,6 @@ public static class OperatorService
     public static bool IsOperatorOnline(string operatorId)
     {
         Operator op = null;
-        
         foreach (Operator item in operators)
         {
             if (item.OperatorId == operatorId)
@@ -245,6 +244,7 @@ public static class OperatorService
             }
         }
     }
+
 
     /// <summary>
     /// 访客上传文件给客服 
