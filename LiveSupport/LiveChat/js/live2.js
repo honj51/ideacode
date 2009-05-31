@@ -54,6 +54,7 @@
     function openChat() {
         invite_panelClose(); //隐藏层
         var win = window.open(homeUrl + '/Chat.aspx?chatId=' + chatId + '&aid=' + accountId + '&vid=' + visitorId, 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
+        chatId = "";
         win.focus();
         win.opener = window;
         return;
@@ -101,7 +102,7 @@
         });
         //调用方法
     }
-
+    //接受客服主动邀请
     function acceptInvitation() {
         var url = homeUrl + "/VisitorHandler.ashx?Action=2&Chatid=" + chatId + "&callback=?";
         $.getJSON(url, function(res) {

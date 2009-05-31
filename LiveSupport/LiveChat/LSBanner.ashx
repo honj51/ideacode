@@ -40,7 +40,7 @@ public class LSBanner : IHttpHandler {
         sb.AppendLine(string.Format("var bannerStyle = {0};",IconStyle));// 0,1,2 图片
         sb.AppendLine(string.Format("var invitePanelStyle = {0};",InviteStyle));// 0,1,2主动邀请样式
         sb.AppendLine(string.Format("var bannerPos = {0};",IcoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
-        sb.AppendLine(string.Format("var accountId = {0};",aid));
+        sb.AppendLine(string.Format("var accountId = '{0}';",aid));
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/live2.js\"></script> ');");
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/orientation.js\"></script> ');");
         context.Response.ContentType = "text/plain"; // context.Response.ContentType = "application/x-javascript";
