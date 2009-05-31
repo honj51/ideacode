@@ -62,7 +62,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
 
         string operatorId = this.ddlOperator.SelectedValue;
-        DataBindChat(operatorId, this.txtBeginDate.Text, this.txtEndDate.Text);
+        DataBindChat(operatorId, this.txtBeginDate.Text, this.txtEndDate.Text+" 23:59:59");
     }
 
     //数据库事件

@@ -1,77 +1,77 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
-
     <SCRIPT type="text/javascript">
-		// <![CDATA[
-		var myMenu;
-		window.onload = function() {
-			myMenu = new SDMenu("my_menu");
-			//myMenu.remember = true
-			myMenu.oneSmOnly = true;  
-			myMenu.init();
-			var firstSubmenu = myMenu.submenus[2];
-			myMenu.expandMenu(firstSubmenu);  
-			
-		}
-		function editCode() {
-		    var is = document.getElementById('IcoStyle');
-		    var as = document.getElementById('AutoStyle');
-		    var cs = document.getElementById('ChatStyle');
-		    var str1 = "<script src='http://localhost:3355/livechat/LSBanner.ashx?aid=<%=this.GetAccountId().ToString() %>";
-		    str1 = str1 + "&IconStyle="+is.value+"&InviteStyle="+as.value+"&ChatStyle="+cs.value;
-		    var str2 = "'></s" + "cript>";
-		    var locations = document.getElementsByName('icoLocation');
-		    for (var i = 0; i < locations.length; i++) {
-		        if (locations[i].checked) {
-		            str1 = str1 + "&IcoLocation=" + locations[i].value;
-		            break;
-		        }
-		    }
-		    document.getElementById('codepic0').value = str1 + str2;
-		}
-		//显示客服图片
-		function showIcoImg(Ico) {
-		    editCode();
-		    var icos = document.getElementsByName('IcoImage');
-		    var i = 0;
-		    for (i; i <icos.length; i++) {
-		        if (i == Ico.value) {
-		            icos[i].style.display = 'block';
-		        }
-		        else {
-		            icos[i].style.display = 'none';
-		        }
-		    }
-		}
-		function showAutoImg(at) {
-		    editCode();
-		    var icos = document.getElementsByName('AutoImage');
-		    var i = 0;
-		    for (i; i < icos.length; i++) {
-		        if (i == at.value) {
-		            icos[i].style.display = 'block';
-		        }
-		        else {
-		            icos[i].style.display = 'none';
-		        }
-		    }
-		}
-		function showChatImage(ci) {
+        // <![CDATA[
+        var myMenu;
+        window.onload = function() {
+            myMenu = new SDMenu("my_menu");
+            //myMenu.remember = true
+            myMenu.oneSmOnly = true;
+            myMenu.init();
+            var firstSubmenu = myMenu.submenus[2];
+            myMenu.expandMenu(firstSubmenu);
 
-		    editCode();
-		    var icos = document.getElementsByName('ChatImage');
-		    var i = 0;
-		    for (i; i < icos.length; i++) {
-		        if (i == ci.value) {
-		            icos[i].style.display = 'block';
-		        }
-		        else {
-		            icos[i].style.display = 'none';
-		        }
-		    }
-		}
-	</SCRIPT>
+        }
+        function editCode() {
+            var is = document.getElementById('IcoStyle');
+            var as = document.getElementById('AutoStyle');
+            var cs = document.getElementById('ChatStyle');
+            var str1 = "<script src='http://localhost:3355/livechat/LSBanner.ashx?aid=<%=this.GetAccountId().ToString() %>";
+            str1 = str1 + "&IconStyle=" + is.value + "&InviteStyle=" + as.value + "&ChatStyle=" + cs.value;
+            var str2 = "'></s" + "cript>";
+            var locations = document.getElementsByName('icoLocation');
+            for (var i = 0; i < locations.length; i++) {
+                if (locations[i].checked) {
+                    str1 = str1 + "&IcoLocation=" + locations[i].value;
+                    break;
+                }
+            }
+            document.getElementById('codepic0').value = str1 + str2;
+        }
+        //显示客服图片
+        function showIcoImg(Ico) {
+            editCode();
+            var icos = document.getElementsByName('IcoImage');
+            var i = 0;
+            for (i; i < icos.length; i++) {
+                if (i == Ico.value) {
+                    icos[i].style.display = 'block';
+                }
+                else {
+                    icos[i].style.display = 'none';
+                }
+            }
+        }
+        function showAutoImg(at) {
+            editCode();
+            var icos = document.getElementsByName('AutoImage');
+            var i = 0;
+            for (i; i < icos.length; i++) {
+                if (i == at.value) {
+                    icos[i].style.display = 'block';
+                }
+                else {
+                    icos[i].style.display = 'none';
+                }
+            }
+        }
+        function showChatImage(ci) {
+
+            editCode();
+            var icos = document.getElementsByName('ChatImage');
+            var i = 0;
+            for (i; i < icos.length; i++) {
+                if (i == ci.value) {
+                    icos[i].style.display = 'block';
+                }
+                else {
+                    icos[i].style.display = 'none';
+                }
+            }
+        }
+         </SCRIPT>
+ 
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
      手动安装代码</div>
@@ -124,10 +124,10 @@
     <TD colspan=2 >
     <INPUT onclick=editCode() type=radio CHECKED value="0" name="icolocation"> 固定客服图标
     <INPUT onclick=editCode() type=radio  value="1" name="icolocation"> 左上角
-    <INPUT onclick=editCode() type=radio  value="2"   name="icoLocation" >左中间 
-    <INPUT onclick=editCode() type=radio  value="3"    name="icoLocation" >左下角<br />
-    <INPUT onclick=editCode() type=radio  value="4"   name="icoLocation" >右上角
-    <INPUT onclick=editCode() type=radio  value="5" name="icoLocation" >右中间 
+    <INPUT onclick=editCode() type=radio  value="3"   name="icoLocation" >左中间 
+    <INPUT onclick=editCode() type=radio  value="5"    name="icoLocation" >左下角<br />
+    <INPUT onclick=editCode() type=radio  value="2"   name="icoLocation" >右上角
+    <INPUT onclick=editCode() type=radio  value="4" name="icoLocation" >右中间 
     <INPUT onclick=editCode() type=radio  value="6"   name="icoLocation" >右下角
     </TD></TR>
   <TR id=posmodel_tr>
