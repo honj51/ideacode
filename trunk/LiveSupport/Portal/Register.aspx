@@ -42,7 +42,7 @@
                   ControlToValidate="txtCompanyName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD <FONT color=red>* </FONT>公司网址：</TD>
+          <TD <FONT color=red><FONT color=red>*</FONT> 公司网址：</TD>
           <TD ><asp:TextBox ID="txtCompanyWebUrl" runat="server" Width="310px">http://</asp:TextBox>
               <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" 
                   ControlToValidate="txtCompanyWebUrl" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
@@ -89,7 +89,6 @@
         <TR id=ignore_type>
           <TD ><FONT color=red>*</FONT> 所在行业： </TD>
           <TD><asp:DropDownList ID="ddlVocation" runat="server" Height="16px" Width="310px">
-              <asp:ListItem>请选择行业类别</asp:ListItem>
               <asp:ListItem>计算机</asp:ListItem>
               <asp:ListItem>互联网-电子商务</asp:ListItem>
               <asp:ListItem>电子-微电子</asp:ListItem>

@@ -36,9 +36,9 @@ TOP INFORMTION
                 <a href="Default.aspx">Live Support Service .Inc</a></div>
                 
             <div id="top-information-home">
-                <a href="Default.aspx">&#39318;&#39029;</a></div>
+                <a></a></div>
              <div id="top-information-login">
-                <asp:Panel ID="PanelShow" runat="server" Visible="false">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>&nbsp;<a href="AccountAdmin/AccountHome.aspx">客服管理</a>&nbsp;
+                <asp:Panel ID="PanelShow" runat="server" Visible="false">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>&nbsp;<a href="http://localhost:2454/Portal/AccountAdmin/AccountHome.aspx">客服管理</a>&nbsp;
                     &nbsp;<asp:LinkButton 
                         ID="LinkButton1" runat="server" onclick="LinkButton1_Click">退出</asp:LinkButton>
                  </asp:Panel>
