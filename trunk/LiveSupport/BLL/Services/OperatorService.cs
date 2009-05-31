@@ -33,6 +33,7 @@ public static class OperatorService
     public static bool IsOperatorOnline(string operatorId)
     {
         Operator op = null;
+        
         foreach (Operator item in operators)
         {
             if (item.OperatorId == operatorId)
@@ -245,4 +246,18 @@ public static class OperatorService
         }
     }
 
+    /// <summary>
+    /// 访客上传文件给客服 
+    /// </summary>
+    /// <param name="chatId"></param>
+    /// <param name="fileName"></param>
+    public static void SendFile(string chatId, string fileName)
+    {
+        string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
+        Message m = new Message();
+        m.ChatId = chatId;
+        m.Text = string.Format("访客已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}'>点击保存</a>", fileName, homeRootUrl, fileName);
+        m.Type = MessageType.SystemMessage_ToOperator;
+        ChatService.SendMessage(m);
+    }
 }
