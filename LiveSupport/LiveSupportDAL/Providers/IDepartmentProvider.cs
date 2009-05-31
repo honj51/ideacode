@@ -9,6 +9,6 @@ namespace LiveSupport.LiveSupportDAL.Providers
         int DeleteDepartmentById(string departmentId);
         System.Collections.Generic.List<Department> GetDepartmentByAccountId(string AccountId);
         Department GetDepartmentById(string departmentId);
-        int UpdateDepartmentById(string departmentId, string DepartmentName);
+        int UpdateDepartmentById(string accountId, string departmentId, string DepartmentName);
     }
 }
