@@ -1,5 +1,6 @@
 ﻿using System;
 using LiveSupport.LiveSupportModel;
+using System.Collections.Generic;
 namespace LiveSupport.LiveSupportDAL.Providers
 {
     public interface IChatProvider
@@ -7,6 +8,6 @@ namespace LiveSupport.LiveSupportDAL.Providers
         void AddChat(Chat chatRequest);
         int CloseChat(Chat chat);
         int DeleteChatById(string chatId);
-        System.Collections.Generic.List<Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate);
+        List<Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate);
     }
 }

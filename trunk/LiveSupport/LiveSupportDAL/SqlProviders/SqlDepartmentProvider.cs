@@ -70,12 +70,18 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region 修改部门信息
-        public int UpdateDepartmentById(string departmentId, string DepartmentName)
+        public int UpdateDepartmentById(string accountId,string departmentId, string DepartmentName)
         {
             try
             {
-                string sql = string.Format("update LiveSupport_Department set DepartmentName='{0}' where DepartmentId='{1}'", DepartmentName, departmentId);
-                return DBHelper.ExecuteCommand(sql);
+                if (CheckAccountByDepartment(accountId, DepartmentName))
+                {
+                    string sql = string.Format("update LiveSupport_Department set DepartmentName='{0}' where DepartmentId='{1}'", DepartmentName, departmentId);
+                    return DBHelper.ExecuteCommand(sql);
+                }
+                else {
+                    return 0;
+                }
             }
             catch (Exception ex)
             {
