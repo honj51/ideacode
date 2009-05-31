@@ -91,7 +91,7 @@ namespace LiveSupport.OperatorConsole
 
                 if (API.FromSystem(message))
                 {
-                    wb.Document.Write(string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss")));
+                    wb.Document.Write(string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text));
                 }
                 if (message.Type == MessageType.ChatMessage_VistorToOperator)
                 {
@@ -101,11 +101,6 @@ namespace LiveSupport.OperatorConsole
                 {
                     wb.Document.Write(string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
                 }
-                if (message.Type == MessageType.SystemFile_ToOperator)
-                {
-                    wb.Document.Write(string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss")));
-                }
-
                 wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
 
                 

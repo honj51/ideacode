@@ -35,6 +35,7 @@
       <s:simpleType name="OperatorStatus">
         <s:restriction base="s:string">
           <s:enumeration value="Idle" />
+          <s:enumeration value="InviteChat" />
           <s:enumeration value="Chatting" />
           <s:enumeration value="BeRightBack" />
           <s:enumeration value="Away" />
@@ -85,7 +86,7 @@
       <s:element name="GetAllVisitors">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="accountId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountId" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
