@@ -376,7 +376,7 @@ public class ChatService
             {
                 OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Chatting;
             }
-            VisitSessionService.GetSessionById(chat.OperatorId).Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
+            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
             VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
         }
         MessageService.AddMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
