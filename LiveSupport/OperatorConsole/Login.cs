@@ -72,7 +72,7 @@ namespace LiveSupport.OperatorConsole
 
         private void login()
         {
-            pictureBox1.Show();
+            //pictureBox1.Show();
             try
             {
 
@@ -185,6 +185,11 @@ namespace LiveSupport.OperatorConsole
             txtUserName.Text = Properties.Settings.Default.WSUser;
              
           
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -176,5 +176,17 @@ namespace LiveSupport.OperatorConsole.Properties {
                 this["OperatorConsole_LiveChatWS_Operator"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.zxkefu.cn")]
+        public string URL {
+            get {
+                return ((string)(this["URL"]));
+            }
+            set {
+                this["URL"] = value;
+            }
+        }
     }
 }

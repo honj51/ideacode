@@ -26,13 +26,8 @@ namespace LiveSupport.OperatorConsole
             operatorsTreeView.Nodes[1].Nodes.Clear();
             foreach (var item in operators)
             {
-                if (item.Status != OperatorStatus.Idle)
-                {
-                    operatorsTreeView.Nodes[1].ImageIndex = 4;
-                    operatorsTreeView.Nodes[1].SelectedImageIndex = 4;
-                    operatorsTreeView.Nodes[1].Nodes.Add(item.NickName + "(" + getOperatorsStatusText(item.Status) + ")").Tag = item;
-                }
-                else
+               
+                if (item.Status != OperatorStatus.Offline)
                 {
                     operatorsTreeView.Nodes[0].ImageIndex = 3;
                     operatorsTreeView.Nodes[0].SelectedImageIndex = 3;
@@ -43,6 +38,16 @@ namespace LiveSupport.OperatorConsole
                     }
 
                     operatorsTreeView.Nodes[0].Nodes.Add(item.NickName + "(" + getOperatorsStatusText(item.Status) + ")").Tag = item;
+                }
+                else
+                {
+                    operatorsTreeView.Nodes[1].ImageIndex = 4;
+                    operatorsTreeView.Nodes[1].SelectedImageIndex = 4;
+
+                    operatorsTreeView.Nodes[1].Nodes.Add(item.NickName + "(" + getOperatorsStatusText(item.Status) + ")").Tag = item;
+                  
+
+                    
                 }
                 if (operatorsTreeView.Nodes[1].Nodes.Count > 0)
                 {
@@ -77,6 +82,11 @@ namespace LiveSupport.OperatorConsole
                             operatorsTreeView.Nodes[0].Nodes[i].ImageIndex = 7;
                             operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 7;
                         }
+                        if (op.Status== OperatorStatus.InviteChat)
+                        {
+                            operatorsTreeView.Nodes[0].Nodes[i].ImageIndex = 9;
+                            operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 9;
+                        }
                     }
                 }
             }
@@ -94,6 +104,9 @@ namespace LiveSupport.OperatorConsole
             {
                 case OperatorStatus.Idle:
                     status = "空闲";
+                    break;
+                case OperatorStatus.InviteChat:
+                    status = "请求对话中";
                     break;
                 case OperatorStatus.Away:
                     status = "离开";

@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="API.cs" />
     <Compile Include="CannedMessages.cs">
       <SubType>Form</SubType>
@@ -82,9 +88,6 @@
     </Compile>
     <Compile Include="ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListViewGroupsExample.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -118,6 +121,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="CannedMessages.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CannedMessages.cs</DependentUpon>
@@ -268,6 +275,8 @@
     <None Include="Resources\bg.gif" />
     <Content Include="Resources\chat.jpg" />
     <None Include="Resources\content-bg.gif" />
+    <None Include="Resources\development 54.png" />
+    <None Include="Resources\development 54 grey.png" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <None Include="Resources\Global.wav" />
