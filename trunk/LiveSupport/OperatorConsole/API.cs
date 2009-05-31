@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using LiveSupport.OperatorConsole.LiveChatWS;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -44,6 +45,12 @@ namespace LiveSupport.OperatorConsole
 
 			return (FlashWindowEx(ref fInfo) == 0);
 		}
+
+
+        public static bool FromSystem(Message m) { return m.Type == MessageType.SystemMessage_ToBoth || m.Type == MessageType.SystemMessage_ToOperator || m.Type == MessageType.SystemMessage_ToVisitor; }
+        public static bool FromVisitor(Message m) { return m.Type == MessageType.ChatMessage_VistorToOperator; }
+        public static bool IsChatMessage(Message m) { return m.Type == MessageType.ChatMessage_VistorToOperator || m.Type == MessageType.ChatMessage_OperatorToVisitor; }
+        public static bool IsSystemMessage(Message m) { return !IsChatMessage(m); }
 
 	}
 }
