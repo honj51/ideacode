@@ -9,7 +9,8 @@ public class VisitorHandler : IHttpHandler {
     private const string Action_AcceptOperatorInvitation = "2";
     private const string Action_DeclineOperatorInvitation = "3";
 
-    public void ProcessRequest (HttpContext context) {
+    public void ProcessRequest (HttpContext context) 
+    {
         // 1. CHECK action
         string action = context.Request["Action"];
         if (string.IsNullOrEmpty(action))

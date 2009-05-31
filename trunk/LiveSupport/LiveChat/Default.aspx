@@ -42,8 +42,8 @@
             var bannerPos = 0; // 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
             var accountId = 2;
         </script> 
---%>      
-        
+--%> 
+ <%--    <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=05932da1-b444-4aed-a58c-a47c69e639cd&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0"></script> --%>
             <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=4&InviteStyle=1&IconStyle=1"></script> 
         <input id="Text1" type="text" />
         <input type="button" value="fdsaf" onclick="visitorLeave()" /><table 
