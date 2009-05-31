@@ -163,10 +163,13 @@ public partial class Chat : System.Web.UI.Page
                         {
                             litChat.Text += string.Format("<div id='chatTitle1'><strong>{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].Source + "&nbsp;&nbsp;" + messages[i].SentDate.ToString("hh:mm:ss"), messages[i].Text);
                         }
-                        else if (messages[i].Type == MessageType.ChatMessage_VistorToOperator)
+                        if (messages[i].Type == MessageType.ChatMessage_VistorToOperator)
                         {
-                          //  litChat.Text += string.Format("<span class=\"chatName\">{0}:</span>{1}<br />", "您说", CutStr(messages[i].Text, 100));
                             litChat.Text += string.Format("<div id='chatTitle'><strong>您说&nbsp;&nbsp;{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].SentDate.ToString("hh:mm:ss"), messages[i].Text);
+                        }
+                        if (messages[i].Type == MessageType.SystemFile_ToVisitor)
+                        {
+                            litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", messages[i].Text);
                         }
                         // TODO: is this correct?
                         lastCheck = Math.Max(lastCheck, messages[i].SentDate.Ticks);
@@ -307,7 +310,7 @@ public partial class Chat : System.Web.UI.Page
             return;
         }
         string chatId = CurrentVisitor.CurrentSessionId;
-        setCookie(chatId);
+        
 
         LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
         chatRequest.AccountId = Request.QueryString["aid"];
@@ -329,7 +332,7 @@ public partial class Chat : System.Web.UI.Page
         }
         VisitorName = CurrentVisitor.Name;
         VName = CurrentVisitor.Name;
-       
+        setCookie(chatId);
         pnlChat.Visible = true;
         pnlRequest.Visible = false;
     }
@@ -346,52 +349,24 @@ public partial class Chat : System.Web.UI.Page
             Response.Cookies.Add(cookie);
         }
 
+        string lastCheck = ChatService.GetChatById(chatId).CreateTime.Ticks.ToString();
         if (Request.Cookies[chatId + "_lastCheck"] != null)
         {
-            Response.Cookies[chatId + "_lastCheck"].Value = DateTime.Now.Ticks.ToString();
+            Response.Cookies[chatId + "_lastCheck"].Value = lastCheck;
         }
         else
         {
-            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", DateTime.Now.Ticks.ToString());
+            HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", lastCheck);
             Response.Cookies.Add(cookie);
         }
     }
 
-    // 页面同意客服的对话邀请后调用
-    //public void dialog()
-    //{
-    //    string chatId = Request.QueryString["chatid"].ToString();
-    //    int AccountId=int.Parse(Request.QueryString["aid"].ToString());
-    //    if (Request.Cookies["chatId"] != null)
-    //    {
-    //        Response.Cookies["chatId"].Value = chatId;
-    //    }
-    //    else
-    //    {
-    //        HttpCookie cookie = new HttpCookie("chatId", chatId);
-    //        Response.Cookies.Add(cookie);
-    //    }
 
-    //    if (Request.Cookies[chatId + "_lastCheck"] != null)
-    //    {
-    //        Response.Cookies[chatId + "_lastCheck"].Value = "0";
-    //    }
-    //    else
-    //    {
-    //        HttpCookie cookie = new HttpCookie(chatId + "_lastCheck", "0");
-    //        Response.Cookies.Add(cookie);
-    //    }
-    //    VName = "您说";
-    //    ChatService.AddSystemMessage(chatId, AccountId);
-    //}
     protected void CutLBtn_Click(object sender, EventArgs e)
     {
         string aaa = Server.MapPath("Download\\11.exe");
         System.Diagnostics.Process.Start(aaa);
     }
-
-   
-
     
     //文件传送
     protected void btnUpload_Click(object sender, EventArgs e)
@@ -429,12 +404,7 @@ public partial class Chat : System.Web.UI.Page
             m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
             m.Type = MessageType.SystemMessage_ToVisitor;
             ChatService.SendMessage(m);
-
-            m = new LiveSupport.LiveSupportModel.Message();
-            m.ChatId = CurrentChat.ChatId;
-            m.Text = string.Format("访客已给您发送文件 {0} <a href=\"UploadFile/{1}\">点击保存</a>", fileName, fileName);
-            m.Type = MessageType.SystemMessage_ToOperator;
-            ChatService.SendMessage(m);
+            OperatorService.SendFile(m.ChatId, fileName);
 
         }
         catch (Exception ex)
