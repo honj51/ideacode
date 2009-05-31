@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="ViewChatAnnal.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
+<script src="JS/Save.js"></script>
 <SCRIPT type="text/javascript">
     // <![CDATA[
     var myMenu;
@@ -13,29 +14,29 @@
         myMenu.expandMenu(firstSubmenu);
 
     };</SCRIPT>
-<script type="text/javascript">
-    function Save() {
-        var txt = document.getElementById("divMessage").innerHTML;
-        b = window.open();
-        b.document.open();
-        b.document.write(txt);
-        b.document.close();
-        b.document.execCommand('saveas', true, '');
-        b.window.close();
-    } 
-		</script>
+<script src="../js/My97DatePicker/WdatePicker.js"></script>
+    <!--内容开始-->
+   <!--内容-->
+ <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
+ <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
+          详细聊天记录</div>
+ <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+ 
+<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
+ <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
 <!--聊天记录内容-->
-    <TABLE class=setting_tb cellSpacing=1 cellPadding=0 border=0 
-        style="width: 570px">
-  <TR>
-    <TD class=setting_td_top vAlign=center align=left colSpan=2>聊天记录查询 &gt;&gt;</TD></TR>
-  <TR>
-</TABLE>
-<div style=" width:570px;text-align:left; border-right: 1px solid; border-top: 1px solid; float: right; border-left: 1px solid; border-bottom: 1px solid; position: relative;">
-    <input id="btnSave" type="button" value="保存HTML" onclick="Save()" /></div>
- <div id="divMessage" style=" margin-top:5px; height:340px; width:570px;  overflow: scroll; text-align:left; border-right: 1px solid; border-top: 1px solid; float: right; border-left: 1px solid; border-bottom: 1px solid; position: relative;">
+    
+    <div id="div1" style="width:555px;text-align:left;">
+        <input id="btnSave" type="button" value="保存HTML" onclick="Save()" />
+    </div>
+ <div id="divMessage" 
+         style=" border-style: solid; border-color: inherit; border-width: 1px; height:340px; width:555px;  overflow: scroll; text-align:left;">
             <asp:Literal   ID="lblMessage" runat="server"></asp:Literal>
     </div>
+  <!--内容结束-->
+  </div>
+ <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+
+
 
 </asp:Content>
-

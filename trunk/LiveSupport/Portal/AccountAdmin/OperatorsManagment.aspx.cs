@@ -44,8 +44,16 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         }
         else if (e.CommandName == "cmdDelete")
         {
-            OperatorsManager.DeleteOperatorByid(e.CommandArgument.ToString());
-            Response.Redirect("OperatorsManagment.aspx");
+            try
+            {
+                OperatorsManager.DeleteOperatorByid(e.CommandArgument.ToString());
+                Response.Redirect("OperatorsManagment.aspx");
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请删除客服的聊天记录'); window.location='ChatAnnal.aspx';</script>");
+                return;
+            }
         }
     }
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)

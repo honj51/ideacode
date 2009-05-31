@@ -8,8 +8,8 @@
 <td valign="top">
 <!--导航-->
 <div style="height: 1px; background-image:url('Images/zhongjian.bmp'); ">
-<LINK href="Images/sdmenu.css" type=text/css rel=stylesheet>
-<SCRIPT src="Images/sdmenu.js" type="text/javascript">
+<LINK href="CSS/sdmenu.css" type=text/css rel=stylesheet>
+<SCRIPT src="JS/sdmenu.js" type="text/javascript">
 </SCRIPT>
 <SCRIPT type="text/javascript">
 		// <![CDATA[
@@ -22,7 +22,11 @@
 			var firstSubmenu = myMenu.submenus[0];
 			myMenu.expandMenu(firstSubmenu);  
 			
-		};</SCRIPT>
+		};
+		function ShowSorry() {
+		    alert('此功能暂未开通!'); 
+		}
+		</SCRIPT>
 
 <table cellpadding="0" cellspacing="0">
 <tr><td><img src="Images/left_12.gif" /></td></tr>
@@ -44,30 +48,27 @@
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">风格设置</SPAN> 
  
 <A href="GetCode.aspx">获取代码设置</A> 
-<A href="#">界面风格设置</A> 
+<A href="javascript:ShowSorry()">界面风格设置</A> 
  
-<A href="#">对话提示设置</A> 
-<A href="#">主动发起设置</A>
+<A href="javascript:ShowSorry()">对话提示设置</A> 
+<A href="javascript:ShowSorry()">主动发起设置</A>
 </DIV>
 
 <DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">数据分析</SPAN> 
-<A href="#">流量统计 </A>
-<A href="#">咨询量统计</A> 
+<A href="javascript:ShowSorry()">流量统计 </A>
+<A href="javascript:ShowSorry()">咨询量统计</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">聊天记录</SPAN> 
-<A href="ChatAnnal.aspx">聊天记录 </A> <A href="#">访客留言</A> 
+<A href="ChatAnnal.aspx">聊天记录 </A> <A href="javascript:ShowSorry()">访客留言</A> 
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">客户管理</SPAN> 
-<A href="#">添加客户</A> 
-<A href="#">客户列表</A> 
+<A href="javascript:ShowSorry()">添加客户</A> 
+<A href="javascript:ShowSorry()">客户列表</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');">免费电话管理</SPAN> 
-<A onclick="return open_url('#')" href="#">免费电话管理</A> 
-<A onclick="return open_url('#')" href="#">设置公司免费电话</A> 
-</DIV> 
+
 &nbsp;</DIV>
 <!--结束-->
 </td></tr>
