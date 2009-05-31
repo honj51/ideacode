@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(242, 145);
+            this.ClientSize = new System.Drawing.Size(238, 141);
             this.ControlBox = false;
             this.Controls.Add(this.txtNewPassword2);
             this.Controls.Add(this.txtNewPassword);
@@ -134,7 +134,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ChangePassword";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

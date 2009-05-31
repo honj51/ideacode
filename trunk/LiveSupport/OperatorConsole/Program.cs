@@ -12,7 +12,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using VisualAsterisk.Test.Temp;
 using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Diagnostics;
 

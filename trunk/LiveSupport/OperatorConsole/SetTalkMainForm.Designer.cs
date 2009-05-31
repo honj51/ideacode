@@ -33,9 +33,12 @@
             // 
             // setTalkForm1
             // 
+            this.setTalkForm1.CheckString = null;
             this.setTalkForm1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setTalkForm1.IsCheck = false;
             this.setTalkForm1.Location = new System.Drawing.Point(0, 0);
             this.setTalkForm1.Name = "setTalkForm1";
+            this.setTalkForm1.Result = true;
             this.setTalkForm1.Size = new System.Drawing.Size(216, 286);
             this.setTalkForm1.TabIndex = 0;
             // 
@@ -45,6 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(216, 286);
             this.Controls.Add(this.setTalkForm1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SetTalkMainForm";

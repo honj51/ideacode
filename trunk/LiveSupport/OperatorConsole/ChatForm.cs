@@ -84,7 +84,11 @@ namespace LiveSupport.OperatorConsole
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
-          
+            if (chatSession.Status!= VisitSessionStatus.Chatting) 
+            {
+                Program.CurrentOperator.Status = OperatorStatus.Idle;
+            
+            }
             if (!this.IsDisposed && receiveMessage&&message.SentDate.Ticks>lastCheckTime)
             {
                 //WriteMessage(message.Text, message.Source);
@@ -117,9 +121,9 @@ namespace LiveSupport.OperatorConsole
         }
         public void RecieveOperator(List<Operator> Operators)
         {
-           
-           operatorPannel1.RecieveOperator(Operators);
-           operatorPannel1.chatId = ChatSession.SessionId;
+
+            //operatorPannel1.RecieveOperator(Operators);
+            //operatorPannel1.chatId = ChatSession.SessionId;
         
         }
         string getOperatorsStatusText(OperatorStatus os)
@@ -160,7 +164,6 @@ namespace LiveSupport.OperatorConsole
         public ChatForm(VisitSession chatSession, bool invite)
         {
             InitializeComponent();
-            tabControl1.TabPages[1].ToolTipText = "如果要转接对话，请双击选中的客服！";
             this.chatSession = chatSession;
             // Simple authentication
             AuthenticationHeader auth = new AuthenticationHeader();
@@ -184,6 +187,7 @@ namespace LiveSupport.OperatorConsole
                     receiveMessage = false;
                 
                 }
+
             }
             // We initialize the document
             wb.Navigate("about:初始会话...");

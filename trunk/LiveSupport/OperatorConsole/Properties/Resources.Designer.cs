@@ -130,6 +130,20 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap development_54 {
+            get {
+                object obj = ResourceManager.GetObject("development_54", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap development_54_grey {
+            get {
+                object obj = ResourceManager.GetObject("development_54_grey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap file_sent {
             get {
                 object obj = ResourceManager.GetObject("file_sent", resourceCulture);

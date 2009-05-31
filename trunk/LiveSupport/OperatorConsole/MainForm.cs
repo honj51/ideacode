@@ -26,8 +26,6 @@ namespace LiveSupport.OperatorConsole
 
         OperatorWS ws = new OperatorWS();
         private DateTime lastRequestTime = DateTime.Now.AddMinutes(-30);
-        private Hashtable currentVisitors = new Hashtable();
-     
         private SoundPlayer player = new SoundPlayer();
         private List<Visitor> visitors = new List<Visitor>();
         private List<Operator> operators = new List<Operator>();
@@ -86,7 +84,7 @@ namespace LiveSupport.OperatorConsole
         {
             int VisitorChatResult = 0;
             int Chatting = 0;
-            
+            int Visitors = 0;
             foreach(ListViewItem item in lstVisitors.Items)
             {
                  Visitor v= item.Tag as Visitor;
@@ -98,10 +96,14 @@ namespace LiveSupport.OperatorConsole
                 {
                     Chatting++;
                 }
+                if(v.CurrentSession.Status!= VisitSessionStatus.Leave)
+                {
+                    Visitors++;
+                }
             
             }
 
-            lblCurrentVisitors.Text = "当前访客数: "+ currentVisitors.Count.ToString();
+            lblCurrentVisitors.Text = "当前访客数: " + Visitors;
             lblVisitorOnChat.Text = "对话中的访客数: " + VisitorChatResult;
             lblMyChat.Text = "我的对话数: "+Chatting;
           
@@ -138,7 +140,19 @@ namespace LiveSupport.OperatorConsole
                tmrCheckRequests.Enabled = false;
                if (Program.ChatForms.Count == 0)
                {
-                   ws.Logout();
+                   try
+                   {
+                       ws.Logout();
+                   }
+                   catch (Exception ex)
+                   {
+                       Trace.WriteLine("Logout异常: " + ex.Message);
+                       MessageBox.Show("网络连接中断");
+                       throw;
+                   }
+                   
+                      
+                   
 
                }
                else
@@ -447,7 +461,7 @@ namespace LiveSupport.OperatorConsole
                 PlayChatReqSound();
             }
             Program.Visitors = visitors;
-
+           
             changeVisitorListViewItemColor();
 
             DisplayStatus();
@@ -572,13 +586,6 @@ namespace LiveSupport.OperatorConsole
 
                         }
                     }
-
-
-                    // Add the visitor to the visitor hashtable
-                    if (!currentVisitors.ContainsKey(item.CurrentSession.IP))
-                        currentVisitors.Add(item.CurrentSession.IP, item);
-                    else
-                        currentVisitors[item.CurrentSession.IP] = item;
                     lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
 
                     if (item.CurrentSession.Status != VisitSessionStatus.Leave)
@@ -640,7 +647,16 @@ namespace LiveSupport.OperatorConsole
                 }
                 else if (remote.Status == VisitSessionStatus.Chatting)
                 {
-                    item.SubItems[VisitorTreeView_HeaderColumn_Operator].Text = remote.OperatorId;
+                   
+                    foreach (var opItem in operators)
+	                {
+                        if (opItem.OperatorId == remote.OperatorId)
+                        {
+                            item.SubItems[VisitorTreeView_HeaderColumn_Operator].Text = opItem.NickName;
+                             break;
+                        }
+	                }
+                  
 
                 }
 
@@ -654,15 +670,16 @@ namespace LiveSupport.OperatorConsole
 
         private void processOpertors(NewChangesCheckResult result)
         {
+
             if (result.Operators != null)
             {
-                if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
-                {
+                //if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
+                //{
                     operators.Clear();
                     operators.AddRange(result.Operators);
                     operatorPannel1.RecieveOperator(operators);
 
-                }
+                //}
             }
         }
 
@@ -754,7 +771,32 @@ namespace LiveSupport.OperatorConsole
 
         private bool checkIfOperatorStatusChanges(List<Operator> operators, Operator[] p)
         {
+            if (operators==null||p==null)
+            {
+                return false;
+                
+            }
+            for (int i = 0; i < p.Length; i++) 
+            {
+                   
+                foreach (var item in operators)
+                {
+
+                    if (p[i].Status != item.Status && p[i].OperatorId == item.OperatorId)
+                    {
+                        return true;
+
+
+                    }
+
+
+                }
+            
+            
+            }
             return false;
+
+                
         }
 
         private void lstVisitors_SelectedIndexChanged(object sender, EventArgs e)
@@ -842,6 +884,7 @@ namespace LiveSupport.OperatorConsole
 
                 if (ws.InviteChat(v.VisitorId) == 0)
                 {
+                  
                     ChatForm cf = null;
                     foreach (var item in Program.ChatForms)
                     {
@@ -1210,7 +1253,8 @@ namespace LiveSupport.OperatorConsole
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            About about = new About();
+            about.Show();
         }
 
        
