@@ -31,12 +31,6 @@
     网站访客通兼容于多种浏览器，例如:Internet Explorer6.0、Internet Explorer7.0、Firefox、Opera ...<br />
     <br />
     <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <br /><img src="Images/intro_7.gif" />
     </td></tr>
 </table>

@@ -21,7 +21,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void LinkButton1_Click(object sender, System.EventArgs e)
     {
         Session["User"] = null;
-        this.Response.Redirect("../Login.aspx");
+        this.Response.Redirect("http://localhost:2454/Portal/Login.aspx");
         this.PanelLogin.Visible = true;
     }
 }

@@ -31,12 +31,6 @@
   提供了当前页面上的访客状态，化被动咨询为主动邀请，进一步把握每一个潜在客户。 <br />
     <br />
     <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <br /><img src="Images/intro_6.gif" />
     </td></tr>
 </table>
