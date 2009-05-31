@@ -7,7 +7,7 @@ namespace LiveSupport.LiveSupportModel
 {
     public enum OperatorStatus
     {
-        Idle, Chatting, BeRightBack, Away, Offline
+        Idle, InviteChat, Chatting, BeRightBack, Away, Offline
     }
     /// <summary>
     ///Operator 的摘要说明
