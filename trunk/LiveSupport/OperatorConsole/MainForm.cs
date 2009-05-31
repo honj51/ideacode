@@ -673,13 +673,13 @@ namespace LiveSupport.OperatorConsole
 
             if (result.Operators != null)
             {
-                //if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
-                //{
+                if (result.Operators.Length > operators.Count || checkIfOperatorStatusChanges(operators, result.Operators))
+                {
                     operators.Clear();
                     operators.AddRange(result.Operators);
                     operatorPannel1.RecieveOperator(operators);
 
-                //}
+                }
             }
         }
 
