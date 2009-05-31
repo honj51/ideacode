@@ -64,7 +64,6 @@ namespace BLLTest
         [Test]
         public void TestAddMessage()
         {
-            MessageService.Provider = MockRepository.GenerateMock<
             DateTime time = DateTime.Now;
             List<Message> messages = createMessages();
             foreach (var item in messages)
@@ -72,7 +71,7 @@ namespace BLLTest
                 MessageService.AddMessage(item);
             }
 
-            Assert.AreSame(MessageService.GetMessages("aaa", time),messages);
+            Assert.AreSame(MessageService.GetMessages("aaa", time), messages);
         }
 
         [Test]
