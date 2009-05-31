@@ -66,11 +66,11 @@
             this.imgIconSet.Images.SetKeyName(2, "chat.jpg");
             this.imgIconSet.Images.SetKeyName(3, "development 54.png");
             this.imgIconSet.Images.SetKeyName(4, "development 54 grey.png");
-            this.imgIconSet.Images.SetKeyName(5, "PI Diagona Web Application 04 02.png");
+            this.imgIconSet.Images.SetKeyName(5, "PI Diagona Web Application 04 09.png");
             this.imgIconSet.Images.SetKeyName(6, "PI Diagona Web Application 04 08.png");
-            this.imgIconSet.Images.SetKeyName(7, "PI Diagona Web Application 04 09.png");
-            this.imgIconSet.Images.SetKeyName(8, "PI Diagona Web Application 04 04.png");
-            this.imgIconSet.Images.SetKeyName(9, "PI Diagona Web Application 04 05.png");
+            this.imgIconSet.Images.SetKeyName(7, "PI Diagona Web Application 04 02.png");
+            this.imgIconSet.Images.SetKeyName(8, "PI Diagona Web Application 04 05.png");
+            this.imgIconSet.Images.SetKeyName(9, "PI Diagona Web Application 04 04.png");
             // 
             // OperatorPannel
             // 
