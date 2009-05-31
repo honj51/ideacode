@@ -41,7 +41,6 @@ public class VisitSessionService
     {
         Debug.WriteLine(string.Format("NewSession : {0}", session.ToString()));
 
-    //    if (sessions.Find(s => s.Session.SessionId == session.SessionId) != null)
         foreach (VisitSessionHit item in sessions)
         {
             if (item.Session.SessionId == session.SessionId)
@@ -73,7 +72,6 @@ public class VisitSessionService
     /// <returns></returns>
     public static VisitSession GetSessionById(string sessionId)
     {
-       // VisitSessionHit s = sessions.Find(a => a.Session.SessionId == sessionId);3.0
         foreach (VisitSessionHit item in sessions)
         {
             if (item.Session.SessionId == sessionId)

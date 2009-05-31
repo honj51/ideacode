@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LiveSupport.LiveSupportDAL.Providers;
 using NUnit.Framework;
+using LiveSupport.LiveSupportModel;
 namespace BLLTest
 {
     [TestFixture]
@@ -36,6 +37,47 @@ namespace BLLTest
 
             #endregion
         }
+        class MyOperatorService : IOperatorProvider
+        {
+            #region IOperatorProvider 成员
+
+            public int DeleteOperatorByid(string operatorId)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<LiveSupport.LiveSupportModel.Operator> GetAllOperators()
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<LiveSupport.LiveSupportModel.Operator> GetOperatorByAccountId(string accountId)
+            {
+                throw new NotImplementedException();
+            }
+
+            public LiveSupport.LiveSupportModel.Operator GetOperatorByLoginName(string loginName)
+            {
+                throw new NotImplementedException();
+            }
+
+            public LiveSupport.LiveSupportModel.Operator GetOperatorByOperatorId(string operatorId)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int NewOperator(LiveSupport.LiveSupportModel.Operator op)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int UpdateOperator(LiveSupport.LiveSupportModel.Operator op)
+            {
+                throw new NotImplementedException();
+            }
+
+            #endregion
+        }
 
 
         [Test]
@@ -45,6 +87,26 @@ namespace BLLTest
             //ChatService.OperatorRequestChat("1111", "2222");
 
             //ChatService.AcceptOperatorInvitation("abc");
+        }
+        [Test]
+        public void ChatPageRequestChat()
+        {
+            LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
+            chatRequest.AccountId = "aid";
+            chatRequest.ChatId =Guid.NewGuid().ToString();
+            chatRequest.CreateTime = DateTime.Now;
+            chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
+            chatRequest.OperatorId="aa";
+            ChatService.ChatPageRequestChat(chatRequest);
+            LiveSupport.LiveSupportModel.Operator op=null;
+            foreach (var item in OperatorService.GetAllOperators())
+	        {
+        		 if(chatRequest.OperatorId==item.OperatorId)
+                 {
+                     op=item;
+                 }
+	        }
+            Assert.AreEqual(op.Status, OperatorStatus.InviteChat);
         }
     }
 
