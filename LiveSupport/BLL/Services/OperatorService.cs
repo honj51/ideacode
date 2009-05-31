@@ -89,7 +89,7 @@ public static class OperatorService
 
            if(op!=null)
            {
-             op.Status = OperatorStatus.Idle;
+             op.Status = OperatorStatus.Idle;//将客服状态改为空闲
            }
         }
         return op;
@@ -154,6 +154,7 @@ public static class OperatorService
              {
                  if (item.OperatorId == operatorId)
                  {
+                     operators.Add(item);
                      op = item;
                  }
              }
@@ -184,6 +185,7 @@ public static class OperatorService
             {
                 if (item.OperatorId == operatorId)
                 {
+                    operators.Add(item);
                     op = item;
                 }
             }
@@ -236,6 +238,7 @@ public static class OperatorService
             op = Provider.GetOperatorByLoginName(loginName);
             if (op != null)
             {
+                operators.Add(op);
                 return op;
             }
             else
