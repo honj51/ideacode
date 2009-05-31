@@ -217,6 +217,7 @@ public class ChatService
             chat.Status = ChatStatus.Accepted;
             chat.OperatorId = operatorId;
             chat.AcceptTime = DateTime.Now;
+            OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Chatting;//将客服状态改为正在对话中
             VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;
             VisitSessionService.GetSessionById(chat.ChatId).OperatorId = operatorId;
             VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
@@ -234,7 +235,6 @@ public class ChatService
             m2.Type = MessageType.SystemMessage_ToOperator;
             m2.Text = string.Format("你已经接受访客{0}的对话请求",VisitorService.GetVisitor(VisitSessionService.GetSessionById(chat.ChatId).VisitorId).Name);
             SendMessage(m2);
-
             return AcceptChatRequestReturn_OK;
         }
         else if (chat.Status == ChatStatus.Decline)
@@ -309,6 +309,7 @@ public class ChatService
         if (chat == null)
         {
             Operator op = OperatorService.GetOperatorById(operatorId);
+            op.Status = OperatorStatus.InviteChat;//将客服改为请求中
             chat = new Chat();
             chat.ChatId = visitor.CurrentSessionId;
             chat.CreateBy = op.NickName;
@@ -352,6 +353,7 @@ public class ChatService
         Chat chat = GetChatById(chatId);
         if (chat != null)
         {
+            OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Idle;//将客服状态改为空闲中
             chat.Status = ChatStatus.Decline;
             MessageService.AddMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
         }        
@@ -366,7 +368,7 @@ public class ChatService
         if (chat != null)
         {
             chat.Status = ChatStatus.Accepted;
-            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;
+            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;//将客服状态改为对话中
             VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
         }
         MessageService.AddMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
