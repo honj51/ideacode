@@ -60,8 +60,6 @@
     #chat
     {
         overflow:scroll;
-        overflow-x: hidden;
-        overflow:hidden;
         height:100%;
         width: 100%;
         overflow: auto;
@@ -78,7 +76,7 @@
     #chatText
     {
 	    font-size:11px;
-	    color:#333;
+	    color:blue;
     }
     #chatSts
     {
