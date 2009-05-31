@@ -9,80 +9,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
     public static class DBHelper
     {
-
-        //private static SqlConnection connection;
-        //public static SqlConnection Connection
-        //{
-        //    get 
-        //    {
-        //        string connectionString = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ConnectionString;
-        //        return connection;
-        //    }
-        //}
-
-
-        //public static int ExecuteCommand(string safeSql)
-        //{
-        //    SqlCommand cmd = new SqlCommand(safeSql, Connection);
-        //    int result = cmd.ExecuteNonQuery();
-        //    return result;
-        //}
-
-        //public static int ExecuteCommand(string sql, params SqlParameter[] values)
-        //{
-        //    SqlCommand cmd = new SqlCommand(sql, Connection);
-        //    cmd.Parameters.AddRange(values);
-        //    return cmd.ExecuteNonQuery();
-        //}
-
-        //public static int GetScalar(string safeSql)
-        //{
-        //    SqlCommand cmd = new SqlCommand(safeSql, Connection);
-        //    int result = Convert.ToInt32(cmd.ExecuteScalar());
-        //    return result;
-        //}
-
-        //public static int GetScalar(string sql, params SqlParameter[] values)
-        //{
-        //    SqlCommand cmd = new SqlCommand(sql, Connection);
-        //    cmd.Parameters.AddRange(values);
-        //    int result = Convert.ToInt32(cmd.ExecuteScalar());
-        //    return result;
-        //}
-
-        //public static SqlDataReader GetReader(string safeSql)
-        //{
-        //    SqlCommand cmd = new SqlCommand(safeSql, Connection);
-        //    SqlDataReader reader = cmd.ExecuteReader();
-        //    return reader;
-        //}
-
-        //public static SqlDataReader GetReader(string sql, params SqlParameter[] values)
-        //{
-        //    SqlCommand cmd = new SqlCommand(sql, Connection);
-        //    cmd.Parameters.AddRange(values);
-        //    SqlDataReader reader = cmd.ExecuteReader();
-        //    return reader;
-        //}
-
-        //public static DataTable GetDataSet(string safeSql)
-        //{
-        //    DataSet ds = new DataSet();
-        //    SqlCommand cmd = new SqlCommand(safeSql, Connection);
-        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //    da.Fill(ds);
-        //    return ds.Tables[0];
-        //}
-
-        //public static DataTable GetDataSet(string sql, params SqlParameter[] values)
-        //{
-        //    DataSet ds = new DataSet();
-        //    SqlCommand cmd = new SqlCommand(sql, Connection);
-        //    cmd.Parameters.AddRange(values);
-        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //    da.Fill(ds);
-        //    return ds.Tables[0];
-        //}
         ///获得连接对象
         #region
         public static SqlConnection Getconn()
@@ -137,7 +63,92 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
+
+        #region  存储过程
+        /// <summary>
+        /// 执行SQL语句，返回影响的记录数
+        /// </summary>
+        /// <param name="SQLString">SQL语句</param>
+        /// <returns>影响的记录数</returns>
+        public static int ExecuteSql(string SQLString, params SqlParameter[] cmdParms)
+        {
+            using (SqlConnection connection =DBHelper.Getconn())
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                        int rows = cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        return rows;
+                    }
+                    catch (System.Data.SqlClient.SqlException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 执行查询语句，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        /// </summary>
+        /// <param name="strSQL">查询语句</param>
+        /// <returns>SqlDataReader</returns>
+        public static SqlDataReader ExecuteReader(string SQLString, params SqlParameter[] cmdParms)
+        {
+            SqlConnection connection = DBHelper.Getconn();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                SqlDataReader myReader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                cmd.Parameters.Clear();
+                return myReader;
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                throw e;
+            }
+
+        }
+
+        private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, string cmdText, SqlParameter[] cmdParms)
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+            cmd.Connection = conn;
+            cmd.CommandText = cmdText;
+            if (trans != null)
+                cmd.Transaction = trans;
+            cmd.CommandType = CommandType.Text;//cmdType;
+            if (cmdParms != null)
+            {
+
+
+                foreach (SqlParameter parameter in cmdParms)
+                {
+                    if ((parameter.Direction == ParameterDirection.InputOutput || parameter.Direction == ParameterDirection.Input) &&
+                        (parameter.Value == null))
+                    {
+                        parameter.Value = DBNull.Value;
+                    }
+                    cmd.Parameters.Add(parameter);
+                }
+            }
+        }
+        #endregion
+
+
         public static string ConnectionString;
+
+
 
     }
 }
