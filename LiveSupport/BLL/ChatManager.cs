@@ -10,10 +10,12 @@ namespace LiveSupport.BLL
     public class ChatManager
     {
         private static IChatProvider Provider = new SqlChatProvider();
+
         #region 通过客服编号获得所有对象
         public static List<Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate)
         {
-            return GetChatByOperatorId(operatorId, beginDate, endDate);
+
+            return Provider.GetChatByOperatorId(operatorId, beginDate, endDate);
         }
         #endregion
 
