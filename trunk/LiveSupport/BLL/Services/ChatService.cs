@@ -175,6 +175,10 @@ public class ChatService
         {
             return true;
         }
+        if (chat.OperatorId != null)
+        {
+            OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Idle;//关闭时改变客服状态
+        }
         chat.Status = ChatStatus.Closed;
         VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Visiting;
         chat.CloseTime = DateTime.Now;
@@ -195,7 +199,7 @@ public class ChatService
         }
     }
     /// <summary>
-    /// 接受对话请求
+    /// 客服接受对话请求
     /// </summary>
     /// <param name="operatorId"></param>
     /// <param name="chatId"></param>
@@ -284,7 +288,6 @@ public class ChatService
             chats.Add(chatRequest);
             Provider.AddChat(chatRequest);
         }
-
         VisitSession s = VisitSessionService.GetSessionById(chatRequest.ChatId);
         s.ChatRequestTime = DateTime.Now;
         Message m = new Message();
@@ -302,10 +305,12 @@ public class ChatService
     /// <param name="visitorId"></param>
     public static int OperatorRequestChat(string operatorId, string visitorId)
     {
+        if (operatorId == null)
+        {
+            return 3;
+        }
         Visitor visitor = VisitorService.GetVisitor(visitorId);
-
-        Chat chat = ChatService.GetChatById(visitor.CurrentSessionId);
-        
+        Chat chat = ChatService.GetChatById(visitor.CurrentSessionId); 
         if (chat == null)
         {
             Operator op = OperatorService.GetOperatorById(operatorId);
@@ -320,8 +325,7 @@ public class ChatService
             chats.Add(chat);
             Provider.AddChat(chat);
         }
-         
-
+        OperatorService.GetOperatorById(operatorId).Status = OperatorStatus.InviteChat;//客服主动要请对话改变状态
         chat.Status = ChatStatus.Requested;
         Message m = new Message();
         m.ChatId =chat.ChatId;
@@ -368,7 +372,11 @@ public class ChatService
         if (chat != null)
         {
             chat.Status = ChatStatus.Accepted;
-            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;//将客服状态改为对话中
+            if (chat.OperatorId != null)
+            {
+                OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Chatting;
+            }
+            VisitSessionService.GetSessionById(chat.OperatorId).Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
             VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
         }
         MessageService.AddMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
