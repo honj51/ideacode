@@ -167,10 +167,6 @@ public partial class Chat : System.Web.UI.Page
                         {
                             litChat.Text += string.Format("<div id='chatTitle'><strong>ฤ๚หต&nbsp;&nbsp;{0}</strong></div><div id='chatText' ><span>{1}</span></div>", messages[i].SentDate.ToString("hh:mm:ss"), messages[i].Text);
                         }
-                        if (messages[i].Type == MessageType.SystemFile_ToVisitor)
-                        {
-                            litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", messages[i].Text);
-                        }
                         // TODO: is this correct?
                         lastCheck = Math.Max(lastCheck, messages[i].SentDate.Ticks);
                         //lastCheck = messages[i].SentDate.Ticks;
