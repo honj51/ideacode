@@ -88,13 +88,22 @@ namespace LiveSupport.OperatorConsole
             if (!this.IsDisposed && receiveMessage&&message.SentDate.Ticks>lastCheckTime)
             {
                 //WriteMessage(message.Text, message.Source);
-                if (message.Type == MessageType.SystemMessage_ToBoth || message.Type == MessageType.SystemMessage_ToOperator)
+
+                if (API.FromSystem(message))
                 {
-                    wb.Document.Write(string.Format("<span style=\"color: #FF9933; FONT-SIZE: 14px\">{0}</span><br />", message.Text + "&nbsp;&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString()));
+                    wb.Document.Write(string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss")));
                 }
-                else
+                if (message.Type == MessageType.ChatMessage_VistorToOperator)
                 {
-                    wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} </span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString(), message.Text));
+                    wb.Document.Write(string.Format("<span style='font-family: Arial;color:#008040;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
+                }
+                if(message.Type==MessageType.ChatMessage_OperatorToVisitor)
+                {
+                    wb.Document.Write(string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
+                }
+                if (message.Type == MessageType.SystemFile_ToOperator)
+                {
+                    wb.Document.Write(string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss")));
                 }
 
                 wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
@@ -289,7 +298,7 @@ namespace LiveSupport.OperatorConsole
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
 
             ws.SendMessage(msg);
-            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;&nbsp;" + msg.SentDate, message));
+            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message));
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
             //msg.Type = MessageType_ToAll;//*	
             //ws.AddMessage(msg);
