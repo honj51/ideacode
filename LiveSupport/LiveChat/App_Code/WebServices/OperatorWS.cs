@@ -248,14 +248,15 @@ public class OperatorWS : System.Web.Services.WebService
     {
         checkAuthentication();
         MemoryStream mo = new MemoryStream(bs);
-        FileStream fs = new FileStream(Server.MapPath("~/Download/") + fileName, FileMode.Create);
+        FileStream fs = new FileStream(Server.MapPath("~/UploadFile/") + fileName, FileMode.Create);
         mo.WriteTo(fs);
         mo.Close();
         fs.Close();
 
         LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
         m.ChatId = chatId;
-        m.Text = string.Format("客服已给您发送文件 {0} <a href=\"Download/{1}\">点击保存</a>", fileName, fileName);
+        string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
+        m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName,homeRootUrl,fileName);
         m.Type = MessageType.SystemMessage_ToVisitor;
         ChatService.SendMessage(m);
 
