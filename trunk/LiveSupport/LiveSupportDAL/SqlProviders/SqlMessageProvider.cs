@@ -53,7 +53,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 cmd.Parameters.Add("@ChatID", SqlDbType.Char, 50).Value = msg.ChatId;
                 cmd.Parameters.Add("@Source", SqlDbType.Char, 50).Value = msg.Source;
                 cmd.Parameters.Add("@Destination", SqlDbType.Char, 50).Value = msg.Destination;
-                cmd.Parameters.Add("@Text", SqlDbType.Char, 50).Value = msg.Text;
+                cmd.Parameters.Add("@Text", SqlDbType.Text).Value = msg.Text;
                 cmd.Parameters.Add("@SentDate", SqlDbType.BigInt).Value = msg.SentDate.Ticks;
                 cmd.Parameters.Add("@Type", SqlDbType.Char, 50).Value = msg.Type.ToString() ;
                 conn.Open();
