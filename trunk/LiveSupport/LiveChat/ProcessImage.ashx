@@ -82,7 +82,7 @@ public class ProcessImage : IHttpHandler
         PageRequest pageRequest = new PageRequest();
         pageRequest.AccountId = accountId;
         pageRequest.Page = context.Request.Url.ToString();
-        pageRequest.Referrer = context.Request.UrlReferrer.ToString();
+        pageRequest.Referrer = context.Request.UrlReferrer == null ? "" : context.Request.UrlReferrer.ToString();
         pageRequest.RequestTime = DateTime.Now;
         pageRequest.SessionId = visitor.CurrentSessionId;
         PageRequestService.AddPageRequest(pageRequest);
