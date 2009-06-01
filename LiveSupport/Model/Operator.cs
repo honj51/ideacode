@@ -87,6 +87,7 @@ namespace LiveSupport.LiveSupportModel
 
         public Operator()
         {
+            this.operatorId = Guid.NewGuid().ToString();
             this.status = OperatorStatus.Offline;
         }
 
