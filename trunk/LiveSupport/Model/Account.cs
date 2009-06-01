@@ -17,70 +17,70 @@ namespace LiveSupport.LiveSupportModel
             get { return accountId; }
             set { accountId = value; }
         }
-        private string loginName;
+        private string loginName = string.Empty;
 
         public string LoginName
         {
             get { return loginName; }
             set { loginName = value; }
         }
-        private string password;
+        private string password = string.Empty;
 
         public string Password
         {
             get { return password; }
             set { password = value; }
         }
-        private string nickName;
+        private string nickName = string.Empty;
 
         public string NickName
         {
             get { return nickName; }
             set { nickName = value; }
         }
-        private string companyName;
+        private string companyName = string.Empty;
 
         public string CompanyName
         {
             get { return companyName; }
             set { companyName = value; }
         }
-        private string industry;
+        private string industry = string.Empty;
 
         public string Industry
         {
             get { return industry; }
             set { industry = value; }
         }
-        private string email;
+        private string email = string.Empty;
 
         public string Email
         {
             get { return email; }
             set { email = value; }
         }
-        private string contactName;
+        private string contactName = string.Empty;
 
         public string ContactName
         {
             get { return contactName; }
             set { contactName = value; }
         }
-        private string phone;
+        private string phone = string.Empty;
 
         public string Phone
         {
             get { return phone; }
             set { phone = value; }
         }
-        private string url;
+        private string url = string.Empty;
 
         public string Url
         {
             get { return url; }
             set { url = value; }
         }
-        private string domain;
+        private string domain = string.Empty;
 
         public string Domain
         {
@@ -94,14 +94,14 @@ namespace LiveSupport.LiveSupportModel
             get { return operatorCount; }
             set { operatorCount = value; }
         }
-        private string province;
+        private string province = string.Empty;
 
         public string Province
         {
             get { return province; }
             set { province = value; }
         }
-        private string city;
+        private string city = string.Empty;
 
         public string City
         {
@@ -115,14 +115,14 @@ namespace LiveSupport.LiveSupportModel
             get { return registerDate; }
             set { registerDate = value; }
         }
-        private string remark;
+        private string remark = string.Empty;
 
         public string Remark
         {
             get { return remark; }
             set { remark = value; }
         }
-        private string paymentId;
+        private string paymentId = string.Empty;
 
         public string PaymentId
         {
@@ -132,6 +132,7 @@ namespace LiveSupport.LiveSupportModel
         public Account()
         {
             accountId = Guid.NewGuid().ToString();
+            registerDate = DateTime.Now;
         }
 
         public Account(SqlDataReader data)
