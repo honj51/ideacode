@@ -32,83 +32,6 @@ using System.Configuration;
 
 public class OperatorWS : System.Web.Services.WebService
 {
-    public class QuickResponseCategory
-    {
-        public string Name;
-        public List<string> Responses;        
-    }
-    /// <summary>
-    /// 版本信息
-    /// </summary>
-    public class SystemAdvertise
-    {
-        public string AdvertiseUrl;
-        public string AdvertiseMessage;
-    }
-    #region NewChangeCheck
-    public class MessageCheck
-	{
-        public string ChatId;
-        public long LastCheckTime;
-	}  
-
-    public class NewChangesCheck
-    {
-        public List<MessageCheck> ChatSessionChecks;
-        public long NewVisitorLastCheckTime;
-
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("NewVisitorLastCheckTime={0} ", NewVisitorLastCheckTime);
-            if (ChatSessionChecks != null)
-            {
-                foreach (MessageCheck item in ChatSessionChecks)
-                {
-                    sb.AppendFormat("ChatId={0} ", item.ChatId);
-                    sb.AppendFormat("LastCheckTime={0} ", item.LastCheckTime);
-                }
-            }
-            return sb.ToString();
-        }
-    }
-
-    public class MessageCheckResult
-    {
-        public string ChatId;
-        public List<Message> Messages;
-    }
-
-    #endregion
-    /// <summary>
-    /// 定义一个类
-    /// </summary>
-    public class NewChangesCheckResult
-    {
-        public List<Operator> Operators; // 客服状态更新
-        public List<Visitor> NewVisitors; // 新访客
-        public List<VisitSession> VisitSessionChange; // 访问会话状态更新
-        public List<MessageCheckResult> Messages; // // 消息更新
-        public long NewVisitorCheckTime;
-
-        public string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-
-             sb.AppendFormat("Operators为{0}个 ",Operators == null ? 0: Operators.Count);
-             sb.AppendFormat("NewVisitors为{0}个 ", NewVisitors == null ? 0 : NewVisitors.Count);
-             sb.AppendFormat("VisitSessionChange为{0}个 ", VisitSessionChange == null ? 0 : VisitSessionChange.Count);
-             sb.AppendFormat("Messages为{0}个 ", Messages == null ? 0 : Messages.Count);
-             sb.AppendFormat("NewVisitorCheckTime={0}", NewVisitorCheckTime);
-             return sb.ToString();
-           // foreach (var item in NewVisitors)
-           // {
-                //sb.AppendFormat("VisitorId:",item.VisitorId,item.Name,
-            //}
-            //sb.AppendFormat("NewVisitorCheckTime:{0} | NewVisitors []"
-        }
-    }
-
     public AuthenticationHeader Authentication;
     public OperatorWS()
 	{
@@ -164,29 +87,7 @@ public class OperatorWS : System.Web.Services.WebService
     public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
     {
         checkAuthentication();
-        Operator op = OperatorService.GetOperatorById(Authentication.OperatorId);
-        NewChangesCheckResult checkResult = new NewChangesCheckResult();
-        
-        // 新访客
-        checkResult.NewVisitors = VisitorService.GetNewVisitors(op.AccountId, check.NewVisitorLastCheckTime);
-
-        // 访问会话状态更新
-        checkResult.VisitSessionChange = VisitSessionService.GetVisitSessionChange(op.AccountId, check.NewVisitorLastCheckTime);
-
-        // 消息更新
-        //List<VisitSession> visitSessions = VisitSessionService.GetActiveSessionsByOperatorId(Authentication.OperatorId);
-        checkResult.Messages = new List<MessageCheckResult>();
-        foreach (MessageCheck item in check.ChatSessionChecks)
-	    {
-            MessageCheckResult mcr = new MessageCheckResult();
-            mcr.ChatId = item.ChatId;
-            mcr.Messages = MessageService.GetMessagesForOperator(item.ChatId, item.LastCheckTime);
-            checkResult.Messages.Add(mcr);
-	    }
-        checkResult.Operators = OperatorService.GetAllOperatorsByAccountId(op.AccountId);
-        // 客服状态更新
-        Debug.WriteLine(string.Format("ChecknewChanges(OperatorId={0},NewChangesCheck={{1}},NewChangesCheckResult={{2}}", Authentication.OperatorId, check.ToString(),checkResult.ToString()));
-        return checkResult;
+        return OperatorService.CheckNewChanges(Authentication.OperatorId, check);
     }
 
     [SoapHeader("Authentication", Required = true)]

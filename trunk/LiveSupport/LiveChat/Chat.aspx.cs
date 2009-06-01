@@ -298,34 +298,34 @@ public partial class Chat : System.Web.UI.Page
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
     {
-
         if (CurrentVisitor == null)
         {
             return;
         }
         string chatId = CurrentVisitor.CurrentSessionId;
 
-        LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
-        chatRequest.AccountId = Request.QueryString["aid"];
-        chatRequest.ChatId = chatId;
-        chatRequest.CreateTime = DateTime.Now;
-        chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
-        chatRequest.VisitorId = CurrentVisitor.VisitorId;
-        VisitSessionService.RequestChat(chatRequest);       
-
-        //lblOp.Text = msg.Message;
-        // we set the visitor name in the ViewState
-        if (!string.IsNullOrEmpty(txtName.Text))
+        if (CurrentChat == null || CurrentChat.Status == ChatStatus.Closed)
         {
-            CurrentVisitor.Name = txtName.Text;
+            LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
+            chatRequest.AccountId = Request.QueryString["aid"];
+            chatRequest.ChatId = chatId;
+            chatRequest.CreateTime = DateTime.Now;
+            chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
+            chatRequest.VisitorId = CurrentVisitor.VisitorId;
+            VisitSessionService.RequestChat(chatRequest);
+            if (!string.IsNullOrEmpty(txtName.Text))
+            {
+                CurrentVisitor.Name = txtName.Text;
+            }
+            if (!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                CurrentVisitor.Email = txtEmail.Text;
+            }
+            VisitorName = CurrentVisitor.Name;
+            VName = CurrentVisitor.Name;
+            setCookie(chatId);
         }
-        if (!string.IsNullOrEmpty(txtEmail.Text))
-        {
-            CurrentVisitor.Email = txtEmail.Text;
-        }
-        VisitorName = CurrentVisitor.Name;
-        VName = CurrentVisitor.Name;
-        setCookie(chatId);
+        
         pnlChat.Visible = true;
         pnlRequest.Visible = false;
     }
