@@ -48,6 +48,7 @@
       <HintPath>..\Test\Lib\Rhino-Mocks\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -67,6 +68,7 @@
     <Compile Include="OperatorServiceTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestTool.cs" />
     <Compile Include="VisitorServiceTest.cs" />
     <Compile Include="VisitSessionServiceTest.cs" />
   </ItemGroup>
