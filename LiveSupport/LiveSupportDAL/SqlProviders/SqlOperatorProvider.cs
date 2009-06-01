@@ -9,10 +9,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
     public class SqlOperatorProvider : IOperatorProvider
     {
-        /// <summary>
-        /// 取所有的客服信息
-        /// </summary>
-        /// <returns></returns>
+
+        #region 取所有的客服信息
         public List<Operator> GetAllOperators()
         {
             List<Operator> ops = new List<Operator>();
@@ -31,10 +29,10 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             r = null;
             return ops;
         }
-        /// <summary>
-        /// 更新客服信息
-        /// </summary>
-        /// <param name="op">Operator对象</param>
+        #endregion
+
+
+        #region 更新客服信息
         public int UpdateOperator(Operator op)
         {
             int isAdmin = 0;
@@ -59,10 +57,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             return DBHelper.ExecuteCommand(sql);
  
         }
-        /// <summary>
-        /// 判断用用户名是否存在
-        /// </summary>
-        /// <param name="loginName"></param>
+        #endregion
+
+        #region 判断用用户名是否存在
         public Operator GetOperatorByLoginName(string loginName)
         {
             string sql = "select * from [LiveSupport].[dbo].[LiveChat_Operator] where LoginName='" + loginName+"'";
@@ -87,16 +84,17 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return op;
         }
-        /// <summary>
-        /// 跟据客服ID删除客服信息
-        /// </summary>
-        /// <param name="operatorId">客服ID</param>
-        /// <returns>int</returns>
+        #endregion
+
+        #region 跟据客服ID删除客服信息
         public int  DeleteOperatorByid(string operatorId)
         {
             string sql = "delete  dbo.LiveChat_Operator  where OperatorId='"+operatorId+"'";
             return  DBHelper.ExecuteCommand(sql);
         }
+        #endregion
+
+        #region
         /// <summary>
         /// 添加一条客服信息
         /// </summary>
@@ -131,13 +129,16 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             {
                 return 0;
             }
- 
+
         }
+        #endregion
         /// <summary>
         /// 根据公司ID查询所以该公司所有的客服人员
         /// </summary>
         /// <param name="accountId">公司ID</param>
         /// <returns>Operator对象</returns>
+        /// 
+
         public List<Operator> GetOperatorByAccountId(string accountId)
         {
             string sql = "select * from LiveChat_Operator where AccountId='" + accountId+"'";
@@ -188,7 +189,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 公司是否存在此客服
         public Operator GetOperatorByAccountIdAndLoginName(string accountId, string loginName)
         {
-            //string sql = "select * from [LiveSupport].[dbo].[LiveChat_Operator] where LoginName='" + loginName+"'";
             string sql = string.Format("select * from [LiveSupport].[dbo].[LiveChat_Operator] where AccountId='{0}' and LoginName='{1}'", accountId, loginName);
             SqlDataReader data = null;
             Operator op = null;
@@ -211,7 +211,40 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             return op;
         }
         #endregion
- 
+
+        #region 找回客服密码
+        public Operator GetPasswordByAccountNameLoginNameAndEmail(string accountLoginName, string loginName, string eamil)
+        {
+            try
+            {
+                Account ac=SqlAccountProvider.Default.CheckCompanyByloginName(accountLoginName);
+                if (ac != null)
+                {
+                    string sql = string.Format("select * from LiveChat_Operator where AccountId='{0}' and LoginName='{1}' and Email='{2}'",ac.AccountId, loginName, eamil);
+                    SqlDataReader sdr = DBHelper.GetReader(sql);
+                    if (sdr.Read())
+                    {
+                        Operator oper = new Operator(sdr);
+                        sdr.Close();
+                        return oper;
+                    }
+                    else
+                    {
+                        sdr.Close();
+                        return null;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        #endregion
  
     }
 }
