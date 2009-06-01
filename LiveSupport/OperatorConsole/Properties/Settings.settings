@@ -44,5 +44,12 @@
     <Setting Name="URL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.zxkefu.cn</Value>
     </Setting>
+    <Setting Name="SearchPasswordURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:2454/Portal/GetBackPassword.aspx 
+</Value>
+    </Setting>
+    <Setting Name="RegisterURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:2454/Portal/Licence.aspx </Value>
+    </Setting>
   </Settings>
 </SettingsFile>

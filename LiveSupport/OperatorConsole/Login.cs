@@ -30,7 +30,6 @@ namespace LiveSupport.OperatorConsole
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator = "http://miraclew.gicp.net/lcs/Operator.asmx";
             Properties.Settings.Default.RememberPassword = this.cbxPassword.Checked;
             Properties.Settings.Default.AutoLogin = this.cbxAutoLogin.Checked;
             if((!string.IsNullOrEmpty(this.txtOpName.Text))&&(!string.IsNullOrEmpty(this.txtOpPassword.Text)))
@@ -187,9 +186,37 @@ namespace LiveSupport.OperatorConsole
           
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
+       
 
+        private void linkLabelPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                linkLabelPassword.LinkVisited = true;
+                System.Diagnostics.Process.Start(Properties.Settings.Default.SearchPasswordURL);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unable to open link that was clicked.");
+
+            }
         }
+
+        private void linkLabelRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                linkLabelRegister.LinkVisited = true;
+                System.Diagnostics.Process.Start(Properties.Settings.Default.RegisterURL);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unable to open link that was clicked.");
+
+            }
+        }
+
+      
+
     }
 }

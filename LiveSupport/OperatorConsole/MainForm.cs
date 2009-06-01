@@ -877,7 +877,7 @@ namespace LiveSupport.OperatorConsole
             Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
             if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
             {
-
+              
                 if (ws.InviteChat(v.VisitorId) == 0)
                 {
                   
@@ -900,14 +900,15 @@ namespace LiveSupport.OperatorConsole
 
                     cf.Show();
                 }
-                else if (ws.InviteChat(v.VisitorId) == -1)
-                {
-                    MessageBox.Show("该访客已被邀请");
-                }
-                else if (ws.InviteChat(v.VisitorId) == -2)
-                {
-                    MessageBox.Show("访客拒绝邀请");
-                }
+             
+                //else if (ws.InviteChat(v.VisitorId) == -1)
+                //{
+                //    MessageBox.Show("该访客已被邀请");
+                //}
+                //else if (ws.InviteChat(v.VisitorId) == -2)
+                //{
+                //    MessageBox.Show("访客拒绝邀请");
+                //}
             }         
         }
 
