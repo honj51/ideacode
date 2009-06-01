@@ -102,7 +102,6 @@ namespace LiveSupport.OperatorConsole
             this.inviteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acceptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
-            this.tmrCheckRequests = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -811,11 +810,6 @@ namespace LiveSupport.OperatorConsole
             this.imgIconSet.Images.SetKeyName(7, "PI Diagona Web Application 04 02.png");
             this.imgIconSet.Images.SetKeyName(8, "PI Diagona Web Application 04 05.png");
             // 
-            // tmrCheckRequests
-            // 
-            this.tmrCheckRequests.Enabled = true;
-            this.tmrCheckRequests.Interval = 3500;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -1318,27 +1312,27 @@ namespace LiveSupport.OperatorConsole
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem2});
             this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(153, 192);
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(143, 170);
             // 
             // idleToolStripMenuItem
             // 
             this.idleToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_02;
             this.idleToolStripMenuItem.Name = "idleToolStripMenuItem";
-            this.idleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.idleToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.idleToolStripMenuItem.Text = "空闲";
             // 
             // chattingToolStripMenuItem
             // 
             this.chattingToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_01;
             this.chattingToolStripMenuItem.Name = "chattingToolStripMenuItem";
-            this.chattingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chattingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.chattingToolStripMenuItem.Text = "对话中";
             // 
             // beRightBackToolStripMenuItem
             // 
             this.beRightBackToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_04;
             this.beRightBackToolStripMenuItem.Name = "beRightBackToolStripMenuItem";
-            this.beRightBackToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.beRightBackToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.beRightBackToolStripMenuItem.Text = "一会回来";
             this.beRightBackToolStripMenuItem.Click += new System.EventHandler(this.beRightBackToolStripMenuItem_Click);
             // 
@@ -1346,38 +1340,38 @@ namespace LiveSupport.OperatorConsole
             // 
             this.offlineToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.PI_Diagona_Web_Application_04_09;
             this.offlineToolStripMenuItem.Name = "offlineToolStripMenuItem";
-            this.offlineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.offlineToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.offlineToolStripMenuItem.Text = "离线";
             this.offlineToolStripMenuItem.Click += new System.EventHandler(this.offlineToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
             // 
             // changeAccountToolStripMenuItem
             // 
             this.changeAccountToolStripMenuItem.Name = "changeAccountToolStripMenuItem";
-            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.changeAccountToolStripMenuItem.Text = "更换座席(&C)";
             this.changeAccountToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.openToolStripMenuItem.Text = "显示/隐藏(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem2
             // 
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
-            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
             this.exitToolStripMenuItem2.Text = "退出(&E)";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1574,7 +1568,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cannedMessagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem presetLinksToolStripMenuItem;
-        private System.Windows.Forms.Timer tmrCheckRequests;
         private System.Windows.Forms.ToolStripMenuItem playSoundOnChatRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playSoundOnChatMessageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whenOfflineGetWebsiteRequestsToolStripMenuItem;

@@ -178,7 +178,7 @@ namespace LiveSupport.OperatorConsole
                     wb.Navigate("about:该访客对话请求已被其他客服接受"); 
                     receiveMessage = false;
                     //wb.Document.Write(string.Format("<span style=\"color: #FF9933\">{0}</span><br />","该访客对话请求已被其他客服接受"));
-                  
+                    this.Close();
                     return;
                 }
                 if(res==-3)
