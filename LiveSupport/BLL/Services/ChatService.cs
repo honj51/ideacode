@@ -5,9 +5,10 @@ using System.Web.Configuration;
 using System.Collections.Generic;
 using LiveSupport.LiveSupportModel;
 using System.Text;
-using System.Web.Mail;
 using LiveSupport.LiveSupportDAL.SqlProviders;
 using LiveSupport.LiveSupportDAL.Providers;
+using System.Net.Mail;
+using System.Net;
 
 
 
@@ -62,28 +63,14 @@ public class ChatService
     /// <param name="body">正文</param>
     public static void SendEmail(string to, string subject, string body)
     {
-
-        string username = ConfigurationManager.AppSettings["WSUser"].ToString();
-        string pwd = ConfigurationManager.AppSettings["Pwd"].ToString();
-        string sReturn = string.Empty;
-        MailMessage mailMsg = new MailMessage();
-        mailMsg.BodyFormat = MailFormat.Html;
-        mailMsg.To = to;
-        mailMsg.From = ConfigurationManager.AppSettings["Email"].ToString();
-        mailMsg.Subject = subject;
-        mailMsg.Body = body;
-        mailMsg.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "1");
-        mailMsg.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", "410396629");
-        mailMsg.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", "19870312");
-        SmtpMail.SmtpServer = ConfigurationManager.AppSettings["SMTPServer"].ToString();
-        try
-        {
-            SmtpMail.Send(mailMsg);
-        }
-        catch (Exception err)
-        {
-            throw err;
-        }
+        MailMessage mail = new MailMessage();
+        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());//发送者
+        mail.To.Add(new MailAddress(to));//收信者
+        mail.Subject = subject;//主题
+        mail.Body = body; //正文
+        SmtpClient mailer = new SmtpClient(ConfigurationManager.AppSettings["SMTPServer"].ToString());
+        mailer.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
+        mailer.Send(mail);
     }
     #endregion
  
@@ -247,7 +234,6 @@ public class ChatService
         }
         else
         {
-
             return AcceptChatRequestReturn_Error_Others;
         }
     }
