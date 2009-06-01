@@ -94,6 +94,11 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         {
             e.Row.Attributes.Add("onmouseover", "currentcolor=this.style.backgroundColor;this.style.backgroundColor='#6699ff'");
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentcolor");
+            ImageButton imbtnDelete = (ImageButton)e.Row.FindControl("ibtnImage");
+            imbtnDelete.AlternateText = "删除";
+            imbtnDelete.Attributes.Add("onclick", "javascript:return confirm('确定删除客服账户?');");
         }
+       
+
     }
 }

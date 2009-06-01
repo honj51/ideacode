@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="AccountHome.aspx.cs" Inherits="AccountAdmin_Default3" %>
+﻿<%@ Page Title="公司信息管理" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="AccountHome.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
 <!--内容-->
@@ -20,7 +20,7 @@
                   ControlToValidate="txtCompanyName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD <FONT color=red>* </FONT>公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+          <TD <FONT color=red><FONT color=red>*</FONT> 公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
           <TD ><asp:TextBox ID="txtUrl" runat="server" Width="250px">http://</asp:TextBox>
               <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                   ControlToValidate="txtUrl" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
