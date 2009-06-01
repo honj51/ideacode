@@ -44,8 +44,8 @@ namespace LiveSupport.OperatorConsole
             this.lblUserName = new System.Windows.Forms.Label();
             this.cbxPassword = new System.Windows.Forms.CheckBox();
             this.cbxAutoLogin = new System.Windows.Forms.CheckBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelRegister = new System.Windows.Forms.LinkLabel();
+            this.linkLabelPassword = new System.Windows.Forms.LinkLabel();
             this.pnlLogIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
@@ -199,26 +199,27 @@ namespace LiveSupport.OperatorConsole
             this.cbxAutoLogin.Text = "×Ô¶¯µÇÂ¼";
             this.cbxAutoLogin.UseVisualStyleBackColor = true;
             // 
-            // linkLabel1
+            // linkLabelRegister
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(263, 60);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
-            this.linkLabel1.TabIndex = 7;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "×¢²áÐÂÕÊºÅ";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabelRegister.AutoSize = true;
+            this.linkLabelRegister.Location = new System.Drawing.Point(263, 60);
+            this.linkLabelRegister.Name = "linkLabelRegister";
+            this.linkLabelRegister.Size = new System.Drawing.Size(65, 12);
+            this.linkLabelRegister.TabIndex = 7;
+            this.linkLabelRegister.TabStop = true;
+            this.linkLabelRegister.Text = "×¢²áÐÂÕÊºÅ";
+            this.linkLabelRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegister_LinkClicked);
             // 
-            // linkLabel2
+            // linkLabelPassword
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(263, 122);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel2.TabIndex = 8;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "È¡»ØÃÜÂë";
+            this.linkLabelPassword.AutoSize = true;
+            this.linkLabelPassword.Location = new System.Drawing.Point(263, 122);
+            this.linkLabelPassword.Name = "linkLabelPassword";
+            this.linkLabelPassword.Size = new System.Drawing.Size(53, 12);
+            this.linkLabelPassword.TabIndex = 8;
+            this.linkLabelPassword.TabStop = true;
+            this.linkLabelPassword.Text = "È¡»ØÃÜÂë";
+            this.linkLabelPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPassword_LinkClicked);
             // 
             // Login
             // 
@@ -229,8 +230,8 @@ namespace LiveSupport.OperatorConsole
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(367, 195);
             this.ControlBox = false;
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.linkLabelPassword);
+            this.Controls.Add(this.linkLabelRegister);
             this.Controls.Add(this.cbxAutoLogin);
             this.Controls.Add(this.cbxPassword);
             this.Controls.Add(this.lblUserName);
@@ -271,8 +272,8 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.CheckBox cbxPassword;
         private System.Windows.Forms.CheckBox cbxAutoLogin;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabelRegister;
+        private System.Windows.Forms.LinkLabel linkLabelPassword;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblAuthenticate;
         private System.Windows.Forms.PictureBox picLogIn;
