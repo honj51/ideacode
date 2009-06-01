@@ -21,7 +21,28 @@ public static class OperatorService
 
     public static void Init()
     {
+        getOperatorsFromDB();        
+    }
+
+    private static void getOperatorsFromDB()
+    {
         operators = Provider.GetAllOperators();
+        // 取出管理员客服
+        List<Account> accounts = AccountService.GetAllAccounts();
+        foreach (var item in accounts)
+        {
+            Operator op = new Operator();
+            op.OperatorId = item.AccountId;
+            op.Email = item.Email;
+            op.AVChatStatus = OperatorStatus.Offline.ToString();
+            op.AccountId = item.AccountId;
+            op.NickName = item.NickName;
+            op.LoginName = item.LoginName;
+            op.Password = item.Password;
+            op.IsAdmin = true;
+            op.Status = OperatorStatus.Offline;
+            operators.Add(op);
+        }
     }
 
     private static List<Operator> operators = new List<Operator>();
@@ -32,24 +53,7 @@ public static class OperatorService
     /// <returns>BOOL</returns>
     public static bool IsOperatorOnline(string operatorId)
     {
-        Operator op = null;
-        foreach (Operator item in operators)
-        {
-            if (item.OperatorId == operatorId)
-            {
-                op = item;
-            }
-        }
-        if (op == null)
-        {
-            foreach (Operator item in Provider.GetAllOperators())
-            {
-                if (item.OperatorId == operatorId)
-                {
-                    op = item;
-                }
-            }
-        }
+        Operator op = GetOperatorById(operatorId);
         if (op != null)
         {
             return op.Status != OperatorStatus.Offline;
@@ -73,12 +77,13 @@ public static class OperatorService
                 if (item.AccountId==account.AccountId&&item.LoginName==operatorName&&item.Password==password)
                 {
                     op = item;
-                }
-                
+                    break;
+                }                
             }
             if (op == null)
             {
-                foreach (Operator item in Provider.GetAllOperators())
+                getOperatorsFromDB();
+                foreach (Operator item in operators)
                 {
                     if (item.AccountId == account.AccountId && item.LoginName == operatorName && item.Password == password)
                     {
@@ -86,11 +91,14 @@ public static class OperatorService
                     }
                 }
             }
-
-           if(op!=null)
-           {
-             op.Status = OperatorStatus.Idle;//将客服状态改为空闲
-           }
+            if (op != null)
+            {
+                if (op.Status != OperatorStatus.Offline)
+                {
+                    return null;
+                }
+               op.Status = OperatorStatus.Idle;//将客服状态改为空闲
+            }
         }
         return op;
     }
@@ -100,31 +108,19 @@ public static class OperatorService
     /// <param name="operatorId">客服ID</param>
     public static void Logout(string operatorId)
     {
-        Operator op = null;
-        foreach (Operator item in operators)
-        {
-            if (item.OperatorId==operatorId)
-            {
-                op = item;
-            }
-        }
-        if (op == null)
-        {
-            foreach (Operator item in Provider.GetAllOperators())
-            {
-                if (item.OperatorId == operatorId)
-                {
-                    op = item;
-                }
-            }
-        }
+
+        Operator op = GetOperatorById(operatorId);
         if (op != null)
         {
             op.Status = OperatorStatus.Offline;
         }
 
     }
-
+    /// <summary>
+    /// 判断某公司的客服是否在线
+    /// </summary>
+    /// <param name="accountId"></param>
+    /// <returns></returns>
     public static bool HasOnlineOperator(string accountId)
     {
         foreach (Operator item in operators)
@@ -146,15 +142,16 @@ public static class OperatorService
              if (item.OperatorId == operatorId)
              {
                  op=item;
+                 break;
              }
          }
          if (op == null)
          {
-             foreach (Operator item in Provider.GetAllOperators())
+             getOperatorsFromDB();
+             foreach (Operator item in operators)
              {
                  if (item.OperatorId == operatorId)
                  {
-                     operators.Add(item);
                      op = item;
                  }
              }
@@ -171,25 +168,8 @@ public static class OperatorService
     /// <returns>(int)信息</returns>
     public static int ChangPassword(string operatorId, string oldPassword, string newPassword)
     {
-        Operator op = null;
-        foreach (Operator item in operators)
-        {
-            if (item.OperatorId == operatorId)
-            {
-                op = item;
-            }
-        }
-        if (op == null)
-        {
-            foreach (Operator item in Provider.GetAllOperators())
-            {
-                if (item.OperatorId == operatorId)
-                {
-                    operators.Add(item);
-                    op = item;
-                }
-            }
-        }
+        Operator op = GetOperatorById(operatorId);
+
         if (op == null)
         {
             if (op.Password == oldPassword)
@@ -262,5 +242,18 @@ public static class OperatorService
         m.Text = string.Format("访客已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}'>点击保存</a>", fileName, homeRootUrl, fileName);
         m.Type = MessageType.SystemMessage_ToOperator;
         ChatService.SendMessage(m);
+    }
+
+    public static List<Operator> GetAllOperatorsByAccountId(string accountId)
+    {
+        List<Operator> ops = new List<Operator>();
+        foreach (Operator item in operators)
+        {
+            if (item.AccountId == accountId)
+            {
+                ops.Add(item);
+            }
+        }
+        return ops;
     }
 }

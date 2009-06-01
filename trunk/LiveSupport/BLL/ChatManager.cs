@@ -14,7 +14,6 @@ namespace LiveSupport.BLL
         #region 通过客服编号获得所有对象
         public static List<Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate)
         {
-
             return Provider.GetChatByOperatorId(operatorId, beginDate, endDate);
         }
         #endregion
