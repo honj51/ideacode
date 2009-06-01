@@ -137,7 +137,7 @@ namespace LiveSupport.OperatorConsole
             //} 
                timer1.Enabled = false;
                loginTimer.Enabled = false;
-               tmrCheckRequests.Enabled = false;
+               
                if (Program.ChatForms.Count == 0)
                {
                    try
@@ -146,14 +146,9 @@ namespace LiveSupport.OperatorConsole
                    }
                    catch (Exception ex)
                    {
-                       Trace.WriteLine("Logout异常: " + ex.Message);
-                       MessageBox.Show("网络连接中断");
-                       throw;
+                       Trace.WriteLine("Logout异常: " + ex.Message);                      
                    }
                    
-                      
-                   
-
                }
                else
                {
@@ -385,7 +380,8 @@ namespace LiveSupport.OperatorConsole
 
         private void connectionLost()
         {
-            timer1.Stop();
+            timer1.Enabled = false;
+            loginTimer.Enabled = false;
             MessageBox.Show("与服务器的连接中断，需要重新登陆！","连接中断", MessageBoxButtons.OK, MessageBoxIcon.Error);
             restartApp("-r");
         }
