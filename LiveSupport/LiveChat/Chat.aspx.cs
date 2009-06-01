@@ -128,6 +128,7 @@ public partial class Chat : System.Web.UI.Page
             }
             else
             {
+                // 判断某公司的客服是否在线
                 if (OperatorService.HasOnlineOperator(CurrentAccount.AccountId))
                 {
                     pnlRequest.Visible = true;
@@ -293,9 +294,6 @@ public partial class Chat : System.Web.UI.Page
         mailer.Send(mail);
         lblConfirmation.Visible = true;
         lblConfirmation.Text = "谢谢您的留言！";
-        
-       // Response.Write("<script>confirm('邮件发送成功 我们会尽快回复你！')</script>");    
-       // Response.Write("<script> emailclose();</script>");       
     }
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
@@ -306,7 +304,6 @@ public partial class Chat : System.Web.UI.Page
             return;
         }
         string chatId = CurrentVisitor.CurrentSessionId;
-        
 
         LiveSupport.LiveSupportModel.Chat chatRequest = new LiveSupport.LiveSupportModel.Chat();
         chatRequest.AccountId = Request.QueryString["aid"];
