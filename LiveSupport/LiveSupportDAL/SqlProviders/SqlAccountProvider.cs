@@ -11,6 +11,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
     {
         private static SqlAccountProvider _default;
 
+        #region 创建SqlAccountProvider实例
         public static SqlAccountProvider Default
         {
             get {
@@ -18,15 +19,15 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                     _default = new SqlAccountProvider();
                 return _default; 
             }
-            
-        }
 
-        
+        }
+        #endregion
+
         #region 添加一条新的公司帐号
         public int AddAccount(Account account)
         {
-            bool b = new SqlAccountProvider().CheckCompanyByloginName(account.LoginName);
-            if (b)
+            Account ac = new SqlAccountProvider().CheckCompanyByloginName(account.LoginName);
+            if (ac==null)
             {
                 string sql = string.Format(
                  "INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account]"
@@ -160,7 +161,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region 判断一个公司是否存在此用户名
-        public bool CheckCompanyByloginName(string LoginName)
+        public Account CheckCompanyByloginName(string LoginName)
         {
             string sql = string.Format("select * from LiveSupport_Account where LoginName='{0}'", LoginName);
             SqlDataReader data = null;
@@ -169,17 +170,15 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 data = DBHelper.GetReader(sql);
                 if (data.Read())
                 {
-                    data.Close();
-                    data.Dispose();
-                    data = null;
-                    return false;
+                    Account account = new Account(data);
+                    return account;
                 }
                 else
                 {
                     data.Close();
                     data.Dispose();
                     data = null;
-                    return true;
+                    return null;
                 }
             }
             catch
@@ -188,7 +187,32 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
         }
         #endregion
- 
+
+        #region 通过Email找回密码
+        public Account GetPasswordByLoginNameAndEmail(string loginName, string eamil)
+        {
+            try
+            {
+                string sql = string.Format("select * from LiveSupport_Account where LoginName='{0}' and Email='{1}'", loginName, eamil);
+                SqlDataReader sdr = DBHelper.GetReader(sql);
+                if (sdr.Read())
+                {
+                    Account account = new Account(sdr);
+                    sdr.Close();
+                    return account;
+                }
+                else
+                {
+                    sdr.Close();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        #endregion
     }
 }
    
