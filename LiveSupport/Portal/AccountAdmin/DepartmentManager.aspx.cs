@@ -48,7 +48,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
     protected void gvDepartment_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-
+       
         if (e.CommandName == "cmdDelete")
         {
             bool b = DepartmentManager.DeleteDepartmentById(e.CommandArgument.ToString());
@@ -77,5 +77,9 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     protected void ObjectDataSource1_Updating(object sender, ObjectDataSourceMethodEventArgs e)
     {
         e.InputParameters["AccountId"] = account.AccountId;
+    }
+    protected void gvDepartment_DataBound(object sender, EventArgs e)
+    {
+        
     }
 }

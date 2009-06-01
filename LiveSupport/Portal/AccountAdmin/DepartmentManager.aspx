@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="DepartmentManager.aspx.cs" Inherits="AccountAdmin_Default3" %>
+<%@ Page Title="部门管理" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="DepartmentManager.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
 <SCRIPT type="text/javascript">
@@ -30,7 +30,8 @@
                onrowdatabound="gvDepartment_RowDataBound" DataKeyNames="DepartmentId" 
                onrowcommand="gvDepartment_RowCommand" 
                onrowediting="gvDepartment_RowEditing" 
-               onrowupdating="gvDepartment_RowUpdating" >
+               onrowupdating="gvDepartment_RowUpdating" 
+               ondatabound="gvDepartment_DataBound" >
                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                <RowStyle BackColor="#EFF3FB" />
                <Columns>
