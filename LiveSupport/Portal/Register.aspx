@@ -3,12 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <center>
 <!--验证码-->
-<script type="text/javascript">
-    function show_vcode()
-    {
-        document.getElementById("imgRandom").src = document.getElementById("imgRandom").src + '?temp='+ (new Date().getTime().toString(36)) ;
-    }
-    </script>
+<script src="js/Random.js"> </script>
  <img src="images/tupian-5.gif" width="760" style="height: 151px" />
 <table cellSpacing="0" cellPadding="0" style="height: 568px; background-color:#CCCCCC;">
 

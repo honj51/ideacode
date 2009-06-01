@@ -20,7 +20,8 @@
     <%--Add LiveChat services javascript --%>
     <!--导入js文件-->
     <%--<script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=2"></script>--%>
-    <script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&IcoLocation=4&IconStylel=1&IconStyle=1"></script>
+    
+    <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=31037405-e786-41ed-a21c-a6f39af7c19c&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=3'></script>
 </head>
 
 <body>
