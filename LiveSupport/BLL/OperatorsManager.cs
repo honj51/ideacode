@@ -59,5 +59,12 @@ namespace LiveSupport.BLL
             else
                 return false;
         }
+
+         #region 通过Email找回密码
+        public static Operator GetPasswordByAccountNameLoginNameAndEmail(string accountLoginName, string loginName, string eamil)
+        {
+            return Provider.GetPasswordByAccountNameLoginNameAndEmail(accountLoginName, loginName, eamil);
+        }
+        #endregion
     }
 }
