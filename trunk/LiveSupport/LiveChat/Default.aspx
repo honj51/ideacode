@@ -44,7 +44,7 @@
         </script> 
 --%> 
  <%--    <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=05932da1-b444-4aed-a58c-a47c69e639cd&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0"></script> --%>
-            <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=4&InviteStyle=1&IconStyle=1"></script> 
+       <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=2&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0'></script>
         <input id="Text1" type="text" />
         <input type="button" value="fdsaf" onclick="visitorLeave()" /><table 
             style="width: 100%; height: 733px;">
