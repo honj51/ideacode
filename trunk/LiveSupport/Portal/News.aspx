@@ -35,16 +35,9 @@
 </td><td style="width: 5px; height: 304px;"></td>
      <!--right-->
     <td style="width: 231px; height: 304px;" valign="top" align="left">
-    <img src="Images/fw_download.gif" 
-            style="margin-top:3px; width:230px; height:78px;" /><br />
+    <a href="Download/OperatorConsole.msi"><img src="Images/fw_download.gif" 
+            style="margin-top:3px; width:230px; height:64px;" /></a><br />
     <img src="Images/video.gif" style="margin-top:5px;" /><br />
-    <table width="233px;" style="background-image:url('Images/xzsc.bmp'); margin-top:3px;" cellpadding="0" cellspacing="0" >
-    <tr><td align="left" height="52"></td></tr>
-    <tr><td align="left"></td></tr>
-    <tr><td align="center"><img src="Images/annu1.gif" /></td></tr>
-    <tr><td align="center"><img src="Images/annu2.gif" /></td></tr>
-    <tr><td height="3"></td></tr>
-    </table>
     </td>
 </tr>
 </table>

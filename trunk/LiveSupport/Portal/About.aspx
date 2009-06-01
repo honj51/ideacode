@@ -36,7 +36,7 @@
     <br />
     <b>合作观：</b><br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    我们与业界数家优秀公司建立了战略联盟关系，包括江西百得、Amenity、Asiainfo、Cafesoft、Softerra等，我们始终相信真诚和专业是共赢的基础。<br />
+    我们与业界数家优秀公司建立了战略联盟关系，包括江西百得等，我们始终相信真诚和专业是共赢的基础。<br />
     <br />
     <br />
     </td></tr>

@@ -24,18 +24,14 @@
               <TR>
                 <TD align=right width=100 bgColor=#ffffff height=27>联系QQ：</TD>
                 <TD align=left 
-                  bgColor=#ffffff>&nbsp;109861161</TD></TR>
+                  bgColor=#ffffff>&nbsp;39419358</TD></TR>
               <TR>
                 <TD align=right width=100 bgColor=#f3f7fa height=27>联系手机：</TD>
                 <TD align=left 
-                  bgColor=#f3f7fa>&nbsp;万先生：15270918055、卢先生：13970085126、翁先生： 15979075657 
-                    、郑先生：13699525100</TD></TR>
-              <TR>
-                <TD align=right width=100 bgColor=#ffffff height=27>公司传真：：</TD>
-                <TD align=left bgColor=#ffffff>&nbsp;0791-8161316</TD></TR>
-              <TR>
+                  bgColor=#f3f7fa>&nbsp;万先生：15270918055</TD></TR>
+              
                 <TD align=right width=100 bgColor=#f3f7fa height=27>电子邮箱：</TD>
-                <TD align=left bgColor=#f3f7fa>&nbsp;helioeast@163.com</TD></TR>
+                <TD align=left bgColor=#f3f7fa>partner@telnv.com&nbsp;</TD></TR>
               <TR>
                 <TD align=right width=100 bgColor=#ffffff height=27>官方网址：</TD>
                 <TD align=left bgColor=#ffffff>&nbsp;<A 

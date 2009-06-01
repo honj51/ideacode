@@ -104,10 +104,7 @@ CONTENT SIDE COLUMN
                 客服座席软件下载
             </h3>
             <ul class="list-of-links">
-            <img src="Images/fw_download.gif" style="width: 160px; height: 65px;" />
-            <li>软件手册下载</li>
-            <img src="Images/annu1.gif" />
-            <img src="Images/annu2.gif" />
+            <a href="Download/OperatorConsole.msi"><img src="Images/fw_download.gif" style="width: 160px; height: 65px;" /></a>
             </ul>
         </div>
         <div class="clear">
