@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="AccountAdmin_Default3" %>
+﻿<%@ Page Title="获取代码" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
     <SCRIPT type="text/javascript">
@@ -87,10 +87,9 @@
   <tr><td>客服图标风格：</td><td valign="middle"><select id="IcoStyle" onchange="showIcoImg(this);">
     <option value="0">风格一</option>
     <option value="1">风格二</option>
-    <option value="2">风格三</option>
-    <option value="3">风格四</option>
+
   </select></td><td align="right"><div>
-          <img name="IcoImage" src="Images/1-2.jpg" style="height: 70px; display:block; width: 160px;" />
+          <img name="IcoImage" src="Images/1-2.gif" style="height: 70px; display:block; width: 160px;" />
           <img name="IcoImage" src="Images/2-2.gif" style="height: 70px; width: 160px; display:none;" />
           <img name="IcoImage" src="Images/3-2.gif" style="height: 70px; display:none; width: 160px;" />
           <img name="IcoImage" src="Images/4-2.gif" style="height: 70px; width:160px; display:none;" /></div></td></tr>
@@ -98,8 +97,7 @@
   <select name="AutoStyle" onchange='showAutoImg(this)'>
     <option value="0">风格一</option>
     <option value="1">风格二</option>
-    <option value="2">风格三</option>
-    <option value="3">风格四</option>
+
   </select></td><td align="right">
           <img name="AutoImage" src="Images/1-3.gif" 
               style="width: 161px; height: 53px; display:block;" />
@@ -109,9 +107,6 @@
           </td></tr>
    <tr><td>聊天页面风格：</td><td valign="middle"> <select name="ChatStyle" onchange='showChatImage(this);'>
     <option value="0">风格一</option>
-    <option value="1">风格二</option>
-    <option value="2">风格三</option>
-    <option value="3">风格四</option>
   </select></td><td align="right">
          <img name="ChatImage" src="Images/1-1.gif" 
                style="height: 87px; width: 164px; display:block;"/>

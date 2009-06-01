@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="UpdateAccount.aspx.cs" Inherits="AccountAdmin_Default3" %>
+﻿<%@ Page Title="账号管理" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="UpdateAccount.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
