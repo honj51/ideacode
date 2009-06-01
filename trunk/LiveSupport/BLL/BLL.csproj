@@ -43,6 +43,7 @@
     <Compile Include="ChatManager.cs" />
     <Compile Include="ChatMessageManager.cs" />
     <Compile Include="DepartmentManager.cs" />
+    <Compile Include="EmailManager.cs" />
     <Compile Include="OperatorsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />

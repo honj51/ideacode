@@ -12,19 +12,15 @@ namespace LiveSupport.BLL
     /// </summary>
     public class AccountsManager
     {
-        //验证
+        #region 验证
         public static Account Login(string loginId, string loginPwd)
         {
 
             return SqlAccountProvider.Default.CheckAccountByLoginIdAndPwd(loginId, loginPwd);
         }
-        /// <summary>
-        /// 通过AccountId 修改公司信息
-        /// </summary>
-        /// <param name="accountId"></param>
-        /// <param name="password"></param>
-        /// <param name="NickName"></param>
-        /// <returns></returns>
+        #endregion
+
+        #region 通过AccountId 修改公司信息
         public static bool UpdateAccountByAccountId(string accountId, string password, string nickName)
         {
             Account account = SqlAccountProvider.Default.GetAccountByAccountId(accountId);
@@ -37,7 +33,9 @@ namespace LiveSupport.BLL
             else
                 return false;
         }
-        //修改公司信息
+        #endregion
+
+        #region 修改公司信息
         public static bool UpdateAccount(Account account)
         {
             int i = 0;
@@ -47,10 +45,9 @@ namespace LiveSupport.BLL
             else
                 return false;
         }
-                /// <summary>
-        /// 添加一条新的公司帐号
-        /// </summary>
-        /// <param name="account">account对象</param>
+        #endregion
+
+        #region 添加一条新的公司帐号
         public static bool AddAccount(Account account)
         {
             int i = 0;
@@ -60,9 +57,20 @@ namespace LiveSupport.BLL
             else
                 return false;
         }
+        #endregion
+
+        #region 通过公司ID会的公司信息
         public static Account GetAccountByAccountId(string accountId)
         {
             return SqlAccountProvider.Default.GetAccountByAccountId(accountId);
         }
+        #endregion
+
+         #region 通过Email找回密码
+        public static Account GetPasswordByLoginNameAndEmail(string loginName, string eamil)
+        {
+            return SqlAccountProvider.Default.GetPasswordByLoginNameAndEmail(loginName, eamil);
+        }
+        #endregion
     }
 }
