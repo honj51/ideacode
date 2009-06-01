@@ -11,5 +11,6 @@ namespace LiveSupport.LiveSupportDAL.Providers
         Operator GetOperatorByOperatorId(string operatorId);
         int NewOperator(Operator op);
         int UpdateOperator(Operator op);
+        Operator GetPasswordByAccountNameLoginNameAndEmail(string accountLoginName, string loginName, string eamil);
     }
 }
