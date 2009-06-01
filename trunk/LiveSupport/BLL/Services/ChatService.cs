@@ -162,7 +162,7 @@ public class ChatService
         {
             return true;
         }
-        if (chat.OperatorId != null)
+        if (!string.IsNullOrEmpty(chat.OperatorId))
         {
             OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Idle;//关闭时改变客服状态
         }
@@ -266,6 +266,11 @@ public class ChatService
         }
         if (ch != null)
         {
+            if (ch.Status == ChatStatus.Requested || ch.Status == ChatStatus.Accepted)
+            {
+                //已经在请求或者对话状态，忽略这个请求
+                return;
+            }
             chats.Remove(ch);
             chats.Add(chatRequest);
         }
