@@ -188,7 +188,7 @@ public class OperatorWS : System.Web.Services.WebService
     public int ChangePassword(string oldPassword, string newPassword)
     {
         checkAuthentication();
-        return ChatService.ChangPassword(Authentication.OperatorId,oldPassword,newPassword); 
+        return OperatorService.ChangPassword(Authentication.OperatorId, oldPassword, newPassword);
     }
     /// <summary>
     /// 重置座席密码
@@ -200,7 +200,7 @@ public class OperatorWS : System.Web.Services.WebService
     public int ResetOperatorPassword(string loginName)
     {
         checkAuthentication();
-        return ChatService.ResetOperatorPassword(loginName);
+        return OperatorService.ResetOperatorPassword(loginName);
     }
     /// <summary>
     /// 关闭对话
@@ -269,7 +269,7 @@ public class OperatorWS : System.Web.Services.WebService
     /// <returns></returns>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public int InviteChat(string visitorId)
+    public Chat InviteChat(string visitorId)
     {        
        return ChatService.OperatorRequestChat(Authentication.OperatorId, visitorId);
     }

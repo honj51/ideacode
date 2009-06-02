@@ -29,7 +29,7 @@ public class VisitorHandler : IHttpHandler {
             if (!string.IsNullOrEmpty(visitorId))
             {
                 VisitSessionService.Hit(visitorId);
-                string chatId = ChatService.GetOperatorInvation(visitorId);
+                string chatId = ChatService.GetOperatorInvitation(visitorId);
                 if (chatId != null)
                 {
                     data = string.Format("{{ \"InviteChatId\" : \"{0}\"}}", chatId);
