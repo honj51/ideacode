@@ -122,7 +122,7 @@ namespace BLLTest
             ch.CreateTime = DateTime.Now;
             ch.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
             ch.VisitorId = "bbb";
-            VisitSessionService.RequestChat(ch);
+          //  VisitSessionService.RequestChat(ch);
             Assert.AreEqual(0, ChatService.chats.Count);
             //Chat ch1 = new Chat();
             //ch.AccountId = "2";

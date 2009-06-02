@@ -97,7 +97,7 @@ namespace BLLTest
             chatRequest.CreateTime = DateTime.Now;
             chatRequest.Status = LiveSupport.LiveSupportModel.ChatStatus.Requested;
             chatRequest.OperatorId="aa";
-            ChatService.ChatPageRequestChat(chatRequest);
+        //    ChatService.ChatPageRequestChat(chatRequest);
             LiveSupport.LiveSupportModel.Operator op=null;
             foreach (var item in OperatorService.GetAllOperators())
 	        {
