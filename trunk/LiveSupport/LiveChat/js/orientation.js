@@ -10,7 +10,10 @@ if (bannerPos != 0) {
         moveRight();
     }
 } else {
-    document.write(contentHtml);
+document.write('<div>' + contentHtml + '</div>');
+window.onload = function() {
+document.body.appendChild(invite_div);
+}
 }
 
 var lastScrollY = 0;
