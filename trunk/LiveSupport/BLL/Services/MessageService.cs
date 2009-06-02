@@ -48,7 +48,7 @@ public class MessageService
     {
         //List<Message> ms = GetMessages(chatId, lastCheck).FindAll(m => Message.IsChatMessage(m) ||
         //    m.Type == MessageType.SystemMessage_ToVisitor || m.Type == MessageType.SystemMessage_ToBoth);
-        //Debug.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
+        //Trace.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
         //return ms;
         List<Message> ms = new List<Message>(); ;
         foreach (Message item in GetMessages(chatId, lastCheck))
@@ -58,7 +58,7 @@ public class MessageService
                 ms.Add(item);
             }
         }
-        Debug.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
+        Trace.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
         return ms;
     }
 
@@ -75,7 +75,7 @@ public class MessageService
                 ms.Add(item);
             }
         }
-        Debug.WriteLine(string.Format("GetMessagesForOperator({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
+        Trace.WriteLine(string.Format("GetMessagesForOperator({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
         return ms;
     }
 }

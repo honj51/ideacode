@@ -9,6 +9,8 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 using LiveSupport.LiveSupportDAL.Providers;
 using System.Net.Mail;
 using System.Net;
+using LiveSupport.BLL;
+using System.Diagnostics;
 
 
 
@@ -16,68 +18,34 @@ public class ChatService
 {
     #region const int 定义
     public const int AcceptChatRequestReturn_OK = 0;
-    public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;
-    public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;
-    public const int AcceptChatRequestReturn_Error_Others = -3;
-    public const int ResetOperatorPassword_OK = 0;
-    public const int ResetOperatorPassword_PermissionDenied=-1;
-    public const int ResetOperatorPassword_OtheError=-2;
+    public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;// 对话已经被其他客服接受
+    public const int AcceptChatRequestReturn_Error_ChatRequestCanceled = -2;   // 访客取消对话请求 (例如: 访客请求对话后马上关闭对话)
+    public const int AcceptChatRequestReturn_Error_Others = -3;// 其他错误 
+
+    public const int OperatorRequestChatReturn_OK = 0;
+    //public const int OperatorRequestChatReturn_Error_Others = -2;
+    public const int OperatorRequestChatReturn_Error_Others = -3;
     #endregion 
     public static IChatProvider Provider = new SqlChatProvider();
     public static List<Chat> chats = new List<Chat>();
-
+    /// <summary>
+    /// 是否有新消息
+    /// </summary>
+    /// <param name="chatId"></param>
+    /// <param name="lastCheck"></param>
+    /// <returns></returns>
     public static bool HasNewMessage(string chatId, long lastCheck)
     {
         throw new NotImplementedException();
     }
-    #region 字母随机数和发送邮件
+
     /// <summary>
-    /// 字母随机数
+    /// 获取所有对话
     /// </summary>
-    /// <param name="n">生成长度</param>
+    /// <param name="accountId"></param>
     /// <returns></returns>
-    public static string RandLetter(int n)
+    public static List<Chat> GetAllChatByAccountId(string accountId)
     {
-        char[] arrChar = new char[]{
-            'a','b','d','c','e','f','g','h','i','j','k','l','m','n','p','r','q','s','t','u','v','w','z','y','x',
-            '_',
-          'A','B','C','D','E','F','G','H','I','J','K','L','M','N','Q','P','R','T','S','V','U','W','X','Y','Z'
-          };
-        StringBuilder num = new StringBuilder();
-
-        Random rnd = new Random(DateTime.Now.Millisecond);
-        for (int i = 0; i < n; i++)
-        {
-            num.Append(arrChar[rnd.Next(0, arrChar.Length)].ToString());
-
-        }
-
-        return num.ToString();
-    }
-
-    /// <summary>
-    /// 发送邮件
-    /// </summary>
-    /// <param name="to">收信人</param>
-    /// <param name="subject">主题</param>
-    /// <param name="body">正文</param>
-    public static void SendEmail(string to, string subject, string body)
-    {
-        MailMessage mail = new MailMessage();
-        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());//发送者
-        mail.To.Add(new MailAddress(to));//收信者
-        mail.Subject = subject;//主题
-        mail.Body = body; //正文
-        SmtpClient mailer = new SmtpClient(ConfigurationManager.AppSettings["SMTPServer"].ToString());
-        mailer.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
-        mailer.Send(mail);
-    }
-    #endregion
- 
-
-    public static List<Chat> GetAllChatRequest(string accountId)
-    {
-        //return chats.FindAll(c => c.AccountId == accountId);
         List<Chat> list = new List<Chat>() ;
         foreach (Chat item in chats)
         {
@@ -89,56 +57,30 @@ public class ChatService
         return list;
     }
 
+    /// <summary>
+    /// 发送新消息
+    /// </summary>
+    /// <param name="m"></param>
     public static void SendMessage(Message m)
     {
-        MessageService.AddMessage(m);
-    }
-
-    public static int ChangPassword(string operatorId, string oldPassword, string newPassword)
-    {
-      return  OperatorService.ChangPassword(operatorId, oldPassword, newPassword);
-    }
-    /// <summary>
-    /// 重置座席密码
-    /// </summary>
-    /// <param name="loginName">登录名</param>
-    public static int ResetOperatorPassword(string loginName)
-    {
-        Operator op = OperatorService.GetOperatorByLoginName(loginName);
-        if (loginName != null || op != null)
+        Chat chat = GetChatById(m.ChatId);
+        if (chat == null)
         {
-            if (op.Email != null)
-            {
-                string body = "你的新密码是：" + RandLetter(8);
-                string subject = "密码激活";
-                SendEmail(op.Email, subject, body);
-                return ResetOperatorPassword_OK;
-            }
-            else
-            {
-                return ResetOperatorPassword_PermissionDenied;
-            }
+            // TODO: 是否需要抛出异常
+            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 不存在");
+        }
+        else if (chat.Status == ChatStatus.Closed)
+        {
+            // TODO: 是否需要抛出异常
+            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 状态为已关闭");
         }
         else
         {
-            return ResetOperatorPassword_OtheError;
+            MessageService.AddMessage(m);
         }
     }
-    /// <summary>
-    /// 判断此用户是否存在
-    /// </summary>
-    /// <param name="loginName"></param>
-    /// <returns></returns>
-    public static bool GetOperatorByloginName(string loginName)
-    {
-      Operator op= OperatorService.GetOperatorByLoginName(loginName);
-      if (op != null)
-      {
-          return true;
-      }
-      else
-          return false;
-    }
+
+    
     /// <summary>
     /// 关闭对话信息
     /// </summary>
@@ -146,45 +88,77 @@ public class ChatService
     /// <param name="userName"></param>
     public static bool CloseChat(string chatId, string closeBy)
     {
-        Chat chat = null;
-        foreach (Chat item in chats)
-        {
-            if(item.ChatId == chatId)
-            {
-                chat = item;
-            }
-        }
+        Chat chat = GetChatById(chatId);
         if (chat == null)
         {
+            Trace.WriteLine("Waring: ChatService.CloseChat()错误 ,ChatId "+ chatId + " 不存在");
             return false;
         }
+
         if (chat.Status == ChatStatus.Closed)
         {
+            Trace.WriteLine("Waring: ChatService.CloseChat() 对话已是关闭状态 ,ChatId " + chatId + " 不存在");
             return true;
         }
-        if (!string.IsNullOrEmpty(chat.OperatorId))
-        {
-            OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Idle;//关闭时改变客服状态
-        }
+        
+        Message m = new Message();
+        m.ChatId =chatId;
+        m.SentDate = DateTime.Now;
+        m.Type = MessageType.SystemMessage_ToBoth;
+        m.Text = string.Format("{0}已关闭对话", closeBy);
+        SendMessage(m);
+
         chat.Status = ChatStatus.Closed;
-        VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Visiting;
         chat.CloseTime = DateTime.Now;
         chat.CloseBy = closeBy;
-        if (Provider.CloseChat(chat) > 0)
-        {
-            Message m = new Message();
-            m.ChatId =chatId;
-            m.SentDate = DateTime.Now;
-            m.Type = MessageType.SystemMessage_ToBoth;
-            m.Text = string.Format("{0}已关闭对话", closeBy);
-            SendMessage(m);
-            return true;
+        Provider.CloseChat(chat);
+                
+        VisitSessionService.SetSessionStatus(VisitorService.GetVisitor(chat.VisitorId).CurrentSessionId, VisitSessionStatus.Visiting);
+        // 注意: IsOperatorHasActiveChat需要在更改chat status后调用
+        if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId))
+        {   
+            OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
         }
-        else
-        {
-            return false;
-        }
+
+        return true;        
     }
+
+    /// <summary>
+    /// 判断客服是否有进行中(Status不是Closed)的Chat
+    /// </summary>
+    /// <param name="p"></param>
+    /// <returns></returns>
+    private static bool IsOperatorHasActiveChat(string operatorId)
+    {
+        List<Chat> cs = FindChatsByOperatorId(operatorId);
+        foreach (Chat item in cs)
+        {
+            if (item.Status != ChatStatus.Closed)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 根据OperatorId查找客服的对话
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <returns></returns>
+    private static List<Chat> FindChatsByOperatorId(string operatorId)
+    {
+        List<Chat> cs = new List<Chat>();
+        foreach (Chat item in chats)
+        {
+            if (!string.IsNullOrEmpty(item.OperatorId) && item.OperatorId == operatorId)
+            {
+                cs.Add(item);
+            }
+        }
+        return cs;
+    }
+
     /// <summary>
     /// 客服接受对话请求
     /// </summary>
@@ -196,6 +170,7 @@ public class ChatService
         Chat chat = GetChatById(chatId);
         if (chat == null)
         {
+            Trace.WriteLine(string.Format("Error: AcceptChatRequest({0},{1}) 错误，未找到该对话",operatorId,chatId));
             return AcceptChatRequestReturn_Error_Others;
         }
 
@@ -208,11 +183,7 @@ public class ChatService
             chat.Status = ChatStatus.Accepted;
             chat.OperatorId = operatorId;
             chat.AcceptTime = DateTime.Now;
-            OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Chatting;//将客服状态改为正在对话中
-            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;
-            VisitSessionService.GetSessionById(chat.ChatId).OperatorId = operatorId;
-            VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
-            chat.AcceptTime = DateTime.Now;
+            
             Message m1 = new Message();
             m1.ChatId = chat.ChatId;
             m1.SentDate = DateTime.Now;
@@ -224,123 +195,103 @@ public class ChatService
             m2.ChatId = chat.ChatId;
             m2.SentDate = DateTime.Now;
             m2.Type = MessageType.SystemMessage_ToOperator;
-            m2.Text = string.Format("你已经接受访客{0}的对话请求",VisitorService.GetVisitor(VisitSessionService.GetSessionById(chat.ChatId).VisitorId).Name);
+            m2.Text = string.Format("你已经接受访客{0}的对话请求",VisitorService.GetVisitor(chat.VisitorId).Name);
             SendMessage(m2);
+
+            OperatorService.SetOperatorStatus(operatorId, OperatorStatus.Chatting);
+            
+            VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitor(chat.VisitorId).CurrentSessionId);
+            s.OperatorId = operatorId;
+            s.Status = VisitSessionStatus.Chatting;
+            s.ChatingTime = DateTime.Now;
+
             return AcceptChatRequestReturn_OK;
         }
-        else if (chat.Status == ChatStatus.Decline)
+        else if (chat.Status == ChatStatus.Closed)
         {
             return AcceptChatRequestReturn_Error_ChatRequestCanceled;
         }
         else
         {
+            Trace.WriteLine(string.Format("ChatService.AccpetChatRequest({0},{1})错误，状态非法: ChatStatus={2}",operatorId,chatId,chat.Status));
             return AcceptChatRequestReturn_Error_Others;
         }
     }
 
+    /// <summary>
+    /// 根据ChatId获取对话
+    /// </summary>
+    /// <param name="chatId"></param>
+    /// <returns></returns>
     public static Chat GetChatById(string chatId)
     {
-       // return chats.Find(c => c.ChatId == chatId);
         foreach (Chat item in chats)
         {
-            if (item.ChatId==chatId)
+            if (item.ChatId == chatId)
             {
                 return item;
             }
         }
         return null;
     }
-    /// <summary>
-    /// 访客邀请对话
-    /// </summary>
-    /// <param name="chatRequest"></param>
-    public static void ChatPageRequestChat(Chat chatRequest)
-    {
-        Chat ch = null;
-        foreach (Chat item in chats)
-        {
-            if (item.ChatId==chatRequest.ChatId)
-            {
-                ch = item;
-            }
-        }
-        if (ch != null)
-        {
-            if (ch.Status == ChatStatus.Requested || ch.Status == ChatStatus.Accepted)
-            {
-                //已经在请求或者对话状态，忽略这个请求
-                return;
-            }
-            chats.Remove(ch);
-            chats.Add(chatRequest);
-        }
-        else
-        {
-            chats.Add(chatRequest);
-            Provider.AddChat(chatRequest);
-        }
-        VisitSession s = VisitSessionService.GetSessionById(chatRequest.ChatId);
-        s.ChatRequestTime = DateTime.Now;
-        Message m = new Message();
-        m.ChatId = chatRequest.ChatId;
-        m.Text = "正在接入客服，请稍等...";
-        m.Type = MessageType.SystemMessage_ToVisitor;
-        m.Source = "系统";
-        m.Destination = "访客";
-        MessageService.AddMessage(m);
-    }
+        
     /// <summary>
     /// 客服主动邀请对话
     /// </summary>
     /// <param name="operatorId">客服ID</param>
     /// <param name="visitorId"></param>
-    public static int OperatorRequestChat(string operatorId, string visitorId)
+    public static Chat OperatorRequestChat(string operatorId, string visitorId)
     {
-        if (operatorId == null)
-        {
-            return 3;
-        }
         Visitor visitor = VisitorService.GetVisitor(visitorId);
-        Chat chat = ChatService.GetChatById(visitor.CurrentSessionId); 
-        if (chat == null)
+        Operator op = OperatorService.GetOperatorById(operatorId);
+        if (visitor == null || op == null)
         {
-            Operator op = OperatorService.GetOperatorById(operatorId);
-            op.Status = OperatorStatus.InviteChat;//将客服改为请求中
-            chat = new Chat();
-            chat.ChatId = visitor.CurrentSessionId;
-            chat.CreateBy = op.NickName;
-            chat.CreateTime = DateTime.Now;
-            chat.AccountId = op.AccountId;
-            chat.VisitorId = visitorId;
-            chat.OperatorId = operatorId;
-            chats.Add(chat);
-            Provider.AddChat(chat);
+            Trace.WriteLine(string.Format("Error: ChatService.OperatorRequestChat({0},{1}) 错误Opertor或Visitor为空",operatorId,visitorId));
+            return null;
         }
-        OperatorService.GetOperatorById(operatorId).Status = OperatorStatus.InviteChat;//客服主动要请对话改变状态
+        
+        Chat chat = new Chat();
+        chat.IsInviteByOperator = true;
+        chat.CreateBy = op.NickName;
+        chat.CreateTime = DateTime.Now;
+        chat.AccountId = op.AccountId;
+        chat.VisitorId = visitorId;
+        chat.OperatorId = operatorId;
+        chats.Add(chat);
+        Provider.AddChat(chat);
+
+        op.Status = OperatorStatus.InviteChat;//将客服改为请求中       
         chat.Status = ChatStatus.Requested;
+        //VisitSessionService.SetSessionStatus(visitor.CurrentSessionId, VisitSessionStatus.ChatRequesting);
+
         Message m = new Message();
         m.ChatId =chat.ChatId;
         m.Text = "正在邀请访客，请稍等...";
         m.Type = MessageType.SystemMessage_ToOperator;
-        MessageService.AddMessage(m);
-        return 0;
+        SendMessage(m);
+
+        return chat;
     }
+
     /// <summary>
     /// 检查客服是否发出主动邀请
     /// </summary>
     /// <param name="visitorId"></param>
     /// <returns></returns>
-    public static string GetOperatorInvation(string visitorId)
+    public static string GetOperatorInvitation(string visitorId)
     {
-        Chat chat=GetChatById(VisitorService.GetVisitor(visitorId).CurrentSessionId);
-        if (chat != null && chat.Status == ChatStatus.Requested && !string.IsNullOrEmpty(chat.OperatorId))
+        foreach (var chat in chats)
         {
-            return chat.ChatId;
+            if (chat.VisitorId == visitorId && chat.Status == ChatStatus.Requested && chat.IsInviteByOperator)
+            {
+                return chat.ChatId;
+            }
         }
         return null;
     }
+
     /// <summary>
-    /// 拒绝客服会话请求
+    /// 拒绝客服会话邀请
     /// </summary>
     /// <param name="chatId"></param>
     public static void DeclineOperatorInvitation(string chatId)
@@ -348,13 +299,20 @@ public class ChatService
         Chat chat = GetChatById(chatId);
         if (chat != null)
         {
-            OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Idle;//将客服状态改为空闲中
+            SendMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
+            if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId))
+            {
+                OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
+            }
             chat.Status = ChatStatus.Decline;
-            MessageService.AddMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
-        }        
+        }
+        else
+        {
+            Trace.WriteLine(string.Format("Error: ChatService.DeclineOperatorInvitation({0} 错误， 未找到该Chat",chatId));
+        }
     }
     /// <summary>
-    /// 接受客服会话请求
+    /// 接受客服邀请
     /// </summary>
     /// <param name="chatId"></param>
     public static void AcceptOperatorInvitation(string chatId)
@@ -367,9 +325,41 @@ public class ChatService
             {
                 OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Chatting;
             }
-            VisitSessionService.GetSessionById(chat.ChatId).Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
-            VisitSessionService.GetSessionById(chat.ChatId).ChatingTime = DateTime.Now;
+            VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitor(chat.VisitorId).CurrentSessionId); 
+            s.Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
+            s.ChatingTime = DateTime.Now;
         }
-        MessageService.AddMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
+        SendMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
+    }
+
+    /// <summary>
+    /// 页面请求对话
+    /// </summary>
+    /// <param name="CurrentVisitor"></param>
+    /// <returns>ChatId</returns>
+    public static string ChatPageRequestChat(Visitor visitor)
+    {
+        Chat chatRequest = new Chat();
+        chatRequest.AccountId = visitor.AccountId;
+        chatRequest.CreateTime = DateTime.Now;
+        chatRequest.Status = ChatStatus.Requested;
+        chatRequest.VisitorId = visitor.VisitorId;
+
+        chats.Add(chatRequest);
+        Provider.AddChat(chatRequest);
+
+        VisitSession s = VisitSessionService.GetSessionById(visitor.CurrentSessionId);
+        s.ChatRequestTime = DateTime.Now;
+        s.Status = VisitSessionStatus.ChatRequesting;
+
+        Message m = new Message();
+        m.ChatId = chatRequest.ChatId;
+        m.Text = "正在接入客服，请稍等...";
+        m.Type = MessageType.SystemMessage_ToVisitor;
+        m.Source = "系统";
+        m.Destination = "访客";
+        SendMessage(m);
+                
+        return chatRequest.ChatId;
     }
 }
