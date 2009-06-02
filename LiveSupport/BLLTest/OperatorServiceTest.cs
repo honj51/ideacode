@@ -59,7 +59,7 @@ namespace BLLTest
         {
             LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = "Server=rd01;Database=LiveSupport;User ID=sa;Password=;Trusted_Connection=False;";
             Account a = new Account();
-            a.LoginName = ChatService.RandLetter(10);
+            a.LoginName = Util.RandLetter(10);
             a.Password = "123";
 
             AccountsManager.AddAccount(a);
@@ -89,7 +89,7 @@ namespace BLLTest
             // 测试多个客服端用同一个客服帐号登录
             LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = "Server=rd01;Database=LiveSupport;User ID=sa;Password=;Trusted_Connection=False;";
             Account a = new Account();
-            a.LoginName = ChatService.RandLetter(10);
+            a.LoginName = Util.RandLetter(10);
             a.Password = "123";
 
             AccountsManager.AddAccount(a);
@@ -142,7 +142,7 @@ namespace BLLTest
             Operator op = OperatorService.Login(a.LoginName, a.LoginName, a.Password);
             ChatService.OperatorRequestChat(op.OperatorId, v.VisitorId);
 
-            Assert.AreEqual(v.CurrentSession.SessionId, ChatService.GetOperatorInvation(v.VisitorId));
+            Assert.AreEqual(v.CurrentSession.SessionId, ChatService.GetOperatorInvitation(v.VisitorId));
         }
 
     }
