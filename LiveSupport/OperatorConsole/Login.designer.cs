@@ -243,7 +243,7 @@ namespace LiveSupport.OperatorConsole
             this.Controls.Add(this.lblOpPassword);
             this.Controls.Add(this.txtOpName);
             this.Controls.Add(this.lblOpName);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Login";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

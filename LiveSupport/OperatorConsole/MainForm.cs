@@ -528,10 +528,23 @@ namespace LiveSupport.OperatorConsole
                     string waitingDuring = item.CurrentSession.WaitingDuring.Ticks == 0 ? "" : item.CurrentSession.WaitingDuring.ToString();
                     string chattingDuring = item.CurrentSession.ChattingDuring.Ticks == 0 ? "" : item.CurrentSession.ChattingDuring.ToString();
                     string visitingTime = item.CurrentSession.VisitingTime.Ticks == 0 ? "" : item.CurrentSession.VisitingTime.ToString();
+                    string OperatorId =item.CurrentSession.OperatorId;
                     if (visitorExist)
                     {
                         foreach (ListViewItem vitem in lstVisitors.Items)
                         {
+                            Operator optoo = new Operator();
+                            if (!string.IsNullOrEmpty(item.CurrentSession.OperatorId) && operators != null)
+                            {
+                                foreach (Operator op in operators)
+                                {
+                                    if (op.OperatorId == item.CurrentSession.OperatorId)
+                                    {
+                                        optoo = op;
+                                        break;
+                                    }
+                                }
+                            }
                             Visitor v = vitem.Tag as Visitor;
                             if (v.VisitorId == item.VisitorId)
                             {
@@ -541,6 +554,8 @@ namespace LiveSupport.OperatorConsole
                                 vitem.SubItems[VisitorTreeView_HeaderColumn_LeaveTime].Text = leaveTime;
                                 vitem.SubItems[VisitorTreeView_HeaderColumn_VisitTime].Text = visitingTime;
                                 vitem.SubItems[VisitorTreeView_HeaderColumn_Status].Text = status;
+                                v.CurrentSession.OperatorId = status != VisitSessionStatus.Chatting.ToString() ? "" : OperatorId;
+                                vitem.SubItems[VisitorTreeView_HeaderColumn_Operator].Text = string.IsNullOrEmpty(v.CurrentSession.OperatorId) ? "暂无接待" : optoo.NickName;
                                 break;
                             }
                         }
@@ -560,11 +575,12 @@ namespace LiveSupport.OperatorConsole
                             }
                         }
                         ListViewItem lvi = new ListViewItem(new string[]{ browser,item.Name,item.CurrentSession.Location,
-                         item.VisitCount.ToString(),string.IsNullOrEmpty(item.CurrentSession.OperatorId) ? "暂无接待" :optoo.NickName,status,
+                         item.VisitCount.ToString(),item.CurrentSession.Status!= VisitSessionStatus.Chatting ? "暂无接待" :optoo.NickName,status,
                          item.CurrentSession.VisitingTime.ToString(), leaveTime, chatRequestTime,
                          chattingStartTime,waitingDuring, chattingDuring,item.CurrentSession.PageRequestCount.ToString()
                         });
                         visitors.Add(item);
+                        item.CurrentSession.OperatorId= item.CurrentSession.Status!= VisitSessionStatus.Chatting ? "" : item.CurrentSession.OperatorId;
                         lvi.Tag = item;
                         lstVisitors.Items.Add(lvi);
                     }
@@ -643,22 +659,24 @@ namespace LiveSupport.OperatorConsole
                 }
                 else if (remote.Status == VisitSessionStatus.Chatting)
                 {
-                   
                     foreach (var opItem in operators)
 	                {
                         if (opItem.OperatorId == remote.OperatorId)
                         {
+                            //local.OperatorId = remote.OperatorId;
                             item.SubItems[VisitorTreeView_HeaderColumn_Operator].Text = opItem.NickName;
                              break;
                         }
 	                }
-                  
-
                 }
 
                 local.Status = remote.Status;
-
-
+                if (local.Status != VisitSessionStatus.Chatting)
+                {
+                    v.CurrentSession.OperatorId = "";
+                    item.SubItems[VisitorTreeView_HeaderColumn_Operator].Text = "暂无接待";
+                }
+                
                 item.SubItems[VisitorTreeView_HeaderColumn_Status].Text = getVisitSessionStatusText(local.Status);
 
             }
@@ -777,18 +795,13 @@ namespace LiveSupport.OperatorConsole
                    
                 foreach (var item in operators)
                 {
-
                     if (p[i].Status != item.Status && p[i].OperatorId == item.OperatorId)
                     {
                         return true;
 
 
                     }
-
-
                 }
-            
-            
             }
             return false;
 
@@ -875,12 +888,13 @@ namespace LiveSupport.OperatorConsole
             }
 
             Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-            if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
+           if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
             {
-              
+              if(v.CurrentSession.OperatorId=="")
+              {
                 if (ws.InviteChat(v.VisitorId) == 0)
                 {
-                  
+                    v.CurrentSession.OperatorId = Program.CurrentOperator.OperatorId;
                     ChatForm cf = null;
                     foreach (var item in Program.ChatForms)
                     {
@@ -893,14 +907,19 @@ namespace LiveSupport.OperatorConsole
 
                     if (cf == null)
                     {
-
+                      
                         cf = new ChatForm(v.CurrentSession, true);
                         Program.ChatForms.Add(cf);
                     }
 
                     cf.Show();
                 }
-             
+              }
+              else
+              {
+                  MessageBox.Show("该访客已被其他客服邀请或在对话中");
+              
+              }
                 //else if (ws.InviteChat(v.VisitorId) == -1)
                 //{
                 //    MessageBox.Show("该访客已被邀请");
@@ -909,7 +928,7 @@ namespace LiveSupport.OperatorConsole
                 //{
                 //    MessageBox.Show("访客拒绝邀请");
                 //}
-            }         
+          }         
         }
 
 
