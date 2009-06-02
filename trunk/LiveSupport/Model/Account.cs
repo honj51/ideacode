@@ -87,7 +87,7 @@ namespace LiveSupport.LiveSupportModel
             get { return domain; }
             set { domain = value; }
         }
-        private int operatorCount;
+        private int operatorCount = 0;
 
         public int OperatorCount
         {
@@ -108,7 +108,7 @@ namespace LiveSupport.LiveSupportModel
             get { return city; }
             set { city = value; }
         }
-        private DateTime registerDate;
+        private DateTime registerDate = DateTime.Now;
 
         public DateTime RegisterDate
         {
@@ -132,7 +132,6 @@ namespace LiveSupport.LiveSupportModel
         public Account()
         {
             accountId = Guid.NewGuid().ToString();
-            registerDate = DateTime.Now;
         }
 
         public Account(SqlDataReader data)

@@ -82,6 +82,7 @@ namespace LiveSupport.LiveSupportModel
             get { return status; }
             set { status = value; }
         }
+        
         //访问会话
         private VisitSession vs;
 
@@ -89,6 +90,14 @@ namespace LiveSupport.LiveSupportModel
         {
             get { return vs; }
             set { vs = value; }
+        }
+
+        private bool isInviteByOperator = false;
+
+        public bool IsInviteByOperator
+        {
+            get { return isInviteByOperator; }
+            set { isInviteByOperator = value; }
         }
 
         public Chat()
