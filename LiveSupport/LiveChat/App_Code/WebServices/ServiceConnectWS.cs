@@ -38,7 +38,7 @@ public class ServiceConnectWS : System.Web.Services.WebService
     [WebMethod]
     public string GetOperatorInvitation(string visitorId)
     {
-        return ChatService.GetOperatorInvation(visitorId);
+        return ChatService.GetOperatorInvitation(visitorId);
     }
 
     /// <summary>

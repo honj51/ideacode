@@ -35,16 +35,6 @@
 <body style="font-size:10px;>
     <form id="mainForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
-<%--        <script type ="text/javascript" >
-            var bannerType = 1; // 1: 简单按钮, 2: 客服列表, 3: 部门列表
-            var bannerStyle = 1; // 1,2,3
-            var invitePanelStyle = 1; // 1,2,3
-            var bannerPos = 0; // 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
-            var accountId = 2;
-        </script> 
---%> 
- <%--    <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=05932da1-b444-4aed-a58c-a47c69e639cd&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0"></script> --%>
-       <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=2&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0'></script>
         <input id="Text1" type="text" />
         <input type="button" value="fdsaf" onclick="visitorLeave()" /><table 
             style="width: 100%; height: 733px;">
@@ -57,7 +47,7 @@
                     范德萨</td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style2" >
                 </td>
                 <td class="style4">
                     范德萨范德萨</td>
@@ -70,7 +60,7 @@
                 <td class="style5">
                     范德萨</td>
                 <td>
-                <%--<script src="http://miraclew.gicp.net/lcs/LSBanner.ashx?aid=2&IcoLocation=3"></script>--%></td>
+            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=2&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=1'></script></td>
             </tr>
         </table>
 &nbsp;<div id="trace_div"></div>
