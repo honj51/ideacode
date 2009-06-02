@@ -43,6 +43,7 @@
     <Compile Include="ChatManager.cs" />
     <Compile Include="ChatMessageManager.cs" />
     <Compile Include="DepartmentManager.cs" />
+    <Compile Include="Exceptions\BLLInternalException.cs" />
     <Compile Include="EmailManager.cs" />
     <Compile Include="OperatorsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Services\PageRequestService.cs" />
     <Compile Include="Services\VisitorService.cs" />
     <Compile Include="Services\VisitSessionService.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LiveSupportDAL\LiveSupportDAL.csproj">

@@ -8,6 +8,8 @@ using LiveSupport.LiveSupportDAL.SqlProviders;
 using LiveSupport.LiveSupportDAL.Providers;
 using System.Text;
 using System.Diagnostics;
+using LiveSupport.BLL;
+using LiveSupport.BLL.Exceptions;
 
 public class QuickResponseCategory
 {
@@ -65,6 +67,7 @@ public class NewChangesCheckResult
     public List<Operator> Operators; // 客服状态更新
     public List<Visitor> NewVisitors; // 新访客
     public List<VisitSession> VisitSessionChange; // 访问会话状态更新
+    public List<Chat> Chats;
     public List<MessageCheckResult> Messages; // // 消息更新
     public long NewVisitorCheckTime;
 
@@ -92,6 +95,10 @@ public class NewChangesCheckResult
 /// </summary>
 public static class OperatorService
 {
+    public const int ResetOperatorPassword_OK = 0;
+    public const int ResetOperatorPassword_PermissionDenied = -1;
+    public const int ResetOperatorPassword_OtheError = -2;
+
     public static IOperatorProvider Provider = new SqlOperatorProvider();
 
     public static List<Operator> GetAllOperators()
@@ -240,6 +247,83 @@ public static class OperatorService
     }
 
     /// <summary>
+    /// 重置座席密码
+    /// </summary>
+    /// <param name="loginName">登录名</param>
+    public static int ResetOperatorPassword(string loginName)
+    {
+        Operator op = GetOperatorByLoginName(loginName);
+        if (loginName != null || op != null)
+        {
+            if (op.Email != null)
+            {
+                string body = "你的新密码是：" + Util.RandLetter(8);
+                string subject = "密码激活";
+                Util.SendEmail(op.Email, subject, body);
+                return ResetOperatorPassword_OK;
+            }
+            else
+            {
+                return ResetOperatorPassword_PermissionDenied;
+            }
+        }
+        else
+        {
+            return ResetOperatorPassword_OtheError;
+        }
+    }
+    /// <summary>
+    /// 判断此用户是否存在
+    /// </summary>
+    /// <param name="loginName"></param>
+    /// <returns></returns>
+    public static bool IsOperatorExsit(string loginName)
+    {
+        Operator op = OperatorService.GetOperatorByLoginName(loginName);
+        if (op != null)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    /// <summary>
+    /// 判断用用户名是否存在
+    /// </summary>
+    /// <param name="loginName">登录名</param>
+    /// <returns></returns>
+    public static Operator GetOperatorByLoginName(string loginName)
+    {
+        Operator op = null;
+        foreach (Operator item in operators)
+        {
+            if (item.LoginName == loginName)
+            {
+                op = item;
+            }
+        }
+        if (op != null)
+        {
+            return op;
+        }
+        else
+        {
+            op = null;
+            op = Provider.GetOperatorByLoginName(loginName);
+            if (op != null)
+            {
+                operators.Add(op);
+                return op;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+    /// <summary>
     /// 修改密码
     /// </summary>
     /// <param name="operatorId">operatorId</param>
@@ -273,40 +357,7 @@ public static class OperatorService
     {
         Provider.UpdateOperator(op);
     }
-    /// <summary>
-    /// 判断用用户名是否存在
-    /// </summary>
-    /// <param name="loginName">登录名</param>
-    /// <returns></returns>
-    public static Operator GetOperatorByLoginName(string loginName)
-    {
-        Operator op = null;
-        foreach (Operator item in operators)
-        {
-            if (item.LoginName == loginName)
-            {
-                op=item;
-            }
-        }
-        if (op != null)
-        {
-            return op;
-        }
-        else
-        {
-            op = null;
-            op = Provider.GetOperatorByLoginName(loginName);
-            if (op != null)
-            {
-                operators.Add(op);
-                return op;
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
+    
 
 
     /// <summary>
@@ -345,6 +396,8 @@ public static class OperatorService
         // 新访客
         checkResult.NewVisitors = VisitorService.GetNewVisitors(op.AccountId, check.NewVisitorLastCheckTime);
 
+        checkResult.Chats = ChatService.GetAllChatByAccountId(op.AccountId);
+
         // 访问会话状态更新
         checkResult.VisitSessionChange = VisitSessionService.GetVisitSessionChange(op.AccountId, check.NewVisitorLastCheckTime);
 
@@ -360,7 +413,7 @@ public static class OperatorService
         }
         checkResult.Operators = OperatorService.GetAllOperatorsByAccountId(op.AccountId);
         // 客服状态更新
-        Debug.WriteLine(string.Format("ChecknewChanges(OperatorId={0},NewChangesCheck={{1}},NewChangesCheckResult={{2}}", operatorId, check.ToString(), checkResult.ToString()));
+        Trace.WriteLine(string.Format("ChecknewChanges(OperatorId={0},NewChangesCheck={{1}},NewChangesCheckResult={{2}}", operatorId, check.ToString(), checkResult.ToString()));
         return checkResult;
 
     }
@@ -374,4 +427,20 @@ public static class OperatorService
         operators.Add(op);
         Provider.NewOperator(op);
     }
+
+    /// <summary>
+    /// 设置客服状态
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <param name="operatorStatus"></param>
+    public static void SetOperatorStatus(string operatorId, OperatorStatus operatorStatus)
+    {
+        Operator op = OperatorService.GetOperatorById(operatorId);
+        if (op == null)
+        {
+            throw new BLLInternalException("Operator not found: OperatorId=" + operatorId);
+        }
+        op.Status = operatorStatus;
+    }
+
 }

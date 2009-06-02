@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using LiveSupport.LiveSupportDAL.Providers;
+using LiveSupport.BLL.Exceptions;
 /// <summary>
 ///VisitSessionService 的摘要说明
 /// </summary>
@@ -39,13 +40,13 @@ public class VisitSessionService
     /// <param name="session"></param>
     public static void NewSession(VisitSession session)
     {
-        Debug.WriteLine(string.Format("NewSession : {0}", session.ToString()));
+        Trace.WriteLine(string.Format("NewSession : {0}", session.ToString()));
 
         foreach (VisitSessionHit item in sessions)
         {
             if (item.Session.SessionId == session.SessionId)
             {
-                Debug.WriteLine("Session Found, will not add to DB");
+                Trace.WriteLine("Session Found, will not add to DB");
                 return;
             }
         }
@@ -124,21 +125,6 @@ public class VisitSessionService
         }
         return ss;
     }
-    /// <summary>
-    /// 邀请客服对话
-    /// </summary>
-    /// <param name="chatRequest"></param>
-    public static void RequestChat(Chat chatRequest)
-    {
-        foreach (VisitSessionHit item in sessions)
-        {
-            if (item.Session.SessionId == chatRequest.ChatId)
-            {
-                item.Session.Status = VisitSessionStatus.ChatRequesting;
-                ChatService.ChatPageRequestChat(chatRequest);
-            }
-        }
-    }
 
     public static void MaintanStatus()
     {
@@ -150,7 +136,7 @@ public class VisitSessionService
                 item.Session.LeaveTime = DateTime.Now;
                 
                 //VisitorService.GetVisitor(item.Session.VisitorId).CurrentSession = null;
-                Debug.WriteLine(string.Format("Session {0} Leave",item.Session.SessionId));
+                Trace.WriteLine(string.Format("Session {0} Leave",item.Session.SessionId));
             }
         }
     }
@@ -175,8 +161,9 @@ public class VisitSessionService
             }
         }
 
-        Debug.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
+        Trace.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
     }
+
     /// <summary>
     /// 跟据访客ID查询所有的话话信息
     /// </summary>
@@ -185,5 +172,20 @@ public class VisitSessionService
     public static List<VisitSession> GetVisitSessionByVisitor(string visitorId)
     {
         return Provider.GetVisitSessionByVisitor(visitorId);
+    }
+
+    /// <summary>
+    /// 更改VisitSession的状态
+    /// </summary>
+    /// <param name="sessionId"></param>
+    /// <param name="visitSessionStatus"></param>
+    public static void SetSessionStatus(string sessionId, VisitSessionStatus visitSessionStatus)
+    {
+        VisitSession s = GetSessionById(sessionId);
+        if (s == null)
+        {
+            throw new BLLInternalException("VisitSession not found: SessionId=" + sessionId);
+        }
+        s.Status = visitSessionStatus;
     }
 }
