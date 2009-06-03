@@ -186,6 +186,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
             return op;
         }
+
         #region 公司是否存在此客服
         public Operator GetOperatorByAccountIdAndLoginName(string accountId, string loginName)
         {
