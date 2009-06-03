@@ -60,13 +60,14 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public List<Department> GetDepartmentByAccountId(string AccountId)
         {
             List<Department> list = new List<Department>();
-            string sql = "select * from LiveSupport_Department where AccountId='"+AccountId+"'";
+            string sql = "select * from LiveSupport_Department where AccountId='" + AccountId + "' order by AddDate";
             SqlDataReader sdr=DBHelper.GetReader(sql);
             while (sdr.Read())
             {
                 Department department = new Department();
                 department.DepartmentId = sdr["DepartmentId"].ToString();
                 department.DepartmentName = sdr["DepartmentName"].ToString();
+                department.IsDefault = Convert.ToBoolean(sdr["IsDefault"]);
                 string aid = sdr["AccountId"].ToString();
                 department.Account = accountProvider.GetAccountByAccountId(aid);
                 list.Add(department);
@@ -124,6 +125,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 Department department = new Department();
                 department.DepartmentId = sdr["DepartmentId"].ToString();
                 department.DepartmentName = sdr["DepartmentName"].ToString();
+                department.IsDefault =Convert.ToBoolean(sdr["IsDefault"]);
                 string aid = sdr["AccountId"].ToString();
                 department.Account = accountProvider.GetAccountByAccountId(aid);
                 sdr.Close();
