@@ -24,6 +24,7 @@ namespace LiveSupport.OperatorConsole
         public static List<Chat> Chats = new List<Chat>();
         public static Operator CurrentOperator;
         public static List<ChatForm> ChatForms = new List<ChatForm>();
+        public static List<QuickResponseCategory> quickResponseCategory = new List<QuickResponseCategory>();
         public static int ActiveChat = 0;
         public static List<Chat> GetMyActiveChatSessions()
         {
@@ -49,6 +50,7 @@ namespace LiveSupport.OperatorConsole
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             Trace.WriteLine("Main start");
             Application.Run(new Login());
+            //Application.Run(new QickResponseEidtor());
            //Application.Run(new ListViewGroupsExample());
 		}
 

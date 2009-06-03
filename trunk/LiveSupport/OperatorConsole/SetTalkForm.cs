@@ -107,9 +107,11 @@ namespace LiveSupport.OperatorConsole
 
         private void delNodeToolStripButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(setTalkTreeView.SelectedNode.Level.ToString());
+           
             if (setTalkTreeView.SelectedNode != null)
             {
-                if (setTalkTreeView.SelectedNode.Nodes.Count == 0)
+                if (setTalkTreeView.SelectedNode.Level > 0)
                 {
                     setTalkTreeView.SelectedNode.Remove();
                 }
