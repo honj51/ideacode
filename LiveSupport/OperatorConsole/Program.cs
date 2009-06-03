@@ -21,20 +21,21 @@ namespace LiveSupport.OperatorConsole
 	{
         public static MainForm MainForm;
         public static List<OperatorConsole.LiveChatWS.Visitor> Visitors;
+        public static List<Chat> Chats = new List<Chat>();
         public static Operator CurrentOperator;
         public static List<ChatForm> ChatForms = new List<ChatForm>();
         public static int ActiveChat = 0;
-        public static List<VisitSession> GetMyActiveChatSessions()
+        public static List<Chat> GetMyActiveChatSessions()
         {
-            List<VisitSession> sessions = new List<VisitSession>();
+            List<Chat> chats = new List<Chat>();
             foreach (var item in ChatForms)
             {
-                if (item.ChatSession.Status != VisitSessionStatus.Leave)
+                if (item.Chat.Status != ChatStatus.Closed)
                 {
-                    sessions.Add(item.ChatSession);
+                    chats.Add(item.Chat);
                 }
             }
-            return sessions;
+            return chats;
         }
 		/// <summary>
 		/// The main entry point for the application.

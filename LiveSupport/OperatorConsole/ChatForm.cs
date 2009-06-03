@@ -60,9 +60,16 @@ namespace LiveSupport.OperatorConsole
         private SoundPlayer player = new SoundPlayer();
         
         OperatorWS ws = new OperatorWS();
-        private VisitSession chatSession;
-        private long lastCheckTime=DateTime.Now.Ticks;
-        private List<Operator> onlineOperators=new List<Operator>();
+        //private VisitSession chatSession;
+        private Chat chat;
+        private long lastCheckTime = DateTime.Now.Ticks;
+        private List<Operator> onlineOperators = new List<Operator>();
+
+        public Chat Chat
+        {
+            get { return chat; }
+            set { chat = value; }
+        }
 
         public List<Operator> OnlineOperators
         {
@@ -76,15 +83,17 @@ namespace LiveSupport.OperatorConsole
             set { lastCheckTime = value; }
         }
 
-        public VisitSession ChatSession
-        {
-            get { return chatSession; }
-            set { chatSession = value; }
-        }
+        //public VisitSession ChatSession
+        //{
+        //    get { return chatSession; }
+        //    set { chatSession = value; }
+        //}
+
+
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
-            if (chatSession.Status!= VisitSessionStatus.Chatting) 
+            if (chat.Status != ChatStatus.Closed) 
             {
                 Program.CurrentOperator.Status = OperatorStatus.Idle;
             
@@ -123,7 +132,7 @@ namespace LiveSupport.OperatorConsole
         {
 
             //operatorPannel1.RecieveOperator(Operators);
-            //operatorPannel1.chatId = ChatSession.SessionId;
+            //operatorPannel1.chatId = Chat.ChatId;
         
         }
         string getOperatorsStatusText(OperatorStatus os)
@@ -156,15 +165,16 @@ namespace LiveSupport.OperatorConsole
         }
 
         private bool receiveMessage = true;
-        public ChatForm(VisitSession chatSession)
-            : this(chatSession, false)
+        public ChatForm(Chat chat)
+            : this(chat, false)
         {           
         }
 
-        public ChatForm(VisitSession chatSession, bool invite)
+        private int acceptChatRequestResult = 0;
+        public ChatForm(Chat chat, bool invite)
         {
             InitializeComponent();
-            this.chatSession = chatSession;
+            this.chat = chat;
             // Simple authentication
             AuthenticationHeader auth = new AuthenticationHeader();
             auth.OperatorId = Program.CurrentOperator.OperatorId;
@@ -172,8 +182,8 @@ namespace LiveSupport.OperatorConsole
 
             if (!invite)
             {
-                int res = ws.AcceptChatRequest(chatSession.SessionId); 
-                if (res == -1) 
+                acceptChatRequestResult = ws.AcceptChatRequest(chat.ChatId);
+                if (acceptChatRequestResult == -1) 
                 {
                     wb.Navigate("about:该访客对话请求已被其他客服接受"); 
                     receiveMessage = false;
@@ -181,7 +191,7 @@ namespace LiveSupport.OperatorConsole
                     
                     return;
                 }
-                if(res==-3)
+                if (acceptChatRequestResult == -3)
                 {
                     wb.Navigate("about:服务器错误");
                     receiveMessage = false;
@@ -194,7 +204,7 @@ namespace LiveSupport.OperatorConsole
           
             foreach (Visitor item in Program.Visitors)
             {
-                if (item.CurrentSession.SessionId == chatSession.SessionId)
+                if (item.VisitorId == chat.VisitorId)
                {
                     this.Text = "与 " + item.Name + " 对话中";
                     this.visitorNameLabel.Text += item.Name;
@@ -235,7 +245,7 @@ namespace LiveSupport.OperatorConsole
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
-                ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, chatSession.SessionId);
+                ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
             }
         }
       
@@ -257,7 +267,7 @@ namespace LiveSupport.OperatorConsole
                 tmrGetMsg.Enabled = false;
 
                 LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
-                msg.ChatId = chatSession.SessionId;                
+                msg.ChatId = Chat.ChatId;                
                 msg.SentDate = DateTime.Now;
 
                 wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} </span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", "System", "The operator has left the chat session..."));
@@ -289,7 +299,7 @@ namespace LiveSupport.OperatorConsole
         private void WriteMessage(string message, string From)
         {
             LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
-            msg.ChatId = chatSession.SessionId; 
+            msg.ChatId = Chat.ChatId; 
             //msg.ChatId = myChatRequest.ChatId;
             msg.Text = message;
             msg.Source = From;
@@ -348,7 +358,7 @@ namespace LiveSupport.OperatorConsole
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             
-            if (this.chatSession.Status != VisitSessionStatus.Leave)
+            if (chat.Status != ChatStatus.Closed)
             {
                 if (MessageBox.Show("正在对话中，您确定要关闭？", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
                 {
@@ -358,26 +368,11 @@ namespace LiveSupport.OperatorConsole
             }
               if(Program.CurrentOperator.Status!= OperatorStatus.Offline)
               {
-                  int chatNum = 0;
-                      ws.CloseChat(this.chatSession.SessionId);
-                      Program.ChatForms.Remove(this);
-                      //if (Program.ChatForms.Count==0)
-                      //{
-                         
-                      //}
-                    //  foreach (var cf in Program.ChatForms)
-                    //  {
-                    //      if (cf == null) continue;
-                    //      if (cf.ChatSession.OperatorId == Program.CurrentOperator.OperatorId)
-                    //      {
-                    //          chatNum++; 
-                             
-                    //      }
-                    //  }
-                    //  if (chatNum==0)
-                    //{
-                    // ws.Logout();
-                    //}
+                  if (acceptChatRequestResult == 0)
+                  {
+                      ws.CloseChat(this.Chat.ChatId);
+                  }
+                  Program.ChatForms.Remove(this);                  
                   
               }
               else
