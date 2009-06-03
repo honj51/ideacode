@@ -56,27 +56,7 @@
         ControlToValidate="txtEmail" ErrorMessage="Email有误!" 
         ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
     </td></tr>
-      <tr><td>是否是管理员：</td><td>
-        <asp:DropDownList ID="ddlIsAdmin" runat="server">
-            <asp:ListItem Value="false">否</asp:ListItem>
-            <asp:ListItem Value="true">是</asp:ListItem>
-        </asp:DropDownList>
-    </td></tr>
-    <tr><td>客服状态：</td><td>
-        <asp:DropDownList ID="ddlStatus" runat="server">
-            <asp:ListItem Value="Idle">空闲</asp:ListItem>
-            <asp:ListItem Value="Chatting">交谈中</asp:ListItem>
-            <asp:ListItem Value="BeRightBack">一会回来</asp:ListItem>
-            <asp:ListItem Value="Away">离开</asp:ListItem>
-            <asp:ListItem Value="Offline ">离线</asp:ListItem>
-        </asp:DropDownList>
-    </td></tr>
-    <tr><td style="height: 18px">音频状态：</td><td style="height: 18px">
-        <asp:DropDownList ID="ddlAVChatStatus" runat="server">
-            <asp:ListItem Value="Idle">空闲</asp:ListItem>
-            <asp:ListItem Value="Chatting">通话中</asp:ListItem>
-        </asp:DropDownList>
-    </td></tr>
+      
 <tr style="background-image:url('Images/tjkf2.jpg');"><td></td>
     <td>
     <asp:ImageButton ID="ImageButton1" runat="server" 
@@ -89,4 +69,5 @@
 
 </asp:Content>
 
+ 
  

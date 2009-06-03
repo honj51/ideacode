@@ -11,17 +11,15 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     Account account;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["User"] != null)
         {
-            if (Session["User"] != null)
-            {
-                account = (Account)Session["User"];
-            }
-            else
-            {
-                Response.Redirect("../Default.aspx");
-            }
+            account = (Account)Session["User"];
         }
+        else
+        {
+            Response.Redirect("../Default.aspx");
+        }
+        
     }
 
     protected void ObjectDataSource1_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
@@ -46,7 +44,12 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         {
             try
             {
-                OperatorsManager.DeleteOperatorByid(e.CommandArgument.ToString());
+                int i=OperatorsManager.DeleteOperatorByid(e.CommandArgument.ToString(),account.LoginName);
+                if (i == 2)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('您不能删除自己!'); </script>");
+                    return;
+                }
                 Response.Redirect("OperatorsManagment.aspx");
             }
             catch (Exception ex)

@@ -57,6 +57,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         bool b = AccountsManager.UpdateAccountByAccountId(accountId, password, nickName);
         if (b)
         {
+           
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('修改成功!');window.location='../Login.aspx';</script>");
             return;
         }

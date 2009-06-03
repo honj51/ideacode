@@ -64,10 +64,10 @@ public partial class AccountAdmin_Default2 : System.Web.UI.Page
             op.LoginName = this.txtLoginName.Text;
             op.Password = this.txtPwd.Text;
             op.NickName = this.txtNickName.Text;
-            op.IsAdmin = Boolean.Parse(this.ddlIsAdmin.SelectedValue.Trim());
+            op.IsAdmin = false;
             op.Department = DepartmentManager.GetDepartmentById(this.ddlDepartment.SelectedValue);
-            op.Status = (OperatorStatus)Enum.Parse((typeof(OperatorStatus)), this.ddlStatus.SelectedValue);
-            op.AVChatStatus = this.ddlAVChatStatus.SelectedValue;
+            op.Status = (OperatorStatus)Enum.Parse((typeof(OperatorStatus)), "Idle");
+            op.AVChatStatus = "Idle";
             op.Email = this.txtEmail.Text;
 
 

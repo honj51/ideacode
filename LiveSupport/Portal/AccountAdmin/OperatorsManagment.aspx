@@ -23,7 +23,7 @@
            <!--头部--->
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
                 DataKeyNames="OperatorId" DataSourceID="ObjectDataSource1" 
-                onrowcommand="GridView1_RowCommand" Width="487px" 
+                onrowcommand="GridView1_RowCommand" Width="549px" 
                 onrowdatabound="GridView1_RowDataBound" AllowPaging="True" CellPadding="4" 
                 ForeColor="#333333" GridLines="None">
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -109,4 +109,5 @@
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </asp:Content>
 
+ 
  
