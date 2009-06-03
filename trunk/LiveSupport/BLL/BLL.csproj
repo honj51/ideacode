@@ -44,7 +44,6 @@
     <Compile Include="ChatMessageManager.cs" />
     <Compile Include="DepartmentManager.cs" />
     <Compile Include="Exceptions\BLLInternalException.cs" />
-    <Compile Include="EmailManager.cs" />
     <Compile Include="LeaveWordManager.cs" />
     <Compile Include="OperatorsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

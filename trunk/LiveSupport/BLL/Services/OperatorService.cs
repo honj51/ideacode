@@ -115,21 +115,21 @@ public static class OperatorService
     {
         operators = Provider.GetAllOperators();
         // 取出管理员客服
-        List<Account> accounts = AccountService.GetAllAccounts();
-        foreach (var item in accounts)
-        {
-            Operator op = new Operator();
-            op.OperatorId = item.AccountId;
-            op.Email = item.Email;
-            op.AVChatStatus = OperatorStatus.Offline.ToString();
-            op.AccountId = item.AccountId;
-            op.NickName = item.NickName;
-            op.LoginName = item.LoginName;
-            op.Password = item.Password;
-            op.IsAdmin = true;
-            op.Status = OperatorStatus.Offline;
-            operators.Add(op);
-        }
+        //List<Account> accounts = AccountService.GetAllAccounts();
+        //foreach (var item in accounts)
+        //{
+        //    Operator op = new Operator();
+        //    op.OperatorId = item.AccountId;
+        //    op.Email = item.Email;
+        //    op.AVChatStatus = OperatorStatus.Offline.ToString();
+        //    op.AccountId = item.AccountId;
+        //    op.NickName = item.NickName;
+        //    op.LoginName = item.LoginName;
+        //    op.Password = item.Password;
+        //    op.IsAdmin = true;
+        //    op.Status = OperatorStatus.Offline;
+        //    operators.Add(op);
+        //}
     }
 
     private static List<Operator> operators = new List<Operator>();
@@ -155,6 +155,7 @@ public static class OperatorService
     /// <returns>operator对象</returns>
     public static Operator Login(string accountName, string operatorName, string password)
     {
+        Trace.WriteLine(string.Format("OperatorService.Login(AccountName = {0},OperatorName={1},Password={2})", accountName, operatorName,password));
         Account account = AccountService.FindAccountByLoginName(accountName);
         Operator op = null;
         if (account != null)
@@ -220,9 +221,14 @@ public static class OperatorService
         return false;
     }
 
-
+    /// <summary>
+    /// 跟据OperatorID查询客服
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <returns></returns>
     public static Operator GetOperatorById(string operatorId)
     {
+         Trace.WriteLine(string.Format("OperatorService.GetOperatorById(operatorId = {0})", operatorId));
          Operator op=null;
          foreach (Operator item in operators)
          {
@@ -252,6 +258,7 @@ public static class OperatorService
     /// <param name="loginName">登录名</param>
     public static int ResetOperatorPassword(string loginName)
     {
+        Trace.WriteLine(string.Format("OperatorService.ResetOperatorPassword(LoginName = {0})", loginName));
         Operator op = GetOperatorByLoginName(loginName);
         if (loginName != null || op != null)
         {
@@ -259,7 +266,10 @@ public static class OperatorService
             {
                 string body = "你的新密码是：" + Util.RandLetter(8);
                 string subject = "密码激活";
-                Util.SendEmail(op.Email, subject, body);
+                string SMTPServer= ConfigurationManager.AppSettings["SMTPServer"].ToString();
+                string emal=ConfigurationManager.AppSettings["Email"].ToString();
+                string pwd=ConfigurationManager.AppSettings["Password"].ToString();
+                Util.SendEmail(op.Email, emal, pwd, SMTPServer, subject, body);
                 return ResetOperatorPassword_OK;
             }
             else
@@ -332,8 +342,8 @@ public static class OperatorService
     /// <returns>(int)信息</returns>
     public static int ChangPassword(string operatorId, string oldPassword, string newPassword)
     {
+        Trace.WriteLine(string.Format("OperatorService.ChangPassword(operatorId = {0},oldPassword={1},Password={2})", operatorId, oldPassword, newPassword));
         Operator op = GetOperatorById(operatorId);
-
         if (op == null)
         {
             if (op.Password == oldPassword)
@@ -367,6 +377,7 @@ public static class OperatorService
     /// <param name="fileName"></param>
     public static void SendFile(string chatId, string fileName)
     {
+        Trace.WriteLine(string.Format("OperatorService.SendFile(ChatId = {0},FileName={1})", chatId,fileName));
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         Message m = new Message();
         m.ChatId = chatId;
@@ -374,7 +385,11 @@ public static class OperatorService
         m.Type = MessageType.SystemMessage_ToOperator;
         ChatService.SendMessage(m);
     }
-
+    /// <summary>
+    /// 跟据公司ID查询所有客服
+    /// </summary>
+    /// <param name="accountId"></param>
+    /// <returns></returns>
     public static List<Operator> GetAllOperatorsByAccountId(string accountId)
     {
         List<Operator> ops = new List<Operator>();
@@ -390,6 +405,7 @@ public static class OperatorService
 
     public static NewChangesCheckResult CheckNewChanges(string operatorId, NewChangesCheck check)
     {
+        Trace.WriteLine(string.Format("OperatorService.CheckNewChanges(operatorId = {0},NewChangesCheck={1})", operatorId, check.ToString()));
         Operator op = OperatorService.GetOperatorById(operatorId);
         NewChangesCheckResult checkResult = new NewChangesCheckResult();
 
@@ -417,9 +433,13 @@ public static class OperatorService
         return checkResult;
 
     }
-
+    /// <summary>
+    /// 新建一个客服
+    /// </summary>
+    /// <param name="op"></param>
     public static void NewOperator(Operator op)
     {
+        Trace.WriteLine(string.Format("OperatorService.NewOperator(Operator = {0})", op.ToString()));
         if (GetOperatorById(op.OperatorId) != null)
         {
             return;

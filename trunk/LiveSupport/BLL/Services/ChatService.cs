@@ -88,6 +88,7 @@ public class ChatService
     /// <param name="userName"></param>
     public static bool CloseChat(string chatId, string closeBy)
     {
+        Trace.WriteLine(string.Format("ChatService.CloseChat(ChatId = {0}，CloseBy＝{1})", chatId, closeBy));
         Chat chat = GetChatById(chatId);
         if (chat == null)
         {
@@ -167,10 +168,12 @@ public class ChatService
     /// <returns></returns>
     public static int AcceptChatRequest(string operatorId, string chatId)
     {
+        Trace.WriteLine(string.Format("ChatService.AcceptChatRequest(OperatorId={0},ChatId={1})", operatorId, chatId));
+
         Chat chat = GetChatById(chatId);
         if (chat == null)
         {
-            Trace.WriteLine(string.Format("Error: AcceptChatRequest({0},{1}) 错误，未找到该对话",operatorId,chatId));
+            Trace.WriteLine(string.Format("Error: AcceptChatRequest(OperatorId={0},ChatId={1}) 错误，未找到该对话", operatorId, chatId));
             return AcceptChatRequestReturn_Error_Others;
         }
 
@@ -242,6 +245,7 @@ public class ChatService
     /// <param name="visitorId"></param>
     public static Chat OperatorRequestChat(string operatorId, string visitorId)
     {
+        Trace.WriteLine(string.Format("ChatService.OperatorRequestChat(OperatorId = {0},VisitorId = {1})", operatorId, visitorId));
         Visitor visitor = VisitorService.GetVisitor(visitorId);
         Operator op = OperatorService.GetOperatorById(operatorId);
         if (visitor == null || op == null)
@@ -296,6 +300,7 @@ public class ChatService
     /// <param name="chatId"></param>
     public static void DeclineOperatorInvitation(string chatId)
     {
+        Trace.WriteLine(string.Format("ChatService.DeclineOperatorInvitation(ChatId = {0})",chatId));
         Chat chat = GetChatById(chatId);
         if (chat != null)
         {
@@ -317,6 +322,7 @@ public class ChatService
     /// <param name="chatId"></param>
     public static void AcceptOperatorInvitation(string chatId)
     {
+        Trace.WriteLine(string.Format("ChatService.AcceptOperatorInvitation(ChatId = {0})", chatId));
         Chat chat = GetChatById(chatId);
         if (chat != null)
         {
@@ -339,6 +345,7 @@ public class ChatService
     /// <returns>ChatId</returns>
     public static string ChatPageRequestChat(Visitor visitor)
     {
+        Trace.WriteLine(string.Format("ChatService.ChatPageRequestChat(Visitor = {0})", visitor));
         Chat chatRequest = new Chat();
         chatRequest.AccountId = visitor.AccountId;
         chatRequest.CreateTime = DateTime.Now;
