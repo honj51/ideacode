@@ -20,6 +20,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             {
 
                 operatorId = Request.QueryString["operatorId"].ToString();
+                
                 if (!IsPostBack)
                 {
                     DataBindDepartment(account.AccountId);
@@ -55,6 +56,14 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         this.txtNickName.Text = op.NickName;
         this.txtPwd.Text = op.Password;
         this.txtEmail.Text = op.Email;
+        if (account.LoginName == op.LoginName)
+        {
+            this.btnSave.Enabled = false;
+        }
+        else
+        {
+            this.btnSave.Enabled = true;
+        }
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {

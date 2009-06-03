@@ -48,21 +48,31 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
     protected void gvDepartment_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-       
+
         if (e.CommandName == "cmdDelete")
         {
-            bool b = DepartmentManager.DeleteDepartmentById(e.CommandArgument.ToString());
-            if (b)
+            Department depar = DepartmentManager.GetDepartmentById(e.CommandArgument.ToString());
+            if (!depar.IsDefault)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('删除成功'); window.location='DepartmentManager.aspx';</script>");
-                return;
+                bool b = DepartmentManager.DeleteDepartmentById(e.CommandArgument.ToString());
+                if (b)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('删除成功'); window.location='DepartmentManager.aspx';</script>");
+                    return;
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请先删除该部门下的客服');window.location='OperatorsManagment.aspx';</script>");
+                    return;
+                }
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请先删除该部门下的客服');window.location='OperatorsManagment.aspx';</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('默认部门不允许删除!');</script>");
                 return;
             }
         }
+        
     }
     protected void gvDepartment_RowEditing(object sender, GridViewEditEventArgs e)
     {

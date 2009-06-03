@@ -50,4 +50,9 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             this.Response.Redirect("ViewLeaveWord.aspx?id="+e.CommandArgument.ToString());
         }
     }
+    protected void gvLeaveWord_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        this.gvLeaveWord.PageIndex = e.NewPageIndex;
+        DataBindLeaveWord(account.AccountId, this.txtBeginDate.Text,this.txtEndDate.Text + " 23:59:59");
+    }
 }

@@ -43,10 +43,12 @@
       </TD></TR></TBODY></TABLE>
 <!--聊天记录内容-->
 <table width="570">
-<tr><td align="left" style=" background-color:#ebf1fa; height: 36px;">留言记录 &gt;&gt;</td>
-<tr><td align="left">
+<tr><td align="left" style=" background-color:#ebf1fa; height: 20px;">留言记录 &gt;&gt;</td>
+<tr><td align="center">
     <asp:GridView ID="gvLeaveWord" runat="server" AutoGenerateColumns="False" 
-         Width="512px" onrowcommand="gvLeaveWord_RowCommand">
+          onrowcommand="gvLeaveWord_RowCommand" AllowPaging="True" 
+        Font-Size="12px" onpageindexchanging="gvLeaveWord_PageIndexChanging" 
+        Width="555px">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" 
                 Visible="False" />
@@ -85,4 +87,5 @@
 
 </asp:Content>
 
+ 
  
