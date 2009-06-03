@@ -52,73 +52,6 @@ public partial class Default2 : System.Web.UI.Page
     //注册
     protected void Button1_Click(object sender, EventArgs e)
     {
-        ////验证
-        //if (this.txtCompanyName.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入公司名称');</script>");
-        //    return;
-        //}
-        //if (this.txtCompanyWebUrl.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入公司网址');</script>");
-        //    return;
-        //}
-        //if (this.txtCompanyPhone.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入公司电话');</script>");
-        //    return;
-        //}
-        //if (!Regex.IsMatch(this.txtCompanyPhone.Text.Trim(), @"^\d+(\.\d)?$"))
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('电话应该是数字、不允许出现其他字符!');</script>");
-        //    return;
-        //}
-        //if (this.txtName.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入联系人');</script>");
-        //    return;
-        //}
-        //if (this.txtMail.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入邮件地址');</script>");
-        //    return;
-        //}
-        //if (!Regex.IsMatch(this.txtMail.Text.Trim(), @"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('邮件格式不正确');</script>");
-        //    return;
-        //}
-        //if (this.ddlVocation.SelectedIndex == 0)
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请选择行业类别');</script>");
-        //    return;
-        //}
-        //if (this.txtLoginId.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入客服ID');</script>");
-        //    return;
-        //}
-        //if (!Regex.IsMatch(this.txtLoginId.Text.Trim(), @"^[a-zA-Z][a-zA-Z0-9_]{0,20}$"))
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('您的客服ID只能是数字或_下划线开头');</script>");
-        //    return;
-        //}
-        //if (this.txtPwd.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入密码');</script>");
-        //    return;
-        //}
-        //if (this.txtPwds.Text == "")
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请输入确认密码');</script>");
-        //    return;
-        //}
-        //if (this.txtPwd.Text != this.txtPwds.Text)
-        //{
-        //    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('确认密码跟密码不符合,请从新输入...');</script>");
-        //    return;
-        //}
-        //this.txtValidate.Text==
         if (Session["createRandom"] != null)
         {
             if (this.txtValidate.Text == Session["createRandom"].ToString())
@@ -127,6 +60,7 @@ public partial class Default2 : System.Web.UI.Page
                 {
                     //添加
                     Account at = new Account();
+                    at.AccountId = Guid.NewGuid().ToString();
                     at.CompanyName = this.txtCompanyName.Text;
                     at.Url = this.txtCompanyWebUrl.Text;
                     at.Phone = this.txtCompanyPhone.Text;
@@ -143,6 +77,7 @@ public partial class Default2 : System.Web.UI.Page
                     bool b = AccountsManager.AddAccount(at);
                     if (b)
                     {
+                        
                         ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('注册成功'); window.location='Login.aspx';</script>");
                         return;
                     }
