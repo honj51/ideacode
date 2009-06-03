@@ -11,6 +11,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
     /// </summary>
     public class SqlDepartmentProvider : IDepartmentProvider
     {
+
+        private SqlAccountProvider accountProvider = new SqlAccountProvider();
+
         #region 添加部门
         public int AddDepartment(Department department)
         {
@@ -19,7 +22,12 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 bool b=CheckAccountByDepartment(department.Account.AccountId, department.DepartmentName);
                 if (b)
                 {
-                    string sql = string.Format("insert into LiveSupport_Department(DepartmentId,DepartmentName,AccountId) values('{0}','{1}','{2}')", department.DepartmentId, department.DepartmentName, department.Account.AccountId);
+                    int isDefault = 0;
+                    if (department.IsDefault == false)
+                        isDefault = 0;
+                    else
+                        isDefault = 1;
+                    string sql = string.Format("insert into LiveSupport_Department(DepartmentId,DepartmentName,AccountId,IsDefault,AddDate) values('{0}','{1}','{2}','{3}','{4}')", department.DepartmentId, department.DepartmentName, department.Account.AccountId, isDefault, department.AddDate);
                     return DBHelper.ExecuteCommand(sql);
                 }
                 else
@@ -47,8 +55,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
 
         #endregion
-
-        private SqlAccountProvider accountProvider = new SqlAccountProvider();
 
         #region 通过公司编号获得所有部门
         public List<Department> GetDepartmentByAccountId(string AccountId)
