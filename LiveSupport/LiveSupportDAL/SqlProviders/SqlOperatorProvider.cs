@@ -226,6 +226,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                     if (sdr.Read())
                     {
                         Operator oper = new Operator(sdr);
+                        oper.Department = new SqlDepartmentProvider().GetDepartmentById(sdr["DepartmentId"].ToString());
                         sdr.Close();
                         return oper;
                     }
