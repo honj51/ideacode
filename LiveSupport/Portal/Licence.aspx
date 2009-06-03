@@ -22,7 +22,7 @@
       <DIV 
       style="BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 8px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 8px; FONT-WEIGHT: normal; FONT-SIZE: 12px; PADDING-BOTTOM: 8px; OVERFLOW: auto; BORDER-LEFT: #cccccc 1px solid; LINE-HEIGHT: normal; PADDING-TOP: 8px; BORDER-BOTTOM: #cccccc 1px solid; FONT-STYLE: normal; HEIGHT: 320px; FONT-VARIANT: normal">
       <P 
-      align=center><STRONG>感谢您选择江西互动网络科技有限公司的SaaS网站实时交流系统。</STRONG></P>
+      align=center><STRONG>感谢您选择 科技有限公司的SaaS网站实时交流系统。</STRONG></P>
       <P class=style_g2><SPAN 
       class=style_z>请您认真细致地阅读互动全球的SaaS注册规范（下称“注册规范”）和以下的SaaS注册服务条款（下称“服务条款”）。客户只有在同意并愿意遵守服务条款后才能继续并完成SaaS在线注册程序。如果您申请注册了SaaS服务，说明您已经同意并接受了我们的服务条款，否则，请退出SaaS在线注册系统。</SPAN></P><SPAN 
       align="center"><STRONG>1. 术语解释 为了本服务条款之目的：</STRONG></SPAN> 
@@ -98,3 +98,4 @@
 </center>
 </asp:Content>
 
+ 

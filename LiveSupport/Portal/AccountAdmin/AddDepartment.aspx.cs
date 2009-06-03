@@ -35,6 +35,8 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         dep.DepartmentId = Guid.NewGuid().ToString();
         dep.DepartmentName = this.txtDepartmentName.Text;
         dep.Account = AccountsManager.GetAccountByAccountId(account.AccountId);
+        dep.IsDefault = false;
+        dep.AddDate = DateTime.Now.ToString();
         bool b = DepartmentManager.AddDepartment(dep);
         if (b)
         {
