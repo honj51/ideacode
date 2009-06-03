@@ -51,9 +51,38 @@ namespace LiveSupport.BLL
         public static bool AddAccount(Account account)
         {
             int i = 0;
+            int di = 0;
+            int oi = 0;
             i = SqlAccountProvider.Default.AddAccount(account);
             if (i != 0)
-                return true;
+            {
+                //添加默认部门
+                Department dt = new Department();
+                dt.Account = account;
+                dt.DepartmentId = Guid.NewGuid().ToString();
+                dt.DepartmentName = "默认部门";
+                dt.IsDefault = true;
+                dt.AddDate = DateTime.Now.ToString();
+                di=new SqlDepartmentProvider().AddDepartment(dt);
+                if (di!=0)
+                {
+                    Operator op = new Operator();
+                    op.AccountId = account.AccountId;
+                    op.LoginName = account.LoginName;
+                    op.Password = account.Password;
+                    op.IsAdmin = true;
+                    op.NickName = account.NickName;
+                    op.Department = dt;
+                    op.Email = account.Email;
+                    op.AVChatStatus = "Idle";
+                    op.Status = (OperatorStatus)Enum.Parse((typeof(OperatorStatus)), "Idle");
+                    oi=new SqlOperatorProvider().NewOperator(op);
+                }
+                if (i != 0 && di != 0 && oi != 0)
+                    return true;
+                else
+                    return false;
+            }
             else
                 return false;
         }
