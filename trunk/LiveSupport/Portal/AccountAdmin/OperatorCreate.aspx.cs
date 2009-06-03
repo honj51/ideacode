@@ -60,7 +60,6 @@ public partial class AccountAdmin_Default2 : System.Web.UI.Page
                 return;
             }
             Operator op = new Operator();
-            op.OperatorId = Guid.NewGuid().ToString();
             op.AccountId = account.AccountId;
             op.LoginName = this.txtLoginName.Text;
             op.Password = this.txtPwd.Text;
