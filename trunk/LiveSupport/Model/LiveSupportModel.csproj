@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -40,6 +40,7 @@
     <Compile Include="Chat.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Department.cs" />
+    <Compile Include="LeaveWord.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="PageRequest .cs" />
