@@ -15,9 +15,22 @@ namespace LiveSupport.BLL
     public class OperatorsManager
     {
         private static IOperatorProvider Provider = new SqlOperatorProvider();
-        public static int DeleteOperatorByid(string operatorId)
+        public static int  DeleteOperatorByid(string operatorId,string accountLoginName)
         {
-            return Provider.DeleteOperatorByid(operatorId);
+            Operator oper=Provider.GetOperatorByOperatorId(operatorId);
+            if (oper.LoginName != accountLoginName)
+            {
+                int i = 0;
+                i = Provider.DeleteOperatorByid(operatorId);
+                if (i != 0)
+                    return 1;
+                else
+                    return 0;
+            }
+            else
+            {
+                return 2;
+            }
         }
 
         #region 增加Operator
