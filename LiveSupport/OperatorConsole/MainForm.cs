@@ -1263,7 +1263,7 @@ namespace LiveSupport.OperatorConsole
 
         private void settalkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetTalkMainForm settalk = new SetTalkMainForm();
+            QickResponseEidtor settalk = new QickResponseEidtor();
             settalk.ShowDialog();
         }
 
@@ -1299,6 +1299,7 @@ namespace LiveSupport.OperatorConsole
             about.Show();
         }
 
+        
        
 
       

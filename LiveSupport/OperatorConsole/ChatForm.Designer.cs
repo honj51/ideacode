@@ -280,8 +280,8 @@
             this.ExitToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.ExitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExitToolStripButton.Name = "ExitToolStripButton";
-            this.ExitToolStripButton.Size = new System.Drawing.Size(33, 22);
-            this.ExitToolStripButton.Text = "关闭";
+            this.ExitToolStripButton.Size = new System.Drawing.Size(51, 22);
+            this.ExitToolStripButton.Text = "关闭(&S)";
             this.ExitToolStripButton.Click += new System.EventHandler(this.ExitToolStripButton_Click);
             // 
             // cutToolStripButton
