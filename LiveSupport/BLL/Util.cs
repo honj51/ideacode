@@ -33,23 +33,37 @@ namespace LiveSupport.BLL
 
             return num.ToString();
         }
-
+        #endregion
+        #region 邮件
         /// <summary>
         /// 发送邮件
         /// </summary>
-        /// <param name="to">收信人</param>
+        /// <param name="toEmail">收收者</param>
+        /// <param name="email">收信人</param>
+        /// <param name="emailPwd">密码</param>
+        /// <param name="emailSmtp">服务器</param>
         /// <param name="subject">主题</param>
         /// <param name="body">正文</param>
-        public static void SendEmail(string to, string subject, string body)
+        /// <returns></returns>
+        public static bool SendEmail(string toEmail, string email, string emailPwd, string emailSmtp, string subject, string body)
         {
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());//发送者
-            mail.To.Add(new MailAddress(to));//收信者
-            mail.Subject = subject;//主题
-            mail.Body = body; //正文
-            SmtpClient mailer = new SmtpClient(ConfigurationManager.AppSettings["SMTPServer"].ToString());
-            mailer.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
-            mailer.Send(mail);
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress(email);//发送者邮箱
+                mail.To.Add(new MailAddress(toEmail));//接收者邮箱
+                mail.Subject = subject;//主题
+                mail.Body = body;//正文
+
+                SmtpClient mailer = new SmtpClient(emailSmtp);//指定发送的服务器
+                mailer.Credentials = new NetworkCredential(email, emailPwd);//用户名与密码
+                mailer.Send(mail);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         #endregion
  
