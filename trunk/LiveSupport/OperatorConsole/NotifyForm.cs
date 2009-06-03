@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using LiveSupport.OperatorConsole.LiveChatWS;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -13,7 +14,7 @@ namespace LiveSupport.OperatorConsole
     {
 
         private int SendIndex;
-        private OperatorConsole.LiveChatWS.VisitSession chatSession;
+        private Chat chat;
 
         public enum NotifyMessageType
         {
@@ -90,18 +91,18 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        public static void ShowNotifier(bool showCommandButton, string message, OperatorConsole.LiveChatWS.VisitSession chatSession)
+        public static void ShowNotifier(bool showCommandButton, string message, Chat chat)
         {
             NotifyForm f = new NotifyForm();
-            f.showNotifier(showCommandButton, message, chatSession);
+            f.showNotifier(showCommandButton, message, chat);
         }
 
-        private void showNotifier(bool showCommandButton, string message, OperatorConsole.LiveChatWS.VisitSession chatSession)
+        private void showNotifier(bool showCommandButton, string message, Chat chat)
         {
             this.messageLabel.Text = message;
             this.acceptButton.Visible = showCommandButton;
             this.declineButton.Visible = showCommandButton;
-            this.chatSession = chatSession;
+            this.chat = chat;
             this.notifyMessageType = NotifyMessageType.ChatRequest;
 
             this.Show();
@@ -175,7 +176,7 @@ namespace LiveSupport.OperatorConsole
             ChatForm cf = null;
             foreach (var item in Program.ChatForms)
             {
-                if (item.ChatSession.SessionId == this.chatSession.SessionId)
+                if (item.Chat.ChatId == this.chat.ChatId)
                 {
                     cf = item;
                     break;
@@ -185,7 +186,7 @@ namespace LiveSupport.OperatorConsole
             if (cf == null)
             {
                 //this.chatSession.ChatingTime = DateTime.Now;
-                cf = new ChatForm(this.chatSession);
+                cf = new ChatForm(this.chat);
                 Program.ChatForms.Add(cf);
             }
          

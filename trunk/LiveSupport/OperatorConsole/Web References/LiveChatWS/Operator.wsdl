@@ -180,6 +180,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="Operators" type="tns:ArrayOfOperator" />
           <s:element minOccurs="0" maxOccurs="1" name="NewVisitors" type="tns:ArrayOfVisitor" />
           <s:element minOccurs="0" maxOccurs="1" name="VisitSessionChange" type="tns:ArrayOfVisitSession" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chats" type="tns:ArrayOfChat" />
           <s:element minOccurs="0" maxOccurs="1" name="Messages" type="tns:ArrayOfMessageCheckResult" />
           <s:element minOccurs="1" maxOccurs="1" name="NewVisitorCheckTime" type="s:long" />
         </s:sequence>
@@ -194,6 +195,35 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="VisitSession" nillable="true" type="tns:VisitSession" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="ArrayOfChat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Chat" nillable="true" type="tns:Chat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Chat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChatId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CloseBy" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="AcceptTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisitorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ChatStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vs" type="tns:VisitSession" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsInviteByOperator" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ChatStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Requested" />
+          <s:enumeration value="Accepted" />
+          <s:enumeration value="Decline" />
+          <s:enumeration value="Closed" />
+        </s:restriction>
+      </s:simpleType>
       <s:complexType name="ArrayOfMessageCheckResult">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="unbounded" name="MessageCheckResult" nillable="true" type="tns:MessageCheckResult" />
@@ -384,7 +414,7 @@
       <s:element name="InviteChatResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="InviteChatResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="InviteChatResult" type="tns:Chat" />
           </s:sequence>
         </s:complexType>
       </s:element>

@@ -401,6 +401,8 @@ namespace LiveSupport.OperatorConsole
 
             processNewVisitors(result);
 
+            precessChats(result);
+
             List<MessageCheck> nextChecks = new List<MessageCheck>(); 
             foreach (var cf in Program.ChatForms)
             {
@@ -408,7 +410,7 @@ namespace LiveSupport.OperatorConsole
                 LiveSupport.OperatorConsole.LiveChatWS.Message[] ms = null;
                 foreach (var item in result.Messages)
                 {
-                    if (cf.ChatSession.SessionId == item.ChatId)
+                    if (cf.Chat.ChatId == item.ChatId)
                     {
                         ms = item.Messages;                     
                         break;
@@ -416,7 +418,7 @@ namespace LiveSupport.OperatorConsole
                 }
                 
                 MessageCheck c = new MessageCheck();
-                c.ChatId = cf.ChatSession.SessionId;
+                c.ChatId = cf.Chat.ChatId;
                 c.LastCheckTime = cf.LastCheckTime;
                 if (ms != null)
                 {   
@@ -463,6 +465,30 @@ namespace LiveSupport.OperatorConsole
             DisplayStatus();
 
             
+        }
+
+        private void precessChats(NewChangesCheckResult result)
+        {
+            Program.Chats.Clear();
+            Program.Chats.AddRange(result.Chats);
+
+            foreach (var item in Program.Chats)
+            {
+                if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator)
+                {
+                    Visitor visitor = null;
+                    foreach (var v in Program.Visitors)
+                    {
+                        if (v.VisitorId == item.VisitorId)
+                        {
+                            visitor = v;
+                            break;
+                        }
+                    }
+
+                    NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", item);
+                }
+            }
         }
 
         private void changeVisitorListViewItemColor()
@@ -650,7 +676,7 @@ namespace LiveSupport.OperatorConsole
                 {
 
                     // 新的对话请求
-                    NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote);
+                    //NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote);
 
                 }
                 else if (remote.Status == VisitSessionStatus.Leave)
@@ -859,10 +885,10 @@ namespace LiveSupport.OperatorConsole
                    
                     //声音
                     player.Stop();
-                    ChatForm cf = new ChatForm(visitor.CurrentSession);
+                    //ChatForm cf = new ChatForm(visitor.CurrentSession);
 
-                    Program.ChatForms.Add(cf);
-                    cf.Show();
+                   // Program.ChatForms.Add(cf);
+                    //cf.Show();
                   
                 }
                 else
@@ -890,15 +916,16 @@ namespace LiveSupport.OperatorConsole
             Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
            if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
             {
-              if(v.CurrentSession.OperatorId=="")
-              {
-                if (ws.InviteChat(v.VisitorId) == 0)
+
+                Chat chat = ws.InviteChat(v.VisitorId);
+              
+
+                if (chat != null)
                 {
-                    v.CurrentSession.OperatorId = Program.CurrentOperator.OperatorId;
                     ChatForm cf = null;
                     foreach (var item in Program.ChatForms)
                     {
-                        if (item.ChatSession.SessionId == v.CurrentSession.SessionId)
+                        if (item.Chat.ChatId == chat.ChatId)
                         {
                             cf = item;
                             break;
@@ -908,7 +935,7 @@ namespace LiveSupport.OperatorConsole
                     if (cf == null)
                     {
                       
-                        cf = new ChatForm(v.CurrentSession, true);
+                        cf = new ChatForm(chat, true);
                         Program.ChatForms.Add(cf);
                     }
 
@@ -928,10 +955,9 @@ namespace LiveSupport.OperatorConsole
                 //{
                 //    MessageBox.Show("访客拒绝邀请");
                 //}
+
           }         
-        }
-
-
+       
         // Sorts ListViewGroup objects by header value.
         private class ListViewGroupSorter : IComparer
         {
@@ -1167,7 +1193,7 @@ namespace LiveSupport.OperatorConsole
         //            ChatForm cf = null;
         //            foreach (var item in Program.ChatForms)
         //            {
-        //                if (item.ChatSession.SessionId == v.CurrentSession.SessionId)
+        //                if (item.Chat.ChatId == v.CurrentSession.SessionId)
         //                {
         //                    cf = item;
         //                    break;
@@ -1217,10 +1243,10 @@ namespace LiveSupport.OperatorConsole
                     //}
                     //声音
                     player.Stop();
-                    ChatForm cf = new ChatForm(visitor.CurrentSession);
+                    //ChatForm cf = new ChatForm(visitor.CurrentSession);
 
-                    Program.ChatForms.Add(cf);
-                    cf.Show();
+                    //Program.ChatForms.Add(cf);
+                    //cf.Show();
                 }
                 else
                 {
