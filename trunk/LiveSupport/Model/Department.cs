@@ -33,5 +33,23 @@ namespace LiveSupport.LiveSupportModel
             get { return account; }
             set { account = value; }
         }
+
+        private bool isDefault;
+
+        public bool IsDefault
+        {
+            get { return isDefault; }
+            set { isDefault = value; }
+        }
+
+        private string addDate;
+
+        public string AddDate
+        {
+            get { return addDate; }
+            set { addDate = value; }
+        }
+
+
     }
 }
