@@ -49,6 +49,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         private SqlAccountProvider accountProvider = new SqlAccountProvider();
+
         #region 通过公司编号获得所有部门
         public List<Department> GetDepartmentByAccountId(string AccountId)
         {

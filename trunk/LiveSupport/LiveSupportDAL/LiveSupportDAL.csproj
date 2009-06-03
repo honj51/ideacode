@@ -43,6 +43,7 @@
     <Compile Include="Providers\IChatProvider.cs" />
     <Compile Include="Providers\ICityProvider.cs" />
     <Compile Include="Providers\IDepartmentProvider.cs" />
+    <Compile Include="Providers\ILeaveWordProvider.cs" />
     <Compile Include="Providers\IMessageProvider.cs" />
     <Compile Include="Providers\IOperatorProvider.cs" />
     <Compile Include="Providers\IPageRequestProvider.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="SqlProviders\SqlChatProvider.cs" />
     <Compile Include="SqlProviders\SqlCityProvider.cs" />
     <Compile Include="SqlProviders\SqlDepartmentProvider.cs" />
+    <Compile Include="SqlProviders\SqlLeaveWordProvider.cs" />
     <Compile Include="SqlProviders\SqlMessageProvider.cs" />
     <Compile Include="SqlProviders\SqlOperatorProvider.cs" />
     <Compile Include="SqlProviders\SqlPageRequestProvider.cs" />
