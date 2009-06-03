@@ -125,7 +125,9 @@ public class VisitSessionService
         }
         return ss;
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public static void MaintanStatus()
     {
         foreach (VisitSessionHit item in sessions)
@@ -140,10 +142,13 @@ public class VisitSessionService
             }
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="visitorId"></param>
     public static void Hit(string visitorId)
     {
-        // we should find the new session form visitor instance
+        Trace.WriteLine(string.Format("VisitorService.Hit(visitorId = {0})", visitorId));
         Visitor v = VisitorService.GetVisitor(visitorId);
         if (v != null && v.CurrentSession != null)
         {

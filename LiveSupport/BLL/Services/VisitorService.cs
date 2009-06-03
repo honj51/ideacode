@@ -61,6 +61,7 @@ public class VisitorService
     /// <returns></returns>
     public static List<Visitor> GetAllOnlineVisitors(string accountId)
     {
+        Trace.WriteLine(string.Format("VisitorService.GetAllOnlineVisitors(accountId = {0})", accountId));
         List<Visitor> onlineVisitors = new List<Visitor>();
         foreach (Visitor item in visitors)
         {
@@ -98,7 +99,10 @@ public class VisitorService
         Trace.Flush();
         return vs;     
     }
-
+    /// <summary>
+    /// 新增访客信息
+    /// </summary>
+    /// <param name="visitor"></param>
     public static void NewVisitor(Visitor visitor)
     {
         Trace.WriteLine(string.Format("NewVisitor : {0}", visitor.ToString()));
