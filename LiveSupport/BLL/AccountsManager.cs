@@ -29,7 +29,15 @@ namespace LiveSupport.BLL
             int i = 0;
             i=SqlAccountProvider.Default.UpdateAccount(account);
             if (i != 0)
+            {
+                Operator oper = new SqlOperatorProvider().GetPasswordByAccountNameLoginNameAndEmail(account.LoginName, account.LoginName, account.Email);
+                if (oper != null)
+                {
+                    oper.Password = password;
+                    new SqlOperatorProvider().UpdateOperator(oper);
+                }
                 return true;
+            }
             else
                 return false;
         }
