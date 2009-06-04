@@ -39,7 +39,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// 更新快捷回复跟据 AccountId
         /// </summary>
         /// <param name="qr"></param>
-        public void UpdateQuickResponseByAccountId(QuickResponse qr)
+        public void UpdateQuickResponseById(QuickResponse qr)
         {
             string sql = string.Format(
             "UPDATE [LiveSupport].[dbo].[LiveChat_QuickResponse]"
@@ -48,6 +48,34 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             + ",[Node] ='{2}'"
             + ",[AccountId]='{3}'"
             + " WHERE [QuickId]='{4}'", qr.OperatorId, qr.Submenu, qr.Node, qr.AccountId,qr.QuickId);
+            DBHelper.ExecuteCommand(sql);
+        }
+        /// <summary>
+        /// 添天节点
+        /// </summary>
+        /// <param name="qr"></param>
+        public void NewQuickResponse(QuickResponse qr)
+        {
+            string sql = string.Format(
+            "INSERT INTO [LiveSupport].[dbo].[LiveChat_QuickResponse]"
+            +"([AccountId]"
+            +",[OperatorId]"
+            +",[Submenu]"
+            +",[node])"
+            +" VALUES"
+            +"( '{0}'"
+            +", '{1}'"
+            +", '{2}'"
+            +", '{3}')",qr.AccountId,qr.OperatorId,qr.Submenu,qr.Node);
+            DBHelper.ExecuteCommand(sql);
+        }
+        /// <summary>
+        /// 删除快捷回复
+        /// </summary>
+        /// <param name="accountId"></param>
+        public void DeleteQuickResponseByAccountId(string accountId)
+        {
+            string sql = string.Format("delete dbo.LiveChat_QuickResponse where accountid='{0}'", accountId);
             DBHelper.ExecuteCommand(sql);
         }
     }
