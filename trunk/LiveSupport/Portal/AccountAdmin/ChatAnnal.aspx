@@ -33,7 +33,7 @@
     <TD class=setting_td_left vAlign=center align=right>客服选择：<asp:DropDownList 
             ID="ddlOperator" runat="server">
         </asp:DropDownList>
-      &nbsp;时间：</TD>
+      &nbsp; 选择时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
         <asp:TextBox ID="txtBeginDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker
 

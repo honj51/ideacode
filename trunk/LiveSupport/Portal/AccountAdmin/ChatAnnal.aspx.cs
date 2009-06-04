@@ -52,8 +52,15 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     #region 时间比较
     public string DateCompare(string beginDate, string endDate)
     {
-        TimeSpan dt = Convert.ToDateTime(endDate) - Convert.ToDateTime(beginDate);
-        return Convert.ToDateTime(dt.ToString()).ToString("HH:MM:ss");
+        if (beginDate != null && endDate != null)
+        {
+            TimeSpan dt = Convert.ToDateTime(endDate) - Convert.ToDateTime(beginDate);
+            return Convert.ToDateTime(dt.ToString()).ToString("HH:MM:ss");
+        }
+        else
+        {
+            return "";
+        }
     }
     #endregion
 
