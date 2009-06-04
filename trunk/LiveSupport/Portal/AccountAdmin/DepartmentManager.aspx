@@ -25,7 +25,7 @@
 <br />
            <asp:GridView ID="gvDepartment" runat="server"
                AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" 
-               GridLines="None" Width="455px" AllowPaging="True" 
+               GridLines="None" Width="522px" AllowPaging="True" 
                DataSourceID="ObjectDataSource1" 
                onrowdatabound="gvDepartment_RowDataBound" DataKeyNames="DepartmentId" 
                onrowcommand="gvDepartment_RowCommand" 
