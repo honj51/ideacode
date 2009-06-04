@@ -174,11 +174,20 @@ namespace LiveSupport.OperatorConsole
         public ChatForm(Chat chat, bool invite)
         {
             InitializeComponent();
-            this.chat = chat;
             // Simple authentication
             AuthenticationHeader auth = new AuthenticationHeader();
             auth.OperatorId = Program.CurrentOperator.OperatorId;
             ws.AuthenticationHeaderValue = auth;
+
+            if (ws.GetQuickResponse().Length > 0)
+            {
+                for (int i = 0; i < ws.GetQuickResponse().Length; i++)
+                {
+                    Program.quickResponseCategory.Add(ws.GetQuickResponse()[i]);
+                }
+            }
+            this.chat = chat;
+           
 
             if (!invite)
             {
@@ -379,13 +388,30 @@ namespace LiveSupport.OperatorConsole
                 Program.ChatForms.Remove(this);
 
 
-             
+              Program.quickResponseCategory.Clear();
+              setTalkTreeView.Nodes[0].Nodes.Clear();
                      
         }
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
+            setTalkTreeView.Nodes[0].Nodes.Clear();
+            if (Program.quickResponseCategory != null)
+            {
+                for (int i = 0; i < Program.quickResponseCategory.Count; i++)
+                {
+                    setTalkTreeView.Nodes[0].Nodes.Add(Program.quickResponseCategory[i].Name);
+                    if (Program.quickResponseCategory[i].Responses.Length == 0) continue;
+                    foreach (var item in Program.quickResponseCategory[i].Responses)
+                    {
+                        if (item.ToString() == "") continue;
+                        setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
+                    }
+                }
+               
+            }
             setTalkTreeView.ExpandAll();
+            Program.quickResponseCategory.Clear();
         }
 
         private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)

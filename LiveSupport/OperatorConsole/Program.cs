@@ -14,6 +14,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Diagnostics;
+using VisualAsterisk.ExceptionManagement;
+using System.Reflection;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -50,12 +52,13 @@ namespace LiveSupport.OperatorConsole
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             Trace.WriteLine("Main start");
             Application.Run(new Login());
-            //Application.Run(new QickResponseEidtor());
+           // Application.Run(new QickResponseEidtor());
            //Application.Run(new ListViewGroupsExample());
 		}
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
             MessageBox.Show("未捕获异常, 请把这个错误报告给 \r\n: wanwei_ncu@126.com \r\n\r\n错误信息:\r\n\r\n" + e.Exception.Message + "\r\n" + e.Exception.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 	}

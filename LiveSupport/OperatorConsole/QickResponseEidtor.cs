@@ -12,9 +12,13 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class QickResponseEidtor : Form
     {
+        OperatorWS ws = new OperatorWS();
         public QickResponseEidtor()
         {
             InitializeComponent();
+            AuthenticationHeader h = new AuthenticationHeader();
+            h.OperatorId = Program.CurrentOperator.OperatorId;
+            ws.AuthenticationHeaderValue = h;
             toolStrip1.Visible = Result;
             
             if (toolStrip1.Visible==false)
@@ -22,6 +26,17 @@ namespace LiveSupport.OperatorConsole
                setTalkTreeView.Dock= DockStyle.Fill;
              
             }
+           
+                if (ws.GetQuickResponse().Length > 0)
+                {
+                    for (int i = 0; i < ws.GetQuickResponse().Length; i++)
+                    {
+                        Program.quickResponseCategory.Add(ws.GetQuickResponse()[i]);
+                    }
+                }
+          
+           
+           
             //if (Program.quickResponseCategory!=null)
             //{
             //for (int i = 0; i < Program.quickResponseCategory.Count; i++)
@@ -82,8 +97,6 @@ namespace LiveSupport.OperatorConsole
 
         private void delNodeToolStripButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(setTalkTreeView.SelectedNode.Level.ToString());
-           
             if (setTalkTreeView.SelectedNode != null)
             {
                 if (setTalkTreeView.SelectedNode.Level > 0)
@@ -112,10 +125,8 @@ namespace LiveSupport.OperatorConsole
 
         private void OkToolStripButton_Click(object sender, EventArgs e)
         {
-            if (Program.quickResponseCategory != null)
-            {
+            
                 Program.quickResponseCategory.Clear();
-            }
             foreach (TreeNode Node in setTalkTreeView.Nodes[0].Nodes)
             { 
                 if(Node==null)continue;
@@ -135,6 +146,12 @@ namespace LiveSupport.OperatorConsole
                 Program.quickResponseCategory.Add(qrc);
                
             }
+            if(Program.quickResponseCategory!=null)
+            {
+                ws.SaveQuickResponse(Program.quickResponseCategory.ToArray());
+            }
+           
+            
         }
 
         private void QickResponseEidtor_Load(object sender, EventArgs e)
@@ -145,33 +162,53 @@ namespace LiveSupport.OperatorConsole
             for (int i = 0; i < Program.quickResponseCategory.Count; i++)
             {
                 setTalkTreeView.Nodes[0].Nodes.Add(Program.quickResponseCategory[i].Name);
-
+                if (Program.quickResponseCategory[i].Responses.Length == 0) continue;
                 foreach (var item in Program.quickResponseCategory[i].Responses)
                 {
-
+                    if (item.ToString() =="") continue;
                     setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
                 }
             }
             setTalkTreeView.ExpandAll();
           }
+            Program.quickResponseCategory.Clear();
+           
             
         }
         private void setTalkTreeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
+            
+
             if (e.Label == ""||e.Label==null)
             {
                 e.CancelEdit = true;
                 MessageBox.Show("数据不能为空");
-               
-                //setTalkTreeView.SelectedNode.Text = "数据不能为空";
-                
                 
             }
             else
             {
-                setTalkTreeView.SelectedNode.EndEdit(false);
-                setTalkTreeView.LabelEdit = false;
-            } 
+
+                if (!e.Label.Contains("|"))
+                {
+                    setTalkTreeView.SelectedNode.EndEdit(false);
+                    setTalkTreeView.LabelEdit = false;
+                }
+                else
+                {
+                    MessageBox.Show("数据中存在非法字符 ==>"+"'|'");
+                    e.CancelEdit = true;
+                    setTalkTreeView.SelectedNode.EndEdit(false);
+                    setTalkTreeView.LabelEdit = false;
+                    
+                
+                }
+            }
+        }
+
+        private void QickResponseEidtor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.quickResponseCategory.Clear();
+            setTalkTreeView.Nodes[0].Nodes.Clear();
         }
 
        

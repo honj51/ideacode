@@ -212,5 +212,41 @@ namespace LiveSupport.OperatorConsole.Properties {
                 this["RegisterURL"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        public string FtpUser {
+            get {
+                return ((string)(this["FtpUser"]));
+            }
+            set {
+                this["FtpUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        public string FtpPasssword {
+            get {
+                return ((string)(this["FtpPasssword"]));
+            }
+            set {
+                this["FtpPasssword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.zxkefu.cn")]
+        public string FtpURL {
+            get {
+                return ((string)(this["FtpURL"]));
+            }
+            set {
+                this["FtpURL"] = value;
+            }
+        }
     }
 }

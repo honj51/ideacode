@@ -256,16 +256,6 @@ namespace LiveSupport.OperatorConsole
             lastCheck.ChatSessionChecks = new MessageCheck[] { };
             lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
 
-            // 获取快捷回复
-            QuickResponseCategory[] cats = ws.GetQuickResponse();
-            if (cats != null)
-            {
-                foreach (var item in cats)
-                {
-
-                }
-            }
-
             messageendDateTimePicker.MaxDate = DateTime.Now;
             messageendDateTimePicker.MaxDate = DateTime.Now;
             requestendDateTimePicker.MaxDate = DateTime.Now;
