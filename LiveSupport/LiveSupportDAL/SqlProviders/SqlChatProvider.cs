@@ -28,10 +28,10 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
-        #region 通过客服编号获得所有对象
+        #region 通过客服编号获得所有访客记录
         public List<Chat> GetChatByOperatorId(string operatorId,string beginDate, string endDate)
         {
-            string sql = string.Format("select * from LiveChat_Chat where OperatorId='{0}' and CreateTime>='{1}' and CreateTime<='{2}'", operatorId, beginDate, endDate);
+            string sql = string.Format("select * from LiveChat_Chat where OperatorId='{0}' and CreateTime>='{1}' and CloseTime<='{2}'", operatorId, beginDate, endDate);
             SqlDataReader sdr=DBHelper.GetReader(sql);
             List<Chat> list = new List<Chat>();
             while (sdr.Read())
