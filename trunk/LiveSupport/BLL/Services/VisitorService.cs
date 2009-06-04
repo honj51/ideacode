@@ -16,12 +16,7 @@ using LiveSupport.LiveSupportDAL.Providers;
 /// </summary>
 public class VisitorService
 {
-    static VisitorService()
-    { 
-        // Load all Accounts
-    }
-
-    private const int maxVisitorCountInMemory = 200;//定义最大值 
+    private const int MaxVisitorCountInMemory = 200;//定义最大值 
     private static List<Visitor> visitors = new List<Visitor>();
     public static IVisitorProvider Provider = new SqlVisitorProvider();
     /// <summary>
@@ -29,12 +24,12 @@ public class VisitorService
     /// </summary>
     /// <param name="visitorId">访客ID</param>
     /// <returns>Visitorc对象</returns>
-    public static Visitor GetVisitor(string visitorId)
+    public static Visitor GetVisitorById(string visitorId)
     {
         Visitor v = null;
         foreach (Visitor item in visitors)
         {
-            if (item == null) continue;
+            //if (item == null) continue;
             if (item.VisitorId == visitorId)
             {
                 v = item;
@@ -47,7 +42,7 @@ public class VisitorService
             if (v != null)
             {
                 v.CurrentSession = null;
-                Trace.WriteLine(string.Format("GetVisitor from DB: VisitorId=", v.VisitorId));
+                Trace.WriteLine(string.Format("VisitorService.GetVisitorById() from DB: VisitorId=", v.VisitorId));
                 visitors.Add(v);
             }
         }
@@ -55,7 +50,7 @@ public class VisitorService
     }
 
     /// <summary>
-    /// 取所有该公司的在在线访客
+    /// 取所有该公司的在线访客
     /// </summary>
     /// <param name="accountId">公司ID</param>
     /// <returns></returns>
@@ -75,7 +70,7 @@ public class VisitorService
     /// <summary>
     /// 取新添的访客信息
     /// </summary>
-    /// <param name="lastCheck">最后一个访客时间</param>
+    /// <param name="lastCheck"></param>
     /// <returns>Visitor集合</returns>
     public static List<Visitor> GetNewVisitors(string accountId, long lastCheck)
     {
@@ -84,21 +79,21 @@ public class VisitorService
         List<Visitor> vs = new List<Visitor>();
         foreach (Visitor item in visitors)
         {
-            if (item == null) continue;
+            //if (item == null) continue;
             if (item.CurrentSession == null)
             {
                 continue;
             }
-            else if (item.AccountId == accountId && item.CurrentSession != null&& item.CurrentSession.VisitingTime.Ticks > lastCheck)
+            else if (item.AccountId == accountId && item.CurrentSession.VisitingTime.Ticks > lastCheck)
             {
                 vs.Add(item);
-                sb.AppendFormat("VisitId={0},Status={1},SessionId={2} | ", item.VisitorId, item.CurrentSession.Status.ToString(), item.CurrentSession.VisitorId);
+                sb.Append(item.ToString());
             }
         }
-        Trace.WriteLine(string.Format("Return {0} : {1}", vs.Count, sb.ToString()));
-        Trace.Flush();
+        Trace.WriteLine(string.Format("Return Count={0} : {1}", vs.Count, sb.ToString()));
         return vs;     
     }
+
     /// <summary>
     /// 新增访客信息
     /// </summary>
@@ -106,18 +101,18 @@ public class VisitorService
     public static void NewVisitor(Visitor visitor)
     {
         Trace.WriteLine(string.Format("NewVisitor : {0}", visitor.ToString()));
-        if (GetVisitor(visitor.VisitorId) == null)
+        if (GetVisitorById(visitor.VisitorId) == null)
         {
             Provider.NewVisitor(visitor);
             visitors.Add(visitor);
         }
         else
         {
-            Trace.WriteLine("Visitor Found, will not add to DB");
+            Trace.WriteLine("Error: Visitor已经存在");
         }
 
         // 删除多出的Visitor
-        if (visitors.Count > maxVisitorCountInMemory)
+        if (visitors.Count > MaxVisitorCountInMemory)
         {
             for (int i = visitors.Count-1; i > 0; i--)
             {

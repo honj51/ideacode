@@ -20,7 +20,7 @@ public class PageRequestService
     /// <summary>
     /// 获取网站页面访问历史记录
     /// </summary>
-    /// <param name="visitorId">访客ID</param>
+    /// <param name="sessionId">会话ID</param>
     /// <param name="begin">开始时间</param>
     /// <param name="end"> 结束时间</param>
     /// <returns>Pagerequest集合</returns>

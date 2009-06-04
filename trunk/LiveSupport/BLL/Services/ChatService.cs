@@ -114,7 +114,7 @@ public class ChatService
         chat.CloseBy = closeBy;
         Provider.CloseChat(chat);
                 
-        VisitSessionService.SetSessionStatus(VisitorService.GetVisitor(chat.VisitorId).CurrentSessionId, VisitSessionStatus.Visiting);
+        VisitSessionService.SetSessionStatus(VisitorService.GetVisitorById(chat.VisitorId).CurrentSessionId, VisitSessionStatus.Visiting);
         // 注意: IsOperatorHasActiveChat需要在更改chat status后调用
         if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId))
         {   
@@ -198,12 +198,12 @@ public class ChatService
             m2.ChatId = chat.ChatId;
             m2.SentDate = DateTime.Now;
             m2.Type = MessageType.SystemMessage_ToOperator;
-            m2.Text = string.Format("你已经接受访客{0}的对话请求",VisitorService.GetVisitor(chat.VisitorId).Name);
+            m2.Text = string.Format("你已经接受访客{0}的对话请求",VisitorService.GetVisitorById(chat.VisitorId).Name);
             SendMessage(m2);
 
             OperatorService.SetOperatorStatus(operatorId, OperatorStatus.Chatting);
             
-            VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitor(chat.VisitorId).CurrentSessionId);
+            VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitorById(chat.VisitorId).CurrentSessionId);
             s.OperatorId = operatorId;
             s.Status = VisitSessionStatus.Chatting;
             s.ChatingTime = DateTime.Now;
@@ -246,7 +246,7 @@ public class ChatService
     public static Chat OperatorRequestChat(string operatorId, string visitorId)
     {
         Trace.WriteLine(string.Format("ChatService.OperatorRequestChat(OperatorId = {0},VisitorId = {1})", operatorId, visitorId));
-        Visitor visitor = VisitorService.GetVisitor(visitorId);
+        Visitor visitor = VisitorService.GetVisitorById(visitorId);
         Operator op = OperatorService.GetOperatorById(operatorId);
         if (visitor == null || op == null)
         {
@@ -331,7 +331,7 @@ public class ChatService
             {
                 OperatorService.GetOperatorById(chat.OperatorId).Status = OperatorStatus.Chatting;
             }
-            VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitor(chat.VisitorId).CurrentSessionId); 
+            VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitorById(chat.VisitorId).CurrentSessionId); 
             s.Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
             s.ChatingTime = DateTime.Now;
         }
@@ -368,5 +368,14 @@ public class ChatService
         SendMessage(m);
                 
         return chatRequest.ChatId;
+    }
+    /// <summary>
+    /// 取历史会话记录跟据VisitorID
+    /// </summary>
+    /// <param name="visitorId"></param>
+    /// <returns></returns>
+    public static List<Chat> GetHistoryChatByVisitorId(string visitorId)
+    {
+        return Provider.GetChatByVisitorId(visitorId);
     }
 }
