@@ -46,6 +46,7 @@
     <Compile Include="PageRequest .cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Province.cs" />
+    <Compile Include="QuickResponse.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Visitor.cs" />
     <Compile Include="VisitSession.cs" />
