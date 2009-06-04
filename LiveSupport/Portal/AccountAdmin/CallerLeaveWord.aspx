@@ -30,7 +30,7 @@
   <TR>
     <TD class=setting_td_top vAlign=center align=left colSpan=2>&nbsp;</TD></TR>
   <TR id=tr_time>
-    <TD class=setting_td_left vAlign=center align=right>&nbsp;时间：</TD>
+    <TD class=setting_td_left vAlign=center align=right>&nbsp;选择时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
         <asp:TextBox ID="txtBeginDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker
 
