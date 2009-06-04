@@ -46,7 +46,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             + " SET [OperatorId] ='{0}'"
             + ",[Submenu] ='{1}'"
             + ",[Node] ='{2}'"
-            + " WHERE AccountId='{3}'", qr.OperatorId, qr.Submenu, qr.Node, qr.AccountId);
+            + ",[AccountId]='{3}'"
+            + " WHERE [QuickId]='{4}'", qr.OperatorId, qr.Submenu, qr.Node, qr.AccountId,qr.QuickId);
             DBHelper.ExecuteCommand(sql);
         }
     }
