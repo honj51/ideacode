@@ -294,9 +294,9 @@ public class OperatorWS : System.Web.Services.WebService
 
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public void UpdateQuickResponse(List<QuickResponseCategory> response)
+    public void SaveQuickResponse(List<QuickResponseCategory> response)
     {
-        OperatorService.UpdateQuickResponse(Authentication.OperatorId, response);
+        OperatorService.SaveQuickResponse(Authentication.OperatorId, response);
     }
 
     [SoapHeader("Authentication", Required = true)]
