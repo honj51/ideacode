@@ -77,8 +77,7 @@ namespace LiveSupport.SqlProviders
         }
         #endregion
 
-    
-        #region ILeaveWordProvider 成员
+        #region 修改留言记录
         public int  UpdateWordProviderById(string sendDate,string name,string id)
         {
             string sql = string.Format("update LiveSupport_LeaveWord set Senddate='{0}',OperatorName='{1}' where id='{2}'",sendDate,name,id);
