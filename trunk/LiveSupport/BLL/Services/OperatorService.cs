@@ -14,6 +14,7 @@ using System.IO;
 
 public class QuickResponseCategory
 {
+    public int QuickId;
     public string Name;
     public List<string> Responses;
 }
@@ -495,6 +496,7 @@ public static class OperatorService
          foreach (var item in response)
          {
              QuickResponse qr = new QuickResponse();
+             qr.QuickId = item.QuickId;
              qr.AccountId = accountId;
              qr.Submenu = item.Name;
              qr.OperatorId = operatorId;
@@ -523,6 +525,7 @@ public static class OperatorService
         foreach (var item in li)
         {
             QuickResponseCategory qrc = new QuickResponseCategory();
+            qrc.QuickId = item.QuickId;
             qrc.Name = item.Submenu;
             List<string> rli = new List<string>();
             string[] ss = item.Node.Split('|');
