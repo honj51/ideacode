@@ -29,6 +29,7 @@ namespace LiveSupport.BLL
         }
         #endregion
 
+       
         #region 通过公司编号获得留言信息
         public static List<LiveSupport.LiveSupportModel.LeaveWord> GetGetLeaveWordByAccountId(string accountId, string beginDate, string endDate)
         {
