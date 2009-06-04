@@ -7,6 +7,14 @@ namespace LiveSupport.LiveSupportModel
 {
     public class QuickResponse
     {
+        private int quickId;
+
+        public int QuickId
+        {
+            get { return quickId; }
+            set { quickId = value; }
+        }
+
         private string accountId;//--公司ID
 
         public string AccountId
@@ -41,6 +49,7 @@ namespace LiveSupport.LiveSupportModel
         }
         public QuickResponse(SqlDataReader data)
         {
+            if (!Convert.IsDBNull(data["QuickId"])) this.quickId = (int)data["QuickId"];
             if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (string)data["AccountId"];
             if (!Convert.IsDBNull(data["OperatorId"])) this.operatorId = (string)data["OperatorId"];
             if (!Convert.IsDBNull(data["Submenu"])) this.submenu = (string)data["Submenu"];
