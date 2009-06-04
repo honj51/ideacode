@@ -474,7 +474,7 @@ public static class OperatorService
     /// </summary>
     /// <param name="operatorId"></param>
     /// <param name="response"></param>
-    public static void UpdateQuickResponse(string operatorId, List<QuickResponseCategory> response)
+    public static void SaveQuickResponse(string operatorId, List<QuickResponseCategory> response)
     {
          string accountId=OperatorService.GetOperatorById(operatorId).AccountId;
          DBProvider.DeleteQuickResponseByAccountId(accountId);
@@ -498,7 +498,7 @@ public static class OperatorService
          }
     }
     /// <summary>
-    /// 跟据公司查询快捷回复
+    /// 跟据公司查询快捷回复 
     /// </summary>
     /// <param name="accountId"></param>
     /// <returns></returns>
