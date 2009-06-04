@@ -113,22 +113,6 @@ public static class OperatorService
     private static void getOperatorsFromDB()
     {
         operators = Provider.GetAllOperators();
-        // 取出管理员客服
-        //List<Account> accounts = AccountService.GetAllAccounts();
-        //foreach (var item in accounts)
-        //{
-        //    Operator op = new Operator();
-        //    op.OperatorId = item.AccountId;
-        //    op.Email = item.Email;
-        //    op.AVChatStatus = OperatorStatus.Offline.ToString();
-        //    op.AccountId = item.AccountId;
-        //    op.NickName = item.NickName;
-        //    op.LoginName = item.LoginName;
-        //    op.Password = item.Password;
-        //    op.IsAdmin = true;
-        //    op.Status = OperatorStatus.Offline;
-        //    operators.Add(op);
-        //}
     }
 
     private static List<Operator> operators = new List<Operator>();
@@ -518,8 +502,9 @@ public static class OperatorService
     /// </summary>
     /// <param name="accountId"></param>
     /// <returns></returns>
-    public static List<QuickResponseCategory> GetQuickResponse(string accountId)
+    public static List<QuickResponseCategory> GetQuickResponse(string operatorId)
     {
+        string accountId = OperatorService.GetOperatorById(operatorId).AccountId;
         List<QuickResponse> li = DBProvider.GetQuickResponseByAccountId(accountId);
         List<QuickResponseCategory> qrcli=new List<QuickResponseCategory>();
         foreach (var item in li)
