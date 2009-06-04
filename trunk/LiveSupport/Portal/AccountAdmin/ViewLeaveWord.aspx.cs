@@ -54,7 +54,8 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         {
             LeaveWordManager.UpdateWordProviderById(DateTime.Now.ToString(), account.NickName, this.lwId.Value);
             DataBindLeaveWord(this.lwId.Value);
-            ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>window.open('mailto:"+this.lblEmail.Text+"?body"+this.lblContent.Text+"');</script>");
+            string msg = "mailto:"+this.lblEmail.Text+"?subject=LiveSupport";
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>window.open('"+msg+"');</script>");
         }
     }
     protected void LinkButton3_Click(object sender, EventArgs e)
