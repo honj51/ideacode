@@ -60,7 +60,7 @@ public class ServiceConnectWS : System.Web.Services.WebService
     [WebMethod]
     public void VisitorLeave(string visitorId)
     {
-        Visitor v = VisitorService.GetVisitor(visitorId);
+        Visitor v = VisitorService.GetVisitorById(visitorId);
         if (v != null && v.CurrentSession != null)
         {
             v.CurrentSession.Status = VisitSessionStatus.Leave;

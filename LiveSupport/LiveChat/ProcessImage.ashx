@@ -103,7 +103,7 @@ public class ProcessImage : IHttpHandler
     private static Visitor getVisitor(string accountId, string visitorId)
     {
         System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + "(" + accountId + ")");
-        Visitor visitor = VisitorService.GetVisitor(visitorId);
+        Visitor visitor = VisitorService.GetVisitorById(visitorId);
         if (visitor != null)
         {
             if (visitor.AccountId == accountId)
