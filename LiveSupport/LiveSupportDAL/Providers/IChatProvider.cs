@@ -9,5 +9,6 @@ namespace LiveSupport.LiveSupportDAL.Providers
         int CloseChat(Chat chat);
         int DeleteChatById(string chatId);
         List<Chat> GetChatByOperatorId(string operatorId, string beginDate, string endDate);
+        List<Chat> GetChatByVisitorId(string visitorId);
     }
 }

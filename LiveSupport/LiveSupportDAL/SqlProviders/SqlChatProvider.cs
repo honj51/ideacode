@@ -31,11 +31,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 通过客服编号获得所有对象
         public List<Chat> GetChatByOperatorId(string operatorId,string beginDate, string endDate)
         {
-            //string sql = "select * from LiveChat_Chat where OperatorId='"+operatorId+"'";
-            //if (endDate.Trim()==DateTime.Now.ToString("yyyy-MM-dd"))
-            //{
-            //    endDate = DateTime.Now.ToString();
-            //}
             string sql = string.Format("select * from LiveChat_Chat where OperatorId='{0}' and CreateTime>='{1}' and CreateTime<='{2}'", operatorId, beginDate, endDate);
             SqlDataReader sdr=DBHelper.GetReader(sql);
             List<Chat> list = new List<Chat>();
@@ -66,6 +61,31 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 return 0;
             }
         }
+        #endregion
+
+        #region IChatProvider 成员
+
+        /// <summary>
+        /// 跟据visitorid 查询所有的对话
+        /// </summary>
+        /// <param name="visitorId"></param>
+        /// <returns></returns>
+        public List<Chat> GetChatByVisitorId(string visitorId)
+        {
+            string sql = string.Format("SELECT * FROM [LiveSupport].[dbo].[LiveChat_Chat] where visitorid ='{0}'", visitorId);
+            SqlDataReader sdr = DBHelper.GetReader(sql);
+            List<Chat> list = new List<Chat>();
+            while (sdr.Read())
+            {
+                Chat chat = new Chat(sdr);
+                SqlVisitSessionProvider vs = new SqlVisitSessionProvider();
+                chat.Vs = vs.GetSessionById(chat.ChatId);
+                list.Add(chat);
+            }
+            sdr.Close();
+            return list;
+        }
+
         #endregion
     }
 }

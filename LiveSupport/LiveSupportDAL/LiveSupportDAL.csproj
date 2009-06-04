@@ -8,7 +8,7 @@
     <ProjectGuid>{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LiveSupport</RootNamespace>
+    <RootNamespace>LiveSupport.LiveSupportDAL</RootNamespace>
     <AssemblyName>LiveSupportDAL</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,9 +50,11 @@
     <Compile Include="Providers\IProvinceProvider.cs" />
     <Compile Include="Providers\IVisitorProvider.cs" />
     <Compile Include="Providers\IVisitSessionProvider.cs" />
+    <Compile Include="Providers\IDBProvider.cs" />
     <Compile Include="SqlProviders\SqlAccountProvider.cs" />
     <Compile Include="SqlProviders\SqlChatProvider.cs" />
     <Compile Include="SqlProviders\SqlCityProvider.cs" />
+    <Compile Include="SqlProviders\SqlDBProvider.cs" />
     <Compile Include="SqlProviders\SqlDepartmentProvider.cs" />
     <Compile Include="SqlProviders\SqlLeaveWordProvider.cs" />
     <Compile Include="SqlProviders\SqlMessageProvider.cs" />
