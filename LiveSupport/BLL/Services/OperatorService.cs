@@ -477,10 +477,10 @@ public static class OperatorService
     public static void UpdateQuickResponse(string operatorId, List<QuickResponseCategory> response)
     {
          string accountId=OperatorService.GetOperatorById(operatorId).AccountId;
+         DBProvider.DeleteQuickResponseByAccountId(accountId);
          foreach (var item in response)
          {
              QuickResponse qr = new QuickResponse();
-             qr.QuickId = item.QuickId;
              qr.AccountId = accountId;
              qr.Submenu = item.Name;
              qr.OperatorId = operatorId;
@@ -494,7 +494,7 @@ public static class OperatorService
                  node = node.Substring(0, node.Length - 1);
              }
              qr.Node = node;
-             DBProvider.UpdateQuickResponseByAccountId(qr);
+             DBProvider.NewQuickResponse(qr);
          }
     }
     /// <summary>
