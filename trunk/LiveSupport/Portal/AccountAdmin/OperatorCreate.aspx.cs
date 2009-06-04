@@ -66,7 +66,7 @@ public partial class AccountAdmin_Default2 : System.Web.UI.Page
             op.NickName = this.txtNickName.Text;
             op.IsAdmin = false;
             op.Department = DepartmentManager.GetDepartmentById(this.ddlDepartment.SelectedValue);
-            op.Status = (OperatorStatus)Enum.Parse((typeof(OperatorStatus)), "Offline");
+            op.Status = (OperatorStatus)Enum.Parse((typeof(OperatorStatus)),OperatorStatus.Offline.ToString());
             op.AVChatStatus = OperatorStatus.Offline.ToString() ;
             op.Email = this.txtEmail.Text;
 
