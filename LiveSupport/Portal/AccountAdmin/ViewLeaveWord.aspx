@@ -23,9 +23,9 @@
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 423px; text-align:left;">
+ <div style=" background-image:url('Images/n_540_bg.jpg');width: 570px; height: 423px; text-align:left;overflow:inherit;">
 <!--聊天记录内容-->
-    <table style="width: 507px; height: 246px; margin-left:20px; font-size:14px; border:1px;">
+    <table style="border-style: none; border-color: inherit; border-width: 1px; width: 538px; height: 246px; margin-left:20px; font-size:14px; ">
     <tr><td style="width: 107px">留言者名称：</td><td>
         <asp:Label ID="lblCallerName" runat="server" Text=""></asp:Label>
         <asp:HiddenField ID="lwId" runat="server" />
@@ -39,7 +39,7 @@
     <tr><td style="width: 107px">主题：</td><td>
         <asp:Label ID="lblSubject" runat="server" Text=""></asp:Label>
         </td></tr>
-    <tr><td style="width: 107px">留言内容：</td><td>
+    <tr><td style="width: 107px">留言内容：</td><td style="word-break:break-all;word-wrap:break-word">
         <asp:Label ID="lblContent" runat="server" Text=""></asp:Label>
         </td></tr>
     <tr><td style="width: 107px">IP地址：</td><td>
