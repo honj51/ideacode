@@ -140,24 +140,8 @@ public class OperatorWS : System.Web.Services.WebService
     public void UploadFile(byte[] bs, string fileName, string chatId)
     {
         checkAuthentication();
-        MemoryStream mo = new MemoryStream(bs);
-        FileStream fs = new FileStream(Server.MapPath("~/UploadFile/") + fileName, FileMode.Create);
-        mo.WriteTo(fs);
-        mo.Close();
-        fs.Close();
-
-        LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
-        m.ChatId = chatId;
-        string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
-        m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName,homeRootUrl,fileName);
-        m.Type = MessageType.SystemMessage_ToVisitor;
-        ChatService.SendMessage(m);
-
-        m = new LiveSupport.LiveSupportModel.Message();
-        m.ChatId = chatId;
-        m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
-        m.Type = MessageType.SystemMessage_ToOperator;
-        ChatService.SendMessage(m);
+        string saveFilePath = Server.MapPath("~/UploadFile/") + fileName;
+        OperatorService.UploadFile(bs,fileName,chatId, saveFilePath);
     }
     /// <summary>
     /// 客服发送一条信息给访客
@@ -171,7 +155,7 @@ public class OperatorWS : System.Web.Services.WebService
         checkAuthentication();
         if (msg.Type == MessageType.ChatMessage_OperatorToVisitor)
         {
-            MessageService.AddMessage(msg);
+            ChatService.SendMessage(msg);            
             return true;
         }
         else
@@ -225,12 +209,17 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
     {
-        List<VisitSession> li = VisitSessionService.GetVisitSessionByVisitor(visitorId);
         List<Message> list = new List<Message>();
-        foreach(VisitSession m in li)
+        List<Chat> chats = ChatService.GetHistoryChatByVisitorId(visitorId);
+
+        foreach (Chat item in chats)
         {
-            list.AddRange(MessageService.GetHistoryChatMessage(m.SessionId, begin, end));
+            if (item.CreateTime > begin && item.CreateTime < end)
+            {
+                list.AddRange(MessageService.GetMessagesByChatId(item.ChatId));
+            }
         }
+
         return list;
     }
     /// <summary>
@@ -244,7 +233,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
     {
-        List<VisitSession> li = VisitSessionService.GetVisitSessionByVisitor(visitorId);
+        List<VisitSession> li = VisitSessionService.GetHistoryVisitSessionByVisitorId(visitorId);
         List<PageRequest> list = new List<PageRequest>();
         foreach(VisitSession m in li)
         {
@@ -272,21 +261,6 @@ public class OperatorWS : System.Web.Services.WebService
     public Chat InviteChat(string visitorId)
     {        
        return ChatService.OperatorRequestChat(Authentication.OperatorId, visitorId);
-    }
-
-    [SoapHeader("Authentication", Required = true)]
-    [WebMethod]
-    public void UpdateQuickResponse(List<QuickResponseCategory> response)
-    {
-        
-    }
-
-    [SoapHeader("Authentication", Required = true)]
-    [WebMethod]
-    public List<QuickResponseCategory> GetQuickResponse()
-    {
-        return null;
-
     }
     /// <summary>
     /// 系统信息提示
@@ -317,4 +291,20 @@ public class OperatorWS : System.Web.Services.WebService
         }
         return li;
     }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public void UpdateQuickResponse(List<QuickResponseCategory> response)
+    {
+        OperatorService.UpdateQuickResponse(Authentication.OperatorId, response);
+    }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<QuickResponseCategory> GetQuickResponse()
+    {        
+        return OperatorService.GetQuickResponse(Authentication.OperatorId);
+    }
+
+
 }

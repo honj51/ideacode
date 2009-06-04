@@ -87,10 +87,10 @@ public partial class Chat : System.Web.UI.Page
         get
         {
             string visitorId = Request.QueryString["vid"];
-            if (string.IsNullOrEmpty(visitorId) || VisitorService.GetVisitor(visitorId) == null || VisitorService.GetVisitor(visitorId) == null)
+            if (string.IsNullOrEmpty(visitorId) || VisitorService.GetVisitorById(visitorId) == null || VisitorService.GetVisitorById(visitorId) == null)
                 return null;
             else
-                return VisitorService.GetVisitor(visitorId);
+                return VisitorService.GetVisitorById(visitorId);
         }
     }
 
