@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Mail;
 using System.Configuration;
 using System.Net;
+using System.Diagnostics;
 
 namespace LiveSupport.BLL
 {
@@ -47,6 +48,7 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static bool SendEmail(string toEmail, string email, string emailPwd, string emailSmtp, string subject, string body)
         {
+            Trace.WriteLine(string.Format("Util.SendEmail(toEmail={0},email={1},emailPwd={2},emailSmtp={3},subject={4},body={5})", toEmail, email, emailPwd, emailSmtp, subject, body));
             try
             {
                 MailMessage mail = new MailMessage();
@@ -62,6 +64,7 @@ namespace LiveSupport.BLL
             }
             catch (Exception ex)
             {
+                Trace.WriteLine(string.Format("Error:Util.SendEmail 错误信息：{0}", ex.Message));
                 return false;
             }
         }

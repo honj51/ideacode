@@ -10,6 +10,7 @@ using System.Text;
 using System.Diagnostics;
 using LiveSupport.BLL;
 using LiveSupport.BLL.Exceptions;
+using System.IO;
 
 public class QuickResponseCategory
 {
@@ -71,7 +72,8 @@ public class NewChangesCheckResult
     public List<MessageCheckResult> Messages; // // 消息更新
     public long NewVisitorCheckTime;
 
-    public string ToString()
+
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
 
@@ -81,11 +83,6 @@ public class NewChangesCheckResult
         sb.AppendFormat("Messages为{0}个 ", Messages == null ? 0 : Messages.Count);
         sb.AppendFormat("NewVisitorCheckTime={0}", NewVisitorCheckTime);
         return sb.ToString();
-        // foreach (var item in NewVisitors)
-        // {
-        //sb.AppendFormat("VisitorId:",item.VisitorId,item.Name,
-        //}
-        //sb.AppendFormat("NewVisitorCheckTime:{0} | NewVisitors []"
     }
 }
 
@@ -100,6 +97,7 @@ public static class OperatorService
     public const int ResetOperatorPassword_OtheError = -2;
 
     public static IOperatorProvider Provider = new SqlOperatorProvider();
+    public static IDBProvider DBProvider = new SqlDBProvider();
 
     public static List<Operator> GetAllOperators()
     {
@@ -442,6 +440,7 @@ public static class OperatorService
         Trace.WriteLine(string.Format("OperatorService.NewOperator(Operator = {0})", op.ToString()));
         if (GetOperatorById(op.OperatorId) != null)
         {
+            Trace.WriteLine(string.Format("Error:OperatorService.NewOperator(Operator = {0}) 错误operator已存在", op.ToString()));
             return;
         }
         operators.Add(op);
@@ -463,4 +462,77 @@ public static class OperatorService
         op.Status = operatorStatus;
     }
 
+
+    public static void UploadFile(byte[] bs, string fileName, string chatId, string saveFilePath)
+    {
+        MemoryStream mo = new MemoryStream(bs);
+        FileStream fs = new FileStream(saveFilePath, FileMode.Create);
+        mo.WriteTo(fs);
+        mo.Close();
+        fs.Close();
+
+        Message m = new Message();
+        m.ChatId = chatId;
+        string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
+        m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName, homeRootUrl, fileName);
+        m.Type = MessageType.SystemMessage_ToVisitor;
+        ChatService.SendMessage(m);
+
+        m = new LiveSupport.LiveSupportModel.Message();
+        m.ChatId = chatId;
+        m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
+        m.Type = MessageType.SystemMessage_ToOperator;
+        ChatService.SendMessage(m);
+    }
+    /// <summary>
+    /// 更新快捷回复
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <param name="response"></param>
+    public static void UpdateQuickResponse(string operatorId, List<QuickResponseCategory> response)
+    {
+         string accountId=OperatorService.GetOperatorById(operatorId).AccountId;
+         foreach (var item in response)
+         {
+             QuickResponse qr = new QuickResponse();
+             qr.AccountId = accountId;
+             qr.Submenu = item.Name;
+             qr.OperatorId = operatorId;
+             string node = string.Empty;
+             foreach (var n in item.Responses )
+             {   
+                 node +=n.ToString()+"|";
+             }
+             if (node.Length > 0 && node[node.Length - 1] == '|')
+             {
+                 node = node.Substring(0, node.Length - 1);
+             }
+             qr.Node = node;
+             DBProvider.UpdateQuickResponseByAccountId(qr);
+         }
+    }
+    /// <summary>
+    /// 跟据公司查询快捷回复
+    /// </summary>
+    /// <param name="accountId"></param>
+    /// <returns></returns>
+    public static List<QuickResponseCategory> GetQuickResponse(string accountId)
+    {
+        List<QuickResponse> li = DBProvider.GetQuickResponseByAccountId(accountId);
+        List<QuickResponseCategory> qrcli=new List<QuickResponseCategory>();
+        foreach (var item in li)
+        {
+            QuickResponseCategory qrc = new QuickResponseCategory();
+            qrc.Name = item.Submenu;
+            List<string> rli = new List<string>();
+            string[] ss = item.Node.Split('|');
+            foreach (var node in ss)
+            {
+                rli.Add(node);
+            }
+            qrc.Responses = rli;
+            qrcli.Add(qrc);
+        }
+        return qrcli;
+    }
 }

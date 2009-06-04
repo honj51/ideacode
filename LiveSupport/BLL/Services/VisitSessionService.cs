@@ -32,7 +32,7 @@ public class VisitSessionService
         get { return VisitSessionService.sessions; }
     }
 
-    private const int maxVisitorSessionCountInMemory = 200;//定义最大值 
+    private const int MaxVisitorSessionCountInMemory = 200;//定义最大值 
     public static IVisitSessionProvider Provider = new SqlVisitSessionProvider();
     /// <summary>
     /// 保存一条新访客会话
@@ -40,19 +40,17 @@ public class VisitSessionService
     /// <param name="session"></param>
     public static void NewSession(VisitSession session)
     {
-        Trace.WriteLine(string.Format("NewSession : {0}", session.ToString()));
+        Trace.WriteLine(string.Format("VisitSessionService.NewSession : {0}", session.ToString()));
 
-        foreach (VisitSessionHit item in sessions)
+        if (GetSessionById(session.SessionId) != null)
         {
-            if (item.Session.SessionId == session.SessionId)
-            {
-                Trace.WriteLine("Session Found, will not add to DB");
-                return;
-            }
+            Trace.WriteLine("Error:会话已存在！");
+            return;
         }
-
         sessions.Add(new VisitSessionHit(session));
-        if (sessions.Count > maxVisitorSessionCountInMemory)
+        Provider.NewSession(session);
+        //
+        if (sessions.Count > MaxVisitorSessionCountInMemory)
         {
             for (int i = sessions.Count-1; i >= 0; i--)
             {
@@ -63,7 +61,6 @@ public class VisitSessionService
                 }
             }
         }
-        Provider.NewSession(session);
     }
 
     /// <summary>
@@ -73,20 +70,34 @@ public class VisitSessionService
     /// <returns></returns>
     public static VisitSession GetSessionById(string sessionId)
     {
+        Trace.WriteLine(string.Format("VisitSessionService.GetSessionById({0})", sessionId));
+        VisitSession vs=null;
         foreach (VisitSessionHit item in sessions)
         {
             if (item.Session.SessionId == sessionId)
             {
-                return item.Session;
+                vs=item.Session;
+                break;
             }
         }
-        return Provider.GetSessionById(sessionId);
+        if (vs == null)
+        {
+           vs=Provider.GetSessionById(sessionId);
+        }
+        if (vs == null)
+        {
+            Trace.WriteLine(string.Format("Error: VisitSessionService.GetSessionById({0}) 错误 不能在sessions和DB 中找到session",sessionId));
+        }
+        return vs;
     }
+
+    // TODO: 该方法需要重新设计
     /// <summary>
     /// 查询在这个时候之后新加的访客会话信息
     /// </summary>
     /// <param name="lastCheck">会话ID</param>
     /// <returns>VisitSession对象</returns>
+    /// 
     public static List<VisitSession> GetVisitSessionChange(string accountId, long lastCheck)
     {
         Trace.WriteLine(string.Format("{0}({1},{2})", MethodBase.GetCurrentMethod().Name, accountId, lastCheck));
@@ -94,7 +105,7 @@ public class VisitSessionService
         List<VisitSession> vss = new List<VisitSession>();
         foreach (VisitSessionHit item in sessions)
         {
-            Visitor v = VisitorService.GetVisitor(item.Session.VisitorId);
+            Visitor v = VisitorService.GetVisitorById(item.Session.VisitorId);
             if (v != null && v.AccountId == accountId)
 	        {
                 vss.Add(v.CurrentSession);
@@ -103,28 +114,10 @@ public class VisitSessionService
         }
         
         Trace.WriteLine(string.Format("Return {0} : {1}", vss.Count, sb.ToString()));
-        Trace.Flush();
 
         return vss;
-        //return LiveSupport.LiveSupportDAL.SqlProviders.SqlVisitSessionProvider.GetVisitSessionChange(lastCheck);
     }
-    /// <summary>
-    /// 跟据客服ID查还回正在聊天的会话信息
-    /// </summary>
-    /// <param name="operatorId"></param>
-    /// <returns></returns>
-    public static List<VisitSession> GetActiveSessionsByOperatorId(string operatorId)
-    {
-        List<VisitSession> ss = new List<VisitSession>();
-        foreach (VisitSessionHit item in sessions)
-        {
-            if (item.Session.OperatorId == operatorId && item.Session.Status == VisitSessionStatus.Chatting)
-            {
-                ss.Add(item.Session);
-            }
-        }
-        return ss;
-    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -149,7 +142,7 @@ public class VisitSessionService
     public static void Hit(string visitorId)
     {
         Trace.WriteLine(string.Format("VisitorService.Hit(visitorId = {0})", visitorId));
-        Visitor v = VisitorService.GetVisitor(visitorId);
+        Visitor v = VisitorService.GetVisitorById(visitorId);
         if (v != null && v.CurrentSession != null)
         {
             if (v.CurrentSession.Status == VisitSessionStatus.Leave)
@@ -170,11 +163,11 @@ public class VisitSessionService
     }
 
     /// <summary>
-    /// 跟据访客ID查询所有的话话信息
+    /// 跟据访客ID查询所有的会话信息
     /// </summary>
     /// <param name="visitorId"></param>
     /// <returns></returns>
-    public static List<VisitSession> GetVisitSessionByVisitor(string visitorId)
+    public static List<VisitSession> GetHistoryVisitSessionByVisitorId(string visitorId)
     {
         return Provider.GetVisitSessionByVisitor(visitorId);
     }
