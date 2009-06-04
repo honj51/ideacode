@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D9CDB4A6-D45C-46FA-8D61-2CE58D42005A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -162,10 +162,6 @@
       <DependentUpon>ChangePassword.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetTalkForm.resx">
-      <DependentUpon>SetTalkForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="QickResponseEidtor.resx">
       <DependentUpon>QickResponseEidtor.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -183,12 +179,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="SetTalkForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SetTalkForm.Designer.cs">
-      <DependentUpon>SetTalkForm.cs</DependentUpon>
     </Compile>
     <Compile Include="QickResponseEidtor.cs">
       <SubType>Form</SubType>
@@ -273,10 +263,12 @@
     <None Include="Resources\alert.png" />
     <None Include="Resources\alarmd.png" />
     <None Include="Resources\bg.gif" />
+    <None Include="Resources\Add.png" />
     <Content Include="Resources\chat.jpg" />
     <None Include="Resources\content-bg.gif" />
     <None Include="Resources\development 54.png" />
     <None Include="Resources\development 54 grey.png" />
+    <None Include="Resources\Delete.png" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <None Include="Resources\Global.wav" />
@@ -285,6 +277,8 @@
     <None Include="Resources\header.gif" />
     <None Include="Resources\header-bg-left1.jpg" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\Modify.png" />
+    <None Include="Resources\Save.png" />
     <None Include="Resources\onlineop.png" />
     <None Include="Resources\lose.png" />
     <None Include="Resources\offop.png" />
@@ -340,6 +334,12 @@
     <None Include="Web References\LiveChatWS\Visitor.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\VisualAsterisk.ExceptionManagement\VisualAsterisk.ExceptionManagement.csproj">
+      <Project>{5DBD653B-6AF4-4CCC-AC23-5A68E848B632}</Project>
+      <Name>VisualAsterisk.ExceptionManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

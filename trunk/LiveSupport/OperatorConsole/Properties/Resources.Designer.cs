@@ -67,6 +67,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Add {
+            get {
+                object obj = ResourceManager.GetObject("Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap aim {
             get {
                 object obj = ResourceManager.GetObject("aim", resourceCulture);
@@ -126,6 +133,13 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.Drawing.Bitmap content_bg {
             get {
                 object obj = ResourceManager.GetObject("content_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Delete {
+            get {
+                object obj = ResourceManager.GetObject("Delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -248,6 +262,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Modify {
+            get {
+                object obj = ResourceManager.GetObject("Modify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream newchatreq {
             get {
                 return ResourceManager.GetStream("newchatreq", resourceCulture);
@@ -354,6 +375,13 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.Drawing.Bitmap purchase {
             get {
                 object obj = ResourceManager.GetObject("purchase", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Save {
+            get {
+                object obj = ResourceManager.GetObject("Save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

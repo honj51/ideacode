@@ -72,10 +72,8 @@ namespace LiveSupport.OperatorConsole
         private void login()
         {
             //pictureBox1.Show();
-            try
-            {
 
-             
+           
             OperatorWS ws = new OperatorWS();
             if (Properties.Settings.Default.AutoLogin)
             {
@@ -89,19 +87,15 @@ namespace LiveSupport.OperatorConsole
 
             }
             
-            }
-            catch (Exception e)
-            {
-
-                Trace.WriteLine("Login异常: " + e.Message);
+                //Trace.WriteLine("Login异常: " + e.Message);
                 
-                lblMessage.Text = "连接网络失败";
-                MessageBox.Show(e.Message);
-                txtUserName.Enabled = true;
-                txtOpName.Enabled = true;
-                txtOpPassword.Enabled = true;
-                return;
-            }
+                //lblMessage.Text = "连接网络失败";
+                //MessageBox.Show(e.Message);
+                //txtUserName.Enabled = true;
+                //txtOpName.Enabled = true;
+                //txtOpPassword.Enabled = true;
+                //return;
+           
                 // if we got an OperatorInfo, we continue
             if (Program.CurrentOperator != null)
             {
