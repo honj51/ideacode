@@ -117,10 +117,26 @@
                     <span id="Span1">当前没有客服在线.<br />请留言，我们会尽快给您回复!</span>
                     </legend>
                     <br />
+                     <fieldset style=" height:5%;  width:43.5%"  >
+                     <legend>  <span class="formField"> 姓名</span></legend> 
+                    <asp:TextBox ID="TextBox1" runat="server" Width="100%" ></asp:TextBox>
+                    </fieldset>
+                    
+                     <fieldset style=" height:5%;  width:43.5%"  >
+                     <legend>  <span class="formField"> 电话</span></legend> 
+                    <asp:TextBox ID="txtPhone" runat="server" Width="100%" ></asp:TextBox>
+                    </fieldset>
+                   
+                    <br />
                     <fieldset style="height:5%; width:87%" > <legend>  <span class="formField">  您的电子邮件</span></legend> 
-                    <asp:TextBox ID="txtSendBy" runat="server" Width="100%"   ></asp:TextBox>
+                    <asp:TextBox ID="txtSendBy" runat="server" Width="100%" ></asp:TextBox>
                     </fieldset>
                     <br />
+                        <fieldset style=" height:5%;  width:87%"  >
+                     <legend>  <span class="formField">主题</span></legend> 
+                    <asp:TextBox ID="txtTheme" runat="server" Width="100%" ></asp:TextBox>
+                    </fieldset>
+                    <bt />
                     <fieldset style="height:230px; width:87%">
                     <legend>
                     <span class="formField">留言内容</span>
