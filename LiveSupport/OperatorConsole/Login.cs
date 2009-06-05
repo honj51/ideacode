@@ -57,18 +57,24 @@ namespace LiveSupport.OperatorConsole
  
              }
 
-            txtUserName.Enabled = false;
-            txtOpName.Enabled = false;
-            txtOpPassword.Enabled = false;
-            lblMessage.Text = "ÕýÔÚµÇÂ¼...";
-            lblMessage.ForeColor = Color.Red;
-            lblMessage.SetBounds(221,22, 25, 10);
-            pictureBox1.Show();
+            loginChange(false,"ÕýÔÚµÇÂ¼...");
+            lblMessage.SetBounds(221, 22, 25, 10);
             login();
             Properties.Settings.Default.Save(); 
            
         }
-
+        private void loginChange(bool state,string text) 
+        {
+            txtUserName.Enabled = state;
+            txtOpName.Enabled = state;
+            txtOpPassword.Enabled = state;
+            lblMessage.Text = text;
+            lblMessage.ForeColor = Color.Red;
+            pictureBox1.Visible=!state;
+        
+        
+        }
+        
         private void login()
         {
             //pictureBox1.Show();
@@ -126,14 +132,8 @@ namespace LiveSupport.OperatorConsole
             else
             {
                 //Invalid credentials
-                lblMessage.Text = "µÇÂ¼Ê§°Ü...\r\n\r\nÊý¾ÝÌîÐ´ÓÐÎó...";
+                loginChange(true, "µÇÂ¼Ê§°Ü...\r\n\r\nÊý¾ÝÌîÐ´ÓÐÎó...");
                 lblMessage.SetBounds(260, 10, 25, 10);
-                txtUserName.Enabled = true;
-                txtOpName.Enabled = true;
-                txtOpPassword.Enabled = true;
-                pictureBox1.Hide();
-                
-
             }
 
             Properties.Settings.Default.Save();
@@ -150,7 +150,7 @@ namespace LiveSupport.OperatorConsole
 
         private void Login_Load(object sender, EventArgs e)
         {
-            pictureBox1.Hide();
+            pictureBox1.Visible=false;
             if(Properties.Settings.Default.AutoLogin)
             {
                 login();
