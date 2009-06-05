@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowErrorDialog));
             this.txtErrorInfo = new System.Windows.Forms.TextBox();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -38,59 +39,60 @@
             // 
             // txtErrorInfo
             // 
-            this.txtErrorInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtErrorInfo.AccessibleDescription = null;
+            this.txtErrorInfo.AccessibleName = null;
+            resources.ApplyResources(this.txtErrorInfo, "txtErrorInfo");
             this.txtErrorInfo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtErrorInfo.BackgroundImage = null;
             this.txtErrorInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtErrorInfo.Font = null;
             this.txtErrorInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
-            this.txtErrorInfo.Location = new System.Drawing.Point(12, 102);
-            this.txtErrorInfo.Multiline = true;
             this.txtErrorInfo.Name = "txtErrorInfo";
             this.txtErrorInfo.ReadOnly = true;
-            this.txtErrorInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrorInfo.Size = new System.Drawing.Size(418, 206);
-            this.txtErrorInfo.TabIndex = 7;
             // 
             // pnlHeader
             // 
+            this.pnlHeader.AccessibleDescription = null;
+            this.pnlHeader.AccessibleName = null;
+            resources.ApplyResources(this.pnlHeader, "pnlHeader");
             this.pnlHeader.BackColor = System.Drawing.Color.White;
+            this.pnlHeader.BackgroundImage = null;
             this.pnlHeader.Controls.Add(this.lblHeader);
             this.pnlHeader.Controls.Add(this.pictureBox1);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Font = null;
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(442, 80);
-            this.pnlHeader.TabIndex = 6;
             // 
             // lblHeader
             // 
-            this.lblHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(66, 25);
+            this.lblHeader.AccessibleDescription = null;
+            this.lblHeader.AccessibleName = null;
+            resources.ApplyResources(this.lblHeader, "lblHeader");
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(263, 35);
-            this.lblHeader.TabIndex = 1;
-            this.lblHeader.Text = "Below is the information that will be sent in your error report.";
             // 
             // pictureBox1
             // 
+            this.pictureBox1.AccessibleDescription = null;
+            this.pictureBox1.AccessibleName = null;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.BackgroundImage = null;
+            this.pictureBox1.Font = null;
             this.pictureBox1.Image = global::VisualAsterisk.ExceptionManagement.Properties.Resources.doctor;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.ImageLocation = null;
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // ShowErrorDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 326);
+            this.BackgroundImage = null;
             this.Controls.Add(this.txtErrorInfo);
             this.Controls.Add(this.pnlHeader);
+            this.Font = null;
+            this.Icon = null;
             this.Name = "ShowErrorDialog";
-            this.Text = "ShowErrorDialog";
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

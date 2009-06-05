@@ -63,7 +63,15 @@
       <DependentUpon>ErrorCaptureDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ErrorCaptureDialog.zh-CN.resx">
+      <DependentUpon>ErrorCaptureDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowErrorDialog.resx">
+      <DependentUpon>ShowErrorDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShowErrorDialog.zh-CN.resx">
       <DependentUpon>ShowErrorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
