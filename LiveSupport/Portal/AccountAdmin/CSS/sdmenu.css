@@ -23,5 +23,6 @@ DIV.sdmenu DIV A.current {
 	BACKGROUND: #ccc
 }
 DIV.sdmenu DIV A:hover {
-	BACKGROUND: url(linkarrow.gif) #cccccc no-repeat right center; COLOR: #fff; TEXT-DECORATION: none
+	BACKGROUND: url(linkarrow.gif) #cccccc no-repeat right center; COLOR: #fff; TEXT-DECORATION: none;
+	
 }

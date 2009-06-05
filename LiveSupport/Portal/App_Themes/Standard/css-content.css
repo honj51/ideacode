@@ -318,7 +318,7 @@ a:active {
 	/*border-left:1px dashed #CACACA;*/
 	position:absolute;
 	top:0;
-	left:75%;
+	right:1%;
 	height:100%;
 	padding:0 0 0 2%;
 	}

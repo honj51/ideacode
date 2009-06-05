@@ -15,13 +15,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             this.PanelLogin.Visible = true;
             this.PanelShow.Visible = false;
+            
         }
     }
     //°²È«ÍË³ö 
     protected void LinkButton1_Click(object sender, System.EventArgs e)
     {
         Session["User"] = null;
-        this.Response.Redirect("http://localhost:2454/Portal/Login.aspx");
+        this.Response.Redirect("~/Login.aspx");
         this.PanelLogin.Visible = true;
     }
 }
