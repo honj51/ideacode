@@ -83,7 +83,7 @@ public partial class Default2 : System.Web.UI.Page
                     }
                     else
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('客服ID已经存在,请从新注册...');</script>");
+                        ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('管理员ID已经存在,请从新注册...');</script>");
                         return;
                     }
                 }

@@ -29,8 +29,10 @@
             <div id="top-information-home">
                 <a></a></div>
              <div id="top-information-login">
-                <asp:Panel ID="PanelShow" runat="server" Visible="false">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>&nbsp;<a href="http://localhost:2454/Portal/AccountAdmin/AccountHome.aspx">客服管理</a>&nbsp;
-                    &nbsp;<asp:LinkButton 
+                <asp:Panel ID="PanelShow" runat="server" Visible="false">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
+                    &nbsp;<asp:HyperLink ID="HyperLink1" runat="server" 
+                        NavigateUrl="~/AccountAdmin/AccountHome.aspx">管理客服</asp:HyperLink>
+&nbsp;<asp:LinkButton 
                         ID="LinkButton1" runat="server" onclick="LinkButton1_Click">退出</asp:LinkButton>
                  </asp:Panel>
                 <asp:Panel ID="PanelLogin" runat="server" Visible="false"><a href="Login.aspx">登录</a></asp:Panel>

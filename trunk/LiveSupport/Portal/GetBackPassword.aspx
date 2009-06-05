@@ -14,7 +14,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background-image:url('AccountAdmin/Images/bg.gif');">
     <form id="form1" runat="server">
     <div>
 <table height="100" width="100%"><tr><td valign="middle" align="center">

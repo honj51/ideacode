@@ -52,12 +52,33 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     #region 时间比较
     public string DateCompare(string beginDate, string endDate)
     {
-        if (beginDate != null && endDate != null)
+        try
         {
-            TimeSpan dt = Convert.ToDateTime(endDate) - Convert.ToDateTime(beginDate);
-            return Convert.ToDateTime(dt.ToString()).ToString("HH:MM:ss");
+            if (beginDate != null && endDate != null)
+            {
+                DateTime ed=Convert.ToDateTime(endDate);
+                DateTime bd = Convert.ToDateTime(beginDate);
+                //TimeSpan dt = Convert.ToDateTime(endDate) - Convert.ToDateTime(beginDate);
+                //return dt.ToString();
+                string dateDiff = null;
+
+                TimeSpan ts1 = new TimeSpan(ed.Ticks);
+                TimeSpan ts2 = new TimeSpan(bd.Ticks);
+                TimeSpan ts = ts1.Subtract(ts2).Duration();
+                dateDiff = ts.Days.ToString() + "天"
+                    + ts.Hours.ToString() + "小时"
+                    + ts.Minutes.ToString() + "分钟"
+                    + ts.Seconds.ToString() + "秒";
+
+                return dateDiff;
+
+            }
+            else
+            {
+                return "";
+            }
         }
-        else
+        catch (Exception ex)
         {
             return "";
         }

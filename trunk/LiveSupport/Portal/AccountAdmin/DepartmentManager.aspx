@@ -24,16 +24,13 @@
                 <!--Î²²¿-->
 <br />
            <asp:GridView ID="gvDepartment" runat="server"
-               AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" 
-               GridLines="None" Width="522px" AllowPaging="True" 
+               AutoGenerateColumns="False" Width="522px" AllowPaging="True" 
                DataSourceID="ObjectDataSource1" 
                onrowdatabound="gvDepartment_RowDataBound" DataKeyNames="DepartmentId" 
                onrowcommand="gvDepartment_RowCommand" 
                onrowediting="gvDepartment_RowEditing" 
                onrowupdating="gvDepartment_RowUpdating" 
-               ondatabound="gvDepartment_DataBound" >
-               <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-               <RowStyle BackColor="#EFF3FB" />
+               ondatabound="gvDepartment_DataBound" Font-Size="14px" >
                <Columns>
                    <asp:TemplateField HeaderText="²¿ÃÅ±àºÅ" SortExpression="DepartmentId" 
                        Visible="False">
@@ -74,11 +71,6 @@
                        </ItemTemplate>
                    </asp:TemplateField>
                </Columns>
-               <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-               <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-               <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-               <EditRowStyle BackColor="#2461BF" />
-               <AlternatingRowStyle BackColor="White" />
            </asp:GridView>
           <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
                onselecting="ObjectDataSource1_Selecting" 
