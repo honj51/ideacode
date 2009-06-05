@@ -58,8 +58,9 @@ namespace LiveSupport.OperatorConsole
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
-            MessageBox.Show("未捕获异常, 请把这个错误报告给 \r\n: wanwei_ncu@126.com \r\n\r\n错误信息:\r\n\r\n" + e.Exception.Message + "\r\n" + e.Exception.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL,true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
+            Application.Restart();
+            //  MessageBox.Show("未捕获异常, 请把这个错误报告给 \r\n: wanwei_ncu@126.com \r\n\r\n错误信息:\r\n\r\n" + e.Exception.Message + "\r\n" + e.Exception.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 	}
 }
