@@ -379,6 +379,7 @@ namespace LiveSupport.OperatorConsole
         private void timer1_Tick(object sender, EventArgs e)
         {
             NewChangesCheckResult result = getNewChanges(lastCheck);
+            
             if (result == null) return;
             Trace.WriteLine("NewChangesCheck: " + lastCheck.ToString());
             Trace.WriteLine("NewChangesCheckResult: " + result.ToString());
@@ -461,12 +462,15 @@ namespace LiveSupport.OperatorConsole
         {
             Program.Chats.Clear();
             Program.Chats.AddRange(result.Chats);
-
+        
             foreach (var item in Program.Chats)
             {
+               
                 if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator)
                 {
                     Visitor visitor = null;
+                    if(Program.Visitors!=null)
+                    {
                     foreach (var v in Program.Visitors)
                     {
                         if (v.VisitorId == item.VisitorId)
@@ -475,8 +479,10 @@ namespace LiveSupport.OperatorConsole
                             break;
                         }
                     }
-
-                    NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", item);
+                     
+                         NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", item);
+                        
+                   }
                 }
             }
         }
@@ -664,7 +670,6 @@ namespace LiveSupport.OperatorConsole
                 if (remote == null) continue;
                 if (remote.Status == VisitSessionStatus.ChatRequesting)
                 {
-
                     // 新的对话请求
                     //NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote);
 
@@ -865,21 +870,20 @@ namespace LiveSupport.OperatorConsole
                 if (visitor.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
                 {
 
-                    //if (!myChats.ContainsKey(lstVisitors.SelectedItems[0].Index))
-                    //{
-                    //    myChats.Add(lstVisitors.SelectedItems[0].Index, Program.CurrentOperator.Id);
-
-                    //}
-                  
-                 
-                   
                     //声音
                     player.Stop();
-                    //ChatForm cf = new ChatForm(visitor.CurrentSession);
-
-                   // Program.ChatForms.Add(cf);
-                    //cf.Show();
+                    foreach (var item in Program.Chats)
+                    {
+                        if (item.VisitorId == visitor.VisitorId)
+                        {
+                            ChatForm cf = new ChatForm(item);
+                            Program.ChatForms.Add(cf);
+                            cf.Show();
+                            break;
                   
+                        }
+                    }
+                   
                 }
                 else
                 {
@@ -915,20 +919,22 @@ namespace LiveSupport.OperatorConsole
                     ChatForm cf = null;
                     foreach (var item in Program.ChatForms)
                     {
-                        if (item.Chat.ChatId == chat.ChatId)
+                        if (item.Chat.VisitorId == chat.VisitorId)
                         {
+                            
+                            ws.CloseChat(item.Chat.ChatId);
                             cf = item;
+                            cf.Chat = chat;
                             break;
                         }
                     }
 
                     if (cf == null)
                     {
-                      
                         cf = new ChatForm(chat, true);
                         Program.ChatForms.Add(cf);
                     }
-
+                   
                     cf.Show();
                 }
               }
@@ -1289,7 +1295,11 @@ namespace LiveSupport.OperatorConsole
             about.Show();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
        
 
       

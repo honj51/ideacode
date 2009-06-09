@@ -225,12 +225,25 @@ namespace LiveSupport.OperatorConsole
                }
             
             }
-            
+            if (Program.NotifyForms.Count > 0)
+            {
+                foreach (NotifyForm item in Program.NotifyForms)
+                {
+                    if (chat.ChatId == item.chat.ChatId)
+                    {
+                        item.Close();
+                        Program.NotifyForms.Remove(item);
+                        break;
+                    }
+                }
+            }
             
             // We start the timer that will get the messages
             tmrGetMsg.Enabled = true;
             
             txtMsg.Focus();
+
+           
           
         }
 
@@ -375,17 +388,14 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
             }
-              if(Program.CurrentOperator.Status!= OperatorStatus.Offline)
-              {
+             
                   if (acceptChatRequestResult == 0)
                   {
                       ws.CloseChat(this.Chat.ChatId);
                   }
                   Program.ChatForms.Remove(this);                  
                   
-              }
-              else
-                Program.ChatForms.Remove(this);
+             
 
 
               Program.quickResponseCategory.Clear();
@@ -408,7 +418,7 @@ namespace LiveSupport.OperatorConsole
                         setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
                     }
                 }
-               
+
             }
             setTalkTreeView.ExpandAll();
             Program.quickResponseCategory.Clear();
