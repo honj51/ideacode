@@ -177,6 +177,7 @@ namespace LiveSupport.OperatorConsole
             // Simple authentication
             AuthenticationHeader auth = new AuthenticationHeader();
             auth.OperatorId = Program.CurrentOperator.OperatorId;
+            auth.OperatorSession = Program.CurrentOperator.OperatorSession;
             ws.AuthenticationHeaderValue = auth;
 
             if (ws.GetQuickResponse().Length > 0)

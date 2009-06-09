@@ -716,6 +716,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private string operatorIdField;
         
+        private string operatorSessionField;
+        
         private System.Xml.XmlAttribute[] anyAttrField;
         
         /// <remarks/>
@@ -725,6 +727,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.operatorIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OperatorSession {
+            get {
+                return this.operatorSessionField;
+            }
+            set {
+                this.operatorSessionField = value;
             }
         }
         
@@ -1459,6 +1471,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private long newVisitorCheckTimeField;
         
+        private ReturnCodeEnum returnCodeField;
+        
         /// <remarks/>
         public Operator[] Operators {
             get {
@@ -1518,6 +1532,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
                 this.newVisitorCheckTimeField = value;
             }
         }
+        
+        /// <remarks/>
+        public ReturnCodeEnum ReturnCode {
+            get {
+                return this.returnCodeField;
+            }
+            set {
+                this.returnCodeField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -1541,6 +1565,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private string emailField;
         
         private OperatorStatus statusField;
+        
+        private string operatorSessionField;
         
         private string aVChatStatusField;
         
@@ -1615,6 +1641,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OperatorSession {
+            get {
+                return this.operatorSessionField;
+            }
+            set {
+                this.operatorSessionField = value;
             }
         }
         
@@ -2071,6 +2107,19 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
                 this.currentSessionField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public enum ReturnCodeEnum {
+        
+        /// <remarks/>
+        ReturnCode_Success,
+        
+        /// <remarks/>
+        ReturnCode_SessionInvalid,
     }
     
     /// <remarks/>

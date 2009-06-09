@@ -118,17 +118,53 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cat_sh_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cat_sh_button.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PI_Diagona_Web_Application_04_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PI Diagona Web Application 04 07.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="alarmd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\alarmd.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Global" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Global.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PI_Diagona_Web_Application_04_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PI Diagona Web Application 04 02.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logfile_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logfile_24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PI_Diagona_Web_Application_04_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PI Diagona Web Application 04 05.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PI_Diagona_Web_Application_04_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PI Diagona Web Application 04 01.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lose.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\06.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PI_Diagona_Web_Application_04_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PI Diagona Web Application 04 06.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="aim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\aim.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sc.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="purchase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\purchase.ICO;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user1_message_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user1_message_24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PI_Diagona_Web_Application_04_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PI Diagona Web Application 04 03.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,145 +172,112 @@
   <data name="PI_Diagona_Web_Application_04_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PI Diagona Web Application 04 10.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="purchase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\purchase.ICO;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PI_Diagona_Web_Application_04_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PI Diagona Web Application 04 04.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Profile.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PI_Diagona_Web_Application_04_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PI Diagona Web Application 04 08.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="file_sent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file_sent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PI_Diagona_Web_Application_04_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PI Diagona Web Application 04 02.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PI_Diagona_Web_Application_04_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PI Diagona Web Application 04 09.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PI_Diagona_Web_Application_04_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PI Diagona Web Application 04 06.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="header_bg_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\header-bg-right.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="newchatreq" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ringout.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="leave_title_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\leave_title_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="alert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\alert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user1_message_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user1_message_24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="file_sent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file_sent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="live800" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\live800.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="alarmd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\alarmd.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logfile_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logfile_24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logfile_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logfile_48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sc.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="aim" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\aim.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="All_software_is_current" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\All software is current.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WelCome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WelCome.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PI_Diagona_Web_Application_04_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PI Diagona Web Application 04 01.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bg02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg02.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mailreminder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mailreminder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mail_foward" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mail_foward.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sipphone" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sipphone.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\06.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="alert" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\alert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="windows_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\windows_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window_list.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loading.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Global" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Global.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="newmsg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\type.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lose.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="offop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\offop.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="onlineop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\onlineop.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bg.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="content_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\content-bg.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sipphone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sipphone.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="header_bg_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\header-bg-left.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="header_bg_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\header-bg-right.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="offop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\offop.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="header" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\header.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Profile.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="header_bg_left1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\header-bg-left1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WelCome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WelCome.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="development_54" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\development 54.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logfile_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logfile_48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="development_54_grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\development 54 grey.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mailreminder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mailreminder.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="header" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\header.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PI_Diagona_Web_Application_04_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PI Diagona Web Application 04 07.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Modify" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Modify.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="window_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window_list.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="All_software_is_current" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\All software is current.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PI_Diagona_Web_Application_04_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PI Diagona Web Application 04 09.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live800" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live800.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="leave_title_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\leave_title_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newmsg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\type.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mail_foward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mail_foward.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="header_bg_left1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\header-bg-left1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PI_Diagona_Web_Application_04_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PI Diagona Web Application 04 08.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="windows_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\windows_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loading.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="development_54" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\development 54.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="content_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\content-bg.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PI_Diagona_Web_Application_04_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PI Diagona Web Application 04 04.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cat_sh_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cat_sh_button.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="header1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\header1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

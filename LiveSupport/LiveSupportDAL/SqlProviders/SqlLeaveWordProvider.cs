@@ -15,8 +15,20 @@ namespace LiveSupport.SqlProviders
         {
             try
             {
-                string sql = string.Format("insert into LiveSupport_LeaveWord(Id,CallerName,Email,Phone,Subject,Content,IP,CallerDate,Senddate,OperatorName,accountId) "
-                + "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',)", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId);
+                string sql = string.Format(
+           " INSERT INTO [LiveSupport].[dbo].[LiveSupport_LeaveWord]"
+          + " ([Id]"
+          + " ,[CallerName]"
+          + " ,[Email]"
+          + " ,[Phone]"
+           + ",[Subject]"
+           + ",[Content]"
+           + ",[IP]"
+           + ",[CallerDate]"
+           + ",[Senddate]"
+           + ",[OperatorName]"
+           + ",[accountId])"
+           + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}') ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId);
                 return DBHelper.ExecuteSql(sql);
             }
             catch (Exception ex)

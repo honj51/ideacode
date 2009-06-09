@@ -199,6 +199,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap header1 {
+            get {
+                object obj = ResourceManager.GetObject("header1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap info {
             get {
                 object obj = ResourceManager.GetObject("info", resourceCulture);

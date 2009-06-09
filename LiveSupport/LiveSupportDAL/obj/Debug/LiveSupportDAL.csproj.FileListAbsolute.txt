@@ -5,3 +5,10 @@ D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportD
 D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\ResolveAssemblyReference.cache
 D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\LiveSupportDAL.dll
 D:\我的文档\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\LiveSupportDAL.pdb
+C:\Documents and Settings\y\My Documents\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\LiveSupportDAL.dll
+C:\Documents and Settings\y\My Documents\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\LiveSupportDAL.pdb
+C:\Documents and Settings\y\My Documents\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\Model.dll
+C:\Documents and Settings\y\My Documents\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\bin\Debug\Model.pdb
+C:\Documents and Settings\y\My Documents\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\y\My Documents\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\LiveSupportDAL.dll
+C:\Documents and Settings\y\My Documents\Visual Studio 2008\Projects\LiveSupport\LiveSupport\LiveSupportDAL\obj\Debug\LiveSupportDAL.pdb

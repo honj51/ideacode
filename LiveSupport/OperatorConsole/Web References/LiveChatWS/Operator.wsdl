@@ -27,6 +27,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="NickName" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:OperatorStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorSession" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="AVChatStatus" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="Department" type="tns:Department" />
@@ -76,6 +77,7 @@
       <s:complexType name="AuthenticationHeader">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="OperatorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorSession" type="s:string" />
         </s:sequence>
         <s:anyAttribute />
       </s:complexType>
@@ -185,6 +187,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="Chats" type="tns:ArrayOfChat" />
           <s:element minOccurs="0" maxOccurs="1" name="Messages" type="tns:ArrayOfMessageCheckResult" />
           <s:element minOccurs="1" maxOccurs="1" name="NewVisitorCheckTime" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" type="tns:ReturnCodeEnum" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfOperator">
@@ -260,6 +263,12 @@
           <s:enumeration value="SystemMessage_ToOperator" />
           <s:enumeration value="SystemMessage_ToVisitor" />
           <s:enumeration value="SystemMessage_ToBoth" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ReturnCodeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="ReturnCode_Success" />
+          <s:enumeration value="ReturnCode_SessionInvalid" />
         </s:restriction>
       </s:simpleType>
       <s:element name="IsTyping">

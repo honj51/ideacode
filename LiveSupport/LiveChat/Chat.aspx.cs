@@ -283,24 +283,27 @@ public partial class Chat : System.Web.UI.Page
     /// <param name="e"></param>
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
-        MailMessage mail = new MailMessage();
-        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());
-        mail.To.Add(new MailAddress(CurrentAccount.Email));
-        mail.Subject = "LiveSupport 系统 - 客户留言";
-        string emailBody = "该留言客户Email:" + txtSendBy.Text + "\r\n\r\n" + txtComment.Text;
-        mail.Body = emailBody;
+        if (this.txt_username.Text == null || txtComment.Text == null || txtSendBy.Text == null || txtTheme.Text == null)
+        {
+            MessageBox.Show("信息请添写完善！");
+        }
+        LeaveWord lw = new LeaveWord();
+        lw.CallerName = this.txt_username.Text;
+        lw.Content = txtComment.Text;
+        lw.Email = txtSendBy.Text;
+        lw.CallerDate = DateTime.Now.ToString();
+        lw.Account =AccountService.GetAccountById(CurrentVisitor.AccountId);
+        lw.Id = Guid.NewGuid().ToString();
+        lw.Ip = CurrentVisitor.CurrentSession.IP;
+        lw.Phone = txtPhone.Text;
+        lw.Subject = txtTheme.Text;
+        LiveSupport.BLL.LeaveWordManager.AddWordProvider(lw);
 
-        SmtpClient mailer = new SmtpClient(ConfigurationManager.AppSettings["SMTPServer"].ToString());
-        mailer.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
-        mailer.Send(mail);
-        lblConfirmation.Visible = true;
-        lblConfirmation.Text = "谢谢您的留言！";
     }
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
     {
         string chatId = CurrentVisitor.CurrentSessionId;
-
         if (CurrentChat == null || CurrentChat.Status == ChatStatus.Closed)
         {   
             if (!string.IsNullOrEmpty(txtName.Text))

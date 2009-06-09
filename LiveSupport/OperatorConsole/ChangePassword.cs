@@ -74,6 +74,7 @@ namespace LiveSupport.OperatorConsole
         {
             AuthenticationHeader h = new AuthenticationHeader();
             h.OperatorId = Program.CurrentOperator.OperatorId;
+            h.OperatorSession = Program.CurrentOperator.OperatorSession;
             ws.AuthenticationHeaderValue = h;
         }
 

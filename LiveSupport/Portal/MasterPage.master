@@ -17,7 +17,7 @@
     <meta name=vs_defaultClientScript content="JavaScript">
     <meta name=vs_targetSchema content="http://schemas.microsoft.com /intellisense/ie5">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <script src="http://localhost:3355/livechat/LSBanner.ashx?aid=2&IcoLocation=2"></script>
+   <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=2&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0'></script>
 </head>
 <body>
     <form id="form1" runat="server">
