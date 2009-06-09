@@ -14,7 +14,7 @@ namespace LiveSupport.OperatorConsole
     {
 
         private int SendIndex;
-        private Chat chat;
+        public Chat chat;
 
         public enum NotifyMessageType
         {
@@ -93,19 +93,42 @@ namespace LiveSupport.OperatorConsole
 
         public static void ShowNotifier(bool showCommandButton, string message, Chat chat)
         {
-            NotifyForm f = new NotifyForm();
-            f.showNotifier(showCommandButton, message, chat);
+            if (Program.NotifyForms.Count > 0)
+            {
+                foreach (NotifyForm item in Program.NotifyForms)
+                {
+                    if (item.chat.ChatId == chat.ChatId)
+                        return;
+                    else
+                    {
+                        NotifyForm f = new NotifyForm();
+                        f.showNotifier(showCommandButton, message, chat);
+                        Program.NotifyForms.Add(f);
+
+                    }
+                }
+
+            }
+            else
+            {
+                NotifyForm f = new NotifyForm();
+                f.showNotifier(showCommandButton, message, chat);
+                Program.NotifyForms.Add(f);
+            
+            }
+                      
+                
         }
 
         private void showNotifier(bool showCommandButton, string message, Chat chat)
         {
-            this.messageLabel.Text = message;
-            this.acceptButton.Visible = showCommandButton;
-            this.declineButton.Visible = showCommandButton;
-            this.chat = chat;
-            this.notifyMessageType = NotifyMessageType.ChatRequest;
-
-            this.Show();
+                        this.messageLabel.Text = message;
+                        this.acceptButton.Visible = showCommandButton;
+                        this.declineButton.Visible = showCommandButton;
+                        this.chat = chat;
+                        this.notifyMessageType = NotifyMessageType.ChatRequest;
+                        this.Show();
+                       
             switch (taskbarState)
             {
                 case TaskbarStates.Hidden:
@@ -192,6 +215,16 @@ namespace LiveSupport.OperatorConsole
          
             cf.Show();
             this.Hide();
+            if(Program.NotifyForms.Count>0){
+            foreach (NotifyForm item in Program.NotifyForms)
+            {
+               if(item.chat.ChatId==this.chat.ChatId)
+               {
+                   Program.NotifyForms.Remove(item);
+               
+               }
+            }
+            }
             timer.Stop();
         }
 

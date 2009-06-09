@@ -23,6 +23,7 @@ namespace LiveSupport.OperatorConsole
 	{
         public static MainForm MainForm;
         public static List<OperatorConsole.LiveChatWS.Visitor> Visitors;
+        public static List<NotifyForm> NotifyForms = new List<NotifyForm>();
         public static List<Chat> Chats = new List<Chat>();
         public static Operator CurrentOperator;
         public static List<ChatForm> ChatForms = new List<ChatForm>();

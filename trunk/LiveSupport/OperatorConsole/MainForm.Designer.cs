@@ -106,6 +106,7 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -174,7 +175,6 @@ namespace LiveSupport.OperatorConsole
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -561,6 +561,7 @@ namespace LiveSupport.OperatorConsole
             this.touchToolStripMenuItem.Name = "touchToolStripMenuItem";
             this.touchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.touchToolStripMenuItem.Text = "联系我们(&U)";
+            this.touchToolStripMenuItem.Visible = false;
             this.touchToolStripMenuItem.Click += new System.EventHandler(this.touchToolStripMenuItem_Click);
             // 
             // handBookToolStripMenuItem
@@ -568,6 +569,7 @@ namespace LiveSupport.OperatorConsole
             this.handBookToolStripMenuItem.Name = "handBookToolStripMenuItem";
             this.handBookToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.handBookToolStripMenuItem.Text = "软件手册(&M)";
+            this.handBookToolStripMenuItem.Visible = false;
             this.handBookToolStripMenuItem.Click += new System.EventHandler(this.handBookToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
@@ -604,6 +606,7 @@ namespace LiveSupport.OperatorConsole
             this.button1.Text = "重置";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -861,6 +864,14 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(204, 402);
             this.panel1.TabIndex = 0;
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 372);
+            this.operatorPannel1.TabIndex = 2;
             // 
             // panel5
             // 
@@ -1267,6 +1278,7 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
@@ -1488,14 +1500,6 @@ namespace LiveSupport.OperatorConsole
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 372);
-            this.operatorPannel1.TabIndex = 2;
             // 
             // MainForm
             // 
