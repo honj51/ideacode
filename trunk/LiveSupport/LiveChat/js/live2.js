@@ -90,7 +90,7 @@
     function hitWebSite() {
         //alert("hitWebSite() called");
         //var vid = getCookie('VisitorId'); //访客ID
-        LS_Trace("hitWebSite() called, VisitorId=" + visitorId);
+     //   LS_Trace("hitWebSite() called, VisitorId=" + visitorId);
         var url = homeUrl + "/VisitorHandler.ashx?Action=1&VisitorId=" + visitorId + "&callback=?";
         $.getJSON(url,
         function(json) {
@@ -140,9 +140,9 @@
         return val;
     }
 
-    function LS_Trace(message) {
-        if ($("#trace_div") != null) {
-            $("#trace_div").html($("#trace_div").html() + message + "</br>");
-        }
-    } 
+//    function LS_Trace(message) {
+//        if ($("#trace_div") != null) {
+//            $("#trace_div").html($("#trace_div").html() + message + "</br>");
+//        }
+//    } 
 

@@ -18,6 +18,7 @@ namespace LiveSupport.OperatorConsole
             InitializeComponent();
             AuthenticationHeader h = new AuthenticationHeader();
             h.OperatorId = Program.CurrentOperator.OperatorId;
+            h.OperatorSession = Program.CurrentOperator.OperatorSession;
             ws.AuthenticationHeaderValue = h;
             toolStrip1.Visible = Result;
             

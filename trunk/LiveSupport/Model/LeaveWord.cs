@@ -99,6 +99,10 @@ namespace LiveSupport.LiveSupportModel
             set { account = value; }
         }
 
+        public LeaveWord()
+        {
+ 
+        }
         public LeaveWord(SqlDataReader data)
         {
             if (!Convert.IsDBNull(data["id"])) id = (string)data["id"];

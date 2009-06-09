@@ -276,6 +276,7 @@
     <None Include="Resources\header-bg-left.jpg" />
     <None Include="Resources\header.gif" />
     <None Include="Resources\header-bg-left1.jpg" />
+    <None Include="Resources\header1.jpg" />
     <Content Include="Resources\ie.jpg" />
     <None Include="Resources\Modify.png" />
     <None Include="Resources\Save.png" />

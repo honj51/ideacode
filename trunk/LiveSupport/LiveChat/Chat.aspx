@@ -119,7 +119,7 @@
                     <br />
                      <fieldset style=" height:5%;  width:43.5%"  >
                      <legend>  <span class="formField"> 姓名</span></legend> 
-                    <asp:TextBox ID="TextBox1" runat="server" Width="100%" ></asp:TextBox>
+                    <asp:TextBox ID="txt_username" runat="server" Width="99%" ></asp:TextBox>
                     </fieldset>
                     
                      <fieldset style=" height:5%;  width:43.5%"  >
@@ -129,12 +129,12 @@
                    
                     <br />
                     <fieldset style="height:5%; width:87%" > <legend>  <span class="formField">  您的电子邮件</span></legend> 
-                    <asp:TextBox ID="txtSendBy" runat="server" Width="100%" ></asp:TextBox>
+                    &nbsp;<asp:TextBox ID="txtSendBy" runat="server" Width="100%" ></asp:TextBox>
                     </fieldset>
                     <br />
                         <fieldset style=" height:5%;  width:87%"  >
                      <legend>  <span class="formField">主题</span></legend> 
-                    <asp:TextBox ID="txtTheme" runat="server" Width="100%" ></asp:TextBox>
+                    &nbsp;<asp:TextBox ID="txtTheme" runat="server" Width="100%" ></asp:TextBox>
                     </fieldset>
                     <bt />
                     <fieldset style="height:230px; width:87%">
@@ -158,7 +158,8 @@
         
            <table  cellpadding="0" cellspacing="0"  style="background-image:url(Images/bg.jpg); background-position:center;    height:100%; width:100%">
            <tr>
-           <td valign="top"  style=" height:30px; width:100%"  align="center"><asp:Label ID="welcomeLabel" runat="server" Text="Label"></asp:Label></td>
+           <td valign="top"  style=" height:30px; width:100%"  align="center">
+           <asp:Label ID="welcomeLabel" runat="server" Text="Label"></asp:Label></td>
            </tr>
            <tr  >
            <td align="center" >

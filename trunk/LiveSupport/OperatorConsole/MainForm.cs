@@ -251,6 +251,7 @@ namespace LiveSupport.OperatorConsole
         {
             AuthenticationHeader h = new AuthenticationHeader();
             h.OperatorId = Program.CurrentOperator.OperatorId;
+            h.OperatorSession = Program.CurrentOperator.OperatorSession;
             ws.AuthenticationHeaderValue = h;
 
             lastCheck.ChatSessionChecks = new MessageCheck[] { };
@@ -381,6 +382,14 @@ namespace LiveSupport.OperatorConsole
             NewChangesCheckResult result = getNewChanges(lastCheck);
             
             if (result == null) return;
+            if (result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
+            {
+                this.timer1.Enabled = false;
+                this.loginTimer.Enabled = false;
+                MessageBox.Show("该帐号已在其他地方登陆！", "系统会话失效", MessageBoxButtons.OK);
+                restartApp(string.Empty);
+                return;
+            }
             Trace.WriteLine("NewChangesCheck: " + lastCheck.ToString());
             Trace.WriteLine("NewChangesCheckResult: " + result.ToString());
             //Debug.WriteLine(string.Format("CheckNewChanges: NewVisitor={0} Message={1}",result.NewVisitors.Length,result.Messages.Length ));

@@ -66,7 +66,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public void Logout()
     {
-        OperatorService.Logout(Authentication.OperatorId);
+        OperatorService.Logout(Authentication.OperatorId, Authentication.OperatorSession);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class OperatorWS : System.Web.Services.WebService
     public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
     {
         checkAuthentication();
-        return OperatorService.CheckNewChanges(Authentication.OperatorId, check);
+        return OperatorService.CheckNewChanges(Authentication.OperatorId, Authentication.OperatorSession, check);
     }
 
     [SoapHeader("Authentication", Required = true)]

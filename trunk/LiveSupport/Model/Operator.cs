@@ -63,6 +63,14 @@ namespace LiveSupport.LiveSupportModel
             get { return status; }
             set { status = value; }
         }
+
+        private string operatorSession;
+
+        public string OperatorSession
+        {
+            get { return operatorSession; }
+            set { operatorSession = value; }
+        }
         private string aVChatStatus;
          
         public string AVChatStatus
