@@ -11,6 +11,7 @@ using System.Diagnostics;
 using LiveSupport.BLL;
 using LiveSupport.BLL.Exceptions;
 using System.IO;
+using System.Collections;
 
 public class QuickResponseCategory
 {
@@ -66,13 +67,14 @@ public class MessageCheckResult
 /// </summary>
 public class NewChangesCheckResult
 {
+    public enum ReturnCodeEnum { ReturnCode_Success, ReturnCode_SessionInvalid };// 成功,会话已失效(例如同一帐户多处登陆)
     public List<Operator> Operators; // 客服状态更新
     public List<Visitor> NewVisitors; // 新访客
     public List<VisitSession> VisitSessionChange; // 访问会话状态更新
     public List<Chat> Chats;
     public List<MessageCheckResult> Messages; // // 消息更新
     public long NewVisitorCheckTime;
-
+    public ReturnCodeEnum ReturnCode;
 
     public override string ToString()
     {
@@ -99,6 +101,7 @@ public static class OperatorService
 
     public static IOperatorProvider Provider = new SqlOperatorProvider();
     public static IDBProvider DBProvider = new SqlDBProvider();
+    private static List<Operator> operators = new List<Operator>();
 
     public static List<Operator> GetAllOperators()
     {
@@ -115,7 +118,6 @@ public static class OperatorService
         operators = Provider.GetAllOperators();
     }
 
-    private static List<Operator> operators = new List<Operator>();
     /// <summary>
     ///  判定客服是否在线
     /// </summary>
@@ -164,11 +166,8 @@ public static class OperatorService
             }
             if (op != null)
             {
-                if (op.Status != OperatorStatus.Offline)
-                {
-                    return null;
-                }
-               op.Status = OperatorStatus.Idle;//将客服状态改为空闲
+                op.Status = OperatorStatus.Idle;//将客服状态改为空闲
+                op.OperatorSession = Guid.NewGuid().ToString();
             }
         }
         return op;
@@ -177,15 +176,14 @@ public static class OperatorService
     /// 注销 登陆
     /// </summary>
     /// <param name="operatorId">客服ID</param>
-    public static void Logout(string operatorId)
+    public static void Logout(string operatorId, string operatorSession)
     {
 
         Operator op = GetOperatorById(operatorId);
-        if (op != null)
+        if (op != null && op.OperatorSession == operatorSession)
         {
             op.Status = OperatorStatus.Offline;
         }
-
     }
     /// <summary>
     /// 判断某公司的客服是否在线
@@ -386,11 +384,17 @@ public static class OperatorService
         return ops;
     }
 
-    public static NewChangesCheckResult CheckNewChanges(string operatorId, NewChangesCheck check)
+    public static NewChangesCheckResult CheckNewChanges(string operatorId, string operatorSessionId, NewChangesCheck check)
     {
         Trace.WriteLine(string.Format("OperatorService.CheckNewChanges(operatorId = {0},NewChangesCheck={1})", operatorId, check.ToString()));
         Operator op = OperatorService.GetOperatorById(operatorId);
         NewChangesCheckResult checkResult = new NewChangesCheckResult();
+
+        if (op.OperatorSession != operatorSessionId)
+        {
+            checkResult.ReturnCode = NewChangesCheckResult.ReturnCodeEnum.ReturnCode_SessionInvalid;
+            return checkResult;
+        }
 
         // 新访客
         checkResult.NewVisitors = VisitorService.GetNewVisitors(op.AccountId, check.NewVisitorLastCheckTime);
@@ -411,6 +415,7 @@ public static class OperatorService
             checkResult.Messages.Add(mcr);
         }
         checkResult.Operators = OperatorService.GetAllOperatorsByAccountId(op.AccountId);
+        checkResult.ReturnCode = NewChangesCheckResult.ReturnCodeEnum.ReturnCode_Success;
         // 客服状态更新
         Trace.WriteLine(string.Format("ChecknewChanges(OperatorId={0},NewChangesCheck={{1}},NewChangesCheckResult={{2}}", operatorId, check.ToString(), checkResult.ToString()));
         return checkResult;
