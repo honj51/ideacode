@@ -11,7 +11,7 @@ namespace LiveSupport.LiveSupportModel
     public class Department
     {
         private string departmentId;
-
+         
         public string DepartmentId
         {
             get { return departmentId; }
