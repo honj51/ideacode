@@ -93,21 +93,23 @@ namespace LiveSupport.OperatorConsole
 
         public static void ShowNotifier(bool showCommandButton, string message, Chat chat)
         {
+            Chat chat2 = null;
             if (Program.NotifyForms.Count > 0)
             {
                 foreach (NotifyForm item in Program.NotifyForms)
                 {
                     if (item.chat.ChatId == chat.ChatId)
-                        return;
-                    else
                     {
-                        NotifyForm f = new NotifyForm();
-                        f.showNotifier(showCommandButton, message, chat);
-                        Program.NotifyForms.Add(f);
-
+                        chat2 = item.chat;
+                        return;
                     }
+                      
                 }
-
+                if(chat2!=null){
+                NotifyForm f = new NotifyForm();
+                f.showNotifier(showCommandButton, message, chat2);
+                Program.NotifyForms.Add(f);
+              }
             }
             else
             {
@@ -215,14 +217,19 @@ namespace LiveSupport.OperatorConsole
          
             cf.Show();
             this.Hide();
-            if(Program.NotifyForms.Count>0){
+            if(Program.NotifyForms.Count>0)
+            {
+                NotifyForm nf = null;
             foreach (NotifyForm item in Program.NotifyForms)
             {
                if(item.chat.ChatId==this.chat.ChatId)
                {
-                   Program.NotifyForms.Remove(item);
-               
+                   nf = item;
+                  
                }
+            }
+                if(nf!=null){
+            Program.NotifyForms.Remove(nf);
             }
             }
             timer.Stop();
