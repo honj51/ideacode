@@ -883,7 +883,7 @@ namespace LiveSupport.OperatorConsole
                     player.Stop();
                     foreach (var item in Program.Chats)
                     {
-                        if (item.VisitorId == visitor.VisitorId)
+                        if (item.VisitorId == visitor.VisitorId&item.Status== ChatStatus.Requested)
                         {
                             ChatForm cf = new ChatForm(item);
                             Program.ChatForms.Add(cf);
