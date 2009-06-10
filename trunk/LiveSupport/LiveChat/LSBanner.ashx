@@ -35,12 +35,12 @@ public class LSBanner : IHttpHandler {
         }
         
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        sb.AppendLine(string.Format("var homeUrl = '{0}';",homeRootUrl));
-        sb.AppendLine(string.Format("var bannerType ={0};", bannerType));// 0: 简单按钮, 1: 客服列表, 2: 部门列表
-        sb.AppendLine(string.Format("var bannerStyle = {0};",IconStyle));// 0,1,2 图片
-        sb.AppendLine(string.Format("var invitePanelStyle = {0};",InviteStyle));// 0,1,2主动邀请样式
-        sb.AppendLine(string.Format("var bannerPos = {0};",IcoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
-        sb.AppendLine(string.Format("var accountId = '{0}';",aid));
+        sb.AppendLine(string.Format("var LCS_homeUrl = '{0}';",homeRootUrl));
+        sb.AppendLine(string.Format("var LCS_bannerType ={0};", bannerType));// 0: 简单按钮, 1: 客服列表, 2: 部门列表
+        sb.AppendLine(string.Format("var LCS_bannerStyle = {0};",IconStyle));// 0,1,2 图片
+        sb.AppendLine(string.Format("var LCS_invitePanelStyle = {0};",InviteStyle));// 0,1,2主动邀请样式
+        sb.AppendLine(string.Format("var LCS_bannerPos = {0};",IcoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
+        sb.AppendLine(string.Format("var LCS_accountId = '{0}';",aid));
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/live2.js\"></script> ');");
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/orientation.js\"></script> ');");
         context.Response.ContentType = "text/plain"; // context.Response.ContentType = "application/x-javascript";
