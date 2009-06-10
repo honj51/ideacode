@@ -39,7 +39,7 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.BackColor = System.Drawing.Color.Transparent;
-            this.lblVersion.Location = new System.Drawing.Point(28, 58);
+            this.lblVersion.Location = new System.Drawing.Point(22, 37);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(41, 12);
             this.lblVersion.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             this.lblProductName.AutoSize = true;
             this.lblProductName.BackColor = System.Drawing.Color.Transparent;
-            this.lblProductName.Location = new System.Drawing.Point(28, 22);
+            this.lblProductName.Location = new System.Drawing.Point(22, 9);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(53, 12);
             this.lblProductName.TabIndex = 1;
@@ -58,9 +58,9 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(205, 137);
+            this.btnOk.Location = new System.Drawing.Point(193, 97);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(82, 23);
+            this.btnOk.Size = new System.Drawing.Size(73, 23);
             this.btnOk.TabIndex = 2;
             this.btnOk.Text = "确定";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@
             // 
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.BackColor = System.Drawing.Color.Transparent;
-            this.lblCompanyName.Location = new System.Drawing.Point(28, 94);
+            this.lblCompanyName.Location = new System.Drawing.Point(22, 65);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(53, 12);
             this.lblCompanyName.TabIndex = 3;
@@ -79,7 +79,8 @@
             // linkLabel
             // 
             this.linkLabel.AutoSize = true;
-            this.linkLabel.Location = new System.Drawing.Point(13, 164);
+            this.linkLabel.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabel.Location = new System.Drawing.Point(22, 97);
             this.linkLabel.Name = "linkLabel";
             this.linkLabel.Size = new System.Drawing.Size(59, 12);
             this.linkLabel.TabIndex = 4;
@@ -94,13 +95,13 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.content_bg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(322, 181);
+            this.ClientSize = new System.Drawing.Size(278, 134);
             this.Controls.Add(this.linkLabel);
             this.Controls.Add(this.lblCompanyName);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblProductName);
             this.Controls.Add(this.lblVersion);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";

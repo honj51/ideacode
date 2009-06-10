@@ -59,7 +59,6 @@ namespace LiveSupport.OperatorConsole
 
         private SoundPlayer player = new SoundPlayer();
         
-        OperatorWS ws = new OperatorWS();
         //private VisitSession chatSession;
         private Chat chat;
         private long lastCheckTime = DateTime.Now.Ticks;
@@ -174,17 +173,12 @@ namespace LiveSupport.OperatorConsole
         public ChatForm(Chat chat, bool invite)
         {
             InitializeComponent();
-            // Simple authentication
-            AuthenticationHeader auth = new AuthenticationHeader();
-            auth.OperatorId = Program.CurrentOperator.OperatorId;
-            auth.OperatorSession = Program.CurrentOperator.OperatorSession;
-            ws.AuthenticationHeaderValue = auth;
 
-            if (ws.GetQuickResponse().Length > 0)
+            if (Program.WS.GetQuickResponse().Length > 0)
             {
-                for (int i = 0; i < ws.GetQuickResponse().Length; i++)
+                for (int i = 0; i < Program.WS.GetQuickResponse().Length; i++)
                 {
-                    Program.quickResponseCategory.Add(ws.GetQuickResponse()[i]);
+                    Program.quickResponseCategory.Add(Program.WS.GetQuickResponse()[i]);
                 }
             }
             this.chat = chat;
@@ -192,7 +186,7 @@ namespace LiveSupport.OperatorConsole
 
             if (!invite)
             {
-                acceptChatRequestResult = ws.AcceptChatRequest(chat.ChatId);
+                acceptChatRequestResult = Program.WS.AcceptChatRequest(chat.ChatId);
                 if (acceptChatRequestResult == -1) 
                 {
                     wb.Navigate("about:该访客对话请求已被其他客服接受"); 
@@ -268,7 +262,7 @@ namespace LiveSupport.OperatorConsole
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
-                ws.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
+                Program.WS.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
             }
         }
       
@@ -295,7 +289,7 @@ namespace LiveSupport.OperatorConsole
 
                 wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} </span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", "System", "The operator has left the chat session..."));
                
-               //ws.AddMessage(msg);
+               //Program.WS.AddMessage(msg);
 
                 //((MainForm)this.ParentForm).EndChat((TabPage)this.Parent, myChatRequest.ChatId);
             }
@@ -329,11 +323,11 @@ namespace LiveSupport.OperatorConsole
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
 
-            ws.SendMessage(msg);
+            Program.WS.SendMessage(msg);
             wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message));
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
             //msg.Type = MessageType_ToAll;//*	
-            //ws.AddMessage(msg);
+            //Program.WS.AddMessage(msg);
         }
 
       
@@ -392,7 +386,7 @@ namespace LiveSupport.OperatorConsole
              
                   if (acceptChatRequestResult == 0)
                   {
-                      ws.CloseChat(this.Chat.ChatId);
+                      Program.WS.CloseChat(this.Chat.ChatId);
                   }
                   Program.ChatForms.Remove(this);                  
                   

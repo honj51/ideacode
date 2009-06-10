@@ -1,6 +1,6 @@
 namespace LiveSupport.OperatorConsole
 {
-    partial class Login
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,8 @@ namespace LiveSupport.OperatorConsole
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.lblOpName = new System.Windows.Forms.Label();
             this.txtOpName = new System.Windows.Forms.TextBox();
             this.txtOpPassword = new System.Windows.Forms.TextBox();
@@ -46,6 +47,7 @@ namespace LiveSupport.OperatorConsole
             this.cbxAutoLogin = new System.Windows.Forms.CheckBox();
             this.linkLabelRegister = new System.Windows.Forms.LinkLabel();
             this.linkLabelPassword = new System.Windows.Forms.LinkLabel();
+            this.autoLoginTimer = new System.Windows.Forms.Timer(this.components);
             this.pnlLogIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
@@ -122,9 +124,10 @@ namespace LiveSupport.OperatorConsole
             // 
             // lblMessage
             // 
-            this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(221, 22);
+            this.lblMessage.Location = new System.Drawing.Point(207, 22);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(143, 12);
             this.lblMessage.TabIndex = 11;
@@ -145,12 +148,13 @@ namespace LiveSupport.OperatorConsole
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::LiveSupport.OperatorConsole.Properties.Resources.loading;
-            this.pictureBox1.Location = new System.Drawing.Point(315, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(176, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 34);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // picLogIn
             // 
@@ -221,7 +225,11 @@ namespace LiveSupport.OperatorConsole
             this.linkLabelPassword.Text = "È¡»ØÃÜÂë";
             this.linkLabelPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPassword_LinkClicked);
             // 
-            // Login
+            // autoLoginTimer
+            // 
+            this.autoLoginTimer.Tick += new System.EventHandler(this.autoLoginTimer_Tick);
+            // 
+            // LoginForm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -244,9 +252,8 @@ namespace LiveSupport.OperatorConsole
             this.Controls.Add(this.txtOpName);
             this.Controls.Add(this.lblOpName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "Login";
+            this.Name = "LoginForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "µÇÂ½";
             this.Load += new System.EventHandler(this.Login_Load);
@@ -278,5 +285,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Label lblAuthenticate;
         private System.Windows.Forms.PictureBox picLogIn;
         public System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Timer autoLoginTimer;
     }
 }

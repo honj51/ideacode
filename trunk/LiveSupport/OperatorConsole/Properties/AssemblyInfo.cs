@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("LiveSupport 座席客户端程序")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("江西互动网络技术")]
-[assembly: AssemblyProduct("LiveSupport")]
+[assembly: AssemblyProduct("LiveSupport 座席客户端")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
