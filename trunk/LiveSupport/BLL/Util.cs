@@ -35,6 +35,7 @@ namespace LiveSupport.BLL
             return num.ToString();
         }
         #endregion
+
         #region 邮件
         /// <summary>
         /// 发送邮件
