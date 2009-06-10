@@ -41,8 +41,6 @@ namespace LiveSupport.BLL
         }
         #endregion
 
-
-
         #region 修改客服分组
         public bool UpdateClientGrounp(ClientGrounp cg)
         {

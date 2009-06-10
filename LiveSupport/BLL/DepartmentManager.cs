@@ -14,6 +14,7 @@ namespace LiveSupport.BLL
     public class DepartmentManager
     {
         private static IDepartmentProvider Provider = new SqlDepartmentProvider();
+
         #region 添加部门
         public static bool AddDepartment(Department department)
         {

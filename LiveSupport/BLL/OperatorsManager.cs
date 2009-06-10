@@ -15,6 +15,8 @@ namespace LiveSupport.BLL
     public class OperatorsManager
     {
         private static IOperatorProvider Provider = new SqlOperatorProvider();
+
+        #region 删除客服(string operatorId,string accountLoginName)
         public static int  DeleteOperatorByid(string operatorId,string accountLoginName)
         {
             Operator oper=Provider.GetOperatorByOperatorId(operatorId);
@@ -32,6 +34,7 @@ namespace LiveSupport.BLL
                 return 2;
             }
         }
+        #endregion
 
         #region 增加Operator
         public static bool NewOperator(Operator op)
@@ -44,25 +47,22 @@ namespace LiveSupport.BLL
                 return false;
         }
         #endregion
-        /// <summary>
-        /// 根据公司ID查询所以该公司的客服人员
-        /// </summary>
-        /// <param name="accountId"></param>
-        /// <returns></returns>
+
+        #region 根据公司ID查询所以该公司的客服人员
         public static List<Operator> GetOperatorByAccountId(string accountId)
         {
             return Provider.GetOperatorByAccountId(accountId);
         }
-        /// <summary>
-        /// 通过OperatorId获得Operator
-        /// </summary>
-        /// <param name="operatorId"></param>
-        /// <returns></returns>
+        #endregion
+
+        #region 通过OperatorId获得Operator
         public static Operator GetOperatorByOperatorId(string operatorId)
         {
             return Provider.GetOperatorByOperatorId(operatorId);
         }
-        //修改Operator
+        #endregion
+
+        #region 修改Operator
         public static bool UpdateOperator(Operator op)
         {
             int i = 0;
@@ -72,8 +72,9 @@ namespace LiveSupport.BLL
             else
                 return false;
         }
+        #endregion
 
-         #region 通过Email找回密码
+        #region 通过Email找回密码
         public static Operator GetPasswordByAccountNameLoginNameAndEmail(string accountLoginName, string loginName, string eamil)
         {
             return Provider.GetPasswordByAccountNameLoginNameAndEmail(accountLoginName, loginName, eamil);
