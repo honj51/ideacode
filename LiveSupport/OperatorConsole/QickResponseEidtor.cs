@@ -12,14 +12,9 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class QickResponseEidtor : Form
     {
-        OperatorWS ws = new OperatorWS();
         public QickResponseEidtor()
         {
             InitializeComponent();
-            AuthenticationHeader h = new AuthenticationHeader();
-            h.OperatorId = Program.CurrentOperator.OperatorId;
-            h.OperatorSession = Program.CurrentOperator.OperatorSession;
-            ws.AuthenticationHeaderValue = h;
             toolStrip1.Visible = Result;
             
             if (toolStrip1.Visible==false)
@@ -28,11 +23,11 @@ namespace LiveSupport.OperatorConsole
              
             }
            
-                if (ws.GetQuickResponse().Length > 0)
+                if (Program.WS.GetQuickResponse().Length > 0)
                 {
-                    for (int i = 0; i < ws.GetQuickResponse().Length; i++)
+                    for (int i = 0; i < Program.WS.GetQuickResponse().Length; i++)
                     {
-                        Program.quickResponseCategory.Add(ws.GetQuickResponse()[i]);
+                        Program.quickResponseCategory.Add(Program.WS.GetQuickResponse()[i]);
                     }
                 }
           
@@ -149,7 +144,7 @@ namespace LiveSupport.OperatorConsole
             }
             if(Program.quickResponseCategory!=null)
             {
-                ws.SaveQuickResponse(Program.quickResponseCategory.ToArray());
+                Program.WS.SaveQuickResponse(Program.quickResponseCategory.ToArray());
             }
            
             

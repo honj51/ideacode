@@ -11,7 +11,6 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class ChangePassword : Form
     {
-        OperatorWS ws = new OperatorWS();
         public ChangePassword()
         {
             InitializeComponent();
@@ -49,7 +48,7 @@ namespace LiveSupport.OperatorConsole
                 if (this.txtNewPassword.Text == this.txtNewPassword2.Text)
                 {
 
-                    if (ws.ChangePassword(this.txtPassword.Text, txtNewPassword.Text)== 0)
+                    if (Program.WS.ChangePassword(this.txtPassword.Text, txtNewPassword.Text)== 0)
                     {
                         MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
                         this.Close();
@@ -72,12 +71,6 @@ namespace LiveSupport.OperatorConsole
 
         private void ChangePassword_Load(object sender, EventArgs e)
         {
-            AuthenticationHeader h = new AuthenticationHeader();
-            h.OperatorId = Program.CurrentOperator.OperatorId;
-            h.OperatorSession = Program.CurrentOperator.OperatorSession;
-            ws.AuthenticationHeaderValue = h;
         }
-
-       
     }
 }

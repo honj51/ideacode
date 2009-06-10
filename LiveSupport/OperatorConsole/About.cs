@@ -18,10 +18,10 @@ namespace LiveSupport.OperatorConsole
 
         private void About_Load(object sender, EventArgs e)
         {
-            lblProductName.Text = "产品名称 "+AssemblyProduct;
+            lblProductName.Text = AssemblyProduct;
             lblVersion.Text = "版本 " + AssemblyVersion;
            // lblCopyright.Text = "版权 " + AssemblyCopyright;
-            lblCompanyName.Text = "公司名称 " + AssemblyCompany;
+            lblCompanyName.Text = AssemblyCompany;
 
             linkLabel.Text = Properties.Settings.Default.URL;
         }

@@ -12,7 +12,6 @@ namespace LiveSupport.OperatorConsole
    
     public partial class OperatorPannel : UserControl
     {
-        OperatorWS ws = new OperatorWS();
          public string chatId=null;
         public OperatorPannel()
         {

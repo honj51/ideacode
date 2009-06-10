@@ -25,11 +25,12 @@ namespace LiveSupport.OperatorConsole
         public static List<NotifyForm> NotifyForms = new List<NotifyForm>();
         public static List<ChatForm> ChatForms = new List<ChatForm>();
         
-        public static List<Visitor> Visitors;
+        public static List<Visitor> Visitors = new List<Visitor>();
         public static List<Chat> Chats = new List<Chat>();
         public static Operator CurrentOperator;        
         public static List<QuickResponseCategory> quickResponseCategory = new List<QuickResponseCategory>();
-        
+        public static OperatorWS WS = new OperatorWS();
+
         public static List<Chat> GetMyActiveChatSessions()
         {
             List<Chat> chats = new List<Chat>();
@@ -51,7 +52,7 @@ namespace LiveSupport.OperatorConsole
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
-            Application.Run(new Login());
+            Application.Run(new LoginForm());
 		}
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

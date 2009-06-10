@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
-using System.Media;
 using System.IO;
 using System.Net;
 using Microsoft.Win32;
@@ -17,20 +16,6 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class MainForm : Form
     {
-        // Declare a Hashtable array in which to store the groups.
-        private Hashtable[] groupTables;
-
-        // Declare a variable to store the current grouping column.
-        int groupColumn=-1;
-        private bool isAllowGroup=true;
-
-        OperatorWS ws = new OperatorWS();
-        private DateTime lastRequestTime = DateTime.Now.AddMinutes(-30);
-        private SoundPlayer player = new SoundPlayer();
-        private List<Visitor> visitors = new List<Visitor>();
-        private List<Operator> operators = new List<Operator>();
-        List<Operator> chatOperator = new List<Operator>();
-
         #region VisitorTreeView_HeaderColumn Index
         private const int VisitorTreeView_HeaderColumn_VisitorName = 0;
         private const int VisitorTreeView_HeaderColumn_Location = 1;
@@ -47,139 +32,109 @@ namespace LiveSupport.OperatorConsole
         private const int VisitorTreeView_HeaderColumn_PageRequestCount = 12;
         #endregion
 
-        public MainForm(DateTime LoginTime)
+        private Hashtable[] groupTables;// Declare a Hashtable array in which to store the groups.
+        int groupColumn = -1;// Declare a variable to store the current grouping column.
+        private bool isAllowGroup = true;
+        private List<Operator> operators = new List<Operator>();
+        private DateTime loginTime;
+
+        public MainForm(DateTime loginTime)
         {
+            this.loginTime = loginTime;
             InitializeComponent();
-
-       
-            initForm(LoginTime);
-
-            autoLoginToolStripMenuItem.Checked = Properties.Settings.Default.AutoLogin;
-               
-            playSoundOnChatRequestToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatReq;
-            playSoundOnChatMessageToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatMsg;
-            whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked = Properties.Settings.Default.GetWebRequestOffline;
-            autostartToolStripMenuItem.Checked = Properties.Settings.Default.StartWithWindows;
+            
         }
-        public void initForm(DateTime LoginTime) 
+
+        private void initForm()
         {
             this.operatorToolStripStatusLabel.Text = "登录客服为：" + Program.CurrentOperator.NickName;
-            if (Program.CurrentOperator.Status== OperatorStatus.Idle)
-                this.stateToolStripStatusLabel.Text = "目前状态：在线";
-
-            Properties.Settings.Default.OperatorLoginTime = LoginTime;
-
+            this.stateToolStripStatusLabel.Text = "目前状态：" + getOperatorsStatusText(Program.CurrentOperator.Status);
             this.adminToolStripMenuItem.Visible = Program.CurrentOperator.IsAdmin;
-            this.rejiggerpasswordToolStripMenuItem.Enabled = !Program.CurrentOperator.IsAdmin;
+            this.changePasswordToolStripMenuItem.Enabled = !Program.CurrentOperator.IsAdmin;
             if (Program.CurrentOperator.IsAdmin)
                 this.powerToolStripStatusLabel.Text = "管理员";
             else
                 this.powerToolStripStatusLabel.Text = "普通客服";
 
+            autoLoginToolStripMenuItem.Checked = Properties.Settings.Default.AutoLogin;
+            playSoundOnChatRequestToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatReq;
+            playSoundOnChatMessageToolStripMenuItem.Checked = Properties.Settings.Default.PlaySoundOnChatMsg;
+            whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked = Properties.Settings.Default.GetWebRequestOffline;
+            autostartToolStripMenuItem.Checked = Properties.Settings.Default.StartWithWindows;
         }
 
-      
-
-        private void DisplayStatus()
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            int VisitorChatResult = 0;
-            int Chatting = 0;
-            int Visitors = 0;
-            foreach(ListViewItem item in lstVisitors.Items)
-            {
-                 Visitor v= item.Tag as Visitor;
-                if (v.CurrentSession.Status== VisitSessionStatus.Chatting)
-                {
-                    VisitorChatResult++;
-                }
-                if(v.CurrentSession.OperatorId==Program.CurrentOperator.OperatorId&&v.CurrentSession.Status== VisitSessionStatus.Chatting)
-                {
-                    Chatting++;
-                }
-                if(v.CurrentSession.Status!= VisitSessionStatus.Leave)
-                {
-                    Visitors++;
-                }
+            initForm();
             
-            }
+            lastCheck.ChatSessionChecks = new MessageCheck[] { };
+            lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
 
-            lblCurrentVisitors.Text = "当前访客数: " + Visitors;
-            lblVisitorOnChat.Text = "对话中的访客数: " + VisitorChatResult;
-            lblMyChat.Text = "我的对话数: "+Chatting;
-          
+            messageendDateTimePicker.MaxDate = DateTime.Now;
+            messageendDateTimePicker.MaxDate = DateTime.Now;
+            requestendDateTimePicker.MaxDate = DateTime.Now;
+            requestbeginDateTimePicker.MaxDate = DateTime.Now;
         }
 
-        private void PlayChatReqSound()
+        private void MainForm_Resize(object sender, EventArgs e)
         {
-
-            if (Properties.Settings.Default.PlaySoundOnChatReq)
-            {
-                player.Stream = Properties.Resources.newchatreq;
-                player.Play();
-            }
-
+            if (this.WindowState == FormWindowState.Minimized)
+                showMainForm(false);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
+            timer1.Enabled = false;
+            loginTimer.Enabled = false;
 
-            //foreach (ListViewItem item in lstVisitors.Items)
-            //{
-            //    Visitor v = item.Tag as Visitor;
-            //    if (v.CurrentSession.OperatorId == Program.CurrentOperator.OperatorId)
-            //    {
-                    
-            //        ws.CloseChat(v.CurrentSession.SessionId);
-
-            //    }
-
-            //} 
-               timer1.Enabled = false;
-               loginTimer.Enabled = false;
-               
-               if (Program.ChatForms.Count == 0)
-               {
-                   try
-                   {
-                       ws.Logout();
-                   }
-                   catch (Exception ex)
-                   {
-                       Trace.WriteLine("Logout异常: " + ex.Message);                      
-                   }
-                   
-               }
-               else
-               {
-                   MessageBox.Show("访客对话存在无法关闭客户端");
-                   e.Cancel = true;
-                   return;
-                  
+            if (Program.ChatForms.Count == 0)
+            {
+                try
+                {
+                    Program.WS.Logout();
                 }
-                Properties.Settings.Default.Save();
+                catch (Exception ex)
+                {
+                    Trace.WriteLine("Logout异常: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("访客对话存在无法关闭客户端");
+                e.Cancel = true;
+                return;
 
-                 Application.Exit();
-           
+            }
+            Properties.Settings.Default.Save();
+
+            Application.Exit();
         }
 
-       
-
-
-        private void cannedMessagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void displayStatus()
         {
-            using (CannedMessages f = new CannedMessages())
+            int VisitorChatResult = 0;
+            int Chatting = 0;
+            int Visitors = 0;
+            foreach (ListViewItem item in lstVisitors.Items)
             {
-                f.ShowDialog(this);
+                Visitor v = item.Tag as Visitor;
+                if (v.CurrentSession.Status == VisitSessionStatus.Chatting)
+                {
+                    VisitorChatResult++;
+                }
+                if (v.CurrentSession.OperatorId == Program.CurrentOperator.OperatorId && v.CurrentSession.Status == VisitSessionStatus.Chatting)
+                {
+                    Chatting++;
+                }
+                if (v.CurrentSession.Status != VisitSessionStatus.Leave)
+                {
+                    Visitors++;
+                }
             }
-        }
 
-        private void presetLinksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (PresetLinks f = new PresetLinks())
-            {
-                f.ShowDialog(this);
-            }
+            lblCurrentVisitors.Text = "当前访客数: " + Visitors;
+            lblVisitorOnChat.Text = "对话中的访客数: " + VisitorChatResult;
+            lblMyChat.Text = "我的对话数: " + Chatting;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -190,24 +145,13 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void changeOperatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //connectToolStripMenuItem.Checked = true;
-            //disconnectToolStripMenuItem.Checked = false;
-            //ws.SetOperatorStatus(Program.CurrentOperator.Id, false);
-        }
 
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-            if(MessageBox.Show("您确定要退出，更换其他帐号登录吗？","提示",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1)==DialogResult.Yes)
+            if (MessageBox.Show("您确定要退出，更换其他帐号登录吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                restartApp("");                
+                restartApp("");
             }
-
-           // connectToolStripMenuItem.Checked = false;
-            //disconnectToolStripMenuItem.Checked = true;
-            //ws.SetOperatorStatus(Program.CurrentOperator.Id, true);
         }
 
         private void restartApp(string args)
@@ -217,63 +161,9 @@ namespace LiveSupport.OperatorConsole
             Application.Exit();
         }
 
-        private void playSoundOnChatRequestToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            playSoundOnChatRequestToolStripMenuItem.Checked = !playSoundOnChatRequestToolStripMenuItem.Checked;
-            Properties.Settings.Default.PlaySoundOnChatReq = playSoundOnChatRequestToolStripMenuItem.Checked;
-            Properties.Settings.Default.Save();
-        }
-
-        private void playSoundOnChatMessageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            playSoundOnChatMessageToolStripMenuItem.Checked = !playSoundOnChatMessageToolStripMenuItem.Checked;
-            Properties.Settings.Default.PlaySoundOnChatMsg = playSoundOnChatMessageToolStripMenuItem.Checked;
-            Properties.Settings.Default.Save();
-        }
-
-        private void whenOfflineGetWebsiteRequestsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked = !whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked;
-            Properties.Settings.Default.GetWebRequestOffline = whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked;
-            Properties.Settings.Default.Save();
-        }
-
-        public void PlayMsgSound()
-        {
-            player.Stream = Properties.Resources.newmsg;
-            player.Play();
-        }
-        //
-     
-
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            AuthenticationHeader h = new AuthenticationHeader();
-            h.OperatorId = Program.CurrentOperator.OperatorId;
-            h.OperatorSession = Program.CurrentOperator.OperatorSession;
-            ws.AuthenticationHeaderValue = h;
-
-            lastCheck.ChatSessionChecks = new MessageCheck[] { };
-            lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
-
-            messageendDateTimePicker.MaxDate = DateTime.Now;
-            messageendDateTimePicker.MaxDate = DateTime.Now;
-            requestendDateTimePicker.MaxDate = DateTime.Now;
-            requestbeginDateTimePicker.MaxDate = DateTime.Now;
-
-
-        }
-
-        private void MainForm_Resize(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-                showMainForm(false);
-        }
-
         private FormWindowState saveWindowState = FormWindowState.Normal;
         private void showMainForm(bool show)
-        { 
+        {
             this.Visible = show;
             if (show)
             {
@@ -294,12 +184,12 @@ namespace LiveSupport.OperatorConsole
 
         private void offlineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // NotifyForm.ShowNotifier(false, "你好！");
+            // NotifyForm.ShowNotifier(false, "你好！");
         }
 
         private void beRightBackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // NotifyForm.ShowNotifier(true, "有人请求对话!!!");
+            // NotifyForm.ShowNotifier(true, "有人请求对话!!!");
         }
 
         private void autostartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -325,9 +215,7 @@ namespace LiveSupport.OperatorConsole
         private void loginTimer_Tick(object sender, EventArgs e)
         {
             DateTime dtime = DateTime.Now;
-
-            this.stickToolStripStatusLabel.Text = DateDiff(Properties.Settings.Default.OperatorLoginTime, dtime);
-
+            this.stickToolStripStatusLabel.Text = DateDiff(loginTime, dtime);
         }
 
         private string DateDiff(DateTime DateTime1, DateTime DateTime2)
@@ -348,12 +236,12 @@ namespace LiveSupport.OperatorConsole
 
         private NewChangesCheck lastCheck = new NewChangesCheck();
         TestFixture testFixture = new TestFixture();
-        
+
         private NewChangesCheckResult getNewChanges(NewChangesCheck check)
         {
             try
             {
-                return ws.CheckNewChanges(lastCheck);
+                return Program.WS.CheckNewChanges(lastCheck);
             }
             catch (WebException ex)
             {
@@ -373,14 +261,14 @@ namespace LiveSupport.OperatorConsole
         {
             timer1.Enabled = false;
             loginTimer.Enabled = false;
-            MessageBox.Show("与服务器的连接中断，需要重新登陆！","连接中断", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("与服务器的连接中断，需要重新登陆！", "连接中断", MessageBoxButtons.OK, MessageBoxIcon.Error);
             restartApp("-r");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             NewChangesCheckResult result = getNewChanges(lastCheck);
-            
+
             if (result == null) return;
             if (result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
             {
@@ -403,7 +291,7 @@ namespace LiveSupport.OperatorConsole
 
             precessChats(result);
 
-            List<MessageCheck> nextChecks = new List<MessageCheck>(); 
+            List<MessageCheck> nextChecks = new List<MessageCheck>();
             foreach (var cf in Program.ChatForms)
             {
                 // find messages with ChatId
@@ -412,37 +300,31 @@ namespace LiveSupport.OperatorConsole
                 {
                     if (cf.Chat.ChatId == item.ChatId)
                     {
-                        ms = item.Messages;                     
+                        ms = item.Messages;
                         break;
                     }
                 }
-                
+
                 MessageCheck c = new MessageCheck();
                 c.ChatId = cf.Chat.ChatId;
                 c.LastCheckTime = cf.LastCheckTime;
                 if (ms != null)
-                {   
+                {
                     foreach (var m in ms)
                     {
                         if (m != null && m.SentDate.Ticks >= c.LastCheckTime)
                         {
                             cf.RecieveMessage(m);
-                            c.LastCheckTime =Math.Max(m.SentDate.Ticks, c.LastCheckTime);
+                            c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
                         }
                         else
                             continue;
-                        
+
                     }
                     cf.LastCheckTime = c.LastCheckTime;
                 }
                 nextChecks.Add(c);
-            
-                if (result.Operators.Length > chatOperator.Count || checkIfOperatorStatusChanges(chatOperator, result.Operators))
-                {
-                    chatOperator.Clear();
-                    chatOperator.AddRange(result.Operators);
-                    cf.RecieveOperator(operators);
-                }
+
             }
             lastCheck.ChatSessionChecks = nextChecks.ToArray();
 
@@ -451,47 +333,38 @@ namespace LiveSupport.OperatorConsole
             //Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
             //lastCheck = result.CheckTime;
 
-
-
-            // 播放声音
-            if (hasChatRequest())
-            {
-                PlayChatReqSound();
-            }
-            Program.Visitors = visitors;
-           
             changeVisitorListViewItemColor();
 
-            DisplayStatus();
+            displayStatus();
 
-            
+
         }
 
         private void precessChats(NewChangesCheckResult result)
         {
             Program.Chats.Clear();
             Program.Chats.AddRange(result.Chats);
-        
+
             foreach (var item in Program.Chats)
             {
-               
+
                 if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator)
                 {
                     Visitor visitor = null;
-                    if(Program.Visitors!=null)
+                    if (Program.Visitors != null)
                     {
-                    foreach (var v in Program.Visitors)
-                    {
-                        if (v.VisitorId == item.VisitorId)
+                        foreach (var v in Program.Visitors)
                         {
-                            visitor = v;
-                            break;
+                            if (v.VisitorId == item.VisitorId)
+                            {
+                                visitor = v;
+                                break;
+                            }
                         }
+
+                        NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", item);
+
                     }
-                     
-                         NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", item);
-                        
-                   }
                 }
             }
         }
@@ -529,7 +402,7 @@ namespace LiveSupport.OperatorConsole
                 {
                     if (item == null) continue;
                     bool visitorExist = false;
-                    foreach (var v in visitors)
+                    foreach (var v in Program.Visitors)
                     {
                         if (v.VisitorId == item.VisitorId)
                         {
@@ -559,7 +432,7 @@ namespace LiveSupport.OperatorConsole
                     string waitingDuring = item.CurrentSession.WaitingDuring.Ticks == 0 ? "" : item.CurrentSession.WaitingDuring.ToString();
                     string chattingDuring = item.CurrentSession.ChattingDuring.Ticks == 0 ? "" : item.CurrentSession.ChattingDuring.ToString();
                     string visitingTime = item.CurrentSession.VisitingTime.Ticks == 0 ? "" : item.CurrentSession.VisitingTime.ToString();
-                    string OperatorId =item.CurrentSession.OperatorId;
+                    string OperatorId = item.CurrentSession.OperatorId;
                     if (visitorExist)
                     {
                         foreach (ListViewItem vitem in lstVisitors.Items)
@@ -610,8 +483,8 @@ namespace LiveSupport.OperatorConsole
                          item.CurrentSession.VisitingTime.ToString(), leaveTime, chatRequestTime,
                          chattingStartTime,waitingDuring, chattingDuring,item.CurrentSession.PageRequestCount.ToString()
                         });
-                        visitors.Add(item);
-                        item.CurrentSession.OperatorId= item.CurrentSession.Status!= VisitSessionStatus.Chatting ? "" : item.CurrentSession.OperatorId;
+                        Program.Visitors.Add(item);
+                        item.CurrentSession.OperatorId = item.CurrentSession.Status != VisitSessionStatus.Chatting ? "" : item.CurrentSession.OperatorId;
                         lvi.Tag = item;
                         lstVisitors.Items.Add(lvi);
                     }
@@ -662,7 +535,7 @@ namespace LiveSupport.OperatorConsole
                 Visitor v = item.Tag as Visitor;
                 VisitSession local = v.CurrentSession;
 
-                VisitSession remote = null;
+                 VisitSession remote = null;
                 foreach (var c in result.VisitSessionChange)
                 {
                     if (c == null)
@@ -679,6 +552,10 @@ namespace LiveSupport.OperatorConsole
                 if (remote == null) continue;
                 if (remote.Status == VisitSessionStatus.ChatRequesting)
                 {
+                    foreach (Chat item in Program.Chats)
+                    {
+                      
+                    }
                     // 新的对话请求
                     //NotifyForm.ShowNotifier(true, "访客 " + v.Name + " 请求对话！", remote);
 
@@ -690,14 +567,14 @@ namespace LiveSupport.OperatorConsole
                 else if (remote.Status == VisitSessionStatus.Chatting)
                 {
                     foreach (var opItem in operators)
-	                {
+                    {
                         if (opItem.OperatorId == remote.OperatorId)
                         {
                             //local.OperatorId = remote.OperatorId;
                             item.SubItems[VisitorTreeView_HeaderColumn_Operator].Text = opItem.NickName;
-                             break;
+                            break;
                         }
-	                }
+                    }
                 }
 
                 local.Status = remote.Status;
@@ -706,7 +583,7 @@ namespace LiveSupport.OperatorConsole
                     v.CurrentSession.OperatorId = "";
                     item.SubItems[VisitorTreeView_HeaderColumn_Operator].Text = "暂无接待";
                 }
-                
+
                 item.SubItems[VisitorTreeView_HeaderColumn_Status].Text = getVisitSessionStatusText(local.Status);
 
             }
@@ -730,52 +607,52 @@ namespace LiveSupport.OperatorConsole
         private bool VisitorChange(VisitSession[] visitSession)
         {
             foreach (ListViewGroup item in lstVisitors.Groups)
-	        {
+            {
                 if (item.Tag == null) continue;
-                Visitor v=item.Tag as Visitor;
+                Visitor v = item.Tag as Visitor;
                 for (int i = 0; i < visitSession.Length; i++)
                 {
                     if (v.CurrentSession.Status != visitSession[i].Status)
                     {
-                        
+
                         return true;
-                       
+
                     }
                 }
-                
 
-	         }
+
+            }
             return false;
-            
-        
+
+
         }
-        string getOperatorsStatusText(OperatorStatus os) 
+        string getOperatorsStatusText(OperatorStatus os)
         {
             string status;
             switch (os)
-            { 
+            {
                 case OperatorStatus.Idle:
                     status = "空闲";
-                     break;
-                case OperatorStatus.Away :
-                     status = "离开";
                     break;
-                case OperatorStatus.Chatting :
-                    status="对话中";
+                case OperatorStatus.Away:
+                    status = "离开";
                     break;
-                case OperatorStatus.BeRightBack :
+                case OperatorStatus.Chatting:
+                    status = "对话中";
+                    break;
+                case OperatorStatus.BeRightBack:
                     status = "一会回来";
                     break;
-                case OperatorStatus.Offline :
-                    status="离线";
+                case OperatorStatus.Offline:
+                    status = "离线";
                     break;
-                default :
-                    status="离线";
+                default:
+                    status = "离线";
                     break;
-            
+
             }
             return status;
-           
+
         }
 
         string getVisitSessionStatusText(VisitSessionStatus s)
@@ -801,29 +678,19 @@ namespace LiveSupport.OperatorConsole
             }
             return status;
         }
-        private bool hasChatRequest()
-        {
-            foreach (var item in visitors)
-            {
-                if (item.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
-        private bool checkIfOperatorStatusChanges(List<Operator> operators, Operator[] p)
+
+        private bool checkIfOperatorStatusChanges(List<Operator> ops, Operator[] p)
         {
-            if (operators==null||p==null)
+            if (ops == null || p == null)
             {
                 return false;
-                
+
             }
-            for (int i = 0; i < p.Length; i++) 
+            for (int i = 0; i < p.Length; i++)
             {
-                   
-                foreach (var item in operators)
+
+                foreach (var item in ops)
                 {
                     if (p[i].Status != item.Status && p[i].OperatorId == item.OperatorId)
                     {
@@ -835,7 +702,7 @@ namespace LiveSupport.OperatorConsole
             }
             return false;
 
-                
+
         }
 
         private void lstVisitors_SelectedIndexChanged(object sender, EventArgs e)
@@ -844,7 +711,7 @@ namespace LiveSupport.OperatorConsole
             {
                 Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
                 visitorBindingSource.DataSource = v;
-               
+
             }
 
         }
@@ -868,9 +735,9 @@ namespace LiveSupport.OperatorConsole
             {
                 return;
             }
-            Visitor visitor= lstVisitors.SelectedItems[0].Tag as Visitor;
+            Visitor visitor = lstVisitors.SelectedItems[0].Tag as Visitor;
             //visitor.CurrentSession.IP;
-          
+
             lstVisitors.FullRowSelect = true;
 
             if (lstVisitors.SelectedItems.Count > 0)
@@ -878,21 +745,18 @@ namespace LiveSupport.OperatorConsole
 
                 if (visitor.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
                 {
-
-                    //声音
-                    player.Stop();
                     foreach (var item in Program.Chats)
                     {
-                        if (item.VisitorId == visitor.VisitorId && item.Status== ChatStatus.Requested)
+                        if (item.VisitorId == visitor.VisitorId && item.Status == ChatStatus.Requested)
                         {
                             ChatForm cf = new ChatForm(item);
                             Program.ChatForms.Add(cf);
                             cf.Show();
                             break;
-                  
+
                         }
                     }
-                   
+
                 }
                 else
                 {
@@ -917,11 +781,11 @@ namespace LiveSupport.OperatorConsole
             }
 
             Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-           if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
+            if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
             {
 
-                Chat chat = ws.InviteChat(v.VisitorId);
-              
+                Chat chat = Program.WS.InviteChat(v.VisitorId);
+
 
                 if (chat != null)
                 {
@@ -930,8 +794,8 @@ namespace LiveSupport.OperatorConsole
                     {
                         if (item.Chat.VisitorId == chat.VisitorId)
                         {
-                            
-                            ws.CloseChat(item.Chat.ChatId);
+
+                            Program.WS.CloseChat(item.Chat.ChatId);
                             cf = item;
                             cf.Chat = chat;
                             break;
@@ -943,26 +807,26 @@ namespace LiveSupport.OperatorConsole
                         cf = new ChatForm(chat, true);
                         Program.ChatForms.Add(cf);
                     }
-                   
+
                     cf.Show();
                 }
-              }
-              else
-              {
-                  MessageBox.Show("该访客已被其他客服邀请或在对话中");
-              
-              }
-                //else if (ws.InviteChat(v.VisitorId) == -1)
-                //{
-                //    MessageBox.Show("该访客已被邀请");
-                //}
-                //else if (ws.InviteChat(v.VisitorId) == -2)
-                //{
-                //    MessageBox.Show("访客拒绝邀请");
-                //}
+            }
+            else
+            {
+                MessageBox.Show("该访客已被其他客服邀请或在对话中");
 
-          }         
-       
+            }
+            //else if (Program.WS.InviteChat(v.VisitorId) == -1)
+            //{
+            //    MessageBox.Show("该访客已被邀请");
+            //}
+            //else if (Program.WS.InviteChat(v.VisitorId) == -2)
+            //{
+            //    MessageBox.Show("访客拒绝邀请");
+            //}
+
+        }
+
         // Sorts ListViewGroup objects by header value.
         private class ListViewGroupSorter : IComparer
         {
@@ -997,12 +861,12 @@ namespace LiveSupport.OperatorConsole
         //单击列名分组
         private void lstVisitors_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (lstVisitors.Groups.Count > 0&&e.Column==groupColumn)
+            if (lstVisitors.Groups.Count > 0 && e.Column == groupColumn)
             {
                 lstVisitors.Groups.Clear();
-               
+
                 isAllowGroup = false;
-               
+
             }
             else
             {
@@ -1026,14 +890,14 @@ namespace LiveSupport.OperatorConsole
         {
             // Remove the current groups.
             lstVisitors.Groups.Clear();
-            
+
             // Retrieve the hash table corresponding to the column.
             Hashtable groups = (Hashtable)groupTables[column];
 
             // Copy the groups for the column to an array.
             ListViewGroup[] groupsArray = new ListViewGroup[groups.Count];
             groups.Values.CopyTo(groupsArray, 0);
-            
+
             lstVisitors.Groups.AddRange(groupsArray);
 
             // Iterate through the items in lstVisitors, assigning each 
@@ -1042,7 +906,7 @@ namespace LiveSupport.OperatorConsole
             {
                 // Retrieve the subitem text corresponding to the column.
                 string subItemText = item.SubItems[column].Text;
-                
+
                 // Assign the item to the matching group.
                 item.Group = (ListViewGroup)groups[subItemText];
             }
@@ -1061,7 +925,7 @@ namespace LiveSupport.OperatorConsole
             {
                 // Retrieve the text value for the column.
                 string subItemText = item.SubItems[column].Text;
-               
+
                 // If the groups table does not already contain a group
                 // for the subItemText value, add a new group using the 
                 // subItemText value for the group header and Hashtable key.
@@ -1076,13 +940,6 @@ namespace LiveSupport.OperatorConsole
             return groups;
         }
 
-        private void autoLoginToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-             Properties.Settings.Default.AutoLogin=autoLoginToolStripMenuItem.Checked;
-            
-        }
-
-  
         /// <summary>
         /// 访客历史页面请求记录
         /// </summary>
@@ -1091,13 +948,13 @@ namespace LiveSupport.OperatorConsole
         private void btnOk_Click(object sender, EventArgs e)
         {
             lstPageRequest.Items.Clear();
-           if (lstVisitors.SelectedItems.Count > 0)
-           {
-               if (requestbeginDateTimePicker.Value <= requestendDateTimePicker.Value)
+            if (lstVisitors.SelectedItems.Count > 0)
+            {
+                if (requestbeginDateTimePicker.Value <= requestendDateTimePicker.Value)
                 {
                     Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
 
-                    PageRequest[] pRequest = ws.GetHistoryPageRequests(v.VisitorId, requestbeginDateTimePicker.Value, requestendDateTimePicker.Value);
+                    PageRequest[] pRequest = Program.WS.GetHistoryPageRequests(v.VisitorId, requestbeginDateTimePicker.Value, requestendDateTimePicker.Value);
 
                     if (pRequest.Length > 0)
                     {
@@ -1114,23 +971,23 @@ namespace LiveSupport.OperatorConsole
 
                         }
                     }
-                    else 
+                    else
                     {
                         MessageBox.Show("该访客暂无访问记录！");
-                    
+
                     }
-                   
+
                 }
                 else
                 {
 
                     MessageBox.Show("日期选择有误！！");
                 }
-           }
-           else 
-           {
-               MessageBox.Show("请选择访客");
-           }
+            }
+            else
+            {
+                MessageBox.Show("请选择访客");
+            }
         }
 
         /// <summary>
@@ -1146,13 +1003,13 @@ namespace LiveSupport.OperatorConsole
                 if (messagebeginDateTimePicker.Value <= messageendDateTimePicker.Value)
                 {
                     Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-                    LiveSupport.OperatorConsole.LiveChatWS.Message[] msg = ws.GetHistoryChatMessage(v.VisitorId,messagebeginDateTimePicker.Value,messageendDateTimePicker.Value);
+                    LiveSupport.OperatorConsole.LiveChatWS.Message[] msg = Program.WS.GetHistoryChatMessage(v.VisitorId, messagebeginDateTimePicker.Value, messageendDateTimePicker.Value);
                     if (msg.Length > 0)
                     {
                         foreach (LiveSupport.OperatorConsole.LiveChatWS.Message item in msg)
                         {
                             if (item == null) continue;
-                         ListViewItem Message = new ListViewItem(new string[]
+                            ListViewItem Message = new ListViewItem(new string[]
                          {
                              item.Source, item.Destination,item.Text,item.SentDate.ToString()
                             
@@ -1165,7 +1022,6 @@ namespace LiveSupport.OperatorConsole
                     else
                     {
                         MessageBox.Show("该访客暂无聊天记录！");
-
                     }
 
                 }
@@ -1178,91 +1034,6 @@ namespace LiveSupport.OperatorConsole
             else
             {
                 MessageBox.Show("请选择访客");
-            }
-        }
-        ///// <summary>
-        ///// 右键主动邀请
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void inviteToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    lstVisitors.FullRowSelect = true;
-
-        //    if (lstVisitors.SelectedItems.Count > 0)
-        //    {
-        //        Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-        //        if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
-        //        {
-        //            ws.InviteChat(v.VisitorId);
-        //            ChatForm cf = null;
-        //            foreach (var item in Program.ChatForms)
-        //            {
-        //                if (item.Chat.ChatId == v.CurrentSession.SessionId)
-        //                {
-        //                    cf = item;
-        //                    break;
-        //                }
-        //            }
-
-        //            if (cf == null)
-        //            {
-        //                cf = new ChatForm(v.CurrentSession, true);
-        //                Program.ChatForms.Add(cf);
-        //            }
-
-        //            cf.Show();
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("该访客状态不符合");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("请选择访客");
-        //    }
-        //}
-        /// <summary>
-        /// 右键接受邀请
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void acceptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Visitor visitor = lstVisitors.SelectedItems[0].Tag as Visitor;
-            //visitor.CurrentSession.IP;
-
-            lstVisitors.FullRowSelect = true;
-
-            if (lstVisitors.SelectedItems.Count > 0)
-            {
-
-                if (visitor.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
-                {
-
-                    //if (!myChats.ContainsKey(lstVisitors.SelectedItems[0].Index))
-                    //{
-                    //    myChats.Add(lstVisitors.SelectedItems[0].Index, Program.CurrentOperator.Id);
-
-                    //}
-                    //声音
-                    player.Stop();
-                    //ChatForm cf = new ChatForm(visitor.CurrentSession);
-
-                    //Program.ChatForms.Add(cf);
-                    //cf.Show();
-                }
-                else
-                {
-                    MessageBox.Show("该访客暂时还未请求对话");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("请选择访客");
-
             }
         }
 
@@ -1285,7 +1056,7 @@ namespace LiveSupport.OperatorConsole
         private void touchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("电话：XXX-XXXXXXXX");
-            
+
         }
 
         private void handBookToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1304,14 +1075,12 @@ namespace LiveSupport.OperatorConsole
             about.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.AutoLogin = autoLoginToolStripMenuItem.Checked;
+            Properties.Settings.Default.PlaySoundOnChatReq = playSoundOnChatRequestToolStripMenuItem.Checked;
+            Properties.Settings.Default.GetWebRequestOffline = whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked;
         }
-
-       
-
-      
     }
 
 }

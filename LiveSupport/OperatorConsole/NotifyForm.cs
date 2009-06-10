@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using LiveSupport.OperatorConsole.LiveChatWS;
+using System.Media;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -15,7 +16,7 @@ namespace LiveSupport.OperatorConsole
 
         private int SendIndex;
         public Chat chat;
-
+        private SoundPlayer player = new SoundPlayer();
         public enum NotifyMessageType
         {
             ChatRequest, NewVisitor, SystemMessage, Others
@@ -51,11 +52,13 @@ namespace LiveSupport.OperatorConsole
 
         void timer_Tick(object sender, EventArgs e)
         {
+            playChatReqSound();
             switch (taskbarState)
             {
                 case TaskbarStates.Hidden:
                     break;
                 case TaskbarStates.Appearing:
+                    
                     if (this.Opacity < 0.99)
                     {
                         this.Opacity += 0.01;
@@ -77,11 +80,12 @@ namespace LiveSupport.OperatorConsole
                 case TaskbarStates.Disappearing:
                     if (this.Opacity > 0.00)
                     {
+                        playChatReqSound();
                         this.Opacity -= 0.01;
                     }
                     else
                     {
-                        timer.Stop();
+                        timer.Stop();                        
                         this.Hide();
                         taskbarState = TaskbarStates.Hidden;
                     }
@@ -90,6 +94,17 @@ namespace LiveSupport.OperatorConsole
                     break;
             }
         }
+
+        private void playChatReqSound()
+        {
+
+            if (Properties.Settings.Default.PlaySoundOnChatReq)
+            {
+                player.Stream = Properties.Resources.newchatreq;
+                player.Play();
+            }
+        }
+
 
         public static void ShowNotifier(bool showCommandButton, string message, Chat chat)
         {
@@ -103,34 +118,35 @@ namespace LiveSupport.OperatorConsole
                         chat2 = item.chat;
                         return;
                     }
-                      
+
                 }
-                if(chat2!=null){
-                NotifyForm f = new NotifyForm();
-                f.showNotifier(showCommandButton, message, chat2);
-                Program.NotifyForms.Add(f);
-              }
+                if (chat2 != null)
+                {
+                    NotifyForm f = new NotifyForm();
+                    f.showNotifier(showCommandButton, message, chat2);
+                    Program.NotifyForms.Add(f);
+                }
             }
             else
             {
                 NotifyForm f = new NotifyForm();
                 f.showNotifier(showCommandButton, message, chat);
                 Program.NotifyForms.Add(f);
-            
+
             }
-                      
-                
+
+
         }
 
         private void showNotifier(bool showCommandButton, string message, Chat chat)
         {
-                        this.messageLabel.Text = message;
-                        this.acceptButton.Visible = showCommandButton;
-                        this.declineButton.Visible = showCommandButton;
-                        this.chat = chat;
-                        this.notifyMessageType = NotifyMessageType.ChatRequest;
-                        this.Show();
-                       
+            this.messageLabel.Text = message;
+            this.acceptButton.Visible = showCommandButton;
+            this.declineButton.Visible = showCommandButton;
+            this.chat = chat;
+            this.notifyMessageType = NotifyMessageType.ChatRequest;
+            this.Show();
+            playChatReqSound();
             switch (taskbarState)
             {
                 case TaskbarStates.Hidden:
@@ -151,9 +167,9 @@ namespace LiveSupport.OperatorConsole
         }
 
         public static void ShowNotifier(bool showCommandButton, string message, int Chatindex)
-        {            
-           NotifyForm f =  new NotifyForm();
-           f.showNotifier(showCommandButton, message, Chatindex);
+        {
+            NotifyForm f = new NotifyForm();
+            f.showNotifier(showCommandButton, message, Chatindex);
         }
 
         private void showNotifier(bool showCommandButton, string message, int Chatindex)
@@ -198,6 +214,7 @@ namespace LiveSupport.OperatorConsole
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
+            player.Stop();
             ChatForm cf = null;
             foreach (var item in Program.ChatForms)
             {
@@ -214,29 +231,31 @@ namespace LiveSupport.OperatorConsole
                 cf = new ChatForm(this.chat);
                 Program.ChatForms.Add(cf);
             }
-         
+
             cf.Show();
             this.Hide();
-            if(Program.NotifyForms.Count>0)
+            if (Program.NotifyForms.Count > 0)
             {
                 NotifyForm nf = null;
-            foreach (NotifyForm item in Program.NotifyForms)
-            {
-               if(item.chat.ChatId==this.chat.ChatId)
-               {
-                   nf = item;
-                  
-               }
-            }
-                if(nf!=null){
-            Program.NotifyForms.Remove(nf);
-            }
+                foreach (NotifyForm item in Program.NotifyForms)
+                {
+                    if (item.chat.ChatId == this.chat.ChatId)
+                    {
+                        nf = item;
+
+                    }
+                }
+                if (nf != null)
+                {
+                    Program.NotifyForms.Remove(nf);
+                }
             }
             timer.Stop();
         }
 
         private void declineButton_Click(object sender, EventArgs e)
         {
+            player.Stop();
             this.Hide();
             timer.Stop();
         }
