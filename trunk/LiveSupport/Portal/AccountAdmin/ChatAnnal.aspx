@@ -46,15 +46,15 @@
       </TD></TR></TBODY></TABLE>
 <!--聊天记录内容-->
 <table width="570">
-<tr><td align="left" style=" background-color:#ebf1fa; height: 36px;">聊天记录 &gt;&gt;</td>
+<tr><td align="left" style=" background-color:#ebf1fa; height: 20px;">聊天记录 &gt;&gt;</td>
 <tr><td align="left">
     <asp:GridView ID="GridViewChat" runat="server" Width="563px" 
         AutoGenerateColumns="False" onrowcommand="GridViewChat_RowCommand" 
-        AllowPaging="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" 
-        BorderWidth="1px" CellPadding="3"
+        AllowPaging="True" CellPadding="4"
         onpageindexchanging="GridViewChat_PageIndexChanging" 
-        onrowdatabound="GridViewChat_RowDataBound" Font-Size="12px">
-        <RowStyle BackColor="#E3EAEB" />
+        onrowdatabound="GridViewChat_RowDataBound" Font-Size="13px" 
+        ForeColor="#333333" GridLines="None">
+        <RowStyle BackColor="#EFF3FB" />
         <Columns>
             <asp:BoundField DataField="ChatId" HeaderText="ID" SortExpression="ChatId" 
                 Visible="False" />
@@ -102,15 +102,18 @@
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:ImageButton ID="ibtnImage" runat="server" AlternateText="删除" CommandName="cmdDelete"  
+                    <asp:ImageButton ID="ibtnImage" runat="server" AlternateText="删除" CommandName="cmdDelete"  
+
 CommandArgument='<%# Eval("chatId") %>' ImageUrl="~/AccountAdmin/Images/rubbish.gif" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <EditRowStyle BackColor="#2461BF" />
+        <AlternatingRowStyle BackColor="White" />
     </asp:GridView>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
         SelectMethod="GetChatByOperatorId" TypeName="LiveSupport.BLL.ChatManager">

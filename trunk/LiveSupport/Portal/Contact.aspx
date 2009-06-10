@@ -14,7 +14,7 @@
               <TBODY>
               <TR>
                 <TD align=right width=100 bgColor=#f3f7fa height=27>公司名称：</TD>
-                <TD align=left bgColor=#f3f7fa>&nbsp;南昌互动网络科技有限公司</TD></TR>
+                <TD align=left bgColor=#f3f7fa>&nbsp;江西互动网络科技有限公司</TD></TR>
               <TR>
                 <TD align=right width=100 bgColor=#ffffff height=27>公司地址：</TD>
                 <TD align=left bgColor=#ffffff>&nbsp;江西南昌高新技术开发区</TD></TR>
