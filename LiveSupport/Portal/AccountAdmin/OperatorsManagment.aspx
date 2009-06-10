@@ -25,7 +25,9 @@
                 DataKeyNames="OperatorId" DataSourceID="ObjectDataSource1" 
                 onrowcommand="GridView1_RowCommand" Width="549px" 
                 onrowdatabound="GridView1_RowDataBound" AllowPaging="True" 
-               Font-Size="14px">
+               Font-Size="13px" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <RowStyle BackColor="#EFF3FB" />
                 <Columns>
                     <asp:TemplateField HeaderText="部门">
                         <ItemTemplate>
@@ -79,6 +81,11 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <EditRowStyle BackColor="#2461BF" />
+                <AlternatingRowStyle BackColor="White" />
             </asp:GridView>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
                 DataObjectTypeName="LiveSupport.LiveSupportModel.Operator" 

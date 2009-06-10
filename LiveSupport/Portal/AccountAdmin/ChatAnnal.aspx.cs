@@ -65,10 +65,9 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 TimeSpan ts1 = new TimeSpan(ed.Ticks);
                 TimeSpan ts2 = new TimeSpan(bd.Ticks);
                 TimeSpan ts = ts1.Subtract(ts2).Duration();
-                dateDiff = ts.Days.ToString() + "天"
-                    + ts.Hours.ToString() + "小时"
-                    + ts.Minutes.ToString() + "分钟"
-                    + ts.Seconds.ToString() + "秒";
+                dateDiff =ts.Hours.ToString() + ":"
+                    + ts.Minutes.ToString() + ":"
+                    + ts.Seconds.ToString();
 
                 return dateDiff;
 

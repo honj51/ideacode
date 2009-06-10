@@ -47,8 +47,10 @@
 <tr><td align="center">
     <asp:GridView ID="gvLeaveWord" runat="server" AutoGenerateColumns="False" 
           onrowcommand="gvLeaveWord_RowCommand" AllowPaging="True" 
-        Font-Size="12px" onpageindexchanging="gvLeaveWord_PageIndexChanging" 
-        Width="555px">
+        Font-Size="13px" onpageindexchanging="gvLeaveWord_PageIndexChanging" 
+        Width="555px" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <RowStyle BackColor="#EFF3FB" />
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" 
                 Visible="False" />
@@ -75,6 +77,11 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <EditRowStyle BackColor="#2461BF" />
+        <AlternatingRowStyle BackColor="White" />
     </asp:GridView>
     </td></tr>
 </tr>
