@@ -18,6 +18,7 @@ using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Diagnostics;
+using System.Net;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -26,6 +27,11 @@ namespace LiveSupport.OperatorConsole
         public Login()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.AutoLogin)
+            {
+                login();
+                this.Visible = false;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -77,86 +83,59 @@ namespace LiveSupport.OperatorConsole
         
         private void login()
         {
-            //pictureBox1.Show();
-
-           
             OperatorWS ws = new OperatorWS();
-            if (Properties.Settings.Default.AutoLogin)
+            try
             {
-                Program.CurrentOperator = ws.Login(Properties.Settings.Default.WSUser, Properties.Settings.Default.OperatorName, Properties.Settings.Default.OperatorPassword);
+                if (Properties.Settings.Default.AutoLogin)
+                {
+                    Program.CurrentOperator = ws.Login(Properties.Settings.Default.WSUser, Properties.Settings.Default.OperatorName, Properties.Settings.Default.OperatorPassword);
 
+                }
+                else
+                {
+                    Program.CurrentOperator = ws.Login(txtUserName.Text, txtOpName.Text, txtOpPassword.Text);
+                }
             }
-            else 
+            catch (WebException e)
             {
-
-                Program.CurrentOperator = ws.Login(txtUserName.Text, txtOpName.Text, txtOpPassword.Text);
-
+                Trace.WriteLine("Login“Ï≥£: " + e.Message);
+                lblMessage.Text = "¡¨Ω”Õ¯¬Á ß∞‹";
+                txtUserName.Enabled = true;
+                txtOpName.Enabled = true;
+                txtOpPassword.Enabled = true;
+                this.Visible = true;
+                return;
             }
-            
-                //Trace.WriteLine("Login“Ï≥£: " + e.Message);
-                
-                //lblMessage.Text = "¡¨Ω”Õ¯¬Á ß∞‹";
-                //MessageBox.Show(e.Message);
-                //txtUserName.Enabled = true;
-                //txtOpName.Enabled = true;
-                //txtOpPassword.Enabled = true;
-                //return;
-           
                 // if we got an OperatorInfo, we continue
             if (Program.CurrentOperator != null)
             {
                 txtUserName.Enabled = true;
                 txtOpName.Enabled = true;
                 txtOpPassword.Enabled = true;
-                this.Hide();
+                this.Visible = false;
                 MainForm c = new MainForm(DateTime.Now);
                 Program.MainForm = c;
                 Program.MainForm.Show();
-                //if (c.Relogin)
-                //{
-                //    this.txtOpName.Text = "";
-                //    this.txtOpPassword.Text = "";
-                //    Properties.Settings.Default.RememberPassword = false;
-                //    this.cbxPassword.Checked = false;
-                //    this.cbxAutoLogin.Checked = false;
-                //    Properties.Settings.Default.AutoLogin = false;
-                //    this.Show();
-                //}
-                //else
-                //{
-                //    this.Close();
-                //}
-
-
             }
             else
             {
                 //Invalid credentials
                 loginChange(true, "µ«¬º ß∞‹...\r\n\r\n ˝æ›ÃÓ–¥”–ŒÛ...");
                 lblMessage.SetBounds(260, 10, 25, 10);
+                this.Visible = true;
             }
 
             Properties.Settings.Default.Save();
-           
-        
-        
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-		   // Exit the application
 			Application.Exit();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
             pictureBox1.Visible=false;
-            if(Properties.Settings.Default.AutoLogin)
-            {
-                login();
-            }
-
-
             if (Properties.Settings.Default.RememberPassword)
             {
                
@@ -174,13 +153,8 @@ namespace LiveSupport.OperatorConsole
             }
             
             this.cbxPassword.Checked = Properties.Settings.Default.RememberPassword;
-          
             txtUserName.Text = Properties.Settings.Default.WSUser;
-             
-          
         }
-
-       
 
         private void linkLabelPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -209,8 +183,6 @@ namespace LiveSupport.OperatorConsole
 
             }
         }
-
-      
 
     }
 }
