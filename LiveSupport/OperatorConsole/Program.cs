@@ -22,13 +22,14 @@ namespace LiveSupport.OperatorConsole
 	static class Program
 	{
         public static MainForm MainForm;
-        public static List<OperatorConsole.LiveChatWS.Visitor> Visitors;
         public static List<NotifyForm> NotifyForms = new List<NotifyForm>();
-        public static List<Chat> Chats = new List<Chat>();
-        public static Operator CurrentOperator;
         public static List<ChatForm> ChatForms = new List<ChatForm>();
+        
+        public static List<Visitor> Visitors;
+        public static List<Chat> Chats = new List<Chat>();
+        public static Operator CurrentOperator;        
         public static List<QuickResponseCategory> quickResponseCategory = new List<QuickResponseCategory>();
-        public static int ActiveChat = 0;
+        
         public static List<Chat> GetMyActiveChatSessions()
         {
             List<Chat> chats = new List<Chat>();
@@ -47,21 +48,16 @@ namespace LiveSupport.OperatorConsole
 		[STAThread]
 		static void Main()
 		{
-
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
-            Trace.WriteLine("Main start");
             Application.Run(new Login());
-           // Application.Run(new QickResponseEidtor());
-           //Application.Run(new ListViewGroupsExample());
 		}
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL,true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
             Application.Restart();
-            //  MessageBox.Show("未捕获异常, 请把这个错误报告给 \r\n: wanwei_ncu@126.com \r\n\r\n错误信息:\r\n\r\n" + e.Exception.Message + "\r\n" + e.Exception.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 	}
 }
