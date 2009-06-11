@@ -219,6 +219,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ChatStatus" />
           <s:element minOccurs="0" maxOccurs="1" name="Vs" type="tns:VisitSession" />
           <s:element minOccurs="1" maxOccurs="1" name="IsInviteByOperator" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastCheckTime" type="s:long" />
         </s:sequence>
       </s:complexType>
       <s:simpleType name="ChatStatus">

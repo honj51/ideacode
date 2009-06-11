@@ -1079,6 +1079,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private bool isInviteByOperatorField;
         
+        private long lastCheckTimeField;
+        
         /// <remarks/>
         public string ChatId {
             get {
@@ -1196,6 +1198,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.isInviteByOperatorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long LastCheckTime {
+            get {
+                return this.lastCheckTimeField;
+            }
+            set {
+                this.lastCheckTimeField = value;
             }
         }
     }
