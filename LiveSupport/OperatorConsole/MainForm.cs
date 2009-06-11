@@ -46,23 +46,11 @@ namespace LiveSupport.OperatorConsole
             set { operaterServiceAgent = value; }
         }
 
-        #region IOperatorServiceClient 事件处理
+        #region IOperatorServiceAgent 事件处理
 
-        void operaterServiceClient_ConnectionLost(object sender, EventArgs e)
+        void operaterServiceAgent_ConnectionLost(object sender, EventArgs e)
         {
             connectionLost();
-        }
-        #endregion
-
-        #region MainForm 构造函数，事件处理
-        public MainForm(IOperatorServiceAgent agent, DateTime loginTime)
-        {
-            this.loginTime = loginTime;
-            this.operaterServiceAgent = agent;
-            this.operaterServiceAgent.ConnectionLost += new EventHandler<EventArgs>(operaterServiceClient_ConnectionLost);
-            this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
-            this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
-            InitializeComponent();
         }
 
         void operaterServiceAgent_VisitorSessionChange(object sender, VisitorSessionChangeEventArgs e)
@@ -75,7 +63,18 @@ namespace LiveSupport.OperatorConsole
         {
             processNewVisitor(e.Visitor);
         }
+        #endregion
 
+        #region MainForm 构造函数，事件处理
+        public MainForm(IOperatorServiceAgent agent, DateTime loginTime)
+        {
+            this.loginTime = loginTime;
+            this.operaterServiceAgent = agent;
+            this.operaterServiceAgent.ConnectionLost += new EventHandler<EventArgs>(operaterServiceAgent_ConnectionLost);
+            this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
+            this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
+            InitializeComponent();
+        }
 
         private void initForm()
         {
@@ -103,8 +102,6 @@ namespace LiveSupport.OperatorConsole
             messageendDateTimePicker.MaxDate = DateTime.Now;
             requestendDateTimePicker.MaxDate = DateTime.Now;
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
-
-            
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -183,23 +180,6 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        private bool VisitorChange(VisitSession[] visitSession)
-        {
-            foreach (ListViewGroup item in lstVisitors.Groups)
-            {
-                if (item.Tag == null) continue;
-                Visitor v = item.Tag as Visitor;
-                for (int i = 0; i < visitSession.Length; i++)
-                {
-                    if (v.CurrentSession.Status != visitSession[i].Status)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
         /// <summary>
         /// 计算登录时长
         /// </summary>
@@ -225,8 +205,6 @@ namespace LiveSupport.OperatorConsole
 
             return dateDiff;
         }
-
-        
 
         private void connectionLost()
         {
@@ -331,34 +309,34 @@ namespace LiveSupport.OperatorConsole
 
         private void processNewVisitor(Visitor visitor)
         {
-            VisitorListViewItem lvi = new VisitorListViewItem();
-            lvi.Visitor = visitor;
+            VisitorListViewItem vlvi = new VisitorListViewItem();
+            vlvi.Visitor = visitor;
 
-            string browser = Common.GetBrowserShortName(lvi.VisitSession.Browser);
-            string status = Common.GetVisitSessionStatusText(lvi.VisitSession.Status);
-            string visitingTime = lvi.VisitSession.VisitingTime.Ticks == 0 ? "" : lvi.VisitSession.VisitingTime.ToString();
+            string browser = Common.GetBrowserShortName(vlvi.VisitSession.Browser);
+            string status = Common.GetVisitSessionStatusText(vlvi.VisitSession.Status);
+            string visitingTime = vlvi.VisitSession.VisitingTime.Ticks == 0 ? "" : vlvi.VisitSession.VisitingTime.ToString();
 
-            ListViewItem i = new ListViewItem(new string[]{ browser,lvi.Visitor.Name,lvi.VisitSession.Location,
-                         lvi.Visitor.VisitCount.ToString(),"暂无接待",status,
-                         lvi.VisitSession.VisitingTime.ToString(), "", "",
-                         "","", "",lvi.VisitSession.PageRequestCount.ToString()
+            ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.Location,
+                         vlvi.Visitor.VisitCount.ToString(),"暂无接待",status,
+                         vlvi.VisitSession.VisitingTime.ToString(), "", "",
+                         "","", "",vlvi.VisitSession.PageRequestCount.ToString()
                         });
-            if (lvi.VisitSession.Browser.Contains("MSIE"))
+            if (vlvi.VisitSession.Browser.Contains("MSIE"))
             {
                 i.ImageIndex = 1;
             }
-            else if (lvi.VisitSession.Browser.Contains("Firefox"))
+            else if (vlvi.VisitSession.Browser.Contains("Firefox"))
             {
                 i.ImageIndex = 0;
             }
-            i.Tag = lvi;
+            i.Tag = vlvi;
             lstVisitors.Items.Add(i);
 
             refreashListViewGroup();
 
-            if (lvi.VisitSession.Status != VisitSessionStatus.Leave)
+            if (vlvi.VisitSession.Status != VisitSessionStatus.Leave)
             {
-                notifyIcon.ShowBalloonTip(5000, "新的访客", string.Format("访客{0}正在访问页面 \r\n {1}", lvi.Visitor.Name, lvi.VisitSession.PageRequested), ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(5000, "新的访客", string.Format("访客{0}正在访问页面 \r\n {1}", vlvi.Visitor.Name, vlvi.VisitSession.PageRequested), ToolTipIcon.Info);
             }
         }
 
