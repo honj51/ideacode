@@ -112,6 +112,10 @@ public class ChatService
         chat.Status = ChatStatus.Closed;
         chat.CloseTime = DateTime.Now;
         chat.CloseBy = closeBy;
+        if (chat.OperatorId==null||chat.OperatorId=="")
+        {
+            chat.OperatorId = null;
+        }
         Provider.CloseChat(chat);
                 
         VisitSessionService.SetSessionStatus(VisitorService.GetVisitorById(chat.VisitorId).CurrentSessionId, VisitSessionStatus.Visiting);
