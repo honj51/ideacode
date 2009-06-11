@@ -4,6 +4,7 @@ using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
 using LiveSupport.LiveSupportDAL.Providers;
+using System.Data;
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
     public class SqlChatProvider : IChatProvider
@@ -23,8 +24,27 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region ¹Ø±Õ¶Ô»°
         public int CloseChat(Chat chat)
         {
-            string sql = string.Format("update dbo.LiveChat_Chat set CloseBy='{0}', CloseTime='{1}',OperatorId='{2}', Status='{3}' where ChatId='{4}'", chat.CloseBy, chat.CloseTime, chat.OperatorId, chat.Status, chat.ChatId);
-            return DBHelper.ExecuteCommand(sql);
+            //string sql = string.Format("update dbo.LiveChat_Chat set CloseBy='{0}', CloseTime='{1}',OperatorId='{2}', Status='{3}' where ChatId='{4}'", chat.CloseBy, chat.CloseTime, chat.OperatorId, chat.Status, chat.ChatId);
+            //return DBHelper.ExecuteCommand(sql);
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update LiveChat_Chat set ");
+            strSql.Append("CloseBy=@CloseBy,");
+            strSql.Append("CloseTime=@CloseTime,");
+            strSql.Append("OperatorId=@OperatorId,");
+            strSql.Append("Status=@Status");
+            strSql.Append(" where ChatId=@ChatId ");
+            SqlParameter[] parameters = {
+					new SqlParameter("@ChatId", SqlDbType.VarChar,50),
+					new SqlParameter("@CloseBy", SqlDbType.VarChar,50),
+					new SqlParameter("@CloseTime", SqlDbType.DateTime),
+					new SqlParameter("@OperatorId", SqlDbType.VarChar,50),
+					new SqlParameter("@Status", SqlDbType.VarChar,50)};
+            parameters[0].Value = chat.ChatId;
+            parameters[1].Value = chat.CloseBy;
+            parameters[2].Value = chat.CloseTime;
+            parameters[3].Value = chat.OperatorId;
+            parameters[4].Value = chat.Status;
+            return DBHelper.ExecuteCommand(strSql.ToString(), parameters);
         }
         #endregion
 
