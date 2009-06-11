@@ -411,11 +411,7 @@ namespace LiveSupport.OperatorConsole
         // 接受访客请求
         private void acceptToolStripButton_Click(object sender, EventArgs e)
         {
-            if (lstVisitors.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            Visitor visitor = lstVisitors.SelectedItems[0].Tag as Visitor;
+            VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
             //visitor.CurrentSession.IP;
 
             lstVisitors.FullRowSelect = true;
@@ -423,11 +419,11 @@ namespace LiveSupport.OperatorConsole
             if (lstVisitors.SelectedItems.Count > 0)
             {
 
-                if (visitor.CurrentSession.Status == VisitSessionStatus.ChatRequesting)
+                if (vlvi.VisitSession.Status == VisitSessionStatus.ChatRequesting && vlvi.Chat!=null)
                 {
                     foreach (var item in operaterServiceAgent.Chats)
                     {
-                        if (item.VisitorId == visitor.VisitorId && item.Status == ChatStatus.Requested)
+                        if (item.VisitorId == vlvi.Visitor.VisitorId && item.Status == ChatStatus.Requested)
                         {
                             ChatForm cf = new ChatForm(operaterServiceAgent,item);
                             Program.ChatForms.Add(cf);
@@ -451,20 +447,24 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
+        private VisitorListViewItem getSelectedVisitorListViewItem()
+        {
+            if (lstVisitors.SelectedItems.Count == 0)
+            {
+                return null;
+            }
+            VisitorListViewItem vlvi = lstVisitors.SelectedItems[0].Tag as VisitorListViewItem;
+            return vlvi;
+        }
+
         //主动邀请访客
         private void inviteToolStripButton_Click(object sender, EventArgs e)
         {
-            lstVisitors.FullRowSelect = true;
-            if (lstVisitors.SelectedItems.Count <= 0 || lstVisitors.SelectedItems[0].Tag == null)
-            {
-                return;
-            }
-
-            Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-            if (v != null && v.CurrentSession.Status == VisitSessionStatus.Visiting)
+            VisitorListViewItem v = getSelectedVisitorListViewItem();
+            if (v != null && v.VisitSession.Status == VisitSessionStatus.Visiting)
             {
 
-                Chat chat = operaterServiceAgent.InviteChat(v.VisitorId);
+                Chat chat = operaterServiceAgent.InviteChat(v.Visitor.VisitorId);
 
 
                 if (chat != null)
@@ -496,15 +496,6 @@ namespace LiveSupport.OperatorConsole
                 MessageBox.Show("该访客已被其他客服邀请或在对话中");
 
             }
-            //else if (operaterServiceClient.InviteChat(v.VisitorId) == -1)
-            //{
-            //    MessageBox.Show("该访客已被邀请");
-            //}
-            //else if (operaterServiceClient.InviteChat(v.VisitorId) == -2)
-            //{
-            //    MessageBox.Show("访客拒绝邀请");
-            //}
-
         }
         #endregion
 

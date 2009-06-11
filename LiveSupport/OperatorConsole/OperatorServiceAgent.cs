@@ -191,6 +191,16 @@ namespace LiveSupport.OperatorConsole
 
         private void processChats(NewChangesCheckResult result)
         {
+            // 1. 保存LastCheckTime
+            foreach (var item in result.Chats)
+            {
+                Chat c = GetChatByChatId(item.ChatId);
+                if (c != null)
+                {
+                    item.LastCheckTime = c.LastCheckTime;
+                }
+            }
+
             this.chats.Clear();
             this.chats.AddRange(result.Chats);
 
@@ -247,21 +257,27 @@ namespace LiveSupport.OperatorConsole
 
                 MessageCheck c = new MessageCheck();
                 c.ChatId = chat.ChatId;
-                c.LastCheckTime = chat.CreateTime.Ticks;
+                c.LastCheckTime = chat.LastCheckTime;
                 if (ms != null)
                 {
                     foreach (var m in ms)
                     {
                         if (m != null && m.SentDate.Ticks >= c.LastCheckTime)
                         {
-                            NewMessage(this, new NewMessageEventArgs(m));
-                            c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
+                            if (NewMessage != null)
+                            {
+                                NewMessage(this, new NewMessageEventArgs(m));
+                                c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
+                            }
+                            
                         }
                         else
                             continue;
 
                     }
+                    chat.LastCheckTime = c.LastCheckTime;
                 }
+               
                 nextChecks.Add(c);
 
             }
@@ -319,18 +335,30 @@ namespace LiveSupport.OperatorConsole
             return false;
         }
 
-        private VisitSession GetVisitSessionById(string sessionId)
+        public VisitSession GetVisitSessionById(string sessionId)
         {
             
             Visitor v = GetVisitorBySessionId(sessionId);
             return v == null? null:v.CurrentSession;
         }
 
-        private Visitor GetVisitorBySessionId(string sessionId)
+        public Visitor GetVisitorBySessionId(string sessionId)
         {
             foreach (var item in visitors)
             {
                 if (item.CurrentSession.SessionId == sessionId)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public Chat GetChatByChatId(string chatId) 
+        {
+            foreach (var item in chats)
+            {
+                if (item.ChatId == chatId)
                 {
                     return item;
                 }

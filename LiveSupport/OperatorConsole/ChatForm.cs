@@ -65,10 +65,7 @@ namespace LiveSupport.OperatorConsole
             set { operatorServiceAgent = value; }
         }
         private SoundPlayer player = new SoundPlayer();
-        
-        //private VisitSession chatSession;
         private Chat chat;
-        private long lastCheckTime = DateTime.Now.Ticks;
         private List<Operator> onlineOperators = new List<Operator>();
 
         public Chat Chat
@@ -83,19 +80,13 @@ namespace LiveSupport.OperatorConsole
             set { onlineOperators = value; }
         } 
  
-        public long LastCheckTime
-        {
-            get { return lastCheckTime; }
-            set { lastCheckTime = value; }
-        }
-
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
             if (chat.Status != ChatStatus.Closed) 
             {
                 operatorServiceAgent.CurrentOperator.Status = OperatorStatus.Idle;
             }
-            if (!this.IsDisposed && receiveMessage&&message.SentDate.Ticks>lastCheckTime)
+            if (!this.IsDisposed && receiveMessage)
             {
                 //WriteMessage(message.Text, message.Source);
 
@@ -413,6 +404,7 @@ namespace LiveSupport.OperatorConsole
 
             }
             setTalkTreeView.ExpandAll();
+ 
         }
 
         private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
