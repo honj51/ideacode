@@ -49,13 +49,13 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             List<Message> retList = new List<Message>();
             try
             {
-                cmd.Parameters.Add("@MessageId", SqlDbType.Char, 50).Value = msg.MessageId;
-                cmd.Parameters.Add("@ChatID", SqlDbType.Char, 50).Value = msg.ChatId;
-                cmd.Parameters.Add("@Source", SqlDbType.Char, 50).Value = msg.Source;
-                cmd.Parameters.Add("@Destination", SqlDbType.Char, 50).Value = msg.Destination;
+                cmd.Parameters.Add("@MessageId", SqlDbType.VarChar, 50).Value = msg.MessageId;
+                cmd.Parameters.Add("@ChatID", SqlDbType.VarChar, 50).Value = msg.ChatId;
+                cmd.Parameters.Add("@Source", SqlDbType.VarChar, 50).Value = msg.Source;
+                cmd.Parameters.Add("@Destination", SqlDbType.VarChar, 50).Value = msg.Destination;
                 cmd.Parameters.Add("@Text", SqlDbType.Text).Value = msg.Text;
                 cmd.Parameters.Add("@SentDate", SqlDbType.BigInt).Value = msg.SentDate.Ticks;
-                cmd.Parameters.Add("@Type", SqlDbType.Char, 50).Value = msg.Type.ToString() ;
+                cmd.Parameters.Add("@Type", SqlDbType.VarChar, 50).Value = msg.Type.ToString();
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
