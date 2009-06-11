@@ -67,8 +67,6 @@ namespace LiveSupport.OperatorConsole
             this.resetpasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settalkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.touchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.handBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,7 +124,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.btnSend = new System.Windows.Forms.Button();
+            this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
             this.lblMessageEndTime = new System.Windows.Forms.Label();
             this.lblMessageBeginTime = new System.Windows.Forms.Label();
             this.lstMessage = new System.Windows.Forms.ListView();
@@ -137,7 +135,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.requestendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.requestbeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.btnOk = new System.Windows.Forms.Button();
+            this.btnSearchHistoryPageRequests = new System.Windows.Forms.Button();
             this.lblREndTime = new System.Windows.Forms.Label();
             this.lblRBeginTime = new System.Windows.Forms.Label();
             this.lstPageRequest = new System.Windows.Forms.ListView();
@@ -379,7 +377,7 @@ namespace LiveSupport.OperatorConsole
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.changePasswordToolStripMenuItem.Text = "修改密码(&P)";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.rejiggerpasswordToolStripMenuItem_Click);
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -403,14 +401,14 @@ namespace LiveSupport.OperatorConsole
             // 客服栏OToolStripMenuItem
             // 
             this.客服栏OToolStripMenuItem.Name = "客服栏OToolStripMenuItem";
-            this.客服栏OToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.客服栏OToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.客服栏OToolStripMenuItem.Text = "客服栏(&O)";
             this.客服栏OToolStripMenuItem.Visible = false;
             // 
             // 访客信息栏VToolStripMenuItem
             // 
             this.访客信息栏VToolStripMenuItem.Name = "访客信息栏VToolStripMenuItem";
-            this.访客信息栏VToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.访客信息栏VToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.访客信息栏VToolStripMenuItem.Text = "访客信息栏(&V)";
             this.访客信息栏VToolStripMenuItem.Visible = false;
             // 
@@ -508,8 +506,6 @@ namespace LiveSupport.OperatorConsole
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkUpdateToolStripMenuItem,
-            this.toolStripSeparator4,
             this.paymentToolStripMenuItem,
             this.touchToolStripMenuItem,
             this.handBookToolStripMenuItem,
@@ -517,20 +513,6 @@ namespace LiveSupport.OperatorConsole
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.helpToolStripMenuItem.Text = "帮助(&H)";
-            // 
-            // checkUpdateToolStripMenuItem
-            // 
-            this.checkUpdateToolStripMenuItem.Name = "checkUpdateToolStripMenuItem";
-            this.checkUpdateToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.checkUpdateToolStripMenuItem.Text = "检查升级(&C)";
-            this.checkUpdateToolStripMenuItem.Visible = false;
-            this.checkUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkUpdateToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
-            this.toolStripSeparator4.Visible = false;
             // 
             // paymentToolStripMenuItem
             // 
@@ -1037,7 +1019,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.tabPage2.Controls.Add(this.messageendDateTimePicker);
             this.tabPage2.Controls.Add(this.messagebeginDateTimePicker);
-            this.tabPage2.Controls.Add(this.btnSend);
+            this.tabPage2.Controls.Add(this.btnSearchHistoryChatMsg);
             this.tabPage2.Controls.Add(this.lblMessageEndTime);
             this.tabPage2.Controls.Add(this.lblMessageBeginTime);
             this.tabPage2.Controls.Add(this.lstMessage);
@@ -1065,15 +1047,15 @@ namespace LiveSupport.OperatorConsole
             this.messagebeginDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.messagebeginDateTimePicker.TabIndex = 16;
             // 
-            // btnSend
+            // btnSearchHistoryChatMsg
             // 
-            this.btnSend.Location = new System.Drawing.Point(578, 20);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
-            this.btnSend.TabIndex = 14;
-            this.btnSend.Text = "确   定";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            this.btnSearchHistoryChatMsg.Location = new System.Drawing.Point(578, 20);
+            this.btnSearchHistoryChatMsg.Name = "btnSearchHistoryChatMsg";
+            this.btnSearchHistoryChatMsg.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchHistoryChatMsg.TabIndex = 14;
+            this.btnSearchHistoryChatMsg.Text = "查询(&S)";
+            this.btnSearchHistoryChatMsg.UseVisualStyleBackColor = true;
+            this.btnSearchHistoryChatMsg.Click += new System.EventHandler(this.btnSearchHistoryChatMsg_Click);
             // 
             // lblMessageEndTime
             // 
@@ -1136,7 +1118,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.tabPage4.Controls.Add(this.requestendDateTimePicker);
             this.tabPage4.Controls.Add(this.requestbeginDateTimePicker);
-            this.tabPage4.Controls.Add(this.btnOk);
+            this.tabPage4.Controls.Add(this.btnSearchHistoryPageRequests);
             this.tabPage4.Controls.Add(this.lblREndTime);
             this.tabPage4.Controls.Add(this.lblRBeginTime);
             this.tabPage4.Controls.Add(this.lstPageRequest);
@@ -1164,15 +1146,15 @@ namespace LiveSupport.OperatorConsole
             this.requestbeginDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.requestbeginDateTimePicker.TabIndex = 8;
             // 
-            // btnOk
+            // btnSearchHistoryPageRequests
             // 
-            this.btnOk.Location = new System.Drawing.Point(578, 18);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 6;
-            this.btnOk.Text = "确   定";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.btnSearchHistoryPageRequests.Location = new System.Drawing.Point(587, 18);
+            this.btnSearchHistoryPageRequests.Name = "btnSearchHistoryPageRequests";
+            this.btnSearchHistoryPageRequests.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchHistoryPageRequests.TabIndex = 6;
+            this.btnSearchHistoryPageRequests.Text = "查询(&S)";
+            this.btnSearchHistoryPageRequests.UseVisualStyleBackColor = true;
+            this.btnSearchHistoryPageRequests.Click += new System.EventHandler(this.btnSearchHistoryPageRequests_Click);
             // 
             // lblREndTime
             // 
@@ -1435,10 +1417,13 @@ namespace LiveSupport.OperatorConsole
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.AutoSize = false;
+            this.toolStripStatusLabel1.IsLink = true;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(483, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "信息提示";
+            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // operatorToolStripStatusLabel
             // 
@@ -1574,8 +1559,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem autostartToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripMenuItem checkUpdateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem paymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem touchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem handBookToolStripMenuItem;
@@ -1627,7 +1610,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DateTimePicker messageendDateTimePicker;
         private System.Windows.Forms.DateTimePicker messagebeginDateTimePicker;
-        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Button btnSearchHistoryChatMsg;
         private System.Windows.Forms.Label lblMessageEndTime;
         private System.Windows.Forms.Label lblMessageBeginTime;
         private System.Windows.Forms.ListView lstMessage;
@@ -1638,7 +1621,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.DateTimePicker requestendDateTimePicker;
         private System.Windows.Forms.DateTimePicker requestbeginDateTimePicker;
-        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnSearchHistoryPageRequests;
         private System.Windows.Forms.Label lblREndTime;
         private System.Windows.Forms.Label lblRBeginTime;
         private System.Windows.Forms.ListView lstPageRequest;

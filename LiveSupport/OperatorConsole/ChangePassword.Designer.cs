@@ -41,7 +41,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOk.Location = new System.Drawing.Point(22, 110);
+            this.btnOk.Location = new System.Drawing.Point(22, 108);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 0;
@@ -52,7 +52,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(146, 110);
+            this.btnCancel.Location = new System.Drawing.Point(146, 108);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -73,7 +73,7 @@
             // 
             this.lblNewPassword.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblNewPassword.AutoSize = true;
-            this.lblNewPassword.Location = new System.Drawing.Point(29, 48);
+            this.lblNewPassword.Location = new System.Drawing.Point(29, 43);
             this.lblNewPassword.Name = "lblNewPassword";
             this.lblNewPassword.Size = new System.Drawing.Size(65, 12);
             this.lblNewPassword.TabIndex = 3;
@@ -83,7 +83,7 @@
             // 
             this.lblNewPassword2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblNewPassword2.AutoSize = true;
-            this.lblNewPassword2.Location = new System.Drawing.Point(29, 84);
+            this.lblNewPassword2.Location = new System.Drawing.Point(29, 74);
             this.lblNewPassword2.Name = "lblNewPassword2";
             this.lblNewPassword2.Size = new System.Drawing.Size(65, 12);
             this.lblNewPassword2.TabIndex = 4;
@@ -102,7 +102,7 @@
             // txtNewPassword
             // 
             this.txtNewPassword.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtNewPassword.Location = new System.Drawing.Point(110, 45);
+            this.txtNewPassword.Location = new System.Drawing.Point(110, 40);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '*';
             this.txtNewPassword.Size = new System.Drawing.Size(111, 21);
@@ -112,7 +112,7 @@
             // txtNewPassword2
             // 
             this.txtNewPassword2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtNewPassword2.Location = new System.Drawing.Point(110, 81);
+            this.txtNewPassword2.Location = new System.Drawing.Point(110, 71);
             this.txtNewPassword2.Name = "txtNewPassword2";
             this.txtNewPassword2.PasswordChar = '*';
             this.txtNewPassword2.Size = new System.Drawing.Size(111, 21);
@@ -134,14 +134,13 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ChangePassword";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "更改密码";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ChangePassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

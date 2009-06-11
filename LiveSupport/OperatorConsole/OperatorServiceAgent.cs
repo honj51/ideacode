@@ -146,7 +146,25 @@ namespace LiveSupport.OperatorConsole
 
         public Chat InviteChat(string visitorId)
         {
-            return ws.InviteChat(visitorId);
+            Chat chat = GetChatByVisitorId(visitorId);
+            if (chat == null)
+            {
+                return ws.InviteChat(visitorId);
+            }
+            else
+                return null;
+        }
+
+        private Chat GetChatByVisitorId(string visitorId)
+        {
+            foreach (var item in Chats)
+            {
+                if (item.VisitorId==visitorId)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
 
         public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
@@ -397,6 +415,23 @@ namespace LiveSupport.OperatorConsole
             foreach (var item in operators)
             {
                 if (item.OperatorId == operatorId)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        public Chat GetChatRequest(string visitorId)
+        {
+            foreach (var item in chats)
+            {
+                if (item.VisitorId == visitorId && item.Status == ChatStatus.Requested)
                 {
                     return item;
                 }
