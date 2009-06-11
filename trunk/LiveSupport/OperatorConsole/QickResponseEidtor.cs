@@ -23,23 +23,23 @@ namespace LiveSupport.OperatorConsole
              
             }
            
-                if (Program.WS.GetQuickResponse().Length > 0)
+                if (OperatorServiceAgent.Default.WS.GetQuickResponse().Length > 0)
                 {
-                    for (int i = 0; i < Program.WS.GetQuickResponse().Length; i++)
+                    for (int i = 0; i < OperatorServiceAgent.Default.WS.GetQuickResponse().Length; i++)
                     {
-                        Program.quickResponseCategory.Add(Program.WS.GetQuickResponse()[i]);
+                        OperatorServiceAgent.Default.QuickResponseCategory.Add(OperatorServiceAgent.Default.WS.GetQuickResponse()[i]);
                     }
                 }
           
            
            
-            //if (Program.quickResponseCategory!=null)
+            //if (OperatorWebServiceAgent.Default.QuickResponseCategory!=null)
             //{
-            //for (int i = 0; i < Program.quickResponseCategory.Count; i++)
+            //for (int i = 0; i < OperatorWebServiceAgent.Default.QuickResponseCategory.Count; i++)
             //{
-            //    setTalkTreeView.Nodes[0].Nodes.Add(Program.quickResponseCategory[i].Name);
+            //    setTalkTreeView.Nodes[0].Nodes.Add(OperatorWebServiceAgent.Default.QuickResponseCategory[i].Name);
 
-            //    foreach (var item in Program.quickResponseCategory[i].Responses)
+            //    foreach (var item in OperatorWebServiceAgent.Default.QuickResponseCategory[i].Responses)
             //    {
 
             //        setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
@@ -122,7 +122,7 @@ namespace LiveSupport.OperatorConsole
         private void OkToolStripButton_Click(object sender, EventArgs e)
         {
             
-                Program.quickResponseCategory.Clear();
+                OperatorServiceAgent.Default.QuickResponseCategory.Clear();
             foreach (TreeNode Node in setTalkTreeView.Nodes[0].Nodes)
             { 
                 if(Node==null)continue;
@@ -139,12 +139,12 @@ namespace LiveSupport.OperatorConsole
                     }
                 qrc.Responses =Contents;
                
-                Program.quickResponseCategory.Add(qrc);
+                OperatorServiceAgent.Default.QuickResponseCategory.Add(qrc);
                
             }
-            if(Program.quickResponseCategory!=null)
+            if(OperatorServiceAgent.Default.QuickResponseCategory!=null)
             {
-                Program.WS.SaveQuickResponse(Program.quickResponseCategory.ToArray());
+                OperatorServiceAgent.Default.WS.SaveQuickResponse(OperatorServiceAgent.Default.QuickResponseCategory.ToArray());
             }
            
             
@@ -153,13 +153,13 @@ namespace LiveSupport.OperatorConsole
         private void QickResponseEidtor_Load(object sender, EventArgs e)
         {
             setTalkTreeView.Nodes[0].Nodes.Clear();
-            if(Program.quickResponseCategory!=null)
+            if(OperatorServiceAgent.Default.QuickResponseCategory!=null)
             {
-            for (int i = 0; i < Program.quickResponseCategory.Count; i++)
+            for (int i = 0; i < OperatorServiceAgent.Default.QuickResponseCategory.Count; i++)
             {
-                setTalkTreeView.Nodes[0].Nodes.Add(Program.quickResponseCategory[i].Name);
-                if (Program.quickResponseCategory[i].Responses.Length == 0) continue;
-                foreach (var item in Program.quickResponseCategory[i].Responses)
+                setTalkTreeView.Nodes[0].Nodes.Add(OperatorServiceAgent.Default.QuickResponseCategory[i].Name);
+                if (OperatorServiceAgent.Default.QuickResponseCategory[i].Responses.Length == 0) continue;
+                foreach (var item in OperatorServiceAgent.Default.QuickResponseCategory[i].Responses)
                 {
                     if (item.ToString() =="") continue;
                     setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
@@ -167,7 +167,7 @@ namespace LiveSupport.OperatorConsole
             }
             setTalkTreeView.ExpandAll();
           }
-            Program.quickResponseCategory.Clear();
+            OperatorServiceAgent.Default.QuickResponseCategory.Clear();
            
             
         }
@@ -203,14 +203,8 @@ namespace LiveSupport.OperatorConsole
 
         private void QickResponseEidtor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.quickResponseCategory.Clear();
+            OperatorServiceAgent.Default.QuickResponseCategory.Clear();
             setTalkTreeView.Nodes[0].Nodes.Clear();
         }
-
-       
-      
-       
-
-      
     }
 }

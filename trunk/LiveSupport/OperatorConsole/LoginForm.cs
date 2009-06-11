@@ -25,6 +25,14 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class LoginForm : Form
     {
+        private IOperatorServiceAgent operatorServiceAgent;
+
+        public IOperatorServiceAgent OperatorServiceAgent
+        {
+            get { return operatorServiceAgent; }
+            set { operatorServiceAgent = value; }
+        }
+
         public LoginForm()
         {
             InitializeComponent();
@@ -57,7 +65,7 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
-                Program.CurrentOperator = Program.WS.Login(txtUserName.Text, txtOpName.Text, txtOpPassword.Text);
+                operatorServiceAgent.Login(txtUserName.Text, txtOpName.Text, txtOpPassword.Text);
             }
             catch (WebException e)
             {
@@ -65,16 +73,11 @@ namespace LiveSupport.OperatorConsole
                 loginStatusChange(true,"¡¨Ω”Õ¯¬Á ß∞‹");
                 return;
             }
-                
-            if (Program.CurrentOperator != null)
-            {
-                AuthenticationHeader h = new AuthenticationHeader();
-                h.OperatorId = Program.CurrentOperator.OperatorId;
-                h.OperatorSession = Program.CurrentOperator.OperatorSession;
-                Program.WS.AuthenticationHeaderValue = h;
 
+            if (operatorServiceAgent.CurrentOperator != null)
+            {
                 this.Visible = false;
-                MainForm c = new MainForm(DateTime.Now);
+                MainForm c = new MainForm(operatorServiceAgent, DateTime.Now);
                 Program.MainForm = c;
                 Program.MainForm.Show();
             }
@@ -147,7 +150,7 @@ namespace LiveSupport.OperatorConsole
         private void autoLoginTimer_Tick(object sender, EventArgs e)
         {
             login();
-            if (Program.CurrentOperator != null)
+            if (operatorServiceAgent.CurrentOperator != null)
             {
                 this.Hide();
             }

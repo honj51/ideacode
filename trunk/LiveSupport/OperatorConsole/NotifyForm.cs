@@ -13,7 +13,6 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class NotifyForm : Form
     {
-
         private int SendIndex;
         public Chat chat;
         private SoundPlayer player = new SoundPlayer();
@@ -228,7 +227,7 @@ namespace LiveSupport.OperatorConsole
             if (cf == null)
             {
                 //this.chatSession.ChatingTime = DateTime.Now;
-                cf = new ChatForm(this.chat);
+                cf = new ChatForm(Program.OperaterServiceAgent, this.chat);
                 Program.ChatForms.Add(cf);
             }
 
