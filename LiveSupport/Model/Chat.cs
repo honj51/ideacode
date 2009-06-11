@@ -100,6 +100,13 @@ namespace LiveSupport.LiveSupportModel
             set { isInviteByOperator = value; }
         }
 
+        private long lastCheckTime = DateTime.Now.Ticks;
+        public long LastCheckTime
+        {
+            get { return lastCheckTime; }
+            set { lastCheckTime = value; }
+        }
+
         public Chat()
         {
             createTime = DateTime.Now;
