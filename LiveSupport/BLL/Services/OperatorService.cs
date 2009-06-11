@@ -245,12 +245,14 @@ public static class OperatorService
         {
             if (op.Email != null)
             {
-                string body = "你的新密码是：" + Util.RandLetter(8);
+                op.Password=Util.RandLetter(8);
+                string body = "你的新密码是：" +op.Password;
                 string subject = "密码激活";
                 string SMTPServer= ConfigurationManager.AppSettings["SMTPServer"].ToString();
                 string emal=ConfigurationManager.AppSettings["Email"].ToString();
                 string pwd=ConfigurationManager.AppSettings["Password"].ToString();
                 Util.SendEmail(op.Email, emal, pwd, SMTPServer, subject, body);
+                UpdateOperator(op);
                 return ResetOperatorPassword_OK;
             }
             else
@@ -330,6 +332,7 @@ public static class OperatorService
             if (op.Password == oldPassword)
             {
                 op.Password = newPassword;
+
                 UpdateOperator(op);
                 return 0;//成功
             }
