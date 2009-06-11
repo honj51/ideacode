@@ -49,7 +49,7 @@ public class ChatService
         List<Chat> list = new List<Chat>() ;
         foreach (Chat item in chats)
         {
-            if (item.AccountId == accountId)
+            if (item.AccountId == accountId && item.Status != ChatStatus.Closed)
             {
                 list.Add(item);
             }
