@@ -34,8 +34,8 @@ namespace LiveSupport.OperatorConsole
         protected Timer timer = new Timer();
 
         private int showFadingTime = 10; //show time in ms
-        private int hideFadingTime = 50; //show time in ms
-        private int showingTime = 10 * 1000; //hide time in ms
+        private int hideFadingTime = 1000; //hide time in ms
+        private int showingTime =  1000; //show time in ms
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -79,8 +79,8 @@ namespace LiveSupport.OperatorConsole
                 case TaskbarStates.Disappearing:
                     if (this.Opacity > 0.00)
                     {
-                        playChatReqSound();
-                        this.Opacity -= 0.01;
+                        //playChatReqSound();
+                        this.Opacity -= 0.1;
                     }
                     else
                     {
@@ -145,7 +145,7 @@ namespace LiveSupport.OperatorConsole
             this.chat = chat;
             this.notifyMessageType = NotifyMessageType.ChatRequest;
             this.Show();
-            playChatReqSound();
+            //playChatReqSound();
             switch (taskbarState)
             {
                 case TaskbarStates.Hidden:
@@ -213,7 +213,7 @@ namespace LiveSupport.OperatorConsole
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            player.Stop();
+            player.Stop();//声音停止
             ChatForm cf = null;
             foreach (var item in Program.ChatForms)
             {
