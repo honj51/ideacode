@@ -29,13 +29,46 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             conn.Close();
             return i;
         }
-        public static int ExecuteCommand(string sql, params SqlParameter[] values)
+        //public static int ExecuteCommand(string sql, params SqlParameter[] values)
+        //{
+        //    SqlConnection conn = DBHelper.Getconn();
+        //    SqlCommand cmd = new SqlCommand(sql, conn);
+        //    cmd.Parameters.AddRange(values);
+        //    return cmd.ExecuteNonQuery();
+        //}
+
+
+        /// <summary>
+        /// 执行SQL语句，返回影响的记录数
+        /// </summary>
+        /// <param name="SQLString">SQL语句</param>
+        /// <returns>影响的记录数</returns>
+        public static int ExecuteCommand(string SQLString, params SqlParameter[] cmdParms)
         {
-            SqlConnection conn = DBHelper.Getconn();
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddRange(values);
-            return cmd.ExecuteNonQuery();
+            using (SqlConnection connection = DBHelper.Getconn())
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                        int rows = cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        return rows;
+                    }
+                    catch (System.Data.SqlClient.SqlException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        connection.Close();
+                    }
+                }
+            }
         }
+
         #endregion
 
         ///执行查询方法
