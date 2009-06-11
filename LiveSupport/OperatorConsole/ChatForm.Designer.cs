@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Timer tmrGetMsg;
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("欢迎光临本公司");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("欢迎", new System.Windows.Forms.TreeNode[] {
             treeNode1});
@@ -45,7 +46,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.cutSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.uploadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.wb = new System.Windows.Forms.WebBrowser();
@@ -75,6 +75,7 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
+            tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -99,11 +100,6 @@
             // uploadOpenFileDialog
             // 
             this.uploadOpenFileDialog.FileName = "uploadOpenFileDialog";
-            // 
-            // tmrGetMsg
-            // 
-            this.tmrGetMsg.Enabled = true;
-            this.tmrGetMsg.Interval = 5000;
             // 
             // splitContainer1
             // 
@@ -515,7 +511,6 @@
         private System.Windows.Forms.ToolStripButton cutToolStripButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.OpenFileDialog uploadOpenFileDialog;
-        private System.Windows.Forms.Timer tmrGetMsg;
       
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;

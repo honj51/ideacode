@@ -16,8 +16,8 @@ namespace LiveSupport.OperatorConsole
             InitializeComponent();
 
             
-            lblPassword.Visible = !Program.CurrentOperator.IsAdmin;
-            txtPassword.Visible = !Program.CurrentOperator.IsAdmin;
+            lblPassword.Visible = !OperatorServiceAgent.Default.CurrentOperator.IsAdmin;
+            txtPassword.Visible = !OperatorServiceAgent.Default.CurrentOperator.IsAdmin;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace LiveSupport.OperatorConsole
                 if (this.txtNewPassword.Text == this.txtNewPassword2.Text)
                 {
 
-                    if (Program.WS.ChangePassword(this.txtPassword.Text, txtNewPassword.Text)== 0)
+                    if (OperatorServiceAgent.Default.WS.ChangePassword(this.txtPassword.Text, txtNewPassword.Text)== 0)
                     {
                         MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
                         this.Close();

@@ -57,6 +57,13 @@ namespace LiveSupport.OperatorConsole
 
         #endregion
 
+        private IOperatorServiceAgent operatorServiceAgent;
+
+        public IOperatorServiceAgent OperatorServiceAgent
+        {
+            get { return operatorServiceAgent; }
+            set { operatorServiceAgent = value; }
+        }
         private SoundPlayer player = new SoundPlayer();
         
         //private VisitSession chatSession;
@@ -82,20 +89,11 @@ namespace LiveSupport.OperatorConsole
             set { lastCheckTime = value; }
         }
 
-        //public VisitSession ChatSession
-        //{
-        //    get { return chatSession; }
-        //    set { chatSession = value; }
-        //}
-
-
-
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
             if (chat.Status != ChatStatus.Closed) 
             {
-                Program.CurrentOperator.Status = OperatorStatus.Idle;
-            
+                operatorServiceAgent.CurrentOperator.Status = OperatorStatus.Idle;
             }
             if (!this.IsDisposed && receiveMessage&&message.SentDate.Ticks>lastCheckTime)
             {
@@ -164,29 +162,33 @@ namespace LiveSupport.OperatorConsole
         }
 
         private bool receiveMessage = true;
-        public ChatForm(Chat chat)
-            : this(chat, false)
+        public ChatForm(IOperatorServiceAgent agent,Chat chat)
+            : this(agent, chat, false)
         {           
         }
 
         private int acceptChatRequestResult = 0;
-        public ChatForm(Chat chat, bool invite)
+        public ChatForm(IOperatorServiceAgent agent, Chat chat, bool invite)
         {
-            InitializeComponent();
 
-            if (Program.WS.GetQuickResponse().Length > 0)
-            {
-                for (int i = 0; i < Program.WS.GetQuickResponse().Length; i++)
-                {
-                    Program.quickResponseCategory.Add(Program.WS.GetQuickResponse()[i]);
-                }
-            }
+
+            this.operatorServiceAgent = agent;
+            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
+            InitializeComponent();
+            // TODO: ??
+            //if (OperatorWebServiceAgent.Default.WS.GetQuickResponse().Length > 0)
+            //{
+            //    for (int i = 0; i < OperatorWebServiceAgent.Default.WS.GetQuickResponse().Length; i++)
+            //    {
+            //        OperatorWebServiceAgent.Default.QuickResponseCategory.Add(OperatorWebServiceAgent.Default.WS.GetQuickResponse()[i]);
+            //    }
+            //}
             this.chat = chat;
            
 
             if (!invite)
             {
-                acceptChatRequestResult = Program.WS.AcceptChatRequest(chat.ChatId);
+                acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
                 if (acceptChatRequestResult == -1) 
                 {
                     wb.Navigate("about:该访客对话请求已被其他客服接受"); 
@@ -206,7 +208,7 @@ namespace LiveSupport.OperatorConsole
             // We initialize the document
             wb.Navigate("about:初始会话...");
           
-            foreach (Visitor item in Program.Visitors)
+            foreach (Visitor item in operatorServiceAgent.Visitors)
             {
                 if (item.VisitorId == chat.VisitorId)
                {
@@ -233,13 +235,15 @@ namespace LiveSupport.OperatorConsole
                 }
             }
             
-            // We start the timer that will get the messages
-            tmrGetMsg.Enabled = true;
-            
             txtMsg.Focus();
+        }
 
-           
-          
+        void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
+        {
+            if (e.Message.ChatId == this.chat.ChatId)
+            {
+                RecieveMessage(e.Message);
+            }
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
@@ -262,7 +266,7 @@ namespace LiveSupport.OperatorConsole
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
-                Program.WS.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
+                operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
             }
         }
       
@@ -281,15 +285,13 @@ namespace LiveSupport.OperatorConsole
         {
             if (e.KeyCode == Keys.Escape && MessageBox.Show("Are you sure you want to exit the chat session?", "Ending chat session", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                tmrGetMsg.Enabled = false;
-
                 LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
                 msg.ChatId = Chat.ChatId;                
                 msg.SentDate = DateTime.Now;
 
                 wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} </span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", "System", "The operator has left the chat session..."));
                
-               //Program.WS.AddMessage(msg);
+               //OperatorWebServiceAgent.Default.WS.AddMessage(msg);
 
                 //((MainForm)this.ParentForm).EndChat((TabPage)this.Parent, myChatRequest.ChatId);
             }
@@ -310,7 +312,7 @@ namespace LiveSupport.OperatorConsole
         //写信息
         private void WriteMessage(string message)
         { //
-            WriteMessage(message,Program.CurrentOperator.NickName);
+            WriteMessage(message,operatorServiceAgent.CurrentOperator.NickName);
         }
         //写信息
         private void WriteMessage(string message, string From)
@@ -323,11 +325,11 @@ namespace LiveSupport.OperatorConsole
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
 
-            Program.WS.SendMessage(msg);
+            operatorServiceAgent.SendMessage(msg);
             wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message));
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
             //msg.Type = MessageType_ToAll;//*	
-            //Program.WS.AddMessage(msg);
+            //OperatorWebServiceAgent.Default.WS.AddMessage(msg);
         }
 
       
@@ -374,7 +376,7 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             if (chat.Status != ChatStatus.Closed)
             {
                 if (MessageBox.Show("正在对话中，您确定要关闭？", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
@@ -383,31 +385,26 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
             }
-             
-                  if (acceptChatRequestResult == 0)
-                  {
-                      Program.WS.CloseChat(this.Chat.ChatId);
-                  }
-                  Program.ChatForms.Remove(this);                  
-                  
-             
 
+            if (acceptChatRequestResult == 0)
+            {
+                operatorServiceAgent.CloseChat(this.Chat.ChatId);
+            }
+            Program.ChatForms.Remove(this);
+            setTalkTreeView.Nodes[0].Nodes.Clear();
 
-              Program.quickResponseCategory.Clear();
-              setTalkTreeView.Nodes[0].Nodes.Clear();
-                     
         }
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
             setTalkTreeView.Nodes[0].Nodes.Clear();
-            if (Program.quickResponseCategory != null)
+            if (operatorServiceAgent.QuickResponseCategory != null)
             {
-                for (int i = 0; i < Program.quickResponseCategory.Count; i++)
+                for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
                 {
-                    setTalkTreeView.Nodes[0].Nodes.Add(Program.quickResponseCategory[i].Name);
-                    if (Program.quickResponseCategory[i].Responses.Length == 0) continue;
-                    foreach (var item in Program.quickResponseCategory[i].Responses)
+                    setTalkTreeView.Nodes[0].Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
+                    if (operatorServiceAgent.QuickResponseCategory[i].Responses.Length == 0) continue;
+                    foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
                     {
                         if (item.ToString() == "") continue;
                         setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
@@ -416,7 +413,6 @@ namespace LiveSupport.OperatorConsole
 
             }
             setTalkTreeView.ExpandAll();
-            Program.quickResponseCategory.Clear();
         }
 
         private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -427,14 +423,6 @@ namespace LiveSupport.OperatorConsole
                 this.txtMsg.Focus();
             }
         }
-
-
-       
-
-    
-
-     
-        
 
        
     }
