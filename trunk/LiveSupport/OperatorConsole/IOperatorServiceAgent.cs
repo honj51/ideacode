@@ -45,6 +45,8 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         Operator GetOperatorById(string operatorId);
+
+        Chat GetChatRequest(string p);
     }
 
     public class NewVisitorEventArgs : EventArgs

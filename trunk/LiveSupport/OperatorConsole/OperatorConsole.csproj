@@ -149,6 +149,10 @@
       <DependentUpon>QickResponseEidtor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ResetOperatorPasswordForm.resx">
+      <DependentUpon>ResetOperatorPasswordForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -168,6 +172,12 @@
     </Compile>
     <Compile Include="QickResponseEidtor.Designer.cs">
       <DependentUpon>QickResponseEidtor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResetOperatorPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResetOperatorPasswordForm.Designer.cs">
+      <DependentUpon>ResetOperatorPasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TestFixture.cs" />
     <Compile Include="ChangePassword.cs">

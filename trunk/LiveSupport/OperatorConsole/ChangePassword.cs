@@ -14,10 +14,6 @@ namespace LiveSupport.OperatorConsole
         public ChangePassword()
         {
             InitializeComponent();
-
-            
-            lblPassword.Visible = !OperatorServiceAgent.Default.CurrentOperator.IsAdmin;
-            txtPassword.Visible = !OperatorServiceAgent.Default.CurrentOperator.IsAdmin;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -27,28 +23,17 @@ namespace LiveSupport.OperatorConsole
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            RejiggerPassword();
-            
-        }
-
-       
-
-
-        private void RejiggerPassword() 
-        {
-            if ( this.txtPassword.Text  == "" || this.txtNewPassword.Text == "" || this.txtNewPassword2.Text == "")
+            if (this.txtPassword.Text == "" || this.txtNewPassword.Text == "" || this.txtNewPassword2.Text == "")
             {
-
-                    this.Text = "数据不能为空!";
-                    return;
-               
+                this.Text = "数据不能为空!";
+                return;
             }
             else
             {
                 if (this.txtNewPassword.Text == this.txtNewPassword2.Text)
                 {
 
-                    if (OperatorServiceAgent.Default.WS.ChangePassword(this.txtPassword.Text, txtNewPassword.Text)== 0)
+                    if (OperatorServiceAgent.Default.WS.ChangePassword(this.txtPassword.Text, txtNewPassword.Text) == 0)
                     {
                         MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
                         this.Close();
@@ -58,19 +43,16 @@ namespace LiveSupport.OperatorConsole
                         this.Text = "修改失败!";
                         return;
                     }
-                   
-                 }
+
+                }
                 else
-                 {
-                     this.Text = "新密码和确认新密码不一致!";
-                     return;
-                 }
+                {
+                    this.Text = "新密码和确认新密码不一致!";
+                    return;
+                }
             }
         
         }
 
-        private void ChangePassword_Load(object sender, EventArgs e)
-        {
-        }
     }
 }

@@ -39,7 +39,8 @@ namespace LiveSupport.OperatorConsole
         TestFixture testFixture = new TestFixture();
         private FormWindowState saveWindowState = FormWindowState.Normal;
         private IOperatorServiceAgent operaterServiceAgent;
-
+        private List<SystemAdvertise> systemAdvertises;
+        private int currentSystemAdvertiseIndex;
         public IOperatorServiceAgent OperaterServiceAgent
         {
             get { return operaterServiceAgent; }
@@ -102,6 +103,8 @@ namespace LiveSupport.OperatorConsole
             messageendDateTimePicker.MaxDate = DateTime.Now;
             requestendDateTimePicker.MaxDate = DateTime.Now;
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
+
+            systemAdvertises = operaterServiceAgent.GetSystemAdvertise(Application.ProductVersion.ToString());
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -140,6 +143,16 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         #region 其他函数
+        private VisitorListViewItem getSelectedVisitorListViewItem()
+        {
+            if (lstVisitors.SelectedItems.Count == 0)
+            {
+                return null;
+            }
+            VisitorListViewItem vlvi = lstVisitors.SelectedItems[0].Tag as VisitorListViewItem;
+            return vlvi;
+        }
+
         private void refreashListViewGroup()
         {
             if (isAllowGroup && lstVisitors.Groups.Count > 0)
@@ -188,10 +201,36 @@ namespace LiveSupport.OperatorConsole
         private void loginTimer_Tick(object sender, EventArgs e)
         {
             DateTime dtime = DateTime.Now;
-            this.stickToolStripStatusLabel.Text = DateDiff(loginTime, dtime);
+            this.stickToolStripStatusLabel.Text = dateDiff(loginTime, dtime);
+
+            if (dtime.Second % 5 == 0)
+            {
+                SystemAdvertise sa = getNextSysteAdvertise();
+                if (sa != null)
+                {
+                    toolStripStatusLabel1.Text = sa.AdvertiseMessage;
+                    toolStripStatusLabel1.Tag = sa.AdvertiseUrl;
+                }
+            }
         }
 
-        private string DateDiff(DateTime DateTime1, DateTime DateTime2)
+        
+        private SystemAdvertise getNextSysteAdvertise()
+        {
+            if (systemAdvertises.Count == 0)
+            {
+                return null;
+            }
+            if (currentSystemAdvertiseIndex >= systemAdvertises.Count)
+            {
+                currentSystemAdvertiseIndex = 0;
+            }
+            SystemAdvertise sa =systemAdvertises[currentSystemAdvertiseIndex];
+            currentSystemAdvertiseIndex++;
+            return sa;
+        }      
+        
+        private string dateDiff(DateTime DateTime1, DateTime DateTime2)
         {
             string dateDiff = null;
 
@@ -390,27 +429,14 @@ namespace LiveSupport.OperatorConsole
         private void acceptToolStripButton_Click(object sender, EventArgs e)
         {
             VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
-            //visitor.CurrentSession.IP;
-
-            lstVisitors.FullRowSelect = true;
-
-            if (lstVisitors.SelectedItems.Count > 0)
+            if (vlvi != null)
             {
-
-                if (vlvi.VisitSession.Status == VisitSessionStatus.ChatRequesting && vlvi.Chat!=null)
+                Chat chat = operaterServiceAgent.GetChatRequest(vlvi.Visitor.VisitorId);
+                if (chat != null && vlvi.VisitSession.Status == VisitSessionStatus.ChatRequesting)
                 {
-                    foreach (var item in operaterServiceAgent.Chats)
-                    {
-                        if (item.VisitorId == vlvi.Visitor.VisitorId && item.Status == ChatStatus.Requested)
-                        {
-                            ChatForm cf = new ChatForm(operaterServiceAgent,item);
-                            Program.ChatForms.Add(cf);
-                            cf.Show();
-                            break;
-
-                        }
-                    }
-
+                    ChatForm cf = new ChatForm(operaterServiceAgent, chat);
+                    Program.ChatForms.Add(cf);
+                    cf.Show();
                 }
                 else
                 {
@@ -418,21 +444,6 @@ namespace LiveSupport.OperatorConsole
                 }
 
             }
-            else
-            {
-                MessageBox.Show("请选择访客");
-
-            }
-        }
-
-        private VisitorListViewItem getSelectedVisitorListViewItem()
-        {
-            if (lstVisitors.SelectedItems.Count == 0)
-            {
-                return null;
-            }
-            VisitorListViewItem vlvi = lstVisitors.SelectedItems[0].Tag as VisitorListViewItem;
-            return vlvi;
         }
 
         //主动邀请访客
@@ -444,28 +455,10 @@ namespace LiveSupport.OperatorConsole
 
                 Chat chat = operaterServiceAgent.InviteChat(v.Visitor.VisitorId);
 
-
                 if (chat != null)
                 {
-                    ChatForm cf = null;
-                    foreach (var item in Program.ChatForms)
-                    {
-                        if (item.Chat.VisitorId == chat.VisitorId)
-                        {
-
-                            operaterServiceAgent.CloseChat(item.Chat.ChatId);
-                            cf = item;
-                            cf.Chat = chat;
-                            break;
-                        }
-                    }
-
-                    if (cf == null)
-                    {
-                        cf = new ChatForm(operaterServiceAgent,chat, true);
-                        Program.ChatForms.Add(cf);
-                    }
-
+                    ChatForm cf = new ChatForm(operaterServiceAgent,chat, true);
+                    Program.ChatForms.Add(cf);
                     cf.Show();
                 }
             }
@@ -483,48 +476,40 @@ namespace LiveSupport.OperatorConsole
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnOk_Click(object sender, EventArgs e)
+        private void btnSearchHistoryPageRequests_Click(object sender, EventArgs e)
         {
             lstPageRequest.Items.Clear();
-            if (lstVisitors.SelectedItems.Count > 0)
+            VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
+            if (vlvi == null)
             {
-                if (requestbeginDateTimePicker.Value <= requestendDateTimePicker.Value)
+                MessageBox.Show("请选择访客");
+                return;
+            }
+            if (requestbeginDateTimePicker.Value > requestendDateTimePicker.Value)
+            {
+                MessageBox.Show("日期选择有误！！");
+                return;
+            }
+
+            List<PageRequest> pRequest = operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, requestbeginDateTimePicker.Value, requestendDateTimePicker.Value);
+
+            if (pRequest.Count > 0)
+            {
+                foreach (PageRequest item in pRequest)
                 {
-                    Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-
-                    List<PageRequest> pRequest = operaterServiceAgent.GetHistoryPageRequests(v.VisitorId, requestbeginDateTimePicker.Value, requestendDateTimePicker.Value);
-
-                    if (pRequest.Count > 0)
-                    {
-                        foreach (PageRequest item in pRequest)
-                        {
-                            if (item == null) continue;
-                            ListViewItem pageRequest = new ListViewItem(new string[]
+                    if (item == null) continue;
+                    ListViewItem pageRequest = new ListViewItem(new string[]
                          {
                             item.Page, item.RequestTime.ToString(), item.Referrer
                             
                           });
-                            pageRequest.Tag = item;
-                            lstPageRequest.Items.Add(pageRequest);
-
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("该访客暂无访问记录！");
-
-                    }
-
-                }
-                else
-                {
-
-                    MessageBox.Show("日期选择有误！！");
+                    pageRequest.Tag = item;
+                    lstPageRequest.Items.Add(pageRequest);
                 }
             }
             else
             {
-                MessageBox.Show("请选择访客");
+                MessageBox.Show("该访客暂无访问记录！");
             }
         }
 
@@ -533,45 +518,41 @@ namespace LiveSupport.OperatorConsole
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSend_Click(object sender, EventArgs e)
+        private void btnSearchHistoryChatMsg_Click(object sender, EventArgs e)
         {
             lstMessage.Items.Clear();
-            if (lstVisitors.SelectedItems.Count > 0)
+
+            VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
+            if (vlvi == null)
             {
-                if (messagebeginDateTimePicker.Value <= messageendDateTimePicker.Value)
+                MessageBox.Show("请选择访客");
+                return;
+            }
+            if (messagebeginDateTimePicker.Value > messageendDateTimePicker.Value)
+            {
+                MessageBox.Show("日期选择有误！！");
+                return;
+            }
+
+            List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, messagebeginDateTimePicker.Value, messageendDateTimePicker.Value);
+            if (msg.Count > 0)
+            {
+                foreach (LiveSupport.OperatorConsole.LiveChatWS.Message item in msg)
                 {
-                    Visitor v = lstVisitors.SelectedItems[0].Tag as Visitor;
-                    List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(v.VisitorId, messagebeginDateTimePicker.Value, messageendDateTimePicker.Value);
-                    if (msg.Count > 0)
-                    {
-                        foreach (LiveSupport.OperatorConsole.LiveChatWS.Message item in msg)
-                        {
-                            if (item == null) continue;
-                            ListViewItem Message = new ListViewItem(new string[]
+                    if (item == null) continue;
+                    ListViewItem Message = new ListViewItem(new string[]
                          {
                              item.Source, item.Destination,item.Text,item.SentDate.ToString()
                             
                           });
-                            Message.Tag = item;
-                            lstMessage.Items.Add(Message);
+                    Message.Tag = item;
+                    lstMessage.Items.Add(Message);
 
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("该访客暂无聊天记录！");
-                    }
-
-                }
-                else
-                {
-
-                    MessageBox.Show("日期选择有误！！");
                 }
             }
             else
             {
-                MessageBox.Show("请选择访客");
+                MessageBox.Show("该访客暂无聊天记录！");
             }
         }
         #endregion
@@ -610,7 +591,7 @@ namespace LiveSupport.OperatorConsole
         }
 
         // 更改密码
-        private void rejiggerpasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChangePassword rop = new ChangePassword();
             rop.ShowDialog();
@@ -618,17 +599,13 @@ namespace LiveSupport.OperatorConsole
 
         private void resetpasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("此功能暂未开放！！");
+            ResetOperatorPasswordForm dlg = new ResetOperatorPasswordForm();
+            dlg.ShowDialog();
         }
         private void settalkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QickResponseEidtor settalk = new QickResponseEidtor();
             settalk.ShowDialog();
-        }
-
-        private void checkUpdateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("目前已为最新版本");
         }
 
         private void paymentToolStripMenuItem_Click(object sender, EventArgs e)
@@ -638,18 +615,17 @@ namespace LiveSupport.OperatorConsole
 
         private void touchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("电话：XXX-XXXXXXXX");
-
+            Process.Start("http://www.zxkefu.cn/contact.aspx");
         }
 
         private void handBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Process.Start("http://www.zxkefu.cn/");
         }
 
         private void homePageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Process.Start("http://www.zxkefu.cn/");
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -786,6 +762,16 @@ namespace LiveSupport.OperatorConsole
 
             // Return the Hashtable object.
             return groups;
+        }
+        #endregion
+
+        #region 状态栏事件处理
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+            if (toolStripStatusLabel1.Tag!= null && !string.IsNullOrEmpty(toolStripStatusLabel1.Tag.ToString()))
+            {
+                Process.Start(toolStripStatusLabel1.Tag.ToString());
+            }
         }
         #endregion
     }
