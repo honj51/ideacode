@@ -289,6 +289,10 @@ public class OperatorWS : System.Web.Services.WebService
             sysinfo.AdvertiseMessage = "你现在使用的是最新版本";
             li.Add(sysinfo);
         }
+        SystemAdvertise a = new SystemAdvertise();
+        a.AdvertiseMessage = "欢迎您使用LiveSupport客服交流系统";
+        a.AdvertiseUrl = "http://www.zxkefu.cn/";
+        li.Add(a);
         return li;
     }
 
