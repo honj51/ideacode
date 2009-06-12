@@ -184,7 +184,7 @@ public class OperatorWS : System.Web.Services.WebService
     public int ResetOperatorPassword(string loginName)
     {
         checkAuthentication();
-        return OperatorService.ResetOperatorPassword(loginName);
+        return OperatorService.ResetOperatorPassword(Authentication.OperatorId, loginName);
     }
     /// <summary>
     /// 关闭对话
@@ -209,6 +209,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
     {
+        checkAuthentication();
         List<Message> list = new List<Message>();
         List<Chat> chats = ChatService.GetHistoryChatByVisitorId(visitorId);
 
@@ -233,6 +234,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
     {
+        checkAuthentication();
         List<VisitSession> li = VisitSessionService.GetHistoryVisitSessionByVisitorId(visitorId);
         List<PageRequest> list = new List<PageRequest>();
         foreach(VisitSession m in li)
@@ -250,6 +252,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public int AcceptChatRequest(string chatId)
     {
+        checkAuthentication();
         return ChatService.AcceptChatRequest(Authentication.OperatorId, chatId);
     }    /// <summary>
     /// 主动邀请对话
@@ -259,7 +262,8 @@ public class OperatorWS : System.Web.Services.WebService
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public Chat InviteChat(string visitorId)
-    {        
+    {
+       checkAuthentication();
        return ChatService.OperatorRequestChat(Authentication.OperatorId, visitorId);
     }
     /// <summary>
@@ -279,14 +283,7 @@ public class OperatorWS : System.Web.Services.WebService
         {
             SystemAdvertise sysinfo = new SystemAdvertise();
             sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
-            sysinfo.AdvertiseMessage = "你的版本信息过低请及时更新";
-            li.Add(sysinfo);
-        }
-        else
-        {
-            SystemAdvertise sysinfo = new SystemAdvertise();
-            sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
-            sysinfo.AdvertiseMessage = "你现在使用的是最新版本";
+            sysinfo.AdvertiseMessage = "该程序有新版本可用，请点击了解详情";
             li.Add(sysinfo);
         }
         SystemAdvertise a = new SystemAdvertise();
@@ -300,6 +297,7 @@ public class OperatorWS : System.Web.Services.WebService
     [WebMethod]
     public void SaveQuickResponse(List<QuickResponseCategory> response)
     {
+        checkAuthentication();
         OperatorService.SaveQuickResponse(Authentication.OperatorId, response);
     }
 
