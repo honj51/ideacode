@@ -11,7 +11,7 @@ public partial class GetBackPassword : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.txtRandom.Text = "";
+        
     }
 
     protected void btnGet_Click(object sender, ImageClickEventArgs e)
