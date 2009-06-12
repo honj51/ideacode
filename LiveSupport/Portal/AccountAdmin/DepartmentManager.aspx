@@ -96,9 +96,9 @@
                        QueryStringField="AccountId" Type="String" />
                </SelectParameters>
            </asp:ObjectDataSource>
-          
-           <a href="AddDepartment.aspx" style="font-size:16px;">添加部门</a>
+          <asp:Button ID="Button3" runat="server" Text="增加分组" OnClick="Button3_Click" />
            <br />
+     
            <br />
            </div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>

@@ -35,10 +35,6 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentcolor");
 
             string departmentId = this.gvDepartment.DataKeys[e.Row.RowIndex].Value.ToString();
-            //ImageButton imbtnEdit;
-            //imbtnEdit = (ImageButton)e.Row.FindControl("ImageButtonEdit");
-            ////imbtnEdit.AlternateText = "编辑";
-            //imbtnEdit.CommandArgument = departmentId.ToString();
 
             ImageButton imbtnDelete = (ImageButton)e.Row.FindControl("ImageButtonDelete");
             imbtnDelete.AlternateText = "删除";
@@ -91,5 +87,9 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     protected void gvDepartment_DataBound(object sender, EventArgs e)
     {
         
+    }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        this.Response.Redirect("AddDepartment.aspx");
     }
 }
