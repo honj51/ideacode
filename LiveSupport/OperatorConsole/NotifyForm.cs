@@ -17,6 +17,7 @@ namespace LiveSupport.OperatorConsole
         private SoundPlayer player = new SoundPlayer();
         protected TaskbarStates taskbarState = TaskbarStates.Hidden;
         protected Timer timer = new Timer();
+        private Timer soundPlayerTimer = new Timer();
         private int showFadingTime = 10; //窗体渐变显示速度
         private int hideFadingTime = 100; //窗体渐变隐藏速度
         private int showingTime = 10000; //窗体完全显示的时间
@@ -46,8 +47,7 @@ namespace LiveSupport.OperatorConsole
         );
 
         void timer_Tick(object sender, EventArgs e)
-        {
-            playChatReqSound();
+        {  
             switch (taskbarState)
             {
                 case TaskbarStates.Hidden:
@@ -79,7 +79,7 @@ namespace LiveSupport.OperatorConsole
                     }
                     else
                     {
-                        player.Stop();
+                        soundPlayerTimer.Stop();
                         this.Hide();
                         taskbarState = TaskbarStates.Hidden;
                     }
@@ -91,12 +91,18 @@ namespace LiveSupport.OperatorConsole
 
         private void playChatReqSound()
         {
-
             if (Properties.Settings.Default.PlaySoundOnChatReq)
             {
                 player.Stream = Properties.Resources.newchatreq;
-                player.Play();
+                soundPlayerTimer.Interval = 1000;
+                soundPlayerTimer.Tick += new EventHandler(soundPlayerTimer_Tick);
+                soundPlayerTimer.Start();
             }
+        }
+
+        void soundPlayerTimer_Tick(object sender, EventArgs e)
+        {
+            player.Play();
         }
 
         public static void ShowNotifier(bool showCommandButton, string message, Chat chat)
@@ -116,6 +122,7 @@ namespace LiveSupport.OperatorConsole
             timer.Start();
             taskbarState = TaskbarStates.Appearing;
             this.Show();
+            playChatReqSound();
         }
 
         public NotifyForm()
@@ -133,7 +140,7 @@ namespace LiveSupport.OperatorConsole
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            player.Stop();//声音停止
+            soundPlayerTimer.Stop();
             ChatForm cf = null;
             foreach (var item in Program.ChatForms)
             {
@@ -151,14 +158,13 @@ namespace LiveSupport.OperatorConsole
             }
 
             cf.Show();
-            player.Stop();
             this.Hide();
             timer.Stop();
         }
 
         private void declineButton_Click(object sender, EventArgs e)
         {
-            player.Stop();
+            soundPlayerTimer.Stop();
             this.Hide();
             timer.Stop();
         }
