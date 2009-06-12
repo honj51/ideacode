@@ -29,14 +29,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             conn.Close();
             return i;
         }
-        //public static int ExecuteCommand(string sql, params SqlParameter[] values)
-        //{
-        //    SqlConnection conn = DBHelper.Getconn();
-        //    SqlCommand cmd = new SqlCommand(sql, conn);
-        //    cmd.Parameters.AddRange(values);
-        //    return cmd.ExecuteNonQuery();
-        //}
-
 
         /// <summary>
         /// 执行SQL语句，返回影响的记录数
