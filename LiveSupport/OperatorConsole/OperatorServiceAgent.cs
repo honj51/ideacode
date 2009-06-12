@@ -180,7 +180,11 @@ namespace LiveSupport.OperatorConsole
         public NewChangesCheckResult GetNextNewChanges()
         {
             NewChangesCheckResult result = getNewChanges(lastCheck);
-            if (result == null || result.ReturnCode != ReturnCodeEnum.ReturnCode_Success) return null;
+            if (result == null) return null;
+            if (result.ReturnCode != ReturnCodeEnum.ReturnCode_Success)
+            {
+                return result;
+            }
             foreach (var item in result.NewVisitors)
             {
                 lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
