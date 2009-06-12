@@ -507,7 +507,6 @@ namespace LiveSupport.OperatorConsole
                     ListViewItem pageRequest = new ListViewItem(new string[]
                          {
                             item.Page, item.RequestTime.ToString(), item.Referrer
-                            
                           });
                     pageRequest.Tag = item;
                     lstPageRequest.Items.Add(pageRequest);
