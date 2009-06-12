@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("快速回复");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("快速回复");
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.addNodeToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -43,12 +43,12 @@
             this.setTalkTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.setTalkTreeView.Location = new System.Drawing.Point(0, 31);
             this.setTalkTreeView.Name = "setTalkTreeView";
-            treeNode3.Checked = true;
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "快速回复";
+            treeNode1.Checked = true;
+            treeNode1.Name = "节点0";
+            treeNode1.Text = "快速回复";
             this.setTalkTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
-            this.setTalkTreeView.Size = new System.Drawing.Size(163, 254);
+            treeNode1});
+            this.setTalkTreeView.Size = new System.Drawing.Size(420, 242);
             this.setTalkTreeView.TabIndex = 6;
             this.setTalkTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.setTalkTreeView_AfterLabelEdit);
             // 
@@ -63,7 +63,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(163, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(420, 31);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(163, 285);
+            this.ClientSize = new System.Drawing.Size(420, 273);
             this.Controls.Add(this.setTalkTreeView);
             this.Controls.Add(this.toolStrip1);
             this.MaximizeBox = false;

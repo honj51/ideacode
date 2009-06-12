@@ -19,12 +19,7 @@ namespace LiveSupport.OperatorConsole
         private Operator currentOperator;
 
         #region 公开属性
-        public OperatorWS WS
-        {
-            get { return ws; }
-            set { ws = value; }
-        }
-
+       
         public static OperatorServiceAgent Default
         {
             get 
@@ -74,7 +69,7 @@ namespace LiveSupport.OperatorConsole
             lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
         }
 
-        #region OperatorServiceClient 成员
+        #region OperatorServiceAgent 成员
 
         public Operator Login(string accountName, string operatorName, string password)
         {
@@ -210,9 +205,10 @@ namespace LiveSupport.OperatorConsole
                 }                
             }
             processOpertors(result);
-            processChats(result);
+            
 
             lastCheck.ChatSessionChecks = processMessages(result).ToArray();
+            processChats(result);
             return result;
         }
 
@@ -230,7 +226,17 @@ namespace LiveSupport.OperatorConsole
 
         private void processChats(NewChangesCheckResult result)
         {
-            // 1. 保存LastCheckTime
+            // 1. 查找新的对话请求，并显示NotifyForm
+            foreach (var item in result.Chats)
+            {
+                if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator && GetChatByChatId(item.ChatId) == null)
+                {
+                    Visitor visitor = GetVisitorById(item.VisitorId);
+                    NewChatRequest(this, new NewChatRequestEventArgs(visitor.Name, item));
+                }
+            }
+
+            // 2. 保存LastCheckTime
             foreach (var item in result.Chats)
             {
                 Chat c = GetChatByChatId(item.ChatId);
@@ -242,27 +248,6 @@ namespace LiveSupport.OperatorConsole
 
             this.chats.Clear();
             this.chats.AddRange(result.Chats);
-
-            foreach (var item in this.chats)
-            {
-                if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator)
-                {
-                    Visitor visitor = null;
-                    if (this.visitors != null)
-                    {
-                        foreach (var v in this.visitors)
-                        {
-                            if (v.VisitorId == item.VisitorId)
-                            {
-                                visitor = v;
-                                break;
-                            }
-                        }
-
-                        NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", item);
-                    }
-                }
-            }
         }
 
         private void processOpertors(NewChangesCheckResult result)
@@ -270,7 +255,7 @@ namespace LiveSupport.OperatorConsole
 
             if (result.Operators != null)
             {
-                if (result.Operators.Length > Operators.Count || checkIfOperatorStatusChanges(Operators, result.Operators))
+                if (result.Operators.Length > Operators.Count || checkIfOperatorStatusChanges(result.Operators))
                 {
                     Operators.Clear();
                     Operators.AddRange(result.Operators);
@@ -343,24 +328,21 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        private bool checkIfOperatorStatusChanges(List<Operator> ops, Operator[] p)
+        private bool checkIfOperatorStatusChanges(Operator[] p)
         {
-            if (ops == null || p == null)
+            foreach (var item in p)
             {
-                return false;
-
-            }
-            for (int i = 0; i < p.Length; i++)
-            {
-
-                foreach (var item in ops)
+                Operator op = GetOperatorById(item.OperatorId);
+                if (op == null)
                 {
-                    if (p[i].Status != item.Status && p[i].OperatorId == item.OperatorId)
-                    {
-                        return true;
-                    }
+                    continue;
+                }
+                if (op.Status != item.Status)
+                {
+                    return true;
                 }
             }
+
             return false;
         }
 
@@ -420,6 +402,8 @@ namespace LiveSupport.OperatorConsole
 
         public event EventHandler<NewMessageEventArgs> NewMessage;
 
+        public event EventHandler<NewChatRequestEventArgs> NewChatRequest;
+
         public List<Operator> Operators
         {
             get
@@ -469,5 +453,6 @@ namespace LiveSupport.OperatorConsole
         }
 
         #endregion
+
     }
 }
