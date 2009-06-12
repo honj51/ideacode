@@ -188,8 +188,17 @@ namespace LiveSupport.OperatorConsole
             foreach (var item in result.NewVisitors)
             {
                 lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
-                visitors.Add(item);
-                NewVisitor(this, new NewVisitorEventArgs(item));
+                if (IsVisitorExist(item.VisitorId))
+                {
+                    Visitor v = GetVisitorById(item.VisitorId);
+                    v.CurrentSession = item.CurrentSession;
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                }
+                else
+                {
+                    visitors.Add(item);
+                    NewVisitor(this, new NewVisitorEventArgs(item));
+                }
             }
 
             foreach (var item in result.VisitSessionChange)
@@ -205,6 +214,18 @@ namespace LiveSupport.OperatorConsole
 
             lastCheck.ChatSessionChecks = processMessages(result).ToArray();
             return result;
+        }
+
+        private Visitor GetVisitorById(string visitorId)
+        {
+            foreach (var item in visitors)
+            {
+                if (visitorId == item.VisitorId)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
 
         private void processChats(NewChangesCheckResult result)
@@ -437,6 +458,14 @@ namespace LiveSupport.OperatorConsole
                 }
             }
             return null;
+        }
+
+        #endregion
+
+        #region 判断访客是否存在 成员
+        public bool IsVisitorExist(string visitorId)
+        {
+            return GetVisitorById(visitorId) == null ? false : true;
         }
 
         #endregion
