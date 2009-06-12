@@ -237,10 +237,16 @@ public static class OperatorService
     /// 重置座席密码
     /// </summary>
     /// <param name="loginName">登录名</param>
-    public static int ResetOperatorPassword(string loginName)
+    public static int ResetOperatorPassword(string operatorId, string loginName)
     {
         Trace.WriteLine(string.Format("OperatorService.ResetOperatorPassword(LoginName = {0})", loginName));
-        Operator op = GetOperatorByLoginName(loginName);
+        Operator op = null;
+        op = GetOperatorById(operatorId);
+        if (op == null || op.IsAdmin == false)
+        {
+            return ResetOperatorPassword_OtheError;
+        }
+        op = GetOperatorByLoginName(loginName);
         if (loginName != null || op != null)
         {
             if (op.Email != null)
@@ -327,7 +333,7 @@ public static class OperatorService
     {
         Trace.WriteLine(string.Format("OperatorService.ChangPassword(operatorId = {0},oldPassword={1},Password={2})", operatorId, oldPassword, newPassword));
         Operator op = GetOperatorById(operatorId);
-        if (op == null)
+        if (op != null)
         {
             if (op.Password == oldPassword)
             {
@@ -349,7 +355,7 @@ public static class OperatorService
     /// <param name="op">Operator对象</param>
     public static void UpdateOperator(Operator op)
     {
-        Provider.UpdateOperator(op);
+         Provider.UpdateOperator(op);
     }
     
 
@@ -455,7 +461,13 @@ public static class OperatorService
         op.Status = operatorStatus;
     }
 
-
+    /// <summary>
+    /// 上传文件
+    /// </summary>
+    /// <param name="bs"></param>
+    /// <param name="fileName"></param>
+    /// <param name="chatId"></param>
+    /// <param name="saveFilePath"></param>
     public static void UploadFile(byte[] bs, string fileName, string chatId, string saveFilePath)
     {
         MemoryStream mo = new MemoryStream(bs);
