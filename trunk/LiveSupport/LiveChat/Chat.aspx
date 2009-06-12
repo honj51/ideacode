@@ -296,7 +296,7 @@
   </td>
   
   <td valign="top" id="bwrap" style=" width:40px; height:80%;">
-				<div id="banner" style="height:305px; width: 135px" ><img  alt=""  src="Images/operator.jpg" width="100%" height="100%"
+				<div id="banner" style="height:305px; width: 135px" ><img  alt=""  src="Images/operator.jpg" width="135px" height="300px"
                         /></div>
   
   </td>
