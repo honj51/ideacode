@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Configuration;
 using System.Net;
 using System.Diagnostics;
+using System.Threading;
 
 namespace LiveSupport.BLL
 {
@@ -68,6 +69,53 @@ namespace LiveSupport.BLL
                 Trace.WriteLine(string.Format("Error:Util.SendEmail 错误信息：{0}", ex.Message));
                 return false;
             }
+        }
+
+        public static bool SendEmailAsync(string toEmail, string email, string emailPwd, string emailSmtp, string subject, string body)
+        {
+            try
+            {
+                AsyncEmailCarrier c = new AsyncEmailCarrier(toEmail, email, emailPwd, emailSmtp, subject, body);
+                c.Send();
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        class AsyncEmailCarrier 
+        {
+            public AsyncEmailCarrier(string toEmail, string email, string emailPwd, string emailSmtp, string subject, string body)
+            {
+                this.toEmail = toEmail;
+                this.email = email;
+                this.emailPwd = emailPwd;
+                this.emailSmtp = emailSmtp;
+                this.subject = subject;
+                this.body = body;
+            }
+
+            public void Send()
+            {
+                Thread t = new Thread(new ThreadStart(threadFun));
+                t.Start();
+            }
+
+            private void threadFun()
+            {
+                SendEmail(toEmail, email, emailPwd, emailSmtp, subject, body);
+            }
+
+            public string toEmail;
+            public string email;
+            public string emailPwd;
+            public string emailSmtp;
+            public string subject;
+            public string body;
+
         }
         #endregion
  
