@@ -4,6 +4,7 @@ using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
 using LiveSupport.LiveSupportDAL.Providers;
+using System.Data;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
@@ -35,27 +36,46 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 更新客服信息
         public int UpdateOperator(Operator op)
         {
-            int isAdmin = 0;
-            if (op.IsAdmin == false)
-                isAdmin = 0;
-            else
-                isAdmin = 1;
+            //int isAdmin = 0;
+            //if (op.IsAdmin == false)
+            //    isAdmin = 0;
+            //else
+            //    isAdmin = 1;
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update LiveChat_Operator set ");
+            strSql.Append("AccountId=@AccountId,");
+            strSql.Append("LoginName=@LoginName,");
+            strSql.Append("Password=@Password,");
+            strSql.Append("NickName=@NickName,");
+            strSql.Append("Email=@Email,");
+            strSql.Append("IsAdmin=@IsAdmin,");
+            strSql.Append("Status=@Status,");
+            strSql.Append("AVChatStatus=@AVChatStatus,");
+            strSql.Append("DepartmentId=@DepartmentId");
+            strSql.Append(" where OperatorId=@OperatorId ");
+            SqlParameter[] parameters = {
+					new SqlParameter("@OperatorId", SqlDbType.VarChar,50),
+					new SqlParameter("@AccountId", SqlDbType.VarChar,50),
+					new SqlParameter("@LoginName", SqlDbType.VarChar,30),
+					new SqlParameter("@Password", SqlDbType.VarChar,30),
+					new SqlParameter("@NickName", SqlDbType.VarChar,30),
+					new SqlParameter("@Email", SqlDbType.VarChar,30),
+					new SqlParameter("@IsAdmin", SqlDbType.Bit,1),
+					new SqlParameter("@Status", SqlDbType.VarChar,30),
+					new SqlParameter("@AVChatStatus", SqlDbType.VarChar,30),
+					new SqlParameter("@DepartmentId", SqlDbType.VarChar,50)};
+            parameters[0].Value = op.OperatorId;
+            parameters[1].Value = op.AccountId;
+            parameters[2].Value = op.LoginName;
+            parameters[3].Value = op.Password;
+            parameters[4].Value = op.NickName;
+            parameters[5].Value = op.Email;
+            parameters[6].Value = op.IsAdmin;
+            parameters[7].Value = op.Status;
+            parameters[8].Value = op.AVChatStatus;
+            parameters[9].Value = op.Department.DepartmentId;
 
-            string sql = string.Format(
-             "UPDATE [LiveSupport].[dbo].[LiveChat_Operator]"
-             + " SET [AccountId] = '{0}'"
-             + ",[LoginName] = '{1}' "
-             + ",[Password] = '{2}'"
-             + ",[NickName] = '{3}'"
-             + ",[Email] = '{4}'"
-             + ",[IsAdmin] = '{5}'"
-             + ",[Status] = '{6}'"
-             + " ,[AVChatStatus] = '{7}'"
-             + " ,[DepartmentId] = '{8}'"
-             + " WHERE OperatorId='{9}'"
-             , op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, isAdmin, op.Status, op.AVChatStatus, op.Department.DepartmentId, op.OperatorId);
-            return DBHelper.ExecuteCommand(sql);
- 
+           return DBHelper.ExecuteCommand(strSql.ToString(), parameters);
         }
         #endregion
 
