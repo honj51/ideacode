@@ -252,12 +252,12 @@ public static class OperatorService
             if (op.Email != null)
             {
                 op.Password=Util.RandLetter(8);
-                string body = "你的新密码是：" +op.Password;
+                string body = "尊敬的客服 " + op.NickName + " 您好!\n   您的账号为：" + op.LoginName + ",您的密码为：" + op.Password + ",请您牢记,感谢您一直以来对我们公司产品的支持与厚爱!\n \n \n \n \n \n \n \n                                                        如需帮助请浏览我们公司的官方网站 http://www.zxkefu.cn";
                 string subject = "密码激活";
                 string SMTPServer= ConfigurationManager.AppSettings["SMTPServer"].ToString();
                 string emal=ConfigurationManager.AppSettings["Email"].ToString();
                 string pwd=ConfigurationManager.AppSettings["Password"].ToString();
-                Util.SendEmail(op.Email, emal, pwd, SMTPServer, subject, body);
+                Util.SendEmailAsync(op.Email, emal, pwd, SMTPServer, subject, body);
                 UpdateOperator(op);
                 return ResetOperatorPassword_OK;
             }
