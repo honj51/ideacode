@@ -25,6 +25,7 @@ namespace LiveSupport.OperatorConsole
         List<QuickResponseCategory> GetQuickResponse();
         NewChangesCheckResult GetNextNewChanges();
         Operator GetOperatorById(string operatorId);
+        Visitor GetVisitorById(string visitorId);
         #region 公开事件
         event EventHandler<EventArgs> ConnectionLost;
         event EventHandler<NewVisitorEventArgs> NewVisitor;
@@ -44,7 +45,7 @@ namespace LiveSupport.OperatorConsole
         List<QuickResponseCategory> QuickResponseCategory { get; }
         #endregion
 
-        Operator GetOperatorById(string operatorId);
+        //Operator GetOperatorById(string operatorId);
 
         Chat GetChatRequest(string p);
 
