@@ -216,7 +216,7 @@ namespace LiveSupport.OperatorConsole
             return result;
         }
 
-        private Visitor GetVisitorById(string visitorId)
+        public Visitor GetVisitorById(string visitorId)
         {
             foreach (var item in visitors)
             {
