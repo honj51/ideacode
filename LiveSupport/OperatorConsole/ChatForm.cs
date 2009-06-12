@@ -58,38 +58,26 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         private IOperatorServiceAgent operatorServiceAgent;
+        private bool receiveMessage = true;
+        private int acceptChatRequestResult = 0;
+        private SoundPlayer player = new SoundPlayer();
+        private Chat chat;
 
         public IOperatorServiceAgent OperatorServiceAgent
         {
             get { return operatorServiceAgent; }
             set { operatorServiceAgent = value; }
         }
-        private SoundPlayer player = new SoundPlayer();
-        private Chat chat;
-        private List<Operator> onlineOperators = new List<Operator>();
-
         public Chat Chat
         {
             get { return chat; }
             set { chat = value; }
         }
 
-        public List<Operator> OnlineOperators
-        {
-            get { return onlineOperators; }
-            set { onlineOperators = value; }
-        } 
- 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
-            if (chat.Status != ChatStatus.Closed) 
-            {
-                operatorServiceAgent.CurrentOperator.Status = OperatorStatus.Idle;
-            }
             if (!this.IsDisposed && receiveMessage)
             {
-                //WriteMessage(message.Text, message.Source);
-
                 if (API.FromSystem(message))
                 {
                     wb.Document.Write(string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text));
@@ -103,79 +91,29 @@ namespace LiveSupport.OperatorConsole
                     wb.Document.Write(string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
                 }
                 wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
-
-                
                 if (!this.ringToolStripMenuItem.Checked)
                 {
                     PlayMsgSound();
                 }
                 if (!this.flashToolStripMenuItem.Checked)
                 {
-
                     API.FlashWindowEx(this.Handle);
                 }
             }
         }
-        public void RecieveOperator(List<Operator> Operators)
-        {
-
-            //operatorPannel1.RecieveOperator(Operators);
-            //operatorPannel1.chatId = Chat.ChatId;
         
-        }
-        string getOperatorsStatusText(OperatorStatus os)
-        {
-            string status;
-            switch (os)
-            {
-                case OperatorStatus.Idle:
-                    status = "空闲";
-                    break;
-                case OperatorStatus.Away:
-                    status = "离开";
-                    break;
-                case OperatorStatus.Chatting:
-                    status = "对话中";
-                    break;
-                case OperatorStatus.BeRightBack:
-                    status = "一会回来";
-                    break;
-                case OperatorStatus.Offline:
-                    status = "离线";
-                    break;
-                default:
-                    status = "离线";
-                    break;
 
-            }
-            return status;
-
-        }
-
-        private bool receiveMessage = true;
         public ChatForm(IOperatorServiceAgent agent,Chat chat)
             : this(agent, chat, false)
         {           
         }
 
-        private int acceptChatRequestResult = 0;
         public ChatForm(IOperatorServiceAgent agent, Chat chat, bool invite)
         {
-
-
             this.operatorServiceAgent = agent;
             this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
             InitializeComponent();
-            // TODO: ??
-            //if (OperatorWebServiceAgent.Default.WS.GetQuickResponse().Length > 0)
-            //{
-            //    for (int i = 0; i < OperatorWebServiceAgent.Default.WS.GetQuickResponse().Length; i++)
-            //    {
-            //        OperatorWebServiceAgent.Default.QuickResponseCategory.Add(OperatorWebServiceAgent.Default.WS.GetQuickResponse()[i]);
-            //    }
-            //}
             this.chat = chat;
-           
 
             if (!invite)
             {
@@ -184,48 +122,24 @@ namespace LiveSupport.OperatorConsole
                 {
                     wb.Navigate("about:该访客对话请求已被其他客服接受"); 
                     receiveMessage = false;
-                    //wb.Document.Write(string.Format("<span style=\"color: #FF9933\">{0}</span><br />","该访客对话请求已被其他客服接受"));
-                    
                     return;
                 }
                 if (acceptChatRequestResult == -3)
                 {
                     wb.Navigate("about:服务器错误");
                     receiveMessage = false;
-                
                 }
-
             }
-            // We initialize the document
+            
             wb.Navigate("about:初始会话...");
-          
-            foreach (Visitor item in operatorServiceAgent.Visitors)
-            {
-                if (item.VisitorId == chat.VisitorId)
-               {
-                    this.Text = "与 " + item.Name + " 对话中";
-                    this.visitorNameLabel.Text += item.Name;
-                    this.visitorCompanyLabel.Text += item.Company;
-                    this.remarkLabel.Text += item.Remark;
-                    this.visitCountLabel.Text += item.VisitCount.ToString() ;
-                    this.visitorLocationLabel.Text += item.CurrentSession.Location;
-                    break;
-               }
-            
-            }
-            if (Program.NotifyForms.Count > 0)
-            {
-                foreach (NotifyForm item in Program.NotifyForms)
-                {
-                    if (chat.ChatId == item.chat.ChatId)
-                    {
-                        item.Close();
-                        Program.NotifyForms.Remove(item);
-                        break;
-                    }
-                }
-            }
-            
+
+            Visitor item = operatorServiceAgent.GetVisitorById(chat.VisitorId);
+            this.Text = "与 " + item.Name + " 对话中";
+            this.visitorNameLabel.Text += item.Name;
+            this.visitorCompanyLabel.Text += item.Company;
+            this.remarkLabel.Text += item.Remark;
+            this.visitCountLabel.Text += item.VisitCount.ToString();
+            this.visitorLocationLabel.Text += item.CurrentSession.Location;
             txtMsg.Focus();
         }
 
@@ -251,8 +165,6 @@ namespace LiveSupport.OperatorConsole
         {
             if (uploadOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //WebClient myWebClient = new WebClient();
-                //myWebClient.Credentials = CredentialCache.DefaultCredentials;
                 String filename = uploadOpenFileDialog.FileName;
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 byte[] fsbyte = new byte[fs.Length];
@@ -274,17 +186,9 @@ namespace LiveSupport.OperatorConsole
 
         private void txtMsg_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape && MessageBox.Show("Are you sure you want to exit the chat session?", "Ending chat session", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (e.KeyCode == Keys.Escape)
             {
-                LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
-                msg.ChatId = Chat.ChatId;                
-                msg.SentDate = DateTime.Now;
-
-                wb.Document.Write(string.Format("<span style=\"font-family: Arial;color: blue;font-weight: bold;font-size: 12px;\">{0} </span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", "System", "The operator has left the chat session..."));
-               
-               //OperatorWebServiceAgent.Default.WS.AddMessage(msg);
-
-                //((MainForm)this.ParentForm).EndChat((TabPage)this.Parent, myChatRequest.ChatId);
+                this.Close();
             }
         }
 
@@ -293,9 +197,7 @@ namespace LiveSupport.OperatorConsole
             if ((int)e.KeyChar == 13 && txtMsg.Text.Length > 0)
             {
                 e.Handled = true;
-
-
-               WriteMessage(txtMsg.Text);
+                WriteMessage(txtMsg.Text);
                 txtMsg.Clear();
             }
         }
@@ -310,7 +212,6 @@ namespace LiveSupport.OperatorConsole
         {
             LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
             msg.ChatId = Chat.ChatId; 
-            //msg.ChatId = myChatRequest.ChatId;
             msg.Text = message;
             msg.Source = From;
             msg.SentDate = DateTime.Now;
@@ -319,11 +220,7 @@ namespace LiveSupport.OperatorConsole
             operatorServiceAgent.SendMessage(msg);
             wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message));
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
-            //msg.Type = MessageType_ToAll;//*	
-            //OperatorWebServiceAgent.Default.WS.AddMessage(msg);
         }
-
-      
 
         /// <summary>
         /// 截图
@@ -367,10 +264,9 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             if (chat.Status != ChatStatus.Closed)
             {
-                if (MessageBox.Show("正在对话中，您确定要关闭？", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question).Equals(DialogResult.No))
+                if (!exitConfirm())
                 {
                     e.Cancel = true;
                     return;
@@ -382,8 +278,12 @@ namespace LiveSupport.OperatorConsole
                 operatorServiceAgent.CloseChat(this.Chat.ChatId);
             }
             Program.ChatForms.Remove(this);
-            setTalkTreeView.Nodes[0].Nodes.Clear();
+        }
 
+        private bool exitConfirm()
+        {
+            DialogResult result = MessageBox.Show("正在对话中，您确定要关闭？", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return result == DialogResult.Yes ? true : false;
         }
 
         private void ChatForm_Load(object sender, EventArgs e)
@@ -404,7 +304,6 @@ namespace LiveSupport.OperatorConsole
 
             }
             setTalkTreeView.ExpandAll();
- 
         }
 
         private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -415,7 +314,5 @@ namespace LiveSupport.OperatorConsole
                 this.txtMsg.Focus();
             }
         }
-
-       
     }
 }

@@ -33,7 +33,7 @@ namespace LiveSupport.OperatorConsole
                 if (this.txtNewPassword.Text == this.txtNewPassword2.Text)
                 {
 
-                    if (OperatorServiceAgent.Default.WS.ChangePassword(this.txtPassword.Text, txtNewPassword.Text) == 0)
+                    if (Program.OperaterServiceAgent.ChangePassword(this.txtPassword.Text, txtNewPassword.Text) == 0)
                     {
                         MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
                         this.Close();

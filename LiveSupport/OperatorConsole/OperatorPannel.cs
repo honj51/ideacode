@@ -36,14 +36,14 @@ namespace LiveSupport.OperatorConsole
                         operatorsTreeView.Nodes[0].Nodes[i].SelectedImageIndex = 8;
                     }
 
-                    operatorsTreeView.Nodes[0].Nodes.Add(item.NickName + "(" + getOperatorsStatusText(item.Status) + ")").Tag = item;
+                    operatorsTreeView.Nodes[0].Nodes.Add(item.NickName + "(" + Common.GetOperatorsStatusText(item.Status) + ")").Tag = item;
                 }
                 else
                 {
                     operatorsTreeView.Nodes[1].ImageIndex = 4;
                     operatorsTreeView.Nodes[1].SelectedImageIndex = 4;
 
-                    operatorsTreeView.Nodes[1].Nodes.Add(item.NickName + "(" + getOperatorsStatusText(item.Status) + ")").Tag = item;
+                    operatorsTreeView.Nodes[1].Nodes.Add(item.NickName + "(" + Common.GetOperatorsStatusText(item.Status) + ")").Tag = item;
                   
 
                     
@@ -96,37 +96,6 @@ namespace LiveSupport.OperatorConsole
             }
         
         }
-        string getOperatorsStatusText(OperatorStatus os)
-        {
-            string status;
-            switch (os)
-            {
-                case OperatorStatus.Idle:
-                    status = "空闲";
-                    break;
-                case OperatorStatus.InviteChat:
-                    status = "请求对话中";
-                    break;
-                case OperatorStatus.Away:
-                    status = "离开";
-                    break;
-                case OperatorStatus.Chatting:
-                    status = "对话中";
-                    break;
-                case OperatorStatus.BeRightBack:
-                    status = "一会回来";
-                    break;
-                case OperatorStatus.Offline:
-                    status = "离线";
-                    break;
-                default:
-                    status = "离线";
-                    break;
-
-            }
-            return status;
-
-        }
 
         private void operatorsTreeView_DoubleClick(object sender, EventArgs e)
         {
@@ -145,13 +114,8 @@ namespace LiveSupport.OperatorConsole
                       MessageBox.Show("该客服无法回应你的请求");
                   
                   }
-              
-
-             
             }
          
         }
-
-        
     }
 }

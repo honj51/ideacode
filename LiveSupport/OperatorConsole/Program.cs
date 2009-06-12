@@ -22,7 +22,6 @@ namespace LiveSupport.OperatorConsole
 	static class Program
 	{
         public static MainForm MainForm;
-        public static List<NotifyForm> NotifyForms = new List<NotifyForm>();
         public static List<ChatForm> ChatForms = new List<ChatForm>();
         public static IOperatorServiceAgent OperaterServiceAgent;
         public static List<Chat> GetMyActiveChatSessions()
@@ -50,7 +49,17 @@ namespace LiveSupport.OperatorConsole
             LoginForm f = new LoginForm();
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
             Application.Run(f);
+            //Test();
 		}
+
+        static void Test()
+        {
+            OperaterServiceAgent.Login("user", "user1", "123");
+            Chat chat = new Chat();
+
+            NotifyForm.ShowNotifier(true,"Hello",chat);
+            Application.Run();
+        }
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {

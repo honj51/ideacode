@@ -74,7 +74,13 @@ namespace LiveSupport.OperatorConsole
             this.operaterServiceAgent.ConnectionLost += new EventHandler<EventArgs>(operaterServiceAgent_ConnectionLost);
             this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
             this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
+            this.operaterServiceAgent.NewChatRequest += new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
             InitializeComponent();
+        }
+
+        void operaterServiceAgent_NewChatRequest(object sender, NewChatRequestEventArgs e)
+        {
+            NotifyForm.ShowNotifier(true, "访客 " + e.Name + " 请求对话！", e.Chat);
         }
 
         private void initForm()

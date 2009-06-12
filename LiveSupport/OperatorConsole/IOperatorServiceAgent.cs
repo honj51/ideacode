@@ -7,10 +7,9 @@ namespace LiveSupport.OperatorConsole
 {
     public interface IOperatorServiceAgent
     {
+        #region OperatorService 方法
         Operator Login(string accountName, string operatorName, string password);
         void Logout();
-        List<Visitor> GetAllVisitors(string accountId);
-        //NewChangesCheckResult CheckNewChanges(NewChangesCheck check);
         void UploadFile(byte[] bs, string fileName, string chatId);
         bool SendMessage(Message msg);
         int ChangePassword(string oldPassword, string newPassword);
@@ -24,17 +23,24 @@ namespace LiveSupport.OperatorConsole
         void SaveQuickResponse(List<QuickResponseCategory> response);
         List<QuickResponseCategory> GetQuickResponse();
         NewChangesCheckResult GetNextNewChanges();
+        List<Visitor> GetAllVisitors(string accountId);
+        #endregion
+
+        #region 查询方法
         Operator GetOperatorById(string operatorId);
         Visitor GetVisitorById(string visitorId);
+        Chat GetChatRequest(string chatId);
+        bool IsVisitorExist(string visitorId);
+        #endregion
+
         #region 公开事件
         event EventHandler<EventArgs> ConnectionLost;
         event EventHandler<NewVisitorEventArgs> NewVisitor;
+        event EventHandler<NewChatRequestEventArgs> NewChatRequest;
         event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
         event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
         event EventHandler<ChatStatusChangeEventArgs> ChatStatusChange;
         event EventHandler<NewMessageEventArgs> NewMessage;
-
-
         #endregion
 
         #region 公开属性
@@ -44,12 +50,17 @@ namespace LiveSupport.OperatorConsole
         List<Chat> Chats { get; set; }
         List<QuickResponseCategory> QuickResponseCategory { get; }
         #endregion
+    }
 
-        //Operator GetOperatorById(string operatorId);
-
-        Chat GetChatRequest(string p);
-
-        bool IsVisitorExist(string p);
+    public class NewChatRequestEventArgs : EventArgs
+    {
+        public NewChatRequestEventArgs(string name, Chat c)
+        {
+            Name = name;
+            Chat = c;
+        }
+        public Chat Chat;
+        public string Name;
     }
 
     public class NewVisitorEventArgs : EventArgs

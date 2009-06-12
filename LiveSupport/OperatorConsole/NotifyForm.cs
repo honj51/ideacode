@@ -13,15 +13,18 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class NotifyForm : Form
     {
-        private int SendIndex;
         public Chat chat;
         private SoundPlayer player = new SoundPlayer();
+        protected TaskbarStates taskbarState = TaskbarStates.Hidden;
+        protected Timer timer = new Timer();
+        private int showFadingTime = 10; //窗体渐变显示速度
+        private int hideFadingTime = 100; //窗体渐变隐藏速度
+        private int showingTime = 10000; //窗体完全显示的时间
+        private NotifyMessageType notifyMessageType;
         public enum NotifyMessageType
         {
             ChatRequest, NewVisitor, SystemMessage, Others
         }
-
-        private NotifyMessageType notifyMessageType;
 
         public enum TaskbarStates
         {
@@ -30,12 +33,6 @@ namespace LiveSupport.OperatorConsole
             Visible = 2,
             Disappearing = 3
         }
-        protected TaskbarStates taskbarState = TaskbarStates.Hidden;
-        protected Timer timer = new Timer();
-
-        private int showFadingTime = 10; //show time in ms
-        private int hideFadingTime = 1000; //hide time in ms
-        private int showingTime =  1000; //show time in ms
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -47,7 +44,6 @@ namespace LiveSupport.OperatorConsole
         int nWidthEllipse, // height of ellipse
         int nHeightEllipse // width of ellipse
         );
-
 
         void timer_Tick(object sender, EventArgs e)
         {
@@ -79,12 +75,11 @@ namespace LiveSupport.OperatorConsole
                 case TaskbarStates.Disappearing:
                     if (this.Opacity > 0.00)
                     {
-                        //playChatReqSound();
-                        this.Opacity -= 0.1;
+                        this.Opacity -= 0.01;
                     }
                     else
                     {
-                        timer.Stop();                        
+                        player.Stop();
                         this.Hide();
                         taskbarState = TaskbarStates.Hidden;
                     }
@@ -104,37 +99,10 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-
         public static void ShowNotifier(bool showCommandButton, string message, Chat chat)
         {
-            Chat chat2 = null;
-            if (Program.NotifyForms.Count > 0)
-            {
-                foreach (NotifyForm item in Program.NotifyForms)
-                {
-                    if (item.chat.ChatId == chat.ChatId)
-                    {
-                        chat2 = item.chat;
-                        return;
-                    }
-
-                }
-                if (chat2 != null)
-                {
-                    NotifyForm f = new NotifyForm();
-                    f.showNotifier(showCommandButton, message, chat2);
-                    Program.NotifyForms.Add(f);
-                }
-            }
-            else
-            {
-                NotifyForm f = new NotifyForm();
-                f.showNotifier(showCommandButton, message, chat);
-                Program.NotifyForms.Add(f);
-
-            }
-
-
+            NotifyForm f = new NotifyForm();
+            f.showNotifier(showCommandButton, message, chat);
         }
 
         private void showNotifier(bool showCommandButton, string message, Chat chat)
@@ -144,58 +112,10 @@ namespace LiveSupport.OperatorConsole
             this.declineButton.Visible = showCommandButton;
             this.chat = chat;
             this.notifyMessageType = NotifyMessageType.ChatRequest;
+            timer.Interval = showFadingTime;
+            timer.Start();
+            taskbarState = TaskbarStates.Appearing;
             this.Show();
-            //playChatReqSound();
-            switch (taskbarState)
-            {
-                case TaskbarStates.Hidden:
-                    timer.Stop();
-                    timer.Interval = showFadingTime;
-                    timer.Start();
-                    taskbarState = TaskbarStates.Appearing;
-                    break;
-                case TaskbarStates.Appearing:
-                    break;
-                case TaskbarStates.Visible:
-                    break;
-                case TaskbarStates.Disappearing:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public static void ShowNotifier(bool showCommandButton, string message, int Chatindex)
-        {
-            NotifyForm f = new NotifyForm();
-            f.showNotifier(showCommandButton, message, Chatindex);
-        }
-
-        private void showNotifier(bool showCommandButton, string message, int Chatindex)
-        {
-            SendIndex = Chatindex;
-            this.messageLabel.Text = message;
-            this.acceptButton.Visible = showCommandButton;
-            this.declineButton.Visible = showCommandButton;
-
-            this.Show();
-            switch (taskbarState)
-            {
-                case TaskbarStates.Hidden:
-                    timer.Stop();
-                    timer.Interval = showFadingTime;
-                    timer.Start();
-                    taskbarState = TaskbarStates.Appearing;
-                    break;
-                case TaskbarStates.Appearing:
-                    break;
-                case TaskbarStates.Visible:
-                    break;
-                case TaskbarStates.Disappearing:
-                    break;
-                default:
-                    break;
-            }
         }
 
         public NotifyForm()
@@ -226,29 +146,13 @@ namespace LiveSupport.OperatorConsole
 
             if (cf == null)
             {
-                //this.chatSession.ChatingTime = DateTime.Now;
                 cf = new ChatForm(Program.OperaterServiceAgent, this.chat);
                 Program.ChatForms.Add(cf);
             }
 
             cf.Show();
+            player.Stop();
             this.Hide();
-            if (Program.NotifyForms.Count > 0)
-            {
-                NotifyForm nf = null;
-                foreach (NotifyForm item in Program.NotifyForms)
-                {
-                    if (item.chat.ChatId == this.chat.ChatId)
-                    {
-                        nf = item;
-
-                    }
-                }
-                if (nf != null)
-                {
-                    Program.NotifyForms.Remove(nf);
-                }
-            }
             timer.Stop();
         }
 
