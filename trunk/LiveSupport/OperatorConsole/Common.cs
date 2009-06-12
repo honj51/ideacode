@@ -27,6 +27,9 @@ namespace LiveSupport.OperatorConsole
                 case OperatorStatus.Offline:
                     status = "离线";
                     break;
+                case OperatorStatus.InviteChat:
+                    status = "对话邀请中";
+                    break;
                 default:
                     status = "离线";
                     break;

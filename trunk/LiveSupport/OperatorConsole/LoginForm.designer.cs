@@ -252,8 +252,8 @@ namespace LiveSupport.OperatorConsole
             this.Controls.Add(this.txtOpName);
             this.Controls.Add(this.lblOpName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "µÇÂ½";
             this.Load += new System.EventHandler(this.Login_Load);
