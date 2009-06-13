@@ -157,9 +157,10 @@ public class VisitSessionService
                     item.LastHitTime = DateTime.Now;
                 }
             }
+            Trace.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
         }
 
-        Trace.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
+        
     }
 
     /// <summary>
