@@ -340,6 +340,7 @@ public class ChatService
             s.ChatingTime = DateTime.Now;
         }
         SendMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
+        SendMessage(new Message(chat.ChatId, "您已接受对话邀请!", MessageType.SystemMessage_ToVisitor));
     }
 
     /// <summary>
