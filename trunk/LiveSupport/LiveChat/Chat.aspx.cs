@@ -101,6 +101,7 @@ public partial class Chat : System.Web.UI.Page
             if (Request.Cookies["chatId"] == null || ChatService.GetChatById(Request.Cookies["chatId"].Value.ToString()) == null)
             {
                 return null;
+                ///≤‚ ‘
             }
             else
                 return ChatService.GetChatById(Request.Cookies["chatId"].Value.ToString()); 
