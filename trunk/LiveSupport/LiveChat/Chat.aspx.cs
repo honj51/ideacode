@@ -119,10 +119,8 @@ public partial class Chat : System.Web.UI.Page
                 return;
             }
 
-            // 是否客服邀请的对话
-            if (Request.QueryString["chatid"] != null && !string.IsNullOrEmpty(Request.QueryString["chatid"].ToString()))
+            if (isInvitatation() || chatExist())
             {
-                // 主动邀请
                 pnlChat.Visible = true;
                 setCookie(Request.QueryString["chatid"].ToString());
             }
@@ -139,6 +137,18 @@ public partial class Chat : System.Web.UI.Page
                 }
             }
         }
+    }
+
+    private bool chatExist()
+    {
+        return CurrentChat != null && CurrentChat.Status != ChatStatus.Closed;
+    }
+
+    // 是否客服邀请的对话
+    private bool isInvitatation()
+    {
+        // 主动邀请
+        return Request.QueryString["chatid"] != null && !string.IsNullOrEmpty(Request.QueryString["chatid"].ToString());
     }
     //获取聊天消息
     protected void timerRefresh_Tick(object sender, EventArgs e)
