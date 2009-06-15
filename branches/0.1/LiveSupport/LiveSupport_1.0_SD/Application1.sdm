@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Visual Studio 生成的基于系统定义模型(SDM)的文件。-->
+<!--建议不要手动编辑此文件，这可能会导致错误。-->
+<SystemDefinitionModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="ServiceConnector" Version="1.0.0.0" Culture="zh-CN" DocumentLanguage="zh-CN" xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1">
+  <Import Alias="System" Name="System" Version="1.0.60130.0" />
+  <Import Alias="MicrosoftGenericApplication" Name="Microsoft.GenericApplication" Version="1.0.60130.0" />
+  <Import Alias="MicrosoftWeb" Name="Microsoft.Web" Version="1.0.60130.0" />
+  <DesignData>
+    <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+      <ModelElement Id="55be47f6658b48caaf86bec76dc118dd" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.SoftwareComponentDocument">
+        <Property Name="Version" Value="1" />
+      </ModelElement>
+    </VisualStudio>
+  </DesignData>
+  <SystemDefinition Name="ServiceConnector" Extends="MicrosoftGenericApplication:GenericApplication" SimulationRoot="false">
+    <DesignData>
+      <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+        <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.SoftwareComponentType">
+          <Property Name="State" Value="Implemented" />
+        </ModelElement>
+      </VisualStudio>
+    </DesignData>
+    <EndpointDefinition Name="WebServiceConsumer1" Extends="MicrosoftWeb:WebServiceClient">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortType" />
+        </VisualStudio>
+      </DesignData>
+    </EndpointDefinition>
+    <Endpoint Name="ServiceConnectWS" Definition="ServiceConnector.WebServiceConsumer1" MinOccurs="1" MaxOccurs="1" Reference="false">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ConsumerPort">
+            <Property Name="NeedsGeneration" Value="true" />
+            <Property Name="GeneratedName" Value="ServiceConnectWS" />
+            <ModelElement Id="208de528d6324f999e44c5fcffc6c0d7" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.DevConnection">
+              <Property Name="Name" Value="Connection3" />
+              <Property Name="ProviderPortId" Value="LiveChatService,1.0.0.0,zh-CN:LiveChatService+ServiceConnectWS" />
+            </ModelElement>
+            <Relationship Id="bfc4702011aa408a914e7f128ab9a0c1" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ConsumerPortContainsDevConnection" Role1="@208de528d6324f999e44c5fcffc6c0d7" RoleType1="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ConsumerPortContainsDevConnection.DevConnection" />
+          </ModelElement>
+        </VisualStudio>
+      </DesignData>
+    </Endpoint>
+    <Containment Name="ServiceConnectWSContainment" Definition="MicrosoftGenericApplication:GenericApplicationContainsWebServiceClient" ChildMember="ServiceConnectWS" />
+  </SystemDefinition>
+</SystemDefinitionModel>
