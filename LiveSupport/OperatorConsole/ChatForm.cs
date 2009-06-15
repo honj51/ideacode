@@ -167,6 +167,10 @@ namespace LiveSupport.OperatorConsole
             {
                 String filename = uploadOpenFileDialog.FileName;
                 FileStream fs = new FileStream(filename, FileMode.Open);
+                if (fs.Length >= 2097152)
+                {
+                    MessageBox.Show("你上传的文件过大！仅限 2M");
+                }
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
                 operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
