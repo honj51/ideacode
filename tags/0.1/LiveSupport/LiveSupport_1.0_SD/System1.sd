@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Visual Studio 生成的基于系统定义模型(SDM)的文件。-->
+<!--建议不要手动编辑此文件，这可能会导致错误。-->
+<SystemDefinitionModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="LiveChatService" Version="1.0.0.0" Culture="zh-CN" DocumentLanguage="zh-CN" xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1">
+  <Import Alias="System" Name="System" Version="1.0.60130.0" />
+  <Import Alias="MicrosoftWebApplication" Name="Microsoft.WebApplication" Version="1.0.60130.0" />
+  <Import Alias="MicrosoftDistributedApplication" Name="Microsoft.DistributedApplication" Version="1.0.60130.0" />
+  <Import Alias="MicrosoftWeb" Name="Microsoft.Web" Version="1.0.60130.0" />
+  <Import Alias="MicrosoftData" Name="Microsoft.Data" Version="1.0.60130.0" />
+  <Import Alias="MicrosoftDatabase" Name="Microsoft.Database" Version="1.0.60130.0" />
+  <DesignData>
+    <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+      <ModelElement Id="70b1d492a3734843b94a94cb99d20121" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.DeploymentDiagramDocument">
+        <Property Name="DocumentType" Value="ApplicationCompoundComponent" />
+        <Property Name="Version" Value="1" />
+        <Property Name="VSProjectId" Value="06a8dcd7-d54a-4c9a-9209-06e2b863b63d" />
+        <Relationship Id="53ec51e59ba746918abe615da5b1feb7" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.SoftwareComponentDocumentAffiliatedWithVSProject" Role1="@9dcc4ba14db344feb0e94f2d49f3f332" RoleType1="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.SoftwareComponentDocumentAffiliatedWithVSProject.VSProject" />
+        <ModelElement Id="9dcc4ba14db344feb0e94f2d49f3f332" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Project.VSProject">
+          <Property Name="Name" Value="SystemDiagramDocument1" />
+          <Property Name="Guid" Value="06a8dcd7-d54a-4c9a-9209-06e2b863b63d" />
+          <ModelElement Id="a0029011047f48469ecfaf88d6545511" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ProjectClassModelRoot">
+            <ModelElement Id="076bfc04a73b4f5abcaf73e89f5c2542" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.RootNamespace">
+              <Property Name="CustomAttributes" Value="" />
+              <Property Name="LanguageType" Value="VisualBasic" />
+              <ModelElement Id="a6bc87f2737f44f2985199e387c4a07b" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrNamespace">
+                <Property Name="Name" Value="System1" />
+                <Property Name="CustomAttributes" Value="" />
+                <Property Name="FullyQualifiedName" Value="System1" />
+                <Property Name="LanguageType" Value="VisualBasic" />
+                <ModelElement Id="8e113bcc4d1145dea09bedf470fb3d7c" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrClass">
+                  <Property Name="Name" Value="OperatorWS" />
+                  <Property Name="CustomAttributes" Value="&lt;System.Web.Services.WebServiceBinding(Name := &quot;OperatorWS&quot;, ConformsTo := System.Web.Services.WsiProfiles.BasicProfile1_1, EmitConformanceClaims := True)&gt;&#xD;&#xA;&lt;System.Web.Services.Protocols.SoapDocumentService()&gt;" />
+                  <Property Name="FullyQualifiedName" Value="System1.OperatorWS" />
+                  <Property Name="LanguageType" Value="VisualBasic" />
+                  <Property Name="TypeModifier" Value="Reference" />
+                  <Property Name="NewMemberLocation" Value="" />
+                  <Property Name="NewMemberDefinition" Value="" />
+                  <Property Name="PrimaryCodeFileName" Value="" />
+                  <ModelElement Id="56ded618dbfe4c89ab0937f67497c72d" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.InheritanceTypeRef">
+                    <Property Name="Name" Value="System.Web.Services.WebService" />
+                    <Property Name="CustomAttributes" Value="" />
+                    <Property Name="TypeArguments" Value="" />
+                    <Relationship Id="006a6cf4aed443689e8c92322c960e38" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrTypeHasBaseClrType" Role1="@8e113bcc4d1145dea09bedf470fb3d7c" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrTypeHasBaseClrType.SubType" />
+                  </ModelElement>
+                  <ModelElement Id="154efc24b5364c98bf8696bb4190befa" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrAttributeInstance">
+                    <Property Name="Name" Value="System.Web.Services.WebServiceBinding" />
+                    <Property Name="AttributeArguments" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHRNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYQUBAAAAS01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50cwMAAAAKaXNSZWFkb25seQlhcmd1bWVudHMPaXNDYXNlU2Vuc2l0aXZlAAMAAeUBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5BcnRpZmFjdE1vZGVsLkNsci5BdHRyaWJ1dGVBcmd1bWVudCwgTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuVHlwZVN5c3RlbSwgVmVyc2lvbj05LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2FdXQECAAAAAQkDAAAAAAQDAAAA5QFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50LCBNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAABMTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnRbXQIAAAAICAkEAAAAAwAAAAMAAAAHBAAAAAABAAAAAwAAAARKTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnQCAAAACQUAAAAJBgAAAAkHAAAABQUAAABKTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnQFAAAABXZhbHVlBG5hbWUKaXNSZWFkb25seQ9pc0Nhc2VTZW5zaXRpdmUPaXNTdHJpbmdMaXRlcmFsAQEAAAABAQECAAAABggAAAAMIk9wZXJhdG9yV1MiBgkAAAAETmFtZQEAAQEGAAAABQAAAAYKAAAAL1N5c3RlbS5XZWIuU2VydmljZXMuV3NpUHJvZmlsZXMuQmFzaWNQcm9maWxlMV8xBgsAAAAKQ29uZm9ybXNUbwEAAAEHAAAABQAAAAYMAAAABFRydWUGDQAAABVFbWl0Q29uZm9ybWFuY2VDbGFpbXMBAAAL" />
+                    <Relationship Id="d29f9165ec7344999cbe5f5e45884a7d" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances" Role1="@8e113bcc4d1145dea09bedf470fb3d7c" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances.ClrElement" />
+                  </ModelElement>
+                  <ModelElement Id="bd1d4440ce1e4837a92936b819266680" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrAttributeInstance">
+                    <Property Name="Name" Value="System.Web.Services.Protocols.SoapDocumentService" />
+                    <Property Name="AttributeArguments" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHRNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYQUBAAAAS01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50cwMAAAAKaXNSZWFkb25seQlhcmd1bWVudHMPaXNDYXNlU2Vuc2l0aXZlAAMAAeUBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5BcnRpZmFjdE1vZGVsLkNsci5BdHRyaWJ1dGVBcmd1bWVudCwgTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuVHlwZVN5c3RlbSwgVmVyc2lvbj05LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2FdXQECAAAAAQkDAAAAAAQDAAAA5QFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50LCBNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAABMTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnRbXQIAAAAICAkEAAAAAAAAAAAAAAAHBAAAAAABAAAAAAAAAARKTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnQCAAAACw==" />
+                    <Relationship Id="00e84a4903c644b6b50f147dd493f5b4" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances" Role1="@8e113bcc4d1145dea09bedf470fb3d7c" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances.ClrElement" />
+                  </ModelElement>
+                  <Relationship Id="82407c6a3f5246beb88ba2dba261177a" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrNamespaceContainsClrTypes" Role1="@a6bc87f2737f44f2985199e387c4a07b" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrNamespaceContainsClrTypes.OwnerNamespace" />
+                </ModelElement>
+                <Relationship Id="0cd8b25d42d04dbd825c36eeedf23607" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.RootNamespaceContainsClrNamespaces" Role1="@076bfc04a73b4f5abcaf73e89f5c2542" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.RootNamespaceContainsClrNamespaces.RootNamespace" />
+              </ModelElement>
+              <ModelElement Id="79e7c5a9d4244211b6adf7da60d6a134" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrNamespace">
+                <Property Name="Name" Value="LiveChatService" />
+                <Property Name="CustomAttributes" Value="" />
+                <Property Name="FullyQualifiedName" Value="LiveChatService" />
+                <Property Name="LanguageType" Value="VisualBasic" />
+                <ModelElement Id="9270d8c33ccf48d1a435253387ab01df" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrClass">
+                  <Property Name="Name" Value="ServiceConnectWS" />
+                  <Property Name="CustomAttributes" Value="&lt;System.Web.Services.WebServiceBinding(Name := &quot;ServiceConnectWS&quot;, ConformsTo := System.Web.Services.WsiProfiles.BasicProfile1_1, EmitConformanceClaims := True)&gt;&#xD;&#xA;&lt;System.Web.Services.Protocols.SoapDocumentService()&gt;" />
+                  <Property Name="FullyQualifiedName" Value="LiveChatService.ServiceConnectWS" />
+                  <Property Name="LanguageType" Value="VisualBasic" />
+                  <Property Name="TypeModifier" Value="Reference" />
+                  <Property Name="NewMemberLocation" Value="" />
+                  <Property Name="NewMemberDefinition" Value="" />
+                  <Property Name="PrimaryCodeFileName" Value="" />
+                  <ModelElement Id="70c58509a86948cbbd995b675696c89b" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.InheritanceTypeRef">
+                    <Property Name="Name" Value="System.Web.Services.WebService" />
+                    <Property Name="CustomAttributes" Value="" />
+                    <Property Name="TypeArguments" Value="" />
+                    <Relationship Id="4c24088743074760b288a73f03c5e5af" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrTypeHasBaseClrType" Role1="@9270d8c33ccf48d1a435253387ab01df" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrTypeHasBaseClrType.SubType" />
+                  </ModelElement>
+                  <ModelElement Id="20303c55f0d44df39c46285fc5596bb5" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrAttributeInstance">
+                    <Property Name="Name" Value="System.Web.Services.WebServiceBinding" />
+                    <Property Name="AttributeArguments" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHRNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYQUBAAAAS01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50cwMAAAAKaXNSZWFkb25seQlhcmd1bWVudHMPaXNDYXNlU2Vuc2l0aXZlAAMAAeUBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5BcnRpZmFjdE1vZGVsLkNsci5BdHRyaWJ1dGVBcmd1bWVudCwgTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuVHlwZVN5c3RlbSwgVmVyc2lvbj05LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2FdXQECAAAAAQkDAAAAAAQDAAAA5QFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50LCBNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAABMTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnRbXQIAAAAICAkEAAAAAwAAAAMAAAAHBAAAAAABAAAAAwAAAARKTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnQCAAAACQUAAAAJBgAAAAkHAAAABQUAAABKTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnQFAAAABXZhbHVlBG5hbWUKaXNSZWFkb25seQ9pc0Nhc2VTZW5zaXRpdmUPaXNTdHJpbmdMaXRlcmFsAQEAAAABAQECAAAABggAAAASIlNlcnZpY2VDb25uZWN0V1MiBgkAAAAETmFtZQEAAQEGAAAABQAAAAYKAAAAL1N5c3RlbS5XZWIuU2VydmljZXMuV3NpUHJvZmlsZXMuQmFzaWNQcm9maWxlMV8xBgsAAAAKQ29uZm9ybXNUbwEAAAEHAAAABQAAAAYMAAAABFRydWUGDQAAABVFbWl0Q29uZm9ybWFuY2VDbGFpbXMBAAAL" />
+                    <Relationship Id="3116f24de2554ac69f5b8d687da1b8b3" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances" Role1="@9270d8c33ccf48d1a435253387ab01df" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances.ClrElement" />
+                  </ModelElement>
+                  <ModelElement Id="2f383cb730f24b0e99c9905dcc37256e" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrAttributeInstance">
+                    <Property Name="Name" Value="System.Web.Services.Protocols.SoapDocumentService" />
+                    <Property Name="AttributeArguments" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHRNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYQUBAAAAS01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50cwMAAAAKaXNSZWFkb25seQlhcmd1bWVudHMPaXNDYXNlU2Vuc2l0aXZlAAMAAeUBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5BcnRpZmFjdE1vZGVsLkNsci5BdHRyaWJ1dGVBcmd1bWVudCwgTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuVHlwZVN5c3RlbSwgVmVyc2lvbj05LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2FdXQECAAAAAQkDAAAAAAQDAAAA5QFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW01pY3Jvc29mdC5WaXN1YWxTdHVkaW8uRW50ZXJwcmlzZVRvb2xzLkFydGlmYWN0TW9kZWwuQ2xyLkF0dHJpYnV0ZUFyZ3VtZW50LCBNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5UeXBlU3lzdGVtLCBWZXJzaW9uPTkuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAABMTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnRbXQIAAAAICAkEAAAAAAAAAAAAAAAHBAAAAAABAAAAAAAAAARKTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuQXJ0aWZhY3RNb2RlbC5DbHIuQXR0cmlidXRlQXJndW1lbnQCAAAACw==" />
+                    <Relationship Id="299be88e69cf47b89b90c2bc0902236e" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances" Role1="@9270d8c33ccf48d1a435253387ab01df" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrElementHasClrAttributeInstances.ClrElement" />
+                  </ModelElement>
+                  <Relationship Id="6a39e48c77e94f0b9129bd357b9f080e" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrNamespaceContainsClrTypes" Role1="@79e7c5a9d4244211b6adf7da60d6a134" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ClrNamespaceContainsClrTypes.OwnerNamespace" />
+                </ModelElement>
+                <Relationship Id="1db27cd51b154147be54c9c6baf7330e" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.RootNamespaceContainsClrNamespaces" Role1="@076bfc04a73b4f5abcaf73e89f5c2542" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.RootNamespaceContainsClrNamespaces.RootNamespace" />
+              </ModelElement>
+              <Relationship Id="b8132fda729047b481580a87bb44efbe" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ProjectClassRootContainsNamespace" Role1="@a0029011047f48469ecfaf88d6545511" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Clr.ProjectClassRootContainsNamespace.ProjectClassModelRoot" />
+            </ModelElement>
+            <Relationship Id="46fab786ce354217b467ecd49097ee71" Type="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Project.VSProjectContainsClassModelRoot" Role1="@9dcc4ba14db344feb0e94f2d49f3f332" RoleType1="Microsoft.VisualStudio.EnterpriseTools.ArtifactModel.Project.VSProjectContainsClassModelRoot.VSProject" />
+          </ModelElement>
+        </ModelElement>
+        <ModelElement Id="2ed67749e48a41899a7629808713c9b4" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.Diagrams.DeploymentDiagram">
+          <Property Name="IsExpanded" Value="true" />
+          <Property Name="AbsoluteBounds" Value="0, 0, 11, 8.5" />
+          <Property Name="IsCompleteView" Value="true" />
+          <Property Name="DiagramId" Value="cc6ce495-24ae-4f93-8df9-d45e290bf56b" />
+          <Property Name="BaseFontName" Value="微软雅黑" />
+          <Property Name="BaseFontSize" Value="0.125" />
+          <ModelElement Id="11c8c77e3b42425aba9547907400446e" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.Diagrams.ApplicationCompoundComponentShape">
+            <Property Name="IsExpanded" Value="true" />
+            <Property Name="AbsoluteBounds" Value="0.2, 0.2, 5, 3.5" />
+            <Property Name="NameCache" Value="LiveChatService" />
+            <Property Name="AccessibleDescriptionCache" Value="系统" />
+            <Property Name="TypeNameCache" Value="系统" />
+            <Property Name="ThemeColorCache" Value="0,0,212" />
+            <Property Name="TheBoundsRules" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHZNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5TZG1EZXNpZ25lcnMsIFZlcnNpb249OS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNmNWY3ZjExZDUwYTNhBQEAAABKTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuU2RtLk1vZGVsaW5nLkRpYWdyYW1zLk5vQm91bmRzUnVsZXMAAAAAAgAAAAs=" />
+            <Property Name="OrphanedSubjectId" Value="LiveChatService,1.0.0.0,zh-CN:LiveChatService" />
+            <Property Name="Title" Value="LiveChatService" />
+            <Property Name="Subtext" Value="System" />
+            <Property Name="SupplementalText" Value="" />
+            <Property Name="IsServiceProvider" Value="true" />
+            <Property Name="ImageResourceLocator" Value="D:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\DistributedApplication.emf" />
+            <Property Name="ErrorImageResourceLocator" Value="D:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\DistributedApplication.emf" />
+            <Property Name="ShowGlyphBar" Value="true" />
+            <ModelElement Id="029e872f1d6046b2af79e02d26ef6c6d" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.Diagrams.WebServicePortShape">
+              <Property Name="IsExpanded" Value="true" />
+              <Property Name="AbsoluteBounds" Value="0.11000000000000001, 1.325, 0.18, 0.18" />
+              <Property Name="NameCache" Value="OperatorWS" />
+              <Property Name="AccessibleDescriptionCache" Value=".NET Web 服务提供方终结点" />
+              <Property Name="TypeNameCache" Value=".NET Web 服务提供方终结点" />
+              <Property Name="ThemeColorCache" Value="145,137,213" />
+              <Property Name="TheBoundsRules" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHZNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5TZG1EZXNpZ25lcnMsIFZlcnNpb249OS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNmNWY3ZjExZDUwYTNhBQEAAABNTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuU2RtLk1vZGVsaW5nLkRpYWdyYW1zLlBvcnRNb3ZlbWVudFJ1bGUBAAAACmNvcm5lclNpemUABgIAAAAzMzMzMzPDPws=" />
+              <Property Name="OrphanedSubjectId" Value="LiveChatService,1.0.0.0,zh-CN:LiveChatService+OperatorWS" />
+              <Property Name="GeometryCache" Value="WebService" />
+              <ModelElement Id="37231db288064917ae6ee164d02ebc29" Type="Microsoft.VisualStudio.EnterpriseTools.Sdm.Modeling.Diagrams.SdmLabelShape">
+                <Property Name="IsExpanded" Value="true" />
+                <Property Name="AbsoluteBounds" Value="0.36, 1.575, 0.80643713474273682, 0.18060302734375" />
+                <Property Name="Text" Value="OperatorWS" />
+                <Relationship Id="5fe87557f0c642a984365eaeae986e45" Type="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes" Role1="@029e872f1d6046b2af79e02d26ef6c6d" RoleType1="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes.ParentShape" />
+              </ModelElement>
+              <Relationship Id="2efd544d48034fb7a5e7796366e8d264" Type="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes" Role1="@11c8c77e3b42425aba9547907400446e" RoleType1="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes.ParentShape" />
+              <Relationship Id="bf856bf8eed14c509408cf07f89510c1" Type="Microsoft.VisualStudio.Modeling.SubjectHasPresentation" Role1="LiveChatService+OperatorWS" RoleType1="Microsoft.VisualStudio.Modeling.SubjectHasPresentation.Subject" />
+            </ModelElement>
+            <ModelElement Id="1c218752214842e7bd3705d3313dd4a4" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.Diagrams.DeployedDBConsumerPortShape">
+              <Property Name="IsExpanded" Value="true" />
+              <Property Name="AbsoluteBounds" Value="0.11000000000000001, 1.075, 0.18, 0.18" />
+              <Property Name="NameCache" Value="DatabaseConsumerEndpoint1" />
+              <Property Name="AccessibleDescriptionCache" Value="已部署数据库使用方终结点" />
+              <Property Name="TypeNameCache" Value="已部署数据库使用方终结点" />
+              <Property Name="ThemeColorCache" Value="31,215,204" />
+              <Property Name="TheBoundsRules" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHZNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5TZG1EZXNpZ25lcnMsIFZlcnNpb249OS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNmNWY3ZjExZDUwYTNhBQEAAABNTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuU2RtLk1vZGVsaW5nLkRpYWdyYW1zLlBvcnRNb3ZlbWVudFJ1bGUBAAAACmNvcm5lclNpemUABgIAAAAzMzMzMzPDPws=" />
+              <Property Name="OrphanedSubjectId" Value="LiveChatService,1.0.0.0,zh-CN:LiveChatService+DatabaseConsumerEndpoint1" />
+              <Property Name="Direction" Value="Client" />
+              <Property Name="ShowLabel" Value="false" />
+              <Property Name="GeometryCache" Value="Database" />
+              <Relationship Id="b11600f554a04864b85b818ee2047d6e" Type="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes" Role1="@11c8c77e3b42425aba9547907400446e" RoleType1="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes.ParentShape" />
+              <Relationship Id="6fd0998a9a244f03b109f384ecc8e928" Type="Microsoft.VisualStudio.Modeling.SubjectHasPresentation" Role1="LiveChatService+DatabaseConsumerEndpoint1" RoleType1="Microsoft.VisualStudio.Modeling.SubjectHasPresentation.Subject" />
+            </ModelElement>
+            <ModelElement Id="4bb1a408af9f401a983c0d7d2a307b81" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.Diagrams.SoftwarePortShape">
+              <Property Name="IsExpanded" Value="true" />
+              <Property Name="AbsoluteBounds" Value="0.11000000000000001, 1.575, 0.18, 0.18" />
+              <Property Name="NameCache" Value="Endpoint1" />
+              <Property Name="AccessibleDescriptionCache" Value="WebContentClientEndpoint" />
+              <Property Name="TypeNameCache" Value="WebContentClientEndpoint" />
+              <Property Name="ThemeColorCache" Value="145,137,213" />
+              <Property Name="TheBoundsRules" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHZNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5TZG1EZXNpZ25lcnMsIFZlcnNpb249OS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNmNWY3ZjExZDUwYTNhBQEAAABNTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuU2RtLk1vZGVsaW5nLkRpYWdyYW1zLlBvcnRNb3ZlbWVudFJ1bGUBAAAACmNvcm5lclNpemUABgIAAAAzMzMzMzPDPws=" />
+              <Property Name="OrphanedSubjectId" Value="LiveChatService,1.0.0.0,zh-CN:LiveChatService+Endpoint1" />
+              <Property Name="Direction" Value="Client" />
+              <Property Name="ShowLabel" Value="false" />
+              <Property Name="GeometryCache" Value="WebContent" />
+              <Relationship Id="50bef70ef3f84b32a5bffef84f526c3e" Type="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes" Role1="@11c8c77e3b42425aba9547907400446e" RoleType1="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes.ParentShape" />
+              <Relationship Id="d50b7030263f46d482bc969af5c75933" Type="Microsoft.VisualStudio.Modeling.SubjectHasPresentation" Role1="LiveChatService+Endpoint1" RoleType1="Microsoft.VisualStudio.Modeling.SubjectHasPresentation.Subject" />
+            </ModelElement>
+            <ModelElement Id="366a17035eef49ca9d755f11adc10ec1" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.Diagrams.WebServicePortShape">
+              <Property Name="IsExpanded" Value="true" />
+              <Property Name="AbsoluteBounds" Value="0.11000000000000001, 1.825, 0.18, 0.18" />
+              <Property Name="NameCache" Value="ServiceConnectWS" />
+              <Property Name="AccessibleDescriptionCache" Value=".NET Web 服务提供方终结点" />
+              <Property Name="TypeNameCache" Value=".NET Web 服务提供方终结点" />
+              <Property Name="ThemeColorCache" Value="145,137,213" />
+              <Property Name="TheBoundsRules" Value="AAEAAAD/////AQAAAAAAAAAMAgAAAHZNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLkVudGVycHJpc2VUb29scy5TZG1EZXNpZ25lcnMsIFZlcnNpb249OS4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNmNWY3ZjExZDUwYTNhBQEAAABNTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5FbnRlcnByaXNlVG9vbHMuU2RtLk1vZGVsaW5nLkRpYWdyYW1zLlBvcnRNb3ZlbWVudFJ1bGUBAAAACmNvcm5lclNpemUABgIAAAAzMzMzMzPDPws=" />
+              <Property Name="OrphanedSubjectId" Value="LiveChatService,1.0.0.0,zh-CN:LiveChatService+ServiceConnectWS" />
+              <Property Name="GeometryCache" Value="WebService" />
+              <ModelElement Id="28ad76de617a4e9f910de754d3e4d4f0" Type="Microsoft.VisualStudio.EnterpriseTools.Sdm.Modeling.Diagrams.SdmLabelShape">
+                <Property Name="IsExpanded" Value="true" />
+                <Property Name="AbsoluteBounds" Value="0.36, 2.075, 1.1951700448989868, 0.18060302734375" />
+                <Property Name="Text" Value="ServiceConnectWS" />
+                <Relationship Id="d689745960d14464a637661b7d9182e9" Type="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes" Role1="@366a17035eef49ca9d755f11adc10ec1" RoleType1="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes.ParentShape" />
+              </ModelElement>
+              <Relationship Id="c75bfe2c5e984943909c19b41aeb9c97" Type="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes" Role1="@11c8c77e3b42425aba9547907400446e" RoleType1="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeHasRelativeChildShapes.ParentShape" />
+              <Relationship Id="2741e535cbea41838034fb42784a255e" Type="Microsoft.VisualStudio.Modeling.SubjectHasPresentation" Role1="LiveChatService+ServiceConnectWS" RoleType1="Microsoft.VisualStudio.Modeling.SubjectHasPresentation.Subject" />
+            </ModelElement>
+            <Relationship Id="172ac089bb3646459d120e7763cfe5d5" Type="Microsoft.VisualStudio.Modeling.SubjectHasPresentation" Role1="LiveChatService" RoleType1="Microsoft.VisualStudio.Modeling.SubjectHasPresentation.Subject" />
+            <Relationship Id="6e6000a89e7149e6b28d825c2aec0e96" Type="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeContainsNestedChildShapes" Role1="@2ed67749e48a41899a7629808713c9b4" RoleType1="Microsoft.VisualStudio.Modeling.Diagrams.ParentShapeContainsNestedChildShapes.ParentShape" />
+          </ModelElement>
+          <Relationship Id="93a6811576f242a9a0d3ebd34cca8f4c" Type="Microsoft.VisualStudio.Modeling.SubjectHasPresentation" Role1="@70b1d492a3734843b94a94cb99d20121" RoleType1="Microsoft.VisualStudio.Modeling.SubjectHasPresentation.Subject" />
+        </ModelElement>
+      </ModelElement>
+    </VisualStudio>
+  </DesignData>
+  <SystemDefinition Name="LiveChatService" Extends="MicrosoftDistributedApplication:DistributedApplication" SimulationRoot="false">
+    <DesignData>
+      <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+        <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationCompoundComponentType" />
+      </VisualStudio>
+    </DesignData>
+    <EndpointDefinition Name="WebService1" Extends="MicrosoftWeb:WebService">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortType">
+            <ModelElement Id="2f38fe41c9944a51bffb2825891d6cf3" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.WsdlBehaviorType">
+              <Property Name="BindingName" Value="OperatorWS" />
+              <Property Name="BindingNamespace" Value="http://tempuri.org/" />
+            </ModelElement>
+            <Relationship Id="a8a7ce4f148e4c1ea5f1589c7881c04e" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortTypeContainsPortBehaviorType" Role1="@2f38fe41c9944a51bffb2825891d6cf3" RoleType1="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortTypeContainsPortBehaviorType.PortBehaviorTypes" />
+          </ModelElement>
+        </VisualStudio>
+      </DesignData>
+    </EndpointDefinition>
+    <EndpointDefinition Name="DatabaseConsumerEndpoint1" Extends="MicrosoftData:DataClient">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortType" />
+        </VisualStudio>
+      </DesignData>
+    </EndpointDefinition>
+    <EndpointDefinition Name="Endpoint1" Extends="MicrosoftWeb:WebContentClient">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortType" />
+        </VisualStudio>
+      </DesignData>
+    </EndpointDefinition>
+    <EndpointDefinition Name="WebService2" Extends="MicrosoftWeb:WebService">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortType">
+            <ModelElement Id="434dd36d20664a6aa4178bd0fd65fe9b" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.WsdlBehaviorType">
+              <Property Name="BindingName" Value="ServiceConnectWS" />
+              <Property Name="BindingNamespace" Value="http://tempuri.org/" />
+            </ModelElement>
+            <Relationship Id="e8b9c98b5e0e420480518a197735f34b" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortTypeContainsPortBehaviorType" Role1="@434dd36d20664a6aa4178bd0fd65fe9b" RoleType1="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ApplicationPortTypeContainsPortBehaviorType.PortBehaviorTypes" />
+          </ModelElement>
+        </VisualStudio>
+      </DesignData>
+    </EndpointDefinition>
+    <Endpoint Name="OperatorWS" Definition="LiveChatService.WebService1" MinOccurs="1" MaxOccurs="1" Reference="false">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.WebServiceProviderPort">
+            <Property Name="NeedsGeneration" Value="true" />
+            <Property Name="ClassName" Value="System1.OperatorWS" />
+            <Property Name="WsdlServiceName" Value="OperatorWS" />
+            <Property Name="BindingName" Value="OperatorWS" />
+            <Property Name="BindingNamespace" Value="http://tempuri.org/" />
+            <Relationship Id="942a7e3752464154885bb01fe6555a38" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.PortBackedByClass" Role1="@8e113bcc4d1145dea09bedf470fb3d7c" RoleType1="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.PortBackedByClass.ClrClass" />
+          </ModelElement>
+        </VisualStudio>
+      </DesignData>
+      <SettingValue Path="BindingName" Fixed="false">OperatorWS</SettingValue>
+      <SettingValue Path="BindingNamespace" Fixed="false">http://tempuri.org/</SettingValue>
+    </Endpoint>
+    <Containment Name="OperatorWSContainment" Definition="MicrosoftWebApplication:DistributedApplicationContainsWebService" ChildMember="OperatorWS" />
+    <Endpoint Name="DatabaseConsumerEndpoint1" Definition="LiveChatService.DatabaseConsumerEndpoint1" MinOccurs="1" MaxOccurs="1" Reference="false">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.DeployedDBConsumerPort">
+            <Property Name="NeedsGeneration" Value="true" />
+            <Property Name="ConnectionStringId" Value="DatabaseConsumerEndpoint1" />
+          </ModelElement>
+        </VisualStudio>
+      </DesignData>
+    </Endpoint>
+    <Containment Name="DatabaseConsumerEndpoint1Containment" Definition="MicrosoftDatabase:DistributedApplicationContainsDataClient" ChildMember="DatabaseConsumerEndpoint1" />
+    <Endpoint Name="Endpoint1" Definition="LiveChatService.Endpoint1" MinOccurs="1" MaxOccurs="1" Reference="false">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.ConsumerPort">
+            <Property Name="NeedsGeneration" Value="true" />
+          </ModelElement>
+        </VisualStudio>
+      </DesignData>
+    </Endpoint>
+    <Containment Name="Endpoint1Containment" Definition="MicrosoftWebApplication:DistributedApplicationContainsWebContentClient" ChildMember="Endpoint1" />
+    <Endpoint Name="ServiceConnectWS" Definition="LiveChatService.WebService2" MinOccurs="1" MaxOccurs="1" Reference="false">
+      <DesignData>
+        <VisualStudio xmlns="http://schemas.microsoft.com/SystemDefinitionModel/2005/1/DesignData/VisualStudio">
+          <ModelElement Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.WebServiceProviderPort">
+            <Property Name="NeedsGeneration" Value="true" />
+            <Property Name="ClassName" Value="LiveChatService.ServiceConnectWS" />
+            <Property Name="WsdlServiceName" Value="ServiceConnectWS" />
+            <Property Name="BindingName" Value="ServiceConnectWS" />
+            <Property Name="BindingNamespace" Value="http://tempuri.org/" />
+            <Relationship Id="128737a417ce4f719d8ea89e484c56b5" Type="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.PortBackedByClass" Role1="@9270d8c33ccf48d1a435253387ab01df" RoleType1="Microsoft.VisualStudio.EnterpriseTools.Application.Modeling.PlugIns.PortBackedByClass.ClrClass" />
+          </ModelElement>
+        </VisualStudio>
+      </DesignData>
+      <SettingValue Path="BindingName" Fixed="false">ServiceConnectWS</SettingValue>
+      <SettingValue Path="BindingNamespace" Fixed="false">http://tempuri.org/</SettingValue>
+    </Endpoint>
+    <Containment Name="ServiceConnectWSContainment" Definition="MicrosoftWebApplication:DistributedApplicationContainsWebService" ChildMember="ServiceConnectWS" />
+  </SystemDefinition>
+</SystemDefinitionModel>
