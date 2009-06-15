@@ -169,7 +169,7 @@ namespace LiveSupport.OperatorConsole
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 if (fs.Length >= 2097152)
                 {
-                    MessageBox.Show("你上传的文件过大！仅限 2M");
+                    wb.Document.Write("<span style='color: #FF9933; FONT-SIZE: 13px'>你上传的文件过大！仅限 2M</span><br />");
                 }
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
