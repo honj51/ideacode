@@ -5,9 +5,9 @@
 <!--验证码-->
 <script src="js/Random.js"> </script>
  <img src="images/tupian-5.gif" width="760" style="height: 151px" />
-<table cellSpacing="0" cellPadding="0" style="height: 568px; background-color:#CCCCCC;">
+<table cellSpacing="0" cellPadding="0" style="height: 568px;background-image:url('images/bgimg.jpg');">
 
-<tr><td style="width: 160px; background-image:url('images/left.jpg');" 
+<tr><td style="width: 161px;" 
         valign="top">
 <!--leftMenu-->
 <DIV id=column style="margin-top:30px;">
