@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3A928111-2371-40AD-9D95-062B1AFEAC96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LiveSupport.DAL</RootNamespace>
+    <AssemblyName>LiveSupport.DAL</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountsProvider.cs" />
+    <Compile Include="Entity\Account.cs" />
+    <Compile Include="Entity\ChatMessageInfo.cs" />
+    <Compile Include="Entity\ChatRequestInfo.cs" />
+    <Compile Include="Entity\City.cs" />
+    <Compile Include="Entity\CustomerInfo.cs" />
+    <Compile Include="Entity\Message.cs" />
+    <Compile Include="Entity\Operator.cs" />
+    <Compile Include="Entity\OperatorInfo.cs" />
+    <Compile Include="Entity\Payment.cs" />
+    <Compile Include="Entity\Province.cs" />
+    <Compile Include="Entity\RequestInfo.cs" />
+    <Compile Include="Entity\Service.cs" />
+    <Compile Include="Entity\Visitor.cs" />
+    <Compile Include="Entity\VisitSession.cs" />
+    <Compile Include="MemoryProviders\MemoryChatProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MemoryProviders\MemoryOperatorProvider.cs" />
+    <Compile Include="OperatorsProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\ChatProvider.cs" />
+    <Compile Include="Providers\ChatServiceSection.cs" />
+    <Compile Include="Providers\CityProvider.cs" />
+    <Compile Include="Providers\CustomerProvider.cs" />
+    <Compile Include="Providers\ProvinceProvider.cs" />
+    <Compile Include="Providers\OperatorProvider.cs" />
+    <Compile Include="Providers\OperatorServiceSection.cs" />
+    <Compile Include="Providers\RequestProvider.cs" />
+    <Compile Include="Providers\RequestServiceSection.cs" />
+    <Compile Include="Providers\VisitorProvider.cs" />
+    <Compile Include="Providers\VisitorServiceSection.cs" />
+    <Compile Include="Providers\VisitSessionProvider.cs" />
+    <Compile Include="Providers\VisitSessionServiceSection.cs" />
+    <Compile Include="SqlAccountsProvider.cs" />
+    <Compile Include="SqlConstant.cs" />
+    <Compile Include="SqlOperatorsProvider.cs" />
+    <Compile Include="SqlProviders\SqlCityProvider.cs" />
+    <Compile Include="SqlProviders\SqlProvinceProvider.cs" />
+    <Compile Include="SqlProviders\SqlChatProvider.cs" />
+    <Compile Include="SqlProviders\SqlCustomerProvider.cs" />
+    <Compile Include="SqlProviders\SqlOperatorProvider.cs" />
+    <Compile Include="SqlProviders\SqlRequestProvider.cs" />
+    <Compile Include="SqlProviders\SqlVisitorProvider.cs" />
+    <Compile Include="SqlProviders\SqlVisitSessionProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SqlScripts\LiveSupport_CreateSPs.sql" />
+    <None Include="SqlScripts\LiveSupport_CreateTables.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

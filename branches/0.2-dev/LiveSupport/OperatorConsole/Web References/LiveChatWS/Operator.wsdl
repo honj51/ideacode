@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04">
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accountName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operatorName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:Operator" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Operator">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NickName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:OperatorStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorSession" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AVChatStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Department" type="tns:Department" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OperatorStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Idle" />
+          <s:enumeration value="InviteChat" />
+          <s:enumeration value="Chatting" />
+          <s:enumeration value="BeRightBack" />
+          <s:enumeration value="Away" />
+          <s:enumeration value="Offline" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Department">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="tns:Account" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Account">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NickName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Industry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OperatorCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegisterDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
+      <s:complexType name="AuthenticationHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorSession" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="Logout">
+        <s:complexType />
+      </s:element>
+      <s:element name="LogoutResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllVisitors">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accountId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllVisitorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllVisitorsResult" type="tns:ArrayOfVisitor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVisitor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Visitor" nillable="true" type="tns:Visitor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Visitor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VisitorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VisitCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsVIP" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentSession" type="tns:VisitSession" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VisitSession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisitorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Browser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:VisitSessionStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VisitingTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeaveTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatRequestTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatingTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="WaitingDuring" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChattingDuring" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageRequestCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DomainRequested" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PageRequested" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Referrer" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="VisitSessionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Visiting" />
+          <s:enumeration value="ChatRequesting" />
+          <s:enumeration value="Chatting" />
+          <s:enumeration value="Leave" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CheckNewChanges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="check" type="tns:NewChangesCheck" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NewChangesCheck">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChatSessionChecks" type="tns:ArrayOfMessageCheck" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewVisitorLastCheckTime" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessageCheck">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MessageCheck" nillable="true" type="tns:MessageCheck" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MessageCheck">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChatId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastCheckTime" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckNewChangesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckNewChangesResult" type="tns:NewChangesCheckResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NewChangesCheckResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Operators" type="tns:ArrayOfOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewVisitors" type="tns:ArrayOfVisitor" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisitSessionChange" type="tns:ArrayOfVisitSession" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chats" type="tns:ArrayOfChat" />
+          <s:element minOccurs="0" maxOccurs="1" name="Messages" type="tns:ArrayOfMessageCheckResult" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewVisitorCheckTime" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" type="tns:ReturnCodeEnum" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOperator">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Operator" nillable="true" type="tns:Operator" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVisitSession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VisitSession" nillable="true" type="tns:VisitSession" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Chat" nillable="true" type="tns:Chat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Chat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChatId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CloseBy" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="AcceptTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VisitorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperatorId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ChatStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vs" type="tns:VisitSession" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsInviteByOperator" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastCheckTime" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ChatStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Requested" />
+          <s:enumeration value="Accepted" />
+          <s:enumeration value="Decline" />
+          <s:enumeration value="Closed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfMessageCheckResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MessageCheckResult" nillable="true" type="tns:MessageCheckResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MessageCheckResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChatId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Messages" type="tns:ArrayOfMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Message">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MessageId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChatId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Destination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SentDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:MessageType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MessageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ChatMessage_OperatorToVisitor" />
+          <s:enumeration value="ChatMessage_VistorToOperator" />
+          <s:enumeration value="SystemMessage_ToOperator" />
+          <s:enumeration value="SystemMessage_ToVisitor" />
+          <s:enumeration value="SystemMessage_ToBoth" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ReturnCodeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="ReturnCode_Success" />
+          <s:enumeration value="ReturnCode_SessionInvalid" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="IsTyping">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isOperator" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsTypingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsTypingResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bs" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SendMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="tns:Message" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendMessageResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oldPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangePasswordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetOperatorPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetOperatorPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResetOperatorPasswordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseChat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseChatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CloseChatResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryChatMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="visitorId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="begin" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="end" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryChatMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHistoryChatMessageResult" type="tns:ArrayOfMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryPageRequests">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="visitorId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="begin" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="end" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryPageRequestsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHistoryPageRequestsResult" type="tns:ArrayOfPageRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPageRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PageRequest" nillable="true" type="tns:PageRequest" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PageRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Page" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Referrer" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AcceptChatRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcceptChatRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AcceptChatRequestResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviteChat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="visitorId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviteChatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InviteChatResult" type="tns:Chat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemAdvertise">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="versionNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemAdvertiseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemAdvertiseResult" type="tns:ArrayOfSystemAdvertise" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSystemAdvertise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SystemAdvertise" nillable="true" type="tns:SystemAdvertise" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SystemAdvertise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveQuickResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="response" type="tns:ArrayOfQuickResponseCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfQuickResponseCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuickResponseCategory" nillable="true" type="tns:QuickResponseCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuickResponseCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QuickId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Responses" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveQuickResponseResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetQuickResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetQuickResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuickResponseResult" type="tns:ArrayOfQuickResponseCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapIn">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetAllVisitorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllVisitors" />
+  </wsdl:message>
+  <wsdl:message name="GetAllVisitorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllVisitorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllVisitorsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewChangesSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckNewChanges" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewChangesSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckNewChangesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckNewChangesAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsTypingSoapIn">
+    <wsdl:part name="parameters" element="tns:IsTyping" />
+  </wsdl:message>
+  <wsdl:message name="IsTypingSoapOut">
+    <wsdl:part name="parameters" element="tns:IsTypingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsTypingAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="ResetOperatorPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetOperatorPassword" />
+  </wsdl:message>
+  <wsdl:message name="ResetOperatorPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetOperatorPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetOperatorPasswordAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="CloseChatSoapIn">
+    <wsdl:part name="parameters" element="tns:CloseChat" />
+  </wsdl:message>
+  <wsdl:message name="CloseChatSoapOut">
+    <wsdl:part name="parameters" element="tns:CloseChatResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloseChatAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryChatMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHistoryChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryChatMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHistoryChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryChatMessageAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryPageRequestsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHistoryPageRequests" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryPageRequestsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHistoryPageRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHistoryPageRequestsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="AcceptChatRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:AcceptChatRequest" />
+  </wsdl:message>
+  <wsdl:message name="AcceptChatRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:AcceptChatRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="AcceptChatRequestAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="InviteChatSoapIn">
+    <wsdl:part name="parameters" element="tns:InviteChat" />
+  </wsdl:message>
+  <wsdl:message name="InviteChatSoapOut">
+    <wsdl:part name="parameters" element="tns:InviteChatResponse" />
+  </wsdl:message>
+  <wsdl:message name="InviteChatAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemAdvertiseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemAdvertise" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemAdvertiseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemAdvertiseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemAdvertiseAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="SaveQuickResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveQuickResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveQuickResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveQuickResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveQuickResponseAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuickResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuickResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:portType name="OperatorWSSoap">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutSoapIn" />
+      <wsdl:output message="tns:LogoutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllVisitors">
+      <wsdl:input message="tns:GetAllVisitorsSoapIn" />
+      <wsdl:output message="tns:GetAllVisitorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <wsdl:input message="tns:CheckNewChangesSoapIn" />
+      <wsdl:output message="tns:CheckNewChangesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTyping">
+      <wsdl:input message="tns:IsTypingSoapIn" />
+      <wsdl:output message="tns:IsTypingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input message="tns:UploadFileSoapIn" />
+      <wsdl:output message="tns:UploadFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input message="tns:SendMessageSoapIn" />
+      <wsdl:output message="tns:SendMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input message="tns:ChangePasswordSoapIn" />
+      <wsdl:output message="tns:ChangePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetOperatorPassword">
+      <wsdl:input message="tns:ResetOperatorPasswordSoapIn" />
+      <wsdl:output message="tns:ResetOperatorPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseChat">
+      <wsdl:input message="tns:CloseChatSoapIn" />
+      <wsdl:output message="tns:CloseChatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryChatMessage">
+      <wsdl:input message="tns:GetHistoryChatMessageSoapIn" />
+      <wsdl:output message="tns:GetHistoryChatMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryPageRequests">
+      <wsdl:input message="tns:GetHistoryPageRequestsSoapIn" />
+      <wsdl:output message="tns:GetHistoryPageRequestsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptChatRequest">
+      <wsdl:input message="tns:AcceptChatRequestSoapIn" />
+      <wsdl:output message="tns:AcceptChatRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InviteChat">
+      <wsdl:input message="tns:InviteChatSoapIn" />
+      <wsdl:output message="tns:InviteChatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemAdvertise">
+      <wsdl:input message="tns:GetSystemAdvertiseSoapIn" />
+      <wsdl:output message="tns:GetSystemAdvertiseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveQuickResponse">
+      <wsdl:input message="tns:SaveQuickResponseSoapIn" />
+      <wsdl:output message="tns:SaveQuickResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponse">
+      <wsdl:input message="tns:GetQuickResponseSoapIn" />
+      <wsdl:output message="tns:GetQuickResponseSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoginAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LogoutAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllVisitors">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllVisitors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllVisitorsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CheckNewChangesAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTyping">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/IsTyping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsTypingAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UploadFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SendMessageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ChangePasswordAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetOperatorPassword">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ResetOperatorPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ResetOperatorPasswordAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseChat">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CloseChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryChatMessage">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryChatMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetHistoryChatMessageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryPageRequests">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryPageRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetHistoryPageRequestsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptChatRequest">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AcceptChatRequestAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviteChat">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/InviteChat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:InviteChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemAdvertise">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetSystemAdvertise" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemAdvertiseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveQuickResponse">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SaveQuickResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponse">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoginAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LogoutAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllVisitors">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllVisitors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllVisitorsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNewChanges">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CheckNewChanges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CheckNewChangesAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTyping">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/IsTyping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsTypingAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UploadFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SendMessageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ChangePasswordAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetOperatorPassword">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ResetOperatorPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ResetOperatorPasswordAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseChat">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/CloseChat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CloseChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryChatMessage">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryChatMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetHistoryChatMessageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryPageRequests">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetHistoryPageRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetHistoryPageRequestsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptChatRequest">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/AcceptChatRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AcceptChatRequestAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviteChat">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/InviteChat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:InviteChatAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemAdvertise">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetSystemAdvertise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemAdvertiseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveQuickResponse">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SaveQuickResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponse">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetQuickResponseAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OperatorWS">
+    <wsdl:port name="OperatorWSSoap" binding="tns:OperatorWSSoap">
+      <soap:address location="http://localhost:3355/LiveChat/Operator.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OperatorWSSoap12" binding="tns:OperatorWSSoap12">
+      <soap12:address location="http://localhost:3355/LiveChat/Operator.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
