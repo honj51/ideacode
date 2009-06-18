@@ -110,6 +110,8 @@ namespace LiveSupport.OperatorConsole
 
         public ChatForm(IOperatorServiceAgent agent, Chat chat, bool invite)
         {
+         //   Application.StartupPath.ToString() + "/" +
+            Directory.CreateDirectory(chat.ChatId);
             this.operatorServiceAgent = agent;
             this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
             InitializeComponent();
@@ -216,7 +218,6 @@ namespace LiveSupport.OperatorConsole
             msg.Source = From;
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
-
             operatorServiceAgent.SendMessage(msg);
             wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message));
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);
@@ -229,32 +230,37 @@ namespace LiveSupport.OperatorConsole
         /// <param name="e"></param>
         private void cutToolStripButton_Click(object sender, EventArgs e)
         {
-            IntPtr dc1 = CreateDC("DISPLAY", null, null, (IntPtr)null);
-            //创建显示器的DC 
-            Graphics g1 = Graphics.FromHdc(dc1);
-            //由一个指定设备的句柄创建一个新的Graphics对象 
-            Bitmap MyImage = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, g1);
-            //根据屏幕大小创建一个与之相同大小的Bitmap对象 
-            Graphics g2 = Graphics.FromImage(MyImage);
-            //获得屏幕的句柄 
-            IntPtr dc3 = g1.GetHdc();
-            //获得位图的句柄 
-            IntPtr dc2 = g2.GetHdc();
-            //把当前屏幕捕获到位图对象中 
-            BitBlt(dc2, 0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, dc3, 0, 0, 13369376);
-            //把当前屏幕拷贝到位图中 
-            g1.ReleaseHdc(dc3);
-            //释放屏幕句柄 
-            g2.ReleaseHdc(dc2);
-            //释放位图句柄 
-            if (cutSaveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                MyImage.Save(cutSaveFileDialog.FileName, ImageFormat.Bmp);
-                MessageBox.Show("已经把当前屏幕保存！");
-               // wb.Document.Write(string.Format("<img src='{0}'/>", ));  
+
+            Snipping snipping = new Snipping();
+            snipping.Owner = this;
+            snipping.Show();
+
+            //IntPtr dc1 = CreateDC("DISPLAY", null, null, (IntPtr)null);
+            ////创建显示器的DC 
+            //Graphics g1 = Graphics.FromHdc(dc1);
+            ////由一个指定设备的句柄创建一个新的Graphics对象 
+            //Bitmap MyImage = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, g1);
+            ////根据屏幕大小创建一个与之相同大小的Bitmap对象 
+            //Graphics g2 = Graphics.FromImage(MyImage);
+            ////获得屏幕的句柄 
+            //IntPtr dc3 = g1.GetHdc();
+            ////获得位图的句柄 
+            //IntPtr dc2 = g2.GetHdc();
+            ////把当前屏幕捕获到位图对象中 
+            //BitBlt(dc2, 0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, dc3, 0, 0, 13369376);
+            ////把当前屏幕拷贝到位图中 
+            //g1.ReleaseHdc(dc3);
+            ////释放屏幕句柄 
+            //g2.ReleaseHdc(dc2);
+            ////释放位图句柄 
+            //if (cutSaveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    MyImage.Save(cutSaveFileDialog.FileName, ImageFormat.Bmp);
+            //    MessageBox.Show("已经把当前屏幕保存！");
+            //   // wb.Document.Write(string.Format("<img src='{0}'/>", ));  
                
-                this.Show();
-            }
+            //    this.Show();
+            //}
         }
 
         private void ChatForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -277,7 +283,9 @@ namespace LiveSupport.OperatorConsole
             {
                 operatorServiceAgent.CloseChat(this.Chat.ChatId);
             }
+            Directory.Delete(Application.StartupPath.ToString() +"/"+chat.ChatId, true);
             Program.ChatForms.Remove(this);
+
         }
 
         private bool exitConfirm()
@@ -313,6 +321,38 @@ namespace LiveSupport.OperatorConsole
                 txtMsg.Text= e.Node.Text.ToString();
                 this.txtMsg.Focus();
             }
+        }
+
+
+        private string createImageName()
+        {
+            Random rd = new Random();
+            string imageName = rd.Next(100000).ToString();
+            return imageName;
+        }
+
+        private byte[] toByte(Image imageData)
+        {
+            MemoryStream Ms = new MemoryStream();
+            imageData.Save(Ms, System.Drawing.Imaging.ImageFormat.Bmp);//把图像数据序列化到内存
+            byte[] imgByte = new byte[Ms.Length];
+            Ms.Position = 0;
+            Ms.Read(imgByte, 0, Convert.ToInt32(Ms.Length));//反序列，存放在字节数组里
+            Ms.Close();
+
+            return imgByte;
+
+        }
+
+        public void sendImage(Bitmap bitmap)
+        {
+            string imageName = createImageName();
+            string saveUrl = chat.ChatId + "/" + imageName + ".bmp";
+            bitmap.Save(saveUrl, System.Drawing.Imaging.ImageFormat.Bmp);
+            string imageUrl = Application.StartupPath.ToString() + "/"+ saveUrl;
+            operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName+".bmp", chat.ChatId);
+            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl));
+            wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);    
         }
     }
 }

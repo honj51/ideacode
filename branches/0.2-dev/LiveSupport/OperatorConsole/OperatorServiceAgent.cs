@@ -391,6 +391,13 @@ namespace LiveSupport.OperatorConsole
             }
             return null;
         }
+
+        public int ResetOperator(string operatorId, string chatId)
+        {
+            throw new NotImplementedException();
+        }
+
+    
         #endregion
 
         #region IOperatorServiceAgent 成员
@@ -432,11 +439,6 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
-        #endregion
-
-        #region IOperatorServiceAgent 成员
-
-
         public Chat GetChatRequest(string visitorId)
         {
             foreach (var item in chats)
@@ -459,5 +461,8 @@ namespace LiveSupport.OperatorConsole
 
         #endregion
 
+
+        
+       
     }
 }
