@@ -153,6 +153,10 @@
       <DependentUpon>ResetOperatorPasswordForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Snipping\Snipping.resx">
+      <DependentUpon>Snipping.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -179,6 +183,13 @@
     <Compile Include="ResetOperatorPasswordForm.Designer.cs">
       <DependentUpon>ResetOperatorPasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Snipping\Snipping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snipping\Snipping.designer.cs">
+      <DependentUpon>Snipping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Snipping\ZYC.cs" />
     <Compile Include="TestFixture.cs" />
     <Compile Include="ChangePassword.cs">
       <SubType>Form</SubType>
@@ -257,11 +268,22 @@
     <None Include="Resources\alarmd.png" />
     <None Include="Resources\bg.gif" />
     <None Include="Resources\Add.png" />
+    <None Include="Resources\CameraDll_dll_11018.ico" />
+    <None Include="Resources\CameraDll_dll_11024.ico" />
+    <None Include="Resources\CameraDll_dll_11025.ico" />
+    <None Include="Resources\CameraDll_dll_11014.ico" />
+    <None Include="Resources\CameraDll_dll_11015.ico" />
+    <None Include="Resources\CameraDll_dll_11016.ico" />
+    <None Include="Resources\CameraDll_dll_11017.ico" />
     <Content Include="Resources\chat.jpg" />
     <None Include="Resources\content-bg.gif" />
     <None Include="Resources\development 54.png" />
     <None Include="Resources\development 54 grey.png" />
     <None Include="Resources\Delete.png" />
+    <None Include="Resources\Cursor1.cur" />
+    <None Include="Resources\comres_1_2857.ico" />
+    <None Include="Resources\comres_2857.ico" />
+    <None Include="Resources\eudcedit_109.ico" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <None Include="Resources\Global.wav" />
@@ -271,6 +293,12 @@
     <None Include="Resources\header-bg-left1.jpg" />
     <None Include="Resources\header1.jpg" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\SLUI_3.ico" />
+    <None Include="Resources\SLUI_1_3.ico" />
+    <None Include="Resources\mspaint_1206.ico" />
+    <None Include="Resources\input_203.ico" />
+    <None Include="Resources\magnifierglass.png" />
+    <None Include="Resources\Magnify.cur" />
     <None Include="Resources\Modify.png" />
     <None Include="Resources\Save.png" />
     <None Include="Resources\onlineop.png" />

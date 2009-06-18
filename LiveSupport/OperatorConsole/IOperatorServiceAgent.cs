@@ -13,7 +13,8 @@ namespace LiveSupport.OperatorConsole
         void UploadFile(byte[] bs, string fileName, string chatId);
         bool SendMessage(Message msg);
         int ChangePassword(string oldPassword, string newPassword);
-        int ResetOperatorPassword(string loginName); 
+        int ResetOperatorPassword(string loginName);
+        int ResetOperator(string operatorId, string chatId);
         bool CloseChat(string chatId);
         List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end);
         List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end);
