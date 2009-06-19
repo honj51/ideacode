@@ -18,27 +18,51 @@
     <meta name=vs_targetSchema content="http://schemas.microsoft.com /intellisense/ie5">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
    <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=17574408-fd5e-4178-8190-aef80aec7294&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
+<style>
+   #logoTdLeft
+   {
+   	font-size:28px;
+   	font-family:Georgia, Times New Roman, Times, serif;
+    padding:4px 0 10px 0;
+   	text-align:left;
+   	width:430px;
+
+    }
+    #logoTdRight
+    {
+    	width:305px;
+    	text-align:right;
+    	vertical-align:top;
+    	font-size:12px;
+    	}
+    .MenuCss
+    {
+    	color:#CCCCCC;
+    	font-size:12px;
+    	}
+    .style1
+    {
+        width: 505px;
+    }
+</style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
-        <div id="top-information">
-            <div id="logo">
-                <a href="Default.aspx">Live Support Service .Inc</a></div>
-                
-            <div id="top-information-home">
-                <a></a></div>
-             <div id="top-information-login">
-                <asp:Panel ID="PanelShow" runat="server" Visible="false">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
+          <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
+         <center>        <table style="border:1px; height:50px;">
+         <tr><td ID="logoTdLeft" class="style1"><a style="color:#4a6bb3;" href="Default.aspx">Live Support Service .Inc</a></div></td>
+         <td id="logoTdRight"> <asp:Panel ID="PanelShow" runat="server" Visible="false" 
+                 style="margin-left: 0px">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
                     &nbsp;<asp:HyperLink ID="HyperLink1" runat="server" 
                         NavigateUrl="~/AccountAdmin/AccountHome.aspx">管理客服</asp:HyperLink>
-&nbsp;<asp:LinkButton 
-                        ID="LinkButton1" runat="server" onclick="LinkButton1_Click">退出</asp:LinkButton>
+                &nbsp;<asp:LinkButton  ID="LinkButton1" runat="server" onclick="LinkButton1_Click">退出</asp:LinkButton>
                  </asp:Panel>
-                <asp:Panel ID="PanelLogin" runat="server" Visible="false"><a href="Login.aspx">登录</a></asp:Panel>
-             </div>
-        </div>
+                <asp:Panel ID="PanelLogin" runat="server" Visible="true"><a href="Login.aspx">登录</a></asp:Panel>
+                  </td></tr></table>
+                  </center>
+
         <div class="none"><a href="#maincontent">skip to the main content area of this page</a></div>
+
         <div id="nav-main">
                        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal"
                 Width="400px" CssClass="menu-main" MaximumDynamicDisplayLevels="0" StaticSelectedStyle-CssClass="StaticSelectedStyle" />
@@ -53,11 +77,11 @@
             <div>
                 &nbsp;</div>
         </div>
-        <div id="footer-sub">
-            <asp:Menu ID="Menu2" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal"
-                Width="350px" CssClass="menu-main" MaximumDynamicDisplayLevels="0"/>
-        </div>
-    
+        <center>
+        <table ><tr><td style=" font-size:13px; height:40px;" > 
+          <a  href ="Default.aspx" style="color:#999999" >首页</a>&nbsp;&nbsp;&nbsp;<a href="ProductServe.aspx" style="color:#999999" >产品与服务</a>&nbsp;&nbsp;&nbsp; <a href="News.aspx" style="color:#999999" >新闻&nbsp;&nbsp;&nbsp;</a> <a href="About.aspx" style="color:#999999" >关于我们</a>&nbsp;&nbsp;&nbsp; <a href="Contact.aspx" style="color:#999999"> 联系我们</a>&nbsp;&nbsp;&nbsp; <a href="Default.aspx" style="color:#999999">案例</a>             
+        </td></tr></table>
+    </center>
     </form>
 </body>
 </html>

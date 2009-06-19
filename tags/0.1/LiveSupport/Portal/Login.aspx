@@ -8,7 +8,7 @@
     <style type="text/css">
         .style1
         {
-            height: 35px;
+            height: 22px;
         }
         .style2
         {
@@ -24,13 +24,19 @@
 <tr><td>
 <div style="height: 123px; width: 207px; margin-left:160px;">
 <table>
-<tr><td class="style1" >公司账号：</td><td class="style1">
+<tr><td class="style1" align="right">公司ID：</td><td >
+                    <asp:TextBox ID="txtNumber" runat="server" Font-Size="0.8em" Width="106px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                        ControlToValidate="UserName" ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" 
+                        ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+    </td></tr>
+<tr><td class="style1" >客服账号：</td><td class="style1">
                     <asp:TextBox ID="UserName" runat="server" Font-Size="0.8em" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
                         ControlToValidate="UserName" ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
     </td></tr>
-<tr><td class="style3" >公司密码：</td><td class="style3">
+<tr><td class="style3" >客服密码：</td><td class="style3">
                     <asp:TextBox ID="Password" runat="server" Font-Size="0.8em" TextMode="Password" 
                         Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 

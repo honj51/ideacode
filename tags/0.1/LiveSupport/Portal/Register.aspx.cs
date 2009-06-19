@@ -58,9 +58,12 @@ public partial class Default2 : System.Web.UI.Page
             {
                 try
                 {
+                    Random ran = new Random();
+                    int num=ran.Next(100000, 999999);
                     //添加
                     Account at = new Account();
                     at.AccountId = Guid.NewGuid().ToString();
+                    at.AccountNumber = num;
                     at.CompanyName = this.txtCompanyName.Text;
                     at.Url = this.txtCompanyWebUrl.Text;
                     at.Phone = this.txtCompanyPhone.Text;
@@ -71,14 +74,17 @@ public partial class Default2 : System.Web.UI.Page
                     at.Industry = this.ddlVocation.SelectedValue;
                     at.OperatorCount = 1;
                     at.RegisterDate = DateTime.Now;
-                    at.LoginName = this.txtLoginId.Text;
-                    at.Password = this.txtPwd.Text;
-                    at.NickName = this.txtNickname.Text;
-                    bool b = AccountsManager.AddAccount(at);
+                    bool b = AccountsManager.AddAccount(at,this.txtNickname.Text,this.txtLoginId.Text,this.txtPwd.Text);
                     if (b)
                     {
-                        
-                        ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('注册成功'); window.location='Login.aspx';</script>");
+                        string toEmail = this.txtMail.Text;
+                        string email = ConfigurationManager.AppSettings["Email"];
+                        string emailPwd = ConfigurationManager.AppSettings["Password"];
+                        string emailSmtp = ConfigurationManager.AppSettings["SMTPServer"];
+                        string title = "江西互动网络LiveSpport在线客服系统提示您：";
+                        string content = "尊敬的客服 " + this.txtNickname.Text + " 您好!\n   您公司ID为："+at.AccountNumber+",您的账号为：" + this.txtLoginId.Text + ",您的密码为：" + this.txtPwd.Text + ",请您牢记,感谢您一直以来对我们公司产品的支持与厚爱!\n \n \n \n \n \n \n \n                                                        如需帮助请浏览我们公司的官方网站 http://www.zxkefu.cn";
+                        LiveSupport.BLL.Util.SendEmailAsync(toEmail, email, emailPwd, emailSmtp, title, content);
+                        ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('注册成功'); window.location='Hello.aspx?id=" + at.AccountNumber + "&loginName=" + this.txtLoginId.Text + "&Email="+this.txtMail.Text+"';</script>");
                         return;
                     }
                     else
@@ -89,8 +95,7 @@ public partial class Default2 : System.Web.UI.Page
                 }
                 catch (Exception ex)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('注册失败,请从新注册...');</script>");
-                    return;
+                  
                 }
             }
             else

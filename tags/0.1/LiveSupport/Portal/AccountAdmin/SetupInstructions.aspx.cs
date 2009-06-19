@@ -9,17 +9,17 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             if (Session["User"] != null)
             {
-                account = (Account)Session["User"];
+                oper = (Operator)Session["User"];
             }
         }
-        this.HiddenField1.Value = account.AccountId.ToString();
+        this.HiddenField1.Value = oper.AccountId.ToString();
 
         string html = this.TextBox1.Text;
         string[] s = { "aid=" };
