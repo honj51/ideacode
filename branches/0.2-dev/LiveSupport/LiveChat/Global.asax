@@ -11,6 +11,7 @@
         System.Timers.Timer myTimer = new System.Timers.Timer(5000);
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);
         myTimer.Enabled = true;
+        ChatService.ChatTempDataDir = Server.MapPath("~/UploadFile/");
     }
 
     void myTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
