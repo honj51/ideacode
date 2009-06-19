@@ -133,7 +133,7 @@
       <TABLE cellSpacing=0 cellPadding=0 border=0 >
         <TBODY >
         <TR>
-          <TD style="width: 146px"><FONT color=red>*</FONT> 管理员ID： </TD>
+          <TD style="width: 146px"><FONT color=red>*</FONT>客服账号：</TD>
           <TD><asp:TextBox ID="txtLoginId" runat="server" Width="160px" 
                   style="margin-left: 0px"></asp:TextBox>
 &nbsp;</TD>
@@ -142,7 +142,7 @@
                   ControlToValidate="txtLoginId" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD style="width: 146px" ><FONT color=red>*</FONT> 密码： </TD>
+          <TD style="width: 146px" ><FONT color=red>*</FONT> 客服密码： </TD>
           <TD><asp:TextBox ID="txtPwd" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
           <TD >
