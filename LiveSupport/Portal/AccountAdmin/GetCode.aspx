@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="获取代码" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
+    
     <SCRIPT type="text/javascript">
         // <![CDATA[
         var myMenu;
@@ -78,7 +79,9 @@
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; ">
+ <!---->
+ 
+ <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; "><tr><td>  
     <!--头部--->
       <div id="content-main-three-column" style="text-align:left;">
         <!--内容-->
@@ -94,7 +97,7 @@
           <img name="IcoImage" src="Images/3-2.gif" style="height: 70px; display:none; width: 160px;" />
           <img name="IcoImage" src="Images/4-2.gif" style="height: 70px; width:160px; display:none;" /></div></td></tr>
   <tr><td>主动邀请风格：</td><td valign="middle">
-  <select name="AutoStyle" onchange='showAutoImg(this)'>
+  <select id="AutoStyle" name="AutoStyle" onchange='showAutoImg(this)'>
     <option value="0">风格一</option>
     <option value="1">风格二</option>
 
@@ -105,7 +108,7 @@
           <img name="AutoImage" src="Images/3-3.gif" style="width: 161px; height: 53px; display:none;" />
           <img name="AutoImage" src="Images/4-3.gif" style="width: 161px; height: 53px; display:none;" />
           </td></tr>
-   <tr><td>聊天页面风格：</td><td valign="middle"> <select name="ChatStyle" onchange='showChatImage(this);'>
+   <tr><td>聊天页面风格：</td><td valign="middle"> <select id="ChatStyle" name="ChatStyle" onchange='showChatImage(this);'>
     <option value="0">风格一</option>
   </select></td><td align="right">
          <img name="ChatImage" src="Images/1-1.gif" 
@@ -136,7 +139,7 @@
       <P></P></TD></TR></TBODY></TABLE>
       </div>
        <!--导航结束-->
-       </div>
+</td></tr></table>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </asp:Content>
 
