@@ -78,6 +78,7 @@ public class ChatService
         }
         else
         {
+            m.SentDate = DateTime.Now;
             MessageService.AddMessage(m);
         }
     }
