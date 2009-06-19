@@ -65,7 +65,7 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
-                operatorServiceAgent.Login(txtUserName.Text, txtOpName.Text, txtOpPassword.Text);
+                operatorServiceAgent.Login(int.Parse(txtUserName.Text), txtOpName.Text, txtOpPassword.Text);
             }
             catch (WebException e)
             {

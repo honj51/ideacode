@@ -106,7 +106,7 @@ namespace LiveSupport.OperatorConsole
             
                   if (op.Status != OperatorStatus.Offline)
                   {
-                      //MessageBox.Show(op.OperatorId);
+                      
                       MessageBox.Show(chatId);
                   }
                   else 
