@@ -65,7 +65,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 					new SqlParameter("@AVChatStatus", SqlDbType.VarChar,30),
 					new SqlParameter("@DepartmentId", SqlDbType.VarChar,50)};
             parameters[0].Value = op.OperatorId;
-            parameters[1].Value = op.AccountId;
+            parameters[1].Value = op.Account.AccountId;
             parameters[2].Value = op.LoginName;
             parameters[3].Value = op.Password;
             parameters[4].Value = op.NickName;
@@ -92,7 +92,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 {
                     op = new Operator(data);
                     SqlDepartmentProvider dp = new SqlDepartmentProvider();
+                    SqlAccountProvider ap = new SqlAccountProvider();
                     op.Department = dp.GetDepartmentById(data["DepartmentId"].ToString());
+                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
                 }
                 data.Close();
                 data.Dispose();
@@ -121,7 +123,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="op"></param>
         public int  NewOperator(Operator op)
         {
-            Operator oper = new SqlOperatorProvider().GetOperatorByAccountIdAndLoginName(op.AccountId, op.LoginName);
+            Operator oper = new SqlOperatorProvider().GetOperatorByAccountIdAndLoginName(op.Account.AccountId, op.LoginName);
             if (oper == null)
             {
                 int isAdmin = 0;
@@ -142,7 +144,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                + "  ,[AVChatStatus]"
                + ",[DepartmentId])"
                + "VALUES ('{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}','{9}')"
-               , op.OperatorId, op.AccountId, op.LoginName, op.Password, op.NickName, op.Email, isAdmin, op.Status, op.AVChatStatus, op.Department.DepartmentId);
+               , op.OperatorId, op.Account.AccountId, op.LoginName, op.Password, op.NickName, op.Email, isAdmin, op.Status, op.AVChatStatus, op.Department.DepartmentId);
                 return DBHelper.ExecuteCommand(sql);
             }
             else
@@ -167,8 +169,10 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             while (r.Read())
             {
                 Operator op = new Operator(r);
+                SqlAccountProvider ap = new SqlAccountProvider();
                 SqlDepartmentProvider dp = new SqlDepartmentProvider();
                 op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
+                op.Account = ap.GetAccountByAccountId(r["accountId"].ToString());
                 operators.Add(op);
 
             }
@@ -193,8 +197,10 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 if (data.Read())
                 {
                     op = new Operator(data);
+                    SqlAccountProvider ap = new SqlAccountProvider();
                     SqlDepartmentProvider dp = new SqlDepartmentProvider();
                     op.Department = dp.GetDepartmentById(data["DepartmentId"].ToString());
+                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
                 }
                 data.Close();
                 data.Dispose();
@@ -220,6 +226,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 {
                     op = new Operator(data);
                     op.Department = new SqlDepartmentProvider().GetDepartmentById(data["DepartmentId"].ToString());
+                    SqlAccountProvider ap = new SqlAccountProvider();
+                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
                 }
                 data.Close();
                 data.Dispose();
@@ -234,11 +242,11 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region ÕÒ»Ø¿Í·þÃÜÂë
-        public Operator GetPasswordByAccountNameLoginNameAndEmail(string accountLoginName, string loginName, string eamil)
+        public Operator GetOperatorPassword(int accountNumber, string loginName, string eamil)
         {
             try
             {
-                Account ac=SqlAccountProvider.Default.CheckCompanyByloginName(accountLoginName);
+                Account ac = SqlAccountProvider.Default.CheckCompanyByaccountNumber(accountNumber);
                 if (ac != null)
                 {
                     string sql = string.Format("select * from LiveChat_Operator where AccountId='{0}' and LoginName='{1}' and Email='{2}'",ac.AccountId, loginName, eamil);
@@ -247,6 +255,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                     {
                         Operator oper = new Operator(sdr);
                         oper.Department = new SqlDepartmentProvider().GetDepartmentById(sdr["DepartmentId"].ToString());
+                        SqlAccountProvider ap = new SqlAccountProvider();
+                        oper.Account = ap.GetAccountByAccountId(sdr["accountId"].ToString());
                         sdr.Close();
                         return oper;
                     }
@@ -267,6 +277,37 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
         }
         #endregion
- 
+
+
+        #region Login
+
+        public Operator Login(string accountId, string loginName, string loginPwd)
+        {
+            string sql = string.Format("select * from LiveChat_Operator where AccountId='{0}' and LoginName='{1}' and Password='{2}'",accountId,loginName,loginPwd);
+            SqlDataReader data = null;
+            Operator op = null;
+            try
+            {
+                data = DBHelper.GetReader(sql);
+                if (data.Read())
+                {
+                    op = new Operator(data);
+                    SqlDepartmentProvider dp = new SqlDepartmentProvider();
+                    op.Department = dp.GetDepartmentById(data["DepartmentId"].ToString());
+                    SqlAccountProvider ap = new SqlAccountProvider();
+                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
+                }
+                data.Close();
+                data.Dispose();
+                data = null;
+            }
+            catch
+            {
+                throw;
+            }
+            return op;
+        }
+
+        #endregion
     }
 }

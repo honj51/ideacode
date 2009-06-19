@@ -91,7 +91,14 @@ namespace LiveSupport.LiveSupportModel
         {
             get { return department; }
             set { department = value; }
-        } 
+        }
+        private Account account;
+
+        public Account Account
+        {
+            get { return account; }
+            set { account = value; }
+        }
 
         public Operator()
         {
