@@ -10,18 +10,19 @@ public partial class Login2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Session["user"] = null;
     }
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
-        string loginId = this.UserName.Text;
+        int accountNumber = Convert.ToInt32(this.txtNumber.Text);
+        string loginName = this.UserName.Text;
         string loginPwd = this.Password.Text;
 
-        Account acc = AccountsManager.Login(loginId, loginPwd);
+        Operator oper = OperatorsManager.Login(accountNumber, loginName, loginPwd);
 
-        if (acc != null)
+        if (oper != null)
         {
-            Session["User"] = acc;
+            Session["User"] = oper;
             this.Response.Redirect("~/AccountAdmin/AccountHome.aspx");
         }
         else
