@@ -54,7 +54,7 @@ namespace LiveSupport.OperatorConsole
 
         static void Test()
         {
-            OperaterServiceAgent.Login("user", "user1", "123");
+            OperaterServiceAgent.Login(100000, "user1", "123");
             Chat chat = new Chat();
             ChatForm chatform = new ChatForm(OperatorServiceAgent.Default, chat);
 
