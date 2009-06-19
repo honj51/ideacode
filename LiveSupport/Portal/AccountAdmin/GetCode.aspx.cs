@@ -7,12 +7,12 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    public Account account;
+    private Operator  oper;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            oper = (Operator)Session["User"];
         }
         else
         {
@@ -21,7 +21,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
     public string GetAccountId()
     {
-        return account.AccountId;
+        return oper.Account.AccountId;
 
     }
 }

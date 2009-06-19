@@ -8,16 +8,16 @@ using LiveSupport.BLL;
 
 public partial class AccountAdmin_Default2 : System.Web.UI.Page
 {
-    Account account;
+    Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
 
 
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            oper = (Operator)Session["User"];
             if (!IsPostBack)
-                DataBindDepartment(account.AccountId);
+                DataBindDepartment(oper.Account.AccountId);
         }
         else
         {
@@ -60,7 +60,7 @@ public partial class AccountAdmin_Default2 : System.Web.UI.Page
                 return;
             }
             Operator op = new Operator();
-            op.AccountId = account.AccountId;
+            op.Account = oper.Account;
             op.LoginName = this.txtLoginName.Text;
             op.Password = this.txtPwd.Text;
             op.NickName = this.txtNickName.Text;

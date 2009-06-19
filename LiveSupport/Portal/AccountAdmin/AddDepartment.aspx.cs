@@ -8,14 +8,14 @@ using LiveSupport.BLL;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oepr;
     protected void Page_Load(object sender, EventArgs e)
     {
 
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
-            this.txtCompanyName.Text = account.CompanyName;
+            oepr = (Operator)Session["User"];
+            this.txtCompanyName.Text = oepr.Account.CompanyName;
         }
         else
         {
@@ -34,7 +34,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         Department dep = new Department();
         dep.DepartmentId = Guid.NewGuid().ToString();
         dep.DepartmentName = this.txtDepartmentName.Text;
-        dep.Account = AccountsManager.GetAccountByAccountId(account.AccountId);
+        dep.Account = AccountsManager.GetAccountByAccountId(oepr.Account.AccountId);
         dep.IsDefault = false;
         dep.AddDate = DateTime.Now.ToString();
         bool b = DepartmentManager.AddDepartment(dep);

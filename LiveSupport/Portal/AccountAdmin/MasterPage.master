@@ -1,11 +1,11 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="AccountAdmin_MasterPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<center>
+    <center >
     <img src="Images/bg3.jpg" style="width: 765px" />
-<table>
+<table style="height:430px">
 <tr>
-<td valign="top">
+<td id="topId" valign="top">
 <!--导航-->
 <div style="height: 1px; background-image:url('Images/zhongjian.bmp'); ">
 <LINK href="CSS/sdmenu.css" type=text/css rel=stylesheet>
@@ -28,9 +28,9 @@
 		}
 		</SCRIPT>
 
-<table cellpadding="0" cellspacing="0">
+<table cellpadding="0" cellspacing="0" >
 <tr><td><img src="Images/left_12.gif" /></td></tr>
-<tr><td style="background-image:url('Images/zhongjian.bmp');">
+<tr><td id="heightCount" style="background-image:url('Images/zhongjian.bmp');">
 <!--开始-->
 <DIV class=sdmenu id=my_menu> 
 

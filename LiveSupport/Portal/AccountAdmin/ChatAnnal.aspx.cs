@@ -8,14 +8,14 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oepr;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            oepr = (Operator)Session["User"];
             if (!IsPostBack)
-                DataBindOperator(account.AccountId);
+                DataBindOperator(oepr.Account.AccountId);
         }
         else
         {
@@ -60,8 +60,8 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 DateTime bd = Convert.ToDateTime(beginDate);
                 //TimeSpan dt = Convert.ToDateTime(endDate) - Convert.ToDateTime(beginDate);
                 //return dt.ToString();
+                
                 string dateDiff = null;
-
                 TimeSpan ts1 = new TimeSpan(ed.Ticks);
                 TimeSpan ts2 = new TimeSpan(bd.Ticks);
                 TimeSpan ts = ts1.Subtract(ts2).Duration();

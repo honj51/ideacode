@@ -8,14 +8,15 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
 
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
-            this.txtNickname.Text = account.NickName;
+            oper = (Operator)Session["User"];
+            if(!IsPostBack)
+            this.txtNickname.Text = oper.NickName;
         }
         else
         {
@@ -36,7 +37,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('原始密码不能为空');</script>");
             return;
         }
-        if (this.txtAgoPwd.Text != account.Password)
+        if (this.txtAgoPwd.Text != oper.Password)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('原始密码不正确');</script>");
             return;
@@ -51,10 +52,10 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('确认密码与新密码不一致');</script>");
             return;
         }
-        string accountId = account.AccountId;
-        string password = this.txtPwd.Text; ;
-        string nickName = this.txtNickname.Text; ;
-        bool b = AccountsManager.UpdateAccountByAccountId(accountId, password, nickName);
+        oper.NickName = this.txtNickname.Text;
+        oper.Password = this.txtPwds.Text;
+
+        bool b = OperatorsManager.UpdateOperator(oper);
         if (b)
         {
            

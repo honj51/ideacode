@@ -8,13 +8,13 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oepr;
     protected void Page_Load(object sender, EventArgs e)
     {
 
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            oepr = (Operator)Session["User"];
         }
         else
         {
@@ -25,7 +25,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
     protected void ObjectDataSource1_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
     {
-        e.InputParameters["AccountId"] = account.AccountId;
+        e.InputParameters["AccountId"] = oepr.Account.AccountId;
     }
     protected void gvDepartment_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -82,7 +82,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
     protected void ObjectDataSource1_Updating(object sender, ObjectDataSourceMethodEventArgs e)
     {
-        e.InputParameters["AccountId"] = account.AccountId;
+        e.InputParameters["AccountId"] = oepr.Account.AccountId;
     }
     protected void gvDepartment_DataBound(object sender, EventArgs e)
     {
