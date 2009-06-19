@@ -117,6 +117,16 @@ namespace LiveSupport.BLL
             public string body;
 
         }
+
+        public bool IsImageFile(string fileName)
+        {
+            if (fileName.EndsWith(".bmp", System.StringComparison.CurrentCultureIgnoreCase) || fileName.EndsWith(".jpg", System.StringComparison.CurrentCultureIgnoreCase) || fileName.EndsWith(".gif", System.StringComparison.CurrentCultureIgnoreCase) || fileName.EndsWith(".png", System.StringComparison.CurrentCultureIgnoreCase))
+            {
+                return true;
+            }
+            return false; 
+        }
+
         #endregion
  
     }

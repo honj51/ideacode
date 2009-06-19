@@ -23,12 +23,12 @@ public static class AccountService
     /// </summary>
     /// <param name="name">登录名</param>
     /// <returns>Account对象</returns>
-    public static Account FindAccountByLoginName(string name)
+    public static Account FindAccountByAccountNumber(int accountNumber)
     {
         Account ac=null;
         foreach (Account item in accounts)
         {
-            if (item.LoginName == name)
+            if (item.AccountNumber == accountNumber)
             {
                 ac=item;
                 break;
@@ -38,7 +38,7 @@ public static class AccountService
         {
             foreach (Account item in Provider.GetAllAccounts())
             {
-                if (item.LoginName == name)
+                if (item.AccountNumber == accountNumber)
                 {
                     ac = item;
                     accounts.Add(item);
@@ -54,7 +54,7 @@ public static class AccountService
     /// <param name="account">account对象</param>
     public static void AddAccount(Account account)
     {
-        if (FindAccountByLoginName(account.LoginName) != null)
+        if (FindAccountByAccountNumber(account.AccountNumber) != null)
         {
             throw new DuplicateAccountException("LoginName exist");
         }
@@ -64,7 +64,7 @@ public static class AccountService
         }
         accounts.Add(account);
         Provider.AddAccount(account);
-        Trace.WriteLine(string.Format("新增帐号: AccountId={0} LoginName={1}", account.AccountId, account.LoginName));
+        Trace.WriteLine(string.Format("新增帐号: AccountId={0} LoginName={1}", account.AccountId, account.AccountNumber));
     }
     /// <summary>
     /// 跟据ID查找帐号
