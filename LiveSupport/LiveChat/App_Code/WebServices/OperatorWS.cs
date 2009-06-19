@@ -41,10 +41,18 @@ public class OperatorWS : System.Web.Services.WebService
 
     private void checkAuthentication()
     {
-        if (Authentication == null || OperatorService.GetOperatorById(Authentication.OperatorId) == null 
-            || !OperatorService.IsOperatorOnline(Authentication.OperatorId))
+
+        if (Authentication == null)
         {
-            throw new AccessViolationException("CheckAuthentication Failed");
+            throw new AccessViolationException("CheckAuthentication Failed, Authentication is null");
+        }
+        else if (OperatorService.GetOperatorById(Authentication.OperatorId) == null)
+        {
+            throw new AccessViolationException("CheckAuthentication Failed, Operator:" + Authentication.OperatorId+" not exist");
+        }
+        else if (!OperatorService.IsOperatorOnline(Authentication.OperatorId))
+        {
+            throw new AccessViolationException("CheckAuthentication Failed, Operator:" + Authentication.OperatorId + " not online");
         }
     }
     /// <summary>
@@ -140,7 +148,7 @@ public class OperatorWS : System.Web.Services.WebService
     public void UploadFile(byte[] bs, string fileName, string chatId)
     {
         checkAuthentication();
-        string saveFilePath = Server.MapPath("~/UploadFile/") + fileName;
+        string saveFilePath = Server.MapPath("~/UploadFile/" + chatId + "/");
         OperatorService.UploadFile(bs,fileName,chatId, saveFilePath);
     }
     /// <summary>
