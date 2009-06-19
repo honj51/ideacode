@@ -166,26 +166,26 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/Login", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Operator Login(string accountName, string operatorName, string password) {
+        public Operator Login(int accountNumber, string operatorName, string password) {
             object[] results = this.Invoke("Login", new object[] {
-                        accountName,
+                        accountNumber,
                         operatorName,
                         password});
             return ((Operator)(results[0]));
         }
         
         /// <remarks/>
-        public void LoginAsync(string accountName, string operatorName, string password) {
-            this.LoginAsync(accountName, operatorName, password, null);
+        public void LoginAsync(int accountNumber, string operatorName, string password) {
+            this.LoginAsync(accountNumber, operatorName, password, null);
         }
         
         /// <remarks/>
-        public void LoginAsync(string accountName, string operatorName, string password, object userState) {
+        public void LoginAsync(int accountNumber, string operatorName, string password, object userState) {
             if ((this.LoginOperationCompleted == null)) {
                 this.LoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginOperationCompleted);
             }
             this.InvokeAsync("Login", new object[] {
-                        accountName,
+                        accountNumber,
                         operatorName,
                         password}, this.LoginOperationCompleted, userState);
         }
@@ -1586,6 +1586,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private Department departmentField;
         
+        private Account accountField;
+        
         /// <remarks/>
         public string OperatorId {
             get {
@@ -1695,6 +1697,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
                 this.departmentField = value;
             }
         }
+        
+        /// <remarks/>
+        public Account Account {
+            get {
+                return this.accountField;
+            }
+            set {
+                this.accountField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -1801,11 +1813,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private string accountIdField;
         
-        private string loginNameField;
-        
-        private string passwordField;
-        
-        private string nickNameField;
+        private int accountNumberField;
         
         private string companyNameField;
         
@@ -1844,32 +1852,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public string LoginName {
+        public int AccountNumber {
             get {
-                return this.loginNameField;
+                return this.accountNumberField;
             }
             set {
-                this.loginNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Password {
-            get {
-                return this.passwordField;
-            }
-            set {
-                this.passwordField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string NickName {
-            get {
-                return this.nickNameField;
-            }
-            set {
-                this.nickNameField = value;
+                this.accountNumberField = value;
             }
         }
         

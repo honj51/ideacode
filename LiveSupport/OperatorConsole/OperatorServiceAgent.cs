@@ -71,9 +71,9 @@ namespace LiveSupport.OperatorConsole
 
         #region OperatorServiceAgent 成员
 
-        public Operator Login(string accountName, string operatorName, string password)
+        public Operator Login(int accountNumber, string operatorName, string password)
         {
-            currentOperator = ws.Login(accountName, operatorName, password);
+            currentOperator = ws.Login(accountNumber, operatorName, password);
             if (currentOperator != null)
             {
                 AuthenticationHeader h = new AuthenticationHeader();
