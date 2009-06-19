@@ -55,7 +55,7 @@ namespace LiveSupport.OperatorConsole
         {
             cf = (ChatForm)this.Owner;
             this.Bounds = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
-            this.BackgroundImage = origin = api.GetScreenSnapShot();
+            this.BackgroundImage = origin =api.GetScreenSnapShot();
             graphics = this.CreateGraphics();
             pen = new Pen(label9.BackColor);
             points = new GraphicsPath();

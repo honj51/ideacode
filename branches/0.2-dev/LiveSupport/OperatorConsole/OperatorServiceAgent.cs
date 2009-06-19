@@ -96,12 +96,12 @@ namespace LiveSupport.OperatorConsole
 
         public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
         {
-            return ws.CheckNewChanges(check);
+              return ws.CheckNewChanges(check);
         }
 
         public void UploadFile(byte[] bs, string fileName, string chatId)
         {
-            ws.UploadFile(bs, fileName, chatId);
+            ws.UploadFileAsync(bs, fileName, chatId);
         }
 
         public bool SendMessage(Message msg)

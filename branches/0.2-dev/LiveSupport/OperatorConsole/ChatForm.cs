@@ -346,7 +346,7 @@ namespace LiveSupport.OperatorConsole
 
         public void sendImage(Bitmap bitmap)
         {
-            string imageName = createImageName();
+            string imageName = chat.ChatId+createImageName();
             string saveUrl = chat.ChatId + "/" + imageName + ".bmp";
             bitmap.Save(saveUrl, System.Drawing.Imaging.ImageFormat.Bmp);
             string imageUrl = Application.StartupPath.ToString() + "/"+ saveUrl;
