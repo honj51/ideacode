@@ -1488,6 +1488,7 @@ namespace LiveSupport.OperatorConsole
             this.Name = "MainForm";
             this.Text = "×ùÏ¯¿Í»§¶Ë";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.mainMenu.ResumeLayout(false);
