@@ -7,6 +7,8 @@ function SDMenu(id) {
 	this.speed = 3;
 	this.markCurrent = true;
 	this.oneSmOnly = false;
+	
+
 }
 SDMenu.prototype.init = function() {
 	var mainInstance = this;

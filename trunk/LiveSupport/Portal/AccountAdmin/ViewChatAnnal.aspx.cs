@@ -8,12 +8,12 @@ using LiveSupport.BLL;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            oper = (Operator)Session["User"];
             if (Request.QueryString["chatId"] != null)
             {
                 string chatId = Request.QueryString["chatId"].ToString();

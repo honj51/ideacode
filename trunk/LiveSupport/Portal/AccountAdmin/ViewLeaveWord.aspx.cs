@@ -8,12 +8,12 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-   Account account;
+   Operator oper;
    protected void Page_Load(object sender, EventArgs e)
    {
        if (Session["User"] != null)
        {
-           account = (Account)Session["User"];
+           oper = (Operator)Session["User"];
            if (Request.QueryString["id"] != null)
            {
                string id = Request.QueryString["id"].ToString();
@@ -50,9 +50,9 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     //修改
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
-        if (this.lwId.Value != null && account.NickName!=null)
+        if (this.lwId.Value != null && oper.NickName!=null)
         {
-            LeaveWordManager.UpdateWordProviderById(DateTime.Now.ToString(), account.NickName, this.lwId.Value);
+            LeaveWordManager.UpdateWordProviderById(DateTime.Now.ToString(), oper.NickName, this.lwId.Value);
             DataBindLeaveWord(this.lwId.Value);
             string msg = "mailto:"+this.lblEmail.Text+"?subject=LiveSupport";
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>window.open('"+msg+"');</script>");

@@ -8,12 +8,13 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator account;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            account = (Operator)Session["User"];
+            
         }
         else
         {
@@ -44,7 +45,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         {
             try
             {
-                int i=OperatorsManager.DeleteOperatorByid(e.CommandArgument.ToString(),account.LoginName);
+                int i=OperatorsManager.DeleteOperatorByid(e.CommandArgument.ToString());
                 if (i == 2)
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('您不能删除自己!'); </script>");

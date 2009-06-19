@@ -8,13 +8,13 @@ using LiveSupport.BLL;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oper;
     string operatorId = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            oper = (Operator)Session["User"];
 
             if (Request.QueryString["operatorId"] != null)
             {
@@ -23,7 +23,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 
                 if (!IsPostBack)
                 {
-                    DataBindDepartment(account.AccountId);
+                    DataBindDepartment(oper.Account.AccountId);
                     DataBindOperator(operatorId);
                 }
             }
@@ -50,13 +50,13 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     public void DataBindOperator(string operatorId)
     {
         Operator op = OperatorsManager.GetOperatorByOperatorId(operatorId);
-        this.txtCompanyName.Text = account.CompanyName;
+        this.txtCompanyName.Text = oper.Account.CompanyName;
         this.ddlDepartment.SelectedValue = op.Department.DepartmentId;
         this.txtLoginName.Text = op.LoginName;
         this.txtNickName.Text = op.NickName;
         this.txtPwd.Text = op.Password;
         this.txtEmail.Text = op.Email;
-        if (account.LoginName == op.LoginName)
+        if (op.IsAdmin)
         {
             this.btnSave.Enabled = false;
         }
@@ -69,7 +69,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         Operator op = new Operator();
         op.OperatorId = operatorId;
-        op.AccountId = account.AccountId;
+        op.Account = oper.Account;
         op.LoginName = this.txtLoginName.Text;
         op.Department = DepartmentManager.GetDepartmentById(this.ddlDepartment.SelectedValue);
         op.Password = this.txtPwd.Text;
