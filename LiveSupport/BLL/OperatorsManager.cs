@@ -17,10 +17,10 @@ namespace LiveSupport.BLL
         private static IOperatorProvider Provider = new SqlOperatorProvider();
 
         #region 删除客服(string operatorId,string accountLoginName)
-        public static int  DeleteOperatorByid(string operatorId,string accountLoginName)
+        public static int  DeleteOperatorByid(string operatorId)
         {
             Operator oper=Provider.GetOperatorByOperatorId(operatorId);
-            if (oper.LoginName != accountLoginName)
+            if (!oper.IsAdmin)
             {
                 int i = 0;
                 i = Provider.DeleteOperatorByid(operatorId);
@@ -75,9 +75,24 @@ namespace LiveSupport.BLL
         #endregion
 
         #region 通过Email找回密码
-        public static Operator GetPasswordByAccountNameLoginNameAndEmail(string accountLoginName, string loginName, string eamil)
+        public static Operator GetPasswordByAccountNumberLoginNameAndEmail(int accountNumber, string loginName, string eamil)
         {
-            return Provider.GetPasswordByAccountNameLoginNameAndEmail(accountLoginName, loginName, eamil);
+            return Provider.GetOperatorPassword(accountNumber, loginName, eamil);
+        }
+        #endregion
+
+        #region Login
+        public static Operator Login(int accountNumber,string loginName,string loginPwd)
+        {
+            Account ac = AccountsManager.CheckCompanyByaccountNumber(accountNumber);
+            if (ac != null)
+            {
+                return Provider.Login(ac.AccountId, loginName, loginPwd);
+            }
+            else
+            {
+                return null;
+            }
         }
         #endregion
     }

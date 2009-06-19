@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Net;
 using LiveSupport.BLL;
 using System.Diagnostics;
+using System.IO;
 
 
 
@@ -28,6 +29,7 @@ public class ChatService
     #endregion 
     public static IChatProvider Provider = new SqlChatProvider();
     public static List<Chat> chats = new List<Chat>();
+    public static string ChatTempDataDir;
     /// <summary>
     /// 是否有新消息
     /// </summary>
@@ -100,6 +102,13 @@ public class ChatService
         if (chat.Status == ChatStatus.Closed)
         {
             Trace.WriteLine("Waring: ChatService.CloseChat() 对话已是关闭状态 ,ChatId " + chatId + " 不存在");
+            try
+            {
+                Directory.Delete(ChatTempDataDir + chatId, true);
+            }
+            catch (Exception)
+            {
+            }
             return true;
         }
         
