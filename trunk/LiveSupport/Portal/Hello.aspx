@@ -20,7 +20,7 @@
     第二步: 下载客服软件</span></td></tr>
 <tr><td >请点击下载LiveSupport客服软件<br />
     <br />
-    <img  src="images/btn_down.gif"/><br />
+    <a href="Download/OperatorConsole.msi"><img  src="images/btn_down.gif"/></a><br />
     <br />
 &nbsp;运行后请在登录窗口中输入您的公司ID，客服ID，密码登录LiveSupport客服系统。  
     <br />
