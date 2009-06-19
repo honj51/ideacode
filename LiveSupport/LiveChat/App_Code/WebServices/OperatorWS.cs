@@ -41,10 +41,18 @@ public class OperatorWS : System.Web.Services.WebService
 
     private void checkAuthentication()
     {
-        if (Authentication == null || OperatorService.GetOperatorById(Authentication.OperatorId) == null 
-            || !OperatorService.IsOperatorOnline(Authentication.OperatorId))
+
+        if (Authentication == null)
         {
-            throw new AccessViolationException("CheckAuthentication Failed");
+            throw new AccessViolationException("CheckAuthentication Failed, Authentication is null");
+        }
+        else if (OperatorService.GetOperatorById(Authentication.OperatorId) == null)
+        {
+            throw new AccessViolationException("CheckAuthentication Failed, Operator:" + Authentication.OperatorId+" not exist");
+        }
+        else if (!OperatorService.IsOperatorOnline(Authentication.OperatorId))
+        {
+            throw new AccessViolationException("CheckAuthentication Failed, Operator:" + Authentication.OperatorId + " not online");
         }
     }
     /// <summary>
@@ -55,9 +63,9 @@ public class OperatorWS : System.Web.Services.WebService
     /// <returns>operator¶ÔÏó</returns>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public Operator Login(string accountName, string operatorName, string password)
+    public Operator Login(int accountNumber, string operatorName, string password)
     {
-        return OperatorService.Login(accountName, operatorName, password);
+        return OperatorService.Login(accountNumber, operatorName, password);
     }
     /// <summary>
     /// ×¢Ïú
@@ -140,7 +148,7 @@ public class OperatorWS : System.Web.Services.WebService
     public void UploadFile(byte[] bs, string fileName, string chatId)
     {
         checkAuthentication();
-        string saveFilePath = Server.MapPath("~/UploadFile/") + fileName;
+        string saveFilePath = Server.MapPath("~/UploadFile/" + chatId + "/");
         OperatorService.UploadFile(bs,fileName,chatId, saveFilePath);
     }
     /// <summary>
