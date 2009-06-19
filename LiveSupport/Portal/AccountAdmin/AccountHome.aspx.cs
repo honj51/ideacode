@@ -9,18 +9,18 @@ using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    Account account;
+    Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
 
         if (Session["User"] != null)
         {
-            account = (Account)Session["User"];
+            oper = (Operator)Session["User"];
             if (!IsPostBack)
             {
                 //绑定所有省份信息
                 DataBindProvince();
-                GetAccount(account);
+                GetAccount(oper);
             }
         }
         else
@@ -31,19 +31,20 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
 
     //通过Account获得公司信息
-    public void GetAccount(Account account)
+    public void GetAccount(Operator oper)
     {
-        if (account != null)
+        if (oper != null)
         {
-            this.txtCompanyName.Text = account.CompanyName;
-            this.txtUrl.Text = account.Url;
-            this.txtCompanyPhone.Text = account.Phone;
-            this.txtName.Text = account.ContactName;
-            this.txtMail.Text = account.Email;
-            this.ddlVocation.SelectedValue = account.Industry;
-            this.ddlSheng.SelectedValue = account.Province;
-            DataBindCityByPName(account.Province);
-            this.ddlShi.SelectedItem.Text = account.City;
+            this.txtId.Text = oper.Account.AccountNumber + "";
+            this.txtCompanyName.Text = oper.Account.CompanyName;
+            this.txtUrl.Text = oper.Account.Url;
+            this.txtCompanyPhone.Text = oper.Account.Phone;
+            this.txtName.Text = oper.Account.ContactName;
+            this.txtMail.Text = oper.Account.Email;
+            this.ddlVocation.SelectedValue = oper.Account.Industry;
+            this.ddlSheng.SelectedValue = oper.Account.Province;
+            DataBindCityByPName(oper.Account.Province);
+            this.ddlShi.SelectedItem.Text = oper.Account.City;
         }
     }
     //绑定所有身份信息
@@ -114,15 +115,15 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('请选择行业类别');</script>");
             return;
         }
-        account.CompanyName = this.txtCompanyName.Text;
-        account.Url = this.txtUrl.Text;
-        account.Phone = this.txtCompanyPhone.Text;
-        account.ContactName = this.txtName.Text;
-        account.Email = this.txtMail.Text;
-        account.Industry = this.ddlVocation.SelectedValue;
-        account.Province = this.ddlSheng.SelectedValue;
-        account.City = this.ddlShi.SelectedItem.Text;
-        bool b = AccountsManager.UpdateAccount(account);
+        oper.Account.CompanyName = this.txtCompanyName.Text;
+        oper.Account.Url = this.txtUrl.Text;
+        oper.Account.Phone = this.txtCompanyPhone.Text;
+        oper.Account.ContactName = this.txtName.Text;
+        oper.Account.Email = this.txtMail.Text;
+        oper.Account.Industry = this.ddlVocation.SelectedValue;
+        oper.Account.Province = this.ddlSheng.SelectedValue;
+        oper.Account.City = this.ddlShi.SelectedItem.Text;
+        bool b = AccountsManager.UpdateAccount(oper.Account);
         if (b)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('修改成功!');;</script>");

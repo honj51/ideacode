@@ -13,6 +13,10 @@
   <!--内容-->
   <TABLE cellSpacing=0 cellPadding=0 border=0 style=" margin-left:10px; margin-top:10px;">
         <TBODY style="text-align:left;">
+         <TR>
+          <TD width="25%" >&nbsp;&nbsp;&nbsp; 公司ID： </TD>
+          <TD><asp:TextBox ID="txtId" runat="server" Width="160px" ReadOnly="True"></asp:TextBox>
+            </TD></TR>
         <TR>
           <TD width="25%"><FONT color=red>*</FONT> 公司名称： </TD>
           <TD><asp:TextBox ID="txtCompanyName" runat="server" Width="160px"></asp:TextBox>
