@@ -282,7 +282,8 @@ public class OperatorWS : System.Web.Services.WebService
         if (versionNumber != LatestVersionNumber)
         {
             SystemAdvertise sysinfo = new SystemAdvertise();
-            sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
+            //sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
+            sysinfo.AdvertiseUrl = LatestUrl;
             sysinfo.AdvertiseMessage = "该程序有新版本可用，请点击了解详情";
             li.Add(sysinfo);
         }
