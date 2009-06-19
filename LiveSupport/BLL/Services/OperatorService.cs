@@ -130,7 +130,10 @@ public static class OperatorService
         {
             return op.Status != OperatorStatus.Offline;
         }
-        return false;
+        else
+        {
+            throw new ArgumentException("Operaotor:"+operatorId+" not exist");
+        }
     }
     /// <summary>
     /// 登陆
@@ -371,7 +374,7 @@ public static class OperatorService
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         Message m = new Message();
         m.ChatId = chatId;
-        m.Text = string.Format("访客已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}'>点击保存</a>", fileName, homeRootUrl, fileName);
+        m.Text = string.Format("访客已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}'>点击保存</a>", fileName, homeRootUrl, chatId+"/"+fileName);
         m.Type = MessageType.SystemMessage_ToOperator;
         ChatService.SendMessage(m);
     }
@@ -458,7 +461,7 @@ public static class OperatorService
         {
             throw new BLLInternalException("Operator not found: OperatorId=" + operatorId);
         }
-        op.Status = operatorStatus;
+        op.Status = operatorStatus;        
     }
 
     /// <summary>
@@ -470,16 +473,35 @@ public static class OperatorService
     /// <param name="saveFilePath"></param>
     public static void UploadFile(byte[] bs, string fileName, string chatId, string saveFilePath)
     {
-        MemoryStream mo = new MemoryStream(bs);
-        FileStream fs = new FileStream(saveFilePath, FileMode.Create);
+        string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
+       // string UploadFileUrl = homeRootUrl + "/UploadFile/" + chatId;
+        try
+        {
+            Directory.CreateDirectory(saveFilePath);
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        } MemoryStream mo = new MemoryStream(bs);
+        FileStream fs = new FileStream(saveFilePath+fileName, FileMode.Create);
         mo.WriteTo(fs);
         mo.Close();
         fs.Close();
 
         Message m = new Message();
         m.ChatId = chatId;
-        string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
-        m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName, homeRootUrl, fileName);
+       // string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
+        Util util = new Util();
+        if (util.IsImageFile(fileName))
+        {
+            m.Text = string.Format("客服已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a> <br/><img height='120px'  width='120px'  src='{3}/UploadFile/{4}\' />", fileName, homeRootUrl, chatId+"/"+fileName, homeRootUrl, chatId+"/"+fileName);
+        }
+        else
+        {
+            m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName, homeRootUrl, chatId+"/"+fileName);
+        }
         m.Type = MessageType.SystemMessage_ToVisitor;
         ChatService.SendMessage(m);
 
