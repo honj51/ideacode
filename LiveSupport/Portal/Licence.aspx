@@ -83,7 +83,7 @@
       <P class=style_g2>6.2. 
       本服务条款的效力、解释、履行和争议解决均适用中华人民共和国法律，并应参照互动网络制定的有关LiveSupport的规定、政策以及计算机、互联网行业的规范。</P>
       <P class=style_g2>6.3. 
-      互动网络有权修改本条款、注册规范、LiveSupport服务形式等，并在LiveSupport网站（www.LiveSupport.com）上提示有关内容，但不另行通知客户。客户如果不同意改动内容，可以主动取消获得的服务并不可以要求返还任何款项，除非客户能够提供证据证明该等改动确实对其造成损害；如果客户继续接受服务，则视为无条件接受有关变动。</P>
+      互动网络有权修改本条款、注册规范、LiveSupport服务形式等，并在LiveSupport网站（www.zxkefu.com）上提示有关内容，但不另行通知客户。客户如果不同意改动内容，可以主动取消获得的服务并不可以要求返还任何款项，除非客户能够提供证据证明该等改动确实对其造成损害；如果客户继续接受服务，则视为无条件接受有关变动。</P>
       <P class=style_g2>6.4. 
       互动网络向客户发出的任何通知将由代理商负责送达。涉及重大变动的，互动网络将在其网站的显著位置予以公布。</P>
       <P class=style_g2>6.5. 
@@ -92,7 +92,7 @@
       互动网络有权将本条款和注册规范项下的权利义务转让给第三人。若互动网络被收购或与第三人合并等情形时，其权利义务由承继者继承。</P></DIV>
       <P align=left></P></TD></TR>
   <TR>
-    <TD vAlign=center align=middle height=50><INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Register.aspx'" type=button value=同意 name=button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Default.aspx'" type=button value=不同意 name=button2></TD></TR></TBODY></TABLE></td></tr>
+    <TD vAlign=center align=middle height=50><INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Register.aspx'" type=button value=同意 name=button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Default.aspx'" type=button value="不同意   " name=button2></TD></TR></TBODY></TABLE></td></tr>
 </table>
 
 </center>
