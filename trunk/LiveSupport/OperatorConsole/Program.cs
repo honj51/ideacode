@@ -49,15 +49,18 @@ namespace LiveSupport.OperatorConsole
             LoginForm f = new LoginForm();
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
             Application.Run(f);
-            //Test();
+          // Test();
 		}
 
         static void Test()
         {
             OperaterServiceAgent.Login("user", "user1", "123");
             Chat chat = new Chat();
+            ChatForm chatform = new ChatForm(OperatorServiceAgent.Default, chat);
 
-            NotifyForm.ShowNotifier(true,"Hello",chat);
+            Snipping sp = new Snipping();
+            sp.Show();
+            
             Application.Run();
         }
 

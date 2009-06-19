@@ -116,6 +116,55 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Icon CameraDll_dll_11014 {
+            get {
+                object obj = ResourceManager.GetObject("CameraDll_dll_11014", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon CameraDll_dll_11015 {
+            get {
+                object obj = ResourceManager.GetObject("CameraDll_dll_11015", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon CameraDll_dll_11016 {
+            get {
+                object obj = ResourceManager.GetObject("CameraDll_dll_11016", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon CameraDll_dll_11017 {
+            get {
+                object obj = ResourceManager.GetObject("CameraDll_dll_11017", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon CameraDll_dll_11018 {
+            get {
+                object obj = ResourceManager.GetObject("CameraDll_dll_11018", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon CameraDll_dll_11024 {
+            get {
+                object obj = ResourceManager.GetObject("CameraDll_dll_11024", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon CameraDll_dll_11025 {
+            get {
+                object obj = ResourceManager.GetObject("CameraDll_dll_11025", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap cancel {
             get {
                 object obj = ResourceManager.GetObject("cancel", resourceCulture);
@@ -130,10 +179,38 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Icon comres_1_2857 {
+            get {
+                object obj = ResourceManager.GetObject("comres_1_2857", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon comres_2857 {
+            get {
+                object obj = ResourceManager.GetObject("comres_2857", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap content_bg {
             get {
                 object obj = ResourceManager.GetObject("content_bg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static byte[] Cursor1 {
+            get {
+                object obj = ResourceManager.GetObject("Cursor1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Cursor2 {
+            get {
+                object obj = ResourceManager.GetObject("Cursor2", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -155,6 +232,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             get {
                 object obj = ResourceManager.GetObject("development_54_grey", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon eudcedit_109 {
+            get {
+                object obj = ResourceManager.GetObject("eudcedit_109", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -213,6 +297,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Icon input_203 {
+            get {
+                object obj = ResourceManager.GetObject("input_203", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap leave_title_bg {
             get {
                 object obj = ResourceManager.GetObject("leave_title_bg", resourceCulture);
@@ -255,6 +346,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap magnifierGlass {
+            get {
+                object obj = ResourceManager.GetObject("magnifierGlass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap mail_foward {
             get {
                 object obj = ResourceManager.GetObject("mail_foward", resourceCulture);
@@ -273,6 +371,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             get {
                 object obj = ResourceManager.GetObject("Modify", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon mspaint_1206 {
+            get {
+                object obj = ResourceManager.GetObject("mspaint_1206", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -404,6 +509,20 @@ namespace LiveSupport.OperatorConsole.Properties {
             get {
                 object obj = ResourceManager.GetObject("sipphone", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon SLUI_1_3 {
+            get {
+                object obj = ResourceManager.GetObject("SLUI_1_3", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon SLUI_3 {
+            get {
+                object obj = ResourceManager.GetObject("SLUI_3", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

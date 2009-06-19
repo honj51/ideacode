@@ -96,12 +96,12 @@ namespace LiveSupport.OperatorConsole
 
         public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
         {
-            return ws.CheckNewChanges(check);
+              return ws.CheckNewChanges(check);
         }
 
         public void UploadFile(byte[] bs, string fileName, string chatId)
         {
-            ws.UploadFile(bs, fileName, chatId);
+            ws.UploadFileAsync(bs, fileName, chatId);
         }
 
         public bool SendMessage(Message msg)
@@ -391,6 +391,13 @@ namespace LiveSupport.OperatorConsole
             }
             return null;
         }
+
+        public int ResetOperator(string operatorId, string chatId)
+        {
+            throw new NotImplementedException();
+        }
+
+    
         #endregion
 
         #region IOperatorServiceAgent 成员
@@ -432,11 +439,6 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
-        #endregion
-
-        #region IOperatorServiceAgent 成员
-
-
         public Chat GetChatRequest(string visitorId)
         {
             foreach (var item in chats)
@@ -459,5 +461,8 @@ namespace LiveSupport.OperatorConsole
 
         #endregion
 
+
+        
+       
     }
 }
