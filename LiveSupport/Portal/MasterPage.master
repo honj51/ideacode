@@ -73,8 +73,8 @@
                 &nbsp;</div>
         </div>
         <center>
-        <table ><tr><td style=" font-size:12px; height:40px;" > 
-          <a  href ="Default.aspx" style="color:#cccccc" >首页</a>&nbsp;&nbsp;&nbsp;<a href="ProductServe.aspx" style="color:#cccccc" >产品与服务</a>&nbsp;&nbsp;&nbsp; <a href="News.aspx" style="color:#cccccc" >新闻&nbsp;&nbsp;&nbsp;</a> <a href="About.aspx" style="color:#cccccc" >关于我们</a>&nbsp;&nbsp;&nbsp; <a href="Contact.aspx" style="color:#cccccc"> 联系我们</a>&nbsp;&nbsp;&nbsp; <a href="Default.aspx" style="color:#CCCCCC">案例</a>             
+        <table ><tr><td style=" font-size:13px; height:40px;" > 
+          <a  href ="Default.aspx" style="color:#999999" >首页</a>&nbsp;&nbsp;&nbsp;<a href="ProductServe.aspx" style="color:#999999" >产品与服务</a>&nbsp;&nbsp;&nbsp; <a href="News.aspx" style="color:#999999" >新闻&nbsp;&nbsp;&nbsp;</a> <a href="About.aspx" style="color:#999999" >关于我们</a>&nbsp;&nbsp;&nbsp; <a href="Contact.aspx" style="color:#999999"> 联系我们</a>&nbsp;&nbsp;&nbsp; <a href="Default.aspx" style="color:#999999">案例</a>             
         </td></tr></table>
     </center>
     </form>
