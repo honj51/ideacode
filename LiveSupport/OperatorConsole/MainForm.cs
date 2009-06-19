@@ -137,14 +137,24 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                MessageBox.Show("访客对话存在无法关闭客户端");
-                e.Cancel = true;
-                return;
-
+                if (MessageBox.Show("访客对话存在无法关闭客户端,是否强制关闭？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                else 
+                {
+                    List<ChatForm> forms = new List<ChatForm>(Program.ChatForms);
+                    foreach (var item in forms)
+                    {
+                        item.Close();
+                    }
+                    Properties.Settings.Default.Save();
+                   
+                
+                }
             }
             Properties.Settings.Default.Save();
-
-            Application.Exit();
         }
         #endregion
 
@@ -329,8 +339,18 @@ namespace LiveSupport.OperatorConsole
         #region NewChangesCheck 定时器事件处理
         private void timer1_Tick(object sender, EventArgs e)
         {
-            NewChangesCheckResult result = operaterServiceAgent.GetNextNewChanges();
+            NewChangesCheckResult result;
+            try
+            {
+                result = operaterServiceAgent.GetNextNewChanges();
 
+            }
+            catch (AccessViolationException ave)
+            {
+                restartApp(string.Empty);
+                return;
+            }
+           
             if (result == null) return;
             if (result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
             {
@@ -779,6 +799,11 @@ namespace LiveSupport.OperatorConsole
             }
         }
         #endregion
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 
     class VisitorListViewItem
