@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AdminUser.cs" />
     <Compile Include="Chat.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Client.cs" />
