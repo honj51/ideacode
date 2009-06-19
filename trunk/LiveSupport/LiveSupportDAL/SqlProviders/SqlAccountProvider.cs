@@ -26,37 +26,41 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 添加一条新的公司帐号
         public int AddAccount(Account account)
         {
-            Account ac = new SqlAccountProvider().CheckCompanyByloginName(account.LoginName);
-            if (ac==null)
+            try
             {
-                string sql = string.Format(
-                 "INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account]"
-                  + " ([AccountId]"
-                  + " ,[LoginName]"
-                  + " ,[Password]"
-                  + " ,[NickName]"
-                  + " ,[CompanyName]"
-                  + " ,[Industry]"
-                  + ",[Email]"
-                  + " ,[ContactName]"
-                  + " ,[Phone]"
-                  + " ,[URL]"
-                  + ",[Domain]"
-                  + " ,[OperatorCount]"
-                  + " ,[Province]"
-                  + " ,[City]"
-                  + " ,[RegisterDate]"
-                  + " ,[Remark]"
-                  + " ,[PaymentId])"
-                  + " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},'{12}','{13}','{14}','{15}','{16}')",
-                  account.AccountId, account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId);
-                return DBHelper.ExecuteCommand(sql);
+                Account ac = new SqlAccountProvider().CheckCompanyByaccountNumber(account.AccountNumber);
+                if (ac == null)
+                {
+                    string sql = string.Format(
+                     "INSERT INTO [LiveSupport].[dbo].[LiveSupport_Account]"
+                      + " ([AccountId]"
+                      + " ,[AccountNumber]"
+                      + " ,[CompanyName]"
+                      + " ,[Industry]"
+                      + ",[Email]"
+                      + " ,[ContactName]"
+                      + " ,[Phone]"
+                      + " ,[URL]"
+                      + ",[Domain]"
+                      + " ,[OperatorCount]"
+                      + " ,[Province]"
+                      + " ,[City]"
+                      + " ,[RegisterDate]"
+                      + " ,[Remark]"
+                      + " ,[PaymentId])"
+                      + " VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}',{9},'{10}','{11}','{12}','{13}','{14}')",
+                      account.AccountId, account.AccountNumber, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId);
+                    return DBHelper.ExecuteCommand(sql);
+                }
+                else
+                {
+                    return 0;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 return 0;
             }
-
 
         }
         #endregion
@@ -64,27 +68,33 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 获得所有公司
         public List<Account> GetAllAccounts()
         {
-
-            string sql = "select * from LiveSupport_Account";
-            List<Account> accounts = new List<Account>();
-            SqlDataReader r = DBHelper.GetReader(sql);
-            while (r.Read())
+            try
             {
-                accounts.Add(new Account(r));
+                string sql = "select * from LiveSupport_Account";
+                List<Account> accounts = new List<Account>();
+                SqlDataReader r = DBHelper.GetReader(sql);
+                while (r.Read())
+                {
+                    accounts.Add(new Account(r));
 
+                }
+                r.Close();
+                r.Dispose();
+                r = null;
+                return accounts;
             }
-            r.Close();
-            r.Dispose();
-            r = null;
-            return accounts;
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
         #endregion
 
 
         #region 登录
-        public Account CheckAccountByLoginIdAndPwd(string loginName, string loginPwd)
+        public Account CheckCompanyByaccountNumber(int accountNumber)
         {
-            string sql = string.Format("select * from dbo.LiveSupport_Account where LoginName='{0}' and Password='{1}'", loginName, loginPwd);
+            string sql = string.Format("select * from dbo.LiveSupport_Account where accountNumber='{0}'", accountNumber);
             SqlDataReader data = null;
             Account account = null;
             try
@@ -110,27 +120,32 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 据据AccountID更新数据
         public int UpdateAccount(Account account)
         {
-            string sql = string.Format(
-               "UPDATE [LiveSupport].[dbo].[LiveSupport_Account]"
-               + " SET [LoginName] = '{0}'"
-               + "      ,[Password] = '{1}'"
-               + "  ,[NickName] ='{2}'"
-               + " ,[CompanyName] ='{3}'"
-               + " ,[Industry] ='{4}'"
-               + "  ,[Email] ='{5}'"
-               + " ,[ContactName] ='{6}'"
-               + " ,[Phone] ='{7}'"
-               + " ,[URL] ='{8}'"
-               + " ,[Domain] ='{9}'"
-               + "  ,[OperatorCount] ='{10}'"
-               + " ,[Province] ='{11}'"
-               + " ,[City] ='{12}'"
-               + "  ,[RegisterDate] ='{13}'"
-               + " ,[Remark] ='{14}'"
-               + " ,[PaymentId] ='{15}'"
-               + "  WHERE [AccountId] ='{16}'"
-               , account.LoginName, account.Password, account.NickName, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId,account.AccountId);
-           return DBHelper.ExecuteCommand(sql);
+            try
+            {
+                string sql = string.Format(
+                   "UPDATE [LiveSupport].[dbo].[LiveSupport_Account]"
+                   + " SET [AccountNumber] = {0}"
+                   + " ,[CompanyName] ='{1}'"
+                   + " ,[Industry] ='{2}'"
+                   + "  ,[Email] ='{3}'"
+                   + " ,[ContactName] ='{4}'"
+                   + " ,[Phone] ='{5}'"
+                   + " ,[URL] ='{6}'"
+                   + " ,[Domain] ='{7}'"
+                   + "  ,[OperatorCount] ={8}"
+                   + " ,[Province] ='{9}'"
+                   + " ,[City] ='{10}'"
+                   + "  ,[RegisterDate] ='{11}'"
+                   + " ,[Remark] ='{12}'"
+                   + " ,[PaymentId] ='{13}'"
+                   + "  WHERE [AccountId] ='{14}'"
+                   , account.AccountNumber, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId, account.AccountId);
+                return DBHelper.ExecuteCommand(sql);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
         #endregion
 
@@ -161,9 +176,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region 判断一个公司是否存在此用户名
-        public Account CheckCompanyByloginName(string LoginName)
+        public Account CheckCompanyByloginName(string accountNumber)
         {
-            string sql = string.Format("select * from LiveSupport_Account where LoginName='{0}'", LoginName);
+            string sql = string.Format("select * from LiveSupport_Account where AccountNumber='{0}'", accountNumber);
             SqlDataReader data = null;
             try
             {
@@ -188,30 +203,41 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
-        #region 通过Email找回密码
-        public Account GetPasswordByLoginNameAndEmail(string loginName, string eamil)
-        {
-            try
-            {
-                string sql = string.Format("select * from LiveSupport_Account where LoginName='{0}' and Email='{1}'", loginName, eamil);
-                SqlDataReader sdr = DBHelper.GetReader(sql);
-                if (sdr.Read())
-                {
-                    Account account = new Account(sdr);
-                    sdr.Close();
-                    return account;
-                }
-                else
-                {
-                    sdr.Close();
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //#region 通过Email找回密码
+        //public Account GetPasswordByLoginNameAndEmail(string loginName, string eamil)
+        //{
+        //    try
+        //    {
+        //        string sql = string.Format("select * from LiveSupport_Account where LoginName='{0}' and Email='{1}'", loginName, eamil);
+        //        SqlDataReader sdr = DBHelper.GetReader(sql);
+        //        if (sdr.Read())
+        //        {
+        //            Account account = new Account(sdr);
+        //            sdr.Close();
+        //            return account;
+        //        }
+        //        else
+        //        {
+        //            sdr.Close();
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+        //#endregion
+
+        #region IAccountProvider 成员
+
+
+       
+        #endregion
+
+        #region IAccountProvider 成员
+
+
         #endregion
     }
 }
