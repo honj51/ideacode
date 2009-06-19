@@ -170,6 +170,7 @@ public partial class Chat : System.Web.UI.Page
                         if (LiveSupport.LiveSupportModel.Message.FromSystem(messages[i]))
                         {
                             litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", messages[i].Text);
+                            
                         }
                         if (messages[i].Type == MessageType.ChatMessage_OperatorToVisitor)
                         {
@@ -394,7 +395,7 @@ public partial class Chat : System.Web.UI.Page
             m.Type = MessageType.SystemMessage_ToVisitor;
             ChatService.SendMessage(m);
 
-            string path = Server.MapPath("UploadFile/" + fileName.Trim().ToString());
+            string path = Server.MapPath("UploadFile/" +m.ChatId+"/"+ fileName.Trim().ToString());
             this.fuFile.PostedFile.SaveAs(path);
 
             m = new LiveSupport.LiveSupportModel.Message();
