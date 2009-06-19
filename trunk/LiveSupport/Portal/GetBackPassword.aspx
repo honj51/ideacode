@@ -23,21 +23,24 @@
    <tr><td ><div style="height: 123px; width: 348px; margin-top:63px; ">
 <table style=" color:#000000;">
 <tr><td align="right">公司账号：</td><td align="left">
-    <asp:TextBox ID="txtAccountLoginName" 
+    <asp:TextBox ID="txtAccountNumber" 
         runat="server"  Width="140px"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-        ControlToValidate="txtAccountLoginName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+        ControlToValidate="txtAccountNumber" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                                                    ControlToValidate="txtAccountNumber" ErrorMessage="ID是数字!" 
+                                                    ValidationExpression="^\d{1,}$"></asp:RegularExpressionValidator>
     </td></tr>
     <tr><td align="right">客服账号：</td><td align="left">
     <asp:TextBox ID="txtOperatorLoginName" 
         runat="server"  Width="140px"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
-        ControlToValidate="txtOperatorLoginName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+        ControlToValidate="txtOperatorLoginName" ErrorMessage="*"></asp:RequiredFieldValidator>
     </td></tr>
 <tr><td align="right" >您的Email：</td><td align="left">
                     <asp:TextBox ID="txtEmail" runat="server" Width="140px" ></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                        ControlToValidate="txtEmail" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+                        ControlToValidate="txtEmail" ErrorMessage="*"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
                         ControlToValidate="txtEmail" ErrorMessage="格式有误!" 
                         ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
