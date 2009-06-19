@@ -473,6 +473,8 @@ public static class OperatorService
     /// <param name="saveFilePath"></param>
     public static void UploadFile(byte[] bs, string fileName, string chatId, string saveFilePath)
     {
+        if (bs.Length >= 2097152)//ÏÞÖÆ2M
+        { return; }
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
        // string UploadFileUrl = homeRootUrl + "/UploadFile/" + chatId;
         try
@@ -484,7 +486,8 @@ public static class OperatorService
         {
 
             throw;
-        } MemoryStream mo = new MemoryStream(bs);
+        }
+        MemoryStream mo = new MemoryStream(bs);
         FileStream fs = new FileStream(saveFilePath+fileName, FileMode.Create);
         mo.WriteTo(fs);
         mo.Close();
