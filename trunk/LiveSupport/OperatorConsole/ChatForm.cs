@@ -172,6 +172,7 @@ namespace LiveSupport.OperatorConsole
                 if (fs.Length >= 2097152)
                 {
                     wb.Document.Write("<span style='color: #FF9933; FONT-SIZE: 13px'>你上传的文件过大！仅限 2M</span><br />");
+                    return;
                 }
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
