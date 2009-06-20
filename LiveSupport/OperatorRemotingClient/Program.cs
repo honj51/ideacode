@@ -14,21 +14,32 @@ namespace OperatorRemotingClient
     {
         static void Main(string[] args)
         {
-            //使用HTTP通道得到远程对象
-            HttpChannel chan2 = new HttpChannel();
-            ChannelServices.RegisterChannel(chan2,false);
-            IOperatorServer obj2 = (IOperatorServer)Activator.GetObject(
-                typeof(IOperatorServer),
-                "http://localhost:3355/OperatorServer.aspx");
-            if (obj2 == null)
-            {
-                System.Console.WriteLine(
-                    "Could not locate HTTP server");
-            }
+
+            RemotingConfiguration.Configure(
+                AppDomain.CurrentDomain.SetupInformation.ConfigurationFile,false
+                );
+
+            IOperatorServer obj2 = (IOperatorServer)Activator.GetObject(typeof(IOperatorServer), "http://localhost:3355/livechat/OperatorServer.rem");
+
+            OperatorStatusChangeEventHandler h = new OperatorStatusChangeEventHandler(obj2_OperatorStatusChange);
+            obj2.OperatorStatusChange += h;
 
             Console.WriteLine(
                 "Client1 HTTP HelloMethod {0}",
-                obj2.Hello());
+                obj2.Hello("aaa"));
+
+            obj2.Login("111", "", "");
+
+            Console.Read();
+        }
+
+        static void obj2_OperatorStatusChange(OperatorStatusChangeEventArg arg)
+        {
+            System.Console.WriteLine("Operator:" + arg.OperatorId + " status change to " + arg.Status);
+        }
+
+        static void obj2_OperatorStatusChange(object sender, OperatorStatusChangeEventArg e)
+        {
         }
     }
 }
