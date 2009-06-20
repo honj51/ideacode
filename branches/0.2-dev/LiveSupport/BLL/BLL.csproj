@@ -48,6 +48,7 @@
     <Compile Include="LeaveWordManager.cs" />
     <Compile Include="OperatorsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remoting\OperatorServer.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Exceptions\DuplicateAccountException.cs" />
@@ -66,6 +67,10 @@
     <ProjectReference Include="..\Model\LiveSupportModel.csproj">
       <Project>{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}</Project>
       <Name>LiveSupportModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperatorServiceInterface\OperatorServiceInterface.csproj">
+      <Project>{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}</Project>
+      <Name>OperatorServiceInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

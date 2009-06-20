@@ -10,7 +10,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECF
 		SccLocalPath = "Svn"
 		SccProvider = "SubversionScc"
 		TargetFramework = "2.0"
-		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}|LiveSupportDAL.dll;{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}|Model.dll;"
+		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}|LiveSupportDAL.dll;{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}|Model.dll;{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}|OperatorServiceInterface.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Portal"
 		Debug.AspNetCompiler.PhysicalPath = "Portal\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Portal\"
@@ -25,7 +25,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECF
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1938"
+		VWDPort = "51849"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C4903BEF-9491-492A-AC4A-8244790DAFE3}"
@@ -35,7 +35,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C
 		SccLocalPath = "Svn"
 		SccProvider = "SubversionScc"
 		TargetFramework = "2.0"
-		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}|Model.dll;{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}|LiveSupportDAL.dll;"
+		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}|Model.dll;{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}|LiveSupportDAL.dll;{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}|OperatorServiceInterface.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/LiveChat"
 		Debug.AspNetCompiler.PhysicalPath = "LiveChat\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\LiveChat\"
@@ -71,6 +71,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4C372D4D-B6F2-490C-85D9-1F54C565B46E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLTest", "BLLTest\BLLTest.csproj", "{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorRemotingClient", "OperatorRemotingClient\OperatorRemotingClient.csproj", "{42340920-3921-400C-9579-805FE74FC8A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorServiceInterface", "OperatorServiceInterface\OperatorServiceInterface.csproj", "{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -185,6 +189,26 @@ Global
 		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Release|.NET.ActiveCfg = Release|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{42340920-3921-400C-9579-805FE74FC8A9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Release|.NET.ActiveCfg = Release|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,6 +216,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5DBD653B-6AF4-4CCC-AC23-5A68E848B632} = {1C57CE42-4525-4728-A387-666512A30BFC}
 		{83AC14FA-5D89-42DC-888F-1EB2C675CFE4} = {1C57CE42-4525-4728-A387-666512A30BFC}
+		{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4} = {1C57CE42-4525-4728-A387-666512A30BFC}
 		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB} = {4C372D4D-B6F2-490C-85D9-1F54C565B46E}
+		{42340920-3921-400C-9579-805FE74FC8A9} = {4C372D4D-B6F2-490C-85D9-1F54C565B46E}
 	EndGlobalSection
 EndGlobal
