@@ -10,6 +10,7 @@ namespace LiveSupport.LiveSupportModel
         Visiting, ChatRequesting, Chatting, Leave
     }
 
+    [Serializable]
     public class VisitSession
     {
         private string sessionId;

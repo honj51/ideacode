@@ -23,16 +23,22 @@ namespace OperatorRemotingClient
 
             OperatorServerEventSink sink = new OperatorServerEventSink();
             sink.Tag = "11111";
-            obj2.OperatorStatusChange +=new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
-            sink.OperatorStatusChange += new OperatorStatusChangeEventHandler(sink_OperatorStatusChange);
-
+            //obj2.OperatorStatusChange +=new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
+            obj2.OperatorStatusChanged += new EventHandler<OperatorStatusChangeEventArgs>(sink.OnOperatorStatusChange);
+            //sink.OperatorStatusChange += new OperatorStatusChangeEventHandler(sink_OperatorStatusChange);
+            sink.OperatorStatusChanged +=new EventHandler<OperatorStatusChangeEventArgs>(sink_OperatorStatusChange);
             Console.WriteLine(
                 "Client1 HTTP HelloMethod {0}",
                 obj2.Hello("aaa"));
 
             obj2.Login("111", "", "");
             Console.Read();
-            obj2.OperatorStatusChange -= new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
+            //obj2.OperatorStatusChange -= new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
+        }
+
+        static void obj2_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         static void sink_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)
