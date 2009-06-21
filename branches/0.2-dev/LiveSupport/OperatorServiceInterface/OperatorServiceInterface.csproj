@@ -37,6 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IOperatorServer.cs" />
+    <Compile Include="IOperatorServerEvents.cs" />
+    <Compile Include="OperatorServerEventSink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

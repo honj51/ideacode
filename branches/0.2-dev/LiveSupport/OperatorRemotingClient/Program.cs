@@ -21,25 +21,23 @@ namespace OperatorRemotingClient
 
             IOperatorServer obj2 = (IOperatorServer)Activator.GetObject(typeof(IOperatorServer), "http://localhost:3355/livechat/OperatorServer.rem");
 
-            OperatorStatusChangeEventHandler h = new OperatorStatusChangeEventHandler(obj2_OperatorStatusChange);
-            obj2.OperatorStatusChange += h;
+            OperatorServerEventSink sink = new OperatorServerEventSink();
+            sink.Tag = "11111";
+            obj2.OperatorStatusChange +=new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
+            sink.OperatorStatusChange += new OperatorStatusChangeEventHandler(sink_OperatorStatusChange);
 
             Console.WriteLine(
                 "Client1 HTTP HelloMethod {0}",
                 obj2.Hello("aaa"));
 
             obj2.Login("111", "", "");
-
             Console.Read();
+            obj2.OperatorStatusChange -= new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
         }
 
-        static void obj2_OperatorStatusChange(OperatorStatusChangeEventArg arg)
+        static void sink_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)
         {
-            System.Console.WriteLine("Operator:" + arg.OperatorId + " status change to " + arg.Status);
-        }
-
-        static void obj2_OperatorStatusChange(object sender, OperatorStatusChangeEventArg e)
-        {
+            System.Console.WriteLine("Operator:" + e.OperatorId + " status change to " + e.Status);
         }
     }
 }
