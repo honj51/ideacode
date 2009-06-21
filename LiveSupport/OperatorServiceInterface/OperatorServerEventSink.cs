@@ -8,9 +8,9 @@ namespace OperatorServiceInterface
     {
         public void OnOperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)
         {   
-            if (OperatorStatusChange != null)
+            if (OperatorStatusChanged != null)
             {
-                OperatorStatusChange(sender, e);
+                OperatorStatusChanged(sender, e);
             }
         }
 
@@ -23,7 +23,33 @@ namespace OperatorServiceInterface
 
         #region IOperatorServerEvents 成员
 
-        public event OperatorStatusChangeEventHandler OperatorStatusChange;
+        public event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChanged;
+
+        public event EventHandler<VisitorChatRequestEventArgs> VisitorChatRequest;
+
+        public event EventHandler<OperatorChatRequestEventArgs> OperatorChatRequest;
+
+        public event EventHandler<VisitorChatRequestAcceptedEventArgs> VisitorChatRequestAccepted;
+
+        public event EventHandler<OperatorChatRequestAcceptedEventArgs> OperatorChatRequestAccepted;
+
+        public event EventHandler<OperatorChatRequestDeclinedEventArgs> OperatorChatRequestDeclined;
+
+        public event EventHandler<NewChatEventArgs> NewChat;
+
+        public event EventHandler<ChatStatusChangedEventArgs> ChatStatusChanged;
+
+        public event EventHandler<OperatorChatJoinInviteEventArgs> ChatJoinInvite;
+
+        public event EventHandler<OperatorChatJoinInviteAcceptedEventArgs> ChatJoinInviteAccepted;
+
+        public event EventHandler<OperatorChatJoinInviteDeclinedEventArgs> ChatJoinInviteDeclined;
+
+        public event EventHandler<ChatMessageEventArgs> NewMessage;
+
+        public event EventHandler<NewVisitingEventArgs> NewVisiting;
+
+        public event EventHandler<VisitorLeaveEventArgs> VisitorLeave;
 
         #endregion
     }
