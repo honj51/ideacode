@@ -12,11 +12,26 @@ using System.Net;
 using LiveSupport.BLL;
 using System.Diagnostics;
 using System.IO;
+using OperatorServiceInterface;
 
 
 
 public class ChatService
 {
+    public static event EventHandler<VisitorChatRequestEventArgs> VisitorChatRequest; //访客对话请求
+    public static event EventHandler<OperatorChatRequestEventArgs> OperatorChatRequest; //客服对话邀请
+    public static event EventHandler<VisitorChatRequestAcceptedEventArgs> VisitorChatRequestAccepted; // 访客对话请求被接受
+    public static event EventHandler<OperatorChatRequestAcceptedEventArgs> OperatorChatRequestAccepted; // 客服对话邀请被接受
+    public static event EventHandler<OperatorChatRequestDeclinedEventArgs> OperatorChatRequestDeclined; // 客服对话邀请被拒绝
+    public static event EventHandler<NewChatEventArgs> NewChat; // 新的对话
+    public static event EventHandler<ChatStatusChangedEventArgs> ChatStatusChanged; // 对话状态改变
+
+    public static event EventHandler<OperatorChatJoinInviteEventArgs> ChatJoinInvite;
+    public static event EventHandler<OperatorChatJoinInviteAcceptedEventArgs> ChatJoinInviteAccepted;
+    public static event EventHandler<OperatorChatJoinInviteDeclinedEventArgs> ChatJoinInviteDeclined;
+    // Chat Message
+    public static event EventHandler<ChatMessageEventArgs> NewMessage;
+
     #region const int 定义
     public const int AcceptChatRequestReturn_OK = 0;
     public const int AcceptChatRequestReturn_Error_AcceptedByOthers = -1;// 对话已经被其他客服接受
@@ -30,6 +45,52 @@ public class ChatService
     public static IChatProvider Provider = new SqlChatProvider();
     public static List<Chat> chats = new List<Chat>();
     public static string ChatTempDataDir;
+
+    private static List<OperatorChatRequestEventArgs> operatorChatRequests = new List<OperatorChatRequestEventArgs>();
+    private static List<VisitorChatRequestEventArgs> visitorChatRequests = new List<VisitorChatRequestEventArgs>();
+
+    #region 对话查询
+    /// <summary>
+    /// 检查客服是否发出主动邀请
+    /// </summary>
+    /// <param name="visitorId"></param>
+    /// <returns></returns>
+    public static string GetOperatorInvitation(string visitorId)
+    {
+        foreach (var chat in chats)
+        {
+            if (chat.VisitorId == visitorId && chat.Status == ChatStatus.Requested && chat.IsInviteByOperator)
+            {
+                return chat.ChatId;
+            }
+        }
+        return null;
+    }
+    /// <summary>
+    /// 根据ChatId获取对话
+    /// </summary>
+    /// <param name="chatId"></param>
+    /// <returns></returns>
+    public static Chat GetChatById(string chatId)
+    {
+        foreach (Chat item in chats)
+        {
+            if (item.ChatId == chatId)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+    /// <summary>
+    /// 取历史会话记录跟据VisitorID
+    /// </summary>
+    /// <param name="visitorId"></param>
+    /// <returns></returns>
+    public static List<Chat> GetHistoryChatByVisitorId(string visitorId)
+    {
+        return Provider.GetChatByVisitorId(visitorId);
+    }
     /// <summary>
     /// 是否有新消息
     /// </summary>
@@ -60,6 +121,44 @@ public class ChatService
     }
 
     /// <summary>
+    /// 判断客服是否有进行中(Status不是Closed)的Chat
+    /// </summary>
+    /// <param name="p"></param>
+    /// <returns></returns>
+    private static bool IsOperatorHasActiveChat(string operatorId)
+    {
+        List<Chat> cs = FindChatsByOperatorId(operatorId);
+        foreach (Chat item in cs)
+        {
+            if (item.Status != ChatStatus.Closed)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 根据OperatorId查找客服的对话
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <returns></returns>
+    private static List<Chat> FindChatsByOperatorId(string operatorId)
+    {
+        List<Chat> cs = new List<Chat>();
+        foreach (Chat item in chats)
+        {
+            if (!string.IsNullOrEmpty(item.OperatorId) && item.OperatorId == operatorId)
+            {
+                cs.Add(item);
+            }
+        }
+        return cs;
+    }
+
+    #endregion
+
+    /// <summary>
     /// 发送新消息
     /// </summary>
     /// <param name="m"></param>
@@ -78,6 +177,10 @@ public class ChatService
         }
         else
         {
+            if (NewMessage != null)
+            {
+                NewMessage(null, new ChatMessageEventArgs(m));
+            }
             MessageService.AddMessage(m);
         }
     }
@@ -134,43 +237,11 @@ public class ChatService
             OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
         }
 
+        if (ChatStatusChanged != null)
+        {
+            ChatStatusChanged(null, new ChatStatusChangedEventArgs(chatId, ChatStatus.Closed));
+        }
         return true;        
-    }
-
-    /// <summary>
-    /// 判断客服是否有进行中(Status不是Closed)的Chat
-    /// </summary>
-    /// <param name="p"></param>
-    /// <returns></returns>
-    private static bool IsOperatorHasActiveChat(string operatorId)
-    {
-        List<Chat> cs = FindChatsByOperatorId(operatorId);
-        foreach (Chat item in cs)
-        {
-            if (item.Status != ChatStatus.Closed)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// 根据OperatorId查找客服的对话
-    /// </summary>
-    /// <param name="operatorId"></param>
-    /// <returns></returns>
-    private static List<Chat> FindChatsByOperatorId(string operatorId)
-    {
-        List<Chat> cs = new List<Chat>();
-        foreach (Chat item in chats)
-        {
-            if (!string.IsNullOrEmpty(item.OperatorId) && item.OperatorId == operatorId)
-            {
-                cs.Add(item);
-            }
-        }
-        return cs;
     }
 
     /// <summary>
@@ -220,6 +291,8 @@ public class ChatService
             s.OperatorId = operatorId;
             s.Status = VisitSessionStatus.Chatting;
             s.ChatingTime = DateTime.Now;
+            
+            
 
             return AcceptChatRequestReturn_OK;
         }
@@ -234,22 +307,7 @@ public class ChatService
         }
     }
 
-    /// <summary>
-    /// 根据ChatId获取对话
-    /// </summary>
-    /// <param name="chatId"></param>
-    /// <returns></returns>
-    public static Chat GetChatById(string chatId)
-    {
-        foreach (Chat item in chats)
-        {
-            if (item.ChatId == chatId)
-            {
-                return item;
-            }
-        }
-        return null;
-    }
+
         
     /// <summary>
     /// 客服主动邀请对话
@@ -287,25 +345,15 @@ public class ChatService
         m.Type = MessageType.SystemMessage_ToOperator;
         SendMessage(m);
 
+        if (OperatorChatRequest != null)
+        {
+            var req = new OperatorChatRequestEventArgs(operatorId, visitorId);
+            OperatorChatRequest(null, req);
+        }
+
         return chat;
     }
 
-    /// <summary>
-    /// 检查客服是否发出主动邀请
-    /// </summary>
-    /// <param name="visitorId"></param>
-    /// <returns></returns>
-    public static string GetOperatorInvitation(string visitorId)
-    {
-        foreach (var chat in chats)
-        {
-            if (chat.VisitorId == visitorId && chat.Status == ChatStatus.Requested && chat.IsInviteByOperator)
-            {
-                return chat.ChatId;
-            }
-        }
-        return null;
-    }
 
     /// <summary>
     /// 拒绝客服会话邀请
@@ -380,16 +428,14 @@ public class ChatService
         m.Source = "系统";
         m.Destination = "访客";
         SendMessage(m);
-                
+
+        if (VisitorChatRequest != null)
+        {
+            VisitorChatRequestEventArgs req = new VisitorChatRequestEventArgs(visitor.VisitorId);
+            visitorChatRequests.Add(req);
+            VisitorChatRequest(null, req);
+        }
+        
         return chatRequest.ChatId;
-    }
-    /// <summary>
-    /// 取历史会话记录跟据VisitorID
-    /// </summary>
-    /// <param name="visitorId"></param>
-    /// <returns></returns>
-    public static List<Chat> GetHistoryChatByVisitorId(string visitorId)
-    {
-        return Provider.GetChatByVisitorId(visitorId);
     }
 }

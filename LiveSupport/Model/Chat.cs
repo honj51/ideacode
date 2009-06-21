@@ -10,6 +10,7 @@ namespace LiveSupport.LiveSupportModel
         Requested, Accepted, Decline, Closed
     }
 
+    [Serializable]
     public class Chat
     {     
 

@@ -11,6 +11,60 @@ namespace LiveSupport.BLL.Remoting
         public OperatorServer()
         {
             Console.WriteLine("HelloServer activated");
+            OperatorService.OperatorStatusChange += new EventHandler<OperatorStatusChangeEventArgs>(OperatorService_OperatorStatusChange);
+            ChatService.NewChat += new EventHandler<NewChatEventArgs>(ChatService_NewChat);
+            ChatService.NewMessage += new EventHandler<ChatMessageEventArgs>(ChatService_NewMessage);
+            ChatService.OperatorChatRequest += new EventHandler<OperatorChatRequestEventArgs>(ChatService_OperatorChatRequest);
+            ChatService.OperatorChatRequestAccepted += new EventHandler<OperatorChatRequestAcceptedEventArgs>(ChatService_OperatorChatRequestAccepted);
+            ChatService.OperatorChatRequestDeclined += new EventHandler<OperatorChatRequestDeclinedEventArgs>(ChatService_OperatorChatRequestDeclined);
+            ChatService.ChatStatusChanged += new EventHandler<ChatStatusChangedEventArgs>(ChatService_ChatStatusChanged);
+            ChatService.VisitorChatRequest += new EventHandler<VisitorChatRequestEventArgs>(ChatService_VisitorChatRequest);
+            ChatService.VisitorChatRequestAccepted += new EventHandler<VisitorChatRequestAcceptedEventArgs>(ChatService_VisitorChatRequestAccepted);
+        }
+
+        void ChatService_VisitorChatRequestAccepted(object sender, VisitorChatRequestAcceptedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ChatService_VisitorChatRequest(object sender, VisitorChatRequestEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ChatService_ChatStatusChanged(object sender, ChatStatusChangedEventArgs e)
+        {
+                throw new NotImplementedException();
+        }
+
+        void ChatService_OperatorChatRequestDeclined(object sender, OperatorChatRequestDeclinedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ChatService_OperatorChatRequestAccepted(object sender, OperatorChatRequestAcceptedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ChatService_OperatorChatRequest(object sender, OperatorChatRequestEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ChatService_NewMessage(object sender, ChatMessageEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ChatService_NewChat(object sender, NewChatEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void OperatorService_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)
+        {
+            safeFireEvent(OperatorStatusChange, e);
         }
         #region IOperatorServer 成员
 
@@ -47,29 +101,67 @@ namespace LiveSupport.BLL.Remoting
             }
         }
 
-        private void fireOperatorStatusChange()
-        {
-            if (OperatorStatusChange != null)
-            {
-                OperatorStatusChangeEventHandler eh = null;
-                int index = 1;
-                foreach (Delegate del in OperatorStatusChange.GetInvocationList())
-                {
-                    try
-                    {
-                        eh = (OperatorStatusChangeEventHandler)del;
-                        eh(this, new OperatorStatusChangeEventArgs("111", OperatorStatus.Idle));
-                    }
-                    catch
-                    {
-                        OperatorStatusChange -= eh;
-                    }
-                    index++;
-                }
-            }
-        }
+        //private void fireOperatorStatusChange()
+        //{
+        //    if (OperatorStatusChange != null)
+        //    {
+        //        OperatorStatusChangeEventHandler eh = null;
+        //        int index = 1;
+        //        foreach (Delegate del in OperatorStatusChange.GetInvocationList())
+        //        {
+        //            try
+        //            {
+        //                eh = (OperatorStatusChangeEventHandler)del;
+        //                eh(this, new OperatorStatusChangeEventArgs("111", OperatorStatus.Idle));
+        //            }
+        //            catch
+        //            {
+        //                OperatorStatusChange -= eh;
+        //            }
+        //            index++;
+        //        }
+        //    }
+        //}
 
-        public event OperatorStatusChangeEventHandler OperatorStatusChange;
+        //public event OperatorStatusChangeEventHandler OperatorStatusChange;
+
+        #endregion
+
+        #region IOperatorServerEvents 成员
+
+        public event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
+
+        #endregion
+
+        #region IOperatorServerEvents 成员
+
+        public event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChanged;
+
+        public event EventHandler<VisitorChatRequestEventArgs> VisitorChatRequest;
+
+        public event EventHandler<OperatorChatRequestEventArgs> OperatorChatRequest;
+
+        public event EventHandler<VisitorChatRequestAcceptedEventArgs> VisitorChatRequestAccepted;
+
+        public event EventHandler<OperatorChatRequestAcceptedEventArgs> OperatorChatRequestAccepted;
+
+        public event EventHandler<OperatorChatRequestDeclinedEventArgs> OperatorChatRequestDeclined;
+
+        public event EventHandler<NewChatEventArgs> NewChat;
+
+        public event EventHandler<ChatStatusChangedEventArgs> ChatStatusChanged;
+
+        public event EventHandler<OperatorChatJoinInviteEventArgs> ChatJoinInvite;
+
+        public event EventHandler<OperatorChatJoinInviteAcceptedEventArgs> ChatJoinInviteAccepted;
+
+        public event EventHandler<OperatorChatJoinInviteDeclinedEventArgs> ChatJoinInviteDeclined;
+
+        public event EventHandler<ChatMessageEventArgs> NewMessage;
+
+        public event EventHandler<NewVisitingEventArgs> NewVisiting;
+
+        public event EventHandler<VisitorLeaveEventArgs> VisitorLeave;
 
         #endregion
     }
