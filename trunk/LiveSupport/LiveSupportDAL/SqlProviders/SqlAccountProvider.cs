@@ -48,7 +48,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                       + " ,[RegisterDate]"
                       + " ,[Remark]"
                       + " ,[PaymentId])"
-                      + " VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}',{9},'{10}','{11}','{12}','{13}','{14}')",
+                      + " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}',{9},'{10}','{11}','{12}','{13}','{14}')",
                       account.AccountId, account.AccountNumber, account.CompanyName, account.Industry, account.Email, account.ContactName, account.Phone, account.Url, account.Domain, account.OperatorCount, account.Province, account.City, account.RegisterDate, account.Remark, account.PaymentId);
                     return DBHelper.ExecuteCommand(sql);
                 }
@@ -92,7 +92,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 
 
         #region 登录
-        public Account CheckCompanyByaccountNumber(int accountNumber)
+        public Account CheckCompanyByaccountNumber(string accountNumber)
         {
             string sql = string.Format("select * from dbo.LiveSupport_Account where accountNumber='{0}'", accountNumber);
             SqlDataReader data = null;
@@ -124,7 +124,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             {
                 string sql = string.Format(
                    "UPDATE [LiveSupport].[dbo].[LiveSupport_Account]"
-                   + " SET [AccountNumber] = {0}"
+                   + " SET [AccountNumber] = '{0}'"
                    + " ,[CompanyName] ='{1}'"
                    + " ,[Industry] ='{2}'"
                    + "  ,[Email] ='{3}'"
@@ -229,14 +229,31 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         //}
         //#endregion
 
-        #region IAccountProvider 成员
 
+        #region 通过条件查找公司
+        public List<Account> GetAccountBycondition(string condition,string value)
+        {
+            
+            try
+            {
+                string sql = "select * from LiveSupport_Account where " + condition + "=" + "'" + value + "'";
+                List<Account> accounts = new List<Account>() ;
+                SqlDataReader r = DBHelper.GetReader(sql);
+                while (r.Read())
+                {
+                    accounts.Add(new Account(r));
 
-       
-        #endregion
-
-        #region IAccountProvider 成员
-
+                }
+                r.Close();
+                r.Dispose();
+                r = null;
+                return accounts;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         #endregion
     }

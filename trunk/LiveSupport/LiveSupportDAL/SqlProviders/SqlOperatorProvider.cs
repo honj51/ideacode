@@ -242,7 +242,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #endregion
 
         #region ÕÒ»Ø¿Í·şÃÜÂë
-        public Operator GetOperatorPassword(int accountNumber, string loginName, string eamil)
+        public Operator GetOperatorPassword(string accountNumber, string loginName, string eamil)
         {
             try
             {
