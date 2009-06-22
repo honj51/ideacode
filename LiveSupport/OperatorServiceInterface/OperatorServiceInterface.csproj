@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticateData.cs" />
     <Compile Include="IOperatorServer.cs" />
     <Compile Include="IOperatorServerEvents.cs" />
     <Compile Include="OperatorServerEventSink.cs" />
