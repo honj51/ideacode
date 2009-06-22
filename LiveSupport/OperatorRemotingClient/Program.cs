@@ -7,6 +7,8 @@ using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Remoting.Channels.Http;
 using System.IO;
 using OperatorServiceInterface;
+using System.Runtime.Remoting.Messaging;
+using LiveSupport.LiveSupportModel;
 
 namespace OperatorRemotingClient
 {
@@ -20,18 +22,24 @@ namespace OperatorRemotingClient
                 );
 
             IOperatorServer obj2 = (IOperatorServer)Activator.GetObject(typeof(IOperatorServer), "http://localhost:3355/livechat/OperatorServer.rem");
-
             OperatorServerEventSink sink = new OperatorServerEventSink();
             sink.Tag = "11111";
             //obj2.OperatorStatusChange +=new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
             obj2.OperatorStatusChanged += new EventHandler<OperatorStatusChangeEventArgs>(sink.OnOperatorStatusChange);
             //sink.OperatorStatusChange += new OperatorStatusChangeEventHandler(sink_OperatorStatusChange);
             sink.OperatorStatusChanged +=new EventHandler<OperatorStatusChangeEventArgs>(sink_OperatorStatusChange);
-            Console.WriteLine(
-                "Client1 HTTP HelloMethod {0}",
-                obj2.Hello("aaa"));
+            //Console.WriteLine(
+            //    "Client1 HTTP HelloMethod {0}",
+            //    obj2.Hello("aaa"));
 
-            obj2.Login("111", "", "");
+            Operator op = obj2.Login("111", "", "");
+            AuthenticateData ad = new AuthenticateData();
+            ad.OperatorId = op.OperatorId;
+            ad.OperatorSession = op.OperatorSession;
+            CallContext.SetData("AuthenticateData", ad);
+
+            obj2.Logout();
+            
             Console.Read();
             //obj2.OperatorStatusChange -= new OperatorStatusChangeEventHandler(sink.OnOperatorStatusChange);
         }
