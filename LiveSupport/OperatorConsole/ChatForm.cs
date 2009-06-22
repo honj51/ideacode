@@ -56,7 +56,7 @@ namespace LiveSupport.OperatorConsole
 
 
         #endregion
-
+        private System.Windows.Forms.TabPage tabPage3;
         private IOperatorServiceAgent operatorServiceAgent;
         private bool receiveMessage = true;
         private int acceptChatRequestResult = 0;
@@ -167,6 +167,13 @@ namespace LiveSupport.OperatorConsole
         {
             if (uploadOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
+                if (this.tabPage3 != null&&this.tabPage3.Controls.Count>=2)
+                {
+
+                    wb.Document.Write("<span style='color: #FF9933; FONT-SIZE: 15px'>你上传的文件的次数过多！</span><br />");
+                    return;
+                }
+
                 String filename = uploadOpenFileDialog.FileName;
                 FileStream fs = new FileStream(filename, FileMode.Open);
                 if (fs.Length >= 2097152)
@@ -176,7 +183,8 @@ namespace LiveSupport.OperatorConsole
                 }
                 byte[] fsbyte = new byte[fs.Length];
                 fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
-                operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
+                addTabPage(fsbyte, filename.Substring(filename.LastIndexOf("\\")+1));
+               // operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
             }
         }
       
@@ -358,6 +366,45 @@ namespace LiveSupport.OperatorConsole
             operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName+".bmp", chat.ChatId);
             wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl));
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);    
+        }
+
+        private void addTabPage(Byte[] file,string fileName) 
+        {
+            UserControl fileUpload=null;
+            if (!this.tabControl1.Controls.Contains(this.tabPage3))
+            {
+                createTabPage();
+             
+             
+            }
+            if (this.tabPage3.Controls.Count == 0&&this.tabPage3!=null )
+            {
+                fileUpload = new Controls.FileUploadControl(file, fileName, null, tabPage3);
+                this.tabPage3.Controls.Add(fileUpload);
+            }
+            else
+            {
+                fileUpload = new Controls.FileUploadControl(file, fileName, null, tabPage3);
+                this.tabPage3.Controls.Add(fileUpload);
+                fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 10);
+            }
+           
+        
+        }
+        private void createTabPage() 
+        {
+
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage3.AutoScroll = true;
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 21);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(220, 298);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "文件传输";
+            this.tabPage3.UseVisualStyleBackColor = true;
+        
         }
     }
 }

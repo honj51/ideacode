@@ -354,6 +354,10 @@ namespace LiveSupport.OperatorConsole
         private bool checkIfVisitSessionStatusChange(VisitSession session)
         {
             VisitSession s = GetVisitSessionById(session.SessionId);
+            if (s==null)
+            {
+                return false;
+            }
             if (s.Status != session.Status)
             {
                 return true;

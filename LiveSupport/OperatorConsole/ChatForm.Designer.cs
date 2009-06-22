@@ -552,5 +552,6 @@
         private System.Windows.Forms.TreeView setTalkTreeView;
         private System.Windows.Forms.TabPage tabPage2;
         private OperatorPannel operatorPannel1;
+       
     }
 }

@@ -78,6 +78,11 @@ namespace LiveSupport.OperatorConsole
             InitializeComponent();
         }
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
         void operaterServiceAgent_NewChatRequest(object sender, NewChatRequestEventArgs e)
         {
             NotifyForm.ShowNotifier(true, "访客 " + e.Name + " 请求对话！", e.Chat);
@@ -800,10 +805,7 @@ namespace LiveSupport.OperatorConsole
         }
         #endregion
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
+       
     }
 
     class VisitorListViewItem
