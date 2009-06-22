@@ -13,7 +13,7 @@
         myMenu.expandMenu(firstSubmenu);
 
     };</SCRIPT>
-<script src="../js/My97DatePicker/WdatePicker.js"></script>
+<script src="../js/Mycalendar.js"></script>
     <!--内容开始-->
    <!--内容-->
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
@@ -32,12 +32,8 @@
   <TR id=tr_time>
     <TD class=setting_td_left vAlign=center align=right>&nbsp;选择时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
-        <asp:TextBox ID="txtBeginDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker
-
-(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
-        至<asp:TextBox ID="txtEndDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker
-
-(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
+        <asp:TextBox ID="txtBeginDate" runat="server" Width="98px"  onfocus="calendar()"></asp:TextBox>
+        至<asp:TextBox ID="txtEndDate" runat="server" Width="98px"  onfocus="calendar()"></asp:TextBox>
 &nbsp;<asp:Button ID="btnSelect" runat="server" Text="搜索" Width="64px" 
             onclick="btnSelect_Click"  />
       </TD></TR></TBODY></TABLE>

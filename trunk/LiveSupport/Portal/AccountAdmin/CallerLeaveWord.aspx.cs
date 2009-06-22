@@ -14,8 +14,13 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         if (Session["User"] != null)
         {
             oepr = (Operator)Session["User"];
-            //if (!IsPostBack)
+            if (!IsPostBack)
+            {
                 //DataBindOperator(account.AccountId);
+                string nowdate = DateTime.Now.ToString("yyyy-MM-dd");
+                this.txtBeginDate.Text = nowdate;
+                this.txtEndDate.Text = nowdate;
+            }
         }
         else
         {
