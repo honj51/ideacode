@@ -12,6 +12,7 @@ using LiveSupport.BLL;
 using LiveSupport.BLL.Exceptions;
 using System.IO;
 using System.Collections;
+using OperatorServiceInterface;
 
 public class QuickResponseCategory
 {
@@ -95,6 +96,8 @@ public class NewChangesCheckResult
 /// </summary>
 public static class OperatorService
 {
+    public static event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
+
     public const int ResetOperatorPassword_OK = 0;
     public const int ResetOperatorPassword_PermissionDenied = -1;
     public const int ResetOperatorPassword_OtheError = -2;
@@ -169,7 +172,8 @@ public static class OperatorService
             }
             if (op != null)
             {
-                op.Status = OperatorStatus.Idle;//将客服状态改为空闲
+                SetOperatorStatus(op.OperatorId, OperatorStatus.Idle);
+                //op.Status = OperatorStatus.Idle;//将客服状态改为空闲
                 op.OperatorSession = Guid.NewGuid().ToString();
             }
         }
@@ -461,7 +465,11 @@ public static class OperatorService
         {
             throw new BLLInternalException("Operator not found: OperatorId=" + operatorId);
         }
-        op.Status = operatorStatus;        
+        op.Status = operatorStatus;
+        if (OperatorStatusChange != null)
+        {
+            OperatorStatusChange(null, new OperatorStatusChangeEventArgs(op.OperatorId, op.Status));
+        }
     }
 
     /// <summary>
