@@ -141,7 +141,7 @@ public static class OperatorService
     /// <param name="userName">用户名</param>
     /// <param name="password">密码</param>
     /// <returns>operator对象</returns>
-    public static Operator Login(int accountNumber, string operatorName, string password)
+    public static Operator Login(string accountNumber, string operatorName, string password)
     {
         Trace.WriteLine(string.Format("OperatorService.Login(accountNumber = {0},OperatorName={1},Password={2})", accountNumber, operatorName, password));
         Account account = AccountService.FindAccountByAccountNumber(accountNumber);
