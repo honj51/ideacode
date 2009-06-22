@@ -1,0 +1,98 @@
+<%@ Master Language="C#" AutoEventWireup="true" %>
+<%@ Register Assembly="LeeHom.Cms.Controls" Namespace="LeeHom.Cms.Controls" TagPrefix="LeeHomCms" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<LeeHomCms:HeadString ID="hs" Type="Page" runat="server" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <!--top开始-->
+    <div class="Whole border">
+        <div class="Whole Top">
+            <div style="float: right; width: 500px; margin-right: 10px; margin-top: 10px; text-align: right;
+                vertical-align: bottom">
+                <a href="#" style="color: #C0C0C0">&gt;&gt;简体中文</a>&nbsp;&nbsp;&nbsp;<a href="#"
+                    style="color: #C0C0C0"> &gt;&gt;English</a></div>
+            <ul id="nav">
+                <li><a href="../Main/Default.aspx">首 页</a></li>
+                <li><a href="../SinglePage/1.aspx">公司简介</a></li>
+                <li><a href="../Picture/s1.aspx">产品展示</a></li>
+                <li><a href="../Article/s2.aspx">新闻中心</a></li>
+                <li><a href="../SinglePage/2.aspx">联系我们</a></li>
+                <li><a href="../GuestBook/Default.aspx">在线留言</a></li>
+            </ul>
+        </div>
+        <div class="Whole banner"><script type="text/javascript">document.write('<img src="../Theme/LHTheme/Images/Banner_'+Math.floor(Math.random()*8+1)+'.jpg" />');</script></div>
+        <!--Top结束-->
+        <!--Content 开始-->
+        <div class="Class_left">
+            <div class="Class_Sort1 Class_Sort">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/Sort.gif" width="15" height="12" />&nbsp;&nbsp;产品展示</div>
+            <div class="Class_Sort2">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/SortLeft.gif" width="7" height="7" />&nbsp; <a href="../Picture/s1.aspx">热门产品</a></div>
+            <div class="Class_Sort2">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/SortLeft.gif" width="7" height="7" />&nbsp; <a href="../Picture/s1.aspx">最新产品</a></div>
+            <div style="height: 25px; width: 200px">
+            </div>
+            <div class="Class_Sort1">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/Sort.gif" width="15" height="12" />&nbsp;&nbsp;站内搜索</div>
+            <div style="text-align: center">
+                <div class="Search">
+                    <input type="text" id="Keyword" style="width: 120px" /></div>
+                <div class="Search">
+                    <select id="Type" style="width: 120px">
+                        <option value="Picture">产品</option>
+                        <option value="Article">新闻</option>
+                    </select></div>
+                <div class="Search center">
+                    <input type="submit" value="搜索" onclick='window.location="../Search_"+$("Type").value+"_0/"+$("Keyword").value+".aspx"' style="height: 26px" />　　　
+                    <input type="reset" value="重置" style="height: 26px" />
+                </div>
+            </div>
+            <div class="Class_Sort1 Class_Sort">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/Sort.gif" width="15" height="12" />&nbsp;&nbsp;在线咨询</div>
+            <div style="height: 20px; width: 184px">
+            </div>
+            <div class="Class_Sort2">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/SortLeft.gif" width="7" height="7" />&nbsp; 售前QQ：<a href="tencent://message/?uin=756581864&site=<%=LeeHom.Cms.BLL.Config.Site.Name %>&menu=yes">756581864</a></div>
+            <div class="Class_Sort2">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/SortLeft.gif" width="7" height="7" />&nbsp; 售后QQ：<a href="tencent://message/?uin=756581864&site=<%=LeeHom.Cms.BLL.Config.Site.Name %>&menu=yes">756581864</a></div>
+            <div class="Class_Sort2">
+                &nbsp;
+                <img alt="" src="../Theme/Hryl/Images/SortLeft.gif" width="7" height="7" />&nbsp; 电话：0851-6608731</div>
+            <div style="height: 15px">
+            </div>
+        </div>
+        <div class="Class_right">
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--Content结束-->
+    <!--Bottom开始-->
+    <div class="Whole Bottom">
+        <asp:Literal runat="server" ID="ltlPlus" />
+        <br />
+        设计制作：<a rel="external" title="紫竹林工作室，承接各种B/S、C/S软件制作。" href="http://www.zzlnet.net/">『紫竹林工作室』
+        </a>
+        <br />
+    </div>
+    <!--Bottom结束-->
+
+    <script type="text/javascript">ExternalLinks();</script>
+
+    </form>
+</body>
+</html>

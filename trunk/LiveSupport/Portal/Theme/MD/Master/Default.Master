@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" %>
+<%@ Register Assembly="LeeHom.WebControls" Namespace="LeeHom.WebControls" TagPrefix="LeeHom" %>
+<%@ Register Assembly="LeeHom.Cms.Controls" Namespace="LeeHom.Cms.Controls" TagPrefix="LeeHomCms" %>
+<%@ Register src="~/App_Control/Menu.ascx" tagname="Menu" tagprefix="LeeHomCms" %>
+<%@ Register src="~/App_Control/Search.ascx" tagname="Search" tagprefix="LeeHomCms" %>
+<%@ Register src="~/App_Control/AfficheRepeater.ascx" tagname="AfficheRepeater" tagprefix="uc1" %>
+<%@ Register src="~/App_Control/FriendlinkRepeater.ascx" tagname="FriendlinkRepeater" tagprefix="uc1" %>
+<%@ Register src="~/App_Control/ModuleRepeater.ascx" tagname="ModuleRepeater" tagprefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<LeeHomCms:HeadString ID="hs" Type="Page" runat="server" />
+<title>首页</title>
+<asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+<body>
+<div id="All">
+<form runat="server" id="form1">
+<LeeHom:LHTipBox ID="ltb" runat="server" />
+<h1>
+<object class="headFlash" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0">
+<param name="movie" value="../Theme/LHTheme/Page/Top.swf" />
+<param name="quality" value="high" />
+<param name="wmode" value="transparent" />
+<embed class="headFlash" src="../Theme/LHTheme/Page/Top.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent">
+</embed></object>
+</h1>
+<h2>
+<LeeHomCms:Menu ID="Menu" runat="server" SplitString='<li class="s"></li>' />
+</h2>
+
+<div id="Content"><asp:ContentPlaceHolder id="body" runat="server" /></div>
+<div id="Side">
+
+<uc1:ModuleRepeater ID="ModuleRepeater2" runat="server" ShowMore="false" SortName=":::通告公告:::" SortID="8" GetChild="true" TimeFormat="MM-dd" CutTitle="10" ShowIsTop="false" />
+<LeeHomCms:Search ID="Search1" runat="server" SortName=":::信息搜索:::" />
+<uc1:ModuleRepeater ID="ModuleRepeater1" runat="server" ShowMore="false" SortName=":::最近更新:::" TimeFormat="MM-dd" CutTitle="10" ShowIsTop="false" />
+<uc1:FriendlinkRepeater ID="FriendlinkRepeater1" runat="server" SortName=":::相关链接:::" />
+
+</div>
+<div class="clear">
+</div>
+<div id="CopyRight">
+<asp:Literal runat="server" ID="ltlPlus" /><br />
+设计制作：<a rel="external" title="紫竹林工作室，承接各种B/S、C/S软件制作。" href="http://www.zzlnet.net/">『紫竹林工作室』 </a>
+</div>
+</form>
+</div>
+</body>
+
+</html>
