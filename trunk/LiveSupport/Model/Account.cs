@@ -17,9 +17,9 @@ namespace LiveSupport.LiveSupportModel
             get { return accountId; }
             set { accountId = value; }
         }
-        private int accountNumber;
+        private string accountNumber;
 
-        public int AccountNumber
+        public string AccountNumber
         {
             get { return accountNumber; }
             set { accountNumber = value; }
@@ -124,7 +124,7 @@ namespace LiveSupport.LiveSupportModel
         public Account(SqlDataReader data)
         {
             if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (string)data["AccountId"];
-            if (!Convert.IsDBNull(data["AccountNumber"])) this.accountNumber = (int)data["AccountNumber"];
+            if (!Convert.IsDBNull(data["AccountNumber"])) this.accountNumber = (string)data["AccountNumber"];
             if (!Convert.IsDBNull(data["CompanyName"])) this.companyName = (string)data["CompanyName"];
             if (!Convert.IsDBNull(data["Industry"])) this.industry = (string)data["Industry"];
             if (!Convert.IsDBNull(data["Email"])) this.email = (string)data["Email"];
