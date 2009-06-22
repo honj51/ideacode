@@ -63,7 +63,7 @@ public class OperatorWS : System.Web.Services.WebService
     /// <returns>operator∂‘œÛ</returns>
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public Operator Login(int accountNumber, string operatorName, string password)
+    public Operator Login(string accountNumber, string operatorName, string password)
     {
         return OperatorService.Login(accountNumber, operatorName, password);
     }
