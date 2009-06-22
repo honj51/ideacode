@@ -164,5 +164,84 @@ namespace LiveSupport.BLL.Remoting
         public event EventHandler<VisitorLeaveEventArgs> VisitorLeave;
 
         #endregion
+
+        #region IOperatorServer 成员
+
+        Operator IOperatorServer.Login(string accountNumber, string operatorName, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Logout()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Visitor> GetAllVisitors(string accountId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UploadFile(byte[] bs, string fileName, string chatId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SendMessage(Message msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ChangePassword(string OperatorId, string oldPassword, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ResetOperatorPassword(string OperatorId, string loginName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CloseChat(string chatId, string nickName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AcceptChatRequest(string operatorId, string chatId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Chat InviteChat(string operatorId, string visitorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<LiveSupport.LiveSupportModel.SystemAdvertise> GetSystemAdvertise(string versionNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveQuickResponse(string operatorId, List<LiveSupport.LiveSupportModel.QuickResponseCategory> response)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<LiveSupport.LiveSupportModel.QuickResponseCategory> GetQuickResponse(string operateorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
