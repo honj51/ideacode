@@ -49,7 +49,9 @@
     <Compile Include="Payment.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="QuickResponse.cs" />
+    <Compile Include="QuickResponseCategory.cs" />
     <Compile Include="Service.cs" />
+    <Compile Include="SystemAdvertise.cs" />
     <Compile Include="Visitor.cs" />
     <Compile Include="VisitSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
