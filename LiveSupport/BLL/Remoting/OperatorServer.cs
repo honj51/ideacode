@@ -3,11 +3,25 @@ using System.Collections.Generic;
 using System.Text;
 using OperatorServiceInterface;
 using LiveSupport.LiveSupportModel;
+using System.Runtime.Remoting.Messaging;
+using System.Security;
+using System.Security.Permissions;
+using System.Configuration;
 
 namespace LiveSupport.BLL.Remoting
 {
     public class OperatorServer : MarshalByRefObject, IOperatorServer
     {
+        
+        private AuthenticateData AuthenticateData
+        {
+            [PermissionSet(SecurityAction.LinkDemand)]
+            get
+            {
+                return CallContext.GetData("AuthenticateData") as AuthenticateData;
+            }
+        }
+
         public OperatorServer()
         {
             Console.WriteLine("HelloServer activated");
@@ -22,6 +36,7 @@ namespace LiveSupport.BLL.Remoting
             ChatService.VisitorChatRequestAccepted += new EventHandler<VisitorChatRequestAcceptedEventArgs>(ChatService_VisitorChatRequestAccepted);
         }
 
+        #region 事件处理
         void ChatService_VisitorChatRequestAccepted(object sender, VisitorChatRequestAcceptedEventArgs e)
         {
             throw new NotImplementedException();
@@ -66,19 +81,9 @@ namespace LiveSupport.BLL.Remoting
         {
             safeFireEvent(OperatorStatusChange, e);
         }
+        #endregion 
+
         #region IOperatorServer 成员
-
-        public string Hello(string name)
-        {
-            Console.WriteLine(
-               "Server Hello.HelloMethod");
-            return "Hello "+name;
-        }
-
-        public void Login(string accountName, string operatorName, string password)
-        {
-            safeFireEvent(OperatorStatusChange, new OperatorStatusChangeEventArgs("111", OperatorStatus.Idle));
-        }
 
         private void safeFireEvent(Delegate del, EventArgs args)
         {
@@ -101,39 +106,11 @@ namespace LiveSupport.BLL.Remoting
             }
         }
 
-        //private void fireOperatorStatusChange()
-        //{
-        //    if (OperatorStatusChange != null)
-        //    {
-        //        OperatorStatusChangeEventHandler eh = null;
-        //        int index = 1;
-        //        foreach (Delegate del in OperatorStatusChange.GetInvocationList())
-        //        {
-        //            try
-        //            {
-        //                eh = (OperatorStatusChangeEventHandler)del;
-        //                eh(this, new OperatorStatusChangeEventArgs("111", OperatorStatus.Idle));
-        //            }
-        //            catch
-        //            {
-        //                OperatorStatusChange -= eh;
-        //            }
-        //            index++;
-        //        }
-        //    }
-        //}
-
-        //public event OperatorStatusChangeEventHandler OperatorStatusChange;
-
         #endregion
 
-        #region IOperatorServerEvents 成员
+        #region 事件
 
         public event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
-
-        #endregion
-
-        #region IOperatorServerEvents 成员
 
         public event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChanged;
 
@@ -165,83 +142,158 @@ namespace LiveSupport.BLL.Remoting
 
         #endregion
 
-        #region IOperatorServer 成员
+        #region 接口实现
 
-        Operator IOperatorServer.Login(string accountNumber, string operatorName, string password)
+        public Operator Login(string accountNumber, string operatorName, string password)
         {
-            throw new NotImplementedException();
+            return OperatorService.Login(accountNumber, operatorName, password);
         }
 
         public void Logout()
         {
-            throw new NotImplementedException();
+            OperatorService.Logout(AuthenticateData.OperatorId, AuthenticateData.OperatorSession);
         }
 
         public List<Visitor> GetAllVisitors(string accountId)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            return VisitorService.GetAllOnlineVisitors(accountId);
         }
 
         public void UploadFile(byte[] bs, string fileName, string chatId)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+          //  string saveFilePath = Server.MapPath("~/UploadFile/" + chatId + "/");
+            
+          //  OperatorService.UploadFile(bs, fileName, chatId, saveFilePath);
         }
 
         public bool SendMessage(Message msg)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            if (msg.Type == MessageType.ChatMessage_OperatorToVisitor)
+            {
+                ChatService.SendMessage(msg);
+                return true;
+            }
+            else
+                return false;
         }
 
-        public int ChangePassword(string OperatorId, string oldPassword, string newPassword)
+        public int ChangePassword(string oldPassword, string newPassword)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            return OperatorService.ChangPassword(AuthenticateData.OperatorId, oldPassword, newPassword);
         }
 
-        public int ResetOperatorPassword(string OperatorId, string loginName)
+        public int ResetOperatorPassword(string loginName)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            return OperatorService.ResetOperatorPassword(AuthenticateData.OperatorId, loginName);
         }
 
-        public bool CloseChat(string chatId, string nickName)
+        public bool CloseChat(string chatId)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            return ChatService.CloseChat(chatId, OperatorService.GetOperatorById(AuthenticateData.OperatorId).NickName);
         }
 
         public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            List<Message> list = new List<Message>();
+            List<Chat> chats = ChatService.GetHistoryChatByVisitorId(visitorId);
+
+            foreach (Chat item in chats)
+            {
+                if (item.CreateTime > begin && item.CreateTime < end)
+                {
+                    list.AddRange(MessageService.GetMessagesByChatId(item.ChatId));
+                }
+            }
+
+            return list;
         }
 
         public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            List<VisitSession> li = VisitSessionService.GetHistoryVisitSessionByVisitorId(visitorId);
+            List<PageRequest> list = new List<PageRequest>();
+            foreach (VisitSession m in li)
+            {
+                list.AddRange(PageRequestService.GetHistoryPageRequests(m.SessionId, begin, end));
+            }
+            return list;
         }
 
-        public int AcceptChatRequest(string operatorId, string chatId)
+        public int AcceptChatRequest(string chatId)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            return ChatService.AcceptChatRequest(AuthenticateData.OperatorId, chatId);
         }
 
-        public Chat InviteChat(string operatorId, string visitorId)
+        public Chat InviteChat(string visitorId)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            return ChatService.OperatorRequestChat(AuthenticateData.OperatorId, visitorId);
         }
 
-        public List<LiveSupport.LiveSupportModel.SystemAdvertise> GetSystemAdvertise(string versionNumber)
+        public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
         {
-            throw new NotImplementedException();
+            string homeRootUrl = ConfigurationManager.AppSettings["HomeRootUrl"].ToString();
+            string LatestVersionNumber = ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString();
+            string LatestUrl = ConfigurationManager.AppSettings["LatestOperatorConsoleUrl"].ToString();
+            List<SystemAdvertise> li = new List<SystemAdvertise>();
+            if (versionNumber != LatestVersionNumber)
+            {
+                SystemAdvertise sysinfo = new SystemAdvertise();
+                //sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
+                sysinfo.AdvertiseUrl = LatestUrl;
+                sysinfo.AdvertiseMessage = "该程序有新版本可用，请点击了解详情";
+                li.Add(sysinfo);
+            }
+            SystemAdvertise a = new SystemAdvertise();
+            a.AdvertiseMessage = "欢迎您使用LiveSupport客服交流系统";
+            a.AdvertiseUrl = "http://www.zxkefu.cn/";
+            li.Add(a);
+            return li;
         }
 
-        public void SaveQuickResponse(string operatorId, List<LiveSupport.LiveSupportModel.QuickResponseCategory> response)
+        public void SaveQuickResponse(List<QuickResponseCategory> response)
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            OperatorService.SaveQuickResponse(AuthenticateData.OperatorId, response);
         }
 
-        public List<LiveSupport.LiveSupportModel.QuickResponseCategory> GetQuickResponse(string operateorId)
+        public List<LiveSupport.LiveSupportModel.QuickResponseCategory> GetQuickResponse()
         {
-            throw new NotImplementedException();
+            checkAuthentication();
+            return OperatorService.GetQuickResponse(AuthenticateData.OperatorId);
         }
 
         #endregion
+
+        private void checkAuthentication()
+        {
+
+            if (AuthenticateData == null)
+            {
+                throw new AccessViolationException("CheckAuthentication Failed, Authentication is null");
+            }
+            else if (OperatorService.GetOperatorById(AuthenticateData.OperatorId) == null)
+            {
+                throw new AccessViolationException("CheckAuthentication Failed, Operator:" + AuthenticateData.OperatorId + " not exist");
+            }
+            else if (!OperatorService.IsOperatorOnline(AuthenticateData.OperatorId))
+            {
+                throw new AccessViolationException("CheckAuthentication Failed, Operator:" + AuthenticateData.OperatorId + " not online");
+            }
+        }
+        public bool IsTyping(string chatId, bool isOperator)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

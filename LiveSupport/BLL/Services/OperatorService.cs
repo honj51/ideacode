@@ -14,20 +14,6 @@ using System.IO;
 using System.Collections;
 using OperatorServiceInterface;
 
-public class QuickResponseCategory
-{
-    public int QuickId;
-    public string Name;
-    public List<string> Responses;
-}
-/// <summary>
-/// ∞Ê±æ–≈œ¢
-/// </summary>
-public class SystemAdvertise
-{
-    public string AdvertiseUrl;
-    public string AdvertiseMessage;
-}
 #region NewChangeCheck
 public class MessageCheck
 {
