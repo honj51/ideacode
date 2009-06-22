@@ -23,7 +23,7 @@ public static class AccountService
     /// </summary>
     /// <param name="name">登录名</param>
     /// <returns>Account对象</returns>
-    public static Account FindAccountByAccountNumber(int accountNumber)
+    public static Account FindAccountByAccountNumber(string accountNumber)
     {
         Account ac=null;
         foreach (Account item in accounts)

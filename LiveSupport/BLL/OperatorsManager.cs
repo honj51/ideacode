@@ -75,14 +75,14 @@ namespace LiveSupport.BLL
         #endregion
 
         #region 通过Email找回密码
-        public static Operator GetPasswordByAccountNumberLoginNameAndEmail(int accountNumber, string loginName, string eamil)
+        public static Operator GetPasswordByAccountNumberLoginNameAndEmail(string accountNumber, string loginName, string eamil)
         {
             return Provider.GetOperatorPassword(accountNumber, loginName, eamil);
         }
         #endregion
 
         #region Login
-        public static Operator Login(int accountNumber,string loginName,string loginPwd)
+        public static Operator Login(string accountNumber,string loginName,string loginPwd)
         {
             Account ac = AccountsManager.CheckCompanyByaccountNumber(accountNumber);
             if (ac != null)

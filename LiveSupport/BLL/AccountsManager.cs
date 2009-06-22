@@ -14,7 +14,7 @@ namespace LiveSupport.BLL
     public class AccountsManager
     {
         #region 验证
-        public static Account Login(int accountNumber)
+        public static Account Login(string accountNumber)
         {
 
             return SqlAccountProvider.Default.CheckCompanyByaccountNumber(accountNumber);
@@ -115,7 +115,7 @@ namespace LiveSupport.BLL
         #endregion
 
         #region 通过AccountNumber获得公司信息
-        public static Account CheckCompanyByaccountNumber(int accountNumber)
+        public static Account CheckCompanyByaccountNumber(string accountNumber)
         {
             return SqlAccountProvider.Default.CheckCompanyByaccountNumber(accountNumber);
         }
@@ -126,6 +126,22 @@ namespace LiveSupport.BLL
         {
             return SqlAccountProvider.Default.GetAllAccounts();
         }
+        #endregion
+
+        #region 通过条件查找公司
+        public static List<Account> GetAccountBycondition(string condition, string value)
+        {
+            List<Account> list = SqlAccountProvider.Default.GetAccountBycondition(condition, value);
+            if (list != null && list.Count != 0)
+            {
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         #endregion
     }
 }
