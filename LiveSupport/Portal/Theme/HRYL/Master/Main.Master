@@ -1,0 +1,56 @@
+<%@ Master Language="C#" AutoEventWireup="true" %>
+
+<%@ Register Assembly="LeeHom.Cms.Controls" Namespace="LeeHom.Cms.Controls" TagPrefix="LeeHomCms" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <LeeHomCms:HeadString ID="hs" Type="Page" runat="server" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <!--top开始-->
+    <div class="Whole border">
+        <div class="Whole Top">
+            <div style="float: right; width: 500px; margin-right: 10px; margin-top: 10px; text-align: right;
+                vertical-align: bottom">
+                <a href="#" style="color: #C0C0C0">&gt;&gt;简体中文</a>&nbsp;&nbsp;&nbsp;<a href="#"
+                    style="color: #C0C0C0"> &gt;&gt;English</a></div>
+            <ul id="nav">
+                <li><a href="../Main/Default.aspx">首 页</a></li>
+                <li><a href="../SinglePage/1.aspx">公司简介</a></li>
+                <li><a href="../Picture/s1.aspx">产品展示</a></li>
+                <li><a href="../Article/s2.aspx">新闻中心</a></li>
+                <li><a href="../SinglePage/2.aspx">联系我们</a></li>
+                <li><a href="../GuestBook/Default.aspx">在线留言</a></li>
+            </ul>
+        </div>
+        <div class="Whole banner">
+
+            <script type="text/javascript">document.write('<img src="../Theme/LHTheme/Images/Banner_'+Math.floor(Math.random()*8+1)+'.jpg" />');</script>
+
+        </div>
+        <!--Top结束-->
+        <!--Content开始-->
+        <asp:ContentPlaceHolder ID="body" runat="server">
+        </asp:ContentPlaceHolder>
+        <div class="clear">
+        </div>
+    </div>
+    <!--Content结束-->
+    <!--Bottom开始-->
+    <div class="Whole Bottom">
+        <asp:Literal runat="server" ID="ltlPlus" />
+        <br />
+        设计制作：<a rel="external" title="紫竹林工作室，承接各种B/S、C/S软件制作。" href="http://www.zzlnet.net/">『紫竹林工作室』
+        </a>
+        <br />
+    </div>
+    <!--Bottom结束-->
+
+    <script type="text/javascript">ExternalLinks();</script>
+
+    </form>
+</body>
+</html>

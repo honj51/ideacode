@@ -1,0 +1,15 @@
+参数名称 参数说明 默认值 
+bcastr_file 图片地址参数，多个使用|分开，与方法2配合使用 空 
+bcastr_title 图片标题参数，多个使用|分开，与方法2配合使用 空 
+bcastr_link 图片连接参数，多个使用|分开，与方法2配合使用 空 
+bcastr_xml 方法3 传递图片参数，样板参考 http://www.ruochi.com/product/bcastr3/bcastr.xml  bcastr.xml 
+TitleTextColor 图片名称文字颜色 0xFFFFFF 
+TitleBgColor 图片名称文字背景颜色 0xFF6600 
+TitleBgAlpha 图片名称文字背景颜色透明度：0-100值，0表示全部透明 60 
+TitleBgPosition 图片名称文字位置，0表示文字在顶端，1表示文字在底部，2表示文字在顶端浮动 100 
+BtnDefaultColor 按键默认的颜色 0xFF6600 
+BtnOverColor 按键当前的颜色 0x000033 
+AutoPlayTime 自动播放时间：单位是秒 8 
+Tween 图片过渡效果：0，表示亮度过渡，1表示透明度过渡，2表示模糊过渡，3表示运动模糊过渡 2 
+IsShowBtn 是否显示按钮：1表示显示按键，0表示隐藏按键，更适合做广告挑轮换 1 
+WinOpen 打开窗口：_blank表示新窗口打开。_self表示在当前窗口打开 

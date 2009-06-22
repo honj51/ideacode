@@ -1,0 +1,124 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"  %>
+
+<%@ Register Assembly="LeeHom.Cms.Controls" Namespace="LeeHom.Cms.Controls" TagPrefix="LeeHomCms" %>
+<%@ Register Assembly="LeeHom.WebControls" Namespace="LeeHom.WebControls" TagPrefix="LeeHom" %>
+<%@ Register src="~/App_Control/Menu.ascx" tagname="Menu" tagprefix="LeeHomCms" %>
+<script runat="server" type="text/C#">
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        this.rptAffiche.DataSource = new LeeHom.Cms.BLL.Affiche().ListToModule(8, "");
+        this.rptFindlink.DataSource = new LeeHom.Cms.BLL.Friendlink().ListToModule(8, "");
+        this.rptUpdate.DataSource = new LeeHom.Cms.BLL.Article().ListToModule(8, " and [Article].[IsCommend]=1");
+        this.rptAffiche.DataBind();
+        this.rptFindlink.DataBind();
+        this.rptUpdate.DataBind();
+        this.ddlSort.DataSource = new LeeHom.Cms.BLL.Sort().ListAll();
+        if (LeeHom.Cms.Utility.RequestHelper.SortID > 0)
+        {
+            this.ddlSort.Value = LeeHom.Cms.Utility.RequestHelper.SortID.ToString();
+        }
+    }
+</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <LeeHomCms:HeadString ID="hs" Type="Page" runat="server" />
+    <title>首页</title>
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+<body>
+    <div id="All">
+        <form id="form1" runat="server">
+        <LeeHom:LHTipBox ID="ltb" runat="server" />
+        <h1>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+                height="204" width="890">
+                <param name="movie" value="../Theme/LHTheme/Page/Top.swf" />
+                <param name="quality" value="high" />
+                <param name="wmode" value="transparent" />
+                <embed src="../Theme/LHTheme/Page/Top.swf" width="890" height="204" quality="high"
+                    pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"
+                    wmode="transparent">
+                </embed>
+            </object>
+        </h1>
+        <h2>
+        <LeeHomCms:Menu ID="Menu1" runat="server" />
+        </h2>
+        <asp:Literal runat="server" ID="ltlCurrent" Text="首页" Visible="false" />
+        <%--<h4><img src="../Theme/LHTheme/Page/CurrentIcon.gif" />您当前的位置： <a href="../Main">本专科招生网</a> >> <asp:Literal runat="server" ID="ltlCurrent" Text="首页" /></h4>
+--%><div id="Body">
+    <div id="Content">
+        <asp:ContentPlaceHolder ID="body" runat="server" />
+    </div>
+    <div id="Side">
+        <asp:Repeater ID="rptAffiche" runat="server">
+            <HeaderTemplate>
+                <div style="margin-top: 0">
+                    <a href="../Affiche">
+                        <img src="../Theme/LHTheme/Page/Affiche.gif" title="" /></a>通知公告</div>
+                <ul>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <li><span>
+                    <%#Convert.ToDateTime(Eval("PostTime")).ToString("MM-dd")%></span><a title="标题：<%#Eval("IDName") %>&#10;时间：<%#Eval("PostTime") %>"
+                        rel="ex" <%#string.IsNullOrEmpty(Eval("TitleColor").ToString()+Eval("TitleFontFace").ToString())?"":("style=\""+Eval("TitleColor")+Eval("TitleFontFace")+"\" ") %>href="../Affiche/<%#Eval("ID") %>.aspx"><%#LeeHom.Utility.Text.StringOperate.CutString(Eval("IDName").ToString(),11)%></a></li>
+            </ItemTemplate>
+            <FooterTemplate>
+                </ul>
+            </FooterTemplate>
+        </asp:Repeater>
+        <asp:Repeater ID="rptUpdate" runat="server">
+            <HeaderTemplate>
+                <div>
+                    <a href="../Article/">
+                        <img src="../Theme/LHTheme/Page/More.gif" title="" /></a>推荐文章</div>
+                <ul>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <li><span>
+                    <%#Convert.ToDateTime(Eval("PostTime")).ToString("MM-dd")%></span><a title="标题：<%#Eval("IDName") %>&#10;时间：<%#Eval("PostTime") %>&#10;点击：<%#Eval("Hits") %>"
+                        rel="ex" <%#string.IsNullOrEmpty(Eval("TitleColor").ToString()+Eval("TitleFontFace").ToString())?"":("style=\""+Eval("TitleColor")+Eval("TitleFontFace")+"\" ") %>href="../Article/<%#Eval("ID") %>.aspx"><%#LeeHom.Utility.Text.StringOperate.CutString(Eval("ShortTitle").ToString(),11)%></a>
+                </li>
+            </ItemTemplate>
+            <FooterTemplate>
+                </ul>
+            </FooterTemplate>
+        </asp:Repeater>
+        <div>
+            <img src="../Theme/LHTheme/Page/Search.gif" title="" />站内搜索</div>
+        <ul>
+            <li>类别：<LeeHom:LHTree ID="ddlSort" TreeMode="DropDownList" runat="server" CssClass="dataInput" />
+            </li>
+            <li>查询：<input id="masterKey" type="text" class="dataInput" /></li>
+            <li class="center">
+                <input type="button" value=" 搜 索 " onclick="return Search($('ctl00$ddlSort').value,$('masterKey'))" /></li>
+        </ul>
+        <asp:Repeater ID="rptFindlink" runat="server">
+            <HeaderTemplate>
+                <div>
+                    <img src="../Theme/LHTheme/Page/FriendLink.gif" title="" />友情链接</div>
+                <ul>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <li><a rel="external" title="站名：<%#Eval("IDName")%>&#10;描述：<%#Eval("Description")%>&#10;点击次数：<%#Eval("Hits")%>"
+                    href="../Friendlink/<%#Eval("ID")%>.aspx">
+                    <%#LeeHom.Utility.Text.StringOperate.CutString(Eval("IDName").ToString(),15) %></a></li>
+            </ItemTemplate>
+            <FooterTemplate>
+                </ul>
+            </FooterTemplate>
+        </asp:Repeater>
+    </div>
+    <div class="clear">
+    </div>
+        </div>
+        </form>
+    </div>
+    <div id="CopyRight">
+        <%=LeeHom.Cms.BLL.Config.Site.Plus%>
+        <hr />
+        <span>设计制作：<a rel="external" title="紫竹林工作室，承接各种B/S、C/S软件制作。" href="http://www.zzlnet.net/">『紫竹林工作室』 </a></span></div>
+</body>
+</html>
