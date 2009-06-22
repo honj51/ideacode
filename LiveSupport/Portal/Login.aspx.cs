@@ -14,7 +14,7 @@ public partial class Login2 : System.Web.UI.Page
     }
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
-        int accountNumber = Convert.ToInt32(this.txtNumber.Text);
+        string accountNumber = this.txtNumber.Text;
         string loginName = this.UserName.Text;
         string loginPwd = this.Password.Text;
 

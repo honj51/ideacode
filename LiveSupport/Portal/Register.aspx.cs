@@ -63,7 +63,7 @@ public partial class Default2 : System.Web.UI.Page
                     //添加
                     Account at = new Account();
                     at.AccountId = Guid.NewGuid().ToString();
-                    at.AccountNumber = num;
+                    at.AccountNumber = num.ToString();
                     at.CompanyName = this.txtCompanyName.Text;
                     at.Url = this.txtCompanyWebUrl.Text;
                     at.Phone = this.txtCompanyPhone.Text;
