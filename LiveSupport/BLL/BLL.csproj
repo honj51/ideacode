@@ -46,6 +46,7 @@
     <Compile Include="DepartmentManager.cs" />
     <Compile Include="Exceptions\BLLInternalException.cs" />
     <Compile Include="LeaveWordManager.cs" />
+    <Compile Include="MyDateManager.cs" />
     <Compile Include="OperatorsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remoting\OperatorServer.cs" />
