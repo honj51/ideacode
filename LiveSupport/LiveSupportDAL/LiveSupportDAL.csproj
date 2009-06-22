@@ -47,12 +47,14 @@
     <Compile Include="Providers\IDepartmentProvider.cs" />
     <Compile Include="Providers\ILeaveWordProvider.cs" />
     <Compile Include="Providers\IMessageProvider.cs" />
+    <Compile Include="Providers\IMyDateProvider.cs" />
     <Compile Include="Providers\IOperatorProvider.cs" />
     <Compile Include="Providers\IPageRequestProvider.cs" />
     <Compile Include="Providers\IProvinceProvider.cs" />
     <Compile Include="Providers\IVisitorProvider.cs" />
     <Compile Include="Providers\IVisitSessionProvider.cs" />
     <Compile Include="Providers\IDBProvider.cs" />
+    <Compile Include="SqlProviders\MyDateProvider.cs" />
     <Compile Include="SqlProviders\SqlAccountProvider.cs" />
     <Compile Include="SqlProviders\SqlChatProvider.cs" />
     <Compile Include="SqlProviders\SqlCityProvider.cs" />
