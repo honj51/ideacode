@@ -1,0 +1,186 @@
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+
+<!-- 
+Smart developers always View Source. 
+
+This application was built using Adobe Flex, an open source framework
+for building rich Internet applications that get delivered via the
+Flash Player or to desktops via Adobe AIR. 
+
+Learn more about Flex at http://flex.org 
+// -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--  BEGIN Browser History required section -->
+<link rel="stylesheet" type="text/css" href="history/history.css" />
+<!--  END Browser History required section -->
+
+<title></title>
+<script src="AC_OETags.js" language="javascript"></script>
+
+<!--  BEGIN Browser History required section -->
+<script src="history/history.js" language="javascript"></script>
+<!--  END Browser History required section -->
+
+<style>
+body { margin: 0px; overflow:hidden }
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+// -----------------------------------------------------------------------------
+// Globals
+// Major version of Flash required
+var requiredMajorVersion = 10;
+// Minor version of Flash required
+var requiredMinorVersion = 0;
+// Minor version of Flash required
+var requiredRevision = 0;
+// -----------------------------------------------------------------------------
+// -->
+</script>
+</head>
+
+<body scroll="no">
+<script language="JavaScript" type="text/javascript">
+<!--
+// Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
+var hasProductInstall = DetectFlashVer(6, 0, 65);
+
+// Version check based upon the values defined in globals
+var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+
+if ( hasProductInstall && !hasRequestedVersion ) {
+	// DO NOT MODIFY THE FOLLOWING FOUR LINES
+	// Location visited after installation is complete if installation is required
+	var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
+	var MMredirectURL = window.location;
+    document.title = document.title.slice(0, 47) + " - Flash Player Installation";
+    var MMdoctitle = document.title;
+
+	AC_FL_RunContent(
+		"src", "playerProductInstall",
+		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
+		"width", "300",
+		"height", "400",
+		"align", "middle",
+		"id", "test",
+		"quality", "high",
+		"bgcolor", "#869ca7",
+		"name", "test",
+		"allowScriptAccess","sameDomain",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+} else if (hasRequestedVersion) {
+	// if we've detected an acceptable version
+	// embed the Flash Content SWF when all tests are passed
+	AC_FL_RunContent(
+			"src", "test",
+			"width", "300",
+			"height", "400",
+			"align", "middle",
+			"id", "test",
+			"quality", "high",
+			"bgcolor", "#869ca7",
+			"name", "test",
+			"allowScriptAccess","sameDomain",
+			"type", "application/x-shockwave-flash",
+			"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+  } else {  // flash is too old or we can't detect the plugin
+    var alternateContent = 'Alternate HTML content should be placed here. '
+  	+ 'This content requires the Adobe Flash Player. '
+   	+ '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
+    document.write(alternateContent);  // insert non-flash content
+  }
+// -->
+</script>
+<noscript>
+  	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			id="test" width="300" height="400"
+			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+			<param name="movie" value="test.swf" />
+			<param name="quality" value="high" />
+			<param name="bgcolor" value="#869ca7" />
+			<param name="allowScriptAccess" value="sameDomain" />
+			<embed src="test.swf" quality="high" bgcolor="#869ca7"
+				width="278" height="400" name="test" align="middle"
+				play="true"
+				loop="false"
+				quality="high"
+				allowScriptAccess="sameDomain"
+				type="application/x-shockwave-flash"
+				pluginspage="http://www.adobe.com/go/getflashplayer">
+			</embed>
+	</object>
+</noscript>
+<SCRIPT language='JavaScript' charset='utf-8' type="text/javascript">
+    //发送连接
+    function callApp() {
+		var myname=document.form1.myname.value;
+        var x = test.myFlexFunction(myname);
+		getMessage("连接开始 \n");
+    }
+	//发送呼叫
+	function call()
+	{
+		var otherpid=document.form1.otherpid.value;
+		test.sendcall(otherpid);
+	}
+	//发送消息
+	function send()
+	{
+	    var message=document.form1.myname.value + ": " + document.form1.sendmessage.value + "\n";
+	    getMessage(message);//调用发送消息的方法
+		var m2=document.form1.sendmessage.value;
+		test.sendMessage(m2);
+	}
+	//返回消息 
+	function getMessage(message)
+	{
+		document.getElementById("messages").innerHTML +=message;
+	}
+	//返回自己的PID
+	function returnmyPid(mypid)
+	{
+		document.form1.mypid.value=mypid;
+	}
+</SCRIPT>
+<form name="form1" id="form1" method="post" action="">
+<table width="755" height="155" border="1">
+  <tr>
+    <td width="66">myname</td>
+    <td width="240">
+      <label>
+        <input name="myname" type="text" id="myname" size="50">
+      </label>
+   </td>
+    <td width="130">othername</td>
+    <td width="291"><input name="othername" type="text" id="othername" size="50"></td>
+  </tr>
+  <tr>
+    <td>mypid</td>
+    <td><input name="mypid" type="text" id="mypid" size="50"></td>
+    <td>otherpid</td>
+    <td><input name="otherpid" type="text" id="otherpid" size="50"></td>
+  </tr>
+  <tr>
+    <td height="39" colspan="4"><label>
+      <textarea name="messages" id="messages" cols="45" rows="5" style="width:100%; height:100%;"></textarea>
+    </label></td>
+  </tr>
+  <tr>
+    <td height="39" colspan="4"><input type="button" name="button" id="button" value="连接" onClick="callApp()">
+      <input type="button" name="button2" id="button2" value="呼叫" onClick="call()">
+      <label>
+        <input type="text" name="sendmessage" id="sendmessage">
+      </label>
+      <input type="button" name="button3" id="button3" value="发送信息" onClick="send()"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>
