@@ -167,7 +167,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:3355/LiveChat/Operator.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lcs.zxkefu.cn/Operator.asmx")]
         public string OperatorConsole_LiveChatWS_Operator {
             get {
                 return ((string)(this["OperatorConsole_LiveChatWS_Operator"]));
@@ -191,7 +191,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:2454/Portal/GetBackPassword.aspx \r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.zxkefu.cn/GetBackPassword.aspx \r\n")]
         public string SearchPasswordURL {
             get {
                 return ((string)(this["SearchPasswordURL"]));
@@ -203,7 +203,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:2454/Portal/Licence.aspx ")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.zxkefu.cn/Licence.aspx ")]
         public string RegisterURL {
             get {
                 return ((string)(this["RegisterURL"]));

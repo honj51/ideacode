@@ -39,17 +39,17 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://localhost:3355/LiveChat/Operator.asmx</Value>
+      <Value Profile="(Default)">http://lcs.zxkefu.cn/Operator.asmx</Value>
     </Setting>
     <Setting Name="URL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.zxkefu.cn</Value>
     </Setting>
     <Setting Name="SearchPasswordURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:2454/Portal/GetBackPassword.aspx 
+      <Value Profile="(Default)">http://www.zxkefu.cn/GetBackPassword.aspx 
 </Value>
     </Setting>
     <Setting Name="RegisterURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:2454/Portal/Licence.aspx </Value>
+      <Value Profile="(Default)">http://www.zxkefu.cn/Licence.aspx </Value>
     </Setting>
     <Setting Name="FtpUser" Type="System.String" Scope="User">
       <Value Profile="(Default)">admin</Value>
