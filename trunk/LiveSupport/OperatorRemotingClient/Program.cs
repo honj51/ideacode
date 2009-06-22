@@ -9,11 +9,14 @@ using System.IO;
 using OperatorServiceInterface;
 using System.Runtime.Remoting.Messaging;
 using LiveSupport.LiveSupportModel;
+using System.Security;
+using System.Security.Permissions;
 
 namespace OperatorRemotingClient
 {
     class Program
     {
+        [PermissionSet(SecurityAction.LinkDemand)]
         static void Main(string[] args)
         {
 
@@ -32,7 +35,7 @@ namespace OperatorRemotingClient
             //    "Client1 HTTP HelloMethod {0}",
             //    obj2.Hello("aaa"));
 
-            Operator op = obj2.Login("111", "", "");
+            Operator op = obj2.Login("100000","zxkefu", "zxkefu");
             AuthenticateData ad = new AuthenticateData();
             ad.OperatorId = op.OperatorId;
             ad.OperatorSession = op.OperatorSession;
