@@ -22,7 +22,7 @@ public partial class GetBackPassword : System.Web.UI.Page
             {
                 if (this.txtRandom.Text == Session["createRandom"].ToString())
                 {
-                    Operator oper = OperatorsManager.GetPasswordByAccountNumberLoginNameAndEmail(int.Parse(this.txtAccountNumber.Text.Trim()), this.txtOperatorLoginName.Text.Trim(), this.txtEmail.Text.Trim());
+                    Operator oper = OperatorsManager.GetPasswordByAccountNumberLoginNameAndEmail(this.txtAccountNumber.Text.Trim(), this.txtOperatorLoginName.Text.Trim(), this.txtEmail.Text.Trim());
 
                     if (oper != null)
                     {
