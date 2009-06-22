@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="292" height="348" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#BCE0E7, #C5C2C2]">
+	<mx:Script>
+		<![CDATA[
+		
+	    import mx.core.UIComponent;
+		import mx.controls.Alert;
+	    import flash.external.*;
+		//别人的PID
+	    private var otherPeerId:String;
+	    //自己的PID
+	    private var mePeerId:String;
+	    //别人的姓名
+	    private var otherName:String;
+	    //自己姓名
+	    private var meName:String;
+	    
+		//链接Adobe stratus 服务器
+		private const StratusAddress:String = "rtmfp://stratus.adobe.com";
+	    
+	    //Developer Key,如果没有请根据Flex 迷你教程 -- 基于Stratus的P2P网络电话 (1)中的提示申请
+	    private const DeveloperKey:String = "1710124cbf69e3f25b780c13-d6cbf2cb35a1";
+	    
+	    //我们需要一个nectConnetion与stratus 服务器链接
+	    private var netConnection:NetConnection;
+	    
+	    //用于对外发布自己的身份信息流
+	    private var myStream:NetStream;
+	    
+	    //用于链接后对外发布自己的信息流，比如音频，视频，文字
+	    private var outgoingStream:NetStream;
+	    
+	    //进入的信息流，这个流对应呼叫者的outgoingStream，用这个流尝试播放发布者发布的信息，比如音频，视频，文字
+	    private var incomingStream:NetStream;
+	    
+	    //用于尝试播放被呼叫者的身份信息流myStream发送的信息，被呼叫者在发送自己的身份信息流时会监听呼叫者对myStream的播放请求
+	    private var controlStream:NetStream;
+	    
+	    //链接 adobe stratus 服务器
+		private function init():void{
+			var camera:Camera = Camera.getCamera();
+			if(camera != null)
+			{
+				v1.attachCamera(camera);				
+			}
+			if(meName == "")
+			{
+				Alert.show("请输入任意用户名","错误")
+				return
+			}
+			netConnection = new NetConnection();
+			netConnection.addEventListener(NetStatusEvent.NET_STATUS, netConnectionHandler);//回调方法netConnectionHandler
+			netConnection.connect(StratusAddress + "/" + DeveloperKey); //服务器地址里需要开发者Key
+		}
+		
+		private function netConnectionHandler(e:NetStatusEvent):void{
+			switch (e.info.code)
+	        {
+	        	//链接成功后的初始化
+	            case "NetConnection.Connect.Success":
+	                   var message = "你好"+meName+"你已链接上Stratus服务器\n\n"
+	                   if(ExternalInterface.available)
+	                   {
+	                       ExternalInterface.call("getMessage",message);//返回信息
+	                   }
+	                    //链接成功后这个唯一的表示当前flash player的netConnection.nearID被生成
+	                    //我们靠这个ID与其他的flash player联系
+	                    mePeerId=netConnection.nearID;
+	                   if(ExternalInterface.available)
+	                   {
+	                	  ExternalInterface.call("returnmyPid",mePeerId);//返回信息
+	                   }
+	                    //初始化登陆者
+	                    initSendStream();
+	                break;
+	                
+	            case "NetConnection.Connect.Closed":
+	                break;
+	                
+	            case "NetStream.Connect.Success":
+	                break;
+	                
+	            case "NetConnection.Connect.Failed":
+	                 Alert.show("错误","错误")
+	                break;
+	                
+	            case "NetStream.Connect.Closed":
+	                break;
+	        }
+		}
+		//连接成功后才调用
+		private function initSendStream():void{
+			
+			//这三行表示我对外发布一个名称为netConnection.nearID的流，呼叫者通过我的nearID与我链接后，如果播放
+			//这个名称为netConnection.nearID的流，会出发onPeerConnect事件，这样我就知道有人链接我
+			myStream = new NetStream(netConnection, NetStream.DIRECT_CONNECTIONS);
+			myStream.addEventListener(NetStatusEvent.NET_STATUS, netStreamHandler);//netStreamHandler回调
+			myStream.publish(netConnection.nearID);//发布nearID
+			
+			//监听onPeerConnect事件
+			var o:Object = new Object();
+			o.onPeerConnect = function(subscriberStream:NetStream):Boolean
+			{
+				//当我收到呼叫者的链接请求后，尝试播放呼叫者的流名为"caller"的流，farID代表呼叫者的唯一ID，也就是前面提到的nearID
+				//我通过farID找到呼叫者
+			    incomingStream = new NetStream(netConnection,subscriberStream.farID);
+	            incomingStream.addEventListener(NetStatusEvent.NET_STATUS, incomingStreamHandler);
+	            incomingStream.play("caller");//播放此流
+	            incomingStream.receiveAudio(true);//起动视频
+            	incomingStream.receiveVideo(true);//起动音频
+            	var remoteVideo:Video = new Video();
+           		remoteVideo.width = 259;//收到的视频宽度
+           		remoteVideo.height = 139;//收到的视频高度
+           		remoteVideo.attachNetStream(incomingStream);
+           		var videoContainer:UIComponent = new UIComponent();
+           		videoContainer.addChild(remoteVideo);
+           		showVodeo.addChild(videoContainer);     
+	            //监听onIm事件，用于收取文字信息
+	            var i:Object = new Object;
+	            //打印消息
+	            i.onIm = function(name:String, value:String):void
+	            {
+	                var message= name + ": " + value;//打印信息
+	                if(ExternalInterface.available)
+	                {
+	                	ExternalInterface.call("getMessage",message);//返回信息
+	                }
+	            }
+	            //监听onIncomingCall事件，用于确定链接成功
+	            i.onIncomingCall = function(name:String):void
+	            {
+	            	//显示链接成功后，对呼叫者发布我的信息流，名称为callee
+	                var message = name + " 已经与你链接\n";
+	                if(ExternalInterface.available)
+	                {
+	                   ExternalInterface.call("getMessage",message);//返回信息
+	                }
+	                outgoingStream = new NetStream(netConnection, NetStream.DIRECT_CONNECTIONS);
+			        outgoingStream.addEventListener(NetStatusEvent.NET_STATUS, outgoingStreamHandler);
+			        outgoingStream.publish("callee");//发部
+			        outgoingStream.attachCamera(Camera.getCamera());
+        	        outgoingStream.attachAudio(Microphone.getMicrophone())
+			        outgoingStream.send("onConnectSuccess",meName);//发送
+			        
+	            }
+	            incomingStream.client = i;//将onIncomingCall委托给 incomingStream流
+	            
+	            return true;
+			}
+			
+			myStream.client = o; 
+		}
+		
+		//呼叫别人时回调
+		private function netStreamHandler(e:NetStatusEvent):void{
+			
+		}
+		//连接成功之后向呼叫者发送自己的信息时发生的事件
+		private function outgoingStreamHandler(e:NetStatusEvent):void{
+			if (e.info.code == "NetStream.Play.Start" )
+	        {
+	            outgoingStream.send("onIncomingCall",meName)
+	        }
+		}
+		//事件回调有新的人发出请求时
+		private function incomingStreamHandler(e:NetStatusEvent):void{
+	
+		}
+//呼叫方法/////////////////////////////////////////////////////////////////////////
+		//呼叫对方的方法，现在是呼叫者角色
+		private function call(pid:String):void{
+			otherPeerId=pid;//将别人的PID放入变量中
+			//通过对方的peerId链接被呼叫者，播放对方的身份信息流
+			controlStream = new NetStream(netConnection,otherPeerId);
+			controlStream.addEventListener(NetStatusEvent.NET_STATUS, netStreamHandler);
+			controlStream.play(otherPeerId);
+			
+			//同时对外发布呼叫者的信息流
+			outgoingStream = new NetStream(netConnection, NetStream.DIRECT_CONNECTIONS);
+	        outgoingStream.addEventListener(NetStatusEvent.NET_STATUS, outgoingStreamHandler);
+	        
+	        outgoingStream.publish("caller");
+	        outgoingStream.attachCamera(Camera.getCamera());
+        	outgoingStream.attachAudio(Microphone.getMicrophone());
+        
+	        //尝试播放被呼叫者的信息流
+	        incomingStream = new NetStream(netConnection, otherPeerId);
+	        incomingStream.addEventListener(NetStatusEvent.NET_STATUS, incomingStreamHandler);
+	        incomingStream.play("callee");
+	        ///呼叫时播发对方的音频
+	        incomingStream.receiveAudio(true);//起动视频
+            incomingStream.receiveVideo(true);//起动音频
+            var remoteVideo:Video = new Video();
+           	remoteVideo.width = 259;//收到的视频宽度
+           	remoteVideo.height = 139;//收到的视频高度
+           	remoteVideo.attachNetStream(incomingStream);
+           	var videoContainer:UIComponent = new UIComponent();
+           	videoContainer.addChild(remoteVideo);
+           	showVodeo.addChild(videoContainer);
+	        
+	        var m1= "在正呼叫对方..."
+	        lblstate.text=m1;
+	        if(ExternalInterface.available)
+	        {
+	            ExternalInterface.call("getMessage",m1);//返回信息
+	        }
+	        //监听信息发布事件
+	        var i:Object = new Object;
+	        i.onIm = function(name:String, value:String):void
+	        {
+	            var message= name + ": " + value + "\n";//返回的消息
+	            if(ExternalInterface.available)
+	            {
+	               ExternalInterface.call("getMessage",message);//返回信息
+	            }
+	        }
+	        //监听onConnectSuccess事件，确定链接成功
+	         i.onConnectSuccess = function(name:String):void
+	        {
+	            var message= "与"+name + "链接成功\n";
+	            lblstate.text="你下在同"+name+"进行通话";
+	            if(ExternalInterface.available)
+	            {
+	               ExternalInterface.call("getMessage",message);//返回信息
+	            }
+	        } 
+	        incomingStream.client = i
+		   }
+		   //用outgoingStream对外发布信息流
+		    private function send(message:String):void{
+				   outgoingStream.send("onIm",meName,message);
+	       }
+		   //关闭视频输出
+			private function closeAudio():void
+			{
+			    Alert.show("关闭视频输出");
+			}
+			//关闭视频聊天
+			private function closeVideoChat():void
+			{
+				//Alert.show("关闭视频聊天");
+			}
+			//静音
+			private function muteSpeaker():void
+			{
+				//Alert.show("静音");
+			}
+			//静麦
+			private function muteMicrophone():void
+			{
+				//Alert.show("静麦");
+			}
+			//change改变声音大小
+			private function speakerHsliders():void
+			{
+                lbls.text =speakerHslider.value.toString();
+			}
+			//change改变麦克风大小
+			private function microphoneHSliders():void
+			{
+				lblm.text= microphoneHSlider.value.toString();
+			}
+			//javascript调用连接
+            public function myFunc(param:String):void {
+            	meName=param;//将自己的名字入存入变量中
+            	init();//调用连接方法
+            }
+            ///程序初始化
+            public function initApp():void {
+                    ExternalInterface.addCallback("myFlexFunction",myFunc);//连接服务器
+                    ExternalInterface.addCallback("sendcall",call);//呼叫
+                    ExternalInterface.addCallback("sendMessage",send);//发送消息
+            }
+		]]>
+	</mx:Script>
+	<mx:Panel creationComplete="this.initApp()" y="0" width="279" height="207" layout="absolute" cornerRadius="11" title="视频聊天" color="#030303" fontSize="12" fontFamily="Arial" fontWeight="bold" borderColor="#E2E2E2" backgroundColor="#F2ECEC" left="6.5" id="showVodeo">
+		<mx:Image x="0" y="137" height="27" width="25" source="../html-template/images/09.png" click="closeAudio()"/>
+	</mx:Panel>
+	<mx:ControlBar x="0" y="320" width="292" height="28" cornerRadius="0" alpha="1.0">
+		<mx:Label width="192" height="18" fontSize="11" fontFamily="Arial" id="lblstate"/>
+		<mx:Image height="20" width="28" scaleContent="true">
+			<mx:source>../html-template/images/phone_redirect_128_shadow.png</mx:source>
+		</mx:Image>
+		<mx:Text width="50" text="10:00"/>
+	</mx:ControlBar>
+	<mx:VDividedBox y="215" height="103" width="118" backgroundColor="#FDFCFC" cornerRadius="20" x="163.25">
+		<mx:VideoDisplay width="118" id="v1" autoPlay="true"/>
+	</mx:VDividedBox>
+	<mx:HSlider x="38" y="230" width="90" id="speakerHslider"  minimum="0" maximum="100" allowTrackClick="true"  liveDragging="true" dataTipPlacement="top" change="speakerHsliders()" snapInterval="1" enabled="true"/>
+	<mx:HSlider x="38" y="260" width="90" id="microphoneHSlider"  minimum="0" maximum="100" allowTrackClick="true"  liveDragging="true" dataTipPlacement="top" change="microphoneHSliders()" snapInterval="1" enabled="true"/>
+	<mx:Image x="10" y="231" source="../html-template/images/Volume Disabled.png"  height="20" width="20" click="muteSpeaker()"  id="speaker"/>
+	<mx:Image x="10" y="261" source="../html-template/images/Microphone Disabled.png" width="20" height="20" click="muteMicrophone()" id="microphone"/>
+	<mx:Button x="38" y="287" label=" 关闭 " width="68" click="closeVideoChat()" fontSize="12" fontFamily="Arial" height="22"/>
+	<mx:Label x="127.75" y="235" text="100" width="27.5" id="lbls"/>
+	<mx:Label x="127.75" y="261" text="100" width="27.5" id="lblm"/>
+</mx:Application>

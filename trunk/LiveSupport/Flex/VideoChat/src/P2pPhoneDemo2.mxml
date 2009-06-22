@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+<mx:Script>
+	<![CDATA[
+		import mx.controls.Alert;
+	
+	private const StratusAddress:String = "rtmfp://stratus.adobe.com";
+    
+    private const DeveloperKey:String = "2e67acc6173d5cd953cedea6-dbf64a46d981";
+    
+    private var netConnection:NetConnection;
+    
+    private var myStream:NetStream;
+    
+    private var outgoingStream:NetStream;
+    
+    private var incomingStream:NetStream;
+    
+    private var controlStream:NetStream;
+    
+    private var remoteVideo:Video;
+    
+	private function init():void{
+		
+		if(userName.text == ""){
+			Alert.show("请输入任意用户名","错误")
+			return
+		}
+		netConnection = new NetConnection();
+		netConnection.addEventListener(NetStatusEvent.NET_STATUS,
+		netConnectionHandler);
+		netConnection.connect(StratusAddress + "/" + DeveloperKey);
+	}
+	
+	private function netConnectionHandler(e:NetStatusEvent):void{
+		switch (e.info.code)
+        {
+            case "NetConnection.Connect.Success":
+                    text.text = "你好 "+userName.text+", 你已链接上Stratus服务器\n\n"
+                    text.text += "你的PeerId是:\n"+netConnection.nearID+" \n对方可以用这个ID呼叫你\n"
+                    initSendStream();
+                    
+                break;
+                
+            case "NetConnection.Connect.Closed":
+                    Alert.show("错误","错误")
+                break;
+                
+            case "NetStream.Connect.Success":
+                 Alert.show("错误","错误")
+                break;
+                
+            case "NetConnection.Connect.Failed":
+                 Alert.show("错误","错误")
+                break;
+                
+            case "NetStream.Connect.Closed":
+                 Alert.show("错误","错误")
+                break;
+        }
+	}
+	
+	private function initSendStream():void{
+		
+		myStream = new NetStream(netConnection, NetStream.DIRECT_CONNECTIONS);
+		myStream.addEventListener(NetStatusEvent.NET_STATUS, netStreamHandler);
+		myStream.publish(netConnection.nearID);
+		var o:Object = new Object();
+		o.onPeerConnect = function(subscriberStream:NetStream):Boolean
+		{
+		    incomingStream = new NetStream(netConnection,subscriberStream.farID);
+            incomingStream.addEventListener(NetStatusEvent.NET_STATUS, incomingStreamHandler);
+            incomingStream.play("caller");
+            incomingStream.receiveAudio(true);
+            incomingStream.receiveVideo(true);
+           // incomingStream.receiveAudio(false)
+            
+           // remoteVideo = new Video();
+           // remoteVideo.width = 320;
+           // remoteVideo.height = 240;
+           // remoteVideo.attachNetStream(incomingStream);
+           // videoContainer.addChild(remoteVideo);
+           
+            
+            var i:Object = new Object;
+            
+            i.onIm = function(name:String, value:String):void
+            {
+                text.text += name + ": " + value + "\n";
+            }
+            i.onIncomingCall = function(name:String):void
+            {
+                text.text += name + " 正在呼叫你\n";
+                callYou.label = "接受"
+            }
+            incomingStream.client = i;
+           
+            // outgoingStream.send("onUserName",userName.text)
+            
+            return true;
+		}
+		
+		myStream.client = o; 
+	}
+	
+	
+	private function accpetHandle():void{
+		outgoingStream = new NetStream(netConnection, NetStream.DIRECT_CONNECTIONS);
+        outgoingStream.addEventListener(NetStatusEvent.NET_STATUS, outgoingStreamHandler);
+        outgoingStream.publish("callee");
+	}
+	
+	private function netStreamHandler(e:NetStatusEvent):void{
+		
+	}
+	
+	private function outgoingStreamHandler(e:NetStatusEvent):void{
+		if (e.info.code == "NetStream.Play.Start" )
+        {
+            outgoingStream.send("onIncomingCall",userName.text)
+        }
+	}
+	
+	private function incomingStreamHandler(e:NetStatusEvent):void{
+		
+	}
+	
+	private function call():void{
+		
+		/* if(callYou.label == "接受"){
+			accpetHandle(); 
+			return;
+		} */
+		
+		
+		
+		controlStream = new NetStream(netConnection,peerId.text);
+		controlStream.addEventListener(NetStatusEvent.NET_STATUS, netStreamHandler);
+		controlStream.play(peerId.text);
+		
+		outgoingStream = new NetStream(netConnection, NetStream.DIRECT_CONNECTIONS);
+        outgoingStream.addEventListener(NetStatusEvent.NET_STATUS, outgoingStreamHandler);
+        outgoingStream.publish("caller");
+        
+       // outgoingStream.attachCamera(Camera.getCamera("2"));
+        //outgoingStream.attachAudio(Microphone.getMicrophone(0))
+       
+        
+        incomingStream = new NetStream(netConnection, peerId.text);
+        incomingStream.addEventListener(NetStatusEvent.NET_STATUS, incomingStreamHandler);
+        incomingStream.play("callee");
+        
+        text.text +="开始链接 \n";
+        
+        var i:Object = new Object;
+        i.onIm = function(name:String, value:String):void
+        {
+            text.text += name + ": " + value + "\n";
+        }
+        
+/*         i.onUserName = function(name:String):void
+        {
+            text.text += "你和 " + name + "的连已经接通\n";
+        } */
+        
+        incomingStream.client = i
+
+	}
+	
+	private function send():void{
+	   text.text += userName.text + ": " + message.text + "\n";
+		outgoingStream.send("onIm",userName.text,message.text);
+	}
+	
+	]]>
+</mx:Script>
+<mx:Panel layout="vertical" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10" title="Adobe Flex 迷你教程 -- P2P网络电话">
+
+<mx:HBox width="100%">
+    <mx:Label width="50" text="用户名:" />
+	<mx:TextInput width="200" id="userName" />
+	<mx:Button label="链接" click = "init()" />
+</mx:HBox>
+<mx:HBox width="100%">
+	<mx:Label width="50" text="呼叫:" />
+	<mx:TextInput id="peerId" width="300" />
+	<mx:Button id="callYou" label="呼叫" click = "call()" />
+</mx:HBox>
+<mx:HBox width="100%">
+	<mx:Label width="50" text="信息" />
+	<mx:TextInput id="message" width="200" />
+    <mx:Button label="发送"  click = "send()" />
+</mx:HBox>
+<mx:TextArea id="text" width="500" height="200" />
+	
+</mx:Panel>
+</mx:Application>
