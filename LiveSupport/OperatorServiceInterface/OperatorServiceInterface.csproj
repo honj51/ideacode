@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7C3330D8-935E-4808-8803-6CE5A46D6F90}</ProjectGuid>
+    <ProjectGuid>{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LiveSupport.BLL</RootNamespace>
-    <AssemblyName>LiveSupport.BLL</AssemblyName>
+    <RootNamespace>OperatorServiceInterface</RootNamespace>
+    <AssemblyName>OperatorServiceInterface</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,45 +32,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountsManager.cs" />
-    <Compile Include="AddressMessager.cs" />
-    <Compile Include="ChatManager.cs" />
-    <Compile Include="ChatMessageManager.cs" />
-    <Compile Include="ClientGrounpManager.cs" />
-    <Compile Include="DepartmentManager.cs" />
-    <Compile Include="Exceptions\BLLInternalException.cs" />
-    <Compile Include="LeaveWordManager.cs" />
-    <Compile Include="OperatorsManager.cs" />
+    <Compile Include="AuthenticateData.cs" />
+    <Compile Include="IOperatorServer.cs" />
+    <Compile Include="IOperatorServerEvents.cs" />
+    <Compile Include="OperatorServerEventSink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Remoting\OperatorServer.cs" />
-    <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Services\ChatService.cs" />
-    <Compile Include="Exceptions\DuplicateAccountException.cs" />
-    <Compile Include="Services\MessageService.cs" />
-    <Compile Include="Services\OperatorService.cs" />
-    <Compile Include="Services\PageRequestService.cs" />
-    <Compile Include="Services\VisitorService.cs" />
-    <Compile Include="Services\VisitSessionService.cs" />
-    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LiveSupportDAL\LiveSupportDAL.csproj">
-      <Project>{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}</Project>
-      <Name>LiveSupportDAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\LiveSupportModel.csproj">
       <Project>{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}</Project>
       <Name>LiveSupportModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OperatorServiceInterface\OperatorServiceInterface.csproj">
-      <Project>{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}</Project>
-      <Name>OperatorServiceInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
