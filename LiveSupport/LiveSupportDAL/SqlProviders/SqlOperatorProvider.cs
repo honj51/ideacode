@@ -15,23 +15,21 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public List<Operator> GetAllOperators()
         {
             List<Operator> ops = new List<Operator>();
-            string sql = "select * from LiveChat_Operator";
-            SqlDataReader r = DBHelper.GetReader(sql);
-            while (r.Read())
-            {
-                Operator op = new Operator(r);
-                SqlDepartmentProvider dp = new SqlDepartmentProvider();
-                op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
-                ops.Add(op);
-
-            }
-            r.Close();
-            r.Dispose();
-            r = null;
+            string sql = "select * from LiveChat_Operator order by AccountId desc";
+            ops = GetOperatorListBySql(sql);
             return ops;
         }
         #endregion
 
+        #region 取所有在线客服信息
+        public List<Operator> GetAllOperatorsByStatus(string Status)
+        {
+            List<Operator> ops = new List<Operator>();
+            string sql = "select * from LiveChat_Operator where Status<>'"+Status+"' order by AccountId desc";
+            ops = GetOperatorListBySql(sql);
+            return ops;
+        }
+        #endregion
 
         #region 更新客服信息
         public int UpdateOperator(Operator op)
@@ -83,27 +81,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public Operator GetOperatorByLoginName(string loginName)
         {
             string sql = "select * from [LiveSupport].[dbo].[LiveChat_Operator] where LoginName='" + loginName+"'";
-            SqlDataReader data = null;
             Operator op = null;
-            try
-            {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
-                {
-                    op = new Operator(data);
-                    SqlDepartmentProvider dp = new SqlDepartmentProvider();
-                    SqlAccountProvider ap = new SqlAccountProvider();
-                    op.Department = dp.GetDepartmentById(data["DepartmentId"].ToString());
-                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
-                }
-                data.Close();
-                data.Dispose();
-                data = null;
-            }
-            catch
-            {
-                throw;
-            }
+            op = GetOperatorBySql(sql);
             return op;
         }
         #endregion
@@ -116,7 +95,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
-        #region
+        #region 添加一条客服信息
         /// <summary>
         /// 添加一条客服信息
         /// </summary>
@@ -154,16 +133,93 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 
         }
         #endregion
-        /// <summary>
-        /// 根据公司ID查询所以该公司所有的客服人员
-        /// </summary>
-        /// <param name="accountId">公司ID</param>
-        /// <returns>Operator对象</returns>
-        /// 
 
+        #region 根据公司编号查询所以该公司所有的客服人员
         public List<Operator> GetOperatorByAccountId(string accountId)
         {
             string sql = "select * from LiveChat_Operator where AccountId='" + accountId+"'";
+            List<Operator> operators = new List<Operator>();
+            operators = GetOperatorListBySql(sql);
+            return operators;
+        }
+        #endregion
+
+        #region 跟据客服ID查询该客服信息
+        public Operator GetOperatorByOperatorId(string operatorId)
+        {
+            string sql = "select * from  dbo.LiveChat_Operator where OperatorId='" + operatorId+"'";
+            Operator op = new Operator();
+            op=GetOperatorBySql(sql);
+            return op;
+        }
+        #endregion
+
+        #region 公司是否存在此客服
+        public Operator GetOperatorByAccountIdAndLoginName(string accountId, string loginName)
+        {
+            string sql = string.Format("select * from [LiveSupport].[dbo].[LiveChat_Operator] where AccountId='{0}' and LoginName='{1}'", accountId, loginName);
+            Operator op = new Operator();
+            op = GetOperatorBySql(sql);
+            return op;
+        }
+        #endregion
+
+        #region 找回客服密码
+        public Operator GetOperatorPassword(string accountNumber, string loginName, string eamil)
+        {
+            try
+            {
+                Account ac = SqlAccountProvider.Default.CheckCompanyByaccountNumber(accountNumber);
+                if (ac != null)
+                {
+                    string sql = string.Format("select * from LiveChat_Operator where AccountId='{0}' and LoginName='{1}' and Email='{2}'",ac.AccountId, loginName, eamil);
+                    Operator oper = new Operator();
+                    oper = GetOperatorBySql(sql);
+                    return oper;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        #endregion
+
+        #region Login
+        public Operator Login(string accountId, string loginName, string loginPwd)
+        {
+            string sql = string.Format("select * from LiveChat_Operator where AccountId='{0}' and LoginName='{1}' and Password='{2}'",accountId,loginName,loginPwd);
+            Operator op = new Operator();
+            op = GetOperatorBySql(sql);
+            return op;
+        }
+        #endregion
+
+        #region  通过公司ID获取客服信息
+        public List<Operator> GetOperatorByAccountNumber(string accountNumber)
+        {
+            Account ac = SqlAccountProvider.Default.CheckCompanyByaccountNumber(accountNumber);
+            if (ac != null)
+            {
+                string sql = "select * from LiveChat_Operator where accountNumber='" + ac.AccountId + "'";
+                List<Operator> operators = new List<Operator>();
+                operators = GetOperatorListBySql(sql);
+                return operators;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region  通过sql获取客服返回List
+        public List<Operator> GetOperatorListBySql(string sql)
+        {
             List<Operator> operators = new List<Operator>();
             SqlDataReader r = DBHelper.GetReader(sql);
             while (r.Read())
@@ -181,133 +237,28 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             r = null;
             return operators;
         }
-        /// <summary>
-        /// 跟据客服ID查询该客服信息
-        /// </summary>
-        /// <param name="operatorId">客服ID</param>
-        /// <returns>Operator 对象</returns>
-        public Operator GetOperatorByOperatorId(string operatorId)
-        {
-            string sql = "select * from  dbo.LiveChat_Operator where OperatorId='" + operatorId+"'";
-            SqlDataReader data = null;
-            Operator op = null;
-            try
-            {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
-                {
-                    op = new Operator(data);
-                    SqlAccountProvider ap = new SqlAccountProvider();
-                    SqlDepartmentProvider dp = new SqlDepartmentProvider();
-                    op.Department = dp.GetDepartmentById(data["DepartmentId"].ToString());
-                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
-                }
-                data.Close();
-                data.Dispose();
-                data = null;
-            }
-            catch
-            {
-                throw;
-            }
-            return op;
-        }
-
-        #region 公司是否存在此客服
-        public Operator GetOperatorByAccountIdAndLoginName(string accountId, string loginName)
-        {
-            string sql = string.Format("select * from [LiveSupport].[dbo].[LiveChat_Operator] where AccountId='{0}' and LoginName='{1}'", accountId, loginName);
-            SqlDataReader data = null;
-            Operator op = null;
-            try
-            {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
-                {
-                    op = new Operator(data);
-                    op.Department = new SqlDepartmentProvider().GetDepartmentById(data["DepartmentId"].ToString());
-                    SqlAccountProvider ap = new SqlAccountProvider();
-                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
-                }
-                data.Close();
-                data.Dispose();
-                data = null;
-            }
-            catch
-            {
-                throw;
-            }
-            return op;
-        }
         #endregion
 
-        #region 找回客服密码
-        public Operator GetOperatorPassword(string accountNumber, string loginName, string eamil)
+        #region  通过sql获取客服信息
+        public Operator GetOperatorBySql(string sql)
         {
-            try
+            Operator operators = new Operator();
+            SqlDataReader r = DBHelper.GetReader(sql);
+            if (r.Read())
             {
-                Account ac = SqlAccountProvider.Default.CheckCompanyByaccountNumber(accountNumber);
-                if (ac != null)
-                {
-                    string sql = string.Format("select * from LiveChat_Operator where AccountId='{0}' and LoginName='{1}' and Email='{2}'",ac.AccountId, loginName, eamil);
-                    SqlDataReader sdr = DBHelper.GetReader(sql);
-                    if (sdr.Read())
-                    {
-                        Operator oper = new Operator(sdr);
-                        oper.Department = new SqlDepartmentProvider().GetDepartmentById(sdr["DepartmentId"].ToString());
-                        SqlAccountProvider ap = new SqlAccountProvider();
-                        oper.Account = ap.GetAccountByAccountId(sdr["accountId"].ToString());
-                        sdr.Close();
-                        return oper;
-                    }
-                    else
-                    {
-                        sdr.Close();
-                        return null;
-                    }
-                }
-                else
-                {
-                    return null;
-                }
+                Operator op = new Operator(r);
+                SqlAccountProvider ap = new SqlAccountProvider();
+                SqlDepartmentProvider dp = new SqlDepartmentProvider();
+                op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
+                op.Account = ap.GetAccountByAccountId(r["accountId"].ToString());
+                return op;
+
             }
-            catch (Exception ex)
+            else
             {
-                throw;
+                return null;
             }
         }
-        #endregion
-
-
-        #region Login
-
-        public Operator Login(string accountId, string loginName, string loginPwd)
-        {
-            string sql = string.Format("select * from LiveChat_Operator where AccountId='{0}' and LoginName='{1}' and Password='{2}'",accountId,loginName,loginPwd);
-            SqlDataReader data = null;
-            Operator op = null;
-            try
-            {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
-                {
-                    op = new Operator(data);
-                    SqlDepartmentProvider dp = new SqlDepartmentProvider();
-                    op.Department = dp.GetDepartmentById(data["DepartmentId"].ToString());
-                    SqlAccountProvider ap = new SqlAccountProvider();
-                    op.Account = ap.GetAccountByAccountId(data["accountId"].ToString());
-                }
-                data.Close();
-                data.Dispose();
-                data = null;
-            }
-            catch
-            {
-                throw;
-            }
-            return op;
-        }
-
         #endregion
     }
 }
