@@ -56,7 +56,7 @@ public class MessageService
         List<Message> ms = new List<Message>();
         foreach (Message item in GetMessages(chatId, lastCheck))
         {
-            if (Message.IsChatMessage(item) || item.Type == MessageType.SystemMessage_ToVisitor || item.Type == MessageType.SystemMessage_ToBoth)
+            if (Message.IsChatMessage(item) || item.Type == MessageType.SystemMessage_ToVisitor || item.Type == MessageType.SystemMessage_ToBoth||item.Type==MessageType.CommandMessage_VidoeChat_OperatorToVisitor)//改
             {
                 ms.Add(item);
             }
@@ -76,7 +76,7 @@ public class MessageService
         foreach (Message item in GetMessages(chatId, lastCheck))
         {
             if (item.Type == MessageType.ChatMessage_VistorToOperator ||
-            item.Type == MessageType.SystemMessage_ToOperator || item.Type == MessageType.SystemMessage_ToBoth)
+            item.Type == MessageType.SystemMessage_ToOperator || item.Type == MessageType.SystemMessage_ToBoth||item.Type==MessageType.CommandMessage_VideoChat_VistorToOperator)//改 
             {
                 ms.Add(item);
             }
