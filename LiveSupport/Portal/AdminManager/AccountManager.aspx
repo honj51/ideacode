@@ -77,18 +77,29 @@
       <tr onmouseover="style.backgroundColor='#cccccc'" onmouseout="style.backgroundColor='white'" ><td  ><%# Eval("AccountNumber") %></td><td><a style="color:#999999;" href="ViewAccount.aspx?aid=<%# Eval("AccountId")%>" target="fraMain"><u><%# Eval("CompanyName")%></u></a></td><td><%# Eval("Industry")%></td><td><%# Eval("ContactName")%></td><td><%# Eval("Province")%></td><td><%# Eval("City")%></td><td><%# Eval("RegisterDate")%></td><td><a href="ViewAccount.aspx?aid=<%# Eval("AccountId")%>" target="fraMain"><img src="../AccountAdmin/Images/view.gif" alt="查看" /></a></td></tr>
       </ItemTemplate>
     </asp:Repeater>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMessage" runat="server" Text="对不起,暂时没有数据..." 
-        ForeColor="#FF5050" ></asp:Label>
+        <caption>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMessage" runat="server" ForeColor="#FF5050" 
+                Text="对不起,暂时没有数据..."></asp:Label>
+        </caption>
 </table>
  </asp:Panel>
+ 
+ <asp:Panel Width="100%" runat="server" ID="PanelAccountDown" BorderStyle="None">
 <table width="100%">
-<td align="right">
-    <asp:ImageButton ID="ibtnShang" runat="server" ImageUrl="~/images/shang.gif" 
-        onclick="ibtnShang_Click" />
-    <asp:ImageButton ID="ibtnXia" runat="server" ImageUrl="~/images/xia.gif" 
-        onclick="ibtnXia_Click" />
-    </td>
+    <tr>
+        <td align="right">
+            当前页:<asp:Label ID="lblpageIndex" runat="server" Font-Size="14px" 
+                ForeColor="Red"></asp:Label>
+            /<asp:Label ID="lblpageIndexCount" runat="server" Font-Size="14px" 
+                ForeColor="Red"></asp:Label>
+            <asp:ImageButton ID="ibtnShang" runat="server" ImageUrl="~/images/shang.gif" 
+                onclick="ibtnShang_Click" />
+            <asp:ImageButton ID="ibtnXia" runat="server" ImageUrl="~/images/xia.gif" 
+                onclick="ibtnXia_Click" />
+        </td>
+    </tr>
 </table>
+</asp:Panel>
 </div></div>
 </form>
 </body>
