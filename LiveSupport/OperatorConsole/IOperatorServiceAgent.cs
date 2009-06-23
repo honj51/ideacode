@@ -8,7 +8,7 @@ namespace LiveSupport.OperatorConsole
     public interface IOperatorServiceAgent
     {
         #region OperatorService 方法
-        Operator Login(int accountName, string operatorName, string password);
+        Operator Login(string accountName, string operatorName, string password);
         void Logout();
         void UploadFile(byte[] bs, string fileName, string chatId);
         bool SendMessage(Message msg);
