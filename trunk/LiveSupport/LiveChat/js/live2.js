@@ -35,7 +35,7 @@
     /*** 打开对话窗口 ***/
     function openChat() {
         invite_panelClose();//隐藏主动邀请层方法
-        var win = window.open(LCS_homeUrl + '/Chat.aspx?chatId=' + LCS_chatId + '&aid=' + LCS_accountId + '&vid=' + LCS_visitorId, 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
+        var win = window.open(LCS_homeUrl + '/ChatPage.aspx?chatId=' + LCS_chatId + '&aid=' + LCS_accountId + '&vid=' + LCS_visitorId, 'chat', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=603,height=510');
         LCS_chatId = "";
         win.focus();
         win.opener = window;
