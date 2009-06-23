@@ -8,7 +8,7 @@ namespace LiveSupport.LiveSupportModel
     public enum MessageType
     {
         ChatMessage_OperatorToVisitor, ChatMessage_VistorToOperator, SystemMessage_ToOperator, SystemMessage_ToVisitor,
-        SystemMessage_ToBoth, CommandMessage_VidoeChat_OperatorToVisitor, CommandMessage_VistorToOperator
+        SystemMessage_ToBoth, CommandMessage_VidoeChat_OperatorToVisitor, CommandMessage_VideoChat_VistorToOperator
     }
 
     //public enum MessageDirection
