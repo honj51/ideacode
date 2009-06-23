@@ -9,6 +9,8 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
     public class SqlChatProvider : IChatProvider
     {
+        public static SqlChatProvider _default = new SqlChatProvider();
+
         #region 添加访客记录
         public void AddChat(Chat chatRequest)
         {
@@ -19,7 +21,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             DBHelper.ExecuteCommand(sql);
         }
         #endregion
-
 
         #region 关闭对话
         public int CloseChat(Chat chat)
@@ -52,17 +53,42 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public List<Chat> GetChatByOperatorId(string operatorId,string beginDate, string endDate)
         {
             string sql = string.Format("select * from LiveChat_Chat where OperatorId='{0}' and CreateTime>='{1}' and CloseTime<='{2}'", operatorId, beginDate, endDate);
-            SqlDataReader sdr=DBHelper.GetReader(sql);
-            List<Chat> list = new List<Chat>();
-            while (sdr.Read())
-            {
-                Chat chat = new Chat(sdr);
-                SqlVisitSessionProvider vs = new SqlVisitSessionProvider();
-                chat.Vs = vs.GetSessionById(chat.ChatId);
-                list.Add(chat);
-            }
-            sdr.Close();
+            List<Chat> list = GetChatBySql(sql);
             return list;
+        }
+        #endregion
+
+        #region 通过公司编号获取当前对话
+        public List<Chat> GetChatByAccountId(string accountId,string status)
+        {
+            string sql =string.Format("select * from LiveChat_Chat where AccountId='{0}' and Status<>'{1}'",accountId,status);
+            List<Chat> list = GetChatBySql(sql);
+            return list;
+        }
+        #endregion
+
+        #region 获取所有当前对话
+        public List<Chat> GetCurrentlyChat(string status)
+        {
+            string sql = string.Format("select * from LiveChat_Chat where  Status<>'{0}'", status);
+            List<Chat> list = GetChatBySql(sql);
+            return list;
+        }
+        #endregion
+
+        #region 通过公司Id获取当前会话
+        public List<Chat> GetChatByAccountNumber(string accountNumber, string status)
+        {
+            Account ac=SqlAccountProvider.Default.CheckCompanyByaccountNumber(accountNumber);
+            if (ac != null)
+            {
+                string sql = string.Format("select * from LiveChat_Chat where AccountId='{0}' and Status<>'{1}'", ac.AccountId, status);
+                return GetChatBySql(sql);
+            }
+            else
+            {
+                return null;
+            }
         }
         #endregion
 
@@ -83,16 +109,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
-        #region IChatProvider 成员
-
-        /// <summary>
-        /// 跟据visitorid 查询所有的对话
-        /// </summary>
-        /// <param name="visitorId"></param>
-        /// <returns></returns>
+        #region 跟据visitorid 查询所有的对话
         public List<Chat> GetChatByVisitorId(string visitorId)
         {
             string sql = string.Format("SELECT * FROM [LiveSupport].[dbo].[LiveChat_Chat] where visitorid ='{0}'", visitorId);
+            List<Chat> list = GetChatBySql(sql);
+            return list;
+        }
+
+        #endregion
+
+        #region 通过Sql获取聊天记录
+        public List<Chat> GetChatBySql(string sql)
+        {
             SqlDataReader sdr = DBHelper.GetReader(sql);
             List<Chat> list = new List<Chat>();
             while (sdr.Read())
@@ -105,7 +134,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             sdr.Close();
             return list;
         }
-
         #endregion
     }
 }
