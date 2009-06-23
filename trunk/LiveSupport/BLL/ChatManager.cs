@@ -30,5 +30,25 @@ namespace LiveSupport.BLL
         }
         #endregion
 
+        #region 查找当前对话
+        public static List<Chat> LookupChat(string lookupType, string accountId, string accountNumber)
+        {
+            List<Chat> list = null;
+            if (lookupType == "accountList")
+            {
+                list = SqlChatProvider._default.GetChatByAccountId(accountId, ChatStatus.Closed.ToString());
+            }
+            else if (lookupType == "accountNumber")
+            {
+                list = SqlChatProvider._default.GetChatByAccountNumber(accountNumber, ChatStatus.Closed.ToString());
+            }
+            else
+            {
+                list = SqlChatProvider._default.GetCurrentlyChat(ChatStatus.Closed.ToString());
+            }
+            return list;
+        }
+        #endregion
+
     }
 }

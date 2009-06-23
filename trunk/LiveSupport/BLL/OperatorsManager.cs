@@ -95,5 +95,26 @@ namespace LiveSupport.BLL
             }
         }
         #endregion
+
+        #region 查找当前在线客服
+        public static List<Operator> GetLiveSupportOnlineOperator(string lookupType,string accountId,string accountNumber)
+        {
+            List<Operator> list = null;
+            if (lookupType == "accountList")
+            {
+                list = Provider.GetOperatorByAccountId(accountId);
+            }
+            else if (lookupType == "accountNumber")
+            {
+                list = Provider.GetOperatorByAccountNumber(accountNumber);
+            }
+            else
+            {
+                list = Provider.GetAllOperatorsByStatus(OperatorStatus.Offline.ToString());
+            }
+            return list;
+
+        }
+        #endregion
     }
 }
