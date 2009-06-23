@@ -166,7 +166,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/Login", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Operator Login(int accountNumber, string operatorName, string password) {
+        public Operator Login(string accountNumber, string operatorName, string password) {
             object[] results = this.Invoke("Login", new object[] {
                         accountNumber,
                         operatorName,
@@ -175,12 +175,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public void LoginAsync(int accountNumber, string operatorName, string password) {
+        public void LoginAsync(string accountNumber, string operatorName, string password) {
             this.LoginAsync(accountNumber, operatorName, password, null);
         }
         
         /// <remarks/>
-        public void LoginAsync(int accountNumber, string operatorName, string password, object userState) {
+        public void LoginAsync(string accountNumber, string operatorName, string password, object userState) {
             if ((this.LoginOperationCompleted == null)) {
                 this.LoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginOperationCompleted);
             }
@@ -1813,7 +1813,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private string accountIdField;
         
-        private int accountNumberField;
+        private string accountNumberField;
         
         private string companyNameField;
         
@@ -1852,7 +1852,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
-        public int AccountNumber {
+        public string AccountNumber {
             get {
                 return this.accountNumberField;
             }
