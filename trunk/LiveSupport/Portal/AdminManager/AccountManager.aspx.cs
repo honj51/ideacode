@@ -15,7 +15,13 @@ using System.Collections.Generic;
 public partial class AdminManager_AccountManager : System.Web.UI.Page
 {
     AdminUser user;
-    int pageIndex = 0;
+    static int pageIndex = 0;
+
+    public static int PageIndex
+    {
+        get { return AdminManager_AccountManager.pageIndex; }
+        set { AdminManager_AccountManager.pageIndex = value; }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["adminUser"] != null)
@@ -36,27 +42,33 @@ public partial class AdminManager_AccountManager : System.Web.UI.Page
     #region 绑定公司信息
     public void repAccounts(List<Account> list)
     {
-        this.repAccount.DataSource = null;
         PagedDataSource pds = new PagedDataSource();
-        if (list != null)
-        {
-            this.ibtnShang.Visible = true;
-            this.ibtnXia.Visible = true;
+        if (list != null && list.Count>0)
+        {          
+            this.PanelAccountDown.Visible = true;
             this.lblMessage.Visible = false;
             pds.DataSource = list;
             pds.AllowPaging = true;
             pds.PageSize = 10;
-            pds.CurrentPageIndex = pageIndex;
-            if (pds.CurrentPageIndex < 1)
+            pds.CurrentPageIndex = PageIndex;
+            if (pds.CurrentPageIndex == 0)
             {
                 this.ibtnShang.Enabled = false;
-                this.ibtnXia.Enabled = true;
             }
-            else if (pds.CurrentPageIndex > pds.PageCount)
+            else
             {
-                this.ibtnXia.Enabled = false;
                 this.ibtnShang.Enabled = true;
             }
+            if (pds.CurrentPageIndex == pds.PageCount - 1)
+            {
+                this.ibtnXia.Enabled = false;
+            }
+            else
+            {
+                this.ibtnXia.Enabled = true;
+            }
+            this.lblpageIndex.Text = PageIndex + 1 + "";
+            this.lblpageIndexCount.Text = pds.PageCount + "";
             this.repAccount.DataSource = pds;
             this.repAccount.DataBind();
         }
@@ -64,9 +76,8 @@ public partial class AdminManager_AccountManager : System.Web.UI.Page
         {
             this.repAccount.DataSource = null;
             this.repAccount.DataBind();
-            this.ibtnShang.Visible = false;
-            this.ibtnXia.Visible = false;
             this.lblMessage.Visible = true;
+            this.PanelAccountDown.Visible = false;
         }
     }
     #endregion
@@ -74,16 +85,16 @@ public partial class AdminManager_AccountManager : System.Web.UI.Page
     //上一步
     protected void ibtnShang_Click(object sender, ImageClickEventArgs e)
     {
-        pageIndex--;
-        //List<Account> list = AccountsManager.GetAllAccounts();
-        //repAccounts(list);
+        PageIndex--;
+        List<Account> list = AccountsManager.GetAllAccounts();
+        repAccounts(list);
     }
     //下一步
     protected void ibtnXia_Click(object sender, ImageClickEventArgs e)
     {
         pageIndex++;
-        //List<Account> list = AccountsManager.GetAllAccounts();
-        //repAccounts(list);
+        List<Account> list = AccountsManager.GetAllAccounts();
+        repAccounts(list);
     }
     //搜索
     protected void ibtnSearch_Click(object sender, ImageClickEventArgs e)
@@ -94,6 +105,7 @@ public partial class AdminManager_AccountManager : System.Web.UI.Page
             return;
         }
         List<Account> list=AccountsManager.GetAccountBycondition(this.ddlKind.SelectedValue, this.txtValue.Text);
+        PageIndex = 0;
         repAccounts(list);
     }
 }
