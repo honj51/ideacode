@@ -11,6 +11,7 @@ using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Media;
 using System.Drawing.Imaging;
 using System.Collections;
+using LiveSupport.OperatorConsole.Controls;
 
 
 namespace LiveSupport.OperatorConsole
@@ -56,6 +57,7 @@ namespace LiveSupport.OperatorConsole
 
 
         #endregion
+        private Controls.FileUploadControl fileUploadControl;
         private System.Windows.Forms.TabPage tabPage3;
         private IOperatorServiceAgent operatorServiceAgent;
         private bool receiveMessage = true;
@@ -181,9 +183,10 @@ namespace LiveSupport.OperatorConsole
                     wb.Document.Write("<span style='color: #FF9933; FONT-SIZE: 13px'>你上传的文件过大！仅限 2M</span><br />");
                     return;
                 }
-                byte[] fsbyte = new byte[fs.Length];
-                fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
-                addTabPage(fsbyte, filename.Substring(filename.LastIndexOf("\\")+1));
+                fs.Close();
+               // byte[] fsbyte = new byte[fs.Length];
+                //fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
+                addTabPage(filename);
                // operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
             }
         }
@@ -368,32 +371,68 @@ namespace LiveSupport.OperatorConsole
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);    
         }
 
-        private void addTabPage(Byte[] file,string fileName) 
+        private void addTabPage(string fileName) 
         {
-            UserControl fileUpload=null;
+            FileUploadControl fileUpload = null;
             if (!this.tabControl1.Controls.Contains(this.tabPage3))
             {
                 createTabPage();
-             
-             
             }
-            if (this.tabPage3.Controls.Count == 0&&this.tabPage3!=null )
+            
+            fileUpload = new FileUploadControl(fileName);
+            fileUpload.FileUploadCompleted += new EventHandler<FileUploadEventArgs>(fileUpload_FileUploadCompleted);
+           
+            if (this.tabPage3.Controls.Count == 0 && this.tabPage3 != null)
             {
-                fileUpload = new Controls.FileUploadControl(file, fileName, null, tabPage3);
                 this.tabPage3.Controls.Add(fileUpload);
             }
             else
             {
-                fileUpload = new Controls.FileUploadControl(file, fileName, null, tabPage3);
                 this.tabPage3.Controls.Add(fileUpload);
                 fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 10);
             }
-           
         
         }
+
+        delegate void UpdateUI();
+
+        void fileUpload_FileUploadCompleted(object sender, FileUploadEventArgs e)
+        {
+            this.Invoke(new UpdateUI(delegate()
+            {
+                if (e.Status == UploadStatus.Cancel)
+                {
+                    //wb.Document.Write(string.Format("<span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
+                }
+                else if (e.Status == UploadStatus.Succeed)
+                {      
+                }
+                else if (e.Status == UploadStatus.Error)
+                {
+
+                }
+                this.tabPage3.Controls.Remove(e.FileUploadControl);
+                if (this.tabPage3.Controls.Count == 0)
+                {
+                    this.tabPage3.Parent.Controls.Remove(this.tabPage3);
+                }
+                else
+                {
+                    foreach (Control item in this.tabPage3.Controls)
+                    {
+                        if (item.Location == new System.Drawing.Point(4, e.FileUploadControl.Height + 10))
+                        {
+                            item.Location = new System.Drawing.Point(4, 21);
+
+                        }
+
+                    }
+                }
+            }));
+        }
+
         private void createTabPage() 
         {
-
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage3.AutoScroll = true;
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -404,7 +443,6 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "文件传输";
             this.tabPage3.UseVisualStyleBackColor = true;
-        
         }
     }
 }

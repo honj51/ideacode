@@ -83,18 +83,6 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("wspass")]
-        public string WSUser {
-            get {
-                return ((string)(this["WSUser"]));
-            }
-            set {
-                this["WSUser"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool StartWithWindows {
             get {
@@ -215,7 +203,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
         public string FtpUser {
             get {
                 return ((string)(this["FtpUser"]));
@@ -227,7 +215,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
         public string FtpPasssword {
             get {
                 return ((string)(this["FtpPasssword"]));
@@ -239,13 +227,25 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.zxkefu.cn")]
+        [global::System.Configuration.DefaultSettingValueAttribute("125.67.234.12")]
         public string FtpURL {
             get {
                 return ((string)(this["FtpURL"]));
             }
             set {
                 this["FtpURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WSUser {
+            get {
+                return ((string)(this["WSUser"]));
+            }
+            set {
+                this["WSUser"] = value;
             }
         }
     }

@@ -16,6 +16,7 @@ using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Diagnostics;
 using VisualAsterisk.ExceptionManagement;
 using System.Reflection;
+using LiveSupport.OperatorConsole.Controls;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -50,7 +51,16 @@ namespace LiveSupport.OperatorConsole
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
             Application.Run(f);
           // Test();
+           // TestFileUploadControl();
 		}
+
+        static void TestFileUploadControl()
+        {
+            Form f = new Form();
+            FileUploadControl c = new FileUploadControl("c:\\a.swf");
+            f.Controls.Add(c);
+            Application.Run(f);
+        }
 
         static void Test()
         {

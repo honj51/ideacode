@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lblMessage = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblFileName = new System.Windows.Forms.Label();
@@ -36,7 +35,6 @@
             this.lblProgress = new System.Windows.Forms.Label();
             this.lblCancel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,9 +68,8 @@
             this.lblSpeed.AutoSize = true;
             this.lblSpeed.Location = new System.Drawing.Point(12, 67);
             this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Size = new System.Drawing.Size(35, 12);
+            this.lblSpeed.Size = new System.Drawing.Size(0, 12);
             this.lblSpeed.TabIndex = 4;
-            this.lblSpeed.Text = "速度:";
             // 
             // lblProgress
             // 
@@ -102,16 +99,12 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // timer
-            // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
             // FileUploadControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.lblSpeed);
@@ -120,7 +113,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblMessage);
             this.Name = "FileUploadControl";
-            this.Size = new System.Drawing.Size(215, 108);
+            this.Size = new System.Drawing.Size(213, 106);
             this.Load += new System.EventHandler(this.FileUploadControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -137,6 +130,5 @@
         private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.Label lblCancel;
-        private System.Windows.Forms.Timer timer;
     }
 }
