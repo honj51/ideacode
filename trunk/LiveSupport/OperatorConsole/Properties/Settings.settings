@@ -17,9 +17,6 @@
     <Setting Name="GetWebRequestOffline" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="WSUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">wspass</Value>
-    </Setting>
     <Setting Name="StartWithWindows" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -52,13 +49,16 @@
       <Value Profile="(Default)">http://www.zxkefu.cn/Licence.aspx </Value>
     </Setting>
     <Setting Name="FtpUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">admin</Value>
+      <Value Profile="(Default)">test</Value>
     </Setting>
     <Setting Name="FtpPasssword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">admin</Value>
+      <Value Profile="(Default)">test</Value>
     </Setting>
     <Setting Name="FtpURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://www.zxkefu.cn</Value>
+      <Value Profile="(Default)">125.67.234.12</Value>
+    </Setting>
+    <Setting Name="WSUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
