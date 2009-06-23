@@ -166,7 +166,10 @@ public partial class Chat : System.Web.UI.Page
                 {
                     for (int i = 0; i < messages.Count; i++)
                     {
-
+                        if (messages[i].Type == MessageType.CommandMessage_VidoeChat_OperatorToVisitor)
+                        {
+                            CommandMessage(messages[i]);
+                        }
                         if (LiveSupport.LiveSupportModel.Message.FromSystem(messages[i]))
                         {
                             litChat.Text += string.Format("<div id='chatSts'><img  src='Images/BlueBar001.png'/>&nbsp;&nbsp;{0}</div>", messages[i].Text);
@@ -190,7 +193,26 @@ public partial class Chat : System.Web.UI.Page
             }
         }
     }
+    /// <summary>
+    /// 消息处理
+    /// </summary>
+    /// <param name="message"></param>
+    private void CommandMessage(LiveSupport.LiveSupportModel.Message msg)
+    {
+        string[] ss = msg.Text.Split(':');
+        if (ss[0] == "Call")
+        {
 
+        }
+        if (ss[0] == "Accept")
+        {
+
+        }
+        if (ss[0] == "Refuse")
+        {
+
+        }
+    }
     // TODO: Bug: str为一个字符时返回空
     public string CutStr(string str, int len)
     {
@@ -225,8 +247,6 @@ public partial class Chat : System.Web.UI.Page
         }
         return s;
     }
-
-
     [System.Web.Services.WebMethod]
     [ScriptMethod(UseHttpGet = true)]
     public static string CheckTypingNotification(string chatId)
