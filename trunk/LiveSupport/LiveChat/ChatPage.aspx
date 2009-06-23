@@ -6,6 +6,7 @@
 <link href="App_Themes/Default/skin.css"rel="stylesheet" type="text/css" />
 <script  src="js/SendMsg.js"type="text/javascript" language="javascript"></script>
 <script src="js/ChatPageScript.js" type="text/javascript" language=javascript></script>
+<link rel="stylesheet" type="text/css" href="App_Themes/Default/history.css" />
 <style type="text/css">
     BODY 
     {
@@ -92,8 +93,18 @@
         height: 117px;
     }
 </style>
+<script src="js/AC_OETags.js" language="javascript"></script>
+<script src="js/history.js" language="javascript"></script>
+<style>
+body { margin: 0px; overflow:hidden }
+</style>
+<script language="JavaScript" type="text/javascript">
+var requiredMajorVersion = 10;
+var requiredMinorVersion = 0;
+var requiredRevision = 0;
+</script>
 </head>
-<body  topmargin="0" leftmargin="0" >
+<body  topmargin="0" leftmargin="0" scroll="no">
     <form id="formMain" runat="server">
     <div style="background-color:#85c3ff ;">   
          <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="True" >
@@ -296,8 +307,72 @@
   </td>
   
   <td valign="top" id="bwrap" style=" width:40px; height:80%;">
-				<div id="banner" style="height:305px; width: 135px" ><img  alt=""  src="Images/operator.jpg" width="135px" height="300px"
-                        /></div>
+ <!----------------------------------------------------------------------------------------------------------->
+  <div id="banner" style="height:305px; width: 336px" >
+        <script language="JavaScript" type="text/javascript">
+                var hasProductInstall = DetectFlashVer(6, 0, 65);
+                var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+                if ( hasProductInstall && !hasRequestedVersion ) {
+                var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
+                var MMredirectURL = window.location;
+                document.title = document.title.slice(0, 47) + " - Flash Player Installation";
+                var MMdoctitle = document.title;
+                AC_FL_RunContent(
+                "src", "playerProductInstall",
+                "FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
+                "width", "292",
+                "height", "344",
+                "align", "middle",
+                "id", "P2PVideoChat",
+                "quality", "high",
+                "bgcolor", "#869ca7",
+                "name", "P2PVideoChat",
+                "allowScriptAccess","sameDomain",
+                "type", "application/x-shockwave-flash",
+                "pluginspage", "http://www.adobe.com/go/getflashplayer"
+                );
+                } else if (hasRequestedVersion) {
+                AC_FL_RunContent(
+                "src", "P2PVideoChat",
+                "width", "292",
+                "height", "344",
+                "align", "middle",
+                "id", "P2PVideoChat",
+                "quality", "high",
+                "bgcolor", "#869ca7",
+                "name", "P2PVideoChat",
+                "allowScriptAccess","sameDomain",
+                "type", "application/x-shockwave-flash",
+                "pluginspage", "http://www.adobe.com/go/getflashplayer"
+                );
+                } else {  
+                var alternateContent = 'Alternate HTML content should be placed here. '
+                + 'This content requires the Adobe Flash Player. '
+                + '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
+                document.write(alternateContent);  
+                }
+        </script>
+        <noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                    id="P2PVideoChat" width="292" height="344"
+                    codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+                    <param name="movie" value="P2PVideoChat.swf" />
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#869ca7" />
+                    <param name="allowScriptAccess" value="sameDomain" />
+                    <embed src="P2PVideoChat.swf" quality="high" bgcolor="#869ca7"
+                    width="292" height="344" name="P2PVideoChat" align="middle"
+                    play="true"
+                    loop="false"
+                    quality="high"
+                    allowScriptAccess="sameDomain"
+                    type="application/x-shockwave-flash"
+                    pluginspage="http://www.adobe.com/go/getflashplayer">
+                    </embed>
+            </object>
+        </noscript>
+ </div>
+ <!----------------------------------------------------------------------------------------------------------->
   
   </td>
   </tr>

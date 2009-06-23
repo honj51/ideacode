@@ -19,7 +19,7 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Net;
 
-public partial class ChatPage : System.Web.UI.Page
+public partial class Chat : System.Web.UI.Page
 {
     public string VisitorName
     {
