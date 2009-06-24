@@ -48,7 +48,7 @@
             this.uploadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.wb = new System.Windows.Forms.WebBrowser();
+            this.panelMessage = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -63,11 +63,10 @@
             this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toollblIsTyping = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControlVideo = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
@@ -77,6 +76,9 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.wb = new System.Windows.Forms.WebBrowser();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,12 +89,13 @@
             this.toolStrip2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControlVideo.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.glassPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // cutSaveFileDialog
@@ -117,7 +120,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
+            this.splitContainer1.Panel2.Controls.Add(this.tabControlVideo);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(658, 470);
             this.splitContainer1.SplitterDistance = 426;
@@ -132,7 +135,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.wb);
+            this.splitContainer2.Panel1.Controls.Add(this.panelMessage);
             this.splitContainer2.Panel1.Controls.Add(this.toolStrip2);
             // 
             // splitContainer2.Panel2
@@ -144,19 +147,12 @@
             this.splitContainer2.SplitterDistance = 319;
             this.splitContainer2.TabIndex = 11;
             // 
-            // wb
+            // panelMessage
             // 
-            this.wb.AllowNavigation = false;
-            this.wb.AllowWebBrowserDrop = false;
-            this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wb.IsWebBrowserContextMenuEnabled = false;
-            this.wb.Location = new System.Drawing.Point(0, 39);
-            this.wb.MinimumSize = new System.Drawing.Size(20, 18);
-            this.wb.Name = "wb";
-            this.wb.ScriptErrorsSuppressed = true;
-            this.wb.Size = new System.Drawing.Size(426, 280);
-            this.wb.TabIndex = 7;
-            this.wb.WebBrowserShortcutsEnabled = false;
+            this.panelMessage.Location = new System.Drawing.Point(0, 41);
+            this.panelMessage.Name = "panelMessage";
+            this.panelMessage.Size = new System.Drawing.Size(424, 279);
+            this.panelMessage.TabIndex = 9;
             // 
             // toolStrip2
             // 
@@ -212,6 +208,7 @@
             this.toolStripSplitButton2.Name = "toolStripSplitButton2";
             this.toolStripSplitButton2.Size = new System.Drawing.Size(48, 36);
             this.toolStripSplitButton2.Text = "新消息提示";
+            this.toolStripSplitButton2.ButtonClick += new System.EventHandler(this.toolStripSplitButton2_ButtonClick);
             // 
             // flashToolStripMenuItem
             // 
@@ -309,17 +306,18 @@
             this.toollblIsTyping.Size = new System.Drawing.Size(53, 17);
             this.toollblIsTyping.Text = "对话客户";
             // 
-            // tabControl1
+            // tabControlVideo
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 147);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.ShowToolTips = true;
-            this.tabControl1.Size = new System.Drawing.Size(228, 323);
-            this.tabControl1.TabIndex = 0;
+            this.tabControlVideo.Controls.Add(this.tabPage1);
+            this.tabControlVideo.Controls.Add(this.tabPage2);
+            this.tabControlVideo.Controls.Add(this.tabPage4);
+            this.tabControlVideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlVideo.Location = new System.Drawing.Point(0, 147);
+            this.tabControlVideo.Name = "tabControlVideo";
+            this.tabControlVideo.SelectedIndex = 0;
+            this.tabControlVideo.ShowToolTips = true;
+            this.tabControlVideo.Size = new System.Drawing.Size(228, 323);
+            this.tabControlVideo.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -366,14 +364,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 0);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(220, 298);
-            this.operatorPannel1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -477,6 +467,39 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.wb);
+            this.tabPage4.Location = new System.Drawing.Point(4, 21);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(220, 298);
+            this.tabPage4.TabIndex = 2;
+            this.tabPage4.Text = "视频";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // wb
+            // 
+            this.wb.AllowNavigation = false;
+            this.wb.AllowWebBrowserDrop = false;
+            this.wb.IsWebBrowserContextMenuEnabled = false;
+            this.wb.Location = new System.Drawing.Point(-2, 0);
+            this.wb.MinimumSize = new System.Drawing.Size(20, 18);
+            this.wb.Name = "wb";
+            this.wb.ScriptErrorsSuppressed = true;
+            this.wb.ScrollBarsEnabled = false;
+            this.wb.Size = new System.Drawing.Size(222, 298);
+            this.wb.TabIndex = 18;
+            this.wb.WebBrowserShortcutsEnabled = false;
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 0);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(220, 298);
+            this.operatorPannel1.TabIndex = 0;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -505,13 +528,14 @@
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControlVideo.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.glassPanel1.ResumeLayout(false);
             this.glassPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -520,7 +544,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.WebBrowser wb;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton uploadToolStripButton;
         private System.Windows.Forms.ToolStripButton ExitToolStripButton;
@@ -528,7 +551,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toollblIsTyping;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControlVideo;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ToolStripButton cutToolStripButton;
         private System.Windows.Forms.Panel panel1;
@@ -552,6 +575,9 @@
         private System.Windows.Forms.TreeView setTalkTreeView;
         private System.Windows.Forms.TabPage tabPage2;
         private OperatorPannel operatorPannel1;
+        private System.Windows.Forms.Panel panelMessage;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.WebBrowser wb;
        
     }
 }

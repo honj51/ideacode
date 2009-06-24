@@ -64,6 +64,7 @@ namespace LiveSupport.OperatorConsole
         private int acceptChatRequestResult = 0;
         private SoundPlayer player = new SoundPlayer();
         private Chat chat;
+        private UserControlMessage ucm=null;
 
         public IOperatorServiceAgent OperatorServiceAgent
         {
@@ -78,21 +79,25 @@ namespace LiveSupport.OperatorConsole
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
+           
             if (!this.IsDisposed && receiveMessage)
             {
                 if (API.FromSystem(message))
                 {
-                    wb.Document.Write(string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text));
+                    string msg=string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text);
+                    ucm.GetMessage(msg, " ");
                 }
                 if (message.Type == MessageType.ChatMessage_VistorToOperator)
                 {
-                    wb.Document.Write(string.Format("<span style='font-family: Arial;color:#008040;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
+                    string msg = string.Format("<span style='font-family: Arial;color:#008040;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text);
+                    ucm.GetMessage(msg, " ");
                 }
                 if(message.Type==MessageType.ChatMessage_OperatorToVisitor)
                 {
-                    wb.Document.Write(string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
+                    string msg = string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text);
+                    ucm.GetMessage(msg, " ");
                 }
-                wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
+                //wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
                 if (!this.ringToolStripMenuItem.Checked)
                 {
                     PlayMsgSound();
@@ -105,17 +110,20 @@ namespace LiveSupport.OperatorConsole
         }
         
 
-        public ChatForm(IOperatorServiceAgent agent,Chat chat)
-            : this(agent, chat, false)
+        public ChatForm(IOperatorServiceAgent agent,Chat chat): this(agent, chat, false)
         {           
         }
 
         public ChatForm(IOperatorServiceAgent agent, Chat chat, bool invite)
         {
+          
          //   Application.StartupPath.ToString() + "/" +
             Directory.CreateDirectory(chat.ChatId);
             this.operatorServiceAgent = agent;
             InitializeComponent();
+            ucm = new UserControlMessage();
+            ucm.Parent = this.panelMessage;
+            ucm.Visible = true;
             this.chat = chat;
 
             if (!invite)
@@ -123,18 +131,20 @@ namespace LiveSupport.OperatorConsole
                 acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
                 if (acceptChatRequestResult == -1) 
                 {
-                    wb.Navigate("about:该访客对话请求已被其他客服接受"); 
+                    string msg = "about:该访客对话请求已被其他客服接受";
+                    ucm.GetMessage(msg, "Navigate");
                     receiveMessage = false;
                     return;
                 }
                 if (acceptChatRequestResult == -3)
                 {
-                    wb.Navigate("about:服务器错误");
+                    string msg = "about:服务器错误";
+                    ucm.GetMessage(msg, "Navigate");
                     receiveMessage = false;
                 }
             }
-            
-            wb.Navigate("about:初始会话...");
+            string msgs = "about:初始会话...";
+            ucm.GetMessage(msgs, "Navigate");
 
             Visitor item = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             this.Text = "与 " + item.Name + " 对话中";
@@ -179,7 +189,8 @@ namespace LiveSupport.OperatorConsole
                 if (this.tabPage3 != null&&this.tabPage3.Controls.Count>=2)
                 {
 
-                    wb.Document.Write("<span style='color: #FF9933; FONT-SIZE: 15px'>你上传的文件的次数过多！</span><br />");
+                    string msg = "<span style='color: #FF9933; FONT-SIZE: 15px'>你上传的文件的次数过多！</span><br />";
+                    ucm.GetMessage(msg, " ");
                     return;
                 }
 
@@ -188,7 +199,8 @@ namespace LiveSupport.OperatorConsole
                 //FileStream fs = new FileStream(filename, FileMode.Open);
                 if (i.Length >= 2097152)
                 {
-                    wb.Document.Write("<span style='color: #FF9933; FONT-SIZE: 13px'>你上传的文件过大！仅限 2M</span><br />");
+                    string msg = "<span style='color: #FF9933; FONT-SIZE: 13px'>你上传的文件过大！仅限 2M</span><br />";
+                    ucm.GetMessage(msg, " ");
                     return;
                 }
                // fs.Close();
@@ -245,8 +257,9 @@ namespace LiveSupport.OperatorConsole
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
             operatorServiceAgent.SendMessage(msg);
-            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message));
-            wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
+            string msgs= string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message);
+            ucm.GetMessage(msgs, " ");
+            //wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
         }
 
         /// <summary>
@@ -376,15 +389,16 @@ namespace LiveSupport.OperatorConsole
             bitmap.Save(saveUrl, System.Drawing.Imaging.ImageFormat.Bmp);
             string imageUrl = Application.StartupPath.ToString() + "/"+ saveUrl;
             operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName+".bmp", chat.ChatId);
-            wb.Document.Write(string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl));
-            wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);    
+            string msg = string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl);
+            ucm.GetMessage(msg, " ");
+            //wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);    
         }
 
         private void addTabPage(string fileName) 
         {
             
             FileUploadControl fileUpload = null;
-            if (!this.tabControl1.Controls.Contains(this.tabPage3))
+            if (!this.tabControlVideo.Controls.Contains(this.tabPage3))
             {
                 createTabPage();
             }
@@ -447,7 +461,7 @@ namespace LiveSupport.OperatorConsole
         {
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage3.AutoScroll = true;
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControlVideo.Controls.Add(this.tabPage3);
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -455,6 +469,11 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "文件传输";
             this.tabPage3.UseVisualStyleBackColor = true;
+        }
+
+        private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)
+        {
+
         }
     }
 }
