@@ -93,7 +93,10 @@ namespace LiveSupport.OperatorConsole
         void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             getNextNewChanges();
-            checkNewChangesTimer.Start();
+            if (checkNewChangesTimer.Enabled)
+            {
+                checkNewChangesTimer.Start();
+            }
         }
 
         public void Logout()
@@ -223,10 +226,14 @@ namespace LiveSupport.OperatorConsole
                         VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
                     }
                 }
-
             } 
             processOpertors(result);
-            lastCheck.ChatSessionChecks = processMessages(result).ToArray();
+
+            if (result.Messages != null)
+            {
+                lastCheck.ChatSessionChecks = processMessages(result).ToArray();
+            }
+            
             processChats(result);
 
             NewChanges(this, new NewChangesCheckResultEventArgs(result));
@@ -286,6 +293,10 @@ namespace LiveSupport.OperatorConsole
 
         private List<MessageCheck> processMessages(NewChangesCheckResult result)
         {
+            if (result.Messages == null)
+            {
+                return null;
+            }
             List<MessageCheck> nextChecks = new List<MessageCheck>();
 
             foreach (var chat in chats)
@@ -342,7 +353,7 @@ namespace LiveSupport.OperatorConsole
             }
             catch (WebException ex)
             {
-                if (ex.InnerException != null && ex.InnerException is SocketException && (ex.InnerException as SocketException).ErrorCode == 10061)
+                if (ex.InnerException != null && ex.InnerException is SocketException)
                 {
                     resetConnection("连接中断");
                 }
@@ -361,6 +372,7 @@ namespace LiveSupport.OperatorConsole
         private void resetConnection(string message)
         {
             checkNewChangesTimer.Stop();
+            checkNewChangesTimer.Enabled = false;
             ConnectionLost(this, new ConnectionLostEventArgs(message));
         }
 
