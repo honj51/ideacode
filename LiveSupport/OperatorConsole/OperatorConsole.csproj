@@ -167,6 +167,10 @@
       <DependentUpon>Snipping.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControlMessage.resx">
+      <DependentUpon>UserControlMessage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -206,6 +210,12 @@
     </Compile>
     <Compile Include="ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlMessage.Designer.cs">
+      <DependentUpon>UserControlMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Web References\LiveChatWS\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -50,8 +50,6 @@ namespace LiveSupport.OperatorConsole
             LoginForm f = new LoginForm();
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
             Application.Run(f);
-          // Test();
-           // TestFileUploadControl();
 		}
 
         static void TestFileUploadControl()
@@ -70,7 +68,6 @@ namespace LiveSupport.OperatorConsole
 
             Snipping sp = new Snipping();
             sp.Show();
-            
             Application.Run();
         }
 
