@@ -18,7 +18,7 @@ namespace LiveSupport.OperatorConsole
         private OperatorWS ws = new OperatorWS();
         private Operator currentOperator;
         private System.Timers.Timer checkNewChangesTimer = new System.Timers.Timer(1000);
-
+        private bool pooling = true;
         #region 公开属性
        
         public static OperatorServiceAgent Default
@@ -91,10 +91,10 @@ namespace LiveSupport.OperatorConsole
         }
 
         void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            getNextNewChanges();
-            if (checkNewChangesTimer.Enabled)
+        {   
+            if (pooling)
             {
+                getNextNewChanges();
                 checkNewChangesTimer.Start();
             }
         }
@@ -372,7 +372,7 @@ namespace LiveSupport.OperatorConsole
         private void resetConnection(string message)
         {
             checkNewChangesTimer.Stop();
-            checkNewChangesTimer.Enabled = false;
+            pooling = false;
             ConnectionLost(this, new ConnectionLostEventArgs(message));
         }
 
