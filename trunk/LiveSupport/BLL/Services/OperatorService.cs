@@ -475,11 +475,9 @@ public static class OperatorService
         try
         {
             Directory.CreateDirectory(saveFilePath);
-
         }
         catch (Exception)
         {
-
             throw;
         }
         MemoryStream mo = new MemoryStream(bs);
@@ -488,17 +486,22 @@ public static class OperatorService
         mo.Close();
         fs.Close();
 
+        sendUploadFileCompletedMessage(fileName, chatId, homeRootUrl);
+    }
+
+    private static void sendUploadFileCompletedMessage(string fileName, string chatId, string homeRootUrl)
+    {
         Message m = new Message();
         m.ChatId = chatId;
-       // string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
+        // string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         Util util = new Util();
         if (util.IsImageFile(fileName))
         {
-            m.Text = string.Format("客服已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a> <br/><img height='120px'  width='120px'  src='{3}/UploadFile/{4}\' />", fileName, homeRootUrl, chatId+"/"+fileName, homeRootUrl, chatId+"/"+fileName);
+            m.Text = string.Format("客服已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a> <br/><img height='120px'  width='120px'  src='{3}/UploadFile/{4}\' />", fileName, homeRootUrl, chatId + "/" + fileName, homeRootUrl, chatId + "/" + fileName);
         }
         else
         {
-            m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName, homeRootUrl, chatId+"/"+fileName);
+            m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName, homeRootUrl, chatId + "/" + fileName);
         }
         m.Type = MessageType.SystemMessage_ToVisitor;
         ChatService.SendMessage(m);
@@ -508,6 +511,25 @@ public static class OperatorService
         m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
         m.Type = MessageType.SystemMessage_ToOperator;
         ChatService.SendMessage(m);
+    }
+
+    public static void SendFile(string fileName, string chatId, string saveFilePath, object action)
+    {
+        if (action.ToString() == "start")
+        {
+            try
+            {
+                Directory.CreateDirectory(saveFilePath);
+            }
+            catch (Exception)
+            {
+            }
+        }
+        else if (action.ToString() == "complete")
+        {
+            string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
+            sendUploadFileCompletedMessage(fileName, chatId, homeRootUrl);            
+        }
     }
     /// <summary>
     /// 更新快捷回复
