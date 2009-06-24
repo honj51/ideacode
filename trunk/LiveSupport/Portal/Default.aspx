@@ -37,7 +37,7 @@ CONTENT MAIN COLUMN
 </p>
             <div id="three-column-container">
                 <div id="three-column-side1">
-                    <a href="Items.aspx">
+                    <a href="ProductServe.aspx">
                         <img src="images/home-photo-1.jpg" class="photo-border" alt="Enter Alt Text Here" /></a>
                     <h2>
                         LiveSupport ²úÆ·</h2>
