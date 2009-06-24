@@ -181,6 +181,7 @@ public class ChatService
             {
                 NewMessage(null, new ChatMessageEventArgs(m));
             }
+            m.SentDate = DateTime.Now;
             MessageService.AddMessage(m);
         }
     }
