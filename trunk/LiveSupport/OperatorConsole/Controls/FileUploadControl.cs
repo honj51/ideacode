@@ -17,6 +17,7 @@ namespace LiveSupport.OperatorConsole.Controls
         public event EventHandler<FileUploadEventArgs> FileUploadCompleted;
         string fileName;
         string fileFullPath;
+        string saveURL;
 
         UploadStatus status = UploadStatus.Uploading;
 
@@ -25,11 +26,12 @@ namespace LiveSupport.OperatorConsole.Controls
             InitializeComponent();
         }
 
-        public FileUploadControl(string fileFullPath)
+        public FileUploadControl(string fileFullPath, string saveURL)
         {
             InitializeComponent();
             this.fileFullPath = fileFullPath;
-            this.fileName = fileFullPath.Substring(fileFullPath.LastIndexOf("\\") + 1); ;
+            this.fileName = fileFullPath.Substring(fileFullPath.LastIndexOf("\\") + 1);
+            this.saveURL = saveURL;
             this.pictureBox1.Image = Common.GetFileIcon(fileFullPath).ToBitmap();
             Thread t = new Thread(new ThreadStart(Upload));
             t.Start();
@@ -51,7 +53,6 @@ namespace LiveSupport.OperatorConsole.Controls
 
         private void lblCancel_Click(object sender, EventArgs e)
         {
-           
             status = UploadStatus.Cancel;
         }
 
@@ -91,7 +92,8 @@ namespace LiveSupport.OperatorConsole.Controls
         private void Upload()
         {
             FileInfo fileInf = new FileInfo(this.fileFullPath);
-            string uri = "ftp://" + Properties.Settings.Default.FtpURL+"/upload/"+fileInf.Name;
+            //string uri = "ftp://" + Properties.Settings.Default.FtpURL+"/upload/"+fileInf.Name;
+            string uri = saveURL + "/" + fileInf.Name;
             FtpWebRequest reqFTP;
             // 根据uri创建FtpWebRequest对象
             reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(uri));

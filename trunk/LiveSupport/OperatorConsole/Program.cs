@@ -57,7 +57,7 @@ namespace LiveSupport.OperatorConsole
         static void TestFileUploadControl()
         {
             Form f = new Form();
-            FileUploadControl c = new FileUploadControl("c:\\a.swf");
+            FileUploadControl c = new FileUploadControl("c:\\a.swf","");
             f.Controls.Add(c);
             Application.Run(f);
         }

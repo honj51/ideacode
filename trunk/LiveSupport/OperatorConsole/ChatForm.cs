@@ -184,15 +184,17 @@ namespace LiveSupport.OperatorConsole
                 }
 
                 String filename = uploadOpenFileDialog.FileName;
-                FileStream fs = new FileStream(filename, FileMode.Open);
-                if (fs.Length >= 2097152)
+                FileInfo i = new FileInfo(filename);
+                //FileStream fs = new FileStream(filename, FileMode.Open);
+                if (i.Length >= 2097152)
                 {
                     wb.Document.Write("<span style='color: #FF9933; FONT-SIZE: 13px'>你上传的文件过大！仅限 2M</span><br />");
                     return;
                 }
-                fs.Close();
+               // fs.Close();
                // byte[] fsbyte = new byte[fs.Length];
                 //fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
+
                 addTabPage(filename);
                // operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
                 operatorServiceAgent.SendFile(filename, this.chat.ChatId, "start");
@@ -386,8 +388,9 @@ namespace LiveSupport.OperatorConsole
             {
                 createTabPage();
             }
-            
-            fileUpload = new FileUploadControl(fileName);
+            string savePath = "ftp://" + Properties.Settings.Default.FtpURL + "/upload/" + chat.ChatId + "/";
+
+            fileUpload = new FileUploadControl(fileName,savePath);
             fileUpload.FileUploadCompleted += new EventHandler<FileUploadEventArgs>(fileUpload_FileUploadCompleted);
            
             if (this.tabPage3.Controls.Count == 0 && this.tabPage3 != null)
@@ -437,7 +440,7 @@ namespace LiveSupport.OperatorConsole
                 }
             }));
 
-            operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "end");
+            operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "complete");
         }
 
         private void createTabPage() 
