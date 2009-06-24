@@ -17,6 +17,7 @@ namespace LiveSupport.OperatorConsole
         private NewChangesCheck lastCheck = new NewChangesCheck();
         private OperatorWS ws = new OperatorWS();
         private Operator currentOperator;
+        private System.Timers.Timer checkNewChangesTimer = new System.Timers.Timer(1000);
 
         #region 公开属性
        
@@ -67,6 +68,7 @@ namespace LiveSupport.OperatorConsole
         {
             lastCheck.ChatSessionChecks = new MessageCheck[] { };
             lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
+            checkNewChangesTimer.AutoReset = false;
         }
 
         #region OperatorServiceAgent 成员
@@ -80,12 +82,23 @@ namespace LiveSupport.OperatorConsole
                 h.OperatorId = currentOperator.OperatorId;
                 h.OperatorSession = currentOperator.OperatorSession;
                 ws.AuthenticationHeaderValue = h;
+
+                // 开始查询 系统改变信息
+                checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
+                checkNewChangesTimer.Start();
             }
             return currentOperator;
         }
 
+        void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            getNextNewChanges();
+            checkNewChangesTimer.Start();
+        }
+
         public void Logout()
         {
+            checkNewChangesTimer.Stop();
             ws.Logout();
         }
 
@@ -177,43 +190,46 @@ namespace LiveSupport.OperatorConsole
             return new List<QuickResponseCategory>(ws.GetQuickResponse());
         }
 
-        public NewChangesCheckResult GetNextNewChanges()
+        private NewChangesCheckResult getNextNewChanges()
         {
             NewChangesCheckResult result = getNewChanges(lastCheck);
             if (result == null) return null;
-            if (result.ReturnCode != ReturnCodeEnum.ReturnCode_Success)
+            if (result.NewVisitors != null)
             {
-                return result;
-            }
-            foreach (var item in result.NewVisitors)
-            {
-                lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
-                if (IsVisitorExist(item.VisitorId))
+                foreach (var item in result.NewVisitors)
                 {
-                    Visitor v = GetVisitorById(item.VisitorId);
-                    v.CurrentSession = item.CurrentSession;
-                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                    lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
+                    if (IsVisitorExist(item.VisitorId))
+                    {
+                        Visitor v = GetVisitorById(item.VisitorId);
+                        v.CurrentSession = item.CurrentSession;
+                        VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                    }
+                    else
+                    {
+                        visitors.Add(item);
+                        NewVisitor(this, new NewVisitorEventArgs(item));
+                    }
                 }
-                else
-                {
-                    visitors.Add(item);
-                    NewVisitor(this, new NewVisitorEventArgs(item));
-                }
-            }
 
-            foreach (var item in result.VisitSessionChange)
-            {
-                if (checkIfVisitSessionStatusChange(item))
-                {
-                    GetVisitorBySessionId(item.SessionId).CurrentSession = item;
-                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
-                }                
             }
+            if (result.VisitSessionChange != null)
+            {
+                foreach (var item in result.VisitSessionChange)
+                {
+                    if (checkIfVisitSessionStatusChange(item))
+                    {
+                        GetVisitorBySessionId(item.SessionId).CurrentSession = item;
+                        VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
+                    }
+                }
+
+            } 
             processOpertors(result);
-            
-
             lastCheck.ChatSessionChecks = processMessages(result).ToArray();
             processChats(result);
+
+            NewChanges(this, new NewChangesCheckResultEventArgs(result));
             return result;
         }
 
@@ -315,22 +331,37 @@ namespace LiveSupport.OperatorConsole
 
         private NewChangesCheckResult getNewChanges(NewChangesCheck check)
         {
+            NewChangesCheckResult result = null;
             try
             {
-                return CheckNewChanges(lastCheck);
+                result = CheckNewChanges(lastCheck);
+                if (result != null && result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
+                {
+                    resetConnection("该帐号已在其他地方登陆！");
+                }
             }
             catch (WebException ex)
             {
                 if (ex.InnerException != null && ex.InnerException is SocketException && (ex.InnerException as SocketException).ErrorCode == 10061)
                 {
-                    ConnectionLost(this, null);
-                    return null;
+                    resetConnection("连接中断");
                 }
                 else
                 {
                     throw;
                 }
             }
+            catch (AccessViolationException ave)
+            {
+                resetConnection("服务访问拒绝");
+            }
+            return result;
+        }
+
+        private void resetConnection(string message)
+        {
+            checkNewChangesTimer.Stop();
+            ConnectionLost(this, new ConnectionLostEventArgs(message));
         }
 
         private bool checkIfOperatorStatusChanges(Operator[] p)
@@ -406,7 +437,7 @@ namespace LiveSupport.OperatorConsole
 
         #region IOperatorServiceAgent 成员
 
-        public event EventHandler<EventArgs> ConnectionLost;
+        public event EventHandler<ConnectionLostEventArgs> ConnectionLost;
 
         public event EventHandler<NewVisitorEventArgs> NewVisitor;
 
@@ -419,6 +450,8 @@ namespace LiveSupport.OperatorConsole
         public event EventHandler<NewMessageEventArgs> NewMessage;
 
         public event EventHandler<NewChatRequestEventArgs> NewChatRequest;
+
+        public event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
 
         public List<Operator> Operators
         {
@@ -464,9 +497,5 @@ namespace LiveSupport.OperatorConsole
         }
 
         #endregion
-
-
-        
-       
     }
 }

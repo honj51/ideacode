@@ -48,21 +48,55 @@ namespace LiveSupport.OperatorConsole
         }
 
         #region IOperatorServiceAgent 事件处理
-
-        void operaterServiceAgent_ConnectionLost(object sender, EventArgs e)
+        void operaterServiceAgent_NewChanges(object sender, NewChangesCheckResultEventArgs e)
         {
-            connectionLost();
+            Trace.WriteLine("NewChangesCheckResult: " + e.Result.ToString());
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
+
+                //Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
+                changeVisitorListViewItemColor();
+                displayStatus();
+            }), e);
+        }
+
+        void operaterServiceAgent_ConnectionLost(object sender, ConnectionLostEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                ConnectionLostEventArgs arg = obj as ConnectionLostEventArgs;
+                connectionLost(arg.Message);
+            }), e);
+        }
+
+        void operaterServiceAgent_NewChatRequest(object sender, NewChatRequestEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                NewChatRequestEventArgs arg = obj as NewChatRequestEventArgs;
+                NotifyForm.ShowNotifier(true, "访客 " + arg.Name + " 请求对话！", arg.Chat);
+            }), e);
         }
 
         void operaterServiceAgent_VisitorSessionChange(object sender, VisitorSessionChangeEventArgs e)
         {
-            processVisitSessionChange(e.VisitSession);
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                VisitorSessionChangeEventArgs arg = obj as VisitorSessionChangeEventArgs;
+                processVisitSessionChange(arg.VisitSession);
+            }), e);
         }
 
 
         void operaterServiceAgent_NewVisitor(object sender, NewVisitorEventArgs e)
         {
-            processNewVisitor(e.Visitor);
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                NewVisitorEventArgs arg = obj as NewVisitorEventArgs;
+                processNewVisitor(arg.Visitor);
+            }), e);
+            
         }
         #endregion
 
@@ -71,22 +105,20 @@ namespace LiveSupport.OperatorConsole
         {
             this.loginTime = loginTime;
             this.operaterServiceAgent = agent;
-            this.operaterServiceAgent.ConnectionLost += new EventHandler<EventArgs>(operaterServiceAgent_ConnectionLost);
+            this.operaterServiceAgent.ConnectionLost += new EventHandler<ConnectionLostEventArgs>(operaterServiceAgent_ConnectionLost);
             this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
             this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
             this.operaterServiceAgent.NewChatRequest += new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
+            this.operaterServiceAgent.NewChanges += new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
             InitializeComponent();
         }
+
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        void operaterServiceAgent_NewChatRequest(object sender, NewChatRequestEventArgs e)
-        {
-            NotifyForm.ShowNotifier(true, "访客 " + e.Name + " 请求对话！", e.Chat);
-        }
 
         private void initForm()
         {
@@ -126,7 +158,6 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timer1.Enabled = false;
             loginTimer.Enabled = false;
 
             if (Program.ChatForms.Count == 0)
@@ -266,11 +297,11 @@ namespace LiveSupport.OperatorConsole
             return dateDiff;
         }
 
-        private void connectionLost()
+        private void connectionLost(string message)
         {
-            timer1.Enabled = false;
             loginTimer.Enabled = false;
-            MessageBox.Show("与服务器的连接中断，需要重新登陆！", "连接中断", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message + "，需要重新登陆！", "连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             restartApp("-r");
         }
 
@@ -340,40 +371,6 @@ namespace LiveSupport.OperatorConsole
             // NotifyForm.ShowNotifier(true, "有人请求对话!!!");
         }
         #endregion
-
-        #region NewChangesCheck 定时器事件处理
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            NewChangesCheckResult result;
-            try
-            {
-                result = operaterServiceAgent.GetNextNewChanges();
-
-            }
-            catch (AccessViolationException ave)
-            {
-                restartApp(string.Empty);
-                return;
-            }
-           
-            if (result == null) return;
-            if (result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
-            {
-                this.timer1.Enabled = false;
-                this.loginTimer.Enabled = false;
-                MessageBox.Show("该帐号已在其他地方登陆！", "系统会话失效", MessageBoxButtons.OK);
-                restartApp(string.Empty);
-                return;
-            }
-            Trace.WriteLine("NewChangesCheckResult: " + result.ToString());         
-
-            operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
-
-            //Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
-            changeVisitorListViewItemColor();
-            displayStatus();
-        }
-        #endregion 
 
         #region 处理 NewChangesCheckResult
 

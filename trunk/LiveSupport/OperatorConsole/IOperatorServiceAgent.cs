@@ -23,7 +23,7 @@ namespace LiveSupport.OperatorConsole
         List<SystemAdvertise> GetSystemAdvertise(string versionNumber);
         void SaveQuickResponse(List<QuickResponseCategory> response);
         List<QuickResponseCategory> GetQuickResponse();
-        NewChangesCheckResult GetNextNewChanges();
+        //NewChangesCheckResult GetNextNewChanges();
         List<Visitor> GetAllVisitors(string accountId);
         #endregion
 
@@ -35,13 +35,14 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         #region 公开事件
-        event EventHandler<EventArgs> ConnectionLost;
+        event EventHandler<ConnectionLostEventArgs> ConnectionLost;
         event EventHandler<NewVisitorEventArgs> NewVisitor;
         event EventHandler<NewChatRequestEventArgs> NewChatRequest;
         event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
         event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
         event EventHandler<ChatStatusChangeEventArgs> ChatStatusChange;
         event EventHandler<NewMessageEventArgs> NewMessage;
+        event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
         #endregion
 
         #region 公开属性
@@ -51,6 +52,24 @@ namespace LiveSupport.OperatorConsole
         List<Chat> Chats { get; set; }
         List<QuickResponseCategory> QuickResponseCategory { get; }
         #endregion
+    }
+
+    public class NewChangesCheckResultEventArgs : EventArgs
+    {
+        public NewChangesCheckResult Result;
+        public NewChangesCheckResultEventArgs(NewChangesCheckResult result)
+        {
+            this.Result = result;
+        }
+    }
+
+    public class ConnectionLostEventArgs : EventArgs
+    {
+        public string Message;
+        public ConnectionLostEventArgs(string message)
+        {
+            this.Message = message;
+        }
     }
 
     public class NewChatRequestEventArgs : EventArgs

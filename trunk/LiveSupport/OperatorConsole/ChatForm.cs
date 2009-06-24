@@ -115,7 +115,6 @@ namespace LiveSupport.OperatorConsole
          //   Application.StartupPath.ToString() + "/" +
             Directory.CreateDirectory(chat.ChatId);
             this.operatorServiceAgent = agent;
-            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
             InitializeComponent();
             this.chat = chat;
 
@@ -145,14 +144,22 @@ namespace LiveSupport.OperatorConsole
             this.visitCountLabel.Text += item.VisitCount.ToString();
             this.visitorLocationLabel.Text += item.CurrentSession.Location;
             txtMsg.Focus();
+            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
         }
 
         void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
         {
-            if (e.Message.ChatId == this.chat.ChatId)
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
-                RecieveMessage(e.Message);
-            }
+                NewMessageEventArgs arg = e as NewMessageEventArgs;
+                if (arg.Message.ChatId == this.chat.ChatId)
+                {
+                    RecieveMessage(arg.Message);
+                }
+
+            }), e);
+
+            
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
@@ -295,13 +302,13 @@ namespace LiveSupport.OperatorConsole
                 }
             }
 
+            this.operatorServiceAgent.NewMessage -= new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
             if (acceptChatRequestResult == 0)
             {
                 operatorServiceAgent.CloseChat(this.Chat.ChatId);
             }
             Directory.Delete(Application.StartupPath.ToString() +"/"+chat.ChatId, true);
             Program.ChatForms.Remove(this);
-
         }
 
         private bool exitConfirm()
