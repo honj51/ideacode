@@ -497,5 +497,15 @@ namespace LiveSupport.OperatorConsole
         }
 
         #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        public void SendFile(string fileName, string chatId, object action)
+        {
+            ws.SendFile(fileName, chatId, action); 
+        }
+
+        #endregion
     }
 }
