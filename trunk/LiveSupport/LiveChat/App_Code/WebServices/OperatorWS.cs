@@ -138,6 +138,16 @@ public class OperatorWS : System.Web.Services.WebService
         }
         return retVal;
     }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public void SendFile(string fileName, string chatId, object action)
+    {
+        checkAuthentication();
+        string saveFilePath = Server.MapPath("~/UploadFile/" + chatId + "/");
+        OperatorService.SendFile(fileName, chatId,saveFilePath, action);
+    }
+
     /// <summary>
     /// 上传文件
     /// </summary>
@@ -151,6 +161,8 @@ public class OperatorWS : System.Web.Services.WebService
         string saveFilePath = Server.MapPath("~/UploadFile/" + chatId + "/");
         OperatorService.UploadFile(bs,fileName,chatId, saveFilePath);
     }
+
+
     /// <summary>
     /// 客服发送一条信息给访客
     /// </summary>
