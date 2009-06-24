@@ -263,6 +263,8 @@
           <s:enumeration value="SystemMessage_ToOperator" />
           <s:enumeration value="SystemMessage_ToVisitor" />
           <s:enumeration value="SystemMessage_ToBoth" />
+          <s:enumeration value="CommandMessage_VidoeChat_OperatorToVisitor" />
+          <s:enumeration value="CommandMessage_VideoChat_VistorToOperator" />
         </s:restriction>
       </s:simpleType>
       <s:simpleType name="ReturnCodeEnum">
@@ -285,6 +287,18 @@
             <s:element minOccurs="1" maxOccurs="1" name="IsTypingResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="SendFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="chatId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="action" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendFileResponse">
+        <s:complexType />
       </s:element>
       <s:element name="UploadFile">
         <s:complexType>
@@ -380,18 +394,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetHistoryPageRequestsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetHistoryPageRequestsResult" type="tns:ArrayOfPageRequest" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfPageRequest">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="PageRequest" nillable="true" type="tns:PageRequest" />
-        </s:sequence>
-      </s:complexType>
       <s:complexType name="PageRequest">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
@@ -401,6 +403,18 @@
           <s:element minOccurs="0" maxOccurs="1" name="Referrer" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="ArrayOfPageRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PageRequest" nillable="true" type="tns:PageRequest" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetHistoryPageRequestsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHistoryPageRequestsResult" type="tns:ArrayOfPageRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AcceptChatRequest">
         <s:complexType>
           <s:sequence>
@@ -436,6 +450,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="SystemAdvertise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSystemAdvertise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SystemAdvertise" nillable="true" type="tns:SystemAdvertise" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="GetSystemAdvertiseResponse">
         <s:complexType>
           <s:sequence>
@@ -443,17 +468,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfSystemAdvertise">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="SystemAdvertise" nillable="true" type="tns:SystemAdvertise" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="SystemAdvertise">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseUrl" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="AdvertiseMessage" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="SaveQuickResponse">
         <s:complexType>
           <s:sequence>
@@ -536,6 +550,15 @@
     <wsdl:part name="parameters" element="tns:IsTypingResponse" />
   </wsdl:message>
   <wsdl:message name="IsTypingAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="SendFileSoapIn">
+    <wsdl:part name="parameters" element="tns:SendFile" />
+  </wsdl:message>
+  <wsdl:message name="SendFileSoapOut">
+    <wsdl:part name="parameters" element="tns:SendFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendFileAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
   <wsdl:message name="UploadFileSoapIn">
@@ -667,6 +690,10 @@
       <wsdl:input message="tns:IsTypingSoapIn" />
       <wsdl:output message="tns:IsTypingSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="SendFile">
+      <wsdl:input message="tns:SendFileSoapIn" />
+      <wsdl:output message="tns:SendFileSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UploadFile">
       <wsdl:input message="tns:UploadFileSoapIn" />
       <wsdl:output message="tns:UploadFileSoapOut" />
@@ -763,6 +790,16 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:IsTypingAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFile">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SendFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SendFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -936,6 +973,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:IsTypingAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFile">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SendFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SendFileAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

@@ -195,6 +195,7 @@ namespace LiveSupport.OperatorConsole
                 //fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
                 addTabPage(filename);
                // operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
+                operatorServiceAgent.SendFile(filename, this.chat.ChatId, "start");
             }
         }
       
@@ -364,7 +365,6 @@ namespace LiveSupport.OperatorConsole
             Ms.Close();
 
             return imgByte;
-
         }
 
         public void sendImage(Bitmap bitmap)
@@ -380,6 +380,7 @@ namespace LiveSupport.OperatorConsole
 
         private void addTabPage(string fileName) 
         {
+            
             FileUploadControl fileUpload = null;
             if (!this.tabControl1.Controls.Contains(this.tabPage3))
             {
@@ -398,7 +399,6 @@ namespace LiveSupport.OperatorConsole
                 this.tabPage3.Controls.Add(fileUpload);
                 fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 10);
             }
-        
         }
 
         delegate void UpdateUI();
@@ -436,6 +436,8 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
             }));
+
+            operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "end");
         }
 
         private void createTabPage() 

@@ -91,7 +91,7 @@ namespace LiveSupport.OperatorConsole.Controls
         private void Upload()
         {
             FileInfo fileInf = new FileInfo(this.fileFullPath);
-            string uri = "ftp://" + Properties.Settings.Default.FtpURL+"/data/"+fileInf.Name;
+            string uri = "ftp://" + Properties.Settings.Default.FtpURL+"/upload/"+fileInf.Name;
             FtpWebRequest reqFTP;
             // 根据uri创建FtpWebRequest对象
             reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(uri));
@@ -183,7 +183,7 @@ namespace LiveSupport.OperatorConsole.Controls
             {
                 if (FileUploadCompleted != null)
                 {
-                    FileUploadCompleted(this, new FileUploadEventArgs(status,this));
+                    FileUploadCompleted(this, new FileUploadEventArgs(fileName,status,this));
                 }                
             }
         }
@@ -196,10 +196,12 @@ namespace LiveSupport.OperatorConsole.Controls
 
     public class FileUploadEventArgs : EventArgs
     {
+        public string FileName;
         public UploadStatus Status;
         public FileUploadControl FileUploadControl;
-        public FileUploadEventArgs(UploadStatus status, FileUploadControl fileUploadControl)
+        public FileUploadEventArgs(string fileName, UploadStatus status, FileUploadControl fileUploadControl)
         {
+            this.FileName = fileName;
             this.Status = status;
             this.FileUploadControl = fileUploadControl;
         }

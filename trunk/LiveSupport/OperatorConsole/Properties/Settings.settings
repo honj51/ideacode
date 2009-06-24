@@ -36,7 +36,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://lcs.zxkefu.cn/Operator.asmx</Value>
+      <Value Profile="(Default)">http://localhost:3355/LiveChat/Operator.asmx</Value>
     </Setting>
     <Setting Name="URL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.zxkefu.cn</Value>

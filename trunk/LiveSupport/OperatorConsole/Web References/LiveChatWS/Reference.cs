@@ -41,6 +41,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback IsTypingOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SendFileOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UploadFileOperationCompleted;
         
         private System.Threading.SendOrPostCallback SendMessageOperationCompleted;
@@ -126,6 +128,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event IsTypingCompletedEventHandler IsTypingCompleted;
+        
+        /// <remarks/>
+        public event SendFileCompletedEventHandler SendFileCompleted;
         
         /// <remarks/>
         public event UploadFileCompletedEventHandler UploadFileCompleted;
@@ -313,6 +318,39 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.IsTypingCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.IsTypingCompleted(this, new IsTypingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/SendFile", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void SendFile(string fileName, string chatId, object action) {
+            this.Invoke("SendFile", new object[] {
+                        fileName,
+                        chatId,
+                        action});
+        }
+        
+        /// <remarks/>
+        public void SendFileAsync(string fileName, string chatId, object action) {
+            this.SendFileAsync(fileName, chatId, action, null);
+        }
+        
+        /// <remarks/>
+        public void SendFileAsync(string fileName, string chatId, object action, object userState) {
+            if ((this.SendFileOperationCompleted == null)) {
+                this.SendFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendFileOperationCompleted);
+            }
+            this.InvokeAsync("SendFile", new object[] {
+                        fileName,
+                        chatId,
+                        action}, this.SendFileOperationCompleted, userState);
+        }
+        
+        private void OnSendFileOperationCompleted(object arg) {
+            if ((this.SendFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendFileCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1012,6 +1050,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         SystemMessage_ToBoth,
+        
+        /// <remarks/>
+        CommandMessage_VidoeChat_OperatorToVisitor,
+        
+        /// <remarks/>
+        CommandMessage_VideoChat_VistorToOperator,
     }
     
     /// <remarks/>
@@ -2295,6 +2339,10 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void SendFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]

@@ -11,6 +11,7 @@ namespace LiveSupport.OperatorConsole
         Operator Login(string accountName, string operatorName, string password);
         void Logout();
         void UploadFile(byte[] bs, string fileName, string chatId);
+        void SendFile(string fileName, string chatId, object action);
         bool SendMessage(Message msg);
         int ChangePassword(string oldPassword, string newPassword);
         int ResetOperatorPassword(string loginName);
