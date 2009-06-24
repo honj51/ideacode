@@ -102,7 +102,6 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -122,16 +121,12 @@ namespace LiveSupport.OperatorConsole
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panelMessage = new System.Windows.Forms.Panel();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
             this.lblMessageEndTime = new System.Windows.Forms.Label();
             this.lblMessageBeginTime = new System.Windows.Forms.Label();
-            this.lstMessage = new System.Windows.Forms.ListView();
-            this.colSource = new System.Windows.Forms.ColumnHeader();
-            this.colDestination = new System.Windows.Forms.ColumnHeader();
-            this.colText = new System.Windows.Forms.ColumnHeader();
-            this.colSentDate = new System.Windows.Forms.ColumnHeader();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.requestendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.requestbeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -170,6 +165,7 @@ namespace LiveSupport.OperatorConsole
             this.stateToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -829,14 +825,6 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Size = new System.Drawing.Size(204, 402);
             this.panel1.TabIndex = 0;
             // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 372);
-            this.operatorPannel1.TabIndex = 2;
-            // 
             // panel5
             // 
             this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
@@ -858,6 +846,7 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.SelectedIndex = 0;
             this.tabChats.Size = new System.Drawing.Size(750, 372);
             this.tabChats.TabIndex = 0;
+            this.tabChats.SelectedIndexChanged += new System.EventHandler(this.tabChats_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -1016,12 +1005,12 @@ namespace LiveSupport.OperatorConsole
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.panelMessage);
             this.tabPage2.Controls.Add(this.messageendDateTimePicker);
             this.tabPage2.Controls.Add(this.messagebeginDateTimePicker);
             this.tabPage2.Controls.Add(this.btnSearchHistoryChatMsg);
             this.tabPage2.Controls.Add(this.lblMessageEndTime);
             this.tabPage2.Controls.Add(this.lblMessageBeginTime);
-            this.tabPage2.Controls.Add(this.lstMessage);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -1029,6 +1018,13 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panelMessage
+            // 
+            this.panelMessage.Location = new System.Drawing.Point(0, 47);
+            this.panelMessage.Name = "panelMessage";
+            this.panelMessage.Size = new System.Drawing.Size(680, 300);
+            this.panelMessage.TabIndex = 18;
             // 
             // messageendDateTimePicker
             // 
@@ -1073,45 +1069,6 @@ namespace LiveSupport.OperatorConsole
             this.lblMessageBeginTime.Size = new System.Drawing.Size(65, 12);
             this.lblMessageBeginTime.TabIndex = 12;
             this.lblMessageBeginTime.Text = "开始时间：";
-            // 
-            // lstMessage
-            // 
-            this.lstMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstMessage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colSource,
-            this.colDestination,
-            this.colText,
-            this.colSentDate});
-            this.lstMessage.FullRowSelect = true;
-            this.lstMessage.GridLines = true;
-            this.lstMessage.Location = new System.Drawing.Point(0, 61);
-            this.lstMessage.Name = "lstMessage";
-            this.lstMessage.Size = new System.Drawing.Size(819, 432);
-            this.lstMessage.TabIndex = 15;
-            this.lstMessage.UseCompatibleStateImageBehavior = false;
-            this.lstMessage.View = System.Windows.Forms.View.Details;
-            // 
-            // colSource
-            // 
-            this.colSource.Text = "发送者";
-            this.colSource.Width = 108;
-            // 
-            // colDestination
-            // 
-            this.colDestination.Text = "接受者";
-            this.colDestination.Width = 78;
-            // 
-            // colText
-            // 
-            this.colText.Text = "消息内容";
-            this.colText.Width = 124;
-            // 
-            // colSentDate
-            // 
-            this.colSentDate.Text = "发送时间";
-            this.colSentDate.Width = 91;
             // 
             // tabPage4
             // 
@@ -1242,7 +1199,6 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
@@ -1462,6 +1418,14 @@ namespace LiveSupport.OperatorConsole
             this.loginTimer.Interval = 1000;
             this.loginTimer.Tick += new System.EventHandler(this.loginTimer_Tick);
             // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 372);
+            this.operatorPannel1.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1606,11 +1570,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Button btnSearchHistoryChatMsg;
         private System.Windows.Forms.Label lblMessageEndTime;
         private System.Windows.Forms.Label lblMessageBeginTime;
-        private System.Windows.Forms.ListView lstMessage;
-        private System.Windows.Forms.ColumnHeader colSource;
-        private System.Windows.Forms.ColumnHeader colDestination;
-        private System.Windows.Forms.ColumnHeader colText;
-        private System.Windows.Forms.ColumnHeader colSentDate;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.DateTimePicker requestendDateTimePicker;
         private System.Windows.Forms.DateTimePicker requestbeginDateTimePicker;
@@ -1640,5 +1599,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.TextBox visitorIdTextBox;
         private System.Windows.Forms.DateTimePicker leaveTimeDateTimePicker;
         private System.Windows.Forms.DateTimePicker visitingTimeDateTimePicker;
+        private System.Windows.Forms.Panel panelMessage;
     }
 }

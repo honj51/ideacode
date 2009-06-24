@@ -547,7 +547,7 @@ namespace LiveSupport.OperatorConsole
         /// <param name="e"></param>
         private void btnSearchHistoryChatMsg_Click(object sender, EventArgs e)
         {
-            lstMessage.Items.Clear();
+            //lstMessage.Items.Clear();
 
             VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
             if (vlvi == null)
@@ -564,18 +564,9 @@ namespace LiveSupport.OperatorConsole
             List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, messagebeginDateTimePicker.Value, messageendDateTimePicker.Value);
             if (msg.Count > 0)
             {
-                foreach (LiveSupport.OperatorConsole.LiveChatWS.Message item in msg)
-                {
-                    if (item == null) continue;
-                    ListViewItem Message = new ListViewItem(new string[]
-                         {
-                             item.Source, item.Destination,item.Text,item.SentDate.ToString()
-                            
-                          });
-                    Message.Tag = item;
-                    lstMessage.Items.Add(Message);
-
-                }
+                UserControlMessage ucm = new UserControlMessage(msg);
+                ucm.Visible = true;
+                ucm.Parent = this.panelMessage;
             }
             else
             {
@@ -801,6 +792,11 @@ namespace LiveSupport.OperatorConsole
             }
         }
         #endregion
+
+        private void tabChats_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
        
     }
