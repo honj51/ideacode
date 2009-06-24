@@ -7,6 +7,8 @@ using System.Drawing;
 
 namespace LiveSupport.OperatorConsole
 {
+    public delegate void UpdateUIDelegate(object obj);
+
     class Common
     {
         [StructLayout(LayoutKind.Sequential)]
