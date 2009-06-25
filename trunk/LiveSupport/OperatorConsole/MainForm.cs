@@ -103,6 +103,7 @@ namespace LiveSupport.OperatorConsole
         #region MainForm 构造函数，事件处理
         public MainForm(IOperatorServiceAgent agent, DateTime loginTime)
         {
+            InitializeComponent();
             this.loginTime = loginTime;
             this.operaterServiceAgent = agent;
             this.operaterServiceAgent.ConnectionLost += new EventHandler<ConnectionLostEventArgs>(operaterServiceAgent_ConnectionLost);
@@ -110,7 +111,6 @@ namespace LiveSupport.OperatorConsole
             this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
             this.operaterServiceAgent.NewChatRequest += new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
             this.operaterServiceAgent.NewChanges += new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
-            InitializeComponent();
         }
 
 
@@ -253,7 +253,7 @@ namespace LiveSupport.OperatorConsole
         private void loginTimer_Tick(object sender, EventArgs e)
         {
             DateTime dtime = DateTime.Now;
-            this.stickToolStripStatusLabel.Text = dateDiff(loginTime, dtime);
+            this.stickToolStripStatusLabel.Text =Common.dateDiff(loginTime, dtime);
 
             if (dtime.Second % 5 == 0)
             {
@@ -280,22 +280,7 @@ namespace LiveSupport.OperatorConsole
             SystemAdvertise sa =systemAdvertises[currentSystemAdvertiseIndex];
             currentSystemAdvertiseIndex++;
             return sa;
-        }      
-        
-        private string dateDiff(DateTime DateTime1, DateTime DateTime2)
-        {
-            string dateDiff = null;
-
-            TimeSpan ts1 = new TimeSpan(DateTime1.Ticks);
-            TimeSpan ts2 = new TimeSpan(DateTime2.Ticks);
-            TimeSpan ts = ts1.Subtract(ts2).Duration();
-            dateDiff = ts.Days.ToString() + "天"
-                + ts.Hours.ToString() + "小时"
-                + ts.Minutes.ToString() + "分钟"
-                + ts.Seconds.ToString() + "秒";
-
-            return dateDiff;
-        }
+        }   
 
         private void connectionLost(string message)
         {
@@ -564,7 +549,7 @@ namespace LiveSupport.OperatorConsole
             List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, messagebeginDateTimePicker.Value, messageendDateTimePicker.Value);
             if (msg.Count > 0)
             {
-                UserControlMessage ucm = new UserControlMessage(msg);
+                ChatMessageViewerControl ucm = new ChatMessageViewerControl(msg);
                 ucm.Visible = true;
                 ucm.Parent = this.panelMessage;
             }

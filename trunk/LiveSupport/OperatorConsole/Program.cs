@@ -50,12 +50,13 @@ namespace LiveSupport.OperatorConsole
             LoginForm f = new LoginForm();
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
             Application.Run(f);
+            //TestFileUploadControl();
 		}
 
         static void TestFileUploadControl()
         {
             Form f = new Form();
-            FileUploadControl c = new FileUploadControl("c:\\a.swf","");
+            FileUploadControl c = new FileUploadControl("c:\\a.exe", "");
             f.Controls.Add(c);
             Application.Run(f);
         }

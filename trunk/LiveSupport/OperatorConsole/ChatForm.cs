@@ -12,6 +12,9 @@ using System.Media;
 using System.Drawing.Imaging;
 using System.Collections;
 using LiveSupport.OperatorConsole.Controls;
+using LiveSupport.OperatorConsole.Util;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 
 namespace LiveSupport.OperatorConsole
@@ -64,7 +67,10 @@ namespace LiveSupport.OperatorConsole
         private int acceptChatRequestResult = 0;
         private SoundPlayer player = new SoundPlayer();
         private Chat chat;
-        private UserControlMessage ucm=null;
+        //private UserControlMessage ucm=null;
+        private string savePath;
+
+        private List<FtpUpload> uploadTasks = new List<FtpUpload>();
 
         public IOperatorServiceAgent OperatorServiceAgent
         {
@@ -82,22 +88,8 @@ namespace LiveSupport.OperatorConsole
            
             if (!this.IsDisposed && receiveMessage)
             {
-                if (API.FromSystem(message))
-                {
-                    string msg=string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text);
-                    ucm.GetMessage(msg, " ");
-                }
-                if (message.Type == MessageType.ChatMessage_VistorToOperator)
-                {
-                    string msg = string.Format("<span style='font-family: Arial;color:#008040;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text);
-                    ucm.GetMessage(msg, " ");
-                }
-                if(message.Type==MessageType.ChatMessage_OperatorToVisitor)
-                {
-                    string msg = string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text);
-                    ucm.GetMessage(msg, " ");
-                }
-                //wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
+                chatMessageViewerControl1.AddMessage(message);
+
                 if (!this.ringToolStripMenuItem.Checked)
                 {
                     PlayMsgSound();
@@ -116,35 +108,29 @@ namespace LiveSupport.OperatorConsole
 
         public ChatForm(IOperatorServiceAgent agent, Chat chat, bool invite)
         {
-          
-         //   Application.StartupPath.ToString() + "/" +
             Directory.CreateDirectory(chat.ChatId);
             this.operatorServiceAgent = agent;
             InitializeComponent();
-            ucm = new UserControlMessage();
-            ucm.Parent = this.panelMessage;
-            ucm.Visible = true;
             this.chat = chat;
+            savePath = "ftp://" + Properties.Settings.Default.FtpURL + "/upload/" + chat.ChatId + "/";
 
             if (!invite)
             {
                 acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
                 if (acceptChatRequestResult == -1) 
                 {
-                    string msg = "about:该访客对话请求已被其他客服接受";
-                    ucm.GetMessage(msg, "Navigate");
+                    chatMessageViewerControl1.ResetContext("该访客对话请求已被其他客服接受");
                     receiveMessage = false;
                     return;
                 }
                 if (acceptChatRequestResult == -3)
                 {
-                    string msg = "about:服务器错误";
-                    ucm.GetMessage(msg, "Navigate");
+                    chatMessageViewerControl1.ResetContext("服务器错误");
                     receiveMessage = false;
                 }
             }
-            string msgs = "about:初始会话...";
-            ucm.GetMessage(msgs, "Navigate");
+            chatMessageViewerControl1.ResetContext("初始会话...");
+            //ucm.GetMessage(msgs, "Navigate");
 
             Visitor item = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             this.Text = "与 " + item.Name + " 对话中";
@@ -188,27 +174,13 @@ namespace LiveSupport.OperatorConsole
             {
                 if (this.tabPage3 != null&&this.tabPage3.Controls.Count>=2)
                 {
-
-                    string msg = "<span style='color: #FF9933; FONT-SIZE: 15px'>你上传的文件的次数过多！</span><br />";
-                    ucm.GetMessage(msg, " ");
+                    chatMessageViewerControl1.AddInformation("你上传的文件的次数过多！");
+                    //ucm.GetMessage(msg, " ");
                     return;
                 }
-
-                String filename = uploadOpenFileDialog.FileName;
-                FileInfo i = new FileInfo(filename);
-                //FileStream fs = new FileStream(filename, FileMode.Open);
-                if (i.Length >= 2097152)
-                {
-                    string msg = "<span style='color: #FF9933; FONT-SIZE: 13px'>你上传的文件过大！仅限 2M</span><br />";
-                    ucm.GetMessage(msg, " ");
-                    return;
-                }
-               // fs.Close();
-               // byte[] fsbyte = new byte[fs.Length];
-                //fs.Read(fsbyte, 0, Convert.ToInt32(fs.Length));
+                string filename = uploadOpenFileDialog.FileName;
 
                 addTabPage(filename);
-               // operatorServiceAgent.UploadFile(fsbyte, uploadOpenFileDialog.SafeFileName, Chat.ChatId);
                 operatorServiceAgent.SendFile(filename, this.chat.ChatId, "start");
             }
         }
@@ -256,10 +228,10 @@ namespace LiveSupport.OperatorConsole
             msg.Source = From;
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
-            operatorServiceAgent.SendMessage(msg);
-            string msgs= string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message);
-            ucm.GetMessage(msgs, " ");
-            //wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
+            operatorServiceAgent.SendMessage(msg); 
+            //string msgs= string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message);
+            //ucm.GetMessage(msgs, " ");
+            chatMessageViewerControl1.AddMessage(msg);
         }
 
         /// <summary>
@@ -269,42 +241,9 @@ namespace LiveSupport.OperatorConsole
         /// <param name="e"></param>
         private void cutToolStripButton_Click(object sender, EventArgs e)
         {
-
             Snipping snipping = new Snipping();
             snipping.Owner = this;
             snipping.Show();
-
-            //IntPtr dc1 = CreateDC("DISPLAY", null, null, (IntPtr)null);
-            ////创建显示器的DC 
-            //Graphics g1 = Graphics.FromHdc(dc1);
-            ////由一个指定设备的句柄创建一个新的Graphics对象 
-            //Bitmap MyImage = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, g1);
-            ////根据屏幕大小创建一个与之相同大小的Bitmap对象 
-            //Graphics g2 = Graphics.FromImage(MyImage);
-            ////获得屏幕的句柄 
-            //IntPtr dc3 = g1.GetHdc();
-            ////获得位图的句柄 
-            //IntPtr dc2 = g2.GetHdc();
-            ////把当前屏幕捕获到位图对象中 
-            //BitBlt(dc2, 0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, dc3, 0, 0, 13369376);
-            ////把当前屏幕拷贝到位图中 
-            //g1.ReleaseHdc(dc3);
-            ////释放屏幕句柄 
-            //g2.ReleaseHdc(dc2);
-            ////释放位图句柄 
-            //if (cutSaveFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    MyImage.Save(cutSaveFileDialog.FileName, ImageFormat.Bmp);
-            //    MessageBox.Show("已经把当前屏幕保存！");
-            //   // wb.Document.Write(string.Format("<img src='{0}'/>", ));  
-               
-            //    this.Show();
-            //}
-        }
-
-        private void ChatForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
         }
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -317,7 +256,14 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
             }
-
+            foreach (var item in uploadTasks)
+            {
+                if (item == null)
+                {
+                    continue;
+                }
+                item.Cancel();
+            }
             this.operatorServiceAgent.NewMessage -= new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
             if (acceptChatRequestResult == 0)
             {
@@ -348,7 +294,6 @@ namespace LiveSupport.OperatorConsole
                         setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
                     }
                 }
-
             }
             setTalkTreeView.ExpandAll();
         }
@@ -384,29 +329,46 @@ namespace LiveSupport.OperatorConsole
 
         public void sendImage(Bitmap bitmap)
         {
-            string imageName = chat.ChatId+createImageName();
-            string saveUrl = chat.ChatId + "/" + imageName + ".bmp";
-            bitmap.Save(saveUrl, System.Drawing.Imaging.ImageFormat.Bmp);
-            string imageUrl = Application.StartupPath.ToString() + "/"+ saveUrl;
-            operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName+".bmp", chat.ChatId);
-            string msg = string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl);
-            ucm.GetMessage(msg, " ");
-            //wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Width, wb.Document.Body.ScrollRectangle.Height);    
+            try
+            {
+                string imageName = chat.ChatId + createImageName();
+                string saveUrl = chat.ChatId + "/" + imageName + ".bmp";
+                string imageUrl = Application.StartupPath.ToString() + "/" + saveUrl;
+                bitmap.Save(imageUrl, System.Drawing.Imaging.ImageFormat.Bmp);
+
+                FtpUpload ftpUpload = new FtpUpload(imageUrl, savePath);
+                operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName + ".bmp", chat.ChatId);
+                string msg = string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl);
+                chatMessageViewerControl1.AddText(msg);
+                uploadTasks.Add(ftpUpload);
+                ftpUpload.Start();
+
+            }
+            catch (ExternalException ex)
+            {
+                Debug.WriteLine("sendImage exception:" + ex.Message);
+            }
         }
 
         private void addTabPage(string fileName) 
         {
-            
+            FileInfo file = new FileInfo(fileName);
+            if (file.Length >= 2097152)
+            {
+                chatMessageViewerControl1.AddInformation("你上传的文件过大！仅限 2M");
+                return;
+            }
+
             FileUploadControl fileUpload = null;
             if (!this.tabControlVideo.Controls.Contains(this.tabPage3))
             {
                 createTabPage();
             }
-            string savePath = "ftp://" + Properties.Settings.Default.FtpURL + "/upload/" + chat.ChatId + "/";
 
             fileUpload = new FileUploadControl(fileName,savePath);
             fileUpload.FileUploadCompleted += new EventHandler<FileUploadEventArgs>(fileUpload_FileUploadCompleted);
-           
+            this.uploadTasks.Add(fileUpload.FtpUpload);
+
             if (this.tabPage3.Controls.Count == 0 && this.tabPage3 != null)
             {
                 this.tabPage3.Controls.Add(fileUpload);
@@ -414,7 +376,7 @@ namespace LiveSupport.OperatorConsole
             else
             {
                 this.tabPage3.Controls.Add(fileUpload);
-                fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 10);
+                fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 5);
             }
         }
 
@@ -424,17 +386,6 @@ namespace LiveSupport.OperatorConsole
         {
             this.Invoke(new UpdateUI(delegate()
             {
-                if (e.Status == UploadStatus.Cancel)
-                {
-                    //wb.Document.Write(string.Format("<span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text));
-                }
-                else if (e.Status == UploadStatus.Succeed)
-                {      
-                }
-                else if (e.Status == UploadStatus.Error)
-                {
-
-                }
                 this.tabPage3.Controls.Remove(e.FileUploadControl);
                 if (this.tabPage3.Controls.Count == 0)
                 {
@@ -444,15 +395,30 @@ namespace LiveSupport.OperatorConsole
                 {
                     foreach (Control item in this.tabPage3.Controls)
                     {
-                        if (item.Location == new System.Drawing.Point(4, e.FileUploadControl.Height + 10))
+                        if (item.Location == new System.Drawing.Point(4, e.FileUploadControl.Height + 5))
                         {
                             item.Location = new System.Drawing.Point(4, 21);
-
                         }
-
                     }
                 }
+
+                string msg = string.Empty;
+                if (e.Status == UploadStatus.Cancel)
+                {
+                    msg = "文件" + e.FileName + "发送已被取消!";
+                }
+                else if (e.Status == UploadStatus.Succeed)
+                {
+                    //msg = "文件" + e.FileName + "发送成功!";
+                }
+                else if (e.Status == UploadStatus.Error)
+                {
+                    msg = "文件" + e.FileName + "发送失败!";
+                }
+                chatMessageViewerControl1.AddInformation(msg);
+                
             }));
+            this.uploadTasks.Remove(e.FileUploadControl.FtpUpload);
 
             operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "complete");
         }

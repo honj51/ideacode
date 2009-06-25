@@ -9,23 +9,55 @@ using LiveSupport.OperatorConsole.LiveChatWS;
 
 namespace LiveSupport.OperatorConsole
 {
-    public partial class UserControlMessage : UserControl
+    public partial class ChatMessageViewerControl : UserControl
     {
-        string message = "";
-        public UserControlMessage()
+        public ChatMessageViewerControl()
         {
             InitializeComponent();
-            
+            wb.Navigate("about:");
         }
-        public UserControlMessage(string aa)
+
+        public void ResetContext(string message)
         {
-            message=aa;
-            InitializeComponent();
+            wb.Navigate("about:" + message);
         }
+
+        public void AddInformation(string info)
+        {
+            string msg = "<span style='color: #FF9933; FONT-SIZE: 15px'>" + info + "</span><br />";
+            AddText(msg);
+        }
+
+        public void AddText(string text)
+        {
+            wb.Document.Write(text);
+        }
+
+        public void AddMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
+        {
+            string msg = string.Empty;
+            if (API.FromSystem(message))
+            {
+                msg = string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text);
+                //ucm.GetMessage(msg, " ");
+            }
+            if (message.Type == MessageType.ChatMessage_VistorToOperator)
+            {
+                msg = string.Format("<span style='font-family: Arial;color:#008040;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text);
+                //ucm.GetMessage(msg, " ");
+            }
+            if (message.Type == MessageType.ChatMessage_OperatorToVisitor)
+            {
+                msg = string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text);
+                //ucm.GetMessage(msg, " ");
+            }
+            AddText(msg);
+            wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
+
+        }
+
         public void GetMessage(string message,string type)
         {
-            wb.Height = 278;
-            wb.Width = 420;
             if (type == "Navigate")
             {
                 wb.Navigate(message);
@@ -39,21 +71,13 @@ namespace LiveSupport.OperatorConsole
 
         }
         //接受记录List
-        public UserControlMessage(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
+        public ChatMessageViewerControl(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
         {
             InitializeComponent();
             DataBindMessage(msg);
         }
 
-        private void wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
 
-        }
-
-        private void wb_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
         #region 绑定聊天记录
         public void DataBindMessage(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
         {

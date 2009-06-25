@@ -167,8 +167,8 @@
       <DependentUpon>Snipping.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlMessage.resx">
-      <DependentUpon>UserControlMessage.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ChatMessageViewerControl.resx">
+      <DependentUpon>ChatMessageViewerControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -211,12 +211,13 @@
     <Compile Include="ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlMessage.cs">
+    <Compile Include="Controls\ChatMessageViewerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlMessage.Designer.cs">
-      <DependentUpon>UserControlMessage.cs</DependentUpon>
+    <Compile Include="Controls\ChatMessageViewerControl.Designer.cs">
+      <DependentUpon>ChatMessageViewerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\FtpUpload.cs" />
     <Compile Include="Web References\LiveChatWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

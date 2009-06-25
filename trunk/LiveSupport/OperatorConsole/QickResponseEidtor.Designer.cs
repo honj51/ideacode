@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("快速回复");
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.addNodeToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -43,11 +42,6 @@
             this.setTalkTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.setTalkTreeView.Location = new System.Drawing.Point(0, 31);
             this.setTalkTreeView.Name = "setTalkTreeView";
-            treeNode1.Checked = true;
-            treeNode1.Name = "节点0";
-            treeNode1.Text = "快速回复";
-            this.setTalkTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
             this.setTalkTreeView.Size = new System.Drawing.Size(420, 242);
             this.setTalkTreeView.TabIndex = 6;
             this.setTalkTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.setTalkTreeView_AfterLabelEdit);
