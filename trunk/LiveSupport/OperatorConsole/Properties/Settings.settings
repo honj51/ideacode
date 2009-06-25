@@ -55,7 +55,7 @@
       <Value Profile="(Default)">test</Value>
     </Setting>
     <Setting Name="FtpURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">125.67.234.12</Value>
+      <Value Profile="(Default)">ftp://125.67.234.12/upload</Value>
     </Setting>
     <Setting Name="WSUser" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
