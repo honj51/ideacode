@@ -486,22 +486,22 @@ public static class OperatorService
         mo.Close();
         fs.Close();
 
-        sendUploadFileCompletedMessage(fileName, chatId, homeRootUrl);
+        sendUploadFileCompletedMessage(fileName, chatId);
     }
 
-    private static void sendUploadFileCompletedMessage(string fileName, string chatId, string homeRootUrl)
+    private static void sendUploadFileCompletedMessage(string fileName, string chatId)
     {
         Message m = new Message();
         m.ChatId = chatId;
-        // string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         Util util = new Util();
+        string httpURL = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"] + "/" + chatId + "/" + fileName;
         if (util.IsImageFile(fileName))
         {
-            m.Text = string.Format("客服已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a> <br/><img height='120px'  width='120px'  src='{3}/UploadFile/{4}\' />", fileName, homeRootUrl, chatId + "/" + fileName, homeRootUrl, chatId + "/" + fileName);
+            m.Text = string.Format("客服已给您发送文件 {0}<a target='_blank' href='{1}\'>点击保存</a> <br/><img height='120px'  width='120px'  src='{2}\' />", fileName, httpURL, httpURL);
         }
         else
         {
-            m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}/UploadFile/{2}\'>点击保存</a>", fileName, homeRootUrl, chatId + "/" + fileName);
+            m.Text = string.Format("客服已给您发送文件 {0} <a target='_blank' href='{1}'>点击保存</a>", fileName, httpURL);
         }
         m.Type = MessageType.SystemMessage_ToVisitor;
         ChatService.SendMessage(m);
@@ -527,8 +527,7 @@ public static class OperatorService
         }
         else if (action.ToString() == "complete")
         {
-            string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
-            sendUploadFileCompletedMessage(fileName, chatId, homeRootUrl);            
+            sendUploadFileCompletedMessage(fileName, chatId);            
         }
     }
     /// <summary>
