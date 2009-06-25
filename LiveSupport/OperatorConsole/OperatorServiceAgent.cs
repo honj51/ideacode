@@ -12,7 +12,7 @@ namespace LiveSupport.OperatorConsole
         private static OperatorServiceAgent _default;
         private List<Visitor> visitors = new List<Visitor>();
         private List<Chat> chats = new List<Chat>();
-        private List<QuickResponseCategory> quickResponseCategory;
+        private List<QuickResponseCategory> quickResponseCategory=null;
         private List<Operator> operators = new List<Operator>();
         private NewChangesCheck lastCheck = new NewChangesCheck();
         private OperatorWS ws = new OperatorWS();
@@ -60,6 +60,10 @@ namespace LiveSupport.OperatorConsole
                     quickResponseCategory = GetQuickResponse();
                 }
                 return quickResponseCategory;
+            }
+            set
+            {
+                quickResponseCategory = value;
             }
         }
         #endregion
