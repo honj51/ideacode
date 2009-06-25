@@ -331,4 +331,16 @@
   <data name="SLUI_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SLUI_3.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="addMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addMessage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addType" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addType.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deleteMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deleteMessage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deleteType" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deleteType.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

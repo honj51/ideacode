@@ -74,6 +74,20 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap addMessage {
+            get {
+                object obj = ResourceManager.GetObject("addMessage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap addType {
+            get {
+                object obj = ResourceManager.GetObject("addType", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap aim {
             get {
                 object obj = ResourceManager.GetObject("aim", resourceCulture);
@@ -217,6 +231,20 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.Drawing.Bitmap Delete {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap deleteMessage {
+            get {
+                object obj = ResourceManager.GetObject("deleteMessage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap deleteType {
+            get {
+                object obj = ResourceManager.GetObject("deleteType", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
