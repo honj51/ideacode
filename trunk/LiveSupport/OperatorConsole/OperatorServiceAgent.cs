@@ -260,6 +260,10 @@ namespace LiveSupport.OperatorConsole
 
         private void processChats(NewChangesCheckResult result)
         {
+            if (result.Chats == null)
+            {
+                return;
+            }
             // 1. 查找新的对话请求，并显示NotifyForm
             foreach (var item in result.Chats)
             {
