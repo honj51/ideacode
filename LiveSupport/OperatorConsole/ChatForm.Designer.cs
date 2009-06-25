@@ -67,6 +67,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
@@ -76,8 +77,7 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.wb = new System.Windows.Forms.WebBrowser();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
@@ -86,6 +86,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.panelMessage.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -95,7 +96,6 @@
             this.panel1.SuspendLayout();
             this.glassPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // cutSaveFileDialog
@@ -144,14 +144,16 @@
             this.splitContainer2.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer2.Panel2.Controls.Add(this.statusStrip1);
             this.splitContainer2.Size = new System.Drawing.Size(426, 470);
-            this.splitContainer2.SplitterDistance = 319;
+            this.splitContainer2.SplitterDistance = 313;
             this.splitContainer2.TabIndex = 11;
             // 
             // panelMessage
             // 
-            this.panelMessage.Location = new System.Drawing.Point(0, 41);
+            this.panelMessage.Controls.Add(this.chatMessageViewerControl1);
+            this.panelMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMessage.Location = new System.Drawing.Point(0, 39);
             this.panelMessage.Name = "panelMessage";
-            this.panelMessage.Size = new System.Drawing.Size(424, 279);
+            this.panelMessage.Size = new System.Drawing.Size(426, 274);
             this.panelMessage.TabIndex = 9;
             // 
             // toolStrip2
@@ -242,7 +244,7 @@
             this.txtMsg.Location = new System.Drawing.Point(0, 25);
             this.txtMsg.Multiline = true;
             this.txtMsg.Name = "txtMsg";
-            this.txtMsg.Size = new System.Drawing.Size(426, 100);
+            this.txtMsg.Size = new System.Drawing.Size(426, 106);
             this.txtMsg.TabIndex = 9;
             this.txtMsg.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMsg_KeyUp);
             this.txtMsg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMsg_KeyPress);
@@ -294,7 +296,7 @@
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toollblIsTyping});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 125);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 131);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(426, 22);
             this.statusStrip1.TabIndex = 8;
@@ -364,6 +366,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 21);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(220, 298);
+            this.tabPage4.TabIndex = 2;
+            this.tabPage4.Text = "视频";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -467,30 +479,13 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tabPage4
+            // chatMessageViewerControl1
             // 
-            this.tabPage4.Controls.Add(this.wb);
-            this.tabPage4.Location = new System.Drawing.Point(4, 21);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(220, 298);
-            this.tabPage4.TabIndex = 2;
-            this.tabPage4.Text = "视频";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // wb
-            // 
-            this.wb.AllowNavigation = false;
-            this.wb.AllowWebBrowserDrop = false;
-            this.wb.IsWebBrowserContextMenuEnabled = false;
-            this.wb.Location = new System.Drawing.Point(-2, 0);
-            this.wb.MinimumSize = new System.Drawing.Size(20, 18);
-            this.wb.Name = "wb";
-            this.wb.ScriptErrorsSuppressed = true;
-            this.wb.ScrollBarsEnabled = false;
-            this.wb.Size = new System.Drawing.Size(222, 298);
-            this.wb.TabIndex = 18;
-            this.wb.WebBrowserShortcutsEnabled = false;
+            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
+            this.chatMessageViewerControl1.TabIndex = 0;
             // 
             // operatorPannel1
             // 
@@ -508,11 +503,9 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(658, 470);
             this.Controls.Add(this.splitContainer1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChatForm";
             this.Load += new System.EventHandler(this.ChatForm_Load);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChatForm_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -522,6 +515,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
+            this.panelMessage.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -535,7 +529,6 @@
             this.glassPanel1.ResumeLayout(false);
             this.glassPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -577,7 +570,7 @@
         private OperatorPannel operatorPannel1;
         private System.Windows.Forms.Panel panelMessage;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.WebBrowser wb;
+        private ChatMessageViewerControl chatMessageViewerControl1;
        
     }
 }

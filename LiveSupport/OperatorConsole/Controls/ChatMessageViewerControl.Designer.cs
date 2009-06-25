@@ -1,6 +1,6 @@
 ﻿namespace LiveSupport.OperatorConsole
 {
-    partial class UserControlMessage
+    partial class ChatMessageViewerControl
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -35,12 +35,13 @@
             // 
             this.wb.AllowNavigation = false;
             this.wb.AllowWebBrowserDrop = false;
+            this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wb.IsWebBrowserContextMenuEnabled = false;
-            this.wb.Location = new System.Drawing.Point(0, -4);
+            this.wb.Location = new System.Drawing.Point(0, 0);
             this.wb.MinimumSize = new System.Drawing.Size(20, 18);
             this.wb.Name = "wb";
             this.wb.ScriptErrorsSuppressed = true;
-            this.wb.Size = new System.Drawing.Size(567, 304);
+            this.wb.Size = new System.Drawing.Size(570, 304);
             this.wb.TabIndex = 17;
             this.wb.WebBrowserShortcutsEnabled = false;
             // 

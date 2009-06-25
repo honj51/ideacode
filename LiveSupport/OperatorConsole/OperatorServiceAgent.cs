@@ -211,7 +211,10 @@ namespace LiveSupport.OperatorConsole
                     else
                     {
                         visitors.Add(item);
-                        NewVisitor(this, new NewVisitorEventArgs(item));
+                        if (NewVisitor != null)
+                        {
+                            NewVisitor(this, new NewVisitorEventArgs(item)); 
+                        }
                     }
                 }
 
@@ -236,7 +239,10 @@ namespace LiveSupport.OperatorConsole
             
             processChats(result);
 
-            NewChanges(this, new NewChangesCheckResultEventArgs(result));
+            if (NewChanges != null)
+            {
+                NewChanges(this, new NewChangesCheckResultEventArgs(result));
+            }
             return result;
         }
 
@@ -356,6 +362,10 @@ namespace LiveSupport.OperatorConsole
                 if (ex.InnerException != null && ex.InnerException is SocketException)
                 {
                     resetConnection("连接中断");
+                }
+                else if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    // 超时
                 }
                 else
                 {
