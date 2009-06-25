@@ -21,29 +21,6 @@ namespace LiveSupport.BLL
         }
         #endregion
 
-        //#region 通过AccountId 修改公司信息
-        //public static bool UpdateAccountByAccountId(string accountId, string password, string nickName)
-        //{
-        //    Account account = SqlAccountProvider.Default.GetAccountByAccountId(accountId);
-        //    account.Password = password;
-        //    account.NickName = nickName;
-        //    int i = 0;
-        //    i = SqlAccountProvider.Default.UpdateAccount(account);
-        //    if (i != 0)
-        //    {
-        //        Operator oper = new SqlOperatorProvider().GetPasswordByAccountNameLoginNameAndEmail(account.LoginName, account.LoginName, account.Email);
-        //        if (oper != null)
-        //        {
-        //            oper.Password = password;
-        //            new SqlOperatorProvider().UpdateOperator(oper);
-        //        }
-        //        return true;
-        //    }
-        //    else
-        //        return false;
-        //}
-        //#endregion
-
         #region 修改公司信息
         public static bool UpdateAccount(Account account)
         {
@@ -83,8 +60,8 @@ namespace LiveSupport.BLL
                     op.NickName = NickName;
                     op.Department = dt;
                     op.Email = account.Email;
-                    op.AVChatStatus = "Idle";
-                    op.Status = (OperatorStatus)Enum.Parse((typeof(OperatorStatus)), "Idle");
+                    op.AVChatStatus = OperatorStatus.Offline.ToString();
+                    op.Status = OperatorStatus.Offline;
                     oi=new SqlOperatorProvider().NewOperator(op);
                 }
                 if (i != 0 && di != 0 && oi != 0)
