@@ -227,7 +227,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("125.67.234.12")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ftp://125.67.234.12/upload")]
         public string FtpURL {
             get {
                 return ((string)(this["FtpURL"]));

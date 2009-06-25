@@ -112,7 +112,7 @@ namespace LiveSupport.OperatorConsole
             this.operatorServiceAgent = agent;
             InitializeComponent();
             this.chat = chat;
-            savePath = "ftp://" + Properties.Settings.Default.FtpURL + "/upload/" + chat.ChatId + "/";
+            savePath = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
 
             if (!invite)
             {
@@ -337,7 +337,7 @@ namespace LiveSupport.OperatorConsole
                 bitmap.Save(imageUrl, System.Drawing.Imaging.ImageFormat.Bmp);
 
                 FtpUpload ftpUpload = new FtpUpload(imageUrl, savePath);
-                operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName + ".bmp", chat.ChatId);
+                //operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName + ".bmp", chat.ChatId);
                 string msg = string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl);
                 chatMessageViewerControl1.AddText(msg);
                 uploadTasks.Add(ftpUpload);
