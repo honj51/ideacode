@@ -68,7 +68,7 @@ namespace LiveSupport.OperatorConsole
         private SoundPlayer player = new SoundPlayer();
         private Chat chat;
         //private UserControlMessage ucm=null;
-        private string savePath;
+        private string uploadURL;
 
         private List<FtpUpload> uploadTasks = new List<FtpUpload>();
 
@@ -112,7 +112,7 @@ namespace LiveSupport.OperatorConsole
             this.operatorServiceAgent = agent;
             InitializeComponent();
             this.chat = chat;
-            savePath = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
+            uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
 
             if (!invite)
             {
@@ -269,7 +269,13 @@ namespace LiveSupport.OperatorConsole
             {
                 operatorServiceAgent.CloseChat(this.Chat.ChatId);
             }
-            Directory.Delete(Application.StartupPath.ToString() +"/"+chat.ChatId, true);
+            try
+            {
+                Directory.Delete(Application.StartupPath.ToString() + "/" + chat.ChatId, true);
+            }
+            catch
+            {
+            } 
             Program.ChatForms.Remove(this);
         }
 
@@ -311,7 +317,7 @@ namespace LiveSupport.OperatorConsole
         private string createImageName()
         {
             Random rd = new Random();
-            string imageName = rd.Next(100000).ToString();
+            string imageName = rd.Next(100000).ToString() + ".bmp";
             return imageName;
         }
 
@@ -331,16 +337,16 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
-                string imageName = chat.ChatId + createImageName();
-                string saveUrl = chat.ChatId + "/" + imageName + ".bmp";
-                string imageUrl = Application.StartupPath.ToString() + "/" + saveUrl;
-                bitmap.Save(imageUrl, System.Drawing.Imaging.ImageFormat.Bmp);
+                string fileName = createImageName();
+                string imageFilePath = Application.StartupPath.ToString() + "/" + chat.ChatId + "/" + fileName;
+                bitmap.Save(imageFilePath, System.Drawing.Imaging.ImageFormat.Bmp);
 
-                FtpUpload ftpUpload = new FtpUpload(imageUrl, savePath);
-                //operatorServiceAgent.UploadFile(toByte((Image)bitmap), imageName + ".bmp", chat.ChatId);
-                string msg = string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageUrl);
+                FtpUpload ftpUpload = new FtpUpload(imageFilePath, uploadURL +"/"+ fileName);
+                operatorServiceAgent.SendFile(fileName, chat.ChatId, "start");
+                string msg = string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageFilePath);
                 chatMessageViewerControl1.AddText(msg);
                 uploadTasks.Add(ftpUpload);
+                ftpUpload.FileUploadProgress += new EventHandler<FileUploadProgressEventArgs>(ftpUpload_FileUploadProgress);
                 ftpUpload.Start();
 
             }
@@ -348,6 +354,27 @@ namespace LiveSupport.OperatorConsole
             {
                 Debug.WriteLine("sendImage exception:" + ex.Message);
             }
+        }
+
+        void ftpUpload_FileUploadProgress(object sender, FileUploadProgressEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                FileUploadProgressEventArgs arg = e as FileUploadProgressEventArgs;
+                displayUploadStatusMessage(e.Status, e.FileName);
+
+                if (e.Status != UploadStatus.Uploading)
+                {
+                    uploadTasks.Remove(sender as FtpUpload);
+                }
+
+                if (e.Status == UploadStatus.Succeed)
+                {
+                    operatorServiceAgent.SendFile(e.FileName, chat.ChatId, "complete");
+                }
+
+            }), e);
+
         }
 
         private void addTabPage(string fileName) 
@@ -365,7 +392,7 @@ namespace LiveSupport.OperatorConsole
                 createTabPage();
             }
 
-            fileUpload = new FileUploadControl(fileName,savePath);
+            fileUpload = new FileUploadControl(fileName,uploadURL);
             fileUpload.FileUploadCompleted += new EventHandler<FileUploadEventArgs>(fileUpload_FileUploadCompleted);
             this.uploadTasks.Add(fileUpload.FtpUpload);
 
@@ -402,25 +429,33 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
 
-                string msg = string.Empty;
-                if (e.Status == UploadStatus.Cancel)
-                {
-                    msg = "文件" + e.FileName + "发送已被取消!";
-                }
-                else if (e.Status == UploadStatus.Succeed)
-                {
-                    //msg = "文件" + e.FileName + "发送成功!";
-                }
-                else if (e.Status == UploadStatus.Error)
-                {
-                    msg = "文件" + e.FileName + "发送失败!";
-                }
-                chatMessageViewerControl1.AddInformation(msg);
+                UploadStatus  status = e.Status;
+                string fileName = e.FileName;
+
+                displayUploadStatusMessage(status, fileName);
                 
             }));
             this.uploadTasks.Remove(e.FileUploadControl.FtpUpload);
 
             operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "complete");
+        }
+
+        private void displayUploadStatusMessage(UploadStatus status, string fileName)
+        {
+            string msg = string.Empty;
+            if (status == UploadStatus.Cancel)
+            {
+                msg = "文件" + fileName + "发送已被取消!";
+            }
+            else if (status == UploadStatus.Succeed)
+            {
+                //msg = "文件" + fileName + "发送成功!";
+            }
+            else if (status == UploadStatus.Error)
+            {
+                msg = "文件" + fileName + "发送失败!";
+            }
+            chatMessageViewerControl1.AddInformation(msg);
         }
 
         private void createTabPage() 

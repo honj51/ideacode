@@ -102,13 +102,13 @@ namespace LiveSupport.OperatorConsole.Util
 
                     if (FileUploadProgress != null)
                     {
-                        FileUploadProgress(this, new FileUploadProgressEventArgs(status, 0,contentLen));
+                        FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, status, 0, contentLen));
                     }
                 }
 
                 if (FileUploadProgress != null)
                 {
-                    FileUploadProgress(this, new FileUploadProgressEventArgs(UploadStatus.Succeed, 0, 0));
+                    FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, UploadStatus.Succeed, 0, 0));
                 }
                 // 关闭两个流
                 strm.Close();
@@ -120,7 +120,7 @@ namespace LiveSupport.OperatorConsole.Util
                 Debug.WriteLine("FileUpload exception" + ex.Message);
                 if (FileUploadProgress != null)
                 {
-                    FileUploadProgress(this, new FileUploadProgressEventArgs(UploadStatus.Error, 0, 0));
+                    FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, UploadStatus.Error, 0, 0));
                 }
 
             }
@@ -134,9 +134,11 @@ namespace LiveSupport.OperatorConsole.Util
         public UploadStatus Status;
         public decimal Speed;
         public int ContentLen;
+        public string FileName;
 
-        public FileUploadProgressEventArgs(UploadStatus status, decimal speed, int contentLen)
+        public FileUploadProgressEventArgs(string fileName, UploadStatus status, decimal speed, int contentLen)
         {
+            this.FileName = fileName;
             this.Status = status;
             this.Speed = speed;
             this.ContentLen = contentLen;
