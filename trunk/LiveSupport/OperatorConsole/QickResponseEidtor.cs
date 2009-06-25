@@ -37,52 +37,40 @@ namespace LiveSupport.OperatorConsole
         
         private void addNodeToolStripButton_Click(object sender, EventArgs e)
         {
-            if (setTalkTreeView.SelectedNode != null && setTalkTreeView.SelectedNode.Level < 2)
-            {
-                if (setTalkTreeView.SelectedNode != null)
-                {
-                    setTalkTreeView.SelectedNode.Nodes.Add("新添加节点");
-                    setTalkTreeView.SelectedNode.Expand();
-                }
-            }
-            else 
-            {
-                MessageBox.Show("该节点无法添加");
-            }
+            setTalkTreeView.Nodes.Add("默认分类");
         }
-
+        //删除分类
         private void delNodeToolStripButton_Click(object sender, EventArgs e)
         {
-            if (setTalkTreeView.SelectedNode != null)
+            if (this.setTalkTreeView.SelectedNode != null &&this.setTalkTreeView.SelectedNode.Level==0)
             {
-                if (setTalkTreeView.SelectedNode.Level > 0)
-                {
-                    setTalkTreeView.SelectedNode.Remove();
-                }
-                else 
-                {
-                    MessageBox.Show("该节点无法删除");
-                }
+                this.setTalkTreeView.Nodes.Remove(this.setTalkTreeView.SelectedNode);
+            }
+            if (this.setTalkTreeView.Nodes.Count == 0)
+            {
+                this.tsbAddMessage.Enabled = false;
+                this.tsbDeleteMessage.Enabled = false;
+                this.tsbDeleteType.Enabled = false;
+                this.tsbEdit.Enabled = false;
             }
 
         }
-
+        //编辑
         private void amendNodeToolStripButton_Click(object sender, EventArgs e)
         {
-            if (setTalkTreeView.SelectedNode.Level > 0)
-            {
-                if (setTalkTreeView.SelectedNode != null)
-                {
-                    setTalkTreeView.LabelEdit = true;
-                    setTalkTreeView.SelectedNode.BeginEdit();
-                }
-            }
-        }
 
+            if (setTalkTreeView.SelectedNode != null)
+            {
+                setTalkTreeView.LabelEdit = true;
+                setTalkTreeView.SelectedNode.BeginEdit();
+            }
+
+        }
+        //保存
         private void OkToolStripButton_Click(object sender, EventArgs e)
         {
             Program.OperaterServiceAgent.QuickResponseCategory.Clear();
-            foreach (TreeNode Node in setTalkTreeView.Nodes[0].Nodes)
+            foreach (TreeNode Node in setTalkTreeView.Nodes)
             { 
                 if(Node==null)continue;
                 QuickResponseCategory qrc = new QuickResponseCategory();
@@ -90,12 +78,14 @@ namespace LiveSupport.OperatorConsole
                     qrc.Name = Node.Text;
                     if (Node.Nodes==null) continue;
                     string[] Contents = new string[Node.Nodes.Count];
+
                     for(int i=0; i<Node.Nodes.Count;i++)
                     {
                         if (Node.Nodes[i].Text == null) continue;
                         Contents[i]=Node.Nodes[i].Text;
                     }
                 qrc.Responses =Contents;
+              
                 Program.OperaterServiceAgent.QuickResponseCategory.Add(qrc);
             }
             if(Program.OperaterServiceAgent.QuickResponseCategory!=null)
@@ -103,22 +93,26 @@ namespace LiveSupport.OperatorConsole
                 Program.OperaterServiceAgent.SaveQuickResponse(Program.OperaterServiceAgent.QuickResponseCategory);
             }
             
-        }
+            
 
+            
+        }
+        //初始化
         private void QickResponseEidtor_Load(object sender, EventArgs e)
         {
-            setTalkTreeView.Nodes[0].Nodes.Clear();
+            setTalkTreeView.Nodes.Clear();
+
             List<QuickResponseCategory> qcs = Program.OperaterServiceAgent.QuickResponseCategory;
             if (qcs != null)
             {
                 for (int i = 0; i < qcs.Count; i++)
                 {
-                    setTalkTreeView.Nodes[0].Nodes.Add(qcs[i].Name);
+                    setTalkTreeView.Nodes.Add(qcs[i].Name);
                     if (qcs[i].Responses.Length == 0) continue;
                     foreach (var item in qcs[i].Responses)
                     {
                         if (item.ToString() == "") continue;
-                        setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
+                        setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
                     }
                 }
                 setTalkTreeView.ExpandAll();
@@ -153,8 +147,61 @@ namespace LiveSupport.OperatorConsole
 
         private void QickResponseEidtor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.OperaterServiceAgent.QuickResponseCategory.Clear();
-            setTalkTreeView.Nodes[0].Nodes.Clear();
+            Program.OperaterServiceAgent.QuickResponseCategory = null;
+            setTalkTreeView.Nodes.Clear();
+        }
+
+        //添加消息
+        private void tsbAddMessage_Click(object sender, EventArgs e)
+        {
+            if (this.setTalkTreeView.SelectedNode != null)
+            {
+                if (setTalkTreeView.SelectedNode.Level < 1)
+                {
+                    this.setTalkTreeView.Nodes[this.setTalkTreeView.SelectedNode.Index].Nodes.Add("默认消息");
+                }
+                else
+                {
+                    this.setTalkTreeView.Nodes[this.setTalkTreeView.SelectedNode.Parent.Index].Nodes.Add("默认消息");
+                    
+                }
+                setTalkTreeView.ExpandAll();
+            }
+        }
+        //删除消息
+        private void tsbDeleteMessage_Click(object sender, EventArgs e)
+        {
+            if (this.setTalkTreeView.SelectedNode != null && this.setTalkTreeView.SelectedNode.Level != 0)
+            {
+                this.setTalkTreeView.Nodes.Remove(this.setTalkTreeView.SelectedNode);
+            }
+        }
+
+        private void setTalkTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (this.setTalkTreeView.SelectedNode != null)
+            {
+                this.tsbEdit.Enabled = true;
+                if (this.setTalkTreeView.SelectedNode.Level == 0)
+                {
+                    this.tsbAddMessage.Enabled = true;
+                    this.tsbDeleteType.Enabled = true;
+                    this.tsbDeleteMessage.Enabled = false;
+                }
+                else
+                {
+                    this.tsbAddMessage.Enabled = true;
+                    this.tsbDeleteMessage.Enabled = true;
+                    this.tsbDeleteType.Enabled = false;
+                }
+            }
+            else
+            {
+                this.tsbAddMessage.Enabled = false;
+                this.tsbDeleteMessage.Enabled = false;
+                this.tsbDeleteType.Enabled = false;
+                this.tsbEdit.Enabled = false;
+            }
         }
     }
 }

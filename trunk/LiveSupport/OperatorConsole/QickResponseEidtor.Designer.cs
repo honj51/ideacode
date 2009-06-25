@@ -30,10 +30,13 @@
         {
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.addNodeToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.delNodeToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.amendNodeToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.OkToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsbAddType = new System.Windows.Forms.ToolStripButton();
+            this.tsbDeleteType = new System.Windows.Forms.ToolStripButton();
+            this.tsbAddMessage = new System.Windows.Forms.ToolStripButton();
+            this.tsbDeleteMessage = new System.Windows.Forms.ToolStripButton();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.operatorWS1 = new LiveSupport.OperatorConsole.LiveChatWS.OperatorWS();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,15 +48,18 @@
             this.setTalkTreeView.Size = new System.Drawing.Size(420, 242);
             this.setTalkTreeView.TabIndex = 6;
             this.setTalkTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.setTalkTreeView_AfterLabelEdit);
+            this.setTalkTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.setTalkTreeView_AfterSelect);
             // 
             // toolStrip1
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addNodeToolStripButton,
-            this.delNodeToolStripButton,
-            this.amendNodeToolStripButton,
-            this.OkToolStripButton});
+            this.tsbAddType,
+            this.tsbDeleteType,
+            this.tsbAddMessage,
+            this.tsbDeleteMessage,
+            this.tsbEdit,
+            this.tsbSave});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -61,53 +67,87 @@
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // addNodeToolStripButton
+            // tsbAddType
             // 
-            this.addNodeToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.addNodeToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Add;
-            this.addNodeToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.addNodeToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.addNodeToolStripButton.Name = "addNodeToolStripButton";
-            this.addNodeToolStripButton.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.addNodeToolStripButton.Size = new System.Drawing.Size(38, 28);
-            this.addNodeToolStripButton.Text = "增加节点";
-            this.addNodeToolStripButton.Click += new System.EventHandler(this.addNodeToolStripButton_Click);
+            this.tsbAddType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAddType.Image = global::LiveSupport.OperatorConsole.Properties.Resources.addType;
+            this.tsbAddType.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbAddType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAddType.Name = "tsbAddType";
+            this.tsbAddType.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.tsbAddType.Size = new System.Drawing.Size(38, 28);
+            this.tsbAddType.Text = "添加分类";
+            this.tsbAddType.Click += new System.EventHandler(this.addNodeToolStripButton_Click);
             // 
-            // delNodeToolStripButton
+            // tsbDeleteType
             // 
-            this.delNodeToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.delNodeToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Delete;
-            this.delNodeToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.delNodeToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.delNodeToolStripButton.Name = "delNodeToolStripButton";
-            this.delNodeToolStripButton.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.delNodeToolStripButton.Size = new System.Drawing.Size(38, 28);
-            this.delNodeToolStripButton.Text = "删除节点";
-            this.delNodeToolStripButton.Click += new System.EventHandler(this.delNodeToolStripButton_Click);
+            this.tsbDeleteType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDeleteType.Enabled = false;
+            this.tsbDeleteType.Image = global::LiveSupport.OperatorConsole.Properties.Resources.deleteType;
+            this.tsbDeleteType.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDeleteType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDeleteType.Name = "tsbDeleteType";
+            this.tsbDeleteType.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.tsbDeleteType.Size = new System.Drawing.Size(38, 28);
+            this.tsbDeleteType.Text = "删除分类";
+            this.tsbDeleteType.Click += new System.EventHandler(this.delNodeToolStripButton_Click);
             // 
-            // amendNodeToolStripButton
+            // tsbAddMessage
             // 
-            this.amendNodeToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.amendNodeToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Modify;
-            this.amendNodeToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.amendNodeToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.amendNodeToolStripButton.Name = "amendNodeToolStripButton";
-            this.amendNodeToolStripButton.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.amendNodeToolStripButton.Size = new System.Drawing.Size(38, 28);
-            this.amendNodeToolStripButton.Text = "修改节点";
-            this.amendNodeToolStripButton.Click += new System.EventHandler(this.amendNodeToolStripButton_Click);
+            this.tsbAddMessage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAddMessage.Enabled = false;
+            this.tsbAddMessage.Image = global::LiveSupport.OperatorConsole.Properties.Resources.addMessage;
+            this.tsbAddMessage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbAddMessage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAddMessage.Name = "tsbAddMessage";
+            this.tsbAddMessage.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.tsbAddMessage.Size = new System.Drawing.Size(38, 28);
+            this.tsbAddMessage.Text = "添加消息";
+            this.tsbAddMessage.Click += new System.EventHandler(this.tsbAddMessage_Click);
             // 
-            // OkToolStripButton
+            // tsbDeleteMessage
             // 
-            this.OkToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.OkToolStripButton.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Save;
-            this.OkToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.OkToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OkToolStripButton.Name = "OkToolStripButton";
-            this.OkToolStripButton.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.OkToolStripButton.Size = new System.Drawing.Size(38, 28);
-            this.OkToolStripButton.Text = "保存";
-            this.OkToolStripButton.Click += new System.EventHandler(this.OkToolStripButton_Click);
+            this.tsbDeleteMessage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDeleteMessage.Enabled = false;
+            this.tsbDeleteMessage.Image = global::LiveSupport.OperatorConsole.Properties.Resources.deleteMessage;
+            this.tsbDeleteMessage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDeleteMessage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDeleteMessage.Name = "tsbDeleteMessage";
+            this.tsbDeleteMessage.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.tsbDeleteMessage.Size = new System.Drawing.Size(38, 28);
+            this.tsbDeleteMessage.Text = "删除消息";
+            this.tsbDeleteMessage.Click += new System.EventHandler(this.tsbDeleteMessage_Click);
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbEdit.Enabled = false;
+            this.tsbEdit.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Modify;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.tsbEdit.Size = new System.Drawing.Size(38, 28);
+            this.tsbEdit.Text = "修改";
+            this.tsbEdit.Click += new System.EventHandler(this.amendNodeToolStripButton_Click);
+            // 
+            // tsbSave
+            // 
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSave.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Save;
+            this.tsbSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.tsbSave.Size = new System.Drawing.Size(38, 28);
+            this.tsbSave.Text = "保存";
+            this.tsbSave.Click += new System.EventHandler(this.OkToolStripButton_Click);
+            // 
+            // operatorWS1
+            // 
+            this.operatorWS1.AuthenticationHeaderValue = null;
+            this.operatorWS1.Url = "http://localhost:3355/livechat/Operator.asmx";
+            this.operatorWS1.UseDefaultCredentials = true;
             // 
             // QickResponseEidtor
             // 
@@ -135,10 +175,13 @@
 
         private System.Windows.Forms.TreeView setTalkTreeView;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton addNodeToolStripButton;
-        private System.Windows.Forms.ToolStripButton delNodeToolStripButton;
-        private System.Windows.Forms.ToolStripButton amendNodeToolStripButton;
-        private System.Windows.Forms.ToolStripButton OkToolStripButton;
+        private System.Windows.Forms.ToolStripButton tsbAddType;
+        private System.Windows.Forms.ToolStripButton tsbDeleteType;
+        private System.Windows.Forms.ToolStripButton tsbEdit;
+        private System.Windows.Forms.ToolStripButton tsbSave;
+        private System.Windows.Forms.ToolStripButton tsbAddMessage;
+        private System.Windows.Forms.ToolStripButton tsbDeleteMessage;
+        private LiveSupport.OperatorConsole.LiveChatWS.OperatorWS operatorWS1;
 
     }
 }
