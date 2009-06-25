@@ -52,6 +52,7 @@ namespace LiveSupport.BLL
                 di=new SqlDepartmentProvider().AddDepartment(dt);
                 if (di!=0)
                 {
+
                     Operator op = new Operator();
                     op.Account =  account;
                     op.LoginName = loginName;
