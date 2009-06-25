@@ -60,7 +60,7 @@
                 <td class="style5">
                     范德萨</td>
                 <td>
-            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=3'></script>
+            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=a055a2ca-f531-4ad6-8048-a7556866372c&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=3'></script>
             </tr>
         </table>
 &nbsp;<div id="trace_div"></div>
