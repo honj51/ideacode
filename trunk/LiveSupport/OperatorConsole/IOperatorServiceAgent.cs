@@ -51,7 +51,7 @@ namespace LiveSupport.OperatorConsole
         List<Operator> Operators { get; set; }
         Operator CurrentOperator { get; set; }
         List<Chat> Chats { get; set; }
-        List<QuickResponseCategory> QuickResponseCategory { get; }
+        List<QuickResponseCategory> QuickResponseCategory { get; set; }
         #endregion
     }
 
