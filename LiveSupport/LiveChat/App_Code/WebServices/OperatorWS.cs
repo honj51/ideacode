@@ -144,7 +144,7 @@ public class OperatorWS : System.Web.Services.WebService
     public void SendFile(string fileName, string chatId, object action)
     {
         checkAuthentication();
-        string saveFilePath = Server.MapPath("~/UploadFile/" + chatId + "/");
+        string saveFilePath = Server.MapPath("~/upload/" + chatId + "/");
         OperatorService.SendFile(fileName, chatId,saveFilePath, action);
     }
 
