@@ -110,13 +110,18 @@ namespace LiveSupport.OperatorConsole.Util
 
                     if (FileUploadProgress != null)
                     {
-                        FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, status, 0, contentLen));
+                        FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, UploadStatus.Uploading, 0, contentLen));
                     }
                 }
 
                 if (FileUploadProgress != null)
                 {
-                    FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, UploadStatus.Succeed, 0, 0));
+                    UploadStatus s = status;
+                    if (status == UploadStatus.Uploading)
+                    {
+                        s = UploadStatus.Succeed;
+                    }
+                    FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, s, 0, 0));
                 }
                 // 关闭两个流
                 strm.Close();
