@@ -10,21 +10,30 @@ using LiveSupport.OperatorConsole.LiveChatWS;
 namespace LiveSupport.OperatorConsole
 {
     public partial class ChatMessageViewerControl : UserControl
-    {
+    {   
         public ChatMessageViewerControl()
         {
             InitializeComponent();
             wb.Navigate("about:");
+
         }
 
+        
         public void ResetContext(string message)
         {
             wb.Navigate("about:" + message);
         }
 
+        public void AddFloatInformation(string info)
+        {
+            this.label1.Text = info;
+            this.label1.Visible = true;
+            timer1.Enabled = true;
+        }
+        
         public void AddInformation(string info)
         {
-            string msg = "<span style='color: #FF9933; FONT-SIZE: 15px'>" + info + "</span><br />";
+            string msg = "<img  src''/><span style='color: #FF9933; FONT-SIZE: 15px'>" + info + "</span><br />";
             AddText(msg);
         }
 
@@ -109,6 +118,12 @@ namespace LiveSupport.OperatorConsole
         private void UserControlMessage_Load(object sender, EventArgs e)
         {
           
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Visible = false;
+            timer1.Enabled = false;
         }
     }
 }
