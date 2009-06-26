@@ -21,26 +21,42 @@ public partial class AdminManager_Login : System.Web.UI.Page
     {
         string adminName = ConfigurationManager.AppSettings["AdminUser"].ToString();
         string adminPwd = ConfigurationManager.AppSettings["AdminPwd"].ToString();
-        if (this.txtUser.Text == adminName && this.txtPwd.Text == adminPwd)
+        if (Session["createRandom"] != null)
         {
-            AdminUser user = new AdminUser();
-            user.AdminName = adminName;
-            user.AdminPwd = adminPwd;
-            user.LoginDate = DateTime.Now;
-            user.LoginIP = Request.ServerVariables["LOCAL_ADDR"];
-            int count=Convert.ToInt32(ConfigurationManager.AppSettings["LoginCount"].ToString());
-            count++;
-            user.LoginCount = count;
+            if (this.txtValidate.Text == Session["createRandom"].ToString())
+            {
+                if (this.txtUser.Text == adminName && this.txtPwd.Text == adminPwd)
+                {
+                    AdminUser user = new AdminUser();
+                    user.AdminName = adminName;
+                    user.AdminPwd = adminPwd;
+                    user.LoginDate = DateTime.Now;
+                    user.LoginIP = Request.ServerVariables["LOCAL_ADDR"];
+                    int count = Convert.ToInt32(ConfigurationManager.AppSettings["LoginCount"].ToString());
+                    count++;
+                    user.LoginCount = count;
 
-            ConfigurationManager.AppSettings["LoginCount"] = user.LoginCount + "";
-            ConfigurationManager.AppSettings["LoginIP"] = user.LoginIP;
-            ConfigurationManager.AppSettings["LoginDate"] = user.LoginDate.ToString();
-            Session["adminUser"] = user;
-            this.Response.Redirect("Frame.aspx");
-        }
-        else
-        {
-            this.ltlTip.Text = "登陆失败!";
+                    ConfigurationManager.AppSettings["LoginCount"] = user.LoginCount + "";
+                    ConfigurationManager.AppSettings["LoginIP"] = user.LoginIP;
+                    ConfigurationManager.AppSettings["LoginDate"] = user.LoginDate.ToString();
+                    Session["adminUser"] = user;
+                    this.Response.Redirect("Frame.aspx");
+                }
+                else
+                {
+                    this.ltlTip.Text = "登陆失败!";
+                    this.txtValidate.Text = "";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('用户名/密码错误!');</script>");
+                    return;
+                }
+            }
+            else
+            {
+                this.ltlTip.Text = "登陆失败!";
+                this.txtValidate.Text = "";
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('验证码输入错误!');</script>");
+                return;
+            }
         }
     }
 }

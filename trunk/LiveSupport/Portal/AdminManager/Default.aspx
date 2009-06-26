@@ -8,8 +8,9 @@
 <meta http-equiv="Page-Enter" content="blendTrans(Duration=0.5)" />
 <link href="../Theme/Default/css/Manager.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../Script/Common.js"></script>
+<script src="../js/Random.js"> </script>
 
-<title>用户登陆 @ leehom内容管理系统 -- Power By WWW.19870123.CN</title>
+<title>江西互动后台管理</title>
 <style type="text/css">
 body {background: #006599;margin: 0px;font-family: 宋体;text-align: center;}
 td {font-size: 12px;}
@@ -34,7 +35,7 @@ td {font-size: 12px;}
 <br />
 <table cellspacing="0" cellpadding="0" width="427" border="0" style="margin:0 auto; color:Black;">
 <tr>
-<td style="background: url(../Theme/Default/Manager/index_hz01.gif ); height: 64px;" colspan="3">
+<td style="background: url(../Theme/Default/Manager/index_hz01.gif ); height: 64px; font-size:14px;" colspan="3">
     江西互动科技有限公司</td>
 </tr>
 <tr>
@@ -65,8 +66,9 @@ td {font-size: 12px;}
 <tr>
 <td style="height: 30px;" colspan="2">
 <div class="name">
-计算题：　　<img src="../App_Page/ValidateCode.aspx" alt="看不清？点击刷新" onclick="this.src='../App_Page/ValidateCode.aspx?temp='+Math.random()" style="cursor: pointer; margin: 5px 0px 0px;" height="25" width="60" />
-<asp:TextBox ID="txtValidate" runat="server" MaxLength="2" CssClass="txt" Width="82px" ValidationGroup="Login"></asp:TextBox>
+验证码：　　<img id="imgRandom" alt="验证码" src="../RandImage.aspx" class="verifycode_img"/>
+<asp:TextBox ID="txtValidate" runat="server" MaxLength="10" CssClass="txt" 
+        Width="82px" ValidationGroup="Login"></asp:TextBox>
 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtValidate" Display="Dynamic" ValidationGroup="Login">*
 </asp:RequiredFieldValidator>
 </div>
