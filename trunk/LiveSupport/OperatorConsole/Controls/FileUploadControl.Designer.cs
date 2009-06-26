@@ -54,7 +54,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(14, 50);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(187, 11);
+            this.progressBar1.Size = new System.Drawing.Size(189, 13);
             this.progressBar1.TabIndex = 2;
             // 
             // lblFileName
@@ -78,7 +78,7 @@
             // 
             this.lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProgress.AutoSize = true;
-            this.lblProgress.Location = new System.Drawing.Point(130, 67);
+            this.lblProgress.Location = new System.Drawing.Point(132, 69);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(53, 12);
             this.lblProgress.TabIndex = 5;
@@ -89,7 +89,7 @@
             this.lblCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCancel.AutoSize = true;
             this.lblCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancel.Location = new System.Drawing.Point(172, 88);
+            this.lblCancel.Location = new System.Drawing.Point(174, 90);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(29, 12);
             this.lblCancel.TabIndex = 6;
@@ -108,8 +108,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.lblSpeed);
@@ -117,8 +117,9 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblMessage);
+            this.Margin = new System.Windows.Forms.Padding(10);
             this.Name = "FileUploadControl";
-            this.Size = new System.Drawing.Size(217, 106);
+            this.Size = new System.Drawing.Size(219, 108);
             this.Load += new System.EventHandler(this.FileUploadControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
