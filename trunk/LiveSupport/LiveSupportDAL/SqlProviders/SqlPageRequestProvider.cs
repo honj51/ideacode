@@ -17,7 +17,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <returns>Pagerequest集合</returns>
         public List<PageRequest> GetHistoryPageRequests(string sessionId, DateTime begin, DateTime end)
         {
-            string sql = string.Format("select * from dbo.LiveChat_PageRequest where SessionId='{0}' and requesttime>='{1}' and requesttime<='{2}'", sessionId, begin, end);
+            string sql = string.Format("select * from dbo.LiveChat_PageRequest where SessionId='{0}' and requesttime>='{1}' and requesttime<='{2}' order by requesttime", sessionId, begin, end);
             SqlDataReader data = null;
             List<PageRequest> list = new List<PageRequest>();
             try
