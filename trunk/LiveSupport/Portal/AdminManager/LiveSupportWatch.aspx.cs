@@ -31,12 +31,26 @@ public partial class AdminManager_LiveSupportWatch : System.Web.UI.Page
     }
     List<Chat> chatList = null;
     List<Operator> operatorList = null;
-   
+    AdminUser user;
     protected void Page_Load(object sender, EventArgs e)
     {
-        chatList = ChatManager.LookupChat("", "", "");
-        operatorList = OperatorsManager.GetLiveSupportOnlineOperator("", "", "");
-
+        if (Session["adminUser"] != null)
+        {
+            chatList = ChatManager.LookupChat("", "", "");
+            operatorList = OperatorsManager.GetLiveSupportOnlineOperator("", "", "");
+            user = Session["adminUser"] as AdminUser;
+            if (!IsPostBack)
+            {
+                DataBindOperator(operatorList);
+                DataBindChat(chatList);
+            }
+        }
+        else
+        {
+            this.Response.Write("<script>alert('登陆超时,请从新登陆...');window.location='Default.aspx';</script>");
+            return;
+        }
+       
     }
     #region 绑定公司
     protected void ddlChat_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,14 +133,25 @@ public partial class AdminManager_LiveSupportWatch : System.Web.UI.Page
     #region 通过公司Id获取公司名称
     public string GetAccountNameById(string id)
     {
-        return AccountsManager.GetAccountByAccountId(id).CompanyName;
+        if (AccountsManager.GetAccountByAccountId(id) != null)
+        {
+            return AccountsManager.GetAccountByAccountId(id).CompanyName;
+        }
+        return "";
     }
     #endregion
 
     #region 通过客服ID获取客服信息
     public string GetOperatorNameById(string id)
     {
-        return OperatorsManager.GetOperatorByOperatorId(id).NickName;
+        if (OperatorsManager.GetOperatorByOperatorId(id) != null)
+        {
+            return OperatorsManager.GetOperatorByOperatorId(id).NickName;
+        }
+        else
+        {
+            return "";
+        }
     }
     #endregion
 
