@@ -30,25 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Timer tmrGetMsg;
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("欢迎光临本公司");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("欢迎", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("谢谢您的支持！再会！");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("再见", new System.Windows.Forms.TreeNode[] {
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("未知");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("技术问题", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("快速回复", new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode4,
-            treeNode6});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.cutSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.uploadOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panelMessage = new System.Windows.Forms.Panel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -67,6 +55,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
@@ -77,8 +66,6 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -155,6 +142,14 @@
             this.panelMessage.Name = "panelMessage";
             this.panelMessage.Size = new System.Drawing.Size(426, 274);
             this.panelMessage.TabIndex = 9;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
+            this.chatMessageViewerControl1.TabIndex = 0;
             // 
             // toolStrip2
             // 
@@ -337,22 +332,6 @@
             this.setTalkTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.setTalkTreeView.Location = new System.Drawing.Point(3, 3);
             this.setTalkTreeView.Name = "setTalkTreeView";
-            treeNode1.Name = "节点9";
-            treeNode1.Text = "欢迎光临本公司";
-            treeNode2.Name = "节点1";
-            treeNode2.Text = "欢迎";
-            treeNode3.Name = "节点10";
-            treeNode3.Text = "谢谢您的支持！再会！";
-            treeNode4.Name = "节点4";
-            treeNode4.Text = "再见";
-            treeNode5.Name = "节点11";
-            treeNode5.Text = "未知";
-            treeNode6.Name = "节点5";
-            treeNode6.Text = "技术问题";
-            treeNode7.Name = "节点0";
-            treeNode7.Text = "快速回复";
-            this.setTalkTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7});
             this.setTalkTreeView.Size = new System.Drawing.Size(214, 292);
             this.setTalkTreeView.TabIndex = 0;
             this.setTalkTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.setTalkTreeView_NodeMouseDoubleClick);
@@ -366,6 +345,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "对话转接";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 0);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(220, 298);
+            this.operatorPannel1.TabIndex = 0;
             // 
             // tabPage4
             // 
@@ -478,22 +465,6 @@
             this.lblVisitorInfo.TabIndex = 6;
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
-            this.chatMessageViewerControl1.TabIndex = 0;
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 0);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(220, 298);
-            this.operatorPannel1.TabIndex = 0;
             // 
             // ChatForm
             // 
