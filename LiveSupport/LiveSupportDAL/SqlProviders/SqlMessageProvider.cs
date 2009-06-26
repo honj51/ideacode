@@ -85,7 +85,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <param name="end">结束时间</param>
         public List<Message> GetHistoryChatMessage(string chatId, DateTime begin, DateTime end)
         {
-            string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}'and SentDate>='{1}'  and SentDate <= '{2}'", chatId, begin.Ticks, end.Ticks);
+            string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}'and SentDate>='{1}'  and SentDate <= '{2}' order by SentDate", chatId, begin.Ticks, end.Ticks);
             SqlDataReader data = null;
             List<Message> retList = new List<Message>();
             try
@@ -107,7 +107,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 通过ChatId获得聊天记录
         public List<Message> GetChatMessageByChatId(string chatId)
         {
-            string sql = "select * from dbo.LiveChat_Message where ChatID='"+chatId+"'";
+            string sql = "select * from dbo.LiveChat_Message where ChatID='" + chatId + "' order by SentDate";
             SqlDataReader data = null;
             List<Message> retList = new List<Message>();
             try
