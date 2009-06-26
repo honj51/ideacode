@@ -65,7 +65,11 @@ namespace LiveSupport.OperatorConsole
             Icon _Icon = System.Drawing.Icon.FromHandle(_SHFILEINFO.hIcon);
             return _Icon;
         }
-
+        /// <summary>
+        /// 判断客服状态
+        /// </summary>
+        /// <param name="os"></param>
+        /// <returns></returns>
         public static string GetOperatorsStatusText(OperatorStatus os)
         {
             string status;
@@ -97,7 +101,11 @@ namespace LiveSupport.OperatorConsole
             return status;
 
         }
-
+        /// <summary>
+        /// 判断浏览状态
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string GetVisitSessionStatusText(VisitSessionStatus s)
         {
             string status;
@@ -121,7 +129,11 @@ namespace LiveSupport.OperatorConsole
             }
             return status;
         }
-
+        /// <summary>
+        /// 判断浏览器类型
+        /// </summary>
+        /// <param name="browser"></param>
+        /// <returns></returns>
         public static string GetBrowserShortName(string browser)
         {
             string shortName = string.Empty;
@@ -139,7 +151,12 @@ namespace LiveSupport.OperatorConsole
             }
             return shortName;
         }
-
+        /// <summary>
+        /// 记算在线时间
+        /// </summary>
+        /// <param name="DateTime1">加载时间</param>
+        /// <param name="DateTime2">当前时间</param>
+        /// <returns>在线时间</returns>
         public static string dateDiff(DateTime DateTime1, DateTime DateTime2)
         {
             string dateDiff = null;
