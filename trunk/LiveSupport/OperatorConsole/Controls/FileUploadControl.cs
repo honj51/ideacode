@@ -16,7 +16,6 @@ namespace LiveSupport.OperatorConsole.Controls
     public partial class FileUploadControl : UserControl
     {
         public event EventHandler<FileUploadEventArgs> FileUploadCompleted;
-        Common common = new Common();
         FtpUpload ftpUpload;
         string fileName;
         string fileFullPath;
@@ -51,16 +50,18 @@ namespace LiveSupport.OperatorConsole.Controls
             FileInfo fileInfo = new FileInfo(this.fileFullPath);
             fileSize = fileInfo.Length;
             progressBar1.Maximum = (int)fileSize;
+
+            ftpUpload = new FtpUpload(this.fileFullPath, ftpURL);
+            ftpUpload.FileUploadProgress += new EventHandler<FileUploadProgressEventArgs>(ftpUpload_FileUploadProgress);
+         
+            ftpUpload.Start();
         }
 
         private void FileUploadControl_Load(object sender, EventArgs e)
         {
             this.lblFileName.Text = this.fileName;
             progressBar1.Value = 0;//设置当前值
-
-            ftpUpload = new FtpUpload(this.fileFullPath, ftpURL);
-            ftpUpload.FileUploadProgress += new EventHandler<FileUploadProgressEventArgs>(ftpUpload_FileUploadProgress);
-            ftpUpload.Start();
+            
         }
 
         private void lblCancel_Click(object sender, EventArgs e)
