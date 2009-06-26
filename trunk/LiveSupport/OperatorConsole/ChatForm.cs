@@ -172,14 +172,18 @@ namespace LiveSupport.OperatorConsole
         {
             if (uploadOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //if (this.tabPage3 != null&&this.tabPage3.Controls.Count>=2)
-                //{
-                //    chatMessageViewerControl1.AddInformation("你上传的文件的次数过多！");
-                //    //ucm.GetMessage(msg, " ");
-                //    return;
-                //}
                 string filename = uploadOpenFileDialog.FileName;
 
+                foreach (FtpUpload item in uploadTasks)
+	           {
+		         if(item.fileFullPath==filename)
+                 {
+                     chatMessageViewerControl1.AddFloatInformation("文件" + filename.Substring(filename.LastIndexOf("\\") + 1) + "正在上传中,不能发送相同文件");
+                     return;
+                   
+                 }
+	           }
+               
                 addTabPage(filename);
                 operatorServiceAgent.SendFile(filename, this.chat.ChatId, "start");
             }
@@ -393,21 +397,15 @@ namespace LiveSupport.OperatorConsole
             }
 
             fileUpload = new FileUploadControl(fileName,uploadURL);
-            fileUpload.Dock = DockStyle.Top;
             fileUpload.FileUploadCompleted += new EventHandler<FileUploadEventArgs>(fileUpload_FileUploadCompleted);
+            
             this.uploadTasks.Add(fileUpload.FtpUpload);
-           
-            //if (this.tabPage3.Controls.Count == 0 && this.tabPage3 != null)
-            //{
-            //    this.tabPage3.Controls.Add(fileUpload);
-            //}
-            //else
-            //{
-            //    this.tabPage3.Controls.Add(fileUpload);
-            //    fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 5);
-            //}
+               
             this.tabPage3.Controls.Add(fileUpload);
+
             fileUpload.Dock = DockStyle.Top;
+          
+           
         }
 
         void fileUpload_FileUploadCompleted(object sender, FileUploadEventArgs e)
@@ -421,16 +419,6 @@ namespace LiveSupport.OperatorConsole
                 {
                     this.tabPage3.Parent.Controls.Remove(this.tabPage3);
                 }
-                //else
-                //{
-                //    foreach (Control item in this.tabPage3.Controls)
-                //    {
-                //        if (item.Location == new System.Drawing.Point(4, arg.FileUploadControl.Height + 5))
-                //        {
-                //            item.Location = new System.Drawing.Point(4, 21);
-                //        }
-                //    }
-                //}
 
                 UploadStatus  status = arg.Status;
                 string fileName = arg.FileName;
@@ -454,6 +442,7 @@ namespace LiveSupport.OperatorConsole
             if (status == UploadStatus.Cancel)
             {
                 msg = "文件" + fileName + "发送已被取消!";
+                chatMessageViewerControl1.AddFloatInformation(msg);
             }
             else if (status == UploadStatus.Succeed)
             {
