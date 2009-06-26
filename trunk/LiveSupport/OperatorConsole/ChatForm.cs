@@ -172,12 +172,12 @@ namespace LiveSupport.OperatorConsole
         {
             if (uploadOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (this.tabPage3 != null&&this.tabPage3.Controls.Count>=2)
-                {
-                    chatMessageViewerControl1.AddInformation("你上传的文件的次数过多！");
-                    //ucm.GetMessage(msg, " ");
-                    return;
-                }
+                //if (this.tabPage3 != null&&this.tabPage3.Controls.Count>=2)
+                //{
+                //    chatMessageViewerControl1.AddInformation("你上传的文件的次数过多！");
+                //    //ucm.GetMessage(msg, " ");
+                //    return;
+                //}
                 string filename = uploadOpenFileDialog.FileName;
 
                 addTabPage(filename);
@@ -287,17 +287,17 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
-            setTalkTreeView.Nodes[0].Nodes.Clear();
+            setTalkTreeView.Nodes.Clear();
             if (operatorServiceAgent.QuickResponseCategory != null)
             {
                 for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
                 {
-                    setTalkTreeView.Nodes[0].Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
+                    setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
                     if (operatorServiceAgent.QuickResponseCategory[i].Responses.Length == 0) continue;
                     foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
                     {
                         if (item.ToString() == "") continue;
-                        setTalkTreeView.Nodes[0].Nodes[i].Nodes.Add(item.ToString());
+                        setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
                     }
                 }
             }
@@ -393,51 +393,59 @@ namespace LiveSupport.OperatorConsole
             }
 
             fileUpload = new FileUploadControl(fileName,uploadURL);
+            fileUpload.Dock = DockStyle.Top;
             fileUpload.FileUploadCompleted += new EventHandler<FileUploadEventArgs>(fileUpload_FileUploadCompleted);
             this.uploadTasks.Add(fileUpload.FtpUpload);
-
-            if (this.tabPage3.Controls.Count == 0 && this.tabPage3 != null)
-            {
-                this.tabPage3.Controls.Add(fileUpload);
-            }
-            else
-            {
-                this.tabPage3.Controls.Add(fileUpload);
-                fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 5);
-            }
+           
+            //if (this.tabPage3.Controls.Count == 0 && this.tabPage3 != null)
+            //{
+            //    this.tabPage3.Controls.Add(fileUpload);
+            //}
+            //else
+            //{
+            //    this.tabPage3.Controls.Add(fileUpload);
+            //    fileUpload.Location = new System.Drawing.Point(4, fileUpload.Height + 5);
+            //}
+            this.tabPage3.Controls.Add(fileUpload);
+            fileUpload.Dock = DockStyle.Top;
         }
-
-        delegate void UpdateUI();
 
         void fileUpload_FileUploadCompleted(object sender, FileUploadEventArgs e)
         {
-            this.Invoke(new UpdateUI(delegate()
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
-                this.tabPage3.Controls.Remove(e.FileUploadControl);
+                FileUploadEventArgs arg = e as FileUploadEventArgs;
+                
+                 this.tabPage3.Controls.Remove(e.FileUploadControl);
                 if (this.tabPage3.Controls.Count == 0)
                 {
                     this.tabPage3.Parent.Controls.Remove(this.tabPage3);
                 }
-                else
-                {
-                    foreach (Control item in this.tabPage3.Controls)
-                    {
-                        if (item.Location == new System.Drawing.Point(4, e.FileUploadControl.Height + 5))
-                        {
-                            item.Location = new System.Drawing.Point(4, 21);
-                        }
-                    }
-                }
+                //else
+                //{
+                //    foreach (Control item in this.tabPage3.Controls)
+                //    {
+                //        if (item.Location == new System.Drawing.Point(4, arg.FileUploadControl.Height + 5))
+                //        {
+                //            item.Location = new System.Drawing.Point(4, 21);
+                //        }
+                //    }
+                //}
 
-                UploadStatus  status = e.Status;
-                string fileName = e.FileName;
+                UploadStatus  status = arg.Status;
+                string fileName = arg.FileName;
 
                 displayUploadStatusMessage(status, fileName);
-                
-            }));
+
+            }), e);
+
+           
             this.uploadTasks.Remove(e.FileUploadControl.FtpUpload);
 
-            operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "complete");
+            if (e.Status == UploadStatus.Succeed)
+            {
+                operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "complete"); 
+            }
         }
 
         private void displayUploadStatusMessage(UploadStatus status, string fileName)
