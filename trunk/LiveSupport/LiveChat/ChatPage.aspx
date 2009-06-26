@@ -152,7 +152,8 @@ var requiredRevision = 0;
                     <legend>
                     <span class="formField">留言内容</span>
                     </legend>
-                    <asp:TextBox ID="txtComment"  TextMode="MultiLine" Width="100%" Height="230px" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtComment"  TextMode="MultiLine" Width="100%" Height="230px" 
+                            runat="server"></asp:TextBox>
                     </fieldset>
                     <br />
                     <fieldset  style="height:2%; width:92%;">
@@ -253,7 +254,7 @@ var requiredRevision = 0;
       <div >
       
       <a href="" target="_blank" id="logo" 
-             style="font-family: 微软雅黑; font-weight:100px; font-size:15px; text-decoration: none">
+             style="font-family: 微软雅黑; font-weight:100; font-size:15px; text-decoration: none">
              
              LiveSupport</a>
 		</div>		
@@ -265,7 +266,7 @@ var requiredRevision = 0;
  
     <tr id="notewrap">
 			<td  style=" width:85%; height:80%;">
-  <table  height="100%" width="100%" style="break:break-all;word-wrap:break-word;table-layout:fixed" cellpadding="0" cellspacing="0">
+  <table  height="100%" width="100%" style=" display:block; table-layout:fixed" cellpadding="0" cellspacing="0">
   
                     
                     <tr  style="height:100%">
@@ -412,3 +413,4 @@ var requiredRevision = 0;
   <p>
   <span id="shortKeyTip" >[发送快捷键:Enter]: </span><span id="footerBox"></span></p><div id="shortcutkey" onclick="">消息发送方式</div><ul id="shortKeyMenu" style="display:none;">
 <li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul></div></td></tr></table></asp:Panel></div></form></body></html>
+

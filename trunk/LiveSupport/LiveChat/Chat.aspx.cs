@@ -15,9 +15,8 @@ using System.Xml;
 using System.Web.Services.Protocols;
 using System.Web.Script.Services;
 using LiveSupport.LiveSupportModel;
-using System.Windows.Forms;
-using System.Windows;
 using System.Net;
+using System.IO;
 
 public partial class Chat : System.Web.UI.Page
 {
@@ -297,7 +296,8 @@ public partial class Chat : System.Web.UI.Page
     {
         if (this.txt_username.Text == null || txtComment.Text == null || txtSendBy.Text == null || txtTheme.Text == null)
         {
-            MessageBox.Show("信息请添写完善！");
+            //MessageBox.Show("信息请添写完善！");
+            ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>alert('信息请添写完善');</script>");
         }
         LeaveWord lw = new LeaveWord();
         lw.CallerName = this.txt_username.Text;
@@ -375,11 +375,11 @@ public partial class Chat : System.Web.UI.Page
         {
             if (CurrentChat == null || CurrentChat.Status != ChatStatus.Accepted)
             {
+                this.Response.Write("<script>alert('对话未接受');</script>"); 
                 return;
             }
-
             string fileName = this.fuFile.FileName.ToString();
-            if (fileName.Trim().Length == 0)//验证上传文件
+            if (fileName.Trim().Length == 0||fileName==null)//验证上传文件
             {
                 this.Response.Write("<script>alert('请选择传送的文件');</script>");
                 return;
@@ -389,21 +389,26 @@ public partial class Chat : System.Web.UI.Page
                 this.Response.Write("<script>alert('传送的文件过大');</script>");
                 return;
             }
-            LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
-            m.ChatId = CurrentChat.ChatId;
-            m.Text = string.Format("正在传送文件 {0} ...",fileName);
-            m.Type = MessageType.SystemMessage_ToVisitor;
-            ChatService.SendMessage(m);
+            else
+            {
+                LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
+                m.ChatId = CurrentChat.ChatId;
+                m.Text = string.Format("正在传送文件 {0} ...", fileName);
+                m.Type = MessageType.SystemMessage_ToVisitor;
+                ChatService.SendMessage(m);
+                string path = ConfigurationManager.AppSettings["FileUploadPath"] + "\\" + m.ChatId;
+                //string path = Server.MapPath("UploadFile/" + m.ChatId);
+                Directory.CreateDirectory(path);
+               
+                this.fuFile.PostedFile.SaveAs(path + "\\" + fileName.Trim().ToString());
 
-            string path = Server.MapPath("UploadFile/" +m.ChatId+"/"+ fileName.Trim().ToString());
-            this.fuFile.PostedFile.SaveAs(path);
-
-            m = new LiveSupport.LiveSupportModel.Message();
-            m.ChatId = CurrentChat.ChatId;
-            m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
-            m.Type = MessageType.SystemMessage_ToVisitor;
-            ChatService.SendMessage(m);
-            OperatorService.SendFile(m.ChatId, fileName);
+                m = new LiveSupport.LiveSupportModel.Message();
+                m.ChatId = CurrentChat.ChatId;
+                m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
+                m.Type = MessageType.SystemMessage_ToVisitor;
+                ChatService.SendMessage(m);
+                OperatorService.SendFile(m.ChatId, fileName);
+            }
 
         }
         catch (Exception ex)
@@ -411,5 +416,4 @@ public partial class Chat : System.Web.UI.Page
             this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
         }
     }
-
 }

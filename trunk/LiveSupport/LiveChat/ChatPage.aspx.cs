@@ -395,13 +395,15 @@ public partial class Chat : System.Web.UI.Page
         {
             if (CurrentChat == null || CurrentChat.Status != ChatStatus.Accepted)
             {
+               this.Response.Write("<script>alert('fdsa');</script>");
                 return;
             }
 
             string fileName = this.fuFile.FileName.ToString();
             if (fileName.Trim().Length == 0)//验证上传文件
             {
-                this.Response.Write("<script>alert('请选择传送的文件');</script>");
+                MessageBox.Show("请选择传送的文件");
+                //this.Response.Write("<script>alert('请选择传送的文件');</script>");
                 return;
             }
             if (this.fuFile.FileContent.Length >= 4180560)
@@ -409,21 +411,24 @@ public partial class Chat : System.Web.UI.Page
                 this.Response.Write("<script>alert('传送的文件过大');</script>");
                 return;
             }
-            LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
-            m.ChatId = CurrentChat.ChatId;
-            m.Text = string.Format("正在传送文件 {0} ...", fileName);
-            m.Type = MessageType.SystemMessage_ToVisitor;
-            ChatService.SendMessage(m);
+            else
+            {
+                LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
+                m.ChatId = CurrentChat.ChatId;
+                m.Text = string.Format("正在传送文件 {0} ...", fileName);
+                m.Type = MessageType.SystemMessage_ToVisitor;
+                ChatService.SendMessage(m);
 
-            string path = Server.MapPath("UploadFile/" + m.ChatId + "/" + fileName.Trim().ToString());
-            this.fuFile.PostedFile.SaveAs(path);
+                string path = Server.MapPath("UploadFile/" + m.ChatId + "/" + fileName.Trim().ToString());
+                this.fuFile.PostedFile.SaveAs(path);
 
-            m = new LiveSupport.LiveSupportModel.Message();
-            m.ChatId = CurrentChat.ChatId;
-            m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
-            m.Type = MessageType.SystemMessage_ToVisitor;
-            ChatService.SendMessage(m);
-            OperatorService.SendFile(m.ChatId, fileName);
+                m = new LiveSupport.LiveSupportModel.Message();
+                m.ChatId = CurrentChat.ChatId;
+                m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
+                m.Type = MessageType.SystemMessage_ToVisitor;
+                ChatService.SendMessage(m);
+                OperatorService.SendFile(m.ChatId, fileName);
+            }
 
         }
         catch (Exception ex)
