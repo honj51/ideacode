@@ -317,7 +317,7 @@ namespace LiveSupport.OperatorConsole
         private string createImageName()
         {
             Random rd = new Random();
-            string imageName = rd.Next(100000).ToString() + ".bmp";
+            string imageName = rd.Next(100000).ToString();
             return imageName;
         }
 
@@ -337,9 +337,9 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
-                string fileName = createImageName();
+                string fileName = createImageName() + ".jpg";
                 string imageFilePath = Application.StartupPath.ToString() + "/" + chat.ChatId + "/" + fileName;
-                bitmap.Save(imageFilePath, System.Drawing.Imaging.ImageFormat.Bmp);
+                bitmap.Save(imageFilePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 
                 FtpUpload ftpUpload = new FtpUpload(imageFilePath, uploadURL +"/"+ fileName);
                 operatorServiceAgent.SendFile(fileName, chat.ChatId, "start");
@@ -455,7 +455,11 @@ namespace LiveSupport.OperatorConsole
             {
                 msg = "文件" + fileName + "发送失败!";
             }
-            chatMessageViewerControl1.AddInformation(msg);
+
+            if (status != UploadStatus.Uploading)
+            {
+                chatMessageViewerControl1.AddInformation(msg);
+            }
         }
 
         private void createTabPage() 
@@ -470,6 +474,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "文件传输";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabControlVideo.SelectedTab = tabPage3;
         }
 
         private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)
