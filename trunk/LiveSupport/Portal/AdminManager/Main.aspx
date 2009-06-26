@@ -43,6 +43,6 @@
 </div>
 </div>
 </form>
-<script type="text/javascript" src="Http://cms.19870123.cn/Affiche/Script.aspx?n=5&w=22"></script>
+
 </body>
 </html>
