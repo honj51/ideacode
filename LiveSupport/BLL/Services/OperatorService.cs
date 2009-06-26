@@ -365,7 +365,7 @@ public static class OperatorService
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         Message m = new Message();
         m.ChatId = chatId;
-        m.Text = string.Format("访客已给您发送文件 {0}<a target='_blank' href='{1}/UploadFile/{2}'>点击保存</a>", fileName, homeRootUrl, chatId+"/"+fileName);
+        m.Text = string.Format("访客已给您发送文件 {0}<a target='_blank' href='{1}/upload/{2}'>点击保存</a>", fileName, homeRootUrl, chatId+"/"+fileName);
         m.Type = MessageType.SystemMessage_ToOperator;
         ChatService.SendMessage(m);
     }
