@@ -52,7 +52,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 通过客服编号获得所有访客记录
         public List<Chat> GetChatByOperatorId(string operatorId,string beginDate, string endDate)
         {
-            string sql = string.Format("select * from LiveChat_Chat where OperatorId='{0}' and CreateTime>='{1}' and CloseTime<='{2}'order by CreateTime", operatorId, beginDate, endDate);
+            string sql = string.Format("select * from LiveChat_Chat where OperatorId='{0}' and CreateTime>='{1}' and CloseTime<='{2}'", operatorId, beginDate, endDate);
             List<Chat> list = GetChatBySql(sql);
             return list;
         }
@@ -112,7 +112,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 跟据visitorid 查询所有的对话
         public List<Chat> GetChatByVisitorId(string visitorId)
         {
-            string sql = string.Format("SELECT * FROM [LiveSupport].[dbo].[LiveChat_Chat] where visitorid ='{0}'", visitorId);
+            string sql = string.Format("SELECT * FROM [LiveSupport].[dbo].[LiveChat_Chat] where visitorid ='{0}'order by CreateTime desc", visitorId);
             List<Chat> list = GetChatBySql(sql);
             return list;
         }
