@@ -8,12 +8,23 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using LiveSupport.LiveSupportModel;
 
 public partial class AdminManager_UpdateAdmin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         this.txtAdminLoginName.Text = ConfigurationManager.AppSettings["AdminUser"].ToString();
+        AdminUser user;
+        if (Session["adminUser"] != null)
+        {
+            user = Session["adminUser"] as AdminUser;
+        }
+        else
+        {
+            this.Response.Write("<script>alert('登陆超时,请从新登陆...');window.location='Default.aspx';</script>");
+            return;
+        }
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
