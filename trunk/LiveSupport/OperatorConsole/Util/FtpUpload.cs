@@ -12,24 +12,26 @@ namespace LiveSupport.OperatorConsole.Util
     {
         public event EventHandler<FileUploadProgressEventArgs> FileUploadProgress;
 
-        private UploadStatus status;
-        private string fileFullPath;
-        private string ftpURL;
-        private string user;
-
+        private UploadStatus status;//上传状态
+        private string fileFullPath;//上传文件物理路径
+        private string ftpURL;//FTP物理路径
+        private string user;//ftp用户名
+        private string password;//ftp密码
         public string User
         {
             get { return user; }
             set { user = value; }
         }
-        private string password;
-
         public string Password
         {
             get { return password; }
             set { password = value; }
         }
-
+        /// <summary>
+        /// 设置FTP上传文件的参数
+        /// </summary>
+        /// <param name="fileFullPath">上传文件物理路径</param>
+        /// <param name="ftpURL">FTP上专文件物理路径</param>
         public FtpUpload(string fileFullPath, string ftpURL) 
         {
             this.fileFullPath = fileFullPath;
@@ -37,22 +39,28 @@ namespace LiveSupport.OperatorConsole.Util
             this.user = Properties.Settings.Default.FtpUser;
             this.password = Properties.Settings.Default.FtpPasssword;
         }
-
+        /// <summary>
+        /// 线程起动上传文件
+        /// </summary>
         public void Start()
         {
             Thread t = new Thread(new ThreadStart(FtpFileUpload));
             t.Start();
-            status = UploadStatus.Uploading;
+            status = UploadStatus.Uploading;//正在上传状态
         }
-        
+        /// <summary>
+        /// 将状态设取消
+        /// </summary>
         public void Cancel()
         {
             status = UploadStatus.Cancel;
         }
-        
+        /// <summary>
+        /// ftp上传文件
+        /// </summary>
         private void FtpFileUpload()
         {
-            FileInfo fileInfo = new FileInfo(this.fileFullPath);
+            FileInfo fileInfo = new FileInfo(this.fileFullPath);//
             try
             {
                 //string uri = "ftp://" + Properties.Settings.Default.FtpURL + "/upload/" + fileInfo.Name;
