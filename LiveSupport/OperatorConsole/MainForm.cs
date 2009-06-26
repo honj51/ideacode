@@ -141,12 +141,27 @@ namespace LiveSupport.OperatorConsole
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
 
             systemAdvertises = operaterServiceAgent.GetSystemAdvertise(Application.ProductVersion.ToString());
-            this.operaterServiceAgent.ConnectionLost += new EventHandler<ConnectionLostEventArgs>(operaterServiceAgent_ConnectionLost);
-            this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
-            this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
-            this.operaterServiceAgent.NewChatRequest += new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
-            this.operaterServiceAgent.NewChanges += new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
+            registerOperatorServiceAgentEventHandler(false);
+        }
 
+        private void registerOperatorServiceAgentEventHandler(bool unregister)
+        {
+            if (!unregister)
+            {
+                this.operaterServiceAgent.ConnectionLost += new EventHandler<ConnectionLostEventArgs>(operaterServiceAgent_ConnectionLost);
+                this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
+                this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
+                this.operaterServiceAgent.NewChatRequest += new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
+                this.operaterServiceAgent.NewChanges += new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
+            }
+            else
+            {
+                this.operaterServiceAgent.ConnectionLost -= new EventHandler<ConnectionLostEventArgs>(operaterServiceAgent_ConnectionLost);
+                this.operaterServiceAgent.NewVisitor -= new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
+                this.operaterServiceAgent.VisitorSessionChange -= new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
+                this.operaterServiceAgent.NewChatRequest -= new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
+                this.operaterServiceAgent.NewChanges -= new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
+            }
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -157,6 +172,7 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            registerOperatorServiceAgentEventHandler(true);
             loginTimer.Enabled = false;
 
             if (Program.ChatForms.Count == 0)
