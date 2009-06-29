@@ -28,11 +28,18 @@
 <tr><td >
     <span style="LINE-HEIGHT: 30px; COLOR: #000000; FONT-SIZE: 13px; FONT-WEIGHT: bold">
     第三步: 将Live800客服图标添加到您公司的网站</span></td></tr>
-<tr><td >登录LiveSupport客服系统后请点击网页代码 <br />
+<tr><td >登录LiveSupport客服中心后请点击风格设置中的获取代码设置<br />
+    <br />
      
-    <img  src="images/huoqu.gif"/><br />
+    <img  src="images/huoqu.gif" /><br />
     
-    向导会帮助您通过简单的步骤，产生LiveSupport客服网页代码,并嵌入到您公司网站的页面中。 </td></tr>
+    向导会帮助您通过简单的步骤，产生LiveSupport客服网页代码,请嵌入到您公司网站的页面中。  
+    <br />
+    <br />
+    <img src="images/getCode.jpg" style="width: 744px; height: 192px"  /><br />
+    浏览您的网站 即可
+    <br />
+&nbsp;</td></tr>
 </table>
 </center>
 </asp:Content>
