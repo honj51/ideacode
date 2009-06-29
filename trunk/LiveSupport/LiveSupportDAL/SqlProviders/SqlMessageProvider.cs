@@ -107,7 +107,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 通过ChatId获得聊天记录
         public List<Message> GetChatMessageByChatId(string chatId)
         {
-            string sql = "select * from dbo.LiveChat_Message where ChatID='" + chatId + "' order by SentDate";
+            string sql = string.Format("select * from dbo.LiveChat_Message where ChatID='{0}' order by SentDate", chatId);
             SqlDataReader data = null;
             List<Message> retList = new List<Message>();
             try
