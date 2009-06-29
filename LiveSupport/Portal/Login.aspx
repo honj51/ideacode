@@ -23,21 +23,21 @@
     <table style=" background-image:url('Images/login.png'); width: 440px; height: 265px;  margin-top:120px;">
 <tr><td>
 <div style="height: 123px; width: 207px; margin-left:160px;">
-<table>
-<tr><td class="style1" align="right">公司ID：</td><td >
-                    <asp:TextBox ID="txtNumber" runat="server" Font-Size="0.8em" Width="106px"></asp:TextBox>
+<table style=" font-size:13px;">
+<tr><td class="style1" align="right">公司账号：</td><td >
+                    <asp:TextBox ID="txtNumber" runat="server" Font-Size="12px" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                         ControlToValidate="UserName" ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
     </td></tr>
 <tr><td class="style1" >客服账号：</td><td class="style1">
-                    <asp:TextBox ID="UserName" runat="server" Font-Size="0.8em" Width="106px"></asp:TextBox>
+                    <asp:TextBox ID="UserName" runat="server" Font-Size="12px" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
                         ControlToValidate="UserName" ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
     </td></tr>
 <tr><td class="style3" >客服密码：</td><td class="style3">
-                    <asp:TextBox ID="Password" runat="server" Font-Size="0.8em" TextMode="Password" 
+                    <asp:TextBox ID="Password" runat="server" Font-Size="12px" TextMode="Password" 
                         Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
                         ControlToValidate="Password" ErrorMessage="必须填写“密码”。" ToolTip="必须填写“密码”。" 
