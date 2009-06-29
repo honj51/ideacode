@@ -43,15 +43,11 @@
         </div>
         <!--CONTENT SIDE COLUMN-->
         <div id="content-side-two-column">
-            <h2>
-                LiveSupport 在线客服!</h2>
-
-            <h3>
-                客服座席软件下载
-            </h3>
-            <ul class="list-of-links">
-            <a href="Download/OperatorConsole.msi"><img src="Images/fw_download.gif" style="width: 160px; height: 65px;" /></a>
-            </ul>
+            <h4>LiveSupport 在线客服!</h4>
+            LiveSupport 客服软件 1.0
+            <a href="Download/OperatorConsole.msi"><img src="images/btn_down.gif" 
+                style="width: 120px; height: 46px;" /></a></br>
+            首次安装时可能提示需要安装Microsoft .Net Framework 2.0,请选择是,等安装完成后再安装客服软件。
         </div>
         <div class="clear">
         </div>
