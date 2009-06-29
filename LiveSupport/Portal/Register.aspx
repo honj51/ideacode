@@ -68,7 +68,8 @@
               <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                   ControlToValidate="txtMail" ErrorMessage="Email有误!" 
                   ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-            </TD></TR>
+              <br />
+              <a href="#">请认真填写,可以通过它找回您的密码!</a></TD></TR>
         <TR>
           <TD><FONT color=red>*</FONT> 所在省：</TD>
           <TD>
@@ -160,7 +161,7 @@
                   ControlToCompare="txtPwd" ControlToValidate="txtPwds" ErrorMessage="密码不一致!"></asp:CompareValidator>
             </TD></TR>
         <TR>
-          <TD style="width: 146px" >&nbsp;&nbsp; 客服呢称： </TD>
+          <TD style="width: 146px" ><FONT color=red>*</FONT> 客服呢称： </TD>
           <TD ><asp:TextBox ID="txtNickname" runat="server" Width="160px"></asp:TextBox>
 &nbsp;</TD>
           <TD>
