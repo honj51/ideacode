@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
-    public enum OperatorStatus
+    public enum OperatorStatus 
     {
         Idle, InviteChat, Chatting, BeRightBack, Away, Offline
     }
