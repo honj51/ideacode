@@ -70,7 +70,7 @@ namespace LiveSupport.SqlProviders
         {
             try
             {
-                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' and CallerDate>='{1}' and CallerDate<='{2}'", accountId, beginDate, endDate);
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' and CallerDate>='{1}' and CallerDate<='{2}' order by Senddate", accountId, beginDate, endDate);
                 SqlDataReader sdr = DBHelper.GetReader(sql);
                 List<LeaveWord> list = new List<LeaveWord>();
                 while (sdr.Read())
