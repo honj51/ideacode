@@ -674,28 +674,38 @@ namespace LiveSupport.OperatorConsole
         {
             private SortOrder order;
 
+            Dictionary<string, int> status = new Dictionary<string, int>();
+
             // Stores the sort order.
             public ListViewGroupSorter(SortOrder theOrder)
             {
                 order = theOrder;
+                status.Add(Common.GetVisitSessionStatusText(VisitSessionStatus.ChatRequesting), 1);
+                status.Add(Common.GetVisitSessionStatusText(VisitSessionStatus.Chatting), 2);
+                status.Add(Common.GetVisitSessionStatusText(VisitSessionStatus.Visiting), 3);
+                status.Add(Common.GetVisitSessionStatusText(VisitSessionStatus.Leave), 4);
             }
 
             // Compares the groups by header value, using the saved sort
             // order to return the correct value.
             public int Compare(object x, object y)
             {
-                int result = String.Compare(
-                    ((ListViewGroup)x).Header,
-                    ((ListViewGroup)y).Header
-                );
-                if (order == SortOrder.Ascending)
-                {
-                    return result;
-                }
-                else
-                {
-                    return -result;
-                }
+                //int result = String.Compare(
+                //    ((ListViewGroup)x).Header,
+                //    ((ListViewGroup)y).Header
+                //);
+                //if (order == SortOrder.Ascending)
+                //{
+                //    return result;
+                //}
+                //else
+                //{
+                //    return -result;
+                //}
+                string first = ((ListViewGroup)x).Header;
+                string second = ((ListViewGroup)y).Header;
+                return status[first] - status[second];
+
             }
         }
 
@@ -739,19 +749,27 @@ namespace LiveSupport.OperatorConsole
             // Copy the groups for the column to an array.
             ListViewGroup[] groupsArray = new ListViewGroup[groups.Count];
             groups.Values.CopyTo(groupsArray, 0);
-
+           
+            if (column==VisitorTreeView_HeaderColumn_Status)
+            {
+                Array.Sort(groupsArray, new ListViewGroupSorter(SortOrder.None));
+            }
+        
             lstVisitors.Groups.AddRange(groupsArray);
-
+            
             // Iterate through the items in lstVisitors, assigning each 
             // one to the appropriate group.
             foreach (ListViewItem item in lstVisitors.Items)
             {
+
                 // Retrieve the subitem text corresponding to the column.
                 string subItemText = item.SubItems[column].Text;
 
                 // Assign the item to the matching group.
                 item.Group = (ListViewGroup)groups[subItemText];
+               
             }
+               
         }
 
         // Creates a Hashtable object with one entry for each unique
@@ -762,21 +780,23 @@ namespace LiveSupport.OperatorConsole
             // Create a Hashtable object.
             Hashtable groups = new Hashtable();
 
-            // Iterate through the items in lstVisitors.
-            foreach (ListViewItem item in lstVisitors.Items)
-            {
-                // Retrieve the text value for the column.
-                string subItemText = item.SubItems[column].Text;
-
-                // If the groups table does not already contain a group
-                // for the subItemText value, add a new group using the 
-                // subItemText value for the group header and Hashtable key.
-                if (!groups.Contains(subItemText))
+          
+                // Iterate through the items in lstVisitors.
+                foreach (ListViewItem item in lstVisitors.Items)
                 {
-                    groups.Add(subItemText, new ListViewGroup(subItemText,
-                        HorizontalAlignment.Left));
+                    // Retrieve the text value for the column.
+                    string subItemText = item.SubItems[column].Text;
+
+                    // If the groups table does not already contain a group
+                    // for the subItemText value, add a new group using the 
+                    // subItemText value for the group header and Hashtable key.
+                    if (!groups.Contains(subItemText))
+                    {
+                        groups.Add(subItemText, new ListViewGroup(subItemText,
+                            HorizontalAlignment.Left));
+                    }
                 }
-            }
+           
 
             // Return the Hashtable object.
             return groups;
