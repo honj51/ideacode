@@ -13,7 +13,7 @@ namespace LiveSupport.OperatorConsole.Util
         public event EventHandler<FileUploadProgressEventArgs> FileUploadProgress;
 
         private UploadStatus status;//上传状态
-        private string fileFullPath;//上传文件物理路径
+        public string fileFullPath;//上传文件物理路径
         private string ftpURL;//FTP物理路径
         private string user;//ftp用户名
         private string password;//ftp密码
