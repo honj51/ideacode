@@ -8,6 +8,7 @@ public class LSBanner : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         string aid =context.Request.QueryString["aid"];
+        string companyName=AccountService.GetAccountById(aid).CompanyName;
         string IconStyle = "0"; //客服样式(图片)
         string InviteStyle = "0";//主动邀请样式
         string ChatStyle = "0";//聊天样式
@@ -33,7 +34,10 @@ public class LSBanner : IHttpHandler {
         {
             IcoLocation = context.Request.QueryString["IcoLocation"];//显示的位置样式
         }
-        
+        if (companyName == null)
+        {
+            companyName = "LiveSupport";
+        }
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
         sb.AppendLine(string.Format("var LCS_homeUrl = '{0}';",homeRootUrl));
         sb.AppendLine(string.Format("var LCS_bannerType ={0};", bannerType));// 0: 简单按钮, 1: 客服列表, 2: 部门列表
@@ -41,6 +45,7 @@ public class LSBanner : IHttpHandler {
         sb.AppendLine(string.Format("var LCS_invitePanelStyle = {0};",InviteStyle));// 0,1,2主动邀请样式
         sb.AppendLine(string.Format("var LCS_bannerPos = {0};",IcoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
         sb.AppendLine(string.Format("var LCS_accountId = '{0}';",aid));
+        sb.AppendLine(string.Format("var LCS_companyName = '{0}';", companyName));
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/live2.js\"></script> ');");
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/orientation.js\"></script> ');");
         context.Response.ContentType = "text/plain"; // context.Response.ContentType = "application/x-javascript";
