@@ -19,8 +19,8 @@
     <div>
 <table height="100" width="100%"><tr><td valign="middle" align="center">
    
-<table style=" background-image:url('Images/zhaohuimima.gif'); width: 415px;   margin-top:120px;">
-   <tr><td ><div style="height: 123px; width: 348px; margin-top:63px; ">
+<table style=" background-image:url('Images/zhaohuimima.gif'); width: 415px;   margin-top:120px; height: 241px;">
+   <tr><td ><div style="height: 123px; width: 348px; margin-top:20px; ">
 <table style=" color:#000000;">
 <tr><td align="right">公司账号：</td><td align="left">
     <asp:TextBox ID="txtAccountNumber" 
