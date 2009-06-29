@@ -54,7 +54,7 @@ public partial class Default2 : System.Web.UI.Page
     {
         if (Session["createRandom"] != null)
         {
-            if (this.txtValidate.Text == Session["createRandom"].ToString())
+            if (this.txtValidate.Text.ToLower()== Session["createRandom"].ToString().ToLower())
             {
                 try
                 {
