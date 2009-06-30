@@ -230,7 +230,11 @@ namespace LiveSupport.OperatorConsole
                     if (checkIfVisitSessionStatusChange(item))
                     {
                         GetVisitorBySessionId(item.SessionId).CurrentSession = item;
-                        VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
+                        if (VisitorSessionChange!=null)
+                        {
+                            VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
+                        }
+            
                     }
                 }
             } 
