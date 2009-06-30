@@ -99,6 +99,13 @@ namespace LiveSupport.LiveSupportModel
             get { return account; }
             set { account = value; }
         }
+        private DateTime heartBeatTime;
+        //心跟时间(N)
+        public DateTime HeartBeatTime
+        {
+            get { return heartBeatTime; }
+            set { heartBeatTime = value; }
+        }
 
         public Operator()
         {
