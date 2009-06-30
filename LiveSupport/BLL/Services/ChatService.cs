@@ -451,7 +451,7 @@ public class ChatService
         foreach (Chat item in chats)
         {
             DateTime nowTime=DateTime.Now;
-            if (nowTime > item.CreateTime.AddSeconds(120) && nowTime < item.CreateTime.AddSeconds(180) && item.Status != ChatStatus.Closed)
+            if (nowTime > item.CreateTime.AddSeconds(120) && nowTime < item.CreateTime.AddSeconds(180) && item.Status == ChatStatus.Requested)
             {
                 if (item.IsInviteByOperator)
                 {
@@ -462,7 +462,7 @@ public class ChatService
                       SendMessage(new Message(item.ChatId, "客服正忙! 是否继续等待。", MessageType.SystemMessage_ToVisitor));
                 }             
             }
-            else if (nowTime > item.CreateTime.AddSeconds(480) && item.Status != ChatStatus.Closed)
+            else if (nowTime > item.CreateTime.AddSeconds(480) && item.Status == ChatStatus.Requested)
             {
                 if (item.IsInviteByOperator)
                 {
