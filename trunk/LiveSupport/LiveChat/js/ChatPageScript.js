@@ -46,7 +46,7 @@ function scrollDiv() {
     var sameMinute = now.getMinutes - lastCheck.getMinutes();
     if (sameMinute != 0 || elapse >= 2) {
         // Check for typing notification
-        PageMethods.CheckTypingNotification(getCookie('chatId'), OnCheckTypingNotificationComplete);
+       // PageMethods.CheckTypingNotification(getCookie('chatId'), OnCheckTypingNotificationComplete);
         lastCheck = new Date();
     }
 }
