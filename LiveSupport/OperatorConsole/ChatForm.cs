@@ -15,6 +15,7 @@ using LiveSupport.OperatorConsole.Controls;
 using LiveSupport.OperatorConsole.Util;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Web;
 
 
 namespace LiveSupport.OperatorConsole
@@ -213,14 +214,15 @@ namespace LiveSupport.OperatorConsole
             if ((int)e.KeyChar == 13 && txtMsg.Text.Length > 0)
             {
                 e.Handled = true;
-                WriteMessage(txtMsg.Text);
+                string Text= HttpUtility.HtmlEncode(txtMsg.Text);
+                WriteMessage(Text);
                 txtMsg.Clear();
             }
         }
 
         //写信息
         private void WriteMessage(string message)
-        { //
+        { 
             WriteMessage(message,operatorServiceAgent.CurrentOperator.NickName);
         }
         //写信息
