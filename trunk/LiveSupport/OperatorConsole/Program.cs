@@ -57,7 +57,12 @@ namespace LiveSupport.OperatorConsole
         {
             Form f = new Form();
             FileUploadControl c = new FileUploadControl("c:\\a.exe", "");
+            c.Dock = DockStyle.Top;
+            c = new FileUploadControl("c:\\a.exe", Properties.Settings.Default.FtpURL);
             f.Controls.Add(c);
+            //c = new FileUploadControl("c:\\a.exe", Properties.Settings.Default.FtpURL);
+            //c.Dock = DockStyle.Top;
+            //f.Controls.Add(c);
             Application.Run(f);
         }
 
