@@ -1,7 +1,7 @@
 ﻿<%@ Application Language="C#" %>
 
 <script runat="server">
-
+    int i = 0;
     void Application_Start(object sender, EventArgs e) 
     {
         LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ToString();
@@ -16,7 +16,15 @@
 
     void myTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
+        i++;
         VisitSessionService.MaintanStatus();
+        if (i >= 12) // 一分钟后调用  ChatService.MaintanStatus(); ｜｜   OperatorService.MaintanStatus();
+        {
+            i = 0;
+            ChatService.MaintanStatus();
+            OperatorService.MaintanStatus();
+        }
+        
     }
     
     void Application_End(object sender, EventArgs e) 
