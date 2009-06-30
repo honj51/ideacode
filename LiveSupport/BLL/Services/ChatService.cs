@@ -66,6 +66,10 @@ public class ChatService
         }
         return null;
     }
+    public static List<Chat> GetAllChat()
+    {
+        return chats;
+    }
     /// <summary>
     /// 根据ChatId获取对话
     /// </summary>
@@ -438,5 +442,39 @@ public class ChatService
         }
         
         return chatRequest.ChatId;
+    }
+    /// <summary>
+    /// chat超时提示和处理
+    /// </summary>
+    public static void MaintanStatus()
+    {
+        foreach (Chat item in chats)
+        {
+            DateTime nowTime=DateTime.Now;
+            if (nowTime > item.CreateTime.AddSeconds(120) && nowTime < item.CreateTime.AddSeconds(180) && item.Status != ChatStatus.Closed)
+            {
+                if (item.IsInviteByOperator)
+                {
+                        SendMessage(new Message(item.ChatId, "访客无应答! 是否继续等待。", MessageType.SystemMessage_ToOperator));
+                }
+                else
+                {
+                      SendMessage(new Message(item.ChatId, "客服正忙! 是否继续等待。", MessageType.SystemMessage_ToVisitor));
+                }             
+            }
+            else if (nowTime > item.CreateTime.AddSeconds(480) && item.Status != ChatStatus.Closed)
+            {
+                if (item.IsInviteByOperator)
+                {
+                    SendMessage(new Message(item.ChatId, "访客还是无应答! 系统强行将对话关闭!", MessageType.SystemMessage_ToOperator));
+                }
+                else
+                {
+                    SendMessage(new Message(item.ChatId, "客服很忙!无法应答你!", MessageType.SystemMessage_ToVisitor));
+                }
+                CloseChat(item.ChatId, "系统自动");
+                Trace.WriteLine(string.Format("Chat {0} Leave", item.ChatId));
+            }
+        }
     }
 }

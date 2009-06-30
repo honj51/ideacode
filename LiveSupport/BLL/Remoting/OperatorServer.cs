@@ -163,9 +163,6 @@ namespace LiveSupport.BLL.Remoting
         public void UploadFile(byte[] bs, string fileName, string chatId)
         {
             checkAuthentication();
-          //  string saveFilePath = Server.MapPath("~/UploadFile/" + chatId + "/");
-            
-          //  OperatorService.UploadFile(bs, fileName, chatId, saveFilePath);
         }
 
         public bool SendMessage(Message msg)

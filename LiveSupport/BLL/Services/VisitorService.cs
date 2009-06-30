@@ -19,6 +19,10 @@ public class VisitorService
     private const int MaxVisitorCountInMemory = 200;//定义最大值 
     private static List<Visitor> visitors = new List<Visitor>();
     public static IVisitorProvider Provider = new SqlVisitorProvider();
+    public static List<Visitor> GetAllVisitors()
+    {
+        return visitors;
+    }
     /// <summary>
     /// 查询一行访客信息跟据访客ID
     /// </summary>
