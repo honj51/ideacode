@@ -261,6 +261,7 @@ public partial class Chat : System.Web.UI.Page
     [ScriptMethod(UseHttpGet = true)]
     public static string SendMsg(string msg, string chtID)
     {
+        
         if (chtID != null && msg.Length > 0)
         {
             // Add a new message to the discussion
@@ -269,7 +270,7 @@ public partial class Chat : System.Web.UI.Page
             LiveSupport.LiveSupportModel.Message m = new LiveSupport.LiveSupportModel.Message();
             m.ChatId = chatId;
             m.Source = VName;
-            m.Text = msg;
+            m.Text = HttpUtility.HtmlEncode(msg);
             m.Type = MessageType.ChatMessage_VistorToOperator;
             ChatService.SendMessage(m);
 
