@@ -10,4 +10,10 @@ public partial class operatortest : System.Web.UI.Page
     {
 
     }
+    protected void Timer1_Tick(object sender, EventArgs e)
+    {
+        this.GridView1.DataSource = OperatorService.GetAllOperators();
+        this.GridView2.DataSource = ChatService.GetAllChat();
+        DataBind();
+    }
 }
