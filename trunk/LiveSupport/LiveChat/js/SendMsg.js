@@ -31,8 +31,7 @@
 				if( sameMinute != 0 || elapse >= 3 )
 				{
 					// Set typing notification
-					SetTypingNotification(); 
-					
+					//SetTypingNotification(); 
 					lastNotify = new Date();
 				}
 				
