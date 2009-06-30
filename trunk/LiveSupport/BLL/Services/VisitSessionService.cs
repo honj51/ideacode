@@ -34,6 +34,10 @@ public class VisitSessionService
 
     private const int MaxVisitorSessionCountInMemory = 200;//定义最大值 
     public static IVisitSessionProvider Provider = new SqlVisitSessionProvider();
+    public static List<VisitSessionHit> GetAllVisitSession()
+    {
+        return sessions;
+    }
     /// <summary>
     /// 保存一条新访客会话
     /// </summary>

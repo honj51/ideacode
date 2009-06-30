@@ -391,6 +391,7 @@ public static class OperatorService
     {
         Trace.WriteLine(string.Format("OperatorService.CheckNewChanges(operatorId = {0},NewChangesCheck={1})", operatorId, check.ToString()));
         Operator op = OperatorService.GetOperatorById(operatorId);
+        op.HeartBeatTime = DateTime.Now;//设置心跳时间
         NewChangesCheckResult checkResult = new NewChangesCheckResult();
 
         if (op.OperatorSession != operatorSessionId)
@@ -583,5 +584,19 @@ public static class OperatorService
             qrcli.Add(qrc);
         }
         return qrcli;
+    }
+    /// <summary>
+    /// Operators异常退出处理
+    /// </summary>
+    public static void MaintanStatus()
+    {
+        foreach ( Operator item in operators)
+        {
+            if (DateTime.Now > item.HeartBeatTime.AddSeconds(120) && item.Status != OperatorStatus.Offline)
+            {
+                item.Status = OperatorStatus.Offline;
+                Trace.WriteLine(string.Format("Operator {0} Leave", item.OperatorId));
+            }
+        }
     }
 }
