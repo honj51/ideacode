@@ -15,7 +15,7 @@ namespace LiveSupport.OperatorConsole
         {
             InitializeComponent();
             wb.Navigate("about:");
-
+            
         }
 
         
@@ -33,7 +33,7 @@ namespace LiveSupport.OperatorConsole
         
         public void AddInformation(string info)
         {
-            string msg = "<img  src''/><span style='color: #FF9933; FONT-SIZE: 15px'>" + info + "</span><br />";
+            string msg = "<span style='color: #FF9933; FONT-SIZE: 15px'>" + info + "</span><br />";
             AddText(msg);
         }
 
@@ -44,10 +44,10 @@ namespace LiveSupport.OperatorConsole
 
         public void AddMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
-            string msg = string.Empty;
+            string msg =string.Empty;
             if (API.FromSystem(message))
             {
-                msg = string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'>{0}</span><br />", message.Text);
+                msg = string.Format("<span style='color: #FF9933; FONT-SIZE: 13px'> {0}</span><br />",message.Text);
                 //ucm.GetMessage(msg, " ");
             }
             if (message.Type == MessageType.ChatMessage_VistorToOperator)
@@ -58,7 +58,7 @@ namespace LiveSupport.OperatorConsole
             if (message.Type == MessageType.ChatMessage_OperatorToVisitor)
             {
                 msg = string.Format("<span style='font-family: Arial;color:blue;font-weight: bold;font-size: 12px;'>{0} </span><br/><span style='font-family: Arial;font-size: 12px;'>{1}</span><br />", message.Source + "&nbsp;&nbsp;&nbsp;" + message.SentDate.ToString("hh:mm:ss"), message.Text);
-                //ucm.GetMessage(msg, " ");
+              //ucm.GetMessage(msg, " ");
             }
             AddText(msg);
             wb.Document.Window.ScrollTo(wb.Document.Body.ScrollRectangle.Left, wb.Document.Body.ScrollRectangle.Height);
