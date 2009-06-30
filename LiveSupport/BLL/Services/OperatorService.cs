@@ -135,34 +135,20 @@ public static class OperatorService
     {
         Trace.WriteLine(string.Format("OperatorService.Login(accountNumber = {0},OperatorName={1},Password={2})", accountNumber, operatorName, password));
         Account account = AccountService.FindAccountByAccountNumber(accountNumber);
-        Operator op = null;
-        if (account != null)
+        if (account == null) return null;
+
+        Operator op = FindOperator(account.AccountId, operatorName, password);
+        
+        if (op == null)
         {
-            foreach (Operator item in operators)
-            {
-                if (item.AccountId==account.AccountId&&item.LoginName==operatorName&&item.Password==password)
-                {
-                    op = item;
-                    break;
-                }                
-            }
-            if (op == null)
-            {
-                getOperatorsFromDB();
-                foreach (Operator item in operators)
-                {
-                    if (item.AccountId == account.AccountId && item.LoginName == operatorName && item.Password == password)
-                    {
-                        op = item;
-                    }
-                }
-            }
-            if (op != null)
-            {
-                SetOperatorStatus(op.OperatorId, OperatorStatus.Idle);
-                //op.Status = OperatorStatus.Idle;//将客服状态改为空闲
-                op.OperatorSession = Guid.NewGuid().ToString();
-            }
+            getOperatorsFromDB();
+            op = FindOperator(account.AccountId, operatorName, password);
+        }
+        if (op != null)
+        {
+            SetOperatorStatus(op.OperatorId, OperatorStatus.Idle);
+            //op.Status = OperatorStatus.Idle;//将客服状态改为空闲
+            op.OperatorSession = Guid.NewGuid().ToString();
         }
         return op;
     }
@@ -225,6 +211,18 @@ public static class OperatorService
              }
          }
         return op;
+    }
+
+    private static Operator FindOperator(string accountId, string loginName, string password)
+    {
+        foreach (Operator item in operators)
+        {
+            if (item.AccountId == accountId && item.LoginName == loginName && item.Password == password)
+            {
+                return item;
+            }
+        }
+        return null;
     }
 
     /// <summary>
@@ -365,7 +363,8 @@ public static class OperatorService
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         Message m = new Message();
         m.ChatId = chatId;
-        m.Text = string.Format("访客已给您发送文件 {0}<a target='_blank' href='{1}/upload/{2}'>点击保存</a>", fileName, homeRootUrl, chatId+"/"+fileName);
+        string href = string.Format("{0}/upload/{1}", homeRootUrl, chatId + "/" + fileName.Replace("'","%27"));
+        m.Text = string.Format("访客已给您发送文件 {0} <a target='_blank' href='{1}'>点击保存</a>", fileName,href);
         m.Type = MessageType.SystemMessage_ToOperator;
         ChatService.SendMessage(m);
     }
@@ -495,7 +494,7 @@ public static class OperatorService
         Message m = new Message();
         m.ChatId = chatId;
         Util util = new Util();
-        string httpURL = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"] + "/" + chatId + "/" + fileName;
+        string httpURL = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"] + "/upload/" + chatId + "/" + fileName.Replace("'","%27");
         if (util.IsImageFile(fileName))
         {
             m.Text = string.Format("客服已给您发送文件 {0}<a target='_blank' href='{1}\'>点击保存</a> <br/><img height='120px'  width='120px'  src='{2}\' />", fileName, httpURL, httpURL);
