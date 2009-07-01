@@ -102,12 +102,6 @@ public static class OperatorService
     {
         getOperatorsFromDB();        
     }
-
-    private static void getOperatorsFromDB()
-    {
-        operators = Provider.GetAllOperators();
-    }
-
     /// <summary>
     ///  判定客服是否在线
     /// </summary>
@@ -141,7 +135,7 @@ public static class OperatorService
         
         if (op == null)
         {
-            getOperatorsFromDB();
+            operators.Add = GetOperatorByOperatorNameFromDB(operatorName);
             op = FindOperator(account.AccountId, operatorName, password);
         }
         if (op != null)
@@ -201,7 +195,7 @@ public static class OperatorService
          }
          if (op == null)
          {
-             getOperatorsFromDB();
+             operators.Add=GetOperatorByIdFromDB(operatorId);
              foreach (Operator item in operators)
              {
                  if (item.OperatorId == operatorId)
@@ -598,4 +592,31 @@ public static class OperatorService
             }
         }
     }
+    #region 取数据库中的数据
+    /// <summary>
+    /// 在数据库中查询一行数据跟据OperatorID
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <returns></returns>
+    public static Operator GetOperatorByIdFromDB(string operatorId)
+    {
+       return Provider.GetOperatorByOperatorId(operatorId);
+    }
+    /// <summary>
+    /// 在数据库中查询一行数据跟据OperatorName
+    /// </summary>
+    /// <param name="operatorName"></param>
+    /// <returns></returns>
+    public static Operator GetOperatorByOperatorNameFromDB(string operatorName)
+    {
+        return Provider.GetOperatorByLoginName(operatorName);
+    }
+    /// <summary>
+    /// 取数据库中取所有的Operator信息
+    /// </summary>
+    private static void getOperatorsFromDB()
+    {
+        operators = Provider.GetAllOperators();
+    }
+    #endregion
 }
