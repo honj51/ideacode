@@ -92,7 +92,7 @@
       互动网络有权将本条款和注册规范项下的权利义务转让给第三人。若互动网络被收购或与第三人合并等情形时，其权利义务由承继者继承。</P></DIV>
       <P align=left></P></TD></TR>
   <TR>
-    <TD vAlign=center align=middle height=50><INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Register.aspx'" type=button value=同意 name=button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Default.aspx'" type=button value="不同意   " name=button2></TD></TR></TBODY></TABLE></td></tr>
+    <TD vAlign=center align=middle height=50><INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Register.aspx'" type=button value=同意 name=button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Default.aspx'" type=button value="不同意" name=button2></TD></TR></TBODY></TABLE></td></tr>
 </table>
 
 </center>
