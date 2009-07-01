@@ -1,5 +1,6 @@
 ﻿<%@ Page MaintainScrollPositionOnPostback="true" Language="C#" ValidateRequest="false"
-    AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
+    AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat"  EnableEventValidation="false" viewStateEncryptionMode ="Never" 
+ %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
