@@ -17,8 +17,9 @@
     <meta name=vs_defaultClientScript content="JavaScript">
     <meta name=vs_targetSchema content="http://schemas.microsoft.com /intellisense/ie5">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-   <%--<script src='http://localhost:3355/livechat/LSBanner.ashx?aid=2&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0'></script>--%>
+
    <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
+
 <style>
    #logoTdLeft
    {
@@ -33,8 +34,8 @@
     {
     	width:305px;
     	text-align:right;
-    	vertical-align:top;
-    	font-size:12px;
+    	vertical-align:middle;
+    	font-size:14px;
     	}
     .MenuCss
     {
@@ -51,8 +52,8 @@
     <form id="form1" runat="server">
           <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
          <center>        <table style="border:1px; height:50px;">
-         <tr><td ID="logoTdLeft" class="style1"><a style="color:#4a6bb3;" href="Default.aspx">Live Support Service .Inc</a></div></td>
-         <td id="logoTdRight"> <asp:Panel ID="PanelShow" runat="server" Visible="false" 
+         <tr><td ID="logoTdLeft" class="style1"><a style="color:#4a6bb3;" href="Default.aspx">Live Support Service .Inc</a></td>
+         <td id="logoTdRight" > <asp:Panel ID="PanelShow" runat="server" Visible="false" 
                  style="margin-left: 0px">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
                     &nbsp;<asp:HyperLink ID="HyperLink1" runat="server" 
                         NavigateUrl="~/AccountAdmin/AccountHome.aspx">管理客服</asp:HyperLink>
