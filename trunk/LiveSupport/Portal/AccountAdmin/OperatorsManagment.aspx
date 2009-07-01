@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="客服管理" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorsManagment.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
-<SCRIPT type="text/javascript">
+
+    <SCRIPT type="text/javascript">
 		// <![CDATA[
 		var myMenu;
 		window.onload = function() {
@@ -19,7 +20,7 @@
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
+<table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top"> 
            <!--头部--->
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
                 DataKeyNames="OperatorId" DataSourceID="ObjectDataSource1" 
@@ -105,7 +106,7 @@
                 CommandName="cmd" 
                 Text="&#22686;&#21152;&#22352;&#24109;" onclick="Button1_Click" />
                 <!--尾部-->
-           </div>
+          </td></tr></table>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </asp:Content>
 

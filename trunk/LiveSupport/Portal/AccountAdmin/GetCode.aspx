@@ -18,7 +18,7 @@
             var is = document.getElementById('IcoStyle');
             var as = document.getElementById('AutoStyle');
             var cs = document.getElementById('ChatStyle');
-            var str1 = "<script src='http://localhost:3355/livechat/LSBanner.ashx?aid=<%=this.GetAccountId().ToString() %>";
+            var str1 = "<script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=<%=this.GetAccountId().ToString() %>";
             str1 = str1 + "&IconStyle=" + is.value + "&InviteStyle=" + as.value + "&ChatStyle=" + cs.value;
             var str2 = "'></s" + "cript>";
             var locations = document.getElementsByName('icoLocation');
@@ -81,7 +81,7 @@
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <!---->
  
- <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; "><tr><td>  
+ <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; "><tr><td valign="top"> 
     <!--头部--->
       <div id="content-main-three-column" style="text-align:left;">
         <!--内容-->

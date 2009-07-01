@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="ViewLeaveWord.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
-<script src="JS/Save.js"></script>
+
+    <script src="JS/Save.js"></script>
 <SCRIPT type="text/javascript">
     // <![CDATA[
     var myMenu;
@@ -23,7 +24,7 @@
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style=" background-image:url('Images/n_540_bg.jpg');width: 570px; height: 423px; text-align:left;overflow:inherit;">
+<table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top"> 
 <!--聊天记录内容-->
     <table style="border-style: none; border-color: inherit; border-width: 1px; width: 538px; height: 246px; margin-left:20px; font-size:14px; ">
     <tr><td style="width: 107px">留言者名称：</td><td>
@@ -62,7 +63,7 @@
         </td></tr>
     </table>
   <!--内容结束-->
-  </div>
+</td></tr></table>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 
 

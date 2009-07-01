@@ -3,12 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
 <!--内容-->
  <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     公司信息管理</div>
+ <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">公司信息管理</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
+ <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top"> 
   <div style="text-align:left;color: #cccccc; border-bottom: 1px solid; position: relative;">&nbsp;&nbsp;&nbsp;<img src="Images/zhuce.jpg" /><a href="UpdateAccount.aspx"><img src="Images/mima.jpg" /></a></div>
   <!--内容-->
   <TABLE cellSpacing=0 cellPadding=0 border=0 style=" margin-left:10px; margin-top:10px;">
@@ -118,7 +117,7 @@
                     onclick="btnSave_Click" />
                 </td></tr>
             </TBODY></TABLE>
-  </div>
+ </td></tr></table>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 
 <!--内容结束-->
