@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="CallerLeaveWord.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
-<SCRIPT type="text/javascript">
+
+    <SCRIPT type="text/javascript">
     // <![CDATA[
     var myMenu;
     window.onload = function() {
@@ -22,13 +23,12 @@
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
+ <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top">
   <!--内容-->
    <TABLE class=setting_tb cellSpacing=1 cellPadding=0 border=0 
-        style="width: 570px">
+        style="width: 560px">
   <TBODY>
-  <TR>
-    <TD class=setting_td_top vAlign=center align=left colSpan=2>&nbsp;</TD></TR>
+
   <TR id=tr_time>
     <TD class=setting_td_left vAlign=center align=right>&nbsp;选择时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
@@ -38,8 +38,8 @@
             onclick="btnSelect_Click"  />
       </TD></TR></TBODY></TABLE>
 <!--聊天记录内容-->
-<table width="570">
-<tr><td align="left" style=" background-color:#ebf1fa; height: 20px;">留言记录 &gt;&gt;</td>
+<table width="560">
+<tr><td align="left" style=" background-color:#ebf1fa; height: 20px;"><b>留言记录</b> &gt;&gt;</td>
 <tr><td align="center">
     <asp:GridView ID="gvLeaveWord" runat="server" AutoGenerateColumns="False" 
           onrowcommand="gvLeaveWord_RowCommand" AllowPaging="True" 
@@ -83,7 +83,7 @@
 </tr>
 </table>
   <!--内容结束-->
-  </div>
+</td></tr></table>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 
 

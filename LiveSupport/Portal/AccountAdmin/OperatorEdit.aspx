@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="修改客服" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorEdit.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
-<SCRIPT type="text/javascript">
+
+    <SCRIPT type="text/javascript">
 		// <![CDATA[
 		var myMenu;
 		window.onload = function() {
@@ -19,7 +20,7 @@
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px; ">
+<table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top">
     <!--头部--->
     <div style="text-align:left; margin-left:60px; margin-top:50px;">
             <TABLE id=ctl00_ContentPlaceHolder1_DetailsView1 
@@ -73,7 +74,7 @@
             </td></TR></TBODY></TABLE>
         </div>
  <!--尾部-->
- </div>
+</td></tr></table>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </asp:Content>
 

@@ -14,7 +14,7 @@ DIV.sdmenu DIV SPAN {
 	DISPLAY: block; FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND-IMAGE: url(/images/3.jpg); WIDTH: 150px; COLOR: #ffffff; LINE-HEIGHT: 37px; FONT-FAMILY: "??"; HEIGHT: 37px; TEXT-ALIGN: center
 }
 DIV.sdmenu DIV.collapsed SPAN {
-	background-bgcolor: #ffffff
+	background-bgcolor: #ffffff;
 }
 DIV.sdmenu DIV A {
 	PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: #eee; PADDING-BOTTOM: 5px; COLOR: #066; PADDING-TOP: 5px; BORDER-BOTTOM: #ddd 1px solid

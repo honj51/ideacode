@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="账号管理" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="UpdateAccount.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
- <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
+    <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
  <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
      客服账号管理</div>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
  
 <div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;">
+ <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top"> 
   <div style="text-align:left;color: #cccccc; border-bottom: 1px solid; position: relative;">&nbsp;&nbsp;&nbsp;<a href="AccountHome.aspx"><img src="Images/zhuce2.jpg" /></a><img src="Images/mima2.jpg" /></div>
   <!--内容-->
   <TABLE cellSpacing=0 cellPadding=0 border=0 style="text-align:left;" >
@@ -56,6 +56,6 @@
                       </TD>
           <TD>&nbsp;</TD></TR>
           </TBODY></TABLE>
-  </div>
+</td></tr></table>
  <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
 </asp:Content>
