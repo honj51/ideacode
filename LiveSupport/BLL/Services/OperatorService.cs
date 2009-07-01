@@ -591,7 +591,7 @@ public static class OperatorService
     {
         foreach ( Operator item in operators)
         {
-            if (DateTime.Now > item.HeartBeatTime.AddSeconds(120) && item.Status != OperatorStatus.Offline)
+            if (DateTime.Now > item.HeartBeatTime.AddSeconds(5) && item.Status != OperatorStatus.Offline)
             {
                 item.Status = OperatorStatus.Offline;
                 Trace.WriteLine(string.Format("Operator {0} Leave", item.OperatorId));
