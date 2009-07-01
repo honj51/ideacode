@@ -46,7 +46,9 @@ public partial class Chat : System.Web.UI.Page
             if (ctx != null)
             {
                 if (ctx.Request.Cookies["VisitorName"] != null)
-                    return ctx.Request.Cookies["VisitorName"].Value.ToString();
+                {
+                    return HttpUtility.UrlDecode(ctx.Request.Cookies["VisitorName"].Value.ToString()); 
+                }
                 else
                     return string.Empty;
             }
@@ -59,10 +61,10 @@ public partial class Chat : System.Web.UI.Page
             if (ctx != null)
             {
                 if (ctx.Request.Cookies["VisitorName"] != null)
-                    ctx.Response.Cookies["VisitorName"].Value = value;
+                    ctx.Response.Cookies["VisitorName"].Value = HttpUtility.UrlEncode(value);
                 else
                 {
-                    HttpCookie c = new HttpCookie("VisitorName", value);
+                    HttpCookie c = new HttpCookie("VisitorName", HttpUtility.UrlEncode(value));
                     ctx.Response.Cookies.Add(c);
                 }
             }
@@ -119,10 +121,14 @@ public partial class Chat : System.Web.UI.Page
                 return;
             }
 
-            if (isInvitatation() || chatExist())
+            if (isInvitatation())
             {
                 pnlChat.Visible = true;
                 setCookie(Request.QueryString["chatid"].ToString());
+            }
+            else if (chatExist())
+            {
+                pnlChat.Visible = true;
             }
             else
             {
@@ -361,7 +367,6 @@ public partial class Chat : System.Web.UI.Page
         }
     }
 
-
     protected void CutLBtn_Click(object sender, EventArgs e)
     {
         string aaa = Server.MapPath("Download\\11.exe");
@@ -385,7 +390,7 @@ public partial class Chat : System.Web.UI.Page
                 this.Response.Write("<script>alert('请选择传送的文件');</script>");
                 return;
             }
-            if (this.fuFile.FileContent.Length >= 4180560)
+            if (this.fuFile.FileContent.Length >= 2097152)
             {
                 this.Response.Write("<script>alert('传送的文件过大');</script>");
                 return;
