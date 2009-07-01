@@ -135,7 +135,7 @@ public static class OperatorService
         
         if (op == null)
         {
-            operators.Add = GetOperatorByOperatorNameFromDB(operatorName);
+            getOperatorsFromDB();
             op = FindOperator(account.AccountId, operatorName, password);
         }
         if (op != null)
@@ -195,7 +195,7 @@ public static class OperatorService
          }
          if (op == null)
          {
-             operators.Add=GetOperatorByIdFromDB(operatorId);
+             getOperatorsFromDB();
              foreach (Operator item in operators)
              {
                  if (item.OperatorId == operatorId)
@@ -594,29 +594,22 @@ public static class OperatorService
     }
     #region 取数据库中的数据
     /// <summary>
-    /// 在数据库中查询一行数据跟据OperatorID
-    /// </summary>
-    /// <param name="operatorId"></param>
-    /// <returns></returns>
-    public static Operator GetOperatorByIdFromDB(string operatorId)
-    {
-       return Provider.GetOperatorByOperatorId(operatorId);
-    }
-    /// <summary>
-    /// 在数据库中查询一行数据跟据OperatorName
-    /// </summary>
-    /// <param name="operatorName"></param>
-    /// <returns></returns>
-    public static Operator GetOperatorByOperatorNameFromDB(string operatorName)
-    {
-        return Provider.GetOperatorByLoginName(operatorName);
-    }
-    /// <summary>
-    /// 取数据库中取所有的Operator信息
+    ///更新operator数据从数据库
     /// </summary>
     private static void getOperatorsFromDB()
     {
-        operators = Provider.GetAllOperators();
+        List < Operator > newops = Provider.GetAllOperators();
+        foreach (var newop in newops)
+        {   
+            foreach (var oldop in operators)
+            {
+                if (newop.OperatorId == oldop.OperatorId)
+                {
+                    newop.Status = oldop.Status;
+                }
+            }
+        }
+        operators = newops;
     }
     #endregion
 }
