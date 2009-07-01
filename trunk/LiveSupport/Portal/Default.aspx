@@ -7,8 +7,9 @@
         <div class="poster-photo-image">
            <img src="Images/photo-poster.jpg" width="568" height="180" />
         </div>
-        <div id="feature-area-home">现在使用Live Support <a href="Login.aspx">立即登录</a><br /><a href="Licence.aspx">没有账号?请注册</a><br />
-            免费试用!
+        <div id="feature-area-home">现在使用Live Support <a href="Login.aspx">立即登录</a><br />
+            <br />
+        <a href="Licence.aspx" style="color:#FF8C00;">申请免费试用!</a>&nbsp;
         </div>
     </div>
     <!--CONTENT CONTAINER-->
