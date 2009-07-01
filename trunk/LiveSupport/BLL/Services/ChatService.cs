@@ -413,6 +413,10 @@ public class ChatService
     public static string ChatPageRequestChat(Visitor visitor)
     {
         Trace.WriteLine(string.Format("ChatService.ChatPageRequestChat(Visitor = {0})", visitor));
+        if (!string.IsNullOrEmpty(visitor.Name))
+        {
+            VisitorService.GetVisitorById(visitor.VisitorId).Name = visitor.Name;//改变访客名
+        }
         Chat chatRequest = new Chat();
         chatRequest.AccountId = visitor.AccountId;
         chatRequest.CreateTime = DateTime.Now;
