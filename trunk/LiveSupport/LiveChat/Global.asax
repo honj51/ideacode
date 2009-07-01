@@ -18,11 +18,11 @@
     {
         i++;
         VisitSessionService.MaintanStatus();
+        OperatorService.MaintanStatus();
         if (i >= 12) // 一分钟后调用  ChatService.MaintanStatus(); ｜｜   OperatorService.MaintanStatus();
         {
             i = 0;
             ChatService.MaintanStatus();
-            OperatorService.MaintanStatus();
         }
         
     }
