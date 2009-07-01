@@ -140,6 +140,7 @@ public static class OperatorService
         }
         if (op != null)
         {
+            op.HeartBeatTime = DateTime.Now;
             SetOperatorStatus(op.OperatorId, OperatorStatus.Idle);
             //op.Status = OperatorStatus.Idle;//将客服状态改为空闲
             op.OperatorSession = Guid.NewGuid().ToString();
