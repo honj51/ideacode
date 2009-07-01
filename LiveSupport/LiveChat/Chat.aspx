@@ -1,4 +1,4 @@
-﻿<%@ Page MaintainScrollPositionOnPostback="true" Language="C#" ValidateRequest="false"   AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
+﻿<%@ Page MaintainScrollPositionOnPostback="true" Language="C#" ValidateRequest="false" AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <title>在线交流</title>
