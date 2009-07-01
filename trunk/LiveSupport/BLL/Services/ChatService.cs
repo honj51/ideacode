@@ -237,7 +237,7 @@ public class ChatService
                 
         VisitSessionService.SetSessionStatus(VisitorService.GetVisitorById(chat.VisitorId).CurrentSessionId, VisitSessionStatus.Visiting);
         // 注意: IsOperatorHasActiveChat需要在更改chat status后调用
-        if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId))
+        if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId) && OperatorService.IsOperatorOnline(chat.OperatorId))
         {   
             OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
         }
@@ -454,6 +454,12 @@ public class ChatService
     {
         foreach (Chat item in chats)
         {
+            if (item.Status == ChatStatus.Accepted && !OperatorService.IsOperatorOnline(item.OperatorId))
+            {
+                SendMessage(new Message(item.ChatId, "该客服已不在线!", MessageType.SystemMessage_ToVisitor));
+                CloseChat(item.ChatId, "系统");
+                continue;
+            }
             DateTime nowTime=DateTime.Now;
             if (nowTime > item.CreateTime.AddSeconds(120) && nowTime < item.CreateTime.AddSeconds(180) && item.Status == ChatStatus.Requested)
             {
@@ -476,7 +482,7 @@ public class ChatService
                 {
                     SendMessage(new Message(item.ChatId, "客服很忙!无法应答你!", MessageType.SystemMessage_ToVisitor));
                 }
-                CloseChat(item.ChatId, "系统自动");
+                CloseChat(item.ChatId, "系统");
                 Trace.WriteLine(string.Format("Chat {0} Leave", item.ChatId));
             }
         }
