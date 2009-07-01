@@ -8,7 +8,7 @@
            <img src="Images/photo-poster.jpg" width="568" height="180" />
         </div>
         <div id="feature-area-home">现在使用Live Support <a href="Licence.aspx">立即注册</a><br />
-            免费试用1个月
+            免费试用!
         </div>
     </div>
     <!--CONTENT CONTAINER-->
