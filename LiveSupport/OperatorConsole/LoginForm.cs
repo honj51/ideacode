@@ -137,7 +137,11 @@ namespace LiveSupport.OperatorConsole
             cbxPassword.Checked = Properties.Settings.Default.RememberPassword;
             cbxAutoLogin.Checked = Properties.Settings.Default.AutoLogin;
         }
-
+        /// <summary>
+        /// 忘记密码超链接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void linkLabelPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -149,7 +153,11 @@ namespace LiveSupport.OperatorConsole
             {
             }
         }
-
+        /// <summary>
+        /// 新用户注册超连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void linkLabelRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
