@@ -24,7 +24,7 @@ namespace LiveSupport.OperatorConsole
 
         private void saveConfiguration() 
         {
-            Properties.Settings.Default.CloseSettingState=!cbxCloseSettingState.Checked;
+            Properties.Settings.Default.ShowCloseReminder=!cbxCloseSettingState.Checked;
             Properties.Settings.Default.CloseState = radioButton1.Checked;
 
             Properties.Settings.Default.Save();

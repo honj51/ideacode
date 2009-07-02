@@ -1275,7 +1275,7 @@ namespace LiveSupport.OperatorConsole
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
             this.exitToolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
             this.exitToolStripMenuItem2.Text = "ÍË³ö(&E)";
-            this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem2_Click);
+            this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 

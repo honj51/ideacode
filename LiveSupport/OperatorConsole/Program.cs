@@ -86,7 +86,7 @@ namespace LiveSupport.OperatorConsole
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL,true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
+            ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL+"/BugReports",true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
             Application.Restart();
         }
 	}

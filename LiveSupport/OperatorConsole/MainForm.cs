@@ -35,7 +35,7 @@ namespace LiveSupport.OperatorConsole
         private Hashtable[] groupTables;// Declare a Hashtable array in which to store the groups.
         int groupColumn = -1;// Declare a variable to store the current grouping column.
         private bool isAllowGroup = true;
-        private bool state;
+        private bool isException = false;
         private DateTime loginTime;
         TestFixture testFixture = new TestFixture();
         private FormWindowState saveWindowState = FormWindowState.Normal;
@@ -89,7 +89,6 @@ namespace LiveSupport.OperatorConsole
             }), e);
         }
 
-
         void operaterServiceAgent_NewVisitor(object sender, NewVisitorEventArgs e)
         {
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
@@ -139,7 +138,6 @@ namespace LiveSupport.OperatorConsole
             messageendDateTimePicker.MaxDate = DateTime.Now;
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
             requestendDateTimePicker.MaxDate = DateTime.Now;
-    
 
             systemAdvertises = operaterServiceAgent.GetSystemAdvertise(Application.ProductVersion.ToString());
             registerOperatorServiceAgentEventHandler(false);
@@ -171,62 +169,101 @@ namespace LiveSupport.OperatorConsole
                 showMainForm(false);
         }
 
+        enum ClosingResult
+        {
+            Minimize, Close, Cancel
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
-            if (Properties.Settings.Default.CloseSettingState)
-            {
-                CloseSettingForm closeSettingForm = new CloseSettingForm();
-                closeSettingForm.ShowDialog();
-            }
+            ClosingResult res = ClosingResult.Cancel;
 
-            state = Properties.Settings.Default.CloseState;
-           
-            
-                if (state)
+            // 1 判断是否关闭程序
+            if (isException)
+            {
+                res = ClosingResult.Close;
+            }
+            else
+            {
+                if (Properties.Settings.Default.ShowCloseReminder)
                 {
-                    this.Visible = !state;
-                    saveWindowState = this.WindowState;
-                    notifyIcon.ShowBalloonTip(500);
-                    e.Cancel = state;
-                    return;
-                }
-                else
-                {
-                    registerOperatorServiceAgentEventHandler(true);
-                    loginTimer.Enabled = false;
-                    if (Program.ChatForms.Count == 0)
+                    CloseSettingForm closeSettingForm = new CloseSettingForm();
+                    DialogResult result = closeSettingForm.ShowDialog();
+                    if (result == DialogResult.Cancel)
                     {
-                        try
-                        {
-                            operaterServiceAgent.Logout();
-                        }
-                        catch (Exception ex)
-                        {
-                            Trace.WriteLine("Logout异常: " + ex.Message);
-                        }
+                        res = ClosingResult.Cancel;
                     }
                     else
                     {
-                        if (MessageBox.Show("访客对话存在无法关闭客户端,是否强制关闭？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
-                        else
-                        {
-                            List<ChatForm> forms = new List<ChatForm>(Program.ChatForms);
-                            foreach (var item in forms)
-                            {
-                                item.Close();
-                            }
-                            Properties.Settings.Default.Save();
+                        res = getClosingResult(res);
 
-
-                        }
                     }
+                }
+                else
+                {
+                    res = getClosingResult(res);
+                }
+            }
+
+            // 2.相应处理 
+            switch (res)
+            {
+                case ClosingResult.Minimize:
+                    showMainForm(false);
+                    e.Cancel = true;
+                    break;
+                case ClosingResult.Close:
+                    shutdown();
+                    break;
+                case ClosingResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                default:
+                    break;
             }
             Properties.Settings.Default.Save();
+        }
+
+        private static ClosingResult getClosingResult(ClosingResult res)
+        {
+            bool state = Properties.Settings.Default.CloseState; // true: 最小化于任务栏通知区域，false 关闭
+            if (state)
+            {
+                res = ClosingResult.Minimize;
+            }
+            else
+            {
+                res = ClosingResult.Close;
+                if (Program.ChatForms.Count > 0)
+                {
+                    if (MessageBox.Show("访客对话存在无法关闭客户端,是否强制关闭？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        res = ClosingResult.Cancel;
+                    }
+                }
+            }
+            return res;
+        }
+
+        private void shutdown()
+        {
+            registerOperatorServiceAgentEventHandler(true);
+            loginTimer.Enabled = false;
+
+            List<ChatForm> forms = new List<ChatForm>(Program.ChatForms);
+            foreach (var item in forms)
+            {
+                item.Close();
+            }
+            
+            try
+            {
+                operaterServiceAgent.Logout();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("Logout异常: " + ex.Message);
+            }
         }
         #endregion
 
@@ -301,7 +338,6 @@ namespace LiveSupport.OperatorConsole
                 }
             }
         }
-
         
         private SystemAdvertise getNextSysteAdvertise()
         {
@@ -320,6 +356,7 @@ namespace LiveSupport.OperatorConsole
 
         private void connectionLost(string message)
         {
+            isException = true;
             loginTimer.Enabled = false;
             MessageBox.Show(message + "，需要重新登陆！", "连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -620,11 +657,6 @@ namespace LiveSupport.OperatorConsole
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void exitToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
