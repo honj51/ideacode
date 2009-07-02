@@ -424,7 +424,6 @@ a:active {
 	margin-left:auto;
 	margin-right:auto;
 	width:760px;
-	background:#608fc8;
 	position:relative;
 	}
 	
@@ -438,9 +437,12 @@ a:active {
 	top:0;
 	right:0;
 	width:21%;
+	height:100%;
 	text-align:center;
 	padding:2%;
 	color:#FFFFFF;
+	background-image:url('../../images/0I91043b2.jpg');
+	background-repeat:repeat-y;
 	font-size:1.2em;
 	font-weight:bold;
 	line-height:160%;
