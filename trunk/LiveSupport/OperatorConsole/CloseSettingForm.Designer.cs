@@ -54,7 +54,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(85, 39);
+            this.radioButton1.Location = new System.Drawing.Point(71, 39);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(191, 16);
             this.radioButton1.TabIndex = 1;
@@ -65,7 +65,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(85, 61);
+            this.radioButton2.Location = new System.Drawing.Point(71, 61);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(71, 16);
             this.radioButton2.TabIndex = 2;
@@ -75,7 +75,7 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(158, 93);
+            this.btnOk.Location = new System.Drawing.Point(146, 93);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(60, 23);
             this.btnOk.TabIndex = 3;
@@ -86,7 +86,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(224, 93);
+            this.btnCancel.Location = new System.Drawing.Point(212, 93);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(59, 23);
             this.btnCancel.TabIndex = 4;
@@ -101,14 +101,14 @@
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(0, -9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(296, 96);
+            this.groupBox1.Size = new System.Drawing.Size(283, 96);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(74, 17);
+            this.lblMessage.Location = new System.Drawing.Point(57, 17);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(161, 12);
             this.lblMessage.TabIndex = 3;
@@ -128,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 120);
+            this.ClientSize = new System.Drawing.Size(282, 120);
             this.Controls.Add(this.cbxCloseSettingState);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
