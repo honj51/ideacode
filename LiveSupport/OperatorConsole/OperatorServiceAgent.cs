@@ -105,6 +105,7 @@ namespace LiveSupport.OperatorConsole
 
         public void Logout()
         {
+            pooling = false;
             checkNewChangesTimer.Stop();
             ws.Logout();
         }

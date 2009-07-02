@@ -88,6 +88,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap agt_update_critical {
+            get {
+                object obj = ResourceManager.GetObject("agt_update_critical", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap aim {
             get {
                 object obj = ResourceManager.GetObject("aim", resourceCulture);
@@ -210,6 +217,13 @@ namespace LiveSupport.OperatorConsole.Properties {
         internal static System.Drawing.Bitmap content_bg {
             get {
                 object obj = ResourceManager.GetObject("content_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap core {
+            get {
+                object obj = ResourceManager.GetObject("core", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -120,17 +120,17 @@ namespace LiveSupport.OperatorConsole
                 acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
                 if (acceptChatRequestResult == -1) 
                 {
-                    chatMessageViewerControl1.ResetContext("该访客对话请求已被其他客服接受");
+                    chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
                     receiveMessage = false;
                     return;
                 }
                 if (acceptChatRequestResult == -3)
                 {
-                    chatMessageViewerControl1.ResetContext("服务器错误");
+                    chatMessageViewerControl1.ResetContent("服务器错误");
                     receiveMessage = false;
                 }
             }
-            chatMessageViewerControl1.ResetContext("初始会话...");
+            chatMessageViewerControl1.ResetContent("初始会话...");
             //ucm.GetMessage(msgs, "Navigate");
 
             Visitor item = operatorServiceAgent.GetVisitorById(chat.VisitorId);
