@@ -14,14 +14,15 @@ namespace LiveSupport.OperatorConsole
         public ChatMessageViewerControl()
         {
             InitializeComponent();
-            wb.Navigate("about:");
+            wb.Navigate("about:blank");
             
         }
 
         
-        public void ResetContext(string message)
+        public void ResetContent(string message)
         {
-            wb.Navigate("about:" + message);
+            wb.Navigate("about:blank");
+            AddInformation(message);
         }
 
         public void AddFloatInformation(string info)
@@ -79,18 +80,20 @@ namespace LiveSupport.OperatorConsole
            
 
         }
-        //接受记录List
-        public ChatMessageViewerControl(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
-        {
-            InitializeComponent();
-            DataBindMessage(msg);
-        }
+
+
+        ////接受记录List
+        //public ChatMessageViewerControl(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
+        //{
+        //    InitializeComponent();
+        //    DataBindMessage(msg);
+        //}
 
 
         #region 绑定聊天记录
         public void DataBindMessage(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
         {
-            wb.Navigate("");
+            wb.Document.OpenNew(true);
             string message = "";
             if (msg.Count > 0)
             {

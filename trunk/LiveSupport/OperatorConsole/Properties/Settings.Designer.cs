@@ -248,5 +248,29 @@ namespace LiveSupport.OperatorConsole.Properties {
                 this["WSUser"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CloseSettingState {
+            get {
+                return ((bool)(this["CloseSettingState"]));
+            }
+            set {
+                this["CloseSettingState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CloseState {
+            get {
+                return ((bool)(this["CloseState"]));
+            }
+            set {
+                this["CloseState"] = value;
+            }
+        }
     }
 }

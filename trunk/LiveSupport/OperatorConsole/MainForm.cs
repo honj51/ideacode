@@ -35,6 +35,7 @@ namespace LiveSupport.OperatorConsole
         private Hashtable[] groupTables;// Declare a Hashtable array in which to store the groups.
         int groupColumn = -1;// Declare a variable to store the current grouping column.
         private bool isAllowGroup = true;
+        private bool state;
         private DateTime loginTime;
         TestFixture testFixture = new TestFixture();
         private FormWindowState saveWindowState = FormWindowState.Normal;
@@ -134,11 +135,11 @@ namespace LiveSupport.OperatorConsole
         private void MainForm_Load(object sender, EventArgs e)
         {
             initForm();
-            
+            messagebeginDateTimePicker.MaxDate = DateTime.Now;
             messageendDateTimePicker.MaxDate = DateTime.Now;
-            messageendDateTimePicker.MaxDate = DateTime.Now;
-            requestendDateTimePicker.MaxDate = DateTime.Now;
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
+            requestendDateTimePicker.MaxDate = DateTime.Now;
+    
 
             systemAdvertises = operaterServiceAgent.GetSystemAdvertise(Application.ProductVersion.ToString());
             registerOperatorServiceAgentEventHandler(false);
@@ -172,38 +173,58 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            registerOperatorServiceAgentEventHandler(true);
-            loginTimer.Enabled = false;
-
-            if (Program.ChatForms.Count == 0)
+           
+            if (Properties.Settings.Default.CloseSettingState)
             {
-                try
-                {
-                    operaterServiceAgent.Logout();
-                }
-                catch (Exception ex)
-                {
-                    Trace.WriteLine("Logout异常: " + ex.Message);
-                }
+                CloseSettingForm closeSettingForm = new CloseSettingForm();
+                closeSettingForm.ShowDialog();
             }
-            else
-            {
-                if (MessageBox.Show("访客对话存在无法关闭客户端,是否强制关闭？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+
+            state = Properties.Settings.Default.CloseState;
+           
+            
+                if (state)
                 {
-                    e.Cancel = true;
+                    this.Visible = !state;
+                    saveWindowState = this.WindowState;
+                    notifyIcon.ShowBalloonTip(500);
+                    e.Cancel = state;
                     return;
                 }
-                else 
+                else
                 {
-                    List<ChatForm> forms = new List<ChatForm>(Program.ChatForms);
-                    foreach (var item in forms)
+                    registerOperatorServiceAgentEventHandler(true);
+                    loginTimer.Enabled = false;
+                    if (Program.ChatForms.Count == 0)
                     {
-                        item.Close();
+                        try
+                        {
+                            operaterServiceAgent.Logout();
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine("Logout异常: " + ex.Message);
+                        }
                     }
-                    Properties.Settings.Default.Save();
-                   
-                
-                }
+                    else
+                    {
+                        if (MessageBox.Show("访客对话存在无法关闭客户端,是否强制关闭？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                        else
+                        {
+                            List<ChatForm> forms = new List<ChatForm>(Program.ChatForms);
+                            foreach (var item in forms)
+                            {
+                                item.Close();
+                            }
+                            Properties.Settings.Default.Save();
+
+
+                        }
+                    }
             }
             Properties.Settings.Default.Save();
         }
@@ -513,13 +534,17 @@ namespace LiveSupport.OperatorConsole
                 MessageBox.Show("请选择访客");
                 return;
             }
-            if (requestbeginDateTimePicker.Value > requestendDateTimePicker.Value)
+            DateTime beginTime = new DateTime(requestbeginDateTimePicker.Value.Year, requestbeginDateTimePicker.Value.Month, requestbeginDateTimePicker.Value.Day, 0, 0, 0);
+            DateTime endTime = new DateTime(requestendDateTimePicker.Value.Year, requestendDateTimePicker.Value.Month, requestendDateTimePicker.Value.Day, 23, 59, 59);
+
+
+            if (beginTime > endTime)
             {
                 MessageBox.Show("日期选择有误！！");
                 return;
             }
 
-            List<PageRequest> pRequest = operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, requestbeginDateTimePicker.Value, requestendDateTimePicker.Value);
+            List<PageRequest> pRequest = operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, beginTime, endTime);
 
             if (pRequest.Count > 0)
             {
@@ -552,21 +577,22 @@ namespace LiveSupport.OperatorConsole
             VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
             if (vlvi == null)
             {
-                MessageBox.Show("请选择访客");
+                MessageBox.Show("请选择需要查询的访客");
                 return;
             }
-            if (messagebeginDateTimePicker.Value > messageendDateTimePicker.Value)
+            DateTime beginTime = new DateTime(messagebeginDateTimePicker.Value.Year, messagebeginDateTimePicker.Value.Month, messagebeginDateTimePicker.Value.Day,0,0,0);
+            DateTime endTime = new DateTime(messageendDateTimePicker.Value.Year, messageendDateTimePicker.Value.Month, messageendDateTimePicker.Value.Day, 23, 59, 59);
+
+            if (beginTime > endTime)
             {
-                MessageBox.Show("日期选择有误！！");
+                MessageBox.Show("选择时间有误,开始时间晚于结束时间");
                 return;
             }
 
-            List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, messagebeginDateTimePicker.Value, messageendDateTimePicker.Value);
+            List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, beginTime, endTime);
             if (msg.Count > 0)
             {
-                ChatMessageViewerControl ucm = new ChatMessageViewerControl(msg);
-                ucm.Visible = true;
-                ucm.Parent = this.panelMessage;
+                chatMessageViewerControl1.DataBindMessage(msg);
             }
             else
             {
@@ -593,10 +619,18 @@ namespace LiveSupport.OperatorConsole
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确定要退出座席终端？", "退出确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            this.Close();
+        }
+
+        private void exitToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OptionsForm optionForm = new OptionsForm();
+            optionForm.ShowDialog();
         }
 
         private void changeOperatorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -654,9 +688,9 @@ namespace LiveSupport.OperatorConsole
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.AutoLogin = autoLoginToolStripMenuItem.Checked;
-            Properties.Settings.Default.PlaySoundOnChatReq = playSoundOnChatRequestToolStripMenuItem.Checked;
-            Properties.Settings.Default.GetWebRequestOffline = whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked;
+            //Properties.Settings.Default.AutoLogin = autoLoginToolStripMenuItem.Checked;
+            //Properties.Settings.Default.PlaySoundOnChatReq = playSoundOnChatRequestToolStripMenuItem.Checked;
+            //Properties.Settings.Default.GetWebRequestOffline = whenOfflineGetWebsiteRequestsToolStripMenuItem.Checked;
         }
         #endregion
 
@@ -817,8 +851,6 @@ namespace LiveSupport.OperatorConsole
         {
 
         }
-
-       
     }
 
     class VisitorListViewItem
