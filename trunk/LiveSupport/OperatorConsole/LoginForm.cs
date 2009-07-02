@@ -37,7 +37,7 @@ namespace LiveSupport.OperatorConsole
         {
             InitializeComponent();
         }
-
+        //btn登录
         private void btnOK_Click(object sender, EventArgs e)
         {
             loginStatusChange(false,"正在登录...");
@@ -45,22 +45,30 @@ namespace LiveSupport.OperatorConsole
             login();
             this.Cursor = Cursors.Default;
            
-            if (this.cbxPassword.Checked)
+            if (this.cbxPassword.Checked)//判断保存密码框是否选中
             {
-                saveConfiguration();
+                saveConfiguration();//保存信息
             }            
         }
-
+        /// <summary>
+        /// 显示下在登录时的提示的信息
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="text"></param>
         private void loginStatusChange(bool state,string text) 
         {
+            //将文本框设为不可用
             txtUserName.Enabled = state;
             txtOpName.Enabled = state;
             txtOpPassword.Enabled = state;
-            lblMessage.Text = text;
-            lblMessage.ForeColor = Color.Red;
-            pictureBox1.Visible = !state;
+            
+            lblMessage.Text = text;//显示消息
+            lblMessage.ForeColor = Color.Red;//设置颜色
+            pictureBox1.Visible = !state;//显示转动的图片
         }
-        
+        /// <summary>
+        /// 登录服务器！
+        /// </summary>
         private void login()
         {
             try
@@ -76,34 +84,39 @@ namespace LiveSupport.OperatorConsole
 
             if (operatorServiceAgent.CurrentOperator != null)
             {
-                this.Visible = false;
-                MainForm c = new MainForm(operatorServiceAgent, DateTime.Now);
-                Program.MainForm = c;
-                Program.MainForm.Show();
+                this.Visible = false;//隐藏本窗体（登录窗体）
+                MainForm c = new MainForm(operatorServiceAgent, DateTime.Now);//实例一个主窗体
+                Program.MainForm = c;//将这实列的窗体复给本程序
+                Program.MainForm.Show();//显示这个窗体
             }
             else
             {
-                loginStatusChange(true, "登录失败!\r\n\r\n数据填写有误...");
-                lblMessage.SetBounds(260, 10, 25, 10);
+                //operator 客服不存在时调用！
+                loginStatusChange(true, "登录失败!\r\n\r\n数据填写有误...");//设置登录窗体显示的系统信息
+                lblMessage.SetBounds(260, 10, 25, 10);//设置消息的位置和大小
             }
         }
-
+        //btn退出
         private void btnCancel_Click(object sender, EventArgs e)
         {
 			Application.Exit();
         }
-
+        /// <summary>
+        /// 登录窗体加载方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Login_Load(object sender, EventArgs e)
         {
-            //pictureBox1.Visible=false;
-
-            loadConfiguration();
-            if (Properties.Settings.Default.AutoLogin)
+            loadConfiguration();//加载配置文件有的登录信息
+            if (Properties.Settings.Default.AutoLogin)//判断是否自己登录
             {
-                autoLoginTimer.Enabled = true;
+                autoLoginTimer.Enabled = true;//起动自动登录时间方法
             }
         }
-
+        /// <summary>
+        /// 保存登录信息
+        /// </summary>
         private void saveConfiguration()
         {
             Properties.Settings.Default.WSUser = txtUserName.Text;
@@ -113,7 +126,9 @@ namespace LiveSupport.OperatorConsole
             Properties.Settings.Default.AutoLogin=cbxAutoLogin.Checked;
             Properties.Settings.Default.Save(); 
         }
-
+        /// <summary>
+        /// 从文件中取出上次登录信息
+        /// </summary>
         private void loadConfiguration()
         {
             txtUserName.Text = Properties.Settings.Default.WSUser;
@@ -146,15 +161,15 @@ namespace LiveSupport.OperatorConsole
             {
             }
         }
-
+        //时间事件
         private void autoLoginTimer_Tick(object sender, EventArgs e)
         {
-            login();
+            login();//登录方法
             if (operatorServiceAgent.CurrentOperator != null)
             {
                 this.Hide();
             }
-            autoLoginTimer.Enabled = false;
+            autoLoginTimer.Enabled = false;// 时间停用 
         }
 
     }
