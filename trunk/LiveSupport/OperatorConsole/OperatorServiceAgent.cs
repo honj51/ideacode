@@ -19,6 +19,10 @@ namespace LiveSupport.OperatorConsole
         private Operator currentOperator;
         private System.Timers.Timer checkNewChangesTimer = new System.Timers.Timer(1000);
         private bool pooling = true;
+
+        private string accountNumber;
+        private string operatorName;
+        private string password;
         #region 公开属性
        
         public static OperatorServiceAgent Default
@@ -80,6 +84,9 @@ namespace LiveSupport.OperatorConsole
         public Operator Login(string accountNumber, string operatorName, string password)
         {
             currentOperator = ws.Login(accountNumber, operatorName, password);
+            this.accountNumber = accountNumber;
+            this.operatorName = operatorName;
+            this.password = password;
             if (currentOperator != null)
             {
                 AuthenticationHeader h = new AuthenticationHeader();
@@ -238,9 +245,12 @@ namespace LiveSupport.OperatorConsole
             
                     }
                 }
-            } 
-            processOpertors(result);
+            }
 
+            if (result.Operators != null)
+            {
+                processOpertors(result);
+            }
             if (result.Messages != null)
             {
                 lastCheck.ChatSessionChecks = processMessages(result).ToArray();
@@ -248,10 +258,6 @@ namespace LiveSupport.OperatorConsole
             
             processChats(result);
 
-            if (NewChanges != null)
-            {
-                NewChanges(this, new NewChangesCheckResultEventArgs(result));
-            }
             return result;
         }
 
@@ -299,13 +305,16 @@ namespace LiveSupport.OperatorConsole
 
         private void processOpertors(NewChangesCheckResult result)
         {
-
             if (result.Operators != null)
             {
                 if (result.Operators.Length > Operators.Count || checkIfOperatorStatusChanges(result.Operators))
                 {
                     Operators.Clear();
                     Operators.AddRange(result.Operators);
+                    if (NewChanges != null)
+                    {
+                        NewChanges(this, new NewChangesCheckResultEventArgs(result));
+                    }
                 }
             }
         }
@@ -359,12 +368,16 @@ namespace LiveSupport.OperatorConsole
             return nextChecks;
         }
 
+        int faultCount = 0;
+        const int MAX_FAULT_COUNT = 10;
+
         private NewChangesCheckResult getNewChanges(NewChangesCheck check)
         {
             NewChangesCheckResult result = null;
             try
             {
                 result = CheckNewChanges(lastCheck);
+                faultCount = 0;
                 if (result != null && result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
                 {
                     resetConnection("该帐号已在其他地方登陆！");
@@ -372,22 +385,36 @@ namespace LiveSupport.OperatorConsole
             }
             catch (WebException ex)
             {
-                if (ex.InnerException != null && ex.InnerException is SocketException)
+                faultCount++;
+
+                if (faultCount >= MAX_FAULT_COUNT)
                 {
+                    faultCount = 0;
                     resetConnection("连接中断");
                 }
-                else if (ex.Status == WebExceptionStatus.Timeout)
+            }
+            catch (InvalidOperationException ioe)
+            {
+                faultCount++;
+
+                if (faultCount >= MAX_FAULT_COUNT)
                 {
-                    // 超时
-                }
-                else
-                {
-                    throw;
+                    faultCount = 0;
+                    resetConnection("连接中断");
                 }
             }
             catch (AccessViolationException ave)
             {
-                resetConnection("服务访问拒绝");
+                faultCount++;
+                if (faultCount >= MAX_FAULT_COUNT)
+                {
+                    faultCount = 0;
+                    resetConnection("服务访问拒绝");
+                }
+                else
+                {
+                    Login(accountNumber, operatorName, password);
+                }
             }
             return result;
         }

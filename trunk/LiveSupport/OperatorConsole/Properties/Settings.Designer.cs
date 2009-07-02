@@ -252,12 +252,12 @@ namespace LiveSupport.OperatorConsole.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CloseSettingState {
+        public bool ShowCloseReminder {
             get {
-                return ((bool)(this["CloseSettingState"]));
+                return ((bool)(this["ShowCloseReminder"]));
             }
             set {
-                this["CloseSettingState"] = value;
+                this["ShowCloseReminder"] = value;
             }
         }
         
