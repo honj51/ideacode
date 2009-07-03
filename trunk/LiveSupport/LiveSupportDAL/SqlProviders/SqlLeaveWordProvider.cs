@@ -66,7 +66,7 @@ namespace LiveSupport.SqlProviders
         #endregion
 
         #region 通过公司编号获得留言信息
-        public List<LiveSupport.LiveSupportModel.LeaveWord> GetGetLeaveWordByAccountId(string accountId, string beginDate, string endDate)
+        public List<LiveSupport.LiveSupportModel.LeaveWord> GetLeaveWordByAccountId(string accountId, string beginDate, string endDate)
         {
             try
             {
@@ -77,6 +77,28 @@ namespace LiveSupport.SqlProviders
                 {
                     LeaveWord lw = new LeaveWord(sdr);
                     lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
+                    list.Add(lw);
+                }
+                sdr.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<LiveSupport.LiveSupportModel.LeaveWord> GetAllLeaveWordByAccountId(string accountId)
+        {
+            try
+            {
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}'", accountId);
+                SqlDataReader sdr = DBHelper.GetReader(sql);
+                List<LeaveWord> list = new List<LeaveWord>();
+                while (sdr.Read())
+                {
+                    LeaveWord lw = new LeaveWord(sdr);
+                    // lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
                     list.Add(lw);
                 }
                 sdr.Close();
