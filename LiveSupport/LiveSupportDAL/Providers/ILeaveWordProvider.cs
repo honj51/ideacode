@@ -11,6 +11,6 @@ namespace LiveSupport.Providers
         LeaveWord GetLeaveWordById(string id);
         List<LeaveWord> GetLeaveWordByAccountId(string accountId,string beginDate,string endDate);
         List<LeaveWord> GetAllLeaveWordByAccountId(string accountId);
-        int UpdateWordProviderById(string sendDate, string name, string id);
+        int UpdateWordProviderById(string sendDate, string name,bool isReplied, string id);
     }
 }
