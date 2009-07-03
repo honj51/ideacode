@@ -52,7 +52,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         if (this.lwId.Value != null && oper.NickName!=null)
         {
-            LeaveWordManager.UpdateWordProviderById(DateTime.Now.ToString(), oper.NickName, this.lwId.Value);
+            LeaveWordManager.UpdateWordProviderById(DateTime.Now.ToString(), oper.NickName,true,this.lwId.Value);
             DataBindLeaveWord(this.lwId.Value);
             string msg = "mailto:"+this.lblEmail.Text+"?subject=LiveSupport";
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>window.open('"+msg+"');</script>");
@@ -62,7 +62,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         if (this.lwId.Value != null)
         {
-            LeaveWordManager.UpdateWordProviderById(null, null, this.lwId.Value);
+            LeaveWordManager.UpdateWordProviderById(null, null,false, this.lwId.Value);
             DataBindLeaveWord(this.lwId.Value);
         }
     }
