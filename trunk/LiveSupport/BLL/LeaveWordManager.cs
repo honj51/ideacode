@@ -30,11 +30,17 @@ namespace LiveSupport.BLL
         #endregion
        
         #region 通过公司编号获得留言信息
-        public static List<LiveSupport.LiveSupportModel.LeaveWord> GetGetLeaveWordByAccountId(string accountId, string beginDate, string endDate)
+        public static List<LiveSupport.LiveSupportModel.LeaveWord> GetLeaveWordByAccountId(string accountId, string beginDate, string endDate)
         {
-            return Provider.GetGetLeaveWordByAccountId(accountId, beginDate, endDate);
+            return Provider.GetLeaveWordByAccountId(accountId, beginDate, endDate);
+        }
+
+        public static List<LiveSupport.LiveSupportModel.LeaveWord> GetAllLeaveWordByAccountId(string accountId)
+        {
+            return Provider.GetAllLeaveWordByAccountId(accountId);
         }
         #endregion
+
 
         #region ILeaveWordProvider 成员
         public static bool UpdateWordProviderById(string sendDate, string name, string id)
