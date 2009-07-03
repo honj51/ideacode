@@ -30,8 +30,8 @@ namespace LiveSupport.OperatorConsole
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("离线客服");
             System.Windows.Forms.Label visitorIdLabel;
             System.Windows.Forms.Label visitCountLabel;
             System.Windows.Forms.Label reMarkLabel;
@@ -104,9 +104,7 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.visitorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -146,7 +144,6 @@ namespace LiveSupport.OperatorConsole
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -163,6 +160,9 @@ namespace LiveSupport.OperatorConsole
             this.domainRequestedTextBox = new System.Windows.Forms.TextBox();
             this.browserTextBox = new System.Windows.Forms.TextBox();
             this.tabChats = new System.Windows.Forms.TabControl();
+            this.visitorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -187,7 +187,6 @@ namespace LiveSupport.OperatorConsole
             this.visitorSessionSplitContainer.Panel2.SuspendLayout();
             this.visitorSessionSplitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.notifyIconContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -196,6 +195,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabChats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -713,14 +713,6 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Size = new System.Drawing.Size(204, 403);
             this.panel1.TabIndex = 0;
             // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 373);
-            this.operatorPannel1.TabIndex = 2;
-            // 
             // panel5
             // 
             this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
@@ -730,10 +722,6 @@ namespace LiveSupport.OperatorConsole
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(204, 30);
             this.panel5.TabIndex = 3;
-            // 
-            // visitorBindingSource
-            // 
-            this.visitorBindingSource.DataSource = typeof(LiveSupport.OperatorConsole.LiveChatWS.Visitor);
             // 
             // panel2
             // 
@@ -771,16 +759,15 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "在线客服";
-            treeNode4.Name = "节点1";
-            treeNode4.Text = "离线客服";
+            treeNode1.Name = "节点0";
+            treeNode1.Text = "在线客服";
+            treeNode2.Name = "节点1";
+            treeNode2.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1,
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1095,7 +1082,6 @@ namespace LiveSupport.OperatorConsole
             this.messagebeginDateTimePicker.Name = "messagebeginDateTimePicker";
             this.messagebeginDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.messagebeginDateTimePicker.TabIndex = 16;
-            this.messagebeginDateTimePicker.Value = new System.DateTime(2009, 7, 1, 10, 44, 0, 0);
             // 
             // messageendDateTimePicker
             // 
@@ -1104,16 +1090,6 @@ namespace LiveSupport.OperatorConsole
             this.messageendDateTimePicker.Name = "messageendDateTimePicker";
             this.messageendDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.messageendDateTimePicker.TabIndex = 17;
-            // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 304);
-            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // tabPage1
             // 
@@ -1157,7 +1133,7 @@ namespace LiveSupport.OperatorConsole
             // visitorIdLabel
             // 
             visitorIdLabel.AutoSize = true;
-            visitorIdLabel.Location = new System.Drawing.Point(30, 24);
+            visitorIdLabel.Location = new System.Drawing.Point(30, 394);
             visitorIdLabel.Name = "visitorIdLabel";
             visitorIdLabel.Size = new System.Drawing.Size(47, 12);
             visitorIdLabel.TabIndex = 14;
@@ -1166,7 +1142,7 @@ namespace LiveSupport.OperatorConsole
             // visitCountLabel
             // 
             visitCountLabel.AutoSize = true;
-            visitCountLabel.Location = new System.Drawing.Point(30, 127);
+            visitCountLabel.Location = new System.Drawing.Point(30, 497);
             visitCountLabel.Name = "visitCountLabel";
             visitCountLabel.Size = new System.Drawing.Size(59, 12);
             visitCountLabel.TabIndex = 12;
@@ -1175,7 +1151,7 @@ namespace LiveSupport.OperatorConsole
             // reMarkLabel
             // 
             reMarkLabel.AutoSize = true;
-            reMarkLabel.Location = new System.Drawing.Point(30, 100);
+            reMarkLabel.Location = new System.Drawing.Point(30, 470);
             reMarkLabel.Name = "reMarkLabel";
             reMarkLabel.Size = new System.Drawing.Size(35, 12);
             reMarkLabel.TabIndex = 10;
@@ -1184,7 +1160,7 @@ namespace LiveSupport.OperatorConsole
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(30, 73);
+            nameLabel.Location = new System.Drawing.Point(30, 443);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new System.Drawing.Size(59, 12);
             nameLabel.TabIndex = 8;
@@ -1193,7 +1169,7 @@ namespace LiveSupport.OperatorConsole
             // emailLabel
             // 
             emailLabel.AutoSize = true;
-            emailLabel.Location = new System.Drawing.Point(30, 50);
+            emailLabel.Location = new System.Drawing.Point(30, 420);
             emailLabel.Name = "emailLabel";
             emailLabel.Size = new System.Drawing.Size(59, 12);
             emailLabel.TabIndex = 4;
@@ -1202,7 +1178,7 @@ namespace LiveSupport.OperatorConsole
             // visitingTimeDateTimePicker
             // 
             this.visitingTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitorBindingSource, "CurrentSession.VisitingTime", true));
-            this.visitingTimeDateTimePicker.Location = new System.Drawing.Point(155, 401);
+            this.visitingTimeDateTimePicker.Location = new System.Drawing.Point(155, 771);
             this.visitingTimeDateTimePicker.Name = "visitingTimeDateTimePicker";
             this.visitingTimeDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.visitingTimeDateTimePicker.TabIndex = 45;
@@ -1210,7 +1186,7 @@ namespace LiveSupport.OperatorConsole
             // visitingTimeLabel
             // 
             visitingTimeLabel.AutoSize = true;
-            visitingTimeLabel.Location = new System.Drawing.Point(30, 405);
+            visitingTimeLabel.Location = new System.Drawing.Point(30, 775);
             visitingTimeLabel.Name = "visitingTimeLabel";
             visitingTimeLabel.Size = new System.Drawing.Size(83, 12);
             visitingTimeLabel.TabIndex = 44;
@@ -1219,7 +1195,7 @@ namespace LiveSupport.OperatorConsole
             // referrerLabel
             // 
             referrerLabel.AutoSize = true;
-            referrerLabel.Location = new System.Drawing.Point(30, 348);
+            referrerLabel.Location = new System.Drawing.Point(30, 718);
             referrerLabel.Name = "referrerLabel";
             referrerLabel.Size = new System.Drawing.Size(59, 12);
             referrerLabel.TabIndex = 38;
@@ -1228,7 +1204,7 @@ namespace LiveSupport.OperatorConsole
             // pageRequestedLabel
             // 
             pageRequestedLabel.AutoSize = true;
-            pageRequestedLabel.Location = new System.Drawing.Point(30, 315);
+            pageRequestedLabel.Location = new System.Drawing.Point(30, 685);
             pageRequestedLabel.Name = "pageRequestedLabel";
             pageRequestedLabel.Size = new System.Drawing.Size(59, 12);
             pageRequestedLabel.TabIndex = 36;
@@ -1237,7 +1213,7 @@ namespace LiveSupport.OperatorConsole
             // pageRequestCountLabel
             // 
             pageRequestCountLabel.AutoSize = true;
-            pageRequestCountLabel.Location = new System.Drawing.Point(30, 282);
+            pageRequestCountLabel.Location = new System.Drawing.Point(30, 652);
             pageRequestCountLabel.Name = "pageRequestCountLabel";
             pageRequestCountLabel.Size = new System.Drawing.Size(71, 12);
             pageRequestCountLabel.TabIndex = 34;
@@ -1246,7 +1222,7 @@ namespace LiveSupport.OperatorConsole
             // locationLabel
             // 
             locationLabel.AutoSize = true;
-            locationLabel.Location = new System.Drawing.Point(30, 248);
+            locationLabel.Location = new System.Drawing.Point(30, 618);
             locationLabel.Name = "locationLabel";
             locationLabel.Size = new System.Drawing.Size(59, 12);
             locationLabel.TabIndex = 30;
@@ -1255,7 +1231,7 @@ namespace LiveSupport.OperatorConsole
             // leaveTimeDateTimePicker
             // 
             this.leaveTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitorBindingSource, "CurrentSession.LeaveTime", true));
-            this.leaveTimeDateTimePicker.Location = new System.Drawing.Point(155, 211);
+            this.leaveTimeDateTimePicker.Location = new System.Drawing.Point(155, 581);
             this.leaveTimeDateTimePicker.Name = "leaveTimeDateTimePicker";
             this.leaveTimeDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.leaveTimeDateTimePicker.TabIndex = 29;
@@ -1263,7 +1239,7 @@ namespace LiveSupport.OperatorConsole
             // leaveTimeLabel
             // 
             leaveTimeLabel.AutoSize = true;
-            leaveTimeLabel.Location = new System.Drawing.Point(30, 215);
+            leaveTimeLabel.Location = new System.Drawing.Point(30, 585);
             leaveTimeLabel.Name = "leaveTimeLabel";
             leaveTimeLabel.Size = new System.Drawing.Size(59, 12);
             leaveTimeLabel.TabIndex = 28;
@@ -1272,7 +1248,7 @@ namespace LiveSupport.OperatorConsole
             // iPLabel
             // 
             iPLabel.AutoSize = true;
-            iPLabel.Location = new System.Drawing.Point(30, 187);
+            iPLabel.Location = new System.Drawing.Point(30, 557);
             iPLabel.Name = "iPLabel";
             iPLabel.Size = new System.Drawing.Size(23, 12);
             iPLabel.TabIndex = 26;
@@ -1281,7 +1257,7 @@ namespace LiveSupport.OperatorConsole
             // domainRequestedLabel
             // 
             domainRequestedLabel.AutoSize = true;
-            domainRequestedLabel.Location = new System.Drawing.Point(30, 372);
+            domainRequestedLabel.Location = new System.Drawing.Point(30, 742);
             domainRequestedLabel.Name = "domainRequestedLabel";
             domainRequestedLabel.Size = new System.Drawing.Size(59, 12);
             domainRequestedLabel.TabIndex = 24;
@@ -1290,7 +1266,7 @@ namespace LiveSupport.OperatorConsole
             // visitorIdTextBox
             // 
             this.visitorIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "VisitorId", true));
-            this.visitorIdTextBox.Location = new System.Drawing.Point(155, 21);
+            this.visitorIdTextBox.Location = new System.Drawing.Point(155, 391);
             this.visitorIdTextBox.Name = "visitorIdTextBox";
             this.visitorIdTextBox.Size = new System.Drawing.Size(200, 21);
             this.visitorIdTextBox.TabIndex = 15;
@@ -1298,7 +1274,7 @@ namespace LiveSupport.OperatorConsole
             // visitCountTextBox
             // 
             this.visitCountTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "VisitCount", true));
-            this.visitCountTextBox.Location = new System.Drawing.Point(155, 124);
+            this.visitCountTextBox.Location = new System.Drawing.Point(155, 494);
             this.visitCountTextBox.Name = "visitCountTextBox";
             this.visitCountTextBox.Size = new System.Drawing.Size(200, 21);
             this.visitCountTextBox.TabIndex = 13;
@@ -1306,7 +1282,7 @@ namespace LiveSupport.OperatorConsole
             // reMarkTextBox
             // 
             this.reMarkTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "ReMark", true));
-            this.reMarkTextBox.Location = new System.Drawing.Point(155, 97);
+            this.reMarkTextBox.Location = new System.Drawing.Point(155, 467);
             this.reMarkTextBox.Name = "reMarkTextBox";
             this.reMarkTextBox.Size = new System.Drawing.Size(200, 21);
             this.reMarkTextBox.TabIndex = 11;
@@ -1314,7 +1290,7 @@ namespace LiveSupport.OperatorConsole
             // nameTextBox
             // 
             this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "Name", true));
-            this.nameTextBox.Location = new System.Drawing.Point(155, 70);
+            this.nameTextBox.Location = new System.Drawing.Point(155, 440);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(200, 21);
             this.nameTextBox.TabIndex = 9;
@@ -1322,7 +1298,7 @@ namespace LiveSupport.OperatorConsole
             // emailTextBox
             // 
             this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "Email", true));
-            this.emailTextBox.Location = new System.Drawing.Point(155, 47);
+            this.emailTextBox.Location = new System.Drawing.Point(155, 417);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(200, 21);
             this.emailTextBox.TabIndex = 5;
@@ -1330,7 +1306,7 @@ namespace LiveSupport.OperatorConsole
             // referrerTextBox
             // 
             this.referrerTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.Referrer", true));
-            this.referrerTextBox.Location = new System.Drawing.Point(155, 339);
+            this.referrerTextBox.Location = new System.Drawing.Point(155, 709);
             this.referrerTextBox.Name = "referrerTextBox";
             this.referrerTextBox.Size = new System.Drawing.Size(200, 21);
             this.referrerTextBox.TabIndex = 39;
@@ -1338,7 +1314,7 @@ namespace LiveSupport.OperatorConsole
             // pageRequestedTextBox
             // 
             this.pageRequestedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.PageRequested", true));
-            this.pageRequestedTextBox.Location = new System.Drawing.Point(155, 312);
+            this.pageRequestedTextBox.Location = new System.Drawing.Point(155, 682);
             this.pageRequestedTextBox.Name = "pageRequestedTextBox";
             this.pageRequestedTextBox.Size = new System.Drawing.Size(200, 21);
             this.pageRequestedTextBox.TabIndex = 37;
@@ -1346,7 +1322,7 @@ namespace LiveSupport.OperatorConsole
             // pageRequestCountTextBox
             // 
             this.pageRequestCountTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.PageRequestCount", true));
-            this.pageRequestCountTextBox.Location = new System.Drawing.Point(155, 279);
+            this.pageRequestCountTextBox.Location = new System.Drawing.Point(155, 649);
             this.pageRequestCountTextBox.Name = "pageRequestCountTextBox";
             this.pageRequestCountTextBox.Size = new System.Drawing.Size(200, 21);
             this.pageRequestCountTextBox.TabIndex = 35;
@@ -1354,7 +1330,7 @@ namespace LiveSupport.OperatorConsole
             // locationTextBox
             // 
             this.locationTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.Location", true));
-            this.locationTextBox.Location = new System.Drawing.Point(155, 245);
+            this.locationTextBox.Location = new System.Drawing.Point(155, 615);
             this.locationTextBox.Name = "locationTextBox";
             this.locationTextBox.Size = new System.Drawing.Size(200, 21);
             this.locationTextBox.TabIndex = 31;
@@ -1362,7 +1338,7 @@ namespace LiveSupport.OperatorConsole
             // iPTextBox
             // 
             this.iPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.IP", true));
-            this.iPTextBox.Location = new System.Drawing.Point(155, 184);
+            this.iPTextBox.Location = new System.Drawing.Point(155, 554);
             this.iPTextBox.Name = "iPTextBox";
             this.iPTextBox.Size = new System.Drawing.Size(200, 21);
             this.iPTextBox.TabIndex = 27;
@@ -1370,7 +1346,7 @@ namespace LiveSupport.OperatorConsole
             // domainRequestedTextBox
             // 
             this.domainRequestedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.DomainRequested", true));
-            this.domainRequestedTextBox.Location = new System.Drawing.Point(155, 372);
+            this.domainRequestedTextBox.Location = new System.Drawing.Point(155, 742);
             this.domainRequestedTextBox.Name = "domainRequestedTextBox";
             this.domainRequestedTextBox.Size = new System.Drawing.Size(200, 21);
             this.domainRequestedTextBox.TabIndex = 25;
@@ -1378,7 +1354,7 @@ namespace LiveSupport.OperatorConsole
             // browserTextBox
             // 
             this.browserTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitorBindingSource, "CurrentSession.Browser", true));
-            this.browserTextBox.Location = new System.Drawing.Point(155, 151);
+            this.browserTextBox.Location = new System.Drawing.Point(155, 521);
             this.browserTextBox.Name = "browserTextBox";
             this.browserTextBox.Size = new System.Drawing.Size(200, 21);
             this.browserTextBox.TabIndex = 17;
@@ -1386,7 +1362,7 @@ namespace LiveSupport.OperatorConsole
             // browserLabel
             // 
             browserLabel.AutoSize = true;
-            browserLabel.Location = new System.Drawing.Point(30, 154);
+            browserLabel.Location = new System.Drawing.Point(30, 524);
             browserLabel.Name = "browserLabel";
             browserLabel.Size = new System.Drawing.Size(47, 12);
             browserLabel.TabIndex = 16;
@@ -1404,6 +1380,28 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.Size = new System.Drawing.Size(750, 373);
             this.tabChats.TabIndex = 0;
             this.tabChats.SelectedIndexChanged += new System.EventHandler(this.tabChats_SelectedIndexChanged);
+            // 
+            // visitorBindingSource
+            // 
+            this.visitorBindingSource.DataSource = typeof(LiveSupport.OperatorConsole.LiveChatWS.Visitor);
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 373);
+            this.operatorPannel1.TabIndex = 2;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 304);
+            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
             // 
@@ -1439,7 +1437,6 @@ namespace LiveSupport.OperatorConsole
             this.visitorSessionSplitContainer.Panel2.ResumeLayout(false);
             this.visitorSessionSplitContainer.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.notifyIconContextMenuStrip.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
@@ -1453,6 +1450,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabChats.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

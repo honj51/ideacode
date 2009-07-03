@@ -32,6 +32,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="Department" type="tns:Department" />
           <s:element minOccurs="0" maxOccurs="1" name="Account" type="tns:Account" />
+          <s:element minOccurs="1" maxOccurs="1" name="HeartBeatTime" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
       <s:simpleType name="OperatorStatus">

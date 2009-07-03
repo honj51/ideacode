@@ -49,9 +49,11 @@ namespace LiveSupport.OperatorConsole
             OperaterServiceAgent = OperatorServiceAgent.Default;
             LoginForm f = new LoginForm();
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
+
             Application.Run(f);
+            
             //TestFileUploadControl();
-           // TestOptionForm();
+            //TestOptionForm();
 		}
 
         static void TestOptionForm()
