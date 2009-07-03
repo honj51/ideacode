@@ -330,5 +330,14 @@ public class OperatorWS : System.Web.Services.WebService
         return OperatorService.GetQuickResponse(Authentication.OperatorId);
     }
 
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<LeaveWord> GetLeaveWord()
+    {
+        checkAuthentication();
+        return LiveSupport.BLL.LeaveWordManager.GetAllLeaveWordByAccountId(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId);
+    }
+
+
 
 }
