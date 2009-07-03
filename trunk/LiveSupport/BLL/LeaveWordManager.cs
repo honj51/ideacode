@@ -41,12 +41,11 @@ namespace LiveSupport.BLL
         }
         #endregion
 
-
-        #region ILeaveWordProvider 成员
-        public static bool UpdateWordProviderById(string sendDate, string name, string id)
+        #region 修改留言 成员
+        public static bool UpdateWordProviderById(string sendDate, string name, bool isReplied, string id)
         {
             int i = 0;
-            i=Provider.UpdateWordProviderById(sendDate, name, id);
+            i=Provider.UpdateWordProviderById(sendDate, name,isReplied, id);
             if (i != 0)
                 return true;
             else
