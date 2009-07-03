@@ -35,7 +35,7 @@ namespace LiveSupport.OperatorConsole
         private Hashtable[] groupTables;// Declare a Hashtable array in which to store the groups.
         int groupColumn = -1;// Declare a variable to store the current grouping column.
         private bool isAllowGroup = true;
-        private bool isException = false;
+        private bool closedByUser = true;
         private DateTime loginTime;
         TestFixture testFixture = new TestFixture();
         private FormWindowState saveWindowState = FormWindowState.Normal;
@@ -176,15 +176,11 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ClosingResult res = ClosingResult.Cancel;
+            if (closedByUser)
+            {
+                ClosingResult res = ClosingResult.Cancel;
 
-            // 1 判断是否关闭程序
-            if (isException)
-            {
-                res = ClosingResult.Close;
-            }
-            else
-            {
+                // 1 判断是否关闭程序
                 if (Properties.Settings.Default.ShowCloseReminder)
                 {
                     CloseSettingForm closeSettingForm = new CloseSettingForm();
@@ -203,24 +199,25 @@ namespace LiveSupport.OperatorConsole
                 {
                     res = getClosingResult(res);
                 }
+
+                // 2.相应处理 
+                switch (res)
+                {
+                    case ClosingResult.Minimize:
+                        showMainForm(false);
+                        e.Cancel = true;
+                        break;
+                    case ClosingResult.Close:
+                        shutdown();
+                        break;
+                    case ClosingResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                    default:
+                        break;
+                }
             }
 
-            // 2.相应处理 
-            switch (res)
-            {
-                case ClosingResult.Minimize:
-                    showMainForm(false);
-                    e.Cancel = true;
-                    break;
-                case ClosingResult.Close:
-                    shutdown();
-                    break;
-                case ClosingResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                default:
-                    break;
-            }
             Properties.Settings.Default.Save();
         }
 
@@ -356,7 +353,6 @@ namespace LiveSupport.OperatorConsole
 
         private void connectionLost(string message)
         {
-            isException = true;
             loginTimer.Enabled = false;
             MessageBox.Show(message + "，需要重新登陆！", "连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -392,6 +388,8 @@ namespace LiveSupport.OperatorConsole
 
         private void restartApp(string args)
         {
+            closedByUser = false;
+            shutdown();
             this.Close();
             Process.Start(new ProcessStartInfo(Application.ExecutablePath, args));
             Application.Exit();
@@ -641,22 +639,27 @@ namespace LiveSupport.OperatorConsole
         #region 主菜单事件处理
         private void autostartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.StartWithWindows = this.autostartToolStripMenuItem.Checked;
-            if (Properties.Settings.Default.StartWithWindows)
-            {
-                RegistryKey run = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                run.SetValue("OperatorConsole", Application.ExecutablePath.ToString() + " -hide");
-            }
-            else
-            {
-                RegistryKey run = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                run.SetValue("OperatorConsole", "");
-            }
+            //Properties.Settings.Default.StartWithWindows = this.autostartToolStripMenuItem.Checked;
+            //if (Properties.Settings.Default.StartWithWindows)
+            //{
+            //    RegistryKey run = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            //    run.SetValue("OperatorConsole", Application.ExecutablePath.ToString() + " -hide");
+            //}
+            //else
+            //{
+            //    RegistryKey run = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            //    run.SetValue("OperatorConsole", "");
+            //}
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("确认退出程序吗？","确认退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                closedByUser = false;
+                shutdown();
+                this.Close();
+            }
         }
 
         private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -880,6 +883,11 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         private void tabChats_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void leaveWordToolStripButton_Click(object sender, EventArgs e)
         {
 
         }
