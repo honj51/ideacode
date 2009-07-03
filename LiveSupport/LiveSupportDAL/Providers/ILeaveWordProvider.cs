@@ -9,7 +9,8 @@ namespace LiveSupport.Providers
     {
         int AddWordProvider(LeaveWord lv);
         LeaveWord GetLeaveWordById(string id);
-        List<LeaveWord> GetGetLeaveWordByAccountId(string accountId,string beginDate,string endDate);
+        List<LeaveWord> GetLeaveWordByAccountId(string accountId,string beginDate,string endDate);
+        List<LeaveWord> GetAllLeaveWordByAccountId(string accountId);
         int UpdateWordProviderById(string sendDate, string name, string id);
     }
 }
