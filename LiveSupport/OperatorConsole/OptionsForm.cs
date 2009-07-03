@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -35,6 +36,18 @@ namespace LiveSupport.OperatorConsole
             Properties.Settings.Default.PlaySoundOnChatMsg= cbxplaySoundOnChatMessage.Checked ;
             Properties.Settings.Default.PlaySoundOnChatReq=cbxplaySoundOnChatRequest.Checked ;
             Properties.Settings.Default.StartWithWindows=cbxAutoStart.Checked ;
+            
+            if (Properties.Settings.Default.StartWithWindows)
+            {
+                RegistryKey run = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                run.SetValue("OperatorConsole", Application.ExecutablePath.ToString() + " -hide");
+            }
+            else
+            {
+                RegistryKey run = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                run.SetValue("OperatorConsole", "");
+            }
+
             Properties.Settings.Default.CloseState=radioButtonCloseSet1.Checked ;
             Properties.Settings.Default.Save();
         }
@@ -55,5 +68,7 @@ namespace LiveSupport.OperatorConsole
         {
             saveConfiguration();
         }
+
+       
     }
 }
