@@ -39,7 +39,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     #region 绑定留言记录
     public void DataBindLeaveWord(string accountId, string beginDate, string endDate)
     {
-        List<LeaveWord> list=LeaveWordManager.GetGetLeaveWordByAccountId(accountId,beginDate,endDate);
+        List<LeaveWord> list=LeaveWordManager.GetLeaveWordByAccountId(accountId,beginDate,endDate);
         if (list != null)
         {
             this.gvLeaveWord.DataSource = list;
