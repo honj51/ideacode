@@ -4,6 +4,7 @@ using System.Text;
 using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Net;
 using System.Net.Sockets;
+using System.Web.Services.Protocols;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -403,13 +404,20 @@ namespace LiveSupport.OperatorConsole
                     resetConnection("连接中断");
                 }
             }
-            catch (AccessViolationException ave)
+            catch (SoapException ave)
             {
                 faultCount++;
                 if (faultCount >= MAX_FAULT_COUNT)
                 {
                     faultCount = 0;
-                    resetConnection("服务访问拒绝");
+                    if (ave.Message.Contains("AccessViolationException"))
+                    {
+                        resetConnection("服务访问拒绝");
+                    }
+                    else
+                    {
+                        resetConnection("Soap异常");
+                    }
                 }
                 else
                 {
