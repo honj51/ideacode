@@ -17,7 +17,7 @@ namespace LiveSupport.SqlProviders
             {
                 string sql = string.Format(
            " INSERT INTO [LiveSupport].[dbo].[LiveSupport_LeaveWord]"
-          + " ([Id]"
+          + " ([Id]" 
           + " ,[CallerName]"
           + " ,[Email]"
           + " ,[Phone]"
@@ -27,8 +27,9 @@ namespace LiveSupport.SqlProviders
            + ",[CallerDate]"
            + ",[Senddate]"
            + ",[OperatorName]"
-           + ",[accountId])"
-           + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}') ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId);
+           + ",[AccountId])"
+           + ",[IsReplied])"
+           + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11}) ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId,lw.IsReplied);
                 return DBHelper.ExecuteSql(sql);
             }
             catch (Exception ex)
@@ -112,9 +113,9 @@ namespace LiveSupport.SqlProviders
         #endregion
 
         #region 修改留言记录
-        public int  UpdateWordProviderById(string sendDate,string name,string id)
+        public int  UpdateWordProviderById(string sendDate,string name,bool isReplied,string id)
         {
-            string sql = string.Format("update LiveSupport_LeaveWord set Senddate='{0}',OperatorName='{1}' where id='{2}'",sendDate,name,id);
+            string sql = string.Format("update LiveSupport_LeaveWord set Senddate='{0}',OperatorName='{1}',IsReplied='{2}' where id='{3}'", sendDate, name, isReplied, id);
             return DBHelper.ExecuteSql(sql);
         }
         #endregion
