@@ -1632,6 +1632,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private Account accountField;
         
+        private System.DateTime heartBeatTimeField;
+        
         /// <remarks/>
         public string OperatorId {
             get {
@@ -1749,6 +1751,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.accountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime HeartBeatTime {
+            get {
+                return this.heartBeatTimeField;
+            }
+            set {
+                this.heartBeatTimeField = value;
             }
         }
     }
