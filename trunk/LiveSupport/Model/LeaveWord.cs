@@ -83,6 +83,15 @@ namespace LiveSupport.LiveSupportModel
             set { operatorName = value; }
         }
 
+        private bool isReplied;
+
+        public bool IsReplied
+        {
+            get { return isReplied; }
+            set { isReplied = value; }
+        }
+
+
         private string isSend;      //是否回复
 
         public string IsSend
@@ -113,16 +122,21 @@ namespace LiveSupport.LiveSupportModel
             if (!Convert.IsDBNull(data["content"])) content = (string)data["content"];
             if (!Convert.IsDBNull(data["ip"])) ip = (string)data["ip"];
             if (!Convert.IsDBNull(data["callerDate"])) callerDate =Convert.ToDateTime(data["callerDate"]).ToString();
-            if (!Convert.IsDBNull(data["senddate"]))
-            {
-                senddate = Convert.ToDateTime(data["senddate"]).ToString();
-                isSend = "已回复";
-            }
-            else
-            {
-                isSend = "未回复";
-            }
+            if (!Convert.IsDBNull(data["senddate"])) senddate = Convert.ToDateTime(data["senddate"]).ToString();
             if (!Convert.IsDBNull(data["operatorName"])) operatorName = (string)data["operatorName"];
+            if (!Convert.IsDBNull(data["isReplied"]))
+            {
+                isReplied = Convert.ToBoolean(data["isReplied"]);
+                if (isReplied)
+                {
+                    isSend = "已回复";
+                }
+                else
+                {
+                    isSend = "未回复";
+                    senddate = "";
+                }
+            }
 
         }
 
