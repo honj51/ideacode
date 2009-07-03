@@ -36,6 +36,7 @@ namespace LiveSupport.OperatorConsole
         public LoginForm()
         {
             InitializeComponent();
+            cbxAutoLogin.Enabled = false;
         }
         //btn登录
         private void btnOK_Click(object sender, EventArgs e)
@@ -44,11 +45,9 @@ namespace LiveSupport.OperatorConsole
             this.Cursor = Cursors.WaitCursor;
             login();
             this.Cursor = Cursors.Default;
-           
-            if (this.cbxPassword.Checked)//判断保存密码框是否选中
-            {
+
                 saveConfiguration();//保存信息
-            }            
+                       
         }
         /// <summary>
         /// 显示下在登录时的提示的信息
@@ -110,6 +109,7 @@ namespace LiveSupport.OperatorConsole
         {
             loadConfiguration();//加载配置文件有的登录信息
             if (Properties.Settings.Default.AutoLogin)//判断是否自己登录
+
             {
                 autoLoginTimer.Enabled = true;//起动自动登录时间方法
             }
@@ -178,6 +178,12 @@ namespace LiveSupport.OperatorConsole
                 this.Hide();
             }
             autoLoginTimer.Enabled = false;// 时间停用 
+        }
+
+        private void cbxPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxAutoLogin.Checked = false;
+            cbxAutoLogin.Enabled = cbxPassword.Checked;
         }
 
     }
