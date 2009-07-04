@@ -1,6 +1,7 @@
 =Flex / Stratus =
  * [http://www.flextheworld.com/2009/01/flex-stratus-p2p-phone.html Flex 迷你教程 — 基于Stratus的P2P网络电话]
  * [http://labs.adobe.com/technologies/stratus/samples/ Stratus Sample Application]
+ * [http://www.fmser.cn/]
 = Flex 技术资源下载 =
 
  * [http://download.macromedia.com/pub/developer/air/TourDeFlex.air Flex 例子程序]
