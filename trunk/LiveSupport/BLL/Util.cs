@@ -128,6 +128,52 @@ namespace LiveSupport.BLL
         }
 
         #endregion
- 
+
+        #region 取系统时间状态
+        public static SysDateStates sysInfo = new SysDateStates();
+      
+        public static SysDateStates GetSysInfo()
+        {
+            return sysInfo;
+        }
+        public class SysDateStates
+        {
+            private DateTime startApplicationDate;
+
+            public DateTime StartApplicationDate
+            {
+                get { return startApplicationDate; }
+                set { startApplicationDate = value; }
+            }
+            private DateTime endApplicationDate;
+
+            public DateTime EndApplicationDate
+            {
+                get { return endApplicationDate; }
+                set { endApplicationDate = value; }
+            }
+            private DateTime errorDatre;
+
+            public DateTime ErrorDatre
+            {
+                get { return errorDatre; }
+                set { errorDatre = value; }
+            }
+            private DateTime startSessionDate;
+
+            public DateTime StartSessionDate
+            {
+                get { return startSessionDate; }
+                set { startSessionDate = value; }
+            }
+            private DateTime endSessionDate;
+
+            public DateTime EndSessionDate
+            {
+                get { return endSessionDate; }
+                set { endSessionDate = value; }
+            }
+        }
+        #endregion
     }
 }
