@@ -7,7 +7,7 @@
     <title>在线交流</title>
     <link href="App_Themes/Default/mainCN.css" rel="stylesheet" type="text/css" />
     <link href="App_Themes/Default/skin.css" rel="stylesheet" type="text/css" />
-
+    <LINK rel=stylesheet type=text/css href="App_Themes/Default/leaveWord.css"><LINK  />
     <script src="js/SendMsg.js" type="text/javascript" language="javascript"></script>
 
     <script src="js/ChatPageScript.js" type="text/javascript" language="javascript"></script>
@@ -135,53 +135,77 @@
         </asp:ScriptManager>
         <%--面板1 star--%>
         <asp:Panel ID="pnlNoOperator" Visible="false" runat="server">
-            <table cellpadding="0" cellspacing="0" style="background-image: url(Images/bg.jpg);
-                background-position: center; height: 100%; width: 100%">
-                <tr>
-                    <td align="center">
-                        <span class="formField">感谢您的关注！</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <fieldset>
-                            <legend>
-                                <asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
-                                <span id="Span1">当前没有客服在线.<br />
-                                    请留言，我们会尽快给您回复!</span> </legend>
-                            <br />
-                            <fieldset style="height: 5%; width: 43.5%">
-                                <legend><span class="formField">姓名</span></legend>
-                                <asp:TextBox ID="txt_username" runat="server" Width="99%"></asp:TextBox>
-                            </fieldset>
-                            <fieldset style="height: 5%; width: 43.5%">
-                                <legend><span class="formField">电话</span></legend>
-                                <asp:TextBox ID="txtPhone" runat="server" Width="100%"></asp:TextBox>
-                            </fieldset>
-                            <br />
-                            <fieldset style="height: 5%; width: 87%">
-                                <legend><span class="formField">您的电子邮件</span></legend>&nbsp;<asp:TextBox ID="txtSendBy"
-                                    runat="server" Width="100%"></asp:TextBox>
-                            </fieldset>
-                            <br />
-                            <fieldset style="height: 5%; width: 87%">
-                                <legend><span class="formField">主题</span></legend>&nbsp;<asp:TextBox ID="txtTheme"
-                                    runat="server" Width="100%"></asp:TextBox>
-                            </fieldset>
-                            <bt />
-                            <fieldset style="height: 230px; width: 87%">
-                                <legend><span class="formField">留言内容</span> </legend>
-                                <asp:TextBox ID="txtComment" TextMode="MultiLine" Width="100%" Height="230px" runat="server"></asp:TextBox>
-                            </fieldset>
-                            <br />
-                            <fieldset style="height: 2%; width: 92%;">
-                                <asp:Button ID="btnSendEmail" runat="server" Text="发送邮件" OnClientClick="emailclose()"
-                                    OnClick="btnSendEmail_Click" />
-                            </fieldset>
-                        </fieldset>
-                    </td>
-                </tr>
-            </table>
+        <div style="WIDTH: 603px; MARGIN-LEFT: 0px">
+  <div class="b">
+  <div  style=" margin:8px 8px 0px 7px ;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 588px; HEIGHT: 95px; BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid" >
+    <p>&nbsp;</p>
+ </div>
+    <div class="b_1">
+    
+      <div class="b_1a">
+        <table width="100%" height="100%" border="0"  >
+          <tr  style="background-image:url(Images/top1.jpg)">
+            <td height="27" colspan="2"  align="center"><asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
+            当前没有客服在线 请留言，我们会尽快给您回复!</td>
+          </tr>
+          <tr >
+            <td width="19%" height="23" align="center" >姓名:</td>
+            <td width="81%"  align="left" style="background-color:#FFFFFF" >
+            <asp:TextBox ID="txt_username"  runat="server" Width="301px"></asp:TextBox>
+                <asp:Label ID="lblUserName" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                <asp:RequiredFieldValidator 
+                    ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_username" 
+                    ErrorMessage="姓名不能为空" ForeColor="#99CCFF" ToolTip="请输入姓名">请输入你的姓名</asp:RequiredFieldValidator>
+              </td>
+          </tr>
+          <tr >
+            <td height="23" align="center" >电话:</td>
+            <td style="background-color:#FFFFFF"  >
+            <asp:TextBox ID="txtPhone" runat="server" Width="300px"></asp:TextBox>
+              </td>
+          </tr>
+          <tr >
+            <td height="23" align="center" >电子邮件:</td>
+            <td style="background-color:#FFFFFF"  >
+            <asp:TextBox ID="txtSendBy" runat="server" Width="300px"></asp:TextBox>
+                <asp:Label ID="lblEmal" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                <asp:RegularExpressionValidator 
+                    ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSendBy" 
+                    ErrorMessage="邮件格试错误" ForeColor="#99CCFF" 
+                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                    ControlToValidate="txtSendBy" ErrorMessage="邮件不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
+              </td>
+          </tr>
+          <tr >
+            <td height="23" align="center" >主题:</td>
+            <td  style="background-color:#FFFFFF">
+            <asp:TextBox ID="txtTheme" runat="server" Width="300px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                    ControlToValidate="txtComment" ErrorMessage="留言内容不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
+              </td>
+          </tr>
+          <tr style="background-image:url(Images/top1.jpg)">
+            <td height="23" colspan="2" align="center" >留言内容:</td>
+          </tr>
+          <tr >
+            <td height="124" colspan="2"><div  style="margin:2px 10px 2px 2px;">
+              <asp:TextBox ID="txtComment" TextMode="MultiLine" Height="164px" Width="99%" 
+                    runat="server"></asp:TextBox>
+            </div>
+            </td>
+          </tr>
+          <tr >
+            <td height="23" colspan="2" align="center"><asp:Button ID="btnSendEmail" runat="server" Text="发送邮件"  OnClick="btnSendEmail_Click" /></td>
+          </tr>
+          <tr style="background-image:url(Images/top1.jpg)">
+            <td colspan="2" style="background-image:url(Image/top1.jpg)"> </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
         </asp:Panel>
         <%--面板1 end--%>
         <asp:Panel ID="pnlRequest" Visible="true" runat="server">
@@ -322,9 +346,7 @@
     </td> </tr>
     <tr id="msg">
         <td id="inputarea" style="width: 85%; height: 90px">
-            <textarea name="message" id="txtMsg" rows="2" runat="server" cols="100" onkeypress="checkEnter(event)" />
-        </td>
-        <td align="center" id="enter_wrap" style="width: 40px; height: 90px">
+            <textarea name="message" id="txtMsg" rows="2" runat="server" cols="100" onkeypress="checkEnter(event)" /> </td><td align="center" id="enter_wrap" style="width: 40px; height: 90px">
             <div id="ewrap">
                 <div id="enter" style="background-image: url(Images/send0.jpg)" onclick="CallSendMsg()">
                 </div>
@@ -336,18 +358,9 @@
             style="width: 100%;">
             <div id="footer">
                 <p>
-                    <span id="shortKeyTip">[发送快捷键:Enter]: </span><span id="footerBox"></span>
-                </p>
-                <div id="shortcutkey" onclick="">
-                    消息发送方式</div>
-                <ul id="shortKeyMenu" style="display: none;">
-                    <li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul>
-            </div>
-        </td>
-    </tr>
-    </table></asp:Panel></div></form>
-
-    <script type="text/javascript" language="javascript">
+                    <span id="shortKeyTip">[发送快捷键:Enter]: </span><span id="footerBox"></span></p><div id="shortcutkey" onclick="">
+                    消息发送方式</div><ul id="shortKeyMenu" style="display: none;">
+                    <li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul></div></td></tr></table></asp:Panel></div></form><script type="text/javascript" language="javascript">
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
         function EndRequestHandler(sender, args)
         {
@@ -361,7 +374,4 @@
                }
            }
         }
-    </script>
-
-</body>
-</html>
+    </script></body></html>

@@ -301,10 +301,9 @@ public partial class Chat : System.Web.UI.Page
     /// <param name="e"></param>
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
-        if (this.txt_username.Text == null || txtComment.Text == null || txtSendBy.Text == null || txtTheme.Text == null)
+        if (string.IsNullOrEmpty(this.txt_username.Text)||string.IsNullOrEmpty(txtSendBy.Text))
         {
-            //MessageBox.Show("信息请添写完善！");
-            ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>alert('信息请添写完善');</script>");
+            return;
         }
         LeaveWord lw = new LeaveWord();
         lw.CallerName = this.txt_username.Text;
@@ -317,7 +316,7 @@ public partial class Chat : System.Web.UI.Page
         lw.Phone = txtPhone.Text;
         lw.Subject = txtTheme.Text;
         LiveSupport.BLL.LeaveWordManager.AddWordProvider(lw);
-
+        ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>emailclose();</script>");
     }
     //开始对话
     protected void btnStarChat_Click(object sender, EventArgs e)
