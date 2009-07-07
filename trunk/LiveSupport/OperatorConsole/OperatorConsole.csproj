@@ -302,6 +302,7 @@
   <ItemGroup>
     <Content Include="Libraries\IC.Controls.dll" />
     <Content Include="Profile.ico" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\cat_sh_button.gif" />
     <None Include="Resources\All software is current.png" />
     <None Include="Resources\aim.png" />
@@ -381,6 +382,9 @@
     <None Include="Resources\Profile.ico" />
     <None Include="Resources\ringout.wav" />
     <None Include="Web References\LiveChatWS\Chat.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LiveChatWS\LeaveWord.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\LiveChatWS\Message.datasource">

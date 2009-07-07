@@ -497,6 +497,30 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
+        public  List<LeaveWord> GetLeaveWord()
+        {
+            List<LeaveWord> leaveWords = new List<LeaveWord>() ;
+            leaveWords.AddRange(ws.GetLeaveWord());
+            return leaveWords;
+        }
+
+        public bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id) 
+        {
+            return ws.UpdateLeaveWordById(sendDate, name, isReplied, id);
+        }
+
+        public List<LeaveWord> GetLeaveWordNotReplied() 
+        {
+            List<LeaveWord> leaveWords = new List<LeaveWord>();
+            if (ws.GetLeaveWordNotReplied()!=null)
+            {
+                leaveWords.AddRange(ws.GetLeaveWordNotReplied());
+            }
+
+            return leaveWords;
+            
+        
+        }
         public int ResetOperator(string operatorId, string chatId)
         {
             throw new NotImplementedException();
@@ -558,22 +582,18 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
+        public void SendFile(string fileName, string chatId, object action)
+        {
+            ws.SendFile(fileName, chatId, action);
+        }
+
+
         #endregion
 
         #region 判断访客是否存在 成员
         public bool IsVisitorExist(string visitorId)
         {
             return GetVisitorById(visitorId) == null ? false : true;
-        }
-
-        #endregion
-
-        #region IOperatorServiceAgent 成员
-
-
-        public void SendFile(string fileName, string chatId, object action)
-        {
-            ws.SendFile(fileName, chatId, action); 
         }
 
         #endregion

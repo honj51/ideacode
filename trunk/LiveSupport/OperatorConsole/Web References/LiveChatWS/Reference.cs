@@ -67,6 +67,12 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback GetQuickResponseOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetLeaveWordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateLeaveWordByIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetLeaveWordNotRepliedOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -167,6 +173,15 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event GetQuickResponseCompletedEventHandler GetQuickResponseCompleted;
+        
+        /// <remarks/>
+        public event GetLeaveWordCompletedEventHandler GetLeaveWordCompleted;
+        
+        /// <remarks/>
+        public event UpdateLeaveWordByIdCompletedEventHandler UpdateLeaveWordByIdCompleted;
+        
+        /// <remarks/>
+        public event GetLeaveWordNotRepliedCompletedEventHandler GetLeaveWordNotRepliedCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -725,6 +740,98 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWord", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public LeaveWord[] GetLeaveWord() {
+            object[] results = this.Invoke("GetLeaveWord", new object[0]);
+            return ((LeaveWord[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordAsync() {
+            this.GetLeaveWordAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordAsync(object userState) {
+            if ((this.GetLeaveWordOperationCompleted == null)) {
+                this.GetLeaveWordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLeaveWordOperationCompleted);
+            }
+            this.InvokeAsync("GetLeaveWord", new object[0], this.GetLeaveWordOperationCompleted, userState);
+        }
+        
+        private void OnGetLeaveWordOperationCompleted(object arg) {
+            if ((this.GetLeaveWordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetLeaveWordCompleted(this, new GetLeaveWordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateLeaveWordById", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id) {
+            object[] results = this.Invoke("UpdateLeaveWordById", new object[] {
+                        sendDate,
+                        name,
+                        isReplied,
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateLeaveWordByIdAsync(string sendDate, string name, bool isReplied, string id) {
+            this.UpdateLeaveWordByIdAsync(sendDate, name, isReplied, id, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateLeaveWordByIdAsync(string sendDate, string name, bool isReplied, string id, object userState) {
+            if ((this.UpdateLeaveWordByIdOperationCompleted == null)) {
+                this.UpdateLeaveWordByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateLeaveWordByIdOperationCompleted);
+            }
+            this.InvokeAsync("UpdateLeaveWordById", new object[] {
+                        sendDate,
+                        name,
+                        isReplied,
+                        id}, this.UpdateLeaveWordByIdOperationCompleted, userState);
+        }
+        
+        private void OnUpdateLeaveWordByIdOperationCompleted(object arg) {
+            if ((this.UpdateLeaveWordByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateLeaveWordByIdCompleted(this, new UpdateLeaveWordByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWordNotReplied", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public LeaveWord[] GetLeaveWordNotReplied() {
+            object[] results = this.Invoke("GetLeaveWordNotReplied", new object[0]);
+            return ((LeaveWord[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordNotRepliedAsync() {
+            this.GetLeaveWordNotRepliedAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordNotRepliedAsync(object userState) {
+            if ((this.GetLeaveWordNotRepliedOperationCompleted == null)) {
+                this.GetLeaveWordNotRepliedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLeaveWordNotRepliedOperationCompleted);
+            }
+            this.InvokeAsync("GetLeaveWordNotReplied", new object[0], this.GetLeaveWordNotRepliedOperationCompleted, userState);
+        }
+        
+        private void OnGetLeaveWordNotRepliedOperationCompleted(object arg) {
+            if ((this.GetLeaveWordNotRepliedCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetLeaveWordNotRepliedCompleted(this, new GetLeaveWordNotRepliedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -786,6 +893,360 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class LeaveWord {
+        
+        private string idField;
+        
+        private string callerNameField;
+        
+        private string emailField;
+        
+        private string phoneField;
+        
+        private string subjectField;
+        
+        private string contentField;
+        
+        private string ipField;
+        
+        private string callerDateField;
+        
+        private string senddateField;
+        
+        private string operatorNameField;
+        
+        private bool isRepliedField;
+        
+        private string isSendField;
+        
+        private Account accountField;
+        
+        /// <remarks/>
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CallerName {
+            get {
+                return this.callerNameField;
+            }
+            set {
+                this.callerNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Phone {
+            get {
+                return this.phoneField;
+            }
+            set {
+                this.phoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Subject {
+            get {
+                return this.subjectField;
+            }
+            set {
+                this.subjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Content {
+            get {
+                return this.contentField;
+            }
+            set {
+                this.contentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Ip {
+            get {
+                return this.ipField;
+            }
+            set {
+                this.ipField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CallerDate {
+            get {
+                return this.callerDateField;
+            }
+            set {
+                this.callerDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Senddate {
+            get {
+                return this.senddateField;
+            }
+            set {
+                this.senddateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OperatorName {
+            get {
+                return this.operatorNameField;
+            }
+            set {
+                this.operatorNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsReplied {
+            get {
+                return this.isRepliedField;
+            }
+            set {
+                this.isRepliedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IsSend {
+            get {
+                return this.isSendField;
+            }
+            set {
+                this.isSendField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Account Account {
+            get {
+                return this.accountField;
+            }
+            set {
+                this.accountField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
+    public partial class Account {
+        
+        private string accountIdField;
+        
+        private string accountNumberField;
+        
+        private string companyNameField;
+        
+        private string industryField;
+        
+        private string emailField;
+        
+        private string contactNameField;
+        
+        private string phoneField;
+        
+        private string urlField;
+        
+        private string domainField;
+        
+        private int operatorCountField;
+        
+        private string provinceField;
+        
+        private string cityField;
+        
+        private System.DateTime registerDateField;
+        
+        private string remarkField;
+        
+        private string paymentIdField;
+        
+        /// <remarks/>
+        public string AccountId {
+            get {
+                return this.accountIdField;
+            }
+            set {
+                this.accountIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AccountNumber {
+            get {
+                return this.accountNumberField;
+            }
+            set {
+                this.accountNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CompanyName {
+            get {
+                return this.companyNameField;
+            }
+            set {
+                this.companyNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Industry {
+            get {
+                return this.industryField;
+            }
+            set {
+                this.industryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ContactName {
+            get {
+                return this.contactNameField;
+            }
+            set {
+                this.contactNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Phone {
+            get {
+                return this.phoneField;
+            }
+            set {
+                this.phoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Url {
+            get {
+                return this.urlField;
+            }
+            set {
+                this.urlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Domain {
+            get {
+                return this.domainField;
+            }
+            set {
+                this.domainField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OperatorCount {
+            get {
+                return this.operatorCountField;
+            }
+            set {
+                this.operatorCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Province {
+            get {
+                return this.provinceField;
+            }
+            set {
+                this.provinceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string City {
+            get {
+                return this.cityField;
+            }
+            set {
+                this.cityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime RegisterDate {
+            get {
+                return this.registerDateField;
+            }
+            set {
+                this.registerDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Remark {
+            get {
+                return this.remarkField;
+            }
+            set {
+                this.remarkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PaymentId {
+            get {
+                return this.paymentIdField;
+            }
+            set {
+                this.paymentIdField = value;
             }
         }
     }
@@ -1865,195 +2326,6 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
-    public partial class Account {
-        
-        private string accountIdField;
-        
-        private string accountNumberField;
-        
-        private string companyNameField;
-        
-        private string industryField;
-        
-        private string emailField;
-        
-        private string contactNameField;
-        
-        private string phoneField;
-        
-        private string urlField;
-        
-        private string domainField;
-        
-        private int operatorCountField;
-        
-        private string provinceField;
-        
-        private string cityField;
-        
-        private System.DateTime registerDateField;
-        
-        private string remarkField;
-        
-        private string paymentIdField;
-        
-        /// <remarks/>
-        public string AccountId {
-            get {
-                return this.accountIdField;
-            }
-            set {
-                this.accountIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string AccountNumber {
-            get {
-                return this.accountNumberField;
-            }
-            set {
-                this.accountNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CompanyName {
-            get {
-                return this.companyNameField;
-            }
-            set {
-                this.companyNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Industry {
-            get {
-                return this.industryField;
-            }
-            set {
-                this.industryField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Email {
-            get {
-                return this.emailField;
-            }
-            set {
-                this.emailField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ContactName {
-            get {
-                return this.contactNameField;
-            }
-            set {
-                this.contactNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Phone {
-            get {
-                return this.phoneField;
-            }
-            set {
-                this.phoneField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Url {
-            get {
-                return this.urlField;
-            }
-            set {
-                this.urlField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Domain {
-            get {
-                return this.domainField;
-            }
-            set {
-                this.domainField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int OperatorCount {
-            get {
-                return this.operatorCountField;
-            }
-            set {
-                this.operatorCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Province {
-            get {
-                return this.provinceField;
-            }
-            set {
-                this.provinceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string City {
-            get {
-                return this.cityField;
-            }
-            set {
-                this.cityField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime RegisterDate {
-            get {
-                return this.registerDateField;
-            }
-            set {
-                this.registerDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Remark {
-            get {
-                return this.remarkField;
-            }
-            set {
-                this.remarkField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PaymentId {
-            get {
-                return this.paymentIdField;
-            }
-            set {
-                this.paymentIdField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.1433")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.LiveSupport.cn/LiveSupportService/2009/04")]
     public partial class Visitor {
         
         private string visitorIdField;
@@ -2620,6 +2892,84 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((QuickResponseCategory[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetLeaveWordCompletedEventHandler(object sender, GetLeaveWordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetLeaveWordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetLeaveWordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public LeaveWord[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((LeaveWord[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void UpdateLeaveWordByIdCompletedEventHandler(object sender, UpdateLeaveWordByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateLeaveWordByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateLeaveWordByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetLeaveWordNotRepliedCompletedEventHandler(object sender, GetLeaveWordNotRepliedCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetLeaveWordNotRepliedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetLeaveWordNotRepliedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public LeaveWord[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((LeaveWord[])(this.results[0]));
             }
         }
     }
