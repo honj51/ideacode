@@ -338,6 +338,20 @@ public class OperatorWS : System.Web.Services.WebService
         return LiveSupport.BLL.LeaveWordManager.GetAllLeaveWordByAccountId(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId);
     }
 
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id)
+    {
+        checkAuthentication();
+        return LiveSupport.BLL.LeaveWordManager.UpdateWordProviderById(sendDate,name,isReplied,id);
+    }
 
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<LeaveWord> GetLeaveWordNotReplied()
+    {
+        checkAuthentication();
+        return LiveSupport.BLL.LeaveWordManager.GetLeaveWordNotRepliedByAccountId(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId,false);
+    }
 
 }
