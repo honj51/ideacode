@@ -93,7 +93,31 @@ namespace LiveSupport.SqlProviders
         {
             try
             {
-                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}'", accountId);
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' order by isReplied", accountId);
+                SqlDataReader sdr = DBHelper.GetReader(sql);
+                List<LeaveWord> list = new List<LeaveWord>();
+                while (sdr.Read())
+                {
+                    LeaveWord lw = new LeaveWord(sdr);
+                    // lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
+                    list.Add(lw);
+                }
+                sdr.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region 获取未回复留言
+        public List<LiveSupport.LiveSupportModel.LeaveWord> GetLeaveWordNotRepliedByAccountId(string accountId, bool IsReplied)
+        {
+            try
+            {
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' and isReplied ='{1}' order by isReplied", accountId, IsReplied);
                 SqlDataReader sdr = DBHelper.GetReader(sql);
                 List<LeaveWord> list = new List<LeaveWord>();
                 while (sdr.Read())
