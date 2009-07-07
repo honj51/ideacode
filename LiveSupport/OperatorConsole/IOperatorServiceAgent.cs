@@ -26,6 +26,9 @@ namespace LiveSupport.OperatorConsole
         List<QuickResponseCategory> GetQuickResponse();
         //NewChangesCheckResult GetNextNewChanges();
         List<Visitor> GetAllVisitors(string accountId);
+        List<LeaveWord> GetLeaveWord();
+        bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id);
+        List<LeaveWord> GetLeaveWordNotReplied();
         #endregion
 
         #region 查询方法

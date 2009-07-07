@@ -141,6 +141,34 @@ namespace LiveSupport.OperatorConsole
 
             systemAdvertises = operaterServiceAgent.GetSystemAdvertise(Application.ProductVersion.ToString());
             registerOperatorServiceAgentEventHandler(false);
+
+            LeaveWordNotReplied();
+            this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
+            
+        }
+
+        private void LeaveWordNotReplied() 
+        {
+            int num=0;
+            foreach (LeaveWord item in operaterServiceAgent.GetLeaveWord())
+            {
+                if (!item.IsReplied)
+                {
+                    num++;
+                }
+            }
+
+            if (num == 0)
+            {
+                this.tabPage4.Text = "留言列表";
+            }
+            else
+            {
+                this.tabPage4.Text = "未回复数:" + num;
+                tabChats.SelectedTab = tabPage4;
+            }
+                 
+            
         }
 
         private void registerOperatorServiceAgentEventHandler(bool unregister)
@@ -886,10 +914,23 @@ namespace LiveSupport.OperatorConsole
         {
 
         }
-
-        private void leaveWordToolStripButton_Click(object sender, EventArgs e)
+        private void btnSend_Click(object sender, EventArgs e)
         {
+            
+            LeaveWord lw = this.leaveWordBindingSource.Current as LeaveWord;
+            string original = "%0d%0a%0d%0a ----------------------------原始邮件------------------------------%0d%0a%0d%0a" + lw.Content;
+            Process.Start("mailto:" + lw.Email + "?Subject=回复:" + lw.Subject + "&Body=" + original);
+            if (operaterServiceAgent.UpdateLeaveWordById(DateTime.Now.ToString(), operaterServiceAgent.CurrentOperator.NickName, true, lw.Id))
+            {
+                this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
+                LeaveWordNotReplied();
+            }
+        }
 
+        private void leaveWordDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            LeaveWord lw= this.leaveWordBindingSource.Current as LeaveWord;
+            this.btnSend.Enabled=!lw.IsReplied;
         }
     }
 
