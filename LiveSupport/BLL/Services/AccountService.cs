@@ -97,7 +97,7 @@ public static class AccountService
         return ac;
     }
 
-    public static List<Account> GetAllAccounts()
+    public static List<Account> GetAllAccountsFromDB()
     {
        accounts = Provider.GetAllAccounts();
        return accounts;
