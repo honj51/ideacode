@@ -169,12 +169,12 @@
             <td style="background-color:#FFFFFF"  >
             <asp:TextBox ID="txtSendBy" runat="server" Width="300px"></asp:TextBox>
                 <asp:Label ID="lblEmal" runat="server" ForeColor="Red" Text="*"></asp:Label>
-                <asp:RegularExpressionValidator 
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                    ControlToValidate="txtSendBy" ErrorMessage="邮件不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator 
                     ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSendBy" 
                     ErrorMessage="邮件格试错误" ForeColor="#99CCFF" 
                     ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                    ControlToValidate="txtSendBy" ErrorMessage="邮件不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
               </td>
           </tr>
           <tr >
