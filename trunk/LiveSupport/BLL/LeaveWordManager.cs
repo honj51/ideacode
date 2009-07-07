@@ -41,6 +41,12 @@ namespace LiveSupport.BLL
         }
         #endregion
 
+        #region 获取未回复留言
+        public static List<LiveSupport.LiveSupportModel.LeaveWord> GetLeaveWordNotRepliedByAccountId(string accountId, bool isReplied)
+        {
+            return Provider.GetLeaveWordNotRepliedByAccountId(accountId, isReplied);
+        }
+        #endregion
         #region 修改留言 成员
         public static bool UpdateWordProviderById(string sendDate, string name, bool isReplied, string id)
         {
