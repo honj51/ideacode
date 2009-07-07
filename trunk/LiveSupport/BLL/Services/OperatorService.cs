@@ -597,7 +597,7 @@ public static class OperatorService
     /// <summary>
     ///更新operator数据从数据库
     /// </summary>
-    private static void getOperatorsFromDB()
+    public static void getOperatorsFromDB()
     {
         List < Operator > newops = Provider.GetAllOperators();
         foreach (var newop in newops)
