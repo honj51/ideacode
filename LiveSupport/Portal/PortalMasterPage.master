@@ -1,0 +1,53 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PortalMasterPage.master.cs" Inherits="PortalMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>无标题页</title>
+    <link href="App_Themes/Standard/PortalMasterPage.css" rel="stylesheet" type="text/css" media="print" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+
+.bottom-text a{color:#F8F9F9;}
+a{color:#737f8d; text-decoration:none;}
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <center>
+    <table width="760"><tr><td>
+     <table class="headTable"><tr><td><img src="Imgs/headLeft.bmp" /></td><td align="right" valign=middle><asp:Panel ID="PanelShow" runat="server" Visible="false" 
+                 style="margin-left: 0px">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
+                    &nbsp;<asp:HyperLink ID="HyperLink1" runat="server" 
+                        NavigateUrl="~/AccountAdmin/AccountHome.aspx">管理客服</asp:HyperLink>
+                &nbsp;<asp:LinkButton  ID="LinkButton1" runat="server" 
+             onclick="LinkButton1_Click">退出</asp:LinkButton>
+                 </asp:Panel>
+                <asp:Panel ID="PanelLogin" runat="server" Visible="true"><a href="Index.aspx" style="color:#000000;">首页</a>|<a href="Login.aspx" style="color:#000000;">登录</a></asp:Panel></td></tr></table>
+     <table class="MenuTable" cellpadding="0" cellspacing="0" ><tr>
+         <td style="background-image:url('Imgs/nav-left.gif');">&nbsp;</td><td class="MenuTd"><a href="Index.aspx" style="color:#000000;">首页</a></td><td class="MenuTd"><a href="Intro.aspx" style="color:#000000;">产品介绍</a></td><td class="MenuTd"><a href="download.aspx" style="color:#000000;">软件下载</a></td><td class="MenuTd"><a href="Price.aspx" style="color:#000000;">产品价格</a></td><td class="MenuTd"><a href="Agency.aspx" style="color:#000000;">代理专区</a></td><td class="MenuTd"><a href="Career.aspx" style="color:#000000;">诚聘英才</a></td><td class="MenuTd"><a href="Contact.aspx" style="color:#000000;">联系我们</a></td><td class="MenuTd">
+         &nbsp;</td>
+         <td style="background-image:url('Imgs/nav-rigth.gif'); width: 9px;"></td></tr></table>
+     <table class="ShowIntro"><tr><td><img src="Imgs/show.jpg" /></td></tr></table>   
+      
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    
+    <table class="BottomTable" cellpadding="0" cellspacing="0"><tr><td style="background-image:url('Imgs/bottom-left.gif'); width:5px;"></td><td style="background-image:url('Imgs/bottom-bg.gif'); color:White;">
+        <a href="About.aspx" style="color:White;">关于我们</a> |
+        <a href="Contact.aspx" style="color:White;">联系我们</a> |
+        <a href="#" style="color:White;">成功案例</a> |
+        <a href="About.aspx" style="color:White;" >关于我们</a>|
+        <a href="#" style="color:White;">网站地图</a><br />
+        版权所有·严禁复制© 2009 江西互动信息技术有限公司</td><td style="background-image:url('Imgs/bottom-right.gif'); width:5px;"></td></tr></table>
+    </td></tr></table>
+    </form>
+    </center>
+</body>
+</html>

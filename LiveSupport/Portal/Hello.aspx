@@ -1,8 +1,18 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Hello.aspx.cs" Inherits="Default2" Title="获取公司ID" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Hello.aspx.cs" Inherits="Default2" Title="获取公司ID" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <center>
-<img src="images/tupian-5.gif" width="760" style="height: 151px" />
+<div><img src="Imgs/GetAccountId.jpg" style="margin-top:5px;" /></div>
+
+
+<table cellpadding="0" cellspacing="0" style=" width:785px; position: relative;">
+<tr><td style="background-image:url('Imgs/about-down2.GIF'); text-align:left; vertical-align:top;">
+<table cellpadding="0" cellspacing="0" style=" text-align:center; width:760px;">
+<tr><td>
+
+
+</td></tr>
+<tr><td align="left">
 <table width="760" style="text-align:left; font-size:12px;">
 <tr><td>
     <span style="LINE-HEIGHT: 30px; COLOR: #000000; FONT-SIZE: 13px; FONT-WEIGHT: bold">
@@ -40,6 +50,13 @@
     浏览您的网站 即可
     <br />
 &nbsp;</td></tr>
+</table>
+    </td></tr>
+</table>
+    </td></tr>
+    <tr><td style="background-image:url('Imgs/about-bottom2.GIF'); text-align:left; height:15px;">
+
+        </td></tr>
 </table>
 </center>
 </asp:Content>
