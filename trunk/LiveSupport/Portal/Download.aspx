@@ -17,7 +17,7 @@
 <tr><td style="background-image:url('Imgs/left-centent.GIF');">
     <br />
 <a href="Login.aspx"><img src="Imgs/signin.gif" /></a><br />
-    <br />申请免费试用! 
+    <br /><a href="Login.aspx">申请免费试用!</a>  
     <br />
     <img src="Imgs/sidebar-line.gif" />
     <br />
