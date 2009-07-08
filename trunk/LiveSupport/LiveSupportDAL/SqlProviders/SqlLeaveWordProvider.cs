@@ -27,9 +27,9 @@ namespace LiveSupport.SqlProviders
            + ",[CallerDate]"
            + ",[Senddate]"
            + ",[OperatorName]"
-           + ",[AccountId])"
+           + ",[AccountId]"
            + ",[IsReplied])"
-           + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11}) ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId,lw.IsReplied);
+           + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}') ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId,lw.IsReplied);
                 return DBHelper.ExecuteSql(sql);
             }
             catch (Exception ex)
