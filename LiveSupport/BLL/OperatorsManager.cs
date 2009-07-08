@@ -24,6 +24,7 @@ namespace LiveSupport.BLL
             {
                 int i = 0;
                 i = Provider.DeleteOperatorByid(operatorId);
+                ReloadOperators();
                 if (i != 0)
                     return 1;
                 else
@@ -41,6 +42,7 @@ namespace LiveSupport.BLL
         {
             int i = 0;
             i=Provider.NewOperator(op);
+            ReloadOperators();
             if (i != 0)
                 return true;
             else
@@ -67,6 +69,7 @@ namespace LiveSupport.BLL
         {
             int i = 0;
             i = Provider.UpdateOperator(op);
+            ReloadOperators();
             if (i != 0)
                 return true;
             else
@@ -114,6 +117,17 @@ namespace LiveSupport.BLL
             }
             return list;
 
+        }
+        #endregion
+
+        #region 更新服务信息
+        /// <summary>
+        /// 更新服务信息
+        /// </summary>
+        public static void ReloadOperators()
+        {
+            ws.ServiceConnectWS WS = new LiveSupport.BLL.ws.ServiceConnectWS();
+            WS.ReloadOperators();
         }
         #endregion
     }

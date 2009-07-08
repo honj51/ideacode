@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04">
+      <s:element name="ReloadOperators">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReloadOperatorsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReloadAccounts">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReloadAccountsResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ReloadOperatorsSoapIn">
+    <wsdl:part name="parameters" element="tns:ReloadOperators" />
+  </wsdl:message>
+  <wsdl:message name="ReloadOperatorsSoapOut">
+    <wsdl:part name="parameters" element="tns:ReloadOperatorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReloadAccountsSoapIn">
+    <wsdl:part name="parameters" element="tns:ReloadAccounts" />
+  </wsdl:message>
+  <wsdl:message name="ReloadAccountsSoapOut">
+    <wsdl:part name="parameters" element="tns:ReloadAccountsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceConnectWSSoap">
+    <wsdl:operation name="ReloadOperators">
+      <wsdl:input message="tns:ReloadOperatorsSoapIn" />
+      <wsdl:output message="tns:ReloadOperatorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReloadAccounts">
+      <wsdl:input message="tns:ReloadAccountsSoapIn" />
+      <wsdl:output message="tns:ReloadAccountsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceConnectWSSoap" type="tns:ServiceConnectWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReloadOperators">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ReloadOperators" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadAccounts">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ReloadAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceConnectWSSoap12" type="tns:ServiceConnectWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReloadOperators">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ReloadOperators" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadAccounts">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/ReloadAccounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceConnectWS">
+    <wsdl:port name="ServiceConnectWSSoap" binding="tns:ServiceConnectWSSoap">
+      <soap:address location="http://localhost:3355/LiveChat/ServiceConnect.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceConnectWSSoap12" binding="tns:ServiceConnectWSSoap12">
+      <soap12:address location="http://localhost:3355/LiveChat/ServiceConnect.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

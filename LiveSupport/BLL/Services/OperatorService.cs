@@ -607,6 +607,7 @@ public static class OperatorService
                 if (newop.OperatorId == oldop.OperatorId)
                 {
                     newop.Status = oldop.Status;
+                    newop.OperatorSession = oldop.OperatorSession;
                 }
             }
         }
