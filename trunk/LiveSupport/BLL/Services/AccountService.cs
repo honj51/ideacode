@@ -14,9 +14,13 @@ public static class AccountService
     public static IAccountProvider Provider = new SqlAccountProvider();
     private static List<Account> accounts = new List<Account>();
 
+    public static List<Account> getAllaccount()
+    {
+        return accounts;
+    }
     public static void Init()
     {   
-        accounts = Provider.GetAllAccounts();
+        accounts = GetAllAccountsFromDB();
     }
     /// <summary>
     /// 根据登录名查询一很记录

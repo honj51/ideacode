@@ -27,7 +27,10 @@ namespace LiveSupport.BLL
             int i = 0;
             i = SqlAccountProvider.Default.UpdateAccount(account);
             if (i != 0)
+            {
+                ReloadAccounts();
                 return true;
+            }
             else
                 return false;
         }
@@ -42,6 +45,7 @@ namespace LiveSupport.BLL
             i = SqlAccountProvider.Default.AddAccount(account);
             if (i != 0)
             {
+                ReloadAccounts();
                 //添加默认部门
                 Department dt = new Department();
                 dt.Account = account;
@@ -67,11 +71,11 @@ namespace LiveSupport.BLL
                 }
                 if (i != 0 && di != 0 && oi != 0)
                 {
-
                     return true;
                 }
                 else
                     return false;
+                
             }
             else
                 return false;
@@ -120,6 +124,17 @@ namespace LiveSupport.BLL
             }
         }
 
+        #endregion
+
+        #region 更新公司信息
+        /// <summary>
+        /// 更新公司信息
+        /// </summary>
+        public static void ReloadAccounts()
+        {
+            ws.ServiceConnectWS WS = new LiveSupport.BLL.ws.ServiceConnectWS();
+            WS.ReloadAccounts();
+        }
         #endregion
     }
 }
