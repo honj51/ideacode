@@ -21,51 +21,24 @@ using System.IO;
 /// </summary>
 public class ServiceConnectWS : System.Web.Services.WebService
 {
-    // 表示客服主动要求的ChatRequest的状态
-    public const string ChatRequestStatus_Show = "1";
-    public const string ChatRequestStatus_Hide = "2";
-    
     public ServiceConnectWS()
     {
     }
-
     /// <summary>
-    /// 通过visitorId检查客服是否发出主动邀请返回ChatID
+    /// 得新加载一次客服信息
     /// </summary>
-    /// <param name="accountId"></param>
-    /// <param name="ip"></param>
-    /// <returns>ChatId</returns>
     [WebMethod]
-    public string GetOperatorInvitation(string visitorId)
+    public void ReloadOperators()
     {
-        return ChatService.GetOperatorInvitation(visitorId);
+        OperatorService.getOperatorsFromDB();
     }
-
     /// <summary>
-    /// 接受对话邀请
-    /// </summary>.
-    /// <param name="chatId"></param>
+    /// 重新加载公司信息
+    /// </summary>
     [WebMethod]
-    public void AcceptOperatorInvitation(string chatId)
+    public void ReloadAccounts()
     {
-        ChatService.AcceptOperatorInvitation(chatId);
-    }
-
-    [WebMethod]
-    public void DeclineOperatorInvitation(string chatId)
-    {
-       ChatService.DeclineOperatorInvitation(chatId);
-    }
-
-    [WebMethod]
-    public void VisitorLeave(string visitorId)
-    {
-        Visitor v = VisitorService.GetVisitorById(visitorId);
-        if (v != null && v.CurrentSession != null)
-        {
-            v.CurrentSession.Status = VisitSessionStatus.Leave;
-            v.CurrentSession.LeaveTime = DateTime.Now;
-        }
+        AccountService.GetAllAccountsFromDB();
     }
 
 }
