@@ -18,32 +18,32 @@ document.body.appendChild(LCS_invite_div);
 var lastScrollY = 0;
 function chatBannerPosition() {
 
-    var LCS_chatBanner_style = document.getElementById('LCS_chatBanner').style;
-    LCS_chatBanner_style.position = 'absolute';
-    LCS_chatBanner_style.zIndex = 10000;
+    var LCS_chatBanner = document.getElementById('LCS_chatBanner');
+    LCS_chatBanner.style.position = 'absolute';
+    LCS_chatBanner.style.zIndex = 10000;
     if (LCS_bannerPos == 1) {
-        LCS_chatBanner_style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop) : (document.documentElement.scrollTop));
-        LCS_chatBanner_style.left = '0px';
+        LCS_chatBanner.style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop) : (document.documentElement.scrollTop));
+        LCS_chatBanner.style.left = '0px';
     }
     if (LCS_bannerPos == 2) {
-        LCS_chatBanner_style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop) : (document.documentElement.scrollTop));
-        LCS_chatBanner_style.right = '0px';
+        LCS_chatBanner.style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop) : (document.documentElement.scrollTop));
+        LCS_chatBanner.style.right = '0px';
     }
     if (LCS_bannerPos == 3) {
-        LCS_chatBanner_style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop - 50 + document.body.clientHeight / 2) : (document.documentElement.scrollTop - 50 + document.documentElement.clientHeight / 2));
-        LCS_chatBanner_style.left = '0px';
+        LCS_chatBanner.style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop - LCS_chatBanner.offsetHeight + document.body.clientHeight / 2) : (document.documentElement.scrollTop - LCS_chatBanner.offsetHeight + document.documentElement.clientHeight / 2));
+        LCS_chatBanner.style.left = '0px';
     }
     if (LCS_bannerPos == 4) {
-        LCS_chatBanner_style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop + document.body.clientHeight / 2) : (document.documentElement.scrollTop + document.documentElement.clientHeight / 2));
-        LCS_chatBanner_style.right = '0px';
+        LCS_chatBanner.style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop + document.body.clientHeight / 2) : (document.documentElement.scrollTop + document.documentElement.clientHeight / 2));
+        LCS_chatBanner.style.right = '0px';
     }
     if (LCS_bannerPos == 5) {
-        LCS_chatBanner_style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop + document.body.clientHeight - 100) : (document.documentElement.scrollTop + document.documentElement.clientHeight - 100));
-        LCS_chatBanner_style.left = '0px';
+        LCS_chatBanner.style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop +100+ document.body.clientHeight - LCS_chatBanner.offsetWidth) : (document.documentElement.scrollTop +100+ document.documentElement.clientHeight - LCS_chatBanner.offsetWidth));
+        LCS_chatBanner.style.left = '0px';
     }
     if (LCS_bannerPos == 6) {
-        LCS_chatBanner_style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop + document.body.clientHeight - 100) : (document.documentElement.scrollTop + document.documentElement.clientHeight - 100));
-        LCS_chatBanner_style.right = '0px';
+        LCS_chatBanner.style.top = eval(document.documentElement.clientHeight == 0 ? (document.body.scrollTop+100 + document.body.clientHeight - LCS_chatBanner.offsetWidth) : (document.documentElement.scrollTop+100 + document.documentElement.clientHeight - LCS_chatBanner.offsetWidth));
+        LCS_chatBanner.style.right = '0px';
     }
     heartBeat();
     setTimeout("chatBannerPosition()", 100);
@@ -70,9 +70,7 @@ function heartBeat() {
        Lcs_heartBeat_div.style.top = parseInt(Lcs_heartBeat_div.style.top) + percent + "px";
 
         lastScrollY = lastScrollY + percent;
-        //setTimeout("heartBeat()", 1);
+       // setTimeout("heartBeat()", 1);
     }
 }
 window.setInterval("heartBeat()", 1);
-
-  
