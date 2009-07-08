@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="ViewLeaveWord.aspx.cs" Inherits="AccountAdmin_Default3" %>
+﻿<%@ Page Title="客服中心-LiveSupport在线客服系统" Language="C#" MasterPageFile="~/AccountAdmin/MasterAccountAdmin.master" AutoEventWireup="true" CodeFile="ViewLeaveWord.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <script src="JS/Save.js"></script>
 <SCRIPT type="text/javascript">

@@ -1,34 +1,31 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Default2" Title="用户注册" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Default2" Title="用户注册" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <center>
-<!--验证码-->
-<script src="js/Random.js"> </script>
- <img src="images/tupian-5.gif" width="760" style="height: 151px" />
-<table cellSpacing="0" cellPadding="0" style="height: 568px;background-image:url('images/bgimg.jpg');">
 
-<tr><td style="width: 161px;" 
-        valign="top">
-<!--leftMenu-->
-<DIV id=column style="margin-top:30px;">
-    </DIV>
-    
-    
-    </td>
-    <td style="width: 23px; ">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td style="width: 580px;" valign="top"><div style="text-align:left; margin-top:10px;"><img src="images/register.gif" /></div><BR><br />
-    <!--内容 -->
+    <!--验证码-->
+<script src="js/Random.js"> </script>
+
+  <center>
+<div><img src="Imgs/shenqingzhanghao.jpg" style="margin-top:5px;" /></div>
+
+
+<table cellpadding="0" cellspacing="0" style=" width:785px; position: relative;">
+<tr><td style="background-image:url('Imgs/about-down2.GIF'); text-align:left; vertical-align:top;">
+<table cellpadding="0" cellspacing="0" style=" text-align:center; width:760px;">
+<tr><td> <!--内容 -->
     <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
   <TBODY>
   <TR>
-    <TD align=middle><FONT color=red></FONT></TD></TR><!-- 第一步: 创建公司信息 -->
+    <TD align=middle><FONT color=red>
+        <br />
+        </FONT></TD></TR><!-- 第一步: 创建公司信息 -->
   <TR>
     <TD align=left><b><SPAN >第一步: 创建公司信息<SPAN 
       style="FONT-WEIGHT: bold; COLOR: #ff0000">*</SPAN>号为必填项，为了得到LiveSupport客服的专业服务，请您填写真实资料 
       </SPAN></b></TD></TR>
   <TR>
     <TD><br />
-      <TABLE cellSpacing=0 cellPadding=0 border=0 style="width: 570px">
+      <TABLE cellSpacing=0 cellPadding=0 border=0 style="width: 640px">
         <TBODY style="text-align:left;">
         <TR>
           <TD width="25%"><FONT color=red>*</FONT> 公司名称： </TD>
@@ -130,41 +127,41 @@
         <br />
         第二步:创建管理员信息 </TR>
   <TR>
-    <TD align=left><br />
-      <TABLE cellSpacing=0 cellPadding=0 border=0 >
+    <TD align=centent><br />
+      <TABLE cellSpacing=0 cellPadding=0 border=0  style="width: 640px" >
         <TBODY >
         <TR>
-          <TD style="width: 146px"><FONT color=red>*</FONT>客服账号：</TD>
-          <TD><asp:TextBox ID="txtLoginId" runat="server" Width="160px" 
+          <TD align=left class="style2"><FONT color=red>* </FONT>客服账号：</TD>
+          <TD align=left><asp:TextBox ID="txtLoginId" runat="server" Width="160px" 
                   style="margin-left: 0px"></asp:TextBox>
 &nbsp;</TD>
-          <TD>
+          <TD class="style1">
               <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
                   ControlToValidate="txtLoginId" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD style="width: 146px" ><FONT color=red>*</FONT> 客服密码： </TD>
-          <TD><asp:TextBox ID="txtPwd" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
+          <TD class="style2" align=left ><FONT color=red>*</FONT> 客服密码： </TD>
+          <TD align=left><asp:TextBox ID="txtPwd" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
-          <TD >
+          <TD class="style1" >
               <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
                   ControlToValidate="txtPwd" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD style="width: 146px" ><FONT color=red>*</FONT> 密码确认： </TD>
-          <TD><asp:TextBox ID="txtPwds" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
+          <TD class="style2" align=left><FONT color=red>*</FONT> 密码确认： </TD>
+          <TD align=left><asp:TextBox ID="txtPwds" runat="server" Width="160px" TextMode="Password"></asp:TextBox>
 &nbsp;</TD>
-          <TD >
+          <TD class="style1" >
               <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
                   ControlToValidate="txtPwds" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
               <asp:CompareValidator ID="CompareValidator1" runat="server" 
                   ControlToCompare="txtPwd" ControlToValidate="txtPwds" ErrorMessage="密码不一致!"></asp:CompareValidator>
             </TD></TR>
         <TR>
-          <TD style="width: 146px" ><FONT color=red>*</FONT> 客服呢称： </TD>
-          <TD ><asp:TextBox ID="txtNickname" runat="server" Width="160px"></asp:TextBox>
+          <TD class="style2" align=left ><FONT color=red>*</FONT> 客服呢称： </TD>
+          <TD align=left><asp:TextBox ID="txtNickname" runat="server" Width="160px"></asp:TextBox>
 &nbsp;</TD>
-          <TD>
+          <TD class="style1">
               <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
                   ControlToValidate="txtNickname" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR></TBODY></TABLE></TD></TR><!-- 第三步:注册验证 -->
@@ -173,17 +170,17 @@
         <br />
         第三步:注册验证 </SPAN></b></TD></TR>
   <TR>
-    <TD align=left><br />
-      <TABLE cellSpacing=0 cellPadding=0 border=0>
+    <TD align=center><br />
+      <TABLE cellSpacing=0 cellPadding=0 border=0  style="width: 640px">
         <TBODY>
         <TR >
-          <TD style="width: 26%">&nbsp;&nbsp; 注册验证码： </TD>
-          <TD style="width: 423px" ><!--验证-->
+          <TD style="width: 26%" align=left>&nbsp;&nbsp; 注册验证码： </TD>
+          <TD style="width: 423px" align=left><!--验证-->
 
 <!-- also can use LiveSupportFigure or LiveSupportFigure.gif --><img id="imgRandom" alt="验证码" src="RandImage.aspx"  class="verifycode_img"/>&nbsp;<a href="javascript:show_vcode()">看不清楚？换个图片</a></TD></TR>
         <TR>
-          <TD style="width: 26%; height: 28px;" ><FONT color=red>*</FONT> 输入验证码： </TD>
-          <TD style="width: 423px; height: 28px;" ><asp:TextBox ID="txtValidate" 
+          <TD style="width: 26%; height: 28px;" align=left ><FONT color=red>*</FONT> 输入验证码： </TD>
+          <TD style="width: 423px; height: 28px;" align=left><asp:TextBox ID="txtValidate" 
                   runat="server" Width="160px"></asp:TextBox>
 &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" 
                   ControlToValidate="txtValidate" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
@@ -191,7 +188,7 @@
               <BR>请输入上面的注册验证码 </TD></TR>
              <TR>
           <TD style="width: 26%; height: 67px;" ></TD>
-          <TD style="width: 423px; height: 67px;" >
+          <TD style="width: 423px; height: 67px;" align=left>
               <asp:Button ID="btnOK" runat="server" Text="提交" Width="150px" 
                   onclick="Button1_Click" style="height: 26px" />
                  </TD></TR>
@@ -200,10 +197,36 @@
     <TD align=middle height=40>
         <br />
         <br />
-&nbsp;</TD></TR></TBODY></TABLE>
+&nbsp;</TD></TR></TBODY></TABLE></td></tr>
+<tr><td align="left">
+    
+    <br /><br />
     </td></tr>
 </table>
+    </td></tr>
+    <tr><td style="background-image:url('Imgs/about-bottom2.GIF'); text-align:left; height:15px;">
 
-    </center>
-    <br />
+        </td></tr>
+</table>
+</center>
 </asp:Content>
+
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+
+    
+    <style type="text/css">
+        .style1
+        {
+            width: 267px;
+            text-align:left;
+        }
+        .style2
+        {
+            width: 161px;
+        }
+    </style>
+
+
+</asp:Content>
+
+

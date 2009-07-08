@@ -1,20 +1,16 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Licence.aspx.cs" Inherits="Default2" Title="服务条款" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="download.aspx.cs" Inherits="Default3" Title="服务条款-LiveSupport在线客服系统" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <center style="height: 707px">
-<div style="text-align:center;">
-<img src="images/banner_5.jpg" width="760" style="height: 151px"/>
-</div>
-<table cellSpacing="0" cellPadding="0" style="height: 568px">
-<tr><td style="width: 160px; background-image:url('images/left.jpg');" 
-        valign="top">
-<!--leftMenu-->
-    
-    
-    </td>
-    <td style="width: 23px; ">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    <td style="width: 580px;" valign="top"><div style="text-align:left; margin-top:10px;"><img src="images/register.gif" /></div><DIV align=center style="margin-top:20px;"><STRONG>服 务 条 款</STRONG></DIV><BR>
-<TABLE  align=center border=0 
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <center>
+<div><img src="Imgs/fuwutiaokuan.jpg" style="margin-top:5px;" /></div>
+
+
+<table cellpadding="0" cellspacing="0" style=" width:785px; position: relative;">
+<tr><td style="background-image:url('Imgs/about-down2.GIF'); text-align:left; vertical-align:top;">
+<table cellpadding="0" cellspacing="0" style=" text-align:center; width:760px;">
+<tr><td><br /><strong>服 务 条 款<br />
+    </strong><TABLE  align=center border=0 
         style="width: 575px; margin-left: 0px;">
   <TBODY>
   <TR>
@@ -92,12 +88,19 @@
       互动网络有权将本条款和注册规范项下的权利义务转让给第三人。若互动网络被收购或与第三人合并等情形时，其权利义务由承继者继承。</P></DIV>
       <P align=left></P></TD></TR>
   <TR>
-    <TD vAlign=center align=middle height=50><INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Register.aspx'" type=button value=同意 name=button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Default.aspx'" type=button value="不同意" name=button2></TD></TR></TBODY></TABLE></td></tr>
+    <TD vAlign=center align=middle height=50><INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Register.aspx'" type=button value=同意 name=button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT class=btn style="WIDTH: 60px; CURSOR: hand" onClick="window.location.href='Default.aspx'" type=button value="不同意" name=button2></TD></TR></TBODY></TABLE><br /><br /><br /></td></tr>
+<tr><td align="left">
+    
+    <br /><br />
+    </td></tr>
 </table>
+    </td></tr>
+    <tr><td style="background-image:url('Imgs/about-bottom2.GIF'); text-align:left; height:20px;">
 
+        </td></tr>
+</table><br /><br />
 </center>
 </asp:Content>
-
  
  
 

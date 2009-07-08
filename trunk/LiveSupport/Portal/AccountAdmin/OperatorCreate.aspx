@@ -1,6 +1,6 @@
-﻿<%@ Page Title="创建客服" Language="C#" MasterPageFile="~/AccountAdmin/MasterPage.master" AutoEventWireup="true" CodeFile="OperatorCreate.aspx.cs" Inherits="AccountAdmin_Default2" %>
+﻿<%@ Page Title="客服中心-LiveSupport在线客服系统" Language="C#" MasterPageFile="~/AccountAdmin/MasterAccountAdmin.master" AutoEventWireup="true" CodeFile="OperatorCreate.aspx.cs" Inherits="AccountAdmin_Default2" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <SCRIPT type="text/javascript">
 		// <![CDATA[
