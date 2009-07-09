@@ -331,7 +331,7 @@
                                 <li style="background-image: url(Images/tools_icn.gif);" id="language" style="display: none;">
                                     语言选择</li>
                             </ul>
-                            <ul id="languageList" style="display: none;">
+                            <ul id="languageList" style="display:none;">
                                 <li lang:value="0">简体中文</li>
                                 <li lang:value="1">繁体中文</li>
                                 <li lang:value="2">English</li>
