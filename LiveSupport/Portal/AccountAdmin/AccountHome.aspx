@@ -2,12 +2,17 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <!--内容-->
- <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">公司信息管理</div>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+
+ <table cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">公司信息管理</td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
  
-<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top"> 
+<div></div>
+ <table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
   <div style="text-align:left;color: #cccccc; border-bottom: 1px solid; position: relative;">&nbsp;&nbsp;&nbsp;<img src="Images/zhuce.jpg" /><a href="UpdateAccount.aspx"><img src="Images/mima.jpg" /></a></div>
   <!--内容-->
   <TABLE cellSpacing=0 cellPadding=0 border=0 style=" margin-left:10px; margin-top:10px;">
@@ -117,8 +122,8 @@
                     onclick="btnSave_Click" />
                 </td></tr>
             </TBODY></TABLE>
- </td></tr></table>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
-
+ </td></tr></table></td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
 <!--内容结束-->
 </asp:Content>

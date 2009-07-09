@@ -18,10 +18,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table class="ContentTable">
 <tr>
-<td style="width:50px;" valign="top">
+<td style="width:50px;" valign="top" align="center">
 <table cellpadding="0" cellspacing="0">
 <tr><td><img src="Imgs/sidebar.gif" /></td></tr>
-<tr><td style="background-image:url('Imgs/left-centent.GIF');">
+<tr><td style="background-image:url('Imgs/left-centent.GIF');" align="center">
     <br />
 <a href="Login.aspx"><img src="Imgs/signin.gif" /></a><br />
     <br /><a href="Licence.aspx"><font style="font-size:14px;">申请免费使用!</font></a> 
@@ -43,11 +43,11 @@
 <tr><td style="background-image:url('Imgs/centent-title.gif'); height:28px;"></td></tr>
 <tr><td style=" background-image:url('Imgs/centent.GIF'); ">
 <table style="width:100%;">
-<tr><td class="style1" >
+<tr><td class="style1" align="center" >
     <br />
     <img src="Imgs/pic-01.gif" /><br />
     <br />
-    <a href="Download.aspx"><img src="Imgs/download.gif" /></a></td><td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>在线客服系统是江西互动科技有限公司出品的一款企业级的网站沟通平台系统。网站的访客不需要下载任何软件或插件，通过点击网站上的在线客服标志，就能直接和网站客服人员进行即时交流。<br />
+    <a href="Download.aspx"><img src="Imgs/download.gif" /></a></td><td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>在线客服系统是江西互动信息技术有限公司出品的一款企业级的网站沟通平台系统。网站的访客不需要下载任何软件或插件，通过点击网站上的在线客服标志，就能直接和网站客服人员进行即时交流。<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>是江西最大的在线客服系统，该系统将为企业发掘更多的潜在客户，提高访客成交率，增加企业收入，降低运营成本，提高工作效率，提升客户满意度，是企业进行在线营销、在线客服、在线咨询的有力工具。系统适用于各类网站，是企业进行网络营销的好帮手。 </td><td style="width:15px;"></td></tr>
 </table>
 <img src="Imgs/centent-line.gif" />

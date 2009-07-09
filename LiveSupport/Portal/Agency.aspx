@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Agency.aspx.cs" Inherits="Default4" Title="无标题页" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Agency.aspx.cs" Inherits="Default4" Title="代理专区-LiveSupport在线客服系统" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -20,34 +20,38 @@
  <img src="Imgs/bd.gif" /><br />
 &nbsp;<img src="Imgs/maintitilebg.gif" style="height: 3px; width: 750px" />
     <br /><br />
-    <h3 style="color:#2C8FFF;"><img src="Imgs/arrowhead.GIF" />&nbsp;&nbsp;LiveSupport合作伙伴计划</h3>
+    <img src="Imgs/agency.gif" /><br />
+&nbsp;<p style="line-height:22px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们主要采用代理销售形式，代理商需要向江西互动信息技术有限公司申请代理，所有代理商都是同一级别，完成不同的销售指标会有不同的返点政策，实行“折扣+返点”的利润划分体系，保证对代理的近、中、远期的有效激励，并且提供较大的发展空间。</p>
     <p>
         &nbsp;</p>
-    <span style="color:#FF853C;">合作目的：</span>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        LiveSupport一直致力于专业的在线客服与访客价值挖掘系统的研究、开发和推广，时刻保持与国际水准同步。目前，我们正寻求优质专业的合作伙伴，共同开拓LiveSupport网站伴侣市场，实现共赢！</p>
-    <p>
-        &nbsp;</p>
-    <span style="color:#FF853C;">两种合作方式：</span>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        1、按照OEM方式建立合作关系，即LiveSupport与合作公司合作，贴上合作方的品牌，合作产品由合作方负责运营和销售，所得收益双方分成。</p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        2、由合作公司提供服务器来运营LiveSupport网站伴侣的产品，合作公司成为LiveSupport网站伴侣的区域或行业运营中心，就可以自行为客户开通LiveSupport网站伴侣的帐号，由此获得的收益双方分成。</p>
+    <span style="color:#0041A0; font-size:14px;"><b>1.&nbsp;&nbsp;巨大的市场空间</b></span>
+    <p style="line-height:22px;">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    据中国互联网络信息中心(CNNIC)权威统计显示,国内网站数目已达到数百万家，而且每年都在以10%以上的速度持续增长。伴随着互联网的深入发展，越来越多的企业已经意识到互联网在商务上发挥的作用，并希望利用互联网获得更多的商机。但是绝大多数的网站，缺乏互动性，网站访问者不能有效地同企业进行实时交流，造成了沟通瓶颈，导致了大量客户流失！ 
+
+    </p>
+    <p style="line-height:22px;">
+        　　LiveSupport在这个特定市场背景下孕育而生，可广泛应用于各种网站，并赋予网站对话生机，是企业进行在线咨询、在线营销、在线客服的有力工具！这将是每年高达数亿元的巨大市场，我们真诚希望与代理商共同分享这个市场。<br />
+                                                            </p>
     <p>
         &nbsp;</p>
-    <span style="color:#FF853C;">合作支持：</span>
+    <span style="color:#0041A0; font-size:14px;"><b>2.&nbsp;&nbsp;丰厚的利润回报</b></span>
     <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        LiveSupport在合作中提供的服务有：</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    我们为每个代理商建立了公平竞争的市场体系，有效保证了代理商的利润空间及发展机会。 
     <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        1、定制安装服务，包括定制产品的开发、系统的安装调试、 配合产品的代理平台的开发安装调试和对方服务器的维护。</p>
+    </p>
     <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        2、全方位的技术支持。</p>
+        　　<strong>扁平的渠道政策：</strong> 只设一级区域代理商，并且级别相同，有效避免了利润的层层瓜分，保证了代理商的利润最大化。</p>
+    <p>
+        　　<strong>合理的利润分配：</strong> 让代理商的价值得到充分体现。</p>
+    <p>
+        　　<strong>统一的市场价格：</strong> 规范市场管理，避免价格混乱。</p>
+    <p>
+        　　<strong>持续的盈利模式：</strong> 服务每年都要续费，代理商可持续获利。</p>
+    <p>
+        　　<strong>低廉的运作成本：</strong> 代理商可充分利用现有的客户资源拓展业务。</p>
     </td></tr>
 </table>
     </td></tr>

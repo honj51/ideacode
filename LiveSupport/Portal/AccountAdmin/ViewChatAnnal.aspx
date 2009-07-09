@@ -18,13 +18,15 @@
 <script src="../js/My97DatePicker/WdatePicker.js"></script>
     <!--内容开始-->
    <!--内容-->
- <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-          详细聊天记录</div>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
- 
-<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
-<table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top">
+  <table cellpadding="0" cellspacing="0">
+    <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+    <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px; " align="center">详细聊天记录</td></tr>
+    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+  </table> 
+  
+  <table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center">
 <!--聊天记录内容-->
     
     <div id="div1" style="width:555px;text-align:left;">
@@ -35,12 +37,9 @@
             <asp:Literal   ID="lblMessage" runat="server"></asp:Literal>
     </div>
   <!--内容结束-->
-</td></tr></table>
-  
-  
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
-
-
-
+</td></tr></table></td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
+ 
 </asp:Content> 
 

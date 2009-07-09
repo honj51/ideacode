@@ -23,8 +23,9 @@
              onclick="LinkButton1_Click">退出</asp:LinkButton>
                  </asp:Panel>
                 <asp:Panel ID="PanelLogin" runat="server" Visible="true"><a href="../Index.aspx" style="color:#000000;">首页</a>|<a href="../Login.aspx" style="color:#000000;">登录</a></asp:Panel></td></tr></table>
-     <table class="MenuTable" cellpadding="0" cellspacing="0" ><tr>
-         <td style="background-image:url('../Imgs/nav-left.gif');">&nbsp;</td><td class="MenuTd"><a href="../Index.aspx" style="color:#000000;">首页</a></td><td class="MenuTd"><a href="../Intro.aspx" style="color:#000000;">产品介绍</a></td><td class="MenuTd"><a href="../download.aspx" style="color:#000000;">软件下载</a></td><td class="MenuTd"><a href="../Price.aspx" style="color:#000000;">产品价格</a></td><td class="MenuTd"><a href="../Agency.aspx" style="color:#000000;">代理专区</a></td><td class="MenuTd"><a href="../Career.aspx" style="color:#000000;">诚聘英才</a></td><td class="MenuTd"><a href="../Contact.aspx" style="color:#000000;">联系我们</a></td><td class="MenuTd">
+     
+         <table class="MenuTable" cellpadding="0" cellspacing="0"><tr>
+         <td style="background-image:url('../Imgs/nav-left.gif');">&nbsp;</td><td class="MenuTd">&nbsp;</td><td class="MenuTd"><a href="../Index.aspx" style="color:#000000;">首页</a></td><td class="MenuTd"><img src="../Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="../Intro.aspx" style="color:#000000;">产品介绍</a></td><td class="MenuTd"><img src="../Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="../download.aspx" style="color:#000000;">软件下载</a></td><td class="MenuTd"><img src="../Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="../Price.aspx" style="color:#000000;">产品价格</a></td><td class="MenuTd"><img src="../Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="../Agency.aspx" style="color:#000000;">代理专区</a></td><td class="MenuTd"><img src="../Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="../Career.aspx" style="color:#000000;">诚聘英才</a></td><td class="MenuTd"><img src="../Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="../Contact.aspx" style="color:#000000;">联系我们</a></td><td class="MenuTd"><img src="../Imgs/nav-line.gif" /></td><td class="MenuTd">
          &nbsp;</td>
          <td style="background-image:url('../Imgs/nav-rigth.gif'); width: 9px;"></td></tr></table>
      <table class="ShowIntro"><tr><td><img src="../Imgs/show.GIF" /></td></tr></table>   
@@ -59,18 +60,18 @@
 <!--开始-->
 <DIV class=sdmenu id=my_menu> 
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">基本设置</SPAN> 
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">基本设置</SPAN> 
 <A href="AccountHome.aspx" >公司信息</A>
 <A href="UpdateAccount.aspx" >公司账号管理</A>
 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">客服管理</SPAN> 
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">客服管理</SPAN> 
 <A href="DepartmentManager.aspx">部门设置</A> 
 <A href="OperatorsManagment.aspx" >客服管理</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">风格设置</SPAN> 
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">风格设置</SPAN> 
  
 <A href="GetCode.aspx">获取代码设置</A> 
 <A href="javascript:ShowSorry()">界面风格设置</A> 
@@ -79,16 +80,16 @@
 <A href="javascript:ShowSorry()">主动发起设置</A>
 </DIV>
 
-<DIV class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">数据分析</SPAN> 
+<DIV style="text-align:center;" class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">数据分析</SPAN> 
 <A href="javascript:ShowSorry()">流量统计 </A>
 <A href="javascript:ShowSorry()">咨询量统计</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg');cursor:hand;" title="请点击">聊天记录</SPAN> 
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg');cursor:hand;" title="请点击">聊天记录</SPAN> 
 <A href="ChatAnnal.aspx">聊天记录 </A> <A href="CallerLeaveWord.aspx">访客留言</A> 
 </DIV>
 
-<DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">客户管理</SPAN> 
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">客户管理</SPAN> 
 <A href="javascript:ShowSorry()">添加客户</A> 
 <A href="javascript:ShowSorry()">客户列表</A> 
 </DIV>
@@ -110,7 +111,7 @@
 </tr>
 </table>
 </center>
-        <table class="BottomTable" cellpadding="0" cellspacing="0"><tr><td style="background-image:url('../Imgs/bottom-left.gif'); width:5px;"></td><td style="background-image:url('../Imgs/bottom-bg.gif'); color:White;">
+        <table class="BottomTable" cellpadding="0" cellspacing="0"><tr><td style="background-image:url('../Imgs/bottom-left.gif'); width:5px;"></td><td style="background-image:url('../Imgs/bottom-bg.gif'); color:White; text-align:center;">
         <a href="../About.aspx" style="color:White;">关于我们</a> |
         <a href="../Contact.aspx" style="color:White;">联系我们</a> |
         <a href="../About.aspx" style="color:White;">关于我们</a>

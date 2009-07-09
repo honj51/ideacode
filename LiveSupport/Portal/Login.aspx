@@ -22,8 +22,8 @@
    
     <table style=" background-image:url('Images/login.png'); width: 440px; height: 265px;  margin-top:120px;">
 <tr><td>
-<div style="height: 123px; width: 207px; margin-left:160px;">
-<table style=" font-size:13px;">
+
+<table style=" font-size:13px; padding-left:180px;">
 <tr><td class="style1" align="right">公司账号：</td><td >
                     <asp:TextBox ID="txtNumber" runat="server" Font-Size="12px" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
@@ -53,7 +53,7 @@
 <a href="Licence.aspx"><img src="Images/login_r.gif" /></a>
     </td></tr>
 </table>
-</div>
+
 
 </td></tr>
 </table>

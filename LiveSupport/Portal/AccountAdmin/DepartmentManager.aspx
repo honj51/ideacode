@@ -14,16 +14,17 @@
 			myMenu.expandMenu(firstSubmenu);  
 			
 		};</SCRIPT>
- <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     公司部门管理</div>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+  <table cellpadding="0" cellspacing="0">
+    <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+    <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">公司部门管理</td></tr>
+    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+  </table>
  
-<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
-<table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top">
-           <!--头部--->
-                <!--尾部-->
-<br />
+ <table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center" align="center"> 
+ 
+  <br />
            <asp:GridView ID="gvDepartment" runat="server"
                AutoGenerateColumns="False" Width="522px" AllowPaging="True" 
                DataSourceID="ObjectDataSource1" 
@@ -101,8 +102,9 @@
            <br />
      
            <br />
-           </td></tr></table>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+ </td></tr></table></td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
 </asp:Content>
 
  
