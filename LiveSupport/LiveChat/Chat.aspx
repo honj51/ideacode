@@ -135,10 +135,9 @@
         </asp:ScriptManager>
         <%--面板1 star--%>
         <asp:Panel ID="pnlNoOperator" Visible="false" runat="server">
-        <div style="WIDTH: 603px; MARGIN-LEFT: 0px">
+        <div style="WIDTH: 603px; height="98%" MARGIN-LEFT: 0px">
   <div class="b">
-  <div  style=" margin:8px 8px 0px 7px ;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 588px; HEIGHT: 95px; BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid" >
-    <p>&nbsp;</p>
+  <div  style=" margin:8px 8px 0px 7px ;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 588px; HEIGHT: 95px; BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid; background-image:url(Images/topmove1.gif)" >
  </div>
     <div class="b_1">
     
@@ -198,10 +197,10 @@
           <tr >
             <td height="23" colspan="2" align="center"><asp:Button ID="btnSendEmail" runat="server" Text="发送邮件"  OnClick="btnSendEmail_Click" /></td>
           </tr>
-          <tr style="background-image:url(Images/top1.jpg)">
-            <td colspan="2" style="background-image:url(Image/top1.jpg)"> </td>
-          </tr>
         </table>
+         <div ID="footer0" style=" text-indent;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff;BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid;: 25px;background-repeat: no-repeat;height: 29px; line-height: 29px; position:static; width: 100%; text-align:center; background-color:#006600;">
+                            Copyright © 2009 LiveSupport, Inc.<a href="LegalNotice.aspx">Terms of Use</a>
+                    </div>
       </div>
     </div>
   </div>
