@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Demo Page</title>
@@ -36,13 +34,16 @@
     <form id="mainForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <input id="Text1" type="text" />
-        <input type="button" value="fdsaf" onclick="visitorLeave()" /><table 
-            style="width: 100%; height: 733px;">
+        <input type="button" value="fdsaf" onclick="visitorLeave()" />&nbsp;<div id="trace_div"></div>
+    </form>
+        <table 
+            style="width: 100%; height: 1501px;">
             <tr>
                 <td class="style1">
                 </td>
                 <td class="style3">
                 </td>
+                <img src="file:///C:\Documents%20and%20Settings\y\Application%20Data\Tencent\QQ\Temp\4D623265-9CC5-498A-86AC-2BA5DE26A11B.png" />
                 <td class="style1">
                     范德萨</td>
             </tr>
@@ -60,10 +61,8 @@
                 <td class="style5">
                     范德萨</td>
                 <td>
-            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=a055a2ca-f531-4ad6-8048-a7556866372c&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=3'></script>
+            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=a055a2ca-f531-4ad6-8048-a7556866372c&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
             </tr>
         </table>
-&nbsp;<div id="trace_div"></div>
-    </form>
 </body>
 </html>
