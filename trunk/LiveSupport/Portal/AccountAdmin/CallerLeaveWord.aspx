@@ -17,13 +17,15 @@
 <script src="../js/Mycalendar.js"></script>
     <!--内容开始-->
    <!--内容-->
- <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-          留言记录查询 </div>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
- 
-<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top">
+  <table cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">留言记录查询</td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
+
+<table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
   <!--内容-->
    <TABLE class=setting_tb cellSpacing=1 cellPadding=0 border=0 
         style="width: 560px">
@@ -83,11 +85,10 @@
 </tr>
 </table>
   <!--内容结束-->
-</td></tr></table>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
-
-
-
+  
+ </td></tr></table></td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
 </asp:Content>
 
  

@@ -14,7 +14,7 @@
 <td style="width:50px;" valign="top">
 <table cellpadding="0" cellspacing="0">
 <tr><td><img src="Imgs/sidebar.gif" /></td></tr>
-<tr><td style="background-image:url('Imgs/left-centent.GIF');">
+<tr><td style="background-image:url('Imgs/left-centent.GIF');" align="center">
     <br />
 <a href="Login.aspx"><img src="Imgs/signin.gif" /></a><br />
     <br /><a href="Login.aspx">申请免费试用!</a>  

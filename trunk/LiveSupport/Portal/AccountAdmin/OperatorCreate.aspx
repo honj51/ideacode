@@ -14,13 +14,16 @@
 			myMenu.expandMenu(firstSubmenu);  
 			
 		};</SCRIPT>
- <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     添加客服</div>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+
+  <table cellpadding="0" cellspacing="0">
+    <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+    <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">添加客服</td></tr>
+    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+  </table>
  
-<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top">
+ <table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center">
 &nbsp;<table style="width: 360px; text-align:left; height: 238px;" border="1"  cellpadding="0" cellspacing="0">
          <tr><td>所在部门：</td><td>
     </asp:TextBox>
@@ -65,9 +68,10 @@
     </td></tr>
 </table>
  <!--尾部-->
-           </td></tr></table>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
-
+           </td></tr></table></td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
+ 
 </asp:Content>
 
  

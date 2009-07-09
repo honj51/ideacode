@@ -14,13 +14,15 @@
 			myMenu.expandMenu(firstSubmenu);  
 			
 		};</SCRIPT>
- <div><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
- <div style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;">
-     客服信息管理</div>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
- 
-<div style="margin-top:5px;"><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></div>
-<table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top">
+  <table cellpadding="0" cellspacing="0">
+    <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+    <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px; " align="center">客服信息管理</td></tr>
+    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+  </table> 
+
+<table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
+   <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
+   <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center">
     <!--头部--->
     <div style="text-align:left; margin-left:60px; margin-top:50px;">
             <TABLE id=ctl00_ContentPlaceHolder1_DetailsView1 
@@ -71,11 +73,10 @@
           <TD><A </TD><td>
             <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="保存" 
                 Width="67px" style="height: 26px" />
-            </td></TR></TBODY></TABLE>
-        </div>
- <!--尾部-->
-</td></tr></table>
- <div><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></div>
+            </td></tr></table></td></tr>
+   <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
+ </table>
+ 
 </asp:Content>
 
  
