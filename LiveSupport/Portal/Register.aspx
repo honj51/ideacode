@@ -13,14 +13,14 @@
 <tr><td style="background-image:url('Imgs/about-down2.GIF'); text-align:left; vertical-align:top;">
 <table cellpadding="0" cellspacing="0" style=" text-align:center; width:760px;">
 <tr><td> <!--内容 -->
-    <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+    <TABLE cellSpacing=0 cellPadding=0 width="100%"  style="padding-left:50px; border:0px;">
   <TBODY>
   <TR>
     <TD align=middle><FONT color=red>
         <br />
         </FONT></TD></TR><!-- 第一步: 创建公司信息 -->
   <TR>
-    <TD align=left><b><SPAN >第一步: 创建公司信息<SPAN 
+    <TD align="left" ><b><SPAN>第一步: 创建公司信息<SPAN 
       style="FONT-WEIGHT: bold; COLOR: #ff0000">*</SPAN>号为必填项，为了得到LiveSupport客服的专业服务，请您填写真实资料 
       </SPAN></b></TD></TR>
   <TR>

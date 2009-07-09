@@ -34,9 +34,9 @@
 <td valign="top">
 <table  width="573" cellpadding="0" cellspacing="0">
 <tr><td style="background-image:url('Imgs/centent-title-bg.gif'); height:28px; text-align:left; font-size:12px; color:White; vertical-align:bottom;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品价格</td></tr>
-<tr><td style=" background-image:url('Imgs/centent.GIF'); text-align:left;">
+<tr><td style=" background-image:url('Imgs/centent.GIF'); text-align:left; padding-left:50px;">
     <br />
-<TABLE cellSpacing=1 cellPadding=0 width="80%" bgColor=#d2dfe6 
+<TABLE cellSpacing=1 cellPadding=0 width="90%" bgColor=#d2dfe6 
             border=0>
               <TBODY>
               <TR>
@@ -58,7 +58,7 @@
                   bgColor=#ffffff>&nbsp; 中小型网站</TD></TR>
               </TBODY></TABLE>
     <br />
-<TABLE cellSpacing=1 cellPadding=0 width="80%" bgColor=#d2dfe6 
+<TABLE cellSpacing=1 cellPadding=0 width="90%" bgColor=#d2dfe6 
             border=0>
               <TBODY>
               <TR>
@@ -80,7 +80,7 @@
                   bgColor=#ffffff>&nbsp; 企业级网站</TD></TR>
               </TBODY></TABLE>
     <br />
-<TABLE cellSpacing=1 cellPadding=0 width="80%" bgColor=#d2dfe6 
+<TABLE cellSpacing=1 cellPadding=0 width="90%" bgColor=#d2dfe6 
             border=0>
               <TBODY>
               <TR>
