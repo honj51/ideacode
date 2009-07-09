@@ -14,6 +14,7 @@ public class LSBanner : IHttpHandler {
         string ChatStyle = "0";//聊天样式
         string IcoLocation ="0";//显示的位置样式
         string bannerType ="0";// 0: 简单按钮, 1: 客服列表, 2: 部门列表
+        string LCS_BannerJs = "orientation.js";
         if (context.Request.QueryString["aid"] != null)
         { 
             aid=context.Request.QueryString["aid"];
@@ -38,6 +39,14 @@ public class LSBanner : IHttpHandler {
         {
             companyName = "LiveSupport";
         }
+        ////判断浏览器
+        if (context.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+        {
+            if (context.Request.ServerVariables["HTTP_USER_AGENT"].ToString().Contains("Firefox"))
+            {
+                LCS_BannerJs = "orientation1.js";
+            }
+        }
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
         sb.AppendLine(string.Format("var LCS_homeUrl = '{0}';",homeRootUrl));
         sb.AppendLine(string.Format("var LCS_bannerType ={0};", bannerType));// 0: 简单按钮, 1: 客服列表, 2: 部门列表
@@ -47,7 +56,7 @@ public class LSBanner : IHttpHandler {
         sb.AppendLine(string.Format("var LCS_accountId = '{0}';",aid));
         sb.AppendLine(string.Format("var LCS_companyName = '{0}';", companyName));
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/live2.js\"></script> ');");
-        sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/orientation.js\"></script> ');");
+        sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/"+LCS_BannerJs+"\"></script> ');");
         context.Response.ContentType = "text/plain"; // context.Response.ContentType = "application/x-javascript";
         context.Response.Write(sb.ToString());
     }
