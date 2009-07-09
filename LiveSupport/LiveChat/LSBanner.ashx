@@ -14,7 +14,7 @@ public class LSBanner : IHttpHandler {
         string ChatStyle = "0";//聊天样式
         string IcoLocation ="0";//显示的位置样式
         string bannerType ="0";// 0: 简单按钮, 1: 客服列表, 2: 部门列表
-        string LCS_BannerJs = "orientation.js";
+        string LCS_BannerJs = "orientationIE.js";
         if (context.Request.QueryString["aid"] != null)
         { 
             aid=context.Request.QueryString["aid"];
@@ -44,7 +44,7 @@ public class LSBanner : IHttpHandler {
         {
             if (context.Request.ServerVariables["HTTP_USER_AGENT"].ToString().Contains("Firefox"))
             {
-                LCS_BannerJs = "orientation1.js";
+                LCS_BannerJs = "orientationFireFox.js";
             }
         }
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
