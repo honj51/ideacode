@@ -12,8 +12,7 @@ BODY {
 }
 .b_la2{BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 100%; HEIGHT: 95px; BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid}
 .b_1aa {
-	BACKGROUND-IMAGE: url('../App_Themes/Default/image/a3.jpg'); 
-WIDTH: 495px; HEIGHT: 26px
+	BACKGROUND-IMAGE: url(image/a3.jpg); WIDTH: 495px; HEIGHT: 26px
 }
 .b_1abc {
 	WIDTH: 366px; FLOAT: left; HEIGHT: 80px
@@ -43,5 +42,4 @@ WIDTH: 495px; HEIGHT: 26px
 .b_2c {
 	WIDTH: 177px; HEIGHT: 18px; PADDING-TOP: 5px
 }
-.b_22{ background-image:url('../App_Themes/Default/北京远大优绩科技发展有限公司###_files/a5.jpg');
-}
+.b_22{ background-image:url(%E5%8C%97%E4%BA%AC%E8%BF%9C%E5%A4%A7%E4%BC%98%E7%BB%A9%E7%A7%91%E6%8A%80%E5%8F%91%E5%B1%95%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8###_files/a5.jpg);}

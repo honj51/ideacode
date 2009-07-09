@@ -198,7 +198,7 @@
             <td height="23" colspan="2" align="center"><asp:Button ID="btnSendEmail" runat="server" Text="发送邮件"  OnClick="btnSendEmail_Click" /></td>
           </tr>
         </table>
-         <div ID="footer0" style=" text-indent;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff;BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid;: 25px;background-repeat: no-repeat;height: 29px; line-height: 29px; position:static; width: 100%; text-align:center; background-color:#006600;">
+         <div ID="footer0" style=" text-indent :BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff;BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid:25px;background-repeat: no-repeat;height: 29px; line-height: 29px; position:static; width: 100%; text-align:center; background-color:#006600;">
                             Copyright © 2009 LiveSupport, Inc.<a href="LegalNotice.aspx">Terms of Use</a>
                     </div>
       </div>
