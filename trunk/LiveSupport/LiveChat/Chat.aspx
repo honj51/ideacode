@@ -142,7 +142,7 @@
     <div class="b_1">
     
       <div class="b_1a">
-        <table width="100%" height="100%" border="0"  >
+        <table width="100%" height="98%" border="0"  >
           <tr  style="background-image:url(Images/top1.jpg)">
             <td height="27" colspan="2"  align="center"><asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
             当前没有客服在线 请留言，我们会尽快给您回复!</td>
