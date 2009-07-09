@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Demo Page</title>
-    
     <style type="text/css">
         .style1
         {
@@ -61,8 +60,21 @@
                 <td class="style5">
                     范德萨</td>
                 <td>
-            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=a055a2ca-f531-4ad6-8048-a7556866372c&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
+             <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=a055a2ca-f531-4ad6-8048-a7556866372c&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
             </tr>
         </table>
+ <script language=javascript>
+function window.onbeforeunload()
+{
+if(event.clientX>document.body.clientWidth&&event.clientY<0||event.altKey||event.ctrlKey)
+{
+     //判断event.altKey是为了Alt+F4关闭的情况；判断event.ctrlKey是为了Ctrl+W关闭的情况
+     //document.body.clientWidth不包括滚动条，而关闭按钮恰好在滚动条右侧。
+     window.event.returnValue="";
+     alert("aa");
+}
+alert("vv");
+}
+</script> 
 </body>
 </html>
