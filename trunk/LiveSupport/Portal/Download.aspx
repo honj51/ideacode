@@ -34,13 +34,13 @@
 <td valign="top">
 <table  width="573" cellpadding="0" cellspacing="0">
 <tr><td style="background-image:url('Imgs/centent-title-bg.gif'); height:28px; text-align:left; font-size:12px; color:White; vertical-align:bottom;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;软件下载</td></tr>
-<tr><td style=" background-image:url('Imgs/centent.GIF'); text-align:left;">
+<tr><td style=" background-image:url('Imgs/centent.GIF'); text-align:left; padding-left:30px;">
     <br />
-<font style="margin-left:20px;">LiveSupport客户端下载： </font> 
+<font>LiveSupport客户端下载： </font> 
     <br />
-    <br /><a href="Download/OperatorConsole.msi"><img src="Imgs/download.gif" style="margin-left:20px;" /></a> 
+    <br /><a href="Download/OperatorConsole.msi"><img src="Imgs/download.gif"/></a> 
     <br />
-    <br /><font style="margin-left:20px;">硬件推荐配置：</font><br />
+    <br /><font>硬件推荐配置：</font><br />
     <br />
 <TABLE cellSpacing=1 cellPadding=0 width="80%" bgColor=#d2dfe6 
             border=0>
@@ -60,7 +60,7 @@
                   bgColor=#ffffff>&nbsp; 50M以上&nbsp;</TD></TR>
               </TBODY></TABLE>
     <br />
-   <font style="margin-left:20px;">软件推荐配置：</font><br />
+   <font>软件推荐配置：</font><br />
     <br />
 <TABLE cellSpacing=1 cellPadding=0 width="80%" bgColor=#d2dfe6 
             border=0>

@@ -11,10 +11,8 @@
 <tr><td style="background-image:url('Imgs/about-down2.GIF'); text-align:left; vertical-align:top;">
 <table cellpadding="0" cellspacing="0" style=" text-align:center; width:760px;">
 <tr><td>
-
-
 </td></tr>
-<tr><td align="left">
+<tr><td align="left" style="padding-left:20px; line-height:25px;">
 <br />
 
     <h3><img src="Imgs/redb.gif" /> 诚聘英才</h3>

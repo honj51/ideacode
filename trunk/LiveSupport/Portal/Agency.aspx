@@ -14,7 +14,7 @@
 
 
 </td></tr>
-<tr><td align="left">
+<tr><td align="left" style="padding-left:20px;">
 <br />
     <br />
  <img src="Imgs/bd.gif" /><br />
