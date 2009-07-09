@@ -52,6 +52,9 @@
         　　<strong>持续的盈利模式：</strong> 服务每年都要续费，代理商可持续获利。</p>
     <p>
         　　<strong>低廉的运作成本：</strong> 代理商可充分利用现有的客户资源拓展业务。</p>
+        　　<br />
+        　　<br />
+        　　<p style="font-size:14px; color:Red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 如想加入我们的代理,请&nbsp;<a href="Contact.aspx">联系我们!</a></p>
     </td></tr>
 </table>
     </td></tr>
