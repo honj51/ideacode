@@ -126,45 +126,75 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="ObjectDataSource1" Width="100%" BackColor="White" 
+        Width="100%" BackColor="White" 
         BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" >
         <FooterStyle BackColor="White" ForeColor="#000066" />
         <RowStyle ForeColor="#000066" />
         <Columns>
-            <asp:BoundField DataField="VisitorId" HeaderText="访客ID" 
-                SortExpression="VisitorId" />
-            <asp:BoundField DataField="AccountId" HeaderText="公司ID" 
+            <asp:BoundField DataField="AccountId" HeaderText="AccountId" 
                 SortExpression="AccountId" />
-            <asp:BoundField DataField="Name" HeaderText="公司名" SortExpression="Name" />
-            <asp:BoundField DataField="Email" HeaderText="邮件" SortExpression="Email" />
-            <asp:BoundField DataField="VisitCount" HeaderText="访问次数" 
-                SortExpression="VisitCount" />
-            <asp:BoundField DataField="Company" HeaderText="Company" 
-                SortExpression="Company" />
-            <asp:CheckBoxField DataField="IsVIP" HeaderText="是否VIP" 
-                SortExpression="IsVIP" />
-            <asp:BoundField DataField="CurrentSessionId" HeaderText="CurrentSessionId" 
-                SortExpression="CurrentSessionId" ReadOnly="True" />
+            <asp:BoundField DataField="AccountNumber" HeaderText="AccountNumber" 
+                SortExpression="AccountNumber" />
+            <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" 
+                SortExpression="CompanyName" />
+            <asp:BoundField DataField="Industry" HeaderText="Industry" 
+                SortExpression="Industry" />
+            <asp:BoundField DataField="Email" HeaderText="Email" 
+                SortExpression="Email" />
+            <asp:BoundField DataField="ContactName" HeaderText="ContactName" 
+                SortExpression="ContactName" />
+            <asp:BoundField DataField="Phone" HeaderText="Phone" 
+                SortExpression="Phone" />
+            <asp:BoundField DataField="Url" HeaderText="Url" SortExpression="Url" />
+            <asp:BoundField DataField="Domain" HeaderText="Domain" 
+                SortExpression="Domain" />
+            <asp:BoundField DataField="OperatorCount" HeaderText="OperatorCount" 
+                SortExpression="OperatorCount" />
+            <asp:BoundField DataField="Province" HeaderText="Province" 
+                SortExpression="Province" />
+            <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
+            <asp:BoundField DataField="RegisterDate" HeaderText="RegisterDate" 
+                SortExpression="RegisterDate" />
+            <asp:BoundField DataField="Remark" HeaderText="Remark" 
+                SortExpression="Remark" />
+            <asp:BoundField DataField="PaymentId" HeaderText="PaymentId" 
+                SortExpression="PaymentId" />
         </Columns>
         <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
         <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-        SelectMethod="GetAllVisitors" TypeName="VisitorService">
-    </asp:ObjectDataSource>
-    <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="ObjectDataSource2" Width="100%" BackColor="White" 
-        BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
-        <FooterStyle BackColor="White" ForeColor="#000066" />
-        <RowStyle ForeColor="#000066" />
-        <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-        <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-        <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+    <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" 
+       >
+        <Columns>
+            <asp:BoundField DataField="AccountId" HeaderText="AccountId" 
+                SortExpression="AccountId" />
+            <asp:BoundField DataField="AccountNumber" HeaderText="AccountNumber" 
+                SortExpression="AccountNumber" />
+            <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" 
+                SortExpression="CompanyName" />
+            <asp:BoundField DataField="Industry" HeaderText="Industry" 
+                SortExpression="Industry" />
+            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+            <asp:BoundField DataField="ContactName" HeaderText="ContactName" 
+                SortExpression="ContactName" />
+            <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+            <asp:BoundField DataField="Url" HeaderText="Url" SortExpression="Url" />
+            <asp:BoundField DataField="Domain" HeaderText="Domain" 
+                SortExpression="Domain" />
+            <asp:BoundField DataField="OperatorCount" HeaderText="OperatorCount" 
+                SortExpression="OperatorCount" />
+            <asp:BoundField DataField="Province" HeaderText="Province" 
+                SortExpression="Province" />
+            <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
+            <asp:BoundField DataField="RegisterDate" HeaderText="RegisterDate" 
+                SortExpression="RegisterDate" />
+            <asp:BoundField DataField="Remark" HeaderText="Remark" 
+                SortExpression="Remark" />
+            <asp:BoundField DataField="PaymentId" HeaderText="PaymentId" 
+                SortExpression="PaymentId" />
+        </Columns>
     </asp:GridView>
-    <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" 
-        SelectMethod="GetAllVisitSession" TypeName="VisitSessionService">
-    </asp:ObjectDataSource>
     </form>
 </body>
 <script type="text/javascript" language="javascript">

@@ -13,9 +13,10 @@ public partial class operatortest : System.Web.UI.Page
     }
     protected void Timer1_Tick(object sender, EventArgs e)
     {
+        this.GridView5.DataSource = AccountService.getAllaccount();
         this.GridView1.DataSource = OperatorService.GetAllOperators();
         this.GridView2.DataSource = ChatService.GetAllChat();
-        LiveSupport.BLL.Util.SysDateStates li= LiveSupport.BLL.Util.GetSysInfo();
+        LiveSupport.BLL.Util.SysDateStates li = LiveSupport.BLL.Util.GetSysInfo();
         this.Label4.Text = li.StartApplicationDate.ToString();
         this.Label5.Text = li.StartSessionDate.ToString();
         DataBind();
