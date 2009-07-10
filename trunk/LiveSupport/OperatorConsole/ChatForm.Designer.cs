@@ -36,6 +36,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panelMessage = new System.Windows.Forms.Panel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -53,7 +54,6 @@
             this.tabControlVideo = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
@@ -64,8 +64,6 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -79,7 +77,6 @@
             this.statusStrip1.SuspendLayout();
             this.tabControlVideo.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.glassPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -142,6 +139,14 @@
             this.panelMessage.Name = "panelMessage";
             this.panelMessage.Size = new System.Drawing.Size(426, 274);
             this.panelMessage.TabIndex = 9;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
+            this.chatMessageViewerControl1.TabIndex = 0;
             // 
             // toolStrip2
             // 
@@ -298,7 +303,6 @@
             // tabControlVideo
             // 
             this.tabControlVideo.Controls.Add(this.tabPage1);
-            this.tabControlVideo.Controls.Add(this.tabPage2);
             this.tabControlVideo.Controls.Add(this.tabPage4);
             this.tabControlVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlVideo.Location = new System.Drawing.Point(0, 147);
@@ -327,16 +331,6 @@
             this.setTalkTreeView.Size = new System.Drawing.Size(214, 292);
             this.setTalkTreeView.TabIndex = 0;
             this.setTalkTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.setTalkTreeView_NodeMouseDoubleClick);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.operatorPannel1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 21);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(220, 298);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "对话转接";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
@@ -449,22 +443,6 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
-            this.chatMessageViewerControl1.TabIndex = 0;
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 0);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(220, 298);
-            this.operatorPannel1.TabIndex = 0;
-            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -494,7 +472,6 @@
             this.statusStrip1.PerformLayout();
             this.tabControlVideo.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.glassPanel1.ResumeLayout(false);
             this.glassPanel1.PerformLayout();
@@ -536,8 +513,6 @@
 
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.TreeView setTalkTreeView;
-        private System.Windows.Forms.TabPage tabPage2;
-        private OperatorPannel operatorPannel1;
         private System.Windows.Forms.Panel panelMessage;
         private System.Windows.Forms.TabPage tabPage4;
         private ChatMessageViewerControl chatMessageViewerControl1;
