@@ -8,26 +8,22 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
     public class SqlCityProvider : ICityProvider
     {
-        /// <summary>
-        /// 跟据省份ID查询城市信息
-        /// </summary>
-        /// <param name="provinceId">省份ID</param>
-        /// <returns>City集合</returns>
+
+        #region 跟据省份ID查询城市信息
         public  List<City> GetCityByProvinceId(int provinceId)
         {
             string sql = "select * from dbo.Portal_City where Pid=" + provinceId;
             List<City> city = new List<City>();
-            SqlDataReader r = DBHelper.GetReader(sql);
-            while (r.Read())
+            using (SqlDataReader r = DBHelper.GetReader(sql))
             {
-                city.Add(new City(r));
-
+                while (r.Read())
+                {
+                    city.Add(new City(r));
+                }
+                return city;
             }
-            r.Close();
-            r.Dispose();
-            r = null;
-            return city;
         }
+        #endregion
     }
 }
     

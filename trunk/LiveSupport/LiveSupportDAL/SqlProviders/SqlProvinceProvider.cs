@@ -14,16 +14,14 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             string sql = "select * from dbo.Portal_Province ";
             List<Province> province = new List<Province>();
-            SqlDataReader r = DBHelper.GetReader(sql);
-            while (r.Read())
+            using (SqlDataReader r = DBHelper.GetReader(sql))
             {
-                province.Add(new Province(r));
-
+                while (r.Read())
+                {
+                    province.Add(new Province(r));
+                }
+                return province;
             }
-            r.Close();
-            r.Dispose();
-            r = null;
-            return province;
         }
         /// <summary>
         ///   通过省份名查询城市信息
@@ -37,20 +35,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             Province province = null;
             try
             {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
+                using (data = DBHelper.GetReader(sql))
                 {
-                    province = new Province(data);
+                    if (data.Read())
+                    {
+                        province = new Province(data);
+                    }
+                    return province;
                 }
-                data.Close();
-                data.Dispose();
-                data = null;
             }
             catch
             {
                 throw;
             }
-            return province;
         }
     }
 }

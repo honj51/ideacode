@@ -26,18 +26,20 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             List<Message> retList = new List<Message>();
             try
             {
-                data = DBHelper.GetReader(sql);
-                while (data.Read())
-                    retList.Add(new Message(data));
-                data.Close();
-                data.Dispose();
-                data = null;
+                using (data = DBHelper.GetReader(sql))
+                {
+                    while (data.Read())
+                    {
+                        retList.Add(new Message(data));
+                    }
+                    return retList;
+                }
             }
             catch
             {
                 throw;
             }
-            return retList;
+           
         }
 
         public void AddMessage(Message msg)
@@ -90,18 +92,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             List<Message> retList = new List<Message>();
             try
             {
-                data = DBHelper.GetReader(sql);
-                while (data.Read())
-                    retList.Add(new Message(data));
-                data.Close();
-                data.Dispose();
-                data = null;
+                using (data = DBHelper.GetReader(sql))
+                {
+                    while (data.Read())
+                    {
+                        retList.Add(new Message(data));
+                    }
+                    return retList;
+                }
             }
             catch
             {
                 throw;
             }
-            return retList;
         }
 
         #region 通过ChatId获得聊天记录
@@ -112,18 +115,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             List<Message> retList = new List<Message>();
             try
             {
-                data = DBHelper.GetReader(sql);
-                while (data.Read())
-                    retList.Add(new Message(data));
-                data.Close();
-                data.Dispose();
-                data = null;
+                using (data = DBHelper.GetReader(sql))
+                {
+                    while (data.Read())
+                    {
+                        retList.Add(new Message(data));
+                    }
+                    return retList;
+                }
             }
             catch
             {
                 throw;
             }
-            return retList;
         }
         #endregion
 

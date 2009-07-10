@@ -22,18 +22,18 @@ namespace LiveSupport.SqlProviders
         public ClientGrounp CheckClientGrounpByAccountIdAndGrountpName(string accountId, string GrountpName)
         {
             string sql = string.Format("select * from LiveSupport_ClientGrounp where accountId='{0}' and [Name]='{1}' order by addDate", accountId, GrountpName);
-            SqlDataReader sdr = DBHelper.GetReader(sql);
-            if (sdr.Read())
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
             {
-                ClientGrounp cg = new ClientGrounp(sdr);
-                cg.Account = new SqlAccountProvider().GetAccountByAccountId(accountId);
-                sdr.Close();
-                return cg;
-            }
-            else
-            {
-                sdr.Close();
-                return null;
+                if (sdr.Read())
+                {
+                    ClientGrounp cg = new ClientGrounp(sdr);
+                    cg.Account = new SqlAccountProvider().GetAccountByAccountId(accountId);
+                    return cg;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         #endregion
@@ -42,18 +42,18 @@ namespace LiveSupport.SqlProviders
         public ClientGrounp GetClientGrounpById(string grounpId)
         {
             string sql = string.Format("select * from LiveSupport_ClientGrounp where Id='{0}' order by addDate", grounpId);
-            SqlDataReader sdr = DBHelper.GetReader(sql);
-            if (sdr.Read())
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
             {
-                ClientGrounp cg = new ClientGrounp(sdr);
-                cg.Account = new SqlAccountProvider().GetAccountByAccountId(grounpId);
-                sdr.Close();
-                return cg;
-            }
-            else
-            {
-                sdr.Close();
-                return null;
+                if (sdr.Read())
+                {
+                    ClientGrounp cg = new ClientGrounp(sdr);
+                    cg.Account = new SqlAccountProvider().GetAccountByAccountId(grounpId);
+                    return cg;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         #endregion
@@ -63,19 +63,18 @@ namespace LiveSupport.SqlProviders
         {
             string sql = string.Format("select * from LiveSupport_ClientGrounp where accountId='{0}' order by addDate", accountId);
             List<ClientGrounp> list = new List<ClientGrounp>();
-            SqlDataReader sdr = DBHelper.GetReader(sql);
-            while (sdr.Read())
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
             {
-                ClientGrounp cg = new ClientGrounp(sdr);
-                cg.Account = new SqlAccountProvider().GetAccountByAccountId(accountId);
-                list.Add(cg);
+                while (sdr.Read())
+                {
+                    ClientGrounp cg = new ClientGrounp(sdr);
+                    cg.Account = new SqlAccountProvider().GetAccountByAccountId(accountId);
+                    list.Add(cg);
+                }
+                return list;
             }
-            sdr.Close();
-            return list;
         }
         #endregion
-
-
 
         #region 修改客服分组
         public int UpdateClientGrounp(ClientGrounp cg)
