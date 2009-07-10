@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/PortalIntro.master" AutoEventWireup="true" CodeFile="Intro_Visitor.aspx.cs" Inherits="Default3" Title="产品介绍-LiveSupport在线客服系统" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalIntro.master" AutoEventWireup="true" CodeFile="Intro_Visitor.aspx.cs" Inherits="Intro_Visitor" Title="产品介绍-LiveSupport在线客服系统" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
     <table  width="573" cellpadding="0" cellspacing="0" style="font-size:12px;">
