@@ -243,21 +243,23 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public Operator GetOperatorBySql(string sql)
         {
             Operator operators = new Operator();
-            SqlDataReader r = DBHelper.GetReader(sql);
-            if (r.Read())
+            using (SqlDataReader r = DBHelper.GetReader(sql))
             {
-                Operator op = new Operator(r);
-                SqlAccountProvider ap = new SqlAccountProvider();
-                SqlDepartmentProvider dp = new SqlDepartmentProvider();
-                op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
-                op.Account = ap.GetAccountByAccountId(r["accountId"].ToString());
-                return op;
+                if (r.Read())
+                {
+                    Operator op = new Operator(r);
+                    SqlAccountProvider ap = new SqlAccountProvider();
+                    SqlDepartmentProvider dp = new SqlDepartmentProvider();
+                    op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
+                    op.Account = ap.GetAccountByAccountId(r["accountId"].ToString());
+                    return op;
 
-            }
-            else
-            {
-                return null;
-            }
+                }
+                else
+                {
+                    return null;
+                }
+            }            
         }
         #endregion
     }
