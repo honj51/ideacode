@@ -45,6 +45,7 @@
     <Compile Include="ChatManager.cs" />
     <Compile Include="ChatMessageManager.cs" />
     <Compile Include="ClientGrounpManager.cs" />
+    <Compile Include="ContentManager.cs" />
     <Compile Include="DepartmentManager.cs" />
     <Compile Include="Exceptions\BLLInternalException.cs" />
     <Compile Include="LeaveWordManager.cs" />

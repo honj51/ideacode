@@ -123,7 +123,6 @@ namespace LiveSupport.BLL
                 return null;
             }
         }
-
         #endregion
 
         #region 更新公司信息
