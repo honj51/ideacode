@@ -47,11 +47,13 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public bool CheckAccountByDepartment(string accountId, string departmentName)
         {
             string sql = string .Format("select * from LiveSupport_Department where AccountId='{0}' and DepartmentName='{1}'",accountId,departmentName);
-            SqlDataReader sdr = DBHelper.GetReader(sql);
-            if (sdr.Read())
-                return false;
-            else
-                return true;
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
+            {
+                if (sdr.Read())
+                    return false;
+                else
+                    return true;
+            }
         }
 
         #endregion
@@ -61,19 +63,20 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             List<Department> list = new List<Department>();
             string sql = "select * from LiveSupport_Department where AccountId='" + AccountId + "' order by AddDate";
-            SqlDataReader sdr=DBHelper.GetReader(sql);
-            while (sdr.Read())
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
             {
-                Department department = new Department();
-                department.DepartmentId = sdr["DepartmentId"].ToString();
-                department.DepartmentName = sdr["DepartmentName"].ToString();
-                department.IsDefault = Convert.ToBoolean(sdr["IsDefault"]);
-                string aid = sdr["AccountId"].ToString();
-                department.Account = accountProvider.GetAccountByAccountId(aid);
-                list.Add(department);
+                while (sdr.Read())
+                {
+                    Department department = new Department();
+                    department.DepartmentId = sdr["DepartmentId"].ToString();
+                    department.DepartmentName = sdr["DepartmentName"].ToString();
+                    department.IsDefault = Convert.ToBoolean(sdr["IsDefault"]);
+                    string aid = sdr["AccountId"].ToString();
+                    department.Account = accountProvider.GetAccountByAccountId(aid);
+                    list.Add(department);
+                }
+                return list;
             }
-            sdr.Close();
-            return list;
         }
         #endregion
 
@@ -119,22 +122,22 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public Department GetDepartmentById(string departmentId)
         {
             string sql = "select * from LiveSupport_Department where DepartmentId='" + departmentId + "'";
-            SqlDataReader sdr = DBHelper.GetReader(sql);
-            if (sdr.Read())
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
             {
-                Department department = new Department();
-                department.DepartmentId = sdr["DepartmentId"].ToString();
-                department.DepartmentName = sdr["DepartmentName"].ToString();
-                department.IsDefault =Convert.ToBoolean(sdr["IsDefault"]);
-                string aid = sdr["AccountId"].ToString();
-                department.Account = accountProvider.GetAccountByAccountId(aid);
-                sdr.Close();
-                return department;
-            }
-            else
-            {
-                sdr.Close();
-                return null;
+                if (sdr.Read())
+                {
+                    Department department = new Department();
+                    department.DepartmentId = sdr["DepartmentId"].ToString();
+                    department.DepartmentName = sdr["DepartmentName"].ToString();
+                    department.IsDefault = Convert.ToBoolean(sdr["IsDefault"]);
+                    string aid = sdr["AccountId"].ToString();
+                    department.Account = accountProvider.GetAccountByAccountId(aid);
+                    return department;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         #endregion

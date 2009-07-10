@@ -22,18 +22,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             List<PageRequest> list = new List<PageRequest>();
             try
             {
-                data = DBHelper.GetReader(sql);
-                while (data.Read())
-                    list.Add(new PageRequest(data));
-                data.Close();
-                data.Dispose();
-                data = null;
+                using (data = DBHelper.GetReader(sql))
+                {
+                    while (data.Read())
+                    {
+                        list.Add(new PageRequest(data));
+                    }
+                    return list;
+                }
             }
             catch
             {
                 throw;
             }
-            return list;
         }
         /// <summary>
         /// 添加一条页面访问记录

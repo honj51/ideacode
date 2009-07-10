@@ -33,16 +33,15 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             string sql = "select * from dbo.LiveChat_VisitSession where visitorid='" + visitorId + "'";
             List<VisitSession> li = new List<VisitSession>();
-            SqlDataReader r = DBHelper.GetReader(sql);
-            while (r.Read())
+            using (SqlDataReader r = DBHelper.GetReader(sql))
             {
-                li.Add(new VisitSession(r));
+                while (r.Read())
+                {
+                    li.Add(new VisitSession(r));
 
+                }
+                return li;
             }
-            r.Close();
-            r.Dispose();
-            r = null;
-            return li;
         }
         /// <summary>
         /// 跟据会话ID查询一条会话信息
@@ -56,20 +55,20 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             VisitSession visitSession = null;
             try
             {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
+                using (data = DBHelper.GetReader(sql))
                 {
-                    visitSession = new VisitSession(data);
+                    if (data.Read())
+                    {
+                        visitSession = new VisitSession(data);
+                    }
+                    return visitSession;
                 }
-                data.Close();
-                data.Dispose();
-                data = null;
             }
             catch
             {
                 throw;
             }
-            return visitSession;
+           
         }
 
     }

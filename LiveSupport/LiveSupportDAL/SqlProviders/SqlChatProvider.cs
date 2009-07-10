@@ -122,17 +122,18 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         #region 通过Sql获取聊天记录
         public List<Chat> GetChatBySql(string sql)
         {
-            SqlDataReader sdr = DBHelper.GetReader(sql);
-            List<Chat> list = new List<Chat>();
-            while (sdr.Read())
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
             {
-                Chat chat = new Chat(sdr);
-                SqlVisitSessionProvider vs = new SqlVisitSessionProvider();
-                chat.Vs = vs.GetSessionById(chat.ChatId);
-                list.Add(chat);
+                List<Chat> list = new List<Chat>();
+                while (sdr.Read())
+                {
+                    Chat chat = new Chat(sdr);
+                    SqlVisitSessionProvider vs = new SqlVisitSessionProvider();
+                    chat.Vs = vs.GetSessionById(chat.ChatId);
+                    list.Add(chat);
+                }
+                return list;
             }
-            sdr.Close();
-            return list;
         }
         #endregion
     }

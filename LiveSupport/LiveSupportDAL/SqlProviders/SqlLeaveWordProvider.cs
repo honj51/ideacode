@@ -45,18 +45,18 @@ namespace LiveSupport.SqlProviders
             try
             {
                 string sql = "select * from LiveSupport_LeaveWord where Id='" + id + "'";
-                SqlDataReader sdr = DBHelper.GetReader(sql);
-                if (sdr.Read())
+                using (SqlDataReader sdr = DBHelper.GetReader(sql))
                 {
-                    LeaveWord lw = new LeaveWord(sdr);
-                    lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
-                    sdr.Close();
-                    return lw;
-                }
-                else
-                {
-                    sdr.Close();
-                    return null;
+                    if (sdr.Read())
+                    {
+                        LeaveWord lw = new LeaveWord(sdr);
+                        lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
+                        return lw;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
             catch (Exception ex)
@@ -72,16 +72,17 @@ namespace LiveSupport.SqlProviders
             try
             {
                 string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' and CallerDate>='{1}' and CallerDate<='{2}' order by Senddate", accountId, beginDate, endDate);
-                SqlDataReader sdr = DBHelper.GetReader(sql);
-                List<LeaveWord> list = new List<LeaveWord>();
-                while (sdr.Read())
+                using (SqlDataReader sdr = DBHelper.GetReader(sql))
                 {
-                    LeaveWord lw = new LeaveWord(sdr);
-                    lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
-                    list.Add(lw);
+                    List<LeaveWord> list = new List<LeaveWord>();
+                    while (sdr.Read())
+                    {
+                        LeaveWord lw = new LeaveWord(sdr);
+                        lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
+                        list.Add(lw);
+                    }
+                    return list;
                 }
-                sdr.Close();
-                return list;
             }
             catch (Exception ex)
             {

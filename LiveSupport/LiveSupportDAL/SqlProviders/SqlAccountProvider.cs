@@ -72,16 +72,14 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             {
                 string sql = "select * from LiveSupport_Account";
                 List<Account> accounts = new List<Account>();
-                SqlDataReader r = DBHelper.GetReader(sql);
-                while (r.Read())
+                using (SqlDataReader r = DBHelper.GetReader(sql))
                 {
-                    accounts.Add(new Account(r));
-
+                    while (r.Read())
+                    {
+                        accounts.Add(new Account(r));
+                    }
+                    return accounts;
                 }
-                r.Close();
-                r.Dispose();
-                r = null;
-                return accounts;
             }
             catch (Exception ex)
             {
@@ -89,7 +87,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
         }
         #endregion
-
 
         #region 登录
         public Account CheckCompanyByaccountNumber(string accountNumber)
@@ -99,23 +96,21 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             Account account = null;
             try
             {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
+                using (data = DBHelper.GetReader(sql))
                 {
-                    account = new Account(data);
+                    if (data.Read())
+                    {
+                        account = new Account(data);
+                    }
+                    return account;
                 }
-                data.Close();
-                data.Dispose();
-                data = null;
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
-            }
-            return account;
+                return null;
+            } 
         }
         #endregion
-
 
         #region 据据AccountID更新数据
         public int UpdateAccount(Account account)
@@ -149,7 +144,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
-
         #region 据据accountId查询一行数据
         public Account GetAccountByAccountId(string accountId)
         {
@@ -158,20 +152,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             Account account = null;
             try
             {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
+                using (data = DBHelper.GetReader(sql))
                 {
-                    account = new Account(data);
+                    if (data.Read())
+                    {
+                        account = new Account(data);
+                    }
+                    return account;
                 }
-                data.Close();
-                data.Dispose();
-                data = null;
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                return null;
             }
-            return account;
         }
         #endregion
 
@@ -180,55 +173,24 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             string sql = string.Format("select * from LiveSupport_Account where AccountNumber='{0}'", accountNumber);
             SqlDataReader data = null;
+            Account account = null;
             try
             {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
+                using (data = DBHelper.GetReader(sql))
                 {
-                    Account account = new Account(data);
+                    if (data.Read())
+                    {
+                       account = new Account(data);
+                    }
                     return account;
                 }
-                else
-                {
-                    data.Close();
-                    data.Dispose();
-                    data = null;
-                    return null;
-                }
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                return null;
             }
         }
         #endregion
-
-        //#region 通过Email找回密码
-        //public Account GetPasswordByLoginNameAndEmail(string loginName, string eamil)
-        //{
-        //    try
-        //    {
-        //        string sql = string.Format("select * from LiveSupport_Account where LoginName='{0}' and Email='{1}'", loginName, eamil);
-        //        SqlDataReader sdr = DBHelper.GetReader(sql);
-        //        if (sdr.Read())
-        //        {
-        //            Account account = new Account(sdr);
-        //            sdr.Close();
-        //            return account;
-        //        }
-        //        else
-        //        {
-        //            sdr.Close();
-        //            return null;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
-        //#endregion
-
 
         #region 通过条件查找公司
         public List<Account> GetAccountBycondition(string condition,string value)
@@ -238,16 +200,14 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             {
                 string sql = "select * from LiveSupport_Account where " + condition + "=" + "'" + value + "'";
                 List<Account> accounts = new List<Account>() ;
-                SqlDataReader r = DBHelper.GetReader(sql);
-                while (r.Read())
+                using (SqlDataReader r = DBHelper.GetReader(sql))
                 {
-                    accounts.Add(new Account(r));
-
+                    while (r.Read())
+                    {
+                        accounts.Add(new Account(r));
+                    }
+                    return accounts;
                 }
-                r.Close();
-                r.Dispose();
-                r = null;
-                return accounts;
             }
             catch (Exception ex)
             {

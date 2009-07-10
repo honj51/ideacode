@@ -21,20 +21,23 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             Visitor visitor = null;
             try
             {
-                data = DBHelper.GetReader(sql);
-                if (data.Read())
+                using (data = DBHelper.GetReader(sql))
                 {
-                    visitor = new Visitor(data);
+                    if (data.Read())
+                    {
+                        visitor = new Visitor(data);
+                        return visitor;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                data.Close();
-                data.Dispose();
-                data = null;
             }
             catch
             {
                 throw;
             }
-            return visitor;
         }
         /// <summary>
         ///新增一条访客信息

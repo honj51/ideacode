@@ -221,21 +221,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public List<Operator> GetOperatorListBySql(string sql)
         {
             List<Operator> operators = new List<Operator>();
-            SqlDataReader r = DBHelper.GetReader(sql);
-            while (r.Read())
+            using (SqlDataReader r = DBHelper.GetReader(sql))
             {
-                Operator op = new Operator(r);
-                SqlAccountProvider ap = new SqlAccountProvider();
-                SqlDepartmentProvider dp = new SqlDepartmentProvider();
-                op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
-                op.Account = ap.GetAccountByAccountId(r["accountId"].ToString());
-                operators.Add(op);
-
+                while (r.Read())
+                {
+                    Operator op = new Operator(r);
+                    SqlAccountProvider ap = new SqlAccountProvider();
+                    SqlDepartmentProvider dp = new SqlDepartmentProvider();
+                    op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
+                    op.Account = ap.GetAccountByAccountId(r["accountId"].ToString());
+                    operators.Add(op);
+                }
+                return operators;
             }
-            r.Close();
-            r.Dispose();
-            r = null;
-            return operators;
         }
         #endregion
 
@@ -253,7 +251,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                     op.Department = dp.GetDepartmentById(r["DepartmentId"].ToString());
                     op.Account = ap.GetAccountByAccountId(r["accountId"].ToString());
                     return op;
-
                 }
                 else
                 {
