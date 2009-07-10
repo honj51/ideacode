@@ -42,6 +42,7 @@
     <Compile Include="City.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ClientGrounp.cs" />
+    <Compile Include="Content.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="LeaveWord.cs" />
     <Compile Include="Message.cs" />
