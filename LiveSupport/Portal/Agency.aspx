@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Agency.aspx.cs" Inherits="Default4" Title="代理专区-LiveSupport在线客服系统" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Agency.aspx.cs" Inherits="Agency" Title="代理专区-LiveSupport在线客服系统" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
