@@ -219,14 +219,18 @@ namespace LiveSupport.OperatorConsole
                     {
                         Visitor v = GetVisitorById(item.VisitorId);
                         v.CurrentSession = item.CurrentSession;
-                        VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                        if (VisitorSessionChange!=null)
+                        {
+                            VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                        }
+                        
                     }
                     else
                     {
                         visitors.Add(item);
                         if (NewVisitor != null)
                         {
-                            NewVisitor(this, new NewVisitorEventArgs(item)); 
+                            NewVisitor(this, new NewVisitorEventArgs(item));
                         }
                     }
                 }
@@ -286,7 +290,10 @@ namespace LiveSupport.OperatorConsole
                 if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator && GetChatByChatId(item.ChatId) == null)
                 {
                     Visitor visitor = GetVisitorById(item.VisitorId);
-                    NewChatRequest(this, new NewChatRequestEventArgs(visitor.Name, item));
+                    if (NewChatRequest != null)
+                    {
+                        NewChatRequest(this, new NewChatRequestEventArgs(visitor.Name, item));
+                    }
                 }
             }
 
