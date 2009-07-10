@@ -44,6 +44,7 @@
     <Compile Include="Providers\ICityProvider.cs" />
     <Compile Include="Providers\IClientGrounpProvider.cs" />
     <Compile Include="Providers\IClientProvider.cs" />
+    <Compile Include="Providers\IContent.cs" />
     <Compile Include="Providers\IDepartmentProvider.cs" />
     <Compile Include="Providers\ILeaveWordProvider.cs" />
     <Compile Include="Providers\IMessageProvider.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="SqlProviders\SqlCityProvider.cs" />
     <Compile Include="SqlProviders\SqlClientGrounpProvider.cs" />
     <Compile Include="SqlProviders\SqlClientProvider.cs" />
+    <Compile Include="SqlProviders\SqlContentProvider.cs" />
     <Compile Include="SqlProviders\SqlDBProvider.cs" />
     <Compile Include="SqlProviders\SqlDepartmentProvider.cs" />
     <Compile Include="SqlProviders\SqlLeaveWordProvider.cs" />
