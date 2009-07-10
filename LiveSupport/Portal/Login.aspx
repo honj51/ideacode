@@ -6,13 +6,14 @@
 <head runat="server">
     <title>用户登录</title>
     <style type="text/css">
-        .style1
-        {
-            height: 22px;
-        }
         .style2
         {
             height: 22px;
+        }
+
+        .style7
+        {
+            width: 141px;
         }
     </style>
 </head>
@@ -20,23 +21,26 @@
     <form id="form1" runat="server">
    <table height="100" width="100%"><tr><td valign="middle" align="center">
    
-    <table style=" background-image:url('Images/login.png'); width: 440px; height: 265px;  margin-top:120px;">
+<table style=" background-image:url('Images/login.png'); width: 440px; height: 265px;  margin-top:120px;">
 <tr><td>
+<table style="width:100%; height:100%;">
+<tr><td style="width:41%;"></td>
+<td align="left">
 
-<table style=" font-size:13px; padding-left:180px;">
-<tr><td class="style1" align="right">公司账号：</td><td >
+<table style=" font-size:13px;">
+<tr><td >公司账号：</td><td align="left">
                     <asp:TextBox ID="txtNumber" runat="server" Font-Size="12px" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                         ControlToValidate="UserName" ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
     </td></tr>
-<tr><td class="style1" >客服账号：</td><td class="style1">
+<tr><td >客服账号：</td><td align="left">
                     <asp:TextBox ID="UserName" runat="server" Font-Size="12px" Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
                         ControlToValidate="UserName" ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" 
                         ValidationGroup="Login1">*</asp:RequiredFieldValidator>
     </td></tr>
-<tr><td class="style3" >客服密码：</td><td class="style3">
+<tr><td >客服密码：</td><td align="left">
                     <asp:TextBox ID="Password" runat="server" Font-Size="12px" TextMode="Password" 
                         Width="106px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
@@ -53,7 +57,8 @@
 <a href="Licence.aspx"><img src="Images/login_r.gif" /></a>
     </td></tr>
 </table>
-
+</td></tr>
+</table>
 
 </td></tr>
 </table>
