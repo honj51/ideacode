@@ -77,6 +77,8 @@ namespace LiveSupport.OperatorConsole
             {
                 NewChatRequestEventArgs arg = obj as NewChatRequestEventArgs;
                 NotifyForm.ShowNotifier(true, "访客 " + arg.Name + " 请求对话！", arg.Chat);
+                changeVisitorListViewItemColor();
+                displayStatus();
             }), e);
         }
 
@@ -86,6 +88,8 @@ namespace LiveSupport.OperatorConsole
             {
                 VisitorSessionChangeEventArgs arg = obj as VisitorSessionChangeEventArgs;
                 processVisitSessionChange(arg.VisitSession);
+                changeVisitorListViewItemColor();
+                displayStatus();
             }), e);
         }
 
@@ -95,6 +99,8 @@ namespace LiveSupport.OperatorConsole
             {
                 NewVisitorEventArgs arg = obj as NewVisitorEventArgs;
                 processNewVisitor(arg.Visitor);
+                changeVisitorListViewItemColor();
+                displayStatus();
             }), e);
             
         }
