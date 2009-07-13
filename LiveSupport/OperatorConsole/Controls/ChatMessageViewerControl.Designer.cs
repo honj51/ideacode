@@ -46,7 +46,6 @@
             this.wb.ScriptErrorsSuppressed = true;
             this.wb.Size = new System.Drawing.Size(570, 304);
             this.wb.TabIndex = 17;
-            this.wb.WebBrowserShortcutsEnabled = false;
             // 
             // label1
             // 
