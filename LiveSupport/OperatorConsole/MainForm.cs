@@ -170,10 +170,11 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                this.tabPage4.Text = "未回复数:" + num;
+                this.tabPage4.Text = "留言列表:(" + num+")";
                 tabChats.SelectedTab = tabPage4;
+                this.tabPage4.ToolTipText = "未回复留言数:" + num;  
             }
-                 
+            
             
         }
 
@@ -422,6 +423,7 @@ namespace LiveSupport.OperatorConsole
 
         private void restartApp(string args)
         {
+            Properties.Settings.Default.AutoLogin = false;
             closedByUser = false;
             shutdown();
             this.Close();

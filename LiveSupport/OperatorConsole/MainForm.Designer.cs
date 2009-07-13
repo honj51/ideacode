@@ -53,8 +53,8 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label senddateLabel;
             System.Windows.Forms.Label subjectLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeOperatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,6 +113,7 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -132,6 +133,7 @@ namespace LiveSupport.OperatorConsole
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
@@ -188,8 +190,6 @@ namespace LiveSupport.OperatorConsole
             this.stateToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -962,6 +962,14 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Size = new System.Drawing.Size(204, 396);
             this.panel1.TabIndex = 0;
             // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 366);
+            this.operatorPannel1.TabIndex = 2;
+            // 
             // panel5
             // 
             this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
@@ -982,6 +990,7 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.Location = new System.Drawing.Point(0, 30);
             this.tabChats.Name = "tabChats";
             this.tabChats.SelectedIndex = 0;
+            this.tabChats.ShowToolTips = true;
             this.tabChats.Size = new System.Drawing.Size(750, 366);
             this.tabChats.TabIndex = 0;
             this.tabChats.SelectedIndexChanged += new System.EventHandler(this.tabChats_SelectedIndexChanged);
@@ -1156,6 +1165,16 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 385);
+            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // messageendDateTimePicker
             // 
@@ -1343,7 +1362,7 @@ namespace LiveSupport.OperatorConsole
             this.splitContainer1.Panel2.Controls.Add(this.subjectTextBox);
             this.splitContainer1.Panel2MinSize = 100;
             this.splitContainer1.Size = new System.Drawing.Size(736, 335);
-            this.splitContainer1.SplitterDistance = 298;
+            this.splitContainer1.SplitterDistance = 338;
             this.splitContainer1.TabIndex = 0;
             // 
             // leaveWordDataGridView
@@ -1371,7 +1390,7 @@ namespace LiveSupport.OperatorConsole
             this.leaveWordDataGridView.RowHeadersVisible = false;
             this.leaveWordDataGridView.RowTemplate.Height = 23;
             this.leaveWordDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.leaveWordDataGridView.Size = new System.Drawing.Size(295, 335);
+            this.leaveWordDataGridView.Size = new System.Drawing.Size(335, 335);
             this.leaveWordDataGridView.TabIndex = 0;
             this.leaveWordDataGridView.SelectionChanged += new System.EventHandler(this.leaveWordDataGridView_SelectionChanged);
             // 
@@ -1405,6 +1424,7 @@ namespace LiveSupport.OperatorConsole
             this.IsReplied.HeaderText = "是否回复";
             this.IsReplied.Name = "IsReplied";
             this.IsReplied.ReadOnly = true;
+            this.IsReplied.Width = 70;
             // 
             // leaveWordBindingSource
             // 
@@ -1448,7 +1468,7 @@ namespace LiveSupport.OperatorConsole
             this.contentTextBox.Name = "contentTextBox";
             this.contentTextBox.ReadOnly = true;
             this.contentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.contentTextBox.Size = new System.Drawing.Size(326, 141);
+            this.contentTextBox.Size = new System.Drawing.Size(286, 141);
             this.contentTextBox.TabIndex = 5;
             // 
             // emailTextBox1
@@ -1518,7 +1538,7 @@ namespace LiveSupport.OperatorConsole
             this.subjectTextBox.Location = new System.Drawing.Point(87, 109);
             this.subjectTextBox.Name = "subjectTextBox";
             this.subjectTextBox.ReadOnly = true;
-            this.subjectTextBox.Size = new System.Drawing.Size(326, 21);
+            this.subjectTextBox.Size = new System.Drawing.Size(286, 21);
             this.subjectTextBox.TabIndex = 23;
             // 
             // panel2
@@ -1557,15 +1577,16 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "在线客服";
-            treeNode4.Name = "节点1";
-            treeNode4.Text = "离线客服";
+            treeNode1.Name = "节点0";
+            treeNode1.Text = "在线客服";
+            treeNode2.Name = "节点1";
+            treeNode2.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1,
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1719,24 +1740,6 @@ namespace LiveSupport.OperatorConsole
             this.loginTimer.Enabled = true;
             this.loginTimer.Interval = 1000;
             this.loginTimer.Tick += new System.EventHandler(this.loginTimer_Tick);
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 366);
-            this.operatorPannel1.TabIndex = 2;
-            // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 385);
-            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
             // 
