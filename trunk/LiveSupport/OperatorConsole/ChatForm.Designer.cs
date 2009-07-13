@@ -36,7 +36,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panelMessage = new System.Windows.Forms.Panel();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -64,6 +63,7 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -139,14 +139,6 @@
             this.panelMessage.Name = "panelMessage";
             this.panelMessage.Size = new System.Drawing.Size(426, 274);
             this.panelMessage.TabIndex = 9;
-            // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
-            this.chatMessageViewerControl1.TabIndex = 0;
             // 
             // toolStrip2
             // 
@@ -232,14 +224,17 @@
             // 
             // txtMsg
             // 
+            this.txtMsg.AllowDrop = true;
             this.txtMsg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtMsg.Location = new System.Drawing.Point(0, 25);
             this.txtMsg.Multiline = true;
             this.txtMsg.Name = "txtMsg";
             this.txtMsg.Size = new System.Drawing.Size(426, 106);
             this.txtMsg.TabIndex = 9;
+            this.txtMsg.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtMsg_DragDrop);
             this.txtMsg.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMsg_KeyUp);
             this.txtMsg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMsg_KeyPress);
+            this.txtMsg.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtMsg_DragEnter);
             // 
             // toolStrip1
             // 
@@ -443,6 +438,14 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
+            this.chatMessageViewerControl1.TabIndex = 0;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -487,7 +490,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton uploadToolStripButton;
         private System.Windows.Forms.ToolStripButton ExitToolStripButton;
-        private System.Windows.Forms.TextBox txtMsg;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toollblIsTyping;
         private System.Windows.Forms.ToolStrip toolStrip2;
@@ -516,6 +518,7 @@
         private System.Windows.Forms.Panel panelMessage;
         private System.Windows.Forms.TabPage tabPage4;
         private ChatMessageViewerControl chatMessageViewerControl1;
+        private System.Windows.Forms.TextBox txtMsg;
        
     }
 }

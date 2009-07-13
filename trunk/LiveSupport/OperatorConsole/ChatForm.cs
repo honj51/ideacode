@@ -220,6 +220,34 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
+        //文本框接受数据
+        private void txtMsg_DragDrop(object sender, DragEventArgs e)
+        {
+            int i;
+            String s;
+
+            // Get start position to drop the text.
+            i = txtMsg.SelectionStart;
+            s = txtMsg.Text.Substring(i);
+            txtMsg.Text = txtMsg.Text.Substring(0, i);
+
+            // Drop the text on to the txtMsg.
+            txtMsg.Text = txtMsg.Text +
+               e.Data.GetData(DataFormats.Text).ToString();
+            txtMsg.Text = txtMsg.Text + s;
+
+
+        }
+        //数据拖入文本框，文本框检测数据内容
+        private void txtMsg_DragEnter(object sender, DragEventArgs e)
+        {
+            // 如果文件被拖入, 显示“允许拖入”鼠标指针
+            if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+
+        }
         //写信息
         private void WriteMessage(string message)
         { 
@@ -480,5 +508,6 @@ namespace LiveSupport.OperatorConsole
         {
 
         }
+
     }
 }
