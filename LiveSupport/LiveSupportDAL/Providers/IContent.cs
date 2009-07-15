@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LiveSupport.Model;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.LiveSupportDAL.Providers
 {
