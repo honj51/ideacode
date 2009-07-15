@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 
-namespace LiveSupport.Model
+namespace LiveSupport.LiveSupportModel
 {
     public class Content
     {
