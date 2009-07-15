@@ -6,5 +6,6 @@ namespace LiveSupport.LiveSupportDAL.Providers
     {
         Visitor GetVisitorById(string visitorId);
         void NewVisitor(Visitor visitor);
+        void UpdateVisitor(Visitor model);
     }
 }
