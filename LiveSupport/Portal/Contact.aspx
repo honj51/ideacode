@@ -34,11 +34,8 @@
                   bgColor=#f3f7fa>&nbsp;万先生：15270918055</TD></TR>
               
                 <TD align=right width=100 bgColor=#ffffff height=27>电子邮箱：</TD>
-                <TD align=left bgColor=#ffffff>39419358@qq.com&nbsp;</TD></TR>
-              <TR>
-                <TD align=right width=100 bgColor=#f3f7fa height=27>官方网址：</TD>
-                <TD align=left bgColor=#f3f7fa>&nbsp;<A 
-                  href="http://www.zxkefu.cn">http://www.zxkefu.cn</A></TD></TR></TBODY></TABLE><br /><br />
+                <TD align=left bgColor=#ffffff>hudongsoft@yahoo.cn&nbsp;</TD></TR>
+             </TBODY></TABLE><br /><br />
     </td></tr>
 </table>
     </td></tr>
