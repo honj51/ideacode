@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="con1" Runat="Server">
     <table  width="573" cellpadding="0" cellspacing="0" style="font-size:12px;">
 <tr><td style="background-image:url('Imgs/centent-title-bg.gif'); height:28px; text-align:left; font-size:12px; color:White; vertical-align:bottom;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LiveSupport介绍</td></tr>
-<tr><td style=" background-image:url('Imgs/centent.GIF'); text-align:left;">
-    <p style="margin-left:15px;">
-        LiveSupport能给您带来什么？</p>
+<tr><td style=" background-image:url('Imgs/centent.GIF'); text-align:left;"><br />
+    <p style="margin-left:15px; font-size:16px; color: #588CFF;">
+        <b>LiveSupport能给您带来什么？</b></p>
     <ol style="MARGIN-BOTTOM: 5px; margin-right:20px;">
         <li>增加新的营销渠道 
             <p>
@@ -24,8 +24,8 @@
                 通过与网民在线人性化的交互作用并且以顾客的地址来判断，您可以发现您的回头客逐渐增多。</p>
         </li>
     </ol>
-    <p class="content-heading" style="MARGIN-TOP: 30px; margin-left:15px;">
-        即时语的主要功能？</p>
+    <p class="content-heading" style="MARGIN-TOP: 30px; margin-left:15px; font-size:16px; color: #588CFF;">
+        <b>即时语的主要功能？</b></p>
     <ol style="MARGIN-BOTTOM: 5px; margin-right:20px;">
         <li>快捷的在线交流 
             <p>
@@ -57,8 +57,8 @@
                 管理人员拥有强大的监控能力，能够方便、实时地对客服的工作进行监控、查看实时和历史的对话记录、并可以查看访客对客服的评价反馈。</p>
         </li>
     </ol>
-    <p class="content-heading" style="MARGIN-TOP: 30px; margin-left:15px;">
-        LiveSupport的优势？</p>
+    <p class="content-heading" style="MARGIN-TOP: 30px; margin-left:15px;font-size:16px; color: #588CFF;">
+        <b>LiveSupport的优势？</b></p>
     <ol style="MARGIN-BOTTOM: 5px; margin-right:20px;">
         <li>简单易用的用户界面，任何人只要几分钟就可以上手使用。<br />
         </li>
@@ -69,8 +69,8 @@
         </li>
         <li>强大的品牌支持，品质的绝对保证，完善的售后服务。 </li>
     </ol>
-    <p class="content-heading" style="MARGIN-TOP: 30px; margin-left:15px;">
-        LiveSupport是否适用您的公司？</p>
+    <p class="content-heading" style="MARGIN-TOP: 30px; margin-left:15px; font-size:16px; color: #588CFF;">
+        <b>LiveSupport是否适用您的公司？</b></p>
     <p style="margin-left:15px;">
         如果您的公司满足以下条件中的任何一个，那么即时语适合您：</p>
     <ol style="MARGIN-BOTTOM: 5px; margin-right:10px;">
