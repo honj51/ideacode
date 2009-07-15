@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportDAL.Providers;
-using LiveSupport.Model;
+using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
@@ -14,7 +14,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public int Add(Content content)
         {
             string sql = string.Format("insert into LiveSupport_Content(UserName,UserEmail,UserQQ,UserUrl,UserIp,faceUrl,PicUrl,AddTime,Content,Reply,IsHid,IsReply)" +
-            " values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10},{11})",content.UserName,content.UserMail,content.UserQQ,content.UserUrl,content.UserIp,content.FaceUrl,content.AddTime,content.Contents,content.Reply,content.IsHid,content.IsReply);
+            " values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10},{11})",content.UserName,content.UserMail,content.UserQQ,content.UserUrl,content.UserIp,content.FaceUrl,content.PicUrl,content.AddTime,content.Contents,content.Reply,content.IsHid,content.IsReply);
             return DBHelper.ExecuteSql(sql);
         }
 
