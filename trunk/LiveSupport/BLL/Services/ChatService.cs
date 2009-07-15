@@ -415,7 +415,9 @@ public class ChatService
         Trace.WriteLine(string.Format("ChatService.ChatPageRequestChat(Visitor = {0})", visitor));
         if (!string.IsNullOrEmpty(visitor.Name))
         {
-            VisitorService.GetVisitorById(visitor.VisitorId).Name = visitor.Name;//改变访客名
+            Visitor vs = VisitorService.GetVisitorById(visitor.VisitorId);
+            vs.Name = visitor.Name;
+            VisitorService.UpdateVisitor(vs);
         }
         Chat chatRequest = new Chat();
         chatRequest.AccountId = visitor.AccountId;

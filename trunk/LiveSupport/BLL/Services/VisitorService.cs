@@ -128,4 +128,12 @@ public class VisitorService
             }
         }
     }
+    /// <summary>
+    /// 更新一个
+    /// </summary>
+    /// <param name="vs"></param>
+    public static void UpdateVisitor(Visitor vs)
+    {
+        Provider.UpdateVisitor(vs);
+    }
 }
