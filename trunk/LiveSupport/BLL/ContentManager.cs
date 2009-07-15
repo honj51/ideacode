@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportDAL.SqlProviders;
 using LiveSupport.LiveSupportDAL.Providers;
-using LiveSupport.Model;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.BLL
 {
