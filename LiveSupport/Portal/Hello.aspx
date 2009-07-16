@@ -37,7 +37,7 @@
                               </td></tr>
 <tr><td >
     <span style="LINE-HEIGHT: 30px; COLOR: #000000; FONT-SIZE: 13px; FONT-WEIGHT: bold">
-    第三步: 将Live800客服图标添加到您公司的网站</span></td></tr>
+    第三步: 将LiveSupport客服图标添加到您公司的网站</span></td></tr>
 <tr><td >登录LiveSupport客服中心后请点击风格设置中的获取代码设置<br />
     <br />
      
