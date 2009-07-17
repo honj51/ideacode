@@ -25,7 +25,7 @@
         </li>
     </ol>
     <p class="content-heading" style="MARGIN-TOP: 30px; margin-left:15px; font-size:16px; color: #588CFF;">
-        <b>即时语的主要功能？</b></p>
+        <b>LiveSupport的主要功能？</b></p>
     <ol style="MARGIN-BOTTOM: 5px; margin-right:20px;">
         <li>快捷的在线交流 
             <p>
