@@ -5,7 +5,7 @@
 <tr><td style="background-image:url('Imgs/centent-title-bg.gif'); height:28px; text-align:left; font-size:12px; color:White; vertical-align:bottom;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户类型</td></tr>
 <tr><td style=" background-image:url('Imgs/centent.GIF'); text-align:left;">
     <p style="margin-top:15px; margin-left:15px;">
-        即时语(LiveChat@35)在线客服系统的有4种类型的用户，分别如下：</p>
+        LiveSupport在线客服系统的有4种类型的用户，分别如下：</p>
     <ol style="MARGIN-BOTTOM: 5px; margin-right:20px;">
         <li>网站访客 
             <p>
