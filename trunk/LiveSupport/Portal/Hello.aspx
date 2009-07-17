@@ -13,7 +13,7 @@
 
 </td></tr>
 <tr><td align="left">
-<table width="760" style="text-align:left; font-size:12px;">
+<table width="760" style=" text-align:left; font-size:12px;margin-left:15px; ">
 <tr><td>
     <span style="LINE-HEIGHT: 30px; COLOR: #000000; FONT-SIZE: 13px; FONT-WEIGHT: bold">
     第一步: 创建你的公司ID</span></td></tr>
