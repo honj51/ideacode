@@ -34,7 +34,7 @@
                   bgColor=#f3f7fa>&nbsp;万先生：15270918055</TD></TR>
               
                 <TD align=right width=100 bgColor=#ffffff height=27>电子邮箱：</TD>
-                <TD align=left bgColor=#ffffff>hudongsoft@yahoo.cn&nbsp;</TD></TR>
+                <TD align=left bgColor=#ffffff>&nbsp;hudongsoft@yahoo.cn&nbsp;</TD></TR>
              </TBODY></TABLE><br /><br />
     </td></tr>
 </table>
