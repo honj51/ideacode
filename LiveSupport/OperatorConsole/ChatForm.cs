@@ -155,8 +155,6 @@ namespace LiveSupport.OperatorConsole
                 }
 
             }), e);
-
-            
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)

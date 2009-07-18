@@ -5,6 +5,7 @@ using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Net;
 using System.Net.Sockets;
 using System.Web.Services.Protocols;
+using System.Diagnostics;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -19,8 +20,7 @@ namespace LiveSupport.OperatorConsole
         private OperatorWS ws = new OperatorWS();
         private Operator currentOperator;
         private System.Timers.Timer checkNewChangesTimer = new System.Timers.Timer(1000);
-        private bool pooling = true;
-
+        private bool pooling = false;
         private string accountNumber;
         private string operatorName;
         private string password;
@@ -77,7 +77,7 @@ namespace LiveSupport.OperatorConsole
         {
             lastCheck.ChatSessionChecks = new MessageCheck[] { };
             lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
-            checkNewChangesTimer.AutoReset = false;
+            checkNewChangesTimer.AutoReset = true;
         }
 
         #region OperatorServiceAgent 成员
@@ -95,25 +95,19 @@ namespace LiveSupport.OperatorConsole
                 h.OperatorSession = currentOperator.OperatorSession;
                 ws.AuthenticationHeaderValue = h;
 
-                // 开始查询 系统改变信息
                 checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
-                checkNewChangesTimer.Start();
             }
             return currentOperator;
         }
 
         void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {   
-            if (pooling)
-            {
-                getNextNewChanges();
-                checkNewChangesTimer.Start();
-            }
+        {
+            getNextNewChanges();
         }
 
         public void Logout()
         {
-            pooling = false;
+            EnablePooling = false;
             checkNewChangesTimer.Stop();
             ws.Logout();
         }
@@ -208,10 +202,14 @@ namespace LiveSupport.OperatorConsole
 
         private NewChangesCheckResult getNextNewChanges()
         {
-            NewChangesCheckResult result = getNewChanges(lastCheck);
+            NewChangesCheckResult result = getNewChanges();
+
             if (result == null) return null;
+          
             if (result.NewVisitors != null)
             {
+                Trace.Write(" NewVisitors: " + result.NewVisitors.Length);
+
                 foreach (var item in result.NewVisitors)
                 {
                     lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
@@ -221,6 +219,7 @@ namespace LiveSupport.OperatorConsole
                         v.CurrentSession = item.CurrentSession;
                         if (VisitorSessionChange!=null)
                         {
+                            //Trace.WriteLine("VisitorSessionChange: " + result.VisitSessionChange.Length);
                             VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                         }
                         
@@ -230,6 +229,7 @@ namespace LiveSupport.OperatorConsole
                         visitors.Add(item);
                         if (NewVisitor != null)
                         {
+                            //Trace.WriteLine("NewVisitors: " + result.NewVisitors.Length);
                             NewVisitor(this, new NewVisitorEventArgs(item));
                         }
                     }
@@ -238,13 +238,14 @@ namespace LiveSupport.OperatorConsole
             }
             if (result.VisitSessionChange != null)
             {
+                Trace.Write(" VisitorSessionChange: " + result.VisitSessionChange.Length);
                 foreach (var item in result.VisitSessionChange)
                 {
                     if (checkIfVisitSessionStatusChange(item))
                     {
                         GetVisitorBySessionId(item.SessionId).CurrentSession = item;
                         if (VisitorSessionChange!=null)
-                        {
+                        {   
                             VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
                         }
             
@@ -254,13 +255,16 @@ namespace LiveSupport.OperatorConsole
 
             if (result.Operators != null)
             {
+                Trace.Write(" Operators: " + result.Operators.Length);
                 processOpertors(result);
             }
             if (result.Messages != null)
             {
+                Trace.Write(" Messages: " + result.Messages.Length);
                 lastCheck.ChatSessionChecks = processMessages(result).ToArray();
             }
-            
+
+            Trace.WriteLine(" Chats: " + result.Chats.Length);
             processChats(result);
 
             return result;
@@ -294,6 +298,7 @@ namespace LiveSupport.OperatorConsole
                     {
                         NewChatRequest(this, new NewChatRequestEventArgs(visitor.Name, item));
                     }
+                    Trace.WriteLine("NewChatRequest: " + result.Chats.Length);
                 }
             }
 
@@ -321,6 +326,7 @@ namespace LiveSupport.OperatorConsole
                     Operators.AddRange(result.Operators);
                     if (NewChanges != null)
                     {
+                        Trace.WriteLine("Operators: " + result.Operators.Length);
                         NewChanges(this, new NewChangesCheckResultEventArgs(result));
                     }
                 }
@@ -358,6 +364,7 @@ namespace LiveSupport.OperatorConsole
                         {
                             if (NewMessage != null)
                             {
+                                Trace.WriteLine("Messages: " + m);
                                 NewMessage(this, new NewMessageEventArgs(m));
                                 c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
                             }
@@ -379,11 +386,12 @@ namespace LiveSupport.OperatorConsole
         int faultCount = 0;
         const int MAX_FAULT_COUNT = 10;
 
-        private NewChangesCheckResult getNewChanges(NewChangesCheck check)
+        private NewChangesCheckResult getNewChanges()
         {
             NewChangesCheckResult result = null;
             try
             {
+                //Trace.WriteLine("getNewChanges: LastCheck.NewVisitorLastCheckTime= " + lastCheck.NewVisitorLastCheckTime.ToString());
                 result = CheckNewChanges(lastCheck);
                 faultCount = 0;
                 if (result != null && result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
@@ -436,8 +444,7 @@ namespace LiveSupport.OperatorConsole
 
         private void resetConnection(string message)
         {
-            checkNewChangesTimer.Stop();
-            pooling = false;
+            EnablePooling = false;
             ConnectionLost(this, new ConnectionLostEventArgs(message));
         }
 
@@ -601,6 +608,23 @@ namespace LiveSupport.OperatorConsole
         public bool IsVisitorExist(string visitorId)
         {
             return GetVisitorById(visitorId) == null ? false : true;
+        }
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        public bool EnablePooling
+        {
+            get
+            {
+                return checkNewChangesTimer.Enabled;
+            }
+            set
+            {
+                checkNewChangesTimer.Enabled = value;
+            }
         }
 
         #endregion

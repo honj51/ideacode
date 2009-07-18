@@ -51,7 +51,8 @@ namespace LiveSupport.OperatorConsole
         #region IOperatorServiceAgent 事件处理
         void operaterServiceAgent_NewChanges(object sender, NewChangesCheckResultEventArgs e)
         {
-            Trace.WriteLine("NewChangesCheckResult: " + e.Result.ToString());
+            Trace.WriteLine("Operators: " + e.Result.ToString());
+            Trace.WriteLine("Operators: " + e.Result.Operators.Length);
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
@@ -73,6 +74,8 @@ namespace LiveSupport.OperatorConsole
 
         void operaterServiceAgent_NewChatRequest(object sender, NewChatRequestEventArgs e)
         {
+            Trace.WriteLine("NewChatRequest: " + e.Chat.ChatId.ToString());
+            Trace.WriteLine("NewChatRequest: " + e.Name.Length);
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 NewChatRequestEventArgs arg = obj as NewChatRequestEventArgs;
@@ -84,6 +87,8 @@ namespace LiveSupport.OperatorConsole
 
         void operaterServiceAgent_VisitorSessionChange(object sender, VisitorSessionChangeEventArgs e)
         {
+            Trace.WriteLine("VisitorSessionChange: " + e.VisitSession.ToString());
+            Trace.WriteLine("VisitorSessionChange: " + e.VisitSession.IP);
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 VisitorSessionChangeEventArgs arg = obj as VisitorSessionChangeEventArgs;
@@ -95,6 +100,8 @@ namespace LiveSupport.OperatorConsole
 
         void operaterServiceAgent_NewVisitor(object sender, NewVisitorEventArgs e)
         {
+            Trace.WriteLine("NewVisitor: " + e.Visitor.ToString());
+            Trace.WriteLine("NewVisitor: " + e.Visitor.VisitorId.ToString());
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 NewVisitorEventArgs arg = obj as NewVisitorEventArgs;
@@ -150,7 +157,7 @@ namespace LiveSupport.OperatorConsole
 
             LeaveWordNotReplied();
             this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
-            
+            operaterServiceAgent.EnablePooling = true;
         }
 
         private void LeaveWordNotReplied() 

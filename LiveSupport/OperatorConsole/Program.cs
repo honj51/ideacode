@@ -62,6 +62,7 @@ namespace LiveSupport.OperatorConsole
             f.ShowDialog();
         }
 
+       
         static void TestFileUploadControl()
         {
             Form f = new Form();
@@ -78,11 +79,7 @@ namespace LiveSupport.OperatorConsole
         static void Test()
         {
             OperaterServiceAgent.Login("100000", "user1", "123");
-            Chat chat = new Chat();
-            ChatForm chatform = new ChatForm(OperatorServiceAgent.Default, chat);
-
-            Snipping sp = new Snipping();
-            sp.Show();
+           
             Application.Run();
         }
 
