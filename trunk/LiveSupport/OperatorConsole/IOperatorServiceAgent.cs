@@ -55,6 +55,7 @@ namespace LiveSupport.OperatorConsole
         Operator CurrentOperator { get; set; }
         List<Chat> Chats { get; set; }
         List<QuickResponseCategory> QuickResponseCategory { get; set; }
+        bool EnablePooling { get; set; }
         #endregion
     }
 

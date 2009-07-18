@@ -302,7 +302,6 @@
   <ItemGroup>
     <Content Include="Libraries\IC.Controls.dll" />
     <Content Include="Profile.ico" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\cat_sh_button.gif" />
     <None Include="Resources\All software is current.png" />
     <None Include="Resources\aim.png" />

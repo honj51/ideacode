@@ -35,6 +35,7 @@ namespace LiveSupport.OperatorConsole
 
         public LoginForm()
         {
+            Trace.WriteLine("Login:启动窗体时间= "+ DateTime.Now);
             InitializeComponent();
             cbxAutoLogin.Enabled = false;
         }
@@ -72,6 +73,7 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
+                operatorServiceAgent.EnablePooling = false;
                 operatorServiceAgent.Login(txtUserName.Text.Trim(), txtOpName.Text, txtOpPassword.Text);
             }
             catch (WebException e)
@@ -83,6 +85,7 @@ namespace LiveSupport.OperatorConsole
 
             if (operatorServiceAgent.CurrentOperator != null)
             {
+                Trace.WriteLine("Login:OperatorId= " + operatorServiceAgent.CurrentOperator.OperatorId+"----"+DateTime.Now);
                 this.Visible = false;//隐藏本窗体（登录窗体）
                 MainForm c = new MainForm(operatorServiceAgent, DateTime.Now);//实例一个主窗体
                 Program.MainForm = c;//将这实列的窗体复给本程序
@@ -109,7 +112,6 @@ namespace LiveSupport.OperatorConsole
         {
             loadConfiguration();//加载配置文件有的登录信息
             if (Properties.Settings.Default.AutoLogin)//判断是否自己登录
-
             {
                 autoLoginTimer.Enabled = true;//起动自动登录时间方法
             }
