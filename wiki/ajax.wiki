@@ -4,3 +4,6 @@
  * [http://hi.baidu.com/zhao_e893/blog/item/59041b24c43a482fd407425d.html Web IM]
  * [http://www.javaeye.com/topic/28020 Comet，下一代Ajax？]
  * [http://www.infoq.com/cn/news/2008/12/websockets-vs-comet-ajax Ajax、Comet、HTML 5 Web Sockets技术比较分析]
+
+= HTML5 =
+ * http://www.whatwg.org/specs/web-apps/current-work/#auto-toc-8
