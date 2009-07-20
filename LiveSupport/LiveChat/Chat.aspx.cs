@@ -324,7 +324,7 @@ public partial class Chat : System.Web.UI.Page
         string chatId = CurrentVisitor.CurrentSessionId;
         if (CurrentChat == null || CurrentChat.Status == ChatStatus.Closed)
         {   
-            if (!string.IsNullOrEmpty(txtName.Text))
+            if (!string.IsNullOrEmpty(txtName.Text)&& CurrentVisitor.Name ==VisitSessionService.GetSessionById(CurrentVisitor.CurrentSessionId).IP)
             {
                 CurrentVisitor.Name = txtName.Text;
             }
