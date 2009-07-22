@@ -61,15 +61,6 @@ namespace LiveSupport.OperatorConsole
             }), e);
         }
 
-        void operaterServiceAgent_ConnectionLost(object sender, ConnectionLostEventArgs e)
-        {
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-                ConnectionLostEventArgs arg = obj as ConnectionLostEventArgs;
-                connectionLost(arg.Message,arg.Status);
-            }), e);
-        }
-
         void operaterServiceAgent_NewChatRequest(object sender, NewChatRequestEventArgs e)
         {
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
@@ -103,6 +94,23 @@ namespace LiveSupport.OperatorConsole
             }), e);
             
         }
+
+        void operaterServiceAgent_NewLeaveWords(object sender, LeaveWordEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                LeaveWordEventArgs arg = obj as LeaveWordEventArgs;
+                LeaveWordNotReplied(e.Words);
+                this.leaveWordBindingSource.DataSource = e.Words;
+            }), e);
+
+        }
+
+        void operaterServiceAgent_NewSystemAdvertise(object sender, SystemAdvertiseEventArgs e)
+        {
+            systemAdvertises = e.Advertises;
+        }
+
         #endregion
 
         #region MainForm 构造函数，事件处理
@@ -144,18 +152,16 @@ namespace LiveSupport.OperatorConsole
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
             requestendDateTimePicker.MaxDate = DateTime.Now;
 
-            systemAdvertises = operaterServiceAgent.GetSystemAdvertise(Application.ProductVersion.ToString());
             registerOperatorServiceAgentEventHandler(false);
 
-            LeaveWordNotReplied();
-            this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
             operaterServiceAgent.EnablePooling = true;
         }
 
-        private void LeaveWordNotReplied() 
+        private void LeaveWordNotReplied(List<LeaveWord> lwnr) 
         {
+            List<LeaveWord> lws = lwnr == null ? operaterServiceAgent.GetLeaveWord() : lwnr;
             int num=0;
-            foreach (LeaveWord item in operaterServiceAgent.GetLeaveWord())
+            foreach (LeaveWord item in lws)
             {
                 if (!item.IsReplied)
                 {
@@ -173,28 +179,49 @@ namespace LiveSupport.OperatorConsole
                 tabChats.SelectedTab = tabPage4;
                 this.tabPage4.ToolTipText = "未回复留言数:" + num;  
             }
-            
-            
         }
 
         private void registerOperatorServiceAgentEventHandler(bool unregister)
         {
             if (!unregister)
             {
-                this.operaterServiceAgent.ConnectionLost += new EventHandler<ConnectionLostEventArgs>(operaterServiceAgent_ConnectionLost);
+                this.operaterServiceAgent.ConnectionStateChanged += new EventHandler<ConnectionStateChangeEventArgs>(operaterServiceAgent_ConnectionStateChanged);
                 this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
                 this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
                 this.operaterServiceAgent.NewChatRequest += new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
                 this.operaterServiceAgent.NewChanges += new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
+                this.operaterServiceAgent.NewSystemAdvertise += new EventHandler<SystemAdvertiseEventArgs>(operaterServiceAgent_NewSystemAdvertise);
+                this.operaterServiceAgent.NewLeaveWords += new EventHandler<LeaveWordEventArgs>(operaterServiceAgent_NewLeaveWords);
+                
             }
             else
             {
-                this.operaterServiceAgent.ConnectionLost -= new EventHandler<ConnectionLostEventArgs>(operaterServiceAgent_ConnectionLost);
+                this.operaterServiceAgent.ConnectionStateChanged -= new EventHandler<ConnectionStateChangeEventArgs>(operaterServiceAgent_ConnectionStateChanged);
                 this.operaterServiceAgent.NewVisitor -= new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
                 this.operaterServiceAgent.VisitorSessionChange -= new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
                 this.operaterServiceAgent.NewChatRequest -= new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
                 this.operaterServiceAgent.NewChanges -= new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
+                this.operaterServiceAgent.NewSystemAdvertise -= new EventHandler<SystemAdvertiseEventArgs>(operaterServiceAgent_NewSystemAdvertise);
+                this.operaterServiceAgent.NewLeaveWords -= new EventHandler<LeaveWordEventArgs>(operaterServiceAgent_NewLeaveWords);
             }
+        }
+
+        void operaterServiceAgent_ConnectionStateChanged(object sender, ConnectionStateChangeEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                ConnectionStateChangeEventArgs arg = obj as ConnectionStateChangeEventArgs;
+                if (arg.State == ConnectionState.Disconnected)
+                {
+                    connectionLost(arg.Message, arg.Status);
+                }
+                else if (arg.State == ConnectionState.Connected)
+                {
+                    loginTimer.Enabled = true;
+                    operaterServiceAgent.EnablePooling = true;
+                    notifyIcon.Icon = Properties.Resources.Profile;
+                }
+            }), e);
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -356,6 +383,8 @@ namespace LiveSupport.OperatorConsole
         /// <param name="e"></param>
         private void loginTimer_Tick(object sender, EventArgs e)
         {
+
+
             DateTime dtime = DateTime.Now;
             this.stickToolStripStatusLabel.Text =Common.dateDiff(loginTime, dtime);
 
@@ -372,7 +401,7 @@ namespace LiveSupport.OperatorConsole
         
         private SystemAdvertise getNextSysteAdvertise()
         {
-            if (systemAdvertises.Count == 0)
+            if (systemAdvertises == null || systemAdvertises.Count == 0)
             {
                 return null;
             }
@@ -398,17 +427,6 @@ namespace LiveSupport.OperatorConsole
                         item.SystemMessage("网络出现问题,暂时无法获取及发送消息");
                     }
                 }
-                for (int i = 0; i < 5; i++)
-                {
-                    if (restartConnection() != null)
-                    {
-                        loginTimer.Enabled = true;
-                        operaterServiceAgent.EnablePooling = true;
-                        notifyIcon.Icon = Properties.Resources.Profile;
-                        return;
-                    }
-                }
-              
             }
             else
             {
@@ -453,11 +471,6 @@ namespace LiveSupport.OperatorConsole
             this.Close();
             Process.Start(new ProcessStartInfo(Application.ExecutablePath, args));
             Application.Exit();
-        }
-        private Operator restartConnection() 
-        {
-            Operator op = operaterServiceAgent.restartLogin();
-            return op;
         }
 
         private void showMainForm(bool show)
@@ -960,7 +973,7 @@ namespace LiveSupport.OperatorConsole
             if (operaterServiceAgent.UpdateLeaveWordById(DateTime.Now.ToString(), operaterServiceAgent.CurrentOperator.NickName, true, lw.Id))
             {
                 this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
-                LeaveWordNotReplied();
+                LeaveWordNotReplied(null);
             }
         }
 
@@ -974,7 +987,7 @@ namespace LiveSupport.OperatorConsole
         {
             if (operaterServiceAgent.CurrentOperator.Status == OperatorStatus.Offline) 
             {
-                if (restartConnection() != null)
+                if (operaterServiceAgent.restartLogin() != null)
                 {
                     loginTimer.Enabled = true;
                     operaterServiceAgent.EnablePooling = true;
@@ -993,7 +1006,7 @@ namespace LiveSupport.OperatorConsole
                     if (operaterServiceAgent.DelLeaveWordById(lw.Id))
                     {
                         this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
-                        LeaveWordNotReplied();
+                        LeaveWordNotReplied(null);
                     }
                 }
                 catch (WebException)

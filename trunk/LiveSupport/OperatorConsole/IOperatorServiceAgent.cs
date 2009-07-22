@@ -5,6 +5,11 @@ using LiveSupport.OperatorConsole.LiveChatWS;
 
 namespace LiveSupport.OperatorConsole
 {
+    public enum ConnectionState
+    {
+        Disconnected, Connecting, Connected
+    }
+
     public interface IOperatorServiceAgent
     {
         #region OperatorService 方法
@@ -33,6 +38,9 @@ namespace LiveSupport.OperatorConsole
         Operator restartLogin();
         #endregion
 
+        #region Async
+        #endregion
+
         #region 查询方法
         Operator GetOperatorById(string operatorId);
         Visitor GetVisitorById(string visitorId);
@@ -41,7 +49,6 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         #region 公开事件
-        event EventHandler<ConnectionLostEventArgs> ConnectionLost;
         event EventHandler<NewVisitorEventArgs> NewVisitor;
         event EventHandler<NewChatRequestEventArgs> NewChatRequest;
         event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
@@ -49,6 +56,9 @@ namespace LiveSupport.OperatorConsole
         event EventHandler<ChatStatusChangeEventArgs> ChatStatusChange;
         event EventHandler<NewMessageEventArgs> NewMessage;
         event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
+        event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
+        event EventHandler<LeaveWordEventArgs> NewLeaveWords;
+        event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
         #endregion
 
         #region 公开属性
@@ -58,8 +68,40 @@ namespace LiveSupport.OperatorConsole
         List<Chat> Chats { get; set; }
         List<QuickResponseCategory> QuickResponseCategory { get; set; }
         bool EnablePooling { get; set; }
-        
+        string ProductVersion { get; set; }
+        ConnectionState State { get; set; }
+        bool AutoLoginEnabled { get; set; }
         #endregion
+    }
+
+    public class ConnectionStateChangeEventArgs : EventArgs
+    {
+        public string Message;
+        public ExceptionStatus Status;
+
+        public ConnectionState State;
+        public ConnectionStateChangeEventArgs(ConnectionState state)
+        {
+            this.State = state;
+        }
+    }
+
+    public class LeaveWordEventArgs : EventArgs
+    {
+        public List<LeaveWord> Words;
+        public LeaveWordEventArgs(List<LeaveWord> words)
+        {
+            this.Words = words;
+        }
+    }
+
+    public class SystemAdvertiseEventArgs : EventArgs
+    {
+        public List<SystemAdvertise> Advertises;
+        public SystemAdvertiseEventArgs(List<SystemAdvertise> advertises)
+        {
+            this.Advertises = advertises;
+        }
     }
 
     public class NewChangesCheckResultEventArgs : EventArgs

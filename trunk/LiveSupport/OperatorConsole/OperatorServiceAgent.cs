@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Web.Services.Protocols;
 using System.Diagnostics;
+using System.Threading;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -24,7 +25,7 @@ namespace LiveSupport.OperatorConsole
         private string operatorName;
         private string password;
         #region 公开属性
-       
+        
         public static OperatorServiceAgent Default
         {
             get 
@@ -70,6 +71,7 @@ namespace LiveSupport.OperatorConsole
                 quickResponseCategory = value;
             }
         }
+
         #endregion
 
         public OperatorServiceAgent()
@@ -77,6 +79,8 @@ namespace LiveSupport.OperatorConsole
             lastCheck.ChatSessionChecks = new MessageCheck[] { };
             lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
             checkNewChangesTimer.AutoReset = true;
+            ws.Timeout = 5000;
+            state = ConnectionState.Disconnected;
         }
 
         
@@ -85,13 +89,20 @@ namespace LiveSupport.OperatorConsole
 
         public Operator Login(string accountNumber, string operatorName, string password)
         {
+            if (State != ConnectionState.Disconnected)
+            {
+                return null;
+            }
+
             try
             {
+                currentOperator = null;
+                State = ConnectionState.Connecting;
                 currentOperator = ws.Login(accountNumber, operatorName, password);
+                checkNewChangesTimer.Enabled = true;
             }
             catch (WebException)
             {
-
             }
          
             this.accountNumber = accountNumber;
@@ -99,26 +110,71 @@ namespace LiveSupport.OperatorConsole
             this.password = password;
             if (currentOperator != null)
             {
+                State = ConnectionState.Connected;
+                if (ConnectionStateChanged != null)
+                {
+                    ConnectionStateChanged(this, new ConnectionStateChangeEventArgs(State));
+                }
                 AuthenticationHeader h = new AuthenticationHeader();
                 h.OperatorId = currentOperator.OperatorId;
                 h.OperatorSession = currentOperator.OperatorSession;
                 ws.AuthenticationHeaderValue = h;
 
+                ws.GetSystemAdvertiseCompleted += new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
+                ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+                ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
+                ws.GetLeaveWordAsync(Guid.NewGuid());
+
                 checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
+            }
+            else
+            {
+                State = ConnectionState.Disconnected;
             }
             return currentOperator;
         }
 
+        void ws_GetLeaveWordCompleted(object sender, GetLeaveWordCompletedEventArgs e)
+        {
+            if (NewLeaveWords != null && e.Error == null)
+            {
+                NewLeaveWords(this, new LeaveWordEventArgs(new List<LeaveWord>(e.Result)));
+            }
+        }
+
+        private object checkNewChangesLocker = new object();
+
         void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            getNextNewChanges();
+            //if (!Monitor.TryEnter(this.checkNewChangesLocker))
+            //{
+            //    return;
+            //}
+            //try
+            //{
+                if (State == ConnectionState.Connected && enablePooling)
+                {
+                    getNextNewChanges();
+                }
+                else if (State == ConnectionState.Disconnected)
+                {
+                    restartLogin();
+                }
+            //}
+            //finally
+            //{
+            //    Monitor.Exit(this.checkNewChangesLocker);
+            //}
         }
 
         public void Logout()
         {
+            ws.GetSystemAdvertiseCompleted -= new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
+            ws.GetLeaveWordCompleted -= new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+
             EnablePooling = false;
             checkNewChangesTimer.Stop();
-            ws.Logout();
+            ws.LogoutAsync(Guid.NewGuid());
         }
 
         public List<Visitor> GetAllVisitors(string accountId)
@@ -136,7 +192,7 @@ namespace LiveSupport.OperatorConsole
             ws.UploadFileAsync(bs, fileName, chatId);
         }
 
-        public void SendMessage(Message msg)
+        public void SendMessage(LiveSupport.OperatorConsole.LiveChatWS.Message msg)
         {
             ws.SendMessage(msg);
         }
@@ -156,7 +212,7 @@ namespace LiveSupport.OperatorConsole
            return ws.CloseChat(chatId);
         }
 
-        public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+        public List<LiveSupport.OperatorConsole.LiveChatWS.Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
         {
             List<Message> lMessage = null;
             try
@@ -228,13 +284,22 @@ namespace LiveSupport.OperatorConsole
             List<SystemAdvertise>  lSystemAdvertise=null;
             try
             {
+                ws.GetSystemAdvertiseAsync(versionNumber);
+                ws.GetSystemAdvertiseCompleted += new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
                lSystemAdvertise= new List<SystemAdvertise>(ws.GetSystemAdvertise(versionNumber));
             }
             catch (WebException)
             {
-                return null;
             }
             return lSystemAdvertise;
+        }
+
+        void ws_GetSystemAdvertiseCompleted(object sender, GetSystemAdvertiseCompletedEventArgs e)
+        {
+            if (NewSystemAdvertise != null)
+            {
+                NewSystemAdvertise(this, new SystemAdvertiseEventArgs(new List<SystemAdvertise>(e.Result)));
+            }
         }
 
         public void SaveQuickResponse(List<QuickResponseCategory> response)
@@ -438,7 +503,7 @@ namespace LiveSupport.OperatorConsole
             NewChangesCheckResult result = null;
             try
             {
-                result = CheckNewChanges(lastCheck);
+                result = ws.CheckNewChanges(lastCheck); //CheckNewChanges(lastCheck);
                 faultCount = 0;
                 if (result != null && result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
                 {
@@ -490,13 +555,15 @@ namespace LiveSupport.OperatorConsole
 
         private void resetConnection(string message,ExceptionStatus status)
         {
-            EnablePooling = false;
-            if (ConnectionLost!=null)
+            state = ConnectionState.Disconnected;
+
+            if (ConnectionStateChanged != null)
             {
-                CurrentOperator.Status = OperatorStatus.Offline;
-               ConnectionLost(this, new ConnectionLostEventArgs(message, status));
+                ConnectionStateChangeEventArgs args = new ConnectionStateChangeEventArgs(state);
+                args.Status = status;
+                args.Message = message;
+                ConnectionStateChanged(this, args);
             }
-           
         }
 
         private bool checkIfOperatorStatusChanges(Operator[] p)
@@ -536,12 +603,11 @@ namespace LiveSupport.OperatorConsole
             Operator op=null; 
             try
             {
-              op=Login(accountNumber, operatorName, password);
+              op = Login(accountNumber, operatorName, password);
             }
-            catch (WebException wex)
+            catch (Exception wex)
             {
                 Trace.WriteLine("RestartLogin Exception: " + wex.Message);
-                return null;
             }
             return op;
         }
@@ -629,14 +695,12 @@ namespace LiveSupport.OperatorConsole
             }
 
             return leaveWords;
-            
-        
         }
+
         public int ResetOperator(string operatorId, string chatId)
         {
             throw new NotImplementedException();
         }
-
     
         #endregion
 
@@ -657,6 +721,10 @@ namespace LiveSupport.OperatorConsole
         public event EventHandler<NewChatRequestEventArgs> NewChatRequest;
 
         public event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
+
+        public event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
+
+        public event EventHandler<LeaveWordEventArgs> NewLeaveWords;
 
         public List<Operator> Operators
         {
@@ -711,16 +779,61 @@ namespace LiveSupport.OperatorConsole
 
         #region IOperatorServiceAgent 成员
 
-
+        private bool enablePooling;
+        
         public bool EnablePooling
         {
             get
             {
-                return checkNewChangesTimer.Enabled;
+                return enablePooling;
             }
             set
             {
-                checkNewChangesTimer.Enabled = value;
+                enablePooling = value;
+            }
+        }
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+        private string productVersion;
+        public string ProductVersion
+        {
+            get
+            {
+                return productVersion;
+            }
+            set
+            {
+                productVersion = value;
+            }
+        }
+
+        public event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
+
+        public ConnectionState State
+        {
+            get
+            {
+                return state;
+            }
+            set
+            {
+                state = value;
+            }
+        }
+        private ConnectionState state;
+        private bool autoLoginEnabled = true;
+        public bool AutoLoginEnabled
+        {
+            get
+            {
+                return autoLoginEnabled;
+            }
+            set
+            {
+                autoLoginEnabled = value;
             }
         }
 
