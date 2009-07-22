@@ -174,6 +174,7 @@ namespace LiveSupport.OperatorConsole
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.restartConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1603,36 +1604,44 @@ namespace LiveSupport.OperatorConsole
             // notifyIconContextMenuStrip
             // 
             this.notifyIconContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.restartConnectionToolStripMenuItem,
             this.changeAccountToolStripMenuItem,
             this.toolStripSeparator2,
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem2});
             this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(143, 76);
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(153, 120);
+            // 
+            // restartConnectionToolStripMenuItem
+            // 
+            this.restartConnectionToolStripMenuItem.Name = "restartConnectionToolStripMenuItem";
+            this.restartConnectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartConnectionToolStripMenuItem.Text = "上线";
+            this.restartConnectionToolStripMenuItem.Click += new System.EventHandler(this.restartConnectionToolStripMenuItem_Click);
             // 
             // changeAccountToolStripMenuItem
             // 
             this.changeAccountToolStripMenuItem.Name = "changeAccountToolStripMenuItem";
-            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.changeAccountToolStripMenuItem.Text = "更换座席(&C)";
             this.changeAccountToolStripMenuItem.Click += new System.EventHandler(this.changeOperatorToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "显示/隐藏(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem2
             // 
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
-            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
+            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem2.Text = "退出(&E)";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1937,5 +1946,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsReplied;
+        private System.Windows.Forms.ToolStripMenuItem restartConnectionToolStripMenuItem;
     }
 }
