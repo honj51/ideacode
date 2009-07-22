@@ -107,7 +107,9 @@ public partial class Default2 : System.Web.UI.Page
         }
         else
         {
-            if (TextBox1.Text.Trim() == "zxkefu" && TextBox2.Text.Trim() == "zxkefu")
+            string adminName = ConfigurationManager.AppSettings["AdminUser"].ToString();
+            string adminPwd = ConfigurationManager.AppSettings["AdminPwd"].ToString();
+            if (TextBox1.Text.Trim() == adminName && TextBox2.Text.Trim() == adminPwd)
             {
                 Panel1.Visible = false;
                 Panel2.Visible = true;

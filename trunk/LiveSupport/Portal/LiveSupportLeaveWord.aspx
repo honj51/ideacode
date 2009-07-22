@@ -17,7 +17,7 @@
                     <td >
                         密&nbsp; 码：</td>
                     <td >
-                        <asp:TextBox ID="TextBox2" runat="server" Width="100px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox2" runat="server" Width="100px" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                             ControlToValidate="TextBox2" ErrorMessage="*"></asp:RequiredFieldValidator>
                     </td>
