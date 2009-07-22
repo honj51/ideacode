@@ -73,6 +73,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback GetLeaveWordNotRepliedOperationCompleted;
         
+        private System.Threading.SendOrPostCallback DelLeaveWordByIdOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -182,6 +184,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event GetLeaveWordNotRepliedCompletedEventHandler GetLeaveWordNotRepliedCompleted;
+        
+        /// <remarks/>
+        public event DelLeaveWordByIdCompletedEventHandler DelLeaveWordByIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -828,6 +833,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.GetLeaveWordNotRepliedCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetLeaveWordNotRepliedCompleted(this, new GetLeaveWordNotRepliedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/DelLeaveWordById", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool DelLeaveWordById(string id) {
+            object[] results = this.Invoke("DelLeaveWordById", new object[] {
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DelLeaveWordByIdAsync(string id) {
+            this.DelLeaveWordByIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void DelLeaveWordByIdAsync(string id, object userState) {
+            if ((this.DelLeaveWordByIdOperationCompleted == null)) {
+                this.DelLeaveWordByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelLeaveWordByIdOperationCompleted);
+            }
+            this.InvokeAsync("DelLeaveWordById", new object[] {
+                        id}, this.DelLeaveWordByIdOperationCompleted, userState);
+        }
+        
+        private void OnDelLeaveWordByIdOperationCompleted(object arg) {
+            if ((this.DelLeaveWordByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DelLeaveWordByIdCompleted(this, new DelLeaveWordByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2970,6 +3005,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((LeaveWord[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void DelLeaveWordByIdCompletedEventHandler(object sender, DelLeaveWordByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DelLeaveWordByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DelLeaveWordByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

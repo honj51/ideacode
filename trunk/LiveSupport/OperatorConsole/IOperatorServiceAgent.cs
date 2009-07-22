@@ -12,7 +12,7 @@ namespace LiveSupport.OperatorConsole
         void Logout();
         void UploadFile(byte[] bs, string fileName, string chatId);
         void SendFile(string fileName, string chatId, object action);
-        bool SendMessage(Message msg);
+        void SendMessage(Message msg);
         int ChangePassword(string oldPassword, string newPassword);
         int ResetOperatorPassword(string loginName);
         int ResetOperator(string operatorId, string chatId);
@@ -28,7 +28,9 @@ namespace LiveSupport.OperatorConsole
         List<Visitor> GetAllVisitors(string accountId);
         List<LeaveWord> GetLeaveWord();
         bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id);
+        bool DelLeaveWordById(string id);
         List<LeaveWord> GetLeaveWordNotReplied();
+        Operator restartLogin();
         #endregion
 
         #region 查询方法
@@ -56,6 +58,7 @@ namespace LiveSupport.OperatorConsole
         List<Chat> Chats { get; set; }
         List<QuickResponseCategory> QuickResponseCategory { get; set; }
         bool EnablePooling { get; set; }
+        
         #endregion
     }
 
@@ -71,9 +74,11 @@ namespace LiveSupport.OperatorConsole
     public class ConnectionLostEventArgs : EventArgs
     {
         public string Message;
-        public ConnectionLostEventArgs(string message)
+        public ExceptionStatus Status;
+        public ConnectionLostEventArgs(string message, ExceptionStatus status)
         {
             this.Message = message;
+            this.Status = status;
         }
     }
 
@@ -131,5 +136,9 @@ namespace LiveSupport.OperatorConsole
             this.Message = m;
         }
         public Message Message;
+    }
+    public enum ExceptionStatus
+    {
+        System, User
     }
 }

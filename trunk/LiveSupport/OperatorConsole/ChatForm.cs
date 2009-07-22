@@ -101,6 +101,11 @@ namespace LiveSupport.OperatorConsole
                 }
             }
         }
+        public void SystemMessage(string meg) 
+        {
+            chatMessageViewerControl1.AddInformation(meg);
+        
+        }
         
 
         public ChatForm(IOperatorServiceAgent agent,Chat chat): this(agent, chat, false)
@@ -146,15 +151,24 @@ namespace LiveSupport.OperatorConsole
 
         void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
         {
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            try
             {
-                NewMessageEventArgs arg = e as NewMessageEventArgs;
-                if (arg.Message.ChatId == this.chat.ChatId)
+                this.Invoke(new UpdateUIDelegate(delegate(object obj)
                 {
-                    RecieveMessage(arg.Message);
-                }
+                    NewMessageEventArgs arg = e as NewMessageEventArgs;
+                    if (arg.Message.ChatId == this.chat.ChatId)
+                    {
+                        RecieveMessage(arg.Message);
+                    }
 
-            }), e);
+                }), e);
+            }
+            catch (Exception )
+            {
+                chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                return;
+            }
+          
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
@@ -182,9 +196,18 @@ namespace LiveSupport.OperatorConsole
                    
                  }
 	           }
-               
-                addTabPage(filename);
-                operatorServiceAgent.SendFile(filename, this.chat.ChatId, "start");
+                try
+                {
+                    addTabPage(filename);
+                    operatorServiceAgent.SendFile(filename, this.chat.ChatId, "start");
+                }
+                catch (Exception sfe)
+                {
+                    Debug.WriteLine("sendFile exception:" + sfe.Message);
+                    chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                    return;
+                }
+                
             }
         }
       
@@ -260,7 +283,16 @@ namespace LiveSupport.OperatorConsole
             msg.Source = From;
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
-            operatorServiceAgent.SendMessage(msg); 
+            try
+            {
+                operatorServiceAgent.SendMessage(msg); 
+            }
+            catch (WebException wmg)
+            {
+                Debug.WriteLine("sendMessage exception:" + wmg.Message);
+                chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送\r\n\r\n,此次发送消息为：“" + msg.Text + "”");
+                return;
+            }
             //string msgs= string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message);
             //ucm.GetMessage(msgs, " ");
             chatMessageViewerControl1.AddMessage(msg);
@@ -299,7 +331,16 @@ namespace LiveSupport.OperatorConsole
             this.operatorServiceAgent.NewMessage -= new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
             if (acceptChatRequestResult == 0)
             {
-                operatorServiceAgent.CloseChat(this.Chat.ChatId);
+                try
+                {
+                    operatorServiceAgent.CloseChat(this.Chat.ChatId);
+                }
+                catch (WebException wex)
+                {
+                    
+                    
+                }
+                
             }
             try
             {
@@ -372,20 +413,26 @@ namespace LiveSupport.OperatorConsole
                 string fileName = createImageName() + ".jpg";
                 string imageFilePath = Application.StartupPath.ToString() + "/" + chat.ChatId + "/" + fileName;
                 bitmap.Save(imageFilePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-                FtpUpload ftpUpload = new FtpUpload(imageFilePath, uploadURL +"/"+ fileName);
+                FtpUpload ftpUpload = new FtpUpload(imageFilePath, uploadURL + "/" + fileName);
                 operatorServiceAgent.SendFile(fileName, chat.ChatId, "start");
                 string msg = string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\"><img src='{1}' /></span><br />", operatorServiceAgent.CurrentOperator.NickName + "&nbsp;&nbsp;&nbsp;" + DateTime.Now.ToString("hh:mm:ss"), imageFilePath);
                 chatMessageViewerControl1.AddText(msg);
                 uploadTasks.Add(ftpUpload);
                 ftpUpload.FileUploadProgress += new EventHandler<FileUploadProgressEventArgs>(ftpUpload_FileUploadProgress);
                 ftpUpload.Start();
-
             }
-            catch (ExternalException ex)
+            catch (ExternalException eex)
             {
-                Debug.WriteLine("sendImage exception:" + ex.Message);
+                Debug.WriteLine("sendImage ExternalException:" + eex.Message);
+                chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                return;
             }
+            catch (Exception ex)
+           {
+                Debug.WriteLine("sendImage exception:" + ex.Message);
+                chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                return;
+           }
         }
 
         void ftpUpload_FileUploadProgress(object sender, FileUploadProgressEventArgs e)

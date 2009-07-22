@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
+using System.Net;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -23,7 +24,15 @@ namespace LiveSupport.OperatorConsole
             if (MessageBox.Show("该操作将重置客服密码，确定继续吗？","重置客服密码", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 Operator op = comboBox1.SelectedItem as Operator;
-                Program.OperaterServiceAgent.ResetOperatorPassword(op.LoginName);
+                try
+                {
+                    Program.OperaterServiceAgent.ResetOperatorPassword(op.LoginName);
+                }
+                catch (WebException)
+                {
+                    this.Text = "网络中断! 请稍候...";
+                }
+               
             }
         }
     }
