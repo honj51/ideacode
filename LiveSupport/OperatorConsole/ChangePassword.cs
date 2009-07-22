@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
+using System.Net;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -32,17 +33,24 @@ namespace LiveSupport.OperatorConsole
             {
                 if (this.txtNewPassword.Text == this.txtNewPassword2.Text)
                 {
-
-                    if (Program.OperaterServiceAgent.ChangePassword(this.txtPassword.Text, txtNewPassword.Text) == 0)
+                    try
                     {
-                        MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
-                        this.Close();
+                        if (Program.OperaterServiceAgent.ChangePassword(this.txtPassword.Text, txtNewPassword.Text) == 0)
+                        {
+                            MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
+                            this.Close();
+                        }
+                        else
+                        {
+                            this.Text = "修改失败!";
+                            return;
+                        }
                     }
-                    else
+                    catch (WebException)
                     {
-                        this.Text = "修改失败!";
-                        return;
+                       this.Text="网络中断,请稍候...";
                     }
+                  
 
                 }
                 else

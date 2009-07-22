@@ -1291,9 +1291,9 @@ namespace LiveSupport.OperatorConsole
             this.colReferrer});
             this.lstPageRequest.FullRowSelect = true;
             this.lstPageRequest.GridLines = true;
-            this.lstPageRequest.Location = new System.Drawing.Point(0, 59);
+            this.lstPageRequest.Location = new System.Drawing.Point(3, 47);
             this.lstPageRequest.Name = "lstPageRequest";
-            this.lstPageRequest.Size = new System.Drawing.Size(816, 530);
+            this.lstPageRequest.Size = new System.Drawing.Size(736, 294);
             this.lstPageRequest.TabIndex = 7;
             this.lstPageRequest.UseCompatibleStateImageBehavior = false;
             this.lstPageRequest.View = System.Windows.Forms.View.Details;

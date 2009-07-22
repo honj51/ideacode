@@ -565,6 +565,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="DelLeaveWordById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DelLeaveWordByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DelLeaveWordByIdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LoginSoapIn">
@@ -756,6 +770,15 @@
   <wsdl:message name="GetLeaveWordNotRepliedAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="DelLeaveWordByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:DelLeaveWordById" />
+  </wsdl:message>
+  <wsdl:message name="DelLeaveWordByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:DelLeaveWordByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DelLeaveWordByIdAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -840,6 +863,10 @@
     <wsdl:operation name="GetLeaveWordNotReplied">
       <wsdl:input message="tns:GetLeaveWordNotRepliedSoapIn" />
       <wsdl:output message="tns:GetLeaveWordNotRepliedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DelLeaveWordById">
+      <wsdl:input message="tns:DelLeaveWordByIdSoapIn" />
+      <wsdl:output message="tns:DelLeaveWordByIdSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -1054,6 +1081,16 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DelLeaveWordById">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/DelLeaveWordById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DelLeaveWordByIdAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1262,6 +1299,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:GetLeaveWordNotRepliedAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelLeaveWordById">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/DelLeaveWordById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DelLeaveWordByIdAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

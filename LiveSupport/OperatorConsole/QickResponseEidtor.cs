@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Diagnostics;
+using System.Net;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -90,12 +91,16 @@ namespace LiveSupport.OperatorConsole
             }
             if(Program.OperaterServiceAgent.QuickResponseCategory!=null)
             {
-                Program.OperaterServiceAgent.SaveQuickResponse(Program.OperaterServiceAgent.QuickResponseCategory);
+                try
+                {
+                    Program.OperaterServiceAgent.SaveQuickResponse(Program.OperaterServiceAgent.QuickResponseCategory);
+                }
+                catch (WebException)
+                {
+                    this.Text = "网络中断!请稍候再试!";
+                }
+               
             }
-            
-            
-
-            
         }
         //初始化
         private void QickResponseEidtor_Load(object sender, EventArgs e)

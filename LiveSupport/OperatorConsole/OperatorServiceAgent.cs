@@ -20,7 +20,6 @@ namespace LiveSupport.OperatorConsole
         private OperatorWS ws = new OperatorWS();
         private Operator currentOperator;
         private System.Timers.Timer checkNewChangesTimer = new System.Timers.Timer(1000);
-        private bool pooling = false;
         private string accountNumber;
         private string operatorName;
         private string password;
@@ -80,11 +79,21 @@ namespace LiveSupport.OperatorConsole
             checkNewChangesTimer.AutoReset = true;
         }
 
+        
+
         #region OperatorServiceAgent 成员
 
         public Operator Login(string accountNumber, string operatorName, string password)
         {
-            currentOperator = ws.Login(accountNumber, operatorName, password);
+            try
+            {
+                currentOperator = ws.Login(accountNumber, operatorName, password);
+            }
+            catch (WebException)
+            {
+
+            }
+         
             this.accountNumber = accountNumber;
             this.operatorName = operatorName;
             this.password = password;
@@ -127,9 +136,9 @@ namespace LiveSupport.OperatorConsole
             ws.UploadFileAsync(bs, fileName, chatId);
         }
 
-        public bool SendMessage(Message msg)
+        public void SendMessage(Message msg)
         {
-            return ws.SendMessage(msg);
+            ws.SendMessage(msg);
         }
 
         public int ChangePassword(string oldPassword, string newPassword)
@@ -144,22 +153,51 @@ namespace LiveSupport.OperatorConsole
 
         public bool CloseChat(string chatId)
         {
-            return ws.CloseChat(chatId);
+           return ws.CloseChat(chatId);
         }
 
         public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
         {
-            return new List<Message>(ws.GetHistoryChatMessage(visitorId, begin, end));
+            List<Message> lMessage = null;
+            try
+            {
+               lMessage = new List<Message>(ws.GetHistoryChatMessage(visitorId, begin, end));
+            }
+            catch (WebException)
+            {
+                return null;
+            }
+            return lMessage;
         }
 
         public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
         {
+            List<PageRequest> lPageRequest = null;
+            try
+            {
+                lPageRequest = new List<PageRequest>(ws.GetHistoryPageRequests(visitorId, begin, end));
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
             return new List<PageRequest>(ws.GetHistoryPageRequests(visitorId, begin, end));
         }
 
         public int AcceptChatRequest(string chatId)
         {
-            return ws.AcceptChatRequest(chatId);
+            int num;
+            try
+            {
+                num= ws.AcceptChatRequest(chatId);
+            }
+            catch (WebException)
+            {
+                return -3;
+                throw;
+            }
+            return num;
         }
 
         public Chat InviteChat(string visitorId)
@@ -187,17 +225,35 @@ namespace LiveSupport.OperatorConsole
 
         public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
         {
-            return new List<SystemAdvertise>(ws.GetSystemAdvertise(versionNumber));
+            List<SystemAdvertise>  lSystemAdvertise=null;
+            try
+            {
+               lSystemAdvertise= new List<SystemAdvertise>(ws.GetSystemAdvertise(versionNumber));
+            }
+            catch (WebException)
+            {
+                return null;
+            }
+            return lSystemAdvertise;
         }
 
         public void SaveQuickResponse(List<QuickResponseCategory> response)
         {
-            ws.SaveQuickResponse(response.ToArray());
+            ws.SaveQuickResponse(response.ToArray()); 
         }
 
         public List<QuickResponseCategory> GetQuickResponse()
         {
-            return new List<QuickResponseCategory>(ws.GetQuickResponse());
+            List<QuickResponseCategory> lQuickResponseCategory = null;
+            try
+            {
+                lQuickResponseCategory=new List<QuickResponseCategory>(ws.GetQuickResponse());
+            }
+            catch (WebException)
+            {
+                return null;
+            }
+            return lQuickResponseCategory;
         }
 
         private NewChangesCheckResult getNextNewChanges()
@@ -208,8 +264,6 @@ namespace LiveSupport.OperatorConsole
           
             if (result.NewVisitors != null)
             {
-                Trace.Write(" NewVisitors: " + result.NewVisitors.Length);
-
                 foreach (var item in result.NewVisitors)
                 {
                     lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
@@ -238,7 +292,6 @@ namespace LiveSupport.OperatorConsole
             }
             if (result.VisitSessionChange != null)
             {
-                Trace.Write(" VisitorSessionChange: " + result.VisitSessionChange.Length);
                 foreach (var item in result.VisitSessionChange)
                 {
                     if (checkIfVisitSessionStatusChange(item))
@@ -255,16 +308,13 @@ namespace LiveSupport.OperatorConsole
 
             if (result.Operators != null)
             {
-                Trace.Write(" Operators: " + result.Operators.Length);
                 processOpertors(result);
             }
             if (result.Messages != null)
             {
-                Trace.Write(" Messages: " + result.Messages.Length);
-                lastCheck.ChatSessionChecks = processMessages(result).ToArray();
+                    lastCheck.ChatSessionChecks = processMessages(result).ToArray();
             }
 
-            Trace.WriteLine(" Chats: " + result.Chats.Length);
             processChats(result);
 
             return result;
@@ -298,7 +348,6 @@ namespace LiveSupport.OperatorConsole
                     {
                         NewChatRequest(this, new NewChatRequestEventArgs(visitor.Name, item));
                     }
-                    Trace.WriteLine("NewChatRequest: " + result.Chats.Length);
                 }
             }
 
@@ -326,7 +375,6 @@ namespace LiveSupport.OperatorConsole
                     Operators.AddRange(result.Operators);
                     if (NewChanges != null)
                     {
-                        Trace.WriteLine("Operators: " + result.Operators.Length);
                         NewChanges(this, new NewChangesCheckResultEventArgs(result));
                     }
                 }
@@ -364,7 +412,6 @@ namespace LiveSupport.OperatorConsole
                         {
                             if (NewMessage != null)
                             {
-                                Trace.WriteLine("Messages: " + m);
                                 NewMessage(this, new NewMessageEventArgs(m));
                                 c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
                             }
@@ -391,12 +438,11 @@ namespace LiveSupport.OperatorConsole
             NewChangesCheckResult result = null;
             try
             {
-                //Trace.WriteLine("getNewChanges: LastCheck.NewVisitorLastCheckTime= " + lastCheck.NewVisitorLastCheckTime.ToString());
                 result = CheckNewChanges(lastCheck);
                 faultCount = 0;
                 if (result != null && result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
                 {
-                    resetConnection("该帐号已在其他地方登陆！");
+                    resetConnection("该帐号已在其他地方登陆！", ExceptionStatus.User);
                 }
             }
             catch (WebException ex)
@@ -406,7 +452,7 @@ namespace LiveSupport.OperatorConsole
                 if (faultCount >= MAX_FAULT_COUNT)
                 {
                     faultCount = 0;
-                    resetConnection("连接中断");
+                    resetConnection("连接中断", ExceptionStatus.System);
                 }
             }
             catch (InvalidOperationException ioe)
@@ -416,7 +462,7 @@ namespace LiveSupport.OperatorConsole
                 if (faultCount >= MAX_FAULT_COUNT)
                 {
                     faultCount = 0;
-                    resetConnection("连接中断");
+                    resetConnection("连接中断", ExceptionStatus.System);
                 }
             }
             catch (SoapException ave)
@@ -427,11 +473,11 @@ namespace LiveSupport.OperatorConsole
                     faultCount = 0;
                     if (ave.Message.Contains("AccessViolationException"))
                     {
-                        resetConnection("服务访问拒绝");
+                        resetConnection("服务访问拒绝", ExceptionStatus.System);
                     }
                     else
                     {
-                        resetConnection("Soap异常");
+                        resetConnection("Soap异常", ExceptionStatus.System);
                     }
                 }
                 else
@@ -442,10 +488,15 @@ namespace LiveSupport.OperatorConsole
             return result;
         }
 
-        private void resetConnection(string message)
+        private void resetConnection(string message,ExceptionStatus status)
         {
             EnablePooling = false;
-            ConnectionLost(this, new ConnectionLostEventArgs(message));
+            if (ConnectionLost!=null)
+            {
+                CurrentOperator.Status = OperatorStatus.Offline;
+               ConnectionLost(this, new ConnectionLostEventArgs(message, status));
+            }
+           
         }
 
         private bool checkIfOperatorStatusChanges(Operator[] p)
@@ -480,6 +531,20 @@ namespace LiveSupport.OperatorConsole
             return false;
         }
 
+        public Operator restartLogin() 
+        {
+            Operator op=null; 
+            try
+            {
+              op=Login(accountNumber, operatorName, password);
+            }
+            catch (WebException wex)
+            {
+                Trace.WriteLine("RestartLogin Exception: " + wex.Message);
+                return null;
+            }
+            return op;
+        }
         public VisitSession GetVisitSessionById(string sessionId)
         {
             
@@ -513,14 +578,46 @@ namespace LiveSupport.OperatorConsole
 
         public  List<LeaveWord> GetLeaveWord()
         {
-            List<LeaveWord> leaveWords = new List<LeaveWord>() ;
-            leaveWords.AddRange(ws.GetLeaveWord());
+            List<LeaveWord> leaveWords = new List<LeaveWord>();
+            try
+            {
+                leaveWords.AddRange(ws.GetLeaveWord());
+            }
+            catch (WebException)
+            {
+                return null;
+            }
             return leaveWords;
         }
 
         public bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id) 
         {
-            return ws.UpdateLeaveWordById(sendDate, name, isReplied, id);
+            bool result;
+            try
+            {
+             result=ws.UpdateLeaveWordById(sendDate, name, isReplied, id);
+            }
+            catch (WebException)
+            {
+                return false;
+            }
+
+            return result;
+        }
+        public bool DelLeaveWordById(string id) 
+        {
+            bool result;
+            try
+            {
+                result = ws.DelLeaveWordById(id);
+            }
+            catch (WebException)
+            {
+                return false;
+            }
+
+            return result;
+        
         }
 
         public List<LeaveWord> GetLeaveWordNotReplied() 

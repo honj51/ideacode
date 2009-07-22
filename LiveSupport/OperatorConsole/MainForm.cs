@@ -51,8 +51,6 @@ namespace LiveSupport.OperatorConsole
         #region IOperatorServiceAgent 事件处理
         void operaterServiceAgent_NewChanges(object sender, NewChangesCheckResultEventArgs e)
         {
-            Trace.WriteLine("Operators: " + e.Result.ToString());
-            Trace.WriteLine("Operators: " + e.Result.Operators.Length);
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
@@ -68,14 +66,12 @@ namespace LiveSupport.OperatorConsole
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 ConnectionLostEventArgs arg = obj as ConnectionLostEventArgs;
-                connectionLost(arg.Message);
+                connectionLost(arg.Message,arg.Status);
             }), e);
         }
 
         void operaterServiceAgent_NewChatRequest(object sender, NewChatRequestEventArgs e)
         {
-            Trace.WriteLine("NewChatRequest: " + e.Chat.ChatId.ToString());
-            Trace.WriteLine("NewChatRequest: " + e.Name.Length);
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 NewChatRequestEventArgs arg = obj as NewChatRequestEventArgs;
@@ -87,8 +83,6 @@ namespace LiveSupport.OperatorConsole
 
         void operaterServiceAgent_VisitorSessionChange(object sender, VisitorSessionChangeEventArgs e)
         {
-            Trace.WriteLine("VisitorSessionChange: " + e.VisitSession.ToString());
-            Trace.WriteLine("VisitorSessionChange: " + e.VisitSession.IP);
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 VisitorSessionChangeEventArgs arg = obj as VisitorSessionChangeEventArgs;
@@ -100,8 +94,6 @@ namespace LiveSupport.OperatorConsole
 
         void operaterServiceAgent_NewVisitor(object sender, NewVisitorEventArgs e)
         {
-            Trace.WriteLine("NewVisitor: " + e.Visitor.ToString());
-            Trace.WriteLine("NewVisitor: " + e.Visitor.VisitorId.ToString());
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 NewVisitorEventArgs arg = obj as NewVisitorEventArgs;
@@ -393,12 +385,37 @@ namespace LiveSupport.OperatorConsole
             return sa;
         }   
 
-        private void connectionLost(string message)
+        private void connectionLost(string message,ExceptionStatus status)
         {
             loginTimer.Enabled = false;
-            MessageBox.Show(message + "，需要重新登陆！", "连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            restartApp("-r");
+            notifyIcon.Icon = Properties.Resources.Profile1;
+            if (status== ExceptionStatus.System)
+            {
+                foreach (ChatForm item in Program.ChatForms)
+                {
+                    if (item != null)
+                    {
+                        item.SystemMessage("网络出现问题,暂时无法获取及发送消息");
+                    }
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    if (restartConnection() != null)
+                    {
+                        loginTimer.Enabled = true;
+                        operaterServiceAgent.EnablePooling = true;
+                        notifyIcon.Icon = Properties.Resources.Profile;
+                        continue;
+                    }
+                }
+              
+            }
+            else
+            {
+                MessageBox.Show(message + "，需要重新登陆！", "连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                restartApp("-r");
+            }
+            
         }
 
         private void displayStatus()
@@ -436,6 +453,11 @@ namespace LiveSupport.OperatorConsole
             this.Close();
             Process.Start(new ProcessStartInfo(Application.ExecutablePath, args));
             Application.Exit();
+        }
+        private Operator restartConnection() 
+        {
+            Operator op = operaterServiceAgent.restartLogin();
+            return op;
         }
 
         private void showMainForm(bool show)
@@ -947,6 +969,43 @@ namespace LiveSupport.OperatorConsole
             LeaveWord lw= this.leaveWordBindingSource.Current as LeaveWord;
             this.btnSend.Enabled=!lw.IsReplied;
         }
+
+        private void restartConnectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (operaterServiceAgent.CurrentOperator.Status == OperatorStatus.Offline) 
+            {
+                if (restartConnection() != null)
+                {
+                    loginTimer.Enabled = true;
+                    operaterServiceAgent.EnablePooling = true;
+                    notifyIcon.Icon = Properties.Resources.Profile;
+                }
+            }
+        }
+
+        private void btnDelLeaveWord_Click(object sender, EventArgs e)
+        {
+            if (leaveWordDataGridView.SelectedRows.Count > 0) 
+            {
+                LeaveWord lw = this.leaveWordBindingSource.Current as LeaveWord;
+                try
+                {
+                    if (operaterServiceAgent.DelLeaveWordById(lw.Id))
+                    {
+                        this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
+                        LeaveWordNotReplied();
+                    }
+                }
+                catch (WebException)
+                {
+                    
+                }
+              
+            }
+           
+        }
+
+       
     }
 
     class VisitorListViewItem

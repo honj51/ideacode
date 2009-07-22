@@ -341,6 +341,7 @@
     <None Include="Resources\header-bg-left1.jpg" />
     <None Include="Resources\header1.jpg" />
     <Content Include="Resources\ie.jpg" />
+    <None Include="Resources\Profile1.ico" />
     <None Include="Resources\SLUI_3.ico" />
     <None Include="Resources\SLUI_1_3.ico" />
     <None Include="Resources\mspaint_1206.ico" />
