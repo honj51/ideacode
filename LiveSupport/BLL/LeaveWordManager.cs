@@ -58,5 +58,17 @@ namespace LiveSupport.BLL
                 return false;
         }
         #endregion
+
+        #region 删除留言
+        public static bool DelLeaveWordById(string id)
+        {
+            int i = 0;
+            i=Provider.DelLeaveWordById(id);
+            if (i != 0)
+                return true;
+            else
+                return false;
+        }
+        #endregion
     }
 }
