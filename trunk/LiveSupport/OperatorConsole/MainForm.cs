@@ -405,7 +405,7 @@ namespace LiveSupport.OperatorConsole
                         loginTimer.Enabled = true;
                         operaterServiceAgent.EnablePooling = true;
                         notifyIcon.Icon = Properties.Resources.Profile;
-                        continue;
+                        return;
                     }
                 }
               
@@ -1004,8 +1004,6 @@ namespace LiveSupport.OperatorConsole
             }
            
         }
-
-       
     }
 
     class VisitorListViewItem
