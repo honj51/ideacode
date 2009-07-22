@@ -296,10 +296,11 @@ public class OperatorWS : System.Web.Services.WebService
     public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
     {
         string homeRootUrl = ConfigurationManager.AppSettings["HomeRootUrl"].ToString();
-        string LatestVersionNumber = ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString();
+        Version latestVersion = new Version(ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString());
+        Version versionToCheck = new Version(versionNumber);
         string LatestUrl= ConfigurationManager.AppSettings["LatestOperatorConsoleUrl"].ToString();
         List<SystemAdvertise> li = new List<SystemAdvertise>();
-        if (versionNumber != LatestVersionNumber)
+        if (versionToCheck < latestVersion)
         {
             SystemAdvertise sysinfo = new SystemAdvertise();
             //sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
