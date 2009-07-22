@@ -354,4 +354,12 @@ public class OperatorWS : System.Web.Services.WebService
         return LiveSupport.BLL.LeaveWordManager.GetLeaveWordNotRepliedByAccountId(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId,false);
     }
 
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public bool DelLeaveWordById(string id)
+    {
+        checkAuthentication();
+        return LiveSupport.BLL.LeaveWordManager.DelLeaveWordById(id);
+    }
+   
 }
