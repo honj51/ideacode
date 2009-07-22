@@ -215,7 +215,7 @@ namespace LiveSupport.OperatorConsole
                 ConnectionStateChangeEventArgs arg = obj as ConnectionStateChangeEventArgs;
                 if (arg.State == ConnectionState.Disconnected)
                 {
-                    this.Enabled = false;
+                    //this.Enabled = false;
                     connectionLost(arg.Message, arg.Status);
                 }
                 else if (arg.State == ConnectionState.Connected)
@@ -223,6 +223,7 @@ namespace LiveSupport.OperatorConsole
                     loginTimer.Enabled = true;
                     operaterServiceAgent.EnablePooling = true;
                     notifyIcon.Icon = Properties.Resources.Profile;
+                    notifyIcon.Text = "网站客服 - "+"在线";
                 }
             }), e);
         }
@@ -421,6 +422,7 @@ namespace LiveSupport.OperatorConsole
         {
             loginTimer.Enabled = false;
             notifyIcon.Icon = Properties.Resources.Profile1;
+            notifyIcon.Text = "网站客服 - " + "网络连接中断";
             if (status== ExceptionStatus.System)
             {
                 foreach (ChatForm item in Program.ChatForms)
@@ -487,7 +489,6 @@ namespace LiveSupport.OperatorConsole
             else
             {
                 saveWindowState = this.WindowState;
-                notifyIcon.ShowBalloonTip(500);
             }
         }
         #endregion
