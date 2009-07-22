@@ -12,6 +12,7 @@ namespace LiveSupport.Providers
         List<LeaveWord> GetLeaveWordByAccountId(string accountId,string beginDate,string endDate);
         List<LeaveWord> GetAllLeaveWordByAccountId(string accountId);
         List<LeaveWord> GetLeaveWordNotRepliedByAccountId(string accountId, bool IsReplied);
+        int DelLeaveWordById(string id);
         int UpdateWordProviderById(string sendDate, string name,bool isReplied, string id);
     }
 }
