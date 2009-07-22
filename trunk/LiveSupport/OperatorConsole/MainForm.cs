@@ -161,14 +161,16 @@ namespace LiveSupport.OperatorConsole
         {
             List<LeaveWord> lws = lwnr == null ? operaterServiceAgent.GetLeaveWord() : lwnr;
             int num=0;
-            foreach (LeaveWord item in lws)
+            if (lws!=null)
             {
-                if (!item.IsReplied)
+                foreach (LeaveWord item in lws)
                 {
-                    num++;
-                }
+                    if (!item.IsReplied)
+                    {
+                        num++;
+                    }
+                } 
             }
-
             if (num == 0)
             {
                 this.tabPage4.Text = "留言列表";
@@ -213,6 +215,7 @@ namespace LiveSupport.OperatorConsole
                 ConnectionStateChangeEventArgs arg = obj as ConnectionStateChangeEventArgs;
                 if (arg.State == ConnectionState.Disconnected)
                 {
+                    this.Enabled = false;
                     connectionLost(arg.Message, arg.Status);
                 }
                 else if (arg.State == ConnectionState.Connected)
@@ -1009,13 +1012,25 @@ namespace LiveSupport.OperatorConsole
                         LeaveWordNotReplied(null);
                     }
                 }
-                catch (WebException)
+                catch (Exception)
                 {
-                    
+                    MessageBox.Show("提示","网络中断,请稍候再试...");
                 }
               
             }
            
+        }
+
+        private void lstPageRequest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstPageRequest.SelectedItems.Count>0)
+            {
+                PageRequest pr=lstPageRequest.SelectedItems[0].Tag as PageRequest;
+                if (pr!=null)
+                {
+                    this.lstPageRequest.SelectedItems[0].ToolTipText = "引用页面：" + pr.Referrer + "\r\n\r\n 请求页面：" + pr.Page + "\r\n\r\n 请求时间：" + pr.RequestTime;  
+                }
+            }
         }
     }
 

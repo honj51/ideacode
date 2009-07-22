@@ -113,7 +113,6 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -133,7 +132,6 @@ namespace LiveSupport.OperatorConsole
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
@@ -157,6 +155,7 @@ namespace LiveSupport.OperatorConsole
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsReplied = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.leaveWordBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnDelLeaveWord = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.callerDateTextBox = new System.Windows.Forms.TextBox();
             this.callerNameTextBox = new System.Windows.Forms.TextBox();
@@ -191,6 +190,8 @@ namespace LiveSupport.OperatorConsole
             this.stateToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -963,14 +964,6 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Size = new System.Drawing.Size(204, 396);
             this.panel1.TabIndex = 0;
             // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 366);
-            this.operatorPannel1.TabIndex = 2;
-            // 
             // panel5
             // 
             this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
@@ -1167,16 +1160,6 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 385);
-            this.chatMessageViewerControl1.TabIndex = 18;
-            // 
             // messageendDateTimePicker
             // 
             this.messageendDateTimePicker.Location = new System.Drawing.Point(366, 20);
@@ -1292,12 +1275,15 @@ namespace LiveSupport.OperatorConsole
             this.colReferrer});
             this.lstPageRequest.FullRowSelect = true;
             this.lstPageRequest.GridLines = true;
+            this.lstPageRequest.HoverSelection = true;
             this.lstPageRequest.Location = new System.Drawing.Point(3, 47);
             this.lstPageRequest.Name = "lstPageRequest";
+            this.lstPageRequest.ShowItemToolTips = true;
             this.lstPageRequest.Size = new System.Drawing.Size(736, 294);
             this.lstPageRequest.TabIndex = 7;
             this.lstPageRequest.UseCompatibleStateImageBehavior = false;
             this.lstPageRequest.View = System.Windows.Forms.View.Details;
+            this.lstPageRequest.SelectedIndexChanged += new System.EventHandler(this.lstPageRequest_SelectedIndexChanged);
             // 
             // colPage
             // 
@@ -1341,6 +1327,7 @@ namespace LiveSupport.OperatorConsole
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.btnDelLeaveWord);
             this.splitContainer1.Panel2.Controls.Add(this.btnSend);
             this.splitContainer1.Panel2.Controls.Add(callerDateLabel);
             this.splitContainer1.Panel2.Controls.Add(this.callerDateTextBox);
@@ -1431,11 +1418,21 @@ namespace LiveSupport.OperatorConsole
             // 
             this.leaveWordBindingSource.DataSource = typeof(LiveSupport.OperatorConsole.LiveChatWS.LeaveWord);
             // 
+            // btnDelLeaveWord
+            // 
+            this.btnDelLeaveWord.Location = new System.Drawing.Point(336, 286);
+            this.btnDelLeaveWord.Name = "btnDelLeaveWord";
+            this.btnDelLeaveWord.Size = new System.Drawing.Size(38, 23);
+            this.btnDelLeaveWord.TabIndex = 25;
+            this.btnDelLeaveWord.Text = "删除";
+            this.btnDelLeaveWord.UseVisualStyleBackColor = true;
+            this.btnDelLeaveWord.Click += new System.EventHandler(this.btnDelLeaveWord_Click);
+            // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(305, 286);
+            this.btnSend.Location = new System.Drawing.Point(291, 286);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(63, 23);
+            this.btnSend.Size = new System.Drawing.Size(37, 23);
             this.btnSend.TabIndex = 24;
             this.btnSend.Text = "回复";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -1578,7 +1575,6 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
@@ -1610,38 +1606,38 @@ namespace LiveSupport.OperatorConsole
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem2});
             this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(153, 120);
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(143, 98);
             // 
             // restartConnectionToolStripMenuItem
             // 
             this.restartConnectionToolStripMenuItem.Name = "restartConnectionToolStripMenuItem";
-            this.restartConnectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartConnectionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.restartConnectionToolStripMenuItem.Text = "上线";
             this.restartConnectionToolStripMenuItem.Click += new System.EventHandler(this.restartConnectionToolStripMenuItem_Click);
             // 
             // changeAccountToolStripMenuItem
             // 
             this.changeAccountToolStripMenuItem.Name = "changeAccountToolStripMenuItem";
-            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.changeAccountToolStripMenuItem.Text = "更换座席(&C)";
             this.changeAccountToolStripMenuItem.Click += new System.EventHandler(this.changeOperatorToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.openToolStripMenuItem.Text = "显示/隐藏(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem2
             // 
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
-            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
             this.exitToolStripMenuItem2.Text = "退出(&E)";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1749,6 +1745,24 @@ namespace LiveSupport.OperatorConsole
             this.loginTimer.Enabled = true;
             this.loginTimer.Interval = 1000;
             this.loginTimer.Tick += new System.EventHandler(this.loginTimer_Tick);
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 366);
+            this.operatorPannel1.TabIndex = 2;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 385);
+            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
             // 
@@ -1947,5 +1961,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsReplied;
         private System.Windows.Forms.ToolStripMenuItem restartConnectionToolStripMenuItem;
+        private System.Windows.Forms.Button btnDelLeaveWord;
     }
 }

@@ -103,6 +103,7 @@ namespace LiveSupport.OperatorConsole
             }
             catch (WebException)
             {
+
             }
          
             this.accountNumber = accountNumber;
@@ -146,6 +147,7 @@ namespace LiveSupport.OperatorConsole
 
         void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+
             //if (!Monitor.TryEnter(this.checkNewChangesLocker))
             //{
             //    return;
@@ -165,6 +167,7 @@ namespace LiveSupport.OperatorConsole
             //{
             //    Monitor.Exit(this.checkNewChangesLocker);
             //}
+
         }
 
         public void Logout()
@@ -672,17 +675,18 @@ namespace LiveSupport.OperatorConsole
         }
         public bool DelLeaveWordById(string id) 
         {
-            bool result;
-            try
-            {
-                result = ws.DelLeaveWordById(id);
-            }
-            catch (WebException)
-            {
-                return false;
-            }
+            //bool result;
+           // try
+           // {
+                //result = 
+           // }
+            //catch (Exception dlw)
+            //{
+            //    Trace.WriteLine("DelLeaveWord Exception: " + dlw.Message);
+            //    return false;
+            //}
 
-            return result;
+            return ws.DelLeaveWordById(id);
         
         }
 
