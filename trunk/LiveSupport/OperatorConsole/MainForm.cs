@@ -1013,9 +1013,9 @@ namespace LiveSupport.OperatorConsole
                         LeaveWordNotReplied(null);
                     }
                 }
-                catch (Exception)
+                catch (WebException)
                 {
-                    MessageBox.Show("提示","网络中断,请稍候再试...");
+                    MessageBox.Show("网络中断,请稍候再试...", "提示");
                 }
               
             }
