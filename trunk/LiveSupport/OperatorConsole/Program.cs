@@ -47,7 +47,7 @@ namespace LiveSupport.OperatorConsole
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             OperaterServiceAgent = OperatorServiceAgent.Default;
-            OperaterServiceAgent.ProductVersion = Application.ProductVersion.ToString();
+            OperaterServiceAgent.ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             LoginForm f = new LoginForm();
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
 
