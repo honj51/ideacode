@@ -296,11 +296,29 @@ public class OperatorWS : System.Web.Services.WebService
     public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
     {
         string homeRootUrl = ConfigurationManager.AppSettings["HomeRootUrl"].ToString();
-        Version latestVersion = new Version(ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString());
-        Version versionToCheck = new Version(versionNumber);
-        string LatestUrl= ConfigurationManager.AppSettings["LatestOperatorConsoleUrl"].ToString();
+        string LatestUrl = ConfigurationManager.AppSettings["LatestOperatorConsoleUrl"].ToString();
+
         List<SystemAdvertise> li = new List<SystemAdvertise>();
-        if (versionToCheck < latestVersion)
+        try
+        {
+            SystemAdvertise a = new SystemAdvertise();
+            a.AdvertiseMessage = "欢迎您使用LiveSupport客服交流系统";
+            a.AdvertiseUrl = "http://www.zxkefu.cn/";
+            li.Add(a);
+
+            Version latestVersion = new Version(ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString());
+            Version versionToCheck = new Version(versionNumber);
+            if (versionToCheck < latestVersion)
+            {
+                SystemAdvertise sysinfo = new SystemAdvertise();
+                //sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
+                sysinfo.AdvertiseUrl = LatestUrl;
+                sysinfo.AdvertiseMessage = "该程序有新版本可用，请点击了解详情";
+                li.Add(sysinfo);
+            }
+
+        }
+        catch (FormatException)
         {
             SystemAdvertise sysinfo = new SystemAdvertise();
             //sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
@@ -308,10 +326,6 @@ public class OperatorWS : System.Web.Services.WebService
             sysinfo.AdvertiseMessage = "该程序有新版本可用，请点击了解详情";
             li.Add(sysinfo);
         }
-        SystemAdvertise a = new SystemAdvertise();
-        a.AdvertiseMessage = "欢迎您使用LiveSupport客服交流系统";
-        a.AdvertiseUrl = "http://www.zxkefu.cn/";
-        li.Add(a);
         return li;
     }
 
