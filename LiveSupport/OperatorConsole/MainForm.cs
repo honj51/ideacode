@@ -991,7 +991,7 @@ namespace LiveSupport.OperatorConsole
         {
             if (operaterServiceAgent.CurrentOperator.Status == OperatorStatus.Offline) 
             {
-                if (operaterServiceAgent.restartLogin() != null)
+                if (operaterServiceAgent.RestartLogin() != null)
                 {
                     loginTimer.Enabled = true;
                     operaterServiceAgent.EnablePooling = true;
