@@ -160,7 +160,7 @@ namespace LiveSupport.OperatorConsole
                 }
                 else if (State == ConnectionState.Disconnected)
                 {
-                    restartLogin();
+                    RestartLogin();
                 }
             //}
             //finally
@@ -601,7 +601,7 @@ namespace LiveSupport.OperatorConsole
             return false;
         }
 
-        public Operator restartLogin() 
+        public Operator RestartLogin() 
         {
             Operator op=null; 
             try
@@ -675,19 +675,7 @@ namespace LiveSupport.OperatorConsole
         }
         public bool DelLeaveWordById(string id) 
         {
-            //bool result;
-           // try
-           // {
-                //result = 
-           // }
-            //catch (Exception dlw)
-            //{
-            //    Trace.WriteLine("DelLeaveWord Exception: " + dlw.Message);
-            //    return false;
-            //}
-
             return ws.DelLeaveWordById(id);
-        
         }
 
         public List<LeaveWord> GetLeaveWordNotReplied() 
