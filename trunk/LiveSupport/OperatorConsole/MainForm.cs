@@ -983,10 +983,19 @@ namespace LiveSupport.OperatorConsole
 
         private void leaveWordDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            LeaveWord lw= this.leaveWordBindingSource.Current as LeaveWord;
-            this.btnSend.Enabled=!lw.IsReplied;
+            LeaveWord lw = this.leaveWordBindingSource.Current as LeaveWord;
+            if (lw == null)
+            {
+                this.btnDelLeaveWord.Enabled = false;
+                this.btnSend.Enabled = false;
+                return;
+            }
+            else
+            {
+                this.btnDelLeaveWord.Enabled = true;
+                this.btnSend.Enabled = !lw.IsReplied;
+            }
         }
-
         private void restartConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (operaterServiceAgent.CurrentOperator.Status == OperatorStatus.Offline) 
