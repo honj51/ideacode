@@ -58,6 +58,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_55CD551191188B61E90C23FC0C47C0F3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B7B98E3A725CD0E604EF121310EFFDF6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -65,12 +71,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BD1626B062BB69080EFA5208336A1549"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_55CD551191188B61E90C23FC0C47C0F3"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -81,7 +81,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\OperatorConsole.msi"
+        "OutputFilename" = "8:Debug\\网站客服.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -310,7 +310,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_8076C35169FB4400BAC4E17FB35CCA8F"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]HudongSoft\\OperatorConsole"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -357,9 +357,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:网站客服软件"
+        "ProductName" = "8:网站客服"
         "ProductCode" = "8:{D836B538-EA26-4028-8E53-5DFCFCFB5A96}"
-        "PackageCode" = "8:{3A74EEDE-9DC7-495D-ADE5-37347685CCF3}"
+        "PackageCode" = "8:{89AE63BC-202E-49CB-9ECE-B1AFF8EB5A33}"
         "UpgradeCode" = "8:{3F5981FC-CF82-4CD3-A72C-4C832C0BFFF0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -369,13 +369,13 @@
         "Manufacturer" = "8:江西互动科技"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:网站客服"
+        "Title" = "8:互动科技 网站客服"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:互动科技"
+        "ARPCONTACT" = "8:江西互动科技"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_EF72B16C87EE4ACF95DAD05A9D58052E"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
