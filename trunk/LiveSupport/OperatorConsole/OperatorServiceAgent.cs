@@ -177,7 +177,8 @@ namespace LiveSupport.OperatorConsole
 
             EnablePooling = false;
             checkNewChangesTimer.Stop();
-            ws.LogoutAsync(Guid.NewGuid());
+            //ws.LogoutAsync(Guid.NewGuid());
+            ws.Logout();
         }
 
         public List<Visitor> GetAllVisitors(string accountId)
