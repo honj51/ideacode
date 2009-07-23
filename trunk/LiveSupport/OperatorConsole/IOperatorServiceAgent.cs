@@ -35,7 +35,7 @@ namespace LiveSupport.OperatorConsole
         bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id);
         bool DelLeaveWordById(string id);
         List<LeaveWord> GetLeaveWordNotReplied();
-        Operator restartLogin();
+        Operator RestartLogin();
         #endregion
 
         #region Async
