@@ -148,7 +148,7 @@ namespace LiveSupport.SqlProviders
          #region 删除留言
          public int DelLeaveWordById(string id) 
         {
-            string sql = string.Format("delete form LiveSupport_LeaveWord  where id='{0}'",id);
+            string sql = string.Format("delete from LiveSupport_LeaveWord  where Id='{0}'",id);
             return DBHelper.ExecuteSql(sql);
         }
          #endregion
