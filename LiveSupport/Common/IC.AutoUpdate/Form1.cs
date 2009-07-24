@@ -13,8 +13,6 @@ namespace IC.AutoUpdate
 {
     public partial class Form1 : Form
     {
-        private string productCode = "{D836B538-EA26-4028-8E53-5DFCFCFB5A96}";
-        private string productInstallFile = @"setup\OperatorConsole.msi";
         WebClient wc = new WebClient();
         
         public Form1()
@@ -27,8 +25,15 @@ namespace IC.AutoUpdate
 
         void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            label1.Text = "下载完成";
-            buttonInstall.Enabled = true;
+            if (e.Error != null)
+            {
+                label1.Text = "无法连接服务器，下载失败！";
+            }
+            else
+            {
+                label1.Text = "下载完成";
+                buttonInstall.Enabled = true;
+            }
         }
 
         private void startDownload()
@@ -37,7 +42,7 @@ namespace IC.AutoUpdate
             buttonInstall.Enabled = false;
             try
             {
-                wc.DownloadFileAsync(new Uri("http://www.zxkefu.cn/download/operatorconsole.msi"), productInstallFile);
+                wc.DownloadFileAsync(new Uri(Program.ProductInstallFileUrl), Program.ProductInstallFileSavePath);
             }
             catch (Exception)
             {
@@ -53,10 +58,10 @@ namespace IC.AutoUpdate
         private void buttonInstall_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Process uninstallProcess = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/x " + productCode);
+            Process uninstallProcess = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/x " + Program.ProductCode);
             
             uninstallProcess.WaitForExit();
-            Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/i " + productInstallFile);
+            Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/i " + Program.ProductInstallFileSavePath);
             this.Close();
         }
 
