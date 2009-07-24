@@ -36,7 +36,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://lcs.zxkefu.cn/Operator.asmx</Value>
+      <Value Profile="(Default)">http://test.zxkefu.cn/Operator.asmx</Value>
     </Setting>
     <Setting Name="URL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.zxkefu.cn</Value>
@@ -65,6 +65,9 @@
     </Setting>
     <Setting Name="CloseState" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UpdateUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.zxkefu.cn/download/operatorconsole-t.msi</Value>
     </Setting>
   </Settings>
 </SettingsFile>

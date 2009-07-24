@@ -410,6 +410,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\IC.AutoUpdate\IC.AutoUpdate.csproj">
+      <Project>{879EC6E1-0BC0-4198-805D-950B2C4EFC41}</Project>
+      <Name>IC.AutoUpdate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\VisualAsterisk.ExceptionManagement\VisualAsterisk.ExceptionManagement.csproj">
       <Project>{5DBD653B-6AF4-4CCC-AC23-5A68E848B632}</Project>
       <Name>VisualAsterisk.ExceptionManagement</Name>
