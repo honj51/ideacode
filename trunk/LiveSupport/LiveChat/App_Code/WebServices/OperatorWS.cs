@@ -305,7 +305,7 @@ public class OperatorWS : System.Web.Services.WebService
             string versionFilePath = Server.MapPath("~/App_Data")+"\\OperatorConsoleDeploy.xml";
             XmlDocument doc = new XmlDocument();
             doc.Load(versionFilePath);
-            string latestVersionNum = doc.ChildNodes[0].InnerText;
+            string latestVersionNum = doc.ChildNodes[1].InnerText;
 
             SystemAdvertise a = new SystemAdvertise();
             a.AdvertiseMessage = "欢迎您使用LiveSupport客服交流系统";
@@ -326,11 +326,6 @@ public class OperatorWS : System.Web.Services.WebService
         }
         catch (FormatException)
         {
-            SystemAdvertise sysinfo = new SystemAdvertise();
-            //sysinfo.AdvertiseUrl = homeRootUrl+LatestUrl;
-            sysinfo.AdvertiseUrl = LatestUrl;
-            sysinfo.AdvertiseMessage = "该程序有新版本可用，请点击了解详情";
-            li.Add(sysinfo);
         }
         return li;
     }
