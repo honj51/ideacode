@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 namespace IC.AutoUpdate
 {
@@ -57,10 +58,15 @@ namespace IC.AutoUpdate
 
         private void buttonInstall_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.progressBar1.Value = 0;
+            this.progressBar1.Style = ProgressBarStyle.Marquee;
+            label1.Text = "正在处理旧版本程序...";
             Process uninstallProcess = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/quiet /x " + Program.ProductCode);
-            
-            uninstallProcess.WaitForExit();
+            //uninstallProcess.WaitForExit();
+            while (!uninstallProcess.HasExited)
+            {
+                Thread.Sleep(1000);
+            }
             Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/i " + Program.ProductInstallFileSavePath);
             this.Close();
         }
