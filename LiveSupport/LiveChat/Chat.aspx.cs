@@ -328,7 +328,7 @@ public partial class Chat : System.Web.UI.Page
             {
                 CurrentVisitor.Name = txtName.Text;
             }
-            if (!string.IsNullOrEmpty(txtEmail.Text))
+            if (!string.IsNullOrEmpty(txtEmail.Text)&&!string.IsNullOrEmpty(CurrentVisitor.Email))
             {
                 CurrentVisitor.Email = txtEmail.Text;
             }
