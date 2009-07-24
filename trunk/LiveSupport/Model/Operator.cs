@@ -12,6 +12,8 @@ namespace LiveSupport.LiveSupportModel
     /// <summary>
     ///Operator 的摘要说明
     /// </summary>
+    /// 
+    [Serializable]
     public class Operator
     {
         private string operatorId;

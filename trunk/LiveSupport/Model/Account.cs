@@ -8,6 +8,7 @@ namespace LiveSupport.LiveSupportModel
     /// <summary>
     ///Account 的摘要说明
     /// </summary>
+    [Serializable]
     public class Account
     {
         private string accountId;

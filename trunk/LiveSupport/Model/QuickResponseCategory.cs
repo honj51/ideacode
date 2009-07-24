@@ -8,6 +8,7 @@ namespace LiveSupport.LiveSupportModel
     {
         public int QuickId;
         public string Name;
+        public string AccountId;
         public List<string> Responses;
     }
    

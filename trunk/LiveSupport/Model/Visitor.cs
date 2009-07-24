@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 namespace LiveSupport.LiveSupportModel
 {
+    [Serializable]
     public class Visitor
     {
         private string visitorId;
