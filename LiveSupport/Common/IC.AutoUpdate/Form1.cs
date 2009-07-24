@@ -58,17 +58,35 @@ namespace IC.AutoUpdate
 
         private void buttonInstall_Click(object sender, EventArgs e)
         {
+            this.buttonInstall.Enabled = false;
+            this.buttonCancel.Enabled = false;
+
             this.progressBar1.Value = 0;
+            this.progressBar1.MarqueeAnimationSpeed = 10;
             this.progressBar1.Style = ProgressBarStyle.Marquee;
             label1.Text = "正在处理旧版本程序...";
-            Process uninstallProcess = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/quiet /x " + Program.ProductCode);
+            Process p = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/quiet /x " + Program.ProductCode);
             //uninstallProcess.WaitForExit();
-            while (!uninstallProcess.HasExited)
+            while (!p.HasExited)
             {
-                Thread.Sleep(1000);
+                Application.DoEvents();
+                Thread.Sleep(100);
             }
-            Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/i " + Program.ProductInstallFileSavePath);
-            this.Close();
+            label1.Text = "正在处更新程序...";
+            p = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/quiet /i " + Program.ProductInstallFileSavePath);
+
+            while (!p.HasExited)
+            {
+                Application.DoEvents();
+                Thread.Sleep(100);
+            }
+
+            label1.Text = "更新程序成功！";
+            this.progressBar1.Style = ProgressBarStyle.Blocks;
+            this.progressBar1.Value = 100;
+            this.buttonCancel.Enabled = true;
+            this.buttonCancel.Text = "确定";
+            //this.Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
