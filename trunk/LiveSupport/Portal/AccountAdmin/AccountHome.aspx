@@ -1,15 +1,15 @@
-﻿<%@ Page Title="客服中心-LiveSupport在线客服系统" Language="C#" MasterPageFile="~/AccountAdmin/MasterAccountAdmin.master" AutoEventWireup="true" CodeFile="AccountHome.aspx.cs" Inherits="AccountAdmin_Default3" %>
+﻿<%@ Page Title="客服中心-LiveSupport在线客服系统" Language="C#" MasterPageFile="~/AccountAdmin/MasterAccountAdmin.master" AutoEventWireup="true" CodeFile="AccountHome.aspx.cs" Inherits="AccountAdmin_Default3"  validateRequest="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <!--内容-->
-
  <table cellpadding="0" cellspacing="0">
    <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
-   <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">公司信息管理</td></tr>
+   <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="left">
+           &nbsp;&nbsp;&nbsp; 网站代码: 
+       <asp:TextBox ID="TextBox1" runat="server" Width="460px"></asp:TextBox>
+   </td></tr>
    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
  </table>
- 
-<div></div>
+ <div></div>
  <table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
    <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
    <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
@@ -18,23 +18,20 @@
   <TABLE cellSpacing=0 cellPadding=0 border=0 style=" margin-left:10px; margin-top:10px;">
         <TBODY style="text-align:left;">
          <TR>
-          <TD width="25%" >&nbsp;&nbsp;&nbsp; 公司ID： </TD>
+          <TD  >&nbsp;&nbsp;&nbsp; 公司ID： </TD>
           <TD><asp:TextBox ID="txtId" runat="server" Width="160px" ReadOnly="True"></asp:TextBox>
             </TD></TR>
         <TR>
-          <TD width="25%"><FONT color=red>*</FONT> 公司名称： </TD>
+          <TD ><FONT color=red>*</FONT> 公司名称： </TD>
           <TD><asp:TextBox ID="txtCompanyName" runat="server" Width="160px"></asp:TextBox>
               <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                   ControlToValidate="txtCompanyName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-          <TD <FONT color=red><FONT color=red>*</FONT> 公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+         <TD ><FONT color=red>*</FONT> 公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
           <TD ><asp:TextBox ID="txtUrl" runat="server" Width="250px">http://</asp:TextBox>
-              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                  ControlToValidate="txtUrl" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
-              <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
-                  ControlToValidate="txtUrl" ErrorMessage="网址有误!" 
-                  ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"  ControlToValidate="txtUrl" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
+              <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"  ControlToValidate="txtUrl" ErrorMessage="网址有误!"  ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
             </TD></TR>
         <TR>
           <TD ><FONT color=red>*</FONT> 公司电话： </TD>
@@ -70,12 +67,12 @@
 
 </TD></TR>
         <TR>
-          <TD style="height: 15px" >&nbsp;&nbsp;&nbsp;所在城市： </TD>
-          <TD style="height: 15px" > <asp:DropDownList ID="ddlShi" runat="server"></asp:DropDownList>
+          <TD >&nbsp;&nbsp;&nbsp;所在城市： </TD>
+          <TD > <asp:DropDownList ID="ddlShi" runat="server"></asp:DropDownList>
             </TD></TR>
-        <TR id=ignore_type>
-          <TD ><FONT color=red>*</FONT> 所在行业： </TD>
-          <TD><asp:DropDownList ID="ddlVocation" runat="server" Height="16px" Width="250px">
+        <TR >
+          <TD class="style1" ><FONT color=red>*</FONT> 所在行业： </TD>
+          <TD class="style1"><asp:DropDownList ID="ddlVocation" runat="server" Height="22px" Width="250px"  >
               <asp:ListItem>请选择行业类别</asp:ListItem>
               <asp:ListItem>计算机</asp:ListItem>
               <asp:ListItem>互联网-电子商务</asp:ListItem>
@@ -117,7 +114,7 @@
               <asp:ListItem>其他</asp:ListItem>
               </asp:DropDownList>
             </TD></TR>
-            <tr><td></td><td>
+             <tr><td></td><td>
                 <asp:Button ID="btnSave" runat="server" Text="保存" Width="59px" 
                     onclick="btnSave_Click" />
                 </td></tr>
@@ -127,3 +124,16 @@
  </table>
 <!--内容结束-->
 </asp:Content>
+<asp:Content ID="Content3" runat="server" contentplaceholderid="head">
+
+    
+    <style type="text/css">
+        .style1
+        {
+            height: 28px;
+        }
+    </style>
+
+    
+</asp:Content>
+

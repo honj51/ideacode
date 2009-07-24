@@ -1,148 +1,273 @@
-﻿<%@ Page Title="客服中心-LiveSupport在线客服系统" Language="C#" MasterPageFile="~/AccountAdmin/MasterAccountAdmin.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="AccountAdmin_Default3" %>
-
+﻿<%@ Page Title="客服中心-LiveSupport在线客服系统" Language="C#" MasterPageFile="~/AccountAdmin/MasterAccountAdmin.master" AutoEventWireup="true" CodeFile="GetCode.aspx.cs" Inherits="AccountAdmin_Default3"  ValidateRequest="true"%>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="act" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
-    <SCRIPT type="text/javascript">
-        // <![CDATA[
-        var myMenu;
-        window.onload = function() {
-            myMenu = new SDMenu("my_menu");
-            //myMenu.remember = true
-            myMenu.oneSmOnly = true;
-            myMenu.init();
-            var firstSubmenu = myMenu.submenus[2];
-            myMenu.expandMenu(firstSubmenu);
-
-        }
-        function editCode() {
-            var is = document.getElementById('IcoStyle');
-            var as = document.getElementById('AutoStyle');
-            var cs = document.getElementById('ChatStyle');
-            var str1 = "<script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=<%=this.GetAccountId().ToString() %>";
-            str1 = str1 + "&IconStyle=" + is.value + "&InviteStyle=" + as.value + "&ChatStyle=" + cs.value;
-            var str2 = "'></s" + "cript>";
-            var locations = document.getElementsByName('icoLocation');
-            for (var i = 0; i < locations.length; i++) {
-                if (locations[i].checked) {
-                    str1 = str1 + "&IcoLocation=" + locations[i].value;
-                    break;
-                }
-            }
-            document.getElementById('codepic0').value = str1 + str2;
-        }
-        //显示客服图片
-        function showIcoImg(Ico) {
-            editCode();
-            var icos = document.getElementsByName('IcoImage');
-            var i = 0;
-            for (i; i < icos.length; i++) {
-                if (i == Ico.value) {
-                    icos[i].style.display = 'block';
-                }
-                else {
-                    icos[i].style.display = 'none';
-                }
-            }
-        }
-        function showAutoImg(at) {
-            editCode();
-            var icos = document.getElementsByName('AutoImage');
-            var i = 0;
-            for (i; i < icos.length; i++) {
-                if (i == at.value) {
-                    icos[i].style.display = 'block';
-                }
-                else {
-                    icos[i].style.display = 'none';
-                }
-            }
-        }
-        function showChatImage(ci) {
-
-            editCode();
-            var icos = document.getElementsByName('ChatImage');
-            var i = 0;
-            for (i; i < icos.length; i++) {
-                if (i == ci.value) {
-                    icos[i].style.display = 'block';
-                }
-                else {
-                    icos[i].style.display = 'none';
-                }
-            }
-        }
-    </SCRIPT>
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+ <style>
+    .modalPopup 
+    {
+	    background-color:#BFD1EE;
+	    border-style:solid;
+	    border-color:Gray;
+	    width:250px;
+    }
+    .modalBackground 
+    {
+	    background-color:Gray;
+	    filter:alpha(opacity=70);
+	    opacity:0.7;
+    }    
+     </style>
    <table cellpadding="0" cellspacing="0">
     <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
-    <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">手动安装代码</td></tr>
+    <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">
+        配置图片代码</td></tr>
     <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
   </table>
  
  <table  style="margin-top:5px;" cellpadding="0" cellspacing="0">
    <tr><td><img  src="Images/n_540_1.jpg" style="height: 16px; width: 570px"/></td></tr>
-   <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
+   <tr><td>
+   <table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
     <!--头部--->
       <div id="content-main-three-column" style="text-align:left;">
         <!--内容-->
-      <TABLE style=" width:510px; text-align:left;" cellSpacing=1 cellPadding=0 
+          <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+              <ContentTemplate>
+                  <TABLE style=" width:510px; text-align:left;" cellSpacing=1 cellPadding=0 
   <TBODY>
-  <tr><td>客服图标风格：</td><td valign="middle"><select id="IcoStyle" onchange="showIcoImg(this);">
-    <option value="0">风格一</option>
-    <option value="1">风格二</option>
-
-  </select></td><td align="right"><div>
-          <img name="IcoImage" src="Images/1-2.gif" style="height: 70px; display:block; width: 160px;" />
-          <img name="IcoImage" src="Images/2-2.gif" style="height: 70px; width: 160px; display:none;" />
-          <img name="IcoImage" src="Images/3-2.gif" style="height: 70px; display:none; width: 160px;" />
-          <img name="IcoImage" src="Images/4-2.gif" style="height: 70px; width:160px; display:none;" /></div></td></tr>
-  <tr><td>主动邀请风格：</td><td valign="middle">
-  <select id="AutoStyle" name="AutoStyle" onchange='showAutoImg(this)'>
-    <option value="0">风格一</option>
-    <option value="1">风格二</option>
-
-  </select></td><td align="right">
-          <img name="AutoImage" src="Images/1-3.gif" 
-              style="width: 161px; height: 53px; display:block;" />
-          <img name="AutoImage" src="Images/2-3.gif" style="width: 161px; height: 53px; display:none;" />
-          <img name="AutoImage" src="Images/3-3.gif" style="width: 161px; height: 53px; display:none;" />
-          <img name="AutoImage" src="Images/4-3.gif" style="width: 161px; height: 53px; display:none;" />
-          </td></tr>
-   <tr><td>聊天页面风格：</td><td valign="middle"> <select id="ChatStyle" name="ChatStyle" onchange='showChatImage(this);'>
-    <option value="0">风格一</option>
-  </select></td><td align="right">
-         <img name="ChatImage" src="Images/1-1.gif" 
-               style="height: 87px; width: 164px; display:block;"/>
-         <img name="ChatImage" src="Images/2-1.gif" style="height: 87px; width: 164px; display:none; "/>
-         <img name="ChatImage" src="Images/3-1.gif" style="height: 87px; width: 164px; display:none; "/>
-         <img name="ChatImage" src="Images/4-1.gif" style="height: 87px; width: 164px; display:none; "/>
-  </td></tr>
-  </tr>
-    <TD >图标位置：</TD>
-    <TD colspan=2 >
-    <INPUT onclick=editCode() type=radio CHECKED value="0" name="icolocation"> 固定客服图标
-    <INPUT onclick=editCode() type=radio  value="1" name="icolocation"> 左上角
-    <INPUT onclick=editCode() type=radio  value="3"   name="icoLocation" >左中间 
-    <INPUT onclick=editCode() type=radio  value="5"    name="icoLocation" >左下角<br />
-    <INPUT onclick=editCode() type=radio  value="2"   name="icoLocation" >右上角
-    <INPUT onclick=editCode() type=radio  value="4" name="icoLocation" >右中间 
-    <INPUT onclick=editCode() type=radio  value="6"   name="icoLocation" >右下角
-    </TD></TR>
-  <TR id=posmodel_tr>
-    <TD >代码：</TD>
-    <TD colspan=2 ><TEXTAREA class=textarea id='codepic0' name=codepic0 readOnly 
-            style="width: 410px; height: 81px"> </TEXTAREA></TD></TR>
-  <TR>
-    <TD>&nbsp;</TD>
-    <TD colspan=2><INPUT id=kf_city type=hidden name=kf_city> <INPUT class=green id=Submit onclick=editCode(); type=button value=获取代码 name=Submit>&nbsp; 
-      &nbsp;&nbsp;
-      <P></P></TD></TR></TBODY></TABLE>
+                      <tr>
+                          <td colspan="3">
+                              域名 ：<asp:DropDownList 
+          ID="drpDomainName" runat="server" 
+          Width="214px"  onselectedindexchanged="drpDomainName_SelectedIndexChanged" 
+          AutoPostBack="True" CausesValidation="True" >
+                              </asp:DropDownList>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              客服图标风格：</td>
+                          <td valign="middle" 
+          class="style1">
+                              <asp:DropDownList ID="DropDownList1" runat="server" 
+                                                                                    
+                                  AppendDataBoundItems="True" AutoPostBack="True" 
+                                                                                    
+                                  onselectedindexchanged="DropDownList1_SelectedIndexChanged">
+                                  <asp:ListItem Value="0">风格一</asp:ListItem>
+                                  <asp:ListItem Value="1">风格二</asp:ListItem>
+                              </asp:DropDownList>
+                              &nbsp;&nbsp;
+                              <asp:HyperLink ID="HyperLink2" runat="server" ForeColor="#FF6666">自定义</asp:HyperLink>
+                              <act:ModalPopupExtender ID="ModalPopupExtender1" runat="server"
+                    TargetControlID="HyperLink2"
+                    PopupControlID="Panel1"
+                    PopupDragHandleControlID="Panel1"
+                    BackgroundCssClass="modalBackground"
+                    DropShadow="true"
+                    CancelControlID="Button3" />
+                          </td>
+                          <td align="left">
+                              <div><asp:Image ID="Image6" Width="160px" Height="70px" runat="server" 
+                                      ImageUrl="~/AccountAdmin/Images/online0.JPG" />
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              主动邀请风格：</td>
+                          <td valign="middle" 
+          class="style1">
+                              <asp:DropDownList ID="DropDownList2" runat="server" 
+          AutoPostBack="True" onselectedindexchanged="DropDownList2_SelectedIndexChanged">
+                                  <asp:ListItem Value="0">风格一</asp:ListItem>
+                                  <asp:ListItem Value="1">风格二</asp:ListItem>
+                              </asp:DropDownList>
+                              &nbsp;&nbsp;&nbsp;
+                              <asp:HyperLink ID="HyperLink3" runat="server" ForeColor="#FF6666">自定义</asp:HyperLink>
+                              <act:ModalPopupExtender ID="ModalPopupExtender2" runat="server"
+                    TargetControlID="HyperLink3"
+                    PopupControlID="Panel2"
+                    PopupDragHandleControlID="Panel2"
+                    BackgroundCssClass="modalBackground"
+                    DropShadow="true" 
+                    CancelControlID="Button4" />
+                          </td>
+                          <td align="left">
+                            <asp:Image ID="Image7" Width="161px" Height="53px" runat="server" 
+                                  ImageUrl="~/AccountAdmin/Images/invite_bg0.gif" />
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="style2">
+                              聊天页面风格：</td>
+                          <td valign="middle" class="style3">
+                              <asp:DropDownList ID="DropDownList3" runat="server" 
+               AutoPostBack="True" onselectedindexchanged="DropDownList3_SelectedIndexChanged">
+                                  <asp:ListItem Selected="True">风格一</asp:ListItem>
+                              </asp:DropDownList>
+                              &nbsp;&nbsp;&nbsp;
+                              <asp:HyperLink ID="HyperLink4" runat="server" ForeColor="#FF6666">自定义</asp:HyperLink>
+                          </td>
+                          <td align="left" class="style2">
+                          <asp:Image ID="Image8" Width="164px" Height="87px" runat="server" 
+                                  ImageUrl="~/AccountAdmin/Images/chat_bg0.gif" />
+                          </td>
+                      </tr>
+                      </tr>
+                      <tr>
+                          <TD >
+                              图标位置：</TD>
+                          <TD colspan=2 >
+                              <asp:RadioButton ID="RadioButton0" runat="server" Text="固定客服图标" 
+                                  GroupName="icon" />
+                              &nbsp;
+                              <asp:RadioButton ID="RadioButton1" runat="server" Text="左上角" GroupName="icon" />
+                              &nbsp;<asp:RadioButton ID="RadioButton3" runat="server" Text="左中间" 
+                                  GroupName="icon" />
+                              <asp:RadioButton ID="RadioButton5" runat="server" Text="左下角" GroupName="icon" />
+                              <br />
+                              <asp:RadioButton ID="RadioButton2" runat="server" Text="右上角" GroupName="icon" />
+                              <asp:RadioButton ID="RadioButton4" runat="server" Text="右中间 " 
+                                  GroupName="icon" />
+                              <asp:RadioButton ID="RadioButton6" runat="server" Text="右下角 " 
+                                  GroupName="icon" />
+                          </TD>
+                      </TR>
+                      <tr>
+                          <td colspan="3" align="center">
+                              <asp:Button ID="Button1" runat="server" Text="确定" Width="64px" 
+                                  onclick="Button1_Click" />
+                          </td>
+                      </tr>
+                      </TBODY>
+                  </TABLE>
+              </ContentTemplate>
+          </asp:UpdatePanel>
       </div>
        <!--导航结束-->
 </td></tr></table></td></tr>
    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
  </table>
+ 
+<asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" 
+style="display:none" Height="182px" Width="354px">
+<div style="margin:5px;background-color:#FFF; width: 345px; height: 172px;">
+<div style="background-image:url('images/BG123.JPG'); height:25px; width: 347px; text-align:center;" > <strong>
+    上传漂浮旗子图片</strong></div>
+<table border="0" style="height: 131px; width: 342px" >
+<tr style="height:50px;">  
+<td >在线图片：&nbsp;
+<asp:FileUpload ID="FileUpload2" runat="server" Width="187px" />
+</td>
+<td >
+<asp:Image ID="Image2" runat="server" Width="50px" ImageUrl="~/AccountAdmin/Images/online1.JPG" />
+</td>
+</tr>
+<tr style="height:50px;">
+<td  align="center">离线图片：&nbsp;
+<asp:FileUpload ID="FileUpload1" runat="server" Height="23px" 
+style="margin-bottom: 0px" Width="186px" /><div>
+    <asp:Label ID="Label1" runat="server" ForeColor="#FF0066" Visible="False"></asp:Label></div>
+</td>
+<td >
+<asp:Image ID="Image3" runat="server"  Width="50px" ImageUrl="~/AccountAdmin/Images/offline1.jpg" />
+</tr>
+<tr>
+<td align="center">
+<asp:Button ID="Button2" runat="server" Text="上传" Width="51px" 
+        onclick="Button2_Click" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+<asp:Button ID="Button3" runat="server" Text="取消" Width="58px" />
+</td>
+<td align="center" >&nbsp;</td>
+</tr>
+</table>
+</div>
+</asp:Panel>
+
+        <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" Height="232px" 
+            style="display:none" Width="354px">
+            <div style="margin:5px;background-color:#FFF; width: 345px; height: 222px;">
+                <div style="background-image: url('../images/BG123.JPG'); height: 25px; width: 347px; text-align:center;">
+                    <strong>上传主动邀请图片</strong></div>
+                <table border="0" style="height: 131px; width: 342px">
+                    <tr style="height:50px;">
+                        <td>
+                            背景图片：&nbsp;
+                            <asp:FileUpload ID="FileUpload3" runat="server" Width="187px" />
+                        </td>
+                        <td>
+                            <asp:Image ID="Image4" runat="server" Width="50px"  ImageUrl="~/AccountAdmin/Images/invite_bg0.gif"/>
+                        </td>
+                    </tr>
+                    <tr style="height:50px;">
+                        <td>
+                            确定图片：&nbsp;
+                            <asp:FileUpload ID="FileUpload4" runat="server" Height="23px" 
+                                style="margin-bottom: 0px" Width="186px" />
+                        </td>
+                        <td>
+                            <asp:Image ID="Image5" runat="server"  Width="50px" ImageUrl="~/AccountAdmin/Images/btn_ok0.jpg" />
+                        </td>
+                    </tr>
+                     <tr style="height:50px;">
+                        <td>
+                            忽略图片：&nbsp;
+                            <asp:FileUpload ID="FileUpload5" runat="server" Height="23px" 
+                                style="margin-bottom: 0px" Width="186px" />
+                            <div><asp:Label ID="Label2" runat="server" ForeColor="#FF0066" Visible="False"></asp:Label></div>
+                        </td>
+                        <td>
+                            <asp:Image ID="Image1" runat="server" Width="50px" ImageUrl="~/AccountAdmin/Images/btn_no0.jpg" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <asp:Button ID="Button5" runat="server" Text="上传" Width="51px" 
+                                onclick="Button5_Click" style="height: 26px" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="Button4" runat="server" Text="取消" Width="58px" />
+                        </td>
+                        <td align="center">
+                            &nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </asp:Panel>
+         </asp:Content>
+
+ 
+ 
+
+<asp:Content ID="Content3" runat="server" contentplaceholderid="head">
+
+    <style type="text/css">
+        .style1
+        {
+            width: 180px;
+        }
+        .style2
+        {
+            height: 109px;
+        }
+        .style3
+        {
+            width: 180px;
+            height: 109px;
+        }
+    .modalPopup 
+    {
+	    background-color:#BFD1EE;
+	    border-style:solid;
+	    border-color:Gray;
+	    width:250px;
+    }
+    </style>
+
 </asp:Content>
+
 
  
  
