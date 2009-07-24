@@ -70,8 +70,5 @@ namespace IC.AutoUpdate
             wc.CancelAsync();
             this.Close();
         }
-
-      
-      
     }
 }
