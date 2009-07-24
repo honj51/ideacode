@@ -239,10 +239,9 @@ namespace LiveSupport.OperatorConsole
             }
             catch (Exception)
             {
-                
-                throw;
+                return null;
             }
-            return new List<PageRequest>(ws.GetHistoryPageRequests(visitorId, begin, end));
+            return lPageRequest;
         }
 
         public int AcceptChatRequest(string chatId)
@@ -300,7 +299,7 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetSystemAdvertiseCompleted(object sender, GetSystemAdvertiseCompletedEventArgs e)
         {
-            if (NewSystemAdvertise != null)
+            if (NewSystemAdvertise != null && e.Error == null)
             {
                 NewSystemAdvertise(this, new SystemAdvertiseEventArgs(new List<SystemAdvertise>(e.Result)));
             }
@@ -566,6 +565,10 @@ namespace LiveSupport.OperatorConsole
                 ConnectionStateChangeEventArgs args = new ConnectionStateChangeEventArgs(state);
                 args.Status = status;
                 args.Message = message;
+                if (status== ExceptionStatus.User)
+                {
+                    enablePooling = false;
+                }
                 ConnectionStateChanged(this, args);
             }
         }
