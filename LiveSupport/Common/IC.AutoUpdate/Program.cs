@@ -23,10 +23,13 @@ namespace IC.AutoUpdate
                 if (item.StartsWith("/url"))
                 {
                     ProductInstallFileUrl = item.Substring(4);
-                    MessageBox.Show(ProductInstallFileUrl);
                 }
             }
 
+            if (string.IsNullOrEmpty(ProductInstallFileUrl))
+            {
+                return;
+            }
             Application.Run(new Form1());
         }
     }
