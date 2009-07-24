@@ -72,6 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="WebSiteManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LiveSupportDAL\LiveSupportDAL.csproj">
