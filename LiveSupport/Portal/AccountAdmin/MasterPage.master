@@ -36,8 +36,6 @@
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">基本设置</SPAN> 
 <A href="AccountHome.aspx" >公司信息</A>
-<A href="UpdateAccount.aspx" >公司账号管理</A>
-
 </DIV>
 
 <DIV><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">客服管理</SPAN> 
