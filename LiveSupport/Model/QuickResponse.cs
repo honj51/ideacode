@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
+    [Serializable]
     public class QuickResponse
     {
         private int quickId;
@@ -14,7 +15,13 @@ namespace LiveSupport.LiveSupportModel
             get { return quickId; }
             set { quickId = value; }
         }
+        private string domainName;//域名
 
+        public string DomainName
+        {
+            get { return domainName; }
+            set { domainName = value; }
+        }
         private string accountId;//--公司ID
 
         public string AccountId
@@ -50,6 +57,7 @@ namespace LiveSupport.LiveSupportModel
         public QuickResponse(SqlDataReader data)
         {
             if (!Convert.IsDBNull(data["QuickId"])) this.quickId = (int)data["QuickId"];
+            if (!Convert.IsDBNull(data["DomainName"])) this.domainName = (string)data["DomainName"];
             if (!Convert.IsDBNull(data["AccountId"])) this.accountId = (string)data["AccountId"];
             if (!Convert.IsDBNull(data["OperatorId"])) this.operatorId = (string)data["OperatorId"];
             if (!Convert.IsDBNull(data["Submenu"])) this.submenu = (string)data["Submenu"];

@@ -8,6 +8,7 @@ namespace LiveSupport.LiveSupportModel
     /// <summary>
     /// 公司部门实体类
     /// </summary>
+    [Serializable]
     public class Department
     {
         private string departmentId;
