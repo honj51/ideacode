@@ -17,6 +17,8 @@ using System.Diagnostics;
 using VisualAsterisk.ExceptionManagement;
 using System.Reflection;
 using LiveSupport.OperatorConsole.Controls;
+using System.IO;
+using System.Xml;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -41,8 +43,17 @@ namespace LiveSupport.OperatorConsole
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main()
+        static void Main(string[] args)
 		{
+            foreach (var item in args)
+            {
+                if (item.StartsWith("/dv"))
+                {
+                    dumpVersionFile();
+                    return;
+                }
+            }
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
@@ -56,6 +67,19 @@ namespace LiveSupport.OperatorConsole
             //TestFileUploadControl();
             //TestOptionForm();
 		}
+
+        private static void dumpVersionFile()
+        {
+            string v = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode node = doc.CreateNode(XmlNodeType.XmlDeclaration, "", "");
+            doc.AppendChild(node);
+            XmlElement e = doc.CreateElement("LatestVersionNumber");
+            e.InnerText = v;
+            doc.AppendChild(e);
+            doc.Save("OperatorConsoleDeploy.xml");          
+        }
 
         static void TestOptionForm()
         {

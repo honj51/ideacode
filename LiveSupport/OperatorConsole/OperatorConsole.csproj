@@ -427,4 +427,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>"$(TargetPath)" /dv
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
