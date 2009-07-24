@@ -100,7 +100,7 @@ public static class OperatorService
 
     public static void Init()
     {
-        getOperatorsFromDB();        
+        GetOperatorsFromDB();        
     }
     /// <summary>
     ///  判定客服是否在线
@@ -135,7 +135,7 @@ public static class OperatorService
         
         if (op == null)
         {
-            getOperatorsFromDB();
+            GetOperatorsFromDB();
             op = FindOperator(account.AccountId, operatorName, password);
         }
         if (op != null)
@@ -196,7 +196,7 @@ public static class OperatorService
          }
          if (op == null)
          {
-             getOperatorsFromDB();
+             GetOperatorsFromDB();
              foreach (Operator item in operators)
              {
                  if (item.OperatorId == operatorId)
@@ -554,6 +554,35 @@ public static class OperatorService
          }
     }
     /// <summary>
+    /// 跟据域名更新快捷回复
+    /// </summary>
+    /// <param name="operatorId"></param>
+    /// <param name="response"></param>
+    public static void SaveQuickResponseByDomainName(string operatorId, string domainName, List<QuickResponseCategory> response)
+    {
+        string accountId = OperatorService.GetOperatorById(operatorId).AccountId;
+        DBProvider.DeleteQuickResponseByDomainName(domainName);
+        foreach (var item in response)
+        {
+            QuickResponse qr = new QuickResponse();
+            qr.DomainName = domainName;
+            qr.AccountId = accountId;
+            qr.Submenu = item.Name;
+            qr.OperatorId = operatorId;
+            string node = string.Empty;
+            foreach (var n in item.Responses)
+            {
+                node += n.ToString() + "|";
+            }
+            if (node.Length > 0 && node[node.Length - 1] == '|')
+            {
+                node = node.Substring(0, node.Length - 1);
+            }
+            qr.Node = node;
+            DBProvider.NewQuickResponse(qr);
+        }
+    }
+    /// <summary>
     /// 跟据公司查询快捷回复 
     /// </summary>
     /// <param name="accountId"></param>
@@ -566,6 +595,32 @@ public static class OperatorService
         foreach (var item in li)
         {
             QuickResponseCategory qrc = new QuickResponseCategory();
+            qrc.QuickId = item.QuickId;
+            qrc.Name = item.Submenu;
+            List<string> rli = new List<string>();
+            string[] ss = item.Node.Split('|');
+            foreach (var node in ss)
+            {
+                rli.Add(node);
+            }
+            qrc.Responses = rli;
+            qrcli.Add(qrc);
+        }
+        return qrcli;
+    }
+    /// <summary>
+    /// 跟据域名来获取快捷回复
+    /// </summary>
+    /// <param name="domainName"></param>
+    /// <returns></returns>
+    public static List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName)
+    {
+        List<QuickResponse> li = DBProvider.GetQuickResponseByDomainName(domainName);
+        List<QuickResponseCategory> qrcli = new List<QuickResponseCategory>();
+        foreach (var item in li)
+        {
+            QuickResponseCategory qrc = new QuickResponseCategory();
+            qrc.AccountId = item.AccountId;
             qrc.QuickId = item.QuickId;
             qrc.Name = item.Submenu;
             List<string> rli = new List<string>();
@@ -597,7 +652,7 @@ public static class OperatorService
     /// <summary>
     ///更新operator数据从数据库
     /// </summary>
-    public static void getOperatorsFromDB()
+    public static void GetOperatorsFromDB()
     {
         List < Operator > newops = Provider.GetAllOperators();
         foreach (var newop in newops)
