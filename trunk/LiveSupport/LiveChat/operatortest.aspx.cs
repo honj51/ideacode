@@ -9,7 +9,7 @@ public partial class operatortest : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        string path = Server.MapPath("~/App_Data");
     }
     protected void Timer1_Tick(object sender, EventArgs e)
     {

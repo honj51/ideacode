@@ -22,6 +22,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Text;
 using System.Configuration;
+using System.Xml;
     /// <summary>
     /// Contains all functionality for an operator to maintain
     /// a chat session with a client.
@@ -301,12 +302,17 @@ public class OperatorWS : System.Web.Services.WebService
         List<SystemAdvertise> li = new List<SystemAdvertise>();
         try
         {
+            string versionFilePath = Server.MapPath("~/App_Data")+"\\OperatorConsoleDeploy.xml";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(versionFilePath);
+            string latestVersionNum = doc.ChildNodes[0].InnerText;
+
             SystemAdvertise a = new SystemAdvertise();
             a.AdvertiseMessage = "欢迎您使用LiveSupport客服交流系统";
             a.AdvertiseUrl = "http://www.zxkefu.cn/";
             li.Add(a);
 
-            Version latestVersion = new Version(ConfigurationManager.AppSettings["LatestOperatorConsoleVersionNumber"].ToString());
+            Version latestVersion = new Version(latestVersionNum);
             Version versionToCheck = new Version(versionNumber);
             if (versionToCheck < latestVersion)
             {
