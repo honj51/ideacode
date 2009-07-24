@@ -55,6 +55,7 @@
     <Compile Include="Providers\IVisitorProvider.cs" />
     <Compile Include="Providers\IVisitSessionProvider.cs" />
     <Compile Include="Providers\IDBProvider.cs" />
+    <Compile Include="Providers\IWebSiteProvider.cs" />
     <Compile Include="SqlProviders\MyDateProvider.cs" />
     <Compile Include="SqlProviders\SqlAccountProvider.cs" />
     <Compile Include="SqlProviders\SqlChatProvider.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="SqlProviders\SqlProvinceProvider.cs" />
     <Compile Include="SqlProviders\SqlVisitorProvider.cs" />
     <Compile Include="SqlProviders\SqlVisitSessionProvider.cs" />
+    <Compile Include="SqlProviders\SqlWebSiteProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\LiveSupportModel.csproj">

@@ -60,7 +60,57 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 }
             }
         }
+        /// <summary>
+        /// 执行查询语句，返回DataSet
+        /// </summary>
+        /// <param name="SQLString">查询语句</param>
+        /// <returns>DataSet</returns>
+        public static DataSet Query(string SQLString, params SqlParameter[] cmdParms)
+        {
+            using (SqlConnection connection =DBHelper.Getconn())
+            {
+                SqlCommand cmd = new SqlCommand();
+                PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataSet ds = new DataSet();
+                    try
+                    {
+                        da.Fill(ds, "ds");
+                        cmd.Parameters.Clear();
+                    }
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                    return ds;
+                }
+            }
+        }
 
+        /// <summary>
+        /// 执行查询语句，返回DataSet
+        /// </summary>
+        /// <param name="SQLString">查询语句</param>
+        /// <returns>DataSet</returns>
+        public static DataSet Query(string SQLString)
+        {
+            using (SqlConnection connection = DBHelper.Getconn())
+            {
+                DataSet ds = new DataSet();
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
+                    command.Fill(ds, "ds");
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                return ds;
+            }
+        }
         #endregion
 
         ///执行查询方法
