@@ -53,8 +53,8 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label senddateLabel;
             System.Windows.Forms.Label subjectLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeOperatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -158,6 +158,8 @@ namespace LiveSupport.OperatorConsole
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsReplied = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.leaveWordBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtDomainRequested = new System.Windows.Forms.TextBox();
+            this.lblDomainRequested = new System.Windows.Forms.Label();
             this.btnDelLeaveWord = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.callerDateTextBox = new System.Windows.Forms.TextBox();
@@ -193,8 +195,6 @@ namespace LiveSupport.OperatorConsole
             this.stateToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
-            this.lblDomainRequested = new System.Windows.Forms.Label();
-            this.txtDomainRequested = new System.Windows.Forms.TextBox();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -1449,6 +1449,23 @@ namespace LiveSupport.OperatorConsole
             // 
             this.leaveWordBindingSource.DataSource = typeof(LiveSupport.OperatorConsole.LiveChatWS.LeaveWord);
             // 
+            // txtDomainRequested
+            // 
+            this.txtDomainRequested.Location = new System.Drawing.Point(87, 12);
+            this.txtDomainRequested.Name = "txtDomainRequested";
+            this.txtDomainRequested.ReadOnly = true;
+            this.txtDomainRequested.Size = new System.Drawing.Size(286, 21);
+            this.txtDomainRequested.TabIndex = 27;
+            // 
+            // lblDomainRequested
+            // 
+            this.lblDomainRequested.AutoSize = true;
+            this.lblDomainRequested.Location = new System.Drawing.Point(21, 15);
+            this.lblDomainRequested.Name = "lblDomainRequested";
+            this.lblDomainRequested.Size = new System.Drawing.Size(59, 12);
+            this.lblDomainRequested.TabIndex = 26;
+            this.lblDomainRequested.Text = "访问域名:";
+            // 
             // btnDelLeaveWord
             // 
             this.btnDelLeaveWord.Location = new System.Drawing.Point(336, 286);
@@ -1609,13 +1626,13 @@ namespace LiveSupport.OperatorConsole
             this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode5.Name = "节点0";
-            treeNode5.Text = "在线客服";
-            treeNode6.Name = "节点1";
-            treeNode6.Text = "离线客服";
+            treeNode1.Name = "节点0";
+            treeNode1.Text = "在线客服";
+            treeNode2.Name = "节点1";
+            treeNode2.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
+            treeNode1,
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1777,23 +1794,6 @@ namespace LiveSupport.OperatorConsole
             this.loginTimer.Enabled = true;
             this.loginTimer.Interval = 1000;
             this.loginTimer.Tick += new System.EventHandler(this.loginTimer_Tick);
-            // 
-            // lblDomainRequested
-            // 
-            this.lblDomainRequested.AutoSize = true;
-            this.lblDomainRequested.Location = new System.Drawing.Point(21, 15);
-            this.lblDomainRequested.Name = "lblDomainRequested";
-            this.lblDomainRequested.Size = new System.Drawing.Size(59, 12);
-            this.lblDomainRequested.TabIndex = 26;
-            this.lblDomainRequested.Text = "访问域名:";
-            // 
-            // txtDomainRequested
-            // 
-            this.txtDomainRequested.Location = new System.Drawing.Point(87, 12);
-            this.txtDomainRequested.Name = "txtDomainRequested";
-            this.txtDomainRequested.ReadOnly = true;
-            this.txtDomainRequested.Size = new System.Drawing.Size(286, 21);
-            this.txtDomainRequested.TabIndex = 27;
             // 
             // MainForm
             // 
