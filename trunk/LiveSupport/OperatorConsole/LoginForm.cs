@@ -20,6 +20,7 @@ using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
+using System.Web.Services.Protocols;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -80,6 +81,12 @@ namespace LiveSupport.OperatorConsole
             {
                 Trace.WriteLine("Login异常: " + e.Message);
                 loginStatusChange(true,"连接网络失败");
+                return;
+            }
+            catch (SoapException se)
+            {
+                Trace.WriteLine("Login异常: " + se.Message);
+                loginStatusChange(true, "服务正在维护,请稍候再试");
                 return;
             }
 
