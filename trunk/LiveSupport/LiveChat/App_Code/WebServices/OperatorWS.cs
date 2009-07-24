@@ -346,7 +346,7 @@ public class OperatorWS : System.Web.Services.WebService
     }
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public List<QuickResponseCategory> GetQuickResponse(string dominName)
+    public List<QuickResponseCategory> GetQuickResponseByDomainName(string dominName)
     {
         checkAuthentication();
         return OperatorService.GetQuickResponseByDomainName(dominName);
