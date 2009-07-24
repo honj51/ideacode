@@ -36,6 +36,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panelMessage = new System.Windows.Forms.Panel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -57,13 +58,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
-            this.visitorCompanyLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.visitCountLabel = new System.Windows.Forms.Label();
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
+            this.domainRequestedLabel = new System.Windows.Forms.Label();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -140,6 +140,14 @@
             this.panelMessage.Size = new System.Drawing.Size(426, 274);
             this.panelMessage.TabIndex = 9;
             // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
+            this.chatMessageViewerControl1.TabIndex = 0;
+            // 
             // toolStrip2
             // 
             this.toolStrip2.BackColor = System.Drawing.Color.Transparent;
@@ -202,7 +210,7 @@
             this.flashToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.windows_16;
             this.flashToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.flashToolStripMenuItem.Name = "flashToolStripMenuItem";
-            this.flashToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.flashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.flashToolStripMenuItem.Text = "窗口闪烁";
             // 
             // ringToolStripMenuItem
@@ -211,7 +219,7 @@
             this.ringToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.alarmd;
             this.ringToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ringToolStripMenuItem.Name = "ringToolStripMenuItem";
-            this.ringToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.ringToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ringToolStripMenuItem.Text = "声音提醒";
             // 
             // toolStripLabel1
@@ -350,7 +358,7 @@
             this.glassPanel1.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.glassPanel1.ButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))), ((int)(((byte)(90)))));
             this.glassPanel1.Controls.Add(this.remarkLabel);
-            this.glassPanel1.Controls.Add(this.visitorCompanyLabel);
+            this.glassPanel1.Controls.Add(this.domainRequestedLabel);
             this.glassPanel1.Controls.Add(this.pictureBox1);
             this.glassPanel1.Controls.Add(this.visitCountLabel);
             this.glassPanel1.Controls.Add(this.visitorNameLabel);
@@ -372,16 +380,6 @@
             this.remarkLabel.Size = new System.Drawing.Size(59, 12);
             this.remarkLabel.TabIndex = 5;
             this.remarkLabel.Text = "备注信息:";
-            // 
-            // visitorCompanyLabel
-            // 
-            this.visitorCompanyLabel.AutoSize = true;
-            this.visitorCompanyLabel.ForeColor = System.Drawing.Color.White;
-            this.visitorCompanyLabel.Location = new System.Drawing.Point(17, 63);
-            this.visitorCompanyLabel.Name = "visitorCompanyLabel";
-            this.visitorCompanyLabel.Size = new System.Drawing.Size(59, 12);
-            this.visitorCompanyLabel.TabIndex = 4;
-            this.visitorCompanyLabel.Text = "所属公司:";
             // 
             // pictureBox1
             // 
@@ -438,13 +436,15 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // chatMessageViewerControl1
+            // domainRequestedLabel
             // 
-            this.chatMessageViewerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(0, 0);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 274);
-            this.chatMessageViewerControl1.TabIndex = 0;
+            this.domainRequestedLabel.AutoSize = true;
+            this.domainRequestedLabel.ForeColor = System.Drawing.Color.White;
+            this.domainRequestedLabel.Location = new System.Drawing.Point(17, 63);
+            this.domainRequestedLabel.Name = "domainRequestedLabel";
+            this.domainRequestedLabel.Size = new System.Drawing.Size(59, 12);
+            this.domainRequestedLabel.TabIndex = 4;
+            this.domainRequestedLabel.Text = "访问域名:";
             // 
             // ChatForm
             // 
@@ -509,7 +509,6 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
         private System.Windows.Forms.ToolStripMenuItem flashToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ringToolStripMenuItem;
-        private System.Windows.Forms.Label visitorCompanyLabel;
         private System.Windows.Forms.Label remarkLabel;
         private System.Windows.Forms.Label lblVisitorInfo;
 
@@ -519,6 +518,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private ChatMessageViewerControl chatMessageViewerControl1;
         private System.Windows.Forms.TextBox txtMsg;
+        private System.Windows.Forms.Label domainRequestedLabel;
        
     }
 }

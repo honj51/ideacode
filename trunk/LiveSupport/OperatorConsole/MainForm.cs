@@ -17,19 +17,20 @@ namespace LiveSupport.OperatorConsole
     public partial class MainForm : Form
     {
         #region VisitorTreeView_HeaderColumn Index
-        private const int VisitorTreeView_HeaderColumn_VisitorName = 0;
-        private const int VisitorTreeView_HeaderColumn_Location = 1;
-        private const int VisitorTreeView_HeaderColumn_Browser = 2;
-        private const int VisitorTreeView_HeaderColumn_VisitCount = 3;
-        private const int VisitorTreeView_HeaderColumn_Operator = 4;
-        private const int VisitorTreeView_HeaderColumn_Status = 5;
-        private const int VisitorTreeView_HeaderColumn_VisitTime = 6;
-        private const int VisitorTreeView_HeaderColumn_LeaveTime = 7;
-        private const int VisitorTreeView_HeaderColumn_ChatRequestTime = 8;
-        private const int VisitorTreeView_HeaderColumn_ChatStartTime = 9;
-        private const int VisitorTreeView_HeaderColumn_WaitingDuring = 10;
-        private const int VisitorTreeView_HeaderColumn_ChattingDuring = 11;
-        private const int VisitorTreeView_HeaderColumn_PageRequestCount = 12;
+        private const int VisitorTreeView_HeaderColumn_VisitorName = 1;
+        private const int VisitorTreeView_HeaderColumn_DomainRequested = 2;
+        private const int VisitorTreeView_HeaderColumn_Location = 3;
+        private const int VisitorTreeView_HeaderColumn_Browser = 0;
+        private const int VisitorTreeView_HeaderColumn_VisitCount = 4;
+        private const int VisitorTreeView_HeaderColumn_Operator = 5;
+        private const int VisitorTreeView_HeaderColumn_Status = 6;
+        private const int VisitorTreeView_HeaderColumn_VisitTime = 7;
+        private const int VisitorTreeView_HeaderColumn_LeaveTime = 8;
+        private const int VisitorTreeView_HeaderColumn_ChatRequestTime = 9;
+        private const int VisitorTreeView_HeaderColumn_ChatStartTime = 10;
+        private const int VisitorTreeView_HeaderColumn_WaitingDuring = 11;
+        private const int VisitorTreeView_HeaderColumn_ChattingDuring = 12;
+        private const int VisitorTreeView_HeaderColumn_PageRequestCount = 13;
         #endregion
 
         private Hashtable[] groupTables;// Declare a Hashtable array in which to store the groups.
@@ -109,6 +110,18 @@ namespace LiveSupport.OperatorConsole
         void operaterServiceAgent_NewSystemAdvertise(object sender, SystemAdvertiseEventArgs e)
         {
             systemAdvertises = e.Advertises;
+            foreach (var item in systemAdvertises)
+            {
+                if (item.AdvertiseUrl.Equals("http://www.zxkefu.cn/Download.aspx", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (MessageBox.Show("客户端已有新版本发布,是否更新","程序更新", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Process.Start("IC.AutoUpdate.exe");
+                        Application.Exit();
+                    }
+                    
+                }
+            }
         }
 
         #endregion
@@ -516,12 +529,11 @@ namespace LiveSupport.OperatorConsole
         {
             VisitorListViewItem vlvi = new VisitorListViewItem();
             vlvi.Visitor = visitor;
-
             string browser = Common.GetBrowserShortName(vlvi.VisitSession.Browser);
             string status = Common.GetVisitSessionStatusText(vlvi.VisitSession.Status);
             string visitingTime = vlvi.VisitSession.VisitingTime.Ticks == 0 ? "" : vlvi.VisitSession.VisitingTime.ToString();
 
-            ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.Location,
+            ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.DomainRequested,vlvi.VisitSession.Location,
                          vlvi.Visitor.VisitCount.ToString(),"暂无接待",status,
                          vlvi.VisitSession.VisitingTime.ToString(), "", "",
                          "","", "",vlvi.VisitSession.PageRequestCount.ToString()
@@ -873,7 +885,7 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                if (e.Column.Equals(VisitorTreeView_HeaderColumn_VisitorName) || e.Column.Equals(VisitorTreeView_HeaderColumn_Browser) || e.Column.Equals(VisitorTreeView_HeaderColumn_Operator) || e.Column.Equals(VisitorTreeView_HeaderColumn_Status))
+                if (e.Column.Equals(VisitorTreeView_HeaderColumn_VisitorName) || e.Column.Equals(VisitorTreeView_HeaderColumn_Browser) || e.Column.Equals(VisitorTreeView_HeaderColumn_Operator) || e.Column.Equals(VisitorTreeView_HeaderColumn_Status) || e.Column.Equals(VisitorTreeView_HeaderColumn_DomainRequested))
                 {
                     groupTables = new Hashtable[e.Column + 1];
                     groupTables[e.Column] = CreateGroupsTable(e.Column);

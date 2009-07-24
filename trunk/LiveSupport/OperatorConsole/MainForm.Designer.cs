@@ -53,8 +53,8 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label senddateLabel;
             System.Windows.Forms.Label subjectLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeOperatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +94,7 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors = new System.Windows.Forms.ListView();
             this.colBrowser1 = new System.Windows.Forms.ColumnHeader();
             this.colName = new System.Windows.Forms.ColumnHeader();
+            this.colDomainRequested = new System.Windows.Forms.ColumnHeader();
             this.colLocation = new System.Windows.Forms.ColumnHeader();
             this.colVisitCount = new System.Windows.Forms.ColumnHeader();
             this.colOperator = new System.Windows.Forms.ColumnHeader();
@@ -192,6 +193,8 @@ namespace LiveSupport.OperatorConsole
             this.stateToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblDomainRequested = new System.Windows.Forms.Label();
+            this.txtDomainRequested = new System.Windows.Forms.TextBox();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -371,7 +374,7 @@ namespace LiveSupport.OperatorConsole
             // callerDateLabel
             // 
             callerDateLabel.AutoSize = true;
-            callerDateLabel.Location = new System.Drawing.Point(23, 28);
+            callerDateLabel.Location = new System.Drawing.Point(23, 42);
             callerDateLabel.Name = "callerDateLabel";
             callerDateLabel.Size = new System.Drawing.Size(59, 12);
             callerDateLabel.TabIndex = 0;
@@ -380,7 +383,7 @@ namespace LiveSupport.OperatorConsole
             // callerNameLabel
             // 
             callerNameLabel.AutoSize = true;
-            callerNameLabel.Location = new System.Drawing.Point(23, 55);
+            callerNameLabel.Location = new System.Drawing.Point(23, 69);
             callerNameLabel.Name = "callerNameLabel";
             callerNameLabel.Size = new System.Drawing.Size(47, 12);
             callerNameLabel.TabIndex = 2;
@@ -389,7 +392,7 @@ namespace LiveSupport.OperatorConsole
             // contentLabel
             // 
             contentLabel.AutoSize = true;
-            contentLabel.Location = new System.Drawing.Point(22, 139);
+            contentLabel.Location = new System.Drawing.Point(23, 150);
             contentLabel.Name = "contentLabel";
             contentLabel.Size = new System.Drawing.Size(35, 12);
             contentLabel.TabIndex = 4;
@@ -398,7 +401,7 @@ namespace LiveSupport.OperatorConsole
             // emailLabel1
             // 
             emailLabel1.AutoSize = true;
-            emailLabel1.Location = new System.Drawing.Point(209, 28);
+            emailLabel1.Location = new System.Drawing.Point(209, 42);
             emailLabel1.Name = "emailLabel1";
             emailLabel1.Size = new System.Drawing.Size(41, 12);
             emailLabel1.TabIndex = 6;
@@ -407,7 +410,7 @@ namespace LiveSupport.OperatorConsole
             // ipLabel1
             // 
             ipLabel1.AutoSize = true;
-            ipLabel1.Location = new System.Drawing.Point(211, 85);
+            ipLabel1.Location = new System.Drawing.Point(211, 99);
             ipLabel1.Name = "ipLabel1";
             ipLabel1.Size = new System.Drawing.Size(17, 12);
             ipLabel1.TabIndex = 10;
@@ -416,7 +419,7 @@ namespace LiveSupport.OperatorConsole
             // operatorNameLabel
             // 
             operatorNameLabel.AutoSize = true;
-            operatorNameLabel.Location = new System.Drawing.Point(22, 82);
+            operatorNameLabel.Location = new System.Drawing.Point(22, 96);
             operatorNameLabel.Name = "operatorNameLabel";
             operatorNameLabel.Size = new System.Drawing.Size(47, 12);
             operatorNameLabel.TabIndex = 16;
@@ -425,7 +428,7 @@ namespace LiveSupport.OperatorConsole
             // phoneLabel
             // 
             phoneLabel.AutoSize = true;
-            phoneLabel.Location = new System.Drawing.Point(209, 55);
+            phoneLabel.Location = new System.Drawing.Point(209, 69);
             phoneLabel.Name = "phoneLabel";
             phoneLabel.Size = new System.Drawing.Size(59, 12);
             phoneLabel.TabIndex = 18;
@@ -443,7 +446,7 @@ namespace LiveSupport.OperatorConsole
             // subjectLabel
             // 
             subjectLabel.AutoSize = true;
-            subjectLabel.Location = new System.Drawing.Point(22, 112);
+            subjectLabel.Location = new System.Drawing.Point(22, 126);
             subjectLabel.Name = "subjectLabel";
             subjectLabel.Size = new System.Drawing.Size(35, 12);
             subjectLabel.TabIndex = 22;
@@ -758,16 +761,17 @@ namespace LiveSupport.OperatorConsole
             this.lblVisitorOnChat.Name = "lblVisitorOnChat";
             this.lblVisitorOnChat.Size = new System.Drawing.Size(107, 12);
             this.lblVisitorOnChat.TabIndex = 3;
-            this.lblVisitorOnChat.Text = "对话中的访客数: 3";
+            this.lblVisitorOnChat.Text = "对话中的访客数: *";
             // 
             // lblCurrentVisitors
             // 
             this.lblCurrentVisitors.AutoSize = true;
             this.lblCurrentVisitors.Location = new System.Drawing.Point(260, 7);
             this.lblCurrentVisitors.Name = "lblCurrentVisitors";
-            this.lblCurrentVisitors.Size = new System.Drawing.Size(89, 12);
+            this.lblCurrentVisitors.Size = new System.Drawing.Size(83, 12);
             this.lblCurrentVisitors.TabIndex = 2;
-            this.lblCurrentVisitors.Text = "当前访客数: 39";
+            this.lblCurrentVisitors.Text = "当前访客数: *";
+            this.lblCurrentVisitors.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblMyChat
             // 
@@ -776,13 +780,14 @@ namespace LiveSupport.OperatorConsole
             this.lblMyChat.Name = "lblMyChat";
             this.lblMyChat.Size = new System.Drawing.Size(83, 12);
             this.lblMyChat.TabIndex = 4;
-            this.lblMyChat.Text = "我的对话数: 2";
+            this.lblMyChat.Text = "我的对话数: *";
             // 
             // lstVisitors
             // 
             this.lstVisitors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colBrowser1,
             this.colName,
+            this.colDomainRequested,
             this.colLocation,
             this.colVisitCount,
             this.colOperator,
@@ -811,7 +816,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // colBrowser1
             // 
-            this.colBrowser1.DisplayIndex = 2;
+            this.colBrowser1.DisplayIndex = 3;
             this.colBrowser1.Text = "浏览器";
             // 
             // colName
@@ -820,9 +825,15 @@ namespace LiveSupport.OperatorConsole
             this.colName.Text = "访客";
             this.colName.Width = 80;
             // 
+            // colDomainRequested
+            // 
+            this.colDomainRequested.DisplayIndex = 1;
+            this.colDomainRequested.Text = "访问域名";
+            this.colDomainRequested.Width = 77;
+            // 
             // colLocation
             // 
-            this.colLocation.DisplayIndex = 1;
+            this.colLocation.DisplayIndex = 2;
             this.colLocation.Text = "地理位置";
             this.colLocation.Width = 100;
             // 
@@ -1345,6 +1356,8 @@ namespace LiveSupport.OperatorConsole
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.txtDomainRequested);
+            this.splitContainer1.Panel2.Controls.Add(this.lblDomainRequested);
             this.splitContainer1.Panel2.Controls.Add(this.btnDelLeaveWord);
             this.splitContainer1.Panel2.Controls.Add(this.btnSend);
             this.splitContainer1.Panel2.Controls.Add(callerDateLabel);
@@ -1459,7 +1472,7 @@ namespace LiveSupport.OperatorConsole
             // callerDateTextBox
             // 
             this.callerDateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "CallerDate", true));
-            this.callerDateTextBox.Location = new System.Drawing.Point(88, 25);
+            this.callerDateTextBox.Location = new System.Drawing.Point(88, 39);
             this.callerDateTextBox.Name = "callerDateTextBox";
             this.callerDateTextBox.ReadOnly = true;
             this.callerDateTextBox.Size = new System.Drawing.Size(92, 21);
@@ -1468,7 +1481,7 @@ namespace LiveSupport.OperatorConsole
             // callerNameTextBox
             // 
             this.callerNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "CallerName", true));
-            this.callerNameTextBox.Location = new System.Drawing.Point(88, 52);
+            this.callerNameTextBox.Location = new System.Drawing.Point(88, 66);
             this.callerNameTextBox.Name = "callerNameTextBox";
             this.callerNameTextBox.ReadOnly = true;
             this.callerNameTextBox.Size = new System.Drawing.Size(92, 21);
@@ -1479,18 +1492,18 @@ namespace LiveSupport.OperatorConsole
             this.contentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.contentTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Content", true));
-            this.contentTextBox.Location = new System.Drawing.Point(88, 139);
+            this.contentTextBox.Location = new System.Drawing.Point(88, 150);
             this.contentTextBox.Multiline = true;
             this.contentTextBox.Name = "contentTextBox";
             this.contentTextBox.ReadOnly = true;
             this.contentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.contentTextBox.Size = new System.Drawing.Size(286, 141);
+            this.contentTextBox.Size = new System.Drawing.Size(286, 130);
             this.contentTextBox.TabIndex = 5;
             // 
             // emailTextBox1
             // 
             this.emailTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Email", true));
-            this.emailTextBox1.Location = new System.Drawing.Point(274, 25);
+            this.emailTextBox1.Location = new System.Drawing.Point(274, 39);
             this.emailTextBox1.Name = "emailTextBox1";
             this.emailTextBox1.ReadOnly = true;
             this.emailTextBox1.Size = new System.Drawing.Size(92, 21);
@@ -1499,7 +1512,7 @@ namespace LiveSupport.OperatorConsole
             // ipTextBox1
             // 
             this.ipTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Ip", true));
-            this.ipTextBox1.Location = new System.Drawing.Point(276, 82);
+            this.ipTextBox1.Location = new System.Drawing.Point(276, 96);
             this.ipTextBox1.Name = "ipTextBox1";
             this.ipTextBox1.ReadOnly = true;
             this.ipTextBox1.Size = new System.Drawing.Size(90, 21);
@@ -1521,7 +1534,7 @@ namespace LiveSupport.OperatorConsole
             // operatorNameTextBox
             // 
             this.operatorNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "OperatorName", true));
-            this.operatorNameTextBox.Location = new System.Drawing.Point(87, 79);
+            this.operatorNameTextBox.Location = new System.Drawing.Point(87, 93);
             this.operatorNameTextBox.Name = "operatorNameTextBox";
             this.operatorNameTextBox.ReadOnly = true;
             this.operatorNameTextBox.Size = new System.Drawing.Size(92, 21);
@@ -1530,7 +1543,7 @@ namespace LiveSupport.OperatorConsole
             // phoneTextBox
             // 
             this.phoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Phone", true));
-            this.phoneTextBox.Location = new System.Drawing.Point(274, 52);
+            this.phoneTextBox.Location = new System.Drawing.Point(274, 66);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.ReadOnly = true;
             this.phoneTextBox.Size = new System.Drawing.Size(92, 21);
@@ -1551,7 +1564,7 @@ namespace LiveSupport.OperatorConsole
             this.subjectTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.subjectTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Subject", true));
-            this.subjectTextBox.Location = new System.Drawing.Point(87, 109);
+            this.subjectTextBox.Location = new System.Drawing.Point(87, 123);
             this.subjectTextBox.Name = "subjectTextBox";
             this.subjectTextBox.ReadOnly = true;
             this.subjectTextBox.Size = new System.Drawing.Size(286, 21);
@@ -1596,13 +1609,13 @@ namespace LiveSupport.OperatorConsole
             this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "节点0";
-            treeNode3.Text = "在线客服";
-            treeNode4.Name = "节点1";
-            treeNode4.Text = "离线客服";
+            treeNode5.Name = "节点0";
+            treeNode5.Text = "在线客服";
+            treeNode6.Name = "节点1";
+            treeNode6.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode5,
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1631,6 +1644,7 @@ namespace LiveSupport.OperatorConsole
             this.restartConnectionToolStripMenuItem.Name = "restartConnectionToolStripMenuItem";
             this.restartConnectionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.restartConnectionToolStripMenuItem.Text = "上线";
+            this.restartConnectionToolStripMenuItem.Visible = false;
             this.restartConnectionToolStripMenuItem.Click += new System.EventHandler(this.restartConnectionToolStripMenuItem_Click);
             // 
             // changeAccountToolStripMenuItem
@@ -1763,6 +1777,23 @@ namespace LiveSupport.OperatorConsole
             this.loginTimer.Enabled = true;
             this.loginTimer.Interval = 1000;
             this.loginTimer.Tick += new System.EventHandler(this.loginTimer_Tick);
+            // 
+            // lblDomainRequested
+            // 
+            this.lblDomainRequested.AutoSize = true;
+            this.lblDomainRequested.Location = new System.Drawing.Point(21, 15);
+            this.lblDomainRequested.Name = "lblDomainRequested";
+            this.lblDomainRequested.Size = new System.Drawing.Size(59, 12);
+            this.lblDomainRequested.TabIndex = 26;
+            this.lblDomainRequested.Text = "访问域名:";
+            // 
+            // txtDomainRequested
+            // 
+            this.txtDomainRequested.Location = new System.Drawing.Point(87, 12);
+            this.txtDomainRequested.Name = "txtDomainRequested";
+            this.txtDomainRequested.ReadOnly = true;
+            this.txtDomainRequested.Size = new System.Drawing.Size(286, 21);
+            this.txtDomainRequested.TabIndex = 27;
             // 
             // MainForm
             // 
@@ -1962,5 +1993,8 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsReplied;
         private System.Windows.Forms.ToolStripMenuItem restartConnectionToolStripMenuItem;
         private System.Windows.Forms.Button btnDelLeaveWord;
+        private System.Windows.Forms.ColumnHeader colDomainRequested;
+        private System.Windows.Forms.TextBox txtDomainRequested;
+        private System.Windows.Forms.Label lblDomainRequested;
     }
 }

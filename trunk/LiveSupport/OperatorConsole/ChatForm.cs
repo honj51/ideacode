@@ -141,9 +141,8 @@ namespace LiveSupport.OperatorConsole
             Visitor item = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             this.Text = "与 " + item.Name + " 对话中";
             this.visitorNameLabel.Text += item.Name;
-            this.visitorCompanyLabel.Text += item.Company;
             this.remarkLabel.Text += item.Remark;
-            this.visitCountLabel.Text += item.VisitCount.ToString();
+            this.domainRequestedLabel.Text += item.CurrentSession.DomainRequested.ToString();
             this.visitorLocationLabel.Text += item.CurrentSession.Location;
             txtMsg.Focus();
             this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
@@ -271,8 +270,8 @@ namespace LiveSupport.OperatorConsole
         }
         //写信息
         private void WriteMessage(string message)
-        { 
-            WriteMessage(message,operatorServiceAgent.CurrentOperator.NickName);
+        {
+            WriteMessage(message,operatorServiceAgent.CurrentOperator !=null ?operatorServiceAgent.CurrentOperator.NickName :null );
         }
         //写信息
         private void WriteMessage(string message, string From)
@@ -290,7 +289,8 @@ namespace LiveSupport.OperatorConsole
             catch (WebException wmg)
             {
                 Debug.WriteLine("sendMessage exception:" + wmg.Message);
-                chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送\r\n\r\n,此次发送消息为：“" + msg.Text + "”");
+                string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>"+msg.SentDate+"\r\n\r\n可能由于网络原因“" + msg.Text + "”消息发送失败。</span><br />";
+                chatMessageViewerControl1.AddText(text);
                 return;
             }
             //string msgs= string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message);
