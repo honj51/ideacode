@@ -82,10 +82,10 @@
   </wsdl:binding>
   <wsdl:service name="ServiceConnectWS">
     <wsdl:port name="ServiceConnectWSSoap" binding="tns:ServiceConnectWSSoap">
-      <soap:address location="http://localhost:3355/LiveChat/ServiceConnect.asmx" />
+      <soap:address location="http://lcs.zxkefu.cn/ServiceConnect.asmx" />
     </wsdl:port>
     <wsdl:port name="ServiceConnectWSSoap12" binding="tns:ServiceConnectWSSoap12">
-      <soap12:address location="http://localhost:3355/LiveChat/ServiceConnect.asmx" />
+      <soap12:address location="http://lcs.zxkefu.cn/ServiceConnect.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

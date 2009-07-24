@@ -91,10 +91,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3355/LiveChat/ServiceConnect.asmx">
+    <WebReferenceUrl Include="http://lcs.zxkefu.cn/ServiceConnect.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ws\</RelPath>
-      <UpdateFromURL>http://localhost:3355/LiveChat/ServiceConnect.asmx</UpdateFromURL>
+      <UpdateFromURL>http://lcs.zxkefu.cn/ServiceConnect.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
