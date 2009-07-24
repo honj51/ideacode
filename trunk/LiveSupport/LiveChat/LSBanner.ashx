@@ -8,32 +8,17 @@ public class LSBanner : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         string aid =context.Request.QueryString["aid"];
-        string companyName=AccountService.GetAccountById(aid).CompanyName;
-        string IconStyle = "0"; //客服样式(图片)
-        string InviteStyle = "0";//主动邀请样式
-        string ChatStyle = "0";//聊天样式
-        string IcoLocation ="0";//显示的位置样式
+        string companyName=AccountService.GetAccountById(aid).CompanyName;//我公司名
+        LiveSupport.LiveSupportModel.WebSite webSite=LiveSupport.BLL.WebSiteManager.GetWebSiteByDomainName(Lib.GetDomainName(context.Request.UrlReferrer.ToString()));//用堿名取一行数
+        string IconStyle = webSite.IconStyle; //客服样式(图片)
+        string InviteStyle =webSite.InviteStyle;//主动邀请样式
+        string ChatStyle = webSite.ChatStyle;//聊天样式
+        string IcoLocation = webSite.IcoLocation;//显示的位置样式
         string bannerType ="0";// 0: 简单按钮, 1: 客服列表, 2: 部门列表
         string LCS_BannerJs = "orientationIE.js";
         if (context.Request.QueryString["aid"] != null)
         { 
             aid=context.Request.QueryString["aid"];
-        }
-        if (context.Request.QueryString["IconStyle"]!=null)
-        {
-           IconStyle=context.Request.QueryString["IconStyle"]; //客服样式(图片)
-        }
-        if (context.Request.QueryString["InviteStyle"] != null)
-        {
-            InviteStyle = context.Request.QueryString["InviteStyle"];//主动邀请样式
-        }
-        if(context.Request.QueryString["ChatStyle"]!=null)
-        {
-           ChatStyle=context.Request.QueryString["ChatStyle"]; //聊天样式
-        }
-        if (context.Request.QueryString["IcoLocation"] != null)
-        {
-            IcoLocation = context.Request.QueryString["IcoLocation"];//显示的位置样式
         }
         if (companyName == null)
         {

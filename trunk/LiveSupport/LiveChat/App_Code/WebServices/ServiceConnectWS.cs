@@ -30,7 +30,7 @@ public class ServiceConnectWS : System.Web.Services.WebService
     [WebMethod]
     public void ReloadOperators()
     {
-        OperatorService.getOperatorsFromDB();
+        OperatorService.GetOperatorsFromDB();
     }
     /// <summary>
     /// 重新加载公司信息

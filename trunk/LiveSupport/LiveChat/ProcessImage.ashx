@@ -35,7 +35,6 @@ public class ProcessImage : IHttpHandler
         string visitorIP = string.Empty;
         string imgName = string.Empty;
         bool opOnline = false;
-
         if (context.Request.QueryString["referrer"] != null)
             referrer = context.Request.QueryString["referrer"].ToString();
 

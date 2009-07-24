@@ -337,7 +337,20 @@ public class OperatorWS : System.Web.Services.WebService
         checkAuthentication();
         OperatorService.SaveQuickResponse(Authentication.OperatorId, response);
     }
-
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName)
+    {
+        checkAuthentication();
+        OperatorService.SaveQuickResponseByDomainName(Authentication.OperatorId,domainName,response);
+    }
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<QuickResponseCategory> GetQuickResponse(string dominName)
+    {
+        checkAuthentication();
+        return OperatorService.GetQuickResponseByDomainName(dominName);
+    }
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public List<QuickResponseCategory> GetQuickResponse()
