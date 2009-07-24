@@ -58,7 +58,7 @@ namespace IC.AutoUpdate
         private void buttonInstall_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Process uninstallProcess = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/x " + Program.ProductCode);
+            Process uninstallProcess = Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/quiet /x " + Program.ProductCode);
             
             uninstallProcess.WaitForExit();
             Process.Start(@"C:\WINDOWS\system32\msiexec.exe", "/i " + Program.ProductInstallFileSavePath);
