@@ -22,7 +22,7 @@ public class Lib
 {
 	public static string GetDomainName(string urlReferer)
 	{
-		string url = urlReferer.Replace("http://", string.Empty).ToString().Replace("https://", string.Empty).ToString().Replace("www.", string.Empty).ToString();
+		string url = urlReferer.Replace("http://", string.Empty).ToString().Replace("https://", string.Empty).ToString();
 		char[] c = "/".ToCharArray();
 
 		string[] result = url.Split(c[0]);
