@@ -10,6 +10,17 @@ public class LSBanner : IHttpHandler {
         string aid =context.Request.QueryString["aid"];
         string companyName=AccountService.GetAccountById(aid).CompanyName;//我公司名
         LiveSupport.LiveSupportModel.WebSite webSite=LiveSupport.BLL.WebSiteManager.GetWebSiteByDomainName(Lib.GetDomainName(context.Request.UrlReferrer.ToString()));//用堿名取一行数
+        if (webSite == null)
+        {
+            webSite = new LiveSupport.LiveSupportModel.WebSite();
+            webSite.DomainName = Lib.GetDomainName(Lib.GetDomainName(context.Request.UrlReferrer.ToString()));
+            webSite.ChatStyle = "0";
+            webSite.IcoLocation = "0";
+            webSite.IconStyle = "0";
+            webSite.InviteStyle = "0";
+            webSite.RegisterId =aid; 
+            LiveSupport.BLL.WebSiteManager.NewWebSite(webSite);
+        }
         string IconStyle = webSite.IconStyle; //客服样式(图片)
         string InviteStyle =webSite.InviteStyle;//主动邀请样式
         string ChatStyle = webSite.ChatStyle;//聊天样式
