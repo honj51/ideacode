@@ -69,6 +69,18 @@ namespace LiveSupport.BLL
                     op.Status = OperatorStatus.Offline;
                     oi=new SqlOperatorProvider().NewOperator(op);
                 }
+                WebSite wst = WebSiteManager.GetWebSiteByDomainName(Util.GetDomainName(account.Url));
+                if (wst == null)
+                {
+                    wst = new WebSite();
+                    wst.DomainName =Util.GetDomainName(account.Url);
+                    wst.ChatStyle = "0";
+                    wst.IcoLocation = "0";
+                    wst.IconStyle = "0";
+                    wst.InviteStyle = "0";
+                    wst.RegisterId = account.AccountId;
+                    LiveSupport.BLL.WebSiteManager.NewWebSite(wst);
+                }
                 if (i != 0 && di != 0 && oi != 0)
                 {
                     return true;
