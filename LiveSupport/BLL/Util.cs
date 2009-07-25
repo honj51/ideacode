@@ -175,5 +175,25 @@ namespace LiveSupport.BLL
             }
         }
         #endregion
+
+        #region 截取域名
+        /// <summary>
+        /// 截取域名
+        /// </summary>
+        /// <param name="urlReferer"></param>
+        /// <returns></returns>
+        public static string GetDomainName(string urlReferer)
+        {
+            string url = urlReferer.Replace("http://", string.Empty).ToString().Replace("https://", string.Empty).ToString();
+            char[] c = "/".ToCharArray();
+
+            string[] result = url.Split(c[0]);
+
+            if (result[0] != null && result[0] != string.Empty)
+                return result[0];
+            else
+                return string.Empty;
+        }
+        #endregion
     }
 }
