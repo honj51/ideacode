@@ -148,12 +148,12 @@ namespace LiveSupport.OperatorConsole
         void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
 
-            //if (!Monitor.TryEnter(this.checkNewChangesLocker))
-            //{
-            //    return;
-            //}
-            //try
-            //{
+            if (!Monitor.TryEnter(this.checkNewChangesLocker))
+            {
+                return;
+            }
+            try
+            {
                 if (State == ConnectionState.Connected && enablePooling)
                 {
                     getNextNewChanges();
@@ -162,11 +162,11 @@ namespace LiveSupport.OperatorConsole
                 {
                     RestartLogin();
                 }
-            //}
-            //finally
-            //{
-            //    Monitor.Exit(this.checkNewChangesLocker);
-            //}
+            }
+            finally
+            {
+                Monitor.Exit(this.checkNewChangesLocker);
+            }
 
         }
 
@@ -560,15 +560,15 @@ namespace LiveSupport.OperatorConsole
         {
             state = ConnectionState.Disconnected;
 
+            if (status == ExceptionStatus.User)
+            {
+                enablePooling = false;
+            }
             if (ConnectionStateChanged != null)
             {
                 ConnectionStateChangeEventArgs args = new ConnectionStateChangeEventArgs(state);
                 args.Status = status;
                 args.Message = message;
-                if (status== ExceptionStatus.User)
-                {
-                    enablePooling = false;
-                }
                 ConnectionStateChanged(this, args);
             }
         }
