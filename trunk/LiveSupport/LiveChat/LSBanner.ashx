@@ -13,7 +13,7 @@ public class LSBanner : IHttpHandler {
         if (webSite == null)
         {
             webSite = new LiveSupport.LiveSupportModel.WebSite();
-            webSite.DomainName = Lib.GetDomainName(Lib.GetDomainName(context.Request.UrlReferrer.ToString()));
+            webSite.DomainName =Lib.GetDomainName(context.Request.UrlReferrer.ToString());
             webSite.ChatStyle = "0";
             webSite.IcoLocation = "0";
             webSite.IconStyle = "0";
