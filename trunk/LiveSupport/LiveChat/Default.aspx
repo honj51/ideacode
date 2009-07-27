@@ -51,7 +51,6 @@
                 </td>
                 <td class="style3">
                 </td>
-                <img src="file:///C:\Documents%20and%20Settings\y\Application%20Data\Tencent\QQ\Temp\4D623265-9CC5-498A-86AC-2BA5DE26A11B.png" />
                 <td class="style1">
                     范德萨</td>
             </tr>
