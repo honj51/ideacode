@@ -12,7 +12,12 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     private int DefaultBannerStyleCount=2;
     private int DefaultInviteStyleCount=2;
     private int DefaultChatPageStyleCount=1;
-    private Operator  oper;
+    private Operator oper;
+    public Operator Oper
+    {
+        get { return oper; }
+        set { oper = value; }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -97,15 +102,25 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
        WebSite wst = WebSiteManager.GetWebSiteByDomainName(this.drpDomainName.SelectedValue);
        if (wst != null)
        {
-           string aa = Guid.NewGuid().ToString();
-           FileUpload1.SaveAs(ConfigurationManager.AppSettings["UserDefinedPath"] + "\\offline" + aa + ".jpg");
-           FileUpload2.SaveAs(ConfigurationManager.AppSettings["UserDefinedPath"] + "\\online" + aa + ".jpg");
-           wst.IconStyle = aa;
-           WebSiteManager.Update(wst);
-           AddIcoLocation(wst.IcoLocation);
-           AddBannerStyle(wst.IconStyle);
-           AddInviteStyle(wst.InviteStyle);
-           AddChatStyle(wst.ChatStyle);
+           if (Session["User"] != null)
+           {
+               oper = (Operator)Session["User"];
+               string path = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\" + oper.Account.AccountNumber + "\\" + drpDomainName.SelectedValue;
+               Directory.CreateDirectory(path);
+               string aa = "UserDefined";
+               FileUpload1.SaveAs(path + "\\offline" + aa + ".jpg");
+               FileUpload2.SaveAs(path + "\\online" + aa + ".jpg");
+               wst.IconStyle = aa;
+               WebSiteManager.Update(wst);
+               AddIcoLocation(wst.IcoLocation);
+               AddBannerStyle(wst.IconStyle);
+               AddInviteStyle(wst.InviteStyle);
+               AddChatStyle(wst.ChatStyle);
+           }
+           else
+           {
+               Response.Redirect("../Default.aspx");
+           }
        }
        else {
            Response.Write("<script>alert('请选择上传到那个域名！');</script>");
@@ -161,16 +176,26 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         WebSite wst = WebSiteManager.GetWebSiteByDomainName(this.drpDomainName.SelectedValue);
         if (wst != null)
         {
-            string aa = Guid.NewGuid().ToString();
-            FileUpload3.SaveAs(ConfigurationManager.AppSettings["UserDefinedPath"] + "\\invite_bg" + aa + ".jpg");
-            FileUpload4.SaveAs(ConfigurationManager.AppSettings["UserDefinedPath"] + "\\btn_ok" + aa + ".jpg");
-            FileUpload5.SaveAs(ConfigurationManager.AppSettings["UserDefinedPath"] + "\\btn_no" + aa + ".jpg");
-            wst.InviteStyle = aa;
-            WebSiteManager.Update(wst);
-            AddIcoLocation(wst.IcoLocation);
-            AddBannerStyle(wst.IconStyle);
-            AddInviteStyle(wst.InviteStyle);
-            AddChatStyle(wst.ChatStyle);
+            if (Session["User"] != null)
+            {
+                oper = (Operator)Session["User"];
+                string path = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\" + oper.Account.AccountNumber + "\\" + drpDomainName.SelectedValue;
+                Directory.CreateDirectory(path);
+                string aa = "UserDefined";
+                FileUpload3.SaveAs(path + "\\invite_bg" + aa + ".jpg");
+                FileUpload4.SaveAs(path + "\\btn_ok" + aa + ".jpg");
+                FileUpload5.SaveAs(path+ "\\btn_no" + aa + ".jpg");
+                wst.InviteStyle = aa;
+                WebSiteManager.Update(wst);
+                AddIcoLocation(wst.IcoLocation);
+                AddBannerStyle(wst.IconStyle);
+                AddInviteStyle(wst.InviteStyle);
+                AddChatStyle(wst.ChatStyle);
+            }
+            else
+            {
+                Response.Redirect("../Default.aspx");
+            }
         }
         else
         {
@@ -310,15 +335,37 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         }
         ChangeStyle();
     }
+    public string GetHomeRootUrl()
+    {
+        if (Session["User"] != null)
+        {
+            oper = (Operator)Session["User"];
+            return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/" + oper.Account.AccountNumber+"/"+drpDomainName.SelectedValue;
+        }
+        else
+        {
+            return null;
+        }
+    }
     //跟据选择项更改
     public void ChangeStyle()
     {
+        string path=ConfigurationManager.AppSettings["HomeRootUrl"];
         string bannerStyle = this.DropDownList1.SelectedValue;
-        Image6.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/online" + bannerStyle + ".JPG";
+        if (bannerStyle == "UserDefined")
+            Image6.ImageUrl = GetHomeRootUrl() + "/online" + bannerStyle + ".JPG";
+        else
+            Image6.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/online" + bannerStyle + ".JPG";
         string inviteStyle = this.DropDownList2.SelectedValue;
-        Image7.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/invite_bg" + inviteStyle + ".gif";
+        if (inviteStyle == "UserDefined")
+            Image7.ImageUrl = GetHomeRootUrl() + "/invite_bg" + inviteStyle + ".gif";
+        else
+            Image7.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/invite_bg" + inviteStyle + ".gif";
         string chaStyle = this.DropDownList3.SelectedValue;
-        Image8.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/chat_bg" + chaStyle + ".gif";
+        if (chaStyle == "UserDefined")
+            Image8.ImageUrl = GetHomeRootUrl() + "/chat_bg" + chaStyle + ".gif";
+        else
+            Image8.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/chat_bg" + chaStyle + ".gif";
     }
     //漂浮旗子样式改变
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)

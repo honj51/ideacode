@@ -39,17 +39,17 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="图片样式" SortExpression="IconStyle">
                         <ItemTemplate>
-                            <asp:Image ID="Image1" runat="server" Height="25px" Width="70px" ImageUrl= '<%# showImage(1 ,(Eval("IconStyle")).ToString()) %>' />
+                            <asp:Image ID="Image1" runat="server" Height="25px" Width="70px" ImageUrl= '<%# showImage(1 ,(Eval("DomainName")).ToString() ,(Eval("IconStyle")).ToString()) %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="主动邀请" SortExpression="InviteStyle">
                         <ItemTemplate>
-                            <asp:Image ID="Image2" runat="server" Height="25px" Width="70px"  ImageUrl= '<%# showImage(2 ,(Eval("InviteStyle")).ToString()) %>'/>
+                            <asp:Image ID="Image2" runat="server" Height="25px" Width="70px"  ImageUrl= '<%# showImage(2 ,(Eval("DomainName")).ToString(),(Eval("InviteStyle")).ToString()) %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="对话窗口" SortExpression="ChatStyle">
                         <ItemTemplate>
-                            <asp:Image ID="Image3" runat="server" Height="25px" Width="70px" ImageUrl= '<%# showImage(3 ,(Eval("ChatStyle")).ToString()) %>'  />
+                            <asp:Image ID="Image3" runat="server" Height="25px" Width="70px" ImageUrl= '<%# showImage(3 ,(Eval("DomainName")).ToString(),(Eval("ChatStyle")).ToString()) %>'  />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="显示的位置" SortExpression="IcoLocation">
