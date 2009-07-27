@@ -52,6 +52,11 @@ namespace LiveSupport.OperatorConsole
                     dumpVersionFile();
                     return;
                 }
+                else if (item.StartsWith("/us"))
+                {
+                    upgradeSettings();
+                    return;
+                }
             }
 
 			Application.EnableVisualStyles();
@@ -67,6 +72,17 @@ namespace LiveSupport.OperatorConsole
             //TestFileUploadControl();
             //TestOptionForm();
 		}
+
+        private static void upgradeSettings()
+        {
+            try
+            {
+                Properties.Settings.Default.Upgrade();
+            }
+            catch (Exception)
+            {
+            }
+        }
 
         private static void dumpVersionFile()
         {
