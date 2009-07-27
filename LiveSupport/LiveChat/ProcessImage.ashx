@@ -90,12 +90,20 @@ public class ProcessImage : IHttpHandler
         // we get the status of the operators
         opOnline = OperatorService.HasOnlineOperator(accountId);
 
-        if (opOnline)
-            imgName = "online" + bannerStyle + ".jpg";
+        if (bannerStyle == "UserDefined")
+        {
+            imgName = "Images/" + AccountService.GetAccountById(accountId).AccountNumber + "/" + domainRequested;
+        }
         else
-            imgName = "offline" + bannerStyle + ".jpg";
+        {
+            imgName = "Images/Default"; 
+        }
+        if (opOnline)
+            imgName += "/online" + bannerStyle + ".jpg";
+        else
+            imgName += "/offline" + bannerStyle + ".jpg";
 
-        System.Drawing.Image returnImg = System.Drawing.Image.FromFile(context.Server.MapPath("Images/" + imgName));
+        System.Drawing.Image returnImg = System.Drawing.Image.FromFile(context.Server.MapPath(imgName));
         returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
     }
 
