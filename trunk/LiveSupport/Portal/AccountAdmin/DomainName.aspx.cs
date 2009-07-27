@@ -10,12 +10,21 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using LiveSupport.LiveSupportModel;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
+    public Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["User"] == null)
+        {
+            oper =(Operator) Session["User"];
+        }
+        else
+        {
+            return;
+        }
     }
     /// <summary>
     /// 跟据公司ID查询公司名
@@ -36,19 +45,28 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             return str;
     }
     //显示图片
-    public string showImage(int imgType ,string imgStyle)
+    public string showImage(int imgType ,string domainName,string imgStyle)
     {
         if (imgType ==1)
         {
-            return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/online" + imgStyle + ".JPG";
+            if (imgStyle == "UserDefined")
+                return GetHomeRootUrl() + "/" + domainName + "/online" + imgStyle + ".JPG";
+            else
+                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/online" + imgStyle + ".JPG";
         }
         if (imgType == 2)
         {
-            return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/invite_bg" + imgStyle + ".gif";
+            if (imgStyle == "UserDefined")
+                return GetHomeRootUrl() + "/" + domainName + "/invite_bg" + imgStyle + ".gif";
+            else
+                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/invite_bg" + imgStyle + ".gif";
         }
         if (imgType == 3)
         {
-            return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/chat_bg" + imgStyle + ".gif";
+            if (imgStyle == "UserDefined")
+                return GetHomeRootUrl() + "/" + domainName + "/chat_bg" + imgStyle + ".gif";
+            else
+                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/chat_bg" + imgStyle + ".gif";
         }
         else
         {
@@ -74,6 +92,18 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             e.Row.Cells[7].Attributes.Add("onclick", "return confirm('你是否真要删除')");
             e.Row.Attributes.Add("onmouseover", "currentcolor=this.style.backgroundColor;this.style.backgroundColor='#E9F4F8'");
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentcolor");
+        }
+    }
+    public string GetHomeRootUrl()
+    {
+        if (Session["User"] != null)
+        {
+            oper = (Operator)Session["User"];
+            return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/" + oper.Account.AccountNumber;
+        }
+        else
+        {
+            return null;
         }
     }
 }
