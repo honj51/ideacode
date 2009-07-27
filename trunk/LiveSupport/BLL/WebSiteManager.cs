@@ -44,7 +44,11 @@ namespace LiveSupport.BLL
         }
         public static List<WebSite> GetAllWebSiteByRegisterId(Operator op)
         {
-            return Provider.GetAllWebSiteByRegisterId(op.Account.AccountId);
+            if (op != null)
+            {
+                return Provider.GetAllWebSiteByRegisterId(op.Account.AccountId);
+            }
+            return null;
         }
     }
 }
