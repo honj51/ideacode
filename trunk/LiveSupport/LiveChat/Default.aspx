@@ -35,15 +35,15 @@
         <input id="Text1" type="text" />
         <input type="button" value="fdsaf" onclick="visitorLeave()" />&nbsp;<div id="trace_div"></div>
     </form>
-        <p>localhost
-            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
+   <p>localhost
+            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=8ab68731-bb0b-40a0-be2a-20df12a070f4'></script>
         </p>
-        <p>lcs.zxkefu.cn
+        <%--<p>lcs.zxkefu.cn
             <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
-        </p>
-        <p>test.zxkefu.cn
+        </p>--%>
+        <%--<p>test.zxkefu.cn
             <script src='http://test.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
-        </p>
+        </p>--%>
         <table 
             style="width: 100%; height: 1501px;">
             <tr>
@@ -70,18 +70,5 @@
                 <td>
             </tr>
         </table>
- <script language=javascript>
-function window.onbeforeunload()
-{
-if(event.clientX>document.body.clientWidth&&event.clientY<0||event.altKey||event.ctrlKey)
-{
-     //判断event.altKey是为了Alt+F4关闭的情况；判断event.ctrlKey是为了Ctrl+W关闭的情况
-     //document.body.clientWidth不包括滚动条，而关闭按钮恰好在滚动条右侧。
-     window.event.returnValue="";
-     alert("aa");
-}
-alert("vv");
-}
-</script> 
 </body>
 </html>

@@ -9,19 +9,31 @@ public class LSBanner : IHttpHandler {
         string homeRootUrl = System.Configuration.ConfigurationManager.AppSettings["HomeRootUrl"];
         string aid =context.Request.QueryString["aid"];
         LiveSupport.LiveSupportModel.Account account=  AccountService.GetAccountById(aid);//公司对象
-        LiveSupport.LiveSupportModel.WebSite webSite=LiveSupport.BLL.WebSiteManager.GetWebSiteByDomainName(Lib.GetDomainName(context.Request.UrlReferrer.ToString()));//用堿名取一行数
+        if (account == null)
+        {
+            return; 
+        }
+        LiveSupport.LiveSupportModel.WebSite webSite=null;
+        string domainName=null;
+        if (context.Request.UrlReferrer != null)
+        {
+            domainName = Lib.GetDomainName(context.Request.UrlReferrer.ToString());//域名
+            webSite = LiveSupport.BLL.WebSiteManager.GetWebSiteByDomainName(domainName);//用堿名取一行数
+        }
         if (webSite == null)
         {
             webSite = new LiveSupport.LiveSupportModel.WebSite();
-            webSite.DomainName =Lib.GetDomainName(context.Request.UrlReferrer.ToString());
             webSite.ChatStyle = "0";
             webSite.IcoLocation = "0";
             webSite.IconStyle = "0";
             webSite.InviteStyle = "0";
-            webSite.RegisterId =aid; 
-            LiveSupport.BLL.WebSiteManager.NewWebSite(webSite);
+            webSite.RegisterId = aid;
+            if (domainName != null)
+            {
+                webSite.DomainName = domainName;
+                LiveSupport.BLL.WebSiteManager.NewWebSite(webSite);
+            }
         }
-        string IconStyle = webSite.IconStyle; //客服样式(图片)
         string inviteImageUrl;
         if (webSite.InviteStyle == "UserDefined")
         {
@@ -31,6 +43,7 @@ public class LSBanner : IHttpHandler {
         {
             inviteImageUrl = homeRootUrl + "/Images/Default"; 
         }
+        string IconStyle = webSite.IconStyle; //客服样式(图片)
         string InviteStyle =webSite.InviteStyle;//主动邀请样式
         string ChatStyle = webSite.ChatStyle;//聊天样式
         string IcoLocation = webSite.IcoLocation;//显示的位置样式
@@ -40,9 +53,10 @@ public class LSBanner : IHttpHandler {
         { 
             aid=context.Request.QueryString["aid"];
         }
-        if (account.CompanyName == null)
+        string companyName="LiveSupport";
+        if (account != null)
         {
-            account.CompanyName = "LiveSupport";
+            companyName = account.CompanyName;
         }
         ////判断浏览器
         if (context.Request.ServerVariables["HTTP_USER_AGENT"] != null)
@@ -60,7 +74,7 @@ public class LSBanner : IHttpHandler {
         sb.AppendLine(string.Format("var LCS_invitePanelStyle = {0};",InviteStyle));// 0,1,2主动邀请样式
         sb.AppendLine(string.Format("var LCS_bannerPos = {0};",IcoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
         sb.AppendLine(string.Format("var LCS_accountId = '{0}';",aid));
-        sb.AppendLine(string.Format("var LCS_companyName = '{0}';", account.CompanyName));
+        sb.AppendLine(string.Format("var LCS_companyName = '{0}';", companyName));
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/live2.js\"></script> ');");
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/"+LCS_BannerJs+"\"></script> ');");
         context.Response.ContentType = "text/plain"; // context.Response.ContentType = "application/x-javascript";
