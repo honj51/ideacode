@@ -36,14 +36,14 @@
         <input type="button" value="fdsaf" onclick="visitorLeave()" />&nbsp;<div id="trace_div"></div>
     </form>
    <p>localhost
-            <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=8ab68731-bb0b-40a0-be2a-20df12a070f4'></script>
+        <%--    <script src='http://localhost:3355/livechat/LSBanner.ashx?aid=8ab68731-bb0b-40a0-be2a-20df12a070f4'></script>--%>
         </p>
         <%--<p>lcs.zxkefu.cn
             <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
         </p>--%>
-        <%--<p>test.zxkefu.cn
-            <script src='http://test.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
-        </p>--%>
+        <p>test.zxkefu.cn
+         <script src='http://test.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5'></script>
+        </p>
         <table 
             style="width: 100%; height: 1501px;">
             <tr>

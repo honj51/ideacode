@@ -92,19 +92,23 @@ public class ProcessImage : IHttpHandler
 
         if (bannerStyle == "UserDefined")
         {
-            imgName = "Images/" + AccountService.GetAccountById(accountId).AccountNumber + "/" + domainRequested;
+            imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"/" + AccountService.GetAccountById(accountId).AccountNumber + "/" + domainRequested;
         }
         else
         {
-            imgName = "Images/Default"; 
+            imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"/Default"; 
         }
         if (opOnline)
             imgName += "/online" + bannerStyle + ".jpg";
         else
             imgName += "/offline" + bannerStyle + ".jpg";
 
-        System.Drawing.Image returnImg = System.Drawing.Image.FromFile(context.Server.MapPath(imgName));
-        returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
+
+        using (System.Drawing.Image returnImg = System.Drawing.Image.FromFile(imgName))
+        {
+            returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
+            returnImg.Dispose();            
+        }
     }
 
     private static Visitor getVisitor(string accountId, string visitorId)
