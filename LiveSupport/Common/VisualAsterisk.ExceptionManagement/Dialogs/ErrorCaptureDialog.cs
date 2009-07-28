@@ -33,7 +33,12 @@ namespace VisualAsterisk.ExceptionManagement.Dialogs
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Yes;
+            if (this.checkBoxSendErrorReport.Checked)
+            {
+                this.DialogResult = DialogResult.Yes;
+            }
+            else
+                this.DialogResult = DialogResult.No;
         }
 
         private void btnDontSend_Click(object sender, EventArgs e)

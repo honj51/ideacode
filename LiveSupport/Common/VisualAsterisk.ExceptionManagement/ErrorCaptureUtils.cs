@@ -43,15 +43,22 @@ namespace VisualAsterisk.ExceptionManagement
                     Dialogs.ErrorCaptureDialog dlg = new Dialogs.ErrorCaptureDialog(ePack);
                     if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
                     {
-                        // save 
-                        Directory.CreateDirectory("ErrorReports");
-                        string fileName = "ErrorReport_" + Guid.NewGuid().ToString() + ".xml";
-                        saveErrorPacket(ePack, "ErrorReports\\" + fileName);
-                        // upload
-                        WebClient webClient = new WebClient();
-                        webClient.Credentials = new NetworkCredential(user, pwd);
-                        webClient.UploadFile(new Uri(url + "/" + fileName), "ErrorReports\\" + fileName);
-                        //svc.HandleWOSIException(BuildProxy(ePack));
+                        try
+                        {
+                            // save 
+                            Directory.CreateDirectory("ErrorReports");
+                            string fileName = "ErrorReport_" + Guid.NewGuid().ToString() + ".xml";
+                            saveErrorPacket(ePack, "ErrorReports\\" + fileName);
+                            // upload
+                            WebClient webClient = new WebClient();
+                            webClient.Credentials = new NetworkCredential(user, pwd);
+                            webClient.UploadFile(new Uri(url + "/" + fileName), "ErrorReports\\" + fileName);
+
+                        }
+                        catch (Exception)
+                        {
+                            // ignore
+                        }
                     }
                 }
                 else
