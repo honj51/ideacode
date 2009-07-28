@@ -22,7 +22,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 DataBindProvince();
                 GetAccount(oper);
             }
-           this.TextBox1.Text= "<script src='http://localhost:3355/livechat/LSBanner.ashx?aid='" + oper.Account.AccountId + "'></script>";
+           this.TextBox1.Text= "<script src='http://localhost:3355/livechat/LSBanner.ashx?aid=" + oper.Account.AccountId + "'></script>";
         }
         else
         {
