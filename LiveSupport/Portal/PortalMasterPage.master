@@ -14,6 +14,7 @@
 .bottom-text a{color:#F8F9F9;}
 a{color:#737f8d; text-decoration:none;}
     </style>
+        <script src='http://test.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5'></script>
 </head>
 <body>
     <form id="form1" runat="server">

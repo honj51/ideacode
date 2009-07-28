@@ -6,7 +6,7 @@
 <head runat="server">
     <title>无标题页</title>
     <link href="CSS/PortalMasterPage.css" rel="stylesheet" type="text/css" media="print" />
-    <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
+    <script src='http://test.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=4'></script>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

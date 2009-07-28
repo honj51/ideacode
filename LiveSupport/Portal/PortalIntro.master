@@ -18,7 +18,6 @@
     &nbsp;<div style="text-align:left; margin-left:10px;"><img src="Imgs/ul.GIF" />&nbsp;<b >产品介绍</b></div>
      <div style="text-align:left; margin-left:35px; margin-top:10px; line-height:22px;"><img src="Imgs/li.GIF" />&nbsp;<a href="Intro.aspx">LiveSupport介绍</a><br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_UserType.aspx">用户类型</a><br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_Visitor.aspx">网站访客</a> <br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_Operator.aspx">客服人员</a> <br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_Account.aspx">管理员</a><br /> </div>
     <img src="Imgs/sidebar-line.gif" /><br /><br />
-    <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0'></script>
     </td></tr>
     <tr><td style="background-image:url('Imgs/left-down.GIF'); height:24px;"></td></tr>
 </table>

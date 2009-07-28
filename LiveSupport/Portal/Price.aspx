@@ -22,8 +22,6 @@
     <img src="Imgs/sidebar-line.gif" />
     <br />
     <br />
-    <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5&IconStyle=0&InviteStyle=0&ChatStyle=0&IcoLocation=0'></script>
-    <br />
    
     &nbsp;
     </td></tr>

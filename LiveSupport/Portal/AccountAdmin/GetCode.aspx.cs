@@ -26,40 +26,31 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             if (Session["User"] != null)
             {
                 oper = (Operator)Session["User"];
-                List<WebSite> li = new List<WebSite>(); 
-                WebSite ws = new WebSite();
                 List<WebSite> list = WebSiteManager.GetAllWebSiteByRegisterId(oper.Account.AccountId);
+                int selectIndex = 0;
+                
                 if (Request.QueryString["domain"] != null)
                 {
-                    ws.DomainName = Request.QueryString["domain"].ToString();
-                    foreach (WebSite item in list)
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        if (item.DomainName == Request.QueryString["domain"].ToString())
+                        if (list[i].DomainName == Request.QueryString["domain"].ToString())
                         {
-                            ws = item;
-                            li.Remove(item);
+                            selectIndex = i;
+                            break;
                         }
                     }
-                    AddIcoLocation(ws.IcoLocation);
-                    AddBannerStyle(ws.IconStyle);
-                    AddInviteStyle(ws.InviteStyle);
-                    AddChatStyle(ws.ChatStyle);
+                }
+                this.drpDomainName.DataSource = list;
+                this.drpDomainName.DataTextField = "DomainName";
+                this.drpDomainName.DataValueField = "DomainName";
+                this.drpDomainName.DataBind();
+                this.drpDomainName.SelectedIndex = selectIndex;
+                this.drpDomainName.SelectedValue = list[selectIndex].DomainName;
 
-                }
-                else
-                {
-                    ws.DomainName = "请选择域名";
-                }
-                li.Add(ws);
-                
-                li.AddRange(list);
-                if (li != null)
-                {
-                    this.drpDomainName.DataSource = li;
-                    this.drpDomainName.DataTextField = "DomainName";
-                    this.drpDomainName.DataValueField = "DomainName";
-                    this.drpDomainName.DataBind();
-                }
+                AddIcoLocation(list[selectIndex].IcoLocation);
+                AddBannerStyle(list[selectIndex].IconStyle);
+                AddInviteStyle(list[selectIndex].InviteStyle);
+                AddChatStyle(list[selectIndex].ChatStyle);
             }
             else
             {
