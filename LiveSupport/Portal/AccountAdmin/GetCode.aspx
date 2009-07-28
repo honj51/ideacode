@@ -59,7 +59,7 @@
                                   <asp:ListItem Value="1">风格二</asp:ListItem>
                               </asp:DropDownList>
                               &nbsp;&nbsp;
-                              <asp:HyperLink ID="HyperLink2" runat="server" ForeColor="#FF6666">自定义</asp:HyperLink>
+                              <asp:HyperLink ID="HyperLink2" runat="server"  NavigateUrl="#" ForeColor="#FF6666" ToolTip="自定义Banner图片">自定义</asp:HyperLink>
                               <act:ModalPopupExtender ID="ModalPopupExtender1" runat="server"
                     TargetControlID="HyperLink2"
                     PopupControlID="Panel1"
@@ -85,7 +85,7 @@
                                   <asp:ListItem Value="1">风格二</asp:ListItem>
                               </asp:DropDownList>
                               &nbsp;&nbsp;&nbsp;
-                              <asp:HyperLink ID="HyperLink3" runat="server" ForeColor="#FF6666">自定义</asp:HyperLink>
+                              <asp:HyperLink ID="HyperLink3" runat="server"  NavigateUrl="#"  ForeColor="#FF6666" ToolTip="自定义主动邀请图片">自定义</asp:HyperLink>
                               <act:ModalPopupExtender ID="ModalPopupExtender2" runat="server"
                     TargetControlID="HyperLink3"
                     PopupControlID="Panel2"
@@ -108,7 +108,7 @@
                                   <asp:ListItem Selected="True">风格一</asp:ListItem>
                               </asp:DropDownList>
                               &nbsp;&nbsp;&nbsp;
-                              <asp:HyperLink ID="HyperLink4" runat="server" ForeColor="#FF6666">自定义</asp:HyperLink>
+                              <asp:HyperLink ID="HyperLink4" runat="server" ForeColor="#FF6666" NavigateUrl="#" ToolTip="自定义聊天页面样式">自定义</asp:HyperLink>
                           </td>
                           <td align="left" class="style2">
                           <asp:Image ID="Image8" Width="164px" Height="87px" runat="server" 
