@@ -117,9 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lnkShowErrorContent.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblHeader.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;lblHeader.Name" xml:space="preserve">
     <value>lblHeader</value>
@@ -131,18 +131,17 @@
   <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnDontSend.Text" xml:space="preserve">
-    <value>Don't Send</value>
+  <data name="lblHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>382, 40</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lnkShowErrorContent.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 13</value>
   </data>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnDontSend.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>AutoSize</value>
@@ -150,6 +149,7 @@
   <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>pnlHeader</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -157,16 +157,19 @@
     <value>33</value>
   </data>
   <data name="btnSend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 167</value>
+    <value>394, 152</value>
   </data>
-  <data name="btnDontSend.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
+  <data name="checkBoxSendErrorReport.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>509, 205</value>
+    <value>513, 189</value>
   </data>
   <data name="&gt;&gt;lblHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -178,19 +181,13 @@
     <value>0</value>
   </data>
   <data name="btnSend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 25</value>
+    <value>96, 25</value>
   </data>
   <data name="lnkShowErrorContent.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="btnDontSend.Location" type="System.Drawing.Point, System.Drawing">
-    <value>418, 167</value>
-  </data>
   <data name="btnSend.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -204,8 +201,11 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="lblHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>382, 40</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>426, 20</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSendErrorReport.Name" xml:space="preserve">
+    <value>checkBoxSendErrorReport</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -213,11 +213,17 @@
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="lnkShowErrorContent.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
   <data name="&gt;&gt;pnlHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pnlHeader.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="checkBoxSendErrorReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 17</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 13</value>
@@ -226,34 +232,28 @@
     <value>What data does this error report contain?</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Please tell us about this problem.</value>
-  </data>
-  <data name="btnDontSend.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
   </data>
   <data name="lblHeader.Text" xml:space="preserve">
     <value>{0} has encountered a problem and needs to close.  We are sorry for the inconvenience.</value>
   </data>
   <data name="lnkShowErrorContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 145</value>
+    <value>12, 138</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
     <value>pictureBox1</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>426, 20</value>
+  <data name="&gt;&gt;checkBoxSendErrorReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>We have created an error report that you can send to help us improve our products.</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ErrorCaptureDialog</value>
-  </data>
-  <data name="lblHeader.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -268,40 +268,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lnkShowErrorContent.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;lnkShowErrorContent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSendErrorReport.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSend.Name" xml:space="preserve">
     <value>btnSend</value>
   </data>
-  <data name="&gt;&gt;btnDontSend.Name" xml:space="preserve">
-    <value>btnDontSend</value>
-  </data>
-  <data name="&gt;&gt;btnDontSend.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblHeader.Parent" xml:space="preserve">
+    <value>pnlHeader</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 94</value>
-  </data>
-  <data name="btnSend.Text" xml:space="preserve">
-    <value>Send Error Report</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pnlHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>509, 79</value>
+    <value>513, 79</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8.25pt</value>
   </data>
-  <data name="&gt;&gt;btnDontSend.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnDontSend.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 25</value>
+  <data name="checkBoxSendErrorReport.Text" xml:space="preserve">
+    <value>Send Error Report</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -318,12 +312,6 @@
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 118</value>
   </data>
-  <data name="btnDontSend.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="&gt;&gt;lblHeader.Parent" xml:space="preserve">
-    <value>pnlHeader</value>
-  </data>
   <data name="&gt;&gt;btnSend.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -336,11 +324,17 @@
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="checkBoxSendErrorReport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>256, 157</value>
+  </data>
   <data name="&gt;&gt;lnkShowErrorContent.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="checkBoxSendErrorReport.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;btnSend.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -350,6 +344,9 @@
   </data>
   <data name="&gt;&gt;btnSend.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSendErrorReport.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;pnlHeader.ZOrder" xml:space="preserve">
     <value>5</value>

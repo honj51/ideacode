@@ -32,11 +32,11 @@
             this.lnkShowErrorContent = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnDontSend = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.checkBoxSendErrorReport = new System.Windows.Forms.CheckBox();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -68,18 +68,6 @@
             this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
-            // btnDontSend
-            // 
-            this.btnDontSend.AccessibleDescription = null;
-            this.btnDontSend.AccessibleName = null;
-            resources.ApplyResources(this.btnDontSend, "btnDontSend");
-            this.btnDontSend.BackgroundImage = null;
-            this.btnDontSend.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDontSend.Font = null;
-            this.btnDontSend.Name = "btnDontSend";
-            this.btnDontSend.UseVisualStyleBackColor = true;
-            this.btnDontSend.Click += new System.EventHandler(this.btnDontSend_Click);
             // 
             // btnSend
             // 
@@ -123,6 +111,18 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
+            // checkBoxSendErrorReport
+            // 
+            this.checkBoxSendErrorReport.AccessibleDescription = null;
+            this.checkBoxSendErrorReport.AccessibleName = null;
+            resources.ApplyResources(this.checkBoxSendErrorReport, "checkBoxSendErrorReport");
+            this.checkBoxSendErrorReport.BackgroundImage = null;
+            this.checkBoxSendErrorReport.Checked = true;
+            this.checkBoxSendErrorReport.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxSendErrorReport.Font = null;
+            this.checkBoxSendErrorReport.Name = "checkBoxSendErrorReport";
+            this.checkBoxSendErrorReport.UseVisualStyleBackColor = true;
+            // 
             // ErrorCaptureDialog
             // 
             this.AccessibleDescription = null;
@@ -131,10 +131,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImage = null;
+            this.Controls.Add(this.checkBoxSendErrorReport);
             this.Controls.Add(this.lnkShowErrorContent);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnDontSend);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.pnlHeader);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -157,10 +157,10 @@
         private System.Windows.Forms.LinkLabel lnkShowErrorContent;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnDontSend;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox checkBoxSendErrorReport;
     }
 }

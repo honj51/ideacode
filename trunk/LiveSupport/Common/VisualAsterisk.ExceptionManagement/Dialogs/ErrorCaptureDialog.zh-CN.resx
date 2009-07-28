@@ -143,17 +143,11 @@
   <data name="label2.Text" xml:space="preserve">
     <value>请告诉我们关于这个问题。 </value>
   </data>
-  <data name="btnDontSend.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnDontSend.Text" xml:space="preserve">
-    <value>不发送</value>
-  </data>
   <data name="btnSend.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnSend.Text" xml:space="preserve">
-    <value>发送错误报告</value>
+    <value>确定</value>
   </data>
   <data name="lblHeader.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -164,7 +158,10 @@
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="checkBoxSendErrorReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 17</value>
+  </data>
+  <data name="checkBoxSendErrorReport.Text" xml:space="preserve">
+    <value>发送错误报告</value>
   </data>
 </root>
