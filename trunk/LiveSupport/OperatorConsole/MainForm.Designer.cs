@@ -53,8 +53,8 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label senddateLabel;
             System.Windows.Forms.Label subjectLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeOperatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,7 +114,6 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -134,7 +133,6 @@ namespace LiveSupport.OperatorConsole
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
@@ -195,6 +193,8 @@ namespace LiveSupport.OperatorConsole
             this.stateToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -687,10 +687,8 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.BackColor = System.Drawing.Color.Transparent;
             this.pnlChat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlChat.Controls.Add(this.button1);
-            this.pnlChat.Controls.Add(this.lblDomainName);
             this.pnlChat.Controls.Add(this.textBox1);
             this.pnlChat.Controls.Add(this.label2);
-            this.pnlChat.Controls.Add(this.cbxDomainName);
             this.pnlChat.Controls.Add(this.lblVisitorOnChat);
             this.pnlChat.Controls.Add(this.lblCurrentVisitors);
             this.pnlChat.Controls.Add(this.lblMyChat);
@@ -713,7 +711,7 @@ namespace LiveSupport.OperatorConsole
             // lblDomainName
             // 
             this.lblDomainName.AutoSize = true;
-            this.lblDomainName.Location = new System.Drawing.Point(365, 7);
+            this.lblDomainName.Location = new System.Drawing.Point(21, 12);
             this.lblDomainName.Name = "lblDomainName";
             this.lblDomainName.Size = new System.Drawing.Size(59, 12);
             this.lblDomainName.TabIndex = 9;
@@ -741,10 +739,10 @@ namespace LiveSupport.OperatorConsole
             // 
             this.cbxDomainName.FormattingEnabled = true;
             this.cbxDomainName.Items.AddRange(new object[] {
-            "请选择域名"});
-            this.cbxDomainName.Location = new System.Drawing.Point(430, 4);
+            "查看全部留言"});
+            this.cbxDomainName.Location = new System.Drawing.Point(88, 9);
             this.cbxDomainName.Name = "cbxDomainName";
-            this.cbxDomainName.Size = new System.Drawing.Size(112, 20);
+            this.cbxDomainName.Size = new System.Drawing.Size(92, 20);
             this.cbxDomainName.TabIndex = 6;
             this.cbxDomainName.SelectedIndexChanged += new System.EventHandler(this.cbxDomainName_SelectedIndexChanged);
             // 
@@ -969,14 +967,6 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Size = new System.Drawing.Size(204, 396);
             this.panel1.TabIndex = 0;
             // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(204, 366);
-            this.operatorPannel1.TabIndex = 2;
-            // 
             // panel5
             // 
             this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
@@ -1173,16 +1163,6 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 385);
-            this.chatMessageViewerControl1.TabIndex = 18;
-            // 
             // messageendDateTimePicker
             // 
             this.messageendDateTimePicker.Location = new System.Drawing.Point(366, 20);
@@ -1351,9 +1331,11 @@ namespace LiveSupport.OperatorConsole
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.txtDomainRequested);
+            this.splitContainer1.Panel2.Controls.Add(this.lblDomainName);
             this.splitContainer1.Panel2.Controls.Add(this.lblDomainRequested);
             this.splitContainer1.Panel2.Controls.Add(this.btnDelLeaveWord);
             this.splitContainer1.Panel2.Controls.Add(this.btnSend);
+            this.splitContainer1.Panel2.Controls.Add(this.cbxDomainName);
             this.splitContainer1.Panel2.Controls.Add(callerDateLabel);
             this.splitContainer1.Panel2.Controls.Add(this.callerDateTextBox);
             this.splitContainer1.Panel2.Controls.Add(callerNameLabel);
@@ -1446,16 +1428,16 @@ namespace LiveSupport.OperatorConsole
             // txtDomainRequested
             // 
             this.txtDomainRequested.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "DomainName", true));
-            this.txtDomainRequested.Location = new System.Drawing.Point(87, 12);
+            this.txtDomainRequested.Location = new System.Drawing.Point(274, 12);
             this.txtDomainRequested.Name = "txtDomainRequested";
             this.txtDomainRequested.ReadOnly = true;
-            this.txtDomainRequested.Size = new System.Drawing.Size(286, 21);
+            this.txtDomainRequested.Size = new System.Drawing.Size(99, 21);
             this.txtDomainRequested.TabIndex = 27;
             // 
             // lblDomainRequested
             // 
             this.lblDomainRequested.AutoSize = true;
-            this.lblDomainRequested.Location = new System.Drawing.Point(21, 15);
+            this.lblDomainRequested.Location = new System.Drawing.Point(204, 17);
             this.lblDomainRequested.Name = "lblDomainRequested";
             this.lblDomainRequested.Size = new System.Drawing.Size(59, 12);
             this.lblDomainRequested.TabIndex = 26;
@@ -1518,7 +1500,7 @@ namespace LiveSupport.OperatorConsole
             this.emailTextBox1.Location = new System.Drawing.Point(274, 39);
             this.emailTextBox1.Name = "emailTextBox1";
             this.emailTextBox1.ReadOnly = true;
-            this.emailTextBox1.Size = new System.Drawing.Size(92, 21);
+            this.emailTextBox1.Size = new System.Drawing.Size(99, 21);
             this.emailTextBox1.TabIndex = 7;
             // 
             // ipTextBox1
@@ -1527,7 +1509,7 @@ namespace LiveSupport.OperatorConsole
             this.ipTextBox1.Location = new System.Drawing.Point(276, 96);
             this.ipTextBox1.Name = "ipTextBox1";
             this.ipTextBox1.ReadOnly = true;
-            this.ipTextBox1.Size = new System.Drawing.Size(90, 21);
+            this.ipTextBox1.Size = new System.Drawing.Size(97, 21);
             this.ipTextBox1.TabIndex = 11;
             // 
             // isRepliedCheckBox
@@ -1558,7 +1540,7 @@ namespace LiveSupport.OperatorConsole
             this.phoneTextBox.Location = new System.Drawing.Point(274, 66);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.ReadOnly = true;
-            this.phoneTextBox.Size = new System.Drawing.Size(92, 21);
+            this.phoneTextBox.Size = new System.Drawing.Size(99, 21);
             this.phoneTextBox.TabIndex = 19;
             // 
             // senddateTextBox
@@ -1618,16 +1600,15 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "节点0";
-            treeNode1.Text = "在线客服";
-            treeNode2.Name = "节点1";
-            treeNode2.Text = "离线客服";
+            treeNode7.Name = "节点0";
+            treeNode7.Text = "在线客服";
+            treeNode8.Name = "节点1";
+            treeNode8.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode7,
+            treeNode8});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1789,6 +1770,24 @@ namespace LiveSupport.OperatorConsole
             this.loginTimer.Enabled = true;
             this.loginTimer.Interval = 1000;
             this.loginTimer.Tick += new System.EventHandler(this.loginTimer_Tick);
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(204, 366);
+            this.operatorPannel1.TabIndex = 2;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(736, 385);
+            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
             // 

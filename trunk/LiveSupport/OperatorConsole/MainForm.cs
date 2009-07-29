@@ -982,6 +982,7 @@ namespace LiveSupport.OperatorConsole
         private void loadDomainName() 
         {
             cbxDomainName.Items.AddRange(operaterServiceAgent.GetAccountDomains().ToArray());
+            cbxDomainName.SelectedIndex = 0;
         }
         private void tabChats_SelectedIndexChanged(object sender, EventArgs e)
         {
