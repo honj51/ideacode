@@ -54,16 +54,18 @@
             this.tabControlVideo = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
+            this.domainRequestedLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.visitCountLabel = new System.Windows.Forms.Label();
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.domainRequestedLabel = new System.Windows.Forms.Label();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -77,6 +79,7 @@
             this.statusStrip1.SuspendLayout();
             this.tabControlVideo.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.glassPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -210,7 +213,7 @@
             this.flashToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.windows_16;
             this.flashToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.flashToolStripMenuItem.Name = "flashToolStripMenuItem";
-            this.flashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.flashToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.flashToolStripMenuItem.Text = "窗口闪烁";
             // 
             // ringToolStripMenuItem
@@ -219,7 +222,7 @@
             this.ringToolStripMenuItem.Image = global::LiveSupport.OperatorConsole.Properties.Resources.alarmd;
             this.ringToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ringToolStripMenuItem.Name = "ringToolStripMenuItem";
-            this.ringToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ringToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.ringToolStripMenuItem.Text = "声音提醒";
             // 
             // toolStripLabel1
@@ -328,12 +331,27 @@
             // 
             // setTalkTreeView
             // 
+            this.setTalkTreeView.ContextMenuStrip = this.contextMenuStrip1;
             this.setTalkTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.setTalkTreeView.Location = new System.Drawing.Point(3, 3);
             this.setTalkTreeView.Name = "setTalkTreeView";
             this.setTalkTreeView.Size = new System.Drawing.Size(214, 292);
             this.setTalkTreeView.TabIndex = 0;
             this.setTalkTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.setTalkTreeView_NodeMouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.restartToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            // 
+            // restartToolStripMenuItem
+            // 
+            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartToolStripMenuItem.Text = "刷新(&e)";
+            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click_1);
             // 
             // tabPage4
             // 
@@ -380,6 +398,16 @@
             this.remarkLabel.Size = new System.Drawing.Size(59, 12);
             this.remarkLabel.TabIndex = 5;
             this.remarkLabel.Text = "备注信息:";
+            // 
+            // domainRequestedLabel
+            // 
+            this.domainRequestedLabel.AutoSize = true;
+            this.domainRequestedLabel.ForeColor = System.Drawing.Color.White;
+            this.domainRequestedLabel.Location = new System.Drawing.Point(17, 63);
+            this.domainRequestedLabel.Name = "domainRequestedLabel";
+            this.domainRequestedLabel.Size = new System.Drawing.Size(59, 12);
+            this.domainRequestedLabel.TabIndex = 4;
+            this.domainRequestedLabel.Text = "访问域名:";
             // 
             // pictureBox1
             // 
@@ -436,16 +464,6 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // domainRequestedLabel
-            // 
-            this.domainRequestedLabel.AutoSize = true;
-            this.domainRequestedLabel.ForeColor = System.Drawing.Color.White;
-            this.domainRequestedLabel.Location = new System.Drawing.Point(17, 63);
-            this.domainRequestedLabel.Name = "domainRequestedLabel";
-            this.domainRequestedLabel.Size = new System.Drawing.Size(59, 12);
-            this.domainRequestedLabel.TabIndex = 4;
-            this.domainRequestedLabel.Text = "访问域名:";
-            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -475,6 +493,7 @@
             this.statusStrip1.PerformLayout();
             this.tabControlVideo.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.glassPanel1.ResumeLayout(false);
             this.glassPanel1.PerformLayout();
@@ -519,6 +538,8 @@
         private ChatMessageViewerControl chatMessageViewerControl1;
         private System.Windows.Forms.TextBox txtMsg;
         private System.Windows.Forms.Label domainRequestedLabel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
        
     }
 }

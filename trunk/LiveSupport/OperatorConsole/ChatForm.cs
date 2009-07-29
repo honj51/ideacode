@@ -68,6 +68,7 @@ namespace LiveSupport.OperatorConsole
         private int acceptChatRequestResult = 0;
         private SoundPlayer player = new SoundPlayer();
         private Chat chat;
+        private Visitor visitor;
         //private UserControlMessage ucm=null;
         private string uploadURL;
 
@@ -104,7 +105,6 @@ namespace LiveSupport.OperatorConsole
         public void SystemMessage(string meg) 
         {
             chatMessageViewerControl1.AddInformation(meg);
-        
         }
         
 
@@ -138,14 +138,15 @@ namespace LiveSupport.OperatorConsole
             chatMessageViewerControl1.ResetContent("初始会话...");
             //ucm.GetMessage(msgs, "Navigate");
 
-            Visitor item = operatorServiceAgent.GetVisitorById(chat.VisitorId);
-            this.Text = "与 " + item.Name + " 对话中";
-            this.visitorNameLabel.Text += item.Name;
-            this.remarkLabel.Text += item.Remark;
-            this.domainRequestedLabel.Text += item.CurrentSession.DomainRequested.ToString();
-            this.visitorLocationLabel.Text += item.CurrentSession.Location;
+            visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
+            this.Text = "与 " + visitor.Name + " 对话中";
+            this.visitorNameLabel.Text += visitor.Name;
+            this.remarkLabel.Text += visitor.Remark;
+            this.domainRequestedLabel.Text += visitor.CurrentSession.DomainRequested.ToString();
+            this.visitorLocationLabel.Text += visitor.CurrentSession.Location;
             txtMsg.Focus();
             this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
+            
         }
 
         void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
@@ -360,21 +361,7 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
-            setTalkTreeView.Nodes.Clear();
-            if (operatorServiceAgent.QuickResponseCategory != null)
-            {
-                for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
-                {
-                    setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
-                    if (operatorServiceAgent.QuickResponseCategory[i].Responses.Length == 0) continue;
-                    foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
-                    {
-                        if (item.ToString() == "") continue;
-                        setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
-                    }
-                }
-            }
-            setTalkTreeView.ExpandAll();
+            loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
         }
 
         private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -548,10 +535,46 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabControlVideo.SelectedTab = tabPage3;
         }
+        private void loadQuickResponse(string doMainName) 
+        {
+            operatorServiceAgent.QuickResponseCategory.Clear();
+            try
+            {
+                operatorServiceAgent.QuickResponseCategory = operatorServiceAgent.GetQuickResponseByDomainName(doMainName);
+                setTalkTreeView.Nodes.Clear();
+                if (operatorServiceAgent.QuickResponseCategory != null)
+                {
+                    for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
+                    {
+                        setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
+                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Length == 0) continue;
+                        foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
+                        {
+                            if (item.ToString() == "") continue;
+                            setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
+                        }
+                    }
+                }
+                setTalkTreeView.ExpandAll();
+            }
+            catch (WebException)
+            {
+                setTalkTreeView.Nodes[0].Text = "网络中断,请稍候重试";
+                return;
+            }
+        
+        }
 
         private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)
         {
 
+        }
+
+        //刷新快速回复
+        private void restartToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            setTalkTreeView.Nodes.Clear();
+            loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
         }
 
     }
