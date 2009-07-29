@@ -45,6 +45,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         this.lblIsSend.Text = lw.IsSend;
         this.lblSendName.Text = lw.OperatorName;
         this.lwId.Value = lw.Id;
+        this.lblDomainName.Text = lw.DomainName;
 
     }
     //修改
