@@ -108,6 +108,14 @@ namespace LiveSupport.LiveSupportModel
             set { account = value; }
         }
 
+        private string domainName;
+
+        public string DomainName
+        {
+            get { return domainName; }
+            set { domainName = value; }
+        }
+
         public LeaveWord()
         {
  
@@ -137,6 +145,8 @@ namespace LiveSupport.LiveSupportModel
                     senddate = "";
                 }
             }
+            if (!Convert.IsDBNull(data["domainName"])) domainName = (string)data["domainName"];
+           
 
         }
 
