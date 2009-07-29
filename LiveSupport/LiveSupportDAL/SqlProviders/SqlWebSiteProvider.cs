@@ -13,7 +13,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <summary>
         /// 增加一条数据
         /// </summary>
-        public  void Add(WebSite model)
+        public  int Add(WebSite model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into WebSite(");
@@ -33,7 +33,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             parameters[3].Value = model.InviteStyle;
             parameters[4].Value = model.ChatStyle;
             parameters[5].Value = model.IcoLocation;
-            DBHelper.ExecuteCommand(strSql.ToString(), parameters);
+            return  DBHelper.ExecuteCommand(strSql.ToString(), parameters);
         }
         /// <summary>
         /// 更新一条数据
