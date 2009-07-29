@@ -19,6 +19,7 @@ using System.Reflection;
 using LiveSupport.OperatorConsole.Controls;
 using System.IO;
 using System.Xml;
+using System.Net;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -126,6 +127,11 @@ namespace LiveSupport.OperatorConsole
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            if (e.Exception is WebException)
+            {
+                MessageBox.Show("由于网络超时,请稍候再试!");
+            }
+            else
             ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL+"/BugReports",true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
             //Application.Restart();
         }
