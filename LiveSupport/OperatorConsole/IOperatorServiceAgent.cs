@@ -36,6 +36,9 @@ namespace LiveSupport.OperatorConsole
         bool DelLeaveWordById(string id);
         List<LeaveWord> GetLeaveWordNotReplied();
         Operator RestartLogin();
+        List<string> GetAccountDomains();
+        List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName);
+        void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName);
         #endregion
 
         #region Async
