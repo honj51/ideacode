@@ -13,9 +13,15 @@ namespace LiveSupport.BLL
         /// <summary>
         /// 增加一条数据
         /// </summary>
-        public static void NewWebSite(WebSite model)
+        public static bool NewWebSite(WebSite model)
         {
-            Provider.Add(model);  
+           int i= Provider.Add(model);
+           if (i > 0)
+           {
+               return true;
+           }
+           else
+               return false;
         }
 
         /// <summary>
