@@ -44,10 +44,11 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
 
     protected void loadDomainName()
     {
-        ddlDomainName.DataSource = WebSiteManager.GetAllWebSiteByRegisterId(oepr.Account.AccountId);
-        ddlDomainName.DataTextField = "DomainName";
-        ddlDomainName.DataValueField = "DomainName";
-        ddlDomainName.DataBind();
+        ddlDomainName.Items.Add(new ListItem("请选择域名"));
+        foreach (WebSite item in WebSiteManager.GetAllWebSiteByRegisterId(oepr.Account.AccountId))
+        {
+            ddlDomainName.Items.Add(new ListItem(item.DomainName, item.DomainName));  
+        }
     }
 
     #region 绑定留言记录
