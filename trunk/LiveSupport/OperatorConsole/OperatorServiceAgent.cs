@@ -677,6 +677,7 @@ namespace LiveSupport.OperatorConsole
 
             return result;
         }
+
         public bool DelLeaveWordById(string id) 
         {
             return ws.DelLeaveWordById(id);
@@ -691,6 +692,26 @@ namespace LiveSupport.OperatorConsole
             }
 
             return leaveWords;
+        }
+        public List<LeaveWord> GetLeaveWordNotRepliedByDomainName(string domainName) 
+        {
+            List<LeaveWord> leaveWords = new List<LeaveWord>();
+            if (ws.GetLeaveWordNotRepliedByDomainName(domainName) != null)
+            {
+                leaveWords.AddRange(ws.GetLeaveWordNotRepliedByDomainName(domainName));
+            }
+            return leaveWords;
+        }
+
+       public List<LeaveWord> GetLeaveWordByDomainName(string domainName) 
+        {
+            List<LeaveWord> leaveWords = new List<LeaveWord>();
+            if (ws.GetLeaveWordByDomainName(domainName) != null)
+            {
+                leaveWords.AddRange(ws.GetLeaveWordByDomainName(domainName));
+            }
+            return leaveWords;
+        
         }
         public List<string> GetAccountDomains()
         {
