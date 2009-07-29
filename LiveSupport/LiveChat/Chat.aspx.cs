@@ -17,6 +17,7 @@ using System.Web.Script.Services;
 using LiveSupport.LiveSupportModel;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 public partial class Chat : System.Web.UI.Page
 {
@@ -315,6 +316,8 @@ public partial class Chat : System.Web.UI.Page
         lw.Ip = CurrentVisitor.CurrentSession.IP;
         lw.Phone = txtPhone.Text;
         lw.Subject = txtTheme.Text;
+        lw.IsReplied = false;
+        lw.DomainName = CurrentVisitor.CurrentSession.DomainRequested;
         LiveSupport.BLL.LeaveWordManager.AddWordProvider(lw);
         ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>emailclose();</script>");
     }
@@ -404,7 +407,7 @@ public partial class Chat : System.Web.UI.Page
                 string path = ConfigurationManager.AppSettings["FileUploadPath"] + "\\" + m.ChatId;
                 //string path = Server.MapPath("UploadFile/" + m.ChatId);
                 Directory.CreateDirectory(path);
-               
+
                 this.fuFile.PostedFile.SaveAs(path + "\\" + fileName.Trim().ToString());
 
                 m = new LiveSupport.LiveSupportModel.Message();
@@ -412,6 +415,7 @@ public partial class Chat : System.Web.UI.Page
                 m.Text = string.Format("文件 {0} 发送成功!  ...", fileName);
                 m.Type = MessageType.SystemMessage_ToVisitor;
                 ChatService.SendMessage(m);
+
                 OperatorService.SendFile(m.ChatId, fileName);
             }
 
@@ -421,4 +425,6 @@ public partial class Chat : System.Web.UI.Page
             this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
         }
     }
+
+  
 }
