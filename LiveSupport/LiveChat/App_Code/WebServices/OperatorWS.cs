@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Configuration;
 using System.Xml;
+using LiveSupport.BLL;
     /// <summary>
     /// Contains all functionality for an operator to maintain
     /// a chat session with a client.
@@ -346,11 +347,27 @@ public class OperatorWS : System.Web.Services.WebService
     }
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
-    public List<QuickResponseCategory> GetQuickResponseByDomainName(string dominName)
+    public List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName)
     {
         checkAuthentication();
-        return OperatorService.GetQuickResponseByDomainName(dominName);
+        return OperatorService.GetQuickResponseByDomainName(domainName);
     }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<string> GetAccountDomains()
+    {
+        checkAuthentication();
+        List<WebSite> wss = WebSiteManager.GetAllWebSiteByRegisterId(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId);
+        List<string> ds = new List<string>();
+        foreach (WebSite item in wss)
+        {
+            ds.Add(item.DomainName);
+        }
+        return ds;
+    }
+
+
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public List<QuickResponseCategory> GetQuickResponse()
