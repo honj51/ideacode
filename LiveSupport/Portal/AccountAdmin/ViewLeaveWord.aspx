@@ -45,6 +45,9 @@
     <tr><td style="width: 107px">留言内容：</td><td style="word-break:break-all;word-wrap:break-word">
         <asp:Label ID="lblContent" runat="server" Text=""></asp:Label>
         </td></tr>
+         <tr><td style="width: 107px">域名：</td><td>
+        <asp:Label ID="lblDomainName" runat="server" Text=""></asp:Label>
+        </td></tr>
     <tr><td style="width: 107px">IP地址：</td><td>
         <asp:Label ID="lblIP" runat="server" Text=""></asp:Label>
         </td></tr>
