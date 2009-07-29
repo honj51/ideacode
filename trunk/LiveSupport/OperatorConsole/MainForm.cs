@@ -161,6 +161,7 @@ namespace LiveSupport.OperatorConsole
         private void MainForm_Load(object sender, EventArgs e)
         {
             initForm();
+
             messagebeginDateTimePicker.MaxDate = DateTime.Now;
             messageendDateTimePicker.MaxDate = DateTime.Now;
             requestbeginDateTimePicker.MaxDate = DateTime.Now;
@@ -169,6 +170,7 @@ namespace LiveSupport.OperatorConsole
             registerOperatorServiceAgentEventHandler(false);
 
             operaterServiceAgent.EnablePooling = true;
+            loadDomainName();
         }
 
         private void LeaveWordNotReplied(List<LeaveWord> lwnr) 
@@ -977,6 +979,10 @@ namespace LiveSupport.OperatorConsole
         }
         #endregion
 
+        private void loadDomainName() 
+        {
+            cbxDomainName.Items.AddRange(operaterServiceAgent.GetAccountDomains().ToArray());
+        }
         private void tabChats_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -1054,6 +1060,24 @@ namespace LiveSupport.OperatorConsole
                     this.lstPageRequest.SelectedItems[0].ToolTipText = "引用页面：" + pr.Referrer + "\r\n\r\n 请求页面：" + pr.Page + "\r\n\r\n 请求时间：" + pr.RequestTime;  
                 }
             }
+        }
+
+        private void cbxDomainName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<LeaveWord> leaveWord = new List<LeaveWord>();
+            if (cbxDomainName.SelectedIndex > 0)
+            {
+               leaveWord= operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
+            }
+            else
+               leaveWord= operaterServiceAgent.GetLeaveWord();
+            if (leaveWord!=null)
+            {
+                LeaveWordNotReplied(leaveWord);
+                this.leaveWordBindingSource.DataSource = leaveWord;
+            }
+           
+           
         }
     }
 

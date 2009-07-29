@@ -84,10 +84,10 @@ namespace LiveSupport.OperatorConsole
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlChat = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDomainName = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxDomainName = new System.Windows.Forms.ComboBox();
             this.lblVisitorOnChat = new System.Windows.Forms.Label();
             this.lblCurrentVisitors = new System.Windows.Forms.Label();
             this.lblMyChat = new System.Windows.Forms.Label();
@@ -687,10 +687,10 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.BackColor = System.Drawing.Color.Transparent;
             this.pnlChat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlChat.Controls.Add(this.button1);
-            this.pnlChat.Controls.Add(this.label1);
+            this.pnlChat.Controls.Add(this.lblDomainName);
             this.pnlChat.Controls.Add(this.textBox1);
             this.pnlChat.Controls.Add(this.label2);
-            this.pnlChat.Controls.Add(this.comboBox1);
+            this.pnlChat.Controls.Add(this.cbxDomainName);
             this.pnlChat.Controls.Add(this.lblVisitorOnChat);
             this.pnlChat.Controls.Add(this.lblCurrentVisitors);
             this.pnlChat.Controls.Add(this.lblMyChat);
@@ -710,15 +710,14 @@ namespace LiveSupport.OperatorConsole
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             // 
-            // label1
+            // lblDomainName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(365, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "搜索访客:";
-            this.label1.Visible = false;
+            this.lblDomainName.AutoSize = true;
+            this.lblDomainName.Location = new System.Drawing.Point(365, 7);
+            this.lblDomainName.Name = "lblDomainName";
+            this.lblDomainName.Size = new System.Drawing.Size(59, 12);
+            this.lblDomainName.TabIndex = 9;
+            this.lblDomainName.Text = "查询留言:";
             // 
             // textBox1
             // 
@@ -738,21 +737,16 @@ namespace LiveSupport.OperatorConsole
             this.label2.Text = "地理位置:";
             this.label2.Visible = false;
             // 
-            // comboBox1
+            // cbxDomainName
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "所有访客",
-            "请求对话",
-            "熟悉客人",
-            "曾经洽谈过",
-            "浏览过重要网页",
-            "关键字匹配"});
-            this.comboBox1.Location = new System.Drawing.Point(430, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(112, 20);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.Visible = false;
+            this.cbxDomainName.FormattingEnabled = true;
+            this.cbxDomainName.Items.AddRange(new object[] {
+            "请选择域名"});
+            this.cbxDomainName.Location = new System.Drawing.Point(430, 4);
+            this.cbxDomainName.Name = "cbxDomainName";
+            this.cbxDomainName.Size = new System.Drawing.Size(112, 20);
+            this.cbxDomainName.TabIndex = 6;
+            this.cbxDomainName.SelectedIndexChanged += new System.EventHandler(this.cbxDomainName_SelectedIndexChanged);
             // 
             // lblVisitorOnChat
             // 
@@ -892,19 +886,19 @@ namespace LiveSupport.OperatorConsole
             this.inviteToolStripMenuItem,
             this.acceptToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
             // 
             // inviteToolStripMenuItem
             // 
             this.inviteToolStripMenuItem.Name = "inviteToolStripMenuItem";
-            this.inviteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inviteToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.inviteToolStripMenuItem.Text = "邀请对话";
             this.inviteToolStripMenuItem.Click += new System.EventHandler(this.inviteToolStripButton_Click);
             // 
             // acceptToolStripMenuItem
             // 
             this.acceptToolStripMenuItem.Name = "acceptToolStripMenuItem";
-            this.acceptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.acceptToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.acceptToolStripMenuItem.Text = "接受请求";
             this.acceptToolStripMenuItem.Click += new System.EventHandler(this.acceptToolStripButton_Click);
             // 
@@ -1451,6 +1445,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // txtDomainRequested
             // 
+            this.txtDomainRequested.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "DomainName", true));
             this.txtDomainRequested.Location = new System.Drawing.Point(87, 12);
             this.txtDomainRequested.Name = "txtDomainRequested";
             this.txtDomainRequested.ReadOnly = true;
@@ -1900,10 +1895,10 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripStatusLabel powerToolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel stateToolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel stickToolStripStatusLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxDomainName;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDomainName;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer visitorSessionSplitContainer;
         private System.Windows.Forms.Panel panel1;
