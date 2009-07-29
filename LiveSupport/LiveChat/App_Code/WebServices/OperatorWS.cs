@@ -384,6 +384,15 @@ public class OperatorWS : System.Web.Services.WebService
         return LiveSupport.BLL.LeaveWordManager.GetAllLeaveWordByAccountId(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId);
     }
 
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<LeaveWord> GetLeaveWordByDomainName(string domainName)
+    {
+        checkAuthentication();
+        return LiveSupport.BLL.LeaveWordManager.GetAllLeaveWordByAccountIdAndDomainName(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId, domainName);
+    }
+
     [SoapHeader("Authentication", Required = true)]
     [WebMethod]
     public bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id)
@@ -398,6 +407,14 @@ public class OperatorWS : System.Web.Services.WebService
     {
         checkAuthentication();
         return LiveSupport.BLL.LeaveWordManager.GetLeaveWordNotRepliedByAccountId(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId,false);
+    }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<LeaveWord> GetLeaveWordNotRepliedByDomainName(string domainName)
+    {
+        checkAuthentication();
+        return LiveSupport.BLL.LeaveWordManager.GetLeaveWordNotRepliedByAccountIdAndDomainName(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId,domainName, false);
     }
 
     [SoapHeader("Authentication", Required = true)]
