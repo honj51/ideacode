@@ -6,7 +6,9 @@
    <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="left">
            &nbsp;&nbsp;&nbsp; 网站代码: 
        <asp:TextBox ID="TextBox1" runat="server" Width="460px"></asp:TextBox>
-   </td></tr>
+   </td>
+   </tr>
+   <tr><td style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 21px;" align="center">请将这行代码放到你的网站的页面中</td></tr>
    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
  </table>
  <div></div>
@@ -15,26 +17,26 @@
    <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
   <div style="text-align:left;color: #cccccc; border-bottom: 1px solid; position: relative;">&nbsp;&nbsp;&nbsp;<img src="Images/zhuce.jpg" /><a href="UpdateAccount.aspx"><img src="Images/mima.jpg" /></a></div>
   <!--内容-->
-  <TABLE cellSpacing=0 cellPadding=0 border=0 style=" margin-left:10px; margin-top:10px;">
+  <table  cellspacing="5" cellPadding="0" border="0" style=" margin-left:10px; margin-top:10px;">
         <TBODY style="text-align:left;">
          <TR>
-          <TD  >&nbsp;&nbsp;&nbsp; 公司ID： </TD>
+          <TD  >&nbsp;&nbsp;&nbsp; 帐号ID： </TD>
           <TD><asp:TextBox ID="txtId" runat="server" Width="160px" ReadOnly="True"></asp:TextBox>
             </TD></TR>
         <TR>
-          <TD ><FONT color=red>*</FONT> 公司名称： </TD>
+          <TD ><FONT color=red>*</FONT> 名称： </TD>
           <TD><asp:TextBox ID="txtCompanyName" runat="server" Width="160px"></asp:TextBox>
               <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                   ControlToValidate="txtCompanyName" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
             </TD></TR>
         <TR>
-         <TD ><FONT color=red>*</FONT> 公司网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+         <TD ><FONT color=red>*</FONT> 网址：&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
           <TD ><asp:TextBox ID="txtUrl" runat="server" Width="250px">http://</asp:TextBox>
               <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"  ControlToValidate="txtUrl" ErrorMessage="不能为空!"></asp:RequiredFieldValidator>
               <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"  ControlToValidate="txtUrl" ErrorMessage="网址有误!"  ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
             </TD></TR>
         <TR>
-          <TD ><FONT color=red>*</FONT> 公司电话： </TD>
+          <TD ><FONT color=red>*</FONT> 电话： </TD>
           <TD > <asp:TextBox ID="txtCompanyPhone" runat="server" Width="160px"></asp:TextBox>
 &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
                   ControlToValidate="txtCompanyPhone" ErrorMessage="电话有误!" 
@@ -115,8 +117,8 @@
               </asp:DropDownList>
             </TD></TR>
              <tr><td></td><td>
-                <asp:Button ID="btnSave" runat="server" Text="保存" Width="59px" 
-                    onclick="btnSave_Click" />
+                <asp:Button ID="btnSave" runat="server" Text="保存" Width="92px" 
+                    onclick="btnSave_Click" Height="23px" />
                 </td></tr>
             </TBODY></TABLE>
  </td></tr></table></td></tr>

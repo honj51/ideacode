@@ -61,7 +61,7 @@
 <DIV class=sdmenu id=my_menu> 
 
 <DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">基本设置</SPAN> 
-<A href="AccountHome.aspx" >公司信息</A>
+<A href="AccountHome.aspx" >帐号信息</A>
 <A href="DomainName.aspx" >域名管理</A>
 </DIV>
 
@@ -69,16 +69,6 @@
 <A href="DepartmentManager.aspx">部门设置</A> 
 <A href="OperatorsManagment.aspx" >客服管理</A> 
 </DIV>
-
-<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">风格设置</SPAN> 
- 
-<A href="GetCode.aspx">获取代码设置</A> 
-<A href="javascript:ShowSorry()">界面风格设置</A> 
- 
-<A href="javascript:ShowSorry()">对话提示设置</A> 
-<A href="javascript:ShowSorry()">主动发起设置</A>
-</DIV>
-
 <DIV style="text-align:center;" class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">数据分析</SPAN> 
 <A href="javascript:ShowSorry()">流量统计 </A>
 <A href="javascript:ShowSorry()">咨询量统计</A> 
@@ -86,11 +76,6 @@
 
 <DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg');cursor:hand;" title="请点击">聊天记录</SPAN> 
 <A href="ChatAnnal.aspx">聊天记录 </A> <A href="CallerLeaveWord.aspx">访客留言</A> 
-</DIV>
-
-<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">客户管理</SPAN> 
-<A href="javascript:ShowSorry()">添加客户</A> 
-<A href="javascript:ShowSorry()">客户列表</A> 
 </DIV>
 </div></DIV>
 <!--结束-->

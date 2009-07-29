@@ -12,7 +12,7 @@
    <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
   <div style="text-align:left;color: #cccccc; border-bottom: 1px solid; position: relative;">&nbsp;&nbsp;&nbsp;<a href="AccountHome.aspx"><img src="Images/zhuce2.jpg" /></a><img src="Images/mima2.jpg" /></div>
   <!--内容-->
-  <TABLE cellSpacing=0 cellPadding=0 border=0 style="text-align:left;" >
+  <TABLE cellSpacing=5 cellPadding=0 border=0 style="text-align:left; margin-top:10px;" >
         <TBODY >
         <TR>
           <TD >&nbsp;&nbsp; 管理员呢称： </TD>

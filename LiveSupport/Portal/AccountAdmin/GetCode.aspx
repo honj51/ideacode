@@ -137,8 +137,9 @@
                       </TR>
                       <tr>
                           <td colspan="3" align="center">
-                              <asp:Button ID="Button1" runat="server" Text="确定" Width="64px" 
-                                  onclick="Button1_Click" />
+                          <br />
+                              <asp:Button ID="Button1" runat="server" Text="确定" Width="115px" 
+                                  onclick="Button1_Click" Height="28px" />
                           </td>
                       </tr>
                       </TBODY>
