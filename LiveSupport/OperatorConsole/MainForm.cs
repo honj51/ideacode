@@ -787,7 +787,7 @@ namespace LiveSupport.OperatorConsole
         private void settalkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QickResponseEidtor settalk = new QickResponseEidtor();
-            settalk.ShowDialog();
+            settalk.Show();
         }
 
         private void paymentToolStripMenuItem_Click(object sender, EventArgs e)
