@@ -20,6 +20,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 string nowdate = DateTime.Now.ToString("yyyy-MM-dd");
                 this.txtBeginDate.Text = nowdate;
                 this.txtEndDate.Text = nowdate;
+                loadDomainName();
             }
         }
         else
@@ -33,13 +34,33 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         string beginDate = this.txtBeginDate.Text;
         string endDate = this.txtEndDate.Text;
-        DataBindLeaveWord(oepr.Account.AccountId, beginDate, endDate + " 23:59:59");
+        string domainName=null;
+        if (ddlDomainName.SelectedIndex>0)
+        {
+            domainName=ddlDomainName.SelectedItem.Value.ToString();
+        }
+        DataBindLeaveWord(oepr.Account.AccountId, domainName, beginDate, endDate + " 23:59:59");
+    }
+
+    protected void loadDomainName()
+    {
+        ddlDomainName.DataSource = WebSiteManager.GetAllWebSiteByRegisterId(oepr.Account.AccountId);
+        ddlDomainName.DataTextField = "DomainName";
+        ddlDomainName.DataValueField = "DomainName";
+        ddlDomainName.DataBind();
     }
 
     #region 绑定留言记录
-    public void DataBindLeaveWord(string accountId, string beginDate, string endDate)
+    public void DataBindLeaveWord(string accountId, string domainName, string beginDate, string endDate)
     {
-        List<LeaveWord> list=LeaveWordManager.GetLeaveWordByAccountId(accountId,beginDate,endDate);
+        List<LeaveWord> list = null;
+        if (domainName==null)
+        {
+            LeaveWordManager.GetLeaveWordByAccountId(accountId,beginDate, endDate);
+        }
+        else
+        list = LeaveWordManager.GetLeaveWordByAccountIdAndDomainName(accountId, domainName, beginDate, endDate);
+        
         if (list != null)
         {
             this.gvLeaveWord.DataSource = list;
@@ -58,6 +79,6 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     protected void gvLeaveWord_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         this.gvLeaveWord.PageIndex = e.NewPageIndex;
-        DataBindLeaveWord(oepr.Account.AccountId, this.txtBeginDate.Text,this.txtEndDate.Text + " 23:59:59");
+        DataBindLeaveWord(oepr.Account.AccountId, ddlDomainName.SelectedItem.Value.ToString(), this.txtBeginDate.Text, this.txtEndDate.Text + " 23:59:59");
     }
 }

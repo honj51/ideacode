@@ -32,6 +32,14 @@
   <TBODY>
 
   <TR id=tr_time>
+  <td class=setting_td_left vAlign=center align=right>
+  &nbsp;选择域名：
+  </td>
+  <td class=setting_td_right vAlign=center align=left>
+   <asp:DropDownList ID="ddlDomainName" runat="server" AutoPostBack="True">
+       <asp:ListItem Value="0">请选择域名</asp:ListItem>
+          </asp:DropDownList>
+  </td>
     <TD class=setting_td_left vAlign=center align=right>&nbsp;选择时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
         <asp:TextBox ID="txtBeginDate" runat="server" Width="98px"  onfocus="calendar()"></asp:TextBox>
@@ -39,6 +47,7 @@
 &nbsp;<asp:Button ID="btnSelect" runat="server" Text="搜索" Width="64px" 
             onclick="btnSelect_Click"  />
       </TD></TR></TBODY></TABLE>
+      
 <!--聊天记录内容-->
 <table width="560">
 <tr><td align="left" style=" background-color:#ebf1fa; height: 20px;"><b>留言记录</b> &gt;&gt;</td>
@@ -60,6 +69,8 @@
             <asp:BoundField DataField="Subject" HeaderText="主题" SortExpression="Subject" />
             <asp:BoundField DataField="Content" HeaderText="Content" 
                 SortExpression="Content" Visible="False" />
+            <asp:BoundField DataField="DomainName" HeaderText="域名" 
+                SortExpression="DomainName" />
             <asp:BoundField DataField="Ip" HeaderText="IP地址" SortExpression="Ip" />
             <asp:BoundField DataField="CallerDate" HeaderText="留言时间" 
                 SortExpression="CallerDate" />
