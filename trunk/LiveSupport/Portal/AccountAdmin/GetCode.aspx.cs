@@ -54,7 +54,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("../Default.aspx");
+                Response.Redirect("../Index.aspx");
             }
         }
     }
@@ -110,7 +110,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
            }
            else
            {
-               Response.Redirect("../Default.aspx");
+               Response.Redirect("../Index.aspx");
            }
        }
        else {
@@ -185,7 +185,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("../Default.aspx");
+                Response.Redirect("../Index.aspx");
             }
         }
         else
@@ -401,6 +401,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 oper = (Operator)Session["User"];
                 wst.RegisterId = oper.Account.AccountId;
                 LiveSupport.BLL.WebSiteManager.Update(wst);
+                Response.Redirect("DomainName.aspx");
             }
             else
             {

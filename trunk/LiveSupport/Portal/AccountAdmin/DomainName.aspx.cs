@@ -17,13 +17,13 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     public Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User"] == null)
+        if (Session["User"] != null)
         {
             oper =(Operator) Session["User"];
         }
         else
         {
-            return;
+            Response.Redirect("../Index.aspx");
         }
     }
     /// <summary>
