@@ -892,19 +892,19 @@ namespace LiveSupport.OperatorConsole
             this.inviteToolStripMenuItem,
             this.acceptToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // inviteToolStripMenuItem
             // 
             this.inviteToolStripMenuItem.Name = "inviteToolStripMenuItem";
-            this.inviteToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.inviteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.inviteToolStripMenuItem.Text = "邀请对话";
             this.inviteToolStripMenuItem.Click += new System.EventHandler(this.inviteToolStripButton_Click);
             // 
             // acceptToolStripMenuItem
             // 
             this.acceptToolStripMenuItem.Name = "acceptToolStripMenuItem";
-            this.acceptToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.acceptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.acceptToolStripMenuItem.Text = "接受请求";
             this.acceptToolStripMenuItem.Click += new System.EventHandler(this.acceptToolStripButton_Click);
             // 
