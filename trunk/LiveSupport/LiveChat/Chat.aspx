@@ -134,6 +134,7 @@
             </Scripts>
         </asp:ScriptManager>
         <%--面板1 star--%>
+        
         <asp:Panel ID="pnlNoOperator" Visible="false" runat="server">
         <div style="WIDTH: 603px; height="98%" MARGIN-LEFT: 0px">
   <div class="b">
@@ -365,7 +366,7 @@
         {
            if (args.get_error() != undefined)
            {
-               if ((args.get_response().get_statusCode() == '12007') || (args.get_response().get_statusCode() == '12029'))
+               if ((args.get_response().get_statusCode() == '12007') || (args.get_response().get_statusCode() == '12029')||(args.get_response().get_statusCode() == '404'))
                {
                 //Show a Message like 'Please make sure you are connected to internet';
                 //alert('Please make sure you are connected to internet');
