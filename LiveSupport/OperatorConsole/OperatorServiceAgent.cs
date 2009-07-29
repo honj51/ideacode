@@ -692,6 +692,21 @@ namespace LiveSupport.OperatorConsole
 
             return leaveWords;
         }
+        public List<string> GetAccountDomains()
+        {
+            return new List<string>(ws.GetAccountDomains());
+        }
+
+         public List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName) 
+        {
+            return new List<QuickResponseCategory>(ws.GetQuickResponseByDomainName(domainName));
+        }
+
+         public void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName) 
+         {
+             ws.SaveQuickResponseByDomainName(response.ToArray(), domainName);
+         
+         }
 
         public int ResetOperator(string operatorId, string chatId)
         {
