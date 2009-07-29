@@ -56,7 +56,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         List<LeaveWord> list = null;
         if (domainName==null)
         {
-            LeaveWordManager.GetLeaveWordByAccountId(accountId,beginDate, endDate);
+          list= LeaveWordManager.GetLeaveWordByAccountId(accountId,beginDate, endDate);
         }
         else
         list = LeaveWordManager.GetLeaveWordByAccountIdAndDomainName(accountId, domainName, beginDate, endDate);
