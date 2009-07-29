@@ -106,4 +106,8 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             return null;
         }
     }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AddDomainName.aspx");
+    }
 }

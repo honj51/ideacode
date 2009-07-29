@@ -72,7 +72,9 @@
                     <asp:SessionParameter Name="op" SessionField="User" Type="Object" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-&nbsp;</td></tr>
+<div style=" text-align:center;"><asp:Button ID="Button1" runat="server" 
+        Text="添加域名" onclick="Button1_Click"/></div>
+            </td></tr>
         </TBODY></TABLE>
  </td></tr></table></td></tr>
    <tr><td><img  src="Images/n_540_2.jpg" style="height: 9px; width: 570px"/></td></tr>
