@@ -6,7 +6,7 @@ namespace LiveSupport.LiveSupportDAL.Providers
 {
    public  interface IWebSiteProvider
     {
-        void Add(LiveSupport.LiveSupportModel.WebSite model);
+        int Add(LiveSupport.LiveSupportModel.WebSite model);
         void Delete(string DomainName);
         System.Data.DataSet GetList(string strWhere);
         System.Data.DataSet GetList(int Top, string strWhere, string filedOrder);
