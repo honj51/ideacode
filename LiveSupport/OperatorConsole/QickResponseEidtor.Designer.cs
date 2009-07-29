@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QickResponseEidtor));
             this.setTalkTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbAddType = new System.Windows.Forms.ToolStripButton();
@@ -36,6 +37,7 @@
             this.tsbDeleteMessage = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.domainToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.operatorWS1 = new LiveSupport.OperatorConsole.LiveChatWS.OperatorWS();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +61,8 @@
             this.tsbAddMessage,
             this.tsbDeleteMessage,
             this.tsbEdit,
-            this.tsbSave});
+            this.tsbSave,
+            this.domainToolStripComboBox});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -143,6 +146,14 @@
             this.tsbSave.Text = "保存";
             this.tsbSave.Click += new System.EventHandler(this.OkToolStripButton_Click);
             // 
+            // domainToolStripComboBox
+            // 
+            this.domainToolStripComboBox.Items.AddRange(new object[] {
+            "请选择域名"});
+            this.domainToolStripComboBox.Name = "domainToolStripComboBox";
+            this.domainToolStripComboBox.Size = new System.Drawing.Size(121, 31);
+            this.domainToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.domainToolStripComboBox_SelectedIndexChanged);
+            // 
             // operatorWS1
             // 
             this.operatorWS1.AuthenticationHeaderValue = null;
@@ -156,11 +167,10 @@
             this.ClientSize = new System.Drawing.Size(420, 273);
             this.Controls.Add(this.setTalkTreeView);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "QickResponseEidtor";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "设置快速回复";
             this.Load += new System.EventHandler(this.QickResponseEidtor_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QickResponseEidtor_FormClosing);
@@ -182,6 +192,7 @@
         private System.Windows.Forms.ToolStripButton tsbAddMessage;
         private System.Windows.Forms.ToolStripButton tsbDeleteMessage;
         private LiveSupport.OperatorConsole.LiveChatWS.OperatorWS operatorWS1;
+        private System.Windows.Forms.ToolStripComboBox domainToolStripComboBox;
 
     }
 }

@@ -13,15 +13,17 @@ namespace LiveSupport.OperatorConsole
 {
     public partial class QickResponseEidtor : Form
     {
+        string domainName;
         public QickResponseEidtor()
         {
             InitializeComponent();
+            loadDomain();
+            domainToolStripComboBox.SelectedItem = "请选择域名";
             toolStrip1.Visible = Result;
             
             if (toolStrip1.Visible==false)
             {
                setTalkTreeView.Dock= DockStyle.Fill;
-             
             }
         }
 
@@ -35,7 +37,20 @@ namespace LiveSupport.OperatorConsole
             get { return result;}
             set { result = value;}
         }
-        
+
+        //读取域名列表
+        private void loadDomain() 
+        {
+            try
+            {
+                domainToolStripComboBox.Items.AddRange(Program.OperaterServiceAgent.GetAccountDomains().ToArray());
+            }
+            catch (WebException )
+            {
+                this.Text = "网络中断,请稍候重试";
+                return;
+            }
+        }
         private void addNodeToolStripButton_Click(object sender, EventArgs e)
         {
             setTalkTreeView.Nodes.Add("默认分类");
@@ -71,39 +86,39 @@ namespace LiveSupport.OperatorConsole
         private void OkToolStripButton_Click(object sender, EventArgs e)
         {
             Program.OperaterServiceAgent.QuickResponseCategory.Clear();
-            foreach (TreeNode Node in setTalkTreeView.Nodes)
-            { 
-                if(Node==null)continue;
-                QuickResponseCategory qrc = new QuickResponseCategory();
-                
+            if (domainToolStripComboBox.SelectedIndex > 0)
+            {
+                foreach (TreeNode Node in setTalkTreeView.Nodes)
+                {
+                    if (Node == null) continue;
+                    QuickResponseCategory qrc = new QuickResponseCategory();
+
                     qrc.Name = Node.Text;
-                    if (Node.Nodes==null) continue;
+                    if (Node.Nodes == null) continue;
                     string[] Contents = new string[Node.Nodes.Count];
 
-                    for(int i=0; i<Node.Nodes.Count;i++)
+                    for (int i = 0; i < Node.Nodes.Count; i++)
                     {
                         if (Node.Nodes[i].Text == null) continue;
-                        Contents[i]=Node.Nodes[i].Text;
+                        Contents[i] = Node.Nodes[i].Text;
                     }
-                qrc.Responses =Contents;
-              
-                Program.OperaterServiceAgent.QuickResponseCategory.Add(qrc);
-            }
-            if(Program.OperaterServiceAgent.QuickResponseCategory!=null)
-            {
-                try
-                {
-                    Program.OperaterServiceAgent.SaveQuickResponse(Program.OperaterServiceAgent.QuickResponseCategory);
+                    qrc.Responses = Contents;
+
+                    Program.OperaterServiceAgent.QuickResponseCategory.Add(qrc);
                 }
-                catch (WebException)
+                if (Program.OperaterServiceAgent.QuickResponseCategory != null)
                 {
-                    this.Text = "网络中断!请稍候再试!";
+                   Program.OperaterServiceAgent.SaveQuickResponseByDomainName(Program.OperaterServiceAgent.QuickResponseCategory, domainName);
                 }
-               
             }
         }
         //初始化
         private void QickResponseEidtor_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void loadQickResponse()
         {
             setTalkTreeView.Nodes.Clear();
 
@@ -168,7 +183,6 @@ namespace LiveSupport.OperatorConsole
                 else
                 {
                     this.setTalkTreeView.Nodes[this.setTalkTreeView.SelectedNode.Parent.Index].Nodes.Add("默认消息");
-                    
                 }
                 setTalkTreeView.ExpandAll();
             }
@@ -207,6 +221,20 @@ namespace LiveSupport.OperatorConsole
                 this.tsbDeleteType.Enabled = false;
                 this.tsbEdit.Enabled = false;
             }
+        }
+
+        private void domainToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setTalkTreeView.Nodes.Clear();
+            Program.OperaterServiceAgent.QuickResponseCategory.Clear();
+
+            if ( domainToolStripComboBox.SelectedIndex>0)
+            {
+                domainName = domainToolStripComboBox.SelectedItem.ToString();
+               Program.OperaterServiceAgent.QuickResponseCategory = Program.OperaterServiceAgent.GetQuickResponseByDomainName(domainName);
+            }
+          
+            loadQickResponse();
         }
     }
 }
