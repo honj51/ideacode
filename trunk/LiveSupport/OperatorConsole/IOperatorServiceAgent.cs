@@ -39,6 +39,8 @@ namespace LiveSupport.OperatorConsole
         List<string> GetAccountDomains();
         List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName);
         void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName);
+        List<LeaveWord> GetLeaveWordNotRepliedByDomainName(string domainName);
+        List<LeaveWord> GetLeaveWordByDomainName(string domainName);
         #endregion
 
         #region Async
