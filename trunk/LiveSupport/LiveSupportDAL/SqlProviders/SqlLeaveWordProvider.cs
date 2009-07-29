@@ -29,7 +29,8 @@ namespace LiveSupport.SqlProviders
            + ",[OperatorName]"
            + ",[AccountId]"
            + ",[IsReplied])"
-           + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}') ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId,lw.IsReplied);
+           + ",[DomainName] "
+           + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}') ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId,lw.IsReplied,lw.DomainName);
                 return DBHelper.ExecuteSql(sql);
             }
             catch (Exception ex)
@@ -113,12 +114,80 @@ namespace LiveSupport.SqlProviders
         }
         #endregion
 
-        #region 获取未回复留言
+        #region 通过公司编号及域名获得留言信息
+        public List<LiveSupport.LiveSupportModel.LeaveWord> GetLeaveWordByAccountIdAndDomainName(string accountId,string domainName, string beginDate, string endDate)
+        {
+            try
+            {
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}'and domainName='{1}' and CallerDate>='{2}' and CallerDate<='{3}' order by Senddate", accountId,domainName, beginDate, endDate);
+                using (SqlDataReader sdr = DBHelper.GetReader(sql))
+                {
+                    List<LeaveWord> list = new List<LeaveWord>();
+                    while (sdr.Read())
+                    {
+                        LeaveWord lw = new LeaveWord(sdr);
+                        lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
+                        list.Add(lw);
+                    }
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<LiveSupport.LiveSupportModel.LeaveWord> GetAllLeaveWordByAccountIdAndDomainName(string accountId,string domainName)
+        {
+            try
+            {
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' and domainName='{1}' order by isReplied", accountId,domainName);
+                SqlDataReader sdr = DBHelper.GetReader(sql);
+                List<LeaveWord> list = new List<LeaveWord>();
+                while (sdr.Read())
+                {
+                    LeaveWord lw = new LeaveWord(sdr);
+                    // lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
+                    list.Add(lw);
+                }
+                sdr.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        #endregion
+        #region 通过公司编号及域名获得未回复留言
         public List<LiveSupport.LiveSupportModel.LeaveWord> GetLeaveWordNotRepliedByAccountId(string accountId, bool IsReplied)
         {
             try
             {
-                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' and isReplied ='{1}' order by isReplied", accountId, IsReplied);
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}'  and isReplied ='{2}' order by isReplied", accountId, IsReplied);
+                SqlDataReader sdr = DBHelper.GetReader(sql);
+                List<LeaveWord> list = new List<LeaveWord>();
+                while (sdr.Read())
+                {
+                    LeaveWord lw = new LeaveWord(sdr);
+                    // lw.Account = new SqlAccountProvider().GetAccountByAccountId(sdr["accountId"].ToString());
+                    list.Add(lw);
+                }
+                sdr.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public List<LiveSupport.LiveSupportModel.LeaveWord> GetLeaveWordNotRepliedByAccountIdAndDomainName(string accountId, string domainName, bool IsReplied)
+        {
+            try
+            {
+                string sql = string.Format("select * from LiveSupport_LeaveWord where accountId='{0}' and domainName='{1}' and isReplied ='{2}' order by isReplied", accountId, domainName, IsReplied);
                 SqlDataReader sdr = DBHelper.GetReader(sql);
                 List<LeaveWord> list = new List<LeaveWord>();
                 while (sdr.Read())
