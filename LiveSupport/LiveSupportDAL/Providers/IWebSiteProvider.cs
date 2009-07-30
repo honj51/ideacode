@@ -11,7 +11,7 @@ namespace LiveSupport.LiveSupportDAL.Providers
         System.Data.DataSet GetList(string strWhere);
         System.Data.DataSet GetList(int Top, string strWhere, string filedOrder);
         LiveSupport.LiveSupportModel.WebSite GetModel(string DomainName);
-        void Update(WebSite model);
+        int Update(WebSite model);
         List<WebSite> GetAllWebSiteByRegisterId(string accountId);
     }
 }
