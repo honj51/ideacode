@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using LiveSupport.LiveSupportModel;
+using LiveSupport.BLL;
 
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
@@ -47,26 +48,27 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     //显示图片
     public string showImage(int imgType ,string domainName,string imgStyle)
     {
+        string [] imaStyles = imgStyle.Split('|');
         if (imgType ==1)
         {
-            if (imgStyle == "UserDefined")
-                return GetHomeRootUrl() + "/" + domainName + "/online" + imgStyle + ".JPG";
+            if (imaStyles[0] == WebSiteManager.WebSite_UserDefined)
+                return GetHomeRootUrl() + "/" + domainName + "/" + imaStyles[1];
             else
-                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/online" + imgStyle + ".JPG";
+                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + imaStyles[1];
         }
         if (imgType == 2)
         {
-            if (imgStyle == "UserDefined")
-                return GetHomeRootUrl() + "/" + domainName + "/invite_bg" + imgStyle + ".gif";
+            if (imaStyles[0] == WebSiteManager.WebSite_UserDefined)
+                return GetHomeRootUrl() + "/" + domainName + "/" + imaStyles[1];
             else
-                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/invite_bg" + imgStyle + ".gif";
+                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + imaStyles[1];
         }
         if (imgType == 3)
         {
-            if (imgStyle == "UserDefined")
-                return GetHomeRootUrl() + "/" + domainName + "/chat_bg" + imgStyle + ".gif";
+            if (imaStyles[0] == WebSiteManager.WebSite_UserDefined)
+                return GetHomeRootUrl() + "/" + domainName + "/" + imaStyles[1];
             else
-                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/chat_bg" + imgStyle + ".gif";
+                return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + imaStyles[1];
         }
         else
         {
