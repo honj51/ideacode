@@ -28,8 +28,8 @@ namespace LiveSupport.SqlProviders
            + ",[Senddate]"
            + ",[OperatorName]"
            + ",[AccountId]"
-           + ",[IsReplied])"
-           + ",[DomainName] "
+           + ",[IsReplied]"
+           + ",[DomainName]) "
            + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}') ", lw.Id, lw.CallerName, lw.Email, lw.Phone, lw.Subject, lw.Content, lw.Ip, lw.CallerDate, lw.Senddate, lw.OperatorName, lw.Account.AccountId,lw.IsReplied,lw.DomainName);
                 return DBHelper.ExecuteSql(sql);
             }
