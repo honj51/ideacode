@@ -28,25 +28,30 @@
    <tr><td><table style="background-image:url('Images/n_540_bg.jpg');width: 570px; height: 295px;"><tr><td valign="top" align="center"> 
   <!--内容-->
    <TABLE class=setting_tb cellSpacing=1 cellPadding=0 border=0 
-        style="width: 560px">
+        style="width: "560px">
   <TBODY>
 
   <TR id=tr_time>
-  <td class=setting_td_left vAlign=center align=right>
-  &nbsp;选择域名：
-  </td>
-  <td class=setting_td_right vAlign=center align=left>
-   <asp:DropDownList ID="ddlDomainName" runat="server" AutoPostBack="True">
-       <asp:ListItem Value="0">请选择域名</asp:ListItem>
-          </asp:DropDownList>
-  </td>
     <TD class=setting_td_left vAlign=center align=right>&nbsp;选择时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
         <asp:TextBox ID="txtBeginDate" runat="server" Width="98px"  onfocus="calendar()"></asp:TextBox>
         至<asp:TextBox ID="txtEndDate" runat="server" Width="98px"  onfocus="calendar()"></asp:TextBox>
 &nbsp;<asp:Button ID="btnSelect" runat="server" Text="搜索" Width="64px" 
             onclick="btnSelect_Click"  />
-      </TD></TR></TBODY></TABLE>
+      </TD></TR>
+      <tr id=tr_time>
+      <td class=setting_td_left vAlign=center align=right>
+  &nbsp;选择域名：
+  </td>
+  <td class=setting_td_right vAlign=center align=left>
+   <asp:DropDownList ID="ddlDomainName" runat="server" Width="213px" 
+          AutoPostBack="True" Height="16px">
+       <asp:ListItem Value="0">请选择域名</asp:ListItem>
+          </asp:DropDownList>
+  </td>
+      
+      </tr>
+      </TBODY></TABLE>
       
 <!--聊天记录内容-->
 <table width="560">
