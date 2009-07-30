@@ -250,6 +250,10 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         DropDownList1.Items.Clear();
         string[] banners = selectItem.Split('|');
+        if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default && banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined || string.IsNullOrEmpty(selectItem))
+        {
+            return;
+        }
         if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
         {
             for (int i = 0; i < bannerlist.Count; i++)
@@ -287,6 +291,10 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         DropDownList2.Items.Clear();
         string[] invites = selectItem.Split('|');
+        if (invites[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default && invites[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined || string.IsNullOrEmpty(selectItem))
+        {
+            return;
+        }
         if (invites[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
         {
             for (int i = 0; i < invitelist.Count; i++)
@@ -335,6 +343,10 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         DropDownList3.Items.Clear();
         string[] chatpages = selectItem.Split('|');
+        if (chatpages[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default && chatpages[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined||string.IsNullOrEmpty(selectItem))
+        {
+            return;
+        }
         if (chatpages[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
         {
             for (int i = 0; i < chatpagelist.Count; i++)
