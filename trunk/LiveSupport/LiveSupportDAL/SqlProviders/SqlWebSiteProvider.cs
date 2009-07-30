@@ -38,7 +38,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         /// <summary>
         /// 更新一条数据
         /// </summary>
-        public  void Update(WebSite model)
+        public  int Update(WebSite model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update WebSite set ");
@@ -62,7 +62,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             parameters[4].Value = model.ChatStyle;
             parameters[5].Value = model.IcoLocation;
 
-            DBHelper.ExecuteCommand(strSql.ToString(), parameters);
+           return  DBHelper.ExecuteCommand(strSql.ToString(), parameters);
         }
 
         /// <summary>
