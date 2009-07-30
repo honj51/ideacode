@@ -46,7 +46,7 @@
   <td class=setting_td_right vAlign=center align=left>
    <asp:DropDownList ID="ddlDomainName" runat="server" Width="226px" 
           AutoPostBack="True" Height="16px">
-       <asp:ListItem Value="0">请选择域名</asp:ListItem>
+       <asp:ListItem Value="0">查询所有</asp:ListItem>
           </asp:DropDownList>
   </td>
       
