@@ -31,7 +31,7 @@ public partial class AccountAdmin_MasterAccountAdmin : System.Web.UI.MasterPage
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
         Session["User"] = null;
-        this.Response.Redirect("../Index.aspx");
+        this.Response.Redirect("../Login.aspx?redirect=" + HttpContext.Current.Request.Url.PathAndQuery);
         this.PanelLogin.Visible = true;
     }
 }
