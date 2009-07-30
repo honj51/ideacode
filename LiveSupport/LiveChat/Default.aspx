@@ -43,6 +43,7 @@
         </p>--%>
         <p>test.zxkefu.cn
          <script src='http://test.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5'></script>
+         //localhost:3355	8ab68731-bb0b-40a0-be2a-20df12a070f4	Default|online0.JPG|offline0.JPG	Default|invite_bg0.gif|btn_ok0.jpg|btn_no0.jpg	Default|right_column_0.jpg|topmove1.gif	4
         </p>
         <table 
             style="width: 100%; height: 1501px;">
