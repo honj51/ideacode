@@ -65,13 +65,23 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback SaveQuickResponseOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SaveQuickResponseByDomainNameOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetQuickResponseByDomainNameOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAccountDomainsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetQuickResponseOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetLeaveWordOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetLeaveWordByDomainNameOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdateLeaveWordByIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetLeaveWordNotRepliedOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetLeaveWordNotRepliedByDomainNameOperationCompleted;
         
         private System.Threading.SendOrPostCallback DelLeaveWordByIdOperationCompleted;
         
@@ -174,16 +184,31 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event SaveQuickResponseCompletedEventHandler SaveQuickResponseCompleted;
         
         /// <remarks/>
+        public event SaveQuickResponseByDomainNameCompletedEventHandler SaveQuickResponseByDomainNameCompleted;
+        
+        /// <remarks/>
+        public event GetQuickResponseByDomainNameCompletedEventHandler GetQuickResponseByDomainNameCompleted;
+        
+        /// <remarks/>
+        public event GetAccountDomainsCompletedEventHandler GetAccountDomainsCompleted;
+        
+        /// <remarks/>
         public event GetQuickResponseCompletedEventHandler GetQuickResponseCompleted;
         
         /// <remarks/>
         public event GetLeaveWordCompletedEventHandler GetLeaveWordCompleted;
         
         /// <remarks/>
+        public event GetLeaveWordByDomainNameCompletedEventHandler GetLeaveWordByDomainNameCompleted;
+        
+        /// <remarks/>
         public event UpdateLeaveWordByIdCompletedEventHandler UpdateLeaveWordByIdCompleted;
         
         /// <remarks/>
         public event GetLeaveWordNotRepliedCompletedEventHandler GetLeaveWordNotRepliedCompleted;
+        
+        /// <remarks/>
+        public event GetLeaveWordNotRepliedByDomainNameCompletedEventHandler GetLeaveWordNotRepliedByDomainNameCompleted;
         
         /// <remarks/>
         public event DelLeaveWordByIdCompletedEventHandler DelLeaveWordByIdCompleted;
@@ -718,6 +743,97 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/SaveQuickResponseByDomainNam" +
+            "e", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void SaveQuickResponseByDomainName(QuickResponseCategory[] response, string domainName) {
+            this.Invoke("SaveQuickResponseByDomainName", new object[] {
+                        response,
+                        domainName});
+        }
+        
+        /// <remarks/>
+        public void SaveQuickResponseByDomainNameAsync(QuickResponseCategory[] response, string domainName) {
+            this.SaveQuickResponseByDomainNameAsync(response, domainName, null);
+        }
+        
+        /// <remarks/>
+        public void SaveQuickResponseByDomainNameAsync(QuickResponseCategory[] response, string domainName, object userState) {
+            if ((this.SaveQuickResponseByDomainNameOperationCompleted == null)) {
+                this.SaveQuickResponseByDomainNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveQuickResponseByDomainNameOperationCompleted);
+            }
+            this.InvokeAsync("SaveQuickResponseByDomainName", new object[] {
+                        response,
+                        domainName}, this.SaveQuickResponseByDomainNameOperationCompleted, userState);
+        }
+        
+        private void OnSaveQuickResponseByDomainNameOperationCompleted(object arg) {
+            if ((this.SaveQuickResponseByDomainNameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SaveQuickResponseByDomainNameCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponseByDomainName" +
+            "", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public QuickResponseCategory[] GetQuickResponseByDomainName(string domainName) {
+            object[] results = this.Invoke("GetQuickResponseByDomainName", new object[] {
+                        domainName});
+            return ((QuickResponseCategory[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetQuickResponseByDomainNameAsync(string domainName) {
+            this.GetQuickResponseByDomainNameAsync(domainName, null);
+        }
+        
+        /// <remarks/>
+        public void GetQuickResponseByDomainNameAsync(string domainName, object userState) {
+            if ((this.GetQuickResponseByDomainNameOperationCompleted == null)) {
+                this.GetQuickResponseByDomainNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetQuickResponseByDomainNameOperationCompleted);
+            }
+            this.InvokeAsync("GetQuickResponseByDomainName", new object[] {
+                        domainName}, this.GetQuickResponseByDomainNameOperationCompleted, userState);
+        }
+        
+        private void OnGetQuickResponseByDomainNameOperationCompleted(object arg) {
+            if ((this.GetQuickResponseByDomainNameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetQuickResponseByDomainNameCompleted(this, new GetQuickResponseByDomainNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAccountDomains", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string[] GetAccountDomains() {
+            object[] results = this.Invoke("GetAccountDomains", new object[0]);
+            return ((string[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAccountDomainsAsync() {
+            this.GetAccountDomainsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAccountDomainsAsync(object userState) {
+            if ((this.GetAccountDomainsOperationCompleted == null)) {
+                this.GetAccountDomainsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAccountDomainsOperationCompleted);
+            }
+            this.InvokeAsync("GetAccountDomains", new object[0], this.GetAccountDomainsOperationCompleted, userState);
+        }
+        
+        private void OnGetAccountDomainsOperationCompleted(object arg) {
+            if ((this.GetAccountDomainsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAccountDomainsCompleted(this, new GetAccountDomainsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public QuickResponseCategory[] GetQuickResponse() {
             object[] results = this.Invoke("GetQuickResponse", new object[0]);
@@ -769,6 +885,36 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.GetLeaveWordCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetLeaveWordCompleted(this, new GetLeaveWordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWordByDomainName", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public LeaveWord[] GetLeaveWordByDomainName(string domainName) {
+            object[] results = this.Invoke("GetLeaveWordByDomainName", new object[] {
+                        domainName});
+            return ((LeaveWord[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordByDomainNameAsync(string domainName) {
+            this.GetLeaveWordByDomainNameAsync(domainName, null);
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordByDomainNameAsync(string domainName, object userState) {
+            if ((this.GetLeaveWordByDomainNameOperationCompleted == null)) {
+                this.GetLeaveWordByDomainNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLeaveWordByDomainNameOperationCompleted);
+            }
+            this.InvokeAsync("GetLeaveWordByDomainName", new object[] {
+                        domainName}, this.GetLeaveWordByDomainNameOperationCompleted, userState);
+        }
+        
+        private void OnGetLeaveWordByDomainNameOperationCompleted(object arg) {
+            if ((this.GetLeaveWordByDomainNameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetLeaveWordByDomainNameCompleted(this, new GetLeaveWordByDomainNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -833,6 +979,37 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.GetLeaveWordNotRepliedCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetLeaveWordNotRepliedCompleted(this, new GetLeaveWordNotRepliedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWordNotRepliedByDoma" +
+            "inName", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public LeaveWord[] GetLeaveWordNotRepliedByDomainName(string domainName) {
+            object[] results = this.Invoke("GetLeaveWordNotRepliedByDomainName", new object[] {
+                        domainName});
+            return ((LeaveWord[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordNotRepliedByDomainNameAsync(string domainName) {
+            this.GetLeaveWordNotRepliedByDomainNameAsync(domainName, null);
+        }
+        
+        /// <remarks/>
+        public void GetLeaveWordNotRepliedByDomainNameAsync(string domainName, object userState) {
+            if ((this.GetLeaveWordNotRepliedByDomainNameOperationCompleted == null)) {
+                this.GetLeaveWordNotRepliedByDomainNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLeaveWordNotRepliedByDomainNameOperationCompleted);
+            }
+            this.InvokeAsync("GetLeaveWordNotRepliedByDomainName", new object[] {
+                        domainName}, this.GetLeaveWordNotRepliedByDomainNameOperationCompleted, userState);
+        }
+        
+        private void OnGetLeaveWordNotRepliedByDomainNameOperationCompleted(object arg) {
+            if ((this.GetLeaveWordNotRepliedByDomainNameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetLeaveWordNotRepliedByDomainNameCompleted(this, new GetLeaveWordNotRepliedByDomainNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -966,6 +1143,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private Account accountField;
         
+        private string domainNameField;
+        
         /// <remarks/>
         public string Id {
             get {
@@ -1093,6 +1272,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.accountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DomainName {
+            get {
+                return this.domainNameField;
+            }
+            set {
+                this.domainNameField = value;
             }
         }
     }
@@ -1298,6 +1487,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private string nameField;
         
+        private string accountIdField;
+        
         private string[] responsesField;
         
         /// <remarks/>
@@ -1317,6 +1508,16 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             }
             set {
                 this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AccountId {
+            get {
+                return this.accountIdField;
+            }
+            set {
+                this.accountIdField = value;
             }
         }
         
@@ -2907,6 +3108,62 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void SaveQuickResponseByDomainNameCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetQuickResponseByDomainNameCompletedEventHandler(object sender, GetQuickResponseByDomainNameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetQuickResponseByDomainNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetQuickResponseByDomainNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public QuickResponseCategory[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((QuickResponseCategory[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetAccountDomainsCompletedEventHandler(object sender, GetAccountDomainsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAccountDomainsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAccountDomainsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void GetQuickResponseCompletedEventHandler(object sender, GetQuickResponseCompletedEventArgs e);
     
     /// <remarks/>
@@ -2959,6 +3216,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetLeaveWordByDomainNameCompletedEventHandler(object sender, GetLeaveWordByDomainNameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetLeaveWordByDomainNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetLeaveWordByDomainNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public LeaveWord[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((LeaveWord[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     public delegate void UpdateLeaveWordByIdCompletedEventHandler(object sender, UpdateLeaveWordByIdCompletedEventArgs e);
     
     /// <remarks/>
@@ -2996,6 +3279,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         private object[] results;
         
         internal GetLeaveWordNotRepliedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public LeaveWord[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((LeaveWord[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetLeaveWordNotRepliedByDomainNameCompletedEventHandler(object sender, GetLeaveWordNotRepliedByDomainNameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetLeaveWordNotRepliedByDomainNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetLeaveWordNotRepliedByDomainNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

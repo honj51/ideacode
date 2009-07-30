@@ -485,6 +485,7 @@
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="QuickId" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Responses" type="tns:ArrayOfString" />
         </s:sequence>
       </s:complexType>
@@ -495,6 +496,41 @@
       </s:complexType>
       <s:element name="SaveQuickResponseResponse">
         <s:complexType />
+      </s:element>
+      <s:element name="SaveQuickResponseByDomainName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="response" type="tns:ArrayOfQuickResponseCategory" />
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveQuickResponseByDomainNameResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetQuickResponseByDomainName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuickResponseByDomainNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuickResponseByDomainNameResult" type="tns:ArrayOfQuickResponseCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountDomains">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAccountDomainsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountDomainsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="GetQuickResponse">
         <s:complexType />
@@ -524,6 +560,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="IsReplied" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="IsSend" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Account" type="tns:Account" />
+          <s:element minOccurs="0" maxOccurs="1" name="DomainName" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfLeaveWord">
@@ -535,6 +572,20 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetLeaveWordResult" type="tns:ArrayOfLeaveWord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeaveWordByDomainName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeaveWordByDomainNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLeaveWordByDomainNameResult" type="tns:ArrayOfLeaveWord" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -562,6 +613,20 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetLeaveWordNotRepliedResult" type="tns:ArrayOfLeaveWord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeaveWordNotRepliedByDomainName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeaveWordNotRepliedByDomainNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLeaveWordNotRepliedByDomainNameResult" type="tns:ArrayOfLeaveWord" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -734,6 +799,33 @@
   <wsdl:message name="SaveQuickResponseAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="SaveQuickResponseByDomainNameSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveQuickResponseByDomainName" />
+  </wsdl:message>
+  <wsdl:message name="SaveQuickResponseByDomainNameSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveQuickResponseByDomainNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveQuickResponseByDomainNameAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseByDomainNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuickResponseByDomainName" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseByDomainNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuickResponseByDomainNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuickResponseByDomainNameAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountDomainsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountDomains" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountDomainsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountDomainsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountDomainsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:message name="GetQuickResponseSoapIn">
     <wsdl:part name="parameters" element="tns:GetQuickResponse" />
   </wsdl:message>
@@ -752,6 +844,15 @@
   <wsdl:message name="GetLeaveWordAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="GetLeaveWordByDomainNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeaveWordByDomainName" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaveWordByDomainNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeaveWordByDomainNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaveWordByDomainNameAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:message name="UpdateLeaveWordByIdSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateLeaveWordById" />
   </wsdl:message>
@@ -768,6 +869,15 @@
     <wsdl:part name="parameters" element="tns:GetLeaveWordNotRepliedResponse" />
   </wsdl:message>
   <wsdl:message name="GetLeaveWordNotRepliedAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaveWordNotRepliedByDomainNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeaveWordNotRepliedByDomainName" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaveWordNotRepliedByDomainNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeaveWordNotRepliedByDomainNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaveWordNotRepliedByDomainNameAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
   <wsdl:message name="DelLeaveWordByIdSoapIn">
@@ -848,6 +958,18 @@
       <wsdl:input message="tns:SaveQuickResponseSoapIn" />
       <wsdl:output message="tns:SaveQuickResponseSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="SaveQuickResponseByDomainName">
+      <wsdl:input message="tns:SaveQuickResponseByDomainNameSoapIn" />
+      <wsdl:output message="tns:SaveQuickResponseByDomainNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponseByDomainName">
+      <wsdl:input message="tns:GetQuickResponseByDomainNameSoapIn" />
+      <wsdl:output message="tns:GetQuickResponseByDomainNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountDomains">
+      <wsdl:input message="tns:GetAccountDomainsSoapIn" />
+      <wsdl:output message="tns:GetAccountDomainsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetQuickResponse">
       <wsdl:input message="tns:GetQuickResponseSoapIn" />
       <wsdl:output message="tns:GetQuickResponseSoapOut" />
@@ -856,6 +978,10 @@
       <wsdl:input message="tns:GetLeaveWordSoapIn" />
       <wsdl:output message="tns:GetLeaveWordSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetLeaveWordByDomainName">
+      <wsdl:input message="tns:GetLeaveWordByDomainNameSoapIn" />
+      <wsdl:output message="tns:GetLeaveWordByDomainNameSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateLeaveWordById">
       <wsdl:input message="tns:UpdateLeaveWordByIdSoapIn" />
       <wsdl:output message="tns:UpdateLeaveWordByIdSoapOut" />
@@ -863,6 +989,10 @@
     <wsdl:operation name="GetLeaveWordNotReplied">
       <wsdl:input message="tns:GetLeaveWordNotRepliedSoapIn" />
       <wsdl:output message="tns:GetLeaveWordNotRepliedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaveWordNotRepliedByDomainName">
+      <wsdl:input message="tns:GetLeaveWordNotRepliedByDomainNameSoapIn" />
+      <wsdl:output message="tns:GetLeaveWordNotRepliedByDomainNameSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DelLeaveWordById">
       <wsdl:input message="tns:DelLeaveWordByIdSoapIn" />
@@ -1041,6 +1171,36 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SaveQuickResponseByDomainName">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SaveQuickResponseByDomainName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveQuickResponseByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponseByDomainName">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponseByDomainName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetQuickResponseByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountDomains">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAccountDomains" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAccountDomainsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetQuickResponse">
       <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse" style="document" />
       <wsdl:input>
@@ -1061,6 +1221,16 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetLeaveWordByDomainName">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWordByDomainName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLeaveWordByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateLeaveWordById">
       <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateLeaveWordById" style="document" />
       <wsdl:input>
@@ -1076,6 +1246,16 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:GetLeaveWordNotRepliedAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaveWordNotRepliedByDomainName">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWordNotRepliedByDomainName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLeaveWordNotRepliedByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -1264,6 +1444,36 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SaveQuickResponseByDomainName">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/SaveQuickResponseByDomainName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveQuickResponseByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickResponseByDomainName">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponseByDomainName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetQuickResponseByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountDomains">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAccountDomains" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAccountDomainsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetQuickResponse">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetQuickResponse" style="document" />
       <wsdl:input>
@@ -1284,6 +1494,16 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetLeaveWordByDomainName">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWordByDomainName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLeaveWordByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateLeaveWordById">
       <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/UpdateLeaveWordById" style="document" />
       <wsdl:input>
@@ -1299,6 +1519,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:GetLeaveWordNotRepliedAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaveWordNotRepliedByDomainName">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetLeaveWordNotRepliedByDomainName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLeaveWordNotRepliedByDomainNameAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
