@@ -12,6 +12,7 @@ using System.Net;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Net.Sockets;
+using LiveSupport.OperatorConsole.Dialog;
 namespace LiveSupport.OperatorConsole
 {
     public partial class MainForm : Form
@@ -1038,7 +1039,13 @@ namespace LiveSupport.OperatorConsole
                 {
                     if (operaterServiceAgent.DelLeaveWordById(lw.Id))
                     {
-                        this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
+                        if (cbxDomainName.SelectedIndex>0)
+                        {
+                            this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
+                        }
+                        else
+                            this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
+                       
                         LeaveWordNotReplied(null);
                     }
                 }
@@ -1065,6 +1072,10 @@ namespace LiveSupport.OperatorConsole
 
         private void cbxDomainName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbxDomainName.Items.Count<=1)
+            {
+                loadDomainName();
+            }
             List<LeaveWord> leaveWord = new List<LeaveWord>();
             if (cbxDomainName.SelectedIndex > 0)
             {
@@ -1079,6 +1090,37 @@ namespace LiveSupport.OperatorConsole
             }
            
            
+        }
+
+        private void getWebSiteCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.OperaterServiceAgent.CurrentOperator!= null)
+            {
+                GetWebSiteCodeDialog dlg = new GetWebSiteCodeDialog(Program.OperaterServiceAgent.CurrentOperator.AccountId);
+                dlg.ShowDialog();
+            }
+        }
+
+        private void openBrowser(object sender, EventArgs e)
+        {
+            try
+            {
+                ToolStripMenuItem m = sender as ToolStripMenuItem;
+                string url = m.Tag as string;
+                System.Diagnostics.Process.Start(url);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void myAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.OperaterServiceAgent.CurrentOperator != null)
+            {
+                AccountInfoDialog dlg = new AccountInfoDialog(Program.OperaterServiceAgent.CurrentOperator);
+                dlg.ShowDialog();
+            }
         }
     }
 

@@ -97,6 +97,18 @@
     <Compile Include="Controls\FileUploadControl.Designer.cs">
       <DependentUpon>FileUploadControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\AccountInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AccountInfoDialog.Designer.cs">
+      <DependentUpon>AccountInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\GetWebSiteCodeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\GetWebSiteCodeDialog.Designer.cs">
+      <DependentUpon>GetWebSiteCodeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +157,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FileUploadControl.resx">
       <DependentUpon>FileUploadControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\AccountInfoDialog.resx">
+      <DependentUpon>AccountInfoDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\GetWebSiteCodeDialog.resx">
+      <DependentUpon>GetWebSiteCodeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -273,11 +293,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -291,11 +306,6 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>

@@ -35,9 +35,6 @@
     <Setting Name="AutoLogin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://lcs.zxkefu.cn/Operator.asmx</Value>
-    </Setting>
     <Setting Name="URL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.zxkefu.cn</Value>
     </Setting>
@@ -68,6 +65,9 @@
     </Setting>
     <Setting Name="UpdateUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.zxkefu.cn/download/operatorconsole.msi</Value>
+    </Setting>
+    <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">http://test.zxkefu.cn/Operator.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>
