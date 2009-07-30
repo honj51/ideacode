@@ -9,26 +9,70 @@ using System.IO;
 using System.Configuration;
 public partial class AccountAdmin_Default3 : System.Web.UI.Page
 {
-    private int DefaultBannerStyleCount=2;
-    private int DefaultInviteStyleCount=2;
-    private int DefaultChatPageStyleCount=1;
+    private int DefaultBannerStyleCount = 2;
+    private int DefaultInviteStyleCount = 2;
+    private int DefaultChatPageStyleCount = 1;
+
+    public List<Banner> bannerlist = new List<Banner>();
+    public List<Invite> invitelist = new List<Invite>();
+    public List<ChatPage> chatpagelist = new List<ChatPage>();
+
     private Operator oper;
     public Operator Oper
     {
         get { return oper; }
         set { oper = value; }
     }
+    #region addstye
+    public void AddDefaultStyle()
+    {
+        Banner bnr0 = new Banner();
+        bnr0.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
+        bnr0.Online = "online0.jpg";
+        bnr0.Offline = "offline0.jpg";
+        Banner bnr1 = new Banner();
+        bnr1.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
+        bnr1.Online = "online1.jpg";
+        bnr1.Offline = "offline1.jpg";
+        bannerlist.Add(bnr0);
+        bannerlist.Add(bnr1);
+        Invite ivt0 = new Invite();
+        ivt0.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
+        ivt0.Bgimg = "invite_bg0.gif";
+        ivt0.Okimg = "btn_ok0.jpg";
+        ivt0.Noimg = "btn_no0.jpg";
+        Invite ivt1 = new Invite();
+        ivt1.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
+        ivt1.Bgimg = "invite_bg0.gif";
+        ivt1.Okimg = "btn_ok0.jpg";
+        ivt1.Noimg = "btn_no0.jpg";
+        Invite ivt2 = new Invite();
+        ivt2.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
+        ivt2.Bgimg = "invite_bg0.gif";
+        ivt2.Okimg = "btn_ok0.jpg";
+        ivt2.Noimg = "btn_no0.jpg";
+        invitelist.Add(ivt0);
+        invitelist.Add(ivt1);
+        invitelist.Add(ivt2);
+        ChatPage cpe = new ChatPage();
+        cpe.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
+        cpe.ChatPageBGImg = "chat_bg0.gif";
+        cpe.ChatPageRightImg = "right_column_0.jpg";
+        cpe.LeavePageTopImg = "topmove1.gif";
+        chatpagelist.Add(cpe);
+    }
+    #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-
+            AddDefaultStyle();
             if (Session["User"] != null)
             {
                 oper = (Operator)Session["User"];
                 List<WebSite> list = WebSiteManager.GetAllWebSiteByRegisterId(oper.Account.AccountId);
                 int selectIndex = 0;
-                
+
                 if (Request.QueryString["domain"] != null)
                 {
                     for (int i = 0; i < list.Count; i++)
@@ -47,10 +91,10 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 this.drpDomainName.SelectedIndex = selectIndex;
                 this.drpDomainName.SelectedValue = list[selectIndex].DomainName;
 
-                AddIcoLocation(list[selectIndex].IcoLocation);
-                AddBannerStyle(list[selectIndex].IconStyle);
-                AddInviteStyle(list[selectIndex].InviteStyle);
-                AddChatStyle(list[selectIndex].ChatStyle);
+                AddIcoLocation(list[selectIndex].IcoLocation);//位置
+                AddBannerStyle(list[selectIndex].IconStyle);// 图片
+                AddInviteStyle(list[selectIndex].InviteStyle);//主动邀请
+                AddChatStyle(list[selectIndex].ChatStyle);//聊天页面
             }
             else
             {
@@ -66,61 +110,62 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     //上传漂浮旗子图片
     protected void Button2_Click(object sender, EventArgs e)
     {
-       Label1.Visible = false;
-       string online = this.FileUpload2.FileName;
-       string offline = this.FileUpload1.FileName;
-       if (string.IsNullOrEmpty(online) || string.IsNullOrEmpty(offline))
-       {
-           Label1.Visible = true;
-           Label1.Text = "请选择上传图片";
-           this.ModalPopupExtender1.Show();
-           return;
-       }
-       if (!string.IsNullOrEmpty(LoadImageType(online, "jpg")))
-       {
-           Label1.Visible = true;
-           Label1.Text ="在线旗子,"+LoadImageType(online, "jpg");
-           this.ModalPopupExtender1.Show();
-           return;
-       }
-       if (!string.IsNullOrEmpty(LoadImageType(offline, "jpg")))
-       {
-           Label1.Visible = true;
-           Label1.Text = "离线旗子," + LoadImageType(offline, "jpg");
-           this.ModalPopupExtender1.Show();
-           return;
-       }
-       WebSite wst = WebSiteManager.GetWebSiteByDomainName(this.drpDomainName.SelectedValue);
-       if (wst != null)
-       {
-           if (Session["User"] != null)
-           {
-               oper = (Operator)Session["User"];
-               string path = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\" + oper.Account.AccountNumber + "\\" + drpDomainName.SelectedValue;
-               Directory.CreateDirectory(path);
-               string aa = "UserDefined";
-               FileUpload1.SaveAs(path + "\\offline" + aa + ".jpg");
-               FileUpload2.SaveAs(path + "\\online" + aa + ".jpg");
-               wst.IconStyle = aa;
-               WebSiteManager.Update(wst);
-               AddIcoLocation(wst.IcoLocation);
-               AddBannerStyle(wst.IconStyle);
-               AddInviteStyle(wst.InviteStyle);
-               AddChatStyle(wst.ChatStyle);
-           }
-           else
-           {
-               Response.Redirect("../Index.aspx");
-           }
-       }
-       else {
-           Response.Write("<script>alert('请选择上传到那个域名！');</script>");
-       }
+        Label1.Visible = false;
+        string online = this.FileUpload2.FileName;
+        string offline = this.FileUpload1.FileName;
+        if (string.IsNullOrEmpty(online) || string.IsNullOrEmpty(offline))
+        {
+            Label1.Visible = true;
+            Label1.Text = "请选择上传图片";
+            this.ModalPopupExtender1.Show();
+            return;
+        }
+        if (!string.IsNullOrEmpty(LoadImageType(online, "jpg")))
+        {
+            Label1.Visible = true;
+            Label1.Text = "在线旗子," + LoadImageType(online, "jpg");
+            this.ModalPopupExtender1.Show();
+            return;
+        }
+        if (!string.IsNullOrEmpty(LoadImageType(offline, "jpg")))
+        {
+            Label1.Visible = true;
+            Label1.Text = "离线旗子," + LoadImageType(offline, "jpg");
+            this.ModalPopupExtender1.Show();
+            return;
+        }
+        WebSite wst = WebSiteManager.GetWebSiteByDomainName(this.drpDomainName.SelectedValue);
+        if (wst != null)
+        {
+            if (Session["User"] != null)
+            {
+                oper = (Operator)Session["User"];
+                string path = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\" + oper.Account.AccountNumber + "\\" + drpDomainName.SelectedValue;
+                Directory.CreateDirectory(path);
+                string aa = LiveSupport.BLL.WebSiteManager.WebSite_UserDefined;
+                FileUpload1.SaveAs(path + "\\offline" + aa + ".jpg");
+                FileUpload2.SaveAs(path + "\\online" + aa + ".jpg");
+                wst.IconStyle = aa;
+                WebSiteManager.Update(wst);
+                AddIcoLocation(wst.IcoLocation);
+                AddBannerStyle(wst.IconStyle);
+                AddInviteStyle(wst.InviteStyle);
+                AddChatStyle(wst.ChatStyle);
+            }
+            else
+            {
+                Response.Redirect("../Index.aspx");
+            }
+        }
+        else
+        {
+            Response.Write("<script>alert('请选择上传到那个域名！');</script>");
+        }
     }
-    public string LoadImageType(string file,string type)
+    public string LoadImageType(string file, string type)
     {
         string ext = Path.GetExtension(file);
-        if (!(string.IsNullOrEmpty(type) || ext.ToLower() == "."+type))
+        if (!(string.IsNullOrEmpty(type) || ext.ToLower() == "." + type))
         {
             return "请上传格式为" + type + "图片";
         }
@@ -136,7 +181,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         string bgStyle = this.FileUpload3.FileName;
         string okbtn = this.FileUpload4.FileName;
         string nobtn = this.FileUpload5.FileName;
-        if (string.IsNullOrEmpty(bgStyle) || string.IsNullOrEmpty(okbtn)||string.IsNullOrEmpty(nobtn))
+        if (string.IsNullOrEmpty(bgStyle) || string.IsNullOrEmpty(okbtn) || string.IsNullOrEmpty(nobtn))
         {
             Label2.Visible = true;
             Label2.Text = "请选择上传图片";
@@ -146,21 +191,21 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         if (!string.IsNullOrEmpty(LoadImageType(bgStyle, "gif")))
         {
             Label2.Visible = true;
-            Label2.Text ="背景图片，"+ LoadImageType(bgStyle, "gif");
+            Label2.Text = "背景图片，" + LoadImageType(bgStyle, "gif");
             this.ModalPopupExtender2.Show();
             return;
         }
         if (!string.IsNullOrEmpty(LoadImageType(okbtn, "jpg")))
         {
             Label2.Visible = true;
-            Label2.Text ="确定按扭，"+ LoadImageType(okbtn, "jpg");
+            Label2.Text = "确定按扭，" + LoadImageType(okbtn, "jpg");
             this.ModalPopupExtender2.Show();
             return;
         }
         if (!string.IsNullOrEmpty(LoadImageType(nobtn, "jpg")))
         {
             Label2.Visible = true;
-            Label2.Text ="忽略按扭，"+ LoadImageType(nobtn, "jpg");
+            Label2.Text = "忽略按扭，" + LoadImageType(nobtn, "jpg");
             this.ModalPopupExtender2.Show();
             return;
         }
@@ -172,10 +217,10 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 oper = (Operator)Session["User"];
                 string path = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\" + oper.Account.AccountNumber + "\\" + drpDomainName.SelectedValue;
                 Directory.CreateDirectory(path);
-                string aa = "UserDefined";
+                string aa = LiveSupport.BLL.WebSiteManager.WebSite_UserDefined;
                 FileUpload3.SaveAs(path + "\\invite_bg" + aa + ".jpg");
                 FileUpload4.SaveAs(path + "\\btn_ok" + aa + ".jpg");
-                FileUpload5.SaveAs(path+ "\\btn_no" + aa + ".jpg");
+                FileUpload5.SaveAs(path + "\\btn_no" + aa + ".jpg");
                 wst.InviteStyle = aa;
                 WebSiteManager.Update(wst);
                 AddIcoLocation(wst.IcoLocation);
@@ -203,7 +248,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             AddBannerStyle(wst.IconStyle);
             AddInviteStyle(wst.InviteStyle);
             AddChatStyle(wst.ChatStyle);
-           
+
         }
 
     }
@@ -214,26 +259,27 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     public void AddBannerStyle(string selectItem)
     {
         DropDownList1.Items.Clear();
-        bool esist = true;
-        for (int i = 0; i < DefaultBannerStyleCount; i++)
+        string[] banners = selectItem.Split('|');
+        if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
         {
-
-            ListItem li = new ListItem();
-            if (i.ToString() == selectItem)
+            for (int i = 0; i < bannerlist.Count; i++)
             {
-                li.Text = "风格" + i;
-                li.Selected = true;
-                esist = false;
+                ListItem li = new ListItem();
+                if (banners[1] == bannerlist[i].Online)
+                {
+                    li.Text = "风格" + i;
+                    li.Selected = true;
+                }
+                else
+                {
+                    li.Text = "风格" + i;
+                    li.Selected = false;
+                }
+                li.Value = bannerlist[i].State + "|" + bannerlist[i].Online + "|" + bannerlist[i].Offline;
+                DropDownList1.Items.Add(li);
             }
-            else
-            {
-                li.Text = "风格" + i;
-                li.Selected = false;
-            }
-            li.Value = i.ToString();
-            DropDownList1.Items.Add(li);
         }
-        if (esist)
+        else
         {
             ListItem li = new ListItem();
             li.Text = "自定义";
@@ -250,26 +296,27 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     public void AddInviteStyle(string selectItem)
     {
         DropDownList2.Items.Clear();
-        bool esist = true;
-        for (int i = 0; i < DefaultInviteStyleCount; i++)
+        string[] invites = selectItem.Split('|');
+        if (invites[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
         {
-
-            ListItem li = new ListItem();
-            if (i.ToString() == selectItem)
+            for (int i = 0; i < invitelist.Count; i++)
             {
-                li.Text = "风格" + i;
-                li.Selected = true;
-                esist = false;
+                ListItem li = new ListItem();
+                if (invites[1] == invitelist[i].Bgimg)
+                {
+                    li.Text = "风格" + i;
+                    li.Selected = true;
+                }
+                else
+                {
+                    li.Text = "风格" + i;
+                    li.Selected = false;
+                }
+                li.Value = invitelist[i].State + "|" + invitelist[i].Bgimg + "|" + invitelist[i].Okimg + "|" + invitelist[i].Noimg;
+                DropDownList2.Items.Add(li);
             }
-            else
-            {
-                li.Text = "风格" + i;
-                li.Selected = false;
-            }
-            li.Value = i.ToString();
-            DropDownList2.Items.Add(li);
         }
-        if (esist)
+        else
         {
             ListItem li = new ListItem();
             li.Text = "自定义";
@@ -281,7 +328,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
     public void AddIcoLocation(string icoLocation)
     {
-         RadioButton0.Checked = false; RadioButton1.Checked = false; RadioButton2.Checked = false; RadioButton3.Checked = false; RadioButton4.Checked = false; RadioButton5.Checked = false; RadioButton6.Checked = false; 
+        RadioButton0.Checked = false; RadioButton1.Checked = false; RadioButton2.Checked = false; RadioButton3.Checked = false; RadioButton4.Checked = false; RadioButton5.Checked = false; RadioButton6.Checked = false;
         if (icoLocation == "0") { RadioButton0.Checked = true; }
         if (icoLocation == "1") { RadioButton1.Checked = true; }
         if (icoLocation == "2") { RadioButton2.Checked = true; }
@@ -297,26 +344,27 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     public void AddChatStyle(string selectItem)
     {
         DropDownList3.Items.Clear();
-        bool esist = true;
-        for (int i = 0; i < DefaultChatPageStyleCount; i++)
+        string[] chatpages = selectItem.Split('|');
+        if (chatpages[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
         {
-
-            ListItem li = new ListItem();
-            if (i.ToString() == selectItem)
+            for (int i = 0; i < chatpagelist.Count; i++)
             {
-                li.Text = "风格" + i;
-                li.Selected = true;
-                esist = false;
+                ListItem li = new ListItem();
+                if (chatpages[1] == chatpagelist[i].ChatPageBGImg)
+                {
+                    li.Text = "风格" + i;
+                    li.Selected = true;
+                }
+                else
+                {
+                    li.Text = "风格" + i;
+                    li.Selected = false;
+                }
+                li.Value = chatpagelist[i].State + "|" + chatpagelist[i].ChatPageBGImg + "|" + chatpagelist[i].ChatPageRightImg + "|" + chatpagelist[i].LeavePageTopImg;
+                DropDownList3.Items.Add(li);
             }
-            else
-            {
-                li.Text = "风格" + i;
-                li.Selected = false;
-            }
-            li.Value = i.ToString();
-            DropDownList3.Items.Add(li);
         }
-        if (esist)
+        else
         {
             ListItem li = new ListItem();
             li.Text = "自定义";
@@ -331,7 +379,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         if (Session["User"] != null)
         {
             oper = (Operator)Session["User"];
-            return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/" + oper.Account.AccountNumber+"/"+drpDomainName.SelectedValue;
+            return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/" + oper.Account.AccountNumber + "/" + drpDomainName.SelectedValue;
         }
         else
         {
@@ -341,28 +389,37 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     //跟据选择项更改
     public void ChangeStyle()
     {
-        string path=ConfigurationManager.AppSettings["HomeRootUrl"];
-        string bannerStyle = this.DropDownList1.SelectedValue;
-        if (bannerStyle == "UserDefined")
-            Image6.ImageUrl = GetHomeRootUrl() + "/online" + bannerStyle + ".JPG";
-        else
-            Image6.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/online" + bannerStyle + ".JPG";
-        string inviteStyle = this.DropDownList2.SelectedValue;
-        if (inviteStyle == "UserDefined")
-            Image7.ImageUrl = GetHomeRootUrl() + "/invite_bg" + inviteStyle + ".gif";
-        else
-            Image7.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/invite_bg" + inviteStyle + ".gif";
-        string chaStyle = this.DropDownList3.SelectedValue;
-        if (chaStyle == "UserDefined")
-            Image8.ImageUrl = GetHomeRootUrl() + "/chat_bg" + chaStyle + ".gif";
-        else
-            Image8.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/chat_bg" + chaStyle + ".gif";
+        string path = ConfigurationManager.AppSettings["HomeRootUrl"];
+        string[] bannerStyle = this.DropDownList1.SelectedValue.Split('|');
+        if (bannerStyle != null)
+        {
+            if (bannerStyle[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
+                Image6.ImageUrl = GetHomeRootUrl() + "/" + bannerStyle[1];
+            else
+                Image6.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + bannerStyle[1];
+        }
+        string[] inviteStyle = this.DropDownList2.SelectedValue.Split('|');
+        if (inviteStyle != null)
+        {
+            if (inviteStyle[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
+                Image7.ImageUrl = GetHomeRootUrl() + "/" + inviteStyle[1];
+            else
+                Image7.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + inviteStyle[1];
+        }
+        string[] chatStyle = this.DropDownList3.SelectedValue.Split('|');
+        if (chatStyle != null)
+        {
+            if (chatStyle[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
+                Image8.ImageUrl = GetHomeRootUrl() + "/" + chatStyle[1];
+            else
+                Image8.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + chatStyle[1];
+        }
     }
     //漂浮旗子样式改变
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
         ChangeStyle();
-        
+
     }
     //主动邀请样式改变
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
@@ -378,7 +435,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         string domainName = this.drpDomainName.SelectedValue;
-        if (domainName == "请选择域名" || string.IsNullOrEmpty(domainName))
+        if (string.IsNullOrEmpty(domainName))
         {
             return;
         }
@@ -407,7 +464,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             {
                 return;
             }
-            
+
         }
     }
 }
