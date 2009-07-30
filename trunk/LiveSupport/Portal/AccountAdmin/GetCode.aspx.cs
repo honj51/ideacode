@@ -391,7 +391,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     {
         string path = ConfigurationManager.AppSettings["HomeRootUrl"];
         string[] bannerStyle = this.DropDownList1.SelectedValue.Split('|');
-        if (bannerStyle != null)
+        if (!string.IsNullOrEmpty(this.DropDownList1.SelectedValue))
         {
             if (bannerStyle[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
                 Image6.ImageUrl = GetHomeRootUrl() + "/" + bannerStyle[1];
@@ -399,7 +399,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 Image6.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + bannerStyle[1];
         }
         string[] inviteStyle = this.DropDownList2.SelectedValue.Split('|');
-        if (inviteStyle != null)
+        if (!string.IsNullOrEmpty(this.DropDownList2.SelectedValue))
         {
             if (inviteStyle[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
                 Image7.ImageUrl = GetHomeRootUrl() + "/" + inviteStyle[1];
@@ -407,7 +407,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 Image7.ImageUrl = ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + inviteStyle[1];
         }
         string[] chatStyle = this.DropDownList3.SelectedValue.Split('|');
-        if (chatStyle != null)
+        if (!string.IsNullOrEmpty(this.DropDownList3.SelectedValue))
         {
             if (chatStyle[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
                 Image8.ImageUrl = GetHomeRootUrl() + "/" + chatStyle[1];
