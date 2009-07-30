@@ -24,13 +24,17 @@ public class LSBanner : IHttpHandler {
         {
             NewWebSite = new LiveSupport.BLL.NewWebSite();
             LiveSupport.BLL.Banner bnr = new LiveSupport.BLL.Banner();
+            bnr.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
             bnr.Offline = "offline0.JPG";
             bnr.Online = "online0.JPG";
             LiveSupport.BLL.Invite ivt = new LiveSupport.BLL.Invite();
+            ivt.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
             ivt.Bgimg = "invite_bg0.gif";
             ivt.Noimg = "btn_no0.jpg";
             ivt.Okimg = "btn_ok0.jpg";
             LiveSupport.BLL.ChatPage cpg = new LiveSupport.BLL.ChatPage();
+            cpg.State = LiveSupport.BLL.WebSiteManager.WebSite_Default;
+            cpg.ChatPageBGImg = "chat_bg0.gif";
             cpg.ChatPageRightImg = "right_column_0.jpg";
             cpg.LeavePageTopImg = "topmove1.gif";
             NewWebSite.banners = bnr;
