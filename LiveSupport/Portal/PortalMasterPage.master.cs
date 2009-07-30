@@ -31,7 +31,7 @@ public partial class PortalMasterPage : System.Web.UI.MasterPage
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
         Session["User"] = null;
-        this.Response.Redirect("Index.aspx");
+        this.Response.Redirect("login.aspx");
         this.PanelLogin.Visible = true;
     }
 }

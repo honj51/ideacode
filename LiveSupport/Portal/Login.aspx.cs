@@ -12,6 +12,7 @@ public partial class Login2 : System.Web.UI.Page
     {
         Session["user"] = null;
     }
+
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
         string accountNumber = this.txtNumber.Text;
@@ -23,7 +24,15 @@ public partial class Login2 : System.Web.UI.Page
         if (oper != null)
         {
             Session["User"] = oper;
-            this.Response.Redirect("~/AccountAdmin/AccountHome.aspx");
+            if (Request.QueryString["redirect"] != null)
+            {
+                Response.Redirect(Request.QueryString["redirect"].ToString());
+            } 
+            else
+            {
+                this.Response.Redirect("~/AccountAdmin/AccountHome.aspx");
+            }
+  
         }
         else
         {

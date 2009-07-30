@@ -103,7 +103,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("../Index.aspx");
+                 Response.Redirect("../Login.aspx?redirect=" + HttpContext.Current.Request.Url.PathAndQuery);
             }
         }
     }
@@ -376,6 +376,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             return null;
         }
     }
+
     //跟据选择项更改
     public void ChangeStyle(int i)
     {

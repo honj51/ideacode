@@ -21,7 +21,7 @@ public partial class AccountAdmin_Default2 : System.Web.UI.Page
         }
         else
         {
-            this.Response.Redirect("../Login.aspx");
+            this.Response.Redirect("../Login.aspx?redirect=" + HttpContext.Current.Request.Url.PathAndQuery);
         }
 
 
