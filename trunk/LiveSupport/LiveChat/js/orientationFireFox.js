@@ -1,4 +1,4 @@
-﻿var LCS_chatBanner_contentHtml = '<a href="#" onclick="openChat();" ><img id="_imgLC" src="' + LCS_homeUrl + '/ProcessImage.ashx?aid=' + LCS_accountId + '&vid=' + LCS_visitorId + '&referrer=' + document.referrer + '&bannerstyle=' + LCS_bannerStyle + '" border="0" alt="Click here for live chat" /></a>';
+﻿var LCS_chatBanner_contentHtml = '<a href="#" onclick="openChat();" ><img id="_imgLC" src="' + LCS_homeUrl + '/ProcessImage.ashx?aid=' + LCS_accountId + '&vid=' + LCS_visitorId + '&referrer=' + document.referrer + '" border="0" alt="Click here for live chat" /></a>';
 if (LCS_bannerPos != 0) {
     var LCS_chatBanner_DIV = document.createElement('div');
     LCS_chatBanner_DIV.id = "LCS_chatBanner";

@@ -13,48 +13,55 @@ public class LSBanner : IHttpHandler {
         {
             return; 
         }
-        LiveSupport.LiveSupportModel.WebSite webSite=null;
+        LiveSupport.BLL.NewWebSite  NewWebSite=null;
         string domainName=null;
         if (context.Request.UrlReferrer != null)
         {
             domainName = Lib.GetDomainName(context.Request.UrlReferrer.ToString());//域名
-            webSite = LiveSupport.BLL.WebSiteManager.GetWebSiteByDomainName(domainName);//用堿名取一行数
+            NewWebSite = LiveSupport.BLL.WebSiteManager.GetNewWebSiteByDomainName(domainName);//用堿名取一行数
         }
-        if (webSite == null)
+        if (NewWebSite == null)
         {
-            webSite = new LiveSupport.LiveSupportModel.WebSite();
-            webSite.ChatStyle = "0";
-            webSite.IcoLocation = "0";
-            webSite.IconStyle = "0";
-            webSite.InviteStyle = "0";
-            webSite.RegisterId = aid;
+            NewWebSite = new LiveSupport.BLL.NewWebSite();
+            LiveSupport.BLL.Banner bnr = new LiveSupport.BLL.Banner();
+            bnr.Offline = "offline0.JPG";
+            bnr.Online = "online0.JPG";
+            LiveSupport.BLL.Invite ivt = new LiveSupport.BLL.Invite();
+            ivt.Bgimg = "invite_bg0.gif";
+            ivt.Noimg = "btn_no0.jpg";
+            ivt.Okimg = "btn_ok0.jpg";
+            LiveSupport.BLL.ChatPage cpg = new LiveSupport.BLL.ChatPage();
+            cpg.ChatPageRightImg = "right_column_0.jpg";
+            cpg.LeavePageTopImg = "topmove1.gif";
+            NewWebSite.banners = bnr;
+            NewWebSite.invites = ivt;
+            NewWebSite.chatpage = cpg;
+            NewWebSite.accountId = aid;
+            NewWebSite.icoLocation = "0";
             if (domainName != null)
             {
-                webSite.DomainName = domainName;
-                LiveSupport.BLL.WebSiteManager.NewWebSite(webSite);
+                NewWebSite.domainName = domainName;
+                LiveSupport.BLL.WebSiteManager.AddNewWebSite(NewWebSite);
             }
         }
         string inviteImageUrl;
-        if (webSite.InviteStyle == "UserDefined")
+        if (NewWebSite.invites.State == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
         {
-            inviteImageUrl = homeRootUrl + "/Images/" + account.AccountNumber + "/" + webSite.DomainName;
+            inviteImageUrl = homeRootUrl + "/Images/" + account.AccountNumber + "/" + NewWebSite.domainName;
         }
         else
         {
             inviteImageUrl = homeRootUrl + "/Images/Default"; 
         }
-        string IconStyle = webSite.IconStyle; //客服样式(图片)
-        string InviteStyle =webSite.InviteStyle;//主动邀请样式
-        string ChatStyle = webSite.ChatStyle;//聊天样式
-        string IcoLocation = webSite.IcoLocation;//显示的位置样式
         string bannerType ="0";// 0: 简单按钮, 1: 客服列表, 2: 部门列表
+        
         string LCS_BannerJs = "orientationIE.js";
         if (context.Request.QueryString["aid"] != null)
         { 
             aid=context.Request.QueryString["aid"];
         }
         string companyName="LiveSupport";
-        if (account != null)
+        if (account.CompanyName != null)
         {
             companyName = account.CompanyName;
         }
@@ -67,14 +74,17 @@ public class LSBanner : IHttpHandler {
             }
         }
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        sb.AppendLine(string.Format("var LCS_homeUrl = '{0}';",homeRootUrl));
-        sb.AppendLine(string.Format("var LCS_inviteImageUrl = '{0}';", inviteImageUrl));
+        
+        sb.AppendLine(string.Format("var LCS_homeUrl = '{0}';",homeRootUrl));//服务器路径
+        sb.AppendLine(string.Format("var LCS_inviteImageUrl = '{0}';", inviteImageUrl));//图片路径
         sb.AppendLine(string.Format("var LCS_bannerType ='{0}';", bannerType));// 0: 简单按钮, 1: 客服列表, 2: 部门列表
-        sb.AppendLine(string.Format("var LCS_bannerStyle = '{0}';",IconStyle));// 0,1,2 图片
-        sb.AppendLine(string.Format("var LCS_invitePanelStyle = {0};",InviteStyle));// 0,1,2主动邀请样式
-        sb.AppendLine(string.Format("var LCS_bannerPos = {0};",IcoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
-        sb.AppendLine(string.Format("var LCS_accountId = '{0}';",aid));
-        sb.AppendLine(string.Format("var LCS_companyName = '{0}';", companyName));
+        sb.AppendLine(string.Format("var LCS_invitePanel_BGStyle = '{0}';", NewWebSite.invites.Bgimg));// 0,1,2主动邀请背景
+        sb.AppendLine(string.Format("var LCS_invitePanel_OKBtn = '{0}';", NewWebSite.invites.Okimg));// 0,1,2主动邀请OK按扭
+        sb.AppendLine(string.Format("var LCS_invitePanel_NOBtn = '{0}';", NewWebSite.invites.Noimg));// 0,1,2主动邀请NO按扭
+        sb.AppendLine(string.Format("var LCS_bannerPos = {0};", NewWebSite.icoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
+        sb.AppendLine(string.Format("var LCS_accountId = '{0}';",aid));//公司ID
+        sb.AppendLine(string.Format("var LCS_companyName = '{0}';", companyName));//公司名
+        
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/live2.js\"></script> ');");
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/"+LCS_BannerJs+"\"></script> ');");
         context.Response.ContentType = "text/plain"; // context.Response.ContentType = "application/x-javascript";

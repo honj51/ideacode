@@ -27,7 +27,6 @@ public class ProcessImage : IHttpHandler
         }
         string accountId = context.Request.QueryString["aid"].ToString();
         string visitorId = context.Request.QueryString["vid"].ToString();
-        string bannerStyle = context.Request.QueryString["bannerstyle"].ToString();
         string referrer = string.Empty;
         string pageRequested = string.Empty;
         string domainRequested = string.Empty;
@@ -89,8 +88,12 @@ public class ProcessImage : IHttpHandler
 
         // we get the status of the operators
         opOnline = OperatorService.HasOnlineOperator(accountId);
-
-        if (bannerStyle == "UserDefined")
+        LiveSupport.BLL.NewWebSite newWebSite = LiveSupport.BLL.WebSiteManager.GetNewWebSiteByDomainName(domainRequested);
+        if (newWebSite == null)
+        {
+            return; 
+        }
+        if (newWebSite.banners.State == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
         {
             imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"/" + AccountService.GetAccountById(accountId).AccountNumber + "/" + domainRequested;
         }
@@ -99,11 +102,9 @@ public class ProcessImage : IHttpHandler
             imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"/Default"; 
         }
         if (opOnline)
-            imgName += "/online" + bannerStyle + ".jpg";
+            imgName += "/" + newWebSite.banners.Online;
         else
-            imgName += "/offline" + bannerStyle + ".jpg";
-
-
+            imgName += "/" + newWebSite.banners.Offline;
         using (System.Drawing.Image returnImg = System.Drawing.Image.FromFile(imgName))
         {
             returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
