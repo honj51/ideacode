@@ -44,7 +44,7 @@
   &nbsp;选择域名：
   </td>
   <td class=setting_td_right vAlign=center align=left>
-   <asp:DropDownList ID="ddlDomainName" runat="server" Width="213px" 
+   <asp:DropDownList ID="ddlDomainName" runat="server" Width="226px" 
           AutoPostBack="True" Height="16px">
        <asp:ListItem Value="0">请选择域名</asp:ListItem>
           </asp:DropDownList>
@@ -68,7 +68,8 @@
                 Visible="False" />
             <asp:BoundField DataField="CallerName" HeaderText="访客名称" 
                 SortExpression="CallerName" />
-            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" 
+                Visible="False" />
             <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" 
                 Visible="False" />
             <asp:BoundField DataField="Subject" HeaderText="主题" SortExpression="Subject" />
@@ -76,7 +77,8 @@
                 SortExpression="Content" Visible="False" />
             <asp:BoundField DataField="DomainName" HeaderText="域名" 
                 SortExpression="DomainName" />
-            <asp:BoundField DataField="Ip" HeaderText="IP地址" SortExpression="Ip" />
+            <asp:BoundField DataField="Ip" HeaderText="IP地址" SortExpression="Ip" 
+                Visible="False" />
             <asp:BoundField DataField="CallerDate" HeaderText="留言时间" 
                 SortExpression="CallerDate" />
             <asp:BoundField DataField="Senddate" HeaderText="回复时间" 
