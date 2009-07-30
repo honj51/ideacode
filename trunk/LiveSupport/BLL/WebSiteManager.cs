@@ -74,6 +74,13 @@ namespace LiveSupport.BLL
     }
     public class ChatPage
     {
+        private string chatPageBGImg;
+
+        public string ChatPageBGImg
+        {
+            get { return chatPageBGImg; }
+            set { chatPageBGImg = value; }
+        }
         private string state;
 
         public string State
@@ -100,7 +107,7 @@ namespace LiveSupport.BLL
     #endregion
     public class WebSiteManager
     {
-        
+     
         private static IWebSiteProvider Provider = new SqlWebSiteProvider();
         public const string WebSite_Default ="Default";
         public const string WebSite_UserDefined = "UserDefined";
@@ -182,8 +189,9 @@ namespace LiveSupport.BLL
             ChatPage cpe = new ChatPage();
             string[] chatPageStyle = website.ChatStyle.Split('|');
             cpe.State = chatPageStyle[0];
-            cpe.ChatPageRightImg = chatPageStyle[1];
-            cpe.LeavePageTopImg = chatPageStyle[2];
+            cpe.ChatPageBGImg = chatPageStyle[1];
+            cpe.ChatPageRightImg = chatPageStyle[2];
+            cpe.LeavePageTopImg = chatPageStyle[3];
             nwbt.chatpage = cpe;
             nwbt.accountId = website.RegisterId;
             nwbt.icoLocation = website.IcoLocation;
@@ -200,7 +208,7 @@ namespace LiveSupport.BLL
             WebSite website = new WebSite();
             website.IconStyle =nwst.banners.State+"|"+ nwst.banners.Online + "|" + nwst.banners.Offline;
             website.InviteStyle = nwst.invites.State + "|" + nwst.invites.Bgimg + "|" + nwst.invites.Okimg + "|" + nwst.invites.Noimg;
-            website.ChatStyle = nwst.chatpage.State + "|" + nwst.chatpage.ChatPageRightImg + "|" + nwst.chatpage.LeavePageTopImg;
+            website.ChatStyle = nwst.chatpage.State + "|"+nwst.chatpage.ChatPageBGImg+"|" + nwst.chatpage.ChatPageRightImg + "|" + nwst.chatpage.LeavePageTopImg;
             website.DomainName = nwst.domainName;
             website.RegisterId = nwst.accountId;
             website.IcoLocation = nwst.icoLocation;
@@ -211,12 +219,12 @@ namespace LiveSupport.BLL
             WebSite website = new WebSite();
             website.IconStyle = nwst.banners.State + "|" + nwst.banners.Online + "|" + nwst.banners.Offline;
             website.InviteStyle = nwst.invites.State + "|" + nwst.invites.Bgimg + "|" + nwst.invites.Okimg + "|" + nwst.invites.Noimg;
-            website.ChatStyle = nwst.chatpage.State + "|" + nwst.chatpage.ChatPageRightImg + "|" + nwst.chatpage.LeavePageTopImg;
+            website.ChatStyle = nwst.chatpage.State + "|" + nwst.chatpage.ChatPageBGImg + "|" + nwst.chatpage.ChatPageRightImg + "|" + nwst.chatpage.LeavePageTopImg;
             website.DomainName = nwst.domainName;
             website.RegisterId = nwst.accountId;
             website.IcoLocation = nwst.icoLocation;
             return Update(website);
         }
-
+        
     }
 }
