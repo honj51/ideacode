@@ -51,7 +51,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         string [] imaStyles = imgStyle.Split('|');
         if (string.IsNullOrEmpty(imaStyles[1]) || string.IsNullOrEmpty(imaStyles[0]))
         {
-            return;
+            return "";
         }
         if (imgType ==1)
         {
