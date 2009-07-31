@@ -23,9 +23,9 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             SqlParameter[] parameters = {
 					new SqlParameter("@DomainName", SqlDbType.VarChar,50),
 					new SqlParameter("@RegisterId", SqlDbType.VarChar,50),
-					new SqlParameter("@IconStyle", SqlDbType.VarChar,50),
-					new SqlParameter("@InviteStyle", SqlDbType.VarChar,50),
-					new SqlParameter("@ChatStyle", SqlDbType.VarChar,50),
+					new SqlParameter("@IconStyle", SqlDbType.Text),
+					new SqlParameter("@InviteStyle", SqlDbType.Text),
+					new SqlParameter("@ChatStyle", SqlDbType.Text),
 					new SqlParameter("@IcoLocation", SqlDbType.VarChar,50)};
             parameters[0].Value = model.DomainName;
             parameters[1].Value = model.RegisterId;
