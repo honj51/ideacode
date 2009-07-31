@@ -303,7 +303,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         for (int i = 0; i < bannerlist.Count; i++)
         {
             ListItem li = new ListItem();
-            if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined && banners[1] == bannerlist[i].Online)
+            if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default && banners[1] == bannerlist[i].Online)
             {
                 li.Text = "风格" + i;
                 li.Selected = true;
@@ -361,8 +361,8 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
             li.Value = selectItem;
             li.Selected = true;
             DropDownList2.Items.Add(li);
-            ChangeStyle(2);
         }
+        ChangeStyle(2);
     }
     public void AddIcoLocation(string icoLocation)
     {
