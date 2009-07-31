@@ -441,14 +441,7 @@ namespace LiveSupport.OperatorConsole
             notifyIcon.Icon = Properties.Resources.Profile1;
             notifyIcon.Text = "网站客服 - " + "网络连接中断";
             if (status== ExceptionStatus.System)
-            {
-                foreach (ChatForm item in Program.ChatForms)
-                {
-                    if (item != null)
-                    {
-                        item.SystemMessage("网络出现问题,暂时无法获取及发送消息");
-                    }
-                }
+            { 
             }
             else
             {
@@ -660,41 +653,50 @@ namespace LiveSupport.OperatorConsole
         /// <param name="e"></param>
         private void btnSearchHistoryPageRequests_Click(object sender, EventArgs e)
         {
-            lstPageRequest.Items.Clear();
-            VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
-            if (vlvi == null)
+            try
             {
-                MessageBox.Show("请选择访客");
-                return;
-            }
-            DateTime beginTime = new DateTime(requestbeginDateTimePicker.Value.Year, requestbeginDateTimePicker.Value.Month, requestbeginDateTimePicker.Value.Day, 0, 0, 0);
-            DateTime endTime = new DateTime(requestendDateTimePicker.Value.Year, requestendDateTimePicker.Value.Month, requestendDateTimePicker.Value.Day, 23, 59, 59);
-
-
-            if (beginTime > endTime)
-            {
-                MessageBox.Show("日期选择有误！！");
-                return;
-            }
-
-            List<PageRequest> pRequest = operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, beginTime, endTime);
-
-            if (pRequest.Count > 0)
-            {
-                foreach (PageRequest item in pRequest)
+                btnSearchHistoryPageRequests.Enabled = false;
+                lstPageRequest.Items.Clear();
+                VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
+                if (vlvi == null)
                 {
-                    if (item == null) continue;
-                    ListViewItem pageRequest = new ListViewItem(new string[]
+                    MessageBox.Show("请选择访客");
+                    return;
+                }
+                DateTime beginTime = new DateTime(requestbeginDateTimePicker.Value.Year, requestbeginDateTimePicker.Value.Month, requestbeginDateTimePicker.Value.Day, 0, 0, 0);
+                DateTime endTime = new DateTime(requestendDateTimePicker.Value.Year, requestendDateTimePicker.Value.Month, requestendDateTimePicker.Value.Day, 23, 59, 59);
+
+
+                if (beginTime > endTime)
+                {
+                    MessageBox.Show("日期选择有误！！");
+                    return;
+                }
+
+                List<PageRequest> pRequest = operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, beginTime, endTime);
+
+                if (pRequest != null && pRequest.Count > 0)
+                {
+                    foreach (PageRequest item in pRequest)
+                    {
+                        if (item == null) continue;
+                        ListViewItem pageRequest = new ListViewItem(new string[]
                          {
                             item.Page, item.RequestTime.ToString(), item.Referrer
                           });
-                    pageRequest.Tag = item;
-                    lstPageRequest.Items.Add(pageRequest);
+                        pageRequest.Tag = item;
+                        lstPageRequest.Items.Add(pageRequest);
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("该访客暂无访问记录！");
+                }
+
             }
-            else
+            finally
             {
-                MessageBox.Show("该访客暂无访问记录！");
+                btnSearchHistoryPageRequests.Enabled = true;
             }
         }
 
@@ -707,29 +709,39 @@ namespace LiveSupport.OperatorConsole
         {
             //lstMessage.Items.Clear();
 
-            VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
-            if (vlvi == null)
-            {
-                MessageBox.Show("请选择需要查询的访客");
-                return;
-            }
-            DateTime beginTime = new DateTime(messagebeginDateTimePicker.Value.Year, messagebeginDateTimePicker.Value.Month, messagebeginDateTimePicker.Value.Day,0,0,0);
-            DateTime endTime = new DateTime(messageendDateTimePicker.Value.Year, messageendDateTimePicker.Value.Month, messageendDateTimePicker.Value.Day, 23, 59, 59);
+            btnSearchHistoryChatMsg.Enabled = false;
 
-            if (beginTime > endTime)
+            try
             {
-                MessageBox.Show("选择时间有误,开始时间晚于结束时间");
-                return;
-            }
+                VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
+                if (vlvi == null)
+                {
+                    MessageBox.Show("请选择需要查询的访客");
+                    return;
+                }
+                DateTime beginTime = new DateTime(messagebeginDateTimePicker.Value.Year, messagebeginDateTimePicker.Value.Month, messagebeginDateTimePicker.Value.Day, 0, 0, 0);
+                DateTime endTime = new DateTime(messageendDateTimePicker.Value.Year, messageendDateTimePicker.Value.Month, messageendDateTimePicker.Value.Day, 23, 59, 59);
 
-            List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, beginTime, endTime);
-            if (msg.Count > 0)
-            {
-                chatMessageViewerControl1.DataBindMessage(msg);
+                if (beginTime > endTime)
+                {
+                    MessageBox.Show("选择时间有误,开始时间晚于结束时间");
+                    return;
+                }
+
+                List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, beginTime, endTime);
+                if (msg.Count > 0)
+                {
+                    chatMessageViewerControl1.DataBindMessage(msg);
+                }
+                else
+                {
+                    MessageBox.Show("该访客暂无聊天记录！");
+                }
+
             }
-            else
+            finally
             {
-                MessageBox.Show("该访客暂无聊天记录！");
+                btnSearchHistoryChatMsg.Enabled = true;
             }
         }
         #endregion
@@ -1021,12 +1033,13 @@ namespace LiveSupport.OperatorConsole
         {
             if (operaterServiceAgent.CurrentOperator.Status == OperatorStatus.Offline) 
             {
-                if (operaterServiceAgent.RestartLogin() != null)
-                {
-                    loginTimer.Enabled = true;
-                    operaterServiceAgent.EnablePooling = true;
-                    notifyIcon.Icon = Properties.Resources.Profile;
-                }
+                //if (operaterServiceAgent.RestartLogin() != null)
+                //{
+                //    loginTimer.Enabled = true;
+                //    operaterServiceAgent.EnablePooling = true;
+                //    notifyIcon.Icon = Properties.Resources.Profile;
+                //}
+                operaterServiceAgent.RestartLogin();
             }
         }
 
@@ -1107,9 +1120,20 @@ namespace LiveSupport.OperatorConsole
             {
                 ToolStripMenuItem m = sender as ToolStripMenuItem;
                 string url = m.Tag as string;
+                browserNavigateTo(url);
+                //System.Diagnostics.Process.Start(url);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void browserNavigateTo(string url)
+        {
+            try
+            {
                 splitContainer2.Panel1Collapsed = true;
                 webBrowser1.Navigate(url);
-                //System.Diagnostics.Process.Start(url);
             }
             catch (Exception)
             {
@@ -1122,6 +1146,10 @@ namespace LiveSupport.OperatorConsole
             {
                 AccountInfoDialog dlg = new AccountInfoDialog(Program.OperaterServiceAgent.CurrentOperator);
                 dlg.ShowDialog();
+                if (dlg.GotoModifyAccountInfoPage)
+                {
+                    browserNavigateTo("http://www.zxkefu.cn/AccountAdmin/OperatorEdit.aspx?operatorId="+operaterServiceAgent.CurrentOperator.OperatorId);
+                }
             }
         }
 
