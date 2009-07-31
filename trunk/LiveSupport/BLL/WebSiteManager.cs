@@ -175,23 +175,32 @@ namespace LiveSupport.BLL
             NewWebSite nwbt = new NewWebSite();
             string[] bannerStyle = website.IconStyle.Split('|');
             Banner ban = new Banner();
-            ban.State = bannerStyle[0];
-            ban.Online = bannerStyle[1];
-            ban.Offline = bannerStyle[2];
+            if (newWebSiteState(bannerStyle[0]))
+            {
+                ban.State = bannerStyle[0];
+                ban.Online = bannerStyle[1];
+                ban.Offline = bannerStyle[2];
+            }
             nwbt.banners = ban;
             Invite ivt = new Invite();
             string[] invateStyle = website.InviteStyle.Split('|');
-            ivt.State = invateStyle[0];
-            ivt.Bgimg = invateStyle[1];
-            ivt.Okimg = invateStyle[2];
-            ivt.Noimg = invateStyle[3];
+            if (newWebSiteState(invateStyle[0]))
+            {
+                ivt.State = invateStyle[0];
+                ivt.Bgimg = invateStyle[1];
+                ivt.Okimg = invateStyle[2];
+                ivt.Noimg = invateStyle[3];
+            }
             nwbt.invites = ivt;
             ChatPage cpe = new ChatPage();
             string[] chatPageStyle = website.ChatStyle.Split('|');
-            cpe.State = chatPageStyle[0];
-            cpe.ChatPageBGImg = chatPageStyle[1];
-            cpe.ChatPageRightImg = chatPageStyle[2];
-            cpe.LeavePageTopImg = chatPageStyle[3];
+            if (newWebSiteState(chatPageStyle[0]))
+            {
+                cpe.State = chatPageStyle[0];
+                cpe.ChatPageBGImg = chatPageStyle[1];
+                cpe.ChatPageRightImg = chatPageStyle[2];
+                cpe.LeavePageTopImg = chatPageStyle[3];
+            }
             nwbt.chatpage = cpe;
             nwbt.accountId = website.RegisterId;
             nwbt.icoLocation = website.IcoLocation;
@@ -224,6 +233,15 @@ namespace LiveSupport.BLL
             website.RegisterId = nwst.accountId;
             website.IcoLocation = nwst.icoLocation;
             return Update(website);
+        }
+        public static bool newWebSiteState(string state)
+        {
+            if (!string.IsNullOrEmpty(state) || state == WebSite_Default || state == WebSite_UserDefined)
+            {
+                return true;
+            }
+            else
+                return false;
         }
         
     }
