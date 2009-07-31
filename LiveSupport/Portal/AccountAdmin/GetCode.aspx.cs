@@ -128,7 +128,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         if (!string.IsNullOrEmpty(LoadImageType(online))||!string.IsNullOrEmpty(LoadImageType(offline)))
         {
             Label1.Visible = true;
-            Label1.Text = "图片," + LoadImageType(online);
+            Label1.Text = "图片,请上传格式为jpg,gif,png,bmp图片";
             this.ModalPopupExtender1.Show();
             return;
         }
@@ -192,7 +192,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         if (!string.IsNullOrEmpty(LoadImageType(bgStyle)) || !string.IsNullOrEmpty(LoadImageType(okbtn))||!string.IsNullOrEmpty(LoadImageType(nobtn)))
         {
             Label2.Visible = true;
-            Label2.Text = "图片" + LoadImageType(bgStyle);
+            Label2.Text = "图片,请上传格式为jpg,gif,png,bmp图片";
             this.ModalPopupExtender2.Show();
             return;
         }
@@ -212,6 +212,59 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 FileUpload4.SaveAs(path + "\\" + inviteOKimg);
                 FileUpload5.SaveAs(path + "\\" + inviteNOimg);
                 wst.InviteStyle = aa + "|" + inviteBGimg + "|" + inviteOKimg + "|" + inviteNOimg;
+                WebSiteManager.Update(wst);
+                AddIcoLocation(wst.IcoLocation);
+                AddBannerStyle(wst.IconStyle);
+                AddInviteStyle(wst.InviteStyle);
+                AddChatStyle(wst.ChatStyle);
+            }
+            else
+            {
+                Response.Redirect("../Index.aspx");
+            }
+        }
+        else
+        {
+            Response.Write("<script>alert('请选择上传到那个域名！');</script>");
+        }
+    }
+    //上传聊天页面图片
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        Label3.Visible = false;
+        string bgStyle = this.FileUpload6.FileName;
+        string rightimg= this.FileUpload7.FileName;
+        string topimg = this.FileUpload8.FileName;
+        if (string.IsNullOrEmpty(bgStyle) || string.IsNullOrEmpty(rightimg) || string.IsNullOrEmpty(topimg))
+        {
+            Label3.Visible = true;
+            Label3.Text = "请选择上传图片";
+            this.ModalPopupExtender3.Show();
+            return;
+        }
+        if (!string.IsNullOrEmpty(LoadImageType(bgStyle)) || !string.IsNullOrEmpty(LoadImageType(rightimg)) || !string.IsNullOrEmpty(LoadImageType(topimg)))
+        {
+            Label3.Visible = true;
+            Label3.Text = "图片,请上传格式为jpg,gif,png,bmp图片";
+            this.ModalPopupExtender3.Show();
+            return;
+        }
+        WebSite wst = WebSiteManager.GetWebSiteByDomainName(this.drpDomainName.SelectedValue);
+        if (wst != null)
+        {
+            if (Session["User"] != null)
+            {
+                oper = (Operator)Session["User"];
+                string path = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\" + oper.Account.AccountNumber + "\\" + drpDomainName.SelectedValue;
+                Directory.CreateDirectory(path);
+                string aa = LiveSupport.BLL.WebSiteManager.WebSite_UserDefined;
+                string chatBGimg = "chat_bg" + aa + Path.GetExtension(bgStyle);
+                string chatRightimg = "chat_right" + aa + Path.GetExtension(rightimg);
+                string leaveTopimg = "leave_top" + aa + Path.GetExtension(topimg);
+                FileUpload3.SaveAs(path + "\\" + chatBGimg);
+                FileUpload4.SaveAs(path + "\\" + chatRightimg);
+                FileUpload5.SaveAs(path + "\\" + leaveTopimg);
+                wst.ChatStyle = aa + "|" + chatBGimg + "|" + chatRightimg + "|" + leaveTopimg;
                 WebSiteManager.Update(wst);
                 AddIcoLocation(wst.IcoLocation);
                 AddBannerStyle(wst.IconStyle);

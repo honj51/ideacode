@@ -109,6 +109,13 @@
                               </asp:DropDownList>
                               &nbsp;&nbsp;&nbsp;
                               <asp:HyperLink ID="HyperLink4" runat="server" ForeColor="#FF6666" NavigateUrl="#" ToolTip="自定义聊天页面样式">自定义</asp:HyperLink>
+                              <act:ModalPopupExtender ID="ModalPopupExtender3" runat="server"
+                    TargetControlID="HyperLink4"
+                    PopupControlID="Panel3"
+                    PopupDragHandleControlID="Panel3"
+                    BackgroundCssClass="modalBackground"
+                    DropShadow="true" 
+                    CancelControlID="Button7" />
                           </td>
                           <td align="left" class="style2">
                           <asp:Image ID="Image8" Width="164px" Height="87px" runat="server" 
@@ -237,6 +244,60 @@ style="margin-bottom: 0px" Width="186px" /><div>
                 </table>
             </div>
         </asp:Panel>
+<asp:Panel ID="Panel3" runat="server" CssClass="modalPopup" Height="232px" 
+            style="display:none" Width="354px">
+            <div style="margin:5px;background-color:#FFF; width: 345px; height: 222px;">
+                <div style="background-image: url('../images/BG123.JPG'); height: 25px; width: 347px; text-align:center;">
+                    <strong>上传聊天页面图片</strong></div>
+                <table border="0" style="height: 131px; width: 342px">
+                    <tr style="height:50px;">
+                        <td>
+                            背景图片：&nbsp;
+                            <asp:FileUpload ID="FileUpload6" runat="server" Width="187px" />
+                        </td>
+                        <td>
+                            <asp:Image ID="Image9" runat="server" Width="50px"  
+                                ImageUrl="~/AccountAdmin/Images/chat_bg0.gif" Height="41px"/>
+                        </td>
+                    </tr>
+                    <tr style="height:50px;">
+                        <td>
+                            右边图片：&nbsp;
+                            <asp:FileUpload ID="FileUpload7" runat="server" Height="23px" 
+                                style="margin-bottom: 0px" Width="186px" />
+                        </td>
+                        <td>
+                            <asp:Image ID="Image10" runat="server"  Width="50px" 
+                                ImageUrl="~/AccountAdmin/Images/chatright.jpg" Height="32px" />
+                        </td>
+                    </tr>
+                     <tr style="height:50px;">
+                        <td>
+                            顶部图片：&nbsp;
+                            <asp:FileUpload ID="FileUpload8" runat="server" Height="23px" 
+                                style="margin-bottom: 0px" Width="186px" />
+                            <div><asp:Label ID="Label3" runat="server" ForeColor="#FF0066" Visible="False"></asp:Label></div>
+                        </td>
+                        <td>
+                            <asp:Image ID="Image11" runat="server" Width="50px" 
+                                ImageUrl="~/AccountAdmin/Images/chattop.jpg" Height="32px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <asp:Button ID="Button6" runat="server" Text="上传" Width="51px" 
+                             style="height: 26px" onclick="Button6_Click" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="Button7" runat="server" Text="取消" Width="58px" 
+                             />
+                        </td>
+                        <td align="center">
+                            &nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </asp:Panel>
+        
          </asp:Content>
 
  
@@ -245,20 +306,7 @@ style="margin-bottom: 0px" Width="186px" /><div>
 <asp:Content ID="Content3" runat="server" contentplaceholderid="head">
 
     <style type="text/css">
-        .style1
-        {
-            width: 180px;
-        }
-        .style2
-        {
-            height: 109px;
-        }
-        .style3
-        {
-            width: 180px;
-            height: 109px;
-        }
-    .modalPopup 
+        .modalPopup 
     {
 	    background-color:#BFD1EE;
 	    border-style:solid;
