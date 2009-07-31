@@ -232,7 +232,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     protected void Button6_Click(object sender, EventArgs e)
     {
         Label3.Visible = false;
-        string bgStyle = this.FileUpload6.FileName;
+        string bgStyle = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\Default\\chat_bg0.gif";
         string rightimg= this.FileUpload7.FileName;
         string topimg = this.FileUpload8.FileName;
         if (string.IsNullOrEmpty(bgStyle) || string.IsNullOrEmpty(rightimg) || string.IsNullOrEmpty(topimg))
@@ -261,9 +261,9 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 string chatBGimg = "chat_bg" + aa + Path.GetExtension(bgStyle);
                 string chatRightimg = "chat_right" + aa + Path.GetExtension(rightimg);
                 string leaveTopimg = "leave_top" + aa + Path.GetExtension(topimg);
-                FileUpload3.SaveAs(path + "\\" + chatBGimg);
-                FileUpload4.SaveAs(path + "\\" + chatRightimg);
-                FileUpload5.SaveAs(path + "\\" + leaveTopimg);
+                File.Copy(bgStyle, path + "\\" + chatBGimg);
+                FileUpload7.SaveAs(path + "\\" + chatRightimg);
+                FileUpload8.SaveAs(path + "\\" + leaveTopimg);
                 wst.ChatStyle = aa + "|" + chatBGimg + "|" + chatRightimg + "|" + leaveTopimg;
                 WebSiteManager.Update(wst);
                 AddIcoLocation(wst.IcoLocation);
