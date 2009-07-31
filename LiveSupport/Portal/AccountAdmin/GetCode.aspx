@@ -160,7 +160,7 @@
  </table>
  
 <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" 
-style="display:none" Height="182px" Width="354px">
+style="display:block" Height="182px" Width="354px">
 <div style="margin:5px;background-color:#FFF; width: 345px; height: 172px;">
 <div style="background-image:url('images/BG123.JPG'); height:25px; width: 347px; text-align:center;" > <strong>
     上传漂浮旗子图片</strong></div>
@@ -168,19 +168,23 @@ style="display:none" Height="182px" Width="354px">
 <tr style="height:50px;">  
 <td >在线图片：&nbsp;
 <asp:FileUpload ID="FileUpload2" runat="server" Width="187px" />
+ <div><strong style="color: #666; font-size: 10px;">此图片建义大小为：165*70</strong></div>
 </td>
 <td >
-<asp:Image ID="Image2" runat="server" Width="50px" ImageUrl="~/AccountAdmin/Images/online1.JPG" />
+<asp:Image ID="Image2" runat="server" Width="50px" 
+        ImageUrl="~/AccountAdmin/Images/online1.JPG" Height="29px" />
 </td>
 </tr>
 <tr style="height:50px;">
 <td  align="center">离线图片：&nbsp;
 <asp:FileUpload ID="FileUpload1" runat="server" Height="23px" 
 style="margin-bottom: 0px" Width="186px" /><div>
-    <asp:Label ID="Label1" runat="server" ForeColor="#FF0066" Visible="False"></asp:Label></div>
+    <asp:Label ID="Label1" runat="server" ForeColor="#666666" Font-Bold="True" 
+            Font-Size="10px" Text="此图片建义大小为：165*70"></asp:Label></div>
 </td>
 <td >
-<asp:Image ID="Image3" runat="server"  Width="50px" ImageUrl="~/AccountAdmin/Images/offline1.jpg" />
+<asp:Image ID="Image3" runat="server"  Width="50px" 
+        ImageUrl="~/AccountAdmin/Images/offline1.jpg" Height="30px" />
 </tr>
 <tr>
 <td align="center">
@@ -196,7 +200,7 @@ style="margin-bottom: 0px" Width="186px" /><div>
 </asp:Panel>
 
         <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" Height="232px" 
-            style="display:none" Width="354px">
+            style="display:block" Width="354px">
             <div style="margin:5px;background-color:#FFF; width: 345px; height: 222px;">
                 <div style="background-image: url('../images/BG123.JPG'); height: 25px; width: 347px; text-align:center;">
                     <strong>上传主动邀请图片</strong></div>
@@ -205,9 +209,10 @@ style="margin-bottom: 0px" Width="186px" /><div>
                         <td>
                             背景图片：&nbsp;
                             <asp:FileUpload ID="FileUpload3" runat="server" Width="187px" />
+                             <div><strong style="color: #666; font-size: 10px;">此图片建义大小为：440*158</strong></div>
                         </td>
-                        <td>
-                            <asp:Image ID="Image4" runat="server" Width="50px"  ImageUrl="~/AccountAdmin/Images/invite_bg0.gif"/>
+                        <td valign="top">
+                           <div style=" margin-top:5px"> <asp:Image ID="Image4" runat="server" Width="50px"  ImageUrl="~/AccountAdmin/Images/invite_bg0.gif"/></div>
                         </td>
                     </tr>
                     <tr style="height:50px;">
@@ -215,8 +220,10 @@ style="margin-bottom: 0px" Width="186px" /><div>
                             确定图片：&nbsp;
                             <asp:FileUpload ID="FileUpload4" runat="server" Height="23px" 
                                 style="margin-bottom: 0px" Width="186px" />
+                                 <div style=" font-size:10px;"><strong style="color: #666; font-size: 10px;">
+                                     此图片建义大小为：72*26</strong></div>
                         </td>
-                        <td>
+                        <td valign="top">
                             <asp:Image ID="Image5" runat="server"  Width="50px" ImageUrl="~/AccountAdmin/Images/btn_ok0.jpg" />
                         </td>
                     </tr>
@@ -225,10 +232,12 @@ style="margin-bottom: 0px" Width="186px" /><div>
                             忽略图片：&nbsp;
                             <asp:FileUpload ID="FileUpload5" runat="server" Height="23px" 
                                 style="margin-bottom: 0px" Width="186px" />
-                            <div><asp:Label ID="Label2" runat="server" ForeColor="#FF0066" Visible="False"></asp:Label></div>
+                            <div>
+                                <asp:Label ID="Label2" runat="server" ForeColor="#666666" Font-Bold="True" 
+                                    Font-Size="10px" Text="此图片建义大小为：72*26"></asp:Label></div>
                         </td>
-                        <td>
-                            <asp:Image ID="Image1" runat="server" Width="50px" ImageUrl="~/AccountAdmin/Images/btn_no0.jpg" />
+                        <td valign="top">
+                            <div style=" margin-top:5px"><asp:Image ID="Image1" runat="server" Width="50px" ImageUrl="~/AccountAdmin/Images/btn_no0.jpg" /></div>
                         </td>
                     </tr>
                     <tr>
@@ -245,7 +254,7 @@ style="margin-bottom: 0px" Width="186px" /><div>
             </div>
         </asp:Panel>
 <asp:Panel ID="Panel3" runat="server" CssClass="modalPopup" Height="232px" 
-            style="display:none" Width="354px">
+            style="display:block" Width="354px">
             <div style="margin:5px;background-color:#FFF; width: 345px; height: 222px;">
                 <div style="background-image: url('../images/BG123.JPG'); height: 25px; width: 347px; text-align:center;">
                     <strong>上传聊天页面图片</strong></div>
@@ -254,6 +263,8 @@ style="margin-bottom: 0px" Width="186px" /><div>
                         <td>
                             背景图片：&nbsp;
                             <asp:FileUpload ID="FileUpload6" runat="server" Width="187px" Enabled="False" ToolTip="此功能暂不开放"/>
+                             <div style=" font-size:10px;"><strong style="color: #666; font-size: 10px;">
+                                 此图片建义大小为：600*520</strong></div>
                         </td>
                         <td>
                             <asp:Image ID="Image9" runat="server" Width="50px"  
@@ -265,6 +276,8 @@ style="margin-bottom: 0px" Width="186px" /><div>
                             右边图片：&nbsp;
                             <asp:FileUpload ID="FileUpload7" runat="server" Height="23px" 
                                 style="margin-bottom: 0px" Width="186px" />
+                                 <div style=" font-size:10px;"><strong style="color: #666; font-size: 10px;">
+                                     此图片建义大小为：135*310</strong></div>
                         </td>
                         <td>
                             <asp:Image ID="Image10" runat="server"  Width="50px" 
@@ -276,7 +289,9 @@ style="margin-bottom: 0px" Width="186px" /><div>
                             顶部图片：&nbsp;
                             <asp:FileUpload ID="FileUpload8" runat="server" Height="23px" 
                                 style="margin-bottom: 0px" Width="186px" />
-                            <div><asp:Label ID="Label3" runat="server" ForeColor="#FF0066" Visible="False"></asp:Label></div>
+                                &nbsp;<div>
+                                <asp:Label ID="Label3" runat="server" ForeColor="#666666" 
+                                    Font-Bold="True" Font-Size="10px" Text="此图片建义大小为：588*95"></asp:Label></div>
                         </td>
                         <td>
                             <asp:Image ID="Image11" runat="server" Width="50px" 
