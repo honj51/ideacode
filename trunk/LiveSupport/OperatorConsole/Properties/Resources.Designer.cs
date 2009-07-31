@@ -263,6 +263,13 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap development_39 {
+            get {
+                object obj = ResourceManager.GetObject("development_39", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap development_54 {
             get {
                 object obj = ResourceManager.GetObject("development_54", resourceCulture);

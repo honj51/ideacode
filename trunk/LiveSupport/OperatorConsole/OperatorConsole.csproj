@@ -342,6 +342,7 @@
     <None Include="Resources\deleteType.png" />
     <None Include="Resources\deleteMessage.png" />
     <None Include="Resources\core.png" />
+    <None Include="Resources\development 39.png" />
     <Content Include="Resources\ff.jpg" />
     <None Include="Resources\file_sent.png" />
     <None Include="Resources\Global.wav" />
