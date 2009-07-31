@@ -95,16 +95,16 @@ public class ProcessImage : IHttpHandler
         }
         if (newWebSite.banners.State == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
         {
-            imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"/" + AccountService.GetAccountById(accountId).AccountNumber + "/" + domainRequested;
+            imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"\\" + AccountService.GetAccountById(accountId).AccountNumber + "\\" + domainRequested;
         }
         else
         {
-            imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"/Default"; 
+            imgName = System.Configuration.ConfigurationManager.AppSettings["UserDefinedPath"]+"\\Default"; 
         }
         if (opOnline)
-            imgName += "/" + newWebSite.banners.Online;
+            imgName += "\\" + newWebSite.banners.Online;
         else
-            imgName += "/" + newWebSite.banners.Offline;
+            imgName += "\\" + newWebSite.banners.Offline;
         using (System.Drawing.Image returnImg = System.Drawing.Image.FromFile(imgName))
         {
             returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
