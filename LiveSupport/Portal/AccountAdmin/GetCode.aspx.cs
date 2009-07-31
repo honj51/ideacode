@@ -257,7 +257,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         for (int i = 0; i < bannerlist.Count; i++)
         {
             ListItem li = new ListItem();
-            if (banners[1] == bannerlist[i].Online)
+            if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined && banners[1] == bannerlist[i].Online)
             {
                 li.Text = "风格" + i;
                 li.Selected = true;
@@ -295,7 +295,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         for (int i = 0; i < invitelist.Count; i++)
         {
             ListItem li = new ListItem();
-            if (invites[1] == invitelist[i].Bgimg)
+            if (invites[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default && invites[1] == invitelist[i].Bgimg)
             {
                 li.Text = "风格" + i;
                 li.Selected = true;
@@ -344,7 +344,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         for (int i = 0; i < chatpagelist.Count; i++)
         {
             ListItem li = new ListItem();
-            if (chatpages[1] == chatpagelist[i].ChatPageBGImg)
+            if (chatpages[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default && chatpages[1] == chatpagelist[i].ChatPageBGImg)
             {
                 li.Text = "风格" + i;
                 li.Selected = true;
