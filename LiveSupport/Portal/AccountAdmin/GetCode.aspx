@@ -58,7 +58,7 @@
                                   <asp:ListItem Value="0">风格一</asp:ListItem>
                                   <asp:ListItem Value="1">风格二</asp:ListItem>
                               </asp:DropDownList>
-                              &nbsp;&nbsp;
+                              &nbsp;&nbsp;&nbsp;
                               <asp:HyperLink ID="HyperLink2" runat="server"  NavigateUrl="#" ForeColor="#FF6666" ToolTip="自定义Banner图片">自定义</asp:HyperLink>
                               <act:ModalPopupExtender ID="ModalPopupExtender1" runat="server"
                     TargetControlID="HyperLink2"
