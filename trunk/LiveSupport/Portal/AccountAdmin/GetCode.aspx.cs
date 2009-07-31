@@ -114,20 +114,17 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     }
     //上传漂浮旗子图片
     protected void Button2_Click(object sender, EventArgs e)
-    {
-        Label1.Visible = false;
+    {     
         string online = this.FileUpload2.FileName;
         string offline = this.FileUpload1.FileName;
         if (string.IsNullOrEmpty(online) || string.IsNullOrEmpty(offline))
         {
-            Label1.Visible = true;
             Label1.Text = "请选择上传图片";
             this.ModalPopupExtender1.Show();
             return;
         }
         if (!string.IsNullOrEmpty(LoadImageType(online))||!string.IsNullOrEmpty(LoadImageType(offline)))
         {
-            Label1.Visible = true;
             Label1.Text = "图片,请上传格式为jpg,gif,png,bmp图片";
             this.ModalPopupExtender1.Show();
             return;
@@ -184,14 +181,13 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         string nobtn = this.FileUpload5.FileName;
         if (string.IsNullOrEmpty(bgStyle) || string.IsNullOrEmpty(okbtn) || string.IsNullOrEmpty(nobtn))
         {
-            Label2.Visible = true;
+
             Label2.Text = "请选择上传图片";
             this.ModalPopupExtender2.Show();
             return;
         }
         if (!string.IsNullOrEmpty(LoadImageType(bgStyle)) || !string.IsNullOrEmpty(LoadImageType(okbtn))||!string.IsNullOrEmpty(LoadImageType(nobtn)))
         {
-            Label2.Visible = true;
             Label2.Text = "图片,请上传格式为jpg,gif,png,bmp图片";
             this.ModalPopupExtender2.Show();
             return;
@@ -231,20 +227,17 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     //上传聊天页面图片
     protected void Button6_Click(object sender, EventArgs e)
     {
-        Label3.Visible = false;
         string bgStyle = ConfigurationManager.AppSettings["UserDefinedPath"] + "\\Default\\chat_bg0.gif";
         string rightimg= this.FileUpload7.FileName;
         string topimg = this.FileUpload8.FileName;
         if (string.IsNullOrEmpty(bgStyle) || string.IsNullOrEmpty(rightimg) || string.IsNullOrEmpty(topimg))
         {
-            Label3.Visible = true;
             Label3.Text = "请选择上传图片";
             this.ModalPopupExtender3.Show();
             return;
         }
         if (!string.IsNullOrEmpty(LoadImageType(bgStyle)) || !string.IsNullOrEmpty(LoadImageType(rightimg)) || !string.IsNullOrEmpty(LoadImageType(topimg)))
         {
-            Label3.Visible = true;
             Label3.Text = "图片,请上传格式为jpg,gif,png,bmp图片";
             this.ModalPopupExtender3.Show();
             return;
