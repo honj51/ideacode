@@ -160,7 +160,7 @@
  </table>
  
 <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" 
-style="display:block" Height="182px" Width="354px">
+style="display:none" Height="182px" Width="354px">
 <div style="margin:5px;background-color:#FFF; width: 345px; height: 172px;">
 <div style="background-image:url('images/BG123.JPG'); height:25px; width: 347px; text-align:center;" > <strong>
     上传漂浮旗子图片</strong></div>
@@ -200,7 +200,7 @@ style="margin-bottom: 0px" Width="186px" /><div>
 </asp:Panel>
 
         <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" Height="232px" 
-            style="display:block" Width="354px">
+            style="display:none" Width="354px">
             <div style="margin:5px;background-color:#FFF; width: 345px; height: 222px;">
                 <div style="background-image: url('../images/BG123.JPG'); height: 25px; width: 347px; text-align:center;">
                     <strong>上传主动邀请图片</strong></div>
@@ -254,7 +254,7 @@ style="margin-bottom: 0px" Width="186px" /><div>
             </div>
         </asp:Panel>
 <asp:Panel ID="Panel3" runat="server" CssClass="modalPopup" Height="232px" 
-            style="display:block" Width="354px">
+            style="display:none" Width="354px">
             <div style="margin:5px;background-color:#FFF; width: 345px; height: 222px;">
                 <div style="background-image: url('../images/BG123.JPG'); height: 25px; width: 347px; text-align:center;">
                     <strong>上传聊天页面图片</strong></div>
