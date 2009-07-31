@@ -435,15 +435,14 @@ public partial class Chat : System.Web.UI.Page
         {
             return;
         }
-        string[] chatpages = nwst.chatpage.ToString().Split('|');
         string chatImageUrl = null;
         if (nwst.chatpage.State == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
         {
-            chatImageUrl = "/Images/" + AccountService.GetAccountById(CurrentVisitor.AccountId).AccountNumber + "/" + nwst.domainName + "/";
+            chatImageUrl = "Images/" + AccountService.GetAccountById(CurrentVisitor.AccountId).AccountNumber + "/" + nwst.domainName + "/";
         }
         else
         {
-            chatImageUrl = "/Images/Default/";
+            chatImageUrl = "Images/Default/";
         }
         this.ChatPageOfflineTopImage.ImageUrl = chatImageUrl + nwst.chatpage.LeavePageTopImg;
         this.chatPageRightImg.ImageUrl = chatImageUrl + nwst.chatpage.ChatPageRightImg;
