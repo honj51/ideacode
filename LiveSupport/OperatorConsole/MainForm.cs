@@ -1107,7 +1107,9 @@ namespace LiveSupport.OperatorConsole
             {
                 ToolStripMenuItem m = sender as ToolStripMenuItem;
                 string url = m.Tag as string;
-                System.Diagnostics.Process.Start(url);
+                splitContainer2.Panel1Collapsed = true;
+                webBrowser1.Navigate(url);
+                //System.Diagnostics.Process.Start(url);
             }
             catch (Exception)
             {
@@ -1121,6 +1123,16 @@ namespace LiveSupport.OperatorConsole
                 AccountInfoDialog dlg = new AccountInfoDialog(Program.OperaterServiceAgent.CurrentOperator);
                 dlg.ShowDialog();
             }
+        }
+
+        private void toolStripButtonReturnToOperator_Click(object sender, EventArgs e)
+        {
+            splitContainer2.Panel2Collapsed = true;
+        }
+
+        private void toolStripButtonRefresh_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Refresh();
         }
     }
 
