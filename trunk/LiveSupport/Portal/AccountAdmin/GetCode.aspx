@@ -253,7 +253,7 @@ style="margin-bottom: 0px" Width="186px" /><div>
                     <tr style="height:50px;">
                         <td>
                             背景图片：&nbsp;
-                            <asp:FileUpload ID="FileUpload6" runat="server" Width="187px" />
+                            <asp:FileUpload ID="FileUpload6" runat="server" Width="187px" Enabled="False" ToolTip="此功能暂不开放"/>
                         </td>
                         <td>
                             <asp:Image ID="Image9" runat="server" Width="50px"  
