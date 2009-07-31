@@ -71,6 +71,7 @@
     /*** 业务逻辑函数 ***/
     function hitWebSite() {
         var url = LCS_homeUrl + "/VisitorHandler.ashx?Action=1&VisitorId=" + LCS_visitorId + "&callback=?";
+        if($ == undefined) return;
         $.getJSON(url,
         function(json) {
             if (json != undefined && jQuery.trim(json.InviteChatId) != "") {
