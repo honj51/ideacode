@@ -49,25 +49,21 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
     public string showImage(int imgType ,string domainName,string imgStyle)
     {
         string [] imaStyles = imgStyle.Split('|');
-        if (string.IsNullOrEmpty(imaStyles[1]) || string.IsNullOrEmpty(imaStyles[0]))
-        {
-            return "";
-        }
-        if (imgType ==1)
+        if (imgType == 1 && imaStyles.Length == 3)
         {
             if (imaStyles[0] == WebSiteManager.WebSite_UserDefined)
                 return GetHomeRootUrl() + "/" + domainName + "/" + imaStyles[1];
             else
                 return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + imaStyles[1];
         }
-        if (imgType == 2)
+        if (imgType == 2 && imaStyles.Length == 4)
         {
             if (imaStyles[0] == WebSiteManager.WebSite_UserDefined)
                 return GetHomeRootUrl() + "/" + domainName + "/" + imaStyles[1];
             else
                 return ConfigurationManager.AppSettings["HomeRootUrl"] + "/Images/Default/" + imaStyles[1];
         }
-        if (imgType == 3)
+        if (imgType == 3 && imaStyles.Length ==4)
         {
             if (imaStyles[0] == WebSiteManager.WebSite_UserDefined)
                 return GetHomeRootUrl() + "/" + domainName + "/" + imaStyles[1];

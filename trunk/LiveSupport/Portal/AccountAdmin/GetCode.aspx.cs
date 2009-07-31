@@ -141,8 +141,8 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 string aa = LiveSupport.BLL.WebSiteManager.WebSite_UserDefined;
                 string offlineImg = "offline" + aa + Path.GetExtension(offline);
                 string onlineImg = "online" + aa + Path.GetExtension(online);
-                FileUpload1.SaveAs(path + "\\"+onlineImg);
-                FileUpload2.SaveAs(path + "\\" + offlineImg);
+                FileUpload2.SaveAs(path + "\\"+onlineImg);
+                FileUpload1.SaveAs(path + "\\" + offlineImg);
                 wst.IconStyle = aa + "|" + onlineImg + "|" + offlineImg;
                 WebSiteManager.Update(wst);
                 AddIcoLocation(wst.IcoLocation);
@@ -254,7 +254,7 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
                 string chatBGimg = "chat_bg" + aa + Path.GetExtension(bgStyle);
                 string chatRightimg = "chat_right" + aa + Path.GetExtension(rightimg);
                 string leaveTopimg = "leave_top" + aa + Path.GetExtension(topimg);
-                File.Copy(bgStyle, path + "\\" + chatBGimg);
+                File.Copy(bgStyle, path + "\\" + chatBGimg,true);
                 FileUpload7.SaveAs(path + "\\" + chatRightimg);
                 FileUpload8.SaveAs(path + "\\" + leaveTopimg);
                 wst.ChatStyle = aa + "|" + chatBGimg + "|" + chatRightimg + "|" + leaveTopimg;
