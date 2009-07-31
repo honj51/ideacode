@@ -254,26 +254,23 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         {
             return;
         }
-        if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
+        for (int i = 0; i < bannerlist.Count; i++)
         {
-            for (int i = 0; i < bannerlist.Count; i++)
+            ListItem li = new ListItem();
+            if (banners[1] == bannerlist[i].Online)
             {
-                ListItem li = new ListItem();
-                if (banners[1] == bannerlist[i].Online)
-                {
-                    li.Text = "风格" + i;
-                    li.Selected = true;
-                }
-                else
-                {
-                    li.Text = "风格" + i;
-                    li.Selected = false;
-                }
-                li.Value = bannerlist[i].State + "|" + bannerlist[i].Online + "|" + bannerlist[i].Offline;
-                DropDownList1.Items.Add(li);
+                li.Text = "风格" + i;
+                li.Selected = true;
             }
+            else
+            {
+                li.Text = "风格" + i;
+                li.Selected = false;
+            }
+            li.Value = bannerlist[i].State + "|" + bannerlist[i].Online + "|" + bannerlist[i].Offline;
+            DropDownList1.Items.Add(li);
         }
-        else
+        if (banners[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
         {
             ListItem li = new ListItem();
             li.Text = "自定义";
@@ -295,34 +292,31 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         {
             return;
         }
-        if (invites[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
+        for (int i = 0; i < invitelist.Count; i++)
         {
-            for (int i = 0; i < invitelist.Count; i++)
+            ListItem li = new ListItem();
+            if (invites[1] == invitelist[i].Bgimg)
             {
-                ListItem li = new ListItem();
-                if (invites[1] == invitelist[i].Bgimg)
-                {
-                    li.Text = "风格" + i;
-                    li.Selected = true;
-                }
-                else
-                {
-                    li.Text = "风格" + i;
-                    li.Selected = false;
-                }
-                li.Value = invitelist[i].State + "|" + invitelist[i].Bgimg + "|" + invitelist[i].Okimg + "|" + invitelist[i].Noimg;
-                DropDownList2.Items.Add(li);
+                li.Text = "风格" + i;
+                li.Selected = true;
             }
+            else
+            {
+                li.Text = "风格" + i;
+                li.Selected = false;
+            }
+            li.Value = invitelist[i].State + "|" + invitelist[i].Bgimg + "|" + invitelist[i].Okimg + "|" + invitelist[i].Noimg;
+            DropDownList2.Items.Add(li);
         }
-        else
+        if (invites[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
         {
             ListItem li = new ListItem();
             li.Text = "自定义";
             li.Value = selectItem;
             li.Selected = true;
             DropDownList2.Items.Add(li);
+            ChangeStyle(2);
         }
-        ChangeStyle(2);
     }
     public void AddIcoLocation(string icoLocation)
     {
@@ -347,26 +341,23 @@ public partial class AccountAdmin_Default3 : System.Web.UI.Page
         {
             return;
         }
-        if (chatpages[0] == LiveSupport.BLL.WebSiteManager.WebSite_Default)
+        for (int i = 0; i < chatpagelist.Count; i++)
         {
-            for (int i = 0; i < chatpagelist.Count; i++)
+            ListItem li = new ListItem();
+            if (chatpages[1] == chatpagelist[i].ChatPageBGImg)
             {
-                ListItem li = new ListItem();
-                if (chatpages[1] == chatpagelist[i].ChatPageBGImg)
-                {
-                    li.Text = "风格" + i;
-                    li.Selected = true;
-                }
-                else
-                {
-                    li.Text = "风格" + i;
-                    li.Selected = false;
-                }
-                li.Value = chatpagelist[i].State + "|" + chatpagelist[i].ChatPageBGImg + "|" + chatpagelist[i].ChatPageRightImg + "|" + chatpagelist[i].LeavePageTopImg;
-                DropDownList3.Items.Add(li);
+                li.Text = "风格" + i;
+                li.Selected = true;
             }
+            else
+            {
+                li.Text = "风格" + i;
+                li.Selected = false;
+            }
+            li.Value = chatpagelist[i].State + "|" + chatpagelist[i].ChatPageBGImg + "|" + chatpagelist[i].ChatPageRightImg + "|" + chatpagelist[i].LeavePageTopImg;
+            DropDownList3.Items.Add(li);
         }
-        else
+        if (chatpages[0] == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
         {
             ListItem li = new ListItem();
             li.Text = "自定义";
