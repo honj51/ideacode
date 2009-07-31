@@ -107,7 +107,7 @@ public class ProcessImage : IHttpHandler
             imgName += "\\" + newWebSite.banners.Offline;
         using (System.Drawing.Image returnImg = System.Drawing.Image.FromFile(imgName))
         {
-            returnImg.Save(context.Response.OutputStream, ImageFormat.Jpeg);
+            returnImg.Save(context.Response.OutputStream, returnImg.RawFormat);
             returnImg.Dispose();            
         }
     }
