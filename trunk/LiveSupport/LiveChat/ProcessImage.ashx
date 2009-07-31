@@ -105,9 +105,29 @@ public class ProcessImage : IHttpHandler
             imgName += "\\" + newWebSite.banners.Online;
         else
             imgName += "\\" + newWebSite.banners.Offline;
+        ImageFormat format=null;
+
+        string extension = System.IO.Path.GetExtension(imgName);
+        if (extension.Equals(".jpg", StringComparison.InvariantCultureIgnoreCase))
+        {
+            format = ImageFormat.Jpeg;
+        }
+        else if (extension.Equals(".gif", StringComparison.InvariantCultureIgnoreCase))
+        {
+            format = ImageFormat.Gif;
+        }
+        else if (extension.Equals(".png", StringComparison.InvariantCultureIgnoreCase))
+        {
+            format = ImageFormat.Png;
+        }
+        else if (extension.Equals(".bmp", StringComparison.InvariantCultureIgnoreCase))
+        {
+            format = ImageFormat.Bmp;
+        }
+        
         using (System.Drawing.Image returnImg = System.Drawing.Image.FromFile(imgName))
         {
-            returnImg.Save(context.Response.OutputStream, returnImg.RawFormat);
+            returnImg.Save(context.Response.OutputStream, format);
             returnImg.Dispose();            
         }
     }
