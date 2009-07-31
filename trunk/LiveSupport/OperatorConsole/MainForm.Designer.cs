@@ -53,8 +53,8 @@ namespace LiveSupport.OperatorConsole
             System.Windows.Forms.Label senddateLabel;
             System.Windows.Forms.Label subjectLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("在线客服");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("离线客服");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("在线客服");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("离线客服");
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.operatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +122,6 @@ namespace LiveSupport.OperatorConsole
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -142,7 +141,6 @@ namespace LiveSupport.OperatorConsole
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
@@ -208,6 +206,8 @@ namespace LiveSupport.OperatorConsole
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonReturnToOperator = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -418,7 +418,7 @@ namespace LiveSupport.OperatorConsole
             // emailLabel1
             // 
             emailLabel1.AutoSize = true;
-            emailLabel1.Location = new System.Drawing.Point(209, 42);
+            emailLabel1.Location = new System.Drawing.Point(245, 42);
             emailLabel1.Name = "emailLabel1";
             emailLabel1.Size = new System.Drawing.Size(41, 12);
             emailLabel1.TabIndex = 6;
@@ -427,7 +427,7 @@ namespace LiveSupport.OperatorConsole
             // ipLabel1
             // 
             ipLabel1.AutoSize = true;
-            ipLabel1.Location = new System.Drawing.Point(211, 99);
+            ipLabel1.Location = new System.Drawing.Point(247, 99);
             ipLabel1.Name = "ipLabel1";
             ipLabel1.Size = new System.Drawing.Size(17, 12);
             ipLabel1.TabIndex = 10;
@@ -445,7 +445,7 @@ namespace LiveSupport.OperatorConsole
             // phoneLabel
             // 
             phoneLabel.AutoSize = true;
-            phoneLabel.Location = new System.Drawing.Point(209, 69);
+            phoneLabel.Location = new System.Drawing.Point(245, 69);
             phoneLabel.Name = "phoneLabel";
             phoneLabel.Size = new System.Drawing.Size(59, 12);
             phoneLabel.TabIndex = 18;
@@ -454,7 +454,7 @@ namespace LiveSupport.OperatorConsole
             // senddateLabel
             // 
             senddateLabel.AutoSize = true;
-            senddateLabel.Location = new System.Drawing.Point(21, 291);
+            senddateLabel.Location = new System.Drawing.Point(21, 308);
             senddateLabel.Name = "senddateLabel";
             senddateLabel.Size = new System.Drawing.Size(59, 12);
             senddateLabel.TabIndex = 20;
@@ -738,6 +738,7 @@ namespace LiveSupport.OperatorConsole
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.paymentToolStripMenuItem.Text = "购买服务(&B)";
+            this.paymentToolStripMenuItem.Visible = false;
             this.paymentToolStripMenuItem.Click += new System.EventHandler(this.paymentToolStripMenuItem_Click);
             // 
             // touchToolStripMenuItem
@@ -773,7 +774,7 @@ namespace LiveSupport.OperatorConsole
             this.pnlChat.Controls.Add(this.lblCurrentVisitors);
             this.pnlChat.Controls.Add(this.lblMyChat);
             this.pnlChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlChat.Location = new System.Drawing.Point(0, 0);
+            this.pnlChat.Location = new System.Drawing.Point(0, 25);
             this.pnlChat.Name = "pnlChat";
             this.pnlChat.Size = new System.Drawing.Size(958, 27);
             this.pnlChat.TabIndex = 1;
@@ -850,7 +851,7 @@ namespace LiveSupport.OperatorConsole
             "查看全部留言"});
             this.cbxDomainName.Location = new System.Drawing.Point(88, 9);
             this.cbxDomainName.Name = "cbxDomainName";
-            this.cbxDomainName.Size = new System.Drawing.Size(92, 20);
+            this.cbxDomainName.Size = new System.Drawing.Size(146, 20);
             this.cbxDomainName.TabIndex = 6;
             this.cbxDomainName.SelectedIndexChanged += new System.EventHandler(this.cbxDomainName_SelectedIndexChanged);
             // 
@@ -878,7 +879,7 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors.Location = new System.Drawing.Point(0, 0);
             this.lstVisitors.MultiSelect = false;
             this.lstVisitors.Name = "lstVisitors";
-            this.lstVisitors.Size = new System.Drawing.Size(958, 189);
+            this.lstVisitors.Size = new System.Drawing.Size(958, 188);
             this.lstVisitors.SmallImageList = this.imgIconSet;
             this.lstVisitors.TabIndex = 2;
             this.lstVisitors.UseCompatibleStateImageBehavior = false;
@@ -1013,7 +1014,7 @@ namespace LiveSupport.OperatorConsole
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.visitorSessionSplitContainer);
             this.mainSplitContainer.Size = new System.Drawing.Size(958, 591);
-            this.mainSplitContainer.SplitterDistance = 189;
+            this.mainSplitContainer.SplitterDistance = 188;
             this.mainSplitContainer.TabIndex = 4;
             // 
             // visitorSessionSplitContainer
@@ -1033,7 +1034,7 @@ namespace LiveSupport.OperatorConsole
             this.visitorSessionSplitContainer.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.visitorSessionSplitContainer.Panel2.Controls.Add(this.tabChats);
             this.visitorSessionSplitContainer.Panel2.Controls.Add(this.panel2);
-            this.visitorSessionSplitContainer.Size = new System.Drawing.Size(958, 398);
+            this.visitorSessionSplitContainer.Size = new System.Drawing.Size(958, 399);
             this.visitorSessionSplitContainer.SplitterDistance = 199;
             this.visitorSessionSplitContainer.TabIndex = 3;
             // 
@@ -1044,16 +1045,8 @@ namespace LiveSupport.OperatorConsole
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(199, 398);
+            this.panel1.Size = new System.Drawing.Size(199, 399);
             this.panel1.TabIndex = 0;
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(199, 368);
-            this.operatorPannel1.TabIndex = 2;
             // 
             // panel5
             // 
@@ -1076,7 +1069,7 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.Name = "tabChats";
             this.tabChats.SelectedIndex = 0;
             this.tabChats.ShowToolTips = true;
-            this.tabChats.Size = new System.Drawing.Size(755, 368);
+            this.tabChats.Size = new System.Drawing.Size(755, 369);
             this.tabChats.TabIndex = 0;
             this.tabChats.SelectedIndexChanged += new System.EventHandler(this.tabChats_SelectedIndexChanged);
             // 
@@ -1114,7 +1107,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(747, 343);
+            this.tabPage1.Size = new System.Drawing.Size(747, 344);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "访客详情";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1246,20 +1239,10 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(432, 360);
+            this.tabPage2.Size = new System.Drawing.Size(747, 344);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(426, 772);
-            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // messageendDateTimePicker
             // 
@@ -1316,7 +1299,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(432, 360);
+            this.tabPage3.Size = new System.Drawing.Size(747, 344);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "网页浏览";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1380,7 +1363,7 @@ namespace LiveSupport.OperatorConsole
             this.lstPageRequest.Location = new System.Drawing.Point(3, 47);
             this.lstPageRequest.Name = "lstPageRequest";
             this.lstPageRequest.ShowItemToolTips = true;
-            this.lstPageRequest.Size = new System.Drawing.Size(426, 681);
+            this.lstPageRequest.Size = new System.Drawing.Size(741, 664);
             this.lstPageRequest.TabIndex = 7;
             this.lstPageRequest.UseCompatibleStateImageBehavior = false;
             this.lstPageRequest.View = System.Windows.Forms.View.Details;
@@ -1407,7 +1390,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(432, 360);
+            this.tabPage4.Size = new System.Drawing.Size(747, 344);
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "留言列表";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1415,7 +1398,7 @@ namespace LiveSupport.OperatorConsole
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(3, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -1454,8 +1437,8 @@ namespace LiveSupport.OperatorConsole
             this.splitContainer1.Panel2.Controls.Add(subjectLabel);
             this.splitContainer1.Panel2.Controls.Add(this.subjectTextBox);
             this.splitContainer1.Panel2MinSize = 100;
-            this.splitContainer1.Size = new System.Drawing.Size(426, 354);
-            this.splitContainer1.SplitterDistance = 130;
+            this.splitContainer1.Size = new System.Drawing.Size(741, 338);
+            this.splitContainer1.SplitterDistance = 227;
             this.splitContainer1.TabIndex = 0;
             // 
             // leaveWordDataGridView
@@ -1463,9 +1446,6 @@ namespace LiveSupport.OperatorConsole
             this.leaveWordDataGridView.AllowUserToAddRows = false;
             this.leaveWordDataGridView.AllowUserToDeleteRows = false;
             this.leaveWordDataGridView.AllowUserToResizeRows = false;
-            this.leaveWordDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.leaveWordDataGridView.AutoGenerateColumns = false;
             this.leaveWordDataGridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.leaveWordDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1476,6 +1456,7 @@ namespace LiveSupport.OperatorConsole
             this.IsReplied});
             this.leaveWordDataGridView.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.leaveWordBindingSource, "Id", true));
             this.leaveWordDataGridView.DataSource = this.leaveWordBindingSource;
+            this.leaveWordDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leaveWordDataGridView.Location = new System.Drawing.Point(0, 0);
             this.leaveWordDataGridView.MultiSelect = false;
             this.leaveWordDataGridView.Name = "leaveWordDataGridView";
@@ -1483,7 +1464,7 @@ namespace LiveSupport.OperatorConsole
             this.leaveWordDataGridView.RowHeadersVisible = false;
             this.leaveWordDataGridView.RowTemplate.Height = 23;
             this.leaveWordDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.leaveWordDataGridView.Size = new System.Drawing.Size(335, 354);
+            this.leaveWordDataGridView.Size = new System.Drawing.Size(227, 338);
             this.leaveWordDataGridView.TabIndex = 0;
             this.leaveWordDataGridView.SelectionChanged += new System.EventHandler(this.leaveWordDataGridView_SelectionChanged);
             // 
@@ -1497,11 +1478,11 @@ namespace LiveSupport.OperatorConsole
             // 
             // dataGridViewTextBoxColumn5
             // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Subject";
             this.dataGridViewTextBoxColumn5.HeaderText = "主题";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 60;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -1526,16 +1507,16 @@ namespace LiveSupport.OperatorConsole
             // txtDomainRequested
             // 
             this.txtDomainRequested.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "DomainName", true));
-            this.txtDomainRequested.Location = new System.Drawing.Point(274, 12);
+            this.txtDomainRequested.Location = new System.Drawing.Point(310, 12);
             this.txtDomainRequested.Name = "txtDomainRequested";
             this.txtDomainRequested.ReadOnly = true;
-            this.txtDomainRequested.Size = new System.Drawing.Size(99, 21);
+            this.txtDomainRequested.Size = new System.Drawing.Size(146, 21);
             this.txtDomainRequested.TabIndex = 27;
             // 
             // lblDomainRequested
             // 
             this.lblDomainRequested.AutoSize = true;
-            this.lblDomainRequested.Location = new System.Drawing.Point(204, 17);
+            this.lblDomainRequested.Location = new System.Drawing.Point(240, 17);
             this.lblDomainRequested.Name = "lblDomainRequested";
             this.lblDomainRequested.Size = new System.Drawing.Size(59, 12);
             this.lblDomainRequested.TabIndex = 26;
@@ -1543,7 +1524,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // btnDelLeaveWord
             // 
-            this.btnDelLeaveWord.Location = new System.Drawing.Point(336, 286);
+            this.btnDelLeaveWord.Location = new System.Drawing.Point(336, 303);
             this.btnDelLeaveWord.Name = "btnDelLeaveWord";
             this.btnDelLeaveWord.Size = new System.Drawing.Size(38, 23);
             this.btnDelLeaveWord.TabIndex = 25;
@@ -1553,7 +1534,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(291, 286);
+            this.btnSend.Location = new System.Drawing.Point(291, 303);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(37, 23);
             this.btnSend.TabIndex = 24;
@@ -1567,7 +1548,7 @@ namespace LiveSupport.OperatorConsole
             this.callerDateTextBox.Location = new System.Drawing.Point(88, 39);
             this.callerDateTextBox.Name = "callerDateTextBox";
             this.callerDateTextBox.ReadOnly = true;
-            this.callerDateTextBox.Size = new System.Drawing.Size(92, 21);
+            this.callerDateTextBox.Size = new System.Drawing.Size(146, 21);
             this.callerDateTextBox.TabIndex = 1;
             // 
             // callerNameTextBox
@@ -1576,7 +1557,7 @@ namespace LiveSupport.OperatorConsole
             this.callerNameTextBox.Location = new System.Drawing.Point(88, 66);
             this.callerNameTextBox.Name = "callerNameTextBox";
             this.callerNameTextBox.ReadOnly = true;
-            this.callerNameTextBox.Size = new System.Drawing.Size(92, 21);
+            this.callerNameTextBox.Size = new System.Drawing.Size(146, 21);
             this.callerNameTextBox.TabIndex = 3;
             // 
             // contentTextBox
@@ -1584,30 +1565,30 @@ namespace LiveSupport.OperatorConsole
             this.contentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.contentTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Content", true));
-            this.contentTextBox.Location = new System.Drawing.Point(88, 150);
+            this.contentTextBox.Location = new System.Drawing.Point(88, 154);
             this.contentTextBox.Multiline = true;
             this.contentTextBox.Name = "contentTextBox";
             this.contentTextBox.ReadOnly = true;
             this.contentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.contentTextBox.Size = new System.Drawing.Size(1170, 130);
+            this.contentTextBox.Size = new System.Drawing.Size(370, 136);
             this.contentTextBox.TabIndex = 5;
             // 
             // emailTextBox1
             // 
             this.emailTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Email", true));
-            this.emailTextBox1.Location = new System.Drawing.Point(274, 39);
+            this.emailTextBox1.Location = new System.Drawing.Point(310, 39);
             this.emailTextBox1.Name = "emailTextBox1";
             this.emailTextBox1.ReadOnly = true;
-            this.emailTextBox1.Size = new System.Drawing.Size(99, 21);
+            this.emailTextBox1.Size = new System.Drawing.Size(146, 21);
             this.emailTextBox1.TabIndex = 7;
             // 
             // ipTextBox1
             // 
             this.ipTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Ip", true));
-            this.ipTextBox1.Location = new System.Drawing.Point(276, 96);
+            this.ipTextBox1.Location = new System.Drawing.Point(312, 96);
             this.ipTextBox1.Name = "ipTextBox1";
             this.ipTextBox1.ReadOnly = true;
-            this.ipTextBox1.Size = new System.Drawing.Size(97, 21);
+            this.ipTextBox1.Size = new System.Drawing.Size(146, 21);
             this.ipTextBox1.TabIndex = 11;
             // 
             // isRepliedCheckBox
@@ -1616,7 +1597,7 @@ namespace LiveSupport.OperatorConsole
             this.isRepliedCheckBox.BackColor = System.Drawing.Color.Transparent;
             this.isRepliedCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leaveWordBindingSource, "IsReplied", true));
             this.isRepliedCheckBox.Enabled = false;
-            this.isRepliedCheckBox.Location = new System.Drawing.Point(213, 290);
+            this.isRepliedCheckBox.Location = new System.Drawing.Point(213, 307);
             this.isRepliedCheckBox.Name = "isRepliedCheckBox";
             this.isRepliedCheckBox.Size = new System.Drawing.Size(72, 16);
             this.isRepliedCheckBox.TabIndex = 13;
@@ -1629,22 +1610,22 @@ namespace LiveSupport.OperatorConsole
             this.operatorNameTextBox.Location = new System.Drawing.Point(87, 93);
             this.operatorNameTextBox.Name = "operatorNameTextBox";
             this.operatorNameTextBox.ReadOnly = true;
-            this.operatorNameTextBox.Size = new System.Drawing.Size(92, 21);
+            this.operatorNameTextBox.Size = new System.Drawing.Size(146, 21);
             this.operatorNameTextBox.TabIndex = 17;
             // 
             // phoneTextBox
             // 
             this.phoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Phone", true));
-            this.phoneTextBox.Location = new System.Drawing.Point(274, 66);
+            this.phoneTextBox.Location = new System.Drawing.Point(310, 66);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.ReadOnly = true;
-            this.phoneTextBox.Size = new System.Drawing.Size(99, 21);
+            this.phoneTextBox.Size = new System.Drawing.Size(146, 21);
             this.phoneTextBox.TabIndex = 19;
             // 
             // senddateTextBox
             // 
             this.senddateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Senddate", true));
-            this.senddateTextBox.Location = new System.Drawing.Point(88, 288);
+            this.senddateTextBox.Location = new System.Drawing.Point(88, 305);
             this.senddateTextBox.Name = "senddateTextBox";
             this.senddateTextBox.ReadOnly = true;
             this.senddateTextBox.Size = new System.Drawing.Size(112, 21);
@@ -1656,10 +1637,10 @@ namespace LiveSupport.OperatorConsole
             this.subjectTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.subjectTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "Subject", true));
-            this.subjectTextBox.Location = new System.Drawing.Point(87, 123);
+            this.subjectTextBox.Location = new System.Drawing.Point(88, 123);
             this.subjectTextBox.Name = "subjectTextBox";
             this.subjectTextBox.ReadOnly = true;
-            this.subjectTextBox.Size = new System.Drawing.Size(1170, 21);
+            this.subjectTextBox.Size = new System.Drawing.Size(370, 21);
             this.subjectTextBox.TabIndex = 23;
             // 
             // panel2
@@ -1698,16 +1679,15 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
-            treeNode5.Name = "节点0";
-            treeNode5.Text = "在线客服";
-            treeNode6.Name = "节点1";
-            treeNode6.Text = "离线客服";
+            treeNode3.Name = "节点0";
+            treeNode3.Text = "在线客服";
+            treeNode4.Name = "节点1";
+            treeNode4.Text = "离线客服";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
+            treeNode3,
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(204, 486);
             this.treeView1.TabIndex = 0;
             // 
@@ -1776,12 +1756,11 @@ namespace LiveSupport.OperatorConsole
             this.toolStripSeparator6,
             this.acceptToolStripButton});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 27);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(958, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.Visible = false;
             // 
             // toolStripSeparator5
             // 
@@ -1873,7 +1852,6 @@ namespace LiveSupport.OperatorConsole
             // 
             // splitContainer2
             // 
-            this.splitContainer2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 24);
             this.splitContainer2.Name = "splitContainer2";
@@ -1881,8 +1859,8 @@ namespace LiveSupport.OperatorConsole
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.mainSplitContainer);
-            this.splitContainer2.Panel1.Controls.Add(this.toolStrip1);
             this.splitContainer2.Panel1.Controls.Add(this.pnlChat);
+            this.splitContainer2.Panel1.Controls.Add(this.toolStrip1);
             // 
             // splitContainer2.Panel2
             // 
@@ -1899,7 +1877,7 @@ namespace LiveSupport.OperatorConsole
             this.webBrowser1.Location = new System.Drawing.Point(0, 25);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(393, 618);
+            this.webBrowser1.Size = new System.Drawing.Size(96, 75);
             this.webBrowser1.TabIndex = 0;
             // 
             // toolStrip2
@@ -1909,7 +1887,7 @@ namespace LiveSupport.OperatorConsole
             this.toolStripButtonRefresh});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(393, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(96, 25);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -1918,7 +1896,7 @@ namespace LiveSupport.OperatorConsole
             this.toolStripButtonReturnToOperator.Image = global::LiveSupport.OperatorConsole.Properties.Resources.development_54;
             this.toolStripButtonReturnToOperator.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonReturnToOperator.Name = "toolStripButtonReturnToOperator";
-            this.toolStripButtonReturnToOperator.Size = new System.Drawing.Size(97, 22);
+            this.toolStripButtonReturnToOperator.Size = new System.Drawing.Size(97, 20);
             this.toolStripButtonReturnToOperator.Text = "返回座席界面";
             this.toolStripButtonReturnToOperator.Click += new System.EventHandler(this.toolStripButtonReturnToOperator_Click);
             // 
@@ -1927,15 +1905,32 @@ namespace LiveSupport.OperatorConsole
             this.toolStripButtonRefresh.Image = global::LiveSupport.OperatorConsole.Properties.Resources.development_39;
             this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
-            this.toolStripButtonRefresh.Size = new System.Drawing.Size(49, 22);
+            this.toolStripButtonRefresh.Size = new System.Drawing.Size(49, 20);
             this.toolStripButtonRefresh.Text = "刷新";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(199, 369);
+            this.operatorPannel1.TabIndex = 2;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(741, 755);
+            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.bg02;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(958, 689);
             this.Controls.Add(this.splitContainer2);
@@ -2127,10 +2122,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.TextBox senddateTextBox;
         private System.Windows.Forms.TextBox subjectTextBox;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsReplied;
         private System.Windows.Forms.ToolStripMenuItem restartConnectionToolStripMenuItem;
         private System.Windows.Forms.Button btnDelLeaveWord;
         private System.Windows.Forms.ColumnHeader colDomainRequested;
@@ -2150,5 +2141,9 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripButton toolStripButtonReturnToOperator;
         private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsReplied;
     }
 }

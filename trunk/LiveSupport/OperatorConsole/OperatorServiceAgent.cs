@@ -81,58 +81,82 @@ namespace LiveSupport.OperatorConsole
             checkNewChangesTimer.AutoReset = true;
             ws.Timeout = 5000;
             state = ConnectionState.Disconnected;
-        }
 
-        
+            checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
+            ws.LoginCompleted += new LoginCompletedEventHandler(ws_LoginCompleted);
+            ws.GetSystemAdvertiseCompleted += new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
+            ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+        }
 
         #region OperatorServiceAgent 成员
 
-        public Operator Login(string accountNumber, string operatorName, string password)
+        public void Login(string accountNumber, string operatorName, string password)
         {
             if (State != ConnectionState.Disconnected)
             {
-                return null;
+                return;
             }
 
             try
             {
+                this.accountNumber = accountNumber;
+                this.operatorName = operatorName;
+                this.password = password;
+
                 currentOperator = null;
-                State = ConnectionState.Connecting;
-                currentOperator = ws.Login(accountNumber, operatorName, password);
-                checkNewChangesTimer.Enabled = true;
-            }
-            catch (WebException)
-            {
+                fireConnectStateChange(ConnectionState.Connecting, "登录中...");
 
+                ws.LoginAsync(accountNumber, operatorName, password);
+                    
+                //currentOperator = ws.Login(accountNumber, operatorName, password);
             }
-         
-            this.accountNumber = accountNumber;
-            this.operatorName = operatorName;
-            this.password = password;
-            if (currentOperator != null)
+            catch (Exception e)
             {
-                State = ConnectionState.Connected;
-                if (ConnectionStateChanged != null)
+                Trace.WriteLine(e.Message);  
+            }
+        }
+
+        void ws_LoginCompleted(object sender, LoginCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                currentOperator = e.Result;
+
+                if (currentOperator != null)
                 {
-                    ConnectionStateChanged(this, new ConnectionStateChangeEventArgs(State));
+                    AuthenticationHeader h = new AuthenticationHeader();
+                    h.OperatorId = currentOperator.OperatorId;
+                    h.OperatorSession = currentOperator.OperatorSession;
+                    ws.AuthenticationHeaderValue = h;
+
+                    fireConnectStateChange(ConnectionState.Connected, "登录成功");
+
+                    ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
+                    ws.GetLeaveWordAsync(Guid.NewGuid());
+
+                    checkNewChangesTimer.Enabled = true;
                 }
-                AuthenticationHeader h = new AuthenticationHeader();
-                h.OperatorId = currentOperator.OperatorId;
-                h.OperatorSession = currentOperator.OperatorSession;
-                ws.AuthenticationHeaderValue = h;
-
-                ws.GetSystemAdvertiseCompleted += new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
-                ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
-                ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
-                ws.GetLeaveWordAsync(Guid.NewGuid());
-
-                checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
+                else
+                {
+                    fireConnectStateChange(ConnectionState.Disconnected, "登录失败，登录信息输入错误");
+                }
             }
             else
             {
-                State = ConnectionState.Disconnected;
+                fireConnectStateChange(ConnectionState.Disconnected, "登录失败，" + e.Error.Message);
             }
-            return currentOperator;
+        }
+
+        private void fireConnectStateChange(ConnectionState state, string message)
+        {
+            Trace.WriteLine("ConnectStateChange : " + state.ToString() + " " + message);
+            State = state;
+            if (ConnectionStateChanged != null)
+            {
+               ConnectionStateChangeEventArgs args= new ConnectionStateChangeEventArgs(State);
+                args.Message=message;
+                ConnectionStateChanged(this, args);
+            }
         }
 
         void ws_GetLeaveWordCompleted(object sender, GetLeaveWordCompletedEventArgs e)
@@ -181,19 +205,9 @@ namespace LiveSupport.OperatorConsole
             ws.Logout();
         }
 
-        public List<Visitor> GetAllVisitors(string accountId)
-        {
-            return new List<Visitor>(ws.GetAllVisitors(accountId));
-        }
-
         public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
         {
               return ws.CheckNewChanges(check);
-        }
-
-        public void UploadFile(byte[] bs, string fileName, string chatId)
-        {
-            ws.UploadFileAsync(bs, fileName, chatId);
         }
 
         public void SendMessage(LiveSupport.OperatorConsole.LiveChatWS.Message msg)
@@ -282,32 +296,12 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
-        public List<SystemAdvertise> GetSystemAdvertise(string versionNumber)
-        {
-            List<SystemAdvertise>  lSystemAdvertise=null;
-            try
-            {
-                ws.GetSystemAdvertiseAsync(versionNumber);
-                ws.GetSystemAdvertiseCompleted += new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
-               lSystemAdvertise= new List<SystemAdvertise>(ws.GetSystemAdvertise(versionNumber));
-            }
-            catch (WebException)
-            {
-            }
-            return lSystemAdvertise;
-        }
-
         void ws_GetSystemAdvertiseCompleted(object sender, GetSystemAdvertiseCompletedEventArgs e)
         {
             if (NewSystemAdvertise != null && e.Error == null)
             {
                 NewSystemAdvertise(this, new SystemAdvertiseEventArgs(new List<SystemAdvertise>(e.Result)));
             }
-        }
-
-        public void SaveQuickResponse(List<QuickResponseCategory> response)
-        {
-            ws.SaveQuickResponse(response.ToArray()); 
         }
 
         public List<QuickResponseCategory> GetQuickResponse()
@@ -605,18 +599,16 @@ namespace LiveSupport.OperatorConsole
             return false;
         }
 
-        public Operator RestartLogin() 
+        public void RestartLogin() 
         {
-            Operator op=null; 
             try
             {
-              op = Login(accountNumber, operatorName, password);
+              Login(accountNumber, operatorName, password);
             }
             catch (Exception wex)
             {
                 Trace.WriteLine("RestartLogin Exception: " + wex.Message);
             }
-            return op;
         }
         public VisitSession GetVisitSessionById(string sessionId)
         {
@@ -693,15 +685,6 @@ namespace LiveSupport.OperatorConsole
 
             return leaveWords;
         }
-        public List<LeaveWord> GetLeaveWordNotRepliedByDomainName(string domainName) 
-        {
-            List<LeaveWord> leaveWords = new List<LeaveWord>();
-            if (ws.GetLeaveWordNotRepliedByDomainName(domainName) != null)
-            {
-                leaveWords.AddRange(ws.GetLeaveWordNotRepliedByDomainName(domainName));
-            }
-            return leaveWords;
-        }
 
        public List<LeaveWord> GetLeaveWordByDomainName(string domainName) 
         {
@@ -728,11 +711,6 @@ namespace LiveSupport.OperatorConsole
              ws.SaveQuickResponseByDomainName(response.ToArray(), domainName);
          
          }
-
-        public int ResetOperator(string operatorId, string chatId)
-        {
-            throw new NotImplementedException();
-        }
     
         #endregion
 

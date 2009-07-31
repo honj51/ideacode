@@ -7,39 +7,43 @@ namespace LiveSupport.OperatorConsole
 {
     public enum ConnectionState
     {
-        Disconnected, Connecting, Connected
+        Disconnected, Connecting, Disconnecting, Connected
     }
 
     public interface IOperatorServiceAgent
     {
         #region OperatorService 方法
-        Operator Login(string accountName, string operatorName, string password);
+        /* 对话接口 */
+        void Login(string accountName, string operatorName, string password);
+        void RestartLogin(); // 重新登录（使用已有帐号）
         void Logout();
-        void UploadFile(byte[] bs, string fileName, string chatId);
+
+        /* 对话接口 */
         void SendFile(string fileName, string chatId, object action);
         void SendMessage(Message msg);
-        int ChangePassword(string oldPassword, string newPassword);
-        int ResetOperatorPassword(string loginName);
-        int ResetOperator(string operatorId, string chatId);
         bool CloseChat(string chatId);
-        List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end);
-        List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end);
         int AcceptChatRequest(string chatId);
         Chat InviteChat(string visitorId);
-        List<SystemAdvertise> GetSystemAdvertise(string versionNumber);
-        void SaveQuickResponse(List<QuickResponseCategory> response);
-        List<QuickResponseCategory> GetQuickResponse();
-        //NewChangesCheckResult GetNextNewChanges();
-        List<Visitor> GetAllVisitors(string accountId);
+
+        /* 管理接口 */
+        int ChangePassword(string oldPassword, string newPassword);
+        int ResetOperatorPassword(string loginName);
+
+        /* 查询功能接口 */
+        List<string> GetAccountDomains(); //获取帐号相关域名
+        List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end); //获取历史聊天记录
+        List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end); //获取访客浏览页面记录
+
+        /* 快捷回复相关接口 */
+        List<QuickResponseCategory> GetQuickResponse(); 
+        List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName);
+        void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName);
+
+        /* 留言相关接口 */
         List<LeaveWord> GetLeaveWord();
         bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id);
         bool DelLeaveWordById(string id);
         List<LeaveWord> GetLeaveWordNotReplied();
-        Operator RestartLogin();
-        List<string> GetAccountDomains();
-        List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName);
-        void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName);
-        List<LeaveWord> GetLeaveWordNotRepliedByDomainName(string domainName);
         List<LeaveWord> GetLeaveWordByDomainName(string domainName);
         #endregion
 

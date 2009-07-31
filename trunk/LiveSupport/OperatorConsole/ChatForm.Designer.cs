@@ -66,6 +66,7 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +81,7 @@
             this.tabControlVideo.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.glassPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -344,17 +346,18 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.restartToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 26);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.restartToolStripMenuItem.Text = "刷新(&e)";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click_1);
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label1);
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(220, 298);
@@ -464,6 +467,15 @@
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(161, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "新功能即将实现，敬请关注！";
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -494,6 +506,8 @@
             this.tabControlVideo.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.glassPanel1.ResumeLayout(false);
             this.glassPanel1.PerformLayout();
@@ -540,6 +554,7 @@
         private System.Windows.Forms.Label domainRequestedLabel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
        
     }
 }

@@ -69,7 +69,7 @@ namespace LiveSupport.OperatorConsole
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
 
             Application.Run(f);
-            
+            //Test();
             //TestFileUploadControl();
             //TestOptionForm();
 		}
@@ -115,11 +115,13 @@ namespace LiveSupport.OperatorConsole
             //c = new FileUploadControl("c:\\a.exe", Properties.Settings.Default.FtpURL);
             //c.Dock = DockStyle.Top;
             //f.Controls.Add(c);
+            
             Application.Run(f);
         }
 
         static void Test()
         {
+            
             OperaterServiceAgent.Login("100000", "user1", "123");
            
             Application.Run();

@@ -45,6 +45,7 @@
             this.loginNameTextBox = new System.Windows.Forms.TextBox();
             this.nickNameTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonModifyAccountInfo = new System.Windows.Forms.Button();
             accountNumberLabel = new System.Windows.Forms.Label();
             companyNameLabel = new System.Windows.Forms.Label();
             departmentNameLabel = new System.Windows.Forms.Label();
@@ -189,18 +190,29 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(112, 233);
+            this.button1.Location = new System.Drawing.Point(172, 233);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 14;
             this.button1.Text = "确定(&O)";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // buttonModifyAccountInfo
+            // 
+            this.buttonModifyAccountInfo.Location = new System.Drawing.Point(41, 233);
+            this.buttonModifyAccountInfo.Name = "buttonModifyAccountInfo";
+            this.buttonModifyAccountInfo.Size = new System.Drawing.Size(83, 23);
+            this.buttonModifyAccountInfo.TabIndex = 15;
+            this.buttonModifyAccountInfo.Text = "修改信息(&M)";
+            this.buttonModifyAccountInfo.UseVisualStyleBackColor = true;
+            this.buttonModifyAccountInfo.Click += new System.EventHandler(this.buttonModifyAccountInfo_Click);
+            // 
             // AccountInfoDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(281, 268);
+            this.Controls.Add(this.buttonModifyAccountInfo);
             this.Controls.Add(this.button1);
             this.Controls.Add(nickNameLabel);
             this.Controls.Add(this.nickNameTextBox);
@@ -240,5 +252,6 @@
         private System.Windows.Forms.TextBox loginNameTextBox;
         private System.Windows.Forms.TextBox nickNameTextBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonModifyAccountInfo;
     }
 }
