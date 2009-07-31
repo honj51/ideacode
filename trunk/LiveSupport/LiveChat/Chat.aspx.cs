@@ -18,6 +18,7 @@ using LiveSupport.LiveSupportModel;
 using System.Net;
 using System.IO;
 using System.Threading;
+using LiveSupport.BLL;
 
 public partial class Chat : System.Web.UI.Page
 {
@@ -143,6 +144,7 @@ public partial class Chat : System.Web.UI.Page
                     pnlNoOperator.Visible = true;
                 }
             }
+            GetChatPageStyle();
         }
     }
 
@@ -424,6 +426,27 @@ public partial class Chat : System.Web.UI.Page
         {
             this.Response.Write("<script>alert('文件传送失败,错误：" + ex.ToString() + "');</script>");
         }
+     
+    }
+    public void GetChatPageStyle()
+    {
+        LiveSupport.BLL.NewWebSite nwst = WebSiteManager.GetNewWebSiteByDomainName(CurrentVisitor.CurrentSession.DomainRequested);//用堿名取一行数
+        if (nwst == null || nwst.chatpage == null)
+        {
+            return;
+        }
+        string[] chatpages = nwst.chatpage.ToString().Split('|');
+        string chatImageUrl = null;
+        if (nwst.chatpage.State == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
+        {
+            chatImageUrl = "/Images/" + AccountService.GetAccountById(CurrentVisitor.AccountId).AccountNumber + "/" + nwst.domainName + "/";
+        }
+        else
+        {
+            chatImageUrl = "/Images/Default/";
+        }
+        this.ChatPageOfflineTopImage.ImageUrl = chatImageUrl + nwst.chatpage.LeavePageTopImg;
+        this.chatPageRightImg.ImageUrl = chatImageUrl + nwst.chatpage.ChatPageRightImg;
     }
 
   

@@ -138,7 +138,8 @@
         <asp:Panel ID="pnlNoOperator" Visible="false" runat="server">
         <div style="WIDTH: 603px; height="98%" MARGIN-LEFT: 0px">
   <div class="b">
-  <div  style=" margin:8px 8px 0px 7px ;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 588px; HEIGHT: 95px; BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid; background-image:url(Images/topmove1.gif)" >
+  <div  style=" margin:8px 8px 0px 7px ;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 588px; HEIGHT: 95px; BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid;" >
+      <asp:Image ID="ChatPageOfflineTopImage" runat="server" ImageUrl="Images/topmove1.gif" Width="588px" Height="95px" />
  </div>
     <div class="b_1">
     
@@ -316,7 +317,8 @@
                     </td>
                     <td valign="top" id="bwrap" style="width: 40px; height: 80%;">
                         <div id="banner" style="height: 305px; width: 135px">
-                            <img alt="" src="Images/operator.jpg" width="135px" height="300px" /></div>
+                            <asp:Image ID="chatPageRightImg" runat="server" ImageUrl="Images/operator.jpg"  
+                                width="135px" height="310px"/></div>
                     </td>
                 </tr>
                 <tr id="tdinput">
