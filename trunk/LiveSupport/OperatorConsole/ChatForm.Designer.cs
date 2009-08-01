@@ -57,6 +57,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassPanel1 = new IC.Controls.GlassPanel();
             this.remarkLabel = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
             this.visitorNameLabel = new System.Windows.Forms.Label();
             this.visitorLocationLabel = new System.Windows.Forms.Label();
             this.lblVisitorInfo = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             tmrGetMsg = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -365,6 +365,15 @@
             this.tabPage4.Text = "视频";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(161, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "新功能即将实现，敬请关注！";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.glassPanel1);
@@ -466,15 +475,6 @@
             this.lblVisitorInfo.TabIndex = 6;
             this.lblVisitorInfo.Text = "访客信息";
             this.lblVisitorInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 80);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "新功能即将实现，敬请关注！";
             // 
             // ChatForm
             // 
