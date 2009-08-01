@@ -138,7 +138,7 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Application.ExitThread();
         }
 
         private void initForm()
@@ -334,15 +334,8 @@ namespace LiveSupport.OperatorConsole
             {
                 item.Close();
             }
-            
-            try
-            {
-                operaterServiceAgent.Logout();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine("Logout异常: " + ex.Message);
-            }
+
+           
         }
         #endregion
 
@@ -472,10 +465,9 @@ namespace LiveSupport.OperatorConsole
                     Visitors++;
                 }
             }
-
-            lblCurrentVisitors.Text = "当前访客数: " + Visitors;
-            lblVisitorOnChat.Text = "对话中的访客数: " + VisitorChatResult;
-            lblMyChat.Text = "我的对话数: " + Chatting;
+            currentVisitorsToolStripLabel.Text = "当前访客数: " + Visitors;
+            visitorOnChatToolStripLabel.Text = "对话中的访客数: " + VisitorChatResult;
+            myChatToolStripLabel.Text = "我的对话数: " + Chatting;
         }
 
         private void restartApp(string args)
