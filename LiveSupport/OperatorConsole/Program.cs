@@ -69,6 +69,16 @@ namespace LiveSupport.OperatorConsole
             f.OperatorServiceAgent = OperatorServiceAgent.Default;
 
             Application.Run(f);
+            
+            try
+            {
+                OperaterServiceAgent.Logout();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("Logout“Ï≥£: " + ex.Message);
+
+            }
             //Test();
             //TestFileUploadControl();
             //TestOptionForm();
