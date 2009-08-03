@@ -446,7 +446,7 @@ public class ChatService
         m.Type = MessageType.SystemMessage_ToVisitor;
         m.Source = "ÏµÍ³";
         m.Destination = "·Ã¿Í";
-        SendMessage(m);
+        SendMessage(m, DateTime.Now.AddMilliseconds(50));
 
         if (VisitorChatRequest != null)
         {
