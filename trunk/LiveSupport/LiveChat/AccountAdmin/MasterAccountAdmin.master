@@ -63,7 +63,8 @@ A:hover {text-decoration:underline;}
     <div>
         <center >
         <table width="760"><tr><td>
-     <table class="headTable"><tr><td><img src="Imgs/headLeft.bmp" /><asp:ScriptManager 
+     <table class="headTable"><tr><td><a href="http://www.zxkefu.cn">
+         <asp:Image ID="Image1" runat="server" ImageUrl="Imgs/headLeft.bmp" /></a><asp:ScriptManager 
              ID="ScriptManager1" runat="server">
          </asp:ScriptManager>
          </td><td align="right" valign=middle><asp:Panel ID="PanelShow" runat="server" Visible="false" 
