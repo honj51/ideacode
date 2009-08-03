@@ -65,7 +65,7 @@
                 </td></tr>
 <tr></td><td colspan="2" align="center" style=" height:30px;">
     <asp:ImageButton ID="ImageButton1" runat="server" 
-        ImageUrl="~/Images/login_l.gif" onclick="ImageButton1_Click" 
+        ImageUrl="Images/login_l.gif" onclick="ImageButton1_Click" 
         ValidationGroup="Login1" />
     <asp:ImageButton ID="ImageButton2" runat="server"  
         ImageUrl="Images/login_r.gif" CausesValidation="False" 
