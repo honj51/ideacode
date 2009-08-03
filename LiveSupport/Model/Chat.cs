@@ -101,7 +101,7 @@ namespace LiveSupport.LiveSupportModel
             set { isInviteByOperator = value; }
         }
 
-        private long lastCheckTime = DateTime.Now.Ticks;
+        private long lastCheckTime;
         public long LastCheckTime
         {
             get { return lastCheckTime; }
@@ -111,6 +111,7 @@ namespace LiveSupport.LiveSupportModel
         public Chat()
         {
             createTime = DateTime.Now;
+            lastCheckTime = DateTime.Now;
             chatId = Guid.NewGuid().ToString();
             status = ChatStatus.Closed;
         }
