@@ -525,7 +525,7 @@ namespace LiveSupport.OperatorConsole
             ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.DomainRequested,vlvi.VisitSession.Location,
                          vlvi.Visitor.VisitCount.ToString(),"ÔÝÎÞ½Ó´ý",status,
                          vlvi.VisitSession.VisitingTime.ToString(), "", "",
-                         "","", "",vlvi.VisitSession.PageRequestCount.ToString()
+                         "","", "",vlvi.VisitSession.PageRequestCount.ToString(), Common.GetSearchEngineName(vlvi.VisitSession.Referrer)
                         });
             if (vlvi.VisitSession.Browser.Contains("MSIE"))
             {

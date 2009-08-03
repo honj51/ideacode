@@ -206,6 +206,7 @@ namespace LiveSupport.OperatorConsole
             this.visitorOnChatToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.currentVisitorsToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.colReferer = new System.Windows.Forms.ColumnHeader();
             this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
@@ -805,7 +806,8 @@ namespace LiveSupport.OperatorConsole
             this.colChatingTime,
             this.colWaitingDuring,
             this.colChattingDuring,
-            this.colPageRequestCount});
+            this.colPageRequestCount,
+            this.colReferer});
             this.lstVisitors.ContextMenuStrip = this.contextMenuStrip1;
             this.lstVisitors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstVisitors.FullRowSelect = true;
@@ -1133,7 +1135,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(800, 334);
+            this.tabPage2.Size = new System.Drawing.Size(747, 334);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1193,7 +1195,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(800, 334);
+            this.tabPage3.Size = new System.Drawing.Size(747, 334);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "网页浏览";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1257,7 +1259,7 @@ namespace LiveSupport.OperatorConsole
             this.lstPageRequest.Location = new System.Drawing.Point(3, 47);
             this.lstPageRequest.Name = "lstPageRequest";
             this.lstPageRequest.ShowItemToolTips = true;
-            this.lstPageRequest.Size = new System.Drawing.Size(794, 654);
+            this.lstPageRequest.Size = new System.Drawing.Size(741, 654);
             this.lstPageRequest.TabIndex = 7;
             this.lstPageRequest.UseCompatibleStateImageBehavior = false;
             this.lstPageRequest.View = System.Windows.Forms.View.Details;
@@ -1284,7 +1286,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(800, 334);
+            this.tabPage4.Size = new System.Drawing.Size(747, 334);
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "留言列表";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1331,8 +1333,8 @@ namespace LiveSupport.OperatorConsole
             this.splitContainer1.Panel2.Controls.Add(subjectLabel);
             this.splitContainer1.Panel2.Controls.Add(this.subjectTextBox);
             this.splitContainer1.Panel2MinSize = 100;
-            this.splitContainer1.Size = new System.Drawing.Size(794, 328);
-            this.splitContainer1.SplitterDistance = 280;
+            this.splitContainer1.Size = new System.Drawing.Size(741, 328);
+            this.splitContainer1.SplitterDistance = 227;
             this.splitContainer1.TabIndex = 0;
             // 
             // leaveWordDataGridView
@@ -1358,7 +1360,7 @@ namespace LiveSupport.OperatorConsole
             this.leaveWordDataGridView.RowHeadersVisible = false;
             this.leaveWordDataGridView.RowTemplate.Height = 23;
             this.leaveWordDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.leaveWordDataGridView.Size = new System.Drawing.Size(280, 328);
+            this.leaveWordDataGridView.Size = new System.Drawing.Size(227, 328);
             this.leaveWordDataGridView.TabIndex = 0;
             this.leaveWordDataGridView.SelectionChanged += new System.EventHandler(this.leaveWordDataGridView_SelectionChanged);
             // 
@@ -1890,6 +1892,10 @@ namespace LiveSupport.OperatorConsole
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
+            // colReferer
+            // 
+            this.colReferer.Text = "搜索引擎";
+            // 
             // operatorPannel1
             // 
             this.operatorPannel1.BackColor = System.Drawing.SystemColors.Control;
@@ -1906,7 +1912,7 @@ namespace LiveSupport.OperatorConsole
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
             this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(794, 745);
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(741, 745);
             this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
@@ -2128,5 +2134,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ColumnHeader colReferer;
     }
 }
