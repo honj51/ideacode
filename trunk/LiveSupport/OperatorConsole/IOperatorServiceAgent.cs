@@ -33,7 +33,8 @@ namespace LiveSupport.OperatorConsole
         List<string> GetAccountDomains(); //获取帐号相关域名
         List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end); //获取历史聊天记录
         List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end); //获取访客浏览页面记录
-
+        bool IsVisitorHasActiveChat(string visitorId);
+        
         /* 快捷回复相关接口 */
         List<QuickResponseCategory> GetQuickResponse(); 
         List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName);

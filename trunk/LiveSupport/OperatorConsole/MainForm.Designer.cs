@@ -63,8 +63,8 @@ namespace LiveSupport.OperatorConsole
             this.changeOperatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.客服栏OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.访客信息栏VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operatorsInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visitorInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getWebSiteCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -112,10 +112,7 @@ namespace LiveSupport.OperatorConsole
             this.acceptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgIconSet = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.visitorSessionSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.mainSplitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabChats = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.browserTextBox = new System.Windows.Forms.TextBox();
@@ -152,6 +149,10 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.leaveWordDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsReplied = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.leaveWordBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtDomainRequested = new System.Windows.Forms.TextBox();
             this.lblDomainRequested = new System.Windows.Forms.Label();
@@ -170,6 +171,8 @@ namespace LiveSupport.OperatorConsole
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.operatorsPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -191,6 +194,11 @@ namespace LiveSupport.OperatorConsole
             this.stickToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loginTimer = new System.Windows.Forms.Timer(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.mainSplitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonReturnToOperator = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.myChatToolStripLabel = new System.Windows.Forms.ToolStripLabel();
@@ -198,14 +206,6 @@ namespace LiveSupport.OperatorConsole
             this.visitorOnChatToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.currentVisitorsToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonReturnToOperator = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsReplied = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
@@ -233,13 +233,9 @@ namespace LiveSupport.OperatorConsole
             subjectLabel = new System.Windows.Forms.Label();
             this.mainMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.mainSplitContainer.Panel1.SuspendLayout();
-            this.mainSplitContainer.Panel2.SuspendLayout();
-            this.mainSplitContainer.SuspendLayout();
-            this.visitorSessionSplitContainer.Panel1.SuspendLayout();
-            this.visitorSessionSplitContainer.Panel2.SuspendLayout();
-            this.visitorSessionSplitContainer.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.mainSplitContainer2.Panel1.SuspendLayout();
+            this.mainSplitContainer2.Panel2.SuspendLayout();
+            this.mainSplitContainer2.SuspendLayout();
             this.tabChats.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitorBindingSource)).BeginInit();
@@ -252,14 +248,18 @@ namespace LiveSupport.OperatorConsole
             ((System.ComponentModel.ISupportInitialize)(this.leaveWordDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leaveWordBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
+            this.operatorsPanel.SuspendLayout();
             this.notifyIconContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
+            this.mainSplitContainer1.Panel1.SuspendLayout();
+            this.mainSplitContainer1.Panel2.SuspendLayout();
+            this.mainSplitContainer1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.toolStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // visitorIdLabel
@@ -537,26 +537,31 @@ namespace LiveSupport.OperatorConsole
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.客服栏OToolStripMenuItem,
-            this.访客信息栏VToolStripMenuItem});
+            this.operatorsInfoToolStripMenuItem,
+            this.visitorInfoToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.toolsToolStripMenuItem.Text = "视图(&V)";
-            this.toolsToolStripMenuItem.Visible = false;
             // 
-            // 客服栏OToolStripMenuItem
+            // operatorsInfoToolStripMenuItem
             // 
-            this.客服栏OToolStripMenuItem.Name = "客服栏OToolStripMenuItem";
-            this.客服栏OToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.客服栏OToolStripMenuItem.Text = "客服栏(&O)";
-            this.客服栏OToolStripMenuItem.Visible = false;
+            this.operatorsInfoToolStripMenuItem.Checked = true;
+            this.operatorsInfoToolStripMenuItem.CheckOnClick = true;
+            this.operatorsInfoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.operatorsInfoToolStripMenuItem.Name = "operatorsInfoToolStripMenuItem";
+            this.operatorsInfoToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.operatorsInfoToolStripMenuItem.Text = "客服栏(&O)";
+            this.operatorsInfoToolStripMenuItem.Click += new System.EventHandler(this.operatorsInfoToolStripMenuItem_Click);
             // 
-            // 访客信息栏VToolStripMenuItem
+            // visitorInfoToolStripMenuItem
             // 
-            this.访客信息栏VToolStripMenuItem.Name = "访客信息栏VToolStripMenuItem";
-            this.访客信息栏VToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.访客信息栏VToolStripMenuItem.Text = "访客信息栏(&V)";
-            this.访客信息栏VToolStripMenuItem.Visible = false;
+            this.visitorInfoToolStripMenuItem.Checked = true;
+            this.visitorInfoToolStripMenuItem.CheckOnClick = true;
+            this.visitorInfoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.visitorInfoToolStripMenuItem.Name = "visitorInfoToolStripMenuItem";
+            this.visitorInfoToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.visitorInfoToolStripMenuItem.Text = "访客信息栏(&V)";
+            this.visitorInfoToolStripMenuItem.Click += new System.EventHandler(this.visitorInfoToolStripMenuItem_Click);
             // 
             // adminToolStripMenuItem
             // 
@@ -808,7 +813,7 @@ namespace LiveSupport.OperatorConsole
             this.lstVisitors.Location = new System.Drawing.Point(0, 0);
             this.lstVisitors.MultiSelect = false;
             this.lstVisitors.Name = "lstVisitors";
-            this.lstVisitors.Size = new System.Drawing.Size(958, 197);
+            this.lstVisitors.Size = new System.Drawing.Size(755, 197);
             this.lstVisitors.SmallImageList = this.imgIconSet;
             this.lstVisitors.TabIndex = 2;
             this.lstVisitors.UseCompatibleStateImageBehavior = false;
@@ -928,64 +933,24 @@ namespace LiveSupport.OperatorConsole
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // mainSplitContainer
+            // mainSplitContainer2
             // 
-            this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainSplitContainer.Location = new System.Drawing.Point(0, 50);
-            this.mainSplitContainer.Name = "mainSplitContainer";
-            this.mainSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.mainSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainSplitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.mainSplitContainer2.Name = "mainSplitContainer2";
+            this.mainSplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // mainSplitContainer.Panel1
+            // mainSplitContainer2.Panel1
             // 
-            this.mainSplitContainer.Panel1.Controls.Add(this.lstVisitors);
+            this.mainSplitContainer2.Panel1.Controls.Add(this.lstVisitors);
             // 
-            // mainSplitContainer.Panel2
+            // mainSplitContainer2.Panel2
             // 
-            this.mainSplitContainer.Panel2.Controls.Add(this.visitorSessionSplitContainer);
-            this.mainSplitContainer.Size = new System.Drawing.Size(958, 593);
-            this.mainSplitContainer.SplitterDistance = 197;
-            this.mainSplitContainer.TabIndex = 4;
-            // 
-            // visitorSessionSplitContainer
-            // 
-            this.visitorSessionSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.visitorSessionSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.visitorSessionSplitContainer.Name = "visitorSessionSplitContainer";
-            // 
-            // visitorSessionSplitContainer.Panel1
-            // 
-            this.visitorSessionSplitContainer.Panel1.BackColor = System.Drawing.Color.Transparent;
-            this.visitorSessionSplitContainer.Panel1.Controls.Add(this.panel1);
-            // 
-            // visitorSessionSplitContainer.Panel2
-            // 
-            this.visitorSessionSplitContainer.Panel2.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.bg;
-            this.visitorSessionSplitContainer.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.visitorSessionSplitContainer.Panel2.Controls.Add(this.tabChats);
-            this.visitorSessionSplitContainer.Panel2.Controls.Add(this.panel2);
-            this.visitorSessionSplitContainer.Size = new System.Drawing.Size(958, 392);
-            this.visitorSessionSplitContainer.SplitterDistance = 200;
-            this.visitorSessionSplitContainer.TabIndex = 3;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.operatorPannel1);
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 392);
-            this.panel1.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            this.panel5.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
-            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 30);
-            this.panel5.TabIndex = 3;
+            this.mainSplitContainer2.Panel2.Controls.Add(this.tabChats);
+            this.mainSplitContainer2.Panel2.Controls.Add(this.panel2);
+            this.mainSplitContainer2.Size = new System.Drawing.Size(755, 593);
+            this.mainSplitContainer2.SplitterDistance = 197;
+            this.mainSplitContainer2.TabIndex = 4;
             // 
             // tabChats
             // 
@@ -994,11 +959,11 @@ namespace LiveSupport.OperatorConsole
             this.tabChats.Controls.Add(this.tabPage3);
             this.tabChats.Controls.Add(this.tabPage4);
             this.tabChats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabChats.Location = new System.Drawing.Point(0, 30);
+            this.tabChats.Location = new System.Drawing.Point(0, 33);
             this.tabChats.Name = "tabChats";
             this.tabChats.SelectedIndex = 0;
             this.tabChats.ShowToolTips = true;
-            this.tabChats.Size = new System.Drawing.Size(754, 362);
+            this.tabChats.Size = new System.Drawing.Size(755, 359);
             this.tabChats.TabIndex = 0;
             this.tabChats.SelectedIndexChanged += new System.EventHandler(this.tabChats_SelectedIndexChanged);
             // 
@@ -1036,7 +1001,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage1.Location = new System.Drawing.Point(4, 21);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(746, 337);
+            this.tabPage1.Size = new System.Drawing.Size(747, 334);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "访客详情";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1168,7 +1133,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Location = new System.Drawing.Point(4, 21);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(746, 337);
+            this.tabPage2.Size = new System.Drawing.Size(800, 334);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1228,7 +1193,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.Location = new System.Drawing.Point(4, 21);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(746, 337);
+            this.tabPage3.Size = new System.Drawing.Size(800, 334);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "网页浏览";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1292,7 +1257,7 @@ namespace LiveSupport.OperatorConsole
             this.lstPageRequest.Location = new System.Drawing.Point(3, 47);
             this.lstPageRequest.Name = "lstPageRequest";
             this.lstPageRequest.ShowItemToolTips = true;
-            this.lstPageRequest.Size = new System.Drawing.Size(740, 657);
+            this.lstPageRequest.Size = new System.Drawing.Size(794, 654);
             this.lstPageRequest.TabIndex = 7;
             this.lstPageRequest.UseCompatibleStateImageBehavior = false;
             this.lstPageRequest.View = System.Windows.Forms.View.Details;
@@ -1319,7 +1284,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4.Location = new System.Drawing.Point(4, 21);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(746, 337);
+            this.tabPage4.Size = new System.Drawing.Size(800, 334);
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "留言列表";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1366,8 +1331,8 @@ namespace LiveSupport.OperatorConsole
             this.splitContainer1.Panel2.Controls.Add(subjectLabel);
             this.splitContainer1.Panel2.Controls.Add(this.subjectTextBox);
             this.splitContainer1.Panel2MinSize = 100;
-            this.splitContainer1.Size = new System.Drawing.Size(740, 331);
-            this.splitContainer1.SplitterDistance = 226;
+            this.splitContainer1.Size = new System.Drawing.Size(794, 328);
+            this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.TabIndex = 0;
             // 
             // leaveWordDataGridView
@@ -1393,9 +1358,41 @@ namespace LiveSupport.OperatorConsole
             this.leaveWordDataGridView.RowHeadersVisible = false;
             this.leaveWordDataGridView.RowTemplate.Height = 23;
             this.leaveWordDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.leaveWordDataGridView.Size = new System.Drawing.Size(226, 331);
+            this.leaveWordDataGridView.Size = new System.Drawing.Size(280, 328);
             this.leaveWordDataGridView.TabIndex = 0;
             this.leaveWordDataGridView.SelectionChanged += new System.EventHandler(this.leaveWordDataGridView_SelectionChanged);
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "CallerName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "留言者";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Subject";
+            this.dataGridViewTextBoxColumn5.HeaderText = "主题";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "CallerDate";
+            this.dataGridViewTextBoxColumn8.HeaderText = "留言时间";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // IsReplied
+            // 
+            this.IsReplied.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IsReplied.DataPropertyName = "IsReplied";
+            this.IsReplied.HeaderText = "是否回复";
+            this.IsReplied.Name = "IsReplied";
+            this.IsReplied.ReadOnly = true;
             // 
             // leaveWordBindingSource
             // 
@@ -1467,7 +1464,7 @@ namespace LiveSupport.OperatorConsole
             this.contentTextBox.Name = "contentTextBox";
             this.contentTextBox.ReadOnly = true;
             this.contentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.contentTextBox.Size = new System.Drawing.Size(370, 136);
+            this.contentTextBox.Size = new System.Drawing.Size(387, 136);
             this.contentTextBox.TabIndex = 5;
             // 
             // emailTextBox1
@@ -1537,7 +1534,7 @@ namespace LiveSupport.OperatorConsole
             this.subjectTextBox.Location = new System.Drawing.Point(88, 123);
             this.subjectTextBox.Name = "subjectTextBox";
             this.subjectTextBox.ReadOnly = true;
-            this.subjectTextBox.Size = new System.Drawing.Size(370, 21);
+            this.subjectTextBox.Size = new System.Drawing.Size(387, 21);
             this.subjectTextBox.TabIndex = 23;
             // 
             // panel2
@@ -1547,7 +1544,7 @@ namespace LiveSupport.OperatorConsole
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(754, 30);
+            this.panel2.Size = new System.Drawing.Size(755, 33);
             this.panel2.TabIndex = 1;
             // 
             // panel4
@@ -1557,21 +1554,39 @@ namespace LiveSupport.OperatorConsole
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header_bg_right;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(176, 0);
+            this.panel4.Location = new System.Drawing.Point(202, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(578, 30);
+            this.panel4.Size = new System.Drawing.Size(1179, 33);
             this.panel4.TabIndex = 1;
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header_bg_left1;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Location = new System.Drawing.Point(4, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(179, 30);
+            this.panel3.Size = new System.Drawing.Size(200, 33);
             this.panel3.TabIndex = 0;
+            // 
+            // operatorsPanel
+            // 
+            this.operatorsPanel.Controls.Add(this.operatorPannel1);
+            this.operatorsPanel.Controls.Add(this.panel1);
+            this.operatorsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorsPanel.Location = new System.Drawing.Point(0, 0);
+            this.operatorsPanel.Name = "operatorsPanel";
+            this.operatorsPanel.Size = new System.Drawing.Size(199, 593);
+            this.operatorsPanel.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(199, 31);
+            this.panel1.TabIndex = 1;
             // 
             // treeView1
             // 
@@ -1652,7 +1667,7 @@ namespace LiveSupport.OperatorConsole
             this.inviteToolStripButton,
             this.toolStripSeparator6,
             this.acceptToolStripButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(958, 25);
@@ -1750,76 +1765,39 @@ namespace LiveSupport.OperatorConsole
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 74);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.mainSplitContainer);
-            this.splitContainer2.Panel1.Controls.Add(this.toolStrip3);
-            this.splitContainer2.Panel1.Controls.Add(this.toolStrip1);
+            this.splitContainer2.Panel1.Controls.Add(this.mainSplitContainer1);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.webBrowser1);
             this.splitContainer2.Panel2.Controls.Add(this.toolStrip2);
             this.splitContainer2.Panel2Collapsed = true;
-            this.splitContainer2.Size = new System.Drawing.Size(958, 643);
+            this.splitContainer2.Size = new System.Drawing.Size(958, 593);
             this.splitContainer2.SplitterDistance = 561;
             this.splitContainer2.TabIndex = 9;
             // 
-            // toolStrip3
+            // mainSplitContainer1
             // 
-            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator7,
-            this.myChatToolStripLabel,
-            this.toolStripSeparator8,
-            this.visitorOnChatToolStripLabel,
-            this.currentVisitorsToolStripLabel,
-            this.toolStripSeparator9});
-            this.toolStrip3.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip3.Location = new System.Drawing.Point(0, 25);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip3.Size = new System.Drawing.Size(958, 25);
-            this.toolStrip3.TabIndex = 11;
-            this.toolStrip3.Text = "toolStrip3";
+            this.mainSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainSplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.mainSplitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.mainSplitContainer1.Name = "mainSplitContainer1";
             // 
-            // toolStripSeparator7
+            // mainSplitContainer1.Panel1
             // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            this.mainSplitContainer1.Panel1.Controls.Add(this.operatorsPanel);
             // 
-            // myChatToolStripLabel
+            // mainSplitContainer1.Panel2
             // 
-            this.myChatToolStripLabel.Name = "myChatToolStripLabel";
-            this.myChatToolStripLabel.Size = new System.Drawing.Size(83, 22);
-            this.myChatToolStripLabel.Text = "我的对话数: *";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
-            // 
-            // visitorOnChatToolStripLabel
-            // 
-            this.visitorOnChatToolStripLabel.Name = "visitorOnChatToolStripLabel";
-            this.visitorOnChatToolStripLabel.Size = new System.Drawing.Size(107, 22);
-            this.visitorOnChatToolStripLabel.Text = "对话中的访客数: *";
-            // 
-            // currentVisitorsToolStripLabel
-            // 
-            this.currentVisitorsToolStripLabel.Name = "currentVisitorsToolStripLabel";
-            this.currentVisitorsToolStripLabel.Size = new System.Drawing.Size(83, 22);
-            this.currentVisitorsToolStripLabel.Text = "当前访客数: *";
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            this.mainSplitContainer1.Panel2.Controls.Add(this.mainSplitContainer2);
+            this.mainSplitContainer1.Size = new System.Drawing.Size(958, 593);
+            this.mainSplitContainer1.SplitterDistance = 199;
+            this.mainSplitContainer1.TabIndex = 3;
             // 
             // webBrowser1
             // 
@@ -1859,45 +1837,67 @@ namespace LiveSupport.OperatorConsole
             this.toolStripButtonRefresh.Text = "刷新";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
             // 
-            // dataGridViewTextBoxColumn2
+            // toolStrip3
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "CallerName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "留言者";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator7,
+            this.myChatToolStripLabel,
+            this.toolStripSeparator8,
+            this.visitorOnChatToolStripLabel,
+            this.currentVisitorsToolStripLabel,
+            this.toolStripSeparator9});
+            this.toolStrip3.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStrip3.Location = new System.Drawing.Point(0, 49);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip3.Size = new System.Drawing.Size(958, 25);
+            this.toolStrip3.TabIndex = 11;
+            this.toolStrip3.Text = "toolStrip3";
             // 
-            // dataGridViewTextBoxColumn5
+            // toolStripSeparator7
             // 
-            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Subject";
-            this.dataGridViewTextBoxColumn5.HeaderText = "主题";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
-            // dataGridViewTextBoxColumn8
+            // myChatToolStripLabel
             // 
-            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "CallerDate";
-            this.dataGridViewTextBoxColumn8.HeaderText = "留言时间";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.myChatToolStripLabel.Name = "myChatToolStripLabel";
+            this.myChatToolStripLabel.Size = new System.Drawing.Size(83, 22);
+            this.myChatToolStripLabel.Text = "我的对话数: *";
             // 
-            // IsReplied
+            // toolStripSeparator8
             // 
-            this.IsReplied.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IsReplied.DataPropertyName = "IsReplied";
-            this.IsReplied.HeaderText = "是否回复";
-            this.IsReplied.Name = "IsReplied";
-            this.IsReplied.ReadOnly = true;
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+            // 
+            // visitorOnChatToolStripLabel
+            // 
+            this.visitorOnChatToolStripLabel.Name = "visitorOnChatToolStripLabel";
+            this.visitorOnChatToolStripLabel.Size = new System.Drawing.Size(107, 22);
+            this.visitorOnChatToolStripLabel.Text = "对话中的访客数: *";
+            // 
+            // currentVisitorsToolStripLabel
+            // 
+            this.currentVisitorsToolStripLabel.Name = "currentVisitorsToolStripLabel";
+            this.currentVisitorsToolStripLabel.Size = new System.Drawing.Size(83, 22);
+            this.currentVisitorsToolStripLabel.Text = "当前访客数: *";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
             // operatorPannel1
             // 
+            this.operatorPannel1.BackColor = System.Drawing.SystemColors.Control;
             this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 30);
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 31);
             this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(200, 362);
-            this.operatorPannel1.TabIndex = 2;
+            this.operatorPannel1.Size = new System.Drawing.Size(199, 562);
+            this.operatorPannel1.TabIndex = 0;
             // 
             // chatMessageViewerControl1
             // 
@@ -1906,7 +1906,7 @@ namespace LiveSupport.OperatorConsole
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
             this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(740, 748);
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(794, 745);
             this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
@@ -1916,6 +1916,8 @@ namespace LiveSupport.OperatorConsole
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(958, 689);
             this.Controls.Add(this.splitContainer2);
+            this.Controls.Add(this.toolStrip3);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.statusStrip1);
             this.DoubleBuffered = true;
@@ -1931,13 +1933,9 @@ namespace LiveSupport.OperatorConsole
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.mainSplitContainer.Panel1.ResumeLayout(false);
-            this.mainSplitContainer.Panel2.ResumeLayout(false);
-            this.mainSplitContainer.ResumeLayout(false);
-            this.visitorSessionSplitContainer.Panel1.ResumeLayout(false);
-            this.visitorSessionSplitContainer.Panel2.ResumeLayout(false);
-            this.visitorSessionSplitContainer.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.mainSplitContainer2.Panel1.ResumeLayout(false);
+            this.mainSplitContainer2.Panel2.ResumeLayout(false);
+            this.mainSplitContainer2.ResumeLayout(false);
             this.tabChats.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1954,20 +1952,23 @@ namespace LiveSupport.OperatorConsole
             ((System.ComponentModel.ISupportInitialize)(this.leaveWordDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leaveWordBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.operatorsPanel.ResumeLayout(false);
             this.notifyIconContextMenuStrip.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
+            this.mainSplitContainer1.Panel1.ResumeLayout(false);
+            this.mainSplitContainer1.Panel2.ResumeLayout(false);
+            this.mainSplitContainer1.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1991,7 +1992,7 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem inviteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acceptToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SplitContainer mainSplitContainer;
+        private System.Windows.Forms.SplitContainer mainSplitContainer2;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip notifyIconContextMenuStrip;
@@ -2016,10 +2017,9 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripStatusLabel stickToolStripStatusLabel;
         private System.Windows.Forms.ComboBox cbxDomainName;
         private System.Windows.Forms.Label lblDomainName;
-        private System.Windows.Forms.SplitContainer visitorSessionSplitContainer;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem 客服栏OToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 访客信息栏VToolStripMenuItem;
+        private System.Windows.Forms.Panel operatorsPanel;
+        private System.Windows.Forms.ToolStripMenuItem operatorsInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visitorInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.Timer loginTimer;
         private System.Windows.Forms.ColumnHeader colName;
@@ -2040,13 +2040,8 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.ToolStripMenuItem resetpasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoLoginToolStripMenuItem;
-        private OperatorPannel operatorPannel1;
         private System.Windows.Forms.ImageList imgIconSet;
         private System.Windows.Forms.ToolStripMenuItem settalkToolStripMenuItem;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OptionToolStripMenuItem;
         private System.Windows.Forms.TabControl tabChats;
@@ -2127,5 +2122,11 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsReplied;
+        private System.Windows.Forms.SplitContainer mainSplitContainer1;
+        private System.Windows.Forms.Panel panel2;
+        private OperatorPannel operatorPannel1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -141,7 +141,7 @@ namespace LiveSupport.OperatorConsole
         {
             if (e.Exception is WebException)
             {
-                MessageBox.Show("由于网络超时,请稍候再试!");
+                MessageBox.Show(e.Exception.Message);
             }
             else
             ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL+"/BugReports",true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);

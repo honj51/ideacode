@@ -268,20 +268,28 @@ namespace LiveSupport.OperatorConsole
             catch (WebException)
             {
                 return -3;
-                throw;
             }
             return num;
         }
 
         public Chat InviteChat(string visitorId)
         {
-            Chat chat = GetChatByVisitorId(visitorId);
-            if (chat == null)
+             return ws.InviteChat(visitorId);
+        }
+
+        public bool IsVisitorHasActiveChat(string visitorId)
+        {
+            lock (chats)
             {
-                return ws.InviteChat(visitorId);
+                foreach (var item in chats)
+                {
+                    if (item.VisitorId == visitorId && (item.Status == ChatStatus.Accepted || item.Status == ChatStatus.Requested))
+                    {
+                        return true;
+                    }
+                }
+                return false; 
             }
-            else
-                return null;
         }
 
         private Chat GetChatByVisitorId(string visitorId)
@@ -423,8 +431,11 @@ namespace LiveSupport.OperatorConsole
                 }
             }
 
-            this.chats.Clear();
-            this.chats.AddRange(result.Chats);
+            lock (this.chats)
+            {
+                this.chats.Clear();
+                this.chats.AddRange(result.Chats);
+            }
         }
 
         private void processOpertors(NewChangesCheckResult result)

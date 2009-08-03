@@ -55,7 +55,7 @@ namespace LiveSupport.OperatorConsole
         {
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
-                operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
+               operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
 
                 //Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
                 changeVisitorListViewItemColor();
@@ -595,44 +595,61 @@ namespace LiveSupport.OperatorConsole
         // 接受访客请求
         private void acceptToolStripButton_Click(object sender, EventArgs e)
         {
-            VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
-            if (vlvi != null)
+            try
             {
-                Chat chat = operaterServiceAgent.GetChatRequest(vlvi.Visitor.VisitorId);
-                if (chat != null && vlvi.VisitSession.Status == VisitSessionStatus.ChatRequesting)
+                acceptToolStripButton.Enabled = false;
+                VisitorListViewItem vlvi = getSelectedVisitorListViewItem();
+                if (vlvi != null)
                 {
-                    ChatForm cf = new ChatForm(operaterServiceAgent, chat);
-                    Program.ChatForms.Add(cf);
-                    cf.Show();
-                }
-                else
-                {
-                    MessageBox.Show("该访客暂时还未请求对话");
-                }
+                    Chat chat = operaterServiceAgent.GetChatRequest(vlvi.Visitor.VisitorId);
+                    if (chat != null && vlvi.VisitSession.Status == VisitSessionStatus.ChatRequesting)
+                    {
+                        ChatForm cf = new ChatForm(operaterServiceAgent);
+                        Program.ChatForms.Add(cf);
+                        cf.Accept(chat);
+                        cf.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("该访客暂时还未请求对话");
+                    }
 
+                }
+            }
+            finally
+            {
+                acceptToolStripButton.Enabled = true;
             }
         }
 
         //主动邀请访客
         private void inviteToolStripButton_Click(object sender, EventArgs e)
         {
-            VisitorListViewItem v = getSelectedVisitorListViewItem();
-            if (v != null && v.VisitSession.Status == VisitSessionStatus.Visiting)
+            try
             {
-
-                Chat chat = operaterServiceAgent.InviteChat(v.Visitor.VisitorId);
-
-                if (chat != null)
+                inviteToolStripButton.Enabled = false;
+                VisitorListViewItem v = getSelectedVisitorListViewItem();
+                if (v != null && v.VisitSession.Status == VisitSessionStatus.Visiting)
                 {
-                    ChatForm cf = new ChatForm(operaterServiceAgent,chat, true);
-                    Program.ChatForms.Add(cf);
-                    cf.Show();
-                }
-            }
-            else
-            {
-                MessageBox.Show("该访客已被其他客服邀请或在对话中");
 
+                    if (!operaterServiceAgent.IsVisitorHasActiveChat(v.Visitor.VisitorId))
+                    {
+                        ChatForm cf = new ChatForm(operaterServiceAgent);
+                        Program.ChatForms.Add(cf);
+                        cf.Invite(v.Visitor.VisitorId);
+                        cf.Show();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("该访客已被其他客服邀请或在对话中");
+
+                }
+
+            }
+            finally
+            {
+                inviteToolStripButton.Enabled = true;
             }
         }
         #endregion
@@ -1112,7 +1129,7 @@ namespace LiveSupport.OperatorConsole
             {
                 ToolStripMenuItem m = sender as ToolStripMenuItem;
                 string url = m.Tag as string;
-                browserNavigateTo(url);
+                browserNavigateTo(url + "?operatorsession=" + Program.OperaterServiceAgent.CurrentOperator.OperatorSession);
                 //System.Diagnostics.Process.Start(url);
             }
             catch (Exception)
@@ -1153,6 +1170,16 @@ namespace LiveSupport.OperatorConsole
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
         {
             webBrowser1.Refresh();
+        }
+
+        private void operatorsInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainSplitContainer1.Panel1Collapsed = !operatorsInfoToolStripMenuItem.Checked;
+        }
+
+        private void visitorInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainSplitContainer2.Panel2Collapsed = !visitorInfoToolStripMenuItem.Checked;
         }
     }
 

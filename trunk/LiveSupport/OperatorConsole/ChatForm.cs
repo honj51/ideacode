@@ -27,7 +27,7 @@ namespace LiveSupport.OperatorConsole
 
         private System.Windows.Forms.SaveFileDialog cutSaveFileDialog;
 
-     
+
 
 
         //调用动态链接库gdi32.dll 
@@ -55,9 +55,9 @@ namespace LiveSupport.OperatorConsole
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            
-            
-        } 
+
+
+        }
 
 
         #endregion
@@ -87,7 +87,7 @@ namespace LiveSupport.OperatorConsole
 
         public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
         {
-           
+
             if (!this.IsDisposed && receiveMessage)
             {
                 chatMessageViewerControl1.AddMessage(message);
@@ -102,79 +102,91 @@ namespace LiveSupport.OperatorConsole
                 }
             }
         }
-        public void SystemMessage(string meg) 
+        public void SystemMessage(string meg)
         {
             chatMessageViewerControl1.AddInformation(meg);
         }
-        
 
-        public ChatForm(IOperatorServiceAgent agent,Chat chat): this(agent, chat, false)
-        {           
-        }
 
-        public ChatForm(IOperatorServiceAgent agent, Chat chat, bool invite)
-        {
-            Directory.CreateDirectory(chat.ChatId);
+        public ChatForm(IOperatorServiceAgent agent)
+        {   
             this.operatorServiceAgent = agent;
             InitializeComponent();
-            this.chat = chat;
-            uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
-
-            if (!invite)
-            {
-                acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
-                if (acceptChatRequestResult == -1) 
-                {
-                    chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
-                    receiveMessage = false;
-                    return;
-                }
-                if (acceptChatRequestResult == -3)
-                {
-                    chatMessageViewerControl1.ResetContent("服务器错误");
-                    receiveMessage = false;
-                }
-            }
+            
             chatMessageViewerControl1.ResetContent("初始会话...");
-            //ucm.GetMessage(msgs, "Navigate");
+        }
 
-            visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
+        private void initChat()
+        {
+            Directory.CreateDirectory(chat.ChatId);
+            uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
+            loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
+
             this.Text = "与 " + visitor.Name + " 对话中";
             this.visitorNameLabel.Text += visitor.Name;
             this.remarkLabel.Text += visitor.Remark;
             this.domainRequestedLabel.Text += visitor.CurrentSession.DomainRequested.ToString();
             this.visitorLocationLabel.Text += visitor.CurrentSession.Location;
             txtMsg.Focus();
-            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
-            loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
+        }
+
+        public void Invite(string visitorId)
+        {
+            visitor = operatorServiceAgent.GetVisitorById(visitorId);
+            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
+            chat = operatorServiceAgent.InviteChat(visitorId);
+            initChat();
+        }
+
+        public void Accept(Chat chat)
+        {
+            this.chat = chat;
+            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
+            visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
+            initChat();
             
+            acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
+            if (acceptChatRequestResult == -1)
+            {
+                chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
+                receiveMessage = false;
+                return;
+            }
+            if (acceptChatRequestResult == -3)
+            {
+                chatMessageViewerControl1.ResetContent("服务器错误");
+                receiveMessage = false;
+            }
         }
 
         void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
         {
-            try
+            if (this.IsDisposed || !this.IsHandleCreated)
             {
-                this.Invoke(new UpdateUIDelegate(delegate(object obj)
+                return;
+            }
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                try
                 {
                     NewMessageEventArgs arg = e as NewMessageEventArgs;
                     if (arg.Message.ChatId == this.chat.ChatId)
                     {
                         RecieveMessage(arg.Message);
                     }
+                }
+                catch (Exception)
+                {
+                    chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                }
 
-                }), e);
-            }
-            catch (Exception )
-            {
-                chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
-                return;
-            }
-          
+            }), e);
+
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
         {
-            this.Close();               
+            this.Close();
         }
 
         /// <summary>
@@ -189,14 +201,14 @@ namespace LiveSupport.OperatorConsole
                 string filename = uploadOpenFileDialog.FileName;
 
                 foreach (FtpUpload item in uploadTasks)
-	           {
-		         if(item.fileFullPath==filename)
-                 {
-                     chatMessageViewerControl1.AddFloatInformation("文件" + filename.Substring(filename.LastIndexOf("\\") + 1) + "正在上传中,不能发送相同文件");
-                     return;
-                   
-                 }
-	           }
+                {
+                    if (item.fileFullPath == filename)
+                    {
+                        chatMessageViewerControl1.AddFloatInformation("文件" + filename.Substring(filename.LastIndexOf("\\") + 1) + "正在上传中,不能发送相同文件");
+                        return;
+
+                    }
+                }
                 try
                 {
                     addTabPage(filename);
@@ -208,10 +220,10 @@ namespace LiveSupport.OperatorConsole
                     chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
                     return;
                 }
-                
+
             }
         }
-      
+
 
         /// <summary>
         /// 有新信息提示音
@@ -220,7 +232,7 @@ namespace LiveSupport.OperatorConsole
         {
             player.Stream = Properties.Resources.newmsg;
             player.Play();
-           
+
         }
 
         private void txtMsg_KeyUp(object sender, KeyEventArgs e)
@@ -236,7 +248,7 @@ namespace LiveSupport.OperatorConsole
             if ((int)e.KeyChar == 13 && txtMsg.Text.Length > 0)
             {
                 e.Handled = true;
-                string Text= HttpUtility.HtmlEncode(txtMsg.Text);
+                string Text = HttpUtility.HtmlEncode(txtMsg.Text);
                 WriteMessage(Text);
                 txtMsg.Clear();
             }
@@ -273,25 +285,25 @@ namespace LiveSupport.OperatorConsole
         //写信息
         private void WriteMessage(string message)
         {
-            WriteMessage(message,operatorServiceAgent.CurrentOperator !=null ?operatorServiceAgent.CurrentOperator.NickName :null );
+            WriteMessage(message, operatorServiceAgent.CurrentOperator != null ? operatorServiceAgent.CurrentOperator.NickName : null);
         }
         //写信息
         private void WriteMessage(string message, string From)
         {
             LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
-            msg.ChatId = Chat.ChatId; 
+            msg.ChatId = Chat.ChatId;
             msg.Text = message;
             msg.Source = From;
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
             try
             {
-                operatorServiceAgent.SendMessage(msg); 
+                operatorServiceAgent.SendMessage(msg);
             }
             catch (WebException wmg)
             {
                 Debug.WriteLine("sendMessage exception:" + wmg.Message);
-                string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>"+msg.SentDate+"\r\n\r\n可能由于网络原因“" + msg.Text + "”消息发送失败。</span><br />";
+                string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>" + msg.SentDate + "\r\n\r\n可能由于网络原因“" + msg.Text + "”消息发送失败。</span><br />";
                 chatMessageViewerControl1.AddText(text);
                 return;
             }
@@ -339,10 +351,7 @@ namespace LiveSupport.OperatorConsole
                 }
                 catch (WebException wex)
                 {
-                    
-                    
                 }
-                
             }
             try
             {
@@ -350,7 +359,7 @@ namespace LiveSupport.OperatorConsole
             }
             catch
             {
-            } 
+            }
             Program.ChatForms.Remove(this);
         }
 
@@ -362,14 +371,14 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if(e.Node.Nodes.Count==0)
+            if (e.Node.Nodes.Count == 0)
             {
-                txtMsg.Text= e.Node.Text.ToString();
+                txtMsg.Text = e.Node.Text.ToString();
                 this.txtMsg.Focus();
             }
         }
@@ -416,11 +425,11 @@ namespace LiveSupport.OperatorConsole
                 return;
             }
             catch (Exception ex)
-           {
+            {
                 Debug.WriteLine("sendImage exception:" + ex.Message);
                 chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
                 return;
-           }
+            }
         }
 
         void ftpUpload_FileUploadProgress(object sender, FileUploadProgressEventArgs e)
@@ -444,7 +453,7 @@ namespace LiveSupport.OperatorConsole
 
         }
 
-        private void addTabPage(string fileName) 
+        private void addTabPage(string fileName)
         {
             FileInfo file = new FileInfo(fileName);
             if (file.Length >= 2097152)
@@ -459,16 +468,16 @@ namespace LiveSupport.OperatorConsole
                 createTabPage();
             }
 
-            fileUpload = new FileUploadControl(fileName,uploadURL);
+            fileUpload = new FileUploadControl(fileName, uploadURL);
             fileUpload.FileUploadCompleted += new EventHandler<FileUploadEventArgs>(fileUpload_FileUploadCompleted);
-            
+
             this.uploadTasks.Add(fileUpload.FtpUpload);
-               
+
             this.tabPage3.Controls.Add(fileUpload);
 
             fileUpload.Dock = DockStyle.Top;
-          
-           
+
+
         }
 
         void fileUpload_FileUploadCompleted(object sender, FileUploadEventArgs e)
@@ -476,26 +485,26 @@ namespace LiveSupport.OperatorConsole
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
                 FileUploadEventArgs arg = e as FileUploadEventArgs;
-                
-                 this.tabPage3.Controls.Remove(e.FileUploadControl);
+
+                this.tabPage3.Controls.Remove(e.FileUploadControl);
                 if (this.tabPage3.Controls.Count == 0)
                 {
                     this.tabPage3.Parent.Controls.Remove(this.tabPage3);
                 }
 
-                UploadStatus  status = arg.Status;
+                UploadStatus status = arg.Status;
                 string fileName = arg.FileName;
 
                 displayUploadStatusMessage(status, fileName);
 
             }), e);
 
-           
+
             this.uploadTasks.Remove(e.FileUploadControl.FtpUpload);
 
             if (e.Status == UploadStatus.Succeed)
             {
-                operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "complete"); 
+                operatorServiceAgent.SendFile(e.FileName, this.chat.ChatId, "complete");
             }
         }
 
@@ -522,7 +531,7 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        private void createTabPage() 
+        private void createTabPage()
         {
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage3.AutoScroll = true;
@@ -536,7 +545,7 @@ namespace LiveSupport.OperatorConsole
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabControlVideo.SelectedTab = tabPage3;
         }
-        private void loadQuickResponse(string doMainName) 
+        private void loadQuickResponse(string doMainName)
         {
             operatorServiceAgent.QuickResponseCategory.Clear();
             try
@@ -563,7 +572,7 @@ namespace LiveSupport.OperatorConsole
                 setTalkTreeView.Nodes[0].Text = "网络中断,请稍候重试";
                 return;
             }
-        
+
         }
 
         private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)
