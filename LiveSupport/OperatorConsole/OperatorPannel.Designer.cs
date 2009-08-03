@@ -53,7 +53,7 @@
             this.operatorsTreeView.PathSeparator = "";
             this.operatorsTreeView.SelectedImageIndex = 2;
             this.operatorsTreeView.ShowNodeToolTips = true;
-            this.operatorsTreeView.Size = new System.Drawing.Size(219, 359);
+            this.operatorsTreeView.Size = new System.Drawing.Size(215, 359);
             this.operatorsTreeView.TabIndex = 1;
             this.operatorsTreeView.DoubleClick += new System.EventHandler(this.operatorsTreeView_DoubleClick);
             // 
@@ -76,9 +76,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.operatorsTreeView);
             this.Name = "OperatorPannel";
-            this.Size = new System.Drawing.Size(219, 359);
+            this.Size = new System.Drawing.Size(215, 359);
             this.ResumeLayout(false);
 
         }

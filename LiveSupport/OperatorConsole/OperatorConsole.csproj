@@ -440,6 +440,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>"$(TargetPath)" /dv
+"$(TargetPath)" /us
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

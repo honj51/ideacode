@@ -153,8 +153,9 @@ namespace LiveSupport.OperatorConsole
 
             if (cf == null)
             {
-                cf = new ChatForm(Program.OperaterServiceAgent, this.chat);
+                cf = new ChatForm(Program.OperaterServiceAgent);
                 Program.ChatForms.Add(cf);
+                cf.Accept(this.chat);
             }
 
             cf.Show();
