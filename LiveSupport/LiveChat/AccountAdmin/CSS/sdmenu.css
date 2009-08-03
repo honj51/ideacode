@@ -1,0 +1,28 @@
+DIV.sdmenu {
+	FONT-SIZE: 12px; FLOAT: left; PADDING-BOTTOM: 10px; MARGIN-LEFT: 7px; WIDTH: 150px; COLOR: #fff; FONT-FAMILY: Arial, sans-serif
+}
+DIV.sdmenu DIV {
+	OVERFLOW: hidden
+}
+DIV.sdmenu DIV:unknown {
+	
+}
+DIV.sdmenu DIV.collapsed {
+	HEIGHT: 37px
+}
+DIV.sdmenu DIV SPAN {
+	DISPLAY: block; FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND-IMAGE: url(/images/3.jpg); WIDTH: 150px; COLOR: #ffffff; LINE-HEIGHT: 37px; FONT-FAMILY: "??"; HEIGHT: 37px; TEXT-ALIGN: center
+}
+DIV.sdmenu DIV.collapsed SPAN {
+	background-bgcolor: #ffffff;
+}
+DIV.sdmenu DIV A {
+	PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: #eee; PADDING-BOTTOM: 5px; COLOR: #066; PADDING-TOP: 5px; BORDER-BOTTOM: #ddd 1px solid
+}
+DIV.sdmenu DIV A.current {
+	BACKGROUND: #ccc
+}
+DIV.sdmenu DIV A:hover {
+	BACKGROUND: url(linkarrow.gif) #cccccc no-repeat right center; COLOR: #fff; TEXT-DECORATION: none;
+	
+}

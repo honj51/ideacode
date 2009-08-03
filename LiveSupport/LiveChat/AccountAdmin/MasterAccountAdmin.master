@@ -1,0 +1,159 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterAccountAdmin.master.cs" Inherits="AccountAdmin_MasterAccountAdmin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>无标题页</title>
+   <%-- <link href="CSS/PortalMasterPage.css" rel="stylesheet" type="text/css" media="print" />--%>
+   <style>
+   body 
+{
+	font-size:13px;
+	font-family:@仿宋_GB2312;
+	background-image:url('Imgs/bgImg.gif');
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+.headTable
+{
+	text-align:left;
+	width:785px;
+
+}
+.MenuTable
+{
+	width:100%;
+	font-weight:bold;
+	height:33px;
+
+	
+}
+
+.MenuTd
+{
+	background-image:url('Imgs/nav-bg.gif');
+}
+
+.ShowIntro
+{
+	width:100%;
+	margin-top:5px;
+}
+.BottomTable
+{
+	width:100%;
+	height:59px;
+	color:White;
+}
+.ContentTable
+{
+	width:100%;
+	height:100%;	
+}
+A:link{text-decoration:none}
+A:visited{text-decoration:none}
+A:hover {text-decoration:underline;}
+</style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <center >
+        <table width="760"><tr><td>
+     <table class="headTable"><tr><td><img src="Imgs/headLeft.bmp" /><asp:ScriptManager 
+             ID="ScriptManager1" runat="server">
+         </asp:ScriptManager>
+         </td><td align="right" valign=middle><asp:Panel ID="PanelShow" runat="server" Visible="false" 
+                 style="margin-left: 0px">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
+                    &nbsp;<asp:HyperLink ID="HyperLink1" runat="server" 
+                        NavigateUrl="~/AccountAdmin/AccountHome.aspx">管理客服</asp:HyperLink>
+                &nbsp;<asp:LinkButton  ID="LinkButton1" runat="server" 
+             onclick="LinkButton1_Click">退出</asp:LinkButton>
+                 </asp:Panel>
+                <asp:Panel ID="PanelLogin" runat="server" Visible="true"><a href="../Index.aspx" style="color:#000000;">首页</a>|<a href="../Login.aspx" style="color:#000000;">登录</a></asp:Panel></td></tr></table>
+     
+     <table class="ShowIntro"><tr><td><img src="Imgs/show.GIF" /></td></tr></table>   
+<table style="height:430px; width: 785px;">
+<tr>
+<td id="topId" valign="top">
+<!--导航-->
+<div style="height: 1px; background-image:url('Images/zhongjian.bmp'); ">
+<LINK href="CSS/sdmenu.css" type=text/css rel=stylesheet>
+<SCRIPT src="JS/sdmenu.js" type="text/javascript">
+</SCRIPT>
+<SCRIPT type="text/javascript">
+		// <![CDATA[
+		var myMenu;
+		window.onload = function() {
+			myMenu = new SDMenu("my_menu");
+			//myMenu.remember = true
+			myMenu.oneSmOnly = true;  
+			myMenu.init();
+			var firstSubmenu = myMenu.submenus[0];
+			myMenu.expandMenu(firstSubmenu);  
+			
+		};
+		function ShowSorry() {
+		    alert('此功能暂未开通!'); 
+		}
+		</SCRIPT>
+
+<table cellpadding="0" cellspacing="0" >
+<tr><td><img src="Images/left_12.gif" /></td></tr>
+<tr><td id="heightCount" style="background-image:url('Images/zhongjian.bmp');">
+<!--开始-->
+<DIV class=sdmenu id=my_menu> 
+
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">基本设置</SPAN> 
+<A href="AccountHome.aspx" >帐号信息</A>
+<A href="DomainName.aspx" >域名管理</A>
+</DIV>
+
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">客服管理</SPAN> 
+<A href="DepartmentManager.aspx">部门设置</A> 
+<A href="OperatorsManagment.aspx" >客服管理</A> 
+</DIV>
+<DIV style="text-align:center;" class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">数据分析</SPAN> 
+<A href="javascript:ShowSorry()">流量统计 </A>
+<A href="javascript:ShowSorry()">咨询量统计</A> 
+</DIV>
+
+<DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg');cursor:hand;" title="请点击">聊天记录</SPAN> 
+<A href="ChatAnnal.aspx">聊天记录 </A> <A href="CallerLeaveWord.aspx">访客留言</A> 
+</DIV>
+</div></DIV>
+<!--结束-->
+</td></tr>
+<tr><td><img src="Images/abc.bmp" /></td></tr>
+</table>
+ 
+   </td>
+   <td style="width: 583px;" valign="top">
+   <!--内容-->
+   <!--内容结束-->
+       <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+           <ContentTemplate>
+               <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+               </asp:ContentPlaceHolder>
+           </ContentTemplate>
+       </asp:UpdatePanel>
+   </td>
+</tr>
+</table>
+</center>
+        <table class="BottomTable" cellpadding="0" cellspacing="0"><tr><td style="background-image:url('Imgs/bottom-left.gif'); width:5px;"></td><td style="background-image:url('Imgs/bottom-bg.gif'); color:White; text-align:center;">
+        <a href="../About.aspx" style="color:White;">公司简介</a> |
+        <a href="#" style="color:White;">公司新闻</a> |
+        <a href="../Career.aspx" style="color:White;">诚聘英才</a> |
+        <a href="../LiveSupportLeaveWord.aspx" style="color:White;">给我们留言</a> |
+        <a href="../Contact.aspx" style="color:White;" >联系我们</a>|
+        <a href="#" style="color:White;">网站地图</a><br />
+        版权所有·严禁复制© 2009 江西互动信息技术有限公司</td><td style="background-image:url('Imgs/bottom-right.gif'); width:5px;"></td></tr></table>
+    </td></tr></table>
+    </div>
+    </form>
+</body>
+</html>
