@@ -13,6 +13,7 @@ using LiveSupport.BLL;
 using System.Diagnostics;
 using System.IO;
 using OperatorServiceInterface;
+using System.Threading;
 
 
 
@@ -168,26 +169,7 @@ public class ChatService
     /// <param name="m"></param>
     public static void SendMessage(Message m)
     {
-        Chat chat = GetChatById(m.ChatId);
-        if (chat == null)
-        {
-            // TODO: 是否需要抛出异常
-            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 不存在");
-        }
-        else if (chat.Status == ChatStatus.Closed)
-        {
-            // TODO: 是否需要抛出异常
-            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 状态为已关闭");
-        }
-        else
-        {
-            if (NewMessage != null)
-            {
-                NewMessage(null, new ChatMessageEventArgs(m));
-            }
-            m.SentDate = DateTime.Now;
-            MessageService.AddMessage(m);
-        }
+        SendMessage(m, DateTime.Now);
     }
 
     
@@ -334,6 +316,7 @@ public class ChatService
         chat.IsInviteByOperator = true;
         chat.CreateBy = op.NickName;
         chat.CreateTime = DateTime.Now;
+        chat.LastCheckTime = DateTime.Now.Ticks;
         chat.AccountId = op.AccountId;
         chat.VisitorId = visitorId;
         chat.OperatorId = operatorId;
@@ -348,7 +331,7 @@ public class ChatService
         m.ChatId =chat.ChatId;
         m.Text = "正在邀请访客，请稍等...";
         m.Type = MessageType.SystemMessage_ToOperator;
-        SendMessage(m);
+        SendMessage(m, DateTime.Now.AddMilliseconds(50));
 
         if (OperatorChatRequest != null)
         {
@@ -357,6 +340,30 @@ public class ChatService
         }
 
         return chat;
+    }
+
+    private static void SendMessage(Message m, DateTime dateTime)
+    {
+        Chat chat = GetChatById(m.ChatId);
+        if (chat == null)
+        {
+            // TODO: 是否需要抛出异常
+            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 不存在");
+        }
+        else if (chat.Status == ChatStatus.Closed)
+        {
+            // TODO: 是否需要抛出异常
+            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 状态为已关闭");
+        }
+        else
+        {
+            if (NewMessage != null)
+            {
+                NewMessage(null, new ChatMessageEventArgs(m));
+            }
+            m.SentDate = dateTime;
+            MessageService.AddMessage(m);
+        }
     }
 
 
