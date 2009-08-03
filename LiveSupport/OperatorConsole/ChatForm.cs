@@ -146,6 +146,7 @@ namespace LiveSupport.OperatorConsole
             this.visitorLocationLabel.Text += visitor.CurrentSession.Location;
             txtMsg.Focus();
             this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
+            loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
             
         }
 
@@ -361,7 +362,7 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
-            loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
+            
         }
 
         private void setTalkTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
