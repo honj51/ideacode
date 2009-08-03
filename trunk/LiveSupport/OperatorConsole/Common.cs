@@ -172,6 +172,54 @@ namespace LiveSupport.OperatorConsole
             return dateDiff;
         }
 
+
+        public static string GetSearchEngineName(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                return "访客输入网址";
+            }
+            if (url.Contains("google"))
+            {
+                return "谷歌";
+            }
+            else if (url.Contains("baidu"))
+            {
+                return "百度";
+            }
+            else if (url.Contains("sogou"))
+            {
+                return "搜狗";
+            }
+            else if (url.Contains("soso"))
+            {
+                return "腾讯搜搜";
+            }
+            else if (url.Contains("bing"))
+            {
+                return "微软Bing";
+            }
+            else if (url.Contains("yahoo"))
+            {
+                return "雅虎";
+            }
+            else if (url.Contains("sina"))
+            {
+                return "新浪";
+            }
+            else if (url.Contains("sohu"))
+            {
+                return "搜狐";
+            }
+            else if (url.Contains("163"))
+            {
+                return "网易";
+            }
+            else
+            {
+                return "来自"+url;
+            }
+        }
     }
 
 }
