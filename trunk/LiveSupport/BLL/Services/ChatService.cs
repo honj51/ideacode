@@ -134,7 +134,7 @@ public class ChatService
         List<Chat> cs = FindChatsByOperatorId(operatorId);
         foreach (Chat item in cs)
         {
-            if (item.Status != ChatStatus.Closed)
+            if (item.Status != ChatStatus.Closed && item.Status != ChatStatus.Decline)
             {
                 return true;
             }
@@ -370,12 +370,13 @@ public class ChatService
         Chat chat = GetChatById(chatId);
         if (chat != null)
         {
+            chat.Status = ChatStatus.Decline;
+
             SendMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
             if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId))
             {
                 OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
             }
-            chat.Status = ChatStatus.Decline;
         }
         else
         {
