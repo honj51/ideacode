@@ -107,6 +107,7 @@ namespace LiveSupport.OperatorConsole
             this.colWaitingDuring = new System.Windows.Forms.ColumnHeader();
             this.colChattingDuring = new System.Windows.Forms.ColumnHeader();
             this.colPageRequestCount = new System.Windows.Forms.ColumnHeader();
+            this.colReferer = new System.Windows.Forms.ColumnHeader();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.inviteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acceptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -206,7 +207,6 @@ namespace LiveSupport.OperatorConsole
             this.visitorOnChatToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.currentVisitorsToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.colReferer = new System.Windows.Forms.ColumnHeader();
             this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
@@ -894,6 +894,10 @@ namespace LiveSupport.OperatorConsole
             // colPageRequestCount
             // 
             this.colPageRequestCount.Text = "ä¯ÀÀÒ³ÃæÊý";
+            // 
+            // colReferer
+            // 
+            this.colReferer.Text = "ËÑË÷ÒýÇæ";
             // 
             // contextMenuStrip1
             // 
@@ -1809,6 +1813,7 @@ namespace LiveSupport.OperatorConsole
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(96, 75);
             this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // toolStrip2
             // 
@@ -1891,10 +1896,6 @@ namespace LiveSupport.OperatorConsole
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // colReferer
-            // 
-            this.colReferer.Text = "ËÑË÷ÒýÇæ";
             // 
             // operatorPannel1
             // 
