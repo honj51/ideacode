@@ -1181,6 +1181,28 @@ namespace LiveSupport.OperatorConsole
         {
             mainSplitContainer2.Panel2Collapsed = !visitorInfoToolStripMenuItem.Checked;
         }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+            HtmlElement btnSubmit = webBrowser1.Document.All["ImageButton1"];
+            HtmlElement tbAccountNumber = webBrowser1.Document.All["txtNumber"];
+            HtmlElement tbLoginName = webBrowser1.Document.All["UserName"];
+            HtmlElement tbPassword = webBrowser1.Document.All["Password"];
+
+            if (tbAccountNumber == null || tbLoginName == null || tbPassword == null || btnSubmit==null)
+                return;
+            tbAccountNumber.SetAttribute("value", operaterServiceAgent.CurrentOperator.Account.AccountNumber);
+            tbLoginName.SetAttribute("value", operaterServiceAgent.CurrentOperator.LoginName);
+            tbPassword.SetAttribute("value", operaterServiceAgent.CurrentOperator.Password);
+
+            btnSubmit.InvokeMember("click"); 
+        }
+
+        private void operatorPannel1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     class VisitorListViewItem
