@@ -552,15 +552,15 @@ namespace LiveSupport.OperatorConsole
             {
                 operatorServiceAgent.QuickResponseCategory = operatorServiceAgent.GetQuickResponseByDomainName(doMainName);
                 setTalkTreeView.Nodes.Clear();
-                if (operatorServiceAgent.QuickResponseCategory != null)
+                if (operatorServiceAgent.QuickResponseCategory != null || operatorServiceAgent.QuickResponseCategory.Count > 0)
                 {
                     for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
                     {
                         setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
-                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Length == 0) continue;
+                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Length == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses==null) continue;
                         foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
                         {
-                            if (item.ToString() == "") continue;
+                            if (string.IsNullOrEmpty(item)) continue;
                             setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
                         }
                     }
