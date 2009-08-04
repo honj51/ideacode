@@ -1,7 +1,13 @@
 <%@ Page Title="客服中心-LiveSupport在线客服系统" Language="C#" MasterPageFile="~/AccountAdmin/MasterAccountAdmin.master" AutoEventWireup="true" CodeFile="ChatAnnal.aspx.cs" Inherits="AccountAdmin_Default3" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<script src="JS/My97DatePicker/WdatePicker.js"></script>
+<style>
+ .Imgs{
+	border:#999 1px solid;
+	height:18px;
+	background:url(Images/datePicker.gif) no-repeat right;
+</style>
+    <script src="JS/calenderJS.js" type="text/javascript"></script>
     <!--内容开始-->
    <!--内容-->
    <table cellpadding="0" cellspacing="0">
@@ -26,8 +32,8 @@
         </asp:DropDownList>
       &nbsp; 选择时间：</TD>
     <TD class=setting_td_right vAlign=center align=left>
-        <asp:TextBox ID="txtBeginDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
-        至<asp:TextBox ID="txtEndDate" runat="server" Width="98px" CssClass="Wdate" onFocus="new WdatePicker(this,'%Y-%M-%D',true,'default')"></asp:TextBox>
+        <asp:TextBox ID="txtBeginDate" runat="server" Width="98px" CssClass="Imgs" onfocus="HS_setDate(this)"></asp:TextBox>
+        至<asp:TextBox ID="txtEndDate" runat="server" Width="98px" CssClass="Imgs" onfocus="HS_setDate(this)"></asp:TextBox>
 &nbsp;<asp:Button ID="btnSelect" runat="server" Text="搜索" Width="64px" 
             onclick="btnSelect_Click" />
       </TD></TR></TBODY></TABLE>
