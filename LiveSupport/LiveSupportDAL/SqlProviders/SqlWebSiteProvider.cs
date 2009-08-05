@@ -17,22 +17,24 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into WebSite(");
-            strSql.Append("DomainName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation)");
+            strSql.Append("DomainName,CompanyName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation)");
             strSql.Append(" values (");
-            strSql.Append("@DomainName,@RegisterId,@IconStyle,@InviteStyle,@ChatStyle,@IcoLocation)");
+            strSql.Append("@DomainName,@CompanyName,@RegisterId,@IconStyle,@InviteStyle,@ChatStyle,@IcoLocation)");
             SqlParameter[] parameters = {
 					new SqlParameter("@DomainName", SqlDbType.VarChar,50),
+                    new SqlParameter("@CompanyName",SqlDbType.VarChar,100),
 					new SqlParameter("@RegisterId", SqlDbType.VarChar,50),
 					new SqlParameter("@IconStyle", SqlDbType.Text),
 					new SqlParameter("@InviteStyle", SqlDbType.Text),
 					new SqlParameter("@ChatStyle", SqlDbType.Text),
 					new SqlParameter("@IcoLocation", SqlDbType.VarChar,50)};
             parameters[0].Value = model.DomainName;
-            parameters[1].Value = model.RegisterId;
-            parameters[2].Value = model.IconStyle;
-            parameters[3].Value = model.InviteStyle;
-            parameters[4].Value = model.ChatStyle;
-            parameters[5].Value = model.IcoLocation;
+            parameters[1].Value = model.CompanyName;
+            parameters[2].Value = model.RegisterId;
+            parameters[3].Value = model.IconStyle;
+            parameters[4].Value = model.InviteStyle;
+            parameters[5].Value = model.ChatStyle;
+            parameters[6].Value = model.IcoLocation;
             return  DBHelper.ExecuteCommand(strSql.ToString(), parameters);
         }
         /// <summary>
@@ -42,6 +44,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update WebSite set ");
+            strSql.Append("CompanyName=@CompanyName,");
             strSql.Append("RegisterId=@RegisterId,");
             strSql.Append("IconStyle=@IconStyle,");
             strSql.Append("InviteStyle=@InviteStyle,");
@@ -50,17 +53,19 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             strSql.Append(" where DomainName=@DomainName ");
             SqlParameter[] parameters = {
 					new SqlParameter("@DomainName", SqlDbType.VarChar,50),
+                    new SqlParameter("@CompanyName",SqlDbType.VarChar,100),
 					new SqlParameter("@RegisterId", SqlDbType.VarChar,50),
 					new SqlParameter("@IconStyle", SqlDbType.Text),
 					new SqlParameter("@InviteStyle", SqlDbType.Text),
 					new SqlParameter("@ChatStyle", SqlDbType.Text),
 					new SqlParameter("@IcoLocation", SqlDbType.VarChar,50)};
             parameters[0].Value = model.DomainName;
-            parameters[1].Value = model.RegisterId;
-            parameters[2].Value = model.IconStyle;
-            parameters[3].Value = model.InviteStyle;
-            parameters[4].Value = model.ChatStyle;
-            parameters[5].Value = model.IcoLocation;
+            parameters[1].Value = model.CompanyName;
+            parameters[2].Value = model.RegisterId;
+            parameters[3].Value = model.IconStyle;
+            parameters[4].Value = model.InviteStyle;
+            parameters[5].Value = model.ChatStyle;
+            parameters[6].Value = model.IcoLocation;
 
            return  DBHelper.ExecuteCommand(strSql.ToString(), parameters);
         }
@@ -89,7 +94,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 DomainName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation from WebSite ");
+            strSql.Append("select  top 1 DomainName,CompanyName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation from WebSite ");
             strSql.Append(" where DomainName=@DomainName ");
             SqlParameter[] parameters = {
 					new SqlParameter("@DomainName", SqlDbType.VarChar,50)};
@@ -100,6 +105,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             if (ds.Tables[0].Rows.Count > 0)
             {
                 model.DomainName = ds.Tables[0].Rows[0]["DomainName"].ToString();
+                model.CompanyName = ds.Tables[0].Rows[0]["CompanyName"].ToString();
                 model.RegisterId = ds.Tables[0].Rows[0]["RegisterId"].ToString();
                 model.IconStyle = ds.Tables[0].Rows[0]["IconStyle"].ToString();
                 model.InviteStyle = ds.Tables[0].Rows[0]["InviteStyle"].ToString();
@@ -119,7 +125,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         public  DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select DomainName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation ");
+            strSql.Append("select DomainName,CompanyName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation ");
             strSql.Append(" FROM WebSite ");
             if (strWhere.Trim() != "")
             {
@@ -139,7 +145,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" DomainName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation ");
+            strSql.Append(" DomainName,CompanyName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation ");
             strSql.Append(" FROM WebSite ");
             if (strWhere.Trim() != "")
             {
@@ -157,7 +163,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select ");
-            strSql.Append(" DomainName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation ");
+            strSql.Append(" DomainName,CompanyName,RegisterId,IconStyle,InviteStyle,ChatStyle,IcoLocation ");
             strSql.Append(" FROM WebSite ");
             strSql.Append(" where  RegisterId='" + accountId +"'");
             List<WebSite> modelList = new List<WebSite>();
@@ -167,6 +173,7 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
                 {
                     WebSite model =new WebSite();
                     model.DomainName = r["DomainName"].ToString();
+                    model.CompanyName = r["CompanyName"].ToString();
                     model.RegisterId = r["RegisterId"].ToString();
                     model.IconStyle = r["IconStyle"].ToString();
                     model.InviteStyle = r["InviteStyle"].ToString();
