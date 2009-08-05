@@ -37,7 +37,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticateData.cs" />
+    <Compile Include="DataPacket.cs" />
     <Compile Include="IOperatorServer.cs" />
+    <Compile Include="IOperatorServerActions.cs" />
     <Compile Include="IOperatorServerEvents.cs" />
     <Compile Include="OperatorServerEventSink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
