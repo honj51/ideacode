@@ -42,11 +42,16 @@ public class LSBanner : IHttpHandler {
             NewWebSite.chatpage = cpg;
             NewWebSite.accountId = aid;
             NewWebSite.icoLocation = "0";
+            NewWebSite.companyName = account.CompanyName;
             if (domainName != null)
             {
                 NewWebSite.domainName = domainName;
                 LiveSupport.BLL.WebSiteManager.AddNewWebSite(NewWebSite);
             }
+        }
+        if (NewWebSite.accountId != account.AccountId)
+        {
+            return; 
         }
         string inviteImageUrl;
         if (NewWebSite.invites.State == LiveSupport.BLL.WebSiteManager.WebSite_UserDefined)
@@ -63,11 +68,6 @@ public class LSBanner : IHttpHandler {
         if (context.Request.QueryString["aid"] != null)
         { 
             aid=context.Request.QueryString["aid"];
-        }
-        string companyName="LiveSupport";
-        if (account.CompanyName != null)
-        {
-            companyName = account.CompanyName;
         }
         ////判断浏览器
         if (context.Request.ServerVariables["HTTP_USER_AGENT"] != null)
@@ -87,7 +87,7 @@ public class LSBanner : IHttpHandler {
         sb.AppendLine(string.Format("var LCS_invitePanel_NOBtn = '{0}';", NewWebSite.invites.Noimg));// 0,1,2主动邀请NO按扭
         sb.AppendLine(string.Format("var LCS_bannerPos = {0};", NewWebSite.icoLocation));// 0:固定, 1:左上角, 2:右上角,3:左边 ,4:右边, 5:左下角, 6:右下角
         sb.AppendLine(string.Format("var LCS_accountId = '{0}';",aid));//公司ID
-        sb.AppendLine(string.Format("var LCS_companyName = '{0}';", companyName));//公司名
+        sb.AppendLine(string.Format("var LCS_companyName = '{0}';", NewWebSite.companyName));//公司名
         
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/live2.js\"></script> ');");
         sb.AppendLine(" document.write('<script type=\"text/javascript\" language=\"javascript\" src=\"" + homeRootUrl + "/js/"+LCS_BannerJs+"\"></script> ');");
