@@ -57,7 +57,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Remoting\EventDispatcher.cs" />
     <Compile Include="Remoting\OperatorServer.cs" />
+    <Compile Include="Remoting\TcpServerTest.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Exceptions\DuplicateAccountException.cs" />
