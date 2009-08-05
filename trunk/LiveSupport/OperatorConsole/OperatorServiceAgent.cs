@@ -7,10 +7,11 @@ using System.Net.Sockets;
 using System.Web.Services.Protocols;
 using System.Diagnostics;
 using System.Threading;
+using OperatorServiceInterface;
 
 namespace LiveSupport.OperatorConsole
 {
-    class OperatorServiceAgent : IOperatorServiceAgent
+    class OperatorServiceAgent : IOperatorServiceAgent, IOperatorServerEvents
     {
         private static OperatorServiceAgent _default;
         private List<Visitor> visitors = new List<Visitor>();
@@ -24,6 +25,8 @@ namespace LiveSupport.OperatorConsole
         private string accountNumber;
         private string operatorName;
         private string password;
+        private SocketHandler socketHandler;
+        private Socket socket;
         #region 公开属性
         
         public static OperatorServiceAgent Default
@@ -82,10 +85,10 @@ namespace LiveSupport.OperatorConsole
             ws.Timeout = 5000;
             state = ConnectionState.Disconnected;
 
-            checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
+            //checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
             ws.LoginCompleted += new LoginCompletedEventHandler(ws_LoginCompleted);
             ws.GetSystemAdvertiseCompleted += new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
-            ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+            //ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
         }
 
         #region OperatorServiceAgent 成员
@@ -104,7 +107,7 @@ namespace LiveSupport.OperatorConsole
                 this.password = password;
 
                 currentOperator = null;
-                fireConnectStateChange(ConnectionState.Connecting, "登录中...");
+                //fireConnectStateChange(ConnectionState.Connecting, "登录中...");
 
                 ws.LoginAsync(accountNumber, operatorName, password);
                     
@@ -129,76 +132,91 @@ namespace LiveSupport.OperatorConsole
                     h.OperatorSession = currentOperator.OperatorSession;
                     ws.AuthenticationHeaderValue = h;
 
-                    fireConnectStateChange(ConnectionState.Connected, "登录成功");
+                    socketHandler = new SocketHandler();
+                    IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
+                    //socketHandler.Connect(entry.AddressList[0].ToString());
+                    socket = socketHandler.Connect("127.0.0.1");
+                    socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
+                    socketHandler.SendPacket(socket, new LoginAction());
+
+                    //fireConnectStateChange(ConnectionState.Connected, "登录成功");
 
                     ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
                     ws.GetLeaveWordAsync(Guid.NewGuid());
 
-                    checkNewChangesTimer.Enabled = true;
+                    //Disable the timer checkNewChangesTimer.Enabled = true;
                 }
                 else
                 {
-                    fireConnectStateChange(ConnectionState.Disconnected, "登录失败，登录信息输入错误");
+                    //fireConnectStateChange(ConnectionState.Disconnected, "登录失败，登录信息输入错误");
                 }
             }
             else
             {
-                fireConnectStateChange(ConnectionState.Disconnected, "登录失败，" + e.Error.Message);
+                //fireConnectStateChange(ConnectionState.Disconnected, "登录失败，" + e.Error.Message);
             }
         }
 
-        private void fireConnectStateChange(ConnectionState state, string message)
+        void socketHandler_DataArrive(object sender, DataArriveEventArgs e)
         {
-            Trace.WriteLine("ConnectStateChange : " + state.ToString() + " " + message);
-            State = state;
-            if (ConnectionStateChanged != null)
+            if (e.Data.GetType() == typeof(OperatorStatusChangeEventArgs) && OperatorStatusChanged != null)
             {
-               ConnectionStateChangeEventArgs args= new ConnectionStateChangeEventArgs(State);
-                args.Message=message;
-                ConnectionStateChanged(this, args);
+                OperatorStatusChanged(this, (OperatorStatusChangeEventArgs)e.Data);
             }
         }
 
-        void ws_GetLeaveWordCompleted(object sender, GetLeaveWordCompletedEventArgs e)
-        {
-            if (NewLeaveWords != null && e.Error == null)
-            {
-                NewLeaveWords(this, new LeaveWordEventArgs(new List<LeaveWord>(e.Result)));
-            }
-        }
+        //private void fireConnectStateChange(ConnectionState state, string message)
+        //{
+        //    Trace.WriteLine("ConnectStateChange : " + state.ToString() + " " + message);
+        //    State = state;
+        //    if (ConnectionStateChanged != null)
+        //    {
+        //       ConnectionStateChangeEventArgs args= new ConnectionStateChangeEventArgs(State);
+        //        args.Message=message;
+        //        ConnectionStateChanged(this, args);
+        //    }
+        //}
+
+        //void ws_GetLeaveWordCompleted(object sender, GetLeaveWordCompletedEventArgs e)
+        //{
+        //    if (NewLeaveWords != null && e.Error == null)
+        //    {
+        //        NewLeaveWords(this, new LeaveWordEventArgs(new List<LeaveWord>(e.Result)));
+        //    }
+        //}
 
         private object checkNewChangesLocker = new object();
 
-        void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
+        //void checkNewChangesTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        //{
 
-            if (!Monitor.TryEnter(this.checkNewChangesLocker))
-            {
-                return;
-            }
-            try
-            {
-                if (State == ConnectionState.Connected && enablePooling)
-                {
-                    getNextNewChanges();
-                }
-                else if (State == ConnectionState.Disconnected)
-                {
-                    RestartLogin();
-                }
-            }
-            finally
-            {
-                Monitor.Exit(this.checkNewChangesLocker);
-            }
+        //    if (!Monitor.TryEnter(this.checkNewChangesLocker))
+        //    {
+        //        return;
+        //    }
+        //    try
+        //    {
+        //        if (State == ConnectionState.Connected && enablePooling)
+        //        {
+        //            getNextNewChanges();
+        //        }
+        //        else if (State == ConnectionState.Disconnected)
+        //        {
+        //            RestartLogin();
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        Monitor.Exit(this.checkNewChangesLocker);
+        //    }
 
-        }
+        //}
 
         public void Logout()
         {
             ws.GetSystemAdvertiseCompleted -= new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
-            ws.GetLeaveWordCompleted -= new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
-
+            //ws.GetLeaveWordCompleted -= new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+            socketHandler.DataArrive -= new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
             EnablePooling = false;
             checkNewChangesTimer.Stop();
             //ws.LogoutAsync(Guid.NewGuid());
@@ -306,10 +324,10 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetSystemAdvertiseCompleted(object sender, GetSystemAdvertiseCompletedEventArgs e)
         {
-            if (NewSystemAdvertise != null && e.Error == null)
-            {
-                NewSystemAdvertise(this, new SystemAdvertiseEventArgs(new List<SystemAdvertise>(e.Result)));
-            }
+            //if (NewSystemAdvertise != null && e.Error == null)
+            //{
+            //    NewSystemAdvertise(this, new SystemAdvertiseEventArgs(new List<SystemAdvertise>(e.Result)));
+            //}
         }
 
         public List<QuickResponseCategory> GetQuickResponse()
@@ -326,69 +344,69 @@ namespace LiveSupport.OperatorConsole
             return lQuickResponseCategory;
         }
 
-        private NewChangesCheckResult getNextNewChanges()
-        {
-            NewChangesCheckResult result = getNewChanges();
+        //private NewChangesCheckResult getNextNewChanges()
+        //{
+        //    NewChangesCheckResult result = getNewChanges();
 
-            if (result == null) return null;
+        //    if (result == null) return null;
           
-            if (result.NewVisitors != null)
-            {
-                foreach (var item in result.NewVisitors)
-                {
-                    lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
-                    if (IsVisitorExist(item.VisitorId))
-                    {
-                        Visitor v = GetVisitorById(item.VisitorId);
-                        v.CurrentSession = item.CurrentSession;
-                        if (VisitorSessionChange!=null)
-                        {
-                            //Trace.WriteLine("VisitorSessionChange: " + result.VisitSessionChange.Length);
-                            VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
-                        }
+        //    if (result.NewVisitors != null)
+        //    {
+        //        foreach (var item in result.NewVisitors)
+        //        {
+        //            lastCheck.NewVisitorLastCheckTime = Math.Max(lastCheck.NewVisitorLastCheckTime, item.CurrentSession.VisitingTime.Ticks);
+        //            if (IsVisitorExist(item.VisitorId))
+        //            {
+        //                Visitor v = GetVisitorById(item.VisitorId);
+        //                v.CurrentSession = item.CurrentSession;
+        //                if (VisitorSessionChange!=null)
+        //                {
+        //                    //Trace.WriteLine("VisitorSessionChange: " + result.VisitSessionChange.Length);
+        //                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+        //                }
                         
-                    }
-                    else
-                    {
-                        visitors.Add(item);
-                        if (NewVisitor != null)
-                        {
-                            //Trace.WriteLine("NewVisitors: " + result.NewVisitors.Length);
-                            NewVisitor(this, new NewVisitorEventArgs(item));
-                        }
-                    }
-                }
+        //            }
+        //            else
+        //            {
+        //                visitors.Add(item);
+        //                if (NewVisitor != null)
+        //                {
+        //                    //Trace.WriteLine("NewVisitors: " + result.NewVisitors.Length);
+        //                    NewVisitor(this, new NewVisitorEventArgs(item));
+        //                }
+        //            }
+        //        }
 
-            }
-            if (result.VisitSessionChange != null)
-            {
-                foreach (var item in result.VisitSessionChange)
-                {
-                    if (checkIfVisitSessionStatusChange(item))
-                    {
-                        GetVisitorBySessionId(item.SessionId).CurrentSession = item;
-                        if (VisitorSessionChange!=null)
-                        {   
-                            VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
-                        }
+        //    }
+        //    if (result.VisitSessionChange != null)
+        //    {
+        //        foreach (var item in result.VisitSessionChange)
+        //        {
+        //            if (checkIfVisitSessionStatusChange(item))
+        //            {
+        //                GetVisitorBySessionId(item.SessionId).CurrentSession = item;
+        //                if (VisitorSessionChange!=null)
+        //                {   
+        //                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(item));
+        //                }
             
-                    }
-                }
-            }
+        //            }
+        //        }
+        //    }
 
-            if (result.Operators != null)
-            {
-                processOpertors(result);
-            }
-            if (result.Messages != null)
-            {
-                    lastCheck.ChatSessionChecks = processMessages(result).ToArray();
-            }
+        //    if (result.Operators != null)
+        //    {
+        //        processOpertors(result);
+        //    }
+        //    if (result.Messages != null)
+        //    {
+        //            lastCheck.ChatSessionChecks = processMessages(result).ToArray();
+        //    }
 
-            processChats(result);
+        //    processChats(result);
 
-            return result;
-        }
+        //    return result;
+        //}
 
         public Visitor GetVisitorById(string visitorId)
         {
@@ -402,181 +420,181 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
-        private void processChats(NewChangesCheckResult result)
-        {
-            if (result.Chats == null)
-            {
-                return;
-            }
-            // 1. 查找新的对话请求，并显示NotifyForm
-            foreach (var item in result.Chats)
-            {
-                if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator && GetChatByChatId(item.ChatId) == null)
-                {
-                    Visitor visitor = GetVisitorById(item.VisitorId);
-                    if (NewChatRequest != null)
-                    {
-                        NewChatRequest(this, new NewChatRequestEventArgs(visitor.Name, item));
-                    }
-                }
-            }
+        //private void processChats(NewChangesCheckResult result)
+        //{
+        //    if (result.Chats == null)
+        //    {
+        //        return;
+        //    }
+        //    // 1. 查找新的对话请求，并显示NotifyForm
+        //    foreach (var item in result.Chats)
+        //    {
+        //        if (item.Status == ChatStatus.Requested && !item.IsInviteByOperator && GetChatByChatId(item.ChatId) == null)
+        //        {
+        //            Visitor visitor = GetVisitorById(item.VisitorId);
+        //            if (NewChatRequest != null)
+        //            {
+        //                NewChatRequest(this, new NewChatRequestEventArgs(visitor.Name, item));
+        //            }
+        //        }
+        //    }
 
-            // 2. 保存LastCheckTime
-            foreach (var item in result.Chats)
-            {
-                Chat c = GetChatByChatId(item.ChatId);
-                if (c != null)
-                {
-                    item.LastCheckTime = c.LastCheckTime;
-                }
-            }
+        //    // 2. 保存LastCheckTime
+        //    foreach (var item in result.Chats)
+        //    {
+        //        Chat c = GetChatByChatId(item.ChatId);
+        //        if (c != null)
+        //        {
+        //            item.LastCheckTime = c.LastCheckTime;
+        //        }
+        //    }
 
-            lock (this.chats)
-            {
-                this.chats.Clear();
-                this.chats.AddRange(result.Chats);
-            }
-        }
+        //    lock (this.chats)
+        //    {
+        //        this.chats.Clear();
+        //        this.chats.AddRange(result.Chats);
+        //    }
+        //}
 
-        private void processOpertors(NewChangesCheckResult result)
-        {
-            if (result.Operators != null)
-            {
-                if (result.Operators.Length > Operators.Count || checkIfOperatorStatusChanges(result.Operators))
-                {
-                    Operators.Clear();
-                    Operators.AddRange(result.Operators);
-                    if (NewChanges != null)
-                    {
-                        NewChanges(this, new NewChangesCheckResultEventArgs(result));
-                    }
-                }
-            }
-        }
+        //private void processOpertors(NewChangesCheckResult result)
+        //{
+        //    if (result.Operators != null)
+        //    {
+        //        if (result.Operators.Length > Operators.Count || checkIfOperatorStatusChanges(result.Operators))
+        //        {
+        //            Operators.Clear();
+        //            Operators.AddRange(result.Operators);
+        //            if (NewChanges != null)
+        //            {
+        //                NewChanges(this, new NewChangesCheckResultEventArgs(result));
+        //            }
+        //        }
+        //    }
+        //}
 
-        private List<MessageCheck> processMessages(NewChangesCheckResult result)
-        {
-            if (result.Messages == null)
-            {
-                return null;
-            }
-            List<MessageCheck> nextChecks = new List<MessageCheck>();
+        //private List<MessageCheck> processMessages(NewChangesCheckResult result)
+        //{
+        //    if (result.Messages == null)
+        //    {
+        //        return null;
+        //    }
+        //    List<MessageCheck> nextChecks = new List<MessageCheck>();
 
-            foreach (var chat in chats)
-            {
-                LiveSupport.OperatorConsole.LiveChatWS.Message[] ms = null;
-                foreach (var item in result.Messages)
-                {
-                    if (chat.ChatId == item.ChatId)
-                    {
-                        ms = item.Messages;
-                        break;
-                    }
-                }
+        //    foreach (var chat in chats)
+        //    {
+        //        LiveSupport.OperatorConsole.LiveChatWS.Message[] ms = null;
+        //        foreach (var item in result.Messages)
+        //        {
+        //            if (chat.ChatId == item.ChatId)
+        //            {
+        //                ms = item.Messages;
+        //                break;
+        //            }
+        //        }
 
-                MessageCheck c = new MessageCheck();
-                c.ChatId = chat.ChatId;
-                c.LastCheckTime = chat.LastCheckTime;
-                if (ms != null)
-                {
-                    foreach (var m in ms)
-                    {
-                        if (m != null && m.SentDate.Ticks >= c.LastCheckTime)
-                        {
-                            if (NewMessage != null)
-                            {
-                                NewMessage(this, new NewMessageEventArgs(m));
-                                c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
-                            }
+        //        MessageCheck c = new MessageCheck();
+        //        c.ChatId = chat.ChatId;
+        //        c.LastCheckTime = chat.LastCheckTime;
+        //        if (ms != null)
+        //        {
+        //            foreach (var m in ms)
+        //            {
+        //                if (m != null && m.SentDate.Ticks >= c.LastCheckTime)
+        //                {
+        //                    if (NewMessage != null)
+        //                    {
+        //                        NewMessage(this, new NewMessageEventArgs(m));
+        //                        c.LastCheckTime = Math.Max(m.SentDate.Ticks, c.LastCheckTime);
+        //                    }
                             
-                        }
-                        else
-                            continue;
+        //                }
+        //                else
+        //                    continue;
 
-                    }
-                    chat.LastCheckTime = c.LastCheckTime;
-                }
+        //            }
+        //            chat.LastCheckTime = c.LastCheckTime;
+        //        }
                
-                nextChecks.Add(c);
+        //        nextChecks.Add(c);
 
-            }
-            return nextChecks;
-        }
+        //    }
+        //    return nextChecks;
+        //}
 
-        int faultCount = 0;
-        const int MAX_FAULT_COUNT = 10;
+        //int faultCount = 0;
+        //const int MAX_FAULT_COUNT = 10;
 
-        private NewChangesCheckResult getNewChanges()
-        {
-            NewChangesCheckResult result = null;
-            try
-            {
-                result = ws.CheckNewChanges(lastCheck); //CheckNewChanges(lastCheck);
-                faultCount = 0;
-                if (result != null && result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
-                {
-                    resetConnection("该帐号已在其他地方登陆！", ExceptionStatus.User);
-                }
-            }
-            catch (WebException ex)
-            {
-                faultCount++;
+        //private NewChangesCheckResult getNewChanges()
+        //{
+        //    NewChangesCheckResult result = null;
+        //    try
+        //    {
+        //        result = ws.CheckNewChanges(lastCheck); //CheckNewChanges(lastCheck);
+        //        faultCount = 0;
+        //        if (result != null && result.ReturnCode == ReturnCodeEnum.ReturnCode_SessionInvalid)
+        //        {
+        //            resetConnection("该帐号已在其他地方登陆！", ExceptionStatus.User);
+        //        }
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        faultCount++;
 
-                if (faultCount >= MAX_FAULT_COUNT)
-                {
-                    faultCount = 0;
-                    resetConnection("连接中断", ExceptionStatus.System);
-                }
-            }
-            catch (InvalidOperationException ioe)
-            {
-                faultCount++;
+        //        if (faultCount >= MAX_FAULT_COUNT)
+        //        {
+        //            faultCount = 0;
+        //            resetConnection("连接中断", ExceptionStatus.System);
+        //        }
+        //    }
+        //    catch (InvalidOperationException ioe)
+        //    {
+        //        faultCount++;
 
-                if (faultCount >= MAX_FAULT_COUNT)
-                {
-                    faultCount = 0;
-                    resetConnection("连接中断", ExceptionStatus.System);
-                }
-            }
-            catch (SoapException ave)
-            {
-                faultCount++;
-                if (faultCount >= MAX_FAULT_COUNT)
-                {
-                    faultCount = 0;
-                    if (ave.Message.Contains("AccessViolationException"))
-                    {
-                        resetConnection("服务访问拒绝", ExceptionStatus.System);
-                    }
-                    else
-                    {
-                        resetConnection("Soap异常", ExceptionStatus.System);
-                    }
-                }
-                else
-                {
-                    Login(accountNumber, operatorName, password);
-                }
-            }
-            return result;
-        }
+        //        if (faultCount >= MAX_FAULT_COUNT)
+        //        {
+        //            faultCount = 0;
+        //            resetConnection("连接中断", ExceptionStatus.System);
+        //        }
+        //    }
+        //    catch (SoapException ave)
+        //    {
+        //        faultCount++;
+        //        if (faultCount >= MAX_FAULT_COUNT)
+        //        {
+        //            faultCount = 0;
+        //            if (ave.Message.Contains("AccessViolationException"))
+        //            {
+        //                resetConnection("服务访问拒绝", ExceptionStatus.System);
+        //            }
+        //            else
+        //            {
+        //                resetConnection("Soap异常", ExceptionStatus.System);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Login(accountNumber, operatorName, password);
+        //        }
+        //    }
+        //    return result;
+        //}
 
-        private void resetConnection(string message,ExceptionStatus status)
-        {
-            state = ConnectionState.Disconnected;
+        //private void resetConnection(string message,ExceptionStatus status)
+        //{
+        //    state = ConnectionState.Disconnected;
 
-            if (status == ExceptionStatus.User)
-            {
-                enablePooling = false;
-            }
-            if (ConnectionStateChanged != null)
-            {
-                ConnectionStateChangeEventArgs args = new ConnectionStateChangeEventArgs(state);
-                args.Status = status;
-                args.Message = message;
-                ConnectionStateChanged(this, args);
-            }
-        }
+        //    if (status == ExceptionStatus.User)
+        //    {
+        //        enablePooling = false;
+        //    }
+        //    if (ConnectionStateChanged != null)
+        //    {
+        //        ConnectionStateChangeEventArgs args = new ConnectionStateChangeEventArgs(state);
+        //        args.Status = status;
+        //        args.Message = message;
+        //        ConnectionStateChanged(this, args);
+        //    }
+        //}
 
         private bool checkIfOperatorStatusChanges(Operator[] p)
         {
@@ -727,25 +745,25 @@ namespace LiveSupport.OperatorConsole
 
         #region IOperatorServiceAgent 成员
 
-        public event EventHandler<ConnectionLostEventArgs> ConnectionLost;
+        //public event EventHandler<ConnectionLostEventArgs> ConnectionLost;
 
-        public event EventHandler<NewVisitorEventArgs> NewVisitor;
+        //public event EventHandler<NewVisitorEventArgs> NewVisitor;
 
-        public event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
+        //public event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
 
-        public event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
+        //public event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
 
-        public event EventHandler<ChatStatusChangeEventArgs> ChatStatusChange;
+        //public event EventHandler<ChatStatusChangeEventArgs> ChatStatusChange;
 
-        public event EventHandler<NewMessageEventArgs> NewMessage;
+        //public event EventHandler<NewMessageEventArgs> NewMessage;
 
-        public event EventHandler<NewChatRequestEventArgs> NewChatRequest;
+        //public event EventHandler<NewChatRequestEventArgs> NewChatRequest;
 
-        public event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
+        //public event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
 
-        public event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
+        //public event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
 
-        public event EventHandler<LeaveWordEventArgs> NewLeaveWords;
+        //public event EventHandler<LeaveWordEventArgs> NewLeaveWords;
 
         public List<Operator> Operators
         {
@@ -831,7 +849,7 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        public event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
+        //public event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
 
         public ConnectionState State
         {
@@ -857,6 +875,42 @@ namespace LiveSupport.OperatorConsole
                 autoLoginEnabled = value;
             }
         }
+
+        #endregion
+
+        #region IOperatorServerEvents 成员
+
+        public event EventHandler<OperatorServiceInterface.OperatorStatusChangeEventArgs> OperatorStatusChanged;
+
+        public event EventHandler<VisitorChatRequestEventArgs> VisitorChatRequest;
+
+        public event EventHandler<OperatorChatRequestEventArgs> OperatorChatRequest;
+
+        public event EventHandler<VisitorChatRequestAcceptedEventArgs> VisitorChatRequestAccepted;
+
+        public event EventHandler<OperatorChatRequestAcceptedEventArgs> OperatorChatRequestAccepted;
+
+        public event EventHandler<OperatorChatRequestDeclinedEventArgs> OperatorChatRequestDeclined;
+
+        public event EventHandler<NewChatEventArgs> NewChat;
+
+        public event EventHandler<ChatStatusChangedEventArgs> ChatStatusChanged;
+
+        public event EventHandler<OperatorChatJoinInviteEventArgs> ChatJoinInvite;
+
+        public event EventHandler<OperatorChatJoinInviteAcceptedEventArgs> ChatJoinInviteAccepted;
+
+        public event EventHandler<OperatorChatJoinInviteDeclinedEventArgs> ChatJoinInviteDeclined;
+
+        event EventHandler<ChatMessageEventArgs> IOperatorServerEvents.NewMessage
+        {
+            add { throw new NotImplementedException(); }
+            remove { throw new NotImplementedException(); }
+        }
+
+        public event EventHandler<NewVisitingEventArgs> NewVisiting;
+
+        public event EventHandler<VisitorLeaveEventArgs> VisitorLeave;
 
         #endregion
     }
