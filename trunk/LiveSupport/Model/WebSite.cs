@@ -10,6 +10,7 @@ namespace LiveSupport.LiveSupportModel
         { }
         #region Model
         private string domainname;
+        private string companyName;
         private string registerid;
         private string iconstyle;
         private string invitestyle;
@@ -22,6 +23,14 @@ namespace LiveSupport.LiveSupportModel
         {
             set { domainname = value; }
             get { return domainname; }
+        }
+        /// <summary>
+        /// 公司名
+        /// </summary>
+        public string CompanyName
+        {
+            get { return companyName; }
+            set { companyName = value; }
         }
         /// <summary>
         /// 注册ID
