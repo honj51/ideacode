@@ -60,6 +60,9 @@ namespace LiveSupport.OperatorConsole
                 }
             }
 
+            //Test();
+            //return;
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
@@ -79,10 +82,40 @@ namespace LiveSupport.OperatorConsole
                 Trace.WriteLine("Logout“Ï≥£: " + ex.Message);
 
             }
-            //Test();
+            //
             //TestFileUploadControl();
             //TestOptionForm();
 		}
+
+        #region test
+        static void TestOptionForm()
+        {
+            OptionsForm f = new OptionsForm();
+            f.ShowDialog();
+        }
+
+        static void TestFileUploadControl()
+        {
+            Form f = new Form();
+            FileUploadControl c = new FileUploadControl("c:\\a.exe", "");
+            c.Dock = DockStyle.Top;
+            c = new FileUploadControl("c:\\a.exe", Properties.Settings.Default.FtpURL);
+            f.Controls.Add(c);
+            //c = new FileUploadControl("c:\\a.exe", Properties.Settings.Default.FtpURL);
+            //c.Dock = DockStyle.Top;
+            //f.Controls.Add(c);
+
+            Application.Run(f);
+        }
+
+        static void Test()
+        {
+            OperaterServiceAgent = OperatorServiceAgent.Default;
+            OperaterServiceAgent.Login("100000", "user1", "123");
+
+            Application.Run();
+        }
+        #endregion
 
         private static void upgradeSettings()
         {
@@ -105,36 +138,7 @@ namespace LiveSupport.OperatorConsole
             XmlElement e = doc.CreateElement("LatestVersionNumber");
             e.InnerText = v;
             doc.AppendChild(e);
-            doc.Save("OperatorConsoleDeploy.xml");          
-        }
-
-        static void TestOptionForm()
-        {
-            OptionsForm f = new OptionsForm();
-            f.ShowDialog();
-        }
-
-       
-        static void TestFileUploadControl()
-        {
-            Form f = new Form();
-            FileUploadControl c = new FileUploadControl("c:\\a.exe", "");
-            c.Dock = DockStyle.Top;
-            c = new FileUploadControl("c:\\a.exe", Properties.Settings.Default.FtpURL);
-            f.Controls.Add(c);
-            //c = new FileUploadControl("c:\\a.exe", Properties.Settings.Default.FtpURL);
-            //c.Dock = DockStyle.Top;
-            //f.Controls.Add(c);
-            
-            Application.Run(f);
-        }
-
-        static void Test()
-        {
-            
-            OperaterServiceAgent.Login("100000", "user1", "123");
-           
-            Application.Run();
+            doc.Save("OperatorConsoleDeploy.xml");
         }
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

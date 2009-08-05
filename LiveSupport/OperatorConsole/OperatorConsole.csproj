@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="IOperatorServiceAgent.cs" />
     <Compile Include="OperatorServiceAgent.cs" />
+    <Compile Include="OperatorServiceAgentEx.cs" />
     <Compile Include="OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -428,6 +429,10 @@
     <ProjectReference Include="..\Common\VisualAsterisk.ExceptionManagement\VisualAsterisk.ExceptionManagement.csproj">
       <Project>{5DBD653B-6AF4-4CCC-AC23-5A68E848B632}</Project>
       <Name>VisualAsterisk.ExceptionManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperatorServiceInterface\OperatorServiceInterface.csproj">
+      <Project>{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}</Project>
+      <Name>OperatorServiceInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

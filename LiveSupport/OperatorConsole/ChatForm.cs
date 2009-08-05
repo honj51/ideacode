@@ -133,7 +133,7 @@ namespace LiveSupport.OperatorConsole
         public void Invite(string visitorId)
         {
             visitor = operatorServiceAgent.GetVisitorById(visitorId);
-            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
+            //this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
             chat = operatorServiceAgent.InviteChat(visitorId);
             initChat();
         }
@@ -141,7 +141,7 @@ namespace LiveSupport.OperatorConsole
         public void Accept(Chat chat)
         {
             this.chat = chat;
-            this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
+            //this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
             visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             initChat();
             
@@ -159,30 +159,30 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
-        {
-            if (this.IsDisposed || !this.IsHandleCreated)
-            {
-                return;
-            }
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-                try
-                {
-                    NewMessageEventArgs arg = e as NewMessageEventArgs;
-                    if (arg.Message.ChatId == this.chat.ChatId)
-                    {
-                        RecieveMessage(arg.Message);
-                    }
-                }
-                catch (Exception)
-                {
-                    chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
-                }
+        //void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
+        //{
+        //    if (this.IsDisposed || !this.IsHandleCreated)
+        //    {
+        //        return;
+        //    }
+        //    this.Invoke(new UpdateUIDelegate(delegate(object obj)
+        //    {
+        //        try
+        //        {
+        //            NewMessageEventArgs arg = e as NewMessageEventArgs;
+        //            if (arg.Message.ChatId == this.chat.ChatId)
+        //            {
+        //                RecieveMessage(arg.Message);
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+        //        }
 
-            }), e);
+        //    }), e);
 
-        }
+        //}
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
         {
@@ -342,7 +342,7 @@ namespace LiveSupport.OperatorConsole
                 }
                 item.Cancel();
             }
-            this.operatorServiceAgent.NewMessage -= new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
+            //this.operatorServiceAgent.NewMessage -= new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
             if (acceptChatRequestResult == 0)
             {
                 try
@@ -569,7 +569,7 @@ namespace LiveSupport.OperatorConsole
             }
             catch (WebException)
             {
-                setTalkTreeView.Nodes[0].Text = "网络中断,请稍候重试";
+                //setTalkTreeView.Nodes[0].Text = "网络中断,请稍候重试";
                 return;
             }
 
