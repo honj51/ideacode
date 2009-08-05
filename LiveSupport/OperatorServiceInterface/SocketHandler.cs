@@ -4,14 +4,30 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
+using OperatorServiceInterface;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 namespace OperatorServiceInterface
 {
+    public class DataArriveEventArgs : EventArgs
+    {
+        public object Data;
+        public Socket Socket;
+        public DataArriveEventArgs(object data, Socket socket)
+        {
+            Data = data;
+            Socket = socket;
+        }
+    }
+
     public class SocketHandler
     {
         private const int LocalPort = 3333;
         private List<Socket> ConnectedSockets = new List<Socket>();
 
-        public delegate void CallbackHandler(DataPacket cmd, Socket s);
+        public event EventHandler<DataArriveEventArgs> DataArrive;
+
+        public delegate void CallbackHandler(object cmd, Socket s);
         public CallbackHandler OnDataArrive;
 
         private void OnAccept(IAsyncResult ar)
@@ -45,19 +61,17 @@ namespace OperatorServiceInterface
                     int receivedBytes = s.EndReceive(ar);
                     if (receivedBytes == 0) return;
                     int offset = 0;
-                    if (so.bytesToReceive == 0 && so.data.Length == 0)
+                    if (so.bytesToReceive == 0 && so.data == null)
                     {
                         //initialize
                         so.bytesToReceive = BitConverter.ToInt32(so.buffer, 0);
-                        offset = 4;
-                        //so.data.Append(Encoding.Unicode.GetString(so.buffer, 4, so.offset + receivedBytes - 4));
-                        //Debug.Assert(so.bytesToReceive >= so.offset + receivedBytes - 4);
-                        //so.bytesToReceive -= so.offset + receivedBytes - 4;
-                        //s.BeginReceive(so.buffer, 0, 4096, SocketFlags.None, new AsyncCallback(OnReceive), so);
+                        so.data = new MemoryStream();
+                        offset = 4;                        
                     }
                     if (so.bytesToReceive > receivedBytes + so.offset - offset)
                     {
-                        so.data.Append(Encoding.Unicode.GetString(so.buffer, offset, receivedBytes + so.offset - offset));
+                        //so.data.Append(Encoding.Unicode.GetString(so.buffer, offset, receivedBytes + so.offset - offset));
+                        so.data.Write(so.buffer, offset, receivedBytes + so.offset - offset);
                         Debug.Assert(so.bytesToReceive >= receivedBytes + so.offset - offset);
                         so.bytesToReceive -= receivedBytes + so.offset - offset;
                         so.offset = 0;
@@ -65,17 +79,24 @@ namespace OperatorServiceInterface
                     }
                     else
                     {
-                        so.data.Append(Encoding.Unicode.GetString(so.buffer, offset, so.bytesToReceive));
+                        //so.data.Append(Encoding.Unicode.GetString(so.buffer, offset, so.bytesToReceive));
                         //receive finished
-                        DataPacket packet = DataPacket.LoadXML(so.data.ToString());
-                        if (OnDataArrive != null)
+                        //DataPacket packet = DataPacket.LoadXML(so.data.ToString());
+                        so.data.Write(so.buffer, offset, so.bytesToReceive);
+
+                        BinaryFormatter formatter = new BinaryFormatter();
+                        so.data.Position = 0;
+                        object obj = formatter.Deserialize(so.data);
+                        if (DataArrive != null)
                         {
-                            OnDataArrive(packet, so.workSocket);
+                            DataArrive(this, new DataArriveEventArgs(obj,s));
                         }
+
                         StateObject so1 = new StateObject();
                         so1.workSocket = s;
                         Array.Copy(so.buffer, offset + so.bytesToReceive, so1.buffer, 0, so.offset + receivedBytes - offset - so.bytesToReceive);
                         so1.offset = so.offset + receivedBytes - offset - so.bytesToReceive;
+                        so.data.Close();
                         s.BeginReceive(so1.buffer, so1.offset, 4096 - so1.offset, SocketFlags.None, new AsyncCallback(OnReceive), so1);
                     }
 
@@ -108,24 +129,36 @@ namespace OperatorServiceInterface
             return listener;
         }
 
-        public void SendPacket(Socket s, DataPacket data)
+        public void SendPacket(Socket s, object obj)
         {
             lock (s)
             {
-                string xmlData = DataPacket.SaveXML(data);
-                byte[] sendBytes = Encoding.Unicode.GetBytes(xmlData);
-                s.Send(BitConverter.GetBytes(sendBytes.Length));
-                s.Send(sendBytes);
+                BinaryFormatter fo = new BinaryFormatter();
+                MemoryStream stream = new MemoryStream();
+                fo.Serialize(stream, obj);
+                s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
+                s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
             }
         }
 
-        public void BroadCastPacket(DataPacket data)
-        {
-            foreach (Socket t in ConnectedSockets)
-            {
-                SendPacket(t, data);
-            }
-        }
+        //public void SendPacket(Socket s, DataPacket data)
+        //{
+        //    lock (s)
+        //    {
+        //        string xmlData = DataPacket.SaveXML(data);
+        //        byte[] sendBytes = Encoding.Unicode.GetBytes(xmlData);
+        //        s.Send(BitConverter.GetBytes(sendBytes.Length));
+        //        s.Send(sendBytes);
+        //    }
+        //}
+
+        //public void BroadCastPacket(DataPacket data)
+        //{
+        //    foreach (Socket t in ConnectedSockets)
+        //    {
+        //        SendPacket(t, data);
+        //    }
+        //}
 
         public class StateObject
         {
@@ -136,11 +169,16 @@ namespace OperatorServiceInterface
             // Receive buffer.
             public byte[] buffer = new byte[BufferSize];
             // Raw Data
-            public StringBuilder data = new StringBuilder();
+            //public StringBuilder data = new StringBuilder();
+            public MemoryStream data;
+            
             // BytesToReceive
             public int bytesToReceive = 0;
             // offset
             public int offset = 0;
+
+            public string OperatorId;
+
         }
     }
 }

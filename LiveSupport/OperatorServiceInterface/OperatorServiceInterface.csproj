@@ -43,6 +43,7 @@
     <Compile Include="IOperatorServerEvents.cs" />
     <Compile Include="OperatorServerEventSink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocketHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\LiveSupportModel.csproj">
