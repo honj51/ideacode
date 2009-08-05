@@ -14,6 +14,7 @@ namespace LiveSupport.BLL
         public Invite invites;
         public ChatPage chatpage;
         public string domainName;
+        public string companyName;
         public string accountId;
         public string icoLocation;
     }
@@ -111,6 +112,10 @@ namespace LiveSupport.BLL
         private static IWebSiteProvider Provider = new SqlWebSiteProvider();
         public const string WebSite_Default ="Default";
         public const string WebSite_UserDefined = "UserDefined";
+
+        public const int IconStyleLength = 3;
+        public const int InviteStyleLength = 4;
+        public const int ChatStyleLength = 4;
         /// <summary>
         /// 增加一条数据
         /// </summary>
@@ -175,7 +180,7 @@ namespace LiveSupport.BLL
             NewWebSite nwbt = new NewWebSite();
             string[] bannerStyle = website.IconStyle.Split('|');
             Banner ban = new Banner();
-            if (newWebSiteState(bannerStyle[0]))
+            if (newWebSiteState(bannerStyle[0])&&bannerStyle.Length==IconStyleLength)
             {
                 ban.State = bannerStyle[0];
                 ban.Online = bannerStyle[1];
@@ -184,7 +189,7 @@ namespace LiveSupport.BLL
             nwbt.banners = ban;
             Invite ivt = new Invite();
             string[] invateStyle = website.InviteStyle.Split('|');
-            if (newWebSiteState(invateStyle[0]))
+            if (newWebSiteState(invateStyle[0])&&invateStyle.Length==InviteStyleLength)
             {
                 ivt.State = invateStyle[0];
                 ivt.Bgimg = invateStyle[1];
@@ -194,7 +199,7 @@ namespace LiveSupport.BLL
             nwbt.invites = ivt;
             ChatPage cpe = new ChatPage();
             string[] chatPageStyle = website.ChatStyle.Split('|');
-            if (newWebSiteState(chatPageStyle[0]))
+            if (newWebSiteState(chatPageStyle[0])&&chatPageStyle.Length==ChatStyleLength)
             {
                 cpe.State = chatPageStyle[0];
                 cpe.ChatPageBGImg = chatPageStyle[1];
@@ -202,6 +207,7 @@ namespace LiveSupport.BLL
                 cpe.LeavePageTopImg = chatPageStyle[3];
             }
             nwbt.chatpage = cpe;
+            nwbt.companyName=website.CompanyName;
             nwbt.accountId = website.RegisterId;
             nwbt.icoLocation = website.IcoLocation;
             nwbt.domainName = website.DomainName;
@@ -219,6 +225,7 @@ namespace LiveSupport.BLL
             website.InviteStyle = nwst.invites.State + "|" + nwst.invites.Bgimg + "|" + nwst.invites.Okimg + "|" + nwst.invites.Noimg;
             website.ChatStyle = nwst.chatpage.State + "|"+nwst.chatpage.ChatPageBGImg+"|" + nwst.chatpage.ChatPageRightImg + "|" + nwst.chatpage.LeavePageTopImg;
             website.DomainName = nwst.domainName;
+            website.CompanyName=nwst.companyName;
             website.RegisterId = nwst.accountId;
             website.IcoLocation = nwst.icoLocation;
             return NewWebSite(website);
@@ -230,6 +237,7 @@ namespace LiveSupport.BLL
             website.InviteStyle = nwst.invites.State + "|" + nwst.invites.Bgimg + "|" + nwst.invites.Okimg + "|" + nwst.invites.Noimg;
             website.ChatStyle = nwst.chatpage.State + "|" + nwst.chatpage.ChatPageBGImg + "|" + nwst.chatpage.ChatPageRightImg + "|" + nwst.chatpage.LeavePageTopImg;
             website.DomainName = nwst.domainName;
+            website.CompanyName=nwst.companyName;
             website.RegisterId = nwst.accountId;
             website.IcoLocation = nwst.icoLocation;
             return Update(website);
