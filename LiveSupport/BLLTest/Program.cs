@@ -13,12 +13,14 @@ namespace LiveChatTest
     {
         static void Main(string[] args)
         {
-            Trace.WriteLine("Main Start");
+            Console.WriteLine("Main Start");
 
+            TcpServerTestTest t = new TcpServerTestTest();
+            t.Start();
             int i = 0;
             while (true)
             {
-                Trace.WriteLine(i);
+                //Trace.WriteLine(i);
                 Thread.Sleep(1000);
                 i++;
             }
@@ -27,7 +29,7 @@ namespace LiveChatTest
             //AccountServiceTest t = new AccountServiceTest();
             //t.TestAddAccount();
             //t.testGetAccountById();
-            Trace.WriteLine("Main End");
+            Console.WriteLine("Main End");
         }
     }
 }
