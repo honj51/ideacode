@@ -64,7 +64,7 @@ namespace LiveSupport.BLL.Remoting
 
         void OperatorService_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)
         {
-            safeFireEvent(OperatorStatusChange, e);
+            //safeFireEvent(OperatorStatusChange, e);
         }
         #endregion 
 
