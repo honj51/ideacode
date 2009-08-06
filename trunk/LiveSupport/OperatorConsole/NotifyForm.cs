@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using LiveSupport.LiveSupportModel;
 using System.Media;
 
 namespace LiveSupport.OperatorConsole

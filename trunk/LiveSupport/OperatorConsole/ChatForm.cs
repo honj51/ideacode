@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using LiveSupport.LiveSupportModel;
 using System.Media;
 using System.Drawing.Imaging;
 using System.Collections;
@@ -85,7 +85,7 @@ namespace LiveSupport.OperatorConsole
             set { chat = value; }
         }
 
-        public void RecieveMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
+        public void RecieveMessage(LiveSupport.LiveSupportModel.Message message)
         {
 
             if (!this.IsDisposed && receiveMessage)
@@ -133,15 +133,55 @@ namespace LiveSupport.OperatorConsole
         public void Invite(string visitorId)
         {
             visitor = operatorServiceAgent.GetVisitorById(visitorId);
-            //this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
+            operatorServiceAgent.NewMessage += new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
+            operatorServiceAgent.OperatorChatRequestAccepted += new EventHandler<OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs>(operatorServiceAgent_OperatorChatRequestAccepted);
+            operatorServiceAgent.OperatorChatRequestDeclined += new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
             chat = operatorServiceAgent.InviteChat(visitorId);
             initChat();
+        }
+
+        //客服主动邀请被拒绝
+        void operatorServiceAgent_OperatorChatRequestDeclined(object sender, OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs e)
+        {
+            
+            throw new NotImplementedException();
+        }
+
+        // 客服主动邀请被接受
+        void operatorServiceAgent_OperatorChatRequestAccepted(object sender, OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 新消息
+        void operatorServiceAgent_NewMessage(object sender, OperatorServiceInterface.ChatMessageEventArgs e)
+        {
+            if (this.IsDisposed || !this.IsHandleCreated)
+            {
+                return;
+            }
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                try
+                {
+                    //OperatorServiceInterface.ChatMessageEventArgs arg = new OperatorServiceInterface.ChatMessageEventArgs();
+                    //if (arg.Message.ChatId == this.chat.ChatId)
+                    //{
+                    //    RecieveMessage(arg.Message);
+                    //}
+                }
+                catch (Exception)
+                {
+                    chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                }
+
+            }), e);
         }
 
         public void Accept(Chat chat)
         {
             this.chat = chat;
-            //this.operatorServiceAgent.NewMessage += new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage); 
+            operatorServiceAgent.NewMessage += new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
             visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             initChat();
             
@@ -290,7 +330,7 @@ namespace LiveSupport.OperatorConsole
         //写信息
         private void WriteMessage(string message, string From)
         {
-            LiveSupport.OperatorConsole.LiveChatWS.Message msg = new LiveSupport.OperatorConsole.LiveChatWS.Message();
+            LiveSupport.LiveSupportModel.Message msg = new LiveSupport.LiveSupportModel.Message();
             msg.ChatId = Chat.ChatId;
             msg.Text = message;
             msg.Source = From;
@@ -557,7 +597,7 @@ namespace LiveSupport.OperatorConsole
                     for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
                     {
                         setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
-                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Length == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses==null) continue;
+                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Count == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses==null) continue;
                         foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
                         {
                             if (string.IsNullOrEmpty(item)) continue;

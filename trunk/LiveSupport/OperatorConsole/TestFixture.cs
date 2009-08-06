@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -34,18 +34,18 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        public NewChangesCheckResult NewResult()
-        {
-            NewChangesCheckResult result = new NewChangesCheckResult();
+        //public NewChangesCheckResult NewResult()
+        //{
+        //    NewChangesCheckResult result = new NewChangesCheckResult();
             
-            //result.Messages = new Message[] { NewMessage(),NewMessage() };
-            //result.NewVisitors = new Visitor[] { GetNewVisitor() };
-            //result.Operators = GetAllOperators();
-            //result.VisitSessionChange = new VisitSession[] { GetVisitSessionChanges() };
+        //    //result.Messages = new Message[] { NewMessage(),NewMessage() };
+        //    //result.NewVisitors = new Visitor[] { GetNewVisitor() };
+        //    //result.Operators = GetAllOperators();
+        //    //result.VisitSessionChange = new VisitSession[] { GetVisitSessionChanges() };
 
-            count++;
-            return result;
-        }
+        //    count++;
+        //    return result;
+        //}
 
         private VisitSession GetVisitSessionChanges()
         {

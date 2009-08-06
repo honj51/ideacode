@@ -85,6 +85,8 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback DelLeaveWordByIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetOperatorOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -212,6 +214,9 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         public event DelLeaveWordByIdCompletedEventHandler DelLeaveWordByIdCompleted;
+        
+        /// <remarks/>
+        public event GetOperatorCompletedEventHandler GetOperatorCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -1040,6 +1045,34 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             if ((this.DelLeaveWordByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.DelLeaveWordByIdCompleted(this, new DelLeaveWordByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperator", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Operator[] GetOperator() {
+            object[] results = this.Invoke("GetOperator", new object[0]);
+            return ((Operator[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetOperatorAsync() {
+            this.GetOperatorAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetOperatorAsync(object userState) {
+            if ((this.GetOperatorOperationCompleted == null)) {
+                this.GetOperatorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetOperatorOperationCompleted);
+            }
+            this.InvokeAsync("GetOperator", new object[0], this.GetOperatorOperationCompleted, userState);
+        }
+        
+        private void OnGetOperatorOperationCompleted(object arg) {
+            if ((this.GetOperatorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetOperatorCompleted(this, new GetOperatorCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3340,6 +3373,32 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    public delegate void GetOperatorCompletedEventHandler(object sender, GetOperatorCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetOperatorCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetOperatorCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Operator[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Operator[])(this.results[0]));
             }
         }
     }

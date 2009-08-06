@@ -644,6 +644,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetOperator">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetOperatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOperatorResult" type="tns:ArrayOfOperator" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="LoginSoapIn">
@@ -889,6 +899,15 @@
   <wsdl:message name="DelLeaveWordByIdAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
+  <wsdl:message name="GetOperatorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOperator" />
+  </wsdl:message>
+  <wsdl:message name="GetOperatorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOperatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOperatorAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -997,6 +1016,10 @@
     <wsdl:operation name="DelLeaveWordById">
       <wsdl:input message="tns:DelLeaveWordByIdSoapIn" />
       <wsdl:output message="tns:DelLeaveWordByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOperator">
+      <wsdl:input message="tns:GetOperatorSoapIn" />
+      <wsdl:output message="tns:GetOperatorSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -1271,6 +1294,16 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetOperator">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOperatorAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="OperatorWSSoap12" type="tns:OperatorWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1539,6 +1572,16 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:DelLeaveWordByIdAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOperator">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOperatorAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

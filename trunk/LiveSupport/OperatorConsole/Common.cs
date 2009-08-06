@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.IO;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -175,6 +175,7 @@ namespace LiveSupport.OperatorConsole
 
         public static string GetSearchEngineName(string url)
         {
+            
             if (string.IsNullOrEmpty(url))
             {
                 return "访客输入网址";
@@ -219,6 +220,139 @@ namespace LiveSupport.OperatorConsole
             {
                 return "来自"+url;
             }
+        }
+
+        public static object Convert(object obj)
+        {
+            if (obj is LiveSupport.OperatorConsole.LiveChatWS.Visitor)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.Visitor v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.Visitor;
+
+                LiveSupportModel.Visitor v2 = new LiveSupport.LiveSupportModel.Visitor();
+                v2.AccountId = v1.AccountId;
+                v2.Company = v1.Company;
+                v2.Email = v1.Email;
+                v2.IsVIP = v1.IsVIP;
+                v2.Name = v1.Name;
+                v2.Remark = v1.Remark;
+                v2.VisitCount = v1.VisitCount;
+                v2.VisitorId = v1.VisitorId;
+                v2.CurrentSession = Convert(v1.CurrentSession) as LiveSupportModel.VisitSession;
+                return v2;
+            }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.VisitSession)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.VisitSession v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.VisitSession;
+                LiveSupportModel.VisitSession v2 = new LiveSupport.LiveSupportModel.VisitSession();
+                v2.Browser = v1.Browser;
+                v2.ChatingTime = v1.ChatingTime;
+                v2.ChatRequestTime = v1.ChatRequestTime;
+                v2.ChattingDuring = v1.ChattingDuring;
+                v2.DomainRequested = v1.DomainRequested;
+                v2.IP = v1.IP;
+                v2.LeaveTime = v1.LeaveTime;
+                v2.Location = v1.Location;
+                v2.OperatorId = v1.OperatorId;
+                v2.PageRequestCount = v1.PageRequestCount;
+                v2.PageRequested = v1.PageRequested;
+                v2.SessionId = v1.SessionId;
+                v2.Referrer = v1.Referrer;
+                v2.Status = (LiveSupportModel.VisitSessionStatus)Enum.Parse(typeof(LiveSupportModel.VisitSessionStatus), v1.Status.ToString());
+                v2.VisitingTime = v1.VisitingTime;
+                v2.VisitorId = v1.VisitorId;
+                v2.WaitingDuring = v1.WaitingDuring;
+                return v2;
+            }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.Operator)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.Operator v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.Operator;
+                LiveSupportModel.Operator v2 = new LiveSupport.LiveSupportModel.Operator();
+                v2.AccountId = v1.AccountId;
+                v2.AVChatStatus = v1.AVChatStatus;
+                v2.Email = v1.Email;
+                v2.HeartBeatTime = v1.HeartBeatTime;
+                v2.IsAdmin = v1.IsAdmin;
+                v2.LoginName = v1.LoginName;
+                v2.NickName = v1.NickName;
+                v2.OperatorId = v1.OperatorId;
+                v2.OperatorSession = v1.OperatorSession;
+                v2.Password = v1.Password;
+                v2.Status = (LiveSupportModel.OperatorStatus)Enum.Parse(typeof(LiveSupportModel.OperatorStatus), v1.Status.ToString());
+                return v2;
+            }
+            else if (obj is LiveSupportModel.Message)
+            {
+                LiveSupportModel.Message v1 = new LiveSupport.LiveSupportModel.Message();
+                LiveSupport.OperatorConsole.LiveChatWS.Message v2 = obj as LiveSupport.OperatorConsole.LiveChatWS.Message;
+                v2.ChatId = v1.ChatId;
+                v2.Destination = v1.Destination;
+                v2.MessageId = v1.MessageId;
+                v2.SentDate = v1.SentDate;
+                v2.Source = v1.Source;
+                v2.Text = v1.Text;
+                v2.Type = (LiveSupport.OperatorConsole.LiveChatWS.MessageType)Enum.Parse(typeof(LiveSupport.OperatorConsole.LiveChatWS.MessageType), v1.Type.ToString());
+                return v2;
+            }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.Chat)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.Chat v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.Chat;
+                LiveSupportModel.Chat v2 = new LiveSupport.LiveSupportModel.Chat();
+                v2.ChatId = v1.ChatId;
+                v2.AcceptTime = v1.AcceptTime;
+                v2.AccountId = v1.AccountId;
+                v2.CloseBy = v1.CloseBy;
+                v2.CloseTime = v1.CloseTime;
+                v2.CreateBy = v1.CreateBy;
+                v2.CreateTime = v1.CreateTime;
+                v2.IsInviteByOperator = v1.IsInviteByOperator;
+                v2.LastCheckTime = v1.LastCheckTime;
+                v2.OperatorId = v1.OperatorId;
+                v2.Status = (LiveSupportModel.ChatStatus)Enum.Parse(typeof(LiveSupportModel.ChatStatus), v1.Status.ToString());
+                v2.VisitorId = v1.VisitorId;
+                return v2;
+            }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.LeaveWord)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.LeaveWord v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.LeaveWord;
+                LiveSupportModel.LeaveWord v2 = new LiveSupport.LiveSupportModel.LeaveWord();
+               // v2.Account = v1.Account;
+                v2.CallerDate = v1.CallerDate;
+                v2.CallerName = v1.CallerName;
+                v2.Content = v1.Content;
+                v2.DomainName = v1.DomainName;
+                v2.Email = v1.Email;
+                v2.Id = v1.Id;
+                v2.Ip = v1.Ip;
+                v2.IsReplied = v1.IsReplied;
+                v2.IsSend = v1.IsSend;
+                v2.OperatorName = v1.OperatorName;
+                v2.Phone = v1.Phone;
+                 v2.Senddate = v1.Senddate;
+                 v2.Subject = v1.Subject;
+                 return v2;
+            }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.Account)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.Account v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.Account;
+                LiveSupportModel.Account v2 = new LiveSupport.LiveSupportModel.Account();
+                v2.AccountId = v1.AccountId;
+                v2.AccountNumber = v1.AccountNumber;
+                v2.City = v1.City;
+                v2.CompanyName = v1.CompanyName;
+                v2.ContactName = v1.ContactName;
+                v2.Domain = v1.Domain;
+                v2.Email = v1.Email;
+                v2.Industry = v1.Industry;
+                v2.OperatorCount = v1.OperatorCount;
+                v2.PaymentId = v1.PaymentId;
+                v2.Phone = v1.Phone;
+                v2.Province = v1.Province;
+                v2.RegisterDate = v1.RegisterDate;
+                v2.Remark = v1.Remark;
+                v2.Url = v1.Url;
+                return v2;
+            }
+            return null;
         }
     }
 

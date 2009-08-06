@@ -38,7 +38,6 @@
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.domainToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.operatorWS1 = new LiveSupport.OperatorConsole.LiveChatWS.OperatorWS();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,12 +152,7 @@
             this.domainToolStripComboBox.Name = "domainToolStripComboBox";
             this.domainToolStripComboBox.Size = new System.Drawing.Size(121, 31);
             this.domainToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.domainToolStripComboBox_SelectedIndexChanged);
-            // 
-            // operatorWS1
-            // 
-            this.operatorWS1.AuthenticationHeaderValue = null;
-            this.operatorWS1.Url = "http://localhost:3355/livechat/Operator.asmx";
-            this.operatorWS1.UseDefaultCredentials = true;
+           
             // 
             // QickResponseEidtor
             // 
@@ -191,7 +185,6 @@
         private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.ToolStripButton tsbAddMessage;
         private System.Windows.Forms.ToolStripButton tsbDeleteMessage;
-        private LiveSupport.OperatorConsole.LiveChatWS.OperatorWS operatorWS1;
         private System.Windows.Forms.ToolStripComboBox domainToolStripComboBox;
 
     }

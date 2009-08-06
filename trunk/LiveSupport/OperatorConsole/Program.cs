@@ -12,7 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using LiveSupport.LiveSupportModel;
 using System.Diagnostics;
 using VisualAsterisk.ExceptionManagement;
 using System.Reflection;

@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -43,7 +43,7 @@ namespace LiveSupport.OperatorConsole
             wb.Document.Write(text);
         }
 
-        public void AddMessage(LiveSupport.OperatorConsole.LiveChatWS.Message message)
+        public void AddMessage(LiveSupport.LiveSupportModel.Message message)
         {
             string msg =string.Empty;
             if (API.FromSystem(message))
@@ -83,7 +83,7 @@ namespace LiveSupport.OperatorConsole
 
 
         ////接受记录List
-        //public ChatMessageViewerControl(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
+        //public ChatMessageViewerControl(List<LiveSupport.LiveSupportModel.Message> msg)
         //{
         //    InitializeComponent();
         //    DataBindMessage(msg);
@@ -91,14 +91,14 @@ namespace LiveSupport.OperatorConsole
 
 
         #region 绑定聊天记录
-        public void DataBindMessage(List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg)
+        public void DataBindMessage(List<LiveSupport.LiveSupportModel.Message> msg)
         {
             wb.Document.OpenNew(true);
             string message = "";
             if (msg.Count > 0)
             {
                 string chatId = "";
-                foreach (LiveSupport.OperatorConsole.LiveChatWS.Message item in msg)
+                foreach (LiveSupport.LiveSupportModel.Message item in msg)
                 {
                     if (item == null) continue;
 

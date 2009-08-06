@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.OperatorConsole
 {
