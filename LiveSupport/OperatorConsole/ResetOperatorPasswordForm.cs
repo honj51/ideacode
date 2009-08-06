@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using LiveSupport.LiveSupportModel;
 using System.Net;
 
 namespace LiveSupport.OperatorConsole

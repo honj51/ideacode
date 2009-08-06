@@ -430,6 +430,10 @@
       <Project>{5DBD653B-6AF4-4CCC-AC23-5A68E848B632}</Project>
       <Name>VisualAsterisk.ExceptionManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\LiveSupportModel.csproj">
+      <Project>{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}</Project>
+      <Name>LiveSupportModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OperatorServiceInterface\OperatorServiceInterface.csproj">
       <Project>{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}</Project>
       <Name>OperatorServiceInterface</Name>

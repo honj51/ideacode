@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Net;
 using System.Net.Sockets;
 using System.Web.Services.Protocols;
 using System.Diagnostics;
 using System.Threading;
 using OperatorServiceInterface;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.OperatorConsole
 {
-    class OperatorServiceAgent : IOperatorServiceAgent, IOperatorServerEvents
+    class OperatorServiceAgent : IOperatorServiceAgent
     {
         private static OperatorServiceAgent _default;
         private List<Visitor> visitors = new List<Visitor>();
         private List<Chat> chats = new List<Chat>();
         private List<QuickResponseCategory> quickResponseCategory=null;
         private List<Operator> operators = new List<Operator>();
-        private NewChangesCheck lastCheck = new NewChangesCheck();
-        private OperatorWS ws = new OperatorWS();
+        //private NewChangesCheck lastCheck = new NewChangesCheck();
+        private LiveSupport.OperatorConsole.LiveChatWS.OperatorWS ws = new LiveSupport.OperatorConsole.LiveChatWS.OperatorWS();
         private Operator currentOperator;
         private System.Timers.Timer checkNewChangesTimer = new System.Timers.Timer(1000);
         private string accountNumber;
@@ -79,15 +79,15 @@ namespace LiveSupport.OperatorConsole
 
         public OperatorServiceAgent()
         {
-            lastCheck.ChatSessionChecks = new MessageCheck[] { };
-            lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
+            //lastCheck.ChatSessionChecks = new MessageCheck[] { };
+            //lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
             checkNewChangesTimer.AutoReset = true;
             ws.Timeout = 5000;
             state = ConnectionState.Disconnected;
 
             //checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
-            ws.LoginCompleted += new LoginCompletedEventHandler(ws_LoginCompleted);
-            ws.GetSystemAdvertiseCompleted += new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
+            ws.LoginCompleted += new LiveChatWS.LoginCompletedEventHandler(ws_LoginCompleted);
+            ws.GetSystemAdvertiseCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
             //ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
         }
 
@@ -119,15 +119,15 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        void ws_LoginCompleted(object sender, LoginCompletedEventArgs e)
+        void ws_LoginCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.LoginCompletedEventArgs e)
         {
             if (e.Error == null)
             {
-                currentOperator = e.Result;
+                currentOperator = (Operator) Common.Convert(e.Result);
 
                 if (currentOperator != null)
                 {
-                    AuthenticationHeader h = new AuthenticationHeader();
+                    LiveSupport.OperatorConsole.LiveChatWS.AuthenticationHeader h = new LiveSupport.OperatorConsole.LiveChatWS.AuthenticationHeader();
                     h.OperatorId = currentOperator.OperatorId;
                     h.OperatorSession = currentOperator.OperatorSession;
                     ws.AuthenticationHeaderValue = h;
@@ -137,13 +137,13 @@ namespace LiveSupport.OperatorConsole
                     socket = socketHandler.Connect(entry.AddressList[0].ToString());
                     //socket = socketHandler.Connect("127.0.0.1");
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
-                    socketHandler.SendPacket(socket, new LoginAction());
+                    socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
 
                     //fireConnectStateChange(ConnectionState.Connected, "登录成功");
 
                     ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
                     ws.GetLeaveWordAsync(Guid.NewGuid());
-
+                    getOperators();
                     //Disable the timer checkNewChangesTimer.Enabled = true;
                 }
                 else
@@ -156,13 +156,81 @@ namespace LiveSupport.OperatorConsole
                 //fireConnectStateChange(ConnectionState.Disconnected, "登录失败，" + e.Error.Message);
             }
         }
-
+        void getOperators() 
+        {
+           // operators = ws.GetOperators();
+        }
         void socketHandler_DataArrive(object sender, DataArriveEventArgs e)
         {
+            // 客服状态改变
             if (e.Data.GetType() == typeof(OperatorStatusChangeEventArgs) && OperatorStatusChanged != null)
             {
                 OperatorStatusChanged(this, (OperatorStatusChangeEventArgs)e.Data);
             }
+            //访客对话请求
+            else if (e.Data.GetType() == typeof(VisitorChatRequestEventArgs) && VisitorChatRequest != null)
+            {
+                VisitorChatRequest(this, (VisitorChatRequestEventArgs)e.Data);
+            }
+            //客服对话邀请
+            else if (e.Data.GetType() == typeof(OperatorChatRequestEventArgs) && OperatorChatRequest != null)
+            {
+                OperatorChatRequest(this, (OperatorChatRequestEventArgs)e.Data);
+            }
+            // 访客对话请求被接受
+            else if (e.Data.GetType() == typeof(VisitorChatRequestAcceptedEventArgs) && VisitorChatRequestAccepted != null)
+            {
+                VisitorChatRequestAccepted(this, (VisitorChatRequestAcceptedEventArgs)e.Data);
+            }
+            // 客服对话邀请被接受
+            else if (e.Data.GetType() == typeof(OperatorChatRequestAcceptedEventArgs) && OperatorChatRequestAccepted != null)
+            {
+                OperatorChatRequestAccepted(this, (OperatorChatRequestAcceptedEventArgs)e.Data);
+            }
+            // 客服对话邀请被拒绝
+            else if (e.Data.GetType() == typeof(OperatorChatRequestDeclinedEventArgs) && OperatorChatRequestDeclined != null)
+            {
+                OperatorChatRequestDeclined(this, (OperatorChatRequestDeclinedEventArgs)e.Data);
+            }
+            // 新的对话
+            else if (e.Data.GetType() == typeof(NewChatEventArgs) && NewChat != null)
+            {
+                NewChat(this, (NewChatEventArgs)e.Data);
+            }
+            // 对话状态改变
+            else if (e.Data.GetType() == typeof(ChatStatusChangedEventArgs) && ChatStatusChanged != null)
+            {
+                ChatStatusChanged(this, (ChatStatusChangedEventArgs)e.Data);
+            }
+            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs) && ChatJoinInvite != null)
+            {
+                ChatJoinInvite(this, (OperatorChatJoinInviteEventArgs)e.Data);
+            }
+            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteAcceptedEventArgs) && ChatJoinInviteAccepted != null)
+            {
+                ChatJoinInviteAccepted(this, (OperatorChatJoinInviteAcceptedEventArgs)e.Data);
+            }
+            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteDeclinedEventArgs) && ChatJoinInviteDeclined != null)
+            {
+                ChatJoinInviteDeclined(this, (OperatorChatJoinInviteDeclinedEventArgs)e.Data);
+            }
+            // 新消息
+            else if (e.Data.GetType() == typeof(ChatMessageEventArgs) && NewMessage != null)
+            {
+                NewMessage(this, (ChatMessageEventArgs)e.Data);
+            }
+            // 新访问,访客可能已经存在
+            else if (e.Data.GetType() == typeof(NewVisitingEventArgs)&& NewVisiting!=null)
+            {
+                NewVisiting(this,(NewVisitingEventArgs)e.Data);   
+            }
+            // 访客离开
+            else if (e.Data.GetType()==typeof(VisitorLeaveEventArgs)&&VisitorLeave!=null)
+            {
+                VisitorLeave(this, (VisitorLeaveEventArgs)e.Data);
+            }
+           
+
         }
 
         //private void fireConnectStateChange(ConnectionState state, string message)
@@ -214,7 +282,7 @@ namespace LiveSupport.OperatorConsole
 
         public void Logout()
         {
-            ws.GetSystemAdvertiseCompleted -= new GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
+            ws.GetSystemAdvertiseCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
             //ws.GetLeaveWordCompleted -= new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
             socketHandler.DataArrive -= new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
             EnablePooling = false;
@@ -223,14 +291,14 @@ namespace LiveSupport.OperatorConsole
             ws.Logout();
         }
 
-        public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
-        {
-              return ws.CheckNewChanges(check);
-        }
+        //public NewChangesCheckResult CheckNewChanges(NewChangesCheck check)
+        //{
+        //      return ws.CheckNewChanges(check);
+        //}
 
-        public void SendMessage(LiveSupport.OperatorConsole.LiveChatWS.Message msg)
+        public void SendMessage(Message msg)
         {
-            ws.SendMessage(msg);
+            ws.SendMessage(Common.Convert(msg) as LiveChatWS.Message);
         }
 
         public int ChangePassword(string oldPassword, string newPassword)
@@ -248,12 +316,16 @@ namespace LiveSupport.OperatorConsole
            return ws.CloseChat(chatId);
         }
 
-        public List<LiveSupport.OperatorConsole.LiveChatWS.Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+        public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
         {
             List<Message> lMessage = null;
             try
             {
-               lMessage = new List<Message>(ws.GetHistoryChatMessage(visitorId, begin, end));
+                lMessage = new List<Message>();
+                foreach (var item in ws.GetHistoryChatMessage(visitorId, begin, end))
+                {
+                    lMessage.Add(Common.Convert(item) as Message);
+                }
             }
             catch (WebException)
             {
@@ -267,7 +339,12 @@ namespace LiveSupport.OperatorConsole
             List<PageRequest> lPageRequest = null;
             try
             {
-                lPageRequest = new List<PageRequest>(ws.GetHistoryPageRequests(visitorId, begin, end));
+                lPageRequest = new List<PageRequest>();
+
+                foreach (var item in ws.GetHistoryPageRequests(visitorId, begin, end))
+                {
+                    lPageRequest.Add(Common.Convert(item) as PageRequest);
+                }
             }
             catch (Exception)
             {
@@ -292,7 +369,7 @@ namespace LiveSupport.OperatorConsole
 
         public Chat InviteChat(string visitorId)
         {
-             return ws.InviteChat(visitorId);
+             return Common.Convert(ws.InviteChat(visitorId)) as Chat;
         }
 
         public bool IsVisitorHasActiveChat(string visitorId)
@@ -322,7 +399,7 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
-        void ws_GetSystemAdvertiseCompleted(object sender, GetSystemAdvertiseCompletedEventArgs e)
+        void ws_GetSystemAdvertiseCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventArgs e)
         {
             //if (NewSystemAdvertise != null && e.Error == null)
             //{
@@ -335,7 +412,11 @@ namespace LiveSupport.OperatorConsole
             List<QuickResponseCategory> lQuickResponseCategory = null;
             try
             {
-                lQuickResponseCategory=new List<QuickResponseCategory>(ws.GetQuickResponse());
+                lQuickResponseCategory = new List<QuickResponseCategory>();
+                foreach (var item in ws.GetQuickResponse())
+                {
+                    lQuickResponseCategory.Add(Common.Convert(item) as QuickResponseCategory);
+                }
             }
             catch (WebException)
             {
@@ -675,7 +756,10 @@ namespace LiveSupport.OperatorConsole
             List<LeaveWord> leaveWords = new List<LeaveWord>();
             try
             {
-                leaveWords.AddRange(ws.GetLeaveWord());
+                foreach (var item in ws.GetLeaveWord())
+                {
+                    leaveWords.Add(Common.Convert(item) as LeaveWord);
+                }
             }
             catch (WebException)
             {
@@ -707,20 +791,20 @@ namespace LiveSupport.OperatorConsole
         public List<LeaveWord> GetLeaveWordNotReplied() 
         {
             List<LeaveWord> leaveWords = new List<LeaveWord>();
-            if (ws.GetLeaveWordNotReplied()!=null)
-            {
-                leaveWords.AddRange(ws.GetLeaveWordNotReplied());
-            }
 
+            foreach (var item in ws.GetLeaveWordNotReplied())
+            {
+                leaveWords.Add(Common.Convert(item) as LeaveWord);
+            }
             return leaveWords;
         }
 
        public List<LeaveWord> GetLeaveWordByDomainName(string domainName) 
         {
             List<LeaveWord> leaveWords = new List<LeaveWord>();
-            if (ws.GetLeaveWordByDomainName(domainName) != null)
+            foreach (var item in ws.GetLeaveWordByDomainName(domainName))
             {
-                leaveWords.AddRange(ws.GetLeaveWordByDomainName(domainName));
+                 leaveWords.Add(Common.Convert(item) as LeaveWord);
             }
             return leaveWords;
         
@@ -732,12 +816,30 @@ namespace LiveSupport.OperatorConsole
 
          public List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName) 
         {
-            return new List<QuickResponseCategory>(ws.GetQuickResponseByDomainName(domainName));
+            List<QuickResponseCategory> lQuickResponseCategory = null;
+            try
+            {
+                lQuickResponseCategory = new List<QuickResponseCategory>();
+                foreach (var item in ws.GetQuickResponseByDomainName(domainName))
+                {
+                    lQuickResponseCategory.Add(Common.Convert(item) as QuickResponseCategory);
+                }
+            }
+            catch (WebException)
+            {
+                return null;
+            }
+            return lQuickResponseCategory;
         }
 
          public void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName) 
          {
-             ws.SaveQuickResponseByDomainName(response.ToArray(), domainName);
+             List<LiveChatWS.QuickResponseCategory> llQuickResponseCategory = new List<LiveSupport.OperatorConsole.LiveChatWS.QuickResponseCategory>();
+             foreach (var item in response)
+             {
+                 llQuickResponseCategory.Add(Common.Convert(item) as LiveChatWS.QuickResponseCategory);
+             }
+             ws.SaveQuickResponseByDomainName(llQuickResponseCategory.ToArray(), domainName);
          
          }
     
@@ -902,11 +1004,7 @@ namespace LiveSupport.OperatorConsole
 
         public event EventHandler<OperatorChatJoinInviteDeclinedEventArgs> ChatJoinInviteDeclined;
 
-        event EventHandler<ChatMessageEventArgs> IOperatorServerEvents.NewMessage
-        {
-            add { throw new NotImplementedException(); }
-            remove { throw new NotImplementedException(); }
-        }
+        public event EventHandler<ChatMessageEventArgs> NewMessage;
 
         public event EventHandler<NewVisitingEventArgs> NewVisiting;
 

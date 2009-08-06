@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LiveSupport.OperatorConsole.LiveChatWS;
+using OperatorServiceInterface;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -10,7 +11,7 @@ namespace LiveSupport.OperatorConsole
         Disconnected, Connecting, Disconnecting, Connected
     }
 
-    public interface IOperatorServiceAgent
+    public interface IOperatorServiceAgent : IOperatorServerEvents
     {
         #region OperatorService 方法
         /* 对话接口 */
@@ -54,7 +55,7 @@ namespace LiveSupport.OperatorConsole
         #region 查询方法
         Operator GetOperatorById(string operatorId);
         Visitor GetVisitorById(string visitorId);
-        Chat GetChatRequest(string chatId);
+        Chat GetChatRequest(string visitorId);
         bool IsVisitorExist(string visitorId);
         #endregion
 

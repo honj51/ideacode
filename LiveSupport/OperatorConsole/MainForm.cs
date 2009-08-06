@@ -6,13 +6,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using LiveSupport.OperatorConsole.LiveChatWS;
 using System.IO;
 using System.Net;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Net.Sockets;
 using LiveSupport.OperatorConsole.Dialog;
+using LiveSupport.LiveSupportModel;
 namespace LiveSupport.OperatorConsole
 {
     public partial class MainForm : Form
@@ -211,7 +211,7 @@ namespace LiveSupport.OperatorConsole
             //    this.operaterServiceAgent.NewChanges += new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
             //    this.operaterServiceAgent.NewSystemAdvertise += new EventHandler<SystemAdvertiseEventArgs>(operaterServiceAgent_NewSystemAdvertise);
             //    this.operaterServiceAgent.NewLeaveWords += new EventHandler<LeaveWordEventArgs>(operaterServiceAgent_NewLeaveWords);
-                
+
             //}
             //else
             //{
@@ -223,7 +223,85 @@ namespace LiveSupport.OperatorConsole
             //    this.operaterServiceAgent.NewSystemAdvertise -= new EventHandler<SystemAdvertiseEventArgs>(operaterServiceAgent_NewSystemAdvertise);
             //    this.operaterServiceAgent.NewLeaveWords -= new EventHandler<LeaveWordEventArgs>(operaterServiceAgent_NewLeaveWords);
             //}
+            if (!unregister)
+            {
+                operaterServiceAgent.OperatorStatusChanged += new EventHandler<OperatorServiceInterface.OperatorStatusChangeEventArgs>(operaterServiceAgent_OperatorStatusChanged);
+                operaterServiceAgent.ChatStatusChanged += new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
+                operaterServiceAgent.NewVisiting += new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
+                operaterServiceAgent.VisitorLeave += new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
+                operaterServiceAgent.VisitorChatRequest += new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
+                operaterServiceAgent.NewChat+=new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+            }
+            else
+            {
+                operaterServiceAgent.OperatorStatusChanged -= new EventHandler<OperatorServiceInterface.OperatorStatusChangeEventArgs>(operaterServiceAgent_OperatorStatusChanged);
+                operaterServiceAgent.ChatStatusChanged -= new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
+                operaterServiceAgent.NewVisiting -= new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
+                operaterServiceAgent.VisitorLeave -= new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
+                operaterServiceAgent.VisitorChatRequest -= new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
+                operaterServiceAgent.NewChat-=new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+            }
         }
+        // 访客请求对话
+        void operaterServiceAgent_VisitorChatRequest(object sender, OperatorServiceInterface.VisitorChatRequestEventArgs e)
+        {
+            Visitor visitor= operaterServiceAgent.GetVisitorById(e.VisitorId);
+            visitor.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
+            Chat chat = operaterServiceAgent.GetChatRequest(e.VisitorId);
+            processVisitSessionChange(visitor.CurrentSession);
+            NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", chat);
+            changeVisitorListViewItemColor();
+            displayStatus();
+        }
+
+        // 访客离开
+        void operaterServiceAgent_VisitorLeave(object sender, OperatorServiceInterface.VisitorLeaveEventArgs e)
+        {
+          Visitor visitor= operaterServiceAgent.GetVisitorById(e.VisitorId);
+          visitor.CurrentSession.Status = VisitSessionStatus.Leave;
+          processVisitSessionChange(visitor.CurrentSession);
+          changeVisitorListViewItemColor();
+          displayStatus();
+        }
+
+        // 新对话
+        void operaterServiceAgent_NewChat(object sender, OperatorServiceInterface.NewChatEventArgs e)
+        {
+           // operaterServiceAgent.Chats.Add(e.Chat);
+            changeVisitorListViewItemColor();
+            displayStatus();
+        }
+
+        // 新访客
+        void operaterServiceAgent_NewVisiting(object sender, OperatorServiceInterface.NewVisitingEventArgs e)
+        {
+            
+             //operaterServiceAgent.Visitors.Add(e.Visitor);
+             //processNewVisitor(e.Visitor);
+             //processVisitSessionChange(e.Session);
+             //changeVisitorListViewItemColor();
+             //displayStatus();
+        }
+
+        // 对话状态改变
+        void operaterServiceAgent_ChatStatusChanged(object sender, OperatorServiceInterface.ChatStatusChangedEventArgs e)
+        {
+            //operaterServiceAgent.Chats;
+            //e.ChatId;
+            //e.Status.
+            changeVisitorListViewItemColor();
+            displayStatus();
+        }
+
+        // 客服状态改变
+        void operaterServiceAgent_OperatorStatusChanged(object sender, OperatorServiceInterface.OperatorStatusChangeEventArgs e)
+        {
+        //    e.OperatorId;
+        //    e.Status;
+        //    operatorPannel1.RecieveOperator();
+
+        }
+
 
         //void operaterServiceAgent_ConnectionStateChanged(object sender, ConnectionStateChangeEventArgs e)
         //{
@@ -737,7 +815,7 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
 
-                List<LiveSupport.OperatorConsole.LiveChatWS.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, beginTime, endTime);
+                List<LiveSupport.LiveSupportModel.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, beginTime, endTime);
                 if (msg.Count > 0)
                 {
                     chatMessageViewerControl1.DataBindMessage(msg);
@@ -1201,8 +1279,10 @@ namespace LiveSupport.OperatorConsole
 
         private void operatorPannel1_Load(object sender, EventArgs e)
         {
-
+           
         }
+
+       
     }
 
     class VisitorListViewItem

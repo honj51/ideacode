@@ -121,7 +121,7 @@
             // 
             // operatorBindingSource
             // 
-            this.operatorBindingSource.DataSource = typeof(LiveSupport.OperatorConsole.LiveChatWS.Operator);
+            this.operatorBindingSource.DataSource = typeof(LiveSupport.LiveSupportModel.Operator);
             // 
             // accountNumberTextBox
             // 

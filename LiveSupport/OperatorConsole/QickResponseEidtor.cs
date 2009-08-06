@@ -5,9 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using LiveSupport.OperatorConsole.LiveChatWS;
 using System.Diagnostics;
 using System.Net;
+using LiveSupport.LiveSupportModel;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -102,7 +102,7 @@ namespace LiveSupport.OperatorConsole
                         if (Node.Nodes[i].Text == null) continue;
                         Contents[i] = Node.Nodes[i].Text;
                     }
-                    qrc.Responses = Contents;
+                    qrc.Responses = new List<string>(Contents);
 
                     Program.OperaterServiceAgent.QuickResponseCategory.Add(qrc);
                 }
@@ -128,7 +128,7 @@ namespace LiveSupport.OperatorConsole
                 for (int i = 0; i < qcs.Count; i++)
                 {
                     setTalkTreeView.Nodes.Add(qcs[i].Name);
-                    if (qcs[i].Responses.Length == 0) continue;
+                    if (qcs[i].Responses.Count == 0) continue;
                     foreach (var item in qcs[i].Responses)
                     {
                         if (item.ToString() == "") continue;
