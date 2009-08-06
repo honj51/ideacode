@@ -7,12 +7,14 @@ using System.Runtime.Remoting.Messaging;
 using System.Security;
 using System.Security.Permissions;
 using System.Configuration;
+using System.Threading;
 
 namespace LiveSupport.BLL.Remoting
 {
-    public class OperatorServer : MarshalByRefObject, IOperatorServer
+    public class OperatorServer : IOperatorServer
     {
-        
+        private SocketHandler sh;
+        private Thread socketHandlingThread;
         private AuthenticateData AuthenticateData
         {
             [PermissionSet(SecurityAction.LinkDemand)]
@@ -292,5 +294,39 @@ namespace LiveSupport.BLL.Remoting
             throw new NotImplementedException();
         }
 
+
+        #region IOperatorServer 成员
+
+
+        public void Start()
+        {
+            socketHandlingThread = new Thread(new ThreadStart(delegate()
+            {
+                sh = new SocketHandler();
+                sh.DataArrive += new EventHandler<DataArriveEventArgs>(sh_DataArrive);
+                sh.Listen();
+
+            }));
+            socketHandlingThread.Start();
+        }
+
+        public void Stop()
+        {
+            socketHandlingThread.Abort();
+        }
+
+        #endregion
+
+        static void sh_DataArrive(object sender, DataArriveEventArgs e)
+        {
+            if (e.Data.GetType() == typeof(LoginAction))
+            {
+                sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs("123", LiveSupport.LiveSupportModel.OperatorStatus.Idle));
+            }
+            else if (e.Data.GetType() == typeof(LogoutAction))
+            {
+
+            }
+        }
     }
 }
