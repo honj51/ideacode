@@ -321,7 +321,7 @@ namespace LiveSupport.BLL.Remoting
         {
             if (e.Data.GetType() == typeof(LoginAction))
             {
-                sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs("123", LiveSupport.LiveSupportModel.OperatorStatus.Idle));
+            // sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs("123", LiveSupport.LiveSupportModel.OperatorStatus.Idle));
             }
             else if (e.Data.GetType() == typeof(LogoutAction))
             {
