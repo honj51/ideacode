@@ -25,6 +25,7 @@ public class ChatService
     public static event EventHandler<OperatorChatRequestAcceptedEventArgs> OperatorChatRequestAccepted; // 客服对话邀请被接受
     public static event EventHandler<OperatorChatRequestDeclinedEventArgs> OperatorChatRequestDeclined; // 客服对话邀请被拒绝
     public static event EventHandler<NewChatEventArgs> NewChat; // 新的对话
+
     public static event EventHandler<ChatStatusChangedEventArgs> ChatStatusChanged; // 对话状态改变
 
     public static event EventHandler<OperatorChatJoinInviteEventArgs> ChatJoinInvite;
@@ -232,7 +233,7 @@ public class ChatService
     }
 
     /// <summary>
-    /// 客服接受对话请求
+    /// 客服接受访客对话请求
     /// </summary>
     /// <param name="operatorId"></param>
     /// <param name="chatId"></param>
@@ -384,6 +385,8 @@ public class ChatService
             {
                 OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
             }
+            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId, chat.VisitorId);//tao
+            OperatorChatRequestDeclined(null, new OperatorChatRequestDeclinedEventArgs(opq));//tao
         }
         else
         {
@@ -408,6 +411,8 @@ public class ChatService
             VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitorById(chat.VisitorId).CurrentSessionId); 
             s.Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
             s.ChatingTime = DateTime.Now;
+            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId,chat.VisitorId);//tao
+            OperatorChatRequestAccepted(null,new OperatorChatRequestAcceptedEventArgs(opq));        //tao
         }
         SendMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
         SendMessage(new Message(chat.ChatId, "您已接受对话邀请!", MessageType.SystemMessage_ToVisitor));
