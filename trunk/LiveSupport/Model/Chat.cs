@@ -111,7 +111,6 @@ namespace LiveSupport.LiveSupportModel
         public Chat()
         {
             createTime = DateTime.Now;
-            lastCheckTime = DateTime.Now;
             chatId = Guid.NewGuid().ToString();
             status = ChatStatus.Closed;
         }
