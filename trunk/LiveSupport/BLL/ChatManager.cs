@@ -4,6 +4,7 @@ using System.Text;
 using LiveSupport.LiveSupportDAL.Providers;
 using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
+using System.Collections;
 
 namespace LiveSupport.BLL
 {
@@ -50,5 +51,74 @@ namespace LiveSupport.BLL
         }
         #endregion
 
+        #region 通过公司编号获取所有对话
+        public static int[] GetAllChatByAccountId(string accountId, string beginDate, string endDate)
+        {
+            List<Chat> chatList = Provider.GetAllChatByAccountId(accountId, beginDate, endDate);
+            int[] hour = new int[24];
+            if (chatList.Count > 0)
+            {
+                //遍历对话集合
+                for (int i = 0; i < chatList.Count; i++)
+                {
+                    for (int j = 0; j < 23; j++)
+                    {
+                        int count = 0;
+                        if (chatList[i].CreateTime.Hour == j)
+                        {
+                            count++;
+                            hour[j] = hour[j] + count;
+                            break;
+                        }
+                    }
+                }
+                return hour;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        #endregion
+
+
+        #region 通过公司编号获取所有对话统计客服对话数
+        public static Hashtable GetOperatorChatByAccountId(string accountId, string beginDate, string endDate)
+        {
+            List<Chat> chatList = Provider.GetAllChatByAccountId(accountId, beginDate, endDate);
+            Hashtable operatorTable = new Hashtable();
+            if (chatList.Count > 0)
+            {
+                //获得所有客服
+                List<Operator> operatorList=OperatorsManager.GetOperatorByAccountId(accountId);
+                if (operatorList.Count > 0)
+                {
+                    //遍历客服集合
+                    for (int j = 0; j < operatorList.Count; j++)
+                    {
+                        int count = 0;
+                        for (int i = 0; i < chatList.Count; i++)
+                        {
+                            if (chatList[i].OperatorId == operatorList[j].OperatorId)
+                            {
+                                count++;
+                            }
+                        }
+                        operatorTable.Add(operatorList[j].NickName, count);
+                    }
+                    return operatorTable;
+                }
+                return null;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        #endregion
+
+        
     }
 }
