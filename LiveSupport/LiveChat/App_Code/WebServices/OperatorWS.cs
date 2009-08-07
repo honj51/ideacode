@@ -424,5 +424,13 @@ public class OperatorWS : System.Web.Services.WebService
         checkAuthentication();
         return LiveSupport.BLL.LeaveWordManager.DelLeaveWordById(id);
     }
+
+    [SoapHeader("Authentication", Required = true)]
+    [WebMethod]
+    public List<Operator> GetAllOperators()
+    {
+        checkAuthentication();
+        return OperatorService.GetAllOperators();
+    }
    
 }
