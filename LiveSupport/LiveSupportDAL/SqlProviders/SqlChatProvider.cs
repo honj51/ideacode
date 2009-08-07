@@ -58,6 +58,15 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
         }
         #endregion
 
+        #region 通过公司编号获取所有对话
+        public List<Chat> GetAllChatByAccountId(string accountId, string beginDate, string endDate)
+        {
+            string sql = string.Format("select * from LiveChat_Chat where accountId='{0}' and CreateTime>='{1}' and CreateTime<='{2}' order by CreateTime desc", accountId, beginDate, endDate);
+            List<Chat> list = GetChatBySql(sql);
+            return list;
+        }
+        #endregion
+
         #region 通过公司编号获取当前对话
         public List<Chat> GetChatByAccountId(string accountId,string status)
         {
@@ -136,5 +145,6 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
             }
         }
         #endregion
+
     }
 }

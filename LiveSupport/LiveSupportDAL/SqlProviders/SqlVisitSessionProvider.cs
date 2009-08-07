@@ -4,6 +4,7 @@ using System.Text;
 using LiveSupport.LiveSupportModel;
 using System.Data.SqlClient;
 using LiveSupport.LiveSupportDAL.Providers;
+using System.Data;
 
 namespace LiveSupport.LiveSupportDAL.SqlProviders
 {
@@ -71,5 +72,78 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
            
         }
 
+
+        #region 通过公司编号获取所有访客对话
+        public List<VisitSession> GetAllVisitSessionByAccountId(string accountId, string beginDate, string endDate)
+        {
+            string sql = string.Format("select * from LiveChat_VisitSession where VisitingTime>='{0}' and VisitingTime<='{1}' and VisitorId in (select VisitorId from LiveChat_Visitor where AccountId='{2}')", beginDate,endDate,accountId);
+            List<VisitSession> li = new List<VisitSession>();
+            using (SqlDataReader r = DBHelper.GetReader(sql))
+            {
+                while (r.Read())
+                {
+                    li.Add(new VisitSession(r));
+
+                }
+                return li;
+            }
+        }
+        #endregion
+
+        #region 通过公司编号获得对话地区以及访问次数 成员
+        public Dictionary<string, int> GetLocationCountByAccountId(string accountId, string beginDate, string endDate)
+        {
+            string sql = string.Format("select count(*) as lcount,location from LiveChat_VisitSession where VisitingTime>='{0}' and VisitingTime<='{1}' and VisitorId in (select VisitorId from LiveChat_Visitor where AccountId='{2}') group by location ",beginDate,endDate, accountId);
+            using (SqlDataReader sdr = DBHelper.GetReader(sql))
+            {
+                Dictionary<string, int> dic = new Dictionary<string, int>();
+                while (sdr.Read())
+                {
+                    if (sdr["Location"] != null && sdr["lcount"] != null)
+                    {
+                        dic.Add(sdr["Location"] + "", (int)sdr["lcount"]);
+                    }
+                }
+                return dic;
+            }
+        }
+        #endregion
+
+
+
+        #region 通过公司编号统计引用页
+        public Dictionary<string, int> GetReferrerByAccountId(string accountId, string beginDate, string endDate)
+        {
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            using(SqlConnection conn=DBHelper.Getconn())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("Proc_ReferrerStatistic", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@accountId ", SqlDbType.VarChar, 50).Value = accountId;
+                cmd.Parameters.Add("@beginTime ", SqlDbType.VarChar, 50).Value = beginDate;
+                cmd.Parameters.Add("@endTime ", SqlDbType.VarChar, 50).Value = endDate;
+                SqlDataReader sdr=cmd.ExecuteReader();
+                int sumCount = 0;
+                int referrerCount = 0;
+                while (sdr.Read())
+                {
+                    if (sdr["Rcount"] != null && sdr["Referrer"] != null && sdr["sumCount"]!=null)
+                    {
+                        dic.Add(sdr["Referrer"].ToString(),(int)sdr["Rcount"]);
+                        sumCount = (int)sdr["sumCount"];
+                        referrerCount = referrerCount + (int)sdr["Rcount"];
+                    }
+                }
+                sdr.Close();
+                if (sumCount != 0)
+                {
+                    int otherCount = sumCount - referrerCount;
+                    dic.Add("其他", otherCount);
+                }
+                return dic;
+            }
+        }
+        #endregion
     }
 }
