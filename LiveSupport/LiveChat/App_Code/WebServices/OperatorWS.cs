@@ -432,5 +432,6 @@ public class OperatorWS : System.Web.Services.WebService
         checkAuthentication();
         return OperatorService.GetAllOperators(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId);
     }
+
    
 }
