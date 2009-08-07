@@ -19,7 +19,7 @@ namespace OperatorServiceInterface
             Socket = socket;
         }
     }
-
+    //
     public class SocketHandler
     {
         private const int LocalPort = 3333;
@@ -27,7 +27,7 @@ namespace OperatorServiceInterface
 
         public event EventHandler<DataArriveEventArgs> DataArrive;
 
-        public delegate void CallbackHandler(object cmd, Socket s);
+        public delegate void CallbackHandler(object cmd, Socket s);//封装命名或匿名方法的引用类型
         public CallbackHandler OnDataArrive;
 
         private void OnAccept(IAsyncResult ar)
@@ -128,7 +128,7 @@ namespace OperatorServiceInterface
             listener.BeginAccept(new AsyncCallback(OnAccept), listener);
             return listener;
         }
-
+        //发送socket
         public void SendPacket(Socket s, object obj)
         {
             lock (s)
