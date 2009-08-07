@@ -22,7 +22,7 @@
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
         "OutputFilename" = "8:Debug\\LiveChatServerInstaller.msi"
-        "PackageFilesAs" = "3:1"
+        "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
         "Compression" = "3:2"
@@ -192,7 +192,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:LiveChatServerInstaller"
         "ProductCode" = "8:{7B29B861-7446-4955-B575-D23BBB5DF7FA}"
-        "PackageCode" = "8:{85E33877-43AA-4B1A-BA5D-D5F392DF323A}"
+        "PackageCode" = "8:{77C7EA68-377A-48BE-A497-2718684BDCE3}"
         "UpgradeCode" = "8:{E04A7A59-B555-463C-BB47-7F591D494550}"
         "RestartWWWService" = "11:TRUE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -641,6 +641,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1516625C09904489A2FEE30B3FE13FA0"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3A42B6C8665E48DF8DD8D0375577E35E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:ContentFiles"
+            "OutputProjectGuid" = "8:{C4903BEF-9491-492A-AC4A-8244790DAFE3}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
         }
     }
 }
