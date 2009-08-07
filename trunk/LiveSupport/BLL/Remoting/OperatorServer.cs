@@ -61,7 +61,10 @@ namespace LiveSupport.BLL.Remoting
             List<Socket> ss = new List<Socket>();
             foreach (var item in GetOnlineOperatorSockets(visitor.AccountId))
             {
-                sh.SendPacket(item, e);
+                if (item.Connected)
+                {
+                    sh.SendPacket(item, e);
+                }
             }
         }
 

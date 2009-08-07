@@ -279,8 +279,11 @@ public class ChatService
             s.OperatorId = operatorId;
             s.Status = VisitSessionStatus.Chatting;
             s.ChatingTime = DateTime.Now;
-            
-            
+
+            if (VisitorChatRequestAccepted != null)
+            {
+                VisitorChatRequestAccepted(null, new VisitorChatRequestAcceptedEventArgs(new VisitorChatRequestEventArgs(chat.VisitorId, chat)));
+            }
 
             return AcceptChatRequestReturn_OK;
         }
