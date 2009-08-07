@@ -130,9 +130,11 @@ namespace OperatorServiceInterface
     public class OperatorChatRequestEventArgs : VisitorChatRequestEventArgs
     {
         public string OperatorId;
-        public OperatorChatRequestEventArgs(string operatorId, string visitorId)
-            :base(visitorId)
+        public Chat Chat;
+        public OperatorChatRequestEventArgs(string operatorId, string visitorId,Chat chat)
+            : base(visitorId, chat)
         {
+            this.Chat = chat;
             this.OperatorId = operatorId;
         }
     }
@@ -164,10 +166,12 @@ namespace OperatorServiceInterface
     {
         public string VisitorId;
         public Guid RequestId;
-        public VisitorChatRequestEventArgs(string visitorId)
+        public Chat Chat;
+        public VisitorChatRequestEventArgs(string visitorId,Chat chat)
         {
             this.VisitorId = visitorId;
             this.RequestId = Guid.NewGuid();
+            this.Chat = chat;
         }
     }
      
