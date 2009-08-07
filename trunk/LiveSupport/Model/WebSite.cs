@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LiveSupport.LiveSupportModel
 {
+    [Serializable]
     public class WebSite
     {
         public WebSite()

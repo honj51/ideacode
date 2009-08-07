@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LiveSupport.LiveSupportModel
 {
+    [Serializable]
     public class QuickResponseCategory
     {
         public int QuickId;

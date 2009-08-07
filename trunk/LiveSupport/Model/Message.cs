@@ -12,7 +12,7 @@ namespace LiveSupport.LiveSupportModel
     }
 
     //public enum MessageDirection
-
+    [Serializable]
     public class Message
     {
         public static bool FromSystem(Message m) { return m.Type == MessageType.SystemMessage_ToBoth || m.Type == MessageType.SystemMessage_ToOperator || m.Type == MessageType.SystemMessage_ToVisitor; }
