@@ -41,6 +41,28 @@ namespace LiveSupport.BLL.Remoting
             ChatService.ChatStatusChanged += new EventHandler<ChatStatusChangedEventArgs>(ChatService_ChatStatusChanged);//对话状态改变
             ChatService.VisitorChatRequest += new EventHandler<VisitorChatRequestEventArgs>(ChatService_VisitorChatRequest);//访客请求对话
             ChatService.VisitorChatRequestAccepted += new EventHandler<VisitorChatRequestAcceptedEventArgs>(ChatService_VisitorChatRequestAccepted);//访客请求对话被接受
+            VisitSessionService.NewVisiting += new EventHandler<NewVisitingEventArgs>(VisitSessionService_NewVisiting);
+            VisitSessionService.VisitorLeave += new EventHandler<VisitorLeaveEventArgs>(VisitSessionService_VisitorLeave);
+        }
+
+        void VisitSessionService_VisitorLeave(object sender, VisitorLeaveEventArgs e)
+        {
+            Visitor visitor = VisitorService.GetVisitorById(e.VisitorId);
+            List<Socket> ss = new List<Socket>();
+            foreach (var item in GetOnlineOperatorSockets(visitor.AccountId))
+            {
+                sh.SendPacket(item, e);
+            }
+        }
+
+        void VisitSessionService_NewVisiting(object sender, NewVisitingEventArgs e)
+        {
+            Visitor visitor = VisitorService.GetVisitorById(e.Visitor.VisitorId);
+            List<Socket> ss = new List<Socket>();
+            foreach (var item in GetOnlineOperatorSockets(visitor.AccountId))
+            {
+                sh.SendPacket(item, e);
+            }
         }
 
         #region 事件处理
