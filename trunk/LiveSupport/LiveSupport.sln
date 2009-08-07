@@ -25,7 +25,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Portal", "Portal\", "{92ECF
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "4487"
+		VWDPort = "9893"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C4903BEF-9491-492A-AC4A-8244790DAFE3}"
@@ -34,7 +34,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LiveChat", "LiveChat\", "{C
 		SccAuxPath = "Svn"
 		SccLocalPath = "Svn"
 		SccProvider = "SubversionScc"
-		TargetFramework = "2.0"
+		TargetFramework = "3.5"
 		ProjectReferences = "{7C3330D8-935E-4808-8803-6CE5A46D6F90}|LiveSupport.BLL.dll;{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}|Model.dll;{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}|LiveSupportDAL.dll;{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}|OperatorServiceInterface.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/LiveChat"
 		Debug.AspNetCompiler.PhysicalPath = "LiveChat\"
@@ -77,6 +77,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorServiceInterface", "OperatorServiceInterface\OperatorServiceInterface.csproj", "{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IC.AutoUpdate", "Common\IC.AutoUpdate\IC.AutoUpdate.csproj", "{879EC6E1-0BC0-4198-805D-950B2C4EFC41}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LiveChatServerInstaller", "LiveChatServerInstaller\LiveChatServerInstaller.vdproj", "{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -221,6 +223,12 @@ Global
 		{879EC6E1-0BC0-4198-805D-950B2C4EFC41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{879EC6E1-0BC0-4198-805D-950B2C4EFC41}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{879EC6E1-0BC0-4198-805D-950B2C4EFC41}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Debug|.NET.ActiveCfg = Debug
+		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Debug|Any CPU.ActiveCfg = Debug
+		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Release|.NET.ActiveCfg = Release
+		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Release|Any CPU.ActiveCfg = Release
+		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Release|Mixed Platforms.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
