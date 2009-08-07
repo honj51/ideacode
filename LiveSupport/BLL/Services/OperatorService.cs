@@ -98,6 +98,20 @@ public static class OperatorService
         return operators;
     }
 
+    public static List<Operator> GetAllOperators(string accountId) 
+    {
+        List<Operator> operators = new List<Operator>();
+        foreach (var item in operators)
+        {
+            if (item.AccountId == accountId)
+            {
+                operators.Add(item);
+            }
+        }
+        return operators;
+    
+    }
+
     public static void Init()
     {
         GetOperatorsFromDB();        
