@@ -12,6 +12,10 @@ namespace OperatorServiceInterface
     public class LoginAction
     {
         public string OperatorId;
+        public LoginAction(string operatorId)
+        {
+            OperatorId = operatorId;
+        }
     }
 
     [Serializable]
