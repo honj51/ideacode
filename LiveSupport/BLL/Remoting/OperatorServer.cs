@@ -432,7 +432,13 @@ namespace LiveSupport.BLL.Remoting
             if (e.Data.GetType() == typeof(LoginAction))
             {
                 LoginAction action = e.Data as LoginAction;
-                operatorSocketMap.Add(action.OperatorId, e.Socket);
+                if (operatorSocketMap.ContainsKey(action.OperatorId))
+                {
+                    operatorSocketMap[action.OperatorId] = e.Socket;
+                }
+                else
+                    operatorSocketMap.Add(action.OperatorId, e.Socket);
+
                 sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs("123", LiveSupport.LiveSupportModel.OperatorStatus.Idle));
             }
             else if (e.Data.GetType() == typeof(LogoutAction))
