@@ -12,6 +12,9 @@ using LiveSupport.LiveSupportModel;
 using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
+using LiveSupport.BLL.Remoting;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace OperatorRemotingClient
 {
@@ -22,7 +25,21 @@ namespace OperatorRemotingClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClientForm());
+            //Application.Run(new ClientForm());
+            SocketHandler sh = new SocketHandler();
+            sh.DataArrive += new EventHandler<DataArriveEventArgs>(sh_DataArrive);
+            
+            Socket s = sh.Connect("127.0.0.1");
+            sh.SendPacket(s, new OperatorServiceInterface.LoginAction("111"));
+            while (true)
+            {
+                Thread.Sleep(1000);
+            }
+        }
+
+        static void sh_DataArrive(object sender, DataArriveEventArgs e)
+        {
+            Console.WriteLine("Recv: "+ e.Data.ToString());
         }
     }
 }
