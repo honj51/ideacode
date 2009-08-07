@@ -87,7 +87,7 @@ namespace OperatorServiceInterface
                         BinaryFormatter formatter = new BinaryFormatter();
                         so.data.Position = 0;
                         object obj = formatter.Deserialize(so.data);
-                        if (DataArrive != null)
+                        if (DataArrive != null && obj != null)
                         {
                             DataArrive(this, new DataArriveEventArgs(obj, s));
                         }
