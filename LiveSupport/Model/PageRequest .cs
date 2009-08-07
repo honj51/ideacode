@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 
 namespace LiveSupport.LiveSupportModel
 {
+    [Serializable]
     public class PageRequest
     {
         private string accountId;

@@ -7,6 +7,7 @@ namespace LiveSupport.LiveSupportModel
     /// <summary>
     /// 版本信息
     /// </summary>
+    [Serializable]
     public class SystemAdvertise
     {
         public string AdvertiseUrl;

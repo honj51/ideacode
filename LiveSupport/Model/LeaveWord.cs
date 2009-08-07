@@ -8,6 +8,7 @@ namespace LiveSupport.LiveSupportModel
     /// <summary>
     /// 浏览者留言实体类
     /// </summary>
+        [Serializable]
     public class LeaveWord
     {
         private string id; //留言编号
