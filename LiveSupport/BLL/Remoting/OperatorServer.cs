@@ -8,13 +8,18 @@ using System.Security;
 using System.Security.Permissions;
 using System.Configuration;
 using System.Threading;
+using System.Net.Sockets;
 
 namespace LiveSupport.BLL.Remoting
 {
     public class OperatorServer : IOperatorServer
     {
+        // TODO : Socket 调用异常处理
+        // TODO : Operator 离线，断线后需处理 operatorSocketMap
+        private Dictionary<string, Socket> operatorSocketMap = new Dictionary<string, Socket>(); //客户端和服服务器连接例表
         private SocketHandler sh;
         private Thread socketHandlingThread;
+
         private AuthenticateData AuthenticateData
         {
             [PermissionSet(SecurityAction.LinkDemand)]
@@ -27,59 +32,148 @@ namespace LiveSupport.BLL.Remoting
         public OperatorServer()
         {
             Console.WriteLine("HelloServer activated");
-            OperatorService.OperatorStatusChange += new EventHandler<OperatorStatusChangeEventArgs>(OperatorService_OperatorStatusChange);
-            ChatService.NewChat += new EventHandler<NewChatEventArgs>(ChatService_NewChat);
-            ChatService.NewMessage += new EventHandler<ChatMessageEventArgs>(ChatService_NewMessage);
-            ChatService.OperatorChatRequest += new EventHandler<OperatorChatRequestEventArgs>(ChatService_OperatorChatRequest);
-            ChatService.OperatorChatRequestAccepted += new EventHandler<OperatorChatRequestAcceptedEventArgs>(ChatService_OperatorChatRequestAccepted);
-            ChatService.OperatorChatRequestDeclined += new EventHandler<OperatorChatRequestDeclinedEventArgs>(ChatService_OperatorChatRequestDeclined);
-            ChatService.ChatStatusChanged += new EventHandler<ChatStatusChangedEventArgs>(ChatService_ChatStatusChanged);
-            ChatService.VisitorChatRequest += new EventHandler<VisitorChatRequestEventArgs>(ChatService_VisitorChatRequest);
-            ChatService.VisitorChatRequestAccepted += new EventHandler<VisitorChatRequestAcceptedEventArgs>(ChatService_VisitorChatRequestAccepted);
+            OperatorService.OperatorStatusChange += new EventHandler<OperatorStatusChangeEventArgs>(OperatorService_OperatorStatusChange);//客服状态改变
+            ChatService.NewChat += new EventHandler<NewChatEventArgs>(ChatService_NewChat);//新的对话
+            ChatService.NewMessage += new EventHandler<ChatMessageEventArgs>(ChatService_NewMessage);//有一条新消息
+            ChatService.OperatorChatRequest += new EventHandler<OperatorChatRequestEventArgs>(ChatService_OperatorChatRequest);//客服主动邀请
+            ChatService.OperatorChatRequestAccepted += new EventHandler<OperatorChatRequestAcceptedEventArgs>(ChatService_OperatorChatRequestAccepted);//客服请求对话被接受
+            ChatService.OperatorChatRequestDeclined += new EventHandler<OperatorChatRequestDeclinedEventArgs>(ChatService_OperatorChatRequestDeclined);//客服请求对话被拒绝
+            ChatService.ChatStatusChanged += new EventHandler<ChatStatusChangedEventArgs>(ChatService_ChatStatusChanged);//对话状态改变
+            ChatService.VisitorChatRequest += new EventHandler<VisitorChatRequestEventArgs>(ChatService_VisitorChatRequest);//访客请求对话
+            ChatService.VisitorChatRequestAccepted += new EventHandler<VisitorChatRequestAcceptedEventArgs>(ChatService_VisitorChatRequestAccepted);//访客请求对话被接受
         }
 
         #region 事件处理
-        void ChatService_VisitorChatRequestAccepted(object sender, VisitorChatRequestAcceptedEventArgs e)
+        /// <summary>
+        /// 访客接受某客服的对话 to-all
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ChatService_VisitorChatRequestAccepted(object sender, VisitorChatRequestAcceptedEventArgs e)//tao-no
         {
-            throw new NotImplementedException();
+            Visitor visitor = VisitorService.GetVisitorById(e.VisitorChatRequest.VisitorId);
+            List<Socket> ss = new List<Socket>();
+            foreach (var item in  GetOnlineOperatorSockets(visitor.AccountId))
+            {
+                sh.SendPacket(item,e);
+            }
         }
-
+        /// <summary>
+        /// 访客请请求 to-all
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ChatService_VisitorChatRequest(object sender, VisitorChatRequestEventArgs e)
         {
-            throw new NotImplementedException();
+            Visitor v = VisitorService.GetVisitorById(e.VisitorId);
+            if (v != null)
+            {
+                List<Socket> sockets = GetOnlineOperatorSockets(v.AccountId);
+                foreach (var item in sockets)
+                {
+                    sh.SendPacket(item, new VisitorChatRequestEventArgs(e.VisitorId));
+                }
+            }
         }
-
+        /// <summary>
+        /// 跟据公司ID获取当前在线的客服例表
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        private List<Socket> GetOnlineOperatorSockets(string accountId)
+        {
+            List<Socket> ss = new List<Socket>();
+            foreach (var item in OperatorService.GetAllOperatorsByAccountId(accountId))
+            {
+                if (operatorSocketMap.ContainsKey(item.OperatorId))
+                {
+                    ss.Add(operatorSocketMap[item.OperatorId]);
+                }
+            }
+            return ss;
+        }
+        /// <summary>
+        /// chat的状态改变发  to -all -operator
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ChatService_ChatStatusChanged(object sender, ChatStatusChangedEventArgs e)
         {
-                throw new NotImplementedException();
+             Chat chat=ChatService.GetChatById(e.ChatId);
+             foreach (var item in GetOnlineOperatorSockets(chat.AccountId))
+             {
+                 sh.SendPacket(item, e);
+             }
         }
-
-        void ChatService_OperatorChatRequestDeclined(object sender, OperatorChatRequestDeclinedEventArgs e)
+        /// <summary>
+        /// 客服主动邀请被拒决 to-all
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ChatService_OperatorChatRequestDeclined(object sender, OperatorChatRequestDeclinedEventArgs e)//tao-ok
         {
-            throw new NotImplementedException();
+            Operator op = OperatorService.GetOperatorById(e.ChatRequest.OperatorId);
+            foreach (var item in GetOnlineOperatorSockets(op.AccountId))
+            {
+                sh.SendPacket(item, e);
+            }
         }
-
-        void ChatService_OperatorChatRequestAccepted(object sender, OperatorChatRequestAcceptedEventArgs e)
+        /// <summary>
+        /// 客服主动请邀请被接受 to-all
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ChatService_OperatorChatRequestAccepted(object sender, OperatorChatRequestAcceptedEventArgs e)//wang-ok
         {
-            throw new NotImplementedException();
+            Operator op = OperatorService.GetOperatorById(e.ChatRequest.OperatorId);
+            foreach (var item in GetOnlineOperatorSockets(op.AccountId))
+            {
+                sh.SendPacket(item, e);
+            }
         }
-
-        void ChatService_OperatorChatRequest(object sender, OperatorChatRequestEventArgs e)
+        /// <summary>
+        /// 客脑主动邀请 to-all
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ChatService_OperatorChatRequest(object sender, OperatorChatRequestEventArgs e)//wang-ok
         {
-            throw new NotImplementedException();
+            Operator op = OperatorService.GetOperatorById(e.OperatorId);
+            foreach (var item in GetOnlineOperatorSockets(op.AccountId))
+            {
+                sh.SendPacket(item, e);
+            }
         }
-
-        void ChatService_NewMessage(object sender, ChatMessageEventArgs e)
+        /// <summary>
+        /// 有一条新消息 to-1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ChatService_NewMessage(object sender, ChatMessageEventArgs e)//tao-ok
         {
-            throw new NotImplementedException();
+            Chat chat=ChatService.GetChatById(e.Message.ChatId);
+            if (chat != null)
+            {
+                if (operatorSocketMap.ContainsKey(chat.OperatorId))
+                {
+                    sh.SendPacket(operatorSocketMap[chat.OperatorId], e);
+                }
+            }
         }
-
+        /// <summary>
+        /// 有一个新对话 to-all
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ChatService_NewChat(object sender, NewChatEventArgs e)
         {
-            throw new NotImplementedException();
+            foreach (var item in GetOnlineOperatorSockets(e.Chat.AccountId))
+            {
+                sh.SendPacket(item, e);
+            }
         }
 
-        void OperatorService_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)
+        void OperatorService_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)//wang 
         {
             safeFireEvent(OperatorStatusChange, e);
         }
@@ -87,7 +181,7 @@ namespace LiveSupport.BLL.Remoting
 
         #region IOperatorServer 成员
 
-        private void safeFireEvent(Delegate del, EventArgs args)
+        private void safeFireEvent(Delegate del, EventArgs args)//wang-
         {
             if (del != null)
             {
@@ -289,6 +383,7 @@ namespace LiveSupport.BLL.Remoting
                 throw new AccessViolationException("CheckAuthentication Failed, Operator:" + AuthenticateData.OperatorId + " not online");
             }
         }
+
         public bool IsTyping(string chatId, bool isOperator)
         {
             throw new NotImplementedException();
@@ -310,23 +405,25 @@ namespace LiveSupport.BLL.Remoting
             socketHandlingThread.Start();
         }
 
-        public void Stop()
-        {
-            socketHandlingThread.Abort();
-        }
-
-        #endregion
-
-        static void sh_DataArrive(object sender, DataArriveEventArgs e)
+        void sh_DataArrive(object sender, DataArriveEventArgs e)
         {
             if (e.Data.GetType() == typeof(LoginAction))
             {
-            // sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs("123", LiveSupport.LiveSupportModel.OperatorStatus.Idle));
+                LoginAction action = e.Data as LoginAction;
+                operatorSocketMap.Add(action.OperatorId, e.Socket);
+                sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs("123", LiveSupport.LiveSupportModel.OperatorStatus.Idle));
             }
             else if (e.Data.GetType() == typeof(LogoutAction))
             {
 
             }
         }
+
+        public void Stop()
+        {
+            socketHandlingThread.Abort();
+        }
+
+        #endregion
     }
 }
