@@ -13,7 +13,8 @@
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);
         myTimer.Enabled = true;
         ChatService.ChatTempDataDir = Server.MapPath("~/UploadFile/");
-        LiveSupport.BLL.Remoting.TcpServerTest.Main(); 
+        LiveSupport.BLL.Remoting.OperatorServer server = new LiveSupport.BLL.Remoting.OperatorServer();
+        server.Start();
     }
 
     void myTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
