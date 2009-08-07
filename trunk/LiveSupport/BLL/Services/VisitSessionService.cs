@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using LiveSupport.LiveSupportDAL.Providers;
 using LiveSupport.BLL.Exceptions;
+using OperatorServiceInterface;
 /// <summary>
 ///VisitSessionService 的摘要说明
 /// </summary>
@@ -38,6 +39,10 @@ public class VisitSessionService
     {
         return sessions;
     }
+
+    public static event EventHandler<NewVisitingEventArgs> NewVisiting; //访客
+    public static event EventHandler<VisitorLeaveEventArgs> VisitorLeave; // 访客离开 
+
     /// <summary>
     /// 保存一条新访客会话
     /// </summary>
@@ -54,6 +59,11 @@ public class VisitSessionService
         sessions.Add(new VisitSessionHit(session));
         Provider.NewSession(session);
         //
+        if (NewVisiting != null)
+        {
+            NewVisiting(null, new NewVisitingEventArgs(VisitorService.GetVisitorById(session.VisitorId), session));
+        }
+
         if (sessions.Count > MaxVisitorSessionCountInMemory)
         {
             for (int i = sessions.Count-1; i >= 0; i--)
@@ -136,6 +146,10 @@ public class VisitSessionService
                 
                 //VisitorService.GetVisitor(item.Session.VisitorId).CurrentSession = null;
                 Trace.WriteLine(string.Format("Session {0} Leave",item.Session.SessionId));
+                if (VisitorLeave != null)
+                {
+                    VisitorLeave(null, new VisitorLeaveEventArgs(item.Session.VisitorId));
+                }
             }
         }
     }
