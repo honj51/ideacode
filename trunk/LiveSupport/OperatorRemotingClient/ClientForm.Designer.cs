@@ -51,6 +51,10 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnAddoperator = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -216,10 +220,11 @@
             // 
             // txtMessages
             // 
-            this.txtMessages.Location = new System.Drawing.Point(12, 168);
+            this.txtMessages.Location = new System.Drawing.Point(12, 199);
             this.txtMessages.Multiline = true;
             this.txtMessages.Name = "txtMessages";
-            this.txtMessages.Size = new System.Drawing.Size(704, 215);
+            this.txtMessages.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtMessages.Size = new System.Drawing.Size(704, 184);
             this.txtMessages.TabIndex = 19;
             // 
             // textBox8
@@ -247,11 +252,55 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "发送消息";
             // 
+            // btnAddoperator
+            // 
+            this.btnAddoperator.Location = new System.Drawing.Point(370, 120);
+            this.btnAddoperator.Name = "btnAddoperator";
+            this.btnAddoperator.Size = new System.Drawing.Size(75, 23);
+            this.btnAddoperator.TabIndex = 23;
+            this.btnAddoperator.Text = "添加公司";
+            this.btnAddoperator.UseVisualStyleBackColor = true;
+            this.btnAddoperator.Click += new System.EventHandler(this.btnAddoperator_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(485, 120);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 24;
+            this.button9.Text = "客服登录";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(605, 121);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 25;
+            this.button10.Text = "客服登出";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(370, 150);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 26;
+            this.button11.Text = "增加客服";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 455);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.btnAddoperator);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.textBox8);
@@ -307,5 +356,9 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnAddoperator;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 }
