@@ -70,6 +70,8 @@ namespace LiveSupport.OperatorConsole
         //event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
         //event EventHandler<LeaveWordEventArgs> NewLeaveWords;
         event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
+        event EventHandler<OperatorsLoadCompletedEventArgs> OperatorsLoadCompleted;
+        event EventHandler<VisitorsLoadCompletedEventArgs> VisitorsLoadCompleted;
         #endregion
 
         #region 公开属性
@@ -85,6 +87,24 @@ namespace LiveSupport.OperatorConsole
         #endregion
     }
 
+    public class OperatorsLoadCompletedEventArgs : EventArgs
+    {
+        public List<Operator> Operators;
+        public OperatorsLoadCompletedEventArgs(List<Operator> operators)
+        {
+            this.Operators = operators;
+        }
+    }
+    public class VisitorsLoadCompletedEventArgs : EventArgs
+    {
+        public List<Visitor> Visitors;
+        public VisitorsLoadCompletedEventArgs(List<Visitor> visitors)
+        {
+            this.Visitors = visitors;
+        }
+    }
+
+    
     public class ConnectionStateChangeEventArgs : EventArgs
     {
         public string Message;

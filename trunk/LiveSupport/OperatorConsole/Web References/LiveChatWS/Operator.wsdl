@@ -644,13 +644,13 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetOperator">
+      <s:element name="GetAllOperators">
         <s:complexType />
       </s:element>
-      <s:element name="GetOperatorResponse">
+      <s:element name="GetAllOperatorsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetOperatorResult" type="tns:ArrayOfOperator" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllOperatorsResult" type="tns:ArrayOfOperator" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -899,13 +899,13 @@
   <wsdl:message name="DelLeaveWordByIdAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
-  <wsdl:message name="GetOperatorSoapIn">
-    <wsdl:part name="parameters" element="tns:GetOperator" />
+  <wsdl:message name="GetAllOperatorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllOperators" />
   </wsdl:message>
-  <wsdl:message name="GetOperatorSoapOut">
-    <wsdl:part name="parameters" element="tns:GetOperatorResponse" />
+  <wsdl:message name="GetAllOperatorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllOperatorsResponse" />
   </wsdl:message>
-  <wsdl:message name="GetOperatorAuthenticationHeader">
+  <wsdl:message name="GetAllOperatorsAuthenticationHeader">
     <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
   </wsdl:message>
   <wsdl:portType name="OperatorWSSoap">
@@ -1017,9 +1017,9 @@
       <wsdl:input message="tns:DelLeaveWordByIdSoapIn" />
       <wsdl:output message="tns:DelLeaveWordByIdSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetOperator">
-      <wsdl:input message="tns:GetOperatorSoapIn" />
-      <wsdl:output message="tns:GetOperatorSoapOut" />
+    <wsdl:operation name="GetAllOperators">
+      <wsdl:input message="tns:GetAllOperatorsSoapIn" />
+      <wsdl:output message="tns:GetAllOperatorsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="OperatorWSSoap" type="tns:OperatorWSSoap">
@@ -1294,11 +1294,11 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetOperator">
-      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperator" style="document" />
+    <wsdl:operation name="GetAllOperators">
+      <soap:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllOperators" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
-        <soap:header message="tns:GetOperatorAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+        <soap:header message="tns:GetAllOperatorsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -1577,11 +1577,11 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetOperator">
-      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperator" style="document" />
+    <wsdl:operation name="GetAllOperators">
+      <soap12:operation soapAction="http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllOperators" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
-        <soap12:header message="tns:GetOperatorAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+        <soap12:header message="tns:GetAllOperatorsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

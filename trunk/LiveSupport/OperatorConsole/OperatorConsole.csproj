@@ -393,31 +393,31 @@
     <None Include="Resources\PI Diagona Web Application 04 01.png" />
     <None Include="Resources\Profile.ico" />
     <None Include="Resources\ringout.wav" />
-    <None Include="Web References\LiveChatWS\Chat.datasource">
+    <None Include="Web References\LiveChatWS\Chat1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\LeaveWord.datasource">
+    <None Include="Web References\LiveChatWS\LeaveWord1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\Message.datasource">
+    <None Include="Web References\LiveChatWS\Message1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\NewChangesCheckResult.datasource">
+    <None Include="Web References\LiveChatWS\NewChangesCheckResult1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\Operator1.datasource">
+    <None Include="Web References\LiveChatWS\Operator.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\PageRequest.datasource">
+    <None Include="Web References\LiveChatWS\PageRequest1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\QuickResponseCategory.datasource">
+    <None Include="Web References\LiveChatWS\QuickResponseCategory1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\SystemAdvertise.datasource">
+    <None Include="Web References\LiveChatWS\SystemAdvertise1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\LiveChatWS\Visitor.datasource">
+    <None Include="Web References\LiveChatWS\Visitor1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>

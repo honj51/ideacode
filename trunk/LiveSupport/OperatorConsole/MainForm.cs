@@ -94,7 +94,7 @@ namespace LiveSupport.OperatorConsole
         //        changeVisitorListViewItemColor();
         //        displayStatus();
         //    }), e);
-            
+
         //}
 
         //void operaterServiceAgent_NewLeaveWords(object sender, LeaveWordEventArgs e)
@@ -121,7 +121,7 @@ namespace LiveSupport.OperatorConsole
         //                closedByUser = false;
         //                Application.Exit();
         //            }
-                    
+
         //        }
         //    }
         //}
@@ -174,11 +174,11 @@ namespace LiveSupport.OperatorConsole
             loadDomainName();
         }
 
-        private void LeaveWordNotReplied(List<LeaveWord> lwnr) 
+        private void LeaveWordNotReplied(List<LeaveWord> lwnr)
         {
             List<LeaveWord> lws = lwnr == null ? operaterServiceAgent.GetLeaveWord() : lwnr;
-            int num=0;
-            if (lws!=null)
+            int num = 0;
+            if (lws != null)
             {
                 foreach (LeaveWord item in lws)
                 {
@@ -186,7 +186,7 @@ namespace LiveSupport.OperatorConsole
                     {
                         num++;
                     }
-                } 
+                }
             }
             if (num == 0)
             {
@@ -194,9 +194,9 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                this.tabPage4.Text = "留言列表:(" + num+")";
+                this.tabPage4.Text = "留言列表:(" + num + ")";
                 tabChats.SelectedTab = tabPage4;
-                this.tabPage4.ToolTipText = "未回复留言数:" + num;  
+                this.tabPage4.ToolTipText = "未回复留言数:" + num;
             }
         }
 
@@ -230,7 +230,10 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.NewVisiting += new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
                 operaterServiceAgent.VisitorLeave += new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
                 operaterServiceAgent.VisitorChatRequest += new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
-                operaterServiceAgent.NewChat+=new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+                operaterServiceAgent.NewChat += new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+                operaterServiceAgent.VisitorChatRequestAccepted += new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
+                operaterServiceAgent.OperatorsLoadCompleted += new EventHandler<OperatorsLoadCompletedEventArgs>(operaterServiceAgent_OperatorsLoadCompleted);
+                operaterServiceAgent.VisitorsLoadCompleted += new EventHandler<VisitorsLoadCompletedEventArgs>(operaterServiceAgent_VisitorsLoadCompleted);
             }
             else
             {
@@ -239,35 +242,78 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.NewVisiting -= new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
                 operaterServiceAgent.VisitorLeave -= new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
                 operaterServiceAgent.VisitorChatRequest -= new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
-                operaterServiceAgent.NewChat-=new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+                operaterServiceAgent.NewChat -= new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+                operaterServiceAgent.VisitorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
+                operaterServiceAgent.OperatorsLoadCompleted -= new EventHandler<OperatorsLoadCompletedEventArgs>(operaterServiceAgent_OperatorsLoadCompleted);
+                operaterServiceAgent.VisitorsLoadCompleted -= new EventHandler<VisitorsLoadCompletedEventArgs>(operaterServiceAgent_VisitorsLoadCompleted);
+                
             }
         }
+
+        void operaterServiceAgent_VisitorsLoadCompleted(object sender, VisitorsLoadCompletedEventArgs e)
+        {
+            foreach (var item in e.Visitors)
+	         {
+              processNewVisitor(item);
+              changeVisitorListViewItemColor();
+              displayStatus();
+            } 
+           
+        }
+
+        void operaterServiceAgent_OperatorsLoadCompleted(object sender, OperatorsLoadCompletedEventArgs e)
+        {
+            operatorPannel1.RecieveOperator(e.Operators);
+        }
+
+        void operaterServiceAgent_VisitorChatRequestAccepted(object sender, OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorChatRequest.VisitorId);
+                visitor.CurrentSession.Status = VisitSessionStatus.Chatting;
+                processVisitSessionChange(visitor.CurrentSession);
+                changeVisitorListViewItemColor();
+                displayStatus();
+            }), e);
+        }
+
         // 访客请求对话
         void operaterServiceAgent_VisitorChatRequest(object sender, OperatorServiceInterface.VisitorChatRequestEventArgs e)
         {
-            Visitor visitor= operaterServiceAgent.GetVisitorById(e.VisitorId);
-            visitor.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
-            Chat chat = operaterServiceAgent.GetChatRequest(e.VisitorId);
-            processVisitSessionChange(visitor.CurrentSession);
-            NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", chat);
-            changeVisitorListViewItemColor();
-            displayStatus();
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+           {
+               Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorId);
+               visitor.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
+               processVisitSessionChange(visitor.CurrentSession);
+               operaterServiceAgent.Chats.Add(e.Chat);
+               NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", e.Chat);
+               changeVisitorListViewItemColor();
+               displayStatus();
+           }), e);
         }
 
         // 访客离开
         void operaterServiceAgent_VisitorLeave(object sender, OperatorServiceInterface.VisitorLeaveEventArgs e)
         {
-          Visitor visitor= operaterServiceAgent.GetVisitorById(e.VisitorId);
-          visitor.CurrentSession.Status = VisitSessionStatus.Leave;
-          processVisitSessionChange(visitor.CurrentSession);
-          changeVisitorListViewItemColor();
-          displayStatus();
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+           {
+               Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorId);
+               if (visitor == null)
+               {
+                   return;
+               }
+               visitor.CurrentSession.Status = VisitSessionStatus.Leave;
+               processVisitSessionChange(visitor.CurrentSession);
+               changeVisitorListViewItemColor();
+               displayStatus();
+           }), e);
         }
 
         // 新对话
         void operaterServiceAgent_NewChat(object sender, OperatorServiceInterface.NewChatEventArgs e)
         {
-           // operaterServiceAgent.Chats.Add(e.Chat);
+            // operaterServiceAgent.Chats.Add(e.Chat);
             changeVisitorListViewItemColor();
             displayStatus();
         }
@@ -275,53 +321,88 @@ namespace LiveSupport.OperatorConsole
         // 新访客
         void operaterServiceAgent_NewVisiting(object sender, OperatorServiceInterface.NewVisitingEventArgs e)
         {
-            
-             //operaterServiceAgent.Visitors.Add(e.Visitor);
-             //processNewVisitor(e.Visitor);
-             //processVisitSessionChange(e.Session);
-             //changeVisitorListViewItemColor();
-             //displayStatus();
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                processNewVisitor(e.Visitor);
+                processVisitSessionChange(e.Session);
+                changeVisitorListViewItemColor();
+                displayStatus();
+            }), e);
         }
 
         // 对话状态改变
         void operaterServiceAgent_ChatStatusChanged(object sender, OperatorServiceInterface.ChatStatusChangedEventArgs e)
         {
-            //operaterServiceAgent.Chats;
-            //e.ChatId;
-            //e.Status.
-            changeVisitorListViewItemColor();
-            displayStatus();
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                Chat chat= null;
+                    foreach (var item in operaterServiceAgent.Chats)
+                    {
+                        if (item.ChatId == e.ChatId)
+                        {
+                            item.Status = e.Status;
+                            chat = item;
+                        }
+                    }
+                    Visitor visitor = operaterServiceAgent.GetVisitorById(chat.VisitorId);
+                    if (chat.Status == ChatStatus.Closed)
+                    {
+                        visitor.CurrentSession.Status = VisitSessionStatus.Visiting;
+                        
+                    }
+                    if (chat.Status == ChatStatus.Requested)
+                    {
+                        visitor.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
+                    }
+                    if (chat.Status == ChatStatus.Accepted)
+                    {
+                        visitor.CurrentSession.Status = VisitSessionStatus.Chatting;
+                    }
+                    processVisitSessionChange(visitor.CurrentSession);
+                    changeVisitorListViewItemColor();
+                    displayStatus();
+            }), e);
         }
 
         // 客服状态改变
         void operaterServiceAgent_OperatorStatusChanged(object sender, OperatorServiceInterface.OperatorStatusChangeEventArgs e)
         {
-        //    e.OperatorId;
-        //    e.Status;
-        //    operatorPannel1.RecieveOperator();
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                List<Operator> listops = new List<Operator>();
+                for (int i = 0; i <operaterServiceAgent.Operators.Count; i++)
+                {
+                    if (operaterServiceAgent.Operators[i].OperatorId==e.OperatorId)
+                    {
+                        operaterServiceAgent.Operators[i].Status = e.Status;
+                    }
+                    listops.Add(operaterServiceAgent.Operators[i]);
+                }
+                operatorPannel1.RecieveOperator(listops);
+            }), e);
 
         }
 
 
-        //void operaterServiceAgent_ConnectionStateChanged(object sender, ConnectionStateChangeEventArgs e)
-        //{
-        //    this.Invoke(new UpdateUIDelegate(delegate(object obj)
-        //    {
-        //        ConnectionStateChangeEventArgs arg = obj as ConnectionStateChangeEventArgs;
-        //        if (arg.State == ConnectionState.Disconnected)
-        //        {
-        //            //this.Enabled = false;
-        //            connectionLost(arg.Message, arg.Status);
-        //        }
-        //        else if (arg.State == ConnectionState.Connected)
-        //        {
-        //            loginTimer.Enabled = true;
-        //            operaterServiceAgent.EnablePooling = true;
-        //            notifyIcon.Icon = Properties.Resources.Profile;
-        //            notifyIcon.Text = "网站客服 - "+"在线";
-        //        }
-        //    }), e);
-        //}
+        void operaterServiceAgent_ConnectionStateChanged(object sender, ConnectionStateChangeEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                ConnectionStateChangeEventArgs arg = obj as ConnectionStateChangeEventArgs;
+                if (arg.State == ConnectionState.Disconnected)
+                {
+                    //this.Enabled = false;
+                    connectionLost(arg.Message);
+                }
+                else if (arg.State == ConnectionState.Connected)
+                {
+                    loginTimer.Enabled = true;
+                    operaterServiceAgent.EnablePooling = true;
+                    notifyIcon.Icon = Properties.Resources.Profile;
+                    notifyIcon.Text = "网站客服 - " + "在线";
+                }
+            }), e);
+        }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
@@ -413,7 +494,7 @@ namespace LiveSupport.OperatorConsole
                 item.Close();
             }
 
-           
+
         }
         #endregion
 
@@ -478,7 +559,7 @@ namespace LiveSupport.OperatorConsole
 
 
             DateTime dtime = DateTime.Now;
-            this.stickToolStripStatusLabel.Text =Common.dateDiff(loginTime, dtime);
+            this.stickToolStripStatusLabel.Text = Common.dateDiff(loginTime, dtime);
 
             if (dtime.Second % 5 == 0)
             {
@@ -490,7 +571,7 @@ namespace LiveSupport.OperatorConsole
                 }
             }
         }
-        
+
         private SystemAdvertise getNextSysteAdvertise()
         {
             if (systemAdvertises == null || systemAdvertises.Count == 0)
@@ -501,26 +582,25 @@ namespace LiveSupport.OperatorConsole
             {
                 currentSystemAdvertiseIndex = 0;
             }
-            SystemAdvertise sa =systemAdvertises[currentSystemAdvertiseIndex];
+            SystemAdvertise sa = systemAdvertises[currentSystemAdvertiseIndex];
             currentSystemAdvertiseIndex++;
             return sa;
-        }   
+        }
 
-        //private void connectionLost(string message,ExceptionStatus status)
-        //{
-        //    loginTimer.Enabled = false;
-        //    notifyIcon.Icon = Properties.Resources.Profile1;
-        //    notifyIcon.Text = "网站客服 - " + "网络连接中断";
-        //    if (status== ExceptionStatus.System)
-        //    { 
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show(message + "，需要重新登陆！", "连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        restartApp("-r");
-        //    }
-            
-        //}
+        private void connectionLost(string message)
+        {
+            loginTimer.Enabled = false;
+            notifyIcon.Icon = Properties.Resources.Profile1;
+            notifyIcon.Text = "网站客服 - " + "网络连接中断";
+            //if (status == ExceptionStatus.System)
+            //{
+            //}
+            //else
+            //{
+            //    MessageBox.Show(message + "，需要重新登陆！", "连接错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    restartApp("-r");
+            //}
+        }
 
         private void displayStatus()
         {
@@ -851,7 +931,7 @@ namespace LiveSupport.OperatorConsole
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确认退出程序吗？","确认退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("确认退出程序吗？", "确认退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 closedByUser = false;
                 shutdown();
@@ -1015,14 +1095,14 @@ namespace LiveSupport.OperatorConsole
             // Copy the groups for the column to an array.
             ListViewGroup[] groupsArray = new ListViewGroup[groups.Count];
             groups.Values.CopyTo(groupsArray, 0);
-           
-            if (column==VisitorTreeView_HeaderColumn_Status)
+
+            if (column == VisitorTreeView_HeaderColumn_Status)
             {
                 Array.Sort(groupsArray, new ListViewGroupSorter(SortOrder.None));
             }
-        
+
             lstVisitors.Groups.AddRange(groupsArray);
-            
+
             // Iterate through the items in lstVisitors, assigning each 
             // one to the appropriate group.
             foreach (ListViewItem item in lstVisitors.Items)
@@ -1033,9 +1113,9 @@ namespace LiveSupport.OperatorConsole
 
                 // Assign the item to the matching group.
                 item.Group = (ListViewGroup)groups[subItemText];
-               
+
             }
-               
+
         }
 
         // Creates a Hashtable object with one entry for each unique
@@ -1046,23 +1126,23 @@ namespace LiveSupport.OperatorConsole
             // Create a Hashtable object.
             Hashtable groups = new Hashtable();
 
-          
-                // Iterate through the items in lstVisitors.
-                foreach (ListViewItem item in lstVisitors.Items)
-                {
-                    // Retrieve the text value for the column.
-                    string subItemText = item.SubItems[column].Text;
 
-                    // If the groups table does not already contain a group
-                    // for the subItemText value, add a new group using the 
-                    // subItemText value for the group header and Hashtable key.
-                    if (!groups.Contains(subItemText))
-                    {
-                        groups.Add(subItemText, new ListViewGroup(subItemText,
-                            HorizontalAlignment.Left));
-                    }
+            // Iterate through the items in lstVisitors.
+            foreach (ListViewItem item in lstVisitors.Items)
+            {
+                // Retrieve the text value for the column.
+                string subItemText = item.SubItems[column].Text;
+
+                // If the groups table does not already contain a group
+                // for the subItemText value, add a new group using the 
+                // subItemText value for the group header and Hashtable key.
+                if (!groups.Contains(subItemText))
+                {
+                    groups.Add(subItemText, new ListViewGroup(subItemText,
+                        HorizontalAlignment.Left));
                 }
-           
+            }
+
 
             // Return the Hashtable object.
             return groups;
@@ -1072,14 +1152,14 @@ namespace LiveSupport.OperatorConsole
         #region 状态栏事件处理
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
-            if (toolStripStatusLabel1.Tag!= null && !string.IsNullOrEmpty(toolStripStatusLabel1.Tag.ToString()))
+            if (toolStripStatusLabel1.Tag != null && !string.IsNullOrEmpty(toolStripStatusLabel1.Tag.ToString()))
             {
                 Process.Start(toolStripStatusLabel1.Tag.ToString());
             }
         }
         #endregion
 
-        private void loadDomainName() 
+        private void loadDomainName()
         {
             cbxDomainName.Items.AddRange(operaterServiceAgent.GetAccountDomains().ToArray());
             cbxDomainName.SelectedIndex = 0;
@@ -1090,7 +1170,7 @@ namespace LiveSupport.OperatorConsole
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
-            
+
             LeaveWord lw = this.leaveWordBindingSource.Current as LeaveWord;
             string original = "%0d%0a%0d%0a ----------------------------原始邮件------------------------------%0d%0a%0d%0a" + lw.Content;
             Process.Start("mailto:" + lw.Email + "?Subject=回复:" + lw.Subject + "&Body=" + original);
@@ -1118,7 +1198,7 @@ namespace LiveSupport.OperatorConsole
         }
         private void restartConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (operaterServiceAgent.CurrentOperator.Status == OperatorStatus.Offline) 
+            if (operaterServiceAgent.CurrentOperator.Status == OperatorStatus.Offline)
             {
                 //if (operaterServiceAgent.RestartLogin() != null)
                 //{
@@ -1132,20 +1212,20 @@ namespace LiveSupport.OperatorConsole
 
         private void btnDelLeaveWord_Click(object sender, EventArgs e)
         {
-            if (leaveWordDataGridView.SelectedRows.Count > 0) 
+            if (leaveWordDataGridView.SelectedRows.Count > 0)
             {
                 LeaveWord lw = this.leaveWordBindingSource.Current as LeaveWord;
                 try
                 {
                     if (operaterServiceAgent.DelLeaveWordById(lw.Id))
                     {
-                        if (cbxDomainName.SelectedIndex>0)
+                        if (cbxDomainName.SelectedIndex > 0)
                         {
                             this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
                         }
                         else
                             this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
-                       
+
                         LeaveWordNotReplied(null);
                     }
                 }
@@ -1153,48 +1233,48 @@ namespace LiveSupport.OperatorConsole
                 {
                     MessageBox.Show("网络中断,请稍候再试...", "提示");
                 }
-              
+
             }
-           
+
         }
 
         private void lstPageRequest_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstPageRequest.SelectedItems.Count>0)
+            if (lstPageRequest.SelectedItems.Count > 0)
             {
-                PageRequest pr=lstPageRequest.SelectedItems[0].Tag as PageRequest;
-                if (pr!=null)
+                PageRequest pr = lstPageRequest.SelectedItems[0].Tag as PageRequest;
+                if (pr != null)
                 {
-                    this.lstPageRequest.SelectedItems[0].ToolTipText = "引用页面：" + pr.Referrer + "\r\n\r\n 请求页面：" + pr.Page + "\r\n\r\n 请求时间：" + pr.RequestTime;  
+                    this.lstPageRequest.SelectedItems[0].ToolTipText = "引用页面：" + pr.Referrer + "\r\n\r\n 请求页面：" + pr.Page + "\r\n\r\n 请求时间：" + pr.RequestTime;
                 }
             }
         }
 
         private void cbxDomainName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxDomainName.Items.Count<=1)
+            if (cbxDomainName.Items.Count <= 1)
             {
                 loadDomainName();
             }
             List<LeaveWord> leaveWord = new List<LeaveWord>();
             if (cbxDomainName.SelectedIndex > 0)
             {
-               leaveWord= operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
+                leaveWord = operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
             }
             else
-               leaveWord= operaterServiceAgent.GetLeaveWord();
-            if (leaveWord!=null)
+                leaveWord = operaterServiceAgent.GetLeaveWord();
+            if (leaveWord != null)
             {
                 LeaveWordNotReplied(leaveWord);
                 this.leaveWordBindingSource.DataSource = leaveWord;
             }
-           
-           
+
+
         }
 
         private void getWebSiteCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.OperaterServiceAgent.CurrentOperator!= null)
+            if (Program.OperaterServiceAgent.CurrentOperator != null)
             {
                 GetWebSiteCodeDialog dlg = new GetWebSiteCodeDialog(Program.OperaterServiceAgent.CurrentOperator.AccountId);
                 dlg.ShowDialog();
@@ -1235,7 +1315,7 @@ namespace LiveSupport.OperatorConsole
                 dlg.ShowDialog();
                 if (dlg.GotoModifyAccountInfoPage)
                 {
-                    browserNavigateTo("http://www.zxkefu.cn/AccountAdmin/OperatorEdit.aspx?operatorId="+operaterServiceAgent.CurrentOperator.OperatorId);
+                    browserNavigateTo("http://www.zxkefu.cn/AccountAdmin/OperatorEdit.aspx?operatorId=" + operaterServiceAgent.CurrentOperator.OperatorId);
                 }
             }
         }
@@ -1268,21 +1348,21 @@ namespace LiveSupport.OperatorConsole
             HtmlElement tbLoginName = webBrowser1.Document.All["UserName"];
             HtmlElement tbPassword = webBrowser1.Document.All["Password"];
 
-            if (tbAccountNumber == null || tbLoginName == null || tbPassword == null || btnSubmit==null)
+            if (tbAccountNumber == null || tbLoginName == null || tbPassword == null || btnSubmit == null)
                 return;
             tbAccountNumber.SetAttribute("value", operaterServiceAgent.CurrentOperator.Account.AccountNumber);
             tbLoginName.SetAttribute("value", operaterServiceAgent.CurrentOperator.LoginName);
             tbPassword.SetAttribute("value", operaterServiceAgent.CurrentOperator.Password);
 
-            btnSubmit.InvokeMember("click"); 
+            btnSubmit.InvokeMember("click");
         }
 
         private void operatorPannel1_Load(object sender, EventArgs e)
         {
-           
+
         }
 
-       
+
     }
 
     class VisitorListViewItem
@@ -1297,7 +1377,7 @@ namespace LiveSupport.OperatorConsole
 
         public VisitSession VisitSession
         {
-            get { return Visitor == null?null:Visitor.CurrentSession; }
+            get { return Visitor == null ? null : Visitor.CurrentSession; }
         }
         private Chat chat;
 
