@@ -107,11 +107,9 @@ namespace LiveSupport.OperatorConsole
                 this.password = password;
 
                 currentOperator = null;
-                //fireConnectStateChange(ConnectionState.Connecting, "登录中...");
+                fireConnectStateChange(ConnectionState.Connecting, "登录中...");
 
                 ws.LoginAsync(accountNumber, operatorName, password);
-                    
-                //currentOperator = ws.Login(accountNumber, operatorName, password);
             }
             catch (Exception e)
             {
@@ -133,13 +131,13 @@ namespace LiveSupport.OperatorConsole
                     ws.AuthenticationHeaderValue = h;
 
                     socketHandler = new SocketHandler();
-                    IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
-                    socket = socketHandler.Connect(entry.AddressList[0].ToString());
-                    //socket = socketHandler.Connect("127.0.0.1");
+                    //IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
+                    //socket = socketHandler.Connect(entry.AddressList[0].ToString());
+                    socket = socketHandler.Connect("127.0.0.1");
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
 
-                    //fireConnectStateChange(ConnectionState.Connected, "登录成功");
+                    fireConnectStateChange(ConnectionState.Connected, "登录成功");
 
                     ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
                     ws.GetLeaveWordAsync(Guid.NewGuid());
@@ -148,12 +146,12 @@ namespace LiveSupport.OperatorConsole
                 }
                 else
                 {
-                    //fireConnectStateChange(ConnectionState.Disconnected, "登录失败，登录信息输入错误");
+                    fireConnectStateChange(ConnectionState.Disconnected, "登录失败，登录信息输入错误");
                 }
             }
             else
             {
-                //fireConnectStateChange(ConnectionState.Disconnected, "登录失败，" + e.Error.Message);
+                fireConnectStateChange(ConnectionState.Disconnected, "登录失败，" + e.Error.Message);
             }
         }
         void getOperators() 
@@ -233,17 +231,17 @@ namespace LiveSupport.OperatorConsole
 
         }
 
-        //private void fireConnectStateChange(ConnectionState state, string message)
-        //{
-        //    Trace.WriteLine("ConnectStateChange : " + state.ToString() + " " + message);
-        //    State = state;
-        //    if (ConnectionStateChanged != null)
-        //    {
-        //       ConnectionStateChangeEventArgs args= new ConnectionStateChangeEventArgs(State);
-        //        args.Message=message;
-        //        ConnectionStateChanged(this, args);
-        //    }
-        //}
+        private void fireConnectStateChange(ConnectionState state, string message)
+        {
+            Trace.WriteLine("ConnectStateChange : " + state.ToString() + " " + message);
+            State = state;
+            if (ConnectionStateChanged != null)
+            {
+                ConnectionStateChangeEventArgs args = new ConnectionStateChangeEventArgs(State);
+                args.Message = message;
+                ConnectionStateChanged(this, args);
+            }
+        }
 
         //void ws_GetLeaveWordCompleted(object sender, GetLeaveWordCompletedEventArgs e)
         //{
@@ -951,7 +949,7 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
-        //public event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
+        public event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
 
         public ConnectionState State
         {
