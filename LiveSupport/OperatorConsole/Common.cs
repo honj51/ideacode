@@ -282,8 +282,8 @@ namespace LiveSupport.OperatorConsole
             }
             else if (obj is LiveSupportModel.Message)
             {
-                LiveSupportModel.Message v1 = new LiveSupport.LiveSupportModel.Message();
-                LiveSupport.OperatorConsole.LiveChatWS.Message v2 = obj as LiveSupport.OperatorConsole.LiveChatWS.Message;
+                LiveSupportModel.Message v1 = obj as  LiveSupport.LiveSupportModel.Message;
+                LiveSupport.OperatorConsole.LiveChatWS.Message v2 = new LiveSupport.OperatorConsole.LiveChatWS.Message();
                 v2.ChatId = v1.ChatId;
                 v2.Destination = v1.Destination;
                 v2.MessageId = v1.MessageId;

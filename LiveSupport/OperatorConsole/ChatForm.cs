@@ -164,11 +164,10 @@ namespace LiveSupport.OperatorConsole
             {
                 try
                 {
-                    //OperatorServiceInterface.ChatMessageEventArgs arg = new OperatorServiceInterface.ChatMessageEventArgs();
-                    //if (arg.Message.ChatId == this.chat.ChatId)
-                    //{
-                    //    RecieveMessage(arg.Message);
-                    //}
+                    if (e.Message.ChatId == this.chat.ChatId)
+                    {
+                        RecieveMessage(e.Message);
+                    }
                 }
                 catch (Exception)
                 {
@@ -198,31 +197,6 @@ namespace LiveSupport.OperatorConsole
                 receiveMessage = false;
             }
         }
-
-        //void operatorServiceAgent_NewMessage(object sender, NewMessageEventArgs e)
-        //{
-        //    if (this.IsDisposed || !this.IsHandleCreated)
-        //    {
-        //        return;
-        //    }
-        //    this.Invoke(new UpdateUIDelegate(delegate(object obj)
-        //    {
-        //        try
-        //        {
-        //            NewMessageEventArgs arg = e as NewMessageEventArgs;
-        //            if (arg.Message.ChatId == this.chat.ChatId)
-        //            {
-        //                RecieveMessage(arg.Message);
-        //            }
-        //        }
-        //        catch (Exception)
-        //        {
-        //            chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
-        //        }
-
-        //    }), e);
-
-        //}
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
         {
@@ -382,7 +356,8 @@ namespace LiveSupport.OperatorConsole
                 }
                 item.Cancel();
             }
-            //this.operatorServiceAgent.NewMessage -= new EventHandler<NewMessageEventArgs>(operatorServiceAgent_NewMessage);
+
+            this.operatorServiceAgent.NewMessage -= new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
             if (acceptChatRequestResult == 0)
             {
                 try

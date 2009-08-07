@@ -85,7 +85,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         private System.Threading.SendOrPostCallback DelLeaveWordByIdOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetOperatorOperationCompleted;
+        private System.Threading.SendOrPostCallback GetAllOperatorsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -216,7 +216,7 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         public event DelLeaveWordByIdCompletedEventHandler DelLeaveWordByIdCompleted;
         
         /// <remarks/>
-        public event GetOperatorCompletedEventHandler GetOperatorCompleted;
+        public event GetAllOperatorsCompletedEventHandler GetAllOperatorsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
@@ -1050,29 +1050,29 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationHeaderValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetOperator", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Operator[] GetOperator() {
-            object[] results = this.Invoke("GetOperator", new object[0]);
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.LiveSupport.cn/LiveSupportService/2009/04/GetAllOperators", RequestNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", ResponseNamespace="http://www.LiveSupport.cn/LiveSupportService/2009/04", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Operator[] GetAllOperators() {
+            object[] results = this.Invoke("GetAllOperators", new object[0]);
             return ((Operator[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetOperatorAsync() {
-            this.GetOperatorAsync(null);
+        public void GetAllOperatorsAsync() {
+            this.GetAllOperatorsAsync(null);
         }
         
         /// <remarks/>
-        public void GetOperatorAsync(object userState) {
-            if ((this.GetOperatorOperationCompleted == null)) {
-                this.GetOperatorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetOperatorOperationCompleted);
+        public void GetAllOperatorsAsync(object userState) {
+            if ((this.GetAllOperatorsOperationCompleted == null)) {
+                this.GetAllOperatorsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllOperatorsOperationCompleted);
             }
-            this.InvokeAsync("GetOperator", new object[0], this.GetOperatorOperationCompleted, userState);
+            this.InvokeAsync("GetAllOperators", new object[0], this.GetAllOperatorsOperationCompleted, userState);
         }
         
-        private void OnGetOperatorOperationCompleted(object arg) {
-            if ((this.GetOperatorCompleted != null)) {
+        private void OnGetAllOperatorsOperationCompleted(object arg) {
+            if ((this.GetAllOperatorsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetOperatorCompleted(this, new GetOperatorCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetAllOperatorsCompleted(this, new GetAllOperatorsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3379,17 +3379,17 @@ namespace LiveSupport.OperatorConsole.LiveChatWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
-    public delegate void GetOperatorCompletedEventHandler(object sender, GetOperatorCompletedEventArgs e);
+    public delegate void GetAllOperatorsCompletedEventHandler(object sender, GetAllOperatorsCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.1433")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetOperatorCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetAllOperatorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal GetOperatorCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetAllOperatorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
