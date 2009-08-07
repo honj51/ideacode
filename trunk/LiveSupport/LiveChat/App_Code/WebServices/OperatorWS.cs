@@ -430,7 +430,7 @@ public class OperatorWS : System.Web.Services.WebService
     public List<Operator> GetAllOperators()
     {
         checkAuthentication();
-        return OperatorService.GetAllOperators();
+        return OperatorService.GetAllOperators(OperatorService.GetOperatorById(Authentication.OperatorId).AccountId);
     }
    
 }
