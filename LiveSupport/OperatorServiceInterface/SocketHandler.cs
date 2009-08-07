@@ -66,7 +66,7 @@ namespace OperatorServiceInterface
                         //initialize
                         so.bytesToReceive = BitConverter.ToInt32(so.buffer, 0);
                         so.data = new MemoryStream();
-                        offset = 4;                        
+                        offset = 4;
                     }
                     if (so.bytesToReceive > receivedBytes + so.offset - offset)
                     {
@@ -89,7 +89,7 @@ namespace OperatorServiceInterface
                         object obj = formatter.Deserialize(so.data);
                         if (DataArrive != null)
                         {
-                            DataArrive(this, new DataArriveEventArgs(obj,s));
+                            DataArrive(this, new DataArriveEventArgs(obj, s));
                         }
 
                         StateObject so1 = new StateObject();
@@ -101,7 +101,15 @@ namespace OperatorServiceInterface
                     }
 
                 }
-                catch (Exception ex) 
+                catch (SocketException socketEx)
+                {
+                    if (socketEx.SocketErrorCode == SocketError.ConnectionReset)
+                    {
+                        // TODO: 通知服务层socket连接失效
+
+                    }
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                     throw ex;
@@ -134,11 +142,14 @@ namespace OperatorServiceInterface
         {
             lock (s)
             {
-                BinaryFormatter fo = new BinaryFormatter();
-                MemoryStream stream = new MemoryStream();
-                fo.Serialize(stream, obj);
-                s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
-                s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
+                if (s.Connected)
+                {
+                    BinaryFormatter fo = new BinaryFormatter();
+                    MemoryStream stream = new MemoryStream();
+                    fo.Serialize(stream, obj);
+                    s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
+                    s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
+                }
             }
         }
 
