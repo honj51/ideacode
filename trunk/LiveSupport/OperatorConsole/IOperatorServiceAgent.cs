@@ -69,7 +69,7 @@ namespace LiveSupport.OperatorConsole
         //event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
         //event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
         //event EventHandler<LeaveWordEventArgs> NewLeaveWords;
-        //event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
+        event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
         #endregion
 
         #region 公开属性
@@ -85,17 +85,17 @@ namespace LiveSupport.OperatorConsole
         #endregion
     }
 
-    //public class ConnectionStateChangeEventArgs : EventArgs
-    //{
-    //    public string Message;
-    //    public ExceptionStatus Status;
+    public class ConnectionStateChangeEventArgs : EventArgs
+    {
+        public string Message;
+        //public ExceptionStatus Status;
 
-    //    public ConnectionState State;
-    //    public ConnectionStateChangeEventArgs(ConnectionState state)
-    //    {
-    //        this.State = state;
-    //    }
-    //}
+        public ConnectionState State;
+        public ConnectionStateChangeEventArgs(ConnectionState state)
+        {
+            this.State = state;
+        }
+    }
 
     //public class LeaveWordEventArgs : EventArgs
     //{
