@@ -336,7 +336,7 @@ public class ChatService
 
         if (OperatorChatRequest != null)
         {
-            var req = new OperatorChatRequestEventArgs(operatorId, visitorId);
+            var req = new OperatorChatRequestEventArgs(operatorId, visitorId,chat);
             OperatorChatRequest(null, req);
         }
 
@@ -385,7 +385,7 @@ public class ChatService
             {
                 OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
             }
-            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId, chat.VisitorId);//tao
+            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId, chat.VisitorId,chat);//tao
             OperatorChatRequestDeclined(null, new OperatorChatRequestDeclinedEventArgs(opq));//tao
         }
         else
@@ -411,7 +411,7 @@ public class ChatService
             VisitSession s = VisitSessionService.GetSessionById(VisitorService.GetVisitorById(chat.VisitorId).CurrentSessionId); 
             s.Status = VisitSessionStatus.Chatting;//将访客状态改为对话中
             s.ChatingTime = DateTime.Now;
-            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId,chat.VisitorId);//tao
+            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId,chat.VisitorId,chat);//tao
             OperatorChatRequestAccepted(null,new OperatorChatRequestAcceptedEventArgs(opq));        //tao
         }
         SendMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
@@ -455,7 +455,7 @@ public class ChatService
 
         if (VisitorChatRequest != null)
         {
-            VisitorChatRequestEventArgs req = new VisitorChatRequestEventArgs(visitor.VisitorId);
+            VisitorChatRequestEventArgs req = new VisitorChatRequestEventArgs(visitor.VisitorId,chatRequest);
             visitorChatRequests.Add(req);
             VisitorChatRequest(null, req);
         }

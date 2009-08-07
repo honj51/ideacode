@@ -93,7 +93,7 @@ namespace LiveSupport.BLL.Remoting
                 List<Socket> sockets = GetOnlineOperatorSockets(v.AccountId);
                 foreach (var item in sockets)
                 {
-                    sh.SendPacket(item, new VisitorChatRequestEventArgs(e.VisitorId));
+                    sh.SendPacket(item, new VisitorChatRequestEventArgs(e.VisitorId,e.Chat));
                 }
             }
         }
