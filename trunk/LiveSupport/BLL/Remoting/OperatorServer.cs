@@ -446,6 +446,7 @@ namespace LiveSupport.BLL.Remoting
             }
             else if (e.Data.GetType() == typeof(LogoutAction))
             {
+                LoginAction LogoutAction = e.Data as LogoutAction;
                 if (operatorSocketMap.ContainsKey(action.OperatorId))
                 {
                     operatorSocketMap[action.OperatorId] = null;
