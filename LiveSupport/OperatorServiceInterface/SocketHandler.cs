@@ -89,7 +89,14 @@ namespace OperatorServiceInterface
                         object obj = formatter.Deserialize(so.data);
                         if (DataArrive != null && obj != null)
                         {
-                            DataArrive(this, new DataArriveEventArgs(obj, s));
+                            try
+                            {
+                                DataArrive(this, new DataArriveEventArgs(obj, s));
+                            }
+                            catch (Exception)
+                            {
+                                throw;
+                            }
                         }
 
                         StateObject so1 = new StateObject();
