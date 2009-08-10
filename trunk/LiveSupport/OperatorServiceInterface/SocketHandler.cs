@@ -116,11 +116,11 @@ namespace OperatorServiceInterface
 
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    throw ex;
-                }
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine(ex.Message);
+                //    throw ex;
+                //}
             }
         }
 
