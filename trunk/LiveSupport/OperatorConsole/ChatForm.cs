@@ -321,9 +321,6 @@ namespace LiveSupport.OperatorConsole
                 chatMessageViewerControl1.AddText(text);
                 return;
             }
-            //string msgs= string.Format("<span style=\"font-family: Arial;color:blue;font-weight: bold;font-size: 12px;\">{0} :</span><br/><span style=\"font-family: Arial;font-size: 12px;\">{1}</span><br />", From + "&nbsp;&nbsp;&nbsp;" + msg.SentDate.ToString("hh:mm:ss"), message);
-            //ucm.GetMessage(msgs, " ");
-            chatMessageViewerControl1.AddMessage(msg);
         }
 
         /// <summary>
