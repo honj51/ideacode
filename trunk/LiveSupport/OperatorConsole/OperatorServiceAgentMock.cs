@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using LiveSupport.LiveSupportModel;
 using OperatorServiceInterface;
-using TestUtility;
+//using TestUtility;
 using System.Timers;
 
 namespace LiveSupport.OperatorConsole
@@ -18,24 +18,24 @@ namespace LiveSupport.OperatorConsole
         Timer timer = new Timer(2000);
         public OperatorServiceAgentMock()
         {
-            account = TestTool.CreateNewAccount();
-            CurrentOperator = TestTool.CreateNewOperator(account.AccountId);
-            CurrentOperator.IsAdmin = true;
-            CurrentOperator.LoginName = "Operator1";
-            CurrentOperator.NickName = "NickName1";
-            CurrentOperator.Status = LiveSupport.LiveSupportModel.OperatorStatus.Idle;
+            //account = TestTool.CreateNewAccount();
+            //CurrentOperator = TestTool.CreateNewOperator(account.AccountId);
+            //CurrentOperator.IsAdmin = true;
+            //CurrentOperator.LoginName = "Operator1";
+            //CurrentOperator.NickName = "NickName1";
+            //CurrentOperator.Status = LiveSupport.LiveSupportModel.OperatorStatus.Idle;
 
-            visitors.Add(TestTool.CreateNewVisitor(account.AccountId));
-            visitors.Add(TestTool.CreateNewVisitor(account.AccountId));
-            operators.Add(TestTool.CreateNewOperator(account.AccountId));
-            operators.Add(TestTool.CreateNewOperator(account.AccountId));
-            operators.Add(TestTool.CreateNewOperator(account.AccountId));
-            operators.Add(CurrentOperator);
-            chats.Add(TestTool.CreateNewChat(visitors[0], CurrentOperator));
+            //visitors.Add(TestTool.CreateNewVisitor(account.AccountId));
+            //visitors.Add(TestTool.CreateNewVisitor(account.AccountId));
+            //operators.Add(TestTool.CreateNewOperator(account.AccountId));
+            //operators.Add(TestTool.CreateNewOperator(account.AccountId));
+            //operators.Add(TestTool.CreateNewOperator(account.AccountId));
+            //operators.Add(CurrentOperator);
+            //chats.Add(TestTool.CreateNewChat(visitors[0], CurrentOperator));
 
-            domains.Add("www.zxkefu.cn");
-            domains.Add("www.sina.cn");
-            domains.Add("www.google.cn");
+            //domains.Add("www.zxkefu.cn");
+            //domains.Add("www.sina.cn");
+            //domains.Add("www.google.cn");
         }
 
         #region IOperatorServiceAgent 成员
