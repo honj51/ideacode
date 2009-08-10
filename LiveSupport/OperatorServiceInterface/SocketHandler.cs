@@ -19,6 +19,14 @@ namespace OperatorServiceInterface
             Socket = socket;
         }
     }
+    public class ExceptionEventArgs : EventArgs
+    {
+        public Exception Exception;
+        public ExceptionEventArgs(Exception ex)
+        {
+            this.Exception = ex;
+        }
+    }
     //
     public class SocketHandler
     {
@@ -26,6 +34,7 @@ namespace OperatorServiceInterface
         private List<Socket> ConnectedSockets = new List<Socket>();
 
         public event EventHandler<DataArriveEventArgs> DataArrive;
+        public event EventHandler<ExceptionEventArgs> Exception;
 
         public delegate void CallbackHandler(object cmd, Socket s);//封装命名或匿名方法的引用类型
         public CallbackHandler OnDataArrive;
@@ -47,7 +56,13 @@ namespace OperatorServiceInterface
                 so.workSocket = t;
                 t.BeginReceive(so.buffer, 0, 4096, SocketFlags.None, new AsyncCallback(OnReceive), so);
             }
-            catch { throw; }
+            catch (Exception ex)
+            {
+                if (Exception != null)
+                {
+                    Exception(this, new ExceptionEventArgs(ex));
+                }
+            }
         }
         
         private void OnReceive(IAsyncResult ar)
@@ -93,9 +108,12 @@ namespace OperatorServiceInterface
                             {
                                 DataArrive(this, new DataArriveEventArgs(obj, s));
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-                                throw;
+                                if (Exception != null)
+                                {
+                                    Exception(this, new ExceptionEventArgs(ex));
+                                }
                             }
                         }
 
@@ -108,19 +126,13 @@ namespace OperatorServiceInterface
                     }
 
                 }
-                catch (SocketException socketEx)
+                catch (Exception ex)
                 {
-                    if (socketEx.SocketErrorCode == SocketError.ConnectionReset)
+                    if (Exception != null)
                     {
-                        // TODO: 通知服务层socket连接失效
-
+                        Exception(this, new ExceptionEventArgs(ex));
                     }
                 }
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine(ex.Message);
-                //    throw ex;
-                //}
             }
         }
 
@@ -147,16 +159,26 @@ namespace OperatorServiceInterface
         //发送socket
         public void SendPacket(Socket s, object obj)
         {
-            Debug.WriteLine("SendPacket : " + obj.ToString());
-            lock (s)
+            try
             {
-                if (s.Connected)
+                Debug.WriteLine("SendPacket : " + obj.ToString());
+                lock (s)
                 {
-                    BinaryFormatter fo = new BinaryFormatter();
-                    MemoryStream stream = new MemoryStream();
-                    fo.Serialize(stream, obj);
-                    s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
-                    s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
+                    if (s.Connected)
+                    {
+                        BinaryFormatter fo = new BinaryFormatter();
+                        MemoryStream stream = new MemoryStream();
+                        fo.Serialize(stream, obj);
+                        s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
+                        s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (Exception != null)
+                {
+                    Exception(this, new ExceptionEventArgs(ex));
                 }
             }
         }
