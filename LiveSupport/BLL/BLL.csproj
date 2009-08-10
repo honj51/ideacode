@@ -51,6 +51,7 @@
     <Compile Include="LeaveWordManager.cs" />
     <Compile Include="MyDateManager.cs" />
     <Compile Include="OperatorsManager.cs" />
+    <Compile Include="PageRequestManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +70,7 @@
     <Compile Include="Services\VisitorService.cs" />
     <Compile Include="Services\VisitSessionService.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="VisitSessionManager.cs" />
     <Compile Include="Web References\ws\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
