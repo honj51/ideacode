@@ -96,7 +96,7 @@
                <tr><td class="td_bgImg"><font style="margin-left:30px; ">流 量 分 析 </font></td></tr>
                <tr><td class="td_centerImg" align="center">
                  <table class="tableStyle2">
-                    <tr><td onmouseover="setTdBgColor(this)" onmouseout="backTdBgColor(this)" class="tdStyle"><a href="javascript:ShowSorry()">流量分析</a></td></tr>
+                    <tr><td onmouseover="setTdBgColor(this)" onmouseout="backTdBgColor(this)" class="tdStyle"><a href="PageRequestStatistic.aspx" target="fraMain">流量分析</a></td></tr>
                 </table>
                </td></tr>
                <tr><td><img src="../Images/tddown.JPG" /></td></tr>
