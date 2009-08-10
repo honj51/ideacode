@@ -204,27 +204,20 @@ namespace LiveSupport.OperatorConsole
         {
             if (!unregister)
             {
+                operaterServiceAgent.ConnectionStateChanged +=new EventHandler<ConnectionStateChangeEventArgs>(operaterServiceAgent_ConnectionStateChanged);
                 operaterServiceAgent.OperatorStatusChanged += new EventHandler<OperatorServiceInterface.OperatorStatusChangeEventArgs>(operaterServiceAgent_OperatorStatusChanged);
                 operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
                 operaterServiceAgent.NewVisiting += new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
                 operaterServiceAgent.VisitorChatRequest += new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
                 operaterServiceAgent.DataLoadCompleted += new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
-                //operaterServiceAgent.NewChat += new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
-                //operaterServiceAgent.VisitorChatRequestAccepted += new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
-                //operaterServiceAgent.ChatStatusChanged += new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
-                //operaterServiceAgent.VisitorLeave += new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
-
             }
             else
             {
+                operaterServiceAgent.ConnectionStateChanged -= new EventHandler<ConnectionStateChangeEventArgs>(operaterServiceAgent_ConnectionStateChanged);
                 operaterServiceAgent.OperatorStatusChanged -= new EventHandler<OperatorServiceInterface.OperatorStatusChangeEventArgs>(operaterServiceAgent_OperatorStatusChanged);
                 operaterServiceAgent.VisitorSessionChange -= new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
-                //operaterServiceAgent.ChatStatusChanged -= new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
                 operaterServiceAgent.NewVisiting -= new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
-                //operaterServiceAgent.VisitorLeave -= new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
                 operaterServiceAgent.VisitorChatRequest -= new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
-                //operaterServiceAgent.NewChat -= new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
-                //operaterServiceAgent.VisitorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
                 operaterServiceAgent.DataLoadCompleted -= new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
                 
             }

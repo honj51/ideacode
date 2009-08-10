@@ -13,6 +13,10 @@ namespace LiveSupport.OperatorConsole
 {
     class OperatorServiceAgent : IOperatorServiceAgent
     {
+        enum TimerAction
+        {
+            HeartBeat, ReConnect, None
+        }
         private static OperatorServiceAgent _default;
         private List<Visitor> visitors = new List<Visitor>();
         private List<Chat> chats = new List<Chat>();
@@ -21,7 +25,8 @@ namespace LiveSupport.OperatorConsole
         //private NewChangesCheck lastCheck = new NewChangesCheck();
         private LiveSupport.OperatorConsole.LiveChatWS.OperatorWS ws = new LiveSupport.OperatorConsole.LiveChatWS.OperatorWS();
         private Operator currentOperator;
-        private System.Timers.Timer checkNewChangesTimer = new System.Timers.Timer(1000);
+        private System.Timers.Timer timer = new System.Timers.Timer(10000);
+        private TimerAction timerAction = TimerAction.None;
         private string accountNumber;
         private string operatorName;
         private string password;
@@ -33,6 +38,7 @@ namespace LiveSupport.OperatorConsole
         {
             get
             {
+
                 if (OperatorServiceAgent._default == null)
                 {
                     OperatorServiceAgent._default = new OperatorServiceAgent();
@@ -79,19 +85,42 @@ namespace LiveSupport.OperatorConsole
 
         public OperatorServiceAgent()
         {
-            //lastCheck.ChatSessionChecks = new MessageCheck[] { };
-            //lastCheck.NewVisitorLastCheckTime = DateTime.Today.Ticks;
-            checkNewChangesTimer.AutoReset = true;
             ws.Timeout = 5000;
             state = ConnectionState.Disconnected;
-
-            //checkNewChangesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkNewChangesTimer_Elapsed);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
             ws.LoginCompleted += new LiveChatWS.LoginCompletedEventHandler(ws_LoginCompleted);
             ws.GetSystemAdvertiseCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
             ws.GetAllOperatorsCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetAllOperatorsCompletedEventHandler(ws_GetAllOperatorsCompleted);
             ws.GetAllVisitorsCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetAllVisitorsCompletedEventHandler(ws_GetAllVisitorsCompleted);
             //ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+        }
 
+        void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            lock (this.timer.SynchronizingObject)
+            {
+                try
+                {
+                    switch (timerAction)
+                    {
+                        case TimerAction.HeartBeat:
+                            socketHandler.SendPacket(socket, new HeartBeatAction(CurrentOperator.OperatorId));
+                            break;
+                        case TimerAction.ReConnect:
+                            RestartLogin();
+                            break;
+                        case TimerAction.None:
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.Message);
+                }
+            }
         }
 
         void ws_GetAllVisitorsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetAllVisitorsCompletedEventArgs e)
@@ -122,11 +151,11 @@ namespace LiveSupport.OperatorConsole
                 }
 
                 operators = ops;
-                if (DataLoadCompleted!=null)
-	            {
+                if (DataLoadCompleted != null)
+                {
                     DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Operators));
-	            }
-               
+                }
+
             }
         }
 
@@ -178,7 +207,7 @@ namespace LiveSupport.OperatorConsole
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
 
                     fireConnectStateChange(ConnectionState.Connected, "登录成功");
-
+                    timer.Enabled = false;
                     ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
                     ws.GetLeaveWordAsync(Guid.NewGuid());
                     ws.GetAllVisitorsAsync(currentOperator.AccountId, Guid.NewGuid());
@@ -200,6 +229,10 @@ namespace LiveSupport.OperatorConsole
         {
             if (e.Exception is SocketException && !socket.Connected)
             {
+                if (autoLoginEnabled)
+                {
+                    timer.Enabled = true;
+                }
                 fireConnectStateChange(ConnectionState.Disconnected, e.Exception.Message);
             }
         }
@@ -227,7 +260,7 @@ namespace LiveSupport.OperatorConsole
                     v.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                     VisitorChatRequest(this, vc);
-                    chats.Add(vc.Chat);                    
+                    chats.Add(vc.Chat);
                 }
             }
             //客服对话邀请
@@ -321,7 +354,7 @@ namespace LiveSupport.OperatorConsole
                     OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Chatting));
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                 }
-                else if(chat.Status == ChatStatus.Closed)
+                else if (chat.Status == ChatStatus.Closed)
                 {
                     v.CurrentSession.Status = VisitSessionStatus.Visiting;
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
@@ -333,7 +366,7 @@ namespace LiveSupport.OperatorConsole
                 }
 
                 //ChatStatusChanged(this, cs);
-                
+
             }
             else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs) && ChatJoinInvite != null)
             {
@@ -358,7 +391,7 @@ namespace LiveSupport.OperatorConsole
                 NewVisitingEventArgs nv = (NewVisitingEventArgs)e.Data;
                 nv.Visitor.CurrentSession = nv.Session;
                 visitors.Add(nv.Visitor);
-                
+
                 NewVisiting(this, (NewVisitingEventArgs)e.Data);
             }
             // 访客离开
@@ -442,7 +475,7 @@ namespace LiveSupport.OperatorConsole
             socketHandler.DataArrive -= new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
             socket.Disconnect(false);
             EnablePooling = false;
-            checkNewChangesTimer.Stop();
+            timer.Enabled = false;
             //ws.LogoutAsync(Guid.NewGuid());
             ws.Logout();
         }
@@ -1185,7 +1218,7 @@ namespace LiveSupport.OperatorConsole
 
         public event EventHandler<DataLoadCompletedEventArgs> DataLoadCompleted;
 
-        
+
         #endregion
 
         #region IOperatorServiceAgent 成员
