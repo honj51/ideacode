@@ -62,7 +62,7 @@ namespace LiveSupport.OperatorConsole
         #region 公开事件
         //event EventHandler<NewVisitorEventArgs> NewVisitor;
         //event EventHandler<NewChatRequestEventArgs> NewChatRequest;
-        //event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
+        event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
         //event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
         //event EventHandler<ChatStatusChangeEventArgs> ChatStatusChange;
         //event EventHandler<NewMessageEventArgs> NewMessage;
@@ -75,10 +75,10 @@ namespace LiveSupport.OperatorConsole
         #endregion
 
         #region 公开属性
-        List<Visitor> Visitors { get; set; }
-        List<Operator> Operators { get; set; }
-        Operator CurrentOperator { get; set; }
-        List<Chat> Chats { get; set; }
+        List<Visitor> Visitors { get; }//set; }
+        List<Operator> Operators { get;}// set; }
+        Operator CurrentOperator { get; }//set; }
+        List<Chat> Chats { get; }//set; }
         List<QuickResponseCategory> QuickResponseCategory { get; set; }
         bool EnablePooling { get; set; }
         string ProductVersion { get; set; }
@@ -175,14 +175,14 @@ namespace LiveSupport.OperatorConsole
     //    public Visitor Visitor;
     //}
 
-    //public class VisitorSessionChangeEventArgs : EventArgs
-    //{
-    //    public VisitorSessionChangeEventArgs(VisitSession visitSession)
-    //    {
-    //        this.VisitSession = visitSession;
-    //    }
-    //    public VisitSession VisitSession;
-    //}
+    public class VisitorSessionChangeEventArgs : EventArgs
+    {
+        public VisitorSessionChangeEventArgs(VisitSession visitSession)
+        {
+            this.VisitSession = visitSession;
+        }
+        public VisitSession VisitSession;
+    }
 
     //public class OperatorStatusChangeEventArgs : EventArgs
     //{

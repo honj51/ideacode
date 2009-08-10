@@ -74,16 +74,16 @@ namespace LiveSupport.OperatorConsole
         //    }), e);
         //}
 
-        //void operaterServiceAgent_VisitorSessionChange(object sender, VisitorSessionChangeEventArgs e)
-        //{
-        //    this.Invoke(new UpdateUIDelegate(delegate(object obj)
-        //    {
-        //        VisitorSessionChangeEventArgs arg = obj as VisitorSessionChangeEventArgs;
-        //        processVisitSessionChange(arg.VisitSession);
-        //        changeVisitorListViewItemColor();
-        //        displayStatus();
-        //    }), e);
-        //}
+        void operaterServiceAgent_VisitorSessionChange(object sender, VisitorSessionChangeEventArgs e)
+        {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                VisitorSessionChangeEventArgs arg = obj as VisitorSessionChangeEventArgs;
+                processVisitSessionChange(arg.VisitSession);
+                changeVisitorListViewItemColor();
+                displayStatus();
+            }), e);
+        }
 
         //void operaterServiceAgent_NewVisitor(object sender, NewVisitorEventArgs e)
         //{
@@ -217,7 +217,6 @@ namespace LiveSupport.OperatorConsole
             //{
             //    this.operaterServiceAgent.ConnectionStateChanged -= new EventHandler<ConnectionStateChangeEventArgs>(operaterServiceAgent_ConnectionStateChanged);
             //    this.operaterServiceAgent.NewVisitor -= new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
-            //    this.operaterServiceAgent.VisitorSessionChange -= new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
             //    this.operaterServiceAgent.NewChatRequest -= new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
             //    this.operaterServiceAgent.NewChanges -= new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
             //    this.operaterServiceAgent.NewSystemAdvertise -= new EventHandler<SystemAdvertiseEventArgs>(operaterServiceAgent_NewSystemAdvertise);
@@ -234,6 +233,7 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.VisitorChatRequestAccepted += new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
                 operaterServiceAgent.OperatorsLoadCompleted += new EventHandler<OperatorsLoadCompletedEventArgs>(operaterServiceAgent_OperatorsLoadCompleted);
                 operaterServiceAgent.VisitorsLoadCompleted += new EventHandler<VisitorsLoadCompletedEventArgs>(operaterServiceAgent_VisitorsLoadCompleted);
+                operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
             }
             else
             {
@@ -246,24 +246,31 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.VisitorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
                 operaterServiceAgent.OperatorsLoadCompleted -= new EventHandler<OperatorsLoadCompletedEventArgs>(operaterServiceAgent_OperatorsLoadCompleted);
                 operaterServiceAgent.VisitorsLoadCompleted -= new EventHandler<VisitorsLoadCompletedEventArgs>(operaterServiceAgent_VisitorsLoadCompleted);
-                
+                operaterServiceAgent.VisitorSessionChange -= new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
             }
         }
 
         void operaterServiceAgent_VisitorsLoadCompleted(object sender, VisitorsLoadCompletedEventArgs e)
         {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+
             foreach (var item in e.Visitors)
 	         {
               processNewVisitor(item);
               changeVisitorListViewItemColor();
               displayStatus();
-            } 
+            }
+            }), e);
            
         }
 
         void operaterServiceAgent_OperatorsLoadCompleted(object sender, OperatorsLoadCompletedEventArgs e)
         {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
             operatorPannel1.RecieveOperator(e.Operators);
+            }), e);
         }
 
         void operaterServiceAgent_VisitorChatRequestAccepted(object sender, OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs e)
@@ -286,7 +293,6 @@ namespace LiveSupport.OperatorConsole
                Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorId);
                visitor.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
                processVisitSessionChange(visitor.CurrentSession);
-               operaterServiceAgent.Chats.Add(e.Chat);
                NotifyForm.ShowNotifier(true, "访客 " + visitor.Name + " 请求对话！", e.Chat);
                changeVisitorListViewItemColor();
                displayStatus();
@@ -527,26 +533,26 @@ namespace LiveSupport.OperatorConsole
         private void changeVisitorListViewItemColor()
         {
             foreach (ListViewItem item in lstVisitors.Items)
-            {
-                if (item == null) continue;
-                VisitorListViewItem v = item.Tag as VisitorListViewItem;
-                if (v.VisitSession.Status == VisitSessionStatus.Visiting)
                 {
-                    item.SubItems[0].ForeColor = Color.Green;
+                    if (item == null) continue;
+                    VisitorListViewItem v = item.Tag as VisitorListViewItem;
+                    if (v.VisitSession.Status == VisitSessionStatus.Visiting)
+                    {
+                        item.SubItems[0].ForeColor = Color.Green;
+                    }
+                    if (v.VisitSession.Status == VisitSessionStatus.ChatRequesting)
+                    {
+                        item.SubItems[0].ForeColor = Color.Red;
+                    }
+                    if (v.VisitSession.Status == VisitSessionStatus.Chatting)
+                    {
+                        item.SubItems[0].ForeColor = Color.Blue;
+                    }
+                    if (v.VisitSession.Status == VisitSessionStatus.Leave)
+                    {
+                        item.SubItems[0].ForeColor = Color.Gray;
+                    }
                 }
-                if (v.VisitSession.Status == VisitSessionStatus.ChatRequesting)
-                {
-                    item.SubItems[0].ForeColor = Color.Red;
-                }
-                if (v.VisitSession.Status == VisitSessionStatus.Chatting)
-                {
-                    item.SubItems[0].ForeColor = Color.Blue;
-                }
-                if (v.VisitSession.Status == VisitSessionStatus.Leave)
-                {
-                    item.SubItems[0].ForeColor = Color.Gray;
-                }
-            }
         }
 
         /// <summary>
@@ -674,6 +680,8 @@ namespace LiveSupport.OperatorConsole
 
         private void processNewVisitor(Visitor visitor)
         {
+             this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
             VisitorListViewItem vlvi = new VisitorListViewItem();
             vlvi.Visitor = visitor;
             string browser = Common.GetBrowserShortName(vlvi.VisitSession.Browser);
@@ -702,6 +710,8 @@ namespace LiveSupport.OperatorConsole
             {
                 notifyIcon.ShowBalloonTip(5000, "新的访客", string.Format("访客{0}正在访问页面 \r\n {1}", vlvi.Visitor.Name, vlvi.VisitSession.PageRequested), ToolTipIcon.Info);
             }
+            }), visitor);
+            
         }
 
         private void processVisitSessionChange(VisitSession visitSession)
