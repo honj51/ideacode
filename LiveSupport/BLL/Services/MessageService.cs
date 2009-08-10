@@ -61,7 +61,7 @@ public class MessageService
                 ms.Add(item);
             }
         }
-        Trace.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
+        //Trace.WriteLine(string.Format("GetMessagesForChatPage({0},{1}) Count={2}", chatId, lastCheck, ms.Count));
         return ms;
     }
     /// <summary>

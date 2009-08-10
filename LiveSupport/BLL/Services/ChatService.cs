@@ -258,7 +258,11 @@ public class ChatService
             chat.Status = ChatStatus.Accepted;
             chat.OperatorId = operatorId;
             chat.AcceptTime = DateTime.Now;
-            
+
+            if (VisitorChatRequestAccepted != null)
+            {
+                VisitorChatRequestAccepted(null, new VisitorChatRequestAcceptedEventArgs(new VisitorChatRequestEventArgs(chat.VisitorId, chat)));
+            }
             Message m1 = new Message();
             m1.ChatId = chat.ChatId;
             m1.SentDate = DateTime.Now;
@@ -279,11 +283,6 @@ public class ChatService
             s.OperatorId = operatorId;
             s.Status = VisitSessionStatus.Chatting;
             s.ChatingTime = DateTime.Now;
-
-            if (VisitorChatRequestAccepted != null)
-            {
-                VisitorChatRequestAccepted(null, new VisitorChatRequestAcceptedEventArgs(new VisitorChatRequestEventArgs(chat.VisitorId, chat)));
-            }
 
             return AcceptChatRequestReturn_OK;
         }
@@ -331,17 +330,17 @@ public class ChatService
         chat.Status = ChatStatus.Requested;
         //VisitSessionService.SetSessionStatus(visitor.CurrentSessionId, VisitSessionStatus.ChatRequesting);
 
+        if (OperatorChatRequest != null)
+        {
+            var req = new OperatorChatRequestEventArgs(operatorId, visitorId, chat);
+            OperatorChatRequest(null, req);
+        }
+
         Message m = new Message();
         m.ChatId =chat.ChatId;
         m.Text = "正在邀请访客，请稍等...";
         m.Type = MessageType.SystemMessage_ToOperator;
         SendMessage(m, DateTime.Now.AddMilliseconds(50));
-
-        if (OperatorChatRequest != null)
-        {
-            var req = new OperatorChatRequestEventArgs(operatorId, visitorId,chat);
-            OperatorChatRequest(null, req);
-        }
 
         return chat;
     }
@@ -417,7 +416,7 @@ public class ChatService
             OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId,chat.VisitorId,chat);//tao
             OperatorChatRequestAccepted(null,new OperatorChatRequestAcceptedEventArgs(opq));        //tao
         }
-        SendMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
+        //SendMessage(new Message(chat.ChatId, "访客已接受对话邀请!", MessageType.SystemMessage_ToOperator));
         SendMessage(new Message(chat.ChatId, "您已接受对话邀请!", MessageType.SystemMessage_ToVisitor));
     }
 

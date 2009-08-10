@@ -175,9 +175,9 @@ namespace LiveSupport.BLL.Remoting
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void ChatService_NewMessage(object sender, ChatMessageEventArgs e)//tao-ok
-        {
+        {   
             Chat chat=ChatService.GetChatById(e.Message.ChatId);
-            if (chat != null)
+            if (chat != null && Message.ToOperator(e.Message))
             {
                 if (operatorSocketMap.ContainsKey(chat.OperatorId))
                 {

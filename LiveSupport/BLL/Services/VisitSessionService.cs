@@ -159,7 +159,7 @@ public class VisitSessionService
     /// <param name="visitorId"></param>
     public static void Hit(string visitorId)
     {
-        Trace.WriteLine(string.Format("VisitorService.Hit(visitorId = {0})", visitorId));
+        //Trace.WriteLine(string.Format("VisitorService.Hit(visitorId = {0})", visitorId));
         Visitor v = VisitorService.GetVisitorById(visitorId);
         if (v != null && v.CurrentSession != null)
         {
@@ -175,7 +175,7 @@ public class VisitSessionService
                     item.LastHitTime = DateTime.Now;
                 }
             }
-            Trace.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
+            //Trace.WriteLine(string.Format("Session {0} Hit", v.CurrentSessionId));
         }
 
         
