@@ -19,6 +19,7 @@ namespace LiveSupport.LiveSupportModel
         public static bool FromVisitor(Message m) { return m.Type == MessageType.ChatMessage_VistorToOperator; }
         public static bool IsChatMessage(Message m) { return m.Type == MessageType.ChatMessage_VistorToOperator || m.Type == MessageType.ChatMessage_OperatorToVisitor; }
         public static bool IsSystemMessage(Message m) { return !IsChatMessage(m); }
+        public static bool ToOperator(Message m) { return m.Type == MessageType.ChatMessage_VistorToOperator || m.Type == MessageType.SystemMessage_ToBoth || m.Type == MessageType.SystemMessage_ToOperator; }
         private string messageId;
 
         public string MessageId
