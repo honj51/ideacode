@@ -100,15 +100,15 @@ public static class OperatorService
 
     public static List<Operator> GetAllOperators(string accountId) 
     {
-        List<Operator> operators = new List<Operator>();
+        List<Operator> ops = new List<Operator>();
         foreach (var item in operators)
         {
             if (item.AccountId == accountId)
             {
-                operators.Add(item);
+                ops.Add(item);
             }
         }
-        return operators;
+        return ops;
     
     }
 
