@@ -58,7 +58,8 @@ public class VisitorHandler : IHttpHandler {
         }
         context.Response.Write(string.Format("{0}({1})", callback, data));
         context.Response.Expires = -1;
-        context.Response.End();       
+        context.ApplicationInstance.CompleteRequest();
+        //context.Response.End();       
     }
 
  
