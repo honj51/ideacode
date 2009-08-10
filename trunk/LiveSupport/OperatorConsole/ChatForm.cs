@@ -109,10 +109,10 @@ namespace LiveSupport.OperatorConsole
 
 
         public ChatForm(IOperatorServiceAgent agent)
-        {   
+        {
             this.operatorServiceAgent = agent;
             InitializeComponent();
-            
+
             chatMessageViewerControl1.ResetContent("初始会话...");
         }
 
@@ -143,14 +143,36 @@ namespace LiveSupport.OperatorConsole
         //客服主动邀请被拒绝
         void operatorServiceAgent_OperatorChatRequestDeclined(object sender, OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs e)
         {
-            
-            throw new NotImplementedException();
+            try
+            {
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                chatMessageViewerControl1.AddInformation("访客已拒绝该对话邀请！");
+            }), e);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // 客服主动邀请被接受
         void operatorServiceAgent_OperatorChatRequestAccepted(object sender, OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                chatMessageViewerControl1.AddInformation("访客已接受该对话邀请！");
+            }), e);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // 新消息
@@ -183,7 +205,7 @@ namespace LiveSupport.OperatorConsole
             operatorServiceAgent.NewMessage += new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
             visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             initChat();
-            
+
             acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
             if (acceptChatRequestResult == -1)
             {
@@ -191,10 +213,15 @@ namespace LiveSupport.OperatorConsole
                 receiveMessage = false;
                 return;
             }
-            if (acceptChatRequestResult == -3)
+            else if (acceptChatRequestResult == -3)
             {
                 chatMessageViewerControl1.ResetContent("服务器错误");
                 receiveMessage = false;
+            }
+            else
+            {
+                chatMessageViewerControl1.ResetContent("你已接受访客" + visitor.Name + "的对话请求");
+                chatMessageViewerControl1.AddInformation("你已接受访客");
             }
         }
 
@@ -313,6 +340,7 @@ namespace LiveSupport.OperatorConsole
             try
             {
                 operatorServiceAgent.SendMessage(msg);
+                chatMessageViewerControl1.AddMessage(msg);
             }
             catch (WebException wmg)
             {
@@ -355,6 +383,9 @@ namespace LiveSupport.OperatorConsole
             }
 
             this.operatorServiceAgent.NewMessage -= new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
+            operatorServiceAgent.OperatorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs>(operatorServiceAgent_OperatorChatRequestAccepted);
+            operatorServiceAgent.OperatorChatRequestDeclined -= new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
+
             if (acceptChatRequestResult == 0)
             {
                 try
@@ -570,7 +601,7 @@ namespace LiveSupport.OperatorConsole
                     {
                         if (operatorServiceAgent.QuickResponseCategory[i] == null) continue;
                         setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
-                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Count == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses==null) continue;
+                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Count == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses == null) continue;
                         foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
                         {
                             if (string.IsNullOrEmpty(item)) continue;

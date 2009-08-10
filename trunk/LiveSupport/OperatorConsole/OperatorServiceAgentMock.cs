@@ -56,8 +56,8 @@ namespace LiveSupport.OperatorConsole
                 {
                     OperatorStatusChanged(this, new OperatorServiceInterface.OperatorStatusChangeEventArgs(CurrentOperator.OperatorId, CurrentOperator.Status));
                 }
-                VisitorsLoadCompleted(this, new VisitorsLoadCompletedEventArgs(visitors));
-                OperatorsLoadCompleted(this, new OperatorsLoadCompletedEventArgs(operators));
+                DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Operators));
+                DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Visitors));
 
                 //NewVisiting(this, new NewVisitingEventArgs(visitors[0], visitors[0].CurrentSession));
             }
@@ -252,9 +252,8 @@ namespace LiveSupport.OperatorConsole
 
         public event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
 
-        public event EventHandler<OperatorsLoadCompletedEventArgs> OperatorsLoadCompleted;
+        public event EventHandler<DataLoadCompletedEventArgs> DataLoadCompleted;
 
-        public event EventHandler<VisitorsLoadCompletedEventArgs> VisitorsLoadCompleted;
 
         public List<LiveSupport.LiveSupportModel.Visitor> Visitors
         {
@@ -405,6 +404,16 @@ namespace LiveSupport.OperatorConsole
 
 
         public event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        public Chat GetChatByChatId(string chatId)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
     }

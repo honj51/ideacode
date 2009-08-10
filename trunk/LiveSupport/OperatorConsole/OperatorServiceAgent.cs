@@ -104,7 +104,10 @@ namespace LiveSupport.OperatorConsole
                     vs.Add((Visitor)Common.Convert(e.Result[i]));
                 }
                 visitors = vs;
-                VisitorsLoadCompleted(null,new VisitorsLoadCompletedEventArgs(vs));
+                if (DataLoadCompleted != null)
+                {
+                    DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Visitors));
+                }
             }
         }
 
@@ -119,9 +122,9 @@ namespace LiveSupport.OperatorConsole
                 }
 
                 operators = ops;
-                if (OperatorsLoadCompleted!=null)
+                if (DataLoadCompleted!=null)
 	            {
-		            OperatorsLoadCompleted(null,new OperatorsLoadCompletedEventArgs(ops));
+                    DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Operators));
 	            }
                
             }
@@ -168,9 +171,10 @@ namespace LiveSupport.OperatorConsole
 
                     socketHandler = new SocketHandler();
                     IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
-                    socket = socketHandler.Connect(entry.AddressList[0].ToString());
-                    //socket = socketHandler.Connect("127.0.0.1");
+                    //socket = socketHandler.Connect(entry.AddressList[0].ToString());
+                    socket = socketHandler.Connect("127.0.0.1");
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
+                    socketHandler.Exception += new EventHandler<ExceptionEventArgs>(socketHandler_Exception);
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
 
                     fireConnectStateChange(ConnectionState.Connected, "登录成功");
@@ -192,74 +196,144 @@ namespace LiveSupport.OperatorConsole
             }
         }
 
+        void socketHandler_Exception(object sender, ExceptionEventArgs e)
+        {
+            if (e.Exception is SocketException && !socket.Connected)
+            {
+                fireConnectStateChange(ConnectionState.Disconnected, e.Exception.Message);
+            }
+        }
+
         void processServerEvents(DataArriveEventArgs e)
         {
             // 客服状态改变
-            if (e.Data.GetType() == typeof(OperatorStatusChangeEventArgs) && OperatorStatusChanged != null)
+            if (e.Data.GetType() == typeof(OperatorStatusChangeEventArgs))
             {
-                OperatorStatusChanged(this, (OperatorStatusChangeEventArgs)e.Data);
+                OperatorStatusChangeEventArgs os = (OperatorStatusChangeEventArgs)e.Data;
+                Operator op = GetOperatorById(os.OperatorId);
+                if (op != null)
+                {
+                    op.Status = os.Status;
+                    OperatorStatusChanged(this, os);
+                }
             }
             //访客对话请求
-            else if (e.Data.GetType() == typeof(VisitorChatRequestEventArgs) && VisitorChatRequest != null)
+            else if (e.Data.GetType() == typeof(VisitorChatRequestEventArgs))
             {
                 VisitorChatRequestEventArgs vc = (VisitorChatRequestEventArgs)e.Data;
-                VisitorChatRequest(this, vc);
-                chats.Add(vc.Chat);
+                Visitor v = GetVisitorById(vc.VisitorId);
+                if (v != null)
+                {
+                    v.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                    VisitorChatRequest(this, vc);
+                    chats.Add(vc.Chat);                    
+                }
             }
             //客服对话邀请
-            else if (e.Data.GetType() == typeof(OperatorChatRequestEventArgs) && OperatorChatRequest != null)
+            else if (e.Data.GetType() == typeof(OperatorChatRequestEventArgs))
             {
-                OperatorChatRequest(this, (OperatorChatRequestEventArgs)e.Data);
+                OperatorChatRequestEventArgs ocr = (OperatorChatRequestEventArgs)e.Data;
+                Operator op = GetOperatorById(ocr.OperatorId);
+                Visitor v = GetVisitorById(ocr.VisitorId);
+                if (op != null && v != null)
+                {
+                    op.Status = OperatorStatus.InviteChat;
+                    //v.CurrentSession.Status = VisitSessionStatus.
+                    //OperatorChatRequest(this, ocr);
+                    OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(op.OperatorId, OperatorStatus.InviteChat));
+                }
             }
             // 访客对话请求被接受
-            else if (e.Data.GetType() == typeof(VisitorChatRequestAcceptedEventArgs) && VisitorChatRequestAccepted != null)
+            else if (e.Data.GetType() == typeof(VisitorChatRequestAcceptedEventArgs))
             {
                 VisitorChatRequestAcceptedEventArgs v = e.Data as VisitorChatRequestAcceptedEventArgs;
                 Chat chat = GetChatByChatId(v.VisitorChatRequest.Chat.ChatId);
-                chat.OperatorId = v.VisitorChatRequest.Chat.OperatorId;
-                VisitSession vs = GetVisitorById(chat.VisitorId).CurrentSession;
-                VisitorChatRequestAccepted(this, (VisitorChatRequestAcceptedEventArgs)e.Data);
-                OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(v.VisitorChatRequest.Chat.OperatorId, OperatorStatus.Chatting));
-                VisitorSessionChange(this, new VisitorSessionChangeEventArgs(vs));
+                Operator op = GetOperatorById(v.VisitorChatRequest.Chat.OperatorId);
+                Visitor visitor = GetVisitorById(v.VisitorChatRequest.VisitorId);
+                if (chat != null && op != null && visitor != null)
+                {
+                    chat.OperatorId = v.VisitorChatRequest.Chat.OperatorId;
+                    op.Status = OperatorStatus.Chatting;
+                    VisitSession vs = visitor.CurrentSession;
+                    vs.ChatingTime = v.VisitorChatRequest.Chat.AcceptTime;
+                    vs.Status = VisitSessionStatus.Chatting;
+
+                    //VisitorChatRequestAccepted(this, (VisitorChatRequestAcceptedEventArgs)e.Data);
+                    OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(v.VisitorChatRequest.Chat.OperatorId, OperatorStatus.Chatting));
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(vs));
+                }
             }
             // 客服对话邀请被接受
             else if (e.Data.GetType() == typeof(OperatorChatRequestAcceptedEventArgs) && OperatorChatRequestAccepted != null)
             {
-                OperatorChatRequestAccepted(this, (OperatorChatRequestAcceptedEventArgs)e.Data);
+                OperatorChatRequestAcceptedEventArgs ocr = (OperatorChatRequestAcceptedEventArgs)e.Data;
+                Operator op = GetOperatorById(ocr.ChatRequest.OperatorId);
+                Visitor v = GetVisitorById(ocr.ChatRequest.VisitorId);
+                if (op != null && v != null)
+                {
+                    op.Status = OperatorStatus.Chatting;
+                    v.CurrentSession.Status = VisitSessionStatus.Chatting;
+                    OperatorChatRequestAccepted(this, (OperatorChatRequestAcceptedEventArgs)e.Data);
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                }
             }
             // 客服对话邀请被拒绝
             else if (e.Data.GetType() == typeof(OperatorChatRequestDeclinedEventArgs) && OperatorChatRequestDeclined != null)
             {
-                OperatorChatRequestDeclined(this, (OperatorChatRequestDeclinedEventArgs)e.Data);
+                OperatorChatRequestDeclinedEventArgs ocr = (OperatorChatRequestDeclinedEventArgs)e.Data;
+                Operator op = GetOperatorById(ocr.ChatRequest.OperatorId);
+                Visitor v = GetVisitorById(ocr.ChatRequest.VisitorId);
+                Chat c = GetChatByChatId(ocr.ChatRequest.Chat.ChatId);
+                if (op != null && v != null && c != null)
+                {
+                    c.Status = ChatStatus.Decline;
+                    if (!IsOperatorHasActiveChat(op.OperatorId))
+                    {
+                        op.Status = OperatorStatus.Idle;
+                        OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(op.OperatorId, OperatorStatus.Idle));
+                    }
+                    v.CurrentSession.Status = VisitSessionStatus.Visiting;
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                    OperatorChatRequestDeclined(this, (OperatorChatRequestDeclinedEventArgs)e.Data);
+                }
             }
             // 新的对话
-            else if (e.Data.GetType() == typeof(NewChatEventArgs) && NewChat != null)
+            else if (e.Data.GetType() == typeof(NewChatEventArgs))
             {
                 NewChat(this, (NewChatEventArgs)e.Data);
             }
             // 对话状态改变
-            else if (e.Data.GetType() == typeof(ChatStatusChangedEventArgs) && ChatStatusChanged != null)
+            else if (e.Data.GetType() == typeof(ChatStatusChangedEventArgs))
             {
                 ChatStatusChangedEventArgs cs = (ChatStatusChangedEventArgs)e.Data;
-                ChatStatusChanged(this, cs);
+
                 Chat chat = GetChatByChatId(cs.ChatId);
-                VisitSession vs = GetVisitorById(chat.VisitorId).CurrentSession;
                 if (chat == null) return;
+                Visitor v = GetVisitorById(chat.VisitorId);
+                Operator o = GetOperatorById(chat.OperatorId);
+                if (v == null || o == null) return;
+                chat.Status = cs.Status;
                 if (chat.Status == ChatStatus.Accepted)
                 {
+                    v.CurrentSession.Status = VisitSessionStatus.Chatting;
+                    o.Status = OperatorStatus.Chatting;
                     OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Chatting));
-                    vs.Status = VisitSessionStatus.Chatting;
-                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(vs));
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                 }
-                else
+                else if(chat.Status == ChatStatus.Closed)
                 {
+                    v.CurrentSession.Status = VisitSessionStatus.Visiting;
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                     if (!IsOperatorHasActiveChat(chat.OperatorId))
                     {
+                        o.Status = OperatorStatus.Idle;
                         OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Idle));
                     }
                 }
 
-
+                //ChatStatusChanged(this, cs);
+                
             }
             else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs) && ChatJoinInvite != null)
             {
@@ -281,12 +355,23 @@ namespace LiveSupport.OperatorConsole
             // 新访问,访客可能已经存在
             else if (e.Data.GetType() == typeof(NewVisitingEventArgs) && NewVisiting != null)
             {
+                NewVisitingEventArgs nv = (NewVisitingEventArgs)e.Data;
+                nv.Visitor.CurrentSession = nv.Session;
+                visitors.Add(nv.Visitor);
+                
                 NewVisiting(this, (NewVisitingEventArgs)e.Data);
             }
             // 访客离开
             else if (e.Data.GetType() == typeof(VisitorLeaveEventArgs) && VisitorLeave != null)
             {
-                VisitorLeave(this, (VisitorLeaveEventArgs)e.Data);
+                VisitorLeaveEventArgs vl = e.Data as VisitorLeaveEventArgs;
+                Visitor v = GetVisitorById(vl.VisitorId);
+                if (v != null)
+                {
+                    v.CurrentSession.Status = VisitSessionStatus.Leave;
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                }
+                //VisitorLeave(this, (VisitorLeaveEventArgs)e.Data);
             }
         }
 
@@ -294,6 +379,7 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
+                Debug.WriteLine("OperatorServiceAgent Recv: " + e.Data.ToString());
                 processServerEvents(e);
             }
             catch (Exception)
@@ -439,7 +525,9 @@ namespace LiveSupport.OperatorConsole
 
         public Chat InviteChat(string visitorId)
         {
-            return Common.Convert(ws.InviteChat(visitorId)) as Chat;
+            Chat chat = Common.Convert(ws.InviteChat(visitorId)) as Chat;
+            chats.Add(chat);
+            return chat;
         }
 
         public bool IsVisitorHasActiveChat(string visitorId)
@@ -1095,10 +1183,9 @@ namespace LiveSupport.OperatorConsole
 
         public event EventHandler<VisitorLeaveEventArgs> VisitorLeave;
 
-        public event EventHandler<OperatorsLoadCompletedEventArgs> OperatorsLoadCompleted;
+        public event EventHandler<DataLoadCompletedEventArgs> DataLoadCompleted;
 
-        public event EventHandler<VisitorsLoadCompletedEventArgs> VisitorsLoadCompleted;
-
+        
         #endregion
 
         #region IOperatorServiceAgent 成员
