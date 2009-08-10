@@ -155,11 +155,11 @@ namespace LiveSupport.OperatorConsole
             {
                 cf = new ChatForm(Program.OperaterServiceAgent);
                 Program.ChatForms.Add(cf);
-                cf.Accept(this.chat);
             }
 
             cf.Show();
             this.Hide();
+            cf.Accept(this.chat);
             timer.Stop();
         }
 

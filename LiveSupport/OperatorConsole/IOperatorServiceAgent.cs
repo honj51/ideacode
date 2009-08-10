@@ -56,6 +56,7 @@ namespace LiveSupport.OperatorConsole
         Operator GetOperatorById(string operatorId);
         Visitor GetVisitorById(string visitorId);
         Chat GetChatRequest(string visitorId);
+        Chat GetChatByChatId(string chatId);
         bool IsVisitorExist(string visitorId);
         #endregion
 
@@ -70,8 +71,8 @@ namespace LiveSupport.OperatorConsole
         //event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
         //event EventHandler<LeaveWordEventArgs> NewLeaveWords;
         event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
-        event EventHandler<OperatorsLoadCompletedEventArgs> OperatorsLoadCompleted;
-        event EventHandler<VisitorsLoadCompletedEventArgs> VisitorsLoadCompleted;
+        event EventHandler<DataLoadCompletedEventArgs> DataLoadCompleted;
+        //event EventHandler<VisitorsLoadCompletedEventArgs> VisitorsLoadCompleted;
         #endregion
 
         #region 公开属性
@@ -87,23 +88,19 @@ namespace LiveSupport.OperatorConsole
         #endregion
     }
 
-    public class OperatorsLoadCompletedEventArgs : EventArgs
+    public enum DataLoadEventType
     {
-        public List<Operator> Operators;
-        public OperatorsLoadCompletedEventArgs(List<Operator> operators)
-        {
-            this.Operators = operators;
-        }
-    }
-    public class VisitorsLoadCompletedEventArgs : EventArgs
-    {
-        public List<Visitor> Visitors;
-        public VisitorsLoadCompletedEventArgs(List<Visitor> visitors)
-        {
-            this.Visitors = visitors;
-        }
+        Operators,Visitors,SystemAdvertise,LeaveWord
     }
 
+    public class DataLoadCompletedEventArgs : EventArgs
+    {
+        public DataLoadEventType DataType;
+        public DataLoadCompletedEventArgs(DataLoadEventType dataType)
+        {
+            this.DataType = dataType;
+        }
+    }
     
     public class ConnectionStateChangeEventArgs : EventArgs
     {

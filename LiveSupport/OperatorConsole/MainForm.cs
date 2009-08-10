@@ -202,87 +202,71 @@ namespace LiveSupport.OperatorConsole
 
         private void registerOperatorServiceAgentEventHandler(bool unregister)
         {
-            //if (!unregister)
-            //{
-            //    this.operaterServiceAgent.ConnectionStateChanged += new EventHandler<ConnectionStateChangeEventArgs>(operaterServiceAgent_ConnectionStateChanged);
-            //    this.operaterServiceAgent.NewVisitor += new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
-            //    this.operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
-            //    this.operaterServiceAgent.NewChatRequest += new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
-            //    this.operaterServiceAgent.NewChanges += new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
-            //    this.operaterServiceAgent.NewSystemAdvertise += new EventHandler<SystemAdvertiseEventArgs>(operaterServiceAgent_NewSystemAdvertise);
-            //    this.operaterServiceAgent.NewLeaveWords += new EventHandler<LeaveWordEventArgs>(operaterServiceAgent_NewLeaveWords);
-
-            //}
-            //else
-            //{
-            //    this.operaterServiceAgent.ConnectionStateChanged -= new EventHandler<ConnectionStateChangeEventArgs>(operaterServiceAgent_ConnectionStateChanged);
-            //    this.operaterServiceAgent.NewVisitor -= new EventHandler<NewVisitorEventArgs>(operaterServiceAgent_NewVisitor);
-            //    this.operaterServiceAgent.NewChatRequest -= new EventHandler<NewChatRequestEventArgs>(operaterServiceAgent_NewChatRequest);
-            //    this.operaterServiceAgent.NewChanges -= new EventHandler<NewChangesCheckResultEventArgs>(operaterServiceAgent_NewChanges);
-            //    this.operaterServiceAgent.NewSystemAdvertise -= new EventHandler<SystemAdvertiseEventArgs>(operaterServiceAgent_NewSystemAdvertise);
-            //    this.operaterServiceAgent.NewLeaveWords -= new EventHandler<LeaveWordEventArgs>(operaterServiceAgent_NewLeaveWords);
-            //}
             if (!unregister)
             {
                 operaterServiceAgent.OperatorStatusChanged += new EventHandler<OperatorServiceInterface.OperatorStatusChangeEventArgs>(operaterServiceAgent_OperatorStatusChanged);
-                operaterServiceAgent.ChatStatusChanged += new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
-                operaterServiceAgent.NewVisiting += new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
-                operaterServiceAgent.VisitorLeave += new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
-                operaterServiceAgent.VisitorChatRequest += new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
-                operaterServiceAgent.NewChat += new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
-                operaterServiceAgent.VisitorChatRequestAccepted += new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
-                operaterServiceAgent.OperatorsLoadCompleted += new EventHandler<OperatorsLoadCompletedEventArgs>(operaterServiceAgent_OperatorsLoadCompleted);
-                operaterServiceAgent.VisitorsLoadCompleted += new EventHandler<VisitorsLoadCompletedEventArgs>(operaterServiceAgent_VisitorsLoadCompleted);
                 operaterServiceAgent.VisitorSessionChange += new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
+                operaterServiceAgent.NewVisiting += new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
+                operaterServiceAgent.VisitorChatRequest += new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
+                operaterServiceAgent.DataLoadCompleted += new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
+                //operaterServiceAgent.NewChat += new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+                //operaterServiceAgent.VisitorChatRequestAccepted += new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
+                //operaterServiceAgent.ChatStatusChanged += new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
+                //operaterServiceAgent.VisitorLeave += new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
+
             }
             else
             {
                 operaterServiceAgent.OperatorStatusChanged -= new EventHandler<OperatorServiceInterface.OperatorStatusChangeEventArgs>(operaterServiceAgent_OperatorStatusChanged);
-                operaterServiceAgent.ChatStatusChanged -= new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
-                operaterServiceAgent.NewVisiting -= new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
-                operaterServiceAgent.VisitorLeave -= new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
-                operaterServiceAgent.VisitorChatRequest -= new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
-                operaterServiceAgent.NewChat -= new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
-                operaterServiceAgent.VisitorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
-                operaterServiceAgent.OperatorsLoadCompleted -= new EventHandler<OperatorsLoadCompletedEventArgs>(operaterServiceAgent_OperatorsLoadCompleted);
-                operaterServiceAgent.VisitorsLoadCompleted -= new EventHandler<VisitorsLoadCompletedEventArgs>(operaterServiceAgent_VisitorsLoadCompleted);
                 operaterServiceAgent.VisitorSessionChange -= new EventHandler<VisitorSessionChangeEventArgs>(operaterServiceAgent_VisitorSessionChange);
+                //operaterServiceAgent.ChatStatusChanged -= new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operaterServiceAgent_ChatStatusChanged);
+                operaterServiceAgent.NewVisiting -= new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
+                //operaterServiceAgent.VisitorLeave -= new EventHandler<OperatorServiceInterface.VisitorLeaveEventArgs>(operaterServiceAgent_VisitorLeave);
+                operaterServiceAgent.VisitorChatRequest -= new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
+                //operaterServiceAgent.NewChat -= new EventHandler<OperatorServiceInterface.NewChatEventArgs>(operaterServiceAgent_NewChat);
+                //operaterServiceAgent.VisitorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs>(operaterServiceAgent_VisitorChatRequestAccepted);
+                operaterServiceAgent.DataLoadCompleted -= new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
+                
             }
         }
 
-        void operaterServiceAgent_VisitorsLoadCompleted(object sender, VisitorsLoadCompletedEventArgs e)
+        void operaterServiceAgent_DataLoadCompleted(object sender, DataLoadCompletedEventArgs e)
         {
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-
-            foreach (var item in e.Visitors)
-	         {
-              processNewVisitor(item);
-              changeVisitorListViewItemColor();
-              displayStatus();
-            }
-            }), e);
-           
-        }
-
-        void operaterServiceAgent_OperatorsLoadCompleted(object sender, OperatorsLoadCompletedEventArgs e)
-        {
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-            operatorPannel1.RecieveOperator(e.Operators);
-            }), e);
+           {
+               switch (e.DataType)
+               {
+                   case DataLoadEventType.Operators:
+                       operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
+                       break;
+                   case DataLoadEventType.Visitors:
+                       foreach (var item in operaterServiceAgent.Visitors)
+                       {
+                           processNewVisitor(item);
+                       }
+                       changeVisitorListViewItemColor();
+                       displayStatus();
+                       break;
+                   case DataLoadEventType.SystemAdvertise:
+                       break;
+                   case DataLoadEventType.LeaveWord:
+                       break;
+                   default:
+                       break;
+               }
+           }), e);
         }
 
         void operaterServiceAgent_VisitorChatRequestAccepted(object sender, OperatorServiceInterface.VisitorChatRequestAcceptedEventArgs e)
         {
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-                Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorChatRequest.VisitorId);
-                visitor.CurrentSession.Status = VisitSessionStatus.Chatting;
-                processVisitSessionChange(visitor.CurrentSession);
-                changeVisitorListViewItemColor();
-                displayStatus();
-            }), e);
+            //this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            //{
+            //    Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorChatRequest.VisitorId);
+            //    visitor.CurrentSession.Status = VisitSessionStatus.Chatting;
+            //    processVisitSessionChange(visitor.CurrentSession);
+            //    changeVisitorListViewItemColor();
+            //    displayStatus();
+            //}), e);
         }
 
         // 访客请求对话
@@ -302,26 +286,26 @@ namespace LiveSupport.OperatorConsole
         // 访客离开
         void operaterServiceAgent_VisitorLeave(object sender, OperatorServiceInterface.VisitorLeaveEventArgs e)
         {
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
-           {
-               Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorId);
-               if (visitor == null)
-               {
-                   return;
-               }
-               visitor.CurrentSession.Status = VisitSessionStatus.Leave;
-               processVisitSessionChange(visitor.CurrentSession);
-               changeVisitorListViewItemColor();
-               displayStatus();
-           }), e);
+            // this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            //{
+            //    Visitor visitor = operaterServiceAgent.GetVisitorById(e.VisitorId);
+            //    if (visitor == null)
+            //    {
+            //        return;
+            //    }
+            //    visitor.CurrentSession.Status = VisitSessionStatus.Leave;
+            //    processVisitSessionChange(visitor.CurrentSession);
+            //    changeVisitorListViewItemColor();
+            //    displayStatus();
+            //}), e);
         }
 
         // 新对话
         void operaterServiceAgent_NewChat(object sender, OperatorServiceInterface.NewChatEventArgs e)
         {
             // operaterServiceAgent.Chats.Add(e.Chat);
-            changeVisitorListViewItemColor();
-            displayStatus();
+            //changeVisitorListViewItemColor();
+            //displayStatus();
         }
 
         // 新访客
@@ -339,35 +323,33 @@ namespace LiveSupport.OperatorConsole
         // 对话状态改变
         void operaterServiceAgent_ChatStatusChanged(object sender, OperatorServiceInterface.ChatStatusChangedEventArgs e)
         {
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-                Chat chat= null;
-                    foreach (var item in operaterServiceAgent.Chats)
-                    {
-                        if (item.ChatId == e.ChatId)
-                        {
-                            item.Status = e.Status;
-                            chat = item;
-                        }
-                    }
-                    Visitor visitor = operaterServiceAgent.GetVisitorById(chat.VisitorId);
-                    if (chat.Status == ChatStatus.Closed)
-                    {
-                        visitor.CurrentSession.Status = VisitSessionStatus.Visiting;
-                        
-                    }
-                    if (chat.Status == ChatStatus.Requested)
-                    {
-                        visitor.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
-                    }
-                    if (chat.Status == ChatStatus.Accepted)
-                    {
-                        visitor.CurrentSession.Status = VisitSessionStatus.Chatting;
-                    }
-                    processVisitSessionChange(visitor.CurrentSession);
-                    changeVisitorListViewItemColor();
-                    displayStatus();
-            }), e);
+            //this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            //{
+
+            //    Chat chat= operaterServiceAgent.GetChatByChatId(e.ChatId);
+            //    Visitor visitor = operaterServiceAgent.GetVisitorById(chat.VisitorId);
+            //    if (chat != null & visitor != null)
+            //    {
+            //        chat.Status = e.Status;
+            //        if (chat.Status == ChatStatus.Closed)
+            //        {
+            //            visitor.CurrentSession.Status = VisitSessionStatus.Visiting;
+            //        }
+            //        if (chat.Status == ChatStatus.Requested)
+            //        {
+            //            visitor.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
+            //        }
+            //        if (chat.Status == ChatStatus.Accepted)
+            //        {
+            //            visitor.CurrentSession.Status = VisitSessionStatus.Chatting;
+            //        }
+            //        processVisitSessionChange(visitor.CurrentSession);
+            //        changeVisitorListViewItemColor();
+            //        displayStatus();
+            //    }
+            //    else
+            //        Trace.WriteLine("ChatId="+e.ChatId+" not exist");
+            //}), e);
         }
 
         // 客服状态改变
@@ -375,16 +357,7 @@ namespace LiveSupport.OperatorConsole
         {
             this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
-                List<Operator> listops = new List<Operator>();
-                for (int i = 0; i <operaterServiceAgent.Operators.Count; i++)
-                {
-                    if (operaterServiceAgent.Operators[i].OperatorId==e.OperatorId)
-                    {
-                        operaterServiceAgent.Operators[i].Status = e.Status;
-                    }
-                    listops.Add(operaterServiceAgent.Operators[i]);
-                }
-                operatorPannel1.RecieveOperator(listops);
+                operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
             }), e);
 
         }
@@ -533,26 +506,26 @@ namespace LiveSupport.OperatorConsole
         private void changeVisitorListViewItemColor()
         {
             foreach (ListViewItem item in lstVisitors.Items)
+            {
+                if (item == null) continue;
+                VisitorListViewItem v = item.Tag as VisitorListViewItem;
+                if (v.VisitSession.Status == VisitSessionStatus.Visiting)
                 {
-                    if (item == null) continue;
-                    VisitorListViewItem v = item.Tag as VisitorListViewItem;
-                    if (v.VisitSession.Status == VisitSessionStatus.Visiting)
-                    {
-                        item.SubItems[0].ForeColor = Color.Green;
-                    }
-                    if (v.VisitSession.Status == VisitSessionStatus.ChatRequesting)
-                    {
-                        item.SubItems[0].ForeColor = Color.Red;
-                    }
-                    if (v.VisitSession.Status == VisitSessionStatus.Chatting)
-                    {
-                        item.SubItems[0].ForeColor = Color.Blue;
-                    }
-                    if (v.VisitSession.Status == VisitSessionStatus.Leave)
-                    {
-                        item.SubItems[0].ForeColor = Color.Gray;
-                    }
+                    item.SubItems[0].ForeColor = Color.Green;
                 }
+                if (v.VisitSession.Status == VisitSessionStatus.ChatRequesting)
+                {
+                    item.SubItems[0].ForeColor = Color.Red;
+                }
+                if (v.VisitSession.Status == VisitSessionStatus.Chatting)
+                {
+                    item.SubItems[0].ForeColor = Color.Blue;
+                }
+                if (v.VisitSession.Status == VisitSessionStatus.Leave)
+                {
+                    item.SubItems[0].ForeColor = Color.Gray;
+                }
+            }
         }
 
         /// <summary>
@@ -680,38 +653,38 @@ namespace LiveSupport.OperatorConsole
 
         private void processNewVisitor(Visitor visitor)
         {
-             this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-            VisitorListViewItem vlvi = new VisitorListViewItem();
-            vlvi.Visitor = visitor;
-            string browser = Common.GetBrowserShortName(vlvi.VisitSession.Browser);
-            string status = Common.GetVisitSessionStatusText(vlvi.VisitSession.Status);
-            string visitingTime = vlvi.VisitSession.VisitingTime.Ticks == 0 ? "" : vlvi.VisitSession.VisitingTime.ToString();
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+           {
+               VisitorListViewItem vlvi = new VisitorListViewItem();
+               vlvi.Visitor = visitor;
+               string browser = Common.GetBrowserShortName(vlvi.VisitSession.Browser);
+               string status = Common.GetVisitSessionStatusText(vlvi.VisitSession.Status);
+               string visitingTime = vlvi.VisitSession.VisitingTime.Ticks == 0 ? "" : vlvi.VisitSession.VisitingTime.ToString();
 
-            ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.DomainRequested,vlvi.VisitSession.Location,
+               ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.DomainRequested,vlvi.VisitSession.Location,
                          vlvi.Visitor.VisitCount.ToString(),"暂无接待",status,
                          vlvi.VisitSession.VisitingTime.ToString(), "", "",
                          "","", "",vlvi.VisitSession.PageRequestCount.ToString(), Common.GetSearchEngineName(vlvi.VisitSession.Referrer)
                         });
-            if (vlvi.VisitSession.Browser.Contains("MSIE"))
-            {
-                i.ImageIndex = 1;
-            }
-            else if (vlvi.VisitSession.Browser.Contains("Firefox"))
-            {
-                i.ImageIndex = 0;
-            }
-            i.Tag = vlvi;
-            lstVisitors.Items.Add(i);
+               if (vlvi.VisitSession.Browser.Contains("MSIE"))
+               {
+                   i.ImageIndex = 1;
+               }
+               else if (vlvi.VisitSession.Browser.Contains("Firefox"))
+               {
+                   i.ImageIndex = 0;
+               }
+               i.Tag = vlvi;
+               lstVisitors.Items.Add(i);
 
-            refreashListViewGroup();
+               refreashListViewGroup();
 
-            if (vlvi.VisitSession.Status != VisitSessionStatus.Leave)
-            {
-                notifyIcon.ShowBalloonTip(5000, "新的访客", string.Format("访客{0}正在访问页面 \r\n {1}", vlvi.Visitor.Name, vlvi.VisitSession.PageRequested), ToolTipIcon.Info);
-            }
-            }), visitor);
-            
+               if (vlvi.VisitSession.Status != VisitSessionStatus.Leave)
+               {
+                   notifyIcon.ShowBalloonTip(5000, "新的访客", string.Format("访客{0}正在访问页面 \r\n {1}", vlvi.Visitor.Name, vlvi.VisitSession.PageRequested), ToolTipIcon.Info);
+               }
+           }), visitor);
+
         }
 
         private void processVisitSessionChange(VisitSession visitSession)
