@@ -23,4 +23,14 @@ namespace OperatorServiceInterface
     {
         public string OperatorId;
     }
+
+    [Serializable]
+    public class HeartBeatAction
+    {
+        public string OperatorId;
+        public HeartBeatAction(string operatorId)
+        {
+            OperatorId = operatorId;
+        }
+    }
 }
