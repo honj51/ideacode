@@ -6,6 +6,8 @@ using System.Configuration;
 using System.Net;
 using System.Diagnostics;
 using System.Threading;
+using System.Web;
+using System.Web.Configuration;
 
 namespace LiveSupport.BLL
 {
@@ -195,5 +197,95 @@ namespace LiveSupport.BLL
                 return string.Empty;
         }
         #endregion
+
+        #region 检查文件是否存在
+        /// <summary>
+        /// 返回文件是否存在
+        /// </summary>
+        /// <param name="filename">文件名</param>
+        /// <returns>是否存在</returns>
+        public static bool FileExists(string filename)
+        {
+            return System.IO.File.Exists(filename);
+        }
+        #endregion
+
+        #region 获得当前绝对路径
+        /// <summary>
+        /// 获得当前绝对路径
+        /// </summary>
+        /// <param name="strPath">指定的路径</param>
+        /// <returns>绝对路径</returns>
+        public static string GetMapPath(string strPath)
+        {
+            if (HttpContext.Current != null)
+            {
+                return HttpContext.Current.Server.MapPath(strPath);
+            }
+            else //非web程序引用
+            {
+                strPath = strPath.Replace("/", "\\");
+                if (strPath.StartsWith("\\"))
+                {
+                    strPath = strPath.Substring(strPath.IndexOf('\\', 1)).TrimStart('\\');
+                }
+                return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, strPath);
+            }
+        }
+        #endregion
+
+        #region 更改配置文件中appsettings节点信息
+        /// <summary>
+        /// 更改配置文件中appsettings节点信息
+        /// </summary>
+        /// <param name="key">键名</param>
+        /// <param name="value">值</param>
+        /// <param name="type">类型（add,delete,update）</param>
+        /// <returns></returns>
+        public bool SetappSettings(string key, string value, string type)
+        {
+            //打开配置文件
+            Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+            //获取appSettings节点
+            AppSettingsSection appSection = (AppSettingsSection)config.GetSection("appSettings");
+            bool isno = true;
+            switch (type)
+            {
+                case "add":
+                    appSection.Settings.Remove(key);
+                    appSection.Settings.Add(key, value);
+                    break;
+                case "delete":
+                    appSection.Settings.Remove(key);
+                    break;
+                case "update":
+                    appSection.Settings[key].Value = value;
+                    break;
+                default:
+                    isno = false;
+                    break;
+            }
+            config.Save();
+            return isno;
+        }
+        #endregion
+
+        #region 设置连接字符串信息
+        /// <summary>
+        /// 设置连接字符串信息
+        /// </summary>
+        /// <param name="keyName">键名</param>
+        /// <param name="connectionStrings">连接字符串</param>
+        public void SetConnectionStrings(string keyName, string connectionStrings)
+        {
+            System.Configuration.Configuration c = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            c.ConnectionStrings.ConnectionStrings.Clear();
+            ConnectionStringSettings s = new ConnectionStringSettings();
+            s.ConnectionString = connectionStrings;
+            s.Name = keyName;
+            c.ConnectionStrings.ConnectionStrings.Add(s);
+            c.Save();
+        }
+        #endregion 
     }
 }
