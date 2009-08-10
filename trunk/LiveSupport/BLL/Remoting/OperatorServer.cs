@@ -442,11 +442,23 @@ namespace LiveSupport.BLL.Remoting
                 else
                     operatorSocketMap.Add(action.OperatorId, e.Socket);
 
-                sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs("123", LiveSupport.LiveSupportModel.OperatorStatus.Idle));
+                sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs(action.OperatorId, LiveSupport.LiveSupportModel.OperatorStatus.Idle));
             }
             else if (e.Data.GetType() == typeof(LogoutAction))
             {
-
+                if (operatorSocketMap.ContainsKey(action.OperatorId))
+                {
+                    operatorSocketMap[action.OperatorId] = null;
+                }
+            }
+            else if (e.Data.GetType() == typeof(HeartBeatAction))
+            {
+                HeartBeatAction a = e.Data as HeartBeatAction;
+                Operator op = OperatorService.GetOperatorById(a.OperatorId);
+                if (op != null)
+                {
+                    op.HeartBeatTime = DateTime.Now;
+                }
             }
         }
 
