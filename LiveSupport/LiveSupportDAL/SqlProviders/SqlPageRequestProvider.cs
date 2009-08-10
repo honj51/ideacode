@@ -53,5 +53,32 @@ namespace LiveSupport.LiveSupportDAL.SqlProviders
            , pageRequest.AccountId, pageRequest.SessionId, pageRequest.Page, pageRequest.RequestTime, pageRequest.Referrer);
            return  DBHelper.ExecuteCommand(sql);
         }
+
+        #region 通过公司编号 统计访客流量
+        public Dictionary<string, int> GetPageRequestsStatisticByAccountId(string AccountId, string beginTime, string endTime)
+        {
+            string sql = string.Format("select count(*) as RequestCount, RequestTime from view_PageRequest where AccountId='{0}' and RequestTime>='{1}' and  RequestTime <='{2}' group by RequestTime order by RequestTime", AccountId, beginTime, endTime);
+            SqlDataReader sdr = null;
+            Dictionary<string, int> dic = new Dictionary<string, int>(); 
+            try
+            {
+                using (sdr = DBHelper.GetReader(sql))
+                {
+                    while (sdr.Read())
+                    {
+                        if (sdr["RequestCount"] != null && sdr["RequestTime"] != null)
+                        {
+                            dic.Add(sdr["RequestTime"].ToString(), (int)sdr["RequestCount"]);
+                        }
+                    }
+                    return dic;
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
+        #endregion
     }
 }
