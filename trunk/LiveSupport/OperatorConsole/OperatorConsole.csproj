@@ -135,7 +135,7 @@
     </Compile>
     <Compile Include="IOperatorServiceAgent.cs" />
     <Compile Include="OperatorServiceAgent.cs" />
-    <Compile Include="OperatorServiceAgentEx.cs" />
+    <Compile Include="OperatorServiceAgentMock.cs" />
     <Compile Include="OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -437,6 +437,10 @@
     <ProjectReference Include="..\OperatorServiceInterface\OperatorServiceInterface.csproj">
       <Project>{D4071B27-1B1F-476D-BD4F-1E2BBDDD37F4}</Project>
       <Name>OperatorServiceInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test\TestUtility\TestUtility.csproj">
+      <Project>{B873E172-680D-4D6A-BFC9-532CB13F5608}</Project>
+      <Name>TestUtility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -571,6 +571,7 @@ namespace LiveSupport.OperatorConsole
                 {
                     for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
                     {
+                        if (operatorServiceAgent.QuickResponseCategory[i] == null) continue;
                         setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
                         if (operatorServiceAgent.QuickResponseCategory[i].Responses.Count == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses==null) continue;
                         foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
