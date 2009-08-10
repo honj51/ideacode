@@ -251,28 +251,14 @@ namespace LiveSupport.OperatorConsole
                     vs.Status = VisitSessionStatus.Chatting;
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(vs));
                 }
-                else if (chat.Status == ChatStatus.Closed)
+                else
                 {
                     if (!IsOperatorHasActiveChat(chat.OperatorId))
                     {
                         OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Idle));
                     }
+                }
 
-                }
-                else if (chat.Status == ChatStatus.Decline)
-                {
-                    if (!IsOperatorHasActiveChat(chat.OperatorId))
-                    {
-                        OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Idle));
-                    }
-                }
-                else if (chat.Status == ChatStatus.Requested)
-                {
-                    if (!IsOperatorHasActiveChat(chat.OperatorId))
-                    {
-                        OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Idle));
-                    }
-                }
 
             }
             else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs) && ChatJoinInvite != null)
