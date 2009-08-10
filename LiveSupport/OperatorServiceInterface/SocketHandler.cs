@@ -12,11 +12,11 @@ namespace OperatorServiceInterface
     public class DataArriveEventArgs : EventArgs
     {
         public object Data;
-        public Socket Socket;
-        public DataArriveEventArgs(object data, Socket socket)
+        public OperatorServiceInterface.SocketHandler.StateObject StateObject;
+        public DataArriveEventArgs(object data, OperatorServiceInterface.SocketHandler.StateObject stateObject)
         {
             Data = data;
-            Socket = socket;
+            StateObject = stateObject;
         }
     }
     public class ExceptionEventArgs : EventArgs
@@ -106,7 +106,7 @@ namespace OperatorServiceInterface
                         {
                             try
                             {
-                                DataArrive(this, new DataArriveEventArgs(obj, s));
+                                DataArrive(this, new DataArriveEventArgs(obj, so));
                             }
                             catch (Exception ex)
                             {
@@ -130,6 +130,7 @@ namespace OperatorServiceInterface
                 {
                     if (Exception != null)
                     {
+                        ex.Data["StateObject"] = so;
                         Exception(this, new ExceptionEventArgs(ex));
                     }
                 }
