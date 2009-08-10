@@ -423,6 +423,7 @@ namespace LiveSupport.BLL.Remoting
             socketHandlingThread = new Thread(new ThreadStart(delegate()
             {
                 sh = new SocketHandler();
+                sh.Exception += new EventHandler<ExceptionEventArgs>(sh_Exception);
                 sh.DataArrive += new EventHandler<DataArriveEventArgs>(sh_DataArrive);
                 sh.Listen();
 
@@ -430,19 +431,36 @@ namespace LiveSupport.BLL.Remoting
             socketHandlingThread.Start();
         }
 
+        void sh_Exception(object sender, ExceptionEventArgs e)
+        {
+            if (e.Exception is SocketException)
+            {
+                OperatorServiceInterface.SocketHandler.StateObject so = e.Exception.Data["StateObject"] as OperatorServiceInterface.SocketHandler.StateObject;
+                if (!so.workSocket.Connected && !string.IsNullOrEmpty(so.OperatorId))
+                {
+                    Operator op = OperatorService.GetOperatorById(so.OperatorId);
+                    if (op != null)
+                    {
+                        op.Status = OperatorStatus.Offline;                        
+                    }
+                }
+            }
+        }
+
         void sh_DataArrive(object sender, DataArriveEventArgs e)
         {
             if (e.Data.GetType() == typeof(LoginAction))
             {
                 LoginAction action = e.Data as LoginAction;
+                e.StateObject.OperatorId = action.OperatorId;
                 if (operatorSocketMap.ContainsKey(action.OperatorId))
                 {
-                    operatorSocketMap[action.OperatorId] = e.Socket;
+                    operatorSocketMap[action.OperatorId] = e.StateObject.workSocket;
                 }
                 else
-                    operatorSocketMap.Add(action.OperatorId, e.Socket);
+                    operatorSocketMap.Add(action.OperatorId, e.StateObject.workSocket);
 
-                sh.SendPacket(e.Socket, new OperatorStatusChangeEventArgs(action.OperatorId, LiveSupport.LiveSupportModel.OperatorStatus.Idle));
+                sh.SendPacket(e.StateObject.workSocket, new OperatorStatusChangeEventArgs(action.OperatorId, LiveSupport.LiveSupportModel.OperatorStatus.Idle));
             }
             else if (e.Data.GetType() == typeof(LogoutAction))
             {
