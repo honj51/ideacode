@@ -147,6 +147,7 @@ namespace OperatorServiceInterface
         //发送socket
         public void SendPacket(Socket s, object obj)
         {
+            Debug.WriteLine("SendPacket : " + obj.ToString());
             lock (s)
             {
                 if (s.Connected)
