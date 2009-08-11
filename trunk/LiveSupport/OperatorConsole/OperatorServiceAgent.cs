@@ -290,6 +290,7 @@ namespace LiveSupport.OperatorConsole
                 {
                     chat.OperatorId = v.VisitorChatRequest.Chat.OperatorId;
                     op.Status = OperatorStatus.Chatting;
+                    visitor.CurrentSession.OperatorId = op.OperatorId;
                     VisitSession vs = visitor.CurrentSession;
                     vs.ChatingTime = v.VisitorChatRequest.Chat.AcceptTime;
                     vs.Status = VisitSessionStatus.Chatting;
