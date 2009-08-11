@@ -201,7 +201,12 @@ public class ChatService
             }
             return true;
         }
-        
+
+        if (ChatStatusChanged != null)
+        {
+            ChatStatusChanged(null, new ChatStatusChangedEventArgs(chatId, ChatStatus.Closed));
+        }
+
         Message m = new Message();
         m.ChatId =chatId;
         m.SentDate = DateTime.Now;
@@ -223,11 +228,6 @@ public class ChatService
         if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId) && OperatorService.IsOperatorOnline(chat.OperatorId))
         {   
             OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
-        }
-
-        if (ChatStatusChanged != null)
-        {
-            ChatStatusChanged(null, new ChatStatusChangedEventArgs(chatId, ChatStatus.Closed));
         }
         return true;        
     }
