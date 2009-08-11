@@ -130,7 +130,7 @@ namespace OperatorServiceInterface
                 {
                     if (Exception != null)
                     {
-                        ex.Data["StateObject"] = so;
+                        ex.Data["OperatorId"] = so.OperatorId;
                         Exception(this, new ExceptionEventArgs(ex));
                     }
                 }
