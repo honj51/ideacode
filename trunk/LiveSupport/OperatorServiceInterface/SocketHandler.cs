@@ -163,16 +163,25 @@ namespace OperatorServiceInterface
         {
             try
             {
-                Debug.WriteLine("SendPacket : " + obj.ToString());
                 lock (s)
                 {
                     if (s.Connected)
                     {
+                        Debug.Write("SendPacket : " + obj.ToString());
                         BinaryFormatter fo = new BinaryFormatter();
                         MemoryStream stream = new MemoryStream();
                         fo.Serialize(stream, obj);
-                        s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
-                        s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
+                        int bs = s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
+                        if (bs != 4)
+                        {
+                            Trace.Write(" Error: Send(4) return" + bs);
+                        }
+                        bs = s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
+                        if (bs != 4)
+                        {
+                            Trace.Write(string.Format(" Error: Send({0}) return {1}",stream.Length, bs));
+                        }
+                        Debug.WriteLine("");
                     }
                 }
             }
