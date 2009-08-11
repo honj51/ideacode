@@ -48,7 +48,8 @@ namespace OperatorServiceInterface
                 s.BeginAccept(new AsyncCallback(OnAccept), s);
 
                 Socket t = s.EndAccept(ar);
-                t.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 0);
+                t.NoDelay = true;
+                //t.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 0);
                 ConnectedSockets.Add(t);
 
                 //Begin to receive data
