@@ -75,8 +75,8 @@ namespace LiveSupport.OperatorConsole
             try
             {
                 operatorServiceAgent.EnablePooling = false;
-                //operatorServiceAgent.Login(txtUserName.Text.Trim(), txtOpName.Text.Trim(), txtOpPassword.Text);
-                operatorServiceAgent.Login("100000", "zxkefu", "zxkefu");
+                operatorServiceAgent.Login(txtUserName.Text.Trim(), txtOpName.Text.Trim(), txtOpPassword.Text);
+                //operatorServiceAgent.Login("100000", "zxkefu", "zxkefu");
             }
             catch (WebException e)
             {
