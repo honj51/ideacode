@@ -49,7 +49,7 @@ namespace OperatorServiceInterface
 
                 Socket t = s.EndAccept(ar);
                 t.NoDelay = true;
-                //t.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 0);
+                t.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 1);
                 ConnectedSockets.Add(t);
 
                 //Begin to receive data
@@ -153,7 +153,7 @@ namespace OperatorServiceInterface
         public Socket Connect(string ipAddress)
         {
             Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            //client.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 0);
+            client.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 1);
             client.NoDelay = true;
             client.Connect(IPAddress.Parse(ipAddress), LocalPort);
             StateObject so = new StateObject();
@@ -178,24 +178,21 @@ namespace OperatorServiceInterface
             {
                 lock (s)
                 {
-                    if (s.Connected)
+                    Debug.Write("SendPacket : " + obj.ToString());
+                    BinaryFormatter fo = new BinaryFormatter();
+                    MemoryStream stream = new MemoryStream();
+                    fo.Serialize(stream, obj);
+                    int bs = s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
+                    if (bs != 4)
                     {
-                        Debug.Write("SendPacket : " + obj.ToString());
-                        BinaryFormatter fo = new BinaryFormatter();
-                        MemoryStream stream = new MemoryStream();
-                        fo.Serialize(stream, obj);
-                        int bs = s.Send(BitConverter.GetBytes(Convert.ToInt32(stream.Length)));
-                        if (bs != 4)
-                        {
-                            Trace.Write(" Error: Send(4) return" + bs);
-                        }
-                        bs = s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
-                        if (bs != stream.Length)
-                        {
-                            Trace.Write(string.Format(" Error: Send({0}) return {1}",stream.Length, bs));
-                        }
-                        Debug.WriteLine("");
+                        Trace.Write(" Error: Send(4) return" + bs);
                     }
+                    bs = s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
+                    if (bs != stream.Length)
+                    {
+                        Trace.Write(string.Format(" Error: Send({0}) return {1}", stream.Length, bs));
+                    }
+                    Debug.WriteLine("");
                 }
             }
             catch (Exception ex)
