@@ -75,20 +75,22 @@ namespace LiveSupportInstall
                     sb.Append("<tr><td bgcolor='#ffffff' width='5%'><img src='images/ok.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 " + foldler + " 目录权限验证通过!</td></tr>");
                 }
             }
-            //检查文件夹权限
-            //string filestr = "admin\\xml\\navmenu.config,javascript\\common.js,install\\systemfile.aspx,upgrade\\systemfile.aspx";
-            //foreach (string file in filestr.Split(','))
-            //{
-            //    if (!SystemFileCheck(file))
-            //    {
-            //        sb.Append("<tr><td bgcolor='#ffffff' width='5%'><img src='images/error.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 " + file.Substring(0, file.LastIndexOf('\\')) + " 目录没有写入和删除权限!</td></tr>");
-            //        error = true;
-            //    }
-            //    else
-            //    {
-            //        sb.Append("<tr><td bgcolor='#ffffff' width='5%'><img src='images/ok.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 " + file.Substring(0, file.LastIndexOf('\\')) + " 目录权限验证通过!</td></tr>");
-            //    }
-            //}
+            string[] directory = { "D:\\web\\Images", "D:\\web\\data"};
+            foreach (var item in directory)
+            {
+                Directory.CreateDirectory(item);
+                string[] items = item.Split('\\');
+                if (!SystemDirectoryCheck(item.ToString()))
+                {
+                    sb.Append("<tr><td bgcolor='#ffffff' width='5%'><img src='images/error.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 IIS 中 " + items[items.Length - 1] + " 虚拟目录物理路径不存在</td></tr>");
+                    error = true;
+                }
+                else
+                {
+                    sb.Append("<tr><td bgcolor='#ffffff' width='5%'><img src='images/ok.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 IIS 中 " + items[items.Length - 1] + " 虚拟目录物理路径验证通过!</td></tr>");
+                }
+            }
+            Directory.CreateDirectory("C:\\Program Files\\Microsoft SQL Server\\MSSQL.2\\MSSQL\\Data");
             sb.Append("</table>");
 
             return sb.ToString();
@@ -190,6 +192,29 @@ namespace LiveSupportInstall
                 return false;
             }
         }
+        public static bool SystemDirectoryCheck(string directoryPath)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(directoryPath + "\\a.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
+                {
+                    fs.Close();
+                }
+                if (File.Exists(directoryPath + "\\a.txt"))
+                {
+                    System.IO.File.Delete(directoryPath + "\\a.txt");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
         /// <summary>
         /// 系统文件检查 -权限
@@ -223,64 +248,64 @@ namespace LiveSupportInstall
                 return false;
             }
         }
-        ///   <summary>   
-        ///   创建虚拟目录   
-        ///   </summary>   
-        ///   <param   name="iisVir"></param>   
-        ///   <param   name="deleteIfExist"></param>   
-        public static void CreateIISWebVirtualDir(IISWebVirtualDir iisVir, bool deleteIfExist)
-        {
-            if (iisVir.Parent == null)
-                throw (new Exception("IISWebVirtualDir没有所属的IISWebServer!"));
+        //   <summary>   
+        //   创建虚拟目录   
+        //   </summary>   
+        //   <param   name="iisVir"></param>   
+        //   <param   name="deleteIfExist"></param>   
+        //public static void CreateIISWebVirtualDir(IISWebVirtualDir iisVir, bool deleteIfExist)
+        //{
+        //    if (iisVir.Parent == null)
+        //        throw (new Exception("IISWebVirtualDir没有所属的IISWebServer!"));
 
-            DirectoryEntry Service = new DirectoryEntry("IIS://" + IISManagement.Machinename + "/W3SVC");
-            DirectoryEntry Server = returnIISWebserver(iisVir.Parent.index);
+        //    DirectoryEntry Service = new DirectoryEntry("IIS://" + IISManagement.Machinename + "/W3SVC");
+        //    DirectoryEntry Server = returnIISWebserver(iisVir.Parent.index);
 
-            if (Server == null)
-            {
-                throw (new Exception("找不到给定的站点!"));
-            }
+        //    if (Server == null)
+        //    {
+        //        throw (new Exception("找不到给定的站点!"));
+        //    }
 
-            IEnumerator ie = Server.Children.GetEnumerator();
-            ie.MoveNext();
+        //    IEnumerator ie = Server.Children.GetEnumerator();
+        //    ie.MoveNext();
 
-            Server = (DirectoryEntry)ie.Current;
-            if (deleteIfExist)
-            {
-                DirectoryEntry VirDir;
-                ie = Server.Children.GetEnumerator();
-                while (ie.MoveNext())
-                {
-                    VirDir = (DirectoryEntry)ie.Current;
-                    if (VirDir.Name.ToLower().Trim() == iisVir.Name.ToLower())
-                    {
-                        Server.Children.Remove(VirDir);
-                        Server.CommitChanges();
-                        break;
-                    }
-                }
-            }
+        //    Server = (DirectoryEntry)ie.Current;
+        //    if (deleteIfExist)
+        //    {
+        //        DirectoryEntry VirDir;
+        //        ie = Server.Children.GetEnumerator();
+        //        while (ie.MoveNext())
+        //        {
+        //            VirDir = (DirectoryEntry)ie.Current;
+        //            if (VirDir.Name.ToLower().Trim() == iisVir.Name.ToLower())
+        //            {
+        //                Server.Children.Remove(VirDir);
+        //                Server.CommitChanges();
+        //                break;
+        //            }
+        //        }
+        //    }
 
-            try
-            {
-                DirectoryEntry vir;
-                vir = Server.Children.Add(iisVir.Name, "IIsWebVirtualDir");
-                vir.Properties["Path"][0] = iisVir.Path;
-                vir.Properties["DefaultDoc"][0] = iisVir.DefaultDoc;
-                vir.Properties["EnableDefaultDoc"][0] = iisVir.EnableDefaultDoc;
-                vir.Properties["AccessScript"][0] = iisVir.AccessScript;
-                vir.Properties["AccessRead"][0] = iisVir.AccessRead;
-                vir.Invoke("AppCreate", true);
+        //    try
+        //    {
+        //        DirectoryEntry vir;
+        //        vir = Server.Children.Add(iisVir.Name, "IIsWebVirtualDir");
+        //        vir.Properties["Path"][0] = iisVir.Path;
+        //        vir.Properties["DefaultDoc"][0] = iisVir.DefaultDoc;
+        //        vir.Properties["EnableDefaultDoc"][0] = iisVir.EnableDefaultDoc;
+        //        vir.Properties["AccessScript"][0] = iisVir.AccessScript;
+        //        vir.Properties["AccessRead"][0] = iisVir.AccessRead;
+        //        vir.Invoke("AppCreate", true);
 
-                Server.CommitChanges();
-                vir.CommitChanges();
+        //        Server.CommitChanges();
+        //        vir.CommitChanges();
 
-            }
-            catch (Exception es)
-            {
-                throw (es);
-            }
+        //    }
+        //    catch (Exception es)
+        //    {
+        //        throw (es);
+        //    }
 
-        }
+        //}
     }
 }
