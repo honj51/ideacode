@@ -273,6 +273,7 @@ namespace LiveSupport.OperatorConsole
                 if (op != null && v != null)
                 {
                     op.Status = OperatorStatus.InviteChat;
+                    chats.Add(ocr.Chat);
                     //v.CurrentSession.Status = VisitSessionStatus.
                     //OperatorChatRequest(this, ocr);
                     OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(op.OperatorId, OperatorStatus.InviteChat));
