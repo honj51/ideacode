@@ -82,12 +82,14 @@ namespace OperatorServiceInterface
                         //initialize
                         so.bytesToReceive = BitConverter.ToInt32(so.buffer, 0);
                         so.data = new MemoryStream();
+                        Trace.Write("Debug: SocketHandler.OnReceive Header, Body Length=" + so.bytesToReceive);
                         offset = 4;
                     }
                     if (so.bytesToReceive > receivedBytes + so.offset - offset)
                     {
                         //so.data.Append(Encoding.Unicode.GetString(so.buffer, offset, receivedBytes + so.offset - offset));
                         so.data.Write(so.buffer, offset, receivedBytes + so.offset - offset);
+                        Trace.Write(" receive Body, Length=" + receivedBytes);
                         Debug.Assert(so.bytesToReceive >= receivedBytes + so.offset - offset);
                         so.bytesToReceive -= receivedBytes + so.offset - offset;
                         so.offset = 0;
@@ -103,19 +105,28 @@ namespace OperatorServiceInterface
                         BinaryFormatter formatter = new BinaryFormatter();
                         so.data.Position = 0;
                         object obj = formatter.Deserialize(so.data);
-                        if (DataArrive != null && obj != null)
+                        if (obj != null)
                         {
-                            try
+                            Trace.WriteLine(" receive Body Completed, Recv object= " + obj.ToString());
+
+                            if (DataArrive != null)
                             {
-                                DataArrive(this, new DataArriveEventArgs(obj, so));
-                            }
-                            catch (Exception ex)
-                            {
-                                if (Exception != null)
+                                try
                                 {
-                                    Exception(this, new ExceptionEventArgs(ex));
+                                    DataArrive(this, new DataArriveEventArgs(obj, so));
+                                }
+                                catch (Exception ex)
+                                {
+                                    if (Exception != null)
+                                    {
+                                        Exception(this, new ExceptionEventArgs(ex));
+                                    }
                                 }
                             }
+                        }
+                        else
+                        {
+                            Trace.WriteLine(" receive Body Completed, Error: Deserialize failed!");
                         }
 
                         StateObject so1 = new StateObject();
@@ -142,7 +153,8 @@ namespace OperatorServiceInterface
         public Socket Connect(string ipAddress)
         {
             Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            client.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 0);
+            //client.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, 0);
+            client.NoDelay = true;
             client.Connect(IPAddress.Parse(ipAddress), LocalPort);
             StateObject so = new StateObject();
             so.workSocket = client;
