@@ -199,7 +199,14 @@ namespace LiveSupport.BLL.Remoting
 
         void OperatorService_OperatorStatusChange(object sender, OperatorStatusChangeEventArgs e)//wang 
         {
-            safeFireEvent(OperatorStatusChange, e);
+            Operator op = OperatorService.GetOperatorById(e.OperatorId);
+            if (op != null)
+            {
+                foreach (var item in GetOnlineOperatorSockets(op.AccountId))
+                {
+                    sh.SendPacket(item, e);
+                }
+            }
         }
         #endregion 
 
@@ -458,8 +465,6 @@ namespace LiveSupport.BLL.Remoting
                 }
                 else
                     operatorSocketMap.Add(action.OperatorId, e.StateObject.workSocket);
-
-                sh.SendPacket(e.StateObject.workSocket, new OperatorStatusChangeEventArgs(action.OperatorId, LiveSupport.LiveSupportModel.OperatorStatus.Idle));
             }
             else if (e.Data.GetType() == typeof(LogoutAction))
             {
