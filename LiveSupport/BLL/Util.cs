@@ -196,6 +196,34 @@ namespace LiveSupport.BLL
             else
                 return string.Empty;
         }
+        public static string GetApplicationPath(string urlReferer)
+        {
+            string url = urlReferer.ToString();
+            char[] c = "/".ToCharArray();
+            string[] result = url.Split(c[0]);
+            if (result[0] != null && result[0] != string.Empty)
+            {
+                if (url.ToLower().Contains("localhost"))
+                {
+                    if (result.Length >= 3)
+                    {
+                        return result[0] + "//" + result[2] + "/"+result[3];
+                    }
+                    else
+                    {
+                        return result[0];
+                    }
+                }
+                else
+                {
+                    return result[0];
+                }
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
         #endregion
 
         #region 检查文件是否存在
@@ -242,7 +270,7 @@ namespace LiveSupport.BLL
         /// <param name="value">值</param>
         /// <param name="type">类型（add,delete,update）</param>
         /// <returns></returns>
-        public bool SetappSettings(string key, string value, string type)
+        public static bool SetappSettings(string key, string value, string type)
         {
             //打开配置文件
             Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
@@ -276,7 +304,7 @@ namespace LiveSupport.BLL
         /// </summary>
         /// <param name="keyName">键名</param>
         /// <param name="connectionStrings">连接字符串</param>
-        public void SetConnectionStrings(string keyName, string connectionStrings)
+        public static void SetConnectionStrings(string keyName, string connectionStrings)
         {
             System.Configuration.Configuration c = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
             c.ConnectionStrings.ConnectionStrings.Clear();
