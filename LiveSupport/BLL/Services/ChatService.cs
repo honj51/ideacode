@@ -382,13 +382,13 @@ public class ChatService
         {
             chat.Status = ChatStatus.Decline;
 
-            SendMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
+            //SendMessage(new Message(chat.ChatId, "访客已拒绝对话邀请!", MessageType.SystemMessage_ToOperator));
+            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId, chat.VisitorId, chat);//tao
+            OperatorChatRequestDeclined(null, new OperatorChatRequestDeclinedEventArgs(opq));//tao
             if (!string.IsNullOrEmpty(chat.OperatorId) && !IsOperatorHasActiveChat(chat.OperatorId))
             {
-                OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle);//关闭时改变客服状态
+                OperatorService.SetOperatorStatus(chat.OperatorId, OperatorStatus.Idle, false);//关闭时改变客服状态
             }
-            OperatorChatRequestEventArgs opq = new OperatorChatRequestEventArgs(chat.OperatorId, chat.VisitorId,chat);//tao
-            OperatorChatRequestDeclined(null, new OperatorChatRequestDeclinedEventArgs(opq));//tao
         }
         else
         {
