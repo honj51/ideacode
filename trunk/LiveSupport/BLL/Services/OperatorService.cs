@@ -456,6 +456,11 @@ public static class OperatorService
     /// <param name="operatorStatus"></param>
     public static void SetOperatorStatus(string operatorId, OperatorStatus operatorStatus)
     {
+        SetOperatorStatus(operatorId, operatorStatus, true);
+    }
+
+    public static void SetOperatorStatus(string operatorId, OperatorStatus operatorStatus, bool sendEvent)
+    {
         Operator op = OperatorService.GetOperatorById(operatorId);
         if (op == null)
         {
