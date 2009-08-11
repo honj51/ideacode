@@ -435,10 +435,10 @@ namespace LiveSupport.BLL.Remoting
         {
             if (e.Exception is SocketException)
             {
-                OperatorServiceInterface.SocketHandler.StateObject so = e.Exception.Data["StateObject"] as OperatorServiceInterface.SocketHandler.StateObject;
-                if (!so.workSocket.Connected && !string.IsNullOrEmpty(so.OperatorId))
+                string so = e.Exception.Data["OperatorId"] as string;
+                if (!so.workSocket.Connected && !string.IsNullOrEmpty(so))
                 {
-                    Operator op = OperatorService.GetOperatorById(so.OperatorId);
+                    Operator op = OperatorService.GetOperatorById(so);
                     if (op != null)
                     {
                         op.Status = OperatorStatus.Offline;                        
