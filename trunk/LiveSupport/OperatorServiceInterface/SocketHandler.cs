@@ -183,6 +183,8 @@ namespace OperatorServiceInterface
             {
                 lock (s)
                 {
+                    byte[] cs = new byte[0];
+                    s.Send(cs);
                     Trace.Write("SendPacket : " + obj.ToString());
                     BinaryFormatter fo = new BinaryFormatter();
                     MemoryStream stream = new MemoryStream();
@@ -197,6 +199,7 @@ namespace OperatorServiceInterface
                     {
                         Trace.Write(string.Format(" Error: Send({0}) return {1}", stream.Length, bs));
                     }
+                    s.Send(cs);
                     Trace.WriteLine("");
                 }
             }
