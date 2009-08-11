@@ -396,8 +396,7 @@ namespace LiveSupport.OperatorConsole
             {
                 NewVisitingEventArgs nv = (NewVisitingEventArgs)e.Data;
                 nv.Visitor.CurrentSession = nv.Session;
-                visitors.Add(nv.Visitor);
-
+                addVisitor(nv.Visitor);
                 NewVisiting(this, (NewVisitingEventArgs)e.Data);
             }
             // 访客离开
@@ -422,6 +421,16 @@ namespace LiveSupport.OperatorConsole
                 chats.Remove(c);
             }
             chats.Add(chat);
+        }
+
+        private void addVisitor(Visitor visitor) 
+        {
+            Visitor v = GetVisitorById(visitor.VisitorId);
+            if (v!=null)
+            {
+                visitors.Remove(v);
+            }
+            visitors.Add(visitor);
         }
 
         void socketHandler_DataArrive(object sender, DataArriveEventArgs e)
