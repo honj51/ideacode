@@ -201,7 +201,7 @@ namespace LiveSupport.BLL
             string url = urlReferer.ToString();
             char[] c = "/".ToCharArray();
             string[] result = url.Split(c[0]);
-            if (result[0] != null && result[0] != string.Empty)
+            if (result[0] != null && result[0] != string.Empty&&result.Length>=2)
             {
                 if (url.ToLower().Contains("localhost"))
                 {
@@ -211,12 +211,12 @@ namespace LiveSupport.BLL
                     }
                     else
                     {
-                        return result[0];
+                        return result[0]+"//"+result[2];
                     }
                 }
                 else
                 {
-                    return result[0];
+                    return result[0] + "//" + result[2];
                 }
             }
             else
