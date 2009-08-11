@@ -177,7 +177,7 @@ namespace OperatorServiceInterface
                             Trace.Write(" Error: Send(4) return" + bs);
                         }
                         bs = s.Send(stream.GetBuffer(), Convert.ToInt32(stream.Length), SocketFlags.None);
-                        if (bs != 4)
+                        if (bs != stream.Length)
                         {
                             Trace.Write(string.Format(" Error: Send({0}) return {1}",stream.Length, bs));
                         }
