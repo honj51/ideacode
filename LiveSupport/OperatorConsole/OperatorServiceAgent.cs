@@ -97,6 +97,7 @@ namespace LiveSupport.OperatorConsole
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            if (this.timer.SynchronizingObject == null) return;
             lock (this.timer.SynchronizingObject)
             {
                 try
@@ -200,8 +201,8 @@ namespace LiveSupport.OperatorConsole
 
                     socketHandler = new SocketHandler();
                     IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
-                    //socket = socketHandler.Connect(entry.AddressList[0].ToString());
-                    socket = socketHandler.Connect("127.0.0.1");
+                    socket = socketHandler.Connect(entry.AddressList[0].ToString());
+                    //socket = socketHandler.Connect("127.0.0.1");
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
                     socketHandler.Exception += new EventHandler<ExceptionEventArgs>(socketHandler_Exception);
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
@@ -365,7 +366,7 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
 
-                //ChatStatusChanged(this, cs);
+                ChatStatusChanged(this, cs);
 
             }
             else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs) && ChatJoinInvite != null)
