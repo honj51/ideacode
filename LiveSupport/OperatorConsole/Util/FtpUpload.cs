@@ -130,7 +130,7 @@ namespace LiveSupport.OperatorConsole.Util
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("FileUpload exception" + ex.Message);
+                Trace.WriteLine("FileUpload exception" + ex.Message);
                 if (FileUploadProgress != null)
                 {
                     FileUploadProgress(this, new FileUploadProgressEventArgs(fileInfo.Name, UploadStatus.Error, 0, 0));

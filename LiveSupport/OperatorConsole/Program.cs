@@ -66,6 +66,12 @@ namespace LiveSupport.OperatorConsole
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+            TextWriterTraceListener listener1 = new TextWriterTraceListener("MyListener.log");
+            listener1.TraceOutputOptions |= TraceOptions.DateTime;
+            listener1.TraceOutputOptions |= TraceOptions.ThreadId;
+
+            Trace.Listeners.Add(listener1);
+            Trace.AutoFlush = true;
             OperaterServiceAgent = OperatorServiceAgent.Default;
             //OperaterServiceAgent = new OperatorServiceAgentMock();
             OperaterServiceAgent.ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
