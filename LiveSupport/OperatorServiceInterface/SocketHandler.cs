@@ -59,6 +59,8 @@ namespace OperatorServiceInterface
             }
             catch (Exception ex)
             {
+                Trace.WriteLine("Error: OnAccept exception " + ex.Message);
+
                 if (Exception != null)
                 {
                     Exception(this, new ExceptionEventArgs(ex));
@@ -117,6 +119,8 @@ namespace OperatorServiceInterface
                                 }
                                 catch (Exception ex)
                                 {
+                                    Trace.WriteLine("Error: Raise DataArrive event exception " + ex.Message);
+
                                     if (Exception != null)
                                     {
                                         Exception(this, new ExceptionEventArgs(ex));
@@ -141,6 +145,7 @@ namespace OperatorServiceInterface
                 }
                 catch (Exception ex)
                 {
+                    Trace.WriteLine("Error: OnReceive exception " + ex.Message);
                     if (Exception != null)
                     {
                         ex.Data["OperatorId"] = so.OperatorId;
@@ -178,7 +183,7 @@ namespace OperatorServiceInterface
             {
                 lock (s)
                 {
-                    Debug.Write("SendPacket : " + obj.ToString());
+                    Trace.Write("SendPacket : " + obj.ToString());
                     BinaryFormatter fo = new BinaryFormatter();
                     MemoryStream stream = new MemoryStream();
                     fo.Serialize(stream, obj);
@@ -192,11 +197,12 @@ namespace OperatorServiceInterface
                     {
                         Trace.Write(string.Format(" Error: Send({0}) return {1}", stream.Length, bs));
                     }
-                    Debug.WriteLine("");
+                    Trace.WriteLine("");
                 }
             }
             catch (Exception ex)
             {
+                Trace.WriteLine("Error: SendPacket exception " + ex.Message);
                 if (Exception != null)
                 {
                     Exception(this, new ExceptionEventArgs(ex));
