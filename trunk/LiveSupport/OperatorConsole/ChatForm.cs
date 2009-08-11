@@ -233,6 +233,7 @@ namespace LiveSupport.OperatorConsole
             {
                 chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
                 receiveMessage = false;
+                TextWriterTraceListener tl = new TextWriterTraceListener();
                 return;
             }
             else if (acceptChatRequestResult == -3)

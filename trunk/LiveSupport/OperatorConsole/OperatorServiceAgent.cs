@@ -299,7 +299,7 @@ namespace LiveSupport.OperatorConsole
                 }
             }
             // 客服对话邀请被接受
-            else if (e.Data.GetType() == typeof(OperatorChatRequestAcceptedEventArgs) && OperatorChatRequestAccepted != null)
+            else if (e.Data.GetType() == typeof(OperatorChatRequestAcceptedEventArgs))
             {
                 OperatorChatRequestAcceptedEventArgs ocr = (OperatorChatRequestAcceptedEventArgs)e.Data;
                 Operator op = GetOperatorById(ocr.ChatRequest.OperatorId);
@@ -308,12 +308,16 @@ namespace LiveSupport.OperatorConsole
                 {
                     op.Status = OperatorStatus.Chatting;
                     v.CurrentSession.Status = VisitSessionStatus.Chatting;
-                    OperatorChatRequestAccepted(this, (OperatorChatRequestAcceptedEventArgs)e.Data);
+                    if (OperatorChatRequestAccepted != null)
+                    {
+                        OperatorChatRequestAccepted(this, (OperatorChatRequestAcceptedEventArgs)e.Data);
+                    }
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                    OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(op.OperatorId, op.Status));
                 }
             }
             // 客服对话邀请被拒绝
-            else if (e.Data.GetType() == typeof(OperatorChatRequestDeclinedEventArgs) && OperatorChatRequestDeclined != null)
+            else if (e.Data.GetType() == typeof(OperatorChatRequestDeclinedEventArgs))
             {
                 OperatorChatRequestDeclinedEventArgs ocr = (OperatorChatRequestDeclinedEventArgs)e.Data;
                 Operator op = GetOperatorById(ocr.ChatRequest.OperatorId);
@@ -369,15 +373,15 @@ namespace LiveSupport.OperatorConsole
 
                 ChatStatusChanged(this, cs);
             }
-            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs) && ChatJoinInvite != null)
+            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs))
             {
                 ChatJoinInvite(this, (OperatorChatJoinInviteEventArgs)e.Data);
             }
-            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteAcceptedEventArgs) && ChatJoinInviteAccepted != null)
+            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteAcceptedEventArgs))
             {
                 ChatJoinInviteAccepted(this, (OperatorChatJoinInviteAcceptedEventArgs)e.Data);
             }
-            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteDeclinedEventArgs) && ChatJoinInviteDeclined != null)
+            else if (e.Data.GetType() == typeof(OperatorChatJoinInviteDeclinedEventArgs))
             {
                 ChatJoinInviteDeclined(this, (OperatorChatJoinInviteDeclinedEventArgs)e.Data);
             }
@@ -396,7 +400,7 @@ namespace LiveSupport.OperatorConsole
                 NewVisiting(this, (NewVisitingEventArgs)e.Data);
             }
             // 访客离开
-            else if (e.Data.GetType() == typeof(VisitorLeaveEventArgs) && VisitorLeave != null)
+            else if (e.Data.GetType() == typeof(VisitorLeaveEventArgs))
             {
                 VisitorLeaveEventArgs vl = e.Data as VisitorLeaveEventArgs;
                 Visitor v = GetVisitorById(vl.VisitorId);
