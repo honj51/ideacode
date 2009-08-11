@@ -118,6 +118,11 @@ namespace LiveSupport.OperatorConsole
 
         private void initChat()
         {
+            operatorServiceAgent.NewMessage += new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
+            operatorServiceAgent.OperatorChatRequestAccepted += new EventHandler<OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs>(operatorServiceAgent_OperatorChatRequestAccepted);
+            operatorServiceAgent.OperatorChatRequestDeclined += new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
+            operatorServiceAgent.ChatStatusChanged += new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operatorServiceAgent_ChatStatusChanged);
+
             Directory.CreateDirectory(chat.ChatId);
             uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
             loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
@@ -133,11 +138,28 @@ namespace LiveSupport.OperatorConsole
         public void Invite(string visitorId)
         {
             visitor = operatorServiceAgent.GetVisitorById(visitorId);
-            operatorServiceAgent.NewMessage += new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
-            operatorServiceAgent.OperatorChatRequestAccepted += new EventHandler<OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs>(operatorServiceAgent_OperatorChatRequestAccepted);
-            operatorServiceAgent.OperatorChatRequestDeclined += new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
             chat = operatorServiceAgent.InviteChat(visitorId);
             initChat();
+        }
+
+        void operatorServiceAgent_ChatStatusChanged(object sender, OperatorServiceInterface.ChatStatusChangedEventArgs e)
+        {
+            try
+            {
+                if (!this.IsHandleCreated) return;
+                this.Invoke(new UpdateUIDelegate(delegate(object obj)
+                {
+                    if (e.Status == ChatStatus.Closed && e.ChatId == chat.ChatId)
+                    {
+                        chatMessageViewerControl1.AddInformation("访客已关闭对话！");
+                    }
+                }), e);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         //客服主动邀请被拒绝
@@ -145,11 +167,12 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
-            this.Invoke(new UpdateUIDelegate(delegate(object obj)
-            {
-                chatMessageViewerControl1.AddInformation("访客已拒绝该对话邀请！");
-            }), e);
-            }
+                if (!this.IsHandleCreated) return;
+                this.Invoke(new UpdateUIDelegate(delegate(object obj)
+                {
+                    chatMessageViewerControl1.AddInformation("访客已拒绝该对话邀请！");
+                }), e);
+                }
             catch (Exception)
             {
 
@@ -202,7 +225,6 @@ namespace LiveSupport.OperatorConsole
         public void Accept(Chat chat)
         {
             this.chat = chat;
-            operatorServiceAgent.NewMessage += new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
             visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             initChat();
 
