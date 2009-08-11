@@ -345,21 +345,22 @@ namespace LiveSupport.OperatorConsole
                 Chat chat = GetChatByChatId(cs.ChatId);
                 if (chat == null) return;
                 Visitor v = GetVisitorById(chat.VisitorId);
-                Operator o = GetOperatorById(chat.OperatorId);
-                if (v == null || o == null) return;
+                if (v == null) return;
                 chat.Status = cs.Status;
+                Operator o = GetOperatorById(chat.OperatorId);
+
                 if (chat.Status == ChatStatus.Accepted)
                 {
                     v.CurrentSession.Status = VisitSessionStatus.Chatting;
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                     o.Status = OperatorStatus.Chatting;
                     OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Chatting));
-                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                 }
                 else if (chat.Status == ChatStatus.Closed)
                 {
                     v.CurrentSession.Status = VisitSessionStatus.Visiting;
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
-                    if (!IsOperatorHasActiveChat(chat.OperatorId))
+                    if (o != null && !IsOperatorHasActiveChat(chat.OperatorId))
                     {
                         o.Status = OperatorStatus.Idle;
                         OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(chat.OperatorId, OperatorStatus.Idle));
@@ -367,7 +368,6 @@ namespace LiveSupport.OperatorConsole
                 }
 
                 ChatStatusChanged(this, cs);
-
             }
             else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs) && ChatJoinInvite != null)
             {
