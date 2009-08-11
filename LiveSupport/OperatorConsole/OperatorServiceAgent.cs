@@ -97,8 +97,7 @@ namespace LiveSupport.OperatorConsole
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (this.timer.SynchronizingObject == null) return;
-            lock (this.timer.SynchronizingObject)
+            lock (this.timer)
             {
                 try
                 {
@@ -335,7 +334,10 @@ namespace LiveSupport.OperatorConsole
                     }
                     v.CurrentSession.Status = VisitSessionStatus.Visiting;
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
-                    OperatorChatRequestDeclined(this, (OperatorChatRequestDeclinedEventArgs)e.Data);
+                    if (OperatorChatRequestDeclined != null)
+                    {
+                        OperatorChatRequestDeclined(this, (OperatorChatRequestDeclinedEventArgs)e.Data);
+                    }
                 }
             }
             // 新的对话
@@ -447,11 +449,13 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
-                Debug.WriteLine("OperatorServiceAgent Recv: " + e.Data.ToString());
+                Debug.Write("OperatorServiceAgent Recv: " + e.Data.ToString());
                 processServerEvents(e);
+                Debug.WriteLine("  [Process completed]");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Debug.WriteLine("Error: processServerEvents through exception: " + ex.Message);
                 throw;
             }
         }

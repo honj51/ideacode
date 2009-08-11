@@ -144,27 +144,36 @@ namespace LiveSupport.OperatorConsole
 
         void operatorServiceAgent_ChatStatusChanged(object sender, OperatorServiceInterface.ChatStatusChangedEventArgs e)
         {
+            if (e.ChatId != chat.ChatId)
+            {
+                return;
+            }
             try
             {
                 if (!this.IsHandleCreated) return;
                 this.Invoke(new UpdateUIDelegate(delegate(object obj)
                 {
-                    if (e.Status == ChatStatus.Closed && e.ChatId == chat.ChatId)
+                    if (e.Status == ChatStatus.Closed)
                     {
                         chatMessageViewerControl1.AddInformation("访客已关闭对话！");
                     }
                 }), e);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Trace.WriteLine("Error: ChatForm.operatorServiceAgent_ChatStatusChanged Exception: " + ex.Message);
+                throw ex;
             }
         }
 
         //客服主动邀请被拒绝
         void operatorServiceAgent_OperatorChatRequestDeclined(object sender, OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs e)
         {
+            if (e.ChatRequest.Chat.ChatId != chat.ChatId)
+            {
+                return;
+            }
+
             try
             {
                 if (!this.IsHandleCreated) return;
@@ -173,16 +182,21 @@ namespace LiveSupport.OperatorConsole
                     chatMessageViewerControl1.AddInformation("访客已拒绝该对话邀请！");
                 }), e);
                 }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Trace.WriteLine("Error: ChatForm.operatorServiceAgent_OperatorChatRequestDeclined Exception: " + ex.Message);
+                throw ex;
             }
         }
 
         // 客服主动邀请被接受
         void operatorServiceAgent_OperatorChatRequestAccepted(object sender, OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs e)
         {
+            if (e.ChatRequest.Chat.ChatId != chat.ChatId)
+            {
+                return;
+            }
+
             try
             {
                 this.Invoke(new UpdateUIDelegate(delegate(object obj)
@@ -191,16 +205,21 @@ namespace LiveSupport.OperatorConsole
             }), e);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Trace.WriteLine("Error: ChatForm.operatorServiceAgent_OperatorChatRequestAccepted Exception: " + ex.Message);
+                throw ex;
             }
         }
 
         // 新消息
         void operatorServiceAgent_NewMessage(object sender, OperatorServiceInterface.ChatMessageEventArgs e)
         {
+            if (e.Message.ChatId != chat.ChatId)
+            {
+                return;
+            }
+
             if (this.IsDisposed || !this.IsHandleCreated)
             {
                 return;
@@ -209,14 +228,12 @@ namespace LiveSupport.OperatorConsole
             {
                 try
                 {
-                    if (e.Message.ChatId == this.chat.ChatId)
-                    {
-                        RecieveMessage(e.Message);
-                    }
+                    RecieveMessage(e.Message);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                    Trace.WriteLine("Error: ChatForm.operatorServiceAgent_NewMessage Exception: " + ex.Message);
                 }
 
             }), e);
