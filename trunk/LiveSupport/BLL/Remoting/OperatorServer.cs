@@ -9,6 +9,7 @@ using System.Security.Permissions;
 using System.Configuration;
 using System.Threading;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 namespace LiveSupport.BLL.Remoting
 {
@@ -447,7 +448,8 @@ namespace LiveSupport.BLL.Remoting
                     Operator op = OperatorService.GetOperatorById(so);
                     if (op != null)
                     {
-                        op.Status = OperatorStatus.Offline;                        
+                        Trace.WriteLine(string.Format("Warning: Operator {0} [{1}] forece logoff cause socket exception {2}",op.NickName,op.OperatorId,e.Exception.Message));
+                        OperatorService.Logout(op.OperatorId, op.OperatorSession);
                     }
                 }
             }

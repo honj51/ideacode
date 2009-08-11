@@ -171,7 +171,7 @@ public static class OperatorService
         Operator op = GetOperatorById(operatorId);
         if (op != null && op.OperatorSession == operatorSession)
         {
-            op.Status = OperatorStatus.Offline;
+            SetOperatorStatus(op.OperatorId, OperatorStatus.Offline);
         }
     }
     /// <summary>
