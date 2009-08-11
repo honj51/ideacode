@@ -396,8 +396,17 @@ namespace LiveSupport.OperatorConsole
             {
                 NewVisitingEventArgs nv = (NewVisitingEventArgs)e.Data;
                 nv.Visitor.CurrentSession = nv.Session;
-                addVisitor(nv.Visitor);
-                NewVisiting(this, (NewVisitingEventArgs)e.Data);
+                Visitor v = GetVisitorById(nv.Visitor.VisitorId);
+                if (v != null)
+                {
+                    v.CurrentSession = nv.Session;
+                    VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
+                }
+                else
+                {
+                    addVisitor(nv.Visitor);
+                    NewVisiting(this, (NewVisitingEventArgs)e.Data);
+                }
             }
             // 访客离开
             else if (e.Data.GetType() == typeof(VisitorLeaveEventArgs))
