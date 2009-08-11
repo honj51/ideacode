@@ -31,7 +31,6 @@ namespace LiveSupport.BLL.Remoting
 
         public OperatorServer()
         {
-            Console.WriteLine("HelloServer activated");
             OperatorService.OperatorStatusChange += new EventHandler<OperatorStatusChangeEventArgs>(OperatorService_OperatorStatusChange);//客服状态改变
             ChatService.NewChat += new EventHandler<NewChatEventArgs>(ChatService_NewChat);//新的对话
             ChatService.NewMessage += new EventHandler<ChatMessageEventArgs>(ChatService_NewMessage);//有一条新消息
@@ -436,7 +435,7 @@ namespace LiveSupport.BLL.Remoting
             if (e.Exception is SocketException)
             {
                 string so = e.Exception.Data["OperatorId"] as string;
-                if (!so.workSocket.Connected && !string.IsNullOrEmpty(so))
+                if (!string.IsNullOrEmpty(so))
                 {
                     Operator op = OperatorService.GetOperatorById(so);
                     if (op != null)
