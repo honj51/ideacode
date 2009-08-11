@@ -261,7 +261,7 @@ namespace LiveSupport.OperatorConsole
                     v.CurrentSession.Status = VisitSessionStatus.ChatRequesting;
                     VisitorSessionChange(this, new VisitorSessionChangeEventArgs(v.CurrentSession));
                     VisitorChatRequest(this, vc);
-                    chats.Add(vc.Chat);
+                    addChat(vc.Chat);
                 }
             }
             //客服对话邀请
@@ -273,7 +273,7 @@ namespace LiveSupport.OperatorConsole
                 if (op != null && v != null)
                 {
                     op.Status = OperatorStatus.InviteChat;
-                    chats.Add(ocr.Chat);
+                    addChat(ocr.Chat);
                     //v.CurrentSession.Status = VisitSessionStatus.
                     //OperatorChatRequest(this, ocr);
                     OperatorStatusChanged(this, new OperatorStatusChangeEventArgs(op.OperatorId, OperatorStatus.InviteChat));
@@ -412,6 +412,16 @@ namespace LiveSupport.OperatorConsole
                 }
                 //VisitorLeave(this, (VisitorLeaveEventArgs)e.Data);
             }
+        }
+
+        private void addChat(Chat chat)
+        {
+            Chat c = GetChatByChatId(chat.ChatId);
+            if (c != null)
+            {
+                chats.Remove(c);
+            }
+            chats.Add(chat);
         }
 
         void socketHandler_DataArrive(object sender, DataArriveEventArgs e)
@@ -565,7 +575,7 @@ namespace LiveSupport.OperatorConsole
         public Chat InviteChat(string visitorId)
         {
             Chat chat = Common.Convert(ws.InviteChat(visitorId)) as Chat;
-            chats.Add(chat);
+            addChat(chat);
             return chat;
         }
 
