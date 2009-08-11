@@ -297,7 +297,7 @@ namespace LiveSupport.OperatorConsole
                 }
                 catch (Exception sfe)
                 {
-                    Debug.WriteLine("sendFile exception:" + sfe.Message);
+                    Trace.WriteLine("sendFile exception:" + sfe.Message);
                     chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
                     return;
                 }
@@ -384,7 +384,7 @@ namespace LiveSupport.OperatorConsole
             }
             catch (WebException wmg)
             {
-                Debug.WriteLine("sendMessage exception:" + wmg.Message);
+                Trace.WriteLine("sendMessage exception:" + wmg.Message);
                 string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>" + msg.SentDate + "\r\n\r\n可能由于网络原因“" + msg.Text + "”消息发送失败。</span><br />";
                 chatMessageViewerControl1.AddText(text);
                 return;
@@ -503,13 +503,13 @@ namespace LiveSupport.OperatorConsole
             }
             catch (ExternalException eex)
             {
-                Debug.WriteLine("sendImage ExternalException:" + eex.Message);
+                Trace.WriteLine("sendImage ExternalException:" + eex.Message);
                 chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
                 return;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("sendImage exception:" + ex.Message);
+                Trace.WriteLine("sendImage exception:" + ex.Message);
                 chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
                 return;
             }

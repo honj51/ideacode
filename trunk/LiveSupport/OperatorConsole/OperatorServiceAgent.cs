@@ -375,7 +375,10 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
 
-                ChatStatusChanged(this, cs);
+                if (ChatStatusChanged != null)
+                {
+                    ChatStatusChanged(this, cs); 
+                }
             }
             else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs))
             {
@@ -449,13 +452,13 @@ namespace LiveSupport.OperatorConsole
         {
             try
             {
-                Debug.Write("OperatorServiceAgent Recv: " + e.Data.ToString());
+                Trace.Write("OperatorServiceAgent Recv: " + e.Data.ToString());
                 processServerEvents(e);
-                Debug.WriteLine("  [Process completed]");
+                Trace.WriteLine("  [Process completed]");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error: processServerEvents through exception: " + ex.Message);
+                Trace.WriteLine("Error: processServerEvents through exception: " + ex.Message);
                 throw;
             }
         }

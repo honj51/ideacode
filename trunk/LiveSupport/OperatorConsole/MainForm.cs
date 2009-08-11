@@ -57,7 +57,7 @@ namespace LiveSupport.OperatorConsole
         //    {
         //       operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
 
-        //        //Debug.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
+        //        //Trace.WriteLine(string.Format("lastCheck={0}, result.CheckTime={1}",lastCheck.Ticks,result.CheckTime.Ticks));
         //        changeVisitorListViewItemColor();
         //        displayStatus();
         //    }), e);
@@ -764,7 +764,6 @@ namespace LiveSupport.OperatorConsole
                 VisitorListViewItem v = getSelectedVisitorListViewItem();
                 if (v != null && v.VisitSession.Status == VisitSessionStatus.Visiting)
                 {
-
                     if (!operaterServiceAgent.IsVisitorHasActiveChat(v.Visitor.VisitorId))
                     {
                         ChatForm cf = new ChatForm(operaterServiceAgent);
