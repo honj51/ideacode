@@ -82,6 +82,12 @@ namespace OperatorServiceInterface
         {
             this.Message = message;
         }
+
+        public override string ToString()
+        {
+            return string.Format("ChatMessageEventArgs Source={0} Destination={1} Content={2}", Message.Source, Message.Destination, Message.Text);
+        }
+
     }
 
     [Serializable]
@@ -104,6 +110,11 @@ namespace OperatorServiceInterface
         {
             this.ChatRequest = chatRequest;
         }
+
+        public override string ToString()
+        {
+            return string.Format("OperatorChatRequestDeclinedEventArgs OperatorId={0} VisitorId={1}", ChatRequest.OperatorId, ChatRequest.VisitorId, ChatRequest.Chat.ChatId);
+        }
     }
 
     [Serializable]
@@ -114,6 +125,12 @@ namespace OperatorServiceInterface
         {
             this.ChatRequest = chatRequest;
         }
+
+        public override string ToString()
+        {
+            return string.Format("OperatorChatRequestAcceptedEventArgs OperatorId={0} VisitorId={1}", ChatRequest.OperatorId, ChatRequest.VisitorId, ChatRequest.Chat.ChatId);
+        }
+
     }
 
     [Serializable]
@@ -123,6 +140,11 @@ namespace OperatorServiceInterface
         public VisitorChatRequestAcceptedEventArgs(VisitorChatRequestEventArgs visitorChatRequest)
         {
             this.VisitorChatRequest = visitorChatRequest;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("VisitorChatRequestAcceptedEventArgs VisitorId={0} ChatId={1}", VisitorChatRequest.VisitorId, VisitorChatRequest.Chat.ChatId);
         }
     }
 
@@ -136,6 +158,10 @@ namespace OperatorServiceInterface
         {
             this.Chat = chat;
             this.OperatorId = operatorId;
+        }
+        public override string ToString()
+        {
+            return string.Format("OperatorChatRequestEventArgs OperatorId={0} ChatId={1}", OperatorId, Chat.ChatId);
         }
     }
 
@@ -159,6 +185,11 @@ namespace OperatorServiceInterface
             this.ChatId = chatId;
             this.Status = status;
         }
+
+        public override string ToString()
+        {
+            return string.Format("ChatStatusChangedEventArgs ChatId={0} Status={1}", ChatId, Status);
+        }
     }
 
     [Serializable]
@@ -173,6 +204,11 @@ namespace OperatorServiceInterface
             this.RequestId = Guid.NewGuid();
             this.Chat = chat;
         }
+
+        public override string ToString()
+        {
+            return string.Format("VisitorChatRequestEventArgs VisitorId={0} ChatId={1}", VisitorId, Chat.ChatId);
+        }
     }
      
     [Serializable]
@@ -184,6 +220,11 @@ namespace OperatorServiceInterface
         {
             this.OperatorId = operatorId;
             this.Status = status;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("OperatorStatusChangeEventArgs OperaotrId={0} Status={1}", OperatorId, Status.ToString());
         }
     }
 }
