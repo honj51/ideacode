@@ -119,6 +119,7 @@ namespace OperatorServiceInterface
 
                         StateObject so1 = new StateObject();
                         so1.workSocket = s;
+                        so1.OperatorId = so.OperatorId;
                         Array.Copy(so.buffer, offset + so.bytesToReceive, so1.buffer, 0, so.offset + receivedBytes - offset - so.bytesToReceive);
                         so1.offset = so.offset + receivedBytes - offset - so.bytesToReceive;
                         so.data.Close();
