@@ -272,28 +272,35 @@ namespace LiveSupport.BLL
         /// <returns></returns>
         public static bool SetappSettings(string key, string value, string type)
         {
-            //打开配置文件
-            Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
-            //获取appSettings节点
-            AppSettingsSection appSection = (AppSettingsSection)config.GetSection("appSettings");
             bool isno = true;
-            switch (type)
+            try
             {
-                case "add":
-                    appSection.Settings.Remove(key);
-                    appSection.Settings.Add(key, value);
-                    break;
-                case "delete":
-                    appSection.Settings.Remove(key);
-                    break;
-                case "update":
-                    appSection.Settings[key].Value = value;
-                    break;
-                default:
-                    isno = false;
-                    break;
+                //打开配置文件
+                Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+                //获取appSettings节点
+                AppSettingsSection appSection = (AppSettingsSection)config.GetSection("appSettings");
+                switch (type)
+                {
+                    case "add":
+                        appSection.Settings.Remove(key);
+                        appSection.Settings.Add(key, value);
+                        break;
+                    case "delete":
+                        appSection.Settings.Remove(key);
+                        break;
+                    case "update":
+                        appSection.Settings[key].Value = value;
+                        break;
+                    default:
+                        isno = false;
+                        break;
+                }
+                config.Save();
             }
-            config.Save();
+            catch (Exception ex)
+            {
+                isno = false;
+            }
             return isno;
         }
         #endregion
@@ -304,15 +311,24 @@ namespace LiveSupport.BLL
         /// </summary>
         /// <param name="keyName">键名</param>
         /// <param name="connectionStrings">连接字符串</param>
-        public static void SetConnectionStrings(string keyName, string connectionStrings)
+        public static bool SetConnectionStrings(string keyName, string connectionStrings)
         {
-            System.Configuration.Configuration c = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            c.ConnectionStrings.ConnectionStrings.Clear();
-            ConnectionStringSettings s = new ConnectionStringSettings();
-            s.ConnectionString = connectionStrings;
-            s.Name = keyName;
-            c.ConnectionStrings.ConnectionStrings.Add(s);
-            c.Save();
+            bool isno = true;
+            try
+            {
+                System.Configuration.Configuration c = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                c.ConnectionStrings.ConnectionStrings.Clear();
+                ConnectionStringSettings s = new ConnectionStringSettings();
+                s.ConnectionString = connectionStrings;
+                s.Name = keyName;
+                c.ConnectionStrings.ConnectionStrings.Add(s);
+                c.Save();
+            }
+            catch (Exception ex)
+            {
+                isno = false;
+            }
+            return isno;
         }
         #endregion 
     }
