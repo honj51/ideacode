@@ -4,6 +4,7 @@
     int i = 0;
     void Application_Start(object sender, EventArgs e) 
     {
+        System.Diagnostics.Trace.WriteLine("Application_Start");
         LiveSupport.BLL.Util.sysInfo.StartApplicationDate = DateTime.Now;
         LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ToString();
         OperatorService.Init();
