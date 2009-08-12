@@ -416,5 +416,12 @@ namespace LiveSupport.OperatorConsole
         }
 
         #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        public event EventHandler<AsyncCallCompletedEventArg> AsyncCallCompleted;
+
+        #endregion
     }
 }

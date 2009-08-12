@@ -72,6 +72,7 @@ namespace LiveSupport.OperatorConsole
         //event EventHandler<LeaveWordEventArgs> NewLeaveWords;
         event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
         event EventHandler<DataLoadCompletedEventArgs> DataLoadCompleted;
+        event EventHandler<AsyncCallCompletedEventArg> AsyncCallCompleted;
         //event EventHandler<VisitorsLoadCompletedEventArgs> VisitorsLoadCompleted;
         #endregion
 
@@ -86,6 +87,15 @@ namespace LiveSupport.OperatorConsole
         ConnectionState State { get; set; }
         bool AutoLoginEnabled { get; set; }
         #endregion
+    }
+
+    public class AsyncCallCompletedEventArg : EventArgs
+    {
+        public object Result;
+        public AsyncCallCompletedEventArg(object result)
+        {
+            this.Result = result;
+        }
     }
 
     public enum DataLoadEventType

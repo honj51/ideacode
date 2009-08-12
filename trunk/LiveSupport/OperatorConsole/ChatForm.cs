@@ -122,7 +122,7 @@ namespace LiveSupport.OperatorConsole
             operatorServiceAgent.OperatorChatRequestAccepted += new EventHandler<OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs>(operatorServiceAgent_OperatorChatRequestAccepted);
             operatorServiceAgent.OperatorChatRequestDeclined += new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
             operatorServiceAgent.ChatStatusChanged += new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operatorServiceAgent_ChatStatusChanged);
-
+            operatorServiceAgent.AsyncCallCompleted += new EventHandler<AsyncCallCompletedEventArg>(operatorServiceAgent_AsyncCallCompleted);
             Directory.CreateDirectory(chat.ChatId);
             uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
             loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
@@ -133,6 +133,23 @@ namespace LiveSupport.OperatorConsole
             this.domainRequestedLabel.Text += visitor.CurrentSession.DomainRequested.ToString();
             this.visitorLocationLabel.Text += visitor.CurrentSession.Location;
             txtMsg.Focus();
+        }
+
+        void operatorServiceAgent_AsyncCallCompleted(object sender, AsyncCallCompletedEventArg e)
+        {
+            if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs;
+                if (arg.Error != null)
+                {
+                    LiveSupport.LiveSupportModel.Message m = arg.UserState as LiveSupport.LiveSupportModel.Message;
+                    if (m.ChatId == this.chat.ChatId)
+                    {
+                        string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>" + m.SentDate + "\r\n\r\n可能由于网络原因“" + m.Text + "”消息发送失败。</span><br />";
+                        chatMessageViewerControl1.AddText(text);
+                    }
+                }
+            }
         }
 
         public void Invite(string visitorId)
@@ -250,6 +267,7 @@ namespace LiveSupport.OperatorConsole
             {
                 chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
                 receiveMessage = false;
+                txtMsg.Enabled = false;
                 TextWriterTraceListener tl = new TextWriterTraceListener();
                 return;
             }
@@ -257,12 +275,9 @@ namespace LiveSupport.OperatorConsole
             {
                 chatMessageViewerControl1.ResetContent("服务器错误");
                 receiveMessage = false;
+                txtMsg.Enabled = false;
             }
-            else
-            {
-                chatMessageViewerControl1.ResetContent("你已接受访客" + visitor.Name + "的对话请求");
-                chatMessageViewerControl1.AddInformation("你已接受访客");
-            }
+            
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
@@ -377,18 +392,8 @@ namespace LiveSupport.OperatorConsole
             msg.Source = From;
             msg.SentDate = DateTime.Now;
             msg.Type = MessageType.ChatMessage_OperatorToVisitor;
-            try
-            {
-                operatorServiceAgent.SendMessage(msg);
-                chatMessageViewerControl1.AddMessage(msg);
-            }
-            catch (WebException wmg)
-            {
-                Trace.WriteLine("sendMessage exception:" + wmg.Message);
-                string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>" + msg.SentDate + "\r\n\r\n可能由于网络原因“" + msg.Text + "”消息发送失败。</span><br />";
-                chatMessageViewerControl1.AddText(text);
-                return;
-            }
+            operatorServiceAgent.SendMessage(msg);
+            chatMessageViewerControl1.AddMessage(msg);
         }
 
         /// <summary>

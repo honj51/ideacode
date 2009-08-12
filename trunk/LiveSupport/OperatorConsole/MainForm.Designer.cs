@@ -132,7 +132,6 @@ namespace LiveSupport.OperatorConsole
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
@@ -174,7 +173,6 @@ namespace LiveSupport.OperatorConsole
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.operatorsPanel = new System.Windows.Forms.Panel();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -209,6 +207,8 @@ namespace LiveSupport.OperatorConsole
             this.visitorOnChatToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.currentVisitorsToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -1144,16 +1144,6 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(741, 745);
-            this.chatMessageViewerControl1.TabIndex = 18;
-            // 
             // messageendDateTimePicker
             // 
             this.messageendDateTimePicker.Location = new System.Drawing.Point(366, 20);
@@ -1594,15 +1584,6 @@ namespace LiveSupport.OperatorConsole
             this.operatorsPanel.Size = new System.Drawing.Size(199, 593);
             this.operatorsPanel.TabIndex = 0;
             // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.BackColor = System.Drawing.SystemColors.Control;
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 31);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(199, 562);
-            this.operatorPannel1.TabIndex = 0;
-            // 
             // panel1
             // 
             this.panel1.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
@@ -1616,7 +1597,6 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
@@ -1687,7 +1667,6 @@ namespace LiveSupport.OperatorConsole
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
             this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator5,
             this.inviteToolStripButton,
@@ -1868,7 +1847,6 @@ namespace LiveSupport.OperatorConsole
             // 
             this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
             this.toolStrip3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator7,
             this.myChatToolStripLabel,
@@ -1916,6 +1894,25 @@ namespace LiveSupport.OperatorConsole
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.BackColor = System.Drawing.SystemColors.Control;
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 31);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(199, 562);
+            this.operatorPannel1.TabIndex = 0;
+            // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(741, 745);
+            this.chatMessageViewerControl1.TabIndex = 18;
             // 
             // MainForm
             // 

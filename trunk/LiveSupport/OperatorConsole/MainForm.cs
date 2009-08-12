@@ -528,7 +528,6 @@ namespace LiveSupport.OperatorConsole
         private void loginTimer_Tick(object sender, EventArgs e)
         {
 
-
             DateTime dtime = DateTime.Now;
             this.stickToolStripStatusLabel.Text = Common.dateDiff(loginTime, dtime);
 

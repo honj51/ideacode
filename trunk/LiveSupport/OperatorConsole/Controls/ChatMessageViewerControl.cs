@@ -15,13 +15,13 @@ namespace LiveSupport.OperatorConsole
         {
             InitializeComponent();
             wb.Navigate("about:blank");
-            
         }
 
         
         public void ResetContent(string message)
         {
-            wb.Navigate("about:blank");
+            // wb.DocumentText = "";
+            wb.Document.OpenNew(true);
             AddInformation(message);
         }
 
