@@ -7,6 +7,7 @@ using System.Diagnostics;
 using OperatorServiceInterface;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Threading;
 namespace OperatorServiceInterface
 {
     public class DataArriveEventArgs : EventArgs
@@ -55,11 +56,12 @@ namespace OperatorServiceInterface
                 //Begin to receive data
                 StateObject so = new StateObject();
                 so.workSocket = t;
-                t.BeginReceive(so.buffer, 0, 4096, SocketFlags.None, new AsyncCallback(OnReceive), so);
+                so.bytesToReceive = 4;
+                t.BeginReceive(so.buffer, 0, 4, SocketFlags.None, new AsyncCallback(OnReceive), so);
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("Error: OnAccept exception " + ex.Message);
+                Trace.TraceError("OnAccept exception " + ex.Message);
 
                 if (Exception != null)
                 {
@@ -70,78 +72,54 @@ namespace OperatorServiceInterface
         
         private void OnReceive(IAsyncResult ar)
         {
+            // TODO: we may encounter buffer overflow in condition so.bytesToReceive > so.BufferSize when call BeginReceive
             StateObject so = (StateObject)ar.AsyncState;
             Socket s = so.workSocket;
             lock (s)
             {
                 try
                 {
+                    Trace.Write(string.Format("{0} @ {1} Debug: SocketHandler.OnReceive ",DateTime.Now,Thread.CurrentThread.ManagedThreadId));
                     int receivedBytes = s.EndReceive(ar);
+                    Trace.Write(string.Format(" {0} recv {1} bytes", DateTime.Now, receivedBytes));
                     if (receivedBytes == 0) return;
                     int offset = 0;
-                    if (so.bytesToReceive == 0 && so.data == null)
+                    if (so.bytesToReceive - receivedBytes > 0)
                     {
-                        //initialize
-                        so.bytesToReceive = BitConverter.ToInt32(so.buffer, 0);
-                        so.data = new MemoryStream();
-                        Trace.Write("Debug: SocketHandler.OnReceive Header, Body Length=" + so.bytesToReceive);
-                        offset = 4;
-                    }
-                    if (so.bytesToReceive > receivedBytes + so.offset - offset)
-                    {
-                        //so.data.Append(Encoding.Unicode.GetString(so.buffer, offset, receivedBytes + so.offset - offset));
-                        so.data.Write(so.buffer, offset, receivedBytes + so.offset - offset);
-                        Trace.Write(" receive Body, Length=" + receivedBytes);
-                        Debug.Assert(so.bytesToReceive >= receivedBytes + so.offset - offset);
-                        so.bytesToReceive -= receivedBytes + so.offset - offset;
-                        so.offset = 0;
-                        s.BeginReceive(so.buffer, 0, 4096, SocketFlags.None, new AsyncCallback(OnReceive), so);
-                    }
-                    else
-                    {
-                        //so.data.Append(Encoding.Unicode.GetString(so.buffer, offset, so.bytesToReceive));
-                        //receive finished
-                        //DataPacket packet = DataPacket.LoadXML(so.data.ToString());
-                        so.data.Write(so.buffer, offset, so.bytesToReceive);
+                        so.body.Write(so.buffer, so.offset, receivedBytes);
+                        so.offset += receivedBytes;
 
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        so.data.Position = 0;
-                        object obj = formatter.Deserialize(so.data);
-                        if (obj != null)
+                        so.bytesToReceive = so.bytesToReceive - receivedBytes;
+                        s.BeginReceive(so.buffer, so.offset, so.bytesToReceive, SocketFlags.None, new AsyncCallback(OnReceive), so);
+                        Trace.Write(" go on recv ");
+                    }
+                    else if (so.bytesToReceive - receivedBytes == 0)
+                    {
+                        if (so.bodyLength == -1)
                         {
-                            Trace.WriteLine(" receive Body Completed, Recv object= " + obj.ToString());
-
-                            if (DataArrive != null)
-                            {
-                                try
-                                {
-                                    DataArrive(this, new DataArriveEventArgs(obj, so));
-                                }
-                                catch (Exception ex)
-                                {
-                                    Trace.WriteLine("Error: Raise DataArrive event exception " + ex.Message);
-
-                                    if (Exception != null)
-                                    {
-                                        Exception(this, new ExceptionEventArgs(ex));
-                                    }
-                                }
-                            }
+                            so.bodyLength = BitConverter.ToInt32(so.buffer, 0);
+                            so.bytesToReceive = so.bodyLength;
+                            so.offset = 0;
+                            s.BeginReceive(so.buffer, 0, so.bytesToReceive, SocketFlags.None, new AsyncCallback(OnReceive), so);
+                            Trace.Write(" Header,BodyLen=" + so.bytesToReceive);
                         }
                         else
                         {
-                            Trace.WriteLine(" receive Body Completed, Error: Deserialize failed!");
+                            so.body.Write(so.buffer, so.offset, receivedBytes);
+                            processBody(so);
+                            so.body.Close();
+                            StateObject so1 = new StateObject();
+                            so1.workSocket = s;
+                            so1.OperatorId = so.OperatorId;
+                            so1.bytesToReceive = 4;
+                            s.BeginReceive(so1.buffer, 0, so1.bytesToReceive, SocketFlags.None, new AsyncCallback(OnReceive), so1);
                         }
-
-                        StateObject so1 = new StateObject();
-                        so1.workSocket = s;
-                        so1.OperatorId = so.OperatorId;
-                        Array.Copy(so.buffer, offset + so.bytesToReceive, so1.buffer, 0, so.offset + receivedBytes - offset - so.bytesToReceive);
-                        so1.offset = so.offset + receivedBytes - offset - so.bytesToReceive;
-                        so.data.Close();
-                        s.BeginReceive(so1.buffer, so1.offset, 4096 - so1.offset, SocketFlags.None, new AsyncCallback(OnReceive), so1);
                     }
-
+                    else
+                    {
+                        Trace.TraceError(string.Format("Exceptoion: so.bytesToReceive={0} < receivedBytes={1}",so.bytesToReceive,receivedBytes));
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -155,6 +133,38 @@ namespace OperatorServiceInterface
             }
         }
 
+        private void processBody(StateObject so)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            so.body.Position = 0;
+            object obj = formatter.Deserialize(so.body);
+            if (obj != null)
+            {
+                Trace.WriteLine(" recv Body Completed,object=" + obj.ToString());
+
+                if (DataArrive != null)
+                {
+                    try
+                    {
+                        DataArrive(this, new DataArriveEventArgs(obj, so));
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Error: Raise DataArrive event exception " + ex.Message);
+
+                        if (Exception != null)
+                        {
+                            Exception(this, new ExceptionEventArgs(ex));
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Trace.WriteLine(" receive Body Completed, Error: Deserialize failed!");
+            }
+        }
+
         public Socket Connect(string ipAddress)
         {
             Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -163,7 +173,8 @@ namespace OperatorServiceInterface
             client.Connect(IPAddress.Parse(ipAddress), LocalPort);
             StateObject so = new StateObject();
             so.workSocket = client;
-            client.BeginReceive(so.buffer, 0, 4096, SocketFlags.None, new AsyncCallback(OnReceive), so);
+            so.bytesToReceive = 4;
+            client.BeginReceive(so.buffer, 0, so.bytesToReceive, SocketFlags.None, new AsyncCallback(OnReceive), so);
             return client;
         }
 
@@ -242,7 +253,8 @@ namespace OperatorServiceInterface
             public byte[] buffer = new byte[BufferSize];
             // Raw Data
             //public StringBuilder data = new StringBuilder();
-            public MemoryStream data;
+            public MemoryStream body = new MemoryStream();
+            public int bodyLength = -1;
             
             // BytesToReceive
             public int bytesToReceive = 0;
