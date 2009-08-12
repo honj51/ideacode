@@ -92,7 +92,16 @@ namespace LiveSupport.OperatorConsole
             ws.GetSystemAdvertiseCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
             ws.GetAllOperatorsCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetAllOperatorsCompletedEventHandler(ws_GetAllOperatorsCompleted);
             ws.GetAllVisitorsCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetAllVisitorsCompletedEventHandler(ws_GetAllVisitorsCompleted);
+            ws.SendMessageCompleted += new LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventHandler(ws_SendMessageCompleted);
             //ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+        }
+
+        void ws_SendMessageCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted  != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }   
         }
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -529,7 +538,8 @@ namespace LiveSupport.OperatorConsole
 
         public void SendMessage(Message msg)
         {
-            ws.SendMessage(Common.Convert(msg) as LiveChatWS.Message);
+           // ws.SendMessage(Common.Convert(msg) as LiveChatWS.Message);
+            ws.SendMessageAsync(Common.Convert(msg) as LiveChatWS.Message, msg);
         }
 
         public int ChangePassword(string oldPassword, string newPassword)
@@ -1267,6 +1277,13 @@ namespace LiveSupport.OperatorConsole
 
 
         public event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        public event EventHandler<AsyncCallCompletedEventArg> AsyncCallCompleted;
 
         #endregion
     }

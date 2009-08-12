@@ -61,8 +61,8 @@ namespace LiveSupport.OperatorConsole
                 }
             }
 
-            //Test();
-            //return;
+          //  Test();
+           // return;
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
@@ -115,10 +115,17 @@ namespace LiveSupport.OperatorConsole
 
         static void Test()
         {
-            OperaterServiceAgent = OperatorServiceAgent.Default;
-            OperaterServiceAgent.Login("100000", "user1", "123");
-
-            Application.Run();
+            ChatMessageViewerControl c = new ChatMessageViewerControl();
+            //c.ResetContent("Hello");
+            c.AddInformation("Hello Again");
+            c.Dock = DockStyle.Fill;
+            Form f = new Form();
+            f.Controls.Add(c);
+            //OperaterServiceAgent = OperatorServiceAgent.Default;
+            //OperaterServiceAgent.Login("100000", "user1", "123");
+            f.Show();
+            c.AddInformation("www");
+            Application.Run(f);
         }
         #endregion
 
