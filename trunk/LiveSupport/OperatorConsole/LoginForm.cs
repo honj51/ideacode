@@ -35,7 +35,6 @@ namespace LiveSupport.OperatorConsole
 
         public LoginForm()
         {
-            Trace.WriteLine("Login:启动窗体时间= "+ DateTime.Now);
             InitializeComponent();
             cbxAutoLogin.Enabled = false;
         }
@@ -74,6 +73,7 @@ namespace LiveSupport.OperatorConsole
         {   
             try
             {
+                Trace.TraceInformation("Login called");
                 operatorServiceAgent.EnablePooling = false;
                 operatorServiceAgent.Login(txtUserName.Text.Trim(), txtOpName.Text.Trim(), txtOpPassword.Text);
                 //operatorServiceAgent.Login("100000", "zxkefu", "zxkefu");
