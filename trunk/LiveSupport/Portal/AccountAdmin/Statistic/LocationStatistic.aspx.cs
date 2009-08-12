@@ -47,11 +47,11 @@ public partial class AccountAdmin_Statistic_LocationStatistic : System.Web.UI.Pa
                 if (dic[keyName] != 0)
                 {
                     double value = ((double)dic[keyName] / (double)dic.Count) * 100;
-                    strXML += "<set name='" + keyName + "' value='" + dic[keyName] + "' /> ";
+                    strXML += "<set name='" + keyName + "' value='" + dic[keyName] + "'  /> ";
                 }
             }
             strXML += "</graph>";
-            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/FCF_Doughnut2D.swf", "", strXML, "myNext", "600", "300", false, false);
+            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/Doughnut3D.swf", "", strXML, "myNext", "600", "300", false, false);
         }
         else
         {

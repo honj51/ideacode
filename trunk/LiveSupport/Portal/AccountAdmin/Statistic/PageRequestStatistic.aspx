@@ -38,7 +38,7 @@
                 oncheckedchanged="radWeek_CheckedChanged" />
 &nbsp;</span><br />
             <br />
-            提示：帮助公司了解咨询者地区分布,及时的调整营销策略。<br />
+            提示：访客对任何一个嵌入了跟踪代码的页面的访问都对应一个流量。<br />
              <div style="margin-left:650px;">
                  <asp:ImageButton ID="ImageButton1" runat="server" 
                 ImageUrl="~/AccountAdmin/Images/btnStatistic.gif" onclick="ImageButton1_Click" 

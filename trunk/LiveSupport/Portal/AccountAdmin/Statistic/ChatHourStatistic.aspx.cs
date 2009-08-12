@@ -42,14 +42,14 @@ public partial class AccountAdmin_Statistic_ChatHourStatistic : System.Web.UI.Pa
         if (hour!=null && hour.Length>0)
         {
             string strXML;
-            strXML = "<graph caption='对话时段分析' xAxisName='hour' baseFontSize='12'  decimalPrecision='0' showNames='1'  pieSliceDepth='30' formatNumberScale='0'>";
+            strXML = "<graph caption='对话时段分析' xAxisName='小时' baseFontSize='12'  decimalPrecision='0' showNames='1'  pieSliceDepth='30' formatNumberScale='0'>";
             for (int i = 0; i < hour.Length; i++)
             {
-                strXML += "<set name='" + i + "' value='" + hour[i] + "' hoverText='对话数'  />";
+                strXML += "<set name='" + i + "' value='" + hour[i] + "' hoverText='对话数：" + hour[i] + "'  />";
             }
             strXML += "</graph>";
 
-            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/FCF_Column3D.swf", "", strXML, "myNext", "600", "300", false, false);
+            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/Column2D.swf", "", strXML, "myNext", "600", "300", false, false);
         }
         else
         {

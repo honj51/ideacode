@@ -70,17 +70,17 @@ public partial class AccountAdmin_Statistic_PageRequestStatistic : System.Web.UI
         if (dic != null && dic.Count > 0)
         {
             string strXML;
-            strXML = "<graph caption='流量统计分析' xAxisName='' baseFontSize='12'  decimalPrecision='0' showNames='1'  pieSliceDepth='30' formatNumberScale='0'>";
+            strXML = "<graph caption='流量统计分析' xAxisName='访问日期' baseFontSize='12'  decimalPrecision='0' showNames='1'  pieSliceDepth='30' formatNumberScale='0'>";
             int sunCount = 0;
             foreach (string keyName in dic.Keys)
             {
                 if (keyName!=null && dic[keyName] != null)
                 {
-                    strXML += "<set name='" + keyName + "' value='" + dic[keyName] + "' /> ";
+                    strXML += "<set name='" + keyName + "' value='" + dic[keyName] + "' hoverText='流量数：" + dic[keyName] + "'/> ";
                 }
             }
             strXML += "</graph>";
-            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/FCF_Line.swf", "", strXML, "myNext", "650", "330", false, false);
+            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/Line.swf", "", strXML, "myNext", "650", "330", false, false);
         }
         else
         {

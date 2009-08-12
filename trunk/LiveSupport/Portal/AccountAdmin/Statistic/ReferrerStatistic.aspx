@@ -38,7 +38,7 @@
                 oncheckedchanged="radWeek_CheckedChanged" />
 &nbsp;</span><br />
             <br />
-            提示：帮助公司了解咨询者地区分布,及时的调整营销策略。<br />
+            提示：分析访客是通过哪个网站进入公司网站的，在选择投放广告的网站时可做参考。<br />
              <div style="margin-left:650px;">
                  <asp:ImageButton ID="ImageButton1" runat="server" 
                 ImageUrl="~/AccountAdmin/Images/btnStatistic.gif" onclick="ImageButton1_Click" 

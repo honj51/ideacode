@@ -57,7 +57,7 @@ public partial class AccountAdmin_Statistic_Referrer : System.Web.UI.Page
                 }
             }
             strXML += "</graph>";
-            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/FCF_Doughnut2D.swf", "", strXML, "myNext", "600", "300", false, false);
+            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/Pie3D.swf", "", strXML, "myNext", "600", "300", false, false);
         }
         else
         {
