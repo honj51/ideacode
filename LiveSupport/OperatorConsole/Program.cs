@@ -20,6 +20,7 @@ using LiveSupport.OperatorConsole.Controls;
 using System.IO;
 using System.Xml;
 using System.Net;
+using System.Text;
 
 namespace LiveSupport.OperatorConsole
 {
@@ -67,9 +68,7 @@ namespace LiveSupport.OperatorConsole
 			Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             TextWriterTraceListener listener1 = new TextWriterTraceListener("MyListener.log");
-            listener1.TraceOutputOptions |= TraceOptions.DateTime;
-            listener1.TraceOutputOptions |= TraceOptions.ThreadId;
-
+            listener1.TraceOutputOptions = TraceOptions.DateTime | TraceOptions.ThreadId;
             Trace.Listeners.Add(listener1);
             Trace.AutoFlush = true;
             OperaterServiceAgent = OperatorServiceAgent.Default;
@@ -86,8 +85,7 @@ namespace LiveSupport.OperatorConsole
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("Logout“Ï≥£: " + ex.Message);
-
+                Trace.TraceError("Logout“Ï≥£: " + ex.Message);
             }
             //
             //TestFileUploadControl();
