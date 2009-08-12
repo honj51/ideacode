@@ -17,7 +17,6 @@ public partial class AccountAdmin_Statistic_OperatorStatistic : System.Web.UI.Pa
     Operator oper;
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (Session["User"] != null)
         {
             oper = (Operator)Session["User"];
@@ -26,7 +25,6 @@ public partial class AccountAdmin_Statistic_OperatorStatistic : System.Web.UI.Pa
                 this.txtBeginDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 this.txtEndDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
-
         }
         else
         {
@@ -41,14 +39,13 @@ public partial class AccountAdmin_Statistic_OperatorStatistic : System.Web.UI.Pa
         if (operTable!=null && operTable.Count > 0)
         {
             string strXML;
-            strXML = "<graph caption='客服对话分析' xAxisName='' baseFontSize='12'  decimalPrecision='0' showNames='1'  pieSliceDepth='30' formatNumberScale='0'>";
+            strXML = "<graph caption='客服对话分析' xAxisName='客服名称' baseFontSize='12'  decimalPrecision='0' showNames='1'  pieSliceDepth='30' formatNumberScale='0'>";
             foreach (object x in operTable.Keys)
             {
-
-                strXML += "<set name='" + x.ToString() + "' value='" + operTable[x] + "' hoverText='对话数'  />";
+                strXML += "<set name='" + x.ToString() + "' value='" + operTable[x] + "' hoverText='对话数：" + operTable[x] + "'  />";
             }
             strXML += "</graph>";
-            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/FCF_Column2D.swf", "", strXML, "myNext", "600", "300", false, false);
+            FCLiteral.Text = FusionCharts.RenderChart("../JS/FusionCharts/Column2D.swf", "", strXML, "myNext", "600", "300", false, false);
         }
         else
         {

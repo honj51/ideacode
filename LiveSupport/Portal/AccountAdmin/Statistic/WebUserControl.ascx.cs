@@ -9,14 +9,10 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
-public partial class AccountAdmin_Statistic_Default : System.Web.UI.Page
+public partial class AccountAdmin_Statistic_WebUserControl : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
-    }
-    protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
-    {
-        
     }
 }
