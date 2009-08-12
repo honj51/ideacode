@@ -69,12 +69,13 @@ public class ProcessImage : IHttpHandler
             session.PageRequested = pageRequested;
             session.Referrer = referrer;
             session.Status = VisitSessionStatus.Visiting;
+            session.Location = IpSearch.GetAddressWithIP(visitorIP);
             visitor.CurrentSession = session;
             VisitSessionService.NewSession(session);
             System.Diagnostics.Debug.WriteLine("Add new session "+session.SessionId + " for " + visitor.VisitorId);
         }
 
-        visitor.CurrentSession.Location = IpSearch.GetAddressWithIP(visitorIP);
+        
         
         // TODO:
         PageRequest pageRequest = new PageRequest();
