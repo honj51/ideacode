@@ -80,6 +80,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IC.AutoUpdate", "Common\IC.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LiveChatServerInstaller", "LiveChatServerInstaller\LiveChatServerInstaller.vdproj", "{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtility", "Test\TestUtility\TestUtility.csproj", "{B873E172-680D-4D6A-BFC9-532CB13F5608}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -98,7 +100,6 @@ Global
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Release|.NET.ActiveCfg = Release|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C3330D8-935E-4808-8803-6CE5A46D6F90}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -117,7 +118,6 @@ Global
 		{C4903BEF-9491-492A-AC4A-8244790DAFE3}.Debug|.NET.Build.0 = Debug|.NET
 		{C4903BEF-9491-492A-AC4A-8244790DAFE3}.Debug|Any CPU.ActiveCfg = Debug|.NET
 		{C4903BEF-9491-492A-AC4A-8244790DAFE3}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{C4903BEF-9491-492A-AC4A-8244790DAFE3}.Debug|Mixed Platforms.Build.0 = Debug|.NET
 		{C4903BEF-9491-492A-AC4A-8244790DAFE3}.Release|.NET.ActiveCfg = Debug|.NET
 		{C4903BEF-9491-492A-AC4A-8244790DAFE3}.Release|.NET.Build.0 = Debug|.NET
 		{C4903BEF-9491-492A-AC4A-8244790DAFE3}.Release|Any CPU.ActiveCfg = Debug|.NET
@@ -158,7 +158,6 @@ Global
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Release|.NET.ActiveCfg = Release|Any CPU
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -225,6 +224,16 @@ Global
 		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Release|.NET.ActiveCfg = Release
 		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Release|Any CPU.ActiveCfg = Release
 		{7D2B241A-4D4B-4D07-91A5-5805FAEA6680}.Release|Mixed Platforms.ActiveCfg = Release
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Release|.NET.ActiveCfg = Release|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B873E172-680D-4D6A-BFC9-532CB13F5608}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -236,5 +245,6 @@ Global
 		{879EC6E1-0BC0-4198-805D-950B2C4EFC41} = {1C57CE42-4525-4728-A387-666512A30BFC}
 		{CCA2462B-DD2B-4A9E-89E9-15CD5D6A3EAB} = {4C372D4D-B6F2-490C-85D9-1F54C565B46E}
 		{42340920-3921-400C-9579-805FE74FC8A9} = {4C372D4D-B6F2-490C-85D9-1F54C565B46E}
+		{B873E172-680D-4D6A-BFC9-532CB13F5608} = {4C372D4D-B6F2-490C-85D9-1F54C565B46E}
 	EndGlobalSection
 EndGlobal
