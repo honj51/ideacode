@@ -22,31 +22,31 @@ namespace LiveSupport.OperatorConsole
         /* 对话接口 */
         void SendFile(string fileName, string chatId, object action);
         void SendMessage(Message msg);
-        bool CloseChat(string chatId);
-        int AcceptChatRequest(string chatId);
-        Chat InviteChat(string visitorId);
+        void CloseChat(string chatId);
+        void AcceptChatRequest(string chatId);
+        void InviteChat(string visitorId);
 
         /* 管理接口 */
         int ChangePassword(string oldPassword, string newPassword);
         int ResetOperatorPassword(string loginName);
 
         /* 查询功能接口 */
-        List<string> GetAccountDomains(); //获取帐号相关域名
-        List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end); //获取历史聊天记录
-        List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end); //获取访客浏览页面记录
+        void GetAccountDomains(); //获取帐号相关域名
+        void GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end); //获取历史聊天记录
+        void GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end); //获取访客浏览页面记录
         bool IsVisitorHasActiveChat(string visitorId);
         
         /* 快捷回复相关接口 */
-        List<QuickResponseCategory> GetQuickResponse(); 
-        List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName);
+        void GetQuickResponse(); 
+        void GetQuickResponseByDomainName(string domainName);
         void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName);
 
         /* 留言相关接口 */
-        List<LeaveWord> GetLeaveWord();
-        bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id);
-        bool DelLeaveWordById(string id);
-        List<LeaveWord> GetLeaveWordNotReplied();
-        List<LeaveWord> GetLeaveWordByDomainName(string domainName);
+        void GetLeaveWord();
+        void UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id);
+        void DelLeaveWordById(string id);
+        void GetLeaveWordNotReplied();
+        void GetLeaveWordByDomainName(string domainName);
         #endregion
 
         #region Async

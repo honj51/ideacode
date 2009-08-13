@@ -423,5 +423,85 @@ namespace LiveSupport.OperatorConsole
         public event EventHandler<AsyncCallCompletedEventArg> AsyncCallCompleted;
 
         #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        void IOperatorServiceAgent.AcceptChatRequest(string chatId)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.InviteChat(string visitorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        void IOperatorServiceAgent.GetQuickResponse()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.GetQuickResponseByDomainName(string domainName)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        void IOperatorServiceAgent.CloseChat(string chatId)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.GetAccountDomains()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.GetLeaveWord()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.DelLeaveWordById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.GetLeaveWordNotReplied()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IOperatorServiceAgent.GetLeaveWordByDomainName(string domainName)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
