@@ -60,15 +60,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
+    <ProjectReference Include="..\..\BLL\BLL.csproj">
       <Project>{7C3330D8-935E-4808-8803-6CE5A46D6F90}</Project>
       <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LiveSupportDAL\LiveSupportDAL.csproj">
+    <ProjectReference Include="..\..\LiveSupportDAL\LiveSupportDAL.csproj">
       <Project>{3CCD9A10-F4BD-4108-9481-F2F72DD7B183}</Project>
       <Name>LiveSupportDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\LiveSupportModel.csproj">
+    <ProjectReference Include="..\..\Model\LiveSupportModel.csproj">
       <Project>{B075A42B-84C8-4CFE-84B4-BFBF68C3379D}</Project>
       <Name>LiveSupportModel</Name>
     </ProjectReference>
