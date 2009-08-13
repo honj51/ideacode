@@ -164,7 +164,7 @@ function checknull()
                                                         <asp:TextBox ID="systemadminname" runat="server" CanBeNull="必填" RequiredFieldType="暂无校验"
                                                             Text="admin" MaxLength="20" Size="20" Width="150px"></asp:TextBox>*&nbsp;
                                                         <input type="checkbox" id="sponsercheck" name="sponsercheck" runat="server" checked
-                                                            style="height: 18px">设置为创始人</td>
+                                                            style="height: 18px" readonly="readonly">设置为创始人</td>
                                                 </tr>
                                                 <tr>
                                                     <td>系统管理员密码:<br />
