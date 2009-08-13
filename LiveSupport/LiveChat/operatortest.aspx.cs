@@ -16,7 +16,7 @@ public partial class operatortest : System.Web.UI.Page
         this.GridView5.DataSource = AccountService.getAllaccount();
         this.GridView1.DataSource = OperatorService.GetAllOperators();
         this.GridView2.DataSource = ChatService.GetAllChat();
-        LiveSupport.BLL.Util.SysDateStates li = LiveSupport.BLL.Util.GetSysInfo();
+        LiveSupport.BLL.Utils.Util.SysDateStates li = LiveSupport.BLL.Utils.Util.GetSysInfo();
         this.Label4.Text = li.StartApplicationDate.ToString();
         this.Label5.Text = li.StartSessionDate.ToString();
         DataBind();
