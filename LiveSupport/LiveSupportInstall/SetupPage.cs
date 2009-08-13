@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Collections;
 using LiveSupport.BLL;
 using System.DirectoryServices;
+using LiveSupport.BLL.Utils;
+
 namespace LiveSupportInstall
 {
     /// <summary>
@@ -62,7 +64,7 @@ namespace LiveSupportInstall
                 sb.Append("<tr style=\"height:15px\"><td bgcolor='#ffffff' width='5%'><img src='images/ok.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 Web.config 验证通过!</td></tr>");
             }
             //检查系统目录的有效性
-            string folderstr = "AccountAdmin,js,Install";//文件夹名
+            string folderstr = "AccountAdmin,js,Install,App_Data,App_Themes,App_Code";//文件夹名
             foreach (string foldler in folderstr.Split(','))
             {
                 if (!SystemFolderCheck(foldler))
@@ -75,7 +77,7 @@ namespace LiveSupportInstall
                     sb.Append("<tr><td bgcolor='#ffffff' width='5%'><img src='images/ok.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 " + foldler + " 目录权限验证通过!</td></tr>");
                 }
             }
-            string[] directory = { "D:\\web\\Images", "D:\\web\\data"};
+            string[] directory = { "\\Images", "D:\\web\\data"};
             foreach (var item in directory)
             {
                 Directory.CreateDirectory(item);

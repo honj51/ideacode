@@ -9,13 +9,18 @@ using LiveSupportInstall;
 using System.Data.SqlClient;
 using System.Text;
 using System.Web;
+using LiveSupport.LiveSupportModel;
+using LiveSupport.LiveSupportDAL;
+using System.Configuration;
+using LiveSupport.BLL;
+using LiveSupport.BLL.Utils;
 
 namespace LiveSupportInstall
 {
     /// <summary>
     /// setup 的摘要说明. 
     /// </summary>
-    public class install : SetupPage,IHttpHandler
+    public class install : SetupPage
     {
          
         protected TextBox tableprefix;
@@ -90,10 +95,10 @@ namespace LiveSupportInstall
            #region 写general.config文件
             try
             {
-                if (i) {i = LiveSupport.BLL.Util.SetConnectionStrings("SQLConnectionString", connectionString);}
-                if (i) {i = LiveSupport.BLL.Util.SetappSettings("UserDefinedPath", "D:\\web\\Images", "add");}
-                if (i) {i = LiveSupport.BLL.Util.SetappSettings("FileUploadPath", "D:\\web\\data", "add");}
-                if (i) {i = LiveSupport.BLL.Util.SetappSettings("HomeRootUrl", LiveSupport.BLL.Util.GetApplicationPath(Request.UrlReferrer.ToString()), "add"); }
+                if (i) { i = Util.SetConnectionStrings("SQLConnectionString", connectionString); }
+                if (i) {i = Util.SetappSettings("UserDefinedPath", "D:\\web\\Images", "add");}
+                if (i) {i = Util.SetappSettings("FileUploadPath", "D:\\web\\data", "add");}
+                if (i) {i = Util.SetappSettings("HomeRootUrl", Util.GetApplicationPath(Request.UrlReferrer.ToString()), "add"); }
             }
             catch (Exception ex)
             {
@@ -106,19 +111,55 @@ namespace LiveSupportInstall
             Session["dbname"] = initialcatalog.Text;
             Session["Dbconnectstring"] = connectionString;
             Session["SystemAdminEmail"] = adminemail.Text.TrimEnd();
-            
+
+            LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = connectionString;
             if (i) { CreateSQLServerDB("createDB.sql", "master"); }
             if (i) { CreateSQLServerDB("createTable.sql", "master"); }
             if (i) { CreateSQLServerDB("createhypotaxis.sql", "master"); }
-            if (i) { i=CreateSQLServerDB("insertDB.sql", "master");}
+            if (i) { i = NewDefaultInfo("insertDB.sql"); }
+            if (i) { i = NewAccount(); }//创建用户信息
             if (i)
             {
-                Response.Redirect("succeed.aspx");
+                Response.Redirect("succeed.aspx",false);
+                //Page.Server.Transfer(
             }
             else
             {
                 msg.Visible = true;
             }
+        }
+        /// <summary>
+        /// 创建管理员信息
+        /// </summary>
+        /// <returns></returns>
+        public bool NewAccount()
+        {
+            Account account=new Account();
+            account.AccountNumber="10000";
+            account.CompanyName=forumtitle.Text;
+            account.ContactName=systemadminname.Text;
+            account.Email=adminemail.Text;
+            account.Url=Util.GetApplicationPath(Request.UrlReferrer.ToString());
+            return  AccountsManager.AddAccount(account, systemadminname.Text, systemadminname.Text, systemadminpws.Text);
+        }
+        /// <summary>
+        /// 创建默认信息
+        /// </summary>
+        /// <returns></returns>
+        public bool NewDefaultInfo(string sqlName)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (StreamReader objReader = new StreamReader(Server.MapPath("sqlscript/sqlserver/" + sqlName),Encoding.Default))
+            {
+                sb.Append(objReader.ReadToEnd());
+                objReader.Close();
+            }
+            if (LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ExecuteCommand(sb.ToString()) > 0)
+            {
+                return true;
+            }
+            else
+                return false;
         }
         /// <summary>
         /// 执行TSQL语句
@@ -133,7 +174,7 @@ namespace LiveSupportInstall
             bool i=false;
             SqlConnection myConn = new SqlConnection(constring);
             StringBuilder sb = new StringBuilder();
-            using (StreamReader objReader = new StreamReader(Server.MapPath("sqlscript/sqlserver/" + sqlName), Encoding.UTF8))
+            using (StreamReader objReader = new StreamReader(Server.MapPath("sqlscript/sqlserver/" + sqlName), Encoding.Default))
             {
                 sb.Append(objReader.ReadToEnd());
                 objReader.Close();
