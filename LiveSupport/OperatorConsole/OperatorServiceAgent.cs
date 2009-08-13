@@ -71,7 +71,8 @@ namespace LiveSupport.OperatorConsole
             {
                 if (quickResponseCategory == null)
                 {
-                    quickResponseCategory = GetQuickResponse();
+                    GetQuickResponse();
+                    //quickResponseCategory = GetQuickResponse();
                 }
                 return quickResponseCategory;
             }
@@ -94,6 +95,147 @@ namespace LiveSupport.OperatorConsole
             ws.GetAllVisitorsCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetAllVisitorsCompletedEventHandler(ws_GetAllVisitorsCompleted);
             ws.SendMessageCompleted += new LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventHandler(ws_SendMessageCompleted);
             //ws.GetLeaveWordCompleted += new GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+            ws.InviteChatCompleted += new LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventHandler(ws_InviteChatCompleted);
+            ws.AcceptChatRequestCompleted += new LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventHandler(ws_AcceptChatRequestCompleted);
+            ws.CloseChatCompleted += new LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventHandler(ws_CloseChatCompleted);
+            ws.GetQuickResponseByDomainNameCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventHandler(ws_GetQuickResponseByDomainNameCompleted);
+            ws.GetQuickResponseCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseCompletedEventHandler(ws_GetQuickResponseCompleted);
+            ws.SaveQuickResponseByDomainNameCompleted += new LiveSupport.OperatorConsole.LiveChatWS.SaveQuickResponseByDomainNameCompletedEventHandler(ws_SaveQuickResponseByDomainNameCompleted);
+            ws.GetHistoryChatMessageCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetHistoryChatMessageCompletedEventHandler(ws_GetHistoryChatMessageCompleted);
+            ws.GetHistoryPageRequestsCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventHandler(ws_GetHistoryPageRequestsCompleted);
+            ws.GetAccountDomainsCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventHandler(ws_GetAccountDomainsCompleted);
+            ws.GetLeaveWordCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+            ws.GetLeaveWordNotRepliedCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordNotRepliedCompletedEventHandler(ws_GetLeaveWordNotRepliedCompleted);
+            ws.GetLeaveWordByDomainNameCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventHandler(ws_GetLeaveWordByDomainNameCompleted);
+            ws.UpdateLeaveWordByIdCompleted += new LiveSupport.OperatorConsole.LiveChatWS.UpdateLeaveWordByIdCompletedEventHandler(ws_UpdateLeaveWordByIdCompleted);
+            ws.DelLeaveWordByIdCompleted += new LiveSupport.OperatorConsole.LiveChatWS.DelLeaveWordByIdCompletedEventHandler(ws_DelLeaveWordByIdCompleted);
+        }
+
+        void ws_GetLeaveWordNotRepliedCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordNotRepliedCompletedEventArgs e)
+        {
+            List<LeaveWord> leaveWords = new List<LeaveWord>();
+
+            foreach (var item in e.Result)
+            {
+                leaveWords.Add(Common.Convert(item) as LeaveWord);
+            }
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_DelLeaveWordByIdCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.DelLeaveWordByIdCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_UpdateLeaveWordByIdCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.UpdateLeaveWordByIdCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+        void ws_GetLeaveWordCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_GetLeaveWordByDomainNameCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_GetAccountDomainsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_GetHistoryPageRequestsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventArgs e)
+        {
+            List<PageRequest> lPageRequest = new List<PageRequest>();
+
+            foreach (var item in e.Result)
+            {
+                lPageRequest.Add(Common.Convert(item) as PageRequest);
+            }
+
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_GetHistoryChatMessageCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetHistoryChatMessageCompletedEventArgs e)
+        {
+            List<Message> lMessage =new List<Message>();
+
+                foreach (var item in e.Result)
+                {
+                    lMessage.Add(Common.Convert(item) as Message);
+                }
+                if (AsyncCallCompleted != null)
+                {
+                    AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+                }
+        }
+
+        void ws_SaveQuickResponseByDomainNameCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_GetQuickResponseCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_GetQuickResponseByDomainNameCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_CloseChatCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs e)
+        {
+           // AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+        }
+
+        void ws_AcceptChatRequestCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
+        }
+
+        void ws_InviteChatCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
         }
 
         void ws_SendMessageCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs e)
@@ -552,67 +694,33 @@ namespace LiveSupport.OperatorConsole
             return ws.ResetOperatorPassword(loginName);
         }
 
-        public bool CloseChat(string chatId)
+        public void CloseChat(string chatId)
         {
-            return ws.CloseChat(chatId);
+            ws.CloseChatAsync(chatId);
         }
 
-        public List<Message> GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
+        public void GetHistoryChatMessage(string visitorId, DateTime begin, DateTime end)
         {
-            List<Message> lMessage = null;
-            try
-            {
-                lMessage = new List<Message>();
-                foreach (var item in ws.GetHistoryChatMessage(visitorId, begin, end))
-                {
-                    lMessage.Add(Common.Convert(item) as Message);
-                }
-            }
-            catch (WebException)
-            {
-                return null;
-            }
-            return lMessage;
+            ws.GetHistoryChatMessageAsync(visitorId, begin, end);
         }
 
-        public List<PageRequest> GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
+        public void GetHistoryPageRequests(string visitorId, DateTime begin, DateTime end)
         {
-            List<PageRequest> lPageRequest = null;
-            try
-            {
-                lPageRequest = new List<PageRequest>();
-
-                foreach (var item in ws.GetHistoryPageRequests(visitorId, begin, end))
-                {
-                    lPageRequest.Add(Common.Convert(item) as PageRequest);
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            return lPageRequest;
+            ws.GetHistoryPageRequestsAsync(visitorId, begin, end);
         }
 
-        public int AcceptChatRequest(string chatId)
+        public void AcceptChatRequest(string chatId)
         {
-            int num;
-            try
-            {
-                num = ws.AcceptChatRequest(chatId);
-            }
-            catch (WebException)
-            {
-                return -3;
-            }
-            return num;
+            ws.AcceptChatRequestAsync(chatId);
         }
 
-        public Chat InviteChat(string visitorId)
+        public void InviteChat(string visitorId)
         {
-            Chat chat = Common.Convert(ws.InviteChat(visitorId)) as Chat;
-            addChat(chat);
-            return chat;
+            ws.InviteChatAsync(visitorId);
+            //Chat chat = Common.Convert(ws.InviteChat(visitorId)) as Chat;
+            //addChat(chat);
+            //return chat;
+
         }
 
         public bool IsVisitorHasActiveChat(string visitorId)
@@ -666,22 +774,9 @@ namespace LiveSupport.OperatorConsole
             //}
         }
 
-        public List<QuickResponseCategory> GetQuickResponse()
+        public void GetQuickResponse()
         {
-            List<QuickResponseCategory> lQuickResponseCategory = null;
-            try
-            {
-                lQuickResponseCategory = new List<QuickResponseCategory>();
-                foreach (var item in ws.GetQuickResponse())
-                {
-                    lQuickResponseCategory.Add(Common.Convert(item) as QuickResponseCategory);
-                }
-            }
-            catch (WebException)
-            {
-                return null;
-            }
-            return lQuickResponseCategory;
+            ws.GetQuickResponseAsync(Guid.NewGuid());
         }
 
         //private NewChangesCheckResult getNextNewChanges()
@@ -1009,85 +1104,40 @@ namespace LiveSupport.OperatorConsole
             return null;
         }
 
-        public List<LeaveWord> GetLeaveWord()
+        public void GetLeaveWord()
         {
-            List<LeaveWord> leaveWords = new List<LeaveWord>();
-            try
-            {
-                foreach (var item in ws.GetLeaveWord())
-                {
-                    leaveWords.Add(Common.Convert(item) as LeaveWord);
-                }
-            }
-            catch (WebException)
-            {
-                return null;
-            }
-            return leaveWords;
+            ws.GetLeaveWordAsync(Guid.NewGuid());
+
         }
 
-        public bool UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id)
+        public void UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id)
         {
-            bool result;
-            try
-            {
-                result = ws.UpdateLeaveWordById(sendDate, name, isReplied, id);
-            }
-            catch (WebException)
-            {
-                return false;
-            }
+            ws.UpdateLeaveWordByIdAsync(sendDate, name, isReplied, id);
 
-            return result;
         }
 
-        public bool DelLeaveWordById(string id)
+        public void DelLeaveWordById(string id)
         {
-            return ws.DelLeaveWordById(id);
+            ws.DelLeaveWordByIdAsync(id);
         }
 
-        public List<LeaveWord> GetLeaveWordNotReplied()
+        public void GetLeaveWordNotReplied()
         {
-            List<LeaveWord> leaveWords = new List<LeaveWord>();
-
-            foreach (var item in ws.GetLeaveWordNotReplied())
-            {
-                leaveWords.Add(Common.Convert(item) as LeaveWord);
-            }
-            return leaveWords;
+            ws.GetLeaveWordNotRepliedAsync(Guid.NewGuid());
         }
 
-        public List<LeaveWord> GetLeaveWordByDomainName(string domainName)
+        public void GetLeaveWordByDomainName(string domainName)
         {
-            List<LeaveWord> leaveWords = new List<LeaveWord>();
-            foreach (var item in ws.GetLeaveWordByDomainName(domainName))
-            {
-                leaveWords.Add(Common.Convert(item) as LeaveWord);
-            }
-            return leaveWords;
-
+            ws.GetLeaveWordByDomainNameAsync(domainName);
         }
-        public List<string> GetAccountDomains()
+        public void GetAccountDomains()
         {
-            return new List<string>(ws.GetAccountDomains());
+            ws.GetAccountDomainsAsync(Guid.NewGuid());
         }
 
-        public List<QuickResponseCategory> GetQuickResponseByDomainName(string domainName)
+        public void GetQuickResponseByDomainName(string domainName)
         {
-            List<QuickResponseCategory> lQuickResponseCategory = null;
-            try
-            {
-                lQuickResponseCategory = new List<QuickResponseCategory>();
-                foreach (var item in ws.GetQuickResponseByDomainName(domainName))
-                {
-                    lQuickResponseCategory.Add(Common.Convert(item) as QuickResponseCategory);
-                }
-            }
-            catch (WebException)
-            {
-                return null;
-            }
-            return lQuickResponseCategory;
+            ws.GetQuickResponseByDomainNameAsync(domainName);
         }
 
         public void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName)
@@ -1097,8 +1147,7 @@ namespace LiveSupport.OperatorConsole
             {
                 llQuickResponseCategory.Add(Common.Convert(item) as LiveChatWS.QuickResponseCategory);
             }
-            ws.SaveQuickResponseByDomainName(llQuickResponseCategory.ToArray(), domainName);
-
+            ws.SaveQuickResponseByDomainNameAsync(llQuickResponseCategory.ToArray(), domainName);
         }
 
         #endregion

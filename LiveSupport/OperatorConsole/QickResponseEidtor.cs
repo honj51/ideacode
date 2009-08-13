@@ -25,6 +25,47 @@ namespace LiveSupport.OperatorConsole
             {
                setTalkTreeView.Dock= DockStyle.Fill;
             }
+            Program.OperaterServiceAgent.AsyncCallCompleted += new EventHandler<AsyncCallCompletedEventArg>(OperaterServiceAgent_AsyncCallCompleted);
+        }
+
+        void OperaterServiceAgent_AsyncCallCompleted(object sender, AsyncCallCompletedEventArg e)
+        {
+            if (e.Result==typeof(LiveChatWS.GetAccountDomainsCompletedEventArgs))
+            {
+                LiveChatWS.GetAccountDomainsCompletedEventArgs arg = e.Result as LiveChatWS.GetAccountDomainsCompletedEventArgs;
+                if (arg.Error==null)
+                {
+                    this.Text = arg.Error.Message;
+                    return;
+                }
+                domainToolStripComboBox.Items.AddRange(arg.Result);
+            }
+            else if (e.Result == typeof(System.ComponentModel.AsyncCompletedEventArgs))
+            {
+                AsyncCompletedEventArgs arg = e.Result as AsyncCompletedEventArgs;
+                if (arg.Error!=null) 
+                {
+                    this.Text = arg.Error.Message;
+                }
+            }
+            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs;
+                if (arg.Error != null)
+                {
+                    this.Text = arg.Error.Message;
+                    return;
+                }
+                List<QuickResponseCategory> lQuickResponseCategory = new List<QuickResponseCategory>();
+                foreach (var item in arg.Result)
+                {
+                    lQuickResponseCategory.Add(Common.Convert(item) as QuickResponseCategory);
+                }
+                setTalkTreeView.Nodes.Clear();
+                Program.OperaterServiceAgent.QuickResponseCategory.Clear();
+                Program.OperaterServiceAgent.QuickResponseCategory = lQuickResponseCategory;
+                loadQickResponse();
+            }
         }
 
          /// <summary>
@@ -41,15 +82,7 @@ namespace LiveSupport.OperatorConsole
         //读取域名列表
         private void loadDomain() 
         {
-            try
-            {
-                domainToolStripComboBox.Items.AddRange(Program.OperaterServiceAgent.GetAccountDomains().ToArray());
-            }
-            catch (WebException )
-            {
-                this.Text = "网络中断,请稍候重试";
-                return;
-            }
+            Program.OperaterServiceAgent.GetAccountDomains();
         }
         private void addNodeToolStripButton_Click(object sender, EventArgs e)
         {
@@ -112,12 +145,13 @@ namespace LiveSupport.OperatorConsole
                 }
             }
         }
-        //初始化
+       
         private void QickResponseEidtor_Load(object sender, EventArgs e)
         {
            
         }
 
+        //初始化
         private void loadQickResponse()
         {
             setTalkTreeView.Nodes.Clear();
@@ -225,16 +259,11 @@ namespace LiveSupport.OperatorConsole
 
         private void domainToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            setTalkTreeView.Nodes.Clear();
-            Program.OperaterServiceAgent.QuickResponseCategory.Clear();
-
             if ( domainToolStripComboBox.SelectedIndex>0)
             {
                 domainName = domainToolStripComboBox.SelectedItem.ToString();
-               Program.OperaterServiceAgent.QuickResponseCategory = Program.OperaterServiceAgent.GetQuickResponseByDomainName(domainName);
+                Program.OperaterServiceAgent.GetQuickResponseByDomainName(domainName);
             }
-          
-            loadQickResponse();
         }
     }
 }

@@ -176,11 +176,11 @@ namespace LiveSupport.OperatorConsole
 
         private void LeaveWordNotReplied(List<LeaveWord> lwnr)
         {
-            List<LeaveWord> lws = lwnr == null ? operaterServiceAgent.GetLeaveWord() : lwnr;
+            //List<LeaveWord> lws = lwnr == null ? operaterServiceAgent.GetLeaveWord() : lwnr;
             int num = 0;
-            if (lws != null)
+            if (lwnr != null)
             {
-                foreach (LeaveWord item in lws)
+                foreach (LeaveWord item in lwnr)
                 {
                     if (!item.IsReplied)
                     {
@@ -210,6 +210,7 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.NewVisiting += new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
                 operaterServiceAgent.VisitorChatRequest += new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
                 operaterServiceAgent.DataLoadCompleted += new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
+                operaterServiceAgent.AsyncCallCompleted += new EventHandler<AsyncCallCompletedEventArg>(operaterServiceAgent_AsyncCallCompleted);
             }
             else
             {
@@ -219,7 +220,128 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.NewVisiting -= new EventHandler<OperatorServiceInterface.NewVisitingEventArgs>(operaterServiceAgent_NewVisiting);
                 operaterServiceAgent.VisitorChatRequest -= new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
                 operaterServiceAgent.DataLoadCompleted -= new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
+                operaterServiceAgent.AsyncCallCompleted -= new EventHandler<AsyncCallCompletedEventArg>(operaterServiceAgent_AsyncCallCompleted);
             }
+        }
+
+        void operaterServiceAgent_AsyncCallCompleted(object sender, AsyncCallCompletedEventArg e)
+        {
+            if (e.Result==typeof(LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs arg =e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs;
+                cbxDomainName.Items.AddRange(arg.Result);
+            }
+            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventArgs;
+                List<LeaveWord> leaveWords = new List<LeaveWord>();
+                if (arg.Error == null)
+                {
+                    foreach (var item in arg.Result)
+                    {
+                        leaveWords.Add(Common.Convert(item) as LeaveWord);
+                    }
+                }
+                  
+                
+                if (leaveWords != null)
+                {
+                    LeaveWordNotReplied(leaveWords);
+                    this.leaveWordBindingSource.DataSource = leaveWords;
+                }
+
+            }
+            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventArgs;
+                List<LeaveWord> leaveWords = new List<LeaveWord>();
+                if (arg.Error==null)
+                {
+                    foreach (var item in arg.Result)
+                    {
+                        leaveWords.Add(Common.Convert(item) as LeaveWord);
+                    } 
+                }
+                if (leaveWords != null)
+                {
+                    LeaveWordNotReplied(leaveWords);
+                    this.leaveWordBindingSource.DataSource = leaveWords;
+                }
+            }
+            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.UpdateLeaveWordByIdCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.UpdateLeaveWordByIdCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.UpdateLeaveWordByIdCompletedEventArgs;
+                if (arg.Error==null)
+                {
+                    if (arg.Result)
+                    {
+                        if (cbxDomainName.SelectedIndex > 0)
+                        {
+                            operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
+                        }
+                        else
+                            operaterServiceAgent.GetLeaveWord();
+                        LeaveWordNotReplied(null);
+                    }
+                }
+            }
+            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.DelLeaveWordByIdCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.DelLeaveWordByIdCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.DelLeaveWordByIdCompletedEventArgs;
+                if (arg.Error==null)
+                {
+                    if (cbxDomainName.SelectedIndex > 0)
+                    {
+                        operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
+                    }
+                    else
+                        operaterServiceAgent.GetLeaveWord();
+                    LeaveWordNotReplied(null);
+                }
+            }
+            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventArgs;
+                if (arg.Error==null)
+                {
+                    List<PageRequest> pRequest = new List<PageRequest>(); ;
+
+                    foreach (var item in arg.Result)
+                    {
+                        pRequest.Add(Common.Convert(item) as PageRequest);
+                    }
+                    if (pRequest != null && pRequest.Count > 0)
+                    {
+                        foreach (PageRequest item in pRequest)
+                        {
+                            if (item == null) continue;
+                            ListViewItem pageRequest = new ListViewItem(new string[]
+                         {
+                            item.Page, item.RequestTime.ToString(), item.Referrer
+                          });
+                            pageRequest.Tag = item;
+                            lstPageRequest.Items.Add(pageRequest);
+                        }
+                    } 
+                }
+            }
+            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetHistoryChatMessageCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.GetHistoryChatMessageCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetHistoryChatMessageCompletedEventArgs;
+                if (arg.Error==null)
+                {
+                    List<LiveSupport.LiveSupportModel.Message> msg = new List<LiveSupport.LiveSupportModel.Message>();
+                    foreach (var item in arg.Result)
+                    {
+                        msg.Add(Common.Convert(item) as LiveSupport.LiveSupportModel.Message);
+                    }
+                    if (msg.Count > 0 && msg != null)
+                    {
+                        chatMessageViewerControl1.DataBindMessage(msg);
+                    }
+                }
+            }
+	
         }
 
         void operaterServiceAgent_DataLoadCompleted(object sender, DataLoadCompletedEventArgs e)
@@ -813,26 +935,7 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
 
-                List<PageRequest> pRequest = operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, beginTime, endTime);
-
-                if (pRequest != null && pRequest.Count > 0)
-                {
-                    foreach (PageRequest item in pRequest)
-                    {
-                        if (item == null) continue;
-                        ListViewItem pageRequest = new ListViewItem(new string[]
-                         {
-                            item.Page, item.RequestTime.ToString(), item.Referrer
-                          });
-                        pageRequest.Tag = item;
-                        lstPageRequest.Items.Add(pageRequest);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("该访客暂无访问记录！");
-                }
-
+                 operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, beginTime, endTime);
             }
             finally
             {
@@ -868,16 +971,7 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
 
-                List<LiveSupport.LiveSupportModel.Message> msg = operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, beginTime, endTime);
-                if (msg.Count > 0)
-                {
-                    chatMessageViewerControl1.DataBindMessage(msg);
-                }
-                else
-                {
-                    MessageBox.Show("该访客暂无聊天记录！");
-                }
-
+                 operaterServiceAgent.GetHistoryChatMessage(vlvi.Visitor.VisitorId, beginTime, endTime);
             }
             finally
             {
@@ -1134,8 +1228,7 @@ namespace LiveSupport.OperatorConsole
 
         private void loadDomainName()
         {
-            cbxDomainName.Items.AddRange(operaterServiceAgent.GetAccountDomains().ToArray());
-            cbxDomainName.SelectedIndex = 0;
+            operaterServiceAgent.GetAccountDomains();
         }
         private void tabChats_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1143,15 +1236,10 @@ namespace LiveSupport.OperatorConsole
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
-
             LeaveWord lw = this.leaveWordBindingSource.Current as LeaveWord;
             string original = "%0d%0a%0d%0a ----------------------------原始邮件------------------------------%0d%0a%0d%0a" + lw.Content;
             Process.Start("mailto:" + lw.Email + "?Subject=回复:" + lw.Subject + "&Body=" + original);
-            if (operaterServiceAgent.UpdateLeaveWordById(DateTime.Now.ToString(), operaterServiceAgent.CurrentOperator.NickName, true, lw.Id))
-            {
-                this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
-                LeaveWordNotReplied(null);
-            }
+            operaterServiceAgent.UpdateLeaveWordById(DateTime.Now.ToString(), operaterServiceAgent.CurrentOperator.NickName, true, lw.Id);
         }
 
         private void leaveWordDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -1188,25 +1276,8 @@ namespace LiveSupport.OperatorConsole
             if (leaveWordDataGridView.SelectedRows.Count > 0)
             {
                 LeaveWord lw = this.leaveWordBindingSource.Current as LeaveWord;
-                try
-                {
-                    if (operaterServiceAgent.DelLeaveWordById(lw.Id))
-                    {
-                        if (cbxDomainName.SelectedIndex > 0)
-                        {
-                            this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
-                        }
-                        else
-                            this.leaveWordBindingSource.DataSource = operaterServiceAgent.GetLeaveWord();
-
-                        LeaveWordNotReplied(null);
-                    }
-                }
-                catch (WebException)
-                {
-                    MessageBox.Show("网络中断,请稍候再试...", "提示");
-                }
-
+                operaterServiceAgent.DelLeaveWordById(lw.Id);
+                   
             }
 
         }
@@ -1229,20 +1300,13 @@ namespace LiveSupport.OperatorConsole
             {
                 loadDomainName();
             }
-            List<LeaveWord> leaveWord = new List<LeaveWord>();
+            
             if (cbxDomainName.SelectedIndex > 0)
             {
-                leaveWord = operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
+                 operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
             }
             else
-                leaveWord = operaterServiceAgent.GetLeaveWord();
-            if (leaveWord != null)
-            {
-                LeaveWordNotReplied(leaveWord);
-                this.leaveWordBindingSource.DataSource = leaveWord;
-            }
-
-
+                 operaterServiceAgent.GetLeaveWord();
         }
 
         private void getWebSiteCodeToolStripMenuItem_Click(object sender, EventArgs e)

@@ -150,12 +150,85 @@ namespace LiveSupport.OperatorConsole
                     }
                 }
             }
+            else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs))
+            {
+               
+                LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs;
+                 if (arg.Error==null)
+                 {
+                     if (arg.Result == -1)
+                     {
+                         chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
+                         receiveMessage = false;
+                         txtMsg.Enabled = false;
+                         TextWriterTraceListener tl = new TextWriterTraceListener();
+                         return;
+                     }
+                     else if (arg.Result == -3)
+                     {
+                         chatMessageViewerControl1.ResetContent("服务器错误");
+                         receiveMessage = false;
+                         txtMsg.Enabled = false;
+                         return;
+                     }
+                }
+                 else
+                 {
+                     chatMessageViewerControl1.ResetContent("可能由于网络原因,接受访客对话请求操作失败");
+                     receiveMessage = false;
+                     txtMsg.Enabled = false;
+                     return;
+                 }
+              
+            }
+            else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs;
+                
+                    chat = (Chat)Common.Convert(arg.Result);
+                    operatorServiceAgent.Chats.Add(chat);
+            }
+            else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs;
+              
+            }
+             else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs;
+                 operatorServiceAgent.QuickResponseCategory.Clear();
+
+                 List<QuickResponseCategory> lQuickResponseCategory = new List<QuickResponseCategory>();
+
+                 foreach (var item in arg.Result)
+	            {
+		            lQuickResponseCategory.Add(Common.Convert(arg.Result) as QuickResponseCategory);
+	            }
+                operatorServiceAgent.QuickResponseCategory = lQuickResponseCategory;
+                setTalkTreeView.Nodes.Clear();
+                if (operatorServiceAgent.QuickResponseCategory != null || operatorServiceAgent.QuickResponseCategory.Count > 0)
+                {
+                    for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
+                    {
+                        if (operatorServiceAgent.QuickResponseCategory[i] == null) continue;
+                        setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
+                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Count == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses == null) continue;
+                        foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
+                        {
+                            if (string.IsNullOrEmpty(item)) continue;
+                            setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
+                        }
+                    }
+                }
+                setTalkTreeView.ExpandAll();
+            
+            }
         }
 
         public void Invite(string visitorId)
         {
             visitor = operatorServiceAgent.GetVisitorById(visitorId);
-            chat = operatorServiceAgent.InviteChat(visitorId);
+            operatorServiceAgent.InviteChat(visitorId);
             initChat();
         }
 
@@ -262,22 +335,7 @@ namespace LiveSupport.OperatorConsole
             visitor = operatorServiceAgent.GetVisitorById(chat.VisitorId);
             initChat();
 
-            acceptChatRequestResult = operatorServiceAgent.AcceptChatRequest(chat.ChatId);
-            if (acceptChatRequestResult == -1)
-            {
-                chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
-                receiveMessage = false;
-                txtMsg.Enabled = false;
-                TextWriterTraceListener tl = new TextWriterTraceListener();
-                return;
-            }
-            else if (acceptChatRequestResult == -3)
-            {
-                chatMessageViewerControl1.ResetContent("服务器错误");
-                receiveMessage = false;
-                txtMsg.Enabled = false;
-            }
-            
+            operatorServiceAgent.AcceptChatRequest(chat.ChatId);
         }
 
         private void ExitToolStripButton_Click(object sender, EventArgs e)
@@ -433,13 +491,7 @@ namespace LiveSupport.OperatorConsole
 
             if (acceptChatRequestResult == 0)
             {
-                try
-                {
-                    operatorServiceAgent.CloseChat(this.Chat.ChatId);
-                }
-                catch (WebException wex)
-                {
-                }
+                 operatorServiceAgent.CloseChat(this.Chat.ChatId);
             }
             try
             {
@@ -635,33 +687,7 @@ namespace LiveSupport.OperatorConsole
         }
         private void loadQuickResponse(string doMainName)
         {
-            operatorServiceAgent.QuickResponseCategory.Clear();
-            try
-            {
-                operatorServiceAgent.QuickResponseCategory = operatorServiceAgent.GetQuickResponseByDomainName(doMainName);
-                setTalkTreeView.Nodes.Clear();
-                if (operatorServiceAgent.QuickResponseCategory != null || operatorServiceAgent.QuickResponseCategory.Count > 0)
-                {
-                    for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
-                    {
-                        if (operatorServiceAgent.QuickResponseCategory[i] == null) continue;
-                        setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
-                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Count == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses == null) continue;
-                        foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
-                        {
-                            if (string.IsNullOrEmpty(item)) continue;
-                            setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
-                        }
-                    }
-                }
-                setTalkTreeView.ExpandAll();
-            }
-            catch (WebException)
-            {
-                //setTalkTreeView.Nodes[0].Text = "网络中断,请稍候重试";
-                return;
-            }
-
+            operatorServiceAgent.GetQuickResponseByDomainName(doMainName);
         }
 
         private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)
