@@ -13,6 +13,11 @@ namespace LiveSupportInstall
         {
             if (!Page.IsPostBack)
             {
+               LiveSupport.BLL.Utils.IISManager.CreateIISDirectories("mywebsite/fdsafsa", "C:\\Inetpub\\AdminScripts");
+                // vd.Path = @"C:\Inetpub\AdminScripts";
+                //vd.Name = "mywebsite";
+                //vd.Path = Server.Map("AppData/Images");
+                // vd.Name = "mywebsite/Data";
             }
         }
 
