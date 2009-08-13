@@ -9,7 +9,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Configuration;
 
-namespace LiveSupport.BLL
+namespace LiveSupport.BLL.Utils
 {
     public class Util
     {

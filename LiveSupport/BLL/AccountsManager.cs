@@ -6,6 +6,7 @@ using LiveSupport.LiveSupportModel;
 using LiveSupport.LiveSupportDAL.SqlProviders;
 using System.Web.Security;
 using System.Collections.Generic;
+using LiveSupport.BLL.Utils;
 namespace LiveSupport.BLL
 {
     /// <summary>
@@ -45,7 +46,6 @@ namespace LiveSupport.BLL
             i = SqlAccountProvider.Default.AddAccount(account);
             if (i != 0)
             {
-                ReloadAccounts();
                 //添加默认部门
                 Department dt = new Department();
                 dt.Account = account;
