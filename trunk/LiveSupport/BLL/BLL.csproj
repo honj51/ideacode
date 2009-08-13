@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
@@ -69,7 +70,9 @@
     <Compile Include="Services\PageRequestService.cs" />
     <Compile Include="Services\VisitorService.cs" />
     <Compile Include="Services\VisitSessionService.cs" />
-    <Compile Include="Util.cs" />
+    <Compile Include="Utils\IISManager.cs" />
+    <Compile Include="Utils\IpSearch.cs" />
+    <Compile Include="Utils\Util.cs" />
     <Compile Include="VisitSessionManager.cs" />
     <Compile Include="Web References\ws\Reference.cs">
       <AutoGen>True</AutoGen>
