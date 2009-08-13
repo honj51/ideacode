@@ -118,8 +118,7 @@ A:hover {text-decoration:underline;}
 <A href="OperatorsManagment.aspx" >客服管理</A> 
 </DIV>
 <DIV style="text-align:center;" class=collapsed><SPAN style="COLOR:White; background-image:url('Images/3.jpg'); cursor:hand;" title="请点击">数据分析</SPAN> 
-<A href="javascript:ShowSorry()">流量统计 </A>
-<A href="javascript:ShowSorry()">咨询量统计</A> 
+<A href="Statistic/Frame.aspx">流量统计 </A>
 </DIV>
 
 <DIV style="text-align:center;"><SPAN style="COLOR:White; background-image:url('Images/3.jpg');cursor:hand;" title="请点击">聊天记录</SPAN> 
