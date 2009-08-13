@@ -447,6 +447,4 @@ public partial class Chat : System.Web.UI.Page
         this.ChatPageOfflineTopImage.ImageUrl = chatImageUrl + nwst.chatpage.LeavePageTopImg;
         this.chatPageRightImg.ImageUrl = chatImageUrl + nwst.chatpage.ChatPageRightImg;
     }
-
-  
 }
