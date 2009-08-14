@@ -66,21 +66,30 @@
                                                         服务器IP地址或域名:</td>
                                                     <td style="background-color: #f5f5f5; width: 352px;">
                                                         <asp:TextBox ID="ftpServer" runat="server" 
-                                                            Width="150" Enabled="true" ></asp:TextBox>*<span id="msg1"></span></td>
+                                                            Width="150" Enabled="true" ></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                                            ErrorMessage="服务器不能为空" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                    </td>
                                                 </tr>
                                                 <tr id="tr2">
                                                     <td style="background-color: #f5f5f5" class="style1">
                                                         Ftp帐号:</td>
                                                     <td style="background-color: #f5f5f5; width: 352px;">
                                                         <asp:TextBox ID="ftpAccounts" runat="server" 
-                                                            Width="150" Enabled="true"></asp:TextBox>*<span id="msg2"></span></td>
+                                                            Width="150" Enabled="true"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                                            ErrorMessage="ftp帐号不能为空" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                    </td>
                                                 </tr>
                                                 <tr id="tr3">
                                                     <td style="background-color: #f5f5f5" class="style1">
                                                         Ftp密码:</td>
                                                     <td style="background-color: #f5f5f5; width: 352px;">
                                                         <asp:TextBox ID="ftpPassWord" runat="server" Width="150"
-                                                         TextMode="Password"></asp:TextBox>*<span id="msg3"></span></td>
+                                                         TextMode="Password"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                                            ErrorMessage="密码不能为空" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        <span id="msg3"></span></td>
                                                 </tr>
                                             </table>
                                         </td>
