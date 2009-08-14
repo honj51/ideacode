@@ -44,7 +44,10 @@
                                                     <td>邮件服务器：</td>
                                                     <td style="width: 352px">
                                                         <asp:TextBox ID="EmalServerPath" runat="server" CanBeNull="必填" 
-                                                            RequiredFieldType="暂无校验" MaxLength="20" Size="20" Width="150px"></asp:TextBox>*&nbsp;
+                                                            RequiredFieldType="暂无校验" MaxLength="20" Size="20" Width="150px"></asp:TextBox>
+                                                        &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                                            ControlToValidate="EmalServerPath" ErrorMessage="服务器不能为空" InitialValue="*" 
+                                                            SetFocusOnError="True"></asp:RequiredFieldValidator>
                                                         </td>
                                                 </tr>
                                                   <tr>
@@ -53,19 +56,30 @@
                                                     <td style="width: 352px">
                                                         <asp:TextBox ID="SystemMail" runat="server" RequiredFieldType="电子邮箱" MaxLength="50"
                                                             Size="20" Width="150px"></asp:TextBox>
-                                                        *</td>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                                            ControlToValidate="SystemMail" ErrorMessage="邮箱帐号不能为空" InitialValue="*" 
+                                                            SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>E-mal&nbsp; 密码: </td>
                                                     <td style="width: 352px">
-                                                        <asp:TextBox ID="SystemEmalPwd" runat="server" Width="150px" Text="123456" 
-                                                            MaxLength="20" TextMode="Password"></asp:TextBox> *<br />
+                                                        <asp:TextBox ID="SystemEmalPwd" runat="server" Width="150px" 
+                                                            MaxLength="20" TextMode="Password"></asp:TextBox> 
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                                            ControlToValidate="SystemEmalPwd" ErrorMessage="密码不能为空" InitialValue="*" 
+                                                            SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        <br />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>确认密码:</td>
                                                     <td style="width: 352px">
-                                                        <input name="repwd" type="password" maxlength="32" id="repwd" class="FormBase" onfocus="this.className='FormFocus';" onblur="this.className='FormBase';" maxlength="32" size="20" style="width:150px;" />*
+                                                        <asp:TextBox ID="rqSystemEmalPwd" runat="server" Width="150px" 
+                                                            MaxLength="20" TextMode="Password"></asp:TextBox> 
+                                                        <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                                                            ControlToCompare="SystemEmalPwd" ControlToValidate="rqSystemEmalPwd" 
+                                                            ErrorMessage="确认密码不一至"></asp:CompareValidator>
                                                         
                                                     </td>
                                                 </tr>
