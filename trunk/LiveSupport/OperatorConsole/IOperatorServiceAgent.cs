@@ -11,7 +11,7 @@ namespace LiveSupport.OperatorConsole
         Disconnected, Connecting, Disconnecting, Connected
     }
 
-    public interface IOperatorServiceAgent : IOperatorServerEvents
+    public interface IOperatorServiceAgent
     {
         #region OperatorService 方法
         /* 对话接口 */
@@ -37,7 +37,6 @@ namespace LiveSupport.OperatorConsole
         bool IsVisitorHasActiveChat(string visitorId);
         
         /* 快捷回复相关接口 */
-        void GetQuickResponse(); 
         void GetQuickResponseByDomainName(string domainName);
         void SaveQuickResponseByDomainName(List<QuickResponseCategory> response, string domainName);
 
@@ -45,11 +44,7 @@ namespace LiveSupport.OperatorConsole
         void GetLeaveWord();
         void UpdateLeaveWordById(string sendDate, string name, bool isReplied, string id);
         void DelLeaveWordById(string id);
-        void GetLeaveWordNotReplied();
         void GetLeaveWordByDomainName(string domainName);
-        #endregion
-
-        #region Async
         #endregion
 
         #region 查询方法
@@ -57,35 +52,35 @@ namespace LiveSupport.OperatorConsole
         Visitor GetVisitorById(string visitorId);
         Chat GetChatRequest(string visitorId);
         Chat GetChatByChatId(string chatId);
-        bool IsVisitorExist(string visitorId);
         #endregion
 
         #region 公开事件
-        //event EventHandler<NewVisitorEventArgs> NewVisitor;
-        //event EventHandler<NewChatRequestEventArgs> NewChatRequest;
+        event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChanged;
+        event EventHandler<NewVisitingEventArgs> NewVisiting; // 新访问,访客可能已经存在
+        event EventHandler<VisitorChatRequestEventArgs> VisitorChatRequest; //访客对话请求
+        event EventHandler<OperatorChatRequestEventArgs> OperatorChatRequest; //客服对话邀请
+        event EventHandler<ChatMessageEventArgs> NewMessage;
+        event EventHandler<VisitorChatRequestAcceptedEventArgs> VisitorChatRequestAccepted; // 访客对话请求被接受
+        event EventHandler<OperatorChatRequestAcceptedEventArgs> OperatorChatRequestAccepted; // 客服对话邀请被接受
+        event EventHandler<OperatorChatRequestDeclinedEventArgs> OperatorChatRequestDeclined; // 客服对话邀请被拒绝
+        event EventHandler<ChatStatusChangedEventArgs> ChatStatusChanged; // 对话状态改变
         event EventHandler<VisitorSessionChangeEventArgs> VisitorSessionChange;
-        //event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChange;
-        //event EventHandler<ChatStatusChangeEventArgs> ChatStatusChange;
-        //event EventHandler<NewMessageEventArgs> NewMessage;
-        //event EventHandler<NewChangesCheckResultEventArgs> NewChanges;
-        //event EventHandler<SystemAdvertiseEventArgs> NewSystemAdvertise;
-        //event EventHandler<LeaveWordEventArgs> NewLeaveWords;
         event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
         event EventHandler<DataLoadCompletedEventArgs> DataLoadCompleted;
         event EventHandler<AsyncCallCompletedEventArg> AsyncCallCompleted;
-        //event EventHandler<VisitorsLoadCompletedEventArgs> VisitorsLoadCompleted;
         #endregion
 
         #region 公开属性
-        List<Visitor> Visitors { get; }//set; }
-        List<Operator> Operators { get;}// set; }
-        Operator CurrentOperator { get; }//set; }
-        List<Chat> Chats { get; }//set; }
-        List<QuickResponseCategory> QuickResponseCategory { get; set; }
-        bool EnablePooling { get; set; }
+        List<Visitor> Visitors { get; }
+        List<Operator> Operators { get;}
+        Operator CurrentOperator { get; }
+        List<Chat> Chats { get; }
+        List<string> DomainNames  { get;  }
         string ProductVersion { get; set; }
-        ConnectionState State { get; set; }
+        ConnectionState State { get;  }
         bool AutoLoginEnabled { get; set; }
+        Dictionary<string, List<LeaveWord>> LeaveWords { get; }
+        Dictionary<string, List<QuickResponseCategory>> QuickResponseCategorys { get; }
         #endregion
     }
 
@@ -100,7 +95,7 @@ namespace LiveSupport.OperatorConsole
 
     public enum DataLoadEventType
     {
-        Operators,Visitors,SystemAdvertise,LeaveWord
+        Operators, Visitors, SystemAdvertise, LeaveWord, QuickResponseByDomainName, AccountDomains
     }
 
     public class DataLoadCompletedEventArgs : EventArgs
@@ -115,72 +110,12 @@ namespace LiveSupport.OperatorConsole
     public class ConnectionStateChangeEventArgs : EventArgs
     {
         public string Message;
-        //public ExceptionStatus Status;
-
         public ConnectionState State;
         public ConnectionStateChangeEventArgs(ConnectionState state)
         {
             this.State = state;
         }
     }
-
-    //public class LeaveWordEventArgs : EventArgs
-    //{
-    //    public List<LeaveWord> Words;
-    //    public LeaveWordEventArgs(List<LeaveWord> words)
-    //    {
-    //        this.Words = words;
-    //    }
-    //}
-
-    //public class SystemAdvertiseEventArgs : EventArgs
-    //{
-    //    public List<SystemAdvertise> Advertises;
-    //    public SystemAdvertiseEventArgs(List<SystemAdvertise> advertises)
-    //    {
-    //        this.Advertises = advertises;
-    //    }
-    //}
-
-    //public class NewChangesCheckResultEventArgs : EventArgs
-    //{
-    //    public NewChangesCheckResult Result;
-    //    public NewChangesCheckResultEventArgs(NewChangesCheckResult result)
-    //    {
-    //        this.Result = result;
-    //    }
-    //}
-
-    //public class ConnectionLostEventArgs : EventArgs
-    //{
-    //    public string Message;
-    //    public ExceptionStatus Status;
-    //    public ConnectionLostEventArgs(string message, ExceptionStatus status)
-    //    {
-    //        this.Message = message;
-    //        this.Status = status;
-    //    }
-    //}
-
-    //public class NewChatRequestEventArgs : EventArgs
-    //{
-    //    public NewChatRequestEventArgs(string name, Chat c)
-    //    {
-    //        Name = name;
-    //        Chat = c;
-    //    }
-    //    public Chat Chat;
-    //    public string Name;
-    //}
-
-    //public class NewVisitorEventArgs : EventArgs
-    //{
-    //    public NewVisitorEventArgs(Visitor visitor)
-    //    {
-    //        this.Visitor = visitor;
-    //    }
-    //    public Visitor Visitor;
-    //}
 
     public class VisitorSessionChangeEventArgs : EventArgs
     {
@@ -190,35 +125,4 @@ namespace LiveSupport.OperatorConsole
         }
         public VisitSession VisitSession;
     }
-
-    //public class OperatorStatusChangeEventArgs : EventArgs
-    //{
-    //    public OperatorStatusChangeEventArgs(Operator op)
-    //    {
-    //        this.Operator = op;
-    //    }
-    //    public Operator Operator;
-    //}
-
-    //public class ChatStatusChangeEventArgs : EventArgs
-    //{
-    //    public ChatStatusChangeEventArgs(Chat c)
-    //    {
-    //        this.Chat = c;
-    //    }
-    //    public Chat Chat;
-    //}
-
-    //public class NewMessageEventArgs : EventArgs
-    //{
-    //    public NewMessageEventArgs(Message m)
-    //    {
-    //        this.Message = m;
-    //    }
-    //    public Message Message;
-    //}
-    //public enum ExceptionStatus
-    //{
-    //    System, User
-    //}
 }

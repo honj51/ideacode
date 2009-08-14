@@ -74,7 +74,6 @@ namespace LiveSupport.OperatorConsole
             try
             {
                 Trace.TraceInformation("Login called");
-                operatorServiceAgent.EnablePooling = false;
                 operatorServiceAgent.Login(txtUserName.Text.Trim(), txtOpName.Text.Trim(), txtOpPassword.Text);
                 //operatorServiceAgent.Login("100000", "zxkefu", "zxkefu");
             }

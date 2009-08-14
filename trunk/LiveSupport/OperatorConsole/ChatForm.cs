@@ -123,8 +123,6 @@ namespace LiveSupport.OperatorConsole
             operatorServiceAgent.OperatorChatRequestDeclined += new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
             operatorServiceAgent.ChatStatusChanged += new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operatorServiceAgent_ChatStatusChanged);
             operatorServiceAgent.AsyncCallCompleted += new EventHandler<AsyncCallCompletedEventArg>(operatorServiceAgent_AsyncCallCompleted);
-            Directory.CreateDirectory(chat.ChatId);
-            uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
             loadQuickResponse(visitor.CurrentSession.DomainRequested.ToString());
 
             this.Text = "与 " + visitor.Name + " 对话中";
@@ -171,6 +169,8 @@ namespace LiveSupport.OperatorConsole
                          txtMsg.Enabled = false;
                          return;
                      }
+                     Directory.CreateDirectory(chat.ChatId);
+                     uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
                 }
                  else
                  {
@@ -187,42 +187,15 @@ namespace LiveSupport.OperatorConsole
                 
                     chat = (Chat)Common.Convert(arg.Result);
                     operatorServiceAgent.Chats.Add(chat);
+                    Directory.CreateDirectory(chat.ChatId);
+                    uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
             }
             else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs))
             {
                 LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs;
               
             }
-             else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs))
-            {
-                LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs;
-                 operatorServiceAgent.QuickResponseCategory.Clear();
-
-                 List<QuickResponseCategory> lQuickResponseCategory = new List<QuickResponseCategory>();
-
-                 foreach (var item in arg.Result)
-	            {
-		            lQuickResponseCategory.Add(Common.Convert(arg.Result) as QuickResponseCategory);
-	            }
-                operatorServiceAgent.QuickResponseCategory = lQuickResponseCategory;
-                setTalkTreeView.Nodes.Clear();
-                if (operatorServiceAgent.QuickResponseCategory != null || operatorServiceAgent.QuickResponseCategory.Count > 0)
-                {
-                    for (int i = 0; i < operatorServiceAgent.QuickResponseCategory.Count; i++)
-                    {
-                        if (operatorServiceAgent.QuickResponseCategory[i] == null) continue;
-                        setTalkTreeView.Nodes.Add(operatorServiceAgent.QuickResponseCategory[i].Name);
-                        if (operatorServiceAgent.QuickResponseCategory[i].Responses.Count == 0 || operatorServiceAgent.QuickResponseCategory[i].Responses == null) continue;
-                        foreach (var item in operatorServiceAgent.QuickResponseCategory[i].Responses)
-                        {
-                            if (string.IsNullOrEmpty(item)) continue;
-                            setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
-                        }
-                    }
-                }
-                setTalkTreeView.ExpandAll();
             
-            }
         }
 
         public void Invite(string visitorId)
@@ -687,7 +660,28 @@ namespace LiveSupport.OperatorConsole
         }
         private void loadQuickResponse(string doMainName)
         {
-            operatorServiceAgent.GetQuickResponseByDomainName(doMainName);
+            List<QuickResponseCategory> qcs = operatorServiceAgent.QuickResponseCategorys[doMainName];
+
+            for (int i = 0; i < qcs.Count; i++)
+            {
+                if (qcs[i] == null)
+                {
+                    return;
+                }
+                setTalkTreeView.Nodes.Add(qcs[i].Name);
+                if (qcs[i].Responses == null || qcs[i].Responses.Count == 0)
+                {
+                    continue;
+                }
+
+                foreach (var item in qcs[i].Responses)
+                {
+                    if (string.IsNullOrEmpty(item)) continue;
+                    setTalkTreeView.Nodes[i].Nodes.Add(item.ToString());
+                }
+
+            }
+            setTalkTreeView.ExpandAll();
         }
 
         private void toolStripSplitButton2_ButtonClick(object sender, EventArgs e)

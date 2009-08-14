@@ -352,6 +352,40 @@ namespace LiveSupport.OperatorConsole
                 v2.Url = v1.Url;
                 return v2;
             }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.PageRequest)
+            {
+             LiveSupport.OperatorConsole.LiveChatWS.PageRequest v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.PageRequest;
+                LiveSupportModel.PageRequest v2 = new LiveSupport.LiveSupportModel.PageRequest();
+                v2.AccountId = v1.AccountId;
+                v2.Page = v1.Page;
+                v2.Referrer = v1.Referrer;
+                v2.RequestTime = v1.RequestTime;
+                v2.SessionId = v1.SessionId;
+                return v2;   
+            }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.QuickResponseCategory)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.QuickResponseCategory v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.QuickResponseCategory;
+                LiveSupportModel.QuickResponseCategory v2 = new LiveSupport.LiveSupportModel.QuickResponseCategory();
+                v2.AccountId = v1.AccountId;
+                v2.Name = v1.Name;
+                v2.QuickId = v1.QuickId;
+                v2.Responses =new List<string>(v1.Responses);
+                return v2;  
+            }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.Message)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.Message v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.Message;
+                LiveSupportModel.Message v2 = new LiveSupport.LiveSupportModel.Message();
+                v2.ChatId = v1.ChatId;
+                v2.Destination = v1.Destination;
+                v2.MessageId = v1.MessageId;
+                v2.SentDate = v1.SentDate;
+                v2.Source = v1.Source;
+                v2.Text = v1.Text;
+                v2.Type = (LiveSupport.LiveSupportModel.MessageType)Enum.Parse(typeof(LiveSupport.LiveSupportModel.MessageType), v1.Type.ToString());
+                return v2;
+            }
             return null;
         }
     }
