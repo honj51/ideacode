@@ -135,7 +135,6 @@
     </Compile>
     <Compile Include="IOperatorServiceAgent.cs" />
     <Compile Include="OperatorServiceAgent.cs" />
-    <Compile Include="OperatorServiceAgentMock.cs" />
     <Compile Include="OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>

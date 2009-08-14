@@ -25,46 +25,18 @@ namespace LiveSupport.OperatorConsole
             {
                setTalkTreeView.Dock= DockStyle.Fill;
             }
-            Program.OperaterServiceAgent.AsyncCallCompleted += new EventHandler<AsyncCallCompletedEventArg>(OperaterServiceAgent_AsyncCallCompleted);
+            Program.OperaterServiceAgent.DataLoadCompleted += new EventHandler<DataLoadCompletedEventArgs>(OperaterServiceAgent_DataLoadCompleted);
         }
 
-        void OperaterServiceAgent_AsyncCallCompleted(object sender, AsyncCallCompletedEventArg e)
+        void OperaterServiceAgent_DataLoadCompleted(object sender, DataLoadCompletedEventArgs e)
         {
-            if (e.Result==typeof(LiveChatWS.GetAccountDomainsCompletedEventArgs))
+            if (e.DataType == DataLoadEventType.QuickResponseByDomainName)
             {
-                LiveChatWS.GetAccountDomainsCompletedEventArgs arg = e.Result as LiveChatWS.GetAccountDomainsCompletedEventArgs;
-                if (arg.Error==null)
-                {
-                    this.Text = arg.Error.Message;
-                    return;
-                }
-                domainToolStripComboBox.Items.AddRange(arg.Result);
+                loadQickResponse(domainToolStripComboBox.SelectedItem.ToString());
             }
-            else if (e.Result == typeof(System.ComponentModel.AsyncCompletedEventArgs))
+            else if (e.DataType == DataLoadEventType.AccountDomains)
             {
-                AsyncCompletedEventArgs arg = e.Result as AsyncCompletedEventArgs;
-                if (arg.Error!=null) 
-                {
-                    this.Text = arg.Error.Message;
-                }
-            }
-            else if (e.Result == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs))
-            {
-                LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs;
-                if (arg.Error != null)
-                {
-                    this.Text = arg.Error.Message;
-                    return;
-                }
-                List<QuickResponseCategory> lQuickResponseCategory = new List<QuickResponseCategory>();
-                foreach (var item in arg.Result)
-                {
-                    lQuickResponseCategory.Add(Common.Convert(item) as QuickResponseCategory);
-                }
-                setTalkTreeView.Nodes.Clear();
-                Program.OperaterServiceAgent.QuickResponseCategory.Clear();
-                Program.OperaterServiceAgent.QuickResponseCategory = lQuickResponseCategory;
-                loadQickResponse();
+                domainToolStripComboBox.Items.AddRange(Program.OperaterServiceAgent.DomainNames.ToArray());
             }
         }
 
@@ -118,9 +90,9 @@ namespace LiveSupport.OperatorConsole
         //保存
         private void OkToolStripButton_Click(object sender, EventArgs e)
         {
-            Program.OperaterServiceAgent.QuickResponseCategory.Clear();
             if (domainToolStripComboBox.SelectedIndex > 0)
             {
+                List<QuickResponseCategory> qcs = new List<QuickResponseCategory>();
                 foreach (TreeNode Node in setTalkTreeView.Nodes)
                 {
                     if (Node == null) continue;
@@ -137,12 +109,10 @@ namespace LiveSupport.OperatorConsole
                     }
                     qrc.Responses = new List<string>(Contents);
 
-                    Program.OperaterServiceAgent.QuickResponseCategory.Add(qrc);
+                    qcs.Add(qrc);
+
                 }
-                if (Program.OperaterServiceAgent.QuickResponseCategory != null)
-                {
-                   Program.OperaterServiceAgent.SaveQuickResponseByDomainName(Program.OperaterServiceAgent.QuickResponseCategory, domainName);
-                }
+                Program.OperaterServiceAgent.SaveQuickResponseByDomainName(qcs, domainName);
             }
         }
        
@@ -152,11 +122,11 @@ namespace LiveSupport.OperatorConsole
         }
 
         //初始化
-        private void loadQickResponse()
+        private void loadQickResponse(string domainName)
         {
             setTalkTreeView.Nodes.Clear();
 
-            List<QuickResponseCategory> qcs = Program.OperaterServiceAgent.QuickResponseCategory;
+            List<QuickResponseCategory> qcs = Program.OperaterServiceAgent.QuickResponseCategorys[domainName];
             if (qcs != null)
             {
                 for (int i = 0; i < qcs.Count; i++)
@@ -171,7 +141,6 @@ namespace LiveSupport.OperatorConsole
                 }
                 setTalkTreeView.ExpandAll();
             }
-            Program.OperaterServiceAgent.QuickResponseCategory.Clear();
         }
 
         private void setTalkTreeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
@@ -201,7 +170,6 @@ namespace LiveSupport.OperatorConsole
 
         private void QickResponseEidtor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.OperaterServiceAgent.QuickResponseCategory = null;
             setTalkTreeView.Nodes.Clear();
         }
 
