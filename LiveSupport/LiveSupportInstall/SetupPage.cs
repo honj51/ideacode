@@ -77,10 +77,11 @@ namespace LiveSupportInstall
                     sb.Append("<tr><td bgcolor='#ffffff' width='5%'><img src='images/ok.gif' width='16' height='16'></td><td bgcolor='#ffffff' width='95%'>对 " + foldler + " 目录权限验证通过!</td></tr>");
                 }
             }
-            string[] directory = { "\\Images", "D:\\web\\data"};
+            string[] directory = { "App_Data\\Images", "App_Data\\Upload" };
             foreach (var item in directory)
             {
-                Directory.CreateDirectory(item);
+                string physicsPath = Util.GetMapPath(@"..\" + item);
+                Directory.CreateDirectory(physicsPath);
                 string[] items = item.Split('\\');
                 if (!SystemDirectoryCheck(item.ToString()))
                 {
