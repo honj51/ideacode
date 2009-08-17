@@ -198,7 +198,6 @@ namespace LiveSupport.OperatorConsole
                         }
                         else
                             operaterServiceAgent.GetLeaveWord();
-                        loadLeaveWords(null);
                     }
                 }
             }
@@ -213,7 +212,7 @@ namespace LiveSupport.OperatorConsole
                     }
                     else
                         operaterServiceAgent.GetLeaveWord();
-                    loadLeaveWords(null);
+                   
                 }
             }
             else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventArgs))
@@ -279,6 +278,7 @@ namespace LiveSupport.OperatorConsole
                        displayStatus();
                        break;
                    case DataLoadEventType.SystemAdvertise:
+                        systemAdvertises=operaterServiceAgent.SystemAdvertise;
                        break;
                    case DataLoadEventType.LeaveWord:
                        List<LeaveWord> lws = new List<LeaveWord>();
@@ -287,7 +287,10 @@ namespace LiveSupport.OperatorConsole
                            lws.AddRange(item);
                        }
                        loadLeaveWords(lws);
-                       
+                       break;
+                   case DataLoadEventType.AccountDomains:
+                       cbxDomainName.Items.AddRange(operaterServiceAgent.DomainNames.ToArray());
+                       cbxDomainName.SelectedIndex = 0;
                        break;
                    default:
                        break;

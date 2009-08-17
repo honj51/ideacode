@@ -23,7 +23,13 @@ namespace LiveSupport.OperatorConsole
         private List<Chat> chats = new List<Chat>();
         private List<Operator> operators = new List<Operator>();
         private List<string> domainNames = new List<string>();
+        private List<SystemAdvertise> systemAdvertise = new List<SystemAdvertise>();
 
+        public List<SystemAdvertise> SystemAdvertise
+        {
+            get { return systemAdvertise; }
+            set { systemAdvertise = value; }
+        }
         //private NewChangesCheck lastCheck = new NewChangesCheck();
         private LiveSupport.OperatorConsole.LiveChatWS.OperatorWS ws = new LiveSupport.OperatorConsole.LiveChatWS.OperatorWS();
         private Operator currentOperator;
@@ -113,9 +119,53 @@ namespace LiveSupport.OperatorConsole
             ws.GetLeaveWordByDomainNameCompleted += new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventHandler(ws_GetLeaveWordByDomainNameCompleted);
             ws.UpdateLeaveWordByIdCompleted += new LiveSupport.OperatorConsole.LiveChatWS.UpdateLeaveWordByIdCompletedEventHandler(ws_UpdateLeaveWordByIdCompleted);
             ws.DelLeaveWordByIdCompleted += new LiveSupport.OperatorConsole.LiveChatWS.DelLeaveWordByIdCompletedEventHandler(ws_DelLeaveWordByIdCompleted);
+            ws.LogoutCompleted += new LiveSupport.OperatorConsole.LiveChatWS.LogoutCompletedEventHandler(ws_LogoutCompleted);
+            ws.SendFileCompleted += new LiveSupport.OperatorConsole.LiveChatWS.SendFileCompletedEventHandler(ws_SendFileCompleted);
+            ws.ResetOperatorPasswordCompleted += new LiveSupport.OperatorConsole.LiveChatWS.ResetOperatorPasswordCompletedEventHandler(ws_ResetOperatorPasswordCompleted);
+            ws.ChangePasswordCompleted += new LiveSupport.OperatorConsole.LiveChatWS.ChangePasswordCompletedEventHandler(ws_ChangePasswordCompleted);
         }
 
+       
         #region WebService 异步操作完成 事件处理
+
+        void ws_ChangePasswordCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.ChangePasswordCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            } 
+        }
+
+        void ws_ResetOperatorPasswordCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.ResetOperatorPasswordCompletedEventArgs e)
+        {
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            } 
+        }
+
+        void ws_SendFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+                if (AsyncCallCompleted != null)
+                {
+                    AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+                } 
+        }
+
+
+        void ws_LogoutCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+                ws.GetSystemAdvertiseCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
+                ws.GetLeaveWordCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+                socketHandler.DataArrive -= new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
+                socket.Disconnect(false);
+                timer.Enabled = false;
+                if (e.Error!=null)
+                {
+                     Trace.TraceError("Logout异常: " + e.Error.Message);
+                }
+        }
+
         void ws_GetLeaveWordNotRepliedCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordNotRepliedCompletedEventArgs e)
         {
             List<LeaveWord> leaveWords = new List<LeaveWord>();
@@ -196,13 +246,15 @@ namespace LiveSupport.OperatorConsole
             if (e.Error==null)
             {
                 domainNames = new List<string>(e.Result);
-
+                foreach (var item in domainNames)
+                {
+                    GetQuickResponseByDomainName(item);
+                }
                 if (DataLoadCompleted != null)
                 {
                     DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.AccountDomains));
                 }
             }
-           
         }
 
         void ws_GetHistoryPageRequestsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventArgs e)
@@ -349,7 +401,7 @@ namespace LiveSupport.OperatorConsole
                     socketHandler = new SocketHandler();
                     IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
                     socket = socketHandler.Connect(entry.AddressList[0].ToString());
-                    //socket = socketHandler.Connect("127.0.0.1");
+                   // socket = socketHandler.Connect("127.0.0.1");
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
                     socketHandler.Exception += new EventHandler<ExceptionEventArgs>(socketHandler_Exception);
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
@@ -693,13 +745,7 @@ namespace LiveSupport.OperatorConsole
 
         public void Logout()
         {
-            ws.GetSystemAdvertiseCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
-            ws.GetLeaveWordCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
-            socketHandler.DataArrive -= new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
-            socket.Disconnect(false);
-            timer.Enabled = false;
-            //ws.LogoutAsync(Guid.NewGuid());
-            ws.Logout();
+            ws.LogoutAsync(Guid.NewGuid());
         }
 
         public void SendMessage(Message msg)
@@ -707,14 +753,14 @@ namespace LiveSupport.OperatorConsole
             ws.SendMessageAsync(Common.Convert(msg) as LiveChatWS.Message, Guid.NewGuid());
         }
 
-        public int ChangePassword(string oldPassword, string newPassword)
+        public void ChangePassword(string oldPassword, string newPassword)
         {
-            return ws.ChangePassword(oldPassword, newPassword);
+            ws.ChangePasswordAsync(oldPassword, newPassword,Guid.NewGuid());
         }
 
-        public int ResetOperatorPassword(string loginName)
+        public void ResetOperatorPassword(string loginName)
         {
-            return ws.ResetOperatorPassword(loginName);
+            ws.ResetOperatorPasswordAsync(loginName, Guid.NewGuid());
         }
 
         public void CloseChat(string chatId)
@@ -789,6 +835,11 @@ namespace LiveSupport.OperatorConsole
         {
             if (e.Error == null)
             {
+                foreach (var item in e.Result)
+	            {
+		           systemAdvertise.Add(Common.Convert(item) as SystemAdvertise);
+	            }
+                
                 if (DataLoadCompleted != null)
                 {
                     DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.SystemAdvertise));
@@ -934,7 +985,7 @@ namespace LiveSupport.OperatorConsole
 
         public void SendFile(string fileName, string chatId, object action)
         {
-            ws.SendFile(fileName, chatId, action);
+            ws.SendFileAsync(fileName, chatId, action, Guid.NewGuid());
         }
 
 

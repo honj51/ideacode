@@ -32,7 +32,10 @@ namespace LiveSupport.OperatorConsole
         {
             if (e.DataType == DataLoadEventType.QuickResponseByDomainName)
             {
-                loadQickResponse(domainToolStripComboBox.SelectedItem.ToString());
+                if (domainToolStripComboBox.SelectedIndex>0)
+                {
+                    loadQickResponse(domainToolStripComboBox.SelectedItem.ToString());
+                }
             }
             else if (e.DataType == DataLoadEventType.AccountDomains)
             {
@@ -125,7 +128,6 @@ namespace LiveSupport.OperatorConsole
         private void loadQickResponse(string domainName)
         {
             setTalkTreeView.Nodes.Clear();
-
             List<QuickResponseCategory> qcs = Program.OperaterServiceAgent.QuickResponseCategorys[domainName];
             if (qcs != null)
             {
@@ -232,6 +234,8 @@ namespace LiveSupport.OperatorConsole
                 domainName = domainToolStripComboBox.SelectedItem.ToString();
                 Program.OperaterServiceAgent.GetQuickResponseByDomainName(domainName);
             }
+            else
+                setTalkTreeView.Nodes.Clear();
         }
     }
 }

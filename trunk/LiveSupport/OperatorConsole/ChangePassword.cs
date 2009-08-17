@@ -15,6 +15,31 @@ namespace LiveSupport.OperatorConsole
         public ChangePassword()
         {
             InitializeComponent();
+            Program.OperaterServiceAgent.AsyncCallCompleted += new EventHandler<AsyncCallCompletedEventArg>(OperaterServiceAgent_AsyncCallCompleted);
+        }
+
+        void OperaterServiceAgent_AsyncCallCompleted(object sender, AsyncCallCompletedEventArg e)
+        {
+            if (e.Result.GetType()==typeof(LiveSupport.OperatorConsole.LiveChatWS.ChangePasswordCompletedEventArgs))
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.ChangePasswordCompletedEventArgs arg= e.Result as LiveSupport.OperatorConsole.LiveChatWS.ChangePasswordCompletedEventArgs;
+                if (arg.Error==null)
+	             {
+		            if (arg.Result==0)
+	                  {
+		                     MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
+                                 this.Close();
+                      }
+                    else
+                    {
+                         this.Text = "修改失败!";
+                    }
+	             }
+                else
+                {
+                this.Text="网络中断,请稍候...";
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -33,25 +58,7 @@ namespace LiveSupport.OperatorConsole
             {
                 if (this.txtNewPassword.Text == this.txtNewPassword2.Text)
                 {
-                    try
-                    {
-                        if (Program.OperaterServiceAgent.ChangePassword(this.txtPassword.Text, txtNewPassword.Text) == 0)
-                        {
-                            MessageBox.Show("更改成功!!\r\n\r\n 新密码为" + this.txtNewPassword.Text);
-                            this.Close();
-                        }
-                        else
-                        {
-                            this.Text = "修改失败!";
-                            return;
-                        }
-                    }
-                    catch (WebException)
-                    {
-                       this.Text="网络中断,请稍候...";
-                    }
-                  
-
+                    Program.OperaterServiceAgent.ChangePassword(this.txtPassword.Text, txtNewPassword.Text);
                 }
                 else
                 {
@@ -59,7 +66,7 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
             }
-        
+
         }
 
     }
