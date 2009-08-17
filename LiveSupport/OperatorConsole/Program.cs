@@ -79,14 +79,9 @@ namespace LiveSupport.OperatorConsole
 
             Application.Run(f);
             
-            try
-            {
+            
                 OperaterServiceAgent.Logout();
-            }
-            catch (Exception ex)
-            {
-                Trace.TraceError("Logout“Ï≥£: " + ex.Message);
-            }
+           
             //
             //TestFileUploadControl();
             //TestOptionForm();

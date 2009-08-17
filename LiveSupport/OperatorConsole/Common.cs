@@ -386,6 +386,14 @@ namespace LiveSupport.OperatorConsole
                 v2.Type = (LiveSupport.LiveSupportModel.MessageType)Enum.Parse(typeof(LiveSupport.LiveSupportModel.MessageType), v1.Type.ToString());
                 return v2;
             }
+            else if (obj is LiveSupport.OperatorConsole.LiveChatWS.SystemAdvertise)
+            {
+                LiveSupport.OperatorConsole.LiveChatWS.SystemAdvertise v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.SystemAdvertise;
+                LiveSupportModel.SystemAdvertise v2 = new LiveSupport.LiveSupportModel.SystemAdvertise();
+                v2.AdvertiseMessage = v1.AdvertiseMessage;
+                v2.AdvertiseUrl = v1.AdvertiseUrl;
+                return v2;
+            }
             return null;
         }
     }

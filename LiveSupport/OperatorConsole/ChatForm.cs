@@ -195,6 +195,16 @@ namespace LiveSupport.OperatorConsole
                 LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs;
               
             }
+            else if (e.Result.GetType() == typeof(System.ComponentModel.AsyncCompletedEventArgs))
+            {
+                System.ComponentModel.AsyncCompletedEventArgs arg = e.Result as System.ComponentModel.AsyncCompletedEventArgs;
+                if (arg.Error != null)
+                {
+                    Trace.WriteLine("sendFile exception:" + arg.Error.Message);
+                    chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                }
+
+            }
             
         }
 

@@ -27,8 +27,8 @@ namespace LiveSupport.OperatorConsole
         void InviteChat(string visitorId);
 
         /* 管理接口 */
-        int ChangePassword(string oldPassword, string newPassword);
-        int ResetOperatorPassword(string loginName);
+        void ChangePassword(string oldPassword, string newPassword);
+        void ResetOperatorPassword(string loginName);
 
         /* 查询功能接口 */
         void GetAccountDomains(); //获取帐号相关域名
@@ -79,6 +79,7 @@ namespace LiveSupport.OperatorConsole
         string ProductVersion { get; set; }
         ConnectionState State { get;  }
         bool AutoLoginEnabled { get; set; }
+        List<SystemAdvertise> SystemAdvertise { get; set; }
         Dictionary<string, List<LeaveWord>> LeaveWords { get; }
         Dictionary<string, List<QuickResponseCategory>> QuickResponseCategorys { get; }
         #endregion
