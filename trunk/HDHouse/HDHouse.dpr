@@ -2,7 +2,8 @@ program HDHouse;
 
 uses
   Forms,
-  MainForm in 'MainForm.pas' {Form1};
+  MainForm in 'MainForm.pas' {Form1},
+  Unit1 in 'Unit1.pas' {Frame1: TFrame};
 
 {$R *.res}
 

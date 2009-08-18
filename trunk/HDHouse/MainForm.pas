@@ -8,7 +8,6 @@ uses
 
 type
   TForm1 = class(TForm)
-    frm: TFrame1;
     bsbsnsknfrm1: TbsBusinessSkinForm;
     bsSkinData1: TbsSkinData;
     bscmprsdstrdskn1: TbsCompressedStoredSkin;
