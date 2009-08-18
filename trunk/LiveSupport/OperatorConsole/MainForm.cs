@@ -92,7 +92,7 @@ namespace LiveSupport.OperatorConsole
 
             registerOperatorServiceAgentEventHandler(false);
 
-            loadDomainName();
+          //  loadDomainName();
         }
 
         private void loadLeaveWords(List<LeaveWord> lwnr)
@@ -163,8 +163,8 @@ namespace LiveSupport.OperatorConsole
             if (e.Result.GetType()==typeof(LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs))
             {
                 LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs arg =e.Result as LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs;
-                cbxDomainName.Items.AddRange(arg.Result);
-                cbxDomainName.SelectedIndex = 0;
+                //cbxDomainName.Items.AddRange(arg.Result);
+                //cbxDomainName.SelectedIndex = 0;
             }
             else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventArgs))
             {
@@ -177,8 +177,7 @@ namespace LiveSupport.OperatorConsole
                         leaveWords.Add(Common.Convert(item) as LeaveWord);
                     }
                 }
-                  
-                
+                 
                 if (leaveWords != null)
                 {
                     loadLeaveWords(leaveWords);
@@ -1222,11 +1221,6 @@ namespace LiveSupport.OperatorConsole
 
         private void cbxDomainName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxDomainName.Items.Count <= 1)
-            {
-                loadDomainName();
-            }
-            
             if (cbxDomainName.SelectedIndex > 0)
             {
                  operaterServiceAgent.GetLeaveWordByDomainName(cbxDomainName.SelectedItem.ToString());
