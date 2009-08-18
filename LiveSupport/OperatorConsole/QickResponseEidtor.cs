@@ -17,13 +17,13 @@ namespace LiveSupport.OperatorConsole
         public QickResponseEidtor()
         {
             InitializeComponent();
-            loadDomain();
+            //loadDomain();
             domainToolStripComboBox.SelectedItem = "请选择域名";
             toolStrip1.Visible = Result;
-            
-            if (toolStrip1.Visible==false)
+                domainToolStripComboBox.Items.AddRange(Program.OperaterServiceAgent.DomainNames.ToArray());  
+            if (toolStrip1.Visible == false)
             {
-               setTalkTreeView.Dock= DockStyle.Fill;
+                setTalkTreeView.Dock = DockStyle.Fill;
             }
             Program.OperaterServiceAgent.DataLoadCompleted += new EventHandler<DataLoadCompletedEventArgs>(OperaterServiceAgent_DataLoadCompleted);
         }
@@ -32,30 +32,30 @@ namespace LiveSupport.OperatorConsole
         {
             if (e.DataType == DataLoadEventType.QuickResponseByDomainName)
             {
-                if (domainToolStripComboBox.SelectedIndex>0)
+                if (domainToolStripComboBox.SelectedIndex > 0)
                 {
                     loadQickResponse(domainToolStripComboBox.SelectedItem.ToString());
                 }
             }
             else if (e.DataType == DataLoadEventType.AccountDomains)
             {
-                domainToolStripComboBox.Items.AddRange(Program.OperaterServiceAgent.DomainNames.ToArray());
+               
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// 工具条是否显示
         /// </summary>
-        private bool result=true;
+        private bool result = true;
 
         public bool Result
         {
-            get { return result;}
-            set { result = value;}
+            get { return result; }
+            set { result = value; }
         }
 
         //读取域名列表
-        private void loadDomain() 
+        private void loadDomain()
         {
             Program.OperaterServiceAgent.GetAccountDomains();
         }
@@ -66,7 +66,7 @@ namespace LiveSupport.OperatorConsole
         //删除分类
         private void delNodeToolStripButton_Click(object sender, EventArgs e)
         {
-            if (this.setTalkTreeView.SelectedNode != null &&this.setTalkTreeView.SelectedNode.Level==0)
+            if (this.setTalkTreeView.SelectedNode != null && this.setTalkTreeView.SelectedNode.Level == 0)
             {
                 this.setTalkTreeView.Nodes.Remove(this.setTalkTreeView.SelectedNode);
             }
@@ -118,10 +118,10 @@ namespace LiveSupport.OperatorConsole
                 Program.OperaterServiceAgent.SaveQuickResponseByDomainName(qcs, domainName);
             }
         }
-       
+
         private void QickResponseEidtor_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         //初始化
@@ -147,11 +147,11 @@ namespace LiveSupport.OperatorConsole
 
         private void setTalkTreeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            if (e.Label == ""||e.Label==null)
+            if (e.Label == "" || e.Label == null)
             {
                 e.CancelEdit = true;
                 MessageBox.Show("数据不能为空");
-                
+
             }
             else
             {
@@ -162,7 +162,7 @@ namespace LiveSupport.OperatorConsole
                 }
                 else
                 {
-                    MessageBox.Show("数据中存在非法字符 ==>"+"'|'");
+                    MessageBox.Show("数据中存在非法字符 ==>" + "'|'");
                     e.CancelEdit = true;
                     setTalkTreeView.SelectedNode.EndEdit(false);
                     setTalkTreeView.LabelEdit = false;
@@ -229,13 +229,17 @@ namespace LiveSupport.OperatorConsole
 
         private void domainToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ( domainToolStripComboBox.SelectedIndex>0)
+            if (domainToolStripComboBox.SelectedIndex > 0)
             {
                 domainName = domainToolStripComboBox.SelectedItem.ToString();
                 Program.OperaterServiceAgent.GetQuickResponseByDomainName(domainName);
+                tsbSave.Enabled = true;
             }
             else
+            {
+                tsbSave.Enabled = false;
                 setTalkTreeView.Nodes.Clear();
+            }
         }
     }
 }
