@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 366
-  Top = 170
+  Left = 392
+  Top = 168
   AutoScroll = False
   BorderIcons = []
   Caption = 'MainForm'
@@ -16,22 +16,28 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpgcntrl1: TbsSkinPageControl
-    Left = 168
+    Left = 0
     Top = 96
-    Width = 377
-    Height = 193
+    Width = 916
+    Height = 350
     ActivePage = bskntbsht1
+    Align = alCustom
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
     Font.Height = 14
     Font.Name = 'Arial'
     Font.Style = []
+    Images = bspngmglstPngImglst64
     MultiLine = True
     ParentFont = False
+    TabHeight = 120
     TabOrder = 0
     TabPosition = tpLeft
-    TabExtededDraw = False
+    TabWidth = 100
+    TabExtededDraw = True
     TabSpacing = 1
+    TabLayout = blGlyphTop
     TextInHorizontal = True
     TabsInCenter = False
     FreeOnClose = False
@@ -44,12 +50,164 @@ object Form1: TForm1
     DefaultFont.Style = []
     UseSkinFont = True
     DefaultItemHeight = 20
+    SkinData = bsSkinData1
     SkinDataName = 'tab'
     object bskntbsht1: TbsSkinTabSheet
       Caption = 'bskntbsht1'
     end
     object bskntbsht2: TbsSkinTabSheet
       Caption = 'bskntbsht2'
+      ImageIndex = 1
+    end
+  end
+  object bskntlbr1: TbsSkinToolBar
+    Left = 0
+    Top = 0
+    Width = 916
+    Height = 81
+    HintImageIndex = 0
+    TabOrder = 1
+    SkinData = bsSkinData1
+    SkinDataName = 'resizetoolpanel'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 90
+    UseSkinFont = True
+    ImagePosition = bsipDefault
+    TransparentMode = False
+    CaptionImageIndex = -1
+    RealHeight = -1
+    AutoEnabledControls = True
+    CheckedMode = False
+    Checked = False
+    DefaultAlignment = taLeftJustify
+    DefaultCaptionHeight = 22
+    BorderStyle = bvNone
+    CaptionMode = False
+    RollUpMode = False
+    RollUpState = False
+    NumGlyphs = 1
+    Spacing = 2
+    Caption = 'bskntlbr1'
+    Align = alTop
+    CanScroll = False
+    HotScroll = False
+    ScrollOffset = 0
+    ScrollTimerInterval = 50
+    AdjustControls = True
+    WidthWithCaptions = 0
+    WidthWithoutCaptions = 0
+    AutoShowHideCaptions = False
+    ShowCaptions = False
+    Flat = False
+    Images = bspngmglstPngImglst64
+    object btn1: TbsSkinSpeedButton
+      Left = 24
+      Top = 0
+      Width = 80
+      Height = 81
+      HintImageIndex = 0
+      SkinData = bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = bspngmglstPngImglst64
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 0
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #26032#22686#25151#28304
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
+    end
+    object btn2: TbsSkinSpeedButton
+      Left = 120
+      Top = 0
+      Width = 80
+      Height = 81
+      HintImageIndex = 1
+      HintImageList = bspngmglstPngImglst64
+      SkinData = bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 1
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+    end
+    object btn3: TbsSkinSpeedButton
+      Left = 216
+      Top = 0
+      Width = 80
+      Height = 81
+      HintImageIndex = 0
+      SkinData = bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = bspngmglstPngImglst64
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 0
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
     end
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
@@ -101,8 +259,8 @@ object Form1: TForm1
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 24
-    Top = 288
+    Left = 536
+    Top = 344
   end
   object bsSkinData1: TbsSkinData
     SkinnableForm = True
@@ -111,13 +269,13 @@ object Form1: TForm1
     ShowCaptionButtonGlowFrames = True
     CompressedStoredSkin = bscmprsdstrdskn1
     SkinIndex = 0
-    Left = 24
-    Top = 328
+    Left = 640
+    Top = 336
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'Vista2.skn'
-    Left = 24
-    Top = 384
+    Left = 744
+    Top = 368
     CompressedData = {
       78DAECBD075C5557D63E7C88F99CF7FB675E67DECC7CFFA8C99B19D3461353CC
       245101A32296D8A36241885D6CA07444AA14A9F64A95A2F4DE3B48EFBD8374A5
@@ -3333,8 +3491,8 @@ object Form1: TForm1
       end>
     PngWidth = 64
     PngHeight = 64
-    Left = 48
-    Top = 160
+    Left = 760
+    Top = 312
     Bitmap = {
       494C010105000900040040004000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100008000000001002000000000000000
