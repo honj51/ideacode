@@ -1,4 +1,5 @@
 ﻿using System;
+using LiveSupport.BLL.Utils;
 
 namespace LiveSupportInstall
 {
@@ -13,15 +14,10 @@ namespace LiveSupportInstall
         {
             if (!Page.IsPostBack)
             {
-               LiveSupport.BLL.Utils.IISManager.CreateIISDirectories("mywebsite/fdsafsa", "C:\\Inetpub\\AdminScripts");
-                // vd.Path = @"C:\Inetpub\AdminScripts";
-                //vd.Name = "mywebsite";
-                //vd.Path = Server.Map("AppData/Images");
-                // vd.Name = "mywebsite/Data";
+                //LiveSupport.BLL.Utils.IISManager.CreateIISDirectories("LiveChatServer/images", "C:\\date");
+                //LiveSupport.BLL.Utils.IISManager.CreateIISDirectories("LiveChatServer/Update", "C:\\update");
+                Util.SetappSettings("ftpServerName","true","update"); 
             }
-        }
-
-        
-      
+        }     
     }
 }
