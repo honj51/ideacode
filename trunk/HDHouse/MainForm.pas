@@ -4,10 +4,14 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, Unit1, BusinessSkinForm, bsSkinData;
 
 type
   TForm1 = class(TForm)
+    frm: TFrame1;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    bsSkinData1: TbsSkinData;
+    bscmprsdstrdskn1: TbsCompressedStoredSkin;
   private
     { Private declarations }
   public
