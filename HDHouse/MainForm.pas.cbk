@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Unit1, BusinessSkinForm, bsSkinData, StdCtrls, bsSkinCtrls,
-  ImgList, bsPngImageList, ComCtrls, bsSkinTabs;
+  ImgList, bsPngImageList, ComCtrls, bsSkinTabs, bsColorCtrls;
 
 type
   TForm1 = class(TForm)
@@ -16,6 +16,10 @@ type
     bskntbsht1: TbsSkinTabSheet;
     bskntbsht2: TbsSkinTabSheet;
     bspngmglstPngImglst64: TbsPngImageList;
+    bskntlbr1: TbsSkinToolBar;
+    btn1: TbsSkinSpeedButton;
+    btn2: TbsSkinSpeedButton;
+    btn3: TbsSkinSpeedButton;
   private
     { Private declarations }
   public
