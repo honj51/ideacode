@@ -2,7 +2,7 @@ program HDHouse;
 
 uses
   Forms,
-  MainForm in 'MainForm.pas' {formMain},
+  MainForm in 'MainForm.pas' {TformMain},
   HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame};
 
 {$R *.res}
