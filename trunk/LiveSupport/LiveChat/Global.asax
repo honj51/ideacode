@@ -4,18 +4,22 @@
     int i = 0;
     void Application_Start(object sender, EventArgs e) 
     {
-        System.Diagnostics.Trace.WriteLine("Application_Start");
-        LiveSupport.BLL.Utils.Util.sysInfo.StartApplicationDate = DateTime.Now;
-        LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ToString();
-        OperatorService.Init();
-        AccountService.Init();
-        //在应用程序启动时运行的代码
-        System.Timers.Timer myTimer = new System.Timers.Timer(5000);
-        myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);
-        myTimer.Enabled = true;
-        ChatService.ChatTempDataDir = Server.MapPath("~/UploadFile/");
-        LiveSupport.BLL.Remoting.OperatorServer server = new LiveSupport.BLL.Remoting.OperatorServer();
-        server.Start();
+        bool myinit =bool.Parse(System.Configuration.ConfigurationManager.AppSettings["Init"].ToString());
+        if (myinit)
+        {
+            System.Diagnostics.Trace.WriteLine("Application_Start");
+            LiveSupport.BLL.Utils.Util.sysInfo.StartApplicationDate = DateTime.Now;
+            LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ToString();
+            OperatorService.Init();
+            AccountService.Init();
+            //在应用程序启动时运行的代码
+            System.Timers.Timer myTimer = new System.Timers.Timer(5000);
+            myTimer.Elapsed += new System.Timers.ElapsedEventHandler(myTimer_Elapsed);
+            myTimer.Enabled = true;
+            ChatService.ChatTempDataDir = Server.MapPath("~/UploadFile/");
+            LiveSupport.BLL.Remoting.OperatorServer server = new LiveSupport.BLL.Remoting.OperatorServer();
+            server.Start();
+        }
     }
 
     void myTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
