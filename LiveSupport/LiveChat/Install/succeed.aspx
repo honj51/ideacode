@@ -32,10 +32,7 @@
                                         <img src="images/succeed.jpg" alt="安装成功" style="margin-left:140px" /><br />
                                         <br />
                                         恭喜! 您已经成功安装<%=SetupPage.producename%><br /><br />
-                                        请您牢记以下您的个人信息<br /><br />
-                                        用户名：<%= Session["SystemAdminName"] %><br />
-                                        密码：<%= Session["SystemAdminPws"]%><br />
-                                        E-Mail：<%= Session["SystemAdminEmail"]%><br />
+                                        请您牢记您上面所填的个人信息<br />
                                         <br />
                                         接下来您将可以访问首页。<br />
                                                             如果进行系统设置，请在"登录"前台后，选择"系统设置"选项。</td>

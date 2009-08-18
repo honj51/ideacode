@@ -68,7 +68,8 @@
                                                         <asp:TextBox ID="ftpServer" runat="server" 
                                                             Width="150" Enabled="true" ></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                                                            ErrorMessage="服务器不能为空" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                            ErrorMessage="服务器不能为空" SetFocusOnError="True" 
+                                                            ControlToValidate="ftpServer"></asp:RequiredFieldValidator>
                                                     </td>
                                                 </tr>
                                                 <tr id="tr2">
@@ -78,7 +79,8 @@
                                                         <asp:TextBox ID="ftpAccounts" runat="server" 
                                                             Width="150" Enabled="true"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                                                            ErrorMessage="ftp帐号不能为空" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                            ErrorMessage="ftp帐号不能为空" SetFocusOnError="True" 
+                                                            ControlToValidate="ftpAccounts"></asp:RequiredFieldValidator>
                                                     </td>
                                                 </tr>
                                                 <tr id="tr3">
@@ -88,7 +90,8 @@
                                                         <asp:TextBox ID="ftpPassWord" runat="server" Width="150"
                                                          TextMode="Password"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                                                            ErrorMessage="密码不能为空" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                            ErrorMessage="密码不能为空" SetFocusOnError="True" 
+                                                            ControlToValidate="ftpPassWord"></asp:RequiredFieldValidator>
                                                         <span id="msg3"></span></td>
                                                 </tr>
                                             </table>
