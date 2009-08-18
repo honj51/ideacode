@@ -2,14 +2,13 @@ program HDHouse;
 
 uses
   Forms,
-  MainForm in 'MainForm.pas' {Form1},
-  Unit1 in 'Unit1.pas' {Frame1: TFrame},
-  Unit2 in 'C:\Documents and Settings\Hello\×ÀÃæ\Unit2.pas' {HouseListForm: TFrame};
+  MainForm in 'MainForm.pas' {formMain},
+  HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TformMain, formMain);
   Application.Run;
 end.
