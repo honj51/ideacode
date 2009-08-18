@@ -114,13 +114,14 @@ namespace LiveSupportInstall
 
             LiveSupport.LiveSupportDAL.SqlProviders.DBHelper.ConnectionString = connectionString;
             if (i) { CreateSQLServerDB("createDB.sql", "master"); }
-            if (i) { CreateSQLServerDB("createTable.sql", "master"); }
+            if (i) { CreateSQLServerDB("livesupport.sql", "master"); }
+            //if (i) { CreateSQLServerDB("createTable.sql", "master"); }
             if (i) { CreateSQLServerDB("createhypotaxis.sql", "master"); }
-            if (i) { i = NewDefaultInfo("insertDB.sql"); }
-            if (i) { i = NewAccount(); }//创建用户信息
+            // if (i) { i = NewDefaultInfo("insertDB.sql"); }
+            if (i) { i = NewAccount(); }//创建用户信息livesupport.sql
             if (i)
             {
-                Response.Redirect("succeed.aspx",false);
+                Response.Redirect("step4.aspx",false);
                 //Page.Server.Transfer(
             }
             else
@@ -140,6 +141,10 @@ namespace LiveSupportInstall
             account.ContactName=systemadminname.Text;
             account.Email=adminemail.Text;
             account.Url=Util.GetApplicationPath(Request.UrlReferrer.ToString());
+            account.Province = "其它";
+            account.City = "其它";
+            account.Industry = "计算机";
+            account.Domain = Util.GetDomainName(Request.UrlReferrer.ToString());
             return  AccountsManager.AddAccount(account, systemadminname.Text, systemadminname.Text, systemadminpws.Text);
         }
         /// <summary>
