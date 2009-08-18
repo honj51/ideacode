@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
   Dialogs, StdCtrls, bsSkinCtrls, bsSkinExCtrls, ImgList, bsPngImageList,
   IWControl, IWHTMLControls, IdBaseComponent, IdThreadComponent, ExtCtrls,
-  bsdbctrls, bsSkinGrids, bsDBGrids, ComCtrls, bsSkinTabs, bsSkinBoxCtrls;
+  bsdbctrls, bsSkinGrids, bsDBGrids, ComCtrls, bsSkinTabs, bsSkinBoxCtrls,
+  bsSkinData, BusinessSkinForm;
 
 type
   TframeHouseList = class(TFrame)
@@ -31,6 +32,9 @@ type
     mmo2: TbsSkinDBMemo;
     bskndbgrd1: TbsSkinDBGrid;
     bskndbgrd2: TbsSkinDBGrid;
+    bsknfrm1: TbsSkinFrame;
+    bsSkinData1: TbsSkinData;
+    bscmprsdstrdskn1: TbsCompressedStoredSkin;
   private
     { Private declarations }
   public
