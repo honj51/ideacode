@@ -12,7 +12,6 @@ uses
 type
   TframeHouseList = class(TFrame)
     Edit1: TEdit;
-    Label1: TLabel;
     bsSkinButtonLabel2: TbsSkinButtonLabel;
     bsSkinButton1: TbsSkinButton;
     bsSkinButton2: TbsSkinButton;
@@ -35,6 +34,7 @@ type
     bsknfrm1: TbsSkinFrame;
     bsSkinData1: TbsSkinData;
     bscmprsdstrdskn1: TbsCompressedStoredSkin;
+    lbl1: TbsSkinStdLabel;
   private
     { Private declarations }
   public
