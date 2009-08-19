@@ -15,22 +15,9 @@ object frameHouseList: TframeHouseList
   DesignSize = (
     969
     466)
-  object Label1: TLabel
-    Left = 96
-    Top = 16
-    Width = 96
-    Height = 13
-    Caption = #36755#20837#25151#28304#20449#24687#26597#35810
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-  end
   object bsSkinButtonLabel2: TbsSkinButtonLabel
     Left = 352
-    Top = 8
+    Top = 6
     Width = 57
     Height = 33
     UseCustomGlowColor = False
@@ -158,16 +145,32 @@ object frameHouseList: TframeHouseList
     Width = 817
     Height = 2
   end
+  object lbl1: TbsSkinStdLabel
+    Left = 88
+    Top = 16
+    Width = 96
+    Height = 13
+    EllipsType = bsetNone
+    UseSkinFont = True
+    UseSkinColor = True
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -11
+    DefaultFont.Name = 'MS Sans Serif'
+    DefaultFont.Style = []
+    SkinDataName = 'stdlabel'
+    Caption = #36755#20837#25151#28304#20449#24687#26597#35810
+  end
   object Edit1: TEdit
     Left = 200
-    Top = 8
+    Top = 11
     Width = 145
     Height = 23
     TabOrder = 0
   end
   object bsSkinButton1: TbsSkinButton
     Left = 416
-    Top = 8
+    Top = 10
     Width = 97
     Height = 25
     HintImageIndex = 0
@@ -198,7 +201,7 @@ object frameHouseList: TframeHouseList
   end
   object bsSkinButton2: TbsSkinButton
     Left = 528
-    Top = 8
+    Top = 10
     Width = 97
     Height = 25
     HintImageIndex = 0
@@ -229,7 +232,7 @@ object frameHouseList: TframeHouseList
   end
   object bsSkinButton3: TbsSkinButton
     Left = 640
-    Top = 8
+    Top = 10
     Width = 97
     Height = 25
     HintImageIndex = 0
@@ -260,7 +263,7 @@ object frameHouseList: TframeHouseList
   end
   object bsSkinButton4: TbsSkinButton
     Left = 752
-    Top = 8
+    Top = 10
     Width = 97
     Height = 25
     HintImageIndex = 0
