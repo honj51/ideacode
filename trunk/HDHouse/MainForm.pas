@@ -6,7 +6,9 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, BusinessSkinForm, bsSkinData, StdCtrls, bsSkinCtrls,
   ImgList, bsPngImageList, ComCtrls, bsSkinTabs, bsColorCtrls, bsDialogs,
-  bsMessages, HouseListFrame, DB, ADODB;
+  bsMessages, HouseListFrame, DB, ADODB, UCustomerAutoMatchView,
+  UTrackInfoView, UDataOperatoBarView, UDetailRequirementInfoView,
+  UTrackRecordView;
 
 type
   TformMain = class(TForm)
@@ -34,6 +36,19 @@ type
     con1: TADOConnection;
     qry1: TADOQuery;
     ds1: TDataSource;
+    CustomerAutoMatchView1: TCustomerAutoMatchView;
+    trckrcrdvw1: TTrackRecordView;
+    btn8: TbsSkinButton;
+    btn9: TbsSkinButton;
+    btn10: TbsSkinButton;
+    btn11: TbsSkinButton;
+    btn12: TbsSkinButton;
+    btn13: TbsSkinButton;
+    btn14: TbsSkinButton;
+    btn15: TbsSkinButton;
+    btn16: TbsSkinButton;
+    btn17: TbsSkinButton;
+    trcknfvw1: TTrackInfoView;
     procedure btn7Click(Sender: TObject);
   private
     { Private declarations }

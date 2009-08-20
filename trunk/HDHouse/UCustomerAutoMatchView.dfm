@@ -7,7 +7,7 @@ object CustomerAutoMatchView: TCustomerAutoMatchView
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 0
-    Width = 760
+    Width = 741
     Height = 495
     HintImageIndex = 0
     TabOrder = 0
@@ -100,12 +100,42 @@ object CustomerAutoMatchView: TCustomerAutoMatchView
       end>
   end
   object bsSkinScrollBar1: TbsSkinScrollBar
+    Left = 741
+    Top = 0
+    Width = 19
+    Height = 495
+    HintImageIndex = 0
+    TabOrder = 1
+    Visible = False
+    SkinDataName = 'vscrollbar'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 19
+    DefaultHeight = 0
+    UseSkinFont = True
+    Both = False
+    BothMarkerWidth = 19
+    BothSkinDataName = 'bothhscrollbar'
+    CanFocused = False
+    Align = alRight
+    Kind = sbVertical
+    PageSize = 0
+    Min = 0
+    Max = 100
+    Position = 0
+    SmallChange = 1
+    LargeChange = 1
+  end
+  object bsknscrlbr1: TbsSkinScrollBar
     Left = 0
     Top = 495
     Width = 760
     Height = 19
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 2
     Visible = False
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET

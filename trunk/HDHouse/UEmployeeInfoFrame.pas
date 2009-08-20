@@ -24,7 +24,6 @@ type
     cbb2: TbsSkinDBComboBox;
     cbb3: TbsSkinDBComboBox;
     edt7: TbsSkinDBDateEdit;
-    edt8: TbsSkinDBDateEdit;
     edt9: TbsSkinDBDateEdit;
     lbl10: TbsSkinStdLabel;
     lbl11: TbsSkinStdLabel;

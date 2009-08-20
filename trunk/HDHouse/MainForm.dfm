@@ -1,11 +1,12 @@
 object formMain: TformMain
-  Left = 164
-  Top = 119
+  Left = 240
+  Top = 116
   AutoScroll = False
+  BiDiMode = bdLeftToRight
   BorderIcons = []
   Caption = 'MainForm'
-  ClientHeight = 542
-  ClientWidth = 924
+  ClientHeight = 570
+  ClientWidth = 985
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,14 +14,15 @@ object formMain: TformMain
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  ParentBiDiMode = False
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 90
-    Width = 924
-    Height = 452
-    ActivePage = bskntbsht1
+    Width = 985
+    Height = 480
+    ActivePage = bskntbsht3
     Align = alClient
     BiDiMode = bdRightToLeft
     Font.Charset = DEFAULT_CHARSET
@@ -59,8 +61,8 @@ object formMain: TformMain
       inline frmhslst1: TframeHouseList
         Left = 0
         Top = 0
-        Width = 802
-        Height = 452
+        Width = 863
+        Height = 480
         HelpContext = 1
         Align = alClient
         AutoScroll = False
@@ -71,9 +73,6 @@ object formMain: TformMain
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        inherited Label1: TLabel
-          Left = 8
-        end
         inherited bsSkinButtonLabel2: TbsSkinButtonLabel
           Left = 264
         end
@@ -109,10 +108,11 @@ object formMain: TformMain
           SkinData = bsSkinData1
         end
         inherited bsSkinDBGrid1: TbsSkinDBGrid
-          Left = 8
-          Width = 677
-          Height = 153
+          Top = 96
+          Width = 802
+          Height = 163
           SkinData = bsSkinData1
+          Align = alNone
           DataSource = ds1
           Columns = <
             item
@@ -271,33 +271,41 @@ object formMain: TformMain
             end>
         end
         inherited bsknpgcntrl1: TbsSkinPageControl
-          Top = 259
-          Width = 802
+          Top = 287
+          Width = 863
+          ActivePage = frmhslst1.bsSkinTabSheet1
           SkinData = bsSkinData1
           inherited bsSkinTabSheet1: TbsSkinTabSheet
             inherited mmo1: TbsSkinDBMemo
+              Width = 861
               SkinData = bsSkinData1
             end
           end
           inherited bsSkinTabSheet2: TbsSkinTabSheet
             inherited mmo2: TbsSkinDBMemo
-              Width = 800
               SkinData = bsSkinData1
             end
           end
           inherited bskntbsht1: TbsSkinTabSheet
             inherited bskndbgrd1: TbsSkinDBGrid
               Width = 800
+              Height = 171
               SkinData = bsSkinData1
             end
           end
           inherited bskntbsht2: TbsSkinTabSheet
             inherited bskndbgrd2: TbsSkinDBGrid
               Top = 4
-              Width = 772
+              Width = 605
               SkinData = bsSkinData1
             end
           end
+        end
+        inherited bsknfrm1: TbsSkinFrame
+          Left = 632
+        end
+        inherited bsSkinData1: TbsSkinData
+          Left = 696
         end
         inherited bscmprsdstrdskn1: TbsCompressedStoredSkin
           CompressedData = {
@@ -1798,21 +1806,391 @@ object formMain: TformMain
     end
     object bskntbsht2: TbsSkinTabSheet
       Caption = #25151#28304#31649#29702
-    end
-    object bskntbsht3: TbsSkinTabSheet
-      Caption = #23458#25143#31649#29702
+      inline CustomerAutoMatchView1: TCustomerAutoMatchView
+        Left = 14
+        Top = 67
+        Width = 840
+        Height = 410
+        TabOrder = 0
+        inherited bskndbgrd1: TbsSkinDBGrid
+          Width = 821
+          Height = 391
+          SkinData = bsSkinData1
+          DefaultRowHeight = 18
+          TitleFont.Color = clBtnText
+          TitleFont.Height = 14
+          TitleFont.Name = 'Arial'
+        end
+        inherited bsSkinScrollBar1: TbsSkinScrollBar
+          Left = 821
+          Height = 391
+        end
+        inherited bsknscrlbr1: TbsSkinScrollBar
+          Top = 391
+          Width = 840
+        end
+      end
     end
     object bskntbsht4: TbsSkinTabSheet
       Caption = #20869#37096#32479#35745
+      inline trckrcrdvw1: TTrackRecordView
+        Left = 192
+        Top = 104
+        Width = 641
+        Height = 271
+        TabOrder = 0
+        inherited bskntlbr1: TbsSkinToolBar
+          Width = 641
+        end
+        inherited bskndbgrd1: TbsSkinDBGrid
+          Width = 622
+          DefaultRowHeight = 18
+          TitleFont.Color = clBtnText
+          TitleFont.Height = 14
+          TitleFont.Name = 'Arial'
+        end
+        inherited bsknscrlbr1: TbsSkinScrollBar
+          Width = 641
+        end
+        inherited bsknscrlbr2: TbsSkinScrollBar
+          Left = 622
+        end
+      end
+    end
+    object bskntbsht3: TbsSkinTabSheet
+      Caption = #23458#25143#31649#29702
+      inline trcknfvw1: TTrackInfoView
+        Left = 104
+        Top = 112
+        Width = 505
+        Height = 306
+        TabOrder = 0
+        inherited bskngrpbx1: TbsSkinGroupBox
+          SkinData = bsSkinData1
+        end
+        inherited bskngrpbx2: TbsSkinGroupBox
+          SkinData = bsSkinData1
+        end
+      end
     end
     object bskntbsht5: TbsSkinTabSheet
       Caption = #31995#32479#35774#32622
+      object btn8: TbsSkinButton
+        Left = 232
+        Top = 120
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 0
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #20844#21496#20449#24687#35774#32622
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn9: TbsSkinButton
+        Left = 376
+        Top = 120
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25968#25454#24211#32500#25252
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn10: TbsSkinButton
+        Left = 232
+        Top = 168
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 2
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #21592#24037#31649#29702
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn11: TbsSkinButton
+        Left = 376
+        Top = 168
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 3
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #21021#22987#21270#25968#25454
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn12: TbsSkinButton
+        Left = 232
+        Top = 216
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 4
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25805#20316#26435#38480#35774#32622
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn13: TbsSkinButton
+        Left = 376
+        Top = 216
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 5
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #21442#25968#20449#24687#35774#32622
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn14: TbsSkinButton
+        Left = 232
+        Top = 264
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 6
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #20462#25913#24403#21069#23494#30721
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn15: TbsSkinButton
+        Left = 376
+        Top = 264
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 7
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #31995#32479#25805#20316#26085#24535
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn16: TbsSkinButton
+        Left = 232
+        Top = 312
+        Width = 105
+        Height = 33
+        HintImageIndex = 0
+        TabOrder = 8
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #21512#21516#26679#26412#35774#32622
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn17: TbsSkinButton
+        Left = 376
+        Top = 312
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 9
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #20851#20110#26412#36719#20214
+        NumGlyphs = 1
+        Spacing = 1
+      end
     end
   end
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 924
+    Width = 985
     Height = 90
     HintImageIndex = 0
     TabOrder = 1
@@ -2157,8 +2535,8 @@ object formMain: TformMain
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 688
-    Top = 384
+    Left = 768
+    Top = 520
   end
   object bsSkinData1: TbsSkinData
     SkinnableForm = True
@@ -2167,13 +2545,13 @@ object formMain: TformMain
     ShowCaptionButtonGlowFrames = True
     CompressedStoredSkin = bscmprsdstrdskn1
     SkinIndex = 0
-    Left = 728
-    Top = 328
+    Left = 736
+    Top = 520
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'Office2007.skn'
-    Left = 816
-    Top = 328
+    Left = 872
+    Top = 520
     CompressedData = {
       78DAECBD79701CD79DE709CF6EEC4CEC46EC1F1BB1111D1BD311DEBFD67FECCC
       F48CDB6EF7B6DD0DAB2D9F6DABA7EDF65876DB96DB922DEBB465B568CB920C1D
@@ -7180,8 +7558,8 @@ object formMain: TformMain
       end>
     PngWidth = 64
     PngHeight = 64
-    Left = 792
-    Top = 384
+    Left = 960
+    Top = 520
     Bitmap = {
       494C010107000900040040004000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100008000000001002000000000000000
@@ -12012,8 +12390,8 @@ object formMain: TformMain
       end>
     PngWidth = 32
     PngHeight = 32
-    Left = 856
-    Top = 384
+    Left = 1000
+    Top = 520
     Bitmap = {
       494C010106000900040020002000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000004000000001002000000000000080
@@ -13097,8 +13475,8 @@ object formMain: TformMain
     DefaultButtonFont.Name = 'Arial'
     DefaultButtonFont.Style = []
     UseSkinFont = True
-    Left = 665
-    Top = 336
+    Left = 1041
+    Top = 520
   end
   object con1: TADOConnection
     Connected = True
@@ -13108,8 +13486,8 @@ object formMain: TformMain
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
-    Left = 721
-    Top = 473
+    Left = 833
+    Top = 521
   end
   object qry1: TADOQuery
     Active = True
@@ -13118,12 +13496,12 @@ object formMain: TformMain
     Parameters = <>
     SQL.Strings = (
       'select * from fczy')
-    Left = 769
-    Top = 465
+    Left = 913
+    Top = 521
   end
   object ds1: TDataSource
     DataSet = qry1
-    Left = 673
-    Top = 473
+    Left = 801
+    Top = 521
   end
 end

@@ -2,14 +2,13 @@ program HDHouse;
 
 uses
   Forms,
+  StdCtrls,
   MainForm in 'MainForm.pas' {TformMain},
   HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
   UHouseListView in 'UHouseListView.pas' {HouseListView: TFrame},
   UCustomerListView in 'UCustomerListView.pas' {CustomerListView: TFrame},
   UHouseDetailInfoView in 'UHouseDetailInfoView.pas' {HouseDetailInfoView: TFrame},
   UHouseSecureInfoView in 'UHouseSecureInfoView.pas' {HouseSecureInfoView: TFrame},
-  UTest in 'UTest.pas' {test},
-  UTest2 in 'UTest2.pas' {test2},
   UCustomerAutoMatchView in 'UCustomerAutoMatchView.pas' {CustomerAutoMatchView: TFrame},
   UCustomerSecureInfoView in 'UCustomerSecureInfoView.pas' {CustomerSecureInfoView: TFrame},
   UDataOperatoBarView in 'UDataOperatoBarView.pas' {DataOperateBarView: TFrame},
@@ -20,21 +19,40 @@ uses
   UTrackInfoView in 'UTrackInfoView.pas' {TrackInfoView: TFrame},
   UTrackQueryFrame in 'UTrackQueryFrame.pas' {TrackQueryFrame: TFrame},
   UTrackRecordView in 'UTrackRecordView.pas' {TrackRecordView: TFrame},
-  UHouseManageForm in 'UHouseManageForm.pas' {HouseManageForm},
-  UHouseDealManageForm in 'UHouseDealManageForm.pas' {HouseDealManageForm},
-  UHouseTrackForm in 'UHouseTrackForm.pas' {HouseTrackForm},
-  UHousePosterForm in 'UHousePosterForm.pas' {HousePosterForm};
+  UCompanyInfoSettingForm in 'UCompanyInfoSettingForm.pas' {CompanyInfoSettingForm},
+  UEmployeeManageForm in 'UEmployeeManageForm.pas' {EmployeeManageForm},
+  UOperatePermissionSettingForm in 'UOperatePermissionSettingForm.pas' {OperatePermissionSettingForm},
+  UPermissionGroupSettingForm in 'UPermissionGroupSettingForm.pas' {PermissionGroupSettingForm},
+  UOperatorInfoForm in 'UOperatorInfoForm.pas' {OperatorInfoForm},
+  UChangePasswordForm in 'UChangePasswordForm.pas' {ChangePasswordForm},
+  UContractSampleSettingForm in 'UContractSampleSettingForm.pas' {ContractSampleSettingForm},
+  UAddContractSampleForm in 'UAddContractSampleForm.pas' {AddContractSampleForm},
+  UDatabaseMantainForm in 'UDatabaseMantainForm.pas' {DatabaseMantainForm},
+  UDatabaseInitialForm in 'UDatabaseInitialForm.pas' {DatabaseInitialForm},
+  UParametersSettingForm in 'UParametersSettingForm.pas' {ParametersSettingForm},
+  USystemOperationLogForm in 'USystemOperationLogForm.pas' {SystemOperationLogForm},
+  UAboutForm in 'UAboutForm.pas' {AboutForm},
+  ULoginForm in 'ULoginForm.pas' {LoginForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(Ttest2, test2);
-  Application.CreateForm(Ttest, test);
+
+  Application.CreateForm(TLoginForm, LoginForm);
+  Application.CreateForm(TEmployeeManageForm, EmployeeManageForm);
+  Application.CreateForm(TSystemOperationLogForm, SystemOperationLogForm);
+  Application.CreateForm(TContractSampleSettingForm, ContractSampleSettingForm);
+  Application.CreateForm(TDatabaseMantainForm, DatabaseMantainForm);
+  Application.CreateForm(TParametersSettingForm, ParametersSettingForm);
+  Application.CreateForm(TAddContractSampleForm, AddContractSampleForm);
+  Application.CreateForm(TChangePasswordForm, ChangePasswordForm);
+  Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
+  Application.CreateForm(TAboutForm, AboutForm);
+  Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
   Application.CreateForm(TformMain, formMain);
-  Application.CreateForm(THouseManageForm, HouseManageForm);
-  Application.CreateForm(THouseDealManageForm, HouseDealManageForm);
-  Application.CreateForm(THouseTrackForm, HouseTrackForm);
-  Application.CreateForm(THousePosterForm, HousePosterForm);
+  Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);
+  Application.CreateForm(TPermissionGroupSettingForm, PermissionGroupSettingForm);
+  Application.CreateForm(TDatabaseInitialForm, DatabaseInitialForm);
   Application.Run;
 end.
