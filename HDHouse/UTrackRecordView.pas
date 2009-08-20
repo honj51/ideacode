@@ -15,6 +15,8 @@ type
     btn3: TbsSkinSpeedButton;
     btn4: TbsSkinSpeedButton;
     bspngmglst24: TbsPngImageList;
+    bsknscrlbr1: TbsSkinScrollBar;
+    bsknscrlbr2: TbsSkinScrollBar;
   private
     { Private declarations }
   public

@@ -10,6 +10,7 @@ type
   TCustomerAutoMatchView = class(TFrame)
     bskndbgrd1: TbsSkinDBGrid;
     bsSkinScrollBar1: TbsSkinScrollBar;
+    bsknscrlbr1: TbsSkinScrollBar;
   private
     { Private declarations }
   public

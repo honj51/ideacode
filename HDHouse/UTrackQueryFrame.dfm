@@ -325,7 +325,7 @@ object TrackQueryFrame: TTrackQueryFrame
     Left = 464
     Top = 26
     Width = 121
-    Height = 25
+    Height = 18
     Text = 'edt6'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET

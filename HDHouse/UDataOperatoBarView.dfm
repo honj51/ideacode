@@ -36,6 +36,7 @@ object DataOperateBarView: TDataOperateBarView
     NumGlyphs = 1
     Spacing = 2
     Caption = 'bskntlbr1'
+    AutoSize = True
     Align = alClient
     CanScroll = False
     HotScroll = False
@@ -771,7 +772,7 @@ object DataOperateBarView: TDataOperateBarView
       end>
     PngWidth = 32
     PngHeight = 32
-    Left = 712
+    Left = 528
     Top = 24
     Bitmap = {
       494C010105000900040020002000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600

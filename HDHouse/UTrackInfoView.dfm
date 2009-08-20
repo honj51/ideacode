@@ -1,14 +1,14 @@
 object TrackInfoView: TTrackInfoView
   Left = 0
   Top = 0
-  Width = 497
+  Width = 498
   Height = 306
   TabOrder = 0
   object bskngrpbx1: TbsSkinGroupBox
-    Left = 0
-    Top = 0
-    Width = 497
-    Height = 169
+    Left = 8
+    Top = 8
+    Width = 481
+    Height = 153
     HintImageIndex = 0
     TabOrder = 0
     SkinDataName = 'groupbox'
@@ -36,7 +36,6 @@ object TrackInfoView: TTrackInfoView
     NumGlyphs = 1
     Spacing = 2
     Caption = #36319#36827#20449#24687
-    Align = alTop
     object bsknlbl1: TbsSkinLabel
       Left = 16
       Top = 32
@@ -240,7 +239,7 @@ object TrackInfoView: TTrackInfoView
       Left = 96
       Top = 96
       Width = 361
-      Height = 65
+      Height = 49
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -411,9 +410,9 @@ object TrackInfoView: TTrackInfoView
     end
   end
   object bskngrpbx2: TbsSkinGroupBox
-    Left = 0
+    Left = 8
     Top = 169
-    Width = 497
+    Width = 481
     Height = 80
     HintImageIndex = 0
     TabOrder = 1
@@ -442,7 +441,6 @@ object TrackInfoView: TTrackInfoView
     NumGlyphs = 1
     Spacing = 2
     Caption = #38656#35201#25552#37266
-    Align = alTop
     object bsknlbl5: TbsSkinLabel
       Left = 16
       Top = 40

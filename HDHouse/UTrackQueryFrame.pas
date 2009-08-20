@@ -11,9 +11,6 @@ type
   TTrackQueryFrame = class(TFrame)
     edt1: TbsSkinDateEdit;
     lbl3: TLabel;
-    edt2: TbsSkinDateEdit;
-    edt3: TbsSkinDateEdit;
-    edt4: TbsSkinDateEdit;
     edt5: TbsSkinDateEdit;
     edt6: TbsSkinEdit;
     btn1: TbsSkinButtonLabel;

@@ -1,13 +1,13 @@
 object TrackRecordView: TTrackRecordView
   Left = 0
   Top = 0
-  Width = 644
-  Height = 390
+  Width = 646
+  Height = 271
   TabOrder = 0
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 644
+    Width = 646
     Height = 49
     HintImageIndex = 0
     TabOrder = 0
@@ -179,8 +179,8 @@ object TrackRecordView: TTrackRecordView
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 49
-    Width = 644
-    Height = 341
+    Width = 627
+    Height = 203
     HintImageIndex = 0
     TabOrder = 1
     SkinDataName = 'grid'
@@ -232,6 +232,64 @@ object TrackRecordView: TTrackRecordView
         Width = 350
         Visible = True
       end>
+  end
+  object bsknscrlbr1: TbsSkinScrollBar
+    Left = 0
+    Top = 252
+    Width = 646
+    Height = 19
+    HintImageIndex = 0
+    TabOrder = 2
+    SkinDataName = 'hscrollbar'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 19
+    UseSkinFont = True
+    Both = False
+    BothMarkerWidth = 19
+    BothSkinDataName = 'bothhscrollbar'
+    CanFocused = False
+    Align = alBottom
+    Kind = sbHorizontal
+    PageSize = 0
+    Min = 0
+    Max = 100
+    Position = 0
+    SmallChange = 1
+    LargeChange = 1
+  end
+  object bsknscrlbr2: TbsSkinScrollBar
+    Left = 627
+    Top = 49
+    Width = 19
+    Height = 203
+    HintImageIndex = 0
+    TabOrder = 3
+    SkinDataName = 'vscrollbar'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 19
+    DefaultHeight = 0
+    UseSkinFont = True
+    Both = False
+    BothMarkerWidth = 19
+    BothSkinDataName = 'bothhscrollbar'
+    CanFocused = False
+    Align = alRight
+    Kind = sbVertical
+    PageSize = 0
+    Min = 0
+    Max = 100
+    Position = 0
+    SmallChange = 1
+    LargeChange = 1
   end
   object bspngmglst24: TbsPngImageList
     PngImages = <

@@ -1,7 +1,7 @@
 object frameHouseList: TframeHouseList
   Left = 0
   Top = 0
-  Width = 969
+  Width = 760
   Height = 466
   HelpContext = 1
   AutoScroll = False
@@ -12,9 +12,6 @@ object frameHouseList: TframeHouseList
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  DesignSize = (
-    969
-    466)
   object bsSkinButtonLabel2: TbsSkinButtonLabel
     Left = 352
     Top = 6
@@ -380,12 +377,11 @@ object frameHouseList: TframeHouseList
     Caption = #21482#26174#31034#26368#36817
   end
   object bsSkinDBGrid1: TbsSkinDBGrid
-    Left = 16
+    Left = 0
     Top = 88
-    Width = 932
-    Height = 161
+    Width = 760
+    Height = 185
     HintImageIndex = 0
-    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 8
     SkinDataName = 'grid'
     Transparent = False
@@ -406,6 +402,7 @@ object frameHouseList: TframeHouseList
     SaveMultiSelection = False
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
+    Align = alBottom
     ParentFont = False
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -481,6 +478,7 @@ object frameHouseList: TframeHouseList
         Title.Font.Height = -11
         Title.Font.Name = 'MS Sans Serif'
         Title.Font.Style = []
+        Width = 65
         Visible = True
       end
       item
@@ -561,7 +559,7 @@ object frameHouseList: TframeHouseList
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 273
-    Width = 969
+    Width = 760
     Height = 193
     ActivePage = bsSkinTabSheet2
     Align = alBottom
@@ -592,7 +590,7 @@ object frameHouseList: TframeHouseList
       object mmo1: TbsSkinDBMemo
         Left = 0
         Top = 0
-        Width = 967
+        Width = 758
         Height = 171
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -621,7 +619,7 @@ object frameHouseList: TframeHouseList
       object mmo2: TbsSkinDBMemo
         Left = 0
         Top = 0
-        Width = 967
+        Width = 758
         Height = 171
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -749,12 +747,12 @@ object frameHouseList: TframeHouseList
     object bskntbsht2: TbsSkinTabSheet
       Caption = #36319#36827#35760#24405
       DesignSize = (
-        967
+        758
         171)
       object bskndbgrd2: TbsSkinDBGrid
         Left = 14
         Top = 3
-        Width = 939
+        Width = 730
         Height = 166
         HintImageIndex = 0
         Anchors = [akLeft, akRight, akBottom]
@@ -805,8 +803,8 @@ object frameHouseList: TframeHouseList
   object bsknfrm1: TbsSkinFrame
     SkinData = bsSkinData1
     DrawBackground = True
-    Left = 672
-    Top = 56
+    Left = 696
+    Top = 48
   end
   object bsSkinData1: TbsSkinData
     SkinnableForm = True
@@ -815,13 +813,13 @@ object frameHouseList: TframeHouseList
     ShowCaptionButtonGlowFrames = True
     CompressedStoredSkin = bscmprsdstrdskn1
     SkinIndex = 0
-    Left = 712
-    Top = 56
+    Left = 768
+    Top = 48
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'Office2007.skn'
-    Left = 800
-    Top = 56
+    Left = 816
+    Top = 48
     CompressedData = {
       78DAECBD79701CD79DE709CF6EEC4CEC46EC1F1BB1111D1BD311DEBFD67FECCC
       F48CDB6EF7B6DD0DAB2D9F6DABA7EDF65876DB96DB922DEBB465B568CB920C1D
