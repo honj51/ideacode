@@ -1,10 +1,11 @@
 object SystemOperationLogForm: TSystemOperationLogForm
-  Left = 307
-  Top = 195
-  Width = 780
-  Height = 570
-  BorderIcons = [biSystemMenu]
+  Left = 350
+  Top = 149
+  AutoScroll = False
+  BorderIcons = []
   Caption = #31995#32479#25805#20316#26085#24535
+  ClientHeight = 536
+  ClientWidth = 772
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,13 +22,14 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Height = 444
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
     WallpaperStretch = False
     UseSkinFont = True
     UseSkinCellHeight = True
-    HScrollBar = bsknscrlbr1
-    VScrollBar = bsknscrlbr2
+    HScrollBar = bsknscrlbr2
+    VScrollBar = bsknscrlbr1
     GridLineColor = clWindowText
     DefaultCellHeight = 20
     DrawGraphicFields = False
@@ -74,6 +76,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Height = 73
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -103,7 +106,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     object lbl1: TbsSkinStdLabel
       Left = 40
       Top = 35
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -114,6 +117,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #26102#38388#33539#22260
     end
     object lbl2: TbsSkinStdLabel
@@ -143,7 +147,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40046.456138055550000000
+      Date = 40046.704263958330000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -164,6 +168,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -191,7 +196,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40046.456138055550000000
+      Date = 40046.704263958330000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -212,6 +217,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -235,6 +241,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Height = 25
       HintImageIndex = 0
       TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -266,6 +273,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Height = 25
       HintImageIndex = 0
       TabOrder = 3
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -298,6 +306,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Height = 444
     HintImageIndex = 0
     TabOrder = 2
+    Visible = False
     SkinDataName = 'vscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -327,7 +336,6 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Height = 19
     HintImageIndex = 0
     TabOrder = 3
-    Visible = False
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -345,9 +353,61 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Kind = sbHorizontal
     PageSize = 0
     Min = 0
-    Max = 100
+    Max = 127
     Position = 0
-    SmallChange = 1
-    LargeChange = 1
+    SmallChange = 127
+    LargeChange = 127
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu, biRollUp]
+    Left = 648
+    Top = 24
   end
 end
