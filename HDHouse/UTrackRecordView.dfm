@@ -1,12 +1,15 @@
 object TrackRecordView: TTrackRecordView
   Left = 0
   Top = 0
+  Width = 761
+  Height = 174
   Width = 646
   Height = 271
   TabOrder = 0
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
+    Width = 761
     Width = 646
     Height = 49
     HintImageIndex = 0
@@ -179,6 +182,8 @@ object TrackRecordView: TTrackRecordView
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 49
+    Width = 761
+    Height = 125
     Width = 627
     Height = 203
     HintImageIndex = 0

@@ -20,6 +20,7 @@ type
     edt2: TbsSkinDBEdit;
     lbl2: TLabel;
     bvl1: TBevel;
+    bsknscrlbr1: TbsSkinScrollBar;
   private
     { Private declarations }
   public
