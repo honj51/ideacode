@@ -1,6 +1,6 @@
 object CustomerDetailsForm: TCustomerDetailsForm
-  Left = 235
-  Top = 95
+  Left = 340
+  Top = 128
   Width = 960
   Height = 577
   Caption = #23458#25143#20449#24687
@@ -131,7 +131,152 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Width = 952
     end
     inherited bskndbgrd1: TbsSkinDBGrid
+      Top = 48
       Width = 952
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'khzy_bh'
+          Title.Caption = #23458#25143#32534#21495
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 123
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_dqzt'
+          Title.Caption = #24403#21069#29366#24577
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 87
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_yzxm'
+          Title.Caption = #23458#25143#22995#21517
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 110
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_djrq'
+          Title.Caption = #30331#35760#26085#26399
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 102
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_wymc'
+          Title.Caption = #29289#19994#21517#31216
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 89
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_mj'
+          Title.Caption = #38656#27714#38754#31215
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 96
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_qy'
+          Title.Caption = #25152#22788#21306#22495
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 139
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_wylb'
+          Title.Caption = #29289#19994#31867#21035
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 87
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_wssl'
+          Title.Caption = #25151#38388#25968#37327
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 79
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_zxcd'
+          Title.Caption = #35013#20462#31243#24230
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 98
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_fwly'
+          Title.Caption = #32622#19994#39038#38382
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 95
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'khzy_jcnf1'
+          Title.Caption = #24314#25104#24180#20221
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Visible = True
+        end>
     end
   end
 end

@@ -14,6 +14,10 @@ type
     qry1: TADOQuery;
     bspngmglstPngImglst64: TbsPngImageList;
     bspngmglst32: TbsPngImageList;
+    qryCustomer: TADOQuery;
+    dsCustomer: TDataSource;
+    qryCustomerTrack: TADOQuery;
+    dsCustomerTrack: TDataSource;
   private
     { Private declarations }
   public

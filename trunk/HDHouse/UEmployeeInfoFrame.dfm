@@ -1,16 +1,9 @@
 object EmployeeInfoFrame: TEmployeeInfoFrame
   Left = 0
   Top = 0
-  Width = 482
-  Height = 343
+  Width = 504
+  Height = 372
   TabOrder = 0
-  object Label2: TLabel
-    Left = 16
-    Top = 25
-    Width = 48
-    Height = 13
-    Caption = #21592#24037#32534#21495
-  end
   object lbl10: TbsSkinStdLabel
     Left = 104
     Top = 264
@@ -27,38 +20,6 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     SkinDataName = 'stdlabel'
     Caption = 'lbl10'
   end
-  object lbl4: TbsSkinStdLabel
-    Left = 256
-    Top = 56
-    Width = 39
-    Height = 13
-    EllipsType = bsetNone
-    UseSkinFont = True
-    UseSkinColor = True
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = -11
-    DefaultFont.Name = 'MS Sans Serif'
-    DefaultFont.Style = []
-    SkinDataName = 'stdlabel'
-    Caption = #24615'     '#21035
-  end
-  object lbl15: TbsSkinStdLabel
-    Left = 264
-    Top = 88
-    Width = 39
-    Height = 13
-    EllipsType = bsetNone
-    UseSkinFont = True
-    UseSkinColor = True
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = -11
-    DefaultFont.Name = 'MS Sans Serif'
-    DefaultFont.Style = []
-    SkinDataName = 'stdlabel'
-    Caption = #23398'     '#21382
-  end
   object GroupBox1: TGroupBox
     Left = 24
     Top = 16
@@ -69,7 +30,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl11: TbsSkinStdLabel
       Left = 16
       Top = 34
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -85,7 +46,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl12: TbsSkinStdLabel
       Left = 16
       Top = 56
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -101,7 +62,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl13: TbsSkinStdLabel
       Left = 16
       Top = 80
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -117,7 +78,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl14: TbsSkinStdLabel
       Left = 16
       Top = 104
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -133,7 +94,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl1: TbsSkinStdLabel
       Left = 16
       Top = 128
-      Width = 45
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -144,12 +105,12 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
-      Caption = #31821'       '#36143
+      Caption = #31821'         '#36143
     end
     object lbl2: TbsSkinStdLabel
       Left = 16
       Top = 152
-      Width = 45
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -160,12 +121,12 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
-      Caption = #22320'       '#22336
+      Caption = #22320'         '#22336
     end
     object lbl3: TbsSkinStdLabel
       Left = 16
       Top = 176
-      Width = 45
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -176,12 +137,12 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
-      Caption = #22791'       '#27880
+      Caption = #22791'         '#27880
     end
     object lbl5: TbsSkinStdLabel
       Left = 232
       Top = 32
-      Width = 48
+      Width = 65
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -192,12 +153,12 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
-      Caption = #24615'        '#21035
+      Caption = #24615'          '#21035
     end
     object lbl6: TbsSkinStdLabel
       Left = 232
       Top = 56
-      Width = 48
+      Width = 65
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -208,12 +169,12 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
-      Caption = #23398'        '#21382
+      Caption = #23398'          '#21382
     end
     object lbl7: TbsSkinStdLabel
       Left = 232
       Top = 80
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -229,7 +190,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl8: TbsSkinStdLabel
       Left = 232
       Top = 104
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -245,7 +206,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl9: TbsSkinStdLabel
       Left = 232
       Top = 128
-      Width = 48
+      Width = 57
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -259,7 +220,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       Caption = #23601#20540#26085#26399
     end
     object mmo1: TbsSkinDBMemo
-      Left = 72
+      Left = 80
       Top = 174
       Width = 345
       Height = 65
@@ -284,7 +245,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       SkinDataName = 'memo'
     end
     object edt1: TbsSkinDBEdit
-      Left = 72
+      Left = 80
       Top = 32
       Width = 137
       Height = 18
@@ -316,7 +277,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       AutoSize = False
     end
     object edt2: TbsSkinDBEdit
-      Left = 72
+      Left = 80
       Top = 54
       Width = 137
       Height = 18
@@ -348,7 +309,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       AutoSize = False
     end
     object edt3: TbsSkinDBEdit
-      Left = 72
+      Left = 80
       Top = 78
       Width = 137
       Height = 18
@@ -380,7 +341,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       AutoSize = False
     end
     object edt4: TbsSkinDBEdit
-      Left = 72
+      Left = 80
       Top = 102
       Width = 137
       Height = 18
@@ -412,7 +373,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       AutoSize = False
     end
     object edt5: TbsSkinDBEdit
-      Left = 72
+      Left = 80
       Top = 126
       Width = 137
       Height = 18
@@ -444,7 +405,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       AutoSize = False
     end
     object edt6: TbsSkinDBEdit
-      Left = 72
+      Left = 80
       Top = 150
       Width = 137
       Height = 18
@@ -476,7 +437,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       AutoSize = False
     end
     object cbb1: TbsSkinDBComboBox
-      Left = 296
+      Left = 304
       Top = 28
       Width = 121
       Height = 20
@@ -530,7 +491,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       ParentFont = False
     end
     object cbb2: TbsSkinDBComboBox
-      Left = 296
+      Left = 304
       Top = 53
       Width = 121
       Height = 20
@@ -584,7 +545,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       ParentFont = False
     end
     object cbb3: TbsSkinDBComboBox
-      Left = 296
+      Left = 304
       Top = 77
       Width = 120
       Height = 20
@@ -638,7 +599,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       ParentFont = False
     end
     object edt7: TbsSkinDBDateEdit
-      Left = 296
+      Left = 304
       Top = 102
       Width = 121
       Height = 18
@@ -687,7 +648,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
       AutoSize = False
     end
     object edt9: TbsSkinDBDateEdit
-      Left = 296
+      Left = 304
       Top = 126
       Width = 121
       Height = 18

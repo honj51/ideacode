@@ -31,7 +31,7 @@ var
   CustomerTrackForm: TCustomerTrackForm;
 
 implementation
-
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

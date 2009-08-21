@@ -2,7 +2,7 @@ object CustomerListView: TCustomerListView
   Left = 0
   Top = 0
   Width = 953
-  Height = 256
+  Height = 249
   TabOrder = 0
   object btn1: TbsSkinButtonLabel
     Left = 288
@@ -171,7 +171,7 @@ object CustomerListView: TCustomerListView
   end
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
-    Top = 48
+    Top = 41
     Width = 953
     Height = 208
     HintImageIndex = 0

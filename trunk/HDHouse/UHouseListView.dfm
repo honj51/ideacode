@@ -1,7 +1,7 @@
 object HouseListView: THouseListView
   Left = 0
   Top = 0
-  Width = 969
+  Width = 1041
   Height = 291
   TabOrder = 0
   object lbl1: TLabel
@@ -152,14 +152,14 @@ object HouseListView: THouseListView
   object bvl1: TBevel
     Left = 0
     Top = 0
-    Width = 969
+    Width = 1041
     Height = 2
     Align = alTop
   end
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 48
-    Width = 969
+    Width = 1033
     Height = 221
     HintImageIndex = 0
     TabOrder = 0

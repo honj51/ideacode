@@ -11,17 +11,6 @@ uses
 
 type
   TframeHouseList = class(TFrame)
-    Edit1: TEdit;
-    bsSkinButtonLabel2: TbsSkinButtonLabel;
-    bsSkinButton1: TbsSkinButton;
-    bsSkinButton2: TbsSkinButton;
-    bsSkinButton3: TbsSkinButton;
-    bsSkinButton4: TbsSkinButton;
-    bvl1: TBevel;
-    bsSkinCheckRadioBox1: TbsSkinCheckRadioBox;
-    bsSkinCheckRadioBox2: TbsSkinCheckRadioBox;
-    bsSkinCheckRadioBox3: TbsSkinCheckRadioBox;
-    bsSkinDBGrid1: TbsSkinDBGrid;
     bsknpgcntrl1: TbsSkinPageControl;
     bsSkinTabSheet1: TbsSkinTabSheet;
     bsSkinTabSheet2: TbsSkinTabSheet;
@@ -29,12 +18,31 @@ type
     bskntbsht2: TbsSkinTabSheet;
     mmo1: TbsSkinDBMemo;
     mmo2: TbsSkinDBMemo;
-    bskndbgrd1: TbsSkinDBGrid;
     bskndbgrd2: TbsSkinDBGrid;
     bsknfrm1: TbsSkinFrame;
     bsSkinData1: TbsSkinData;
     bscmprsdstrdskn1: TbsCompressedStoredSkin;
+    bskndbgrd1: TbsSkinDBGrid;
+    bsknpnl1: TbsSkinPanel;
+    bsknscrlbrHouseListDown: TbsSkinScrollBar;
+    bsknscrlbrHouseListRight: TbsSkinScrollBar;
+    bsSkinDBGrid1: TbsSkinDBGrid;
+    bsknpnl2: TbsSkinPanel;
+    bvl1: TBevel;
+    Edit1: TEdit;
     lbl1: TbsSkinStdLabel;
+    bsSkinButton1: TbsSkinButton;
+    bsSkinButton2: TbsSkinButton;
+    bsSkinButton3: TbsSkinButton;
+    bsSkinButton4: TbsSkinButton;
+    bsSkinCheckRadioBox1: TbsSkinCheckRadioBox;
+    bsSkinCheckRadioBox2: TbsSkinCheckRadioBox;
+    bsSkinCheckRadioBox3: TbsSkinCheckRadioBox;
+    bsSkinButtonLabel2: TbsSkinButtonLabel;
+    bsknscrlbrAutoClientDown: TbsSkinScrollBar;
+    bsknscrlbrAutoClientRight: TbsSkinScrollBar;
+    bsknscrlbrTrackRecordDown: TbsSkinScrollBar;
+    bsknscrlbrTrackRecordRight: TbsSkinScrollBar;
   private
     { Private declarations }
   public
@@ -42,7 +50,6 @@ type
   end;
 
 implementation
-
 {$R *.dfm}
 
 end.

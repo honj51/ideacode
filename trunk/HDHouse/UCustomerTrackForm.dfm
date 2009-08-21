@@ -1,6 +1,6 @@
 object CustomerTrackForm: TCustomerTrackForm
-  Left = 240
-  Top = 95
+  Left = 277
+  Top = 133
   Width = 956
   Height = 544
   Caption = #23458#25143#36319#36827
@@ -61,9 +61,154 @@ object CustomerTrackForm: TCustomerTrackForm
           Left = 768
         end
         inherited bskndbgrd1: TbsSkinDBGrid
-          Top = 41
           Width = 929
           Height = 353
+          DataSource = HDHouseDataModule.dsCustomer
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'khzy_bh'
+              Title.Caption = #23458#25143#32534#21495
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 123
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_dqzt'
+              Title.Caption = #24403#21069#29366#24577
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 87
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_yzxm'
+              Title.Caption = #23458#25143#22995#21517
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 92
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_djrq'
+              Title.Caption = #30331#35760#26085#26399
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 91
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_wymc'
+              Title.Caption = #29289#19994#21517#31216
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 103
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_mj'
+              Title.Caption = #38656#27714#38754#31215
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 85
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_qy'
+              Title.Caption = #25152#22788#21306#22495
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 112
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_wylb'
+              Title.Caption = #29289#19994#31867#21035
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 85
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_wssl'
+              Title.Caption = #25151#38388#25968#37327
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 96
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_zxcd'
+              Title.Caption = #35013#20462#31243#24230
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 96
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_fwly'
+              Title.Caption = #32622#19994#39038#38382
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 87
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khzy_jcnf1'
+              Title.Caption = #24314#25104#24180#20221
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 94
+              Visible = True
+            end>
         end
         inherited edt1: TEdit
           Width = 129
@@ -183,12 +328,20 @@ object CustomerTrackForm: TCustomerTrackForm
               Width = 944
             end
             inherited bskndbgrd1: TbsSkinDBGrid
-              Width = 944
-              Height = 144
+              Width = 925
+              Height = 125
               DefaultRowHeight = 18
               TitleFont.Color = clBtnText
               TitleFont.Height = 14
               TitleFont.Name = 'Arial'
+            end
+            inherited bsknscrlbr1: TbsSkinScrollBar
+              Top = 174
+              Width = 944
+            end
+            inherited bsknscrlbr2: TbsSkinScrollBar
+              Left = 925
+              Height = 125
             end
           end
         end

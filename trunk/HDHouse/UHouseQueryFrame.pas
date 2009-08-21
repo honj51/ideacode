@@ -27,7 +27,6 @@ type
     bsknchckrdbx4: TbsSkinCheckRadioBox;
     edt5: TbsSkinEdit;
     edt6: TbsSkinEdit;
-    lbl13: TbsSkinStdLabel;
     lbl11: TbsSkinStdLabel;
     lbl12: TbsSkinStdLabel;
     lbl4: TbsSkinStdLabel;

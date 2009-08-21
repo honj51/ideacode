@@ -10,7 +10,6 @@ uses
 type
   TEmployeeInfoFrame = class(TFrame)
     GroupBox1: TGroupBox;
-    Label2: TLabel;
     btn1: TbsSkinXFormButton;
     btn2: TbsSkinXFormButton;
     mmo1: TbsSkinDBMemo;
@@ -33,9 +32,7 @@ type
     lbl1: TbsSkinStdLabel;
     lbl2: TbsSkinStdLabel;
     lbl3: TbsSkinStdLabel;
-    lbl4: TbsSkinStdLabel;
     lbl5: TbsSkinStdLabel;
-    lbl15: TbsSkinStdLabel;
     lbl6: TbsSkinStdLabel;
     lbl7: TbsSkinStdLabel;
     lbl8: TbsSkinStdLabel;
