@@ -2,13 +2,13 @@ object CustomerAutoMatchView: TCustomerAutoMatchView
   Left = 0
   Top = 0
   Width = 760
-  Height = 514
+  Height = 209
   TabOrder = 0
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 0
     Width = 741
-    Height = 495
+    Height = 190
     HintImageIndex = 0
     TabOrder = 0
     SkinDataName = 'grid'
@@ -131,7 +131,7 @@ object CustomerAutoMatchView: TCustomerAutoMatchView
   end
   object bsknscrlbr1: TbsSkinScrollBar
     Left = 0
-    Top = 495
+    Top = 190
     Width = 760
     Height = 19
     HintImageIndex = 0

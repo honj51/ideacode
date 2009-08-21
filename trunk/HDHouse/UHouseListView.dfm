@@ -2,7 +2,7 @@ object HouseListView: THouseListView
   Left = 0
   Top = 0
   Width = 969
-  Height = 261
+  Height = 291
   TabOrder = 0
   object lbl1: TLabel
     Left = 16
@@ -168,6 +168,7 @@ object HouseListView: THouseListView
     WallpaperStretch = False
     UseSkinFont = True
     UseSkinCellHeight = True
+    HScrollBar = bsknscrlbr1
     GridLineColor = clWindowText
     DefaultCellHeight = 20
     Font.Charset = DEFAULT_CHARSET
@@ -493,5 +494,34 @@ object HouseListView: THouseListView
     RightImageHotIndex = -1
     RightImageDownIndex = -1
     AutoSize = False
+  end
+  object bsknscrlbr1: TbsSkinScrollBar
+    Left = 0
+    Top = 272
+    Width = 969
+    Height = 19
+    HintImageIndex = 0
+    TabOrder = 7
+    SkinDataName = 'hscrollbar'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 19
+    UseSkinFont = True
+    Both = False
+    BothMarkerWidth = 19
+    BothSkinDataName = 'bothhscrollbar'
+    CanFocused = False
+    Align = alBottom
+    Kind = sbHorizontal
+    PageSize = 0
+    Min = 0
+    Max = 127
+    Position = 0
+    SmallChange = 127
+    LargeChange = 127
   end
 end

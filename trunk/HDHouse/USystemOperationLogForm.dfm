@@ -1,6 +1,6 @@
 object SystemOperationLogForm: TSystemOperationLogForm
-  Left = 308
-  Top = 270
+  Left = 307
+  Top = 195
   Width = 780
   Height = 570
   BorderIcons = [biSystemMenu]
@@ -103,7 +103,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     object lbl1: TbsSkinStdLabel
       Left = 40
       Top = 35
-      Width = 57
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -138,12 +138,12 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 119
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-20'
+      Text = '2009-08-21'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40045.728739143510000000
+      Date = 40046.456138055550000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -186,12 +186,12 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 120
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-20'
+      Text = '2009-08-21'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40045.728739143510000000
+      Date = 40046.456138055550000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
