@@ -4,13 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, bsSkinBoxCtrls, bsdbctrls, StdCtrls, Mask, bsSkinCtrls;
+  Dialogs, bsSkinBoxCtrls, bsdbctrls, StdCtrls, Mask, bsSkinCtrls,
+  BusinessSkinForm;
 
 type
   TOperatorInfoForm = class(TForm)
     bskngrpbx1: TbsSkinGroupBox;
-    btn1: TbsSkinButton;
-    btn2: TbsSkinButton;
     lbl1: TbsSkinStdLabel;
     lbl2: TbsSkinStdLabel;
     lbl3: TbsSkinStdLabel;
@@ -23,6 +22,11 @@ type
     cbb2: TbsSkinDBComboBox;
     edt3: TbsSkinEdit;
     edt4: TbsSkinEdit;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    bsknpnl1: TbsSkinPanel;
+    btn1: TbsSkinButton;
+    btn2: TbsSkinButton;
+    procedure btn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,7 +37,12 @@ var
   OperatorInfoForm: TOperatorInfoForm;
 
 implementation
-
+          uses UHDHouseDataModule;
 {$R *.dfm}
+
+procedure TOperatorInfoForm.btn2Click(Sender: TObject);
+begin
+OperatorInfoForm.Close;
+end;
 
 end.

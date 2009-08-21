@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, bsSkinCtrls, bsSkinGrids, bsDBGrids;
+  Dialogs, bsSkinCtrls, bsSkinGrids, bsDBGrids, BusinessSkinForm;
 
 type
   TContractSampleSettingForm = class(TForm)
@@ -16,6 +16,7 @@ type
     btn4: TbsSkinSpeedButton;
     bskndbgrd1: TbsSkinDBGrid;
     bsknscrlbr1: TbsSkinScrollBar;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
   private
     { Private declarations }
   public
@@ -26,7 +27,7 @@ var
   ContractSampleSettingForm: TContractSampleSettingForm;
 
 implementation
-
+        uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

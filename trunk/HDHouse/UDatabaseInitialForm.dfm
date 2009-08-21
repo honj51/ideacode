@@ -1,9 +1,11 @@
 object DatabaseInitialForm: TDatabaseInitialForm
-  Left = 351
-  Top = 319
-  Width = 426
-  Height = 304
+  Left = 545
+  Top = 158
+  AutoScroll = False
+  BorderIcons = []
   Caption = #21021#22987#21270#25968#25454#24211
+  ClientHeight = 270
+  ClientWidth = 419
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,12 +16,13 @@ object DatabaseInitialForm: TDatabaseInitialForm
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
-    Left = 8
-    Top = 16
-    Width = 401
-    Height = 201
+    Left = 0
+    Top = 0
+    Width = 419
+    Height = 216
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -45,6 +48,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
     NumGlyphs = 1
     Spacing = 2
     Caption = #21021#22987#21270#36873#39033
+    Align = alClient
     object lbl1: TbsSkinStdLabel
       Left = 16
       Top = 35
@@ -128,7 +132,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
     object lbl6: TbsSkinStdLabel
       Left = 208
       Top = 107
-      Width = 33
+      Width = 24
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -144,7 +148,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
     object lbl7: TbsSkinStdLabel
       Left = 208
       Top = 130
-      Width = 33
+      Width = 24
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -164,6 +168,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Height = 25
       HintImageIndex = 0
       TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -179,6 +184,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       ImageIndex = 0
       Flat = True
       UseSkinFontColor = True
+      TabStop = True
       CanFocused = True
       Radio = False
       Checked = False
@@ -192,6 +198,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Height = 25
       HintImageIndex = 0
       TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -221,6 +228,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Height = 25
       HintImageIndex = 0
       TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -250,6 +258,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Height = 25
       HintImageIndex = 0
       TabOrder = 3
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -279,6 +288,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Height = 25
       HintImageIndex = 0
       TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -307,12 +317,12 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Width = 81
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-20'
+      Text = '2009-08-21'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40045.709525092600000000
+      Date = 40046.756375497690000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -333,6 +343,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -355,12 +366,12 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Width = 81
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-20'
+      Text = '2009-08-21'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40045.709562534720000000
+      Date = 40046.756375497690000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -381,6 +392,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -414,6 +426,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -449,6 +462,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -468,14 +482,15 @@ object DatabaseInitialForm: TDatabaseInitialForm
       BorderStyle = bsNone
     end
   end
-  object btn1: TbsSkinButton
-    Left = 224
-    Top = 232
-    Width = 75
-    Height = 25
+  object bsknpnl1: TbsSkinPanel
+    Left = 0
+    Top = 216
+    Width = 419
+    Height = 54
     HintImageIndex = 0
     TabOrder = 1
-    SkinDataName = 'button'
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -484,50 +499,139 @@ object DatabaseInitialForm: TDatabaseInitialForm
     DefaultWidth = 0
     DefaultHeight = 0
     UseSkinFont = True
-    ImageIndex = -1
-    AlwaysShowLayeredFrame = False
-    UseSkinSize = True
-    UseSkinFontColor = True
-    RepeatMode = False
-    RepeatInterval = 100
-    AllowAllUp = False
-    TabStop = True
-    CanFocused = True
-    Down = False
-    GroupIndex = 0
-    Caption = #25191#34892
+    ImagePosition = bsipDefault
+    TransparentMode = False
+    CaptionImageIndex = -1
+    RealHeight = -1
+    AutoEnabledControls = True
+    CheckedMode = False
+    Checked = False
+    DefaultAlignment = taLeftJustify
+    DefaultCaptionHeight = 22
+    BorderStyle = bvFrame
+    CaptionMode = False
+    RollUpMode = False
+    RollUpState = False
     NumGlyphs = 1
-    Spacing = 1
+    Spacing = 2
+    Caption = 'bsknpnl1'
+    Align = alBottom
+    object btn1: TbsSkinButton
+      Left = 203
+      Top = 13
+      Width = 75
+      Height = 25
+      HintImageIndex = 0
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'button'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageIndex = -1
+      AlwaysShowLayeredFrame = False
+      UseSkinSize = True
+      UseSkinFontColor = True
+      RepeatMode = False
+      RepeatInterval = 100
+      AllowAllUp = False
+      TabStop = True
+      CanFocused = True
+      Down = False
+      GroupIndex = 0
+      Caption = #25191#34892
+      NumGlyphs = 1
+      Spacing = 1
+    end
+    object btn2: TbsSkinButton
+      Left = 299
+      Top = 13
+      Width = 75
+      Height = 25
+      HintImageIndex = 0
+      TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'button'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageIndex = -1
+      AlwaysShowLayeredFrame = False
+      UseSkinSize = True
+      UseSkinFontColor = True
+      RepeatMode = False
+      RepeatInterval = 100
+      AllowAllUp = False
+      TabStop = True
+      CanFocused = True
+      Down = False
+      GroupIndex = 0
+      Caption = #21462#28040
+      NumGlyphs = 1
+      Spacing = 1
+      OnClick = btn2Click
+    end
   end
-  object btn2: TbsSkinButton
-    Left = 320
-    Top = 232
-    Width = 75
-    Height = 25
-    HintImageIndex = 0
-    TabOrder = 2
-    SkinDataName = 'button'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    ImageIndex = -1
-    AlwaysShowLayeredFrame = False
-    UseSkinSize = True
-    UseSkinFontColor = True
-    RepeatMode = False
-    RepeatInterval = 100
-    AllowAllUp = False
-    TabStop = True
-    CanFocused = True
-    Down = False
-    GroupIndex = 0
-    Caption = #21462#28040
-    NumGlyphs = 1
-    Spacing = 1
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu, biRollUp]
+    Left = 48
+    Top = 224
   end
 end

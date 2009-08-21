@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UHouseAutoMatchView, UCustomerSecureInfoView,
   UDetailRequirementInfoView, UCustomerListView, ComCtrls, bsSkinTabs,
-  UDataOperatoBarView;
+  UDataOperateBarView;
 
 type
   TCustomerDetailsForm = class(TForm)

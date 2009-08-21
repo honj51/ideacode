@@ -19,10 +19,27 @@ object CustomerDetailsForm: TCustomerDetailsForm
     Width = 952
     Height = 75
     Align = alTop
+    AutoScroll = False
     TabOrder = 0
     inherited bskntlbr1: TbsSkinToolBar
       Width = 952
+      Height = 75
       BorderStyle = bvFrame
+      inherited btn1: TbsSkinSpeedButton
+        Top = 5
+      end
+      inherited btn2: TbsSkinSpeedButton
+        Top = 5
+      end
+      inherited btn3: TbsSkinSpeedButton
+        Top = 5
+      end
+      inherited btn4: TbsSkinSpeedButton
+        Top = 5
+      end
+      inherited btn5: TbsSkinSpeedButton
+        Top = 5
+      end
     end
   end
   object bsknpgcntrlPageC: TbsSkinPageControl

@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, bsSkinCtrls, StdCtrls, Mask, bsSkinBoxCtrls, bsSkinGrids,
-  bsDBGrids;
+  bsDBGrids, BusinessSkinForm;
 
 type
   TSystemOperationLogForm = class(TForm)
@@ -19,6 +19,7 @@ type
     btn2: TbsSkinButton;
     bsknscrlbr1: TbsSkinScrollBar;
     bsknscrlbr2: TbsSkinScrollBar;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
   private
     { Private declarations }
   public
@@ -29,7 +30,7 @@ var
   SystemOperationLogForm: TSystemOperationLogForm;
 
 implementation
-
+      uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

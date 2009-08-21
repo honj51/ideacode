@@ -4,13 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls;
+  Dialogs, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls,
+  BusinessSkinForm;
 
 type
   TCompanyInfoSettingForm = class(TForm)
     bskngrpbx1: TbsSkinGroupBox;
-    btn1: TbsSkinButton;
-    btn2: TbsSkinButton;
     lbl1: TbsSkinStdLabel;
     lbl2: TbsSkinStdLabel;
     lbl3: TbsSkinStdLabel;
@@ -21,6 +20,11 @@ type
     edt3: TbsSkinDBEdit;
     edt4: TbsSkinDBEdit;
     edt5: TbsSkinDBEdit;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    bsknpnl1: TbsSkinPanel;
+    btn2: TbsSkinButton;
+    btn1: TbsSkinButton;
+    procedure btn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,7 +35,12 @@ var
   CompanyInfoSettingForm: TCompanyInfoSettingForm;
 
 implementation
-
+      uses UHDHouseDataModule;
 {$R *.dfm}
+
+procedure TCompanyInfoSettingForm.btn2Click(Sender: TObject);
+begin
+CompanyInfoSettingForm.Close;
+end;
 
 end.

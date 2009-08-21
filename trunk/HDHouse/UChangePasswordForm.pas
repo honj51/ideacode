@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, bsSkinCtrls, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls;
+  Dialogs, bsSkinCtrls, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls,
+  BusinessSkinForm;
 
 type
   TChangePasswordForm = class(TForm)
@@ -17,8 +18,11 @@ type
     edt2: TbsSkinEdit;
     edt3: TbsSkinEdit;
     edt4: TbsSkinEdit;
-    btn1: TbsSkinButton;
+    bsknpnl1: TbsSkinPanel;
     btn2: TbsSkinButton;
+    btn1: TbsSkinButton;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    procedure btn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,7 +33,12 @@ var
   ChangePasswordForm: TChangePasswordForm;
 
 implementation
-
+   uses UHDHouseDataModule;
 {$R *.dfm}
+
+procedure TChangePasswordForm.btn2Click(Sender: TObject);
+begin
+ChangePasswordForm.Close;
+end;
 
 end.
