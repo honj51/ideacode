@@ -1,9 +1,9 @@
 object HDHouseDataModule: THDHouseDataModule
   OldCreateOrder = False
-  Left = 138
-  Top = 331
+  Left = 207
+  Top = 195
   Height = 315
-  Width = 439
+  Width = 648
   object ds1: TDataSource
     DataSet = qry1
     Left = 41
@@ -20,7 +20,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 32
   end
   object con1: TADOConnection
-    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Project\delphi\H' +
       'DHouse\database\hdhouse.mdb;Persist Security Info=False'
@@ -1529,7 +1528,6 @@ object HDHouseDataModule: THDHouseDataModule
       3E2BAC}
   end
   object qry1: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
