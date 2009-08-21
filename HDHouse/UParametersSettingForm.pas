@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, bsSkinCtrls, bsSkinGrids, bsDBGrids, ComCtrls;
+  Dialogs, bsSkinCtrls, bsSkinGrids, bsDBGrids, ComCtrls, BusinessSkinForm;
 
 type
   TParametersSettingForm = class(TForm)
@@ -17,6 +17,7 @@ type
     btn1: TbsSkinSpeedButton;
     btn2: TbsSkinSpeedButton;
     btn3: TbsSkinSpeedButton;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
   private
     { Private declarations }
   public
@@ -27,7 +28,7 @@ var
   ParametersSettingForm: TParametersSettingForm;
 
 implementation
-
+    uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

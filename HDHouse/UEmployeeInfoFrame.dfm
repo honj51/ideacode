@@ -61,7 +61,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
   end
   object GroupBox1: TGroupBox
     Left = 24
-    Top = 24
+    Top = 16
     Width = 441
     Height = 265
     Caption = #21592#24037#20449#24687

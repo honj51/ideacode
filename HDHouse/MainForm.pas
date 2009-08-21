@@ -7,7 +7,7 @@ uses
   Dialogs, BusinessSkinForm, bsSkinData, StdCtrls, bsSkinCtrls,
   ImgList, bsPngImageList, ComCtrls, bsSkinTabs, bsColorCtrls, bsDialogs,
   bsMessages, HouseListFrame, DB, ADODB, UCustomerAutoMatchView,
-  UTrackInfoView, UDataOperatoBarView, UDetailRequirementInfoView,
+  UTrackInfoView, UDataOperateBarView, UDetailRequirementInfoView,
   UTrackRecordView;
 
 type
@@ -29,8 +29,6 @@ type
     bskntbsht5: TbsSkinTabSheet;
     bsknmsg1: TbsSkinMessage;
     frmhslst1: TframeHouseList;
-    CustomerAutoMatchView1: TCustomerAutoMatchView;
-    trckrcrdvw1: TTrackRecordView;
     btn8: TbsSkinButton;
     btn9: TbsSkinButton;
     btn10: TbsSkinButton;
@@ -41,8 +39,18 @@ type
     btn15: TbsSkinButton;
     btn16: TbsSkinButton;
     btn17: TbsSkinButton;
-    trcknfvw1: TTrackInfoView;
     procedure btn7Click(Sender: TObject);
+    procedure btn4Click(Sender: TObject);
+    procedure btn10Click(Sender: TObject);
+    procedure btn8Click(Sender: TObject);
+    procedure btn12Click(Sender: TObject);
+    procedure btn14Click(Sender: TObject);
+    procedure btn16Click(Sender: TObject);
+    procedure btn9Click(Sender: TObject);
+    procedure btn11Click(Sender: TObject);
+    procedure btn13Click(Sender: TObject);
+    procedure btn15Click(Sender: TObject);
+    procedure btn17Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,7 +61,9 @@ var
   formMain: TformMain;
 
 implementation
- uses UHDHouseDataModule;
+ uses UHDHouseDataModule,ULoginForm,UCompanyInfoSettingForm,UOperatePermissionSettingForm
+ ,UEmployeeManageForm,UChangePasswordForm,UContractSampleSettingForm,UDatabaseMantainForm
+ ,UDatabaseInitialForm,UParametersSettingForm,USystemOperationLogForm,UAboutForm;
 {$R *.dfm}
 
 procedure TformMain.btn7Click(Sender: TObject);
@@ -62,6 +72,61 @@ begin
   i := Self.bsknmsg1.MessageDlg2('真的要退出本系统吗？','提示信息', mtConfirmation, [mbYes,mbNo],0);
   if i = 6 then
     Application.Terminate;
+end;
+
+procedure TformMain.btn4Click(Sender: TObject);
+begin
+       LoginForm.ShowModal;
+end;
+
+procedure TformMain.btn10Click(Sender: TObject);
+begin
+      EmployeeManageForm.ShowModal;
+end;
+
+procedure TformMain.btn8Click(Sender: TObject);
+begin
+CompanyInfoSettingForm.ShowModal;
+end;
+
+procedure TformMain.btn12Click(Sender: TObject);
+begin
+  OperatePermissionSettingForm.ShowModal;
+end;
+
+procedure TformMain.btn14Click(Sender: TObject);
+begin
+     ChangePasswordForm.ShowModal;
+end;
+
+procedure TformMain.btn16Click(Sender: TObject);
+begin
+  ContractSampleSettingForm.ShowModal;
+end;
+
+procedure TformMain.btn9Click(Sender: TObject);
+begin
+         DatabaseMantainForm.ShowModal;
+end;
+
+procedure TformMain.btn11Click(Sender: TObject);
+begin
+  DatabaseInitialForm.ShowModal;
+end;
+
+procedure TformMain.btn13Click(Sender: TObject);
+begin
+     ParametersSettingForm.ShowModal;
+end;
+
+procedure TformMain.btn15Click(Sender: TObject);
+begin
+  SystemOperationLogForm.ShowModal;
+end;
+
+procedure TformMain.btn17Click(Sender: TObject);
+begin
+    AboutForm.ShowModal;
 end;
 
 end.

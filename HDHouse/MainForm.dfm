@@ -1,10 +1,10 @@
 object formMain: TformMain
-  Left = 257
-  Top = 132
+  Left = 264
+  Top = 123
   AutoScroll = False
   BiDiMode = bdLeftToRight
   BorderIcons = []
-  Caption = 'MainForm'
+  Caption = #20114#21160#25151#20135#20013#20171#31649#29702#36719#20214
   ClientHeight = 560
   ClientWidth = 998
   Color = clBtnFace
@@ -22,7 +22,7 @@ object formMain: TformMain
     Top = 90
     Width = 998
     Height = 470
-    ActivePage = bskntbsht2
+    ActivePage = bskntbsht5
     Align = alClient
     BiDiMode = bdRightToLeft
     Font.Charset = DEFAULT_CHARSET
@@ -30,6 +30,7 @@ object formMain: TformMain
     Font.Height = 14
     Font.Name = 'Arial'
     Font.Style = []
+    Images = HDHouseDataModule.bspngmglst32
     MultiLine = True
     ParentBiDiMode = False
     ParentFont = False
@@ -51,6 +52,7 @@ object formMain: TformMain
     DefaultFont.Style = []
     UseSkinFont = True
     DefaultItemHeight = 20
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'tab'
     object bskntbsht1: TbsSkinTabSheet
       Caption = #26085#24120#31649#29702
@@ -262,12 +264,6 @@ object formMain: TformMain
               Width = 874
             end
           end
-          inherited bsSkinTabSheet2: TbsSkinTabSheet
-            inherited mmo2: TbsSkinDBMemo
-              Width = 900
-              Height = 171
-            end
-          end
           inherited bskntbsht1: TbsSkinTabSheet
             inherited bskndbgrd1: TbsSkinDBGrid
               Width = 800
@@ -289,65 +285,12 @@ object formMain: TformMain
     end
     object bskntbsht2: TbsSkinTabSheet
       Caption = #25151#28304#31649#29702
-      inline CustomerAutoMatchView1: TCustomerAutoMatchView
-        Left = 14
-        Top = 67
-        Width = 840
-        Height = 410
-        TabOrder = 0
-        inherited bskndbgrd1: TbsSkinDBGrid
-          Width = 821
-          Height = 391
-          DefaultRowHeight = 18
-          TitleFont.Color = clBtnText
-          TitleFont.Height = 14
-          TitleFont.Name = 'Arial'
-        end
-        inherited bsSkinScrollBar1: TbsSkinScrollBar
-          Left = 821
-          Height = 391
-        end
-        inherited bsknscrlbr1: TbsSkinScrollBar
-          Top = 391
-          Width = 840
-        end
-      end
     end
     object bskntbsht4: TbsSkinTabSheet
       Caption = #20869#37096#32479#35745
-      inline trckrcrdvw1: TTrackRecordView
-        Left = 192
-        Top = 104
-        Width = 641
-        Height = 271
-        TabOrder = 0
-        inherited bskntlbr1: TbsSkinToolBar
-          Width = 641
-        end
-        inherited bskndbgrd1: TbsSkinDBGrid
-          Width = 622
-          DefaultRowHeight = 18
-          TitleFont.Color = clBtnText
-          TitleFont.Height = 14
-          TitleFont.Name = 'Arial'
-        end
-        inherited bsknscrlbr1: TbsSkinScrollBar
-          Width = 641
-        end
-        inherited bsknscrlbr2: TbsSkinScrollBar
-          Left = 622
-        end
-      end
     end
     object bskntbsht3: TbsSkinTabSheet
       Caption = #23458#25143#31649#29702
-      inline trcknfvw1: TTrackInfoView
-        Left = 104
-        Top = 112
-        Width = 505
-        Height = 306
-        TabOrder = 0
-      end
     end
     object bskntbsht5: TbsSkinTabSheet
       Caption = #31995#32479#35774#32622
@@ -355,9 +298,10 @@ object formMain: TformMain
         Left = 232
         Top = 120
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -365,7 +309,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -381,14 +325,16 @@ object formMain: TformMain
         Caption = #20844#21496#20449#24687#35774#32622
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn8Click
       end
       object btn9: TbsSkinButton
         Left = 376
         Top = 120
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 1
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -396,7 +342,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -412,14 +358,16 @@ object formMain: TformMain
         Caption = #25968#25454#24211#32500#25252
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn9Click
       end
       object btn10: TbsSkinButton
         Left = 232
         Top = 168
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 2
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -427,7 +375,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -443,14 +391,16 @@ object formMain: TformMain
         Caption = #21592#24037#31649#29702
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn10Click
       end
       object btn11: TbsSkinButton
         Left = 376
         Top = 168
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 3
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -458,7 +408,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -474,14 +424,16 @@ object formMain: TformMain
         Caption = #21021#22987#21270#25968#25454
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn11Click
       end
       object btn12: TbsSkinButton
         Left = 232
         Top = 216
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 4
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -489,7 +441,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -505,14 +457,16 @@ object formMain: TformMain
         Caption = #25805#20316#26435#38480#35774#32622
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn12Click
       end
       object btn13: TbsSkinButton
         Left = 376
         Top = 216
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 5
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -520,7 +474,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -536,14 +490,16 @@ object formMain: TformMain
         Caption = #21442#25968#20449#24687#35774#32622
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn13Click
       end
       object btn14: TbsSkinButton
         Left = 232
         Top = 264
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 6
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -551,7 +507,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -567,14 +523,16 @@ object formMain: TformMain
         Caption = #20462#25913#24403#21069#23494#30721
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn14Click
       end
       object btn15: TbsSkinButton
         Left = 376
         Top = 264
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 7
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -582,7 +540,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -598,14 +556,16 @@ object formMain: TformMain
         Caption = #31995#32479#25805#20316#26085#24535
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn15Click
       end
       object btn16: TbsSkinButton
         Left = 232
         Top = 312
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 8
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -613,7 +573,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -629,14 +589,16 @@ object formMain: TformMain
         Caption = #21512#21516#26679#26412#35774#32622
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn16Click
       end
       object btn17: TbsSkinButton
         Left = 376
         Top = 312
         Width = 100
-        Height = 30
+        Height = 40
         HintImageIndex = 0
         TabOrder = 9
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -644,7 +606,7 @@ object formMain: TformMain
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
         DefaultWidth = 100
-        DefaultHeight = 30
+        DefaultHeight = 40
         UseSkinFont = True
         ImageIndex = -1
         AlwaysShowLayeredFrame = False
@@ -660,6 +622,7 @@ object formMain: TformMain
         Caption = #20851#20110#26412#36719#20214
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn17Click
       end
     end
   end
@@ -670,6 +633,7 @@ object formMain: TformMain
     Height = 90
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'resizetoolpanel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -706,12 +670,14 @@ object formMain: TformMain
     AutoShowHideCaptions = False
     ShowCaptions = False
     Flat = False
+    Images = HDHouseDataModule.bspngmglstPngImglst64
     object btn1: TbsSkinSpeedButton
       Left = 24
       Top = 5
       Width = 80
       Height = 81
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -747,6 +713,7 @@ object formMain: TformMain
       Width = 80
       Height = 81
       HintImageIndex = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -782,6 +749,7 @@ object formMain: TformMain
       Width = 80
       Height = 81
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -817,6 +785,7 @@ object formMain: TformMain
       Width = 89
       Height = 81
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -845,6 +814,7 @@ object formMain: TformMain
       Align = alCustom
       Spacing = 1
       Layout = blGlyphTop
+      OnClick = btn4Click
     end
     object btn5: TbsSkinSpeedButton
       Left = 416
@@ -852,6 +822,7 @@ object formMain: TformMain
       Width = 89
       Height = 81
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -887,6 +858,7 @@ object formMain: TformMain
       Width = 89
       Height = 81
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -922,6 +894,7 @@ object formMain: TformMain
       Width = 89
       Height = 81
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -994,6 +967,7 @@ object formMain: TformMain
     DefMenuItemFont.Name = 'Arial'
     DefMenuItemFont.Style = []
     UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
     MinHeight = 0
     MinWidth = 0
     MaxHeight = 0
@@ -1001,8 +975,8 @@ object formMain: TformMain
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 960
-    Top = 456
+    Left = 840
+    Top = 24
   end
   object bsknmsg1: TbsSkinMessage
     ShowAgainFlag = False

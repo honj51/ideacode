@@ -1,9 +1,11 @@
 object OperatePermissionSettingForm: TOperatePermissionSettingForm
-  Left = 410
-  Top = 121
-  Width = 648
-  Height = 493
+  Left = 342
+  Top = 176
+  AutoScroll = False
+  BorderIcons = []
   Caption = #25805#20316#26435#38480#35774#32622' '
+  ClientHeight = 460
+  ClientWidth = 641
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,10 +18,11 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
   object bskngrpbx1: TbsSkinGroupBox
     Left = 0
     Top = 0
-    Width = 640
-    Height = 193
+    Width = 641
+    Height = 161
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -46,42 +49,14 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
     Spacing = 2
     Caption = #26435#38480#32452
     Align = alTop
-    object bskndbgrd1: TbsSkinDBGrid
-      Left = 1
-      Top = 23
-      Width = 496
-      Height = 169
-      HintImageIndex = 0
-      TabOrder = 0
-      SkinDataName = 'grid'
-      Transparent = False
-      WallpaperStretch = False
-      UseSkinFont = True
-      UseSkinCellHeight = True
-      HScrollBar = bsknscrlbr1
-      GridLineColor = clWindowText
-      DefaultCellHeight = 20
-      DrawGraphicFields = False
-      UseColumnsFont = False
-      DefaultRowHeight = 17
-      MouseWheelSupport = False
-      SaveMultiSelection = False
-      PickListBoxSkinDataName = 'listbox'
-      PickListBoxCaptionMode = False
-      Align = alLeft
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'MS Sans Serif'
-      TitleFont.Style = []
-    end
     object btn1: TbsSkinButton
-      Left = 536
-      Top = 48
+      Left = 520
+      Top = 40
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -107,12 +82,13 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Spacing = 1
     end
     object btn2: TbsSkinButton
-      Left = 536
-      Top = 88
+      Left = 520
+      Top = 80
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -138,12 +114,13 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Spacing = 1
     end
     object btn3: TbsSkinButton
-      Left = 536
-      Top = 128
+      Left = 520
+      Top = 120
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -168,44 +145,142 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       NumGlyphs = 1
       Spacing = 1
     end
-    object bsknscrlbr1: TbsSkinScrollBar
-      Left = 497
+    object bsknpnl2: TbsSkinPanel
+      Left = 1
       Top = 23
-      Width = 19
-      Height = 169
+      Width = 497
+      Height = 137
       HintImageIndex = 0
-      TabOrder = 4
-      Visible = False
-      SkinDataName = 'vscrollbar'
+      TabOrder = 3
+      SkinDataName = 'panel'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
       DefaultFont.Height = 14
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
-      DefaultWidth = 19
+      DefaultWidth = 0
       DefaultHeight = 0
       UseSkinFont = True
-      Both = False
-      BothMarkerWidth = 19
-      BothSkinDataName = 'bothhscrollbar'
-      CanFocused = False
+      ImagePosition = bsipDefault
+      TransparentMode = False
+      CaptionImageIndex = -1
+      RealHeight = -1
+      AutoEnabledControls = True
+      CheckedMode = False
+      Checked = False
+      DefaultAlignment = taLeftJustify
+      DefaultCaptionHeight = 22
+      BorderStyle = bvFrame
+      CaptionMode = False
+      RollUpMode = False
+      RollUpState = False
+      NumGlyphs = 1
+      Spacing = 2
+      Caption = 'bsknpnl2'
       Align = alLeft
-      Kind = sbVertical
-      PageSize = 0
-      Min = 0
-      Max = 0
-      Position = 0
-      SmallChange = 1
-      LargeChange = 1
+      object bskndbgrd1: TbsSkinDBGrid
+        Left = 1
+        Top = 1
+        Width = 476
+        Height = 116
+        HintImageIndex = 0
+        TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'grid'
+        Transparent = False
+        WallpaperStretch = False
+        UseSkinFont = True
+        UseSkinCellHeight = True
+        HScrollBar = bsknscrlbr4
+        VScrollBar = bsknscrlbr1
+        GridLineColor = clWindowText
+        DefaultCellHeight = 20
+        DrawGraphicFields = False
+        UseColumnsFont = False
+        DefaultRowHeight = 17
+        MouseWheelSupport = False
+        SaveMultiSelection = False
+        PickListBoxSkinDataName = 'listbox'
+        PickListBoxCaptionMode = False
+        Align = alClient
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'MS Sans Serif'
+        TitleFont.Style = []
+      end
+      object bsknscrlbr1: TbsSkinScrollBar
+        Left = 477
+        Top = 1
+        Width = 19
+        Height = 116
+        HintImageIndex = 0
+        TabOrder = 1
+        Visible = False
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'vscrollbar'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 19
+        DefaultHeight = 0
+        UseSkinFont = True
+        Both = False
+        BothMarkerWidth = 19
+        BothSkinDataName = 'bothhscrollbar'
+        CanFocused = False
+        Align = alRight
+        Kind = sbVertical
+        PageSize = 0
+        Min = 0
+        Max = 0
+        Position = 0
+        SmallChange = 1
+        LargeChange = 1
+      end
+      object bsknscrlbr4: TbsSkinScrollBar
+        Left = 1
+        Top = 117
+        Width = 495
+        Height = 19
+        HintImageIndex = 0
+        TabOrder = 2
+        Visible = False
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'hscrollbar'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 0
+        DefaultHeight = 19
+        UseSkinFont = True
+        Both = False
+        BothMarkerWidth = 19
+        BothSkinDataName = 'bothhscrollbar'
+        CanFocused = False
+        Align = alBottom
+        Kind = sbHorizontal
+        PageSize = 0
+        Min = 0
+        Max = 0
+        Position = 0
+        SmallChange = 1
+        LargeChange = 1
+      end
     end
   end
   object bskngrpbx2: TbsSkinGroupBox
     Left = 0
-    Top = 193
-    Width = 640
-    Height = 266
+    Top = 161
+    Width = 641
+    Height = 299
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -232,97 +307,14 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
     Spacing = 2
     Caption = #25805#20316#21592
     Align = alClient
-    object bskndbgrd2: TbsSkinDBGrid
-      Left = 1
-      Top = 23
-      Width = 496
-      Height = 242
-      HintImageIndex = 0
-      TabOrder = 0
-      SkinDataName = 'grid'
-      Transparent = False
-      WallpaperStretch = False
-      UseSkinFont = True
-      UseSkinCellHeight = True
-      HScrollBar = bsknscrlbr2
-      GridLineColor = clWindowText
-      DefaultCellHeight = 20
-      DrawGraphicFields = False
-      UseColumnsFont = False
-      DefaultRowHeight = 17
-      MouseWheelSupport = False
-      SaveMultiSelection = False
-      PickListBoxSkinDataName = 'listbox'
-      PickListBoxCaptionMode = False
-      Align = alLeft
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'MS Sans Serif'
-      TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          FieldName = #25152#23646#26435#38480#32452
-          Width = 120
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = #25805#20316#21592#32534#21495
-          Width = 120
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = #25805#20316#21592#22995#21517
-          Width = 120
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = #24403#21069#29366#24577
-          Width = 120
-          Visible = True
-        end>
-    end
-    object bsknscrlbr2: TbsSkinScrollBar
-      Left = 497
-      Top = 23
-      Width = 19
-      Height = 242
-      HintImageIndex = 0
-      TabOrder = 1
-      Visible = False
-      SkinDataName = 'vscrollbar'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 19
-      DefaultHeight = 0
-      UseSkinFont = True
-      Both = False
-      BothMarkerWidth = 19
-      BothSkinDataName = 'bothhscrollbar'
-      CanFocused = False
-      Align = alLeft
-      Kind = sbVertical
-      PageSize = 0
-      Min = 0
-      Max = 0
-      Position = 0
-      SmallChange = 1
-      LargeChange = 1
-    end
     object btn4: TbsSkinButton
-      Left = 544
-      Top = 160
+      Left = 528
+      Top = 232
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -348,12 +340,13 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Spacing = 1
     end
     object btn5: TbsSkinButton
-      Left = 544
-      Top = 120
+      Left = 528
+      Top = 184
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -379,12 +372,13 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Spacing = 1
     end
     object btn6: TbsSkinButton
-      Left = 544
-      Top = 80
+      Left = 528
+      Top = 136
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -409,5 +403,208 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       NumGlyphs = 1
       Spacing = 1
     end
+    object bsknpnl1: TbsSkinPanel
+      Left = 1
+      Top = 23
+      Width = 497
+      Height = 275
+      HintImageIndex = 0
+      TabOrder = 3
+      SkinDataName = 'panel'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImagePosition = bsipDefault
+      TransparentMode = False
+      CaptionImageIndex = -1
+      RealHeight = -1
+      AutoEnabledControls = True
+      CheckedMode = False
+      Checked = False
+      DefaultAlignment = taLeftJustify
+      DefaultCaptionHeight = 22
+      BorderStyle = bvFrame
+      CaptionMode = False
+      RollUpMode = False
+      RollUpState = False
+      NumGlyphs = 1
+      Spacing = 2
+      Caption = 'bsknpnl1'
+      Align = alLeft
+      object bskndbgrd2: TbsSkinDBGrid
+        Left = 1
+        Top = 1
+        Width = 476
+        Height = 254
+        HintImageIndex = 0
+        TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'grid'
+        Transparent = False
+        WallpaperStretch = False
+        UseSkinFont = True
+        UseSkinCellHeight = True
+        HScrollBar = bsknscrlbr2
+        VScrollBar = bsknscrlbr3
+        GridLineColor = clWindowText
+        DefaultCellHeight = 20
+        DrawGraphicFields = False
+        UseColumnsFont = False
+        DefaultRowHeight = 17
+        MouseWheelSupport = False
+        SaveMultiSelection = False
+        PickListBoxSkinDataName = 'listbox'
+        PickListBoxCaptionMode = False
+        Align = alClient
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'MS Sans Serif'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = #25152#23646#26435#38480#32452
+            Width = 120
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = #25805#20316#21592#32534#21495
+            Width = 120
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = #25805#20316#21592#22995#21517
+            Width = 120
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = #24403#21069#29366#24577
+            Width = 120
+            Visible = True
+          end>
+      end
+      object bsknscrlbr3: TbsSkinScrollBar
+        Left = 477
+        Top = 1
+        Width = 19
+        Height = 254
+        HintImageIndex = 0
+        TabOrder = 1
+        Visible = False
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'vscrollbar'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 19
+        DefaultHeight = 0
+        UseSkinFont = True
+        Both = False
+        BothMarkerWidth = 19
+        BothSkinDataName = 'bothhscrollbar'
+        CanFocused = False
+        Align = alRight
+        Kind = sbVertical
+        PageSize = 0
+        Min = 0
+        Max = 0
+        Position = 0
+        SmallChange = 127
+        LargeChange = 127
+      end
+      object bsknscrlbr2: TbsSkinScrollBar
+        Left = 1
+        Top = 255
+        Width = 495
+        Height = 19
+        HintImageIndex = 0
+        TabOrder = 2
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'hscrollbar'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 0
+        DefaultHeight = 19
+        UseSkinFont = True
+        Both = False
+        BothMarkerWidth = 19
+        BothSkinDataName = 'bothhscrollbar'
+        CanFocused = False
+        Align = alBottom
+        Kind = sbHorizontal
+        PageSize = 0
+        Min = 0
+        Max = 127
+        Position = 0
+        SmallChange = 127
+        LargeChange = 127
+      end
+    end
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu, biRollUp]
+    Left = 544
+    Top = 193
   end
 end

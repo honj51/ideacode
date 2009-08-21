@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, bsSkinCtrls, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls,
-  ComCtrls, bsSkinTabs;
+  ComCtrls, bsSkinTabs, BusinessSkinForm;
 
 type
   TDatabaseMantainForm = class(TForm)
@@ -17,16 +17,6 @@ type
     lbl1: TbsSkinStdLabel;
     edt1: TbsSkinDBEdit;
     btn1: TbsSkinButton;
-    bsknpgcntrl2: TbsSkinPageControl;
-    bskntbsht5: TbsSkinTabSheet;
-    lbl2: TbsSkinStdLabel;
-    btn2: TbsSkinButton;
-    bskntbsht6: TbsSkinTabSheet;
-    bskntbsht7: TbsSkinTabSheet;
-    bskntbsht8: TbsSkinTabSheet;
-    lbl3: TbsSkinStdLabel;
-    lbl4: TbsSkinStdLabel;
-    edt2: TbsSkinEdit;
     bsknchckrdbx1: TbsSkinCheckRadioBox;
     lbl5: TbsSkinStdLabel;
     lbl6: TbsSkinStdLabel;
@@ -42,6 +32,12 @@ type
     lbl12: TbsSkinStdLabel;
     lbl13: TbsSkinStdLabel;
     btn4: TbsSkinButton;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    btn2: TbsSkinButton;
+    lbl3: TbsSkinStdLabel;
+    lbl4: TbsSkinStdLabel;
+    edt2: TbsSkinEdit;
+    lbl2: TbsSkinStdLabel;
   private
     { Private declarations }
   public
@@ -52,7 +48,7 @@ var
   DatabaseMantainForm: TDatabaseMantainForm;
 
 implementation
-
+        uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

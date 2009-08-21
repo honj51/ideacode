@@ -1,10 +1,11 @@
 object ContractSampleSettingForm: TContractSampleSettingForm
-  Left = 343
-  Top = 158
-  Width = 685
-  Height = 496
-  BorderIcons = [biSystemMenu, biMinimize]
+  Left = 366
+  Top = 172
+  AutoScroll = False
+  BorderIcons = []
   Caption = #21512#21516#26679#26412#35774#32622
+  ClientHeight = 462
+  ClientWidth = 677
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,11 +17,12 @@ object ContractSampleSettingForm: TContractSampleSettingForm
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
     Left = 0
-    Top = 21
+    Top = 0
     Width = 677
-    Height = 441
+    Height = 462
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -46,15 +48,16 @@ object ContractSampleSettingForm: TContractSampleSettingForm
     NumGlyphs = 1
     Spacing = 2
     Caption = #21512#21516#26679#26412#35774#32622
-    Align = alBottom
+    Align = alClient
     object bskntlbr1: TbsSkinToolBar
       Left = 1
       Top = 23
       Width = 675
-      Height = 58
+      Height = 66
       HintImageIndex = 0
       TabOrder = 0
-      SkinDataName = 'toolpanel'
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolpanel'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
       DefaultFont.Height = 14
@@ -92,11 +95,12 @@ object ContractSampleSettingForm: TContractSampleSettingForm
       Flat = False
       object btn1: TbsSkinSpeedButton
         Left = 32
-        Top = 6
+        Top = 10
         Width = 46
         Height = 46
         HintImageIndex = 0
-        SkinDataName = 'toolbutton'
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'resizetoolbutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -125,11 +129,12 @@ object ContractSampleSettingForm: TContractSampleSettingForm
       end
       object btn2: TbsSkinSpeedButton
         Left = 97
-        Top = 6
+        Top = 10
         Width = 46
         Height = 46
         HintImageIndex = 0
-        SkinDataName = 'toolbutton'
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'resizetoolbutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -158,11 +163,12 @@ object ContractSampleSettingForm: TContractSampleSettingForm
       end
       object btn3: TbsSkinSpeedButton
         Left = 162
-        Top = 6
+        Top = 10
         Width = 46
         Height = 46
         HintImageIndex = 0
-        SkinDataName = 'toolbutton'
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'resizetoolbutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -191,11 +197,12 @@ object ContractSampleSettingForm: TContractSampleSettingForm
       end
       object btn4: TbsSkinSpeedButton
         Left = 227
-        Top = 6
+        Top = 10
         Width = 46
         Height = 46
         HintImageIndex = 0
-        SkinDataName = 'toolbutton'
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'resizetoolbutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -225,11 +232,12 @@ object ContractSampleSettingForm: TContractSampleSettingForm
     end
     object bskndbgrd1: TbsSkinDBGrid
       Left = 1
-      Top = 81
+      Top = 89
       Width = 656
-      Height = 359
+      Height = 372
       HintImageIndex = 0
       TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'grid'
       Transparent = False
       WallpaperStretch = False
@@ -267,9 +275,9 @@ object ContractSampleSettingForm: TContractSampleSettingForm
     end
     object bsknscrlbr1: TbsSkinScrollBar
       Left = 657
-      Top = 81
+      Top = 89
       Width = 19
-      Height = 359
+      Height = 372
       HintImageIndex = 0
       TabOrder = 2
       SkinDataName = 'vscrollbar'
@@ -294,5 +302,57 @@ object ContractSampleSettingForm: TContractSampleSettingForm
       SmallChange = 127
       LargeChange = 127
     end
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu, biRollUp]
+    Left = 577
+    Top = 31
   end
 end

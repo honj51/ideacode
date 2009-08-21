@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, bsSkinCtrls, StdCtrls, Mask, bsSkinBoxCtrls,
-  bsdbctrls, bsSkinGrids, bsDBGrids, UDataOperatoBarView;
+  bsdbctrls, bsSkinGrids, bsDBGrids, UDataOperateBarView;
 
 type
   TContactRecordForm = class(TForm)

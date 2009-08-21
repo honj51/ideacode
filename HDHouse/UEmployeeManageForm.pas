@@ -4,18 +4,19 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, bsSkinCtrls, UDataOperatoBarView, bsSkinGrids,
-  bsDBGrids, Mask, bsSkinBoxCtrls;
+  Dialogs, StdCtrls, bsSkinCtrls, UDataOperateBarView, bsSkinGrids,
+  bsDBGrids, Mask, bsSkinBoxCtrls, BusinessSkinForm;
 
 type
   TEmployeeManageForm = class(TForm)
-    dtprtbrvw1: TDataOperateBarView;
-    bskntlbr1: TbsSkinToolBar;
-    lbl1: TbsSkinStdLabel;
-    edt1: TbsSkinEdit;
     bskndbgrd1: TbsSkinDBGrid;
-    bsknscrlbr1: TbsSkinScrollBar;
+    bskntlbr1: TbsSkinToolBar;
+    edt1: TbsSkinEdit;
+    lbl1: TbsSkinStdLabel;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
     bsknscrlbr2: TbsSkinScrollBar;
+    bsknscrlbr1: TbsSkinScrollBar;
+    dtprtbrvw1: TDataOperateBarView;
   private
     { Private declarations }
   public
@@ -26,7 +27,7 @@ var
   EmployeeManageForm: TEmployeeManageForm;
 
 implementation
-
+   uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

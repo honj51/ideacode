@@ -4,13 +4,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, bsSkinBoxCtrls, StdCtrls, Mask, bsSkinCtrls;
+  Dialogs, bsSkinBoxCtrls, StdCtrls, Mask, bsSkinCtrls, BusinessSkinForm;
 
 type
   TDatabaseInitialForm = class(TForm)
     bskngrpbx1: TbsSkinGroupBox;
-    btn1: TbsSkinButton;
-    btn2: TbsSkinButton;
     lbl1: TbsSkinStdLabel;
     lbl2: TbsSkinStdLabel;
     lbl3: TbsSkinStdLabel;
@@ -27,6 +25,11 @@ type
     edt4: TbsSkinTimeEdit;
     lbl6: TbsSkinStdLabel;
     lbl7: TbsSkinStdLabel;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    bsknpnl1: TbsSkinPanel;
+    btn1: TbsSkinButton;
+    btn2: TbsSkinButton;
+    procedure btn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,7 +40,12 @@ var
   DatabaseInitialForm: TDatabaseInitialForm;
 
 implementation
-
+       uses UHDHouseDataModule;
 {$R *.dfm}
+
+procedure TDatabaseInitialForm.btn2Click(Sender: TObject);
+begin
+DatabaseInitialForm.Close;
+end;
 
 end.

@@ -321,7 +321,7 @@ object HouseQueryFrame: THouseQueryFrame
       Left = 408
       Top = 28
       Width = 65
-      Height = 20
+      Height = 18
       Text = 'edt1'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -352,7 +352,7 @@ object HouseQueryFrame: THouseQueryFrame
       Left = 504
       Top = 28
       Width = 65
-      Height = 20
+      Height = 18
       Text = 'edt1'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -679,6 +679,7 @@ object HouseQueryFrame: THouseQueryFrame
       ImageIndex = 0
       Flat = True
       UseSkinFontColor = True
+      TabStop = True
       CanFocused = True
       Radio = False
       Checked = False
