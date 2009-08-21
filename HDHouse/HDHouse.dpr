@@ -33,13 +33,22 @@ uses
   USystemOperationLogForm in 'USystemOperationLogForm.pas' {SystemOperationLogForm},
   UAboutForm in 'UAboutForm.pas' {AboutForm},
   ULoginForm in 'ULoginForm.pas' {LoginForm},
-  UHDHouseDataModule in 'UHDHouseDataModule.pas' {HDHouseDataModule: TDataModule};
+  UHDHouseDataModule in 'UHDHouseDataModule.pas' {HDHouseDataModule: TDataModule},
+  UCustomerDetailsForm in 'UCustomerDetailsForm.pas' {CustomerDetailsForm},
+  UCustomerTrackForm in 'UCustomerTrackForm.pas' {CustomerTrackForm},
+  UContractQueryForm in 'UContractQueryForm.pas',
+  UContractQueryFrame in 'UContractQueryFrame.pas' {ContractQueryFrame: TFrame},
+  UContactRecordForm in 'UContactRecordForm.pas' {ContactRecordForm},
+  URealtorListForm in 'URealtorListForm.pas' {RealtorListForm},
+  UOtherFacilitiesForm in 'UOtherFacilitiesForm.pas' {OtherFacilitiesForm},
+  UHouseDetailsForm in 'UHouseDetailsForm.pas' {HouseDetailsForm},
+  UBaseFacilitiesForm in 'UBaseFacilitiesForm.pas' {BaseFacilitiesForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-
+  Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
   Application.CreateForm(TLoginForm, LoginForm);
   Application.CreateForm(TEmployeeManageForm, EmployeeManageForm);
   Application.CreateForm(TSystemOperationLogForm, SystemOperationLogForm);
@@ -48,7 +57,6 @@ begin
   Application.CreateForm(TParametersSettingForm, ParametersSettingForm);
   Application.CreateForm(TAddContractSampleForm, AddContractSampleForm);
   Application.CreateForm(TChangePasswordForm, ChangePasswordForm);
-  Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
   Application.CreateForm(TAboutForm, AboutForm);
   Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
   Application.CreateForm(TformMain, formMain);
@@ -56,5 +64,15 @@ begin
   Application.CreateForm(TPermissionGroupSettingForm, PermissionGroupSettingForm);
   Application.CreateForm(TDatabaseInitialForm, DatabaseInitialForm);
   Application.CreateForm(THDHouseDataModule, HDHouseDataModule);
+  Application.CreateForm(TCustomerDetailsForm, CustomerDetailsForm);
+  Application.CreateForm(TContractQueryForm, ContractQueryForm);
+  Application.CreateForm(TCustomerTrackForm, CustomerTrackForm);
+  Application.CreateForm(TContactRecordForm, ContactRecordForm);
+  Application.CreateForm(TCustomerDetailsForm, CustomerDetailsForm);
+  Application.CreateForm(TContactRecordForm, ContactRecordForm);
+  Application.CreateForm(TRealtorListForm, RealtorListForm);
+  Application.CreateForm(TOtherFacilitiesForm, OtherFacilitiesForm);
+  Application.CreateForm(THouseDetailsForm, HouseDetailsForm);
+  Application.CreateForm(TBaseFacilitiesForm, BaseFacilitiesForm);
   Application.Run;
 end.
