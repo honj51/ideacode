@@ -1,6 +1,6 @@
 object LoginForm: TLoginForm
-  Left = 291
-  Top = 266
+  Left = 518
+  Top = 192
   Width = 371
   Height = 221
   Caption = #30331#24405#31383#21475
