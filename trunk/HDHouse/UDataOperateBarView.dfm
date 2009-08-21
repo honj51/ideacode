@@ -1,15 +1,15 @@
 object DataOperateBarView: TDataOperateBarView
   Left = 0
   Top = 0
-  Width = 760
-  Height = 75
+  Width = 783
+  Height = 93
   AutoScroll = False
   TabOrder = 0
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 760
-    Height = 75
+    Width = 783
+    Height = 93
     HintImageIndex = 0
     TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
@@ -52,8 +52,8 @@ object DataOperateBarView: TDataOperateBarView
     Flat = True
     Images = bspngmglst32
     object btn1: TbsSkinSpeedButton
-      Left = 24
-      Top = 5
+      Left = 0
+      Top = 14
       Width = 64
       Height = 64
       HintImageIndex = 0
@@ -87,8 +87,8 @@ object DataOperateBarView: TDataOperateBarView
       Layout = blGlyphTop
     end
     object btn2: TbsSkinSpeedButton
-      Left = 112
-      Top = 5
+      Left = 88
+      Top = 14
       Width = 64
       Height = 64
       HintImageIndex = 0
@@ -122,8 +122,8 @@ object DataOperateBarView: TDataOperateBarView
       Layout = blGlyphTop
     end
     object btn3: TbsSkinSpeedButton
-      Left = 200
-      Top = 5
+      Left = 176
+      Top = 14
       Width = 64
       Height = 64
       HintImageIndex = 0
@@ -157,8 +157,8 @@ object DataOperateBarView: TDataOperateBarView
       Layout = blGlyphTop
     end
     object btn4: TbsSkinSpeedButton
-      Left = 288
-      Top = 5
+      Left = 264
+      Top = 14
       Width = 64
       Height = 64
       HintImageIndex = 0
@@ -192,8 +192,8 @@ object DataOperateBarView: TDataOperateBarView
       Layout = blGlyphTop
     end
     object btn5: TbsSkinSpeedButton
-      Left = 377
-      Top = 5
+      Left = 353
+      Top = 14
       Width = 64
       Height = 64
       HintImageIndex = 0
