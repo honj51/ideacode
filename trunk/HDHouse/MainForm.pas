@@ -13,11 +13,8 @@ uses
 type
   TformMain = class(TForm)
     bsbsnsknfrm1: TbsBusinessSkinForm;
-    bsSkinData1: TbsSkinData;
-    bscmprsdstrdskn1: TbsCompressedStoredSkin;
     bsknpgcntrl1: TbsSkinPageControl;
     bskntbsht1: TbsSkinTabSheet;
-    bspngmglstPngImglst64: TbsPngImageList;
     bskntlbr1: TbsSkinToolBar;
     btn1: TbsSkinSpeedButton;
     btn2: TbsSkinSpeedButton;
@@ -26,16 +23,12 @@ type
     btn5: TbsSkinSpeedButton;
     btn6: TbsSkinSpeedButton;
     btn7: TbsSkinSpeedButton;
-    bspngmglst32: TbsPngImageList;
     bskntbsht2: TbsSkinTabSheet;
     bskntbsht3: TbsSkinTabSheet;
     bskntbsht4: TbsSkinTabSheet;
     bskntbsht5: TbsSkinTabSheet;
     bsknmsg1: TbsSkinMessage;
     frmhslst1: TframeHouseList;
-    con1: TADOConnection;
-    qry1: TADOQuery;
-    ds1: TDataSource;
     CustomerAutoMatchView1: TCustomerAutoMatchView;
     trckrcrdvw1: TTrackRecordView;
     btn8: TbsSkinButton;
@@ -60,7 +53,7 @@ var
   formMain: TformMain;
 
 implementation
-
+ uses UHDHouseDataModule;
 {$R *.dfm}
 
 procedure TformMain.btn7Click(Sender: TObject);
