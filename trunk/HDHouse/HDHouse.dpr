@@ -11,7 +11,7 @@ uses
   UHouseSecureInfoView in 'UHouseSecureInfoView.pas' {HouseSecureInfoView: TFrame},
   UCustomerAutoMatchView in 'UCustomerAutoMatchView.pas' {CustomerAutoMatchView: TFrame},
   UCustomerSecureInfoView in 'UCustomerSecureInfoView.pas' {CustomerSecureInfoView: TFrame},
-  UDataOperatoBarView in 'UDataOperatoBarView.pas' {DataOperateBarView: TFrame},
+  UDataOperateBarView in 'UDataOperateBarView.pas' {DataOperateBarView: TFrame},
   UDetailRequirementInfoView in 'UDetailRequirementInfoView.pas' {DetailRequirementInfoView: TFrame},
   UEmployeeInfoFrame in 'UEmployeeInfoFrame.pas' {EmployeeInfoFrame: TFrame},
   UHouseAutoMatchView in 'UHouseAutoMatchView.pas' {HouseAutoMatchView: TFrame},
@@ -66,7 +66,7 @@ begin
   Application.CreateForm(TChangePasswordForm, ChangePasswordForm);
   Application.CreateForm(TAboutForm, AboutForm);
   Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
-  Application.CreateForm(TformMain, formMain);
+
   Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);
   Application.CreateForm(TPermissionGroupSettingForm, PermissionGroupSettingForm);
   Application.CreateForm(TDatabaseInitialForm, DatabaseInitialForm);

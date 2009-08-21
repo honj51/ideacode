@@ -20,8 +20,6 @@ type
     mmo2: TbsSkinDBMemo;
     bskndbgrd2: TbsSkinDBGrid;
     bsknfrm1: TbsSkinFrame;
-    bsSkinData1: TbsSkinData;
-    bscmprsdstrdskn1: TbsCompressedStoredSkin;
     bskndbgrd1: TbsSkinDBGrid;
     bsknpnl1: TbsSkinPanel;
     bsknscrlbrHouseListDown: TbsSkinScrollBar;
@@ -50,6 +48,7 @@ type
   end;
 
 implementation
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.
