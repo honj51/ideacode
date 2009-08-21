@@ -42,16 +42,23 @@ uses
   URealtorListForm in 'URealtorListForm.pas' {RealtorListForm},
   UOtherFacilitiesForm in 'UOtherFacilitiesForm.pas' {OtherFacilitiesForm},
   UHouseDetailsForm in 'UHouseDetailsForm.pas' {HouseDetailsForm},
-  UBaseFacilitiesForm in 'UBaseFacilitiesForm.pas' {BaseFacilitiesForm};
+  UBaseFacilitiesForm in 'UBaseFacilitiesForm.pas' {BaseFacilitiesForm},
+  UHouseManageForm in 'UHouseManageForm.pas' {HouseManageForm},
+  UDealHouseListView in 'UDealHouseListView.pas' {DealHouseListView: TFrame},
+  UHouseDealManageForm in 'UHouseDealManageForm.pas' {HouseDealManageForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
-  Application.CreateForm(TLoginForm, LoginForm);
+  Application.CreateForm(THouseDealManageForm, HouseDealManageForm);
+  Application.CreateForm(THouseManageForm, HouseManageForm);
+  Application.CreateForm(TBaseFacilitiesForm, BaseFacilitiesForm);
+  Application.CreateForm(THouseDetailsForm, HouseDetailsForm);
   Application.CreateForm(TEmployeeManageForm, EmployeeManageForm);
   Application.CreateForm(TSystemOperationLogForm, SystemOperationLogForm);
+  Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
+  Application.CreateForm(TLoginForm, LoginForm);
   Application.CreateForm(TContractSampleSettingForm, ContractSampleSettingForm);
   Application.CreateForm(TDatabaseMantainForm, DatabaseMantainForm);
   Application.CreateForm(TParametersSettingForm, ParametersSettingForm);
@@ -72,7 +79,5 @@ begin
   Application.CreateForm(TContactRecordForm, ContactRecordForm);
   Application.CreateForm(TRealtorListForm, RealtorListForm);
   Application.CreateForm(TOtherFacilitiesForm, OtherFacilitiesForm);
-  Application.CreateForm(THouseDetailsForm, HouseDetailsForm);
-  Application.CreateForm(TBaseFacilitiesForm, BaseFacilitiesForm);
   Application.Run;
 end.
