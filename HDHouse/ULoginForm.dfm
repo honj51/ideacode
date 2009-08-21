@@ -1,9 +1,11 @@
 object LoginForm: TLoginForm
-  Left = 515
-  Top = 166
-  Width = 371
-  Height = 221
+  Left = 541
+  Top = 320
+  AutoScroll = False
+  BorderIcons = []
   Caption = #30331#24405#31383#21475
+  ClientHeight = 187
+  ClientWidth = 363
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -69,6 +71,7 @@ object LoginForm: TLoginForm
     Height = 20
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -132,6 +135,7 @@ object LoginForm: TLoginForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -154,6 +158,7 @@ object LoginForm: TLoginForm
     Height = 25
     HintImageIndex = 0
     TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -185,6 +190,7 @@ object LoginForm: TLoginForm
     Height = 25
     HintImageIndex = 0
     TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -208,5 +214,58 @@ object LoginForm: TLoginForm
     Caption = #21462#28040
     NumGlyphs = 1
     Spacing = 1
+    OnClick = btn2Click
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu, biRollUp]
+    Left = 312
+    Top = 16
   end
 end
