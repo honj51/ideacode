@@ -5,25 +5,9 @@ object HouseQueryFrame: THouseQueryFrame
   Height = 280
   AutoScroll = False
   TabOrder = 0
-  object lbl13: TbsSkinStdLabel
-    Left = 32
-    Top = 160
-    Width = 48
-    Height = 13
-    EllipsType = bsetNone
-    UseSkinFont = True
-    UseSkinColor = True
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = -11
-    DefaultFont.Name = 'MS Sans Serif'
-    DefaultFont.Style = []
-    SkinDataName = 'stdlabel'
-    Caption = #29289#19994#21517#31216
-  end
   object GroupBox1: TGroupBox
     Left = 16
-    Top = 24
+    Top = 16
     Width = 577
     Height = 209
     Caption = #26597#35810#26465#20214

@@ -29,7 +29,7 @@ var
   CustomerDetailsForm: TCustomerDetailsForm;
 
 implementation
-
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.
