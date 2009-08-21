@@ -32,7 +32,8 @@ uses
   UParametersSettingForm in 'UParametersSettingForm.pas' {ParametersSettingForm},
   USystemOperationLogForm in 'USystemOperationLogForm.pas' {SystemOperationLogForm},
   UAboutForm in 'UAboutForm.pas' {AboutForm},
-  ULoginForm in 'ULoginForm.pas' {LoginForm};
+  ULoginForm in 'ULoginForm.pas' {LoginForm},
+  UHDHouseDataModule in 'UHDHouseDataModule.pas' {HDHouseDataModule: TDataModule};
 
 {$R *.res}
 
@@ -54,5 +55,6 @@ begin
   Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);
   Application.CreateForm(TPermissionGroupSettingForm, PermissionGroupSettingForm);
   Application.CreateForm(TDatabaseInitialForm, DatabaseInitialForm);
+  Application.CreateForm(THDHouseDataModule, HDHouseDataModule);
   Application.Run;
 end.
