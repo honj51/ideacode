@@ -103,7 +103,7 @@ object CustomerAutoMatchView: TCustomerAutoMatchView
     Left = 741
     Top = 0
     Width = 19
-    Height = 495
+    Height = 190
     HintImageIndex = 0
     TabOrder = 1
     Visible = False

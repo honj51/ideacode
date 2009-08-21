@@ -1,8 +1,8 @@
 object HouseDealManageForm: THouseDealManageForm
-  Left = 274
-  Top = 25
-  Width = 948
-  Height = 727
+  Left = 242
+  Top = 96
+  Width = 943
+  Height = 624
   Caption = #25104#20132#31649#29702' '
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,8 +16,8 @@ object HouseDealManageForm: THouseDealManageForm
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 0
-    Width = 940
-    Height = 693
+    Width = 935
+    Height = 590
     ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -45,8 +45,8 @@ object HouseDealManageForm: THouseDealManageForm
     object bskntbsht1: TbsSkinTabSheet
       Caption = #25104#20132#31649#29702
       DesignSize = (
-        938
-        671)
+        933
+        568)
       object btn1: TbsSkinSpeedButton
         Left = 24
         Top = 5
@@ -148,18 +148,18 @@ object HouseDealManageForm: THouseDealManageForm
       end
       object bsknpgcntrl2: TbsSkinPageControl
         Left = 0
-        Top = 439
+        Top = 343
         Width = 933
         Height = 225
-        ActivePage = bskntbsht3
-        Anchors = [akLeft, akRight, akBottom]
+        ActivePage = bskntbsht5
+        Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBtnText
         Font.Height = 14
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 1
         TabExtededDraw = False
         TabSpacing = 1
         TextInHorizontal = False
@@ -188,12 +188,22 @@ object HouseDealManageForm: THouseDealManageForm
               Width = 931
             end
             inherited bskndbgrd1: TbsSkinDBGrid
-              Width = 931
-              Height = 154
+              Width = 912
+              Height = 135
               DefaultRowHeight = 18
               TitleFont.Color = clBtnText
               TitleFont.Height = 14
               TitleFont.Name = 'Arial'
+            end
+            inherited bsknscrlbr1: TbsSkinScrollBar
+              Top = 184
+              Width = 931
+              TabOrder = 2
+            end
+            inherited bsknscrlbr2: TbsSkinScrollBar
+              Left = 912
+              Height = 135
+              TabOrder = 3
             end
           end
         end
@@ -206,6 +216,66 @@ object HouseDealManageForm: THouseDealManageForm
             Height = 203
             Align = alClient
             TabOrder = 0
+            inherited bsknpnl1: TbsSkinPanel
+              inherited edt1: TbsSkinDBEdit
+                DataField = 'fczy_zj'
+              end
+              inherited edt2: TbsSkinDBEdit
+                DataField = 'fczy_sj'
+              end
+              inherited edt3: TbsSkinDBEdit
+                DataField = 'fczy_cssm'
+              end
+              inherited edt4: TbsSkinDBEdit
+                Left = 255
+                Top = 41
+                DataField = 'fczy_cssm'
+              end
+              inherited edt5: TbsSkinDBEdit
+                DataField = 'fczy_dqzt'
+              end
+              inherited edt6: TbsSkinDBEdit
+                DataField = 'fczy_wymc'
+              end
+              inherited edt7: TbsSkinDBEdit
+                DataField = 'fczy_qy'
+              end
+              inherited edt8: TbsSkinDBEdit
+                DataField = 'fczy_hxjg'
+              end
+              inherited edt10: TbsSkinDBEdit
+                DataField = 'fczy_wyyt'
+              end
+              inherited edt11: TbsSkinDBEdit
+                DataField = 'fczy_zxcd'
+              end
+              inherited edt12: TbsSkinDBEdit
+                DataField = 'fczy_jzmj'
+              end
+              inherited edt13: TbsSkinDBEdit
+                DataField = 'fczy_jcnf'
+              end
+              inherited edt14: TbsSkinDBEdit
+                DataField = 'fczy_fx'
+              end
+              inherited edt15: TbsSkinDBEdit
+                DataField = 'fczy_wylb'
+              end
+              inherited edt16: TbsSkinDBEdit
+                DataField = 'fczy_lccg'
+              end
+            end
+            inherited bsknpnl2: TbsSkinPanel
+              inherited edt17: TbsSkinDBEdit
+                DataField = 'fczy_ptss1'
+              end
+              inherited edt18: TbsSkinDBEdit
+                DataField = 'fczy_ptss2'
+              end
+              inherited edt19: TbsSkinDBEdit
+                DataField = 'fczy_jtdz'
+              end
+            end
           end
         end
         object bskntbsht5: TbsSkinTabSheet
@@ -217,32 +287,246 @@ object HouseDealManageForm: THouseDealManageForm
             Height = 203
             Align = alClient
             TabOrder = 0
+            inherited edt1: TbsSkinDBEdit
+              DataField = 'fczy_yzxm'
+            end
+            inherited edt2: TbsSkinDBEdit
+              Left = 329
+              Top = 25
+              TabOrder = 2
+              DataField = 'fczy_dh'
+            end
+            inherited edt3: TbsSkinDBEdit
+              TabOrder = 1
+              DataField = 'fczy_sj'
+            end
+            inherited edt4: TbsSkinDBEdit
+              DataField = 'fczy_jtdz'
+            end
           end
         end
       end
-      inline inhslstvw1: TDealHouseListView
-        Left = 2
-        Top = 64
-        Width = 925
-        Height = 373
+      inline dlhslstvw1: TDealHouseListView
+        Left = -1
+        Top = 68
+        Width = 924
+        Height = 274
         Anchors = [akLeft, akTop, akRight, akBottom]
-        TabOrder = 1
+        TabOrder = 0
+        inherited lbl1: TLabel
+          Left = 167
+        end
+        inherited btn1: TbsSkinButtonLabel
+          Left = 374
+        end
+        inherited lbl2: TLabel
+          Left = 849
+          Width = 62
+        end
         inherited bvl1: TBevel
-          Height = 26
-          Anchors = [akLeft, akTop, akRight, akBottom]
+          Width = 924
         end
         inherited bskndbgrd1: TbsSkinDBGrid
-          Width = 925
-          Height = 253
+          Left = 2
+          Top = 47
+          Width = 968
+          Height = 201
           Anchors = [akLeft, akTop, akRight, akBottom]
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'fczy_bh'
+              Title.Caption = #25151#28304#32534#21495
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 105
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_djrq'
+              Title.Caption = #30331#35760#26085#26399
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 130
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_dqzt'
+              Title.Caption = #24403#21069#29366#24577
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 100
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_wymc'
+              Title.Caption = #29289#19994#21517#31216
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 92
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_hxjg'
+              Title.Caption = #25151#22411#32467#26500
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_jzmj'
+              Title.Caption = #24314#31569#38754#31215
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_qy'
+              Title.Caption = #25152#22788#21306#22495
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_lccg'
+              Title.Caption = #27004#23618'/'#23618#39640
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              Title.Caption = #32622#19994#39038#38382
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_wyyt'
+              Title.Caption = #29289#19994#29992#36884
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_wylb'
+              Title.Caption = #29289#19994#31867#21035
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 78
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_zxcd'
+              Title.Caption = #35013#20462#31243#24230
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_fx'
+              Title.Caption = #25151#22411
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_jcnf'
+              Title.Caption = #24314#25104#24180#26376
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 95
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fczy_jtdz'
+              Title.Caption = #20855#20307#22320#22336
+              Visible = True
+            end>
         end
         inherited edt1: TEdit
+          Left = 268
           Height = 22
         end
+        inherited bsknchckrdbx1: TbsSkinCheckRadioBox
+          Left = 613
+        end
+        inherited bsknchckrdbx2: TbsSkinCheckRadioBox
+          Left = 499
+        end
+        inherited bsknchckrdbx3: TbsSkinCheckRadioBox
+          Left = 720
+        end
+        inherited btn2: TbsSkinButton
+          Left = 411
+          Width = 84
+        end
+        inherited edt2: TbsSkinDBEdit
+          Left = 810
+        end
         inherited bsknscrlbr1: TbsSkinScrollBar
-          Top = 337
-          SmallChange = 63
-          LargeChange = 63
+          Top = 255
+          Width = 924
+          SmallChange = 31
+          LargeChange = 31
+        end
+        inherited cbb1: TbsSkinDBComboBox
+          Left = 67
         end
       end
     end

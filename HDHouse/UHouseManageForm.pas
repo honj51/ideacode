@@ -1,7 +1,6 @@
 unit UHouseManageForm;
 
 interface
-
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UDataOperatoBarView, UHouseListView, bsSkinShellCtrls,
@@ -13,14 +12,14 @@ uses
 type
   THouseManageForm = class(TForm)
     dtprtbrvw1: TDataOperateBarView;
-    hslstvw1: THouseListView;
     bsknpgcntrlPageC: TbsSkinPageControl;
     bskntbsht1: TbsSkinTabSheet;
     bskntbsht2: TbsSkinTabSheet;
     bskntbsht3: TbsSkinTabSheet;
-    hsdtlnfvw1: THouseDetailInfoView;
     hscrnfvw1: THouseSecureInfoView;
     cstmrtmtchvw1: TCustomerAutoMatchView;
+    hsdtlnfvw1: THouseDetailInfoView;
+    hslstvw1: THouseListView;
   private
     { Private declarations }
   public
@@ -31,6 +30,8 @@ var
   HouseManageForm: THouseManageForm;
 
 implementation
+
+uses UHDHouseDataModule;
 
 {$R *.dfm}
 

@@ -357,7 +357,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Width = 57
       Height = 25
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 3
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -403,7 +403,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -435,7 +435,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 4
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -467,7 +467,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -531,7 +531,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 7
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -563,7 +563,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 9
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -595,7 +595,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 12
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -627,7 +627,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 15
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -659,7 +659,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 6
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -691,7 +691,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 11
+      TabOrder = 10
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -723,7 +723,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 12
+      TabOrder = 13
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -755,7 +755,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 13
+      TabOrder = 16
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -787,7 +787,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 14
+      TabOrder = 8
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -819,7 +819,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 15
+      TabOrder = 14
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -851,7 +851,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 16
+      TabOrder = 11
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1089,7 +1089,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       RightImageDownIndex = -1
       AutoSize = False
     end
-    object mmo1: TbsSkinDBMemo2
+    object mmoxxxx: TbsSkinDBMemo2
       Left = 80
       Top = 80
       Width = 350

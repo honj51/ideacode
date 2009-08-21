@@ -91,7 +91,6 @@ var
   HouseDetailsForm: THouseDetailsForm;
 
 implementation
-
 {$R *.dfm}
 
 end.

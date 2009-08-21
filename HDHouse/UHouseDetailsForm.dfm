@@ -1,6 +1,6 @@
 object HouseDetailsForm: THouseDetailsForm
-  Left = 336
-  Top = 112
+  Left = 386
+  Top = 97
   AutoScroll = False
   BorderIcons = []
   Caption = #25151#28304#35814#32454#20449#24687
@@ -32,7 +32,7 @@ object HouseDetailsForm: THouseDetailsForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 1
     TabExtededDraw = False
     TabSpacing = 1
     TextInHorizontal = False
@@ -290,7 +290,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 3
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -322,7 +322,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 8
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -354,7 +354,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 12
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -386,7 +386,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 11
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -418,7 +418,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 10
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -450,7 +450,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 9
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -514,7 +514,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 15
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -546,7 +546,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 14
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -578,7 +578,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 16
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -610,7 +610,7 @@ object HouseDetailsForm: THouseDetailsForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 13
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -625,7 +625,7 @@ object HouseDetailsForm: THouseDetailsForm
         Width = 140
         Height = 20
         HintImageIndex = 0
-        TabOrder = 11
+        TabOrder = 2
         SkinDataName = 'combobox'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -679,7 +679,7 @@ object HouseDetailsForm: THouseDetailsForm
         Width = 88
         Height = 20
         HintImageIndex = 0
-        TabOrder = 12
+        TabOrder = 7
         SkinDataName = 'combobox'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -733,7 +733,7 @@ object HouseDetailsForm: THouseDetailsForm
         Width = 103
         Height = 20
         HintImageIndex = 0
-        TabOrder = 13
+        TabOrder = 1
         SkinDataName = 'combobox'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -787,7 +787,7 @@ object HouseDetailsForm: THouseDetailsForm
         Width = 103
         Height = 20
         HintImageIndex = 0
-        TabOrder = 14
+        TabOrder = 5
         SkinDataName = 'combobox'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -841,7 +841,7 @@ object HouseDetailsForm: THouseDetailsForm
         Width = 128
         Height = 20
         HintImageIndex = 0
-        TabOrder = 15
+        TabOrder = 0
         SkinDataName = 'combobox'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -895,7 +895,7 @@ object HouseDetailsForm: THouseDetailsForm
         Width = 113
         Height = 20
         HintImageIndex = 0
-        TabOrder = 16
+        TabOrder = 4
         SkinDataName = 'combobox'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -953,7 +953,7 @@ object HouseDetailsForm: THouseDetailsForm
     Top = 8
     Width = 858
     Height = 72
-    TabOrder = 1
+    TabOrder = 0
     object lbl1: TLabel
       Left = 13
       Top = 32
@@ -1075,7 +1075,7 @@ object HouseDetailsForm: THouseDetailsForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1108,7 +1108,7 @@ object HouseDetailsForm: THouseDetailsForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1141,7 +1141,7 @@ object HouseDetailsForm: THouseDetailsForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1214,7 +1214,7 @@ object HouseDetailsForm: THouseDetailsForm
       Width = 74
       Height = 25
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 3
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1294,7 +1294,7 @@ object HouseDetailsForm: THouseDetailsForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 5
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1326,7 +1326,7 @@ object HouseDetailsForm: THouseDetailsForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1373,7 +1373,7 @@ object HouseDetailsForm: THouseDetailsForm
       Width = 76
       Height = 25
       HintImageIndex = 0
-      TabOrder = 5
+      TabOrder = 0
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText

@@ -31,7 +31,7 @@ type
     edt17: TbsSkinDBEdit;
     edt18: TbsSkinDBEdit;
     edt19: TbsSkinDBEdit;
-    mmo1: TbsSkinDBMemo2;
+    mmoxxxx: TbsSkinDBMemo2;
     lbl1: TbsSkinStdLabel;
     lbl2: TbsSkinStdLabel;
     lbl3: TbsSkinStdLabel;

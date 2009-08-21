@@ -30,7 +30,6 @@ var
   ContactRecordForm: TContactRecordForm;
 
 implementation
-
 {$R *.dfm}
 
 end.
