@@ -21,7 +21,6 @@ type
     bskntbsht3: TbsSkinTabSheet;
     bskntbsht4: TbsSkinTabSheet;
     bskntbsht5: TbsSkinTabSheet;
-    inhslstvw1: TDealHouseListView;
     trckrcrdvw1: TTrackRecordView;
     hsdtlnfvw1: THouseDetailInfoView;
     hscrnfvw1: THouseSecureInfoView;
@@ -29,6 +28,7 @@ type
     btn5: TbsSkinSpeedButton;
     btn6: TbsSkinSpeedButton;
     cntrctqryfrm1: TContractQueryFrame;
+    dlhslstvw1: TDealHouseListView;
   private
     { Private declarations }
   public
@@ -39,7 +39,7 @@ var
   HouseDealManageForm: THouseDealManageForm;
 
 implementation
-
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

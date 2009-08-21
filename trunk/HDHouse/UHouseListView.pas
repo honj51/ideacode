@@ -28,7 +28,7 @@ type
   end;
 
 implementation
-
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.
