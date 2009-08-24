@@ -1847,7 +1847,7 @@ object DataOperateBarView: TDataOperateBarView
   object bsknfrm1: TbsSkinFrame
     SkinData = HDHouseDataModule.bsSkinData1
     DrawBackground = True
-    Left = 664
-    Top = 16
+    Left = 663
+    Top = 19
   end
 end

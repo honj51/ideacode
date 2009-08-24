@@ -1,6 +1,6 @@
 object HouseDealManageForm: THouseDealManageForm
-  Left = 242
-  Top = 96
+  Left = 217
+  Top = 59
   Width = 943
   Height = 624
   Caption = #25104#20132#31649#29702' '
@@ -151,7 +151,7 @@ object HouseDealManageForm: THouseDealManageForm
         Top = 343
         Width = 933
         Height = 225
-        ActivePage = bskntbsht5
+        ActivePage = bskntbsht3
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBtnText
@@ -198,12 +198,10 @@ object HouseDealManageForm: THouseDealManageForm
             inherited bsknscrlbr1: TbsSkinScrollBar
               Top = 184
               Width = 931
-              TabOrder = 2
             end
             inherited bsknscrlbr2: TbsSkinScrollBar
               Left = 912
               Height = 135
-              TabOrder = 3
             end
           end
         end
@@ -332,6 +330,7 @@ object HouseDealManageForm: THouseDealManageForm
           Width = 968
           Height = 201
           Anchors = [akLeft, akTop, akRight, akBottom]
+          TabOrder = 7
           Columns = <
             item
               Expanded = False
@@ -518,15 +517,20 @@ object HouseDealManageForm: THouseDealManageForm
         end
         inherited edt2: TbsSkinDBEdit
           Left = 810
+          TabOrder = 6
         end
         inherited bsknscrlbr1: TbsSkinScrollBar
           Top = 255
           Width = 924
+          TabOrder = 8
+          Visible = True
+          Max = 127
           SmallChange = 31
           LargeChange = 31
         end
         inherited cbb1: TbsSkinDBComboBox
           Left = 67
+          TabOrder = 5
         end
       end
     end
