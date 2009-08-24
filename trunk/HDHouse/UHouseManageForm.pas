@@ -3,11 +3,11 @@ unit UHouseManageForm;
 interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UDataOperatoBarView, UHouseListView, bsSkinShellCtrls,
+  Dialogs, UHouseListView, bsSkinShellCtrls,
   bsColorCtrls, bsSkinCtrls, ComCtrls, bsSkinBoxCtrls, bsSkinGrids,
   StdCtrls, bsCalendar, bscalc, Mask, bsButtonGroup, bsCategoryButtons,
   bsSkinExCtrls, bsSkinTabs, UHouseSecureInfoView, UHouseDetailInfoView,
-  UCustomerAutoMatchView;
+  UCustomerAutoMatchView, UDataOperateBarView;
 
 type
   THouseManageForm = class(TForm)

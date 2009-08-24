@@ -20,7 +20,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 32
   end
   object con1: TADOConnection
-    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Pr' +
       'oject\delphi\HDHouse\database\hdhouse.mdb;Mode=Share Deny None;E' +
@@ -33,7 +32,6 @@ object HDHouseDataModule: THDHouseDataModule
       ':Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Without Re' +
       'plica Repair=False;Jet OLEDB:SFP=False'
     LoginPrompt = False
-    Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 129
     Top = 113
@@ -3223,7 +3221,6 @@ object HDHouseDataModule: THDHouseDataModule
       EDFF0FEFBA52FF}
   end
   object qry1: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
