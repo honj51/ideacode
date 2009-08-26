@@ -24,7 +24,6 @@ type
     btn6: TbsSkinSpeedButton;
     btn7: TbsSkinSpeedButton;
     bskntbsht2: TbsSkinTabSheet;
-    bskntbsht3: TbsSkinTabSheet;
     bskntbsht4: TbsSkinTabSheet;
     bskntbsht5: TbsSkinTabSheet;
     bsknmsg1: TbsSkinMessage;
@@ -39,6 +38,21 @@ type
     btn15: TbsSkinButton;
     btn16: TbsSkinButton;
     btn17: TbsSkinButton;
+    btn18: TbsSkinButton;
+    btn19: TbsSkinButton;
+    btn20: TbsSkinButton;
+    btn21: TbsSkinButton;
+    btn22: TbsSkinButton;
+    btn23: TbsSkinButton;
+    btn24: TbsSkinButton;
+    btn25: TbsSkinButton;
+    bskntbsht3: TbsSkinTabSheet;
+    btn26: TbsSkinButton;
+    btn27: TbsSkinButton;
+    btn28: TbsSkinButton;
+    btn29: TbsSkinButton;
+    btn30: TbsSkinButton;
+    btn31: TbsSkinButton;
     procedure btn7Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
     procedure btn10Click(Sender: TObject);
@@ -51,6 +65,21 @@ type
     procedure btn13Click(Sender: TObject);
     procedure btn15Click(Sender: TObject);
     procedure btn17Click(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
+    procedure btn23Click(Sender: TObject);
+    procedure btn25Click(Sender: TObject);
+    procedure btn24Click(Sender: TObject);
+    procedure btn22Click(Sender: TObject);
+    procedure btn19Click(Sender: TObject);
+    procedure btn20Click(Sender: TObject);
+    procedure btn21Click(Sender: TObject);
+    procedure btn28Click(Sender: TObject);
+    procedure btn29Click(Sender: TObject);
+    procedure btn27Click(Sender: TObject);
+    procedure btn26Click(Sender: TObject);
+    procedure btn30Click(Sender: TObject);
+    procedure btn31Click(Sender: TObject);
+    procedure btn3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,7 +92,10 @@ var
 implementation
  uses UHDHouseDataModule,ULoginForm,UCompanyInfoSettingForm,UOperatePermissionSettingForm
  ,UEmployeeManageForm,UChangePasswordForm,UContractSampleSettingForm,UDatabaseMantainForm
- ,UDatabaseInitialForm,UParametersSettingForm,USystemOperationLogForm,UAboutForm;
+ ,UDatabaseInitialForm,UParametersSettingForm,USystemOperationLogForm,UAboutForm,UHouseDetailsForm
+ ,UHouseDealManageForm,UHouseTrackForm,UHousePosterForm,UHouseManageForm,UContractQueryForm
+ ,UCustomerTrackForm,UContactRecordForm,UCustomeStatisticrQueryForm,UNotificationManageForm
+ ,USalesCommissionDetailsForm,USalesCommissionSumForm,UStatisticForm,UTrackQueryForm;
 {$R *.dfm}
 
 procedure TformMain.btn7Click(Sender: TObject);
@@ -127,6 +159,81 @@ end;
 procedure TformMain.btn17Click(Sender: TObject);
 begin
     AboutForm.ShowModal;
+end;
+
+procedure TformMain.btn1Click(Sender: TObject);
+begin
+  HouseDetailsForm.ShowModal;
+end;
+
+procedure TformMain.btn23Click(Sender: TObject);
+begin
+    HouseDealManageForm.ShowModal;
+end;
+
+procedure TformMain.btn25Click(Sender: TObject);
+begin
+   HouseTrackForm.ShowModal;
+end;
+
+procedure TformMain.btn24Click(Sender: TObject);
+begin
+   HousePosterForm.ShowModal;
+end;
+
+procedure TformMain.btn22Click(Sender: TObject);
+begin
+     HouseManageForm.ShowModal;
+end;
+
+procedure TformMain.btn19Click(Sender: TObject);
+begin
+   ContractQueryForm.ShowModal;
+end;
+
+procedure TformMain.btn20Click(Sender: TObject);
+begin
+   CustomerTrackForm.ShowModal;
+end;
+
+procedure TformMain.btn21Click(Sender: TObject);
+begin
+   ContactRecordForm.ShowModal;
+end;
+
+procedure TformMain.btn28Click(Sender: TObject);
+begin
+   HouseStatisticQueryForm.ShowModal;
+end;
+
+procedure TformMain.btn29Click(Sender: TObject);
+begin
+HouseStatisticQueryForm.ShowModal;
+end;
+
+procedure TformMain.btn27Click(Sender: TObject);
+begin
+NotificationManageForm.ShowModal;
+end;
+
+procedure TformMain.btn26Click(Sender: TObject);
+begin
+SalesCommissionDetailsForm.ShowModal;
+end;
+
+procedure TformMain.btn30Click(Sender: TObject);
+begin
+SalesCommissionSumForm.ShowModal;
+end;
+
+procedure TformMain.btn31Click(Sender: TObject);
+begin
+       StatisticForm.ShowModal;
+end;
+
+procedure TformMain.btn3Click(Sender: TObject);
+begin
+  TrackQueryForm.ShowModal;
 end;
 
 end.
