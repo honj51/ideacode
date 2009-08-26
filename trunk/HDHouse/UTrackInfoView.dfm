@@ -71,7 +71,7 @@ object TrackInfoView: TTrackInfoView
       Width = 75
       Height = 21
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -100,7 +100,7 @@ object TrackInfoView: TTrackInfoView
       Width = 75
       Height = 21
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 5
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -129,7 +129,7 @@ object TrackInfoView: TTrackInfoView
       Width = 75
       Height = 21
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 7
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -158,7 +158,7 @@ object TrackInfoView: TTrackInfoView
       Width = 75
       Height = 21
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 9
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -187,7 +187,7 @@ object TrackInfoView: TTrackInfoView
       Width = 113
       Height = 20
       HintImageIndex = 0
-      TabOrder = 5
+      TabOrder = 6
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -249,7 +249,7 @@ object TrackInfoView: TTrackInfoView
         'mmo2')
       ParentFont = False
       ScrollBars = ssBoth
-      TabOrder = 6
+      TabOrder = 10
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
       DefaultFont.Height = 14
@@ -299,7 +299,7 @@ object TrackInfoView: TTrackInfoView
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -334,7 +334,7 @@ object TrackInfoView: TTrackInfoView
       Font.Style = []
       MaxLength = 8
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 4
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -367,7 +367,7 @@ object TrackInfoView: TTrackInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -399,7 +399,7 @@ object TrackInfoView: TTrackInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 8
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -476,7 +476,7 @@ object TrackInfoView: TTrackInfoView
       Width = 75
       Height = 21
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -505,7 +505,7 @@ object TrackInfoView: TTrackInfoView
       Width = 121
       Height = 20
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
