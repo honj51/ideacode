@@ -1,22 +1,19 @@
 object HouseDetailsForm: THouseDetailsForm
-  Left = 386
-  Top = 97
+  Left = 328
+  Top = 39
   AutoScroll = False
   BorderIcons = []
   Caption = #25151#28304#35814#32454#20449#24687
-  ClientHeight = 571
-  ClientWidth = 873
+  ClientHeight = 612
+  ClientWidth = 871
   Color = clBtnFace
-  Constraints.MaxHeight = 605
-  Constraints.MaxWidth = 881
-  Constraints.MinHeight = 605
-  Constraints.MinWidth = 881
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpgcntrlPageC: TbsSkinPageControl
@@ -267,12 +264,12 @@ object HouseDetailsForm: THouseDetailsForm
         Align = alCustom
         Spacing = 1
       end
-      object edt1: TbsSkinDBEdit
+      object edtfczy_wylb: TbsSkinDBEdit
         Left = 81
         Top = 28
         Width = 161
         Height = 18
-        Text = 'edt1'
+        Text = 'edtfczy_wylb'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -298,6 +295,8 @@ object HouseDetailsForm: THouseDetailsForm
         RightImageHotIndex = -1
         RightImageDownIndex = -1
         AutoSize = False
+        DataField = 'fczy_wylb'
+        DataSource = dsfczyinfo
       end
       object edt7: TbsSkinDBEdit
         Left = 785
@@ -459,12 +458,12 @@ object HouseDetailsForm: THouseDetailsForm
         RightImageDownIndex = -1
         AutoSize = False
       end
-      object edt2: TbsSkinDBEdit
+      object edtfczy_jtdz: TbsSkinDBEdit
         Left = 81
         Top = 61
         Width = 368
         Height = 18
-        Text = 'edt2'
+        Text = 'edtfczy_jtdz'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -490,13 +489,15 @@ object HouseDetailsForm: THouseDetailsForm
         RightImageHotIndex = -1
         RightImageDownIndex = -1
         AutoSize = False
+        DataField = 'fczy_jtdz'
+        DataSource = dsfczyinfo
       end
-      object edt10: TbsSkinDBEdit
+      object edtfczy_ptss1: TbsSkinDBEdit
         Left = 81
         Top = 128
         Width = 701
         Height = 18
-        Text = 'edt10'
+        Text = 'edtfczy_ptss1'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -522,6 +523,8 @@ object HouseDetailsForm: THouseDetailsForm
         RightImageHotIndex = -1
         RightImageDownIndex = -1
         AutoSize = False
+        DataField = 'fczy_ptss1'
+        DataSource = dsfczyinfo
       end
       object edt8: TbsSkinDBEdit
         Left = 708
@@ -529,70 +532,6 @@ object HouseDetailsForm: THouseDetailsForm
         Width = 31
         Height = 18
         Text = 'edt8'
-        DefaultColor = clWindow
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clBlack
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        UseSkinFont = True
-        DefaultWidth = 0
-        DefaultHeight = 0
-        ButtonMode = False
-        SkinDataName = 'edit'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = 14
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 14
-        LeftImageIndex = -1
-        LeftImageHotIndex = -1
-        LeftImageDownIndex = -1
-        RightImageIndex = -1
-        RightImageHotIndex = -1
-        RightImageDownIndex = -1
-        AutoSize = False
-      end
-      object edt9: TbsSkinDBEdit
-        Left = 81
-        Top = 161
-        Width = 702
-        Height = 18
-        Text = 'edt9'
-        DefaultColor = clWindow
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clBlack
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        UseSkinFont = True
-        DefaultWidth = 0
-        DefaultHeight = 0
-        ButtonMode = False
-        SkinDataName = 'edit'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = 14
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 16
-        LeftImageIndex = -1
-        LeftImageHotIndex = -1
-        LeftImageDownIndex = -1
-        RightImageIndex = -1
-        RightImageHotIndex = -1
-        RightImageDownIndex = -1
-        AutoSize = False
-      end
-      object edt11: TbsSkinDBEdit
-        Left = 532
-        Top = 91
-        Width = 105
-        Height = 18
-        Text = 'edt11'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -619,341 +558,663 @@ object HouseDetailsForm: THouseDetailsForm
         RightImageDownIndex = -1
         AutoSize = False
       end
-      object bsSkinDBComboBox1: TbsSkinDBComboBox
-        Left = 310
-        Top = 27
-        Width = 140
-        Height = 20
-        HintImageIndex = 0
-        TabOrder = 2
-        SkinDataName = 'combobox'
+      object edtfczy_ptss2: TbsSkinDBEdit
+        Left = 81
+        Top = 161
+        Width = 702
+        Height = 18
+        Text = 'edtfczy_ptss2'
+        DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
+        DefaultFont.Color = clBlack
         DefaultFont.Height = 14
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
+        UseSkinFont = True
         DefaultWidth = 0
         DefaultHeight = 0
-        UseSkinFont = True
-        UseSkinSize = True
-        ToolButtonStyle = False
-        AlphaBlend = False
-        AlphaBlendValue = 0
-        AlphaBlendAnimation = False
-        ListBoxCaptionMode = False
-        ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultFont.Color = clWindowText
-        ListBoxDefaultFont.Height = 14
-        ListBoxDefaultFont.Name = 'Arial'
-        ListBoxDefaultFont.Style = []
-        ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultCaptionFont.Color = clWindowText
-        ListBoxDefaultCaptionFont.Height = 14
-        ListBoxDefaultCaptionFont.Name = 'Arial'
-        ListBoxDefaultCaptionFont.Style = []
-        ListBoxDefaultItemHeight = 20
-        ListBoxCaptionAlignment = taLeftJustify
-        ListBoxUseSkinFont = True
-        ListBoxUseSkinItemHeight = True
-        ListBoxWidth = 0
-        HideSelection = True
-        AutoComplete = True
-        ImageIndex = -1
-        CharCase = ecNormal
-        DefaultColor = clWindow
-        ItemIndex = -1
-        DropDownCount = 8
-        HorizontalExtent = False
+        ButtonMode = False
+        SkinDataName = 'edit'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
+        Font.Color = clBlack
         Font.Height = 14
         Font.Name = 'Arial'
         Font.Style = []
-        Sorted = False
-        Style = bscbFixedStyle
         ParentFont = False
+        TabOrder = 16
+        LeftImageIndex = -1
+        LeftImageHotIndex = -1
+        LeftImageDownIndex = -1
+        RightImageIndex = -1
+        RightImageHotIndex = -1
+        RightImageDownIndex = -1
+        AutoSize = False
+        DataField = 'fczy_ptss2'
+        DataSource = dsfczyinfo
       end
-      object bsSkinDBComboBox2: TbsSkinDBComboBox
-        Left = 361
-        Top = 89
-        Width = 88
-        Height = 20
-        HintImageIndex = 0
-        TabOrder = 7
-        SkinDataName = 'combobox'
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        DefaultWidth = 0
-        DefaultHeight = 0
-        UseSkinFont = True
-        UseSkinSize = True
-        ToolButtonStyle = False
-        AlphaBlend = False
-        AlphaBlendValue = 0
-        AlphaBlendAnimation = False
-        ListBoxCaptionMode = False
-        ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultFont.Color = clWindowText
-        ListBoxDefaultFont.Height = 14
-        ListBoxDefaultFont.Name = 'Arial'
-        ListBoxDefaultFont.Style = []
-        ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultCaptionFont.Color = clWindowText
-        ListBoxDefaultCaptionFont.Height = 14
-        ListBoxDefaultCaptionFont.Name = 'Arial'
-        ListBoxDefaultCaptionFont.Style = []
-        ListBoxDefaultItemHeight = 20
-        ListBoxCaptionAlignment = taLeftJustify
-        ListBoxUseSkinFont = True
-        ListBoxUseSkinItemHeight = True
-        ListBoxWidth = 0
-        HideSelection = True
-        AutoComplete = True
-        ImageIndex = -1
-        CharCase = ecNormal
-        DefaultColor = clWindow
-        ItemIndex = -1
-        DropDownCount = 8
-        HorizontalExtent = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = 14
-        Font.Name = 'Arial'
-        Font.Style = []
-        Sorted = False
-        Style = bscbFixedStyle
-        ParentFont = False
-      end
-      object bsSkinDBComboBox3: TbsSkinDBComboBox
+      object edtfczy_mj: TbsSkinDBEdit
         Left = 533
-        Top = 26
-        Width = 103
-        Height = 20
-        HintImageIndex = 0
-        TabOrder = 1
-        SkinDataName = 'combobox'
+        Top = 92
+        Width = 105
+        Height = 18
+        Text = 'edtfczy_mj'
+        DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
+        DefaultFont.Color = clBlack
         DefaultFont.Height = 14
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
+        UseSkinFont = True
         DefaultWidth = 0
         DefaultHeight = 0
-        UseSkinFont = True
-        UseSkinSize = True
-        ToolButtonStyle = False
-        AlphaBlend = False
-        AlphaBlendValue = 0
-        AlphaBlendAnimation = False
-        ListBoxCaptionMode = False
-        ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultFont.Color = clWindowText
-        ListBoxDefaultFont.Height = 14
-        ListBoxDefaultFont.Name = 'Arial'
-        ListBoxDefaultFont.Style = []
-        ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultCaptionFont.Color = clWindowText
-        ListBoxDefaultCaptionFont.Height = 14
-        ListBoxDefaultCaptionFont.Name = 'Arial'
-        ListBoxDefaultCaptionFont.Style = []
-        ListBoxDefaultItemHeight = 20
-        ListBoxCaptionAlignment = taLeftJustify
-        ListBoxUseSkinFont = True
-        ListBoxUseSkinItemHeight = True
-        ListBoxWidth = 0
-        HideSelection = True
-        AutoComplete = True
-        ImageIndex = -1
-        CharCase = ecNormal
-        DefaultColor = clWindow
-        ItemIndex = -1
-        DropDownCount = 8
-        HorizontalExtent = False
+        ButtonMode = False
+        SkinDataName = 'edit'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
+        Font.Color = clBlack
         Font.Height = 14
         Font.Name = 'Arial'
         Font.Style = []
-        Sorted = False
-        Style = bscbFixedStyle
         ParentFont = False
+        TabOrder = 14
+        LeftImageIndex = -1
+        LeftImageHotIndex = -1
+        LeftImageDownIndex = -1
+        RightImageIndex = -1
+        RightImageHotIndex = -1
+        RightImageDownIndex = -1
+        AutoSize = False
+        DataField = 'fczy_jzmj'
+        DataSource = dsfczyinfo
       end
-      object bsSkinDBComboBox4: TbsSkinDBComboBox
+      object dblkcbbfczy_qy1: TDBLookupComboBox
         Left = 533
         Top = 58
-        Width = 103
-        Height = 20
-        HintImageIndex = 0
-        TabOrder = 5
-        SkinDataName = 'combobox'
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        DefaultWidth = 0
-        DefaultHeight = 0
-        UseSkinFont = True
-        UseSkinSize = True
-        ToolButtonStyle = False
-        AlphaBlend = False
-        AlphaBlendValue = 0
-        AlphaBlendAnimation = False
-        ListBoxCaptionMode = False
-        ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultFont.Color = clWindowText
-        ListBoxDefaultFont.Height = 14
-        ListBoxDefaultFont.Name = 'Arial'
-        ListBoxDefaultFont.Style = []
-        ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultCaptionFont.Color = clWindowText
-        ListBoxDefaultCaptionFont.Height = 14
-        ListBoxDefaultCaptionFont.Name = 'Arial'
-        ListBoxDefaultCaptionFont.Style = []
-        ListBoxDefaultItemHeight = 20
-        ListBoxCaptionAlignment = taLeftJustify
-        ListBoxUseSkinFont = True
-        ListBoxUseSkinItemHeight = True
-        ListBoxWidth = 0
-        HideSelection = True
-        AutoComplete = True
-        ImageIndex = -1
-        CharCase = ecNormal
-        DefaultColor = clWindow
-        ItemIndex = -1
-        DropDownCount = 8
-        HorizontalExtent = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = 14
-        Font.Name = 'Arial'
-        Font.Style = []
-        Sorted = False
-        Style = bscbFixedStyle
-        ParentFont = False
-      end
-      object bsSkinDBComboBox5: TbsSkinDBComboBox
-        Left = 707
-        Top = 22
-        Width = 128
-        Height = 20
-        HintImageIndex = 0
-        TabOrder = 0
-        SkinDataName = 'combobox'
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        DefaultWidth = 0
-        DefaultHeight = 0
-        UseSkinFont = True
-        UseSkinSize = True
-        ToolButtonStyle = False
-        AlphaBlend = False
-        AlphaBlendValue = 0
-        AlphaBlendAnimation = False
-        ListBoxCaptionMode = False
-        ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultFont.Color = clWindowText
-        ListBoxDefaultFont.Height = 14
-        ListBoxDefaultFont.Name = 'Arial'
-        ListBoxDefaultFont.Style = []
-        ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultCaptionFont.Color = clWindowText
-        ListBoxDefaultCaptionFont.Height = 14
-        ListBoxDefaultCaptionFont.Name = 'Arial'
-        ListBoxDefaultCaptionFont.Style = []
-        ListBoxDefaultItemHeight = 20
-        ListBoxCaptionAlignment = taLeftJustify
-        ListBoxUseSkinFont = True
-        ListBoxUseSkinItemHeight = True
-        ListBoxWidth = 0
-        HideSelection = True
-        AutoComplete = True
-        ImageIndex = -1
-        CharCase = ecNormal
-        DefaultColor = clWindow
-        ItemIndex = -1
-        DropDownCount = 8
-        HorizontalExtent = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = 14
-        Font.Name = 'Arial'
-        Font.Style = []
-        Sorted = False
-        Style = bscbFixedStyle
-        ParentFont = False
-      end
-      object bsSkinDBComboBox6: TbsSkinDBComboBox
-        Left = 705
-        Top = 57
-        Width = 113
-        Height = 20
-        HintImageIndex = 0
+        Width = 104
+        Height = 22
+        DataField = 'fczy_qy'
+        KeyField = 'cs_mc'
+        ListField = 'cs_mc'
         TabOrder = 4
-        SkinDataName = 'combobox'
+      end
+      object dblkcbbfczy_qy2: TDBLookupComboBox
+        Left = 361
+        Top = 89
+        Width = 90
+        Height = 22
+        DataField = 'fczy_qy'
+        KeyField = 'cs_mc'
+        ListField = 'cs_mc'
+        TabOrder = 7
+      end
+      object dblkcbbfczy_qy4: TDBLookupComboBox
+        Left = 310
+        Top = 27
+        Width = 139
+        Height = 22
+        DataField = 'fczy_qy'
+        KeyField = 'cs_mc'
+        ListField = 'cs_mc'
+        TabOrder = 2
+      end
+      object dblkcbbfczy_qy5: TDBLookupComboBox
+        Left = 531
+        Top = 25
+        Width = 107
+        Height = 22
+        DataField = 'fczy_qy'
+        KeyField = 'cs_mc'
+        ListField = 'cs_mc'
+        TabOrder = 1
+      end
+      object dblkcbbfczy_qy6: TDBLookupComboBox
+        Left = 705
+        Top = 22
+        Width = 115
+        Height = 22
+        DataField = 'fczy_qy'
+        KeyField = 'cs_mc'
+        ListField = 'cs_mc'
+        TabOrder = 0
+      end
+      object edtfczy_jcnf: TbsSkinDBEdit
+        Left = 705
+        Top = 59
+        Width = 117
+        Height = 18
+        Text = 'edtfczy_jcnf'
+        DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
+        DefaultFont.Color = clBlack
         DefaultFont.Height = 14
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
+        UseSkinFont = True
         DefaultWidth = 0
         DefaultHeight = 0
-        UseSkinFont = True
-        UseSkinSize = True
-        ToolButtonStyle = False
-        AlphaBlend = False
-        AlphaBlendValue = 0
-        AlphaBlendAnimation = False
-        ListBoxCaptionMode = False
-        ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultFont.Color = clWindowText
-        ListBoxDefaultFont.Height = 14
-        ListBoxDefaultFont.Name = 'Arial'
-        ListBoxDefaultFont.Style = []
-        ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-        ListBoxDefaultCaptionFont.Color = clWindowText
-        ListBoxDefaultCaptionFont.Height = 14
-        ListBoxDefaultCaptionFont.Name = 'Arial'
-        ListBoxDefaultCaptionFont.Style = []
-        ListBoxDefaultItemHeight = 20
-        ListBoxCaptionAlignment = taLeftJustify
-        ListBoxUseSkinFont = True
-        ListBoxUseSkinItemHeight = True
-        ListBoxWidth = 0
-        HideSelection = True
-        AutoComplete = True
-        ImageIndex = -1
-        CharCase = ecNormal
-        DefaultColor = clWindow
-        ItemIndex = -1
-        DropDownCount = 8
-        HorizontalExtent = False
+        ButtonMode = False
+        SkinDataName = 'edit'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
+        Font.Color = clBlack
         Font.Height = 14
         Font.Name = 'Arial'
         Font.Style = []
-        Sorted = False
-        Style = bscbFixedStyle
         ParentFont = False
+        TabOrder = 5
+        LeftImageIndex = -1
+        LeftImageHotIndex = -1
+        LeftImageDownIndex = -1
+        RightImageIndex = -1
+        RightImageHotIndex = -1
+        RightImageDownIndex = -1
+        AutoSize = False
+        DataField = 'fczy_jcnf'
+        DataSource = dsfczyinfo
       end
     end
     object bskntbshtEditsTabSheet: TbsSkinTabSheet
       Caption = #20445#23494#20449#24687
+      inline hscrnfvw1: THouseSecureInfoView
+        Left = 0
+        Top = 0
+        Width = 856
+        Height = 198
+        Align = alClient
+        TabOrder = 0
+        inherited bsSkinStdLabel1: TbsSkinStdLabel
+          Left = 15
+          Top = 59
+        end
+        inherited bsSkinStdLabel2: TbsSkinStdLabel
+          Left = 234
+          Top = 57
+        end
+        inherited bsSkinStdLabel3: TbsSkinStdLabel
+          Left = 480
+          Top = 57
+        end
+        inherited bsSkinStdLabel4: TbsSkinStdLabel
+          Left = 15
+          Top = 23
+        end
+        inherited bsSkinStdLabel5: TbsSkinStdLabel
+          Left = 14
+          Top = 93
+        end
+        inherited edt1: TbsSkinDBEdit
+          Left = 89
+          Top = 55
+          Width = 139
+          TabOrder = 1
+        end
+        inherited edt2: TbsSkinDBEdit
+          Left = 319
+          Top = 55
+          Width = 149
+          TabOrder = 2
+        end
+        inherited edt3: TbsSkinDBEdit
+          Left = 562
+          Top = 55
+          Width = 179
+          TabOrder = 3
+        end
+        inherited edt4: TbsSkinDBEdit
+          Left = 89
+          Top = 21
+          Width = 661
+          TabOrder = 0
+        end
+        inherited mmo1: TbsSkinDBMemo
+          Left = 88
+          Top = 92
+          Width = 659
+        end
+      end
     end
   end
-  object GroupBox: TGroupBox
+  object btn2: TbsSkinButton
+    Left = 634
+    Top = 576
+    Width = 67
+    Height = 25
+    HintImageIndex = 0
+    TabOrder = 4
+    SkinData = bskndt1
+    SkinDataName = 'button'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImageIndex = -1
+    AlwaysShowLayeredFrame = False
+    UseSkinSize = True
+    UseSkinFontColor = True
+    RepeatMode = False
+    RepeatInterval = 100
+    AllowAllUp = False
+    TabStop = True
+    CanFocused = True
+    Down = False
+    GroupIndex = 0
+    Caption = #20445#23384'(&O)'
+    NumGlyphs = 2
+    Spacing = 1
+  end
+  object btn3: TbsSkinButton
+    Left = 749
+    Top = 576
+    Width = 68
+    Height = 25
+    HintImageIndex = 0
+    TabOrder = 5
+    SkinData = bskndt1
+    SkinDataName = 'button'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImageIndex = -1
+    AlwaysShowLayeredFrame = False
+    UseSkinSize = True
+    UseSkinFontColor = True
+    RepeatMode = False
+    RepeatInterval = 100
+    AllowAllUp = False
+    TabStop = True
+    CanFocused = True
+    Down = False
+    GroupIndex = 0
+    Caption = #21462#28040'(&E)'
+    NumGlyphs = 2
+    Spacing = 1
+  end
+  object bskngrpbx1: TbsSkinGroupBox
+    Left = 6
+    Top = 320
+    Width = 857
+    Height = 90
+    HintImageIndex = 0
+    TabOrder = 2
+    SkinData = bskndt1
+    SkinDataName = 'groupbox'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImagePosition = bsipDefault
+    TransparentMode = False
+    CaptionImageIndex = -1
+    RealHeight = -1
+    AutoEnabledControls = True
+    CheckedMode = False
+    Checked = False
+    DefaultAlignment = taLeftJustify
+    DefaultCaptionHeight = 22
+    BorderStyle = bvFrame
+    CaptionMode = True
+    RollUpMode = False
+    RollUpState = False
+    NumGlyphs = 1
+    Spacing = 2
+    Caption = #20986#31199#20986#21806
+    object lbl24: TLabel
+      Left = 108
+      Top = 34
+      Width = 67
+      Height = 14
+      AutoSize = False
+      Caption = #20986#31199#20215#26684
+      Color = clBtnFace
+      ParentColor = False
+    end
+    object lbl25: TLabel
+      Left = 108
+      Top = 66
+      Width = 66
+      Height = 13
+      AutoSize = False
+      Caption = #20986#21806#20215#26684
+    end
+    object lbl27: TLabel
+      Left = 270
+      Top = 67
+      Width = 37
+      Height = 13
+      AutoSize = False
+      Caption = #19975#20803
+    end
+    object lbl26: TLabel
+      Left = 268
+      Top = 34
+      Width = 29
+      Height = 13
+      AutoSize = False
+      Caption = #20803'/'#26376
+    end
+    object lbl29: TLabel
+      Left = 311
+      Top = 65
+      Width = 58
+      Height = 13
+      AutoSize = False
+      Caption = #20986#21806#35828#26126
+    end
+    object lbl28: TLabel
+      Left = 311
+      Top = 33
+      Width = 60
+      Height = 13
+      AutoSize = False
+      Caption = #20986#31199#35828#26126
+    end
+    object bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
+      Left = 28
+      Top = 59
+      Width = 74
+      Height = 25
+      HintImageIndex = 0
+      TabOrder = 3
+      SkinDataName = 'checkbox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      WordWrap = False
+      AllowGrayed = False
+      State = cbUnchecked
+      ImageIndex = 0
+      Flat = True
+      UseSkinFontColor = True
+      TabStop = True
+      CanFocused = True
+      Radio = False
+      Checked = False
+      GroupIndex = 0
+      Caption = #27492#25151#20986#21806
+      DataField = 'fczy_cs'
+      DataSource = dsfczyinfo
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+    end
+    object bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
+      Left = 28
+      Top = 26
+      Width = 76
+      Height = 25
+      HintImageIndex = 0
+      TabOrder = 0
+      SkinDataName = 'checkbox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      WordWrap = False
+      AllowGrayed = False
+      State = cbUnchecked
+      ImageIndex = 0
+      Flat = True
+      UseSkinFontColor = True
+      TabStop = True
+      CanFocused = True
+      Radio = False
+      Checked = False
+      GroupIndex = 0
+      Caption = #27492#25151#20986#31199
+      DataField = 'fczy_cz'
+      DataSource = dsfczyinfo
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+    end
+    object edtfczy_sj: TbsSkinDBEdit
+      Left = 189
+      Top = 63
+      Width = 72
+      Height = 18
+      Text = 'edtfczy_sj'
+      DefaultColor = clWindow
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = False
+      SkinDataName = 'edit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataField = 'fczy_sj'
+      DataSource = dsfczyinfo
+    end
+    object edtfczy_zj: TbsSkinDBEdit
+      Left = 188
+      Top = 30
+      Width = 73
+      Height = 18
+      Text = 'edtfczy_zj'
+      DefaultColor = clWindow
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = False
+      SkinDataName = 'edit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataField = 'fczy_zj'
+      DataSource = dsfczyinfo
+    end
+    object edtfczy_cssm: TbsSkinDBEdit
+      Left = 384
+      Top = 60
+      Width = 438
+      Height = 18
+      Text = 'edtfczy_cssm'
+      DefaultColor = clWindow
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = False
+      SkinDataName = 'edit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataField = 'fczy_cssm'
+      DataSource = dsfczyinfo
+    end
+    object edtfczy_czsm: TbsSkinDBEdit
+      Left = 384
+      Top = 30
+      Width = 438
+      Height = 18
+      Text = 'edtfczy_czsm'
+      DefaultColor = clWindow
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = False
+      SkinDataName = 'edit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataField = 'fczy_czsm'
+      DataSource = dsfczyinfo
+    end
+  end
+  object bskngrpbx2: TbsSkinGroupBox
     Left = 7
-    Top = 8
-    Width = 858
-    Height = 72
+    Top = 417
+    Width = 856
+    Height = 150
+    HintImageIndex = 0
+    TabOrder = 3
+    SkinData = bskndt1
+    SkinDataName = 'groupbox'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImagePosition = bsipDefault
+    TransparentMode = False
+    CaptionImageIndex = -1
+    RealHeight = -1
+    AutoEnabledControls = True
+    CheckedMode = False
+    Checked = False
+    DefaultAlignment = taLeftJustify
+    DefaultCaptionHeight = 22
+    BorderStyle = bvFrame
+    CaptionMode = True
+    RollUpMode = False
+    RollUpState = False
+    NumGlyphs = 1
+    Spacing = 2
+    Caption = #25151#28304#35814#32454#20449#24687
+    object mmoHouseInfo: TbsSkinDBMemo
+      Left = 11
+      Top = 23
+      Width = 834
+      Height = 119
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      Lines.Strings = (
+        'bsSkinDBMemo1')
+      ParentFont = False
+      ScrollBars = ssBoth
+      TabOrder = 0
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      UseSkinFontColor = True
+      BitMapBG = True
+      SkinData = bskndt1
+      SkinDataName = 'memo'
+    end
+  end
+  object bsknpnl1: TbsSkinPanel
+    Left = 6
+    Top = 7
+    Width = 856
+    Height = 75
+    HintImageIndex = 0
     TabOrder = 0
+    SkinData = bskndt1
+    SkinDataName = 'panel'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImagePosition = bsipDefault
+    TransparentMode = False
+    CaptionImageIndex = -1
+    RealHeight = -1
+    AutoEnabledControls = True
+    CheckedMode = False
+    Checked = False
+    DefaultAlignment = taLeftJustify
+    DefaultCaptionHeight = 22
+    BorderStyle = bvFrame
+    CaptionMode = False
+    RollUpMode = False
+    RollUpState = False
+    NumGlyphs = 1
+    Spacing = 2
+    Caption = 'bsknpnl1'
     object lbl1: TLabel
       Left = 13
       Top = 32
@@ -1018,12 +1279,12 @@ object HouseDetailsForm: THouseDetailsForm
       Align = alCustom
       Spacing = 1
     end
-    object edt12: TbsSkinDBEdit
+    object edtfczy_bh: TbsSkinDBEdit
       Left = 90
       Top = 29
       Width = 131
       Height = 18
-      Text = 'edt12'
+      Text = 'edtfczy_bh'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -1042,7 +1303,7 @@ object HouseDetailsForm: THouseDetailsForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1050,72 +1311,8 @@ object HouseDetailsForm: THouseDetailsForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
-    end
-    object edt13: TbsSkinDBEdit
-      Left = 301
-      Top = 30
-      Width = 111
-      Height = 18
-      Text = 'edt13'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = bskndt1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 3
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
-    end
-    object edt14: TbsSkinDBEdit
-      Left = 486
-      Top = 29
-      Width = 121
-      Height = 18
-      Text = 'edt14'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = bskndt1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 1
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
+      DataField = 'fczy_bh'
+      DataSource = dsfczyinfo
     end
     object edt15: TbsSkinDBEdit
       Left = 683
@@ -1141,296 +1338,35 @@ object HouseDetailsForm: THouseDetailsForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
-    end
-  end
-  object grp1: TGroupBox
-    Left = 6
-    Top = 315
-    Width = 857
-    Height = 91
-    Caption = ' '#20986#31199#20986#21806
-    TabOrder = 2
-    object lbl24: TLabel
-      Left = 94
-      Top = 30
-      Width = 67
-      Height = 14
-      AutoSize = False
-      Caption = #20986#31199#20215#26684
-      Color = clBtnFace
-      ParentColor = False
-    end
-    object lbl26: TLabel
-      Left = 254
-      Top = 30
-      Width = 29
-      Height = 13
-      AutoSize = False
-      Caption = #20803'/'#26376
-    end
-    object lbl27: TLabel
-      Left = 256
-      Top = 63
-      Width = 37
-      Height = 13
-      AutoSize = False
-      Caption = #19975#20803
-    end
-    object lbl28: TLabel
-      Left = 297
-      Top = 29
-      Width = 60
-      Height = 13
-      AutoSize = False
-      Caption = #20986#31199#35828#26126
-    end
-    object lbl29: TLabel
-      Left = 297
-      Top = 61
-      Width = 58
-      Height = 13
-      AutoSize = False
-      Caption = #20986#21806#35828#26126
-    end
-    object lbl25: TLabel
-      Left = 94
-      Top = 62
-      Width = 66
-      Height = 13
-      AutoSize = False
-      Caption = #20986#21806#20215#26684
-    end
-    object bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
-      Left = 14
-      Top = 55
-      Width = 74
-      Height = 25
-      HintImageIndex = 0
       TabOrder = 3
-      SkinDataName = 'checkbox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      WordWrap = False
-      AllowGrayed = False
-      State = cbUnchecked
-      ImageIndex = 0
-      Flat = True
-      UseSkinFontColor = True
-      TabStop = True
-      CanFocused = True
-      Radio = False
-      Checked = False
-      GroupIndex = 0
-      Caption = #27492#25151#20986#21806
-      ValueChecked = 'True'
-      ValueUnchecked = 'False'
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataSource = dsfczyinfo
     end
-    object edt16: TbsSkinDBEdit
-      Left = 174
+    object dblkcbbfczy_qy3: TDBLookupComboBox
+      Left = 489
       Top = 26
-      Width = 73
-      Height = 18
-      Text = 'edt16'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
+      Width = 106
+      Height = 21
+      DataField = 'fczy_qy'
+      KeyField = 'cs_mc'
+      ListField = 'cs_mc'
       TabOrder = 1
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
     end
-    object edt17: TbsSkinDBEdit
-      Left = 175
-      Top = 59
-      Width = 72
-      Height = 18
-      Text = 'edt17'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 5
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
-    end
-    object edt18: TbsSkinDBEdit
-      Left = 370
+    object dblkcbbfczy_qy: TDBLookupComboBox
+      Left = 296
       Top = 26
-      Width = 438
-      Height = 18
-      Text = 'edt18'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 2
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
-    end
-    object edt19: TbsSkinDBEdit
-      Left = 370
-      Top = 56
-      Width = 438
-      Height = 18
-      Text = 'edt19'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 4
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
-    end
-    object bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
-      Left = 14
-      Top = 23
-      Width = 76
-      Height = 25
-      HintImageIndex = 0
+      Width = 115
+      Height = 21
+      DataField = 'fczy_qy'
+      KeyField = 'cs_mc'
+      ListField = 'cs_mc'
       TabOrder = 0
-      SkinDataName = 'checkbox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      WordWrap = False
-      AllowGrayed = False
-      State = cbUnchecked
-      ImageIndex = 0
-      Flat = True
-      UseSkinFontColor = True
-      TabStop = True
-      CanFocused = True
-      Radio = False
-      Checked = False
-      GroupIndex = 0
-      Caption = #27492#25151#20986#31199
-      ValueChecked = 'True'
-      ValueUnchecked = 'False'
-    end
-  end
-  object grp2: TGroupBox
-    Left = 8
-    Top = 412
-    Width = 856
-    Height = 152
-    Caption = #25151#28304#35814#32454#20449#24687
-    TabOrder = 3
-    object txtHouseInfo: TbsSkinDBMemo
-      Left = 11
-      Top = 23
-      Width = 834
-      Height = 119
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Lines.Strings = (
-        'bsSkinDBMemo1')
-      ParentFont = False
-      ScrollBars = ssBoth
-      TabOrder = 0
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      UseSkinFontColor = True
-      BitMapBG = True
-      SkinData = bskndt1
-      SkinDataName = 'memo'
     end
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
@@ -1482,8 +1418,8 @@ object HouseDetailsForm: THouseDetailsForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 27
-    Top = 65535
+    Left = 636
+    Top = 65529
   end
   object bskndt1: TbsSkinData
     SkinnableForm = True
@@ -1492,13 +1428,13 @@ object HouseDetailsForm: THouseDetailsForm
     ShowCaptionButtonGlowFrames = True
     CompressedStoredSkin = bscmprsdstrdskn1
     SkinIndex = 0
-    Left = 62
-    Top = 65534
+    Left = 537
+    Top = 65521
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'Vista2.skn'
-    Left = 97
-    Top = 65535
+    Left = 186
+    Top = 2
     CompressedData = {
       78DAECBD075C5557D63E7C88F99CF7FB675E67DECC7CFFA8C99B19D3461353CC
       245101A32296D8A36241885D6CA07444AA14A9F64A95A2F4DE3B48EFBD8374A5
@@ -3730,8 +3666,8 @@ object HouseDetailsForm: THouseDetailsForm
       end>
     PngWidth = 16
     PngHeight = 16
-    Left = 150
-    Top = 2
+    Left = 374
+    Top = 65513
     Bitmap = {
       494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
@@ -3871,5 +3807,37 @@ object HouseDetailsForm: THouseDetailsForm
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object qry1: TADOQuery
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\HD' +
+      'House\database\hdhouse.mdb;Mode=Share Deny None;Extended Propert' +
+      'ies="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";J' +
+      'et OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:' +
+      'Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet ' +
+      'OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password' +
+      '="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Dat' +
+      'abase=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLE' +
+      'DB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False'
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'id'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from fczy where fczy_bh=id')
+    Left = 813
+    Top = 1
+  end
+  object dsfczyinfo: TDataSource
+    DataSet = qry1
+    Left = 758
+    Top = 5
   end
 end

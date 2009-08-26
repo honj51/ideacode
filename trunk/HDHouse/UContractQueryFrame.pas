@@ -9,9 +9,6 @@ uses
 
 type
   TContractQueryFrame = class(TFrame)
-    edt1: TbsSkinDBEdit;
-    cbb1: TbsSkinDBComboBox;
-    cbb2: TbsSkinDBComboBox;
     bsSkinStdLabel1: TbsSkinStdLabel;
     bsSkinStdLabel2: TbsSkinStdLabel;
     bsknchckrdbx1: TbsSkinCheckRadioBox;
@@ -20,6 +17,9 @@ type
     bskndbgrd1: TbsSkinDBGrid;
     bsknscrlbr1: TbsSkinScrollBar;
     bvl1: TBevel;
+    edt2: TbsSkinDateEdit;
+    edt3: TbsSkinDateEdit;
+    edt1: TbsSkinMaskEdit;
   private
     { Private declarations }
   public

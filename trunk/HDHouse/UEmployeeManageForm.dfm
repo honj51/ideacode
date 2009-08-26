@@ -1,6 +1,6 @@
 object EmployeeManageForm: TEmployeeManageForm
-  Left = 261
-  Top = 84
+  Left = 361
+  Top = 165
   AutoScroll = False
   BorderIcons = []
   Caption = #21592#24037#31649#29702
@@ -21,7 +21,7 @@ object EmployeeManageForm: TEmployeeManageForm
     Width = 946
     Height = 370
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 2
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
@@ -209,7 +209,7 @@ object EmployeeManageForm: TEmployeeManageForm
     Width = 965
     Height = 19
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 4
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -271,7 +271,7 @@ object EmployeeManageForm: TEmployeeManageForm
     Height = 93
     Align = alTop
     AutoScroll = False
-    TabOrder = 4
+    TabOrder = 0
     inherited bskntlbr1: TbsSkinToolBar
       Width = 965
       SkinDataName = 'resizetoolpanel'

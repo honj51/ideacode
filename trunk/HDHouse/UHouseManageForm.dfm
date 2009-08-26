@@ -1,6 +1,6 @@
 object HouseManageForm: THouseManageForm
-  Left = 284
-  Top = 119
+  Left = 357
+  Top = 159
   Width = 936
   Height = 603
   BorderIcons = []
@@ -86,87 +86,112 @@ object HouseManageForm: THouseManageForm
         TabOrder = 0
         inherited bsknpnl1: TbsSkinPanel
           inherited edt1: TbsSkinDBEdit
+            Text = '6800'
             DataField = 'fczy_zj'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt2: TbsSkinDBEdit
+            Text = '200'
             DataField = 'fczy_sj'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt3: TbsSkinDBEdit
+            Text = #20986#31199#19981#21253#25324#27700#30005#36153#29992
             DataField = 'fczy_czsm'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt4: TbsSkinDBEdit
+            Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
             DataField = 'fczy_cssm'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt5: TbsSkinDBEdit
+            Text = #27491#24120#29366#24577
             DataField = 'fczy_dqzt'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt6: TbsSkinDBEdit
+            Text = #37329#25104#22269#36152
             DataField = 'fczy_wymc'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt7: TbsSkinDBEdit
+            Text = #19996#22478#21306
             DataField = 'fczy_qy'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt8: TbsSkinDBEdit
+            Text = '4'#23460'1'#21381'1'#21355'1'#38451
             DataField = 'fczy_hxjg'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt9: TbsSkinDBEdit
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt10: TbsSkinDBEdit
+            Text = #21150#20844#29992#25151
             DataField = 'fczy_wyyt'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt11: TbsSkinDBEdit
+            Text = #26222#35013
             DataField = 'fczy_zxcd'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt12: TbsSkinDBEdit
+            Text = '360'
             DataField = 'fczy_jzmj'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt13: TbsSkinDBEdit
+            Text = '2005'
             DataField = 'fczy_jcnf'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt14: TbsSkinDBEdit
+            Text = #24179#23618
             DataField = 'fczy_fx'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt15: TbsSkinDBEdit
+            Text = #39640#23618
             DataField = 'fczy_wylb'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt16: TbsSkinDBEdit
+            Text = '16/36'
             DataField = 'fczy_lccg'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
+          end
+          inherited bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
+            Left = 12
+            DataSource = HDHouseDataModule.dsfczy
+          end
+          inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
+            DataSource = HDHouseDataModule.dsfczy
           end
         end
         inherited bsknpnl2: TbsSkinPanel
           inherited edt17: TbsSkinDBEdit
+            Text = #23485#24102';'
             DataField = 'fczy_ptss1'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt18: TbsSkinDBEdit
+            Text = #30005#35805';'#23485#24102';'
             DataField = 'fczy_ptss2'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited edt19: TbsSkinDBEdit
+            Text = #21830#22478#36335'110'#21495
             DataField = 'fczy_jtdz'
-            DataSource = HDHouseDataModule.ds1
+            DataSource = HDHouseDataModule.dsfczy
           end
           inherited mmoxxxx: TbsSkinDBMemo2
             Lines.Strings = (
-              'FC200801070001')
-            DataField = 'fczy_'
-            DataSource = HDHouseDataModule.ds1
+              #20132#36890#26041#20415#65292#22788#20110#24066#21306#32321#21326#22320#24102)
+            DataField = 'fczy_xxbz'
+            DataSource = HDHouseDataModule.dsfczy
           end
         end
       end
@@ -181,20 +206,24 @@ object HouseManageForm: THouseManageForm
         Align = alClient
         TabOrder = 0
         inherited edt1: TbsSkinDBEdit
+          Text = #21830#22478#36335'110'#21495
           DataField = 'fczy_jtdz'
-          DataSource = HDHouseDataModule.ds1
+          DataSource = HDHouseDataModule.dsfczy
         end
         inherited edt2: TbsSkinDBEdit
+          Text = '56585658'
           DataField = 'fczy_dh'
-          DataSource = HDHouseDataModule.ds1
+          DataSource = HDHouseDataModule.dsfczy
         end
         inherited edt3: TbsSkinDBEdit
+          Text = '200'
           DataField = 'fczy_sj'
-          DataSource = HDHouseDataModule.ds1
+          DataSource = HDHouseDataModule.dsfczy
         end
         inherited edt4: TbsSkinDBEdit
+          Text = #21830#22478#36335'110'#21495
           DataField = 'fczy_jtdz'
-          DataSource = HDHouseDataModule.ds1
+          DataSource = HDHouseDataModule.dsfczy
         end
         inherited mmo1: TbsSkinDBMemo
           Left = 110
@@ -202,7 +231,7 @@ object HouseManageForm: THouseManageForm
           Lines.Strings = (
             #20132#36890#26041#20415#65292#22788#20110#24066#21306#32321#21326#22320#24102)
           DataField = 'fczy_xxbz'
-          DataSource = HDHouseDataModule.ds1
+          DataSource = HDHouseDataModule.dsfczy
         end
       end
     end
@@ -241,23 +270,24 @@ object HouseManageForm: THouseManageForm
     Height = 271
     Align = alClient
     TabOrder = 1
-    inherited lbl1: TLabel
-      Left = 8
-    end
     inherited btn1: TbsSkinButtonLabel
-      Left = 248
-    end
-    inherited lbl2: TLabel
-      Left = 824
+      Left = 265
+      Top = 8
+      OnClick = hslstvw1btn1Click
     end
     inherited bvl1: TBevel
       Width = 928
+    end
+    inherited bsSkinStdLabel2: TbsSkinStdLabel
+      Left = 824
+      Top = 19
     end
     inherited bskndbgrd1: TbsSkinDBGrid
       Width = 925
       Height = 201
       Anchors = [akLeft, akTop, akRight, akBottom]
-      DataSource = HDHouseDataModule.ds1
+      DataSource = HDHouseDataModule.dsfczy
+      OnDblClick = hslstvw1bskndbgrd1DblClick
       Columns = <
         item
           Expanded = False
@@ -431,32 +461,44 @@ object HouseManageForm: THouseManageForm
           Visible = True
         end>
     end
-    inherited edt1: TEdit
-      Left = 112
-      Width = 113
-    end
-    inherited bsknchckrdbx1: TbsSkinCheckRadioBox
-      Left = 552
-    end
-    inherited bsknchckrdbx2: TbsSkinCheckRadioBox
-      Left = 424
-    end
     inherited bsknchckrdbx3: TbsSkinCheckRadioBox
       Left = 680
+      Top = 15
+      TabOrder = 1
+      OnClick = hslstvw1bsknchckrdbx3Click
     end
     inherited btn2: TbsSkinButton
-      Left = 296
-    end
-    inherited edt2: TbsSkinDBEdit
-      Left = 776
+      Left = 303
+      TabOrder = 0
     end
     inherited bsknscrlbr1: TbsSkinScrollBar
       Top = 252
       Width = 928
-      Visible = True
-      Max = 127
       SmallChange = 25
       LargeChange = 25
+    end
+    inherited bsknchckrdbx2: TbsSkinCheckRadioBox
+      Left = 551
+      Top = 17
+      TabOrder = 3
+      OnClick = hslstvw1bsknchckrdbx2Click
+    end
+    inherited bsknchckrdbx1: TbsSkinCheckRadioBox
+      Left = 417
+      Top = 18
+      TabOrder = 5
+      OnClick = hslstvw1bsknchckrdbx1Click
+    end
+    inherited edt2: TbsSkinMaskEdit
+      Left = 777
+      Top = 17
+      Text = '30'
+      TabOrder = 4
+    end
+    inherited edt1: TbsSkinMaskEdit
+      Width = 131
+      Text = ''
+      TabOrder = 2
     end
   end
 end

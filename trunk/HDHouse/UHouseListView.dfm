@@ -1,25 +1,12 @@
 object HouseListView: THouseListView
   Left = 0
   Top = 0
-  Width = 1041
-  Height = 291
+  Width = 979
+  Height = 316
   TabOrder = 0
-  object lbl1: TLabel
-    Left = 16
-    Top = 16
-    Width = 96
-    Height = 13
-    Caption = #36755#20837#25151#28304#20449#24687#26597#35810
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-  end
   object btn1: TbsSkinButtonLabel
-    Left = 296
-    Top = 8
+    Left = 282
+    Top = 7
     Width = 33
     Height = 33
     UseCustomGlowColor = False
@@ -141,28 +128,54 @@ object HouseListView: THouseListView
     DefaultFont.Style = []
     SkinDataName = 'stdlabel'
   end
-  object lbl2: TLabel
-    Left = 880
-    Top = 16
-    Width = 81
-    Height = 13
-    AutoSize = False
-    Caption = #22825#20869#30340#20449#24687
-  end
   object bvl1: TBevel
     Left = 0
     Top = 0
-    Width = 1041
+    Width = 979
     Height = 2
     Align = alTop
+  end
+  object bsSkinStdLabel1: TbsSkinStdLabel
+    Left = 8
+    Top = 20
+    Width = 114
+    Height = 13
+    EllipsType = bsetNone
+    UseSkinFont = True
+    UseSkinColor = True
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -11
+    DefaultFont.Name = 'MS Sans Serif'
+    DefaultFont.Style = []
+    SkinDataName = 'stdlabel'
+    AutoSize = False
+    Caption = #36755#20837#25151#28304#20449#24687#26597#35810
+  end
+  object bsSkinStdLabel2: TbsSkinStdLabel
+    Left = 821
+    Top = 17
+    Width = 79
+    Height = 13
+    EllipsType = bsetNone
+    UseSkinFont = True
+    UseSkinColor = True
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -11
+    DefaultFont.Name = 'MS Sans Serif'
+    DefaultFont.Style = []
+    SkinDataName = 'stdlabel'
+    AutoSize = False
+    Caption = #22825#20869#30340#20449#24687
   end
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 48
-    Width = 1033
-    Height = 221
+    Width = 975
+    Height = 249
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 6
     SkinDataName = 'grid'
     Transparent = False
     WallpaperStretch = False
@@ -338,78 +351,13 @@ object HouseListView: THouseListView
         Visible = True
       end>
   end
-  object edt1: TEdit
-    Left = 128
-    Top = 11
-    Width = 145
-    Height = 21
-    TabOrder = 1
-  end
-  object bsknchckrdbx1: TbsSkinCheckRadioBox
-    Left = 608
-    Top = 10
-    Width = 113
-    Height = 25
-    HintImageIndex = 0
-    TabOrder = 2
-    SkinDataName = 'radiobox'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    WordWrap = False
-    AllowGrayed = False
-    State = cbUnchecked
-    ImageIndex = 0
-    Flat = True
-    UseSkinFontColor = True
-    TabStop = True
-    CanFocused = True
-    Radio = True
-    Checked = False
-    GroupIndex = 1
-    Caption = #21482#26174#31034#20986#21806#20449#24687
-  end
-  object bsknchckrdbx2: TbsSkinCheckRadioBox
-    Left = 480
-    Top = 10
-    Width = 113
-    Height = 25
-    HintImageIndex = 0
-    TabOrder = 3
-    SkinDataName = 'radiobox'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    WordWrap = False
-    AllowGrayed = False
-    State = cbUnchecked
-    ImageIndex = 0
-    Flat = True
-    UseSkinFontColor = True
-    TabStop = True
-    CanFocused = True
-    Radio = True
-    Checked = False
-    GroupIndex = 1
-    Caption = #21482#26174#31034#20986#31199#20449#24687
-  end
   object bsknchckrdbx3: TbsSkinCheckRadioBox
-    Left = 736
-    Top = 10
+    Left = 679
+    Top = 12
     Width = 89
     Height = 25
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 0
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -433,12 +381,12 @@ object HouseListView: THouseListView
     Caption = #21482#26174#31034#26368#36817
   end
   object btn2: TbsSkinButton
-    Left = 352
-    Top = 10
+    Left = 333
+    Top = 13
     Width = 97
     Height = 25
     HintImageIndex = 0
-    TabOrder = 5
+    TabOrder = 1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -463,42 +411,10 @@ object HouseListView: THouseListView
     NumGlyphs = 1
     Spacing = 1
   end
-  object edt2: TbsSkinDBEdit
-    Left = 832
-    Top = 14
-    Width = 33
-    Height = 18
-    Text = 'edt2'
-    DefaultColor = clWindow
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clBlack
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    UseSkinFont = True
-    DefaultWidth = 0
-    DefaultHeight = 0
-    ButtonMode = False
-    SkinDataName = 'edit'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = 14
-    Font.Name = 'Arial'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 6
-    LeftImageIndex = -1
-    LeftImageHotIndex = -1
-    LeftImageDownIndex = -1
-    RightImageIndex = -1
-    RightImageHotIndex = -1
-    RightImageDownIndex = -1
-    AutoSize = False
-  end
   object bsknscrlbr1: TbsSkinScrollBar
     Left = 0
-    Top = 272
-    Width = 969
+    Top = 297
+    Width = 979
     Height = 19
     HintImageIndex = 0
     TabOrder = 7
@@ -523,5 +439,128 @@ object HouseListView: THouseListView
     Position = 0
     SmallChange = 127
     LargeChange = 127
+  end
+  object bsknchckrdbx2: TbsSkinCheckRadioBox
+    Left = 556
+    Top = 15
+    Width = 113
+    Height = 17
+    HintImageIndex = 0
+    TabOrder = 4
+    SkinDataName = 'checkbox'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    WordWrap = False
+    AllowGrayed = False
+    State = cbUnchecked
+    ImageIndex = 0
+    Flat = True
+    UseSkinFontColor = True
+    TabStop = True
+    CanFocused = True
+    Radio = False
+    Checked = False
+    GroupIndex = 1
+    Caption = #21482#26174#31034#20986#21806#20449#24687
+  end
+  object bsknchckrdbx1: TbsSkinCheckRadioBox
+    Left = 440
+    Top = 15
+    Width = 110
+    Height = 17
+    HintImageIndex = 0
+    TabOrder = 3
+    SkinDataName = 'checkbox'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    WordWrap = False
+    AllowGrayed = False
+    State = cbUnchecked
+    ImageIndex = 0
+    Flat = True
+    UseSkinFontColor = True
+    TabStop = True
+    CanFocused = True
+    Radio = False
+    Checked = False
+    GroupIndex = 1
+    Caption = #21482#26174#31034#20986#31199#20449#24687
+  end
+  object edt2: TbsSkinMaskEdit
+    Left = 768
+    Top = 14
+    Width = 33
+    Height = 18
+    DefaultColor = clWindow
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clBlack
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    UseSkinFont = True
+    DefaultWidth = 0
+    DefaultHeight = 0
+    ButtonMode = False
+    SkinDataName = 'edit'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = 14
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    LeftImageIndex = -1
+    LeftImageHotIndex = -1
+    LeftImageDownIndex = -1
+    RightImageIndex = -1
+    RightImageHotIndex = -1
+    RightImageDownIndex = -1
+    AutoSize = False
+    BorderStyle = bsNone
+  end
+  object edt1: TbsSkinMaskEdit
+    Left = 125
+    Top = 16
+    Width = 146
+    Height = 18
+    Text = 'edt1'
+    DefaultColor = clWindow
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clBlack
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    UseSkinFont = True
+    DefaultWidth = 0
+    DefaultHeight = 0
+    ButtonMode = False
+    SkinDataName = 'edit'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = 14
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    LeftImageIndex = -1
+    LeftImageHotIndex = -1
+    LeftImageDownIndex = -1
+    RightImageIndex = -1
+    RightImageHotIndex = -1
+    RightImageDownIndex = -1
+    AutoSize = False
+    BorderStyle = bsNone
   end
 end

@@ -1,17 +1,23 @@
 inherited DealHouseListView: TDealHouseListView
-  inherited lbl1: TLabel
-    Left = 184
-  end
+  Width = 1081
   inherited btn1: TbsSkinButtonLabel
-    Left = 416
+    Left = 381
+    Top = 10
   end
-  inherited lbl2: TLabel
-    Left = 896
-    Width = 73
+  inherited bvl1: TBevel
+    Width = 1081
+  end
+  inherited bsSkinStdLabel1: TbsSkinStdLabel
+    Left = 158
+    Top = 19
+  end
+  inherited bsSkinStdLabel2: TbsSkinStdLabel
+    Left = 868
+    Top = 18
   end
   object i: TbsSkinStdLabel [4]
-    Left = 8
-    Top = 16
+    Left = 3
+    Top = 18
     Width = 65
     Height = 13
     EllipsType = bsetNone
@@ -26,35 +32,190 @@ inherited DealHouseListView: TDealHouseListView
     AutoSize = False
     Caption = #31614#32422#29366#24577
   end
-  inherited edt1: TEdit
-    Left = 304
-    Top = 12
-    Width = 105
-  end
-  inherited bsknchckrdbx1: TbsSkinCheckRadioBox
-    Left = 664
-    Width = 105
-  end
-  inherited bsknchckrdbx2: TbsSkinCheckRadioBox
-    Left = 552
+  inherited bskndbgrd1: TbsSkinDBGrid
+    Width = 1081
+    TabOrder = 7
+    Columns = <
+      item
+        Expanded = False
+        Title.Caption = #25151#28304#32534#21495
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #30331#35760#26085#26399
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #24403#21069#29366#24577
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #29289#19994#21517#31216
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #25151#22411#32467#26500
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #24314#31569#38754#31215
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #25152#22788#21306#22495
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #27004#23618'/'#23618#39640
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #32622#19994#39038#38382
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #29289#19994#29992#36884
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #29289#19994#31867#21035
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Width = 78
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #35013#20462#31243#24230
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #25151#22411
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #24314#25104#24180#26376
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'MS Sans Serif'
+        Title.Font.Style = []
+        Width = 95
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        Title.Alignment = taCenter
+        Title.Caption = #20855#20307#22320#22336
+        Visible = True
+      end>
   end
   inherited bsknchckrdbx3: TbsSkinCheckRadioBox
-    Left = 768
+    Left = 729
+    Top = 11
   end
   inherited btn2: TbsSkinButton
-    Left = 456
-    Width = 89
+    Left = 414
+    Top = 12
+    Width = 81
   end
-  inherited edt2: TbsSkinDBEdit
-    Left = 856
+  inherited bsknscrlbr1: TbsSkinScrollBar
+    Width = 1081
+    TabOrder = 8
+    Visible = False
+    Max = 0
   end
-  object cbb1: TbsSkinDBComboBox
-    Left = 80
-    Top = 13
+  inherited bsknchckrdbx2: TbsSkinCheckRadioBox
+    Left = 618
+    TabOrder = 6
+  end
+  inherited bsknchckrdbx1: TbsSkinCheckRadioBox
+    Left = 502
+    TabOrder = 5
+  end
+  object cbb1: TbsSkinDBComboBox [11]
+    Left = 60
+    Top = 15
     Width = 97
     Height = 20
     HintImageIndex = 0
-    TabOrder = 8
+    TabOrder = 3
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -101,5 +262,14 @@ inherited DealHouseListView: TDealHouseListView
     Sorted = False
     Style = bscbFixedStyle
     ParentFont = False
+  end
+  inherited edt2: TbsSkinMaskEdit
+    Left = 819
+  end
+  inherited edt1: TbsSkinMaskEdit
+    Left = 277
+    Top = 15
+    Width = 99
+    TabOrder = 4
   end
 end
