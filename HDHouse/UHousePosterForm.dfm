@@ -1,8 +1,8 @@
 object HousePosterForm: THousePosterForm
-  Left = 176
-  Top = 215
-  Width = 1112
-  Height = 567
+  Left = 320
+  Top = 152
+  Width = 985
+  Height = 503
   Caption = #38376#24215#25307#36148
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,13 +12,13 @@ object HousePosterForm: THousePosterForm
   Font.Style = []
   OldCreateOrder = False
   DesignSize = (
-    1104
-    533)
+    977
+    469)
   PixelsPerInch = 96
   TextHeight = 13
   object btn6: TbsSkinSpeedButton
-    Left = 192
-    Top = 16
+    Left = 191
+    Top = 6
     Width = 64
     Height = 64
     HintImageIndex = 0
@@ -50,8 +50,8 @@ object HousePosterForm: THousePosterForm
     Layout = blGlyphTop
   end
   object btn1: TbsSkinSpeedButton
-    Left = 264
-    Top = 8
+    Left = 266
+    Top = 6
     Width = 64
     Height = 64
     HintImageIndex = 0
@@ -166,9 +166,9 @@ object HousePosterForm: THousePosterForm
     Caption = #26102#38388#33539#22260
   end
   object bsSkinStdLabel2: TbsSkinStdLabel
-    Left = 472
+    Left = 478
     Top = 82
-    Width = 73
+    Width = 63
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -183,7 +183,7 @@ object HousePosterForm: THousePosterForm
     Caption = #25151#28304#20449#24687
   end
   object btn4: TbsSkinButtonLabel
-    Left = 688
+    Left = 682
     Top = 72
     Width = 33
     Height = 33
@@ -305,11 +305,12 @@ object HousePosterForm: THousePosterForm
     DefaultFont.Name = 'Arial'
     DefaultFont.Style = []
     SkinDataName = 'stdlabel'
+    OnClick = btn4Click
   end
   object bvl1: TBevel
     Left = -24
     Top = 64
-    Width = 1128
+    Width = 1001
     Height = 1
     Align = alCustom
     Anchors = [akLeft, akTop, akRight]
@@ -318,7 +319,7 @@ object HousePosterForm: THousePosterForm
     Left = 0
     Top = 0
     Width = 177
-    Height = 533
+    Height = 469
     HintImageIndex = 0
     TabOrder = 0
     SkinDataName = 'groupbox'
@@ -351,30 +352,19 @@ object HousePosterForm: THousePosterForm
       Left = 1
       Top = 23
       Width = 156
-      Height = 490
+      Height = 426
       Items.Data = {
-        09000000210000000000000000000000FFFFFFFFFFFFFFFF0000000001000000
-        08CBF9D3D0C7F8D3F2210000000000000000000000FFFFFFFFFFFFFFFF000000
-        0002000000087375626974656D31220000000000000000000000FFFFFFFFFFFF
-        FFFF0000000000000000097375626974656D3131220000000000000000000000
-        FFFFFFFFFFFFFFFF0000000002000000097375626974656D3132230000000000
-        000000000000FFFFFFFFFFFFFFFF00000000020000000A7375626974656D3132
-        31240000000000000000000000FFFFFFFFFFFFFFFF00000000020000000B7375
-        626974656D31323131250000000000000000000000FFFFFFFFFFFFFFFF000000
-        00000000000C7375626974656D3132313131250000000000000000000000FFFF
-        FFFFFFFFFFFF00000000000000000C7375626974656D31323131322400000000
-        00000000000000FFFFFFFFFFFFFFFF00000000000000000B7375626974656D31
-        323132230000000000000000000000FFFFFFFFFFFFFFFF00000000000000000A
-        7375626974656D3132321F0000000000000000000000FFFFFFFFFFFFFFFF0000
-        00000000000006B6ABB3C7C7F81F0000000000000000000000FFFFFFFFFFFFFF
-        FF000000000000000006CEF7B3C7C7F81F0000000000000000000000FFFFFFFF
-        FFFFFFFF000000000000000006D0FBCEE4C7F81F0000000000000000000000FF
-        FFFFFFFFFFFFFF000000000000000006B3E7CEC4C7F81F000000000000000000
-        0000FFFFFFFFFFFFFFFF000000000000000006BAA3B6A8C7F81F000000000000
-        0000000000FFFFFFFFFFFFFFFF000000000000000006B3AFD1F4C7F821000000
-        0000000000000000FFFFFFFFFFFFFFFF000000000000000008CAAFBEB0C9BDC7
-        F81F0000000000000000000000FFFFFFFFFFFFFFFF000000000000000006CDA8
-        D6DDC7F8}
+        09000000210000000000000000000000FFFFFFFFFFFFFFFF0000000000000000
+        08CBF9D3D0C7F8D3F21F0000000000000000000000FFFFFFFFFFFFFFFF000000
+        000000000006B6ABB3C7C7F81F0000000000000000000000FFFFFFFFFFFFFFFF
+        000000000000000006CEF7B3C7C7F81F0000000000000000000000FFFFFFFFFF
+        FFFFFF000000000000000006D0FBCEE4C7F81F0000000000000000000000FFFF
+        FFFFFFFFFFFF000000000000000006B3E7CEC4C7F81F00000000000000000000
+        00FFFFFFFFFFFFFFFF000000000000000006BAA3B6A8C7F81F00000000000000
+        00000000FFFFFFFFFFFFFFFF000000000000000006B3AFD1F4C7F82100000000
+        00000000000000FFFFFFFFFFFFFFFF000000000000000008CAAFBEB0C9BDC7F8
+        1F0000000000000000000000FFFFFFFFFFFFFFFF000000000000000006CDA8D6
+        DDC7F8}
       HScrollBar = bsknscrlbr2
       VScrollBar = bsknscrlbr1
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -399,7 +389,7 @@ object HousePosterForm: THousePosterForm
       Left = 157
       Top = 23
       Width = 19
-      Height = 490
+      Height = 426
       HintImageIndex = 0
       TabOrder = 1
       Visible = False
@@ -427,11 +417,12 @@ object HousePosterForm: THousePosterForm
     end
     object bsknscrlbr2: TbsSkinScrollBar
       Left = 1
-      Top = 513
+      Top = 449
       Width = 175
       Height = 19
       HintImageIndex = 0
       TabOrder = 2
+      Visible = False
       SkinDataName = 'hscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -447,7 +438,7 @@ object HousePosterForm: THousePosterForm
       CanFocused = False
       Align = alBottom
       Kind = sbHorizontal
-      PageSize = 156
+      PageSize = 0
       Min = 0
       Max = 190
       Position = 0
@@ -455,148 +446,8 @@ object HousePosterForm: THousePosterForm
       LargeChange = 1
     end
   end
-  object cbb1: TbsSkinDBComboBox
-    Left = 256
-    Top = 79
-    Width = 97
-    Height = 20
-    HintImageIndex = 0
-    TabOrder = 1
-    SkinDataName = 'combobox'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    UseSkinSize = True
-    ToolButtonStyle = False
-    AlphaBlend = False
-    AlphaBlendValue = 0
-    AlphaBlendAnimation = False
-    ListBoxCaptionMode = False
-    ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultFont.Color = clWindowText
-    ListBoxDefaultFont.Height = 14
-    ListBoxDefaultFont.Name = 'Arial'
-    ListBoxDefaultFont.Style = []
-    ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultCaptionFont.Color = clWindowText
-    ListBoxDefaultCaptionFont.Height = 14
-    ListBoxDefaultCaptionFont.Name = 'Arial'
-    ListBoxDefaultCaptionFont.Style = []
-    ListBoxDefaultItemHeight = 20
-    ListBoxCaptionAlignment = taLeftJustify
-    ListBoxUseSkinFont = True
-    ListBoxUseSkinItemHeight = True
-    ListBoxWidth = 0
-    HideSelection = True
-    AutoComplete = True
-    ImageIndex = -1
-    CharCase = ecNormal
-    DefaultColor = clWindow
-    ItemIndex = -1
-    DropDownCount = 8
-    HorizontalExtent = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = 14
-    Font.Name = 'Arial'
-    Font.Style = []
-    Sorted = False
-    Style = bscbFixedStyle
-    ParentFont = False
-  end
-  object cbb2: TbsSkinDBComboBox
-    Left = 368
-    Top = 79
-    Width = 97
-    Height = 20
-    HintImageIndex = 0
-    TabOrder = 2
-    SkinDataName = 'combobox'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    UseSkinSize = True
-    ToolButtonStyle = False
-    AlphaBlend = False
-    AlphaBlendValue = 0
-    AlphaBlendAnimation = False
-    ListBoxCaptionMode = False
-    ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultFont.Color = clWindowText
-    ListBoxDefaultFont.Height = 14
-    ListBoxDefaultFont.Name = 'Arial'
-    ListBoxDefaultFont.Style = []
-    ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultCaptionFont.Color = clWindowText
-    ListBoxDefaultCaptionFont.Height = 14
-    ListBoxDefaultCaptionFont.Name = 'Arial'
-    ListBoxDefaultCaptionFont.Style = []
-    ListBoxDefaultItemHeight = 20
-    ListBoxCaptionAlignment = taLeftJustify
-    ListBoxUseSkinFont = True
-    ListBoxUseSkinItemHeight = True
-    ListBoxWidth = 0
-    HideSelection = True
-    AutoComplete = True
-    ImageIndex = -1
-    CharCase = ecNormal
-    DefaultColor = clWindow
-    ItemIndex = -1
-    DropDownCount = 8
-    HorizontalExtent = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = 14
-    Font.Name = 'Arial'
-    Font.Style = []
-    Sorted = False
-    Style = bscbFixedStyle
-    ParentFont = False
-  end
-  object edt1: TbsSkinDBEdit
-    Left = 544
-    Top = 80
-    Width = 121
-    Height = 18
-    Text = 'edt1'
-    DefaultColor = clWindow
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clBlack
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    UseSkinFont = True
-    DefaultWidth = 0
-    DefaultHeight = 0
-    ButtonMode = False
-    SkinDataName = 'edit'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = 14
-    Font.Name = 'Arial'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 3
-    LeftImageIndex = -1
-    LeftImageHotIndex = -1
-    LeftImageDownIndex = -1
-    RightImageIndex = -1
-    RightImageHotIndex = -1
-    RightImageDownIndex = -1
-    AutoSize = False
-  end
   object bsknchckrdbx1: TbsSkinCheckRadioBox
-    Left = 728
+    Left = 729
     Top = 80
     Width = 113
     Height = 17
@@ -621,13 +472,14 @@ object HousePosterForm: THousePosterForm
     CanFocused = True
     Radio = False
     Checked = False
-    GroupIndex = 0
+    GroupIndex = 1
     Caption = #21482#26174#31034#20986#31199#20449#24687
+    OnClick = bsknchckrdbx1Click
   end
   object bsknchckrdbx2: TbsSkinCheckRadioBox
-    Left = 848
+    Left = 847
     Top = 80
-    Width = 113
+    Width = 111
     Height = 17
     HintImageIndex = 0
     TabOrder = 5
@@ -650,14 +502,15 @@ object HousePosterForm: THousePosterForm
     CanFocused = True
     Radio = False
     Checked = False
-    GroupIndex = 0
+    GroupIndex = 1
     Caption = #21482#26174#31034#20986#21806#20449#24687
+    OnClick = bsknchckrdbx2Click
   end
   object bskngrpbx1: TbsSkinGroupBox
     Left = 176
     Top = 120
-    Width = 933
-    Height = 413
+    Width = 806
+    Height = 349
     HintImageIndex = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 6
@@ -688,11 +541,11 @@ object HousePosterForm: THousePosterForm
     Caption = #25151#28304#20449#24687
     object bsknscrlbr3: TbsSkinScrollBar
       Left = 1
-      Top = 393
-      Width = 931
+      Top = 329
+      Width = 804
       Height = 19
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 1
       SkinDataName = 'hscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -712,16 +565,16 @@ object HousePosterForm: THousePosterForm
       Min = 0
       Max = 127
       Position = 0
-      SmallChange = 63
-      LargeChange = 63
+      SmallChange = 18
+      LargeChange = 18
     end
     object bskndbgrd1: TbsSkinDBGrid
       Left = 1
       Top = 23
-      Width = 931
-      Height = 370
+      Width = 804
+      Height = 306
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 0
       SkinDataName = 'grid'
       Transparent = False
       WallpaperStretch = False
@@ -743,6 +596,7 @@ object HousePosterForm: THousePosterForm
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
       Align = alClient
+      DataSource = HDHouseDataModule.dsfczy
       ParentFont = False
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -752,66 +606,79 @@ object HousePosterForm: THousePosterForm
       Columns = <
         item
           Expanded = False
-          Title.Caption = #25151#28304#24687#24687
+          FieldName = 'fczy_bh'
+          Title.Caption = #25151#28304#32534#21495
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 114
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'fczy_djrq'
           Title.Caption = #30331#35760#26085#26399
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 94
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'fczy_qy'
           Title.Caption = #25152#22788#21306#22495
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 76
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'fczy_wymc'
           Title.Caption = #29289#19994#21517#31216
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 97
           Visible = True
         end
         item
           Expanded = False
-          Title.Caption = #25151#22411#32467#26500
+          FieldName = 'fczy_hxjg'
+          Title.Caption = #25143#22411#32467#26500
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 105
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'fczy_lccg'
           Title.Caption = #27004#23618'/'#23618#39640
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 77
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'fczy_jzmj'
           Title.Caption = #24314#31569#38754#31215
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
@@ -822,27 +689,56 @@ object HousePosterForm: THousePosterForm
         end
         item
           Expanded = False
+          FieldName = 'fczy_zxcd'
           Title.Caption = #35013#20462#31243#24230
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 66
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'fczy_wylb'
           Title.Caption = #25151#22411
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 79
           Visible = True
         end
         item
           Expanded = False
-          Title.Caption = #24314#25104#24180#20221
+          FieldName = 'fczy_jcnf'
+          Title.Caption = #24314#25104#24180#26376
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 49
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'fczy_dqzt'
+          Title.Caption = #24403#21069#29366#24577
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 68
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'fczy_ptss1'
+          Title.Caption = #22522#30784#35774#26045
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
@@ -852,7 +748,20 @@ object HousePosterForm: THousePosterForm
         end
         item
           Expanded = False
-          Title.Caption = #22522#30784#35774#26045
+          FieldName = 'fczy_jtdz'
+          Title.Caption = #20855#20307#22320#22336
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'MS Sans Serif'
+          Title.Font.Style = []
+          Width = 99
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'fczy_sj'
+          Title.Caption = #21806#20215#13#10
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
@@ -863,29 +772,142 @@ object HousePosterForm: THousePosterForm
         end
         item
           Expanded = False
-          Title.Caption = #20855#20307#22320#22336
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -11
-          Title.Font.Name = 'MS Sans Serif'
-          Title.Font.Style = []
-          Visible = True
-        end
-        item
-          Expanded = False
-          Title.Caption = #21806#20215
-          Visible = True
-        end
-        item
-          Expanded = False
+          FieldName = 'fczy_zj'
           Title.Caption = #31199#20215
           Visible = True
         end
         item
           Expanded = False
-          Title.Caption = #22522#30784#35774#26045
+          FieldName = 'fczy_ptss2'
+          Title.Caption = #37197#22871#35774#26045
           Visible = True
         end>
     end
+  end
+  object edt2: TbsSkinDateEdit
+    Left = 248
+    Top = 79
+    Width = 111
+    Height = 18
+    EditMask = '!0000/99/99;1; '
+    Text = '    -  -  '
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 0
+    UseSkinFont = True
+    TodayDefault = False
+    CalendarWidth = 200
+    CalendarHeight = 150
+    CalendarFont.Charset = DEFAULT_CHARSET
+    CalendarFont.Color = clWindowText
+    CalendarFont.Height = 14
+    CalendarFont.Name = 'Arial'
+    CalendarFont.Style = []
+    CalendarBoldDays = False
+    CalendarUseSkinFont = True
+    CalendarSkinDataName = 'panel'
+    FirstDayOfWeek = Sun
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clBlack
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    ButtonMode = True
+    SkinDataName = 'buttonedit'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = 14
+    Font.Name = 'Arial'
+    Font.Style = []
+    MaxLength = 10
+    ParentFont = False
+    TabOrder = 1
+    LeftImageIndex = -1
+    LeftImageHotIndex = -1
+    LeftImageDownIndex = -1
+    RightImageIndex = -1
+    RightImageHotIndex = -1
+    RightImageDownIndex = -1
+  end
+  object edt3: TbsSkinDateEdit
+    Left = 364
+    Top = 79
+    Width = 105
+    Height = 18
+    EditMask = '!0000/99/99;1; '
+    Text = '    -  -  '
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 0
+    UseSkinFont = True
+    TodayDefault = False
+    CalendarWidth = 200
+    CalendarHeight = 150
+    CalendarFont.Charset = DEFAULT_CHARSET
+    CalendarFont.Color = clWindowText
+    CalendarFont.Height = 14
+    CalendarFont.Name = 'Arial'
+    CalendarFont.Style = []
+    CalendarBoldDays = False
+    CalendarUseSkinFont = True
+    CalendarSkinDataName = 'panel'
+    FirstDayOfWeek = Sun
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clBlack
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    ButtonMode = True
+    SkinDataName = 'buttonedit'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = 14
+    Font.Name = 'Arial'
+    Font.Style = []
+    MaxLength = 10
+    ParentFont = False
+    TabOrder = 2
+    LeftImageIndex = -1
+    LeftImageHotIndex = -1
+    LeftImageDownIndex = -1
+    RightImageIndex = -1
+    RightImageHotIndex = -1
+    RightImageDownIndex = -1
+  end
+  object edt1: TbsSkinMaskEdit
+    Left = 549
+    Top = 79
+    Width = 121
+    Height = 18
+    DefaultColor = clWindow
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clBlack
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    UseSkinFont = True
+    DefaultWidth = 0
+    DefaultHeight = 0
+    ButtonMode = False
+    SkinDataName = 'edit'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = 14
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    LeftImageIndex = -1
+    LeftImageHotIndex = -1
+    LeftImageDownIndex = -1
+    RightImageIndex = -1
+    RightImageHotIndex = -1
+    RightImageDownIndex = -1
+    AutoSize = False
+    BorderStyle = bsNone
   end
 end

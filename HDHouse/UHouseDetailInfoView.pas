@@ -10,8 +10,6 @@ type
   THouseDetailInfoView = class(TFrame)
     bsknpnl1: TbsSkinPanel;
     bsknpnl2: TbsSkinPanel;
-    bsknchckrdbx1: TbsSkinCheckRadioBox;
-    bsknchckrdbx2: TbsSkinCheckRadioBox;
     edt1: TbsSkinDBEdit;
     edt2: TbsSkinDBEdit;
     edt3: TbsSkinDBEdit;
@@ -53,6 +51,8 @@ type
     bsSkinStdLabel15: TbsSkinStdLabel;
     bsSkinStdLabel16: TbsSkinStdLabel;
     bsSkinStdLabel17: TbsSkinStdLabel;
+    bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox;
+    bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox;
   private
     { Private declarations }
   public

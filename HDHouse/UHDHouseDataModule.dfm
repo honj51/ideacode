@@ -1,13 +1,13 @@
 object HDHouseDataModule: THDHouseDataModule
-  OldCreateOrder = False
-  Left = 425
-  Top = 264
-  Height = 315
+  OldCreateOrder = True
+  Left = 463
+  Top = 286
+  Height = 427
   Width = 456
-  object ds1: TDataSource
-    DataSet = qry1
-    Left = 33
-    Top = 113
+  object dsfczy: TDataSource
+    DataSet = qryfczy
+    Left = 10
+    Top = 58
   end
   object bsSkinData1: TbsSkinData
     SkinnableForm = True
@@ -16,30 +16,30 @@ object HDHouseDataModule: THDHouseDataModule
     ShowCaptionButtonGlowFrames = True
     CompressedStoredSkin = bscmprsdstrdskn1
     SkinIndex = 0
-    Left = 72
-    Top = 32
+    Left = 29
   end
   object con1: TADOConnection
+    Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Pr' +
-      'oject\delphi\HDHouse\database\hdhouse.mdb;Mode=Share Deny None;E' +
-      'xtended Properties="";Persist Security Info=False;Jet OLEDB:Syst' +
-      'em database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Pas' +
-      'sword="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode' +
-      '=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Tra' +
-      'nsactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create ' +
-      'System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB' +
-      ':Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Without Re' +
-      'plica Repair=False;Jet OLEDB:SFP=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\HD' +
+      'House\database\hdhouse.mdb;Mode=Share Deny None;Extended Propert' +
+      'ies="";Persist Security Info=False;Jet OLEDB:System database="";' +
+      'Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";Jet OL' +
+      'EDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Gl' +
+      'obal Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet' +
+      ' OLEDB:New Database Password="";Jet OLEDB:Create System Database' +
+      '=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don'#39't Copy Loc' +
+      'ale on Compact=False;Jet OLEDB:Compact Without Replica Repair=Fa' +
+      'lse;Jet OLEDB:SFP=False'
     LoginPrompt = False
+    Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
-    Left = 129
-    Top = 113
+    Left = 317
+    Top = 56
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'InnovEx.skn'
-    Left = 168
-    Top = 32
+    Top = 65535
     CompressedData = {
       78DAECBD59781BC7992EACCCFFCF9C8B79CE32B99AAB732EFE9BB99864963393
       CC39674E1627B113278E9D4C1CEFB164798913DBF22AC9B26C4BB6AC5D24C57D
@@ -3220,14 +3220,15 @@ object HDHouseDataModule: THDHouseDataModule
       3A70492F2936FD95BB181D388346E56E9070B7343E4C72A324F744B74F743BD3
       EDFF0FEFBA52FF}
   end
-  object qry1: TADOQuery
+  object qryfczy: TADOQuery
+    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
       'select * from fczy')
-    Left = 81
-    Top = 113
+    Left = 236
+    Top = 57
   end
   object bspngmglstPngImglst64: TbsPngImageList
     PngImages = <
@@ -6741,8 +6742,8 @@ object HDHouseDataModule: THDHouseDataModule
       end>
     PngWidth = 64
     PngHeight = 64
-    Left = 56
-    Top = 208
+    Left = 91
+    Top = 1
     Bitmap = {
       494C010107000900040040004000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100008000000001002000000000000000
@@ -11573,8 +11574,8 @@ object HDHouseDataModule: THDHouseDataModule
       end>
     PngWidth = 32
     PngHeight = 32
-    Left = 160
-    Top = 208
+    Left = 59
+    Top = 65534
     Bitmap = {
       494C010106000900040020002000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000004000000001002000000000000080
@@ -12637,5 +12638,70 @@ object HDHouseDataModule: THDHouseDataModule
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000}
+  end
+  object qryfcgj: TADOQuery
+    Connection = con1
+    CursorType = ctStatic
+    DataSource = dsfczy
+    Parameters = <>
+    SQL.Strings = (
+      'select * from fcgi')
+    Left = 239
+    Top = 114
+  end
+  object dsHouses: TDataSource
+    DataSet = tblHouses
+    Left = 72
+    Top = 60
+  end
+  object tblTrackRecords: TADOTable
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    IndexFieldNames = 'fcgj_fybh'
+    MasterFields = 'fczy_bh'
+    MasterSource = dsfczy
+    TableName = 'fcgj'
+    Left = 161
+    Top = 110
+  end
+  object tblHouses: TADOTable
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    TableName = 'fczy'
+    Left = 158
+    Top = 53
+  end
+  object dsTrackRecords: TDataSource
+    DataSet = tblTrackRecords
+    Left = 73
+    Top = 110
+  end
+  object tblContractQuery: TADOTable
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    TableName = 'cjxx'
+    Left = 163
+    Top = 167
+  end
+  object dsContractQuery: TDataSource
+    DataSet = tblContractQuery
+    Left = 75
+    Top = 170
+  end
+  object dsTrackQuery: TDataSource
+    DataSet = tblTrackQuery
+    Left = 71
+    Top = 227
+  end
+  object tblTrackQuery: TADOTable
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    TableName = 'fcgj'
+    Left = 159
+    Top = 225
   end
 end

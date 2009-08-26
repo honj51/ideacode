@@ -175,7 +175,7 @@ object CustomerListView: TCustomerListView
     Width = 953
     Height = 208
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 6
     SkinDataName = 'grid'
     Transparent = False
     WallpaperStretch = False
@@ -330,7 +330,7 @@ object CustomerListView: TCustomerListView
     Top = 11
     Width = 145
     Height = 21
-    TabOrder = 1
+    TabOrder = 4
   end
   object bsknchckrdbx1: TbsSkinCheckRadioBox
     Left = 568
@@ -367,7 +367,7 @@ object CustomerListView: TCustomerListView
     Width = 113
     Height = 25
     HintImageIndex = 0
-    TabOrder = 3
+    TabOrder = 1
     SkinDataName = 'radiobox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -396,7 +396,7 @@ object CustomerListView: TCustomerListView
     Width = 89
     Height = 25
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 3
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -425,7 +425,7 @@ object CustomerListView: TCustomerListView
     Width = 89
     Height = 25
     HintImageIndex = 0
-    TabOrder = 5
+    TabOrder = 0
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -473,7 +473,7 @@ object CustomerListView: TCustomerListView
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1

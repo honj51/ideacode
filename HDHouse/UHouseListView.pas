@@ -10,17 +10,17 @@ uses
 type
   THouseListView = class(TFrame)
     bskndbgrd1: TbsSkinDBGrid;
-    lbl1: TLabel;
-    edt1: TEdit;
     btn1: TbsSkinButtonLabel;
-    bsknchckrdbx1: TbsSkinCheckRadioBox;
-    bsknchckrdbx2: TbsSkinCheckRadioBox;
     bsknchckrdbx3: TbsSkinCheckRadioBox;
     btn2: TbsSkinButton;
-    edt2: TbsSkinDBEdit;
-    lbl2: TLabel;
     bvl1: TBevel;
     bsknscrlbr1: TbsSkinScrollBar;
+    bsknchckrdbx2: TbsSkinCheckRadioBox;
+    bsknchckrdbx1: TbsSkinCheckRadioBox;
+    edt2: TbsSkinMaskEdit;
+    edt1: TbsSkinMaskEdit;
+    bsSkinStdLabel1: TbsSkinStdLabel;
+    bsSkinStdLabel2: TbsSkinStdLabel;
   private
     { Private declarations }
   public

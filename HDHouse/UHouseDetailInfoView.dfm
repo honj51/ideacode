@@ -322,64 +322,6 @@ object HouseDetailInfoView: THouseDetailInfoView
       AutoSize = False
       Caption = #25151'        '#22411
     end
-    object bsknchckrdbx1: TbsSkinCheckRadioBox
-      Left = 8
-      Top = 4
-      Width = 57
-      Height = 25
-      HintImageIndex = 0
-      TabOrder = 0
-      SkinDataName = 'checkbox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      WordWrap = False
-      AllowGrayed = False
-      State = cbUnchecked
-      ImageIndex = 0
-      Flat = True
-      UseSkinFontColor = True
-      TabStop = True
-      CanFocused = True
-      Radio = False
-      Checked = False
-      GroupIndex = 0
-      Caption = #20986#31199
-    end
-    object bsknchckrdbx2: TbsSkinCheckRadioBox
-      Left = 8
-      Top = 37
-      Width = 57
-      Height = 25
-      HintImageIndex = 0
-      TabOrder = 3
-      SkinDataName = 'checkbox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      WordWrap = False
-      AllowGrayed = False
-      State = cbUnchecked
-      ImageIndex = 0
-      Flat = True
-      UseSkinFontColor = True
-      TabStop = True
-      CanFocused = True
-      Radio = False
-      Checked = False
-      GroupIndex = 0
-      Caption = #20986#21806
-    end
     object edt1: TbsSkinDBEdit
       Left = 104
       Top = 7
@@ -891,6 +833,70 @@ object HouseDetailInfoView: THouseDetailInfoView
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+    end
+    object bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
+      Left = 10
+      Top = 5
+      Width = 52
+      Height = 25
+      HintImageIndex = 0
+      TabOrder = 0
+      SkinDataName = 'checkbox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      WordWrap = False
+      AllowGrayed = False
+      State = cbUnchecked
+      ImageIndex = 0
+      Flat = True
+      UseSkinFontColor = True
+      TabStop = True
+      CanFocused = True
+      Radio = False
+      Checked = False
+      GroupIndex = 0
+      Caption = #20986#31199
+      DataField = 'fczy_cz'
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+    end
+    object bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
+      Left = 12
+      Top = 37
+      Width = 52
+      Height = 25
+      HintImageIndex = 0
+      TabOrder = 3
+      SkinDataName = 'checkbox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      WordWrap = False
+      AllowGrayed = False
+      State = cbUnchecked
+      ImageIndex = 0
+      Flat = True
+      UseSkinFontColor = True
+      TabStop = True
+      CanFocused = True
+      Radio = False
+      Checked = False
+      GroupIndex = 0
+      Caption = #20986#21806
+      DataField = 'fczy_cs'
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
     end
   end
   object bsknpnl2: TbsSkinPanel

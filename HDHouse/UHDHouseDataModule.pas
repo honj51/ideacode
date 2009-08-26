@@ -7,13 +7,22 @@ uses
 
 type
   THDHouseDataModule = class(TDataModule)
-    ds1: TDataSource;
+    dsfczy: TDataSource;
     bsSkinData1: TbsSkinData;
     con1: TADOConnection;
     bscmprsdstrdskn1: TbsCompressedStoredSkin;
-    qry1: TADOQuery;
+    qryfczy: TADOQuery;
     bspngmglstPngImglst64: TbsPngImageList;
     bspngmglst32: TbsPngImageList;
+    qryfcgj: TADOQuery;
+    dsHouses: TDataSource;
+    tblTrackRecords: TADOTable;
+    tblHouses: TADOTable;
+    dsTrackRecords: TDataSource;
+    tblContractQuery: TADOTable;
+    dsContractQuery: TDataSource;
+    dsTrackQuery: TDataSource;
+    tblTrackQuery: TADOTable;
   private
     { Private declarations }
   public

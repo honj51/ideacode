@@ -1,8 +1,8 @@
 object HouseDealManageForm: THouseDealManageForm
-  Left = 217
-  Top = 59
-  Width = 943
-  Height = 624
+  Left = 350
+  Top = 137
+  Width = 958
+  Height = 603
   Caption = #25104#20132#31649#29702' '
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,8 +16,8 @@ object HouseDealManageForm: THouseDealManageForm
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 0
-    Width = 935
-    Height = 590
+    Width = 950
+    Height = 569
     ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -45,8 +45,8 @@ object HouseDealManageForm: THouseDealManageForm
     object bskntbsht1: TbsSkinTabSheet
       Caption = #25104#20132#31649#29702
       DesignSize = (
-        933
-        568)
+        948
+        547)
       object btn1: TbsSkinSpeedButton
         Left = 24
         Top = 5
@@ -148,8 +148,8 @@ object HouseDealManageForm: THouseDealManageForm
       end
       object bsknpgcntrl2: TbsSkinPageControl
         Left = 0
-        Top = 343
-        Width = 933
+        Top = 322
+        Width = 948
         Height = 225
         ActivePage = bskntbsht3
         Align = alBottom
@@ -180,28 +180,66 @@ object HouseDealManageForm: THouseDealManageForm
           inline trckrcrdvw1: TTrackRecordView
             Left = 0
             Top = 0
-            Width = 931
+            Width = 946
             Height = 203
             Align = alClient
             TabOrder = 0
             inherited bskntlbr1: TbsSkinToolBar
-              Width = 931
+              Width = 946
             end
             inherited bskndbgrd1: TbsSkinDBGrid
-              Width = 912
+              Width = 927
               Height = 135
               DefaultRowHeight = 18
+              DataSource = HDHouseDataModule.dsTrackRecords
               TitleFont.Color = clBtnText
               TitleFont.Height = 14
               TitleFont.Name = 'Arial'
+              Columns = <
+                item
+                  Alignment = taCenter
+                  Expanded = False
+                  FieldName = 'fcgj_date'
+                  Title.Caption = #36319#36827#26085#26399
+                  Width = 100
+                  Visible = True
+                end
+                item
+                  Alignment = taCenter
+                  Expanded = False
+                  FieldName = 'fcgj_gjr'
+                  Title.Caption = #36319#36827#20154
+                  Width = 80
+                  Visible = True
+                end
+                item
+                  Alignment = taCenter
+                  Expanded = False
+                  FieldName = 'fcgj_fs'
+                  Title.Caption = #36319#36827#26041#24335
+                  Width = 80
+                  Visible = True
+                end
+                item
+                  Alignment = taCenter
+                  Expanded = False
+                  FieldName = 'fcgj_ms'
+                  Title.Caption = #36319#36827#20869#23481
+                  Width = 350
+                  Visible = True
+                end>
             end
             inherited bsknscrlbr1: TbsSkinScrollBar
               Top = 184
-              Width = 931
+              Width = 946
             end
             inherited bsknscrlbr2: TbsSkinScrollBar
-              Left = 912
+              Left = 927
               Height = 135
+            end
+            inherited bspngmglst24: TbsPngImageList
+              Left = 576
+              Top = 2
             end
           end
         end
@@ -210,68 +248,110 @@ object HouseDealManageForm: THouseDealManageForm
           inline hsdtlnfvw1: THouseDetailInfoView
             Left = 0
             Top = 0
-            Width = 931
+            Width = 946
             Height = 203
             Align = alClient
             TabOrder = 0
             inherited bsknpnl1: TbsSkinPanel
               inherited edt1: TbsSkinDBEdit
+                Text = '6800'
                 DataField = 'fczy_zj'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt2: TbsSkinDBEdit
+                Text = '200'
                 DataField = 'fczy_sj'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt3: TbsSkinDBEdit
+                Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
                 DataField = 'fczy_cssm'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt4: TbsSkinDBEdit
                 Left = 255
                 Top = 41
+                Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
                 DataField = 'fczy_cssm'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt5: TbsSkinDBEdit
+                Text = #27491#24120#29366#24577
                 DataField = 'fczy_dqzt'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt6: TbsSkinDBEdit
+                Text = #37329#25104#22269#36152
                 DataField = 'fczy_wymc'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt7: TbsSkinDBEdit
+                Text = #26397#38451#21306
                 DataField = 'fczy_qy'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt8: TbsSkinDBEdit
+                Text = '4'#23460'1'#21381'1'#21355'1'#38451
                 DataField = 'fczy_hxjg'
+                DataSource = HDHouseDataModule.dsfczy
+              end
+              inherited edt9: TbsSkinDBEdit
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt10: TbsSkinDBEdit
+                Text = #21150#20844#29992#25151
                 DataField = 'fczy_wyyt'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt11: TbsSkinDBEdit
+                Text = #26222#35013
                 DataField = 'fczy_zxcd'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt12: TbsSkinDBEdit
+                Text = '360'
                 DataField = 'fczy_jzmj'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt13: TbsSkinDBEdit
+                Text = '2005'
                 DataField = 'fczy_jcnf'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt14: TbsSkinDBEdit
+                Text = #24179#23618
                 DataField = 'fczy_fx'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt15: TbsSkinDBEdit
+                Text = #39640#23618
                 DataField = 'fczy_wylb'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt16: TbsSkinDBEdit
+                Text = '16/36'
                 DataField = 'fczy_lccg'
+                DataSource = HDHouseDataModule.dsfczy
               end
             end
             inherited bsknpnl2: TbsSkinPanel
               inherited edt17: TbsSkinDBEdit
+                Text = #23485#24102';'
                 DataField = 'fczy_ptss1'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt18: TbsSkinDBEdit
+                Text = #30005#35805';'#23485#24102';'
                 DataField = 'fczy_ptss2'
+                DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt19: TbsSkinDBEdit
+                Text = #21830#22478#36335'110'#21495
                 DataField = 'fczy_jtdz'
+                DataSource = HDHouseDataModule.dsfczy
+              end
+              inherited mmoxxxx: TbsSkinDBMemo2
+                DataSource = HDHouseDataModule.dsfczy
               end
             end
           end
@@ -281,25 +361,40 @@ object HouseDealManageForm: THouseDealManageForm
           inline hscrnfvw1: THouseSecureInfoView
             Left = 0
             Top = 0
-            Width = 931
+            Width = 946
             Height = 203
             Align = alClient
             TabOrder = 0
             inherited edt1: TbsSkinDBEdit
+              Text = #20029#20029
               DataField = 'fczy_yzxm'
+              DataSource = HDHouseDataModule.dsfczy
             end
             inherited edt2: TbsSkinDBEdit
               Left = 329
               Top = 25
+              Text = '56585658'
               TabOrder = 2
               DataField = 'fczy_dh'
+              DataSource = HDHouseDataModule.dsfczy
             end
             inherited edt3: TbsSkinDBEdit
+              Text = '200'
               TabOrder = 1
               DataField = 'fczy_sj'
+              DataSource = HDHouseDataModule.dsfczy
             end
             inherited edt4: TbsSkinDBEdit
+              Text = #21830#22478#36335'110'#21495
               DataField = 'fczy_jtdz'
+              DataSource = HDHouseDataModule.dsfczy
+            end
+            inherited mmo1: TbsSkinDBMemo
+              Top = 81
+              Lines.Strings = (
+                #26080)
+              DataField = 'fczy_bmbz'
+              DataSource = HDHouseDataModule.dsfczy
             end
           end
         end
@@ -307,30 +402,38 @@ object HouseDealManageForm: THouseDealManageForm
       inline dlhslstvw1: TDealHouseListView
         Left = -1
         Top = 68
-        Width = 924
-        Height = 274
+        Width = 939
+        Height = 253
         Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 0
-        inherited lbl1: TLabel
-          Left = 167
-        end
         inherited btn1: TbsSkinButtonLabel
-          Left = 374
-        end
-        inherited lbl2: TLabel
-          Left = 849
-          Width = 62
+          Left = 373
+          Top = 12
+          Width = 34
+          OnClick = dlhslstvw1btn1Click
         end
         inherited bvl1: TBevel
-          Width = 924
+          Width = 939
+        end
+        inherited bsSkinStdLabel1: TbsSkinStdLabel
+          Left = 166
+          Top = 20
+          Width = 99
+        end
+        inherited bsSkinStdLabel2: TbsSkinStdLabel
+          Left = 856
+          Width = 82
+        end
+        inherited i: TbsSkinStdLabel
+          Left = 4
+          Top = 21
         end
         inherited bskndbgrd1: TbsSkinDBGrid
           Left = 2
           Top = 47
           Width = 968
-          Height = 201
-          Anchors = [akLeft, akTop, akRight, akBottom]
-          TabOrder = 7
+          Height = 180
+          DataSource = HDHouseDataModule.dsfczy
           Columns = <
             item
               Expanded = False
@@ -498,44 +601,67 @@ object HouseDealManageForm: THouseDealManageForm
               Visible = True
             end>
         end
-        inherited edt1: TEdit
-          Left = 268
-          Height = 22
-        end
-        inherited bsknchckrdbx1: TbsSkinCheckRadioBox
-          Left = 613
-        end
-        inherited bsknchckrdbx2: TbsSkinCheckRadioBox
-          Left = 499
-        end
         inherited bsknchckrdbx3: TbsSkinCheckRadioBox
-          Left = 720
+          Left = 718
+          Top = 12
+          OnClick = dlhslstvw1bsknchckrdbx3Click
         end
         inherited btn2: TbsSkinButton
-          Left = 411
-          Width = 84
-        end
-        inherited edt2: TbsSkinDBEdit
-          Left = 810
-          TabOrder = 6
+          Top = 13
+          Width = 71
         end
         inherited bsknscrlbr1: TbsSkinScrollBar
-          Top = 255
-          Width = 924
-          TabOrder = 8
+          Top = 234
+          Width = 939
           Visible = True
           Max = 127
-          SmallChange = 31
-          LargeChange = 31
+          SmallChange = 11
+          LargeChange = 11
+        end
+        inherited bsknchckrdbx2: TbsSkinCheckRadioBox
+          Left = 606
+          Top = 17
+          Width = 108
+          OnClick = dlhslstvw1bsknchckrdbx2Click
+        end
+        inherited bsknchckrdbx1: TbsSkinCheckRadioBox
+          Left = 493
+          Top = 17
+          Width = 109
+          OnClick = dlhslstvw1bsknchckrdbx1Click
         end
         inherited cbb1: TbsSkinDBComboBox
           Left = 67
-          TabOrder = 5
+          Top = 17
+          TabOrder = 4
+          Text = #25152#26377#25151#28304
+          Items.Strings = (
+            #25152#26377#25151#28304
+            #24050#31614#32422
+            #26410#31614#32422)
+          OnChange = dlhslstvw1cbb1Change
+        end
+        inherited edt2: TbsSkinMaskEdit
+          Left = 810
+          Top = 15
+          Width = 43
+          Height = 19
+          Text = '30'
+          TabOrder = 3
+        end
+        inherited edt1: TbsSkinMaskEdit
+          Left = 269
+          Height = 22
+          Text = ''
+          TabOrder = 2
         end
       end
     end
     object bskntbsht2: TbsSkinTabSheet
       Caption = #31614#32422#26597#35810
+      DesignSize = (
+        948
+        547)
       object btn4: TbsSkinSpeedButton
         Left = 104
         Top = 5
@@ -636,24 +762,187 @@ object HouseDealManageForm: THouseDealManageForm
         Layout = blGlyphTop
       end
       inline cntrctqryfrm1: TContractQueryFrame
-        Left = 8
-        Top = 56
+        Left = 2
+        Top = 68
         Width = 929
-        Height = 609
+        Height = 479
+        Anchors = [akLeft, akTop, akBottom]
         TabOrder = 0
+        inherited btn1: TbsSkinButtonLabel
+          OnClick = cntrctqryfrm1btn1Click
+        end
         inherited bvl1: TBevel
           Width = 929
         end
+        inherited bsknchckrdbx1: TbsSkinCheckRadioBox
+          GroupIndex = 1
+          OnClick = cntrctqryfrm1bsknchckrdbx1Click
+        end
+        inherited bsknchckrdbx2: TbsSkinCheckRadioBox
+          GroupIndex = 1
+          OnClick = cntrctqryfrm1bsknchckrdbx2Click
+        end
         inherited bskndbgrd1: TbsSkinDBGrid
-          Top = 48
+          Left = 2
+          Top = 47
           Width = 931
-          Height = 537
+          Height = 407
           Align = alCustom
+          DataSource = HDHouseDataModule.dsContractQuery
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'cjxx_htbh'
+              Title.Caption = #21512#21516#32534#21495
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 97
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_czssqk'
+              Title.Caption = #31199#21806
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 66
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_fybh'
+              Title.Caption = #25151#28304#32534#21495
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 100
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_wymc'
+              Title.Caption = #29289#19994#21517#31216
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 68
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_yzxm'
+              Title.Caption = #19994#20027#22995#21517
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 62
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_khbh'
+              Title.Caption = #23458#25143#32534#21495
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 98
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_khxb'
+              Title.Caption = #23458#25143#22995#21517
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 79
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_fcyt'
+              Title.Caption = #29289#19994#29992#36884
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 79
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_fcmj'
+              Title.Caption = #38754#31215
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 53
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_zygw'
+              Title.Caption = #32622#19994#39038#38382
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 68
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_date'
+              Title.Caption = #31614#32422#26085#26399
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Width = 78
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'cjxx_enddate'
+              Title.Caption = #21512#21516#21040#26399#26085
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -11
+              Title.Font.Name = 'MS Sans Serif'
+              Title.Font.Style = []
+              Visible = True
+            end>
         end
         inherited bsknscrlbr1: TbsSkinScrollBar
-          Top = 588
+          Top = 458
           Width = 929
           Height = 21
+          Visible = True
+          Max = 127
+        end
+        inherited edt1: TbsSkinMaskEdit
+          Text = ''
         end
       end
     end
