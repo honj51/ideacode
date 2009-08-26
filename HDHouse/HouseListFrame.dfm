@@ -163,7 +163,7 @@ object frameHouseList: TframeHouseList
     Top = 11
     Width = 145
     Height = 23
-    TabOrder = 0
+    TabOrder = 4
   end
   object bsSkinButton1: TbsSkinButton
     Left = 416
@@ -171,7 +171,7 @@ object frameHouseList: TframeHouseList
     Width = 97
     Height = 25
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 0
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -202,7 +202,7 @@ object frameHouseList: TframeHouseList
     Width = 97
     Height = 25
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -233,7 +233,7 @@ object frameHouseList: TframeHouseList
     Width = 97
     Height = 25
     HintImageIndex = 0
-    TabOrder = 3
+    TabOrder = 2
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -264,7 +264,7 @@ object frameHouseList: TframeHouseList
     Width = 97
     Height = 25
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 3
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -403,7 +403,7 @@ object frameHouseList: TframeHouseList
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
     Align = alBottom
-    DataSource = HDHouseDataModule.ds1
+    DataSource = HDHouseDataModule.dsfczy
     ParentFont = False
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText

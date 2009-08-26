@@ -21,11 +21,7 @@ type
     bskndbgrd2: TbsSkinDBGrid;
     bsknfrm1: TbsSkinFrame;
     bskndbgrd1: TbsSkinDBGrid;
-    bsknpnl1: TbsSkinPanel;
-    bsknscrlbrHouseListDown: TbsSkinScrollBar;
-    bsknscrlbrHouseListRight: TbsSkinScrollBar;
     bsSkinDBGrid1: TbsSkinDBGrid;
-    bsknpnl2: TbsSkinPanel;
     bvl1: TBevel;
     Edit1: TEdit;
     lbl1: TbsSkinStdLabel;
@@ -37,10 +33,6 @@ type
     bsSkinCheckRadioBox2: TbsSkinCheckRadioBox;
     bsSkinCheckRadioBox3: TbsSkinCheckRadioBox;
     bsSkinButtonLabel2: TbsSkinButtonLabel;
-    bsknscrlbrAutoClientDown: TbsSkinScrollBar;
-    bsknscrlbrAutoClientRight: TbsSkinScrollBar;
-    bsknscrlbrTrackRecordDown: TbsSkinScrollBar;
-    bsknscrlbrTrackRecordRight: TbsSkinScrollBar;
   private
     { Private declarations }
   public
