@@ -1,12 +1,12 @@
 object formMain: TformMain
-  Left = 264
-  Top = 123
+  Left = 258
+  Top = 124
   AutoScroll = False
   BiDiMode = bdLeftToRight
   BorderIcons = []
   Caption = #20114#21160#25151#20135#20013#20171#31649#29702#36719#20214
-  ClientHeight = 560
-  ClientWidth = 998
+  ClientHeight = 514
+  ClientWidth = 977
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object formMain: TformMain
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 90
-    Width = 998
-    Height = 470
+    Width = 977
+    Height = 424
     ActivePage = bskntbsht5
     Align = alClient
     BiDiMode = bdRightToLeft
@@ -61,8 +61,8 @@ object formMain: TformMain
       inline frmhslst1: TframeHouseList
         Left = 0
         Top = 0
-        Width = 876
-        Height = 470
+        Width = 855
+        Height = 424
         HelpContext = 1
         Align = alClient
         AutoScroll = False
@@ -96,9 +96,10 @@ object formMain: TformMain
         end
         inherited bsSkinDBGrid1: TbsSkinDBGrid
           Top = 96
-          Width = 802
+          Width = 825
           Height = 163
           Align = alNone
+          DataSource = HDHouseDataModule.dsHouses
           Columns = <
             item
               Expanded = False
@@ -256,14 +257,8 @@ object formMain: TformMain
             end>
         end
         inherited bsknpgcntrl1: TbsSkinPageControl
-          Top = 260
-          Width = 876
-          ActivePage = frmhslst1.bsSkinTabSheet1
-          inherited bsSkinTabSheet1: TbsSkinTabSheet
-            inherited mmo1: TbsSkinDBMemo
-              Width = 874
-            end
-          end
+          Top = 214
+          Width = 855
           inherited bskntbsht1: TbsSkinTabSheet
             inherited bskndbgrd1: TbsSkinDBGrid
               Width = 800
@@ -272,8 +267,8 @@ object formMain: TformMain
           end
           inherited bskntbsht2: TbsSkinTabSheet
             inherited bskndbgrd2: TbsSkinDBGrid
-              Top = 4
-              Width = 605
+              Top = 3
+              Width = 711
             end
           end
         end
@@ -285,18 +280,479 @@ object formMain: TformMain
     end
     object bskntbsht2: TbsSkinTabSheet
       Caption = #25151#28304#31649#29702
+      object btn22: TbsSkinButton
+        Left = 240
+        Top = 120
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25151#28304#31649#29702
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn22Click
+      end
+      object btn23: TbsSkinButton
+        Left = 408
+        Top = 120
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 1
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25104#20132#31649#29702
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn23Click
+      end
+      object btn24: TbsSkinButton
+        Left = 408
+        Top = 216
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 2
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #38376#24215#25307#36148
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn24Click
+      end
+      object btn25: TbsSkinButton
+        Left = 240
+        Top = 216
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 3
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25151#28304#36319#36827
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn25Click
+      end
     end
     object bskntbsht4: TbsSkinTabSheet
-      Caption = #20869#37096#32479#35745
+      Caption = #23458#25143#31649#29702
+      object btn18: TbsSkinButton
+        Left = 240
+        Top = 120
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #23458#25143#31649#29702
+        NumGlyphs = 1
+        Spacing = 1
+      end
+      object btn19: TbsSkinButton
+        Left = 408
+        Top = 120
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 1
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #31614#32422#26597#35810
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn19Click
+      end
+      object btn20: TbsSkinButton
+        Left = 240
+        Top = 216
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 2
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #23458#25143#36319#36827
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn20Click
+      end
+      object btn21: TbsSkinButton
+        Left = 408
+        Top = 216
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 3
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #26469#30005#35760#24405
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn21Click
+      end
     end
     object bskntbsht3: TbsSkinTabSheet
-      Caption = #23458#25143#31649#29702
+      Caption = #20869#37096#32479#35745
+      object btn26: TbsSkinButton
+        Left = 416
+        Top = 176
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25552#25104#26126#32454
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn26Click
+      end
+      object btn27: TbsSkinButton
+        Left = 248
+        Top = 176
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 1
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25552#37266#31649#29702
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn27Click
+      end
+      object btn28: TbsSkinButton
+        Left = 248
+        Top = 96
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 2
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25151#28304#26597#35810
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn28Click
+      end
+      object btn29: TbsSkinButton
+        Left = 416
+        Top = 96
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 3
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #23458#28304#26597#35810
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn29Click
+      end
+      object btn30: TbsSkinButton
+        Left = 416
+        Top = 248
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 4
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25552#25104#24635#27719
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn30Click
+      end
+      object btn31: TbsSkinButton
+        Left = 248
+        Top = 248
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        TabOrder = 5
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #32508#21512#32479#35745
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btn31Click
+      end
     end
     object bskntbsht5: TbsSkinTabSheet
       Caption = #31995#32479#35774#32622
       object btn8: TbsSkinButton
-        Left = 232
-        Top = 120
+        Left = 288
+        Top = 96
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -328,8 +784,8 @@ object formMain: TformMain
         OnClick = btn8Click
       end
       object btn9: TbsSkinButton
-        Left = 376
-        Top = 120
+        Left = 432
+        Top = 96
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -361,8 +817,8 @@ object formMain: TformMain
         OnClick = btn9Click
       end
       object btn10: TbsSkinButton
-        Left = 232
-        Top = 168
+        Left = 288
+        Top = 144
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -394,8 +850,8 @@ object formMain: TformMain
         OnClick = btn10Click
       end
       object btn11: TbsSkinButton
-        Left = 376
-        Top = 168
+        Left = 432
+        Top = 144
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -427,8 +883,8 @@ object formMain: TformMain
         OnClick = btn11Click
       end
       object btn12: TbsSkinButton
-        Left = 232
-        Top = 216
+        Left = 288
+        Top = 192
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -460,8 +916,8 @@ object formMain: TformMain
         OnClick = btn12Click
       end
       object btn13: TbsSkinButton
-        Left = 376
-        Top = 216
+        Left = 432
+        Top = 192
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -493,8 +949,8 @@ object formMain: TformMain
         OnClick = btn13Click
       end
       object btn14: TbsSkinButton
-        Left = 232
-        Top = 264
+        Left = 288
+        Top = 240
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -526,8 +982,8 @@ object formMain: TformMain
         OnClick = btn14Click
       end
       object btn15: TbsSkinButton
-        Left = 376
-        Top = 264
+        Left = 432
+        Top = 240
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -559,8 +1015,8 @@ object formMain: TformMain
         OnClick = btn15Click
       end
       object btn16: TbsSkinButton
-        Left = 232
-        Top = 312
+        Left = 288
+        Top = 288
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -592,8 +1048,8 @@ object formMain: TformMain
         OnClick = btn16Click
       end
       object btn17: TbsSkinButton
-        Left = 376
-        Top = 312
+        Left = 432
+        Top = 288
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -629,7 +1085,7 @@ object formMain: TformMain
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 998
+    Width = 977
     Height = 90
     HintImageIndex = 0
     TabOrder = 1
@@ -706,6 +1162,7 @@ object formMain: TformMain
       Align = alCustom
       Spacing = 1
       Layout = blGlyphTop
+      OnClick = btn1Click
     end
     object btn2: TbsSkinSpeedButton
       Left = 120
@@ -778,6 +1235,7 @@ object formMain: TformMain
       Align = alCustom
       Spacing = 1
       Layout = blGlyphTop
+      OnClick = btn3Click
     end
     object btn4: TbsSkinSpeedButton
       Left = 312
@@ -974,7 +1432,7 @@ object formMain: TformMain
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biMinimize, biMaximize, biRollUp]
     Left = 840
     Top = 24
   end
