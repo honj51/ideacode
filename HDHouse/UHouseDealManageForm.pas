@@ -40,7 +40,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+     strFilter,looktest : string;
   end;
 
 var
@@ -105,9 +105,8 @@ begin
    begin
      if(isgo)then
      begin
-        strFilter := strFilter +' AND';
+        strFilter := strFilter +' AND ';
      end;
-       isgo:=true;
        looktest:= self.cntrctqryfrm1.edt1.Text;
        strFilter := strFilter + ' (cjxx_htbh like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (cjxx_czxs like '+'''%'+looktest+'%'')'+' OR ';
@@ -130,7 +129,7 @@ begin
        strFilter := strFilter + ' (cjxx_bz like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (cjxx_ygbh like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (cjxx_sby like '+'''%'+looktest+'%'')';
-
+     isgo:=true;
    end;
    if(isgo)then
    begin
@@ -252,4 +251,4 @@ begin
       HDHouseDataModule.qryfczy.Filtered := false;
   end;
  end;
-end.
+ .

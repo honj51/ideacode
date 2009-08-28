@@ -3,7 +3,7 @@ unit UHDHouseDataModule;
 interface
 
 uses
-  SysUtils, Classes, ImgList, bsPngImageList, DB, ADODB, bsSkinData;
+  Windows, Messages,SysUtils, Classes, ImgList, bsPngImageList, DB, ADODB, bsSkinData;
 
 type
   THDHouseDataModule = class(TDataModule)
@@ -23,6 +23,9 @@ type
     dsContractQuery: TDataSource;
     dsTrackQuery: TDataSource;
     tblTrackQuery: TADOTable;
+    dsygxx: TDataSource;
+    qryygxx: TADOQuery;
+    procedure qryfczyAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -35,5 +38,14 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure THDHouseDataModule.qryfczyAfterScroll(DataSet: TDataSet);
+begin
+
+//MessageDlg(DataSet.FieldByName('房源编号').asstring,  mtWarning, [mbOK], 0);
+
+//Application.MessageBox(DataSet.FieldByName('房源编号').asstring, '警告', MB_OK + MB_ICONWARNING);
+
+end;
 
 end.

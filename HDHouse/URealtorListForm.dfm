@@ -1,6 +1,6 @@
 object RealtorListForm: TRealtorListForm
-  Left = 612
-  Top = 226
+  Left = 897
+  Top = 208
   AutoScroll = False
   BorderIcons = []
   Caption = #32622#19994#39038#38382
@@ -48,15 +48,17 @@ object RealtorListForm: TRealtorListForm
       SaveMultiSelection = False
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
+      DataSource = HDHouseDataModule.dsygxx
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDblClick = bsSkinDBGrid1DblClick
       Columns = <
         item
           Expanded = False
-          FieldName = 'personnelNumber'
+          FieldName = 'ygxx_bh'
           Title.Alignment = taCenter
           Title.Caption = #21592#24037#32534#21495
           Width = 90
@@ -64,7 +66,7 @@ object RealtorListForm: TRealtorListForm
         end
         item
           Expanded = False
-          FieldName = 'personnelName'
+          FieldName = 'ygxx_xm'
           Title.Alignment = taCenter
           Title.Caption = #21592#24037#22995#21517
           Width = 180
@@ -135,6 +137,7 @@ object RealtorListForm: TRealtorListForm
     Caption = #30830#23450'(&O)'
     NumGlyphs = 2
     Spacing = 1
+    OnClick = btn2Click
   end
   object btn3: TbsSkinButton
     Left = 219
@@ -167,6 +170,7 @@ object RealtorListForm: TRealtorListForm
     Caption = #21462#28040'(&E)'
     NumGlyphs = 2
     Spacing = 1
+    OnClick = btn3Click
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'Vista2.skn'

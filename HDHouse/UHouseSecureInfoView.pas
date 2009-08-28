@@ -8,16 +8,17 @@ uses
 
 type
   THouseSecureInfoView = class(TFrame)
-    edt1: TbsSkinDBEdit;
-    edt2: TbsSkinDBEdit;
-    edt3: TbsSkinDBEdit;
-    edt4: TbsSkinDBEdit;
-    mmo1: TbsSkinDBMemo;
+    bsknpnl1: TbsSkinPanel;
     bsSkinStdLabel1: TbsSkinStdLabel;
     bsSkinStdLabel2: TbsSkinStdLabel;
     bsSkinStdLabel3: TbsSkinStdLabel;
     bsSkinStdLabel4: TbsSkinStdLabel;
     bsSkinStdLabel5: TbsSkinStdLabel;
+    edtfczy_yzxm: TbsSkinDBEdit;
+    edtfczy_yzxm1: TbsSkinDBEdit;
+    edtfczy_yzxm2: TbsSkinDBEdit;
+    edtfczy_yzxm3: TbsSkinDBEdit;
+    mmofczy_yzxm: TbsSkinDBMemo;
   private
     { Private declarations }
   public
@@ -25,7 +26,6 @@ type
   end;
 
 implementation
-
 {$R *.dfm}
 
 end.

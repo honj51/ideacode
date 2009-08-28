@@ -8,9 +8,9 @@ uses
 
 type
   TCustomerAutoMatchView = class(TFrame)
-    bskndbgrd1: TbsSkinDBGrid;
     bsSkinScrollBar1: TbsSkinScrollBar;
     bsknscrlbr1: TbsSkinScrollBar;
+    bskndbgrd1: TbsSkinDBGrid;
   private
     { Private declarations }
   public

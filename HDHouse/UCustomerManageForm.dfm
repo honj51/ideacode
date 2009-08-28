@@ -1,6 +1,6 @@
 object CustomerManageForm: TCustomerManageForm
-  Left = 251
-  Top = 115
+  Left = 234
+  Top = 215
   Width = 960
   Height = 577
   Caption = #23458#25143#31649#29702

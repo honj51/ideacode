@@ -1,6 +1,6 @@
 object HousePosterForm: THousePosterForm
-  Left = 320
-  Top = 152
+  Left = 289
+  Top = 228
   Width = 985
   Height = 503
   Caption = #38376#24215#25307#36148
@@ -785,7 +785,7 @@ object HousePosterForm: THousePosterForm
     end
   end
   object edt2: TbsSkinDateEdit
-    Left = 248
+    Left = 247
     Top = 79
     Width = 111
     Height = 18

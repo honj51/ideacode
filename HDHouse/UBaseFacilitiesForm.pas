@@ -17,7 +17,10 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    jc_rq:string;
+    jc_nq:string;
+    jc_yx:string;
+    jc_kd:string;
   end;
 
 var
