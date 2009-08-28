@@ -1,6 +1,6 @@
 object BaseFacilitiesForm: TBaseFacilitiesForm
-  Left = 522
-  Top = 225
+  Left = 874
+  Top = 212
   AutoScroll = False
   BorderIcons = []
   Caption = #37197#22871#35774#26045
@@ -21,7 +21,7 @@ object BaseFacilitiesForm: TBaseFacilitiesForm
     Width = 67
     Height = 25
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 1
     SkinData = bskndt1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -53,7 +53,7 @@ object BaseFacilitiesForm: TBaseFacilitiesForm
     Width = 68
     Height = 25
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 2
     SkinData = bskndt1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -85,7 +85,7 @@ object BaseFacilitiesForm: TBaseFacilitiesForm
     Width = 308
     Height = 307
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 0
     SkinData = bskndt1
     SkinDataName = 'captionchecklistbox'
     DefaultFont.Charset = DEFAULT_CHARSET

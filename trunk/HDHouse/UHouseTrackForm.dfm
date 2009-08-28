@@ -52,7 +52,7 @@ object HouseTrackForm: THouseTrackForm
         Top = 290
         Width = 934
         Height = 224
-        ActivePage = bskntbsht3
+        ActivePage = bskntbsht5
         Anchors = [akLeft, akRight, akBottom]
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBtnText
@@ -175,7 +175,7 @@ object HouseTrackForm: THouseTrackForm
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt5: TbsSkinDBEdit
-                Text = #27491#24120#29366#24577
+                Text = #24050#32463#22833#25928
                 DataField = 'fczy_dqzt'
                 DataSource = HDHouseDataModule.dsfczy
               end
@@ -185,7 +185,7 @@ object HouseTrackForm: THouseTrackForm
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt7: TbsSkinDBEdit
-                Text = #19996#22478#21306
+                Text = #26397#38451#21306
                 DataField = 'fczy_qy'
                 DataSource = HDHouseDataModule.dsfczy
               end
@@ -270,31 +270,30 @@ object HouseTrackForm: THouseTrackForm
             Height = 202
             Align = alClient
             TabOrder = 0
-            inherited edt1: TbsSkinDBEdit
-              Text = #20029#20029
-              DataField = 'fczy_yzxm'
-              DataSource = HDHouseDataModule.dsfczy
-            end
-            inherited edt2: TbsSkinDBEdit
-              Text = '56585658'
-              DataField = 'fczy_dh'
-              DataSource = HDHouseDataModule.dsfczy
-            end
-            inherited edt3: TbsSkinDBEdit
-              Text = '200'
-              DataField = 'fczy_sj'
-              DataSource = HDHouseDataModule.dsfczy
-            end
-            inherited edt4: TbsSkinDBEdit
-              Text = #21830#22478#36335'110'#21495
-              DataField = 'fczy_jtdz'
-              DataSource = HDHouseDataModule.dsfczy
-            end
-            inherited mmo1: TbsSkinDBMemo
-              Lines.Strings = (
-                #20132#36890#26041#20415#65292#22788#20110#24066#21306#32321#21326#22320#24102)
-              DataField = 'fczy_xxbz'
-              DataSource = HDHouseDataModule.dsfczy
+            inherited bsknpnl1: TbsSkinPanel
+              Width = 932
+              Height = 202
+              inherited edtfczy_yzxm: TbsSkinDBEdit
+                Text = #20029#20029
+                DataSource = HDHouseDataModule.dsfczy
+              end
+              inherited edtfczy_yzxm1: TbsSkinDBEdit
+                Text = '56585658'
+                DataSource = HDHouseDataModule.dsfczy
+              end
+              inherited edtfczy_yzxm2: TbsSkinDBEdit
+                Text = '200'
+                DataSource = HDHouseDataModule.dsfczy
+              end
+              inherited edtfczy_yzxm3: TbsSkinDBEdit
+                Text = #21830#22478#36335'110'#21495
+                DataSource = HDHouseDataModule.dsfczy
+              end
+              inherited mmofczy_yzxm: TbsSkinDBMemo
+                Lines.Strings = (
+                  #26080)
+                DataSource = HDHouseDataModule.dsfczy
+              end
             end
           end
         end

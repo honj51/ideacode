@@ -1,13 +1,13 @@
 object HDHouseDataModule: THDHouseDataModule
   OldCreateOrder = True
-  Left = 463
-  Top = 286
-  Height = 427
+  Left = 522
+  Top = 248
+  Height = 397
   Width = 456
   object dsfczy: TDataSource
     DataSet = qryfczy
-    Left = 10
-    Top = 58
+    Left = 282
+    Top = 56
   end
   object bsSkinData1: TbsSkinData
     SkinnableForm = True
@@ -16,7 +16,8 @@ object HDHouseDataModule: THDHouseDataModule
     ShowCaptionButtonGlowFrames = True
     CompressedStoredSkin = bscmprsdstrdskn1
     SkinIndex = 0
-    Left = 29
+    Left = 87
+    Top = 65532
   end
   object con1: TADOConnection
     Connected = True
@@ -34,12 +35,13 @@ object HDHouseDataModule: THDHouseDataModule
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
-    Left = 317
-    Top = 56
+    Left = 361
+    Top = 52
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'InnovEx.skn'
-    Top = 65535
+    Left = 18
+    Top = 1
     CompressedData = {
       78DAECBD59781BC7992EACCCFFCF9C8B79CE32B99AAB732EFE9BB99864963393
       CC39674E1627B113278E9D4C1CEFB164798913DBF22AC9B26C4BB6AC5D24C57D
@@ -3224,6 +3226,7 @@ object HDHouseDataModule: THDHouseDataModule
     Active = True
     Connection = con1
     CursorType = ctStatic
+    AfterScroll = qryfczyAfterScroll
     Parameters = <>
     SQL.Strings = (
       'select * from fczy')
@@ -6742,7 +6745,7 @@ object HDHouseDataModule: THDHouseDataModule
       end>
     PngWidth = 64
     PngHeight = 64
-    Left = 91
+    Left = 215
     Top = 1
     Bitmap = {
       494C010107000900040040004000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
@@ -11574,7 +11577,7 @@ object HDHouseDataModule: THDHouseDataModule
       end>
     PngWidth = 32
     PngHeight = 32
-    Left = 59
+    Left = 153
     Top = 65534
     Bitmap = {
       494C010106000900040020002000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
@@ -12703,5 +12706,20 @@ object HDHouseDataModule: THDHouseDataModule
     TableName = 'fcgj'
     Left = 159
     Top = 225
+  end
+  object dsygxx: TDataSource
+    DataSet = qryygxx
+    Left = 65
+    Top = 294
+  end
+  object qryygxx: TADOQuery
+    Active = True
+    Connection = con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from ygxx')
+    Left = 160
+    Top = 286
   end
 end
