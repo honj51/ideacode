@@ -1,6 +1,6 @@
 object StatisticForm: TStatisticForm
-  Left = 434
-  Top = 75
+  Left = 352
+  Top = 230
   AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #32508#21512#32479#35745
@@ -49,15 +49,16 @@ object StatisticForm: TStatisticForm
         00FFFFFFFFFFFFFFFF000000000000000008B7BFD4B4CAFDC1BF210000000000
         000000000000FFFFFFFFFFFFFFFF000000000000000008BFCDD4B4CAFDC1BF21
         0000000000000000000000FFFFFFFFFFFFFFFF000000000000000008B3C9BDBB
-        CAFDC1BF230000000000000000000000FFFFFFFFFFFFFFFF0000000003000000
+        CAFDC1BF230000000000000000000000FFFFFFFFFFFFFFFF0000000004000000
         0AB0B4CAB1BCE4CDB3BCC6210000000000000000000000FFFFFFFFFFFFFFFF00
         0000000000000008C8D5D4F6B7BFD4B4210000000000000000000000FFFFFFFF
-        FFFFFFFF000000000000000008D4C2D4F8B7BFD4B42100000000000000000000
-        00FFFFFFFFFFFFFFFF000000000000000008C4EAD4F6BFCDD4B4250000000000
-        000000000000FFFFFFFFFFFFFFFF00000000020000000CB0B4D3AAD2B5B6EECD
-        B3BCC6210000000000000000000000FFFFFFFFFFFFFFFF000000000000000008
-        C8D5D3AAD2B5B6EE210000000000000000000000FFFFFFFFFFFFFFFF00000000
-        0000000008D4C2D3AAD2B5B6EE}
+        FFFFFFFF000000000000000008D4C2D4F6B7BFD4B42100000000000000000000
+        00FFFFFFFFFFFFFFFF000000000000000008C8D5D4F6BFCDD4B4210000000000
+        000000000000FFFFFFFFFFFFFFFF000000000000000008D4C2D4F6BFCDD4B425
+        0000000000000000000000FFFFFFFFFFFFFFFF00000000020000000CB0B4D3AA
+        D2B5B6EECDB3BCC6210000000000000000000000FFFFFFFFFFFFFFFF00000000
+        0000000008C8D5D3AAD2B5B6EE210000000000000000000000FFFFFFFFFFFFFF
+        FF000000000000000008D4C2D3AAD2B5B6EE}
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
       DefaultFont.Height = 14
@@ -66,13 +67,21 @@ object StatisticForm: TStatisticForm
       UseSkinFont = True
       SkinDataName = 'treeview'
       DefaultColor = clWindow
+      AutoExpand = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
       Indent = 19
+      ParentFont = False
       TabOrder = 0
+      OnChange = tv1Change
     end
   end
   object grp1: TGroupBox
     Left = 192
-    Top = 8
+    Top = 16
     Width = 681
     Height = 617
     Caption = #32479#35745#20449#24687
@@ -198,15 +207,16 @@ object StatisticForm: TStatisticForm
     object bsSkinDateEdit1: TbsSkinDateEdit
       Left = 76
       Top = 30
-      Width = 81
+      Width = 80
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '    -  -  '
+      Text = '2009-08-28'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      TodayDefault = False
+      Date = 40053.372346273150000000
+      TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
       CalendarFont.Charset = DEFAULT_CHARSET
@@ -245,15 +255,16 @@ object StatisticForm: TStatisticForm
     object bsSkinDateEdit2: TbsSkinDateEdit
       Left = 179
       Top = 30
-      Width = 81
+      Width = 80
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '    -  -  '
+      Text = '2009-08-28'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      TodayDefault = False
+      Date = 40053.372346273150000000
+      TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
       CalendarFont.Charset = DEFAULT_CHARSET
@@ -320,10 +331,10 @@ object StatisticForm: TStatisticForm
       NumGlyphs = 1
       Spacing = 1
     end
-    object bskndbgrd1: TbsSkinDBGrid
-      Left = 0
+    object bsSkinDBGrid1: TbsSkinDBGrid
+      Left = 16
       Top = 64
-      Width = 681
+      Width = 649
       Height = 177
       HintImageIndex = 0
       TabOrder = 3
@@ -341,33 +352,54 @@ object StatisticForm: TStatisticForm
       SaveMultiSelection = False
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
+      DataSource = ds1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          Title.Caption = #25151#23627#26469#28304
-          Visible = True
-        end
-        item
-          Expanded = False
-          Title.Caption = #25968#37327
-          Visible = True
-        end>
     end
-    object cht1: TChart
-      Left = 0
-      Top = 248
-      Width = 681
-      Height = 369
+    object dbcht1: TDBChart
+      Left = 8
+      Top = 296
+      Width = 609
+      Height = 250
       BackWall.Brush.Color = clWhite
       BackWall.Brush.Style = bsClear
       Title.Text.Strings = (
-        'TChart')
+        'TDBChart')
       TabOrder = 4
+      object brsrsSeries1: TBarSeries
+        Marks.ArrowLength = 20
+        Marks.Visible = True
+        DataSource = qry1
+        SeriesColor = 16744576
+        XValues.DateTime = False
+        XValues.Name = 'X'
+        XValues.Multiplier = 1.000000000000000000
+        XValues.Order = loAscending
+        YValues.DateTime = False
+        YValues.Name = 'Bar'
+        YValues.Multiplier = 1.000000000000000000
+        YValues.Order = loNone
+        YValues.ValueSource = #25968#37327
+      end
     end
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 664
+    Top = 24
+  end
+  object qry1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      
+        'select fczy_fwly AS '#25151#23627#26469#28304', COUNT(*) AS '#25968#37327' FROM fczy GROUP BY fczy' +
+        '_fwly')
+    Left = 752
+    Top = 24
   end
 end
