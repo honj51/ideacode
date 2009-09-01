@@ -1,6 +1,6 @@
 object formMain: TformMain
-  Left = 258
-  Top = 124
+  Left = 305
+  Top = 125
   AutoScroll = False
   BiDiMode = bdLeftToRight
   BorderIcons = []
