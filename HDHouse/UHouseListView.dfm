@@ -380,8 +380,8 @@ object HouseListView: THouseListView
     GroupIndex = 0
     Caption = #21482#26174#31034#26368#36817
   end
-  object btn2: TbsSkinButton
-    Left = 333
+  object btngaojibtn2: TbsSkinButton
+    Left = 325
     Top = 13
     Width = 97
     Height = 25

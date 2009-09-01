@@ -1,6 +1,6 @@
 object RealtorListForm: TRealtorListForm
-  Left = 897
-  Top = 208
+  Left = 789
+  Top = 184
   AutoScroll = False
   BorderIcons = []
   Caption = #32622#19994#39038#38382

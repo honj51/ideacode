@@ -131,7 +131,6 @@ begin
       close;
       Parameters.ParamByName('id').Value := ParmId;
       self.edt1.Text :=ParmId;
-      open;
       if( ParmEditorMode = 'ADD') then
       begin
            self.edt1.ReadOnly :=false;
@@ -141,7 +140,9 @@ begin
            datecount:= HDHouseDataModule.qryfczy.Recordset.RecordCount+1;
            HDHouseDataModule.qryfczy.Filtered :=false;
            self.edt1.Text:=pream + Format('%.4d', [datecount] );
+          // self.qry1.FieldByName('fczy_wyyt').AsString:= ParametersDataModule.qryPropertyUsage.FieldByName('cs_mc').AsString;
       end;
+      open;
     end;
 end;
   //±£´æ Êý¾Ý

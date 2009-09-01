@@ -12,7 +12,7 @@ type
     bskndbgrd1: TbsSkinDBGrid;
     btn1: TbsSkinButtonLabel;
     bsknchckrdbx3: TbsSkinCheckRadioBox;
-    btn2: TbsSkinButton;
+    btngaojibtn2: TbsSkinButton;
     bvl1: TBevel;
     bsknscrlbr1: TbsSkinScrollBar;
     bsknchckrdbx2: TbsSkinCheckRadioBox;

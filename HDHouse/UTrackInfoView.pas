@@ -4,30 +4,33 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
-  Dialogs, bsSkinCtrls, bsSkinBoxCtrls, StdCtrls, Mask, bsdbctrls;
+  Dialogs, bsSkinCtrls, bsSkinBoxCtrls, StdCtrls, Mask, bsdbctrls, ImgList,
+  bsPngImageList, DBCtrls;
 
 type
   TTrackInfoView = class(TFrame)
     bskngrpbx1: TbsSkinGroupBox;
     bskngrpbx2: TbsSkinGroupBox;
-    bsknlbl1: TbsSkinLabel;
-    bsknlbl2: TbsSkinLabel;
-    bsknlbl3: TbsSkinLabel;
-    bsknlbl4: TbsSkinLabel;
-    bsknlbl5: TbsSkinLabel;
-    bsknlbl6: TbsSkinLabel;
     btn1: TbsSkinButton;
     btn2: TbsSkinButton;
-    bsknlbl7: TbsSkinLabel;
-    cbb1: TbsSkinDBComboBox;
     mmo2: TbsSkinDBMemo;
-    edt6: TbsSkinDBDateEdit;
-    edt1: TbsSkinDBTimeEdit;
-    cbb2: TbsSkinDBComboBox;
-    edt2: TbsSkinDBEdit;
+    bsSkinStdLabel1: TbsSkinStdLabel;
+    bsSkinStdLabel2: TbsSkinStdLabel;
+    bsSkinStdLabel3: TbsSkinStdLabel;
+    bsSkinStdLabel4: TbsSkinStdLabel;
+    bsSkinStdLabel5: TbsSkinStdLabel;
+    bsSkinStdLabel6: TbsSkinStdLabel;
+    bsSkinStdLabel7: TbsSkinStdLabel;
+    dblkcbbgxfs: TDBLookupComboBox;
+    cbb1: TbsSkinDBComboBox;
     edt3: TbsSkinDBEdit;
-    edt4: TbsSkinDBDateEdit;
-    edt5: TbsSkinDBTimeEdit;
+    bspngmglst1: TbsPngImageList;
+    edt2: TbsSkinEdit;
+    btnAddAdviser1: TbsSkinSpeedButton;
+    edt6: TbsSkinDateEdit;
+    edt1: TbsSkinDateEdit;
+    edt4: TbsSkinTimeEdit;
+    edt5: TbsSkinTimeEdit;
   private
     { Private declarations }
   public

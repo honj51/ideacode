@@ -21,7 +21,6 @@ type
     hsdtlnfvw1: THouseDetailInfoView;
     bskntbsht5: TbsSkinTabSheet;
     hscrnfvw1: THouseSecureInfoView;
-    dlhslstvw1: TDealHouseListView;
     bsSkinStdLabel1: TbsSkinStdLabel;
     edt2: TbsSkinDateEdit;
     edt3: TbsSkinDateEdit;
@@ -32,6 +31,7 @@ type
     bsknchckrdbx2: TbsSkinCheckRadioBox;
     bskndbgrd1: TbsSkinDBGrid;
     bsknscrlbr1: TbsSkinScrollBar;
+    dlhslstvw1: TDealHouseListView;
     procedure dlhslstvw1bsknchckrdbx3Click(Sender: TObject);
     procedure dlhslstvw1bsknchckrdbx2Click(Sender: TObject);
     procedure dlhslstvw1btn1Click(Sender: TObject);
@@ -40,9 +40,19 @@ type
     procedure btn1Click(Sender: TObject);
     procedure bsknchckrdbx1Click(Sender: TObject);
     procedure bsknchckrdbx2Click(Sender: TObject);
+    procedure Search;
+    procedure TrackSearch;
+    procedure FormShow(Sender: TObject);
+    procedure trckrcrdvw1btn1Click(Sender: TObject);
+    procedure trckrcrdvw1btn2Click(Sender: TObject);
+    procedure trckrcrdvw1btn3Click(Sender: TObject);
+    procedure trckrcrdvw1bskndbgrd1DblClick(Sender: TObject);
+    procedure dlhslstvw1btngaojibtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
+     strFilter,looktest : string;
+     Titem:Tlistitem;
     { Public declarations }
   end;
 
@@ -50,147 +60,221 @@ var
   HouseTrackForm: THouseTrackForm;
 
 implementation
-   uses UHDHouseDataModule;
+   uses UHDHouseDataModule,UHouseTrackInfoForm,Math,UHouseQueryForm;
 {$R *.dfm}
    //添加 房源跟进信息
 procedure THouseTrackForm.dlhslstvw1bsknchckrdbx3Click(Sender: TObject);
-  var day:Integer;
-  var date:string;
 begin
-       if(self.dlhslstvw1.bsknchckrdbx3.Checked)then
-       begin
-         day:=StrToInt(self.dlhslstvw1.edt2.Text);
-         date:= DateTimeToStr(Now-day);
-         HDHouseDataModule.qryfczy.Filter := ' fczy_djrq >= #'+date+'#'  ;
-         HDHouseDataModule.qryfczy.Filtered := true;
-       end
-       else
-       begin
-         HDHouseDataModule.qryfczy.Filtered := false;
-       end;
+   self.Search;
 end;
    //只显示出售信息
 procedure THouseTrackForm.dlhslstvw1bsknchckrdbx2Click(Sender: TObject);
 begin
-    if(self.dlhslstvw1.bsknchckrdbx2.Checked)then
-    begin
-     HDHouseDataModule.qryfczy.Filter := 'fczy_zs='+'''出售''';
-     HDHouseDataModule.qryfczy.Filtered := true;
-    end
-    else
-    begin
-      HDHouseDataModule.qryfczy.Filtered := false;
-    end;
+  self.Search;
 end;
      //只显示出租信息
 procedure THouseTrackForm.dlhslstvw1btn1Click(Sender: TObject);
 var strFilter,looktest : string;
 begin
-  strFilter := '';
-  if  trim(self.dlhslstvw1.edt1.Text) <>'' then
-  begin
-       looktest:=  self.dlhslstvw1.edt1.Text;
-       strFilter := strFilter + ' (fczy_bh like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_yn like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_htbh like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_fwly like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_dqzt like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_wymc like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_wyyt like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_wylb like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_zxcd like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_jtdz like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_qy like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_jcnf like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_hxjg like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_fx like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_lccg like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_ptss1 like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_ptss2 like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_cz like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_czsm like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_cs like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_cssm like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_yzxm like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_dh like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_tel like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_jtwz like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_bmbz like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_xxbz like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_czy like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_ly like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_zs like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_ygbh like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fczy_sby like '+'''%'+looktest+'%'')';
-       HDHouseDataModule.qryfczy.Filter :=  strFilter;
-       HDHouseDataModule.qryfczy.Filtered := true;
-  end
-  else
-  begin
-      HDHouseDataModule.qryfczy.Filtered := false;
-  end;
- end;
+  self.Search;
+end;
 
 procedure THouseTrackForm.dlhslstvw1cbb1Change(Sender: TObject);
 begin
-     if(self.dlhslstvw1.cbb1.Text = '已签约') then
-     begin
-      HDHouseDataModule.qryfczy.Filter := 'fczy_dqzt='+'''已经成交''';
-      HDHouseDataModule.qryfczy.Filtered := true;
-     end
-     else if(self.dlhslstvw1.cbb1.Text='未签约') then
-     begin
-      HDHouseDataModule.qryfczy.Filter := 'fczy_dqzt='+'''正常状态''';
-      HDHouseDataModule.qryfczy.Filtered := true;
-     end
-     else
-     begin
-         HDHouseDataModule.qryfczy.Filtered := false;
-     end;
+   self.Search;
 end;
 
 procedure THouseTrackForm.dlhslstvw1bsknchckrdbx1Click(Sender: TObject);
 begin
-    if(self.dlhslstvw1.bsknchckrdbx1.Checked)then
-    begin
-     HDHouseDataModule.qryfczy.Filter:= 'fczy_zs='+'''出租''';
-     HDHouseDataModule.qryfczy.Filtered := true;
-    end
-    else
-    begin
-      HDHouseDataModule.qryfczy.Filtered := false;
-    end;
+self.Search;
 end;
 //跟进查询
 procedure THouseTrackForm.btn1Click(Sender: TObject);
-    var strFilter,looktest : string;  //cjxx_date
-    var isgo:bool  ;
 begin
-  isgo:=false;
-    strFilter:='';
+  self.TrackSearch;
+end;
+   //出租跟进
+procedure THouseTrackForm.bsknchckrdbx1Click(Sender: TObject);
+begin
+   self.TrackSearch;
+end;
+   //出售跟进
+procedure THouseTrackForm.bsknchckrdbx2Click(Sender: TObject);
+begin
+    self.TrackSearch;
+end;
+procedure THouseTrackForm.Search;
+   var date:string;
+   var isChange:bool;
+   begin
+      HDHouseDataModule.qryfczy.Close;
+      HDHouseDataModule.qryfczy.SQL.Clear;
+      strFilter := 'select * from fczy ';
+      ischange:=false;
+      if(self.dlhslstvw1.cbb1.Text = '已签约') then
+      begin
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
+       strFilter := strFilter + 'fczy_dqzt='+'''已经成交''';
+      end
+      else if(self.dlhslstvw1.cbb1.Text='未签约') then
+      begin
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
+         strFilter := strFilter + 'fczy_dqzt='+'''正常状态''';
+      end;
+
+
+      if trim(self.dlhslstvw1.edt1.Text) <>'' then
+      begin
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
+         looktest:= self.dlhslstvw1.edt1.Text;
+         strFilter := strFilter + ' ((fczy_bh like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_htbh like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_fwly like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_dqzt like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_wymc like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_wyyt like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_wylb like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_zxcd like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_jtdz like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_qy like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_jcnf like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_hxjg like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_fx like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_lccg like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_ptss1 like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_ptss2 like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_czsm like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_cssm like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_yzxm like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_dh like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_tel like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_jtwz like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_bmbz like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_xxbz like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_czy like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_ly like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_zs like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_ygbh like '+'''%'+looktest+'%'')'+' OR ';
+         strFilter := strFilter + ' (fczy_sby like '+'''%'+looktest+'%''))';
+      end;
+      if(self.dlhslstvw1.bsknchckrdbx1.Checked)then
+      begin
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
+       strFilter := strFilter + ' fczy_zs='+'''出租''';
+      end;
+
+      if(self.dlhslstvw1.bsknchckrdbx2.Checked)then
+      begin
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
+       strFilter := strFilter + ' fczy_zs='+'''出售''';
+      end;
+
+      if(self.dlhslstvw1.bsknchckrdbx3.Checked)then
+      begin
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
+         date:= FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.dlhslstvw1.edt2.Text));
+         strFilter := strFilter + ' fczy_djrq >= #'+date+'#'  ;
+      end;
+      HDHouseDataModule.qryfczy.SQL.Add(strFilter) ;
+      HDHouseDataModule.qryfczy.Open;
+   end;
+procedure THouseTrackForm.FormShow(Sender: TObject);
+begin
+  self.dlhslstvw1.cbb1.ItemIndex:=0;
+  self.edt2.Date:=Now-30;
+  self.edt3.Date:=Now;
+end;
+ procedure ThouseTrackForm.TrackSearch;
+ var isChange:bool;
+ begin
+   HDHouseDataModule.qryTrackQuery.Close;
+   HDHouseDataModule.qryTrackQuery.SQL.Clear;
+   strFilter := 'select * from fcgj ';
+   ischange:=false;
    if(self.edt2.Date <> 0)then
    begin
-     isgo:=true;
+     if ischange then
+     begin
+          strFilter := strFilter +' and ';
+      end
+     else
+     begin
+           strFilter := strFilter +' where ';
+     end;
+     ischange:=true;
      if(self.edt3.Date <> 0)then
-     begin      //' fczy_djrq >= #'+date+'#'  ;
-          strFilter := strFilter + ' cjxx_date >= #'+self.edt2.Text+'#' +' AND ';
-          strFilter := strFilter + ' cjxx_date <= #'+self.edt3.Text+'#';
+     begin
+          strFilter := strFilter + ' fcgj_date >= #'+self.edt2.Text+'#' +' AND ';
+          strFilter := strFilter + ' fcgj_date <= #'+self.edt3.Text+'#';
      end
      else
      begin
-          strFilter := strFilter + ' cjxx_date >= #'+self.edt2.Text+'#' +' AND ';
-          strFilter := strFilter + ' cjxx_date <= #'+DateTimeToStr(Now)+'#';
+          strFilter := strFilter + ' fcgj_date >= #'+self.edt2.Text+'#' +' AND ';
+          strFilter := strFilter + ' fcgj_date <= #'+FormatDateTime('yyyy-mm-dd',(Now))+'#';
      end;
    end;
+
    if(Trim(self.edt1.Text)<>'') then
    begin
-     if(isgo)then
-     begin
-        strFilter := strFilter +' AND';
-     end;
-       isgo:=true;
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
        looktest:= self.edt1.Text;
-       strFilter := strFilter + ' (fcgj_bh like '+'''%'+looktest+'%'')'+' OR ';
+       strFilter := strFilter + ' ((fcgj_bh like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (fcgj_ms like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (fcgj_fs like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (fcgj_gjr like '+'''%'+looktest+'%'')'+' OR ';
@@ -198,43 +282,100 @@ begin
        strFilter := strFilter + ' (fcgj_fybh like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (fcgj_txyn like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (fcgj_txlx like '+'''%'+looktest+'%'')'+' OR ';
-       strFilter := strFilter + ' (fcgj_ygbh like '+'''%'+looktest+'%'')';
+       strFilter := strFilter + ' (fcgj_ygbh like '+'''%'+looktest+'%''))';
    end;
-   if(isgo)then
-   begin
-     HDHouseDataModule.tblTrackQuery.Filter := strFilter;
-     HDHouseDataModule.tblTrackQuery.Filtered := true;
-   end
-   else
-   begin
-      HDHouseDataModule.tblTrackQuery.Filtered := false;
-   end;
-end;
-   //出租跟进
-procedure THouseTrackForm.bsknchckrdbx1Click(Sender: TObject);
+//   if(self.bsknchckrdbx1.Checked)then
+//   begin
+//         if ischange then
+//         begin
+//          strFilter := strFilter +' and ';
+//         end
+//         else
+//         begin
+//           strFilter := strFilter +' where ';
+//         end;
+//         ischange:=true;
+//      strFilter := strFilter +  'cjxx_czssqk='+'''出租''';
+//   end;
+//   if(self.bsknchckrdbx2.Checked)then
+//   begin
+//       if ischange then
+//       begin
+//          strFilter := strFilter +' and ';
+//       end
+//       else
+//       begin
+//           strFilter := strFilter +' where ';
+//       end;
+//       ischange:=true;
+//      strFilter := strFilter +  'cjxx_czssqk='+'''出售''';
+//   end;
+    HDHouseDataModule.qryTrackQuery.SQL.Add(strFilter) ;
+     HDHouseDataModule.qryTrackQuery.Open;
+ end;
+
+ //显示信息
+procedure THouseTrackForm.trckrcrdvw1btn1Click(Sender: TObject);
 begin
-//  if(TbsSkinCheckRadioBox(Sender).Checked)then
-//    begin
-//     HDHouseDataModule.tblContractQuery.Filter := 'cjxx_czssqk='+'''出租''';
-//     HDHouseDataModule.tblContractQuery.Filtered := true;
-//    end
-//    else
-//    begin
-//      HDHouseDataModule.tblContractQuery.Filtered := false;
-//    end;
-end;
-   //出售跟进
-procedure THouseTrackForm.bsknchckrdbx2Click(Sender: TObject);
+  inherited;
+  Begin
+    Try
+        HouseTrackInfoForm.ParmEditorMode:= 'ADD';
+        Randomize;//初始
+        HouseTrackInfoForm.ParmId :=IntToStr(RandomRange(10000000,99999999)); //IntToStr(random(10));
+        HouseTrackInfoForm.fybh := HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString;
+        HouseTrackInfoForm.ShowModal;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
+  end;
+  end;
+
+procedure THouseTrackForm.trckrcrdvw1btn2Click(Sender: TObject);
 begin
-//  if(TbsSkinCheckRadioBox(Sender).Checked)then
-//    begin
-//     HDHouseDataModule.tblContractQuery.Filter := 'cjxx_czssqk='+'''出租''';
-//     HDHouseDataModule.tblContractQuery.Filtered := true;
-//    end
-//    else
-//    begin
-//      HDHouseDataModule.tblContractQuery.Filtered := false;
-//    end;
+ inherited;
+ if not HDHouseDataModule.tblTrackRecords.IsEmpty THEN
+  Begin
+    Try
+        HouseTrackInfoForm.ParmEditorMode:= 'EDIT';
+        HouseTrackInfoForm.ParmId := HDHouseDataModule.tblTrackRecords.fieldbyname('fcgj_bh').AsString;
+        HouseTrackInfoForm.ShowModal;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
+  end;
+end;
+
+procedure THouseTrackForm.trckrcrdvw1btn3Click(Sender: TObject);
+begin
+   if not HDHouseDataModule.tblTrackRecords.IsEmpty then
+    begin
+      HDHouseDataModule.tblTrackRecords.Delete;
+    end;
+end;
+
+procedure THouseTrackForm.trckrcrdvw1bskndbgrd1DblClick(Sender: TObject);
+begin
+ inherited;
+ if not HDHouseDataModule.tblTrackRecords.IsEmpty THEN
+  Begin
+    Try
+        HouseTrackInfoForm.ParmEditorMode:= 'EDIT';
+        HouseTrackInfoForm.ParmId := HDHouseDataModule.tblTrackRecords.fieldbyname('fcgj_bh').AsString;
+        HouseTrackInfoForm.ShowModal;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
+  end;
+end;
+
+procedure THouseTrackForm.dlhslstvw1btngaojibtn2Click(Sender: TObject);
+begin
+  HouseQueryForm.ShowModal;
+  HDHouseDataModule.qryfczy.Close;
+  HDHouseDataModule.qryfczy.SQL.Clear;
+  HDHouseDataModule.qryfczy.SQL.Add(HouseQueryForm.strFilter) ;
+  HDHouseDataModule.qryfczy.Open;
 end;
 
 end.
