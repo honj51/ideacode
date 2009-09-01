@@ -10,14 +10,8 @@ uses
 type
   THouseQueryFrame = class(TFrame)
     GroupBox1: TGroupBox;
-    bsSkinDBComboBox1: TbsSkinDBComboBox;
-    bsSkinDBLookupComboBox1: TbsSkinDBLookupComboBox;
     edt1: TbsSkinEdit;
     edt2: TbsSkinEdit;
-    cbb1: TbsSkinDBComboBox;
-    cbb2: TbsSkinDBComboBox;
-    cbb3: TbsSkinDBComboBox;
-    cbb4: TbsSkinDBComboBox;
     edt3: TbsSkinEdit;
     edt4: TbsSkinEdit;
     bvl1: TBevel;
@@ -42,6 +36,12 @@ type
     lbl14: TbsSkinStdLabel;
     btn1: TbsSkinXFormButton;
     btn2: TbsSkinXFormButton;
+    cbb5: TbsSkinComboBox;
+    cbb6: TbsSkinComboBox;
+    cbb1: TbsSkinComboBox;
+    cbb2: TbsSkinComboBox;
+    cbb3: TbsSkinComboBox;
+    cbb4: TbsSkinComboBox;
   private
     { Private declarations }
   public

@@ -34,6 +34,7 @@ type
     procedure dtprtbrvw1btn1Click(Sender: TObject);
     procedure qryfczyAfterScroll(DataSet: TDataSet);
     procedure Search;
+    procedure hslstvw1btngaojibtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,7 +47,7 @@ var
 
 implementation
 
-uses UHDHouseDataModule, UHouseDetailsForm;
+uses UHDHouseDataModule, UHouseDetailsForm,UHouseQueryForm;
 
 {$R *.dfm}
    //查询
@@ -89,11 +90,11 @@ end;
 procedure THouseManageForm.dtprtbrvw1btn2Click(Sender: TObject);
 begin
     inherited;
- if not HDHouseDataModule.qryfczy.IsEmpty then
+ if not qryfczy.IsEmpty then
   Begin
     Try
         HouseDetailsForm.ParmEditorMode:= 'EDIT';
-        HouseDetailsForm.ParmId := HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString;
+        HouseDetailsForm.ParmId := qryfczy.fieldbyname('fczy_bh').AsString;
         HouseDetailsForm.ShowModal;
     Finally
         //HouseDetailsForm.Free;
@@ -104,10 +105,10 @@ end;
 procedure THouseManageForm.dtprtbrvw1btn3Click(Sender: TObject);
 begin
 inherited;
- if not HDHouseDataModule.qryfczy.IsEmpty THEN
+ if not qryfczy.IsEmpty THEN
   Begin
     Try
-      HDHouseDataModule.qryfczy.Delete;
+      qryfczy.Delete;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -117,7 +118,7 @@ end;
 procedure THouseManageForm.dtprtbrvw1btn1Click(Sender: TObject);
 begin
       inherited;
- if not HDHouseDataModule.qryfczy.IsEmpty THEN
+ if not qryfczy.IsEmpty THEN
   Begin
     Try
         HouseDetailsForm.ParmId :='';
@@ -247,4 +248,14 @@ begin
       self.qryfczy.SQL.Add(strFilter) ;
       self.qryfczy.Open;
    end;
-  end.
+   //高级查询
+procedure THouseManageForm.hslstvw1btngaojibtn2Click(Sender: TObject);
+begin
+  HouseQueryForm.ShowModal;
+  self.qryfczy.Close;
+  self.qryfczy.SQL.Clear;
+  self.qryfczy.SQL.Add(HouseQueryForm.strFilter) ;
+  self.qryfczy.Open;
+end;
+
+end.

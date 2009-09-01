@@ -1,6 +1,6 @@
 object HouseManageForm: THouseManageForm
-  Left = 262
-  Top = 53
+  Left = 295
+  Top = 106
   Width = 949
   Height = 628
   BorderIcons = [biMinimize, biMaximize]
@@ -67,7 +67,7 @@ object HouseManageForm: THouseManageForm
     Width = 941
     Height = 227
     HelpType = htKeyword
-    ActivePage = bskntbsht3
+    ActivePage = bskntbsht1
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
@@ -519,9 +519,10 @@ object HouseManageForm: THouseManageForm
       TabOrder = 1
       OnClick = hslstvw1bsknchckrdbx3Click
     end
-    inherited btn2: TbsSkinButton
+    inherited btngaojibtn2: TbsSkinButton
       Left = 303
       TabOrder = 0
+      OnClick = hslstvw1btngaojibtn2Click
     end
     inherited bsknscrlbr1: TbsSkinScrollBar
       Top = 273

@@ -21,7 +21,6 @@ var
   DealHouseListView: TDealHouseListView;
 
 implementation
-
 {$R *.dfm}
 
 end.

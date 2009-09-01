@@ -1,6 +1,6 @@
 object HouseDetailsForm: THouseDetailsForm
-  Left = 487
-  Top = 90
+  Left = 364
+  Top = 74
   AutoScroll = False
   BorderIcons = []
   Caption = #25151#28304#35814#32454#20449#24687
@@ -1454,7 +1454,7 @@ object HouseDetailsForm: THouseDetailsForm
     end
   end
   object bsknpnl1: TbsSkinPanel
-    Left = 7
+    Left = 8
     Top = 8
     Width = 856
     Height = 75
@@ -1515,8 +1515,8 @@ object HouseDetailsForm: THouseDetailsForm
       Caption = #32622#19994#39038#38382' '#65306
     end
     object btnAddAdviser: TbsSkinSpeedButton
-      Left = 810
-      Top = 25
+      Left = 811
+      Top = 26
       Width = 25
       Height = 24
       Hint = 'Load skin...'
@@ -1544,7 +1544,7 @@ object HouseDetailsForm: THouseDetailsForm
       ShowHint = True
       ParentShowHint = False
       Down = False
-      GroupIndex = 0
+      GroupIndex = 1
       ShowCaption = True
       NumGlyphs = 1
       Align = alCustom
@@ -4122,11 +4122,10 @@ object HouseDetailsForm: THouseDetailsForm
     SQL.Strings = (
       'select * from fczy where fczy_bh=id')
     Left = 813
-    Top = 1
   end
   object dsfczyinfo: TDataSource
     DataSet = qry1
     Left = 758
-    Top = 5
+    Top = 2
   end
 end
