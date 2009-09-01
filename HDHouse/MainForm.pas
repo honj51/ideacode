@@ -83,6 +83,7 @@ type
   private
     { Private declarations }
   public
+    state:string;
     { Public declarations }
   end;
 
@@ -108,7 +109,10 @@ end;
 
 procedure TformMain.btn4Click(Sender: TObject);
 begin
-       LoginForm.ShowModal;
+  inherited;
+        //
+        LoginForm.CloseState:=False;
+     LoginForm.Show;
 end;
 
 procedure TformMain.btn10Click(Sender: TObject);
@@ -118,7 +122,8 @@ end;
 
 procedure TformMain.btn8Click(Sender: TObject);
 begin
-CompanyInfoSettingForm.ShowModal;
+   CompanyInfoSettingForm.ParmId:='001';
+    CompanyInfoSettingForm.ShowModal;
 end;
 
 procedure TformMain.btn12Click(Sender: TObject);
@@ -235,5 +240,6 @@ procedure TformMain.btn3Click(Sender: TObject);
 begin
   TrackQueryForm.ShowModal;
 end;
+
 
 end.
