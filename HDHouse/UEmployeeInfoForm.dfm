@@ -1,6 +1,6 @@
 object EmployeeInfoForm: TEmployeeInfoForm
-  Left = 497
-  Top = 242
+  Left = 382
+  Top = 249
   AutoScroll = False
   BorderIcons = []
   Caption = #21592#24037#20449#24687
@@ -13,6 +13,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -685,12 +686,12 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Width = 119
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-28'
+      Text = '2009-08-31'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40053.426498657410000000
+      Date = 40056.665684490740000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -738,12 +739,12 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Width = 119
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-28'
+      Text = '2009-08-31'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40053.426498657410000000
+      Date = 40056.665684490740000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150

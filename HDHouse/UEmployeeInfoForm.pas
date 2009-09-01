@@ -44,6 +44,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btn2Click(Sender: TObject);
     procedure btn1Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
    function f_CheckValue:Boolean;
     { Private declarations }
@@ -141,8 +142,8 @@ begin
       FieldByName('ygxx_xb').AsString:='男';
       FieldByName('ygxx_hy').AsString:='未婚';
       FieldByName('ygxx_csdate').AsString:=FormatDateTime('yyyy-mm-dd',Now);
-      FieldByName('ygxx_jzdate').AsString:=FormatDateTime('yyyy-mm-dd',Now); 
-     POST;
+      FieldByName('ygxx_jzdate').AsString:=FormatDateTime('yyyy-mm-dd',Now);
+
     end;
   end;
 
@@ -161,7 +162,10 @@ procedure TEmployeeInfoForm.btn2Click(Sender: TObject);
 begin
 inherited;
         //
-  Close;
+         qry_ygxxxx.CancelBatch;
+          qry_ygxxxx.close;
+
+          Close;
 end;
 
 procedure TEmployeeInfoForm.btn1Click(Sender: TObject);
@@ -170,6 +174,7 @@ begin
   inherited;
   if f_CheckValue()=False then  exit;
             // 数据保存处理
+            qry_ygxxxx.Post;
   HDHouseDataModule.con1.BeginTrans;
   try
     qry_ygxxxx.UpdateBatch;
@@ -178,17 +183,22 @@ begin
   except
     HDHouseDataModule.con1.RollbackTrans;
      HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('数据保存失败！', '提示', nil, -1, [mbOk], 0);
-   
     exit;
   end;
      HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('数据保存成功！', '提示', nil, -1, [mbOk], 0);
-
-  with HDHouseDataModule.qry_ygxx do
-    begin
-       Close;
-       Open;
-    end;
     Close;
 
 end;
+procedure TEmployeeInfoForm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+      inherited;
+      //  数据已更改
+      if qry_ygxxxx.Modified then
+      begin
+        // 放弃修改
+          btn2Click(nil);
+      end;
+end;
+
 end.
