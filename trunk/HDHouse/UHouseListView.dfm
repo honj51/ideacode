@@ -3,6 +3,7 @@ object HouseListView: THouseListView
   Top = 0
   Width = 979
   Height = 316
+  AutoScroll = False
   TabOrder = 0
   object btn1: TbsSkinButtonLabel
     Left = 282
@@ -148,6 +149,7 @@ object HouseListView: THouseListView
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     AutoSize = False
     Caption = #36755#20837#25151#28304#20449#24687#26597#35810
@@ -165,6 +167,7 @@ object HouseListView: THouseListView
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     AutoSize = False
     Caption = #22825#20869#30340#20449#24687
@@ -176,6 +179,7 @@ object HouseListView: THouseListView
     Height = 249
     HintImageIndex = 0
     TabOrder = 6
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
     WallpaperStretch = False
@@ -358,6 +362,7 @@ object HouseListView: THouseListView
     Height = 25
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -387,6 +392,7 @@ object HouseListView: THouseListView
     Height = 25
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -418,6 +424,7 @@ object HouseListView: THouseListView
     Height = 19
     HintImageIndex = 0
     TabOrder = 7
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -447,6 +454,7 @@ object HouseListView: THouseListView
     Height = 17
     HintImageIndex = 0
     TabOrder = 4
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -476,6 +484,7 @@ object HouseListView: THouseListView
     Height = 17
     HintImageIndex = 0
     TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -513,6 +522,7 @@ object HouseListView: THouseListView
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -546,6 +556,7 @@ object HouseListView: THouseListView
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -562,5 +573,11 @@ object HouseListView: THouseListView
     RightImageDownIndex = -1
     AutoSize = False
     BorderStyle = bsNone
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 900
+    Top = 5
   end
 end

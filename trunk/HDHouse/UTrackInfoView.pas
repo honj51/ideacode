@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
   Dialogs, bsSkinCtrls, bsSkinBoxCtrls, StdCtrls, Mask, bsdbctrls, ImgList,
-  bsPngImageList, DBCtrls;
+  bsPngImageList, DBCtrls, BusinessSkinForm;
 
 type
   TTrackInfoView = class(TFrame)
@@ -31,6 +31,7 @@ type
     edt1: TbsSkinDateEdit;
     edt4: TbsSkinTimeEdit;
     edt5: TbsSkinTimeEdit;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public
@@ -38,7 +39,7 @@ type
   end;
 
 implementation
-
+      uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

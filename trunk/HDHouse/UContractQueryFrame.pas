@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
   Dialogs, bsSkinCtrls, bsSkinGrids, bsDBGrids, StdCtrls, bsSkinBoxCtrls,
-  bsdbctrls, Mask, ExtCtrls;
+  bsdbctrls, Mask, ExtCtrls, BusinessSkinForm;
 
 type
   TContractQueryFrame = class(TFrame)
@@ -17,9 +17,10 @@ type
     bskndbgrd1: TbsSkinDBGrid;
     bsknscrlbr1: TbsSkinScrollBar;
     bvl1: TBevel;
-    edt2: TbsSkinDateEdit;
-    edt3: TbsSkinDateEdit;
-    edt1: TbsSkinMaskEdit;
+    edtBeginDate: TbsSkinDateEdit;
+    edtEndDate: TbsSkinDateEdit;
+    edtSearch: TbsSkinMaskEdit;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public
@@ -27,7 +28,7 @@ type
   end;
 
 implementation
-
+   uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

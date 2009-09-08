@@ -3,6 +3,7 @@ object ContractQueryFrame: TContractQueryFrame
   Top = 0
   Width = 810
   Height = 376
+  AutoScroll = False
   TabOrder = 0
   object bsSkinStdLabel1: TbsSkinStdLabel
     Left = 3
@@ -17,6 +18,7 @@ object ContractQueryFrame: TContractQueryFrame
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     AutoSize = False
     Caption = #26102#38388#33539#22260
@@ -34,6 +36,7 @@ object ContractQueryFrame: TContractQueryFrame
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     AutoSize = False
     Caption = #36755#20837#25104#20132#20449#24687#26597#35810
@@ -160,6 +163,7 @@ object ContractQueryFrame: TContractQueryFrame
     DefaultFont.Height = 14
     DefaultFont.Name = 'Arial'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
   end
   object bvl1: TBevel
@@ -176,6 +180,7 @@ object ContractQueryFrame: TContractQueryFrame
     Height = 17
     HintImageIndex = 0
     TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -205,6 +210,7 @@ object ContractQueryFrame: TContractQueryFrame
     Height = 17
     HintImageIndex = 0
     TabOrder = 4
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -234,6 +240,7 @@ object ContractQueryFrame: TContractQueryFrame
     Height = 304
     HintImageIndex = 0
     TabOrder = 5
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
     WallpaperStretch = False
@@ -414,7 +421,7 @@ object ContractQueryFrame: TContractQueryFrame
     SmallChange = 127
     LargeChange = 127
   end
-  object edt2: TbsSkinDateEdit
+  object edtBeginDate: TbsSkinDateEdit
     Left = 65
     Top = 15
     Width = 90
@@ -445,6 +452,7 @@ object ContractQueryFrame: TContractQueryFrame
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -461,7 +469,7 @@ object ContractQueryFrame: TContractQueryFrame
     RightImageHotIndex = -1
     RightImageDownIndex = -1
   end
-  object edt3: TbsSkinDateEdit
+  object edtEndDate: TbsSkinDateEdit
     Left = 162
     Top = 15
     Width = 90
@@ -492,6 +500,7 @@ object ContractQueryFrame: TContractQueryFrame
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -508,12 +517,12 @@ object ContractQueryFrame: TContractQueryFrame
     RightImageHotIndex = -1
     RightImageDownIndex = -1
   end
-  object edt1: TbsSkinMaskEdit
+  object edtSearch: TbsSkinMaskEdit
     Left = 388
     Top = 15
     Width = 121
     Height = 18
-    Text = 'edt1'
+    Text = 'edtSearch'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clBlack
@@ -524,6 +533,7 @@ object ContractQueryFrame: TContractQueryFrame
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -540,5 +550,11 @@ object ContractQueryFrame: TContractQueryFrame
     RightImageDownIndex = -1
     AutoSize = False
     BorderStyle = bsNone
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 776
+    Top = 14
   end
 end

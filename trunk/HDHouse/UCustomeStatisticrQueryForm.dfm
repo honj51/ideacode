@@ -1,6 +1,6 @@
 object HouseStatisticQueryForm: THouseStatisticQueryForm
-  Left = 294
-  Top = 38
+  Left = 310
+  Top = 93
   AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #25151#28304#26597#35810

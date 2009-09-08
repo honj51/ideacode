@@ -3,6 +3,7 @@ object HouseSecureInfoView: THouseSecureInfoView
   Top = 0
   Width = 927
   Height = 240
+  AutoScroll = False
   TabOrder = 0
   object bsknpnl1: TbsSkinPanel
     Left = 0
@@ -11,6 +12,7 @@ object HouseSecureInfoView: THouseSecureInfoView
     Height = 240
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -50,6 +52,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #19994#20027#22995#21517
@@ -67,6 +70,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #32852#31995#30005#35805
@@ -84,6 +88,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #32852#31995#25163#26426
@@ -101,6 +106,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #20855#20307#20301#32622
@@ -118,6 +124,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #22791#27880#35828#26126
@@ -138,6 +145,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -171,6 +179,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -204,6 +213,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -237,6 +247,7 @@ object HouseSecureInfoView: THouseSecureInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -277,8 +288,15 @@ object HouseSecureInfoView: THouseSecureInfoView
       UseSkinFont = True
       UseSkinFontColor = True
       BitMapBG = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'memo'
       DataField = 'fczy_bmbz'
     end
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 824
+    Top = 12
   end
 end

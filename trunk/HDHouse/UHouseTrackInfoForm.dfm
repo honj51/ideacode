@@ -1,6 +1,6 @@
 object HouseTrackInfoForm: THouseTrackInfoForm
-  Left = 432
-  Top = 342
+  Left = 565
+  Top = 210
   Width = 507
   Height = 328
   Caption = #25151#28304#36319#36827#20449#24687
@@ -20,6 +20,7 @@ object HouseTrackInfoForm: THouseTrackInfoForm
     Width = 499
     Height = 294
     Align = alClient
+    AutoScroll = False
     TabOrder = 0
     inherited bskngrpbx1: TbsSkinGroupBox
       inherited btnAddAdviser1: TbsSkinSpeedButton
@@ -39,6 +40,9 @@ object HouseTrackInfoForm: THouseTrackInfoForm
         OnClick = trcknfvw1edt3Click
         DataField = 'fcgj_gjr'
         DataSource = dsfcgj
+      end
+      inherited edt2: TbsSkinEdit
+        SkinData = HDHouseDataModule.bsSkinData1
       end
     end
     inherited bskngrpbx2: TbsSkinGroupBox
@@ -62,18 +66,17 @@ object HouseTrackInfoForm: THouseTrackInfoForm
       TabOrder = 3
       OnClick = trcknfvw1btn2Click
     end
+    inherited bspngmglst1: TbsPngImageList
+      Left = 335
+      Top = 65532
+    end
+    inherited bsSkinFrame1: TbsSkinFrame
+      Left = 245
+      Top = 65533
+    end
   end
   object qryfcgj: TADOQuery
-    ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\HD' +
-      'House\database\hdhouse.mdb;Mode=Share Deny None;Extended Propert' +
-      'ies="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";J' +
-      'et OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:' +
-      'Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet ' +
-      'OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password' +
-      '="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Dat' +
-      'abase=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLE' +
-      'DB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False'
+    Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
       item
@@ -84,12 +87,11 @@ object HouseTrackInfoForm: THouseTrackInfoForm
       end>
     SQL.Strings = (
       'select * from fcgj where fcgj_bh=id')
-    Left = 449
-    Top = 4
+    Left = 446
   end
   object dsfcgj: TDataSource
     DataSet = qryfcgj
-    Left = 394
-    Top = 1
+    Left = 387
+    Top = 65534
   end
 end

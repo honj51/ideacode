@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UHouseListView, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls, Mask,
-  StdCtrls, bsSkinGrids, bsDBGrids, ExtCtrls;
+  StdCtrls, bsSkinGrids, bsDBGrids, ExtCtrls, BusinessSkinForm;
 
 type
   TDealHouseListView = class(THouseListView)

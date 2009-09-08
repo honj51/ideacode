@@ -8,7 +8,7 @@ uses
   ImgList, bsPngImageList, ComCtrls, bsSkinTabs, bsColorCtrls, bsDialogs,
   bsMessages, HouseListFrame, DB, ADODB, UCustomerAutoMatchView,
   UTrackInfoView, UDataOperateBarView, UDetailRequirementInfoView,
-  UTrackRecordView;
+  UTrackRecordView, Menus;
 
 type
   TformMain = class(TForm)
@@ -27,7 +27,6 @@ type
     bskntbsht4: TbsSkinTabSheet;
     bskntbsht5: TbsSkinTabSheet;
     bsknmsg1: TbsSkinMessage;
-    frmhslst1: TframeHouseList;
     btn8: TbsSkinButton;
     btn9: TbsSkinButton;
     btn10: TbsSkinButton;
@@ -53,6 +52,7 @@ type
     btn29: TbsSkinButton;
     btn30: TbsSkinButton;
     btn31: TbsSkinButton;
+    frmhslst1: TframeHouseList;
     procedure btn7Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
     procedure btn10Click(Sender: TObject);
@@ -80,6 +80,10 @@ type
     procedure btn30Click(Sender: TObject);
     procedure btn31Click(Sender: TObject);
     procedure btn3Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btn18Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    procedure frmhslst1qryHouseListCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -91,12 +95,22 @@ var
   formMain: TformMain;
 
 implementation
- uses UHDHouseDataModule,ULoginForm,UCompanyInfoSettingForm,UOperatePermissionSettingForm
+ uses UHDHouseDataModule,ULoginForm,UAboutForm, UCompanyInfoSettingForm,
+  UOperatePermissionSettingForm, UChangePasswordForm,
+  UContractSampleSettingForm, UDatabaseMantainForm, UDatabaseInitialForm,UParameterSettingForm,
+  USystemOperationLogForm, UParametersSettingForm,UEmployeeManageForm,
+  UHouseStatisticQueryForm, UNotificationManageForm,
+  USalesCommissionDetailsForm, UStatisticForm, USalesCommissionSumForm,UCustomerManageForm,
+  UContractQueryForm,UCustomerTrackForm, UContactRecordForm,UTrackQueryForm,
+  UCustomerDetailsForm, UHouseManageForm,UHouseDealManageForm,
+  UHousePosterForm,UHouseTrackForm, UHouseDetailsForm;
+ {,UCompanyInfoSettingForm,UOperatePermissionSettingForm
  ,UEmployeeManageForm,UChangePasswordForm,UContractSampleSettingForm,UDatabaseMantainForm
- ,UDatabaseInitialForm,UParametersSettingForm,USystemOperationLogForm,UAboutForm,UHouseDetailsForm
+ ,UDatabaseInitialForm,UParametersSettingForm,USystemOperationLogForm,UHouseDetailsForm
  ,UHouseDealManageForm,UHouseTrackForm,UHousePosterForm,UHouseManageForm,UContractQueryForm
  ,UCustomerTrackForm,UContactRecordForm,UCustomeStatisticrQueryForm,UNotificationManageForm
  ,USalesCommissionDetailsForm,USalesCommissionSumForm,UStatisticForm,UTrackQueryForm;
+ }
 {$R *.dfm}
 
 procedure TformMain.btn7Click(Sender: TObject);
@@ -111,7 +125,7 @@ procedure TformMain.btn4Click(Sender: TObject);
 begin
   inherited;
         //
-        LoginForm.CloseState:=False;
+    LoginForm.CloseState:=False;
      LoginForm.Show;
 end;
 
@@ -168,7 +182,14 @@ end;
 
 procedure TformMain.btn1Click(Sender: TObject);
 begin
-  HouseDetailsForm.ShowModal;
+  //HouseDetailsForm.ShowModal;
+    Try
+        HouseDetailsForm.ParmId :='';
+        HouseDetailsForm.ParmEditorMode:= 'ADD';
+        HouseDetailsForm.ShowModal;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
 end;
 
 procedure TformMain.btn23Click(Sender: TObject);
@@ -188,12 +209,12 @@ end;
 
 procedure TformMain.btn22Click(Sender: TObject);
 begin
-     HouseManageForm.ShowModal;
+  HouseManageForm.ShowModal;
 end;
 
 procedure TformMain.btn19Click(Sender: TObject);
 begin
-   ContractQueryForm.ShowModal;
+  ContractQueryForm.ShowModal;
 end;
 
 procedure TformMain.btn20Click(Sender: TObject);
@@ -213,27 +234,27 @@ end;
 
 procedure TformMain.btn29Click(Sender: TObject);
 begin
-HouseStatisticQueryForm.ShowModal;
+  //HouseStatisticQueryForm.ShowModal;
 end;
 
 procedure TformMain.btn27Click(Sender: TObject);
 begin
-NotificationManageForm.ShowModal;
+  NotificationManageForm.ShowModal;
 end;
 
 procedure TformMain.btn26Click(Sender: TObject);
 begin
-SalesCommissionDetailsForm.ShowModal;
+  SalesCommissionDetailsForm.ShowModal;
 end;
 
 procedure TformMain.btn30Click(Sender: TObject);
 begin
-SalesCommissionSumForm.ShowModal;
+  SalesCommissionSumForm.ShowModal;
 end;
 
 procedure TformMain.btn31Click(Sender: TObject);
 begin
-       StatisticForm.ShowModal;
+  StatisticForm.ShowModal;
 end;
 
 procedure TformMain.btn3Click(Sender: TObject);
@@ -241,5 +262,33 @@ begin
   TrackQueryForm.ShowModal;
 end;
 
+
+procedure TformMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+      inherited;
+      //
+     if LoginForm.Visible then
+     begin
+         Action:=caNone;
+     end;
+     Application.Terminate;
+end;
+
+procedure TformMain.btn18Click(Sender: TObject);
+begin
+  CustomerManageForm.ShowModal;
+end;
+
+procedure TformMain.btn2Click(Sender: TObject);
+begin
+  CustomerDetailsForm.ParmMode:='add';
+  CustomerDetailsForm.ShowModal;
+end;
+
+procedure TformMain.frmhslst1qryHouseListCalcFields(DataSet: TDataSet);
+begin
+  frmhslst1.qryHouseListCalcFields(DataSet);
+
+end;
 
 end.

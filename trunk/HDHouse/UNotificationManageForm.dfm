@@ -1,6 +1,6 @@
 object NotificationManageForm: TNotificationManageForm
-  Left = 305
-  Top = 192
+  Left = 266
+  Top = 106
   AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #25552#37266#31649#29702
@@ -13,6 +13,7 @@ object NotificationManageForm: TNotificationManageForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object bvl1: TBevel
@@ -105,7 +106,7 @@ object NotificationManageForm: TNotificationManageForm
     SkinDataName = 'stdlabel'
   end
   object lbl4: TbsSkinStdLabel
-    Left = 22
+    Left = 10
     Top = 96
     Width = 48
     Height = 13
@@ -137,7 +138,7 @@ object NotificationManageForm: TNotificationManageForm
     Caption = #25552#37266#23545#35937
   end
   object lbl2: TbsSkinStdLabel
-    Left = 702
+    Left = 693
     Top = 96
     Width = 84
     Height = 13
@@ -153,7 +154,7 @@ object NotificationManageForm: TNotificationManageForm
     Caption = #25552#37266#31383#21475#22312#20986#29616
   end
   object lbl3: TbsSkinStdLabel
-    Left = 870
+    Left = 875
     Top = 96
     Width = 84
     Height = 13
@@ -171,9 +172,34 @@ object NotificationManageForm: TNotificationManageForm
   inline dtprtbrvw1: TDataOperateBarView
     Left = 0
     Top = 0
-    Width = 760
+    Width = 973
     Height = 75
+    Align = alTop
+    AutoScroll = False
     TabOrder = 0
+    inherited bskntlbr1: TbsSkinToolBar
+      Width = 973
+      Height = 75
+      SkinDataName = 'resizetoolpanel'
+      inherited btn1: TbsSkinSpeedButton
+        Top = 5
+        OnClick = dtprtbrvw1btn1Click
+      end
+      inherited btn2: TbsSkinSpeedButton
+        Top = 5
+        OnClick = dtprtbrvw1btn2Click
+      end
+      inherited btn3: TbsSkinSpeedButton
+        Top = 5
+        OnClick = dtprtbrvw1btn3Click
+      end
+      inherited btn4: TbsSkinSpeedButton
+        Top = 5
+      end
+      inherited btn5: TbsSkinSpeedButton
+        Top = 5
+      end
+    end
   end
   object btn4: TbsSkinButton
     Left = 385
@@ -205,6 +231,7 @@ object NotificationManageForm: TNotificationManageForm
     Caption = #26597#35810' (&S)'
     NumGlyphs = 1
     Spacing = 1
+    OnClick = btn4Click
   end
   object cbb3: TbsSkinDBComboBox
     Left = 81
@@ -248,6 +275,10 @@ object NotificationManageForm: TNotificationManageForm
     ImageIndex = -1
     CharCase = ecNormal
     DefaultColor = clWindow
+    Items.Strings = (
+      #25152#26377#25552#37266
+      #24050#25552#37266
+      #26410#25552#37266)
     ItemIndex = -1
     DropDownCount = 8
     HorizontalExtent = False
@@ -261,11 +292,10 @@ object NotificationManageForm: TNotificationManageForm
     ParentFont = False
   end
   object edt1: TbsSkinEdit
-    Left = 232
+    Left = 252
     Top = 94
-    Width = 113
+    Width = 88
     Height = 18
-    Text = 'edt1'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clBlack
@@ -313,6 +343,7 @@ object NotificationManageForm: TNotificationManageForm
     ImageIndex = 0
     Flat = True
     UseSkinFontColor = True
+    TabStop = True
     CanFocused = True
     Radio = False
     Checked = False
@@ -349,11 +380,10 @@ object NotificationManageForm: TNotificationManageForm
     Caption = #25552#37266#21518#33258#21160#21024#38500
   end
   object edt2: TbsSkinEdit
-    Left = 792
+    Left = 799
     Top = 94
     Width = 73
     Height = 18
-    Text = 'edt1'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clBlack
@@ -381,7 +411,7 @@ object NotificationManageForm: TNotificationManageForm
   end
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
-    Top = 128
+    Top = 120
     Width = 969
     Height = 441
     HintImageIndex = 0
@@ -400,6 +430,7 @@ object NotificationManageForm: TNotificationManageForm
     SaveMultiSelection = False
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
+    DataSource = ds1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -408,33 +439,108 @@ object NotificationManageForm: TNotificationManageForm
     Columns = <
       item
         Expanded = False
+        FieldName = 'zdtx_xm'
         Title.Caption = #25552#37266#23545#35937
+        Width = 142
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'zdtx_dh'
         Title.Caption = #32852#31995#26041#24335
+        Width = 131
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'zdtx_lxm'
         Title.Caption = #25552#37266#31867#22411
+        Width = 126
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'zdtx_date'
         Title.Caption = #25552#37266#26085#26399
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'zdtx_sj'
         Title.Caption = #25552#37266#26102#38388
+        Width = 85
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'zdtx_nr'
         Title.Caption = #25552#37266#20869#23481
+        Width = 327
         Visible = True
       end>
+  end
+  object ds1: TDataSource
+    DataSet = tbl1
+    Left = 776
+    Top = 24
+  end
+  object tbl1: TADOTable
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    OnCalcFields = tbl1CalcFields
+    TableName = 'zdtx'
+    Left = 832
+    Top = 24
+    object tbl1zdtx_bh: TWideStringField
+      FieldName = 'zdtx_bh'
+      Size = 50
+    end
+    object tbl1zdtx_nr: TWideStringField
+      FieldName = 'zdtx_nr'
+      Size = 248
+    end
+    object tbl1zdtx_lxm: TWideStringField
+      FieldName = 'zdtx_lxm'
+      Size = 50
+    end
+    object tbl1zdtx_lx: TWideStringField
+      FieldName = 'zdtx_lx'
+      Size = 50
+    end
+    object tbl1zdtx_bj: TWideStringField
+      FieldName = 'zdtx_bj'
+      Size = 50
+    end
+    object tbl1zdtx_rq: TWideStringField
+      FieldName = 'zdtx_rq'
+      Size = 50
+    end
+    object tbl1zdtx_sj: TWideStringField
+      FieldName = 'zdtx_sj'
+      Size = 50
+    end
+    object tbl1zdtx_date: TDateTimeField
+      FieldName = 'zdtx_date'
+    end
+    object tbl1zdtx_czy: TWideStringField
+      FieldName = 'zdtx_czy'
+      Size = 50
+    end
+    object tbl1zdtx_dby: TDateTimeField
+      FieldName = 'zdtx_dby'
+    end
+    object tbl1zdtx_xm: TWideStringField
+      FieldName = 'zdtx_xm'
+      Size = 50
+    end
+    object tbl1zdtx_dh: TWideStringField
+      FieldName = 'zdtx_dh'
+      Size = 50
+    end
+    object tbl1zdtx_ygbh: TWideStringField
+      FieldName = 'zdtx_ygbh'
+      Size = 50
+    end
   end
 end

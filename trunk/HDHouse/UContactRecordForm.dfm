@@ -1,8 +1,9 @@
 object ContactRecordForm: TContactRecordForm
-  Left = 327
-  Top = 159
-  Width = 924
+  Left = 333
+  Top = 176
+  Width = 916
   Height = 538
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = #26469#30005#35760#24405
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,7 +13,7 @@ object ContactRecordForm: TContactRecordForm
   Font.Style = []
   OldCreateOrder = False
   DesignSize = (
-    916
+    908
     504)
   PixelsPerInch = 96
   TextHeight = 13
@@ -173,47 +174,89 @@ object ContactRecordForm: TContactRecordForm
     DefaultFont.Name = 'Arial'
     DefaultFont.Style = []
     SkinDataName = 'stdlabel'
+    OnClick = btn4Click
   end
   object bvl1: TBevel
     Left = -188
     Top = 80
-    Width = 1128
+    Width = 1120
     Height = 1
     Align = alCustom
     Anchors = [akLeft, akTop, akRight]
   end
+  object bsSkinStdLabel3: TbsSkinStdLabel
+    Left = 160
+    Top = 26
+    Width = 12
+    Height = 13
+    EllipsType = bsetNone
+    UseSkinFont = True
+    UseSkinColor = True
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -11
+    DefaultFont.Name = 'MS Sans Serif'
+    DefaultFont.Style = []
+    SkinDataName = 'stdlabel'
+    Caption = #65293
+  end
+  object bsSkinStdLabel4: TbsSkinStdLabel
+    Left = 168
+    Top = 98
+    Width = 25
+    Height = 13
+    EllipsType = bsetNone
+    UseSkinFont = True
+    UseSkinColor = True
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = -11
+    DefaultFont.Name = 'MS Sans Serif'
+    DefaultFont.Style = []
+    SkinDataName = 'stdlabel'
+    AutoSize = False
+    Caption = #65293
+  end
   inline dtprtbrvw1: TDataOperateBarView
     Left = 0
     Top = 0
-    Width = 916
+    Width = 908
     Height = 75
     Align = alTop
     AutoScroll = False
     TabOrder = 0
     inherited bskntlbr1: TbsSkinToolBar
-      Width = 916
+      Width = 908
       Height = 75
+      SkinDataName = 'resizetoolpanel'
       inherited btn1: TbsSkinSpeedButton
         Top = 5
+        OnClick = dtprtbrvw1btn1Click
       end
       inherited btn2: TbsSkinSpeedButton
         Top = 5
+        OnClick = dtprtbrvw1btn2Click
       end
       inherited btn3: TbsSkinSpeedButton
         Top = 5
+        OnClick = dtprtbrvw1btn3Click
       end
       inherited btn4: TbsSkinSpeedButton
         Top = 5
       end
       inherited btn5: TbsSkinSpeedButton
+        Left = 329
         Top = 5
       end
+    end
+    inherited bsknfrm1: TbsSkinFrame
+      Left = 575
     end
   end
   object bskngrpbx1: TbsSkinGroupBox
     Left = -1
     Top = 136
-    Width = 933
+    Width = 925
     Height = 528
     HintImageIndex = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
@@ -246,7 +289,7 @@ object ContactRecordForm: TContactRecordForm
     object bsknscrlbr3: TbsSkinScrollBar
       Left = 1
       Top = 508
-      Width = 931
+      Width = 923
       Height = 19
       HintImageIndex = 0
       TabOrder = 0
@@ -276,7 +319,7 @@ object ContactRecordForm: TContactRecordForm
     object bskndbgrd1: TbsSkinDBGrid
       Left = 1
       Top = 23
-      Width = 931
+      Width = 923
       Height = 485
       HintImageIndex = 0
       TabOrder = 1
@@ -301,189 +344,191 @@ object ContactRecordForm: TContactRecordForm
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
       Align = alClient
+      DataSource = dsLd
       ParentFont = False
+      PopupMenu = pmLd
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = '@Arial Unicode MS'
       TitleFont.Style = []
+      OnDblClick = bskndbgrd1DblClick
       Columns = <
         item
           Expanded = False
+          FieldName = 'ldxx_lx'
           Title.Caption = #23458#25143#31867#22411
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 109
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'ldxx_xm'
           Title.Caption = #23458#25143#22995#21517
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 85
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'ldxx_dh'
           Title.Caption = #26469#30005#21495#30721
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 167
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'ldxx_nr'
           Title.Caption = #26469#30005#20869#23481
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 293
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'ldxx_date'
           Title.Caption = #26469#30005#26102#38388
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 140
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'ldxx_czy'
           Title.Caption = #25805#20316#21592
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
+          Width = 92
           Visible = True
         end>
     end
   end
-  object cbb1: TbsSkinDBComboBox
-    Left = 80
-    Top = 95
-    Width = 97
-    Height = 20
-    HintImageIndex = 0
+  object edt2: TbsSkinDateEdit
+    Left = 72
+    Top = 96
+    Width = 88
+    Height = 18
+    EditMask = '!0000/99/99;1; '
+    Text = '2009-09-08'
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 0
+    UseSkinFont = True
+    Date = 40064.634547696760000000
+    TodayDefault = True
+    CalendarWidth = 200
+    CalendarHeight = 150
+    CalendarFont.Charset = DEFAULT_CHARSET
+    CalendarFont.Color = clWindowText
+    CalendarFont.Height = 14
+    CalendarFont.Name = 'Arial'
+    CalendarFont.Style = []
+    CalendarBoldDays = False
+    CalendarUseSkinFont = True
+    CalendarSkinDataName = 'panel'
+    FirstDayOfWeek = Sun
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clBlack
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    ButtonMode = True
+    SkinDataName = 'buttonedit'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = 14
+    Font.Name = 'Arial'
+    Font.Style = []
+    MaxLength = 10
+    ParentFont = False
     TabOrder = 2
-    SkinDataName = 'combobox'
+    LeftImageIndex = -1
+    LeftImageHotIndex = -1
+    LeftImageDownIndex = -1
+    RightImageIndex = -1
+    RightImageHotIndex = -1
+    RightImageDownIndex = -1
+  end
+  object edt3: TbsSkinDateEdit
+    Left = 192
+    Top = 96
+    Width = 88
+    Height = 18
+    EditMask = '!0000/99/99;1; '
+    Text = '2009-09-08'
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 0
+    UseSkinFont = True
+    Date = 40064.634547696760000000
+    TodayDefault = True
+    CalendarWidth = 200
+    CalendarHeight = 150
+    CalendarFont.Charset = DEFAULT_CHARSET
+    CalendarFont.Color = clWindowText
+    CalendarFont.Height = 14
+    CalendarFont.Name = 'Arial'
+    CalendarFont.Style = []
+    CalendarBoldDays = False
+    CalendarUseSkinFont = True
+    CalendarSkinDataName = 'panel'
+    FirstDayOfWeek = Sun
     DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
+    DefaultFont.Color = clBlack
     DefaultFont.Height = 14
     DefaultFont.Name = 'Arial'
     DefaultFont.Style = []
     DefaultWidth = 0
     DefaultHeight = 0
-    UseSkinFont = True
-    UseSkinSize = True
-    ToolButtonStyle = False
-    AlphaBlend = False
-    AlphaBlendValue = 0
-    AlphaBlendAnimation = False
-    ListBoxCaptionMode = False
-    ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultFont.Color = clWindowText
-    ListBoxDefaultFont.Height = 14
-    ListBoxDefaultFont.Name = 'Arial'
-    ListBoxDefaultFont.Style = []
-    ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultCaptionFont.Color = clWindowText
-    ListBoxDefaultCaptionFont.Height = 14
-    ListBoxDefaultCaptionFont.Name = 'Arial'
-    ListBoxDefaultCaptionFont.Style = []
-    ListBoxDefaultItemHeight = 20
-    ListBoxCaptionAlignment = taLeftJustify
-    ListBoxUseSkinFont = True
-    ListBoxUseSkinItemHeight = True
-    ListBoxWidth = 0
-    HideSelection = True
-    AutoComplete = True
-    ImageIndex = -1
-    CharCase = ecNormal
-    DefaultColor = clWindow
-    ItemIndex = -1
-    DropDownCount = 8
-    HorizontalExtent = False
+    ButtonMode = True
+    SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clBlack
     Font.Height = 14
     Font.Name = 'Arial'
     Font.Style = []
-    Sorted = False
-    Style = bscbFixedStyle
+    MaxLength = 10
     ParentFont = False
-  end
-  object cbb2: TbsSkinDBComboBox
-    Left = 184
-    Top = 95
-    Width = 97
-    Height = 20
-    HintImageIndex = 0
     TabOrder = 3
-    SkinDataName = 'combobox'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    UseSkinSize = True
-    ToolButtonStyle = False
-    AlphaBlend = False
-    AlphaBlendValue = 0
-    AlphaBlendAnimation = False
-    ListBoxCaptionMode = False
-    ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultFont.Color = clWindowText
-    ListBoxDefaultFont.Height = 14
-    ListBoxDefaultFont.Name = 'Arial'
-    ListBoxDefaultFont.Style = []
-    ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-    ListBoxDefaultCaptionFont.Color = clWindowText
-    ListBoxDefaultCaptionFont.Height = 14
-    ListBoxDefaultCaptionFont.Name = 'Arial'
-    ListBoxDefaultCaptionFont.Style = []
-    ListBoxDefaultItemHeight = 20
-    ListBoxCaptionAlignment = taLeftJustify
-    ListBoxUseSkinFont = True
-    ListBoxUseSkinItemHeight = True
-    ListBoxWidth = 0
-    HideSelection = True
-    AutoComplete = True
-    ImageIndex = -1
-    CharCase = ecNormal
-    DefaultColor = clWindow
-    ItemIndex = -1
-    DropDownCount = 8
-    HorizontalExtent = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = 14
-    Font.Name = 'Arial'
-    Font.Style = []
-    Sorted = False
-    Style = bscbFixedStyle
-    ParentFont = False
+    LeftImageIndex = -1
+    LeftImageHotIndex = -1
+    LeftImageDownIndex = -1
+    RightImageIndex = -1
+    RightImageHotIndex = -1
+    RightImageDownIndex = -1
   end
-  object edt1: TbsSkinDBEdit
-    Left = 392
+  object edt1: TbsSkinEdit
+    Left = 384
     Top = 96
     Width = 121
     Height = 18
-    Text = 'edt1'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clBlack
@@ -508,6 +553,42 @@ object ContactRecordForm: TContactRecordForm
     RightImageIndex = -1
     RightImageHotIndex = -1
     RightImageDownIndex = -1
-    AutoSize = False
+  end
+  object dsLd: TDataSource
+    DataSet = qryLd
+    Left = 784
+    Top = 88
+  end
+  object qryLd: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from ldxx')
+    Left = 728
+    Top = 88
+  end
+  object pmLd: TPopupMenu
+    Left = 824
+    Top = 88
+    object V1: TMenuItem
+      Caption = '  '#28155' '#21152'  '
+      OnClick = V1Click
+    end
+    object W1: TMenuItem
+      Caption = '  '#20462' '#25913'  '
+      OnClick = W1Click
+    end
+    object X1: TMenuItem
+      Caption = '  '#21024' '#38500'  '
+      OnClick = X1Click
+    end
+    object Y1: TMenuItem
+      Caption = '  '#23548' '#20986'  '
+    end
+    object Z1: TMenuItem
+      Caption = '  '#25171' '#21360'  '
+    end
   end
 end

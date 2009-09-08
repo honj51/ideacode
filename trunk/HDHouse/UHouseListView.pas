@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
   Dialogs, Mask, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls, StdCtrls,
-  bsSkinGrids, bsDBGrids, ExtCtrls;
+  bsSkinGrids, bsDBGrids, ExtCtrls, BusinessSkinForm;
 
 type
   THouseListView = class(TFrame)
@@ -21,6 +21,7 @@ type
     edt1: TbsSkinMaskEdit;
     bsSkinStdLabel1: TbsSkinStdLabel;
     bsSkinStdLabel2: TbsSkinStdLabel;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public

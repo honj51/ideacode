@@ -7,7 +7,8 @@ uses
   Dialogs, ComCtrls, bsSkinTabs, bsSkinCtrls, UHouseListView, ImgList,
   bsPngImageList, UInHouseListView, UHouseSecureInfoView,
   UHouseDetailInfoView, UTrackRecordView, UDealHouseListView,
-  UContractQueryFrame, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls;
+  UContractQueryFrame, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls,
+  BusinessSkinForm, frxClass, frxExportXML, frxDBSet, Menus, bsSkinMenus;
 
 type
   THouseDealManageForm = class(TForm)
@@ -29,6 +30,25 @@ type
     btn6: TbsSkinSpeedButton;
     cntrctqryfrm1: TContractQueryFrame;
     dlhslstvw1: TDealHouseListView;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    frxReport1: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    frxXMLExport1: TfrxXMLExport;
+    frxDBDataset2: TfrxDBDataset;
+    frxReport2: TfrxReport;
+    pm1: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    bsSkinPopupMenu1: TbsSkinPopupMenu;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    bsSkinPopupMenu2: TbsSkinPopupMenu;
+    N8: TMenuItem;
+    N9: TMenuItem;
+    N10: TMenuItem;
     procedure cntrctqryfrm1bsknchckrdbx2Click(Sender: TObject);
     procedure cntrctqryfrm1bsknchckrdbx1Click(Sender: TObject);
     procedure cntrctqryfrm1btn1Click(Sender: TObject);
@@ -45,6 +65,25 @@ type
     procedure trckrcrdvw1btn3Click(Sender: TObject);
     procedure trckrcrdvw1bskndbgrd1DblClick(Sender: TObject);
     procedure dlhslstvw1btngaojibtn2Click(Sender: TObject);
+    procedure btn5Click(Sender: TObject);
+    procedure btn4Click(Sender: TObject);
+    procedure dlhslstvw1bskndbgrd1DblClick(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    function tcxxCount(pream:string):Integer;
+    procedure btn3Click(Sender: TObject);
+    procedure trckrcrdvw1btn4Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
+    procedure N8Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
+    procedure N10Click(Sender: TObject);
+    procedure btn6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,7 +94,7 @@ var
   HouseDealManageForm: THouseDealManageForm;
 
 implementation
-uses UHDHouseDataModule,UHouseTrackInfoForm,UHouseQueryForm;
+uses UHDHouseDataModule,UHouseTrackInfoForm,UHouseQueryForm,UContractInfo,UContractsFile,ShellAPI;
 {$R *.dfm}
 //  出售选择框
 procedure THouseDealManageForm.cntrctqryfrm1bsknchckrdbx2Click(
@@ -227,8 +266,8 @@ end;
  //窗体创建时
  procedure THouseDealManageForm.FormCreate(Sender: TObject);
 begin
-    self.cntrctqryfrm1.edt2.Date:=Now-50;
-    self.cntrctqryfrm1.edt3.Date:=Now;
+    self.cntrctqryfrm1.edtBeginDate.Date:=Now-50;
+    self.cntrctqryfrm1.edtEndDate.Date:=Now;
 end;
  procedure THouseDealManageForm.ContractQuery;
  var isChange:bool;
@@ -237,7 +276,7 @@ end;
     HDHouseDataModule.qryContractQuery.SQL.Clear;
     strFilter := 'select * from cjxx ';
     ischange:=false;
-   if(self.cntrctqryfrm1.edt2.Date <> 0)then
+   if(self.cntrctqryfrm1.edtBeginDate.Date <> 0)then
    begin
        if ischange then
        begin
@@ -248,18 +287,18 @@ end;
          strFilter := strFilter +' where ';
        end;
        ischange:=true;
-     if(self.cntrctqryfrm1.edt3.Date <> 0)then
+     if(self.cntrctqryfrm1.edtEndDate.Date <> 0)then
      begin
-          strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edt2.Text+'#' +' AND ';
-          strFilter := strFilter + ' cjxx_date <= #'+self.cntrctqryfrm1.edt3.Text+'#';
+          strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edtBeginDate.Text+'#' +' AND ';
+          strFilter := strFilter + ' cjxx_date <= #'+self.cntrctqryfrm1.edtEndDate.Text+'#';
      end
      else
      begin
-          strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edt2.Text+'#' +' AND ';
+          strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edtBeginDate.Text+'#' +' AND ';
           strFilter := strFilter + ' cjxx_date <= #'+DateTimeToStr(Now)+'#';
      end;
    end;
-   if(Trim(self.cntrctqryfrm1.edt1.Text)<>'') then
+   if(Trim(self.cntrctqryfrm1.edtSearch.Text)<>'') then
    begin
        if ischange then
        begin
@@ -270,7 +309,7 @@ end;
          strFilter := strFilter +' where ';
        end;
        ischange:=true;
-       looktest:= self.cntrctqryfrm1.edt1.Text;
+       looktest:= self.cntrctqryfrm1.edtSearch.Text;
        strFilter := strFilter + ' ((cjxx_htbh like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (cjxx_czxs like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (cjxx_czssqk like '+'''%'+looktest+'%'')'+' OR ';
@@ -393,6 +432,164 @@ begin
   HDHouseDataModule.qryfczy.SQL.Clear;
   HDHouseDataModule.qryfczy.SQL.Add(HouseQueryForm.strFilter) ;
   HDHouseDataModule.qryfczy.Open;
+end;
+
+procedure THouseDealManageForm.btn5Click(Sender: TObject);
+begin
+ if self.frxReport1.PrepareReport then
+ begin
+   self.frxReport1.ShowPreparedReport;
+ end;
+end;
+
+procedure THouseDealManageForm.btn4Click(Sender: TObject);
+begin
+ if self.frxReport1.PrepareReport then
+ begin
+   self.frxReport1.Export(self.frxXMLExport1);
+ end;
+end;
+  //数据选中修改签约
+procedure THouseDealManageForm.dlhslstvw1bskndbgrd1DblClick(
+  Sender: TObject);
+begin
+ if  self.tcxxCount(Trim(HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString))=0 then
+ begin
+   Application.MessageBox('此房源未签约', '警告', MB_OK + MB_ICONINFORMATION);
+   Exit;
+ end;
+ inherited;
+ if not HDHouseDataModule.qryfczy.IsEmpty then
+  Begin
+    Try
+        ContractInfo.ParmEditorMode:= 'EDIT';
+        ContractInfo.ParmId:= HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString;
+        ContractInfo.ShowModal;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
+  end;
+end;
+
+procedure THouseDealManageForm.btn1Click(Sender: TObject);
+var pream:string;
+var datecount:Integer;
+begin
+
+ if self.tcxxCount(Trim(HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString))>0 then
+ begin
+   Application.MessageBox('此房源已签约', '警告', MB_OK + MB_ICONINFORMATION);
+   Exit;
+ end;
+ inherited;
+ if not HDHouseDataModule.qryfczy.IsEmpty THEN
+  Begin
+    Try
+        ContractInfo.ParmId :='';
+        pream:='KH'+FormatDateTime('yyyymmdd',Now);
+        ContractInfo.qry1.Filter:='( cjxx_htbh like ''%'+pream+'%'')';
+        ContractInfo.qry1.Filtered:=true;
+        datecount:=ContractInfo.qry1.Recordset.RecordCount+1;
+        ContractInfo.qry1.Filtered :=false;
+        ContractInfo.htbh:=pream + Format('%.4d', [datecount]);
+        ContractInfo.fczy_bh:=HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString;
+        ContractInfo.fczy_ygxm:= HDHouseDataModule.qryfczy.fieldbyname('fczy_yzxm').AsString;
+        ContractInfo.fczy_wymc:= HDHouseDataModule.qryfczy.fieldbyname('fczy_wymc').AsString;
+        ContractInfo.ParmEditorMode:= 'ADD';
+        ContractInfo.ShowModal;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
+  end;
+end;
+
+procedure THouseDealManageForm.btn2Click(Sender: TObject);
+begin
+    dlhslstvw1bskndbgrd1DblClick(Sender);
+end;
+function THouseDealManageForm.tcxxCount(pream:string):Integer;
+var datecount:Integer;
+begin
+     ContractInfo.qry1.close;
+     ContractInfo.qry1.Parameters.ParamByName('id').Value := pream;
+     ContractInfo.qry1.open;
+     datecount:=ContractInfo.qry1.Recordset.RecordCount;
+     Result:=datecount;
+     Exit;
+end;
+procedure THouseDealManageForm.btn3Click(Sender: TObject);
+begin
+  ContractsFile.ShowModal;
+end;
+
+procedure THouseDealManageForm.trckrcrdvw1btn4Click(Sender: TObject);
+begin
+ if self.frxReport2.PrepareReport then
+ begin
+   self.frxReport2.ShowPreparedReport;
+ end;
+end;
+ //签约成交
+procedure THouseDealManageForm.N1Click(Sender: TObject);
+begin
+   self.btn1Click(Sender);
+end;
+ //修改签约
+procedure THouseDealManageForm.N2Click(Sender: TObject);
+begin
+   dlhslstvw1bskndbgrd1DblClick(Sender);
+end;
+  //合同文件
+procedure THouseDealManageForm.N3Click(Sender: TObject);
+begin
+   btn3Click(Sender);
+end;
+// 增加
+procedure THouseDealManageForm.N4Click(Sender: TObject);
+begin
+trckrcrdvw1btn1Click(Sender);
+end;
+ //修改
+procedure THouseDealManageForm.N5Click(Sender: TObject);
+begin
+     trckrcrdvw1btn2Click(Sender);
+end;
+  //删除
+procedure THouseDealManageForm.N6Click(Sender: TObject);
+begin
+  trckrcrdvw1btn3Click(Sender);
+end;
+   //打印
+procedure THouseDealManageForm.N7Click(Sender: TObject);
+begin
+ trckrcrdvw1btn4Click(Sender);
+end;
+  //   打开合同
+procedure THouseDealManageForm.N8Click(Sender: TObject);
+begin
+   btn6Click(Sender);
+end;
+   // 导出
+procedure THouseDealManageForm.N9Click(Sender: TObject);
+begin
+btn4Click(Sender);
+end;
+  //打印
+
+procedure THouseDealManageForm.N10Click(Sender: TObject);
+begin
+btn5Click(Sender);
+end;
+ //打开合同
+procedure THouseDealManageForm.btn6Click(Sender: TObject);
+ var filename:string;
+begin
+   if HDHouseDataModule.qryContractQuery.IsEmpty then
+   begin
+      filename:= GetCurrentDir +'\Contract\'+HDHouseDataModule.qryContractQuery.fieldbyname('cjxx_htbh').AsString+'.doc';
+      ShellExecute(handle, 'Open', PChar(filename), nil, nil, SW_NORMAL);
+
+   end;
 end;
 
 end.

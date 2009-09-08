@@ -1,6 +1,6 @@
 object ChangePasswordForm: TChangePasswordForm
-  Left = 534
-  Top = 291
+  Left = 533
+  Top = 334
   AutoScroll = False
   BorderIcons = []
   Caption = #20462#25913#24403#21069#25805#20316#21592#23494#30721
@@ -13,6 +13,7 @@ object ChangePasswordForm: TChangePasswordForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
@@ -117,9 +118,30 @@ object ChangePasswordForm: TChangePasswordForm
       AutoSize = False
       Caption = #30830#35748#26032#23494#30721
     end
-    object edt1: TbsSkinDBEdit
-      Left = 114
-      Top = 37
+    object bsknpswrdt1: TbsSkinPasswordEdit
+      Left = 112
+      Top = 67
+      Width = 121
+      Height = 18
+      Cursor = crIBeam
+      HintImageIndex = 0
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'edit'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      DefaultColor = clWindow
+      PasswordKind = pkRoundRect
+    end
+    object edt1: TbsSkinEdit
+      Left = 111
+      Top = 35
       Width = 121
       Height = 18
       Text = 'edt1'
@@ -141,105 +163,7 @@ object ChangePasswordForm: TChangePasswordForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
-      DataSource = HDHouseDataModule.ds1
-    end
-    object edt2: TbsSkinEdit
-      Left = 114
-      Top = 69
-      Width = 121
-      Height = 18
-      Text = 'edt2'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
       TabOrder = 1
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-    end
-    object edt3: TbsSkinEdit
-      Left = 114
-      Top = 101
-      Width = 121
-      Height = 18
-      Text = 'edt2'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 2
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-    end
-    object edt4: TbsSkinEdit
-      Left = 114
-      Top = 133
-      Width = 121
-      Height = 18
-      Text = 'edt2'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -346,7 +270,50 @@ object ChangePasswordForm: TChangePasswordForm
       Caption = #30830#35748
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
+  end
+  object bsknpswrdt2: TbsSkinPasswordEdit
+    Left = 112
+    Top = 99
+    Width = 121
+    Height = 18
+    Cursor = crIBeam
+    HintImageIndex = 0
+    TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'edit'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    DefaultColor = clWindow
+    PasswordKind = pkRoundRect
+  end
+  object bsknpswrdt3: TbsSkinPasswordEdit
+    Left = 112
+    Top = 131
+    Width = 121
+    Height = 18
+    Cursor = crIBeam
+    HintImageIndex = 0
+    TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'edit'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    DefaultColor = clWindow
+    PasswordKind = pkRoundRect
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -399,5 +366,11 @@ object ChangePasswordForm: TChangePasswordForm
     BorderIcons = [biSystemMenu, biRollUp]
     Left = 232
     Top = 184
+  end
+  object qry_update: TADOQuery
+    Connection = HDHouseDataModule.con1
+    Parameters = <>
+    Left = 32
+    Top = 152
   end
 end

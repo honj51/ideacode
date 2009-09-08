@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
-  Dialogs, StdCtrls, bsSkinBoxCtrls, bsdbctrls, Mask, bsSkinCtrls;
+  Dialogs, StdCtrls, bsSkinBoxCtrls, bsdbctrls, Mask, bsSkinCtrls,
+  BusinessSkinForm;
 
 type
   THouseSecureInfoView = class(TFrame)
@@ -19,6 +20,7 @@ type
     edtfczy_yzxm2: TbsSkinDBEdit;
     edtfczy_yzxm3: TbsSkinDBEdit;
     mmofczy_yzxm: TbsSkinDBMemo;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public
@@ -26,6 +28,7 @@ type
   end;
 
 implementation
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

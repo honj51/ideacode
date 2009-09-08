@@ -7,7 +7,8 @@ uses
   bsColorCtrls, bsSkinCtrls, ComCtrls, bsSkinBoxCtrls, bsSkinGrids,
   StdCtrls, bsCalendar, bscalc, Mask, bsButtonGroup, bsCategoryButtons,
   bsSkinExCtrls, bsSkinTabs, UHouseSecureInfoView, UHouseDetailInfoView,
-  UCustomerAutoMatchView, UDataOperateBarView, DB, ADODB;
+  UCustomerAutoMatchView, UDataOperateBarView, DB, ADODB, BusinessSkinForm,
+  frxClass, frxDBSet, frxExportXLS, frxExportXML, Menus, bsSkinMenus;
 
 type
   THouseManageForm = class(TForm)
@@ -24,6 +25,21 @@ type
     qryfczy: TADOQuery;
     dsfczy: TDataSource;
     qrykhzy: TADOQuery;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    bsbsnsknfrm2: TbsBusinessSkinForm;
+    frxReportfczy: TfrxReport;
+    frxXLSExportfczy: TfrxXLSExport;
+    frxDBDatasetfczy: TfrxDBDataset;
+    frxXMLExport1: TfrxXMLExport;
+    bsSkinPopupMenu1: TbsSkinPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    bsSkinPopupMenu2: TbsSkinPopupMenu;
+    N6: TMenuItem;
+    N7: TMenuItem;
     procedure hslstvw1btn1Click(Sender: TObject);
     procedure hslstvw1bsknchckrdbx2Click(Sender: TObject);
     procedure hslstvw1bsknchckrdbx1Click(Sender: TObject);
@@ -35,6 +51,15 @@ type
     procedure qryfczyAfterScroll(DataSet: TDataSet);
     procedure Search;
     procedure hslstvw1btngaojibtn2Click(Sender: TObject);
+    procedure dtprtbrvw1btn5Click(Sender: TObject);
+    procedure dtprtbrvw1btn4Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -117,7 +142,7 @@ end;
       //添加
 procedure THouseManageForm.dtprtbrvw1btn1Click(Sender: TObject);
 begin
-      inherited;
+  inherited;
  if not qryfczy.IsEmpty THEN
   Begin
     Try
@@ -203,6 +228,7 @@ begin
          strFilter := strFilter + ' (fczy_ygbh like '+'''%'+looktest+'%'')'+' OR ';
          strFilter := strFilter + ' (fczy_sby like '+'''%'+looktest+'%''))';
       end;
+
       if(self.hslstvw1.bsknchckrdbx1.Checked)then
       begin
          if ischange then
@@ -256,6 +282,59 @@ begin
   self.qryfczy.SQL.Clear;
   self.qryfczy.SQL.Add(HouseQueryForm.strFilter) ;
   self.qryfczy.Open;
+
+end;
+    //打印
+procedure THouseManageForm.dtprtbrvw1btn5Click(Sender: TObject);
+begin
+  if self.frxReportfczy.PrepareReport then
+  begin
+     self.frxReportfczy.ShowPreparedReport;
+  end;
+  //
+end;
+
+procedure THouseManageForm.dtprtbrvw1btn4Click(Sender: TObject);
+begin
+ if self.frxReportfczy.PrepareScript then
+ begin
+    self.frxReportfczy.Export(self.frxXMLExport1) ;
+ end;
+end;
+    //添加
+procedure THouseManageForm.N1Click(Sender: TObject);
+begin
+  dtprtbrvw1btn1Click(Sender);
+end;
+  //修改
+procedure THouseManageForm.N2Click(Sender: TObject);
+begin
+dtprtbrvw1btn2Click(Sender);
+end;
+ //   删除
+procedure THouseManageForm.N3Click(Sender: TObject);
+begin
+ dtprtbrvw1btn3Click(Sender);
+end;
+     //导出
+procedure THouseManageForm.N4Click(Sender: TObject);
+begin
+dtprtbrvw1btn4Click(Sender);
+end;
+  //打印
+procedure THouseManageForm.N5Click(Sender: TObject);
+begin
+dtprtbrvw1btn5Click(Sender);
+end;
+ //  显示详细信息
+procedure THouseManageForm.N6Click(Sender: TObject);
+begin
+   //
+end;
+//显示保密信息
+procedure THouseManageForm.N7Click(Sender: TObject);
+begin
+   //
 end;
 
 end.

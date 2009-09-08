@@ -13,21 +13,6 @@ type
     bsknpgcntrlPageC: TbsSkinPageControl;
     bskntbsht12: TbsSkinTabSheet;
     bskntbshtEditsTabSheet: TbsSkinTabSheet;
-    lbl5: TLabel;
-    lbl6: TLabel;
-    lbl7: TLabel;
-    lbl8: TLabel;
-    lbl9: TLabel;
-    lbl13: TLabel;
-    lbl14: TLabel;
-    lbl15: TLabel;
-    lbl16: TLabel;
-    lbl17: TLabel;
-    lbl18: TLabel;
-    lbl19: TLabel;
-    lbl20: TLabel;
-    lbl21: TLabel;
-    lbl22: TLabel;
     bsbsnsknfrm1: TbsBusinessSkinForm;
     bskndt1: TbsSkinData;
     bscmprsdstrdskn1: TbsCompressedStoredSkin;
@@ -38,7 +23,6 @@ type
     edtfczy_lczs: TbsSkinDBEdit;
     edtfczy_ptss2: TbsSkinDBEdit;
     edtfczy_ptss1: TbsSkinDBEdit;
-    lbl23: TLabel;
     btnAddAdviser1: TbsSkinSpeedButton;
     btnAddAdviser2: TbsSkinSpeedButton;
     edtfczy_mj: TbsSkinDBEdit;
@@ -50,25 +34,14 @@ type
     bskngrpbx1: TbsSkinGroupBox;
     bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox;
     bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox;
-    lbl24: TLabel;
-    lbl25: TLabel;
     edtfczy_sj: TbsSkinDBEdit;
     edtfczy_zj: TbsSkinDBEdit;
-    lbl27: TLabel;
-    lbl26: TLabel;
-    lbl29: TLabel;
-    lbl28: TLabel;
     edtfczy_cssm: TbsSkinDBEdit;
     edtfczy_czsm: TbsSkinDBEdit;
     bskngrpbx2: TbsSkinGroupBox;
     mmoHouseInfo: TbsSkinDBMemo;
     bsknpnl1: TbsSkinPanel;
-    lbl1: TLabel;
-    lbl2: TLabel;
-    lbl3: TLabel;
-    lbl4: TLabel;
     edtfczy_fwly: TbsSkinDBEdit;
-    btnAddAdviser: TbsSkinSpeedButton;
     dblkcbbfczy_qy1: TDBLookupComboBox;
     dblkcbbfczy_fwlx: TDBLookupComboBox;
     dblkcbbfczy_qy3: TDBLookupComboBox;
@@ -80,11 +53,8 @@ type
     edtfczy_kt: TbsSkinDBEdit;
     edtfczy_wc: TbsSkinDBEdit;
     edtfczy_yt: TbsSkinDBEdit;
-    bsSkinStdLabel1: TbsSkinStdLabel;
-    bsSkinStdLabel2: TbsSkinStdLabel;
     bsSkinStdLabel3: TbsSkinStdLabel;
     bsSkinStdLabel4: TbsSkinStdLabel;
-    bsSkinStdLabel5: TbsSkinStdLabel;
     dblkcbbfczy_dqzt: TDBLookupComboBox;
     edt1: TbsSkinMaskEdit;
     bsSkinStdLabel8: TbsSkinStdLabel;
@@ -97,14 +67,47 @@ type
     bsSkinStdLabel7: TbsSkinStdLabel;
     edtfczy_tel: TbsSkinDBEdit;
     bsSkinStdLabel10: TbsSkinStdLabel;
+    bsSkinStdLabel11: TbsSkinStdLabel;
+    bsSkinStdLabel12: TbsSkinStdLabel;
+    bsSkinStdLabel13: TbsSkinStdLabel;
+    bsSkinStdLabel14: TbsSkinStdLabel;
+    bsSkinStdLabel15: TbsSkinStdLabel;
+    bsSkinStdLabel16: TbsSkinStdLabel;
+    bsSkinStdLabel17: TbsSkinStdLabel;
+    bsSkinStdLabel18: TbsSkinStdLabel;
+    bsSkinStdLabel19: TbsSkinStdLabel;
+    bsSkinStdLabel20: TbsSkinStdLabel;
+    bsSkinStdLabel21: TbsSkinStdLabel;
+    bsSkinStdLabel22: TbsSkinStdLabel;
+    bsSkinStdLabel23: TbsSkinStdLabel;
+    bsSkinStdLabel24: TbsSkinStdLabel;
+    bsSkinStdLabel25: TbsSkinStdLabel;
+    bsSkinStdLabel26: TbsSkinStdLabel;
+    bsSkinStdLabel27: TbsSkinStdLabel;
+    bsSkinStdLabel5: TbsSkinStdLabel;
+    bsSkinStdLabel28: TbsSkinStdLabel;
+    bsSkinStdLabel2: TbsSkinStdLabel;
+    bsSkinStdLabel1: TbsSkinStdLabel;
+    bsSkinStdLabel29: TbsSkinStdLabel;
+    bsSkinStdLabel30: TbsSkinStdLabel;
+    bsSkinStdLabel31: TbsSkinStdLabel;
+    bsSkinStdLabel32: TbsSkinStdLabel;
+    bsSkinStdLabel33: TbsSkinStdLabel;
+    bsSkinStdLabel34: TbsSkinStdLabel;
+    bsSkinStdLabel35: TbsSkinStdLabel;
+    bsSkinStdLabel36: TbsSkinStdLabel;
+    bsSkinStdLabel37: TbsSkinStdLabel;
+    btn1: TbsSkinSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure btn2Click(Sender: TObject);
     procedure btn3Click(Sender: TObject);
-    procedure btnAddAdviserClick(Sender: TObject);
     procedure btnAddAdviser1Click(Sender: TObject);
     procedure btnAddAdviser2Click(Sender: TObject);
     procedure edtfczy_fwlyClick(Sender: TObject);
     function Validate():Boolean;
+    procedure btn1Click(Sender: TObject);
+    procedure edtfczy_ptss1Click(Sender: TObject);
+    procedure edtfczy_ptss2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -118,7 +121,7 @@ var
   HouseDetailsForm: THouseDetailsForm;
 
 implementation
-  uses UHDHouseDataModule,UParametersDataModule,URealtorListForm;
+  uses UHDHouseDataModule,UParametersDataModule,URealtorListForm,UHouseManageForm,UBaseFacilitiesForm,UOtherFacilitiesForm;
 {$R *.dfm}
  //显示
 procedure THouseDetailsForm.FormShow(Sender: TObject);
@@ -157,8 +160,9 @@ begin
   end
   else
   begin
-    if qry1.Modified then
+    if not qry1.IsEmpty then
     begin
+      qry1.Edit;
       HDHouseDataModule.con1.BeginTrans;
       try
         self.qry1.FindField('fczy_hxjg').Value :=self.edtfczy_ws.Text+'室'+self.edtfczy_kt.Text+'厅'+self.edtfczy_wc.Text+'卫'+self.edtfczy_yt.Text+'阳';
@@ -168,7 +172,6 @@ begin
         if( ParmEditorMode = 'ADD') then
         begin
            self.qry1.FindField('fczy_djrq').Value := FormatDateTime('yyyy-mm-dd',Now);
-           self.qry1.FindField('fczy_ygbh').Value :=ygbh ;
            self.qry1.FindField('fczy_yn').Value := false;
            if (self.bsSkinDBCheckRadioBox1.Checked and self.bsSkinDBCheckRadioBox2.Checked=false) then
            begin
@@ -187,7 +190,7 @@ begin
            end;
         self.qry1.UpdateBatch;
         HDHouseDataMOdule.con1.CommitTrans;
-        HDHouseDataMOdule.qryfczy.Close;
+        HouseManageForm.qryfczy.Close ;
       except
         HDHouseDataMOdule.con1.RollbackTrans;
         MessageBox(handle,'数据保存失败！','警告',MB_OK);
@@ -195,7 +198,7 @@ begin
       end;
       end;
       MessageBox(handle,'数据保存成功！','提示',MB_OK+MB_ICONINFORMATION);
-      HDHouseDataModule.qryfczy.Open;
+       HouseManageForm.qryfczy.Open;
        close;
    end;
 end;
@@ -204,28 +207,31 @@ procedure THouseDetailsForm.btn3Click(Sender: TObject);
 begin
   close;
 end;
- //更改置业顾问
-procedure THouseDetailsForm.btnAddAdviserClick(Sender: TObject);
-var ygxm:string;
-begin
-   RealtorListForm.ygxm := self.edtfczy_fwly.Text;
-   RealtorListForm.ShowModal;
-   self.edtfczy_fwly.Text := RealtorListForm.ygxm;
-   ygbh:=RealtorListForm.ygbh;
-end;
+
   //基础设施
 procedure THouseDetailsForm.btnAddAdviser1Click(Sender: TObject);
 begin
-       //
+   BaseFacilitiesForm.SelectItems:=self.edtfczy_ptss1.Text;
+   BaseFacilitiesForm.ShowModal;
+   self.qry1.Edit;
+   self.qry1.FieldByName('fczy_ptss1').Value:=BaseFacilitiesForm.SelectItems;
 end;
  //配套设施
 procedure THouseDetailsForm.btnAddAdviser2Click(Sender: TObject);
 begin
-     //
+   OtherFacilitiesForm.SelectItems:=self.edtfczy_ptss2.Text;
+   OtherFacilitiesForm.ShowModal;
+   self.qry1.Edit;
+   self.qry1.FieldByName('fczy_ptss2').Value:=OtherFacilitiesForm.SelectItems;
 end;
 procedure THouseDetailsForm.edtfczy_fwlyClick(Sender: TObject);
+var ygxm:string;
 begin
-   btnAddAdviserClick(sender);
+   RealtorListForm.ygxm := self.edtfczy_fwly.Text;
+   RealtorListForm.ShowModal;
+   self.qry1.Edit;
+   self.qry1.FieldByName('fczy_fwly').Value:=RealtorListForm.ygxm;
+   self.qry1.FieldByName('fczy_ygbh').Value:=RealtorListForm.ygbh
 end;
 function THouseDetailsForm.Validate():Boolean;
 begin
@@ -301,7 +307,7 @@ begin
       Result :=False;
       Exit;
     end;
-    if(bsSkinDBCheckRadioBox1.Checked<>true and bsSkinDBCheckRadioBox2.Checked<>true) then
+    if (bsSkinDBCheckRadioBox1.Checked<>true) and ( bsSkinDBCheckRadioBox2.Checked<>true) then
     begin
       MessageBox(handle,'必须选择出租出售类型','提示',MB_OK+MB_ICONINFORMATION);
       bsSkinDBCheckRadioBox1.SetFocus;
@@ -334,4 +340,20 @@ begin
     end;
      result:=True;
 end;
+//
+procedure THouseDetailsForm.btn1Click(Sender: TObject);
+begin
+   edtfczy_fwlyClick(Sender);
+end;
+
+procedure THouseDetailsForm.edtfczy_ptss1Click(Sender: TObject);
+begin
+btnAddAdviser1Click(Sender);
+end;
+
+procedure THouseDetailsForm.edtfczy_ptss2Click(Sender: TObject);
+begin
+btnAddAdviser2Click(Sender);
+end;
+
 end.

@@ -1,12 +1,12 @@
 object formMain: TformMain
-  Left = 305
-  Top = 125
+  Left = 183
+  Top = 120
   AutoScroll = False
   BiDiMode = bdLeftToRight
   BorderIcons = []
   Caption = #20114#21160#25151#20135#20013#20171#31649#29702#36719#20214
-  ClientHeight = 514
-  ClientWidth = 977
+  ClientHeight = 587
+  ClientWidth = 1110
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,14 +15,15 @@ object formMain: TformMain
   Font.Style = []
   OldCreateOrder = False
   ParentBiDiMode = False
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 90
-    Width = 977
-    Height = 424
-    ActivePage = bskntbsht5
+    Width = 1110
+    Height = 497
+    ActivePage = bskntbsht2
     Align = alClient
     BiDiMode = bdRightToLeft
     Font.Charset = DEFAULT_CHARSET
@@ -61,8 +62,8 @@ object formMain: TformMain
       inline frmhslst1: TframeHouseList
         Left = 0
         Top = 0
-        Width = 855
-        Height = 424
+        Width = 988
+        Height = 497
         HelpContext = 1
         Align = alClient
         AutoScroll = False
@@ -73,208 +74,103 @@ object formMain: TformMain
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        inherited bsSkinButtonLabel2: TbsSkinButtonLabel
-          Left = 264
-        end
-        inherited bvl1: TBevel
-          Left = 8
-        end
-        inherited Edit1: TEdit
-          Left = 112
-        end
-        inherited bsSkinButton1: TbsSkinButton
-          Left = 328
-        end
-        inherited bsSkinButton2: TbsSkinButton
-          Left = 440
-        end
-        inherited bsSkinButton3: TbsSkinButton
-          Left = 552
-        end
-        inherited bsSkinButton4: TbsSkinButton
-          Left = 664
-        end
-        inherited bsSkinDBGrid1: TbsSkinDBGrid
-          Top = 96
-          Width = 825
-          Height = 163
-          Align = alNone
-          DataSource = HDHouseDataModule.dsHouses
-          Columns = <
-            item
-              Expanded = False
-              FieldName = 'fczy_bh'
-              Title.Caption = #25151#28304#32534#21495
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Width = 134
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'fczy_djrq'
-              Title.Caption = #30331#35760#26085#26399
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'fczy_dqzt'
-              Title.Caption = #24403#21069#29366#24577
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Width = 100
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'fczy_wymc'
-              Title.Caption = #29289#19994#21517#31216
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Width = 106
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'fczy_hxjg'
-              Title.Caption = #25151#22411#32467#26500
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Width = 101
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'fczy_jzmj'
-              Title.Caption = #24314#31569#38754#31215
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #25152#22788#21306#22495
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #27004#23618'/'#23618#39640
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #32622#19994#39038#38382
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #29289#19994#29992#36884
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #29289#19994#31867#21035
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #35013#20462#31243#24230
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #25151#22411
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Title.Caption = #24314#25104#24180#26376
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -11
-              Title.Font.Name = 'MS Sans Serif'
-              Title.Font.Style = []
-              Visible = True
-            end
-            item
-              Expanded = False
-              Visible = True
-            end>
-        end
         inherited bsknpgcntrl1: TbsSkinPageControl
-          Top = 214
-          Width = 855
+          Top = 287
+          Width = 988
+          inherited bsSkinTabSheet1: TbsSkinTabSheet
+            inherited mmoHouseDetailInfo: TbsSkinDBMemo
+              Width = 986
+            end
+          end
+          inherited bsSkinTabSheet2: TbsSkinTabSheet
+            inherited mmoHouseSecrecyInfo: TbsSkinDBMemo
+              Width = 957
+            end
+          end
           inherited bskntbsht1: TbsSkinTabSheet
             inherited bskndbgrd1: TbsSkinDBGrid
-              Width = 800
-              Height = 171
+              Width = 903
+            end
+            inherited bsknscrlbrAutoDown: TbsSkinScrollBar
+              Width = 922
+              Visible = True
+              SmallChange = 31
+              LargeChange = 31
+            end
+            inherited bsknscrlbrAutoRight: TbsSkinScrollBar
+              Left = 903
             end
           end
           inherited bskntbsht2: TbsSkinTabSheet
             inherited bskndbgrd2: TbsSkinDBGrid
-              Top = 3
-              Width = 711
+              Width = 938
+            end
+            inherited bsknscrlbrFollowDown: TbsSkinScrollBar
+              Width = 957
+              Visible = True
+              Max = 127
+            end
+            inherited bsknscrlbrFollowRight: TbsSkinScrollBar
+              Left = 938
             end
           end
         end
-        inherited bsknfrm1: TbsSkinFrame
-          Left = 944
-          Top = 112
+        inherited bsSkinPanel1: TbsSkinPanel
+          Width = 988
+          inherited bvl1: TBevel
+            Width = 886
+          end
+        end
+        inherited bsSkinPanel2: TbsSkinPanel
+          Width = 988
+          Height = 190
+          inherited bsSkinDBGrid1: TbsSkinDBGrid
+            Width = 967
+            Height = 169
+          end
+          inherited bsknscrlbrHouseListDown: TbsSkinScrollBar
+            Top = 170
+            Width = 986
+            Visible = False
+            Both = False
+            SmallChange = 25
+            LargeChange = 25
+          end
+          inherited bsknscrlbrHouseRight: TbsSkinScrollBar
+            Left = 968
+            Height = 169
+            Visible = False
+            PageSize = 8
+            Max = 17
+          end
+        end
+        inherited qryHouseList: TADOQuery
+          OnCalcFields = frmhslst1qryHouseListCalcFields
+          Left = 120
+        end
+        inherited dsHouseList: TDataSource
+          Left = 305
+        end
+        inherited tblHouseTrack: TADOTable
+          Active = False
+          Left = 680
+          Top = 64
+        end
+        inherited dsHouseTrack: TDataSource
+          Left = 593
+        end
+        inherited qryCustomerTrack: TADOQuery
+          Left = 512
+        end
+        inherited dsCustomerTrack: TDataSource
+          Left = 224
+          Top = 8
+        end
+        inherited pmAutoCustomer: TPopupMenu
+          Left = 752
+        end
+        inherited pmHouse: TPopupMenu
+          Left = 816
         end
       end
     end
@@ -446,6 +342,7 @@ object formMain: TformMain
         Caption = #23458#25143#31649#29702
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn18Click
       end
       object btn19: TbsSkinButton
         Left = 408
@@ -1085,7 +982,7 @@ object formMain: TformMain
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 977
+    Width = 1110
     Height = 90
     HintImageIndex = 0
     TabOrder = 1
@@ -1199,6 +1096,7 @@ object formMain: TformMain
       Align = alCustom
       Spacing = 1
       Layout = blGlyphTop
+      OnClick = btn2Click
     end
     object btn3: TbsSkinSpeedButton
       Left = 216
@@ -1311,9 +1209,9 @@ object formMain: TformMain
       Layout = blGlyphTop
     end
     object btn6: TbsSkinSpeedButton
-      Left = 528
+      Left = 520
       Top = 5
-      Width = 89
+      Width = 65
       Height = 81
       HintImageIndex = 0
       SkinData = HDHouseDataModule.bsSkinData1
@@ -1347,7 +1245,7 @@ object formMain: TformMain
       Layout = blGlyphTop
     end
     object btn7: TbsSkinSpeedButton
-      Left = 640
+      Left = 608
       Top = 5
       Width = 89
       Height = 81
@@ -1433,8 +1331,8 @@ object formMain: TformMain
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biMinimize, biMaximize, biRollUp]
-    Left = 840
-    Top = 24
+    Left = 712
+    Top = 8
   end
   object bsknmsg1: TbsSkinMessage
     ShowAgainFlag = False
@@ -1455,7 +1353,7 @@ object formMain: TformMain
     DefaultButtonFont.Name = 'Arial'
     DefaultButtonFont.Style = []
     UseSkinFont = True
-    Left = 1057
-    Top = 464
+    Left = 753
+    Top = 8
   end
 end

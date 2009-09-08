@@ -1,6 +1,6 @@
 object CompanyInfoSettingForm: TCompanyInfoSettingForm
-  Left = 449
-  Top = 187
+  Left = 414
+  Top = 238
   AutoScroll = False
   BorderIcons = []
   Caption = #20844#21496#20449#24687
@@ -13,6 +13,7 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
@@ -134,12 +135,12 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
       AutoSize = False
       Caption = #20844#21496#22320#22336
     end
-    object edt1: TbsSkinDBEdit
+    object edtxtxx_mc: TbsSkinDBEdit
       Left = 96
       Top = 48
       Width = 329
       Height = 18
-      Text = 'edt1'
+      Text = 'edtxtxx_mc'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -166,13 +167,15 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'xtxx_mc'
+      DataSource = ds_xtxx
     end
-    object edt2: TbsSkinDBEdit
+    object edtxtxx_dh: TbsSkinDBEdit
       Left = 96
       Top = 88
       Width = 329
       Height = 18
-      Text = 'edt2'
+      Text = 'edtxtxx_dh'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -199,13 +202,15 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'xtxx_dh'
+      DataSource = ds_xtxx
     end
-    object edt3: TbsSkinDBEdit
+    object edtxtxx_yx: TbsSkinDBEdit
       Left = 96
       Top = 128
       Width = 329
       Height = 18
-      Text = 'edt3'
+      Text = 'edtxtxx_yx'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -232,13 +237,15 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'xtxx_yx'
+      DataSource = ds_xtxx
     end
-    object edt4: TbsSkinDBEdit
+    object edtxtxx_wz: TbsSkinDBEdit
       Left = 96
       Top = 168
       Width = 329
       Height = 18
-      Text = 'edt4'
+      Text = 'edtxtxx_wz'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -265,13 +272,15 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'xtxx_wz'
+      DataSource = ds_xtxx
     end
-    object edt5: TbsSkinDBEdit
+    object edtxtxx_dz: TbsSkinDBEdit
       Left = 96
       Top = 208
       Width = 329
       Height = 18
-      Text = 'edt5'
+      Text = 'edtxtxx_dz'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -298,6 +307,8 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'xtxx_dz'
+      DataSource = ds_xtxx
     end
     object bsknpnl1: TbsSkinPanel
       Left = 1
@@ -397,6 +408,7 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
         Caption = #20445#23384
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn1Click
       end
     end
   end
@@ -449,7 +461,31 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biRollUp]
-    Left = 136
+    Left = 168
     Top = 264
+  end
+  object qry_xtxx: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'id'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from xtxx where xtxx_bh =id'
+      '')
+    Left = 104
+    Top = 256
+  end
+  object ds_xtxx: TDataSource
+    DataSet = qry_xtxx
+    Left = 40
+    Top = 256
   end
 end

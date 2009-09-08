@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, bsSkinGrids, bsDBGrids, bsSkinCtrls, StdCtrls, Mask,
-  bsSkinBoxCtrls, bsdbctrls, ComCtrls, ImgList, DB, ADODB;
+  bsSkinBoxCtrls, bsdbctrls, ComCtrls, ImgList, DB, ADODB, BusinessSkinForm,
+  frxClass, frxDBSet, frxExportXML, Menus, bsSkinMenus;
 
 type
   THousePosterForm = class(TForm)
@@ -30,6 +31,20 @@ type
     bskndbgrd1: TbsSkinDBGrid;
     edt1: TbsSkinMaskEdit;
     ImageList: TImageList;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    frxXMLExport1: TfrxXMLExport;
+    frxDBDataset1: TfrxDBDataset;
+    frxReport1: TfrxReport;
+    frxReport2: TfrxReport;
+    bsSkinPopupMenu1: TbsSkinPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    bsSkinPopupMenu2: TbsSkinPopupMenu;
+    N6: TMenuItem;
+    N7: TMenuItem;
     procedure bsknchckrdbx1Click(Sender: TObject);
     procedure bsknchckrdbx2Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
@@ -37,6 +52,16 @@ type
     procedure FormShow(Sender: TObject);
     procedure tv1Change(Sender: TObject; Node: TTreeNode);
     procedure btn6Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
+    procedure btn3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -208,6 +233,92 @@ end;
 procedure THousePosterForm.btn6Click(Sender: TObject);
 begin
   //  self.con1.Execute('select * into dsfczy in "D:\dbdemos.xls" "Excel 8.0;" FROM CUSTOMER');
+end;
+ //  导出
+procedure THousePosterForm.N1Click(Sender: TObject);
+begin
+  btn6Click(Sender);
+end;
+   // 打印列表
+procedure THousePosterForm.N2Click(Sender: TObject);
+begin
+ btn1Click(Sender);
+end;
+ //   小招贴单
+procedure THousePosterForm.N3Click(Sender: TObject);
+begin
+ btn2Click(Sender);
+end;
+ //大招帖单（单个）
+procedure THousePosterForm.N4Click(Sender: TObject);
+begin
+  N6Click(Sender);
+end;
+  //大招帖单（多个）
+procedure THousePosterForm.N5Click(Sender: TObject);
+begin
+  N7Click(Sender);
+end;
+   //打印列表
+procedure THousePosterForm.btn1Click(Sender: TObject);
+begin
+   //
+end;
+  // 小招帖单
+procedure THousePosterForm.btn2Click(Sender: TObject);
+begin
+//
+end;
+ // 大招帖单（单个）
+procedure THousePosterForm.N6Click(Sender: TObject);
+begin
+    if not(self.bsknchckrdbx1.Checked or self.bsknchckrdbx2.Checked)then
+    begin
+      Application.MessageBox('请选择打印出租/出售', '提示', MB_OK + MB_ICONINFORMATION);
+        Exit;
+    end;
+    if self.bsknchckrdbx1.Checked then
+    begin
+        if self.frxReport2.PrepareReport then
+        begin
+           self.frxReport2.ShowPreparedReport;
+        end;
+    end
+    else
+    begin
+        if self.frxReport1.PrepareReport then
+        begin
+           self.frxReport1.ShowPreparedReport;
+        end;
+    end;
+end;
+  //大招帖单（多个）
+procedure THousePosterForm.N7Click(Sender: TObject);
+begin
+    if not(self.bsknchckrdbx1.Checked or self.bsknchckrdbx2.Checked)then
+    begin
+      Application.MessageBox('请选择打印出租/出售', '提示', MB_OK + MB_ICONINFORMATION);
+        Exit;
+    end;
+    if self.bsknchckrdbx1.Checked then
+    begin
+        if self.frxReport2.PrepareReport then
+        begin
+           self.frxReport2.ShowPreparedReport;
+        end;
+    end
+    else
+    begin
+        if self.frxReport1.PrepareReport then
+        begin
+           self.frxReport1.ShowPreparedReport;
+        end;
+    end;
+end;
+
+procedure THousePosterForm.btn3Click(Sender: TObject);
+begin
+  self.bsSkinPopupMenu2.Popup(Mouse.CursorPos.X-30,Mouse.CursorPos.Y+12);
 end;
 
 end.

@@ -1,6 +1,6 @@
 object BaseFacilitiesForm: TBaseFacilitiesForm
-  Left = 874
-  Top = 212
+  Left = 618
+  Top = 251
   AutoScroll = False
   BorderIcons = []
   Caption = #37197#22871#35774#26045
@@ -13,11 +13,12 @@ object BaseFacilitiesForm: TBaseFacilitiesForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object btn2: TbsSkinButton
-    Left = 131
-    Top = 324
+    Left = 129
+    Top = 322
     Width = 67
     Height = 25
     HintImageIndex = 0
@@ -46,10 +47,11 @@ object BaseFacilitiesForm: TBaseFacilitiesForm
     Caption = #30830#23450'(&O)'
     NumGlyphs = 2
     Spacing = 1
+    OnClick = btn2Click
   end
   object btn3: TbsSkinButton
     Left = 219
-    Top = 324
+    Top = 322
     Width = 68
     Height = 25
     HintImageIndex = 0
@@ -78,6 +80,7 @@ object BaseFacilitiesForm: TBaseFacilitiesForm
     Caption = #21462#28040'(&E)'
     NumGlyphs = 2
     Spacing = 1
+    OnClick = btn3Click
   end
   object lst1: TbsSkinCheckListBox
     Left = -2

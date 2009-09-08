@@ -1,7 +1,7 @@
 object SalesCommissionSumForm: TSalesCommissionSumForm
-  Left = 289
-  Top = 57
-  Width = 922
+  Left = 287
+  Top = 189
+  Width = 928
   Height = 644
   Caption = #25552#25104#24635#27719
   Color = clBtnFace
@@ -14,9 +14,9 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
   PixelsPerInch = 96
   TextHeight = 13
   object bvl1: TBevel
-    Left = -199
-    Top = 81
-    Width = 1113
+    Left = 8
+    Top = 76
+    Width = 825
     Height = 2
   end
   object lbl1: TbsSkinStdLabel
@@ -153,15 +153,16 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
   object edt1: TbsSkinDateEdit
     Left = 76
     Top = 94
-    Width = 81
+    Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '    -  -  '
+    Text = '2009-08-29'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    TodayDefault = False
+    Date = 40054.422548819440000000
+    TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
     CalendarFont.Charset = DEFAULT_CHARSET
@@ -200,15 +201,16 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
   object edt2: TbsSkinDateEdit
     Left = 179
     Top = 94
-    Width = 81
+    Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '    -  -  '
+    Text = '2009-08-29'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    TodayDefault = False
+    Date = 40054.422548819440000000
+    TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
     CalendarFont.Charset = DEFAULT_CHARSET
@@ -249,7 +251,6 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     Top = 94
     Width = 128
     Height = 18
-    Text = 'edt3'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clBlack
@@ -305,11 +306,12 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     Caption = #26597#35810' (&S)'
     NumGlyphs = 1
     Spacing = 1
+    OnClick = btn4Click
   end
   object bskndbgrd1: TbsSkinDBGrid
-    Left = -47
+    Left = 11
     Top = 120
-    Width = 961
+    Width = 902
     Height = 265
     HintImageIndex = 0
     TabOrder = 4
@@ -327,6 +329,7 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     SaveMultiSelection = False
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
+    DataSource = ds1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -335,16 +338,20 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     Columns = <
       item
         Expanded = False
+        FieldName = 'tcxx_ygbh'
         Title.Caption = #21592#24037#32534#21495
+        Width = 152
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'tcxx_cjsl'
         Title.Caption = #20986#21806#25968#37327
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'tcxx_yj'
         Title.Caption = #20986#21806#20323#37329
         Visible = True
       end
@@ -381,6 +388,7 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
       item
         Expanded = False
         Title.Caption = #24635#25552#25104
+        Width = 131
         Visible = True
       end>
   end
@@ -727,9 +735,9 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     Layout = blGlyphTop
   end
   object bskndbgrd2: TbsSkinDBGrid
-    Left = -47
+    Left = 9
     Top = 392
-    Width = 961
+    Width = 904
     Height = 201
     HintImageIndex = 0
     TabOrder = 7
@@ -747,6 +755,7 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     SaveMultiSelection = False
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
+    DataSource = ds2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -755,63 +764,116 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     Columns = <
       item
         Expanded = False
+        FieldName = 'cjxx_htbh'
         Title.Caption = #21512#21516#32534#21495
+        Width = 116
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_czssqk'
         Title.Caption = #31199#21806
+        Width = 53
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_fybh'
         Title.Caption = #25151#28304#32534#21495
+        Width = 110
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_wymc'
         Title.Caption = #29289#19994#21517#31216
+        Width = 97
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_yzxm'
         Title.Caption = #19994#20027#22995#21517
+        Width = 70
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_khbh'
         Title.Caption = #23458#25143#32534#21495
+        Width = 66
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_khxm'
         Title.Caption = #23458#25143#22995#21517
+        Width = 35
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_fcyt'
         Title.Caption = #29289#19994#29992#36884
+        Width = 45
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_fcmj'
         Title.Caption = #38754#31215
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_zygw'
         Title.Caption = #32622#19994#39038#38382
+        Width = 46
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_date'
         Title.Caption = #31614#32422#26085#26399
+        Width = 72
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_enddate'
         Title.Caption = #21512#21516#21040#26399#26085
         Visible = True
       end>
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 352
+    Top = 24
+  end
+  object ds2: TDataSource
+    DataSet = tbl2
+    Left = 488
+    Top = 32
+  end
+  object tbl2: TADOTable
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'cjxx_htbh'
+    MasterFields = 'tcxx_htbh'
+    MasterSource = ds1
+    TableName = 'cjxx'
+    Left = 568
+    Top = 32
+  end
+  object qry1: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from tcxx')
+    Left = 280
+    Top = 32
   end
 end

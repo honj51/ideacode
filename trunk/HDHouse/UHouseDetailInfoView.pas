@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
-  Dialogs, StdCtrls, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls, Mask;
+  Dialogs, StdCtrls, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls, Mask,
+  BusinessSkinForm;
 
 type
   THouseDetailInfoView = class(TFrame)
@@ -53,6 +54,7 @@ type
     bsSkinStdLabel17: TbsSkinStdLabel;
     bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox;
     bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public
@@ -60,7 +62,7 @@ type
   end;
 
 implementation
-
+  uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

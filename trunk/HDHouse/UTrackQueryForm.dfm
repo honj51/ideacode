@@ -20,7 +20,7 @@ object TrackQueryForm: TTrackQueryForm
     Top = 0
     Width = 935
     Height = 594
-    ActivePage = bskntbsht1
+    ActivePage = bskntbsht2
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
@@ -50,13 +50,13 @@ object TrackQueryForm: TTrackQueryForm
         Left = 0
         Top = 0
         Width = 933
-        Height = 573
+        Height = 572
         Align = alClient
         AutoScroll = False
         TabOrder = 0
         inherited bsSkinDBGrid1: TbsSkinDBGrid
           Width = 933
-          Height = 500
+          Height = 499
           DefaultRowHeight = 18
           TitleFont.Color = clBtnText
           TitleFont.Height = 14
@@ -76,13 +76,13 @@ object TrackQueryForm: TTrackQueryForm
         Left = 0
         Top = 0
         Width = 933
-        Height = 573
+        Height = 572
         Align = alClient
         AutoScroll = False
         TabOrder = 0
         inherited bsSkinDBGrid1: TbsSkinDBGrid
           Width = 933
-          Height = 500
+          Height = 499
           DefaultRowHeight = 18
           TitleFont.Color = clBtnText
           TitleFont.Height = 14

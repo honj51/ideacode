@@ -1,6 +1,6 @@
 object ContractSampleSettingForm: TContractSampleSettingForm
-  Left = 366
-  Top = 172
+  Left = 382
+  Top = 168
   AutoScroll = False
   BorderIcons = []
   Caption = #21512#21516#26679#26412#35774#32622
@@ -126,6 +126,7 @@ object ContractSampleSettingForm: TContractSampleSettingForm
         NumGlyphs = 1
         Spacing = 1
         Layout = blGlyphTop
+        OnClick = btn1Click
       end
       object btn2: TbsSkinSpeedButton
         Left = 97
@@ -160,6 +161,7 @@ object ContractSampleSettingForm: TContractSampleSettingForm
         NumGlyphs = 1
         Spacing = 1
         Layout = blGlyphTop
+        OnClick = btn2Click
       end
       object btn3: TbsSkinSpeedButton
         Left = 162
@@ -194,6 +196,7 @@ object ContractSampleSettingForm: TContractSampleSettingForm
         NumGlyphs = 1
         Spacing = 1
         Layout = blGlyphTop
+        OnClick = btn3Click
       end
       object btn4: TbsSkinSpeedButton
         Left = 227
@@ -228,6 +231,7 @@ object ContractSampleSettingForm: TContractSampleSettingForm
         NumGlyphs = 1
         Spacing = 1
         Layout = blGlyphTop
+        OnClick = btn4Click
       end
     end
     object bskndbgrd1: TbsSkinDBGrid
@@ -254,21 +258,26 @@ object ContractSampleSettingForm: TContractSampleSettingForm
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
       Align = alClient
+      DataSource = HDHouseDataModule.ds_ht
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDblClick = bskndbgrd1DblClick
       Columns = <
         item
           Expanded = False
-          FieldName = #21512#21516#21517#31216
+          FieldName = 'ht_mc'
+          Title.Caption = #21512#21516#21517#31216
           Width = 120
           Visible = True
         end
         item
           Expanded = False
-          FieldName = #23384#25918#36335#24452
+          FieldName = 'ht_path'
+          Title.Caption = #23384#25918#36335#24452
           Width = 530
           Visible = True
         end>

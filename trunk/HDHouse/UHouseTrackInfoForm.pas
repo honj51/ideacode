@@ -47,6 +47,7 @@ begin
       close;
       Parameters.ParamByName('id').Value := ParmId;
       self.trcknfvw1.edt2.Text :=ParmId;
+      open;
       if(ParmEditorMode = 'EDIT') then
       begin
       self.trcknfvw1.edt6.Date:=StrToDateTime(HDHouseDataModule.tblTrackRecords.fieldbyname('fcgj_date').AsString);
@@ -57,12 +58,16 @@ begin
       end;
       if(ParmEditorMode = 'ADD') then
       begin
+         self.qryfcgj.Edit;
          self.trcknfvw1.edt6.Date:=Now;
          self.trcknfvw1.edt1.Date:=Now;
          self.trcknfvw1.edt5.Time:='00:00:00';
          self.trcknfvw1.edt4.Time:='00:00:00';
+         self.trcknfvw1.cbb1.ItemIndex:=0;
+         self.trcknfvw1.dblkcbbgxfs.ListFieldIndex:=0;
       end;
-      open;
+
+      
     end;
 end;
 
