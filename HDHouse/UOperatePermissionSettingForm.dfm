@@ -1,6 +1,6 @@
 object OperatePermissionSettingForm: TOperatePermissionSettingForm
-  Left = 342
-  Top = 176
+  Left = 457
+  Top = 217
   AutoScroll = False
   BorderIcons = []
   Caption = #25805#20316#26435#38480#35774#32622' '
@@ -80,6 +80,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Caption = #28155#21152
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
       Left = 520
@@ -112,6 +113,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Caption = #20462#25913
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn2Click
     end
     object btn3: TbsSkinButton
       Left = 520
@@ -144,6 +146,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Caption = #21024#38500
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn3Click
     end
     object bsknpnl2: TbsSkinPanel
       Left = 1
@@ -203,11 +206,30 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         PickListBoxSkinDataName = 'listbox'
         PickListBoxCaptionMode = False
         Align = alClient
+        DataSource = HDHouseDataModule.ds_Qx
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+        OnDblClick = bskndbgrd1DblClick
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'Qx_bh'
+            Title.Caption = #26435#38480#32534#21495
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Qx_mc'
+            Title.Alignment = taCenter
+            Title.Caption = #26435#38480#32452#21517#31216
+            Width = 465
+            Visible = True
+          end>
       end
       object bsknscrlbr1: TbsSkinScrollBar
         Left = 477
@@ -216,7 +238,6 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         Height = 116
         HintImageIndex = 0
         TabOrder = 1
-        Visible = False
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'vscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -233,10 +254,10 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         CanFocused = False
         Align = alRight
         Kind = sbVertical
-        PageSize = 0
-        Min = 0
-        Max = 0
-        Position = 0
+        PageSize = 1
+        Min = 1
+        Max = 3
+        Position = 1
         SmallChange = 1
         LargeChange = 1
       end
@@ -247,7 +268,6 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         Height = 19
         HintImageIndex = 0
         TabOrder = 2
-        Visible = False
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'hscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -258,7 +278,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         DefaultWidth = 0
         DefaultHeight = 19
         UseSkinFont = True
-        Both = False
+        Both = True
         BothMarkerWidth = 19
         BothSkinDataName = 'bothhscrollbar'
         CanFocused = False
@@ -266,10 +286,10 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         Kind = sbHorizontal
         PageSize = 0
         Min = 0
-        Max = 0
+        Max = 127
         Position = 0
-        SmallChange = 1
-        LargeChange = 1
+        SmallChange = 127
+        LargeChange = 127
       end
     end
   end
@@ -338,6 +358,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Caption = #21024#38500
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn4Click
     end
     object btn5: TbsSkinButton
       Left = 528
@@ -370,6 +391,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Caption = #20462#25913
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn5Click
     end
     object btn6: TbsSkinButton
       Left = 528
@@ -402,6 +424,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Caption = #28155#21152
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn6Click
     end
     object bsknpnl1: TbsSkinPanel
       Left = 1
@@ -461,33 +484,40 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         PickListBoxSkinDataName = 'listbox'
         PickListBoxCaptionMode = False
         Align = alClient
+        DataSource = HDHouseDataModule.ds_users
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+        OnDblClick = bskndbgrd2DblClick
         Columns = <
           item
             Expanded = False
-            FieldName = #25152#23646#26435#38480#32452
+            FieldName = 'user_qxbh'
+            Title.Caption = #25152#23646#26435#38480#32452
             Width = 120
             Visible = True
           end
           item
             Expanded = False
-            FieldName = #25805#20316#21592#32534#21495
+            FieldName = 'user_bh'
+            Title.Caption = #25805#20316#21592#32534#21495
             Width = 120
             Visible = True
           end
           item
             Expanded = False
-            FieldName = #25805#20316#21592#22995#21517
+            FieldName = 'user_xm'
+            Title.Caption = #25805#20316#21592#22995#21517
             Width = 120
             Visible = True
           end
           item
             Expanded = False
-            FieldName = #24403#21069#29366#24577
+            FieldName = 'user_ztmc'
+            Title.Caption = #24403#21069#29366#24577
             Width = 120
             Visible = True
           end>
@@ -499,7 +529,6 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         Height = 254
         HintImageIndex = 0
         TabOrder = 1
-        Visible = False
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'vscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -516,10 +545,10 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         CanFocused = False
         Align = alRight
         Kind = sbVertical
-        PageSize = 0
-        Min = 0
-        Max = 0
-        Position = 0
+        PageSize = 1
+        Min = 1
+        Max = 3
+        Position = 1
         SmallChange = 127
         LargeChange = 127
       end
@@ -540,7 +569,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         DefaultWidth = 0
         DefaultHeight = 19
         UseSkinFont = True
-        Both = False
+        Both = True
         BothMarkerWidth = 19
         BothSkinDataName = 'bothhscrollbar'
         CanFocused = False
@@ -604,7 +633,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biRollUp]
-    Left = 544
+    Left = 568
     Top = 193
   end
 end
