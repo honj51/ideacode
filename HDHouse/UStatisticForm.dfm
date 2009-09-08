@@ -1,6 +1,6 @@
 object StatisticForm: TStatisticForm
-  Left = 352
-  Top = 230
+  Left = 260
+  Top = 187
   AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #32508#21512#32479#35745
@@ -13,6 +13,7 @@ object StatisticForm: TStatisticForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -67,7 +68,6 @@ object StatisticForm: TStatisticForm
       UseSkinFont = True
       SkinDataName = 'treeview'
       DefaultColor = clWindow
-      AutoExpand = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = 14
@@ -80,7 +80,7 @@ object StatisticForm: TStatisticForm
     end
   end
   object grp1: TGroupBox
-    Left = 192
+    Left = 200
     Top = 16
     Width = 681
     Height = 617
@@ -210,12 +210,12 @@ object StatisticForm: TStatisticForm
       Width = 80
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-28'
+      Text = '2009-09-04'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40053.372346273150000000
+      Date = 40060.473243807870000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -258,12 +258,12 @@ object StatisticForm: TStatisticForm
       Width = 80
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-28'
+      Text = '2009-09-04'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40053.372346273150000000
+      Date = 40060.473243807870000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -332,10 +332,10 @@ object StatisticForm: TStatisticForm
       Spacing = 1
     end
     object bsSkinDBGrid1: TbsSkinDBGrid
-      Left = 16
-      Top = 64
-      Width = 649
-      Height = 177
+      Left = 392
+      Top = 120
+      Width = 233
+      Height = 89
       HintImageIndex = 0
       TabOrder = 3
       SkinDataName = 'grid'
@@ -385,6 +385,30 @@ object StatisticForm: TStatisticForm
         YValues.ValueSource = #25968#37327
       end
     end
+    object DBGridEh1: TDBGridEh
+      Left = 16
+      Top = 80
+      Width = 320
+      Height = 120
+      DataSource = ds1
+      Flat = False
+      FooterColor = clWindow
+      FooterFont.Charset = DEFAULT_CHARSET
+      FooterFont.Color = clWindowText
+      FooterFont.Height = -11
+      FooterFont.Name = 'MS Sans Serif'
+      FooterFont.Style = []
+      FooterRowCount = 1
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+      SumList.Active = True
+      TabOrder = 5
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Style = []
+      OnGetFooterParams = DBGridEh1GetFooterParams
+    end
   end
   object ds1: TDataSource
     DataSet = qry1
@@ -392,6 +416,8 @@ object StatisticForm: TStatisticForm
     Top = 24
   end
   object qry1: TADOQuery
+    Active = True
+    AutoCalcFields = False
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>

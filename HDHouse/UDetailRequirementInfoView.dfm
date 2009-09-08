@@ -60,6 +60,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       ImageIndex = 0
       Flat = True
       UseSkinFontColor = True
+      TabStop = True
       CanFocused = True
       Radio = False
       Checked = False
@@ -538,7 +539,6 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Top = 40
       Width = 97
       Height = 18
-      Text = 'edt2'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack

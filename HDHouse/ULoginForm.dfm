@@ -1,6 +1,6 @@
 object LoginForm: TLoginForm
-  Left = 797
-  Top = 225
+  Left = 866
+  Top = 252
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = #30331#24405#31383#21475

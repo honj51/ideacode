@@ -9,17 +9,21 @@ uses
 
 type
   TCustomerListView = class(TFrame)
-    btn1: TbsSkinButtonLabel;
     bvl1: TBevel;
-    bskndbgrd1: TbsSkinDBGrid;
-    edt1: TEdit;
-    bsknchckrdbx1: TbsSkinCheckRadioBox;
-    bsknchckrdbx2: TbsSkinCheckRadioBox;
-    bsknchckrdbx3: TbsSkinCheckRadioBox;
-    btn2: TbsSkinButton;
-    edt2: TbsSkinDBEdit;
+    bsknpnl1: TbsSkinPanel;
     bsSkinStdLabel1: TbsSkinStdLabel;
+    edtCustomerSearch: TEdit;
+    btn1: TbsSkinButtonLabel;
+    btn2: TbsSkinButton;
+    bsknchckrdbx2: TbsSkinCheckRadioBox;
+    bsknchckrdbx1: TbsSkinCheckRadioBox;
+    bsknchckrdbx3: TbsSkinCheckRadioBox;
     bsSkinStdLabel2: TbsSkinStdLabel;
+    bsknpnl2: TbsSkinPanel;
+    bskndbgrd1: TbsSkinDBGrid;
+    bsknscrlbrCustomerDown: TbsSkinScrollBar;
+    bsknscrlbrCustomerRight: TbsSkinScrollBar;
+    edtDate: TbsSkinNumericEdit;
   private
     { Private declarations }
   public
@@ -27,7 +31,7 @@ type
   end;
 
 implementation
-
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

@@ -1,7 +1,7 @@
 object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
-  Left = 305
-  Top = 180
-  Width = 968
+  Left = 208
+  Top = 163
+  Width = 982
   Height = 676
   Caption = #25552#25104#26126#32454' '
   Color = clBtnFace
@@ -20,9 +20,9 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Height = 2
   end
   object lbl1: TbsSkinStdLabel
-    Left = 16
+    Left = 8
     Top = 96
-    Width = 48
+    Width = 73
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -36,7 +36,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Caption = #26102#38388#33539#22260
   end
   object lbl10: TbsSkinStdLabel
-    Left = 159
+    Left = 169
     Top = 96
     Width = 12
     Height = 13
@@ -52,7 +52,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Caption = #65293
   end
   object lbl5: TbsSkinStdLabel
-    Left = 269
+    Left = 284
     Top = 96
     Width = 96
     Height = 13
@@ -68,7 +68,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Caption = #36755#20837#21592#24037#20449#24687#26597#35810
   end
   object btn3: TbsSkinButtonLabel
-    Left = 516
+    Left = 531
     Top = 89
     Width = 33
     Height = 27
@@ -153,9 +153,9 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 408
-    Width = 960
+    Width = 974
     Height = 234
-    ActivePage = bskntbsht2
+    ActivePage = bsSkinTabSheet1
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
@@ -188,8 +188,115 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
         Height = 200
         TabOrder = 0
         inherited bsknpnl1: TbsSkinPanel
-          inherited bsknchckrdbx1: TbsSkinCheckRadioBox
-            Left = 0
+          inherited edt1: TbsSkinDBEdit
+            Text = '3680'
+            DataField = 'fczy_zj'
+            DataSource = ds2
+          end
+          inherited edt2: TbsSkinDBEdit
+            Text = '0'
+            DataField = 'fczy_sj'
+            DataSource = ds2
+          end
+          inherited edt3: TbsSkinDBEdit
+            Text = #20986#31199#19981#21253#25324#27700#30005#36153#29992
+            DataField = 'fczy_czsm'
+            DataSource = ds2
+          end
+          inherited edt4: TbsSkinDBEdit
+            Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
+            DataField = 'fczy_cssm'
+            DataSource = ds2
+          end
+          inherited edt5: TbsSkinDBEdit
+            Text = #24050#32463#25104#20132
+            DataField = 'fczy_dqzt'
+            DataSource = ds2
+          end
+          inherited edt6: TbsSkinDBEdit
+            Text = #27946#22478#23567#21306
+            DataField = 'fczy_wymc'
+            DataSource = ds2
+          end
+          inherited edt7: TbsSkinDBEdit
+            Text = #19996#22478#21306
+            DataField = 'fczy_qy'
+            DataSource = ds2
+          end
+          inherited edt8: TbsSkinDBEdit
+            Text = '3'#23460'1'#21381'1'#21355'1'#38451
+            DataField = 'fczy_hxjg'
+            DataSource = ds2
+          end
+          inherited edt9: TbsSkinDBEdit
+            Text = #23567#29579
+            DataField = 'fczy_fwly'
+            DataSource = ds2
+          end
+          inherited edt10: TbsSkinDBEdit
+            Text = #26222#36890#20303#23429
+            DataField = 'fczy_wyyt'
+            DataSource = ds2
+          end
+          inherited edt11: TbsSkinDBEdit
+            Text = #26222#35013
+            DataField = 'fczy_zxcd'
+            DataSource = ds2
+          end
+          inherited edt12: TbsSkinDBEdit
+            Text = '126'
+            DataField = 'fczy_jzmj'
+            DataSource = ds2
+          end
+          inherited edt13: TbsSkinDBEdit
+            Text = '2003'
+            DataField = 'fczy_jcnf'
+            DataSource = ds2
+          end
+          inherited edt14: TbsSkinDBEdit
+            Text = #24179#23618
+            DataField = 'fczy_fx'
+            DataSource = ds2
+          end
+          inherited edt15: TbsSkinDBEdit
+            Text = #39640#23618
+            DataField = 'fczy_wylb'
+            DataSource = ds2
+          end
+          inherited edt16: TbsSkinDBEdit
+            Text = '6'
+            DataField = 'fczy_lc'
+            DataSource = ds2
+          end
+          inherited bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
+            Checked = True
+            DataSource = ds2
+          end
+          inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
+            DataSource = ds2
+          end
+        end
+        inherited bsknpnl2: TbsSkinPanel
+          inherited edt17: TbsSkinDBEdit
+            Text = #29123#27668';'#26262#27668';'
+            DataField = 'fczy_ptss1'
+            DataSource = ds2
+          end
+          inherited edt18: TbsSkinDBEdit
+            Text = #26080
+            DataField = 'fczy_ptss2'
+            DataSource = ds2
+          end
+          inherited edt19: TbsSkinDBEdit
+            Text = #19996#27827#36335
+            DataField = 'fczy_jtdz'
+            DataSource = ds2
+          end
+          inherited mmoxxxx: TbsSkinDBMemo2
+            Lines.Strings = (
+              #26080)
+            DataField = 'fczy_xxbz'
+            DataSource = ds2
           end
         end
       end
@@ -211,6 +318,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
         TabOrder = 0
         inherited bsSkinStdLabel1: TbsSkinStdLabel
           Top = 40
+          Caption = #19994#20027#22995#21517
         end
         inherited bsSkinStdLabel2: TbsSkinStdLabel
           Top = 38
@@ -225,21 +333,37 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
         inherited edtName: TbsSkinDBEdit
           Left = 120
           Top = 38
+          Text = #23567#21016
+          DataField = 'fczy_yzxm'
+          DataSource = ds2
         end
         inherited edtPhone: TbsSkinDBEdit
           Left = 320
           Top = 38
+          Text = '805'
+          DataField = 'fczy_dh'
+          DataSource = ds2
         end
         inherited edtHandset: TbsSkinDBEdit
           Left = 520
           Top = 38
+          Text = '0'
+          DataField = 'fczy_sj'
+          DataSource = ds2
         end
         inherited edtAddress: TbsSkinDBEdit
           Left = 120
           Top = 70
+          Text = #19996#27827#36335
+          DataField = 'fczy_jtdz'
+          DataSource = ds2
         end
         inherited mmoDescription: TbsSkinDBMemo
           Left = 120
+          Lines.Strings = (
+            #26080)
+          DataField = 'fczy_bmbz'
+          DataSource = ds2
         end
       end
     end
@@ -248,7 +372,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
       object bskndbgrd2: TbsSkinDBGrid
         Left = 0
         Top = 0
-        Width = 958
+        Width = 972
         Height = 212
         HintImageIndex = 0
         TabOrder = 0
@@ -297,17 +421,18 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     end
   end
   object edt1: TbsSkinDateEdit
-    Left = 76
+    Left = 85
     Top = 94
-    Width = 81
+    Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '    -  -  '
+    Text = '2009-08-28'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    TodayDefault = False
+    Date = 40053.509407731480000000
+    TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
     CalendarFont.Charset = DEFAULT_CHARSET
@@ -344,17 +469,18 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     RightImageDownIndex = -1
   end
   object edt2: TbsSkinDateEdit
-    Left = 179
+    Left = 194
     Top = 94
-    Width = 81
+    Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '    -  -  '
+    Text = '2009-08-28'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    TodayDefault = False
+    Date = 40053.509446793980000000
+    TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
     CalendarFont.Charset = DEFAULT_CHARSET
@@ -391,11 +517,10 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     RightImageDownIndex = -1
   end
   object edt3: TbsSkinEdit
-    Left = 377
+    Left = 392
     Top = 94
     Width = 128
     Height = 18
-    Text = 'edt3'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clBlack
@@ -422,7 +547,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     RightImageDownIndex = -1
   end
   object btn4: TbsSkinButton
-    Left = 561
+    Left = 576
     Top = 90
     Width = 75
     Height = 25
@@ -451,9 +576,10 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Caption = #26597#35810' (&S)'
     NumGlyphs = 1
     Spacing = 1
+    OnClick = btn4Click
   end
   object bskndbgrd1: TbsSkinDBGrid
-    Left = -5
+    Left = 6
     Top = 120
     Width = 961
     Height = 265
@@ -474,6 +600,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     SaveMultiSelection = False
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
+    DataSource = ds1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -482,63 +609,77 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Columns = <
       item
         Expanded = False
+        FieldName = 'cjxx_ygbh'
         Title.Caption = #21592#24037#32534#21495
+        Width = 82
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_htbh'
         Title.Caption = #21512#21516#32534#21495
+        Width = 112
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_fkfs'
         Title.Caption = #20132#26131#31867#22411
+        Width = 94
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_yjze'
         Title.Caption = #27492#21333#20323#37329
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_tcje'
         Title.Caption = #27492#21333#24635#25552#25104
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_tcbl'
         Title.Caption = #20998#25104#27604#20363
         Visible = True
       end
       item
         Expanded = False
         Title.Caption = #20998#25104#37329#39069
+        Width = 72
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_bz'
         Title.Caption = #20998#25104#35828#26126
+        Width = 131
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_date'
         Title.Caption = #25552#25104#26102#38388
+        Width = 133
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'cjxx_czy'
         Title.Caption = #25805#20316#21592
         Visible = True
       end>
   end
   object bsknscrlbr1: TbsSkinScrollBar
-    Left = -5
+    Left = 4
     Top = 384
     Width = 961
     Height = 19
     HintImageIndex = 0
     TabOrder = 6
-    Visible = False
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -553,10 +694,10 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     BothSkinDataName = 'bothhscrollbar'
     CanFocused = False
     Kind = sbHorizontal
-    PageSize = 0
-    Min = 0
-    Max = 100
-    Position = 0
+    PageSize = 6
+    Min = 1
+    Max = 11
+    Position = 1
     SmallChange = 1
     LargeChange = 1
   end
@@ -903,7 +1044,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Layout = blGlyphTop
   end
   object bsknchckrdbx1: TbsSkinCheckRadioBox
-    Left = 648
+    Left = 663
     Top = 90
     Width = 113
     Height = 25
@@ -924,14 +1065,16 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     ImageIndex = 0
     Flat = True
     UseSkinFontColor = True
+    TabStop = True
     CanFocused = True
     Radio = False
     Checked = False
     GroupIndex = 0
     Caption = #21482#26174#31034#20986#31199#31614#32422
+    OnClick = bsknchckrdbx1Click
   end
   object bsknchckrdbx2: TbsSkinCheckRadioBox
-    Left = 776
+    Left = 791
     Top = 90
     Width = 113
     Height = 25
@@ -958,5 +1101,37 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Checked = False
     GroupIndex = 0
     Caption = #21482#26174#31034#20986#21806#31614#32422
+    OnClick = bsknchckrdbx2Click
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 272
+    Top = 24
+  end
+  object ds2: TDataSource
+    DataSet = tbl2
+    Left = 400
+    Top = 24
+  end
+  object tbl2: TADOTable
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'fczy_bh'
+    MasterFields = 'cjxx_fybh'
+    MasterSource = ds1
+    TableName = 'fczy'
+    Left = 464
+    Top = 24
+  end
+  object qry1: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from cjxx')
+    Left = 328
+    Top = 24
   end
 end

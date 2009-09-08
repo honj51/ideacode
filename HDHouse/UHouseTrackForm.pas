@@ -7,7 +7,8 @@ uses
   Dialogs, UContractQueryFrame, UHouseSecureInfoView, UHouseDetailInfoView,
   UTrackRecordView, UHouseListView, UDealHouseListView, ComCtrls,
   bsSkinTabs, bsSkinCtrls, bsSkinGrids, bsDBGrids, bsSkinBoxCtrls,
-  StdCtrls, Mask;
+  StdCtrls, Mask, BusinessSkinForm, frxClass, frxExportXML, frxDBSet,
+  Menus, bsSkinMenus;
 
 type
   THouseTrackForm = class(TForm)
@@ -32,6 +33,14 @@ type
     bskndbgrd1: TbsSkinDBGrid;
     bsknscrlbr1: TbsSkinScrollBar;
     dlhslstvw1: TDealHouseListView;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    frxReport2: TfrxReport;
+    frxDBDataset2: TfrxDBDataset;
+    bsSkinPopupMenu1: TbsSkinPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
     procedure dlhslstvw1bsknchckrdbx3Click(Sender: TObject);
     procedure dlhslstvw1bsknchckrdbx2Click(Sender: TObject);
     procedure dlhslstvw1btn1Click(Sender: TObject);
@@ -48,6 +57,11 @@ type
     procedure trckrcrdvw1btn3Click(Sender: TObject);
     procedure trckrcrdvw1bskndbgrd1DblClick(Sender: TObject);
     procedure dlhslstvw1btngaojibtn2Click(Sender: TObject);
+    procedure trckrcrdvw1btn4Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -376,6 +390,34 @@ begin
   HDHouseDataModule.qryfczy.SQL.Clear;
   HDHouseDataModule.qryfczy.SQL.Add(HouseQueryForm.strFilter) ;
   HDHouseDataModule.qryfczy.Open;
+end;
+
+procedure THouseTrackForm.trckrcrdvw1btn4Click(Sender: TObject);
+begin
+ if self.frxReport2.PrepareReport then
+ begin
+   self.frxReport2.ShowPreparedReport;
+ end;
+end;
+  //Ìí¼Ó
+procedure THouseTrackForm.N1Click(Sender: TObject);
+begin
+    trckrcrdvw1btn1Click(Sender);
+end;
+     //ÐÞ¸Ä
+procedure THouseTrackForm.N2Click(Sender: TObject);
+begin
+trckrcrdvw1btn2Click(Sender);
+end;
+  //É¾³ý
+procedure THouseTrackForm.N3Click(Sender: TObject);
+begin
+trckrcrdvw1btn3Click(Sender);
+end;
+ //´òÓ¡
+procedure THouseTrackForm.N4Click(Sender: TObject);
+begin
+ trckrcrdvw1btn4Click(Sender);
 end;
 
 end.

@@ -3,6 +3,7 @@ object TrackInfoView: TTrackInfoView
   Top = 0
   Width = 498
   Height = 293
+  AutoScroll = False
   TabOrder = 0
   object bskngrpbx1: TbsSkinGroupBox
     Left = 8
@@ -11,6 +12,7 @@ object TrackInfoView: TTrackInfoView
     Height = 153
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -49,6 +51,7 @@ object TrackInfoView: TTrackInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #25151#28304#32534#21495
@@ -66,6 +69,7 @@ object TrackInfoView: TTrackInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #36319#36827#26041#24335
@@ -83,6 +87,7 @@ object TrackInfoView: TTrackInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #36319#36827#20869#23481
@@ -100,6 +105,7 @@ object TrackInfoView: TTrackInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #36319#36827#21592#24037
@@ -117,6 +123,7 @@ object TrackInfoView: TTrackInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #36319#36827#26102#38388
@@ -180,6 +187,7 @@ object TrackInfoView: TTrackInfoView
       UseSkinFont = True
       UseSkinFontColor = True
       BitMapBG = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'memo'
     end
     object dblkcbbgxfs: TDBLookupComboBox
@@ -206,6 +214,7 @@ object TrackInfoView: TTrackInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -284,6 +293,7 @@ object TrackInfoView: TTrackInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -317,6 +327,7 @@ object TrackInfoView: TTrackInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -343,6 +354,7 @@ object TrackInfoView: TTrackInfoView
     Height = 80
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -381,6 +393,7 @@ object TrackInfoView: TTrackInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #25552#37266#31867#22411
@@ -398,6 +411,7 @@ object TrackInfoView: TTrackInfoView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #25552#37266#26102#38388
@@ -409,6 +423,7 @@ object TrackInfoView: TTrackInfoView
       Height = 20
       HintImageIndex = 0
       TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -450,7 +465,7 @@ object TrackInfoView: TTrackInfoView
         #27599#22825#25552#37266
         #27599#26376#25552#37266
         #27599#24180#25552#37266)
-      ItemIndex = 0
+      ItemIndex = -1
       DropDownCount = 8
       HorizontalExtent = False
       Font.Charset = DEFAULT_CHARSET
@@ -493,6 +508,7 @@ object TrackInfoView: TTrackInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -526,6 +542,7 @@ object TrackInfoView: TTrackInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -552,6 +569,7 @@ object TrackInfoView: TTrackInfoView
     Height = 25
     HintImageIndex = 0
     TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -583,6 +601,7 @@ object TrackInfoView: TTrackInfoView
     Height = 25
     HintImageIndex = 0
     TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -798,5 +817,11 @@ object TrackInfoView: TTrackInfoView
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 462
+    Top = 131
   end
 end

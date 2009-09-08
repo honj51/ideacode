@@ -285,7 +285,7 @@ inherited DealHouseListView: TDealHouseListView
       #25152#26377#25151#28304
       #24050#31614#32422
       #26410#31614#32422)
-    ItemIndex = 0
+    ItemIndex = -1
     DropDownCount = 8
     HorizontalExtent = False
     Font.Charset = DEFAULT_CHARSET

@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, bsSkinCtrls, bsSkinShellCtrls, bsSkinGrids, bsDBGrids,
   StdCtrls, Mask, bsSkinBoxCtrls, ExtCtrls, TeeProcs, TeEngine, Chart, DB,
-  ADODB, Series, DbChart;
+  ADODB, Series, DbChart, GridsEh, DBGridEh;
 
 type
   TStatisticForm = class(TForm)
@@ -24,7 +24,13 @@ type
     bsSkinDBGrid1: TbsSkinDBGrid;
     dbcht1: TDBChart;
     brsrsSeries1: TBarSeries;
+    DBGridEh1: TDBGridEh;
     procedure tv1Change(Sender: TObject; Node: TTreeNode);
+    procedure FormCreate(Sender: TObject);
+    procedure DBGridEh1GetFooterParams(Sender: TObject; DataCol,
+      Row: Integer; Column: TColumnEh; AFont: TFont;
+      var Background: TColor; var Alignment: TAlignment;
+      State: TGridDrawState; var Text: String);
   private
     { Private declarations }
   public
@@ -202,6 +208,21 @@ begin
     qry1.Active := True;
 
   end;
+end;
+
+procedure TStatisticForm.FormCreate(Sender: TObject);
+var i:Integer;
+begin
+    bsSkinDateEdit1.Date := Now - 90;
+    tv1.FullExpand;
+    tv1.Select(tv1.Items[1]);
+end;
+
+procedure TStatisticForm.DBGridEh1GetFooterParams(Sender: TObject; DataCol,
+  Row: Integer; Column: TColumnEh; AFont: TFont; var Background: TColor;
+  var Alignment: TAlignment; State: TGridDrawState; var Text: String);
+begin
+  Text := Text + 'Ìõ¼ÇÂ¼';
 end;
 
 end.

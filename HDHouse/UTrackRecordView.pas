@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
-  Dialogs, ImgList, bsPngImageList, bsSkinCtrls, bsSkinGrids, bsDBGrids;
+  Dialogs, ImgList, bsPngImageList, bsSkinCtrls, bsSkinGrids, bsDBGrids,
+  BusinessSkinForm;
 
 type
   TTrackRecordView = class(TFrame)
@@ -17,6 +18,7 @@ type
     bspngmglst24: TbsPngImageList;
     bsknscrlbr1: TbsSkinScrollBar;
     bsknscrlbr2: TbsSkinScrollBar;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public
@@ -24,7 +26,7 @@ type
   end;
 
 implementation
-
+    uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

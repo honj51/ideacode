@@ -1,6 +1,6 @@
 object OtherFacilitiesForm: TOtherFacilitiesForm
-  Left = 414
-  Top = 208
+  Left = 770
+  Top = 266
   AutoScroll = False
   BorderIcons = []
   Caption = #37197#22871#35774#26045
@@ -13,44 +13,13 @@ object OtherFacilitiesForm: TOtherFacilitiesForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object btn2: TbsSkinButton
     Left = 131
     Top = 324
     Width = 67
-    Height = 25
-    HintImageIndex = 0
-    TabOrder = 0
-    SkinData = bskndt1
-    SkinDataName = 'button'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    ImageIndex = -1
-    AlwaysShowLayeredFrame = False
-    UseSkinSize = True
-    UseSkinFontColor = True
-    RepeatMode = False
-    RepeatInterval = 100
-    AllowAllUp = False
-    TabStop = True
-    CanFocused = True
-    Down = False
-    GroupIndex = 0
-    Caption = #30830#23450'(&O)'
-    NumGlyphs = 2
-    Spacing = 1
-  end
-  object btn3: TbsSkinButton
-    Left = 219
-    Top = 324
-    Width = 68
     Height = 25
     HintImageIndex = 0
     TabOrder = 1
@@ -75,9 +44,43 @@ object OtherFacilitiesForm: TOtherFacilitiesForm
     CanFocused = True
     Down = False
     GroupIndex = 0
+    Caption = #30830#23450'(&O)'
+    NumGlyphs = 2
+    Spacing = 1
+    OnClick = btn2Click
+  end
+  object btn3: TbsSkinButton
+    Left = 219
+    Top = 324
+    Width = 68
+    Height = 25
+    HintImageIndex = 0
+    TabOrder = 2
+    SkinData = bskndt1
+    SkinDataName = 'button'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImageIndex = -1
+    AlwaysShowLayeredFrame = False
+    UseSkinSize = True
+    UseSkinFontColor = True
+    RepeatMode = False
+    RepeatInterval = 100
+    AllowAllUp = False
+    TabStop = True
+    CanFocused = True
+    Down = False
+    GroupIndex = 0
     Caption = #21462#28040'(&E)'
     NumGlyphs = 2
     Spacing = 1
+    OnClick = btn3Click
   end
   object lst1: TbsSkinCheckListBox
     Left = -3
@@ -85,7 +88,7 @@ object OtherFacilitiesForm: TOtherFacilitiesForm
     Width = 308
     Height = 307
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 0
     SkinData = bskndt1
     SkinDataName = 'captionchecklistbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -108,19 +111,6 @@ object OtherFacilitiesForm: TOtherFacilitiesForm
     DefaultCaptionFont.Name = 'Arial'
     DefaultCaptionFont.Style = []
     DefaultItemHeight = 20
-    Items.Strings = (
-      #20912#31665
-      #28909#27700#22120
-      #30005#35805
-      #23485#24102
-      #26377#32447
-      #31354#35843
-      #30005#33041
-      #27927#34915#26426
-      #27801#21457
-      #34915#26588
-      #24202
-      #30005#35270)
     ItemIndex = -1
     MultiSelect = False
     ListBoxFont.Charset = DEFAULT_CHARSET

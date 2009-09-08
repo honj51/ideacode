@@ -1,6 +1,6 @@
 object HouseDetailsForm: THouseDetailsForm
-  Left = 364
-  Top = 74
+  Left = 366
+  Top = 39
   AutoScroll = False
   BorderIcons = []
   Caption = #25151#28304#35814#32454#20449#24687
@@ -52,118 +52,6 @@ object HouseDetailsForm: THouseDetailsForm
       Constraints.MaxWidth = 856
       Constraints.MinHeight = 198
       Constraints.MinWidth = 856
-      object lbl5: TLabel
-        Left = 20
-        Top = 29
-        Width = 48
-        Height = 14
-        Caption = #29289#19994#21517#31216
-      end
-      object lbl6: TLabel
-        Left = 19
-        Top = 62
-        Width = 48
-        Height = 14
-        Caption = #20855#20307#22320#22336
-      end
-      object lbl7: TLabel
-        Left = 18
-        Top = 93
-        Width = 48
-        Height = 14
-        Caption = #25143#22411#32467#26500
-      end
-      object lbl8: TLabel
-        Left = 20
-        Top = 131
-        Width = 48
-        Height = 14
-        Caption = #22522#30784#35774#26045
-      end
-      object lbl9: TLabel
-        Left = 21
-        Top = 167
-        Width = 48
-        Height = 14
-        Caption = #37197#22871#35774#26045
-      end
-      object lbl13: TLabel
-        Left = 255
-        Top = 31
-        Width = 48
-        Height = 14
-        Caption = #29289#19994#29992#36884
-      end
-      object lbl14: TLabel
-        Left = 334
-        Top = 93
-        Width = 24
-        Height = 14
-        Caption = #25151#22411
-      end
-      object lbl15: TLabel
-        Left = 477
-        Top = 30
-        Width = 48
-        Height = 14
-        Caption = #29289#19994#31867#22411
-      end
-      object lbl16: TLabel
-        Left = 476
-        Top = 62
-        Width = 48
-        Height = 14
-        Caption = #25152#22788#21306#22495
-      end
-      object lbl17: TLabel
-        Left = 478
-        Top = 94
-        Width = 48
-        Height = 14
-        Caption = #24314#31569#38754#31215
-      end
-      object lbl18: TLabel
-        Left = 651
-        Top = 28
-        Width = 48
-        Height = 14
-        Caption = #35013#20462#31243#24230
-      end
-      object lbl19: TLabel
-        Left = 652
-        Top = 62
-        Width = 48
-        Height = 14
-        Caption = #24314#25104#24180#20221
-      end
-      object lbl20: TLabel
-        Left = 652
-        Top = 94
-        Width = 48
-        Height = 14
-        Caption = #24635'  '#23618'  '#25968
-      end
-      object lbl21: TLabel
-        Left = 822
-        Top = 59
-        Width = 12
-        Height = 14
-        Caption = #24180
-      end
-      object lbl22: TLabel
-        Left = 743
-        Top = 94
-        Width = 39
-        Height = 14
-        Caption = #23618','#20301#20110
-      end
-      object lbl23: TLabel
-        Left = 822
-        Top = 93
-        Width = 12
-        Height = 14
-        Caption = #23618
-      end
       object btnAddAdviser1: TbsSkinSpeedButton
         Left = 797
         Top = 124
@@ -238,42 +126,10 @@ object HouseDetailsForm: THouseDetailsForm
         Spacing = 1
         OnClick = btnAddAdviser2Click
       end
-      object bsSkinStdLabel1: TbsSkinStdLabel
-        Left = 117
-        Top = 93
-        Width = 12
-        Height = 13
-        EllipsType = bsetNone
-        UseSkinFont = True
-        UseSkinColor = True
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
-        DefaultFont.Height = -11
-        DefaultFont.Name = 'MS Sans Serif'
-        DefaultFont.Style = []
-        SkinDataName = 'stdlabel'
-        Caption = #23460
-      end
-      object bsSkinStdLabel2: TbsSkinStdLabel
-        Left = 170
-        Top = 92
-        Width = 12
-        Height = 13
-        EllipsType = bsetNone
-        UseSkinFont = True
-        UseSkinColor = True
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
-        DefaultFont.Height = -11
-        DefaultFont.Name = 'MS Sans Serif'
-        DefaultFont.Style = []
-        SkinDataName = 'stdlabel'
-        Caption = #21381
-      end
       object bsSkinStdLabel3: TbsSkinStdLabel
         Left = 226
         Top = 92
-        Width = 12
+        Width = 3
         Height = 13
         EllipsType = bsetNone
         UseSkinFont = True
@@ -284,7 +140,6 @@ object HouseDetailsForm: THouseDetailsForm
         DefaultFont.Name = 'MS Sans Serif'
         DefaultFont.Style = []
         SkinDataName = 'stdlabel'
-        Caption = #21355
       end
       object bsSkinStdLabel4: TbsSkinStdLabel
         Left = 281
@@ -301,8 +156,229 @@ object HouseDetailsForm: THouseDetailsForm
         DefaultFont.Style = []
         SkinDataName = 'stdlabel'
       end
+      object bsSkinStdLabel15: TbsSkinStdLabel
+        Left = 18
+        Top = 31
+        Width = 54
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #29289#19994#21517#31216
+      end
+      object bsSkinStdLabel16: TbsSkinStdLabel
+        Left = 246
+        Top = 31
+        Width = 60
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #29289#19994#29992#36884
+      end
+      object bsSkinStdLabel17: TbsSkinStdLabel
+        Left = 460
+        Top = 32
+        Width = 62
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #29289#19994#31867#22411
+      end
+      object bsSkinStdLabel18: TbsSkinStdLabel
+        Left = 641
+        Top = 28
+        Width = 64
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #35013#20462#31243#24230
+      end
+      object bsSkinStdLabel19: TbsSkinStdLabel
+        Left = 17
+        Top = 63
+        Width = 56
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #20855#20307#22320#22336
+      end
+      object bsSkinStdLabel20: TbsSkinStdLabel
+        Left = 461
+        Top = 64
+        Width = 59
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #25152#22788#21306#22495
+      end
+      object bsSkinStdLabel21: TbsSkinStdLabel
+        Left = 643
+        Top = 63
+        Width = 61
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #24314#25104#24180#20221
+      end
+      object bsSkinStdLabel22: TbsSkinStdLabel
+        Left = 826
+        Top = 61
+        Width = 12
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #24180
+      end
+      object bsSkinStdLabel23: TbsSkinStdLabel
+        Left = 820
+        Top = 93
+        Width = 12
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #23618
+      end
+      object bsSkinStdLabel24: TbsSkinStdLabel
+        Left = 739
+        Top = 94
+        Width = 47
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #23618','#20301#20110
+      end
+      object bsSkinStdLabel25: TbsSkinStdLabel
+        Left = 644
+        Top = 94
+        Width = 56
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #24635'  '#23618'  '#25968
+      end
+      object bsSkinStdLabel26: TbsSkinStdLabel
+        Left = 464
+        Top = 95
+        Width = 59
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #24314#31569#38754#31215
+      end
+      object bsSkinStdLabel27: TbsSkinStdLabel
+        Left = 324
+        Top = 94
+        Width = 31
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #25151#22411
+      end
       object bsSkinStdLabel5: TbsSkinStdLabel
-        Left = 280
+        Left = 277
         Top = 92
         Width = 24
         Height = 13
@@ -315,7 +391,110 @@ object HouseDetailsForm: THouseDetailsForm
         DefaultFont.Name = 'MS Sans Serif'
         DefaultFont.Style = []
         SkinDataName = 'stdlabel'
+        AutoSize = False
         Caption = #38451#21488
+      end
+      object bsSkinStdLabel28: TbsSkinStdLabel
+        Left = 226
+        Top = 91
+        Width = 12
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #21355
+      end
+      object bsSkinStdLabel2: TbsSkinStdLabel
+        Left = 170
+        Top = 91
+        Width = 12
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #21381
+      end
+      object bsSkinStdLabel1: TbsSkinStdLabel
+        Left = 117
+        Top = 92
+        Width = 12
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #23460
+      end
+      object bsSkinStdLabel29: TbsSkinStdLabel
+        Left = 16
+        Top = 93
+        Width = 59
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #25143#22411#32467#26500
+      end
+      object bsSkinStdLabel30: TbsSkinStdLabel
+        Left = 17
+        Top = 130
+        Width = 54
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #22522#30784#35774#26045
+      end
+      object bsSkinStdLabel31: TbsSkinStdLabel
+        Left = 15
+        Top = 164
+        Width = 57
+        Height = 13
+        EllipsType = bsetNone
+        UseSkinFont = True
+        UseSkinColor = True
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = -11
+        DefaultFont.Name = 'MS Sans Serif'
+        DefaultFont.Style = []
+        SkinDataName = 'stdlabel'
+        AutoSize = False
+        Caption = #37197#22871#35774#26045
       end
       object edtfczy_wylb: TbsSkinDBEdit
         Left = 81
@@ -484,6 +663,7 @@ object HouseDetailsForm: THouseDetailsForm
         RightImageIndex = -1
         RightImageHotIndex = -1
         RightImageDownIndex = -1
+        OnClick = edtfczy_ptss1Click
         AutoSize = False
         DataField = 'fczy_ptss1'
         DataSource = dsfczyinfo
@@ -552,6 +732,7 @@ object HouseDetailsForm: THouseDetailsForm
         RightImageIndex = -1
         RightImageHotIndex = -1
         RightImageDownIndex = -1
+        OnClick = edtfczy_ptss2Click
         AutoSize = False
         DataField = 'fczy_ptss2'
         DataSource = dsfczyinfo
@@ -1138,55 +1319,107 @@ object HouseDetailsForm: THouseDetailsForm
     NumGlyphs = 1
     Spacing = 2
     Caption = #20986#31199#20986#21806
-    object lbl24: TLabel
-      Left = 108
-      Top = 34
-      Width = 67
-      Height = 14
+    object bsSkinStdLabel32: TbsSkinStdLabel
+      Left = 119
+      Top = 33
+      Width = 57
+      Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #20986#31199#20215#26684
-      Color = clBtnFace
-      ParentColor = False
     end
-    object lbl25: TLabel
-      Left = 108
-      Top = 66
-      Width = 66
+    object bsSkinStdLabel33: TbsSkinStdLabel
+      Left = 119
+      Top = 64
+      Width = 55
       Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #20986#21806#20215#26684
     end
-    object lbl27: TLabel
-      Left = 270
-      Top = 67
-      Width = 37
-      Height = 13
-      AutoSize = False
-      Caption = #19975#20803
-    end
-    object lbl26: TLabel
-      Left = 268
+    object bsSkinStdLabel34: TbsSkinStdLabel
+      Left = 267
       Top = 34
-      Width = 29
+      Width = 33
       Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #20803'/'#26376
     end
-    object lbl29: TLabel
-      Left = 311
+    object bsSkinStdLabel35: TbsSkinStdLabel
+      Left = 270
       Top = 65
+      Width = 32
+      Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
+      AutoSize = False
+      Caption = #19975#20803
+    end
+    object bsSkinStdLabel36: TbsSkinStdLabel
+      Left = 314
+      Top = 34
       Width = 58
       Height = 13
-      AutoSize = False
-      Caption = #20986#21806#35828#26126
-    end
-    object lbl28: TLabel
-      Left = 311
-      Top = 33
-      Width = 60
-      Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #20986#31199#35828#26126
+    end
+    object bsSkinStdLabel37: TbsSkinStdLabel
+      Left = 314
+      Top = 63
+      Width = 54
+      Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
+      AutoSize = False
+      Caption = #20986#21806#35828#26126
     end
     object bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
       Left = 28
@@ -1486,36 +1719,76 @@ object HouseDetailsForm: THouseDetailsForm
     NumGlyphs = 1
     Spacing = 2
     Caption = 'bsknpnl1'
-    object lbl1: TLabel
-      Left = 13
-      Top = 32
-      Width = 63
+    object bsSkinStdLabel11: TbsSkinStdLabel
+      Left = 10
+      Top = 31
+      Width = 67
       Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #25151#28304#32534#21495' '#65306
     end
-    object lbl2: TLabel
-      Left = 230
-      Top = 32
+    object bsSkinStdLabel12: TbsSkinStdLabel
+      Left = 225
+      Top = 31
       Width = 63
       Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #25151#20135#26469#28304' '#65306
     end
-    object lbl3: TLabel
-      Left = 417
-      Top = 32
+    object bsSkinStdLabel13: TbsSkinStdLabel
+      Left = 420
+      Top = 30
       Width = 63
       Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #24403#21069#29366#24577' '#65306
     end
-    object lbl4: TLabel
-      Left = 614
+    object bsSkinStdLabel14: TbsSkinStdLabel
+      Left = 615
       Top = 32
       Width = 63
       Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #32622#19994#39038#38382' '#65306
     end
-    object btnAddAdviser: TbsSkinSpeedButton
-      Left = 811
+    object btn1: TbsSkinSpeedButton
+      Left = 809
       Top = 26
       Width = 25
       Height = 24
@@ -1544,12 +1817,12 @@ object HouseDetailsForm: THouseDetailsForm
       ShowHint = True
       ParentShowHint = False
       Down = False
-      GroupIndex = 1
+      GroupIndex = 0
       ShowCaption = True
       NumGlyphs = 1
       Align = alCustom
       Spacing = 1
-      OnClick = btnAddAdviserClick
+      OnClick = btn1Click
     end
     object edtfczy_fwly: TbsSkinDBEdit
       Left = 683

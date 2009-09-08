@@ -1,16 +1,18 @@
 object TrackRecordView: TTrackRecordView
   Left = 0
   Top = 0
-  Width = 646
-  Height = 271
+  Width = 811
+  Height = 219
+  AutoScroll = False
   TabOrder = 0
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 646
+    Width = 811
     Height = 49
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'toolpanel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -53,6 +55,7 @@ object TrackRecordView: TTrackRecordView
       Width = 32
       Height = 32
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'toolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -85,6 +88,7 @@ object TrackRecordView: TTrackRecordView
       Width = 32
       Height = 32
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'toolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -117,6 +121,7 @@ object TrackRecordView: TTrackRecordView
       Width = 32
       Height = 32
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'toolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -149,6 +154,7 @@ object TrackRecordView: TTrackRecordView
       Width = 32
       Height = 32
       HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'toolbutton'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -179,10 +185,11 @@ object TrackRecordView: TTrackRecordView
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 49
-    Width = 627
-    Height = 203
+    Width = 792
+    Height = 151
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
     WallpaperStretch = False
@@ -235,11 +242,12 @@ object TrackRecordView: TTrackRecordView
   end
   object bsknscrlbr1: TbsSkinScrollBar
     Left = 0
-    Top = 252
-    Width = 646
+    Top = 200
+    Width = 811
     Height = 19
     HintImageIndex = 0
     TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -263,12 +271,13 @@ object TrackRecordView: TTrackRecordView
     LargeChange = 1
   end
   object bsknscrlbr2: TbsSkinScrollBar
-    Left = 627
+    Left = 792
     Top = 49
     Width = 19
-    Height = 203
+    Height = 151
     HintImageIndex = 0
     TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'vscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -307,8 +316,8 @@ object TrackRecordView: TTrackRecordView
       end>
     PngWidth = 24
     PngHeight = 24
-    Left = 568
-    Top = 8
+    Left = 572
+    Top = 6
     Bitmap = {
       494C010104000900040018001800FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000600000003000000001002000000000000048
@@ -909,5 +918,11 @@ object TrackRecordView: TTrackRecordView
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000}
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 509
+    Top = 6
   end
 end

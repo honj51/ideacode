@@ -1,6 +1,6 @@
 object OperatorInfoForm: TOperatorInfoForm
-  Left = 583
-  Top = 344
+  Left = 589
+  Top = 278
   AutoScroll = False
   BorderIcons = []
   Caption = #25805#20316#21592#20449#24687

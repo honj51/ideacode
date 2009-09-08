@@ -5,43 +5,44 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
   Dialogs, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls, ExtCtrls,
-  bsSkinExCtrls;
+  bsSkinExCtrls, BusinessSkinForm;
 
 type
   THouseQueryFrame = class(TFrame)
-    GroupBox1: TGroupBox;
-    edt1: TbsSkinEdit;
-    edt2: TbsSkinEdit;
-    edt3: TbsSkinEdit;
-    edt4: TbsSkinEdit;
-    bvl1: TBevel;
-    bsknchckrdbx1: TbsSkinCheckRadioBox;
-    bsknchckrdbx2: TbsSkinCheckRadioBox;
-    bsknchckrdbx3: TbsSkinCheckRadioBox;
-    bsknchckrdbx4: TbsSkinCheckRadioBox;
-    edt5: TbsSkinEdit;
-    edt6: TbsSkinEdit;
-    lbl11: TbsSkinStdLabel;
-    lbl12: TbsSkinStdLabel;
-    lbl4: TbsSkinStdLabel;
-    lbl5: TbsSkinStdLabel;
-    lbl6: TbsSkinStdLabel;
-    lbl7: TbsSkinStdLabel;
-    lbl8: TbsSkinStdLabel;
-    lbl9: TbsSkinStdLabel;
-    lbl10: TbsSkinStdLabel;
-    lbl2: TbsSkinStdLabel;
-    lbl3: TbsSkinStdLabel;
-    lbl1: TbsSkinStdLabel;
-    lbl14: TbsSkinStdLabel;
     btn1: TbsSkinXFormButton;
     btn2: TbsSkinXFormButton;
+    bsSkinFrame1: TbsSkinFrame;
+    bskngrpbx1: TbsSkinGroupBox;
+    lbl14: TbsSkinStdLabel;
     cbb5: TbsSkinComboBox;
+    lbl1: TbsSkinStdLabel;
     cbb6: TbsSkinComboBox;
-    cbb1: TbsSkinComboBox;
-    cbb2: TbsSkinComboBox;
-    cbb3: TbsSkinComboBox;
+    lbl2: TbsSkinStdLabel;
+    lbl3: TbsSkinStdLabel;
+    lbl10: TbsSkinStdLabel;
+    lbl9: TbsSkinStdLabel;
+    lbl8: TbsSkinStdLabel;
     cbb4: TbsSkinComboBox;
+    cbb3: TbsSkinComboBox;
+    lbl7: TbsSkinStdLabel;
+    lbl6: TbsSkinStdLabel;
+    cbb2: TbsSkinComboBox;
+    cbb1: TbsSkinComboBox;
+    lbl5: TbsSkinStdLabel;
+    lbl4: TbsSkinStdLabel;
+    bsknchckrdbx1: TbsSkinCheckRadioBox;
+    bsknchckrdbx2: TbsSkinCheckRadioBox;
+    lbl11: TbsSkinStdLabel;
+    lbl12: TbsSkinStdLabel;
+    edt5: TbsSkinEdit;
+    edt6: TbsSkinEdit;
+    bsknchckrdbx3: TbsSkinCheckRadioBox;
+    bsknchckrdbx4: TbsSkinCheckRadioBox;
+    bvl1: TBevel;
+    edt1: TbsSkinNumericEdit;
+    edt2: TbsSkinNumericEdit;
+    edt3: TbsSkinNumericEdit;
+    edt4: TbsSkinNumericEdit;
   private
     { Private declarations }
   public
@@ -49,7 +50,7 @@ type
   end;
 
 implementation
-
+   uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

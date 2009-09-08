@@ -1,6 +1,6 @@
 object AddContractSampleForm: TAddContractSampleForm
-  Left = 343
-  Top = 354
+  Left = 388
+  Top = 336
   AutoScroll = False
   BorderIcons = []
   Caption = #28155#21152#21512#21516
@@ -13,6 +13,8 @@ object AddContractSampleForm: TAddContractSampleForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
@@ -52,7 +54,7 @@ object AddContractSampleForm: TAddContractSampleForm
     object lbl1: TbsSkinStdLabel
       Left = 16
       Top = 34
-      Width = 72
+      Width = 89
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -63,12 +65,13 @@ object AddContractSampleForm: TAddContractSampleForm
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #21512#21516#26679#26412#21517#31216
     end
     object lbl2: TbsSkinStdLabel
       Left = 16
       Top = 56
-      Width = 72
+      Width = 89
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -79,14 +82,14 @@ object AddContractSampleForm: TAddContractSampleForm
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #21512#21516#26679#26412#36335#24452
     end
-    object edt1: TbsSkinDBEdit
+    object edtht_mc: TbsSkinDBEdit
       Left = 104
       Top = 32
       Width = 121
       Height = 18
-      Text = 'edt1'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -113,13 +116,14 @@ object AddContractSampleForm: TAddContractSampleForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'ht_mc'
+      DataSource = ds_htxxxx
     end
-    object edt2: TbsSkinDBEdit
+    object edtht_path: TbsSkinFileEdit
       Left = 104
       Top = 56
       Width = 249
       Height = 18
-      Text = 'edt2'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -145,7 +149,10 @@ object AddContractSampleForm: TAddContractSampleForm
       RightImageIndex = -1
       RightImageHotIndex = -1
       RightImageDownIndex = -1
-      AutoSize = False
+      Filter = 'All files|*.*|Word'#25991#26723'|*.doc|'#25991#26412#25991#20214'|*.txt|'
+      DlgSkinData = HDHouseDataModule.bsSkinData1
+      DlgCtrlSkinData = HDHouseDataModule.bsSkinData1
+      LVHeaderSkinDataName = 'resizebutton'
     end
   end
   object bsknpnl1: TbsSkinPanel
@@ -213,6 +220,7 @@ object AddContractSampleForm: TAddContractSampleForm
       Caption = #20445#23384
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
       Left = 278
@@ -297,7 +305,31 @@ object AddContractSampleForm: TAddContractSampleForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biRollUp]
-    Left = 32
-    Top = 120
+    Left = 24
+    Top = 112
+  end
+  object qry_htxxxx: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'id'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from ht where ht_bh=id')
+    Left = 128
+    Top = 112
+  end
+  object ds_htxxxx: TDataSource
+    DataSet = qry_htxxxx
+    Left = 80
+    Top = 112
   end
 end
