@@ -1,11 +1,11 @@
 object OperatorInfoForm: TOperatorInfoForm
-  Left = 498
-  Top = 276
+  Left = 583
+  Top = 344
   AutoScroll = False
   BorderIcons = []
   Caption = #25805#20316#21592#20449#24687
-  ClientHeight = 219
-  ClientWidth = 361
+  ClientHeight = 249
+  ClientWidth = 369
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,13 +13,14 @@ object OperatorInfoForm: TOperatorInfoForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
     Left = 0
     Top = 0
-    Width = 361
-    Height = 160
+    Width = 369
+    Height = 190
     HintImageIndex = 0
     TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
@@ -151,12 +152,12 @@ object OperatorInfoForm: TOperatorInfoForm
       AutoSize = False
       Caption = #24403#21069#29366#24577
     end
-    object edt1: TbsSkinDBEdit
+    object edtuser_bh: TbsSkinDBEdit
       Left = 88
       Top = 46
       Width = 89
       Height = 18
-      Text = 'edt1'
+      Text = 'edtuser_bh'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -183,13 +184,15 @@ object OperatorInfoForm: TOperatorInfoForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'user_bh'
+      DataSource = ds_usersxxxx
     end
-    object edt2: TbsSkinDBEdit
+    object edtuser_xm: TbsSkinDBEdit
       Left = 88
       Top = 78
       Width = 89
       Height = 18
-      Text = 'edt2'
+      Text = 'edtuser_xm'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -216,9 +219,11 @@ object OperatorInfoForm: TOperatorInfoForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'user_xm'
+      DataSource = ds_usersxxxx
     end
-    object cbb1: TbsSkinDBComboBox
-      Left = 88
+    object cbbuser_ztmc: TbsSkinDBComboBox
+      Left = 248
       Top = 110
       Width = 89
       Height = 20
@@ -260,6 +265,9 @@ object OperatorInfoForm: TOperatorInfoForm
       ImageIndex = -1
       CharCase = ecNormal
       DefaultColor = clWindow
+      Items.Strings = (
+        #21487#29992
+        #20572#29992)
       ItemIndex = -1
       DropDownCount = 8
       HorizontalExtent = False
@@ -270,12 +278,14 @@ object OperatorInfoForm: TOperatorInfoForm
       Font.Style = []
       Sorted = False
       Style = bscbFixedStyle
+      DataField = 'user_ztmc'
+      DataSource = ds_usersxxxx
       ParentFont = False
     end
-    object cbb2: TbsSkinDBComboBox
-      Left = 248
+    object cbbuser_qxbh: TbsSkinDBLookupComboBox
+      Left = 88
       Top = 110
-      Width = 81
+      Width = 89
       Height = 20
       HintImageIndex = 0
       TabOrder = 3
@@ -287,115 +297,69 @@ object OperatorInfoForm: TOperatorInfoForm
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
       DefaultWidth = 0
-      DefaultHeight = 0
+      DefaultHeight = 20
       UseSkinFont = True
-      UseSkinSize = True
-      ToolButtonStyle = False
-      AlphaBlend = False
-      AlphaBlendValue = 0
-      AlphaBlendAnimation = False
-      ListBoxCaptionMode = False
-      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultFont.Color = clWindowText
-      ListBoxDefaultFont.Height = 14
-      ListBoxDefaultFont.Name = 'Arial'
-      ListBoxDefaultFont.Style = []
-      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultCaptionFont.Color = clWindowText
-      ListBoxDefaultCaptionFont.Height = 14
-      ListBoxDefaultCaptionFont.Name = 'Arial'
-      ListBoxDefaultCaptionFont.Style = []
+      DataField = 'user_qxbh'
+      DataSource = ds_usersxxxx
+      DefaultColor = clWindow
       ListBoxDefaultItemHeight = 20
-      ListBoxCaptionAlignment = taLeftJustify
       ListBoxUseSkinFont = True
       ListBoxUseSkinItemHeight = True
-      ListBoxWidth = 0
-      HideSelection = True
-      AutoComplete = True
-      ImageIndex = -1
-      CharCase = ecNormal
-      DefaultColor = clWindow
-      ItemIndex = -1
-      DropDownCount = 8
-      HorizontalExtent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Sorted = False
-      Style = bscbFixedStyle
-      ParentFont = False
+      KeyField = 'Qx_bh'
+      ListField = 'Qx_mc'
+      ListSource = ds1
     end
-    object edt3: TbsSkinEdit
-      Left = 248
-      Top = 46
-      Width = 81
-      Height = 18
-      Text = 'edt3'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 4
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-    end
-    object edt4: TbsSkinEdit
+    object bsknpswrdt_mm2: TbsSkinPasswordEdit
       Left = 248
       Top = 78
-      Width = 81
-      Height = 18
-      Text = 'edt3'
-      DefaultColor = clWindow
+      Width = 89
+      Height = 21
+      Cursor = crIBeam
+      HintImageIndex = 0
+      TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'edit'
       DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
+      DefaultFont.Color = clWindowText
       DefaultFont.Height = 14
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
-      UseSkinFont = True
       DefaultWidth = 0
       DefaultHeight = 0
-      ButtonMode = False
+      UseSkinFont = True
+      DefaultColor = clWindow
+      PasswordKind = pkRoundRect
+    end
+    object bskndbpswrdtuser_mm: TbsSkinDBPasswordEdit
+      Left = 248
+      Top = 45
+      Width = 89
+      Height = 21
+      Cursor = crIBeam
+      HelpType = htKeyword
+      HelpKeyword = '*'
+      HintImageIndex = 0
+      TabOrder = 5
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 5
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      DefaultColor = clWindow
+      PasswordKind = pkRoundRect
+      DataField = 'user_mm'
+      DataSource = ds_usersxxxx
     end
   end
   object bsknpnl1: TbsSkinPanel
     Left = 0
-    Top = 160
-    Width = 361
+    Top = 190
+    Width = 369
     Height = 59
     HintImageIndex = 0
     TabOrder = 1
@@ -457,6 +421,7 @@ object OperatorInfoForm: TOperatorInfoForm
       Caption = #20445#23384
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
       Left = 243
@@ -541,7 +506,72 @@ object OperatorInfoForm: TOperatorInfoForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biRollUp]
-    Left = 24
-    Top = 176
+    Left = 40
+    Top = 200
+  end
+  object ds_usersxxxx: TDataSource
+    DataSet = qry_usersxxxx
+    Left = 104
+  end
+  object qry_usersxxxx: TADOQuery
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Pr' +
+      'oject\delphi\HDHouse\database\hdhouse.mdb;Mode=Share Deny None;E' +
+      'xtended Properties="";Jet OLEDB:System database="";Jet OLEDB:Reg' +
+      'istry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Ty' +
+      'pe=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial ' +
+      'Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Da' +
+      'tabase Password="";Jet OLEDB:Create System Database=False;Jet OL' +
+      'EDB:Encrypt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compac' +
+      't=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB' +
+      ':SFP=False'
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'id'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from users where user_bh=id')
+    Left = 160
+  end
+  object ds1: TDataSource
+    DataSet = tbl1
+    Left = 227
+  end
+  object tbl1: TADOTable
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    MasterSource = ds_usersxxxx
+    TableName = 'qx'
+    Left = 280
+  end
+  object bsknmsg_msg: TbsSkinMessage
+    ShowAgainFlag = False
+    ShowAgainFlagValue = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ButtonSkinDataName = 'button'
+    MessageLabelSkinDataName = 'stdlabel'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultButtonFont.Charset = DEFAULT_CHARSET
+    DefaultButtonFont.Color = clWindowText
+    DefaultButtonFont.Height = 14
+    DefaultButtonFont.Name = 'Arial'
+    DefaultButtonFont.Style = []
+    UseSkinFont = True
+    Left = 88
+    Top = 144
   end
 end
