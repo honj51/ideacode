@@ -1,6 +1,6 @@
 object EmployeeManageForm: TEmployeeManageForm
-  Left = 361
-  Top = 165
+  Left = 262
+  Top = 109
   AutoScroll = False
   BorderIcons = []
   Caption = #21592#24037#31649#29702
@@ -13,6 +13,7 @@ object EmployeeManageForm: TEmployeeManageForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskndbgrd1: TbsSkinDBGrid
@@ -21,7 +22,7 @@ object EmployeeManageForm: TEmployeeManageForm
     Width = 946
     Height = 370
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
@@ -40,72 +41,106 @@ object EmployeeManageForm: TEmployeeManageForm
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
     Align = alClient
+    DataSource = HDHouseDataModule.ds_ygxx
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
+    OnDblClick = bskndbgrd1DblClick
     Columns = <
       item
         Expanded = False
-        FieldName = #21592#24037#32534#21495
+        FieldName = 'ygxx_bh'
+        Title.Alignment = taCenter
+        Title.Caption = #21592#24037#32534#21495
+        Width = 58
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #21592#24037#22995#21517
+        FieldName = 'ygxx_xm'
+        Title.Alignment = taCenter
+        Title.Caption = #21592#24037#22995#21517
+        Width = 52
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #24615#21035
+        FieldName = 'ygxx_xb'
+        Title.Alignment = taCenter
+        Title.Caption = #24615#21035
+        Width = 40
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #32852#31995#30005#35805
+        FieldName = 'ygxx_lxdh'
+        Title.Alignment = taCenter
+        Title.Caption = #32852#31995#30005#35805
+        Width = 70
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #23601#32844#26085#26399
+        FieldName = 'ygxx_jzdate'
+        Title.Alignment = taCenter
+        Title.Caption = #23601#32844#26085#26399
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #31821#36143
+        FieldName = 'ygxx_jg'
+        Title.Alignment = taCenter
+        Title.Caption = #31821#36143
+        Width = 50
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #23398#21382
+        FieldName = 'ygxx_xl'
+        Title.Alignment = taCenter
+        Title.Caption = #23398#21382
+        Width = 70
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #23130#23035#29366#20917
+        FieldName = 'ygxx_hy'
+        Title.Alignment = taCenter
+        Title.Caption = #23130#23035#29366#20917
+        Width = 40
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #20986#29983#26085#26399
+        FieldName = 'ygxx_csdate'
+        Title.Alignment = taCenter
+        Title.Caption = #20986#29983#26085#26399
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #36523#20221#35777#21495
+        FieldName = 'ygxx_sfz'
+        Title.Alignment = taCenter
+        Title.Caption = #36523#20221#35777#21495
         Width = 150
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #20303#22336
+        FieldName = 'ygxx_dz'
+        Title.Alignment = taCenter
+        Title.Caption = #20303#22336
         Width = 150
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #22791#27880
+        FieldName = 'ygxx_dz'
+        Title.Alignment = taCenter
+        Title.Caption = #22791#27880
         Width = 200
         Visible = True
       end>
@@ -157,7 +192,7 @@ object EmployeeManageForm: TEmployeeManageForm
     object lbl1: TbsSkinStdLabel
       Left = 40
       Top = 30
-      Width = 96
+      Width = 121
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -168,6 +203,7 @@ object EmployeeManageForm: TEmployeeManageForm
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #36755#20837#21592#24037#20449#24687#26597#35810
     end
     object edt1: TbsSkinEdit
@@ -175,7 +211,7 @@ object EmployeeManageForm: TEmployeeManageForm
       Top = 27
       Width = 121
       Height = 18
-      Text = 'edt1'
+      Text = #35831#36755#20837#26597#35810#26465#20214
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -201,6 +237,7 @@ object EmployeeManageForm: TEmployeeManageForm
       RightImageIndex = -1
       RightImageHotIndex = -1
       RightImageDownIndex = -1
+      OnButtonClick = edt1ButtonClick
     end
   end
   object bsknscrlbr2: TbsSkinScrollBar
@@ -209,7 +246,7 @@ object EmployeeManageForm: TEmployeeManageForm
     Width = 965
     Height = 19
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 2
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -220,7 +257,7 @@ object EmployeeManageForm: TEmployeeManageForm
     DefaultWidth = 0
     DefaultHeight = 19
     UseSkinFont = True
-    Both = False
+    Both = True
     BothMarkerWidth = 19
     BothSkinDataName = 'bothhscrollbar'
     CanFocused = False
@@ -240,7 +277,6 @@ object EmployeeManageForm: TEmployeeManageForm
     Height = 370
     HintImageIndex = 0
     TabOrder = 3
-    Visible = False
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'vscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -257,10 +293,10 @@ object EmployeeManageForm: TEmployeeManageForm
     CanFocused = False
     Align = alRight
     Kind = sbVertical
-    PageSize = 0
-    Min = 0
-    Max = 127
-    Position = 0
+    PageSize = 1
+    Min = 1
+    Max = 4
+    Position = 1
     SmallChange = 63
     LargeChange = 63
   end
@@ -271,10 +307,19 @@ object EmployeeManageForm: TEmployeeManageForm
     Height = 93
     Align = alTop
     AutoScroll = False
-    TabOrder = 0
+    TabOrder = 4
     inherited bskntlbr1: TbsSkinToolBar
       Width = 965
       SkinDataName = 'resizetoolpanel'
+      inherited btn1: TbsSkinSpeedButton
+        OnClick = dtprtbrvw1btn1Click
+      end
+      inherited btn2: TbsSkinSpeedButton
+        OnClick = dtprtbrvw1btn2Click
+      end
+      inherited btn3: TbsSkinSpeedButton
+        OnClick = dtprtbrvw1btn3Click
+      end
     end
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm

@@ -683,15 +683,15 @@ object EmployeeInfoForm: TEmployeeInfoForm
     object edtygxx_csdate: TbsSkinDBDateEdit
       Left = 333
       Top = 116
-      Width = 119
+      Width = 117
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-31'
+      Text = '2009-09-07'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40056.665684490740000000
+      Date = 40063.727420787030000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -736,15 +736,15 @@ object EmployeeInfoForm: TEmployeeInfoForm
     object edtygxx_jzdate: TbsSkinDBDateEdit
       Left = 333
       Top = 140
-      Width = 119
+      Width = 117
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-31'
+      Text = '2009-09-07'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40056.665684490740000000
+      Date = 40063.727360740740000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150

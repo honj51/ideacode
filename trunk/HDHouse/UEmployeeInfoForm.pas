@@ -126,6 +126,7 @@ begin
 end;
 
 procedure TEmployeeInfoForm.FormShow(Sender: TObject);
+
 begin
       inherited;
         //
@@ -135,16 +136,24 @@ begin
     Parameters.ParamByName('id').Value := ParmId;
     open;
     //
+
+
   if ParmEditorMode = 'ADD' then
     begin
-     append;
+
+      append;
       FieldByName('ygxx_xl').AsString:='本科';
       FieldByName('ygxx_xb').AsString:='男';
       FieldByName('ygxx_hy').AsString:='未婚';
-      FieldByName('ygxx_csdate').AsString:=FormatDateTime('yyyy-mm-dd',Now);
-      FieldByName('ygxx_jzdate').AsString:=FormatDateTime('yyyy-mm-dd',Now);
+      FieldByName('ygxx_csdate').Value:=FormatDateTime('c',Now);
+      FieldByName('ygxx_jzdate').Value:=FormatDateTime('c',Now);
 
     end;
+
+    edtygxx_csdate.Text:=FormatDateTime('yyyy-mm-dd',FieldByName('ygxx_csdate').Value);
+    edtygxx_jzdate.Text:=FormatDateTime('yyyy-mm-dd',FieldByName('ygxx_jzdate').Value);
+
+
   end;
 
   //操作按钮
@@ -164,7 +173,6 @@ inherited;
         //
          qry_ygxxxx.CancelBatch;
           qry_ygxxxx.close;
-
           Close;
 end;
 
@@ -174,7 +182,13 @@ begin
   inherited;
   if f_CheckValue()=False then  exit;
             // 数据保存处理
-            qry_ygxxxx.Post;
+            if Self.ParmEditorMode ='ADD' then
+            begin
+     qry_ygxxxx.FieldByName('ygxx_csdate').Value:=edtygxx_csdate.Text+' '+FormatDateTime('tt',Now);
+     qry_ygxxxx.FieldByName('ygxx_jzdate').Value:=edtygxx_jzdate.Text+' '+FormatDateTime('tt',Now);
+                qry_ygxxxx.Post;
+            end;
+
   HDHouseDataModule.con1.BeginTrans;
   try
     qry_ygxxxx.UpdateBatch;
