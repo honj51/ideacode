@@ -1,11 +1,11 @@
 object ParameterSettingForm: TParameterSettingForm
-  Left = 510
-  Top = 353
+  Left = 431
+  Top = 398
   AutoScroll = False
   BorderIcons = []
   Caption = #21442#25968#35774#32622
-  ClientHeight = 137
-  ClientWidth = 236
+  ClientHeight = 144
+  ClientWidth = 248
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,13 +13,15 @@ object ParameterSettingForm: TParameterSettingForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
     Left = 0
     Top = 0
-    Width = 236
-    Height = 80
+    Width = 248
+    Height = 87
     HintImageIndex = 0
     TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
@@ -66,12 +68,12 @@ object ParameterSettingForm: TParameterSettingForm
       AutoSize = False
       Caption = #21517#31216
     end
-    object edt1: TbsSkinDBEdit
+    object edtcs_mc: TbsSkinDBEdit
       Left = 48
       Top = 40
       Width = 169
       Height = 18
-      Text = 'edt1'
+      Text = 'edtcs_mc'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -98,15 +100,18 @@ object ParameterSettingForm: TParameterSettingForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'cs_mc'
+      DataSource = ds_csxxxx
     end
   end
   object bsknpnl1: TbsSkinPanel
     Left = 0
-    Top = 80
-    Width = 236
+    Top = 87
+    Width = 248
     Height = 57
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -134,7 +139,7 @@ object ParameterSettingForm: TParameterSettingForm
     Caption = 'bsknpnl1'
     Align = alBottom
     object btn1: TbsSkinButton
-      Left = 56
+      Left = 64
       Top = 16
       Width = 75
       Height = 25
@@ -164,9 +169,10 @@ object ParameterSettingForm: TParameterSettingForm
       Caption = #30830#23450
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
-      Left = 144
+      Left = 152
       Top = 16
       Width = 75
       Height = 25
@@ -196,6 +202,7 @@ object ParameterSettingForm: TParameterSettingForm
       Caption = #21462#28040
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn2Click
     end
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
@@ -247,7 +254,20 @@ object ParameterSettingForm: TParameterSettingForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 160
-    Top = 8
+    Left = 184
+  end
+  object qry_csxxxx: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from cs ')
+    Left = 72
+    Top = 64
+  end
+  object ds_csxxxx: TDataSource
+    DataSet = qry_csxxxx
+    Left = 24
+    Top = 64
   end
 end
