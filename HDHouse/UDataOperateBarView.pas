@@ -14,7 +14,6 @@ type
     btn3: TbsSkinSpeedButton;
     btn4: TbsSkinSpeedButton;
     btn5: TbsSkinSpeedButton;
-    bspngmglst32: TbsPngImageList;
     bsknfrm1: TbsSkinFrame;
   private
     { Private declarations }

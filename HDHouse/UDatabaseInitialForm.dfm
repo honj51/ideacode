@@ -1,6 +1,6 @@
 object DatabaseInitialForm: TDatabaseInitialForm
-  Left = 545
-  Top = 158
+  Left = 447
+  Top = 319
   AutoScroll = False
   BorderIcons = []
   Caption = #21021#22987#21270#25968#25454#24211
@@ -132,7 +132,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
     object lbl6: TbsSkinStdLabel
       Left = 208
       Top = 107
-      Width = 24
+      Width = 33
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -143,12 +143,13 @@ object DatabaseInitialForm: TDatabaseInitialForm
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #36215#22987
     end
     object lbl7: TbsSkinStdLabel
       Left = 208
       Top = 130
-      Width = 24
+      Width = 33
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -159,6 +160,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #32456#27490
     end
     object bsknchckrdbx1: TbsSkinCheckRadioBox
@@ -317,12 +319,12 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Width = 81
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-21'
+      Text = '2009-09-04'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40046.756375497690000000
+      Date = 40060.401836111110000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -366,12 +368,12 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Width = 81
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-21'
+      Text = '2009-09-04'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40046.756375497690000000
+      Date = 40060.401836111110000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -547,6 +549,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Caption = #25191#34892
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
       Left = 299
