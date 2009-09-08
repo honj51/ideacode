@@ -142,7 +142,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl5: TbsSkinStdLabel
       Left = 232
       Top = 32
-      Width = 65
+      Width = 54
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -158,7 +158,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl6: TbsSkinStdLabel
       Left = 232
       Top = 56
-      Width = 65
+      Width = 54
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -174,7 +174,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl7: TbsSkinStdLabel
       Left = 232
       Top = 80
-      Width = 57
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -190,7 +190,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl8: TbsSkinStdLabel
       Left = 232
       Top = 104
-      Width = 57
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -206,7 +206,7 @@ object EmployeeInfoFrame: TEmployeeInfoFrame
     object lbl9: TbsSkinStdLabel
       Left = 232
       Top = 128
-      Width = 57
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
