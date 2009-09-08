@@ -1,6 +1,6 @@
 object DatabaseMantainForm: TDatabaseMantainForm
-  Left = 362
-  Top = 286
+  Left = 592
+  Top = 292
   AutoScroll = False
   BorderIcons = []
   Caption = #25968#25454#24211#32500#25252
@@ -13,6 +13,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpgcntrl1: TbsSkinPageControl
@@ -20,7 +21,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
     Top = 0
     Width = 401
     Height = 201
-    ActivePage = bskntbsht4
+    ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
@@ -64,46 +65,13 @@ object DatabaseMantainForm: TDatabaseMantainForm
         AutoSize = False
         Caption = #23384#25918#36335#24452
       end
-      object edt1: TbsSkinDBEdit
-        Left = 80
-        Top = 48
-        Width = 257
-        Height = 18
-        Text = 'edt1'
-        DefaultColor = clWindow
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clBlack
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        UseSkinFont = True
-        DefaultWidth = 0
-        DefaultHeight = 0
-        ButtonMode = True
-        SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'buttonedit'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = 14
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 0
-        LeftImageIndex = -1
-        LeftImageHotIndex = -1
-        LeftImageDownIndex = -1
-        RightImageIndex = -1
-        RightImageHotIndex = -1
-        RightImageDownIndex = -1
-        AutoSize = False
-      end
       object btn1: TbsSkinButton
         Left = 264
         Top = 112
         Width = 75
         Height = 25
         HintImageIndex = 0
-        TabOrder = 1
+        TabOrder = 0
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -128,6 +96,39 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Caption = #22791#20221
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn1Click
+      end
+      object edt1: TbsSkinEdit
+        Left = 72
+        Top = 48
+        Width = 289
+        Height = 18
+        DefaultColor = clWindow
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clBlack
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        UseSkinFont = True
+        DefaultWidth = 0
+        DefaultHeight = 0
+        ButtonMode = True
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'buttonedit'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = 14
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        LeftImageIndex = -1
+        LeftImageHotIndex = -1
+        LeftImageDownIndex = -1
+        RightImageIndex = -1
+        RightImageHotIndex = -1
+        RightImageDownIndex = -1
+        OnButtonClick = edt1ButtonClick
       end
     end
     object bskntbsht2: TbsSkinTabSheet
@@ -224,13 +225,13 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Caption = #36824#21407
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn2Click
       end
-      object edt2: TbsSkinEdit
+      object edt2: TbsSkinFileEdit
         Left = 72
-        Top = 32
-        Width = 265
+        Top = 31
+        Width = 281
         Height = 18
-        Text = 'edt2'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -256,6 +257,10 @@ object DatabaseMantainForm: TDatabaseMantainForm
         RightImageIndex = -1
         RightImageHotIndex = -1
         RightImageDownIndex = -1
+        Filter = #25968#25454#24211#25991#20214'(*.dat)|*.dat'
+        DlgSkinData = HDHouseDataModule.bsSkinData1
+        DlgCtrlSkinData = HDHouseDataModule.bsSkinData1
+        LVHeaderSkinDataName = 'resizebutton'
       end
     end
     object bskntbsht3: TbsSkinTabSheet
@@ -263,7 +268,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
       object lbl5: TbsSkinStdLabel
         Left = 16
         Top = 50
-        Width = 48
+        Width = 57
         Height = 13
         EllipsType = bsetNone
         UseSkinFont = True
@@ -274,12 +279,13 @@ object DatabaseMantainForm: TDatabaseMantainForm
         DefaultFont.Name = 'MS Sans Serif'
         DefaultFont.Style = []
         SkinDataName = 'stdlabel'
+        AutoSize = False
         Caption = #22791#20221#36335#24452
       end
       object lbl6: TbsSkinStdLabel
-        Left = 16
+        Left = 17
         Top = 82
-        Width = 36
+        Width = 49
         Height = 13
         EllipsType = bsetNone
         UseSkinFont = True
@@ -290,12 +296,13 @@ object DatabaseMantainForm: TDatabaseMantainForm
         DefaultFont.Name = 'MS Sans Serif'
         DefaultFont.Style = []
         SkinDataName = 'stdlabel'
+        AutoSize = False
         Caption = #25968#25454#24211
       end
       object lbl7: TbsSkinStdLabel
         Left = 16
         Top = 106
-        Width = 48
+        Width = 57
         Height = 13
         EllipsType = bsetNone
         UseSkinFont = True
@@ -306,11 +313,12 @@ object DatabaseMantainForm: TDatabaseMantainForm
         DefaultFont.Name = 'MS Sans Serif'
         DefaultFont.Style = []
         SkinDataName = 'stdlabel'
+        AutoSize = False
         Caption = #20445#30041#26368#21518
       end
       object lbl8: TbsSkinStdLabel
         Left = 128
-        Top = 82
+        Top = 81
         Width = 73
         Height = 13
         EllipsType = bsetNone
@@ -372,12 +380,12 @@ object DatabaseMantainForm: TDatabaseMantainForm
         GroupIndex = 0
         Caption = #21551#21160#33258#21160#22791#20221#25968#25454#21151#33021
       end
-      object edt3: TbsSkinDBEdit
+      object edtbak_days: TbsSkinDBEdit
         Left = 72
-        Top = 48
-        Width = 241
+        Top = 78
+        Width = 57
         Height = 18
-        Text = 'edt3'
+        Text = '1'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -387,9 +395,9 @@ object DatabaseMantainForm: TDatabaseMantainForm
         UseSkinFont = True
         DefaultWidth = 0
         DefaultHeight = 0
-        ButtonMode = True
+        ButtonMode = False
         SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'buttonedit'
+        SkinDataName = 'edit'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = 14
@@ -404,13 +412,15 @@ object DatabaseMantainForm: TDatabaseMantainForm
         RightImageHotIndex = -1
         RightImageDownIndex = -1
         AutoSize = False
+        DataField = 'bak_days'
+        DataSource = HDHouseDataModule.ds_autobak
       end
-      object edt4: TbsSkinDBEdit
+      object edtbak_blsl: TbsSkinDBEdit
         Left = 72
-        Top = 80
+        Top = 104
         Width = 57
         Height = 18
-        Text = 'edt4'
+        Text = '1'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -437,47 +447,16 @@ object DatabaseMantainForm: TDatabaseMantainForm
         RightImageHotIndex = -1
         RightImageDownIndex = -1
         AutoSize = False
-      end
-      object edt5: TbsSkinDBEdit
-        Left = 72
-        Top = 104
-        Width = 57
-        Height = 18
-        Text = 'edt5'
-        DefaultColor = clWindow
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clBlack
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        UseSkinFont = True
-        DefaultWidth = 0
-        DefaultHeight = 0
-        ButtonMode = False
-        SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'edit'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = 14
-        Font.Name = 'Arial'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 3
-        LeftImageIndex = -1
-        LeftImageHotIndex = -1
-        LeftImageDownIndex = -1
-        RightImageIndex = -1
-        RightImageHotIndex = -1
-        RightImageDownIndex = -1
-        AutoSize = False
+        DataField = 'bak_blsl'
+        DataSource = HDHouseDataModule.ds_autobak
       end
       object btn3: TbsSkinButton
-        Left = 256
+        Left = 264
         Top = 112
         Width = 75
         Height = 25
         HintImageIndex = 0
-        TabOrder = 4
+        TabOrder = 3
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -502,111 +481,42 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Caption = #20445#23384
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn3Click
       end
-    end
-    object bskntbsht4: TbsSkinTabSheet
-      Caption = #21387#32553#20462#22797#25968#25454#24211
-      object lbl10: TbsSkinStdLabel
-        Left = 24
-        Top = 24
-        Width = 324
-        Height = 12
-        EllipsType = bsetNone
-        UseSkinFont = True
-        UseSkinColor = True
-        DefaultFont.Charset = ANSI_CHARSET
-        DefaultFont.Color = clBlue
-        DefaultFont.Height = -12
-        DefaultFont.Name = #26032#23435#20307
-        DefaultFont.Style = []
-        SkinDataName = 'stdlabel'
-        Caption = #35828#26126#65306#25191#34892#27492#21151#33021#21487#20197#21363#26102#25490#38500#25968#25454#24211#28508#22312#30340#38382#39064#65292#24182#33021#28165#38500
-      end
-      object lbl11: TbsSkinStdLabel
-        Left = 59
-        Top = 40
-        Width = 288
-        Height = 12
-        EllipsType = bsetNone
-        UseSkinFont = True
-        UseSkinColor = True
-        DefaultFont.Charset = ANSI_CHARSET
-        DefaultFont.Color = clBlue
-        DefaultFont.Height = -12
-        DefaultFont.Name = #26032#23435#20307
-        DefaultFont.Style = []
-        SkinDataName = 'stdlabel'
-        Caption = #36719#20214#36816#34892#26102#20135#29983#30340#22403#22334#26085#24535#65292#20174#32780#22686#24378#25968#25454#30340#31283#23450#24615#65292
-      end
-      object lbl12: TbsSkinStdLabel
-        Left = 59
-        Top = 56
-        Width = 108
-        Height = 12
-        EllipsType = bsetNone
-        UseSkinFont = True
-        UseSkinColor = True
-        DefaultFont.Charset = ANSI_CHARSET
-        DefaultFont.Color = clBlue
-        DefaultFont.Height = -12
-        DefaultFont.Name = #26032#23435#20307
-        DefaultFont.Style = []
-        SkinDataName = 'stdlabel'
-        Caption = #25552#39640#36719#20214#36816#34892#25928#29575#65281
-      end
-      object lbl13: TbsSkinStdLabel
-        Left = 59
-        Top = 90
-        Width = 228
-        Height = 12
-        EllipsType = bsetNone
-        UseSkinFont = True
-        UseSkinColor = True
-        DefaultFont.Charset = GB2312_CHARSET
-        DefaultFont.Color = clRed
-        DefaultFont.Height = -12
-        DefaultFont.Name = #26032#23435#20307
-        DefaultFont.Style = []
-        SkinDataName = 'stdlabel'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnText
-        Font.Height = 15
-        Font.Name = 'Arial'
-        Font.Style = []
-        Caption = #65281#25552#37266'  '#25191#34892#27492#21151#33021#26102#35831#36864#20986#23458#25143#31471#36719#20214#12290
-        ParentFont = False
-      end
-      object btn4: TbsSkinButton
-        Left = 264
-        Top = 114
-        Width = 75
-        Height = 25
-        HintImageIndex = 0
-        TabOrder = 0
-        SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'button'
+      object edt3: TbsSkinFileEdit
+        Left = 72
+        Top = 48
+        Width = 273
+        Height = 18
+        DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
+        DefaultFont.Color = clBlack
         DefaultFont.Height = 14
         DefaultFont.Name = 'Arial'
         DefaultFont.Style = []
+        UseSkinFont = True
         DefaultWidth = 0
         DefaultHeight = 0
-        UseSkinFont = True
-        ImageIndex = -1
-        AlwaysShowLayeredFrame = False
-        UseSkinSize = True
-        UseSkinFontColor = True
-        RepeatMode = False
-        RepeatInterval = 100
-        AllowAllUp = False
-        TabStop = True
-        CanFocused = True
-        Down = False
-        GroupIndex = 0
-        Caption = #25191#34892
-        NumGlyphs = 1
-        Spacing = 1
+        ButtonMode = True
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'buttonedit'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = 14
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
+        LeftImageIndex = -1
+        LeftImageHotIndex = -1
+        LeftImageDownIndex = -1
+        RightImageIndex = -1
+        RightImageHotIndex = -1
+        RightImageDownIndex = -1
+        Filter = #25968#25454#24211#25991#20214'(*.dat)|*.dat'
+        DlgSkinData = HDHouseDataModule.bsSkinData1
+        DlgCtrlSkinData = HDHouseDataModule.bsSkinData1
+        LVHeaderSkinDataName = 'resizebutton'
       end
     end
   end
@@ -659,7 +569,39 @@ object DatabaseMantainForm: TDatabaseMantainForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biRollUp]
-    Left = 17
-    Top = 157
+    Left = 33
+    Top = 149
+  end
+  object bsknsvdlg1: TbsSkinSaveDialog
+    ShowHiddenFiles = False
+    ToolButtonsTransparent = False
+    OverwritePromt = False
+    DialogWidth = 0
+    DialogHeight = 0
+    DialogMinWidth = 0
+    DialogMinHeight = 0
+    CheckFileExists = True
+    MultiSelection = False
+    AlphaBlend = False
+    AlphaBlendValue = 225
+    AlphaBlendAnimation = False
+    CtrlAlphaBlend = False
+    CtrlAlphaBlendValue = 225
+    CtrlAlphaBlendAnimation = False
+    LVHeaderSkinDataName = 'resizebutton'
+    SkinData = HDHouseDataModule.bsSkinData1
+    CtrlSkinData = HDHouseDataModule.bsSkinData1
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    Title = 'Save file'
+    Filter = #25968#25454#24211#25991#20214'(*.dat)|*.dat'
+    FilterIndex = 1
+    OnShow = bsknsvdlg1Show
+    OnClose = bsknsvdlg1Close
+    Left = 105
+    Top = 149
   end
 end
