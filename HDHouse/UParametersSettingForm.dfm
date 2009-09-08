@@ -1,6 +1,6 @@
 object ParametersSettingForm: TParametersSettingForm
-  Left = 362
-  Top = 178
+  Left = 320
+  Top = 190
   AutoScroll = False
   BorderIcons = []
   Caption = #21442#25968#35774#32622
@@ -54,6 +54,21 @@ object ParametersSettingForm: TParametersSettingForm
       Top = 23
       Width = 163
       Height = 458
+      Items.Data = {
+        01000000210000000100000000000000FFFFFFFFFFFFFFFF000000000B000000
+        08B2CECAFDD0C5CFA2210000000000000000000000FFFFFFFFFFFFFFFF000000
+        000000000008B7BFCEDDC0B4D4B4210000000000000000000000FFFFFFFFFFFF
+        FFFF000000000000000008B7BFD4B4D7B4CCAC210000000000000000000000FF
+        FFFFFFFFFFFFFF000000000000000008B7D6B3C9CBB5C3F72100000000000000
+        00000000FFFFFFFFFFFFFFFF000000000000000008B8B6BFEEB7BDCABD210000
+        000000000000000000FFFFFFFFFFFFFFFF000000000000000008B8FABDF8B7BD
+        CABD210000000000000000000000FFFFFFFFFFFFFFFF000000000000000008BF
+        CDBBA7D7B4CCAC210000000000000000000000FFFFFFFFFFFFFFFF0000000000
+        00000008C5E4CCD7C9E8CAA9210000000000000000000000FFFFFFFFFFFFFFFF
+        000000000000000008CBF9B4A6C7F8D3F2210000000000000000000000FFFFFF
+        FFFFFFFFFF000000000000000008CEEFD2B5C0E0B1F021000000000000000000
+        0000FFFFFFFFFFFFFFFF000000000000000008CEEFD2B5D3C3CDBE2100000000
+        00000000000000FFFFFFFFFFFFFFFF000000000000000008D7B0D0DEB3CCB6C8}
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
       DefaultFont.Height = 14
@@ -71,7 +86,11 @@ object ParametersSettingForm: TParametersSettingForm
       Font.Style = []
       Indent = 19
       ParentFont = False
+      ReadOnly = True
+      SortType = stBoth
+      StateImages = HDHouseDataModule.bspngmglst32
       TabOrder = 0
+      OnChange = tv1Change
     end
   end
   object bskngrpbx2: TbsSkinGroupBox
@@ -132,15 +151,20 @@ object ParametersSettingForm: TParametersSettingForm
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
       Align = alClient
+      DataSource = HDHouseDataModule.ds_cs
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDblClick = bskndbgrd1DblClick
       Columns = <
         item
           Expanded = False
-          FieldName = #21517#31216
+          FieldName = 'cs_mc'
+          Title.Alignment = taCenter
+          Title.Caption = #21517#31216
           Width = 500
           Visible = True
         end>
@@ -252,6 +276,7 @@ object ParametersSettingForm: TParametersSettingForm
         ShowCaption = True
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn1Click
       end
       object btn2: TbsSkinSpeedButton
         Left = 97
@@ -285,6 +310,7 @@ object ParametersSettingForm: TParametersSettingForm
         ShowCaption = True
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn2Click
       end
       object btn3: TbsSkinSpeedButton
         Left = 170
@@ -318,6 +344,7 @@ object ParametersSettingForm: TParametersSettingForm
         ShowCaption = True
         NumGlyphs = 1
         Spacing = 1
+        OnClick = btn3Click
       end
     end
   end
