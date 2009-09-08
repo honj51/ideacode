@@ -1,8 +1,8 @@
 object LoginForm: TLoginForm
-  Left = 541
-  Top = 320
-  AutoScroll = False
+  Left = 797
+  Top = 225
   BorderIcons = []
+  BorderStyle = bsToolWindow
   Caption = #30331#24405#31383#21475
   ClientHeight = 187
   ClientWidth = 363
@@ -13,10 +13,13 @@ object LoginForm: TLoginForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lbl1: TbsSkinStdLabel
-    Left = 80
+    Left = 72
     Top = 48
     Width = 60
     Height = 13
@@ -32,8 +35,8 @@ object LoginForm: TLoginForm
     Caption = #29992#25143#21517#31216#65306
   end
   object lbl2: TbsSkinStdLabel
-    Left = 80
-    Top = 72
+    Left = 72
+    Top = 86
     Width = 60
     Height = 13
     EllipsType = bsetNone
@@ -47,30 +50,79 @@ object LoginForm: TLoginForm
     SkinDataName = 'stdlabel'
     Caption = #29992#25143#23494#30721#65306
   end
-  object lbl3: TbsSkinStdLabel
-    Left = 82
-    Top = 104
-    Width = 185
-    Height = 13
-    EllipsType = bsetNone
-    UseSkinFont = True
-    UseSkinColor = True
-    DefaultFont.Charset = ANSI_CHARSET
-    DefaultFont.Color = clRed
-    DefaultFont.Height = -12
-    DefaultFont.Name = #26032#23435#20307
-    DefaultFont.Style = []
-    SkinDataName = 'stdlabel'
-    AutoSize = False
-    Caption = #27880#65306#24403#21069'xxx'#21021#22987#23494#30721#20026#31354#65281
-  end
-  object cbb1: TbsSkinDBComboBox
-    Left = 136
-    Top = 48
-    Width = 145
-    Height = 20
+  object btn1: TbsSkinButton
+    Left = 104
+    Top = 136
+    Width = 75
+    Height = 25
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'button'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImageIndex = -1
+    AlwaysShowLayeredFrame = False
+    UseSkinSize = True
+    UseSkinFontColor = True
+    RepeatMode = False
+    RepeatInterval = 100
+    AllowAllUp = False
+    TabStop = True
+    CanFocused = True
+    Down = False
+    GroupIndex = 0
+    Caption = #30331#24405
+    NumGlyphs = 1
+    Spacing = 1
+    OnClick = btn1Click
+  end
+  object btn2: TbsSkinButton
+    Left = 216
+    Top = 136
+    Width = 75
+    Height = 25
+    HintImageIndex = 0
+    TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'button'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImageIndex = -1
+    AlwaysShowLayeredFrame = False
+    UseSkinSize = True
+    UseSkinFontColor = True
+    RepeatMode = False
+    RepeatInterval = 100
+    AllowAllUp = False
+    TabStop = True
+    CanFocused = True
+    Down = False
+    GroupIndex = 0
+    Caption = #21462#28040
+    NumGlyphs = 1
+    Spacing = 1
+    OnClick = btn2Click
+  end
+  object cbb1: TbsSkinComboBox
+    Left = 136
+    Top = 46
+    Width = 145
+    Height = 18
+    HintImageIndex = 0
+    TabOrder = 2
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -117,81 +169,17 @@ object LoginForm: TLoginForm
     Font.Style = []
     Sorted = False
     Style = bscbFixedStyle
-    ParentFont = False
   end
-  object edt1: TbsSkinEdit
+  object bsknpswrdt1: TbsSkinPasswordEdit
     Left = 136
-    Top = 72
+    Top = 84
     Width = 145
     Height = 18
-    Text = 'edt1'
-    DefaultColor = clWindow
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clBlack
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    UseSkinFont = True
-    DefaultWidth = 0
-    DefaultHeight = 0
-    ButtonMode = False
-    SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'edit'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = 14
-    Font.Name = 'Arial'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 1
-    LeftImageIndex = -1
-    LeftImageHotIndex = -1
-    LeftImageDownIndex = -1
-    RightImageIndex = -1
-    RightImageHotIndex = -1
-    RightImageDownIndex = -1
-  end
-  object btn1: TbsSkinButton
-    Left = 128
-    Top = 136
-    Width = 75
-    Height = 25
-    HintImageIndex = 0
-    TabOrder = 2
-    SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'button'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    ImageIndex = -1
-    AlwaysShowLayeredFrame = False
-    UseSkinSize = True
-    UseSkinFontColor = True
-    RepeatMode = False
-    RepeatInterval = 100
-    AllowAllUp = False
-    TabStop = True
-    CanFocused = True
-    Down = False
-    GroupIndex = 0
-    Caption = #30331#24405
-    NumGlyphs = 1
-    Spacing = 1
-  end
-  object btn2: TbsSkinButton
-    Left = 224
-    Top = 136
-    Width = 75
-    Height = 25
+    Cursor = crIBeam
     HintImageIndex = 0
     TabOrder = 3
     SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'button'
+    SkinDataName = 'edit'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -200,21 +188,8 @@ object LoginForm: TLoginForm
     DefaultWidth = 0
     DefaultHeight = 0
     UseSkinFont = True
-    ImageIndex = -1
-    AlwaysShowLayeredFrame = False
-    UseSkinSize = True
-    UseSkinFontColor = True
-    RepeatMode = False
-    RepeatInterval = 100
-    AllowAllUp = False
-    TabStop = True
-    CanFocused = True
-    Down = False
-    GroupIndex = 0
-    Caption = #21462#28040
-    NumGlyphs = 1
-    Spacing = 1
-    OnClick = btn2Click
+    DefaultColor = clWindow
+    PasswordKind = pkRoundRect
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -264,8 +239,14 @@ object LoginForm: TLoginForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biRollUp]
     Left = 312
     Top = 16
+  end
+  object qry_login: TADOQuery
+    Connection = HDHouseDataModule.con1
+    Parameters = <>
+    Left = 312
+    Top = 88
   end
 end
