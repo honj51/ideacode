@@ -1,6 +1,6 @@
 object SystemOperationLogForm: TSystemOperationLogForm
-  Left = 350
-  Top = 149
+  Left = 302
+  Top = 116
   AutoScroll = False
   BorderIcons = []
   Caption = #31995#32479#25805#20316#26085#24535
@@ -13,6 +13,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskndbgrd1: TbsSkinDBGrid
@@ -40,6 +41,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
     Align = alClient
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -48,23 +50,27 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Columns = <
       item
         Expanded = False
-        FieldName = #25805#20316#26102#38388
+        FieldName = 'dayjob_date'
+        Title.Caption = #25805#20316#26102#38388
         Width = 120
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #25805#20316#21592
+        FieldName = 'dayjob_name'
+        Title.Caption = #25805#20316#21592
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #20869#23481#25688#35201
+        FieldName = 'dayjob_jy'
+        Title.Caption = #20869#23481#25688#35201
         Visible = True
       end
       item
         Expanded = False
-        FieldName = #25805#20316#20869#23481
+        FieldName = 'dayjob_content'
+        Title.Caption = #25805#20316#20869#23481
         Width = 700
         Visible = True
       end>
@@ -139,15 +145,15 @@ object SystemOperationLogForm: TSystemOperationLogForm
     object edt1: TbsSkinDateEdit
       Left = 96
       Top = 32
-      Width = 119
+      Width = 116
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-21'
+      Text = '2009-09-02'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40046.704263958330000000
+      Date = 40058.717666192130000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -191,12 +197,12 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 120
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-08-21'
+      Text = '2009-09-02'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40046.704263958330000000
+      Date = 40058.681136423610000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -265,6 +271,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Caption = #26597#35810#26085#24535
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
       Left = 456
@@ -297,6 +304,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Caption = #21024#38500
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn2Click
     end
   end
   object bsknscrlbr1: TbsSkinScrollBar
@@ -307,6 +315,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     HintImageIndex = 0
     TabOrder = 2
     Visible = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'vscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -336,6 +345,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Height = 19
     HintImageIndex = 0
     TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText

@@ -20,6 +20,9 @@ type
     bsknscrlbr1: TbsSkinScrollBar;
     bsknscrlbr2: TbsSkinScrollBar;
     bsbsnsknfrm1: TbsBusinessSkinForm;
+    procedure btn1Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,7 +33,48 @@ var
   SystemOperationLogForm: TSystemOperationLogForm;
 
 implementation
-      uses UHDHouseDataModule;
+      uses UHDHouseDataModule,UDeletelogForm;
 {$R *.dfm}
+
+procedure TSystemOperationLogForm.btn1Click(Sender: TObject);
+begin
+        inherited;
+    //
+
+     with HDHouseDataModule.qry_dayjob do
+    begin
+         Close;
+            Parameters.ParamByName('BeginDate').Value:=edt1.Text;
+            Parameters.ParamByName('EndDate').Value:=edt2.Text;
+         Open;
+
+    end;
+         bskndbgrd1.DataSource:=HDHouseDataModule.ds_dayjob;
+end;
+
+procedure TSystemOperationLogForm.btn2Click(Sender: TObject);
+begin
+         inherited;
+        //
+          DeletelogForm.ShowModal;
+                   HDHouseDataModule.qry_dayjob.Close;
+                    HDHouseDataModule.qry_dayjob.Open;
+end;
+
+procedure TSystemOperationLogForm.FormShow(Sender: TObject);
+begin
+  inherited;
+    //
+    
+      with HDHouseDataModule.qry_dayjob do
+    begin
+         Close;
+            Parameters.ParamByName('BeginDate').Value:=edt1.Text;
+            Parameters.ParamByName('EndDate').Value:=edt2.Text;
+         Open;
+
+    end;
+    bskndbgrd1.DataSource:=HDHouseDataModule.ds_dayjob;
+end;
 
 end.
