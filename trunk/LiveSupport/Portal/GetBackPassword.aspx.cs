@@ -32,7 +32,7 @@ public partial class GetBackPassword : System.Web.UI.Page
                         string emailSmtp = ConfigurationManager.AppSettings["SMTPServer"];
                         string title = "互动科技LiveSpport在线客服系统提示您：";
                         string content = "尊敬的客服 " + oper.NickName + " 您好!\n   您公司ID为："+oper.Account.AccountNumber+",您的账号为：" + oper.LoginName + ",您的密码为：" + oper.Password + ",请您牢记,感谢您一直以来对我们公司产品的支持与厚爱!\n \n \n \n \n \n \n \n                                                        如需帮助请浏览我们公司的官方网站 http://www.hudongsoft.cn";
-                        bool b = LiveSupport.BLL.Util.SendEmailAsync(toEmail, email, emailPwd, emailSmtp, title, content);
+                        bool b = LiveSupport.BLL.Utils.Util.SendEmailAsync(toEmail, email, emailPwd, emailSmtp, title, content);
                         if (b)
                         {
                             ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('您的密码已经发送至您的Email中,请您查阅...');window.location='index.aspx';</script>");
