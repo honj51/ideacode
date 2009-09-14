@@ -678,7 +678,7 @@ public static class OperatorService
         {   
             foreach (var oldop in operators)
             {
-                if (newop.OperatorId == oldop.OperatorId)
+                if (newop.OperatorId == oldop.OperatorId && oldop.Status != OperatorStatus.Offline)
                 {
                     newop.Status = oldop.Status;
                     newop.OperatorSession = oldop.OperatorSession;
