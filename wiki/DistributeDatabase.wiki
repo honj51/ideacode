@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+ * [http://blog.csdn.net/AppFramework/archive/2008/07/15/2652508.aspx 一种分布式数据库同步方案]
