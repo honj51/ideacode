@@ -3,3 +3,5 @@
 = Introduction =
 
  * [http://blog.csdn.net/AppFramework/archive/2008/07/15/2652508.aspx 一种分布式数据库同步方案]
+
+ * [http://topic.csdn.net/u/20090907/10/dc75427b-bebf-4540-a00b-a0e2c54b7018.html 分布式数据库库数据同步问题]
