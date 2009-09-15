@@ -7,3 +7,4 @@
  * [http://topic.csdn.net/u/20090907/10/dc75427b-bebf-4540-a00b-a0e2c54b7018.html 分布式数据库库数据同步问题]
 
  * [http://tech.it168.com/db/s/2007-05-15/200705150909375_2.shtml SQL Server 2005高可用性之复制]
+ * [http://www.xker.com/edu/database/121/069211301936693.html SQL SERVER 2005 同步复制技术]
