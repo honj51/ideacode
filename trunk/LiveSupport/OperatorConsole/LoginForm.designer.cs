@@ -69,7 +69,6 @@ namespace LiveSupport.OperatorConsole
             this.txtOpName.Name = "txtOpName";
             this.txtOpName.Size = new System.Drawing.Size(154, 21);
             this.txtOpName.TabIndex = 1;
-            this.txtOpName.Text = "zxkefu";
             // 
             // txtOpPassword
             // 
@@ -79,7 +78,6 @@ namespace LiveSupport.OperatorConsole
             this.txtOpPassword.PasswordChar = '*';
             this.txtOpPassword.Size = new System.Drawing.Size(154, 21);
             this.txtOpPassword.TabIndex = 2;
-            this.txtOpPassword.Text = "zxkefu";
             // 
             // lblOpPassword
             // 
@@ -175,7 +173,6 @@ namespace LiveSupport.OperatorConsole
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(154, 21);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.Text = "100000";
             // 
             // lblUserName
             // 

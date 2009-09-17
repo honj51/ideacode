@@ -75,7 +75,6 @@ namespace LiveSupport.OperatorConsole
             {
                 Trace.TraceInformation("Login called");
                 operatorServiceAgent.Login(txtUserName.Text.Trim(), txtOpName.Text.Trim(), txtOpPassword.Text);
-                //operatorServiceAgent.Login("100000", "zxkefu", "zxkefu");
             }
             catch (WebException e)
             {
@@ -146,9 +145,12 @@ namespace LiveSupport.OperatorConsole
         /// </summary>
         private void saveConfiguration()
         {
-            Properties.Settings.Default.WSUser = txtUserName.Text;
-            Properties.Settings.Default.OperatorName = txtOpName.Text;
-            Properties.Settings.Default.OperatorPassword=txtOpPassword.Text;
+            if (cbxPassword.Checked)
+            {
+                Properties.Settings.Default.WSUser = txtUserName.Text;
+                Properties.Settings.Default.OperatorName = txtOpName.Text;
+                Properties.Settings.Default.OperatorPassword = txtOpPassword.Text; 
+            }
             Properties.Settings.Default.RememberPassword=cbxPassword.Checked;
             Properties.Settings.Default.AutoLogin=cbxAutoLogin.Checked;
             Properties.Settings.Default.Save(); 
