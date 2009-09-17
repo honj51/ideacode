@@ -20,18 +20,19 @@ namespace LiveSupport.OperatorConsole
         #region VisitorTreeView_HeaderColumn Index
         private const int VisitorTreeView_HeaderColumn_VisitorName = 1;
         private const int VisitorTreeView_HeaderColumn_DomainRequested = 2;
-        private const int VisitorTreeView_HeaderColumn_Location = 3;
+        private const int VisitorTreeView_HeaderColumn_Location = 4;
         private const int VisitorTreeView_HeaderColumn_Browser = 0;
-        private const int VisitorTreeView_HeaderColumn_VisitCount = 4;
-        private const int VisitorTreeView_HeaderColumn_Operator = 5;
-        private const int VisitorTreeView_HeaderColumn_Status = 6;
-        private const int VisitorTreeView_HeaderColumn_VisitTime = 7;
-        private const int VisitorTreeView_HeaderColumn_LeaveTime = 8;
-        private const int VisitorTreeView_HeaderColumn_ChatRequestTime = 9;
-        private const int VisitorTreeView_HeaderColumn_ChatStartTime = 10;
-        private const int VisitorTreeView_HeaderColumn_WaitingDuring = 11;
-        private const int VisitorTreeView_HeaderColumn_ChattingDuring = 12;
-        private const int VisitorTreeView_HeaderColumn_PageRequestCount = 13;
+        private const int VisitorTreeView_HeaderColumn_VisitCount = 5;
+        private const int VisitorTreeView_HeaderColumn_Operator = 6;
+        private const int VisitorTreeView_HeaderColumn_Status = 7;
+        private const int VisitorTreeView_HeaderColumn_VisitTime = 8;
+        private const int VisitorTreeView_HeaderColumn_LeaveTime = 9;
+        private const int VisitorTreeView_HeaderColumn_ChatRequestTime = 10;
+        private const int VisitorTreeView_HeaderColumn_ChatStartTime = 11;
+        private const int VisitorTreeView_HeaderColumn_WaitingDuring = 12;
+        private const int VisitorTreeView_HeaderColumn_ChattingDuring = 13;
+        private const int VisitorTreeView_HeaderColumn_PageRequestCount = 14;
+        private const int VisitorTreeView_HeaderColumn_Referer=3;
         #endregion
 
         private Hashtable[] groupTables;// Declare a Hashtable array in which to store the groups.
@@ -699,10 +700,10 @@ namespace LiveSupport.OperatorConsole
                string status = Common.GetVisitSessionStatusText(vlvi.VisitSession.Status);
                string visitingTime = vlvi.VisitSession.VisitingTime.Ticks == 0 ? "" : vlvi.VisitSession.VisitingTime.ToString();
 
-               ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.DomainRequested,vlvi.VisitSession.Location,
+               ListViewItem i = new ListViewItem(new string[]{ browser,vlvi.Visitor.Name,vlvi.VisitSession.DomainRequested,Common.GetSearchEngineName(vlvi.VisitSession.Referrer),vlvi.VisitSession.Location,
                          vlvi.Visitor.VisitCount.ToString(),"ÔÝÎÞ½Ó´ý",status,
                          vlvi.VisitSession.VisitingTime.ToString(), "", "",
-                         "","", "",vlvi.VisitSession.PageRequestCount.ToString(), Common.GetSearchEngineName(vlvi.VisitSession.Referrer)
+                         "","", "",vlvi.VisitSession.PageRequestCount.ToString()
                         });
                if (vlvi.VisitSession.Browser.Contains("MSIE"))
                {
@@ -1060,7 +1061,7 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                if (e.Column.Equals(VisitorTreeView_HeaderColumn_VisitorName) || e.Column.Equals(VisitorTreeView_HeaderColumn_Browser) || e.Column.Equals(VisitorTreeView_HeaderColumn_Operator) || e.Column.Equals(VisitorTreeView_HeaderColumn_Status) || e.Column.Equals(VisitorTreeView_HeaderColumn_DomainRequested))
+                if (e.Column.Equals(VisitorTreeView_HeaderColumn_DomainRequested) ||e.Column.Equals(VisitorTreeView_HeaderColumn_Referer)|| e.Column.Equals(VisitorTreeView_HeaderColumn_Browser) || e.Column.Equals(VisitorTreeView_HeaderColumn_Operator) || e.Column.Equals(VisitorTreeView_HeaderColumn_Status) || e.Column.Equals(VisitorTreeView_HeaderColumn_DomainRequested)||e.Column.Equals(VisitorTreeView_HeaderColumn_Location))
                 {
                     groupTables = new Hashtable[e.Column + 1];
                     groupTables[e.Column] = CreateGroupsTable(e.Column);
