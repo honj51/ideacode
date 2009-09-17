@@ -11,3 +11,4 @@
  * [http://v.youku.com/v_playlist/f1827450o1p15.html sql server 2005 视频教程（微软盛宴系列/中文）]
 
  * [http://www.xjcncn.com/school/data/mssql/200706/1347.html web同步]
+ * [http://sai5d.blog.163.com/blog/static/62225483200975112952505/ Sqlserver合并复制的web同步详解]
