@@ -132,6 +132,7 @@ namespace LiveSupport.OperatorConsole
             this.leaveTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.visitingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
             this.messageendDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.messagebeginDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearchHistoryChatMsg = new System.Windows.Forms.Button();
@@ -150,6 +151,10 @@ namespace LiveSupport.OperatorConsole
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.leaveWordDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsReplied = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.leaveWordBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtDomainRequested = new System.Windows.Forms.TextBox();
             this.lblDomainRequested = new System.Windows.Forms.Label();
@@ -169,6 +174,7 @@ namespace LiveSupport.OperatorConsole
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.operatorsPanel = new System.Windows.Forms.Panel();
+            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -203,12 +209,6 @@ namespace LiveSupport.OperatorConsole
             this.visitorOnChatToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.currentVisitorsToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.operatorPannel1 = new LiveSupport.OperatorConsole.OperatorPannel();
-            this.chatMessageViewerControl1 = new LiveSupport.OperatorConsole.ChatMessageViewerControl();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsReplied = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             visitorIdLabel = new System.Windows.Forms.Label();
             visitCountLabel = new System.Windows.Forms.Label();
             reMarkLabel = new System.Windows.Forms.Label();
@@ -796,6 +796,7 @@ namespace LiveSupport.OperatorConsole
             this.colBrowser1,
             this.colName,
             this.colDomainRequested,
+            this.colReferer,
             this.colLocation,
             this.colVisitCount,
             this.colOperator,
@@ -806,8 +807,7 @@ namespace LiveSupport.OperatorConsole
             this.colChatingTime,
             this.colWaitingDuring,
             this.colChattingDuring,
-            this.colPageRequestCount,
-            this.colReferer});
+            this.colPageRequestCount});
             this.lstVisitors.ContextMenuStrip = this.contextMenuStrip1;
             this.lstVisitors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstVisitors.FullRowSelect = true;
@@ -825,7 +825,7 @@ namespace LiveSupport.OperatorConsole
             // 
             // colBrowser1
             // 
-            this.colBrowser1.DisplayIndex = 3;
+            this.colBrowser1.DisplayIndex = 2;
             this.colBrowser1.Text = "浏览器";
             // 
             // colName
@@ -842,7 +842,6 @@ namespace LiveSupport.OperatorConsole
             // 
             // colLocation
             // 
-            this.colLocation.DisplayIndex = 2;
             this.colLocation.Text = "地理位置";
             this.colLocation.Width = 100;
             // 
@@ -898,6 +897,7 @@ namespace LiveSupport.OperatorConsole
             // colReferer
             // 
             this.colReferer.Text = "搜索引擎";
+            this.colReferer.Width = 80;
             // 
             // contextMenuStrip1
             // 
@@ -1144,6 +1144,16 @@ namespace LiveSupport.OperatorConsole
             this.tabPage2.Text = "历史对话";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // chatMessageViewerControl1
+            // 
+            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
+            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
+            this.chatMessageViewerControl1.Size = new System.Drawing.Size(741, 745);
+            this.chatMessageViewerControl1.TabIndex = 18;
+            // 
             // messageendDateTimePicker
             // 
             this.messageendDateTimePicker.Location = new System.Drawing.Point(366, 20);
@@ -1368,6 +1378,39 @@ namespace LiveSupport.OperatorConsole
             this.leaveWordDataGridView.TabIndex = 0;
             this.leaveWordDataGridView.SelectionChanged += new System.EventHandler(this.leaveWordDataGridView_SelectionChanged);
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "CallerName";
+            this.Column1.HeaderText = "留言者";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.DataPropertyName = "Subject";
+            this.Column2.HeaderText = "主题";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.DataPropertyName = "CallerDate";
+            this.Column3.HeaderText = "留言时间";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // IsReplied
+            // 
+            this.IsReplied.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IsReplied.DataPropertyName = "IsReplied";
+            this.IsReplied.FillWeight = 96.61942F;
+            this.IsReplied.HeaderText = "是否回复";
+            this.IsReplied.Name = "IsReplied";
+            this.IsReplied.ReadOnly = true;
+            // 
             // txtDomainRequested
             // 
             this.txtDomainRequested.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leaveWordBindingSource, "DomainName", true));
@@ -1548,6 +1591,15 @@ namespace LiveSupport.OperatorConsole
             this.operatorsPanel.Size = new System.Drawing.Size(199, 593);
             this.operatorsPanel.TabIndex = 0;
             // 
+            // operatorPannel1
+            // 
+            this.operatorPannel1.BackColor = System.Drawing.SystemColors.Control;
+            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operatorPannel1.Location = new System.Drawing.Point(0, 31);
+            this.operatorPannel1.Name = "operatorPannel1";
+            this.operatorPannel1.Size = new System.Drawing.Size(199, 562);
+            this.operatorPannel1.TabIndex = 0;
+            // 
             // panel1
             // 
             this.panel1.BackgroundImage = global::LiveSupport.OperatorConsole.Properties.Resources.header1;
@@ -1561,6 +1613,7 @@ namespace LiveSupport.OperatorConsole
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.LineColor = System.Drawing.Color.Empty;
             this.treeView1.Location = new System.Drawing.Point(0, 12);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
@@ -1858,58 +1911,6 @@ namespace LiveSupport.OperatorConsole
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // operatorPannel1
-            // 
-            this.operatorPannel1.BackColor = System.Drawing.SystemColors.Control;
-            this.operatorPannel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.operatorPannel1.Location = new System.Drawing.Point(0, 31);
-            this.operatorPannel1.Name = "operatorPannel1";
-            this.operatorPannel1.Size = new System.Drawing.Size(199, 562);
-            this.operatorPannel1.TabIndex = 0;
-            // 
-            // chatMessageViewerControl1
-            // 
-            this.chatMessageViewerControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatMessageViewerControl1.Location = new System.Drawing.Point(3, 48);
-            this.chatMessageViewerControl1.Name = "chatMessageViewerControl1";
-            this.chatMessageViewerControl1.Size = new System.Drawing.Size(741, 745);
-            this.chatMessageViewerControl1.TabIndex = 18;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "CallerName";
-            this.Column1.HeaderText = "留言者";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.DataPropertyName = "Subject";
-            this.Column2.HeaderText = "主题";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.DataPropertyName = "CallerDate";
-            this.Column3.HeaderText = "留言时间";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // IsReplied
-            // 
-            this.IsReplied.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IsReplied.DataPropertyName = "IsReplied";
-            this.IsReplied.FillWeight = 96.61942F;
-            this.IsReplied.HeaderText = "是否回复";
-            this.IsReplied.Name = "IsReplied";
-            this.IsReplied.ReadOnly = true;
             // 
             // MainForm
             // 
