@@ -463,6 +463,19 @@ namespace LiveSupport.BLL.Remoting
                 e.StateObject.OperatorId = action.OperatorId;
                 if (operatorSocketMap.ContainsKey(action.OperatorId))
                 {
+                    try
+                    {
+                        if (operatorSocketMap[action.OperatorId].Connected)
+                        {
+                            sh.SendPacket(operatorSocketMap[action.OperatorId], new OperatorForceLogoffEventArgs());
+                            operatorSocketMap[action.OperatorId].Close();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.TraceError("ForceLogoff Operator " + action.OperatorId + "failed : " + ex.Message);
+                    } 
                     operatorSocketMap[action.OperatorId] = e.StateObject.workSocket;
                 }
                 else
@@ -491,6 +504,13 @@ namespace LiveSupport.BLL.Remoting
         {
             socketHandlingThread.Abort();
         }
+
+        #endregion
+
+        #region IOperatorServerEvents 成员
+
+
+        public event EventHandler<OperatorForceLogoffEventArgs> OperatorForceLogoff;
 
         #endregion
     }
