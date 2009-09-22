@@ -10,9 +10,7 @@ type
   TOtherFacilitiesForm = class(TForm)
     btn2: TbsSkinButton;
     btn3: TbsSkinButton;
-    bscmprsdstrdskn1: TbsCompressedStoredSkin;
     bsbsnsknfrm1: TbsBusinessSkinForm;
-    bskndt1: TbsSkinData;
     lst1: TbsSkinCheckListBox;
     procedure FormShow(Sender: TObject);
     procedure btn2Click(Sender: TObject);
@@ -29,7 +27,7 @@ var
   OtherFacilitiesForm: TOtherFacilitiesForm;
 
 implementation
-   uses UParametersDataModule;
+   uses UParametersDataModule,UHDHouseDataModule;
 {$R *.dfm}
   //œ‘ æ
 procedure TOtherFacilitiesForm.FormShow(Sender: TObject);

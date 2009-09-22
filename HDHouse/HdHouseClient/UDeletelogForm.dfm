@@ -1,8 +1,8 @@
 object DeletelogForm: TDeletelogForm
   Left = 519
   Top = 365
-  AutoScroll = False
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #21024#38500#26085#24535
   ClientHeight = 129
   ClientWidth = 296
@@ -89,12 +89,12 @@ object DeletelogForm: TDeletelogForm
       Width = 89
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-04'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40060.592955543980000000
+      Date = 40072.701965601860000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -138,12 +138,12 @@ object DeletelogForm: TDeletelogForm
       Width = 89
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-04'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40060.592955543980000000
+      Date = 40072.701965601860000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -331,7 +331,7 @@ object DeletelogForm: TDeletelogForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 24
     Top = 80
   end

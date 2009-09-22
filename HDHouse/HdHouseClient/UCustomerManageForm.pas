@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UHouseAutoMatchView, UCustomerSecureInfoView,
   UDetailRequirementInfoView, UCustomerListView, ComCtrls, bsSkinTabs,
-  UDataOperateBarView, DB, ADODB, Menus, bsSkinMenus;
+  UDataOperateBarView, DB, ADODB, Menus, bsSkinMenus, BusinessSkinForm,
+  bsMessages, frxClass, frxDBSet, frxExportXML;
 
 type
   TCustomerManageForm = class(TForm)
@@ -78,6 +79,10 @@ type
     Z1: TMenuItem;
     pmAutoHouse: TPopupMenu;
     MenuItem1: TMenuItem;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    frxReportkhzy1: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    frxXMLExport1: TfrxXMLExport;
     procedure dtprtbrvw1btn2Click(Sender: TObject);
     procedure qryKhzyAfterScroll(DataSet: TDataSet);
     procedure cstmrlstvw1btn1Click(Sender: TObject);
@@ -92,6 +97,8 @@ type
     procedure V1Click(Sender: TObject);
     procedure W1Click(Sender: TObject);
     procedure X1Click(Sender: TObject);
+    procedure dtprtbrvw1btn5Click(Sender: TObject);
+    procedure dtprtbrvw1btn4Click(Sender: TObject);
     //procedure cstmrlstvw1bskndbgrd1CellClick(Column: TbsColumn);
   private
     { Private declarations }
@@ -113,6 +120,8 @@ begin
     CustomerDetailsForm.ParmId:=qryKhzy.FieldByName('khzy_bh').Text;
     CustomerDetailsForm.ParmMode:='edit';
     CustomerDetailsForm.ShowModal;
+    self.qryKhzy.Close;
+    self.qryKhzy.Open;
   end;
 end;
 
@@ -121,14 +130,15 @@ end;
 procedure TCustomerManageForm.qryKhzyAfterScroll(DataSet: TDataSet);
 var sql:string;
 begin
-
+  if qryKhzy.FieldByName('khzy_bh').Text <> '' then
+  begin
     //Self.DetailRequirementInfoView1.edt1.Text:=qryKhzy.FieldByName('khzy_zj1').AsString+'-'+qryKhzy.FieldByName('khzy_zj2').AsString;
     Self.DetailRequirementInfoView1.edt2.Text:=qryKhzy.FieldByName('khzy_sj1').AsString+'-'+qryKhzy.FieldByName('khzy_sj2').AsString;
- if qryKhzy.FieldByName('khzy_qz').Value='Y' then
-   begin
-       Self.DetailRequirementInfoView1.bsknchckrdbx1.Checked:=True;
-   end
-   else
+   if qryKhzy.FieldByName('khzy_qz').Value='Y' then
+     begin
+         Self.DetailRequirementInfoView1.bsknchckrdbx1.Checked:=True;
+     end
+     else
    begin
        Self.DetailRequirementInfoView1.bsknchckrdbx1.Checked:=False;
        Self.DetailRequirementInfoView1.edt1.Text:='';
@@ -179,19 +189,21 @@ begin
     //具体地址
     if (qryKhzy.FieldByName('khzy_jtdz').Text <> '不限') and (qryKhzy.FieldByName('khzy_jtdz').Text <> '无')then
     begin
-       sql:=sql+' and fczy_jtdz like %'''+qryKhzy.FieldByName('khzy_jtdz').Text+'''%';
+       sql:=sql+' and fczy_jtdz like ''%'+qryKhzy.FieldByName('khzy_jtdz').Text+'%''';
     end;
     qryHouse.Close;
     qryHouse.SQL.Clear;
     qryHouse.SQL.Add(sql);
     qryHouse.Open;
     qryHouse.Active:=True;
+    end;
+
 end;
 
 //搜索
 procedure TCustomerManageForm.cstmrlstvw1btn1Click(Sender: TObject);
  var paramStr:string;
-     param:Boolean;
+ var param:Boolean;
 begin
   paramStr:=paramStr+'select * from khzy';
   param:=False;
@@ -292,24 +304,21 @@ begin
 //
 CustomerDetailsForm.ParmMode:='add';
 CustomerDetailsForm.ShowModal;
+self.qryKhzy.Close;
+self.qryKhzy.Open;
 end;
 
 //删除
 procedure TCustomerManageForm.dtprtbrvw1btn3Click(Sender: TObject);
 begin
-    if qryKhzy.FieldByName('khzy_bh').Text <> '' then
+  if qryKhzy.FieldByName('khzy_bh').Text <> '' then
   begin
-     case Application.MessageBox('删除后无法恢复，确定删除吗？', '提示',MB_OKCANCEL + MB_ICONQUESTION) of
-    IDOK:
-     begin
-        qryKhzy.Delete;
-     end;
-    IDCANCEL:
+    if HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('确认删除？', '提示', nil, -1, [mbOK,mbCancel], 0)=2 then
     begin
-
+        Exit;
     end;
-end;
-end;
+   qryKhzy.Delete;
+  end;
 end;
 
 //客户信息列表双击
@@ -346,6 +355,22 @@ end;
 procedure TCustomerManageForm.X1Click(Sender: TObject);
 begin
 CustomerManageForm.dtprtbrvw1btn3Click(nil);
+end;
+  //打印
+procedure TCustomerManageForm.dtprtbrvw1btn5Click(Sender: TObject);
+begin
+     if self.frxReportkhzy1.PrepareReport then
+     begin
+        self.frxReportkhzy1.ShowPreparedReport;
+     end;
+end;
+
+procedure TCustomerManageForm.dtprtbrvw1btn4Click(Sender: TObject);
+begin
+   if self.frxReportkhzy1.PrepareReport then
+   begin
+      self.frxReportkhzy1.Export(self.frxXMLExport1);
+   end;
 end;
 
 end.

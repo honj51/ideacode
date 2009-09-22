@@ -49,7 +49,7 @@ object TrackRecordView: TTrackRecordView
     AutoShowHideCaptions = False
     ShowCaptions = False
     Flat = True
-    object btn1: TbsSkinSpeedButton
+    object btnadd: TbsSkinSpeedButton
       Left = 24
       Top = 8
       Width = 32
@@ -82,7 +82,7 @@ object TrackRecordView: TTrackRecordView
       NumGlyphs = 1
       Spacing = 1
     end
-    object btn2: TbsSkinSpeedButton
+    object btnupdate: TbsSkinSpeedButton
       Left = 72
       Top = 8
       Width = 32
@@ -115,7 +115,7 @@ object TrackRecordView: TTrackRecordView
       NumGlyphs = 1
       Spacing = 1
     end
-    object btn3: TbsSkinSpeedButton
+    object btndelete: TbsSkinSpeedButton
       Left = 122
       Top = 8
       Width = 32

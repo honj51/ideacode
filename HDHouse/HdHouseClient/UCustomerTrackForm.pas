@@ -7,7 +7,7 @@ uses
   Dialogs, UContractQueryFrame, UTrackRecordView, UCustomerSecureInfoView,
   UDetailRequirementInfoView, UCustomerListView, ComCtrls, bsSkinTabs, DB,
   ADODB, bsSkinGrids, bsDBGrids, bsSkinBoxCtrls, StdCtrls, bsSkinCtrls,
-  Mask, Menus;
+  Mask, Menus, BusinessSkinForm, frxClass, frxDBSet;
 
 type
   TCustomerTrackForm = class(TForm)
@@ -92,6 +92,9 @@ type
     W1: TMenuItem;
     X1: TMenuItem;
     Z1: TMenuItem;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    frxDBDataset1: TfrxDBDataset;
+    frxReport1: TfrxReport;
     procedure cstmrlstvw1bsknchckrdbx1Click(Sender: TObject);
     procedure cstmrlstvw1bsknchckrdbx2Click(Sender: TObject);
     procedure trckrcrdvw1btn2Click(Sender: TObject);
@@ -110,6 +113,7 @@ type
     procedure X1Click(Sender: TObject);
     procedure cstmrlstvw1btn2Click(Sender: TObject);
     procedure cstmrlstvw1bsknchckrdbx3Click(Sender: TObject);
+    procedure trckrcrdvw1btn4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -278,18 +282,12 @@ procedure TCustomerTrackForm.trckrcrdvw1btn3Click(Sender: TObject);
 begin
   if tblTrack.FieldByName('khgj_bh').Text <> '' then
   begin
-case Application.MessageBox('删除后无法恢复，确定删除吗？', '提示',
-  MB_OKCANCEL + MB_ICONQUESTION) of
-  IDOK:
+    if HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('删除后无法恢复，确定删除吗？', '提示', nil, -1, [mbOK,mbCancel], 0)=2 then
     begin
+        Exit;
+    end;
       tblTrack.Delete;
-    end;
-  IDCANCEL:
-    begin
-
-    end;
-end;
-end;
+  end;
 end;
 
 procedure TCustomerTrackForm.qryKhzyCalcFields(DataSet: TDataSet);
@@ -382,6 +380,14 @@ procedure TCustomerTrackForm.cstmrlstvw1bsknchckrdbx3Click(
   Sender: TObject);
 begin
 CustomerTrackForm.cstmrlstvw1btn1Click(nil);
+end;
+
+procedure TCustomerTrackForm.trckrcrdvw1btn4Click(Sender: TObject);
+begin
+ if self.frxReport1.PrepareReport  then
+ begin
+      self.frxReport1.ShowPreparedReport;
+ end;
 end;
 
 end.

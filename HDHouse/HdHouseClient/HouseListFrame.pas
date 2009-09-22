@@ -7,7 +7,7 @@ uses
   Dialogs, StdCtrls, bsSkinCtrls, bsSkinExCtrls, ImgList, bsPngImageList,
   IWControl, IWHTMLControls, IdBaseComponent, IdThreadComponent, ExtCtrls,
   bsdbctrls, bsSkinGrids, bsDBGrids, ComCtrls, bsSkinTabs, bsSkinBoxCtrls,
-  bsSkinData, BusinessSkinForm, Mask, ADODB, DB, Menus;
+  bsSkinData, BusinessSkinForm, Mask, ADODB, DB, Menus, frxClass, frxDBSet;
 
 type
   TframeHouseList = class(TFrame)
@@ -19,7 +19,6 @@ type
     mmoHouseDetailInfo: TbsSkinDBMemo;
     mmoHouseSecrecyInfo: TbsSkinDBMemo;
     bskndbgrd2: TbsSkinDBGrid;
-    bsknfrm1: TbsSkinFrame;
     bskndbgrd1: TbsSkinDBGrid;
     bsSkinPanel1: TbsSkinPanel;
     lbl1: TbsSkinStdLabel;
@@ -41,12 +40,24 @@ type
     bsknscrlbrFollowDown: TbsSkinScrollBar;
     bsknscrlbrFollowRight: TbsSkinScrollBar;
     Edit1: TEdit;
-    qryHouseList: TADOQuery;
     dsHouseList: TDataSource;
     tblHouseTrack: TADOTable;
     dsHouseTrack: TDataSource;
+    qryCustomerTrack: TADOQuery;
+    dsCustomerTrack: TDataSource;
+    pmAutoCustomer: TPopupMenu;
+    MenuItem1: TMenuItem;
+    pmHouse: TPopupMenu;
+    MenuItem2: TMenuItem;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    edtDate: TbsSkinNumericEdit;
+    bsSkinStdLabel1: TbsSkinStdLabel;
+    qryHouseList: TADOQuery;
     qryHouseListfczy_bh: TWideStringField;
-    qryHouseListfczy_yn: TWideStringField;
+    qryHouseListfczy_yn: TBooleanField;
     qryHouseListfczy_htbh: TWideStringField;
     qryHouseListfczy_djrq: TDateTimeField;
     qryHouseListfczy_sxrq: TDateTimeField;
@@ -72,10 +83,10 @@ type
     qryHouseListfczy_lccg: TWideStringField;
     qryHouseListfczy_ptss1: TWideStringField;
     qryHouseListfczy_ptss2: TWideStringField;
-    qryHouseListfczy_cz: TWideStringField;
+    qryHouseListfczy_cz: TBooleanField;
     qryHouseListfczy_zj: TFloatField;
     qryHouseListfczy_czsm: TWideStringField;
-    qryHouseListfczy_cs: TWideStringField;
+    qryHouseListfczy_cs: TBooleanField;
     qryHouseListfczy_sj: TFloatField;
     qryHouseListfczy_cssm: TWideStringField;
     qryHouseListfczy_yzxm: TWideStringField;
@@ -89,20 +100,9 @@ type
     qryHouseListfczy_zs: TWideStringField;
     qryHouseListfczy_ygbh: TWideStringField;
     qryHouseListfczy_sby: TWideStringField;
-    strngfldHouseListHouseSecrecyInfo: TStringField;
-    strngfldHouseListHouseDetailInfo: TStringField;
-    qryCustomerTrack: TADOQuery;
-    dsCustomerTrack: TDataSource;
-    pmAutoCustomer: TPopupMenu;
-    MenuItem1: TMenuItem;
-    pmHouse: TPopupMenu;
-    MenuItem2: TMenuItem;
-    N1: TMenuItem;
-    N2: TMenuItem;
-    N3: TMenuItem;
-    N4: TMenuItem;
-    edtDate: TbsSkinNumericEdit;
-    bsSkinStdLabel1: TbsSkinStdLabel;
+    qryHouseListHouseDetailInfo: TStringField;
+    qryHouseListHouseSecrecyInfo: TStringField;
+    bsSkinFrame1: TbsSkinFrame;
     procedure bsSkinCheckRadioBox1Click(Sender: TObject);
     procedure bsSkinCheckRadioBox2Click(Sender: TObject);
     procedure bsSkinButtonLabel2Click(Sender: TObject);
@@ -123,7 +123,7 @@ uses UHDHouseDataModule,UHouseQueryForm,UCustomerDetailsForm;
 
 procedure TframeHouseList.bsSkinCheckRadioBox1Click(Sender: TObject);
 begin
- Self.bsSkinButtonLabel2Click(nil);
+ Self.bsSkinButtonLabel2Click(Sender);
 end;
 
 procedure TframeHouseList.bsSkinCheckRadioBox2Click(Sender: TObject);
@@ -137,7 +137,6 @@ var sqlStr:string;
 begin
   sqlStr:='select * from fczy';
   param:=False;
-  
   if Edit1.Text<> ''then
   begin
     if param = False then begin
@@ -158,7 +157,7 @@ begin
     begin
       sqlStr:=sqlStr+ ' and ';
     end;
-    sqlStr:=sqlStr+'fczy_cz=''Y''';
+    sqlStr:=sqlStr+'fczy_cz=true';
   end;
   if bsSkinCheckRadioBox2.Checked =True then
   begin
@@ -169,11 +168,12 @@ begin
     begin
       sqlStr:=sqlStr+ ' and ';
     end;
-    sqlStr:=sqlStr+'fczy_cs=''Y''';
+    sqlStr:=sqlStr+'fczy_cs=true';
   end;
   if bsSkinCheckRadioBox3.Checked =True then
   begin
-      if param = False then begin
+    if param = False then
+    begin
       sqlStr:=sqlStr+ ' where ';
       param:=True;
     end else
@@ -191,31 +191,30 @@ end;
 //
 procedure TframeHouseList.qryHouseListCalcFields(DataSet: TDataSet);
 var
-  detailStr:TStrings;
-  secrecyStr:TStrings;
+  detailStr:TStringList;
+  secrecyStr:TStringList;
 begin
   detailStr := TStringList.Create;
   secrecyStr:=TStringList.Create;
   detailStr.Clear;
   secrecyStr.Clear;
-
   //详细信息
-  if qryHouseList.FieldByName('fczy_cz').Text ='Y' then
+  if qryHouseList.FieldByName('fczy_cz').Value then
   begin
-      detailStr.Add('此房出租,出租价格:'+qryHouseList.FieldByName('fczy_zj').Text+'元/月,出租说明：'+qryHouseList.FieldByName('fczy_czsm').Text)
+      detailStr.Add('此房出租,出租价格:'+Trim(qryHouseList.FieldByName('fczy_zj').Text)+'元/月,出租说明：'+qryHouseList.FieldByName('fczy_czsm').Text)
   end;
-  if qryHouseList.FieldByName('fczy_cs').Text ='Y' then
+  if qryHouseList.FieldByName('fczy_cs').Value then
   begin
     detailStr.Add('此房出售,出售价格:'+qryHouseList.FieldByName('fczy_sj').Text+'万元,出售说明:'+qryHouseList.FieldByName('fczy_cssm').Text);
-
   end;
   detailStr.Add('');
   detailStr.Add('基础设施:'+qryHouseList.FieldByName('fczy_ptss1').Text);
   detailStr.Add('配套设施:'+qryHouseList.FieldByName('fczy_ptss2').Text);
   detailStr.Add('');
   detailStr.Add('详细信息:'+qryHouseList.FieldByName('fczy_xxbz').Text);
+
   //保密信息
-  secrecyStr.Add('业主姓名:'+ qryHouseList.FieldByName('fczy_yzxm').Text);
+  secrecyStr.Add('业主姓名:'+qryHouseList.FieldByName('fczy_yzxm').Text);
   secrecyStr.Add('联系电话:'+qryHouseList.FieldByName('fczy_dh').Text);
   secrecyStr.Add('联系手机:'+qryHouseList.FieldByName('fczy_tel').Text);
   secrecyStr.Add('联系地址:'+qryHouseList.FieldByName('fczy_jtwz').Text);
@@ -233,8 +232,8 @@ var sql:string;
 begin
    if qryHouseList.FieldByName('fczy_bh').Text <> '' then
    begin
-  //自动客户信息
-    sql:='select * from khzy where ';
+    //自动客户信息
+     sql:='select * from khzy where ';
     //建筑面积
       sql:=sql+'khzy_jzmj1 <='+qryHouseList.FieldByName('fczy_jzmj').Text+' and khzy_jzmj2>='+qryHouseList.FieldByName('fczy_jzmj').Text;
     //建成年份
@@ -258,7 +257,6 @@ begin
       qryCustomerTrack.SQL.Add(sql);
       qryCustomerTrack.Open;
       qryCustomerTrack.Active:=True;
-      
    end;
 end;
 

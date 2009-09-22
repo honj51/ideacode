@@ -2,6 +2,8 @@ program HDHouse;
 
 
 
+
+
 uses
   Forms,
   StdCtrls,
@@ -40,7 +42,6 @@ uses
   UDetailRequirementInfoView in 'UDetailRequirementInfoView.pas' {DetailRequirementInfoView: TFrame},
   UCustomerListView in 'UCustomerListView.pas' {CustomerListView: TFrame},
   UCustomerManageForm in 'UCustomerManageForm.pas' {CustomerManageForm},
-  HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
   UCustomerDetailsForm in 'UCustomerDetailsForm.pas' {CustomerDetailsForm},
   UContractQueryFrame in 'UContractQueryFrame.pas' {ContractQueryFrame: TFrame},
   UHouseSecureInfoView in 'UHouseSecureInfoView.pas' {HouseSecureInfoView: TFrame},
@@ -69,16 +70,22 @@ uses
   UHouseQueryFrame in 'UHouseQueryFrame.pas' {HouseQueryFrame: TFrame},
   UHouseQueryForm in 'UHouseQueryForm.pas' {HouseQueryForm},
   UHouseTrackInfoForm in 'UHouseTrackInfoForm.pas' {HouseTrackInfoForm},
-  UContractsFile in 'UContractsFile.pas' {ContractsFile};
+  UContractsFile in 'UContractsFile.pas' {ContractsFile},
+  UContractQueryForm in 'UContractQueryForm.pas' {ContractQueryForm},
+  UCustomerQueryForm in 'UCustomerQueryForm.pas' {CustomerQueryForm},
+  HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
+  UFormMessageBox in 'UFormMessageBox.pas' {FormMessageBox};
 
 {$R *.res}
 
 begin
   Application.Initialize;
 
+  Application.Title := '互动房产中介管理';
+  Application.CreateForm(TLoginForm, LoginForm);
+  Application.CreateForm(TFormMessageBox, FormMessageBox);
   Application.CreateForm(THDHouseDataModule, HDHouseDataModule);
   Application.CreateForm(TParametersDataModule, ParametersDataModule);
-  Application.CreateForm(TLoginForm, LoginForm);
   Application.CreateForm(TformMain, formMain);
   Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);
   Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
@@ -122,6 +129,8 @@ begin
   Application.CreateForm(THouseQueryForm, HouseQueryForm);
   Application.CreateForm(THouseTrackInfoForm, HouseTrackInfoForm);
   Application.CreateForm(TContractsFile, ContractsFile);
+  Application.CreateForm(TContractQueryForm, ContractQueryForm);
+  Application.CreateForm(TCustomerQueryForm, CustomerQueryForm);
   {
   Application.CreateForm(TCustomerTrackForm, CustomerTrackForm);
   Application.CreateForm(TCustomerDetailsForm, CustomerDetailsForm);

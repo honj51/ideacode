@@ -1,8 +1,8 @@
 object ContractsFile: TContractsFile
-  Left = 534
-  Top = 214
-  AutoScroll = False
+  Left = 465
+  Top = 146
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #21512#21516#25991#20214
   ClientHeight = 420
   ClientWidth = 524
@@ -188,6 +188,7 @@ object ContractsFile: TContractsFile
     OnClick = btn2Click
   end
   object tbl1: TADOTable
+    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     TableName = 'ht'
@@ -247,7 +248,7 @@ object ContractsFile: TContractsFile
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 437
     Top = 12
   end

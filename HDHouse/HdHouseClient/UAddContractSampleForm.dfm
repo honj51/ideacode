@@ -1,8 +1,8 @@
 object AddContractSampleForm: TAddContractSampleForm
-  Left = 388
-  Top = 336
-  AutoScroll = False
+  Left = 458
+  Top = 350
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #28155#21152#21512#21516
   ClientHeight = 158
   ClientWidth = 388
@@ -304,7 +304,7 @@ object AddContractSampleForm: TAddContractSampleForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 24
     Top = 112
   end

@@ -238,13 +238,26 @@ inherited DealHouseListView: TDealHouseListView
     Left = 502
     TabOrder = 5
   end
-  object cbb1: TbsSkinDBComboBox [11]
-    Left = 60
+  inherited edt2: TbsSkinMaskEdit
+    Left = 819
+    Text = '30'
+    TabOrder = 3
+  end
+  inherited edt1: TbsSkinMaskEdit
+    Left = 277
     Top = 15
-    Width = 97
+    Width = 99
+    Text = ''
+    TabOrder = 4
+  end
+  object cbb1: TbsSkinComboBox [13]
+    Left = 61
+    Top = 14
+    Width = 96
     Height = 20
     HintImageIndex = 0
-    TabOrder = 3
+    TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -285,7 +298,7 @@ inherited DealHouseListView: TDealHouseListView
       #25152#26377#25151#28304
       #24050#31614#32422
       #26410#31614#32422)
-    ItemIndex = -1
+    ItemIndex = 0
     DropDownCount = 8
     HorizontalExtent = False
     Font.Charset = DEFAULT_CHARSET
@@ -295,17 +308,5 @@ inherited DealHouseListView: TDealHouseListView
     Font.Style = []
     Sorted = False
     Style = bscbFixedStyle
-    ParentFont = False
-  end
-  inherited edt2: TbsSkinMaskEdit
-    Left = 819
-    Text = '30'
-  end
-  inherited edt1: TbsSkinMaskEdit
-    Left = 277
-    Top = 15
-    Width = 99
-    Text = ''
-    TabOrder = 4
   end
 end

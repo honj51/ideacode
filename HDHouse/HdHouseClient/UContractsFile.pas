@@ -50,6 +50,7 @@ end;
  //显示数据
 procedure TContractsFile.FormShow(Sender: TObject);
 begin
+  self.tbl1.Active:=true;
   self.bsSkinStdLabel1.Caption :='注：签约后的合同文件保存在'+ GetCurrentDir +'\Contract\目录下，\n 才便于在成交记录中打开相应签约记录的合同文件';
 end;
 

@@ -1,7 +1,7 @@
 object ParametersDataModule: TParametersDataModule
   OldCreateOrder = False
-  Left = 506
-  Top = 166
+  Left = 860
+  Top = 212
   Height = 417
   Width = 459
   object dsHouseSource: TDataSource

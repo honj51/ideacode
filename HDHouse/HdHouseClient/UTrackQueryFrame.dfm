@@ -5,62 +5,13 @@ object TrackQueryFrame: TTrackQueryFrame
   Height = 566
   AutoScroll = False
   TabOrder = 0
-  object bsSkinDBGrid1: TbsSkinDBGrid
-    Left = 0
-    Top = 73
-    Width = 995
-    Height = 493
-    HintImageIndex = 0
-    TabOrder = 0
-    SkinDataName = 'grid'
-    Transparent = False
-    WallpaperStretch = False
-    UseSkinFont = True
-    UseSkinCellHeight = True
-    GridLineColor = clWindowText
-    DefaultCellHeight = 20
-    DrawGraphicFields = False
-    UseColumnsFont = False
-    DefaultRowHeight = 17
-    MouseWheelSupport = False
-    SaveMultiSelection = False
-    PickListBoxSkinDataName = 'listbox'
-    PickListBoxCaptionMode = False
-    Align = alClient
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'MS Sans Serif'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        Title.Caption = #36319#36827#20107#20214
-        Visible = True
-      end
-      item
-        Expanded = False
-        Title.Caption = #36319#36827#20154
-        Visible = True
-      end
-      item
-        Expanded = False
-        Title.Caption = #36319#36827#26041#24335
-        Visible = True
-      end
-      item
-        Expanded = False
-        Title.Caption = #36319#36827#20869#23481
-        Visible = True
-      end>
-  end
   object bsknpnl1: TbsSkinPanel
     Left = 0
     Top = 0
     Width = 995
     Height = 73
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 0
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -351,7 +302,7 @@ object TrackQueryFrame: TTrackQueryFrame
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -382,7 +333,7 @@ object TrackQueryFrame: TTrackQueryFrame
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -429,7 +380,7 @@ object TrackQueryFrame: TTrackQueryFrame
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 4
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -443,7 +394,7 @@ object TrackQueryFrame: TTrackQueryFrame
       Width = 97
       Height = 25
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 0
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -472,7 +423,7 @@ object TrackQueryFrame: TTrackQueryFrame
       Width = 97
       Height = 25
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -495,6 +446,57 @@ object TrackQueryFrame: TTrackQueryFrame
       GroupIndex = 0
       Caption = #26174#31034#20986#21806#36319#36827
     end
+  end
+  object bskndbgrd1: TbsSkinDBGrid
+    Left = 0
+    Top = 73
+    Width = 995
+    Height = 493
+    HintImageIndex = 0
+    TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'grid'
+    Transparent = False
+    WallpaperStretch = False
+    UseSkinFont = True
+    UseSkinCellHeight = True
+    GridLineColor = clWindowText
+    DefaultCellHeight = 20
+    DrawGraphicFields = False
+    UseColumnsFont = False
+    DefaultRowHeight = 17
+    MouseWheelSupport = False
+    SaveMultiSelection = False
+    PickListBoxSkinDataName = 'listbox'
+    PickListBoxCaptionMode = False
+    Align = alClient
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        Title.Caption = #36319#36827#20107#20214
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #36319#36827#20154
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #36319#36827#26041#24335
+        Visible = True
+      end
+      item
+        Expanded = False
+        Title.Caption = #36319#36827#20869#23481
+        Visible = True
+      end>
   end
   object bsknfrm1: TbsSkinFrame
     SkinData = HDHouseDataModule.bsSkinData1

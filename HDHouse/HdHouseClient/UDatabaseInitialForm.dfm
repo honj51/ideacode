@@ -1,8 +1,8 @@
 object DatabaseInitialForm: TDatabaseInitialForm
-  Left = 447
-  Top = 319
-  AutoScroll = False
+  Left = 430
+  Top = 277
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #21021#22987#21270#25968#25454#24211
   ClientHeight = 270
   ClientWidth = 419
@@ -319,12 +319,12 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Width = 81
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-04'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40060.401836111110000000
+      Date = 40072.701188506940000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -368,12 +368,12 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Width = 81
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-04'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40060.401836111110000000
+      Date = 40072.701188506940000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -403,7 +403,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 7
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -437,7 +437,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
       Font.Style = []
       MaxLength = 8
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 6
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -633,7 +633,7 @@ object DatabaseInitialForm: TDatabaseInitialForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 48
     Top = 224
   end

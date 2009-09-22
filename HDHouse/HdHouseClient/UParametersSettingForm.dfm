@@ -1,8 +1,8 @@
 object ParametersSettingForm: TParametersSettingForm
-  Left = 320
-  Top = 190
-  AutoScroll = False
+  Left = 310
+  Top = 168
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #21442#25968#35774#32622
   ClientHeight = 482
   ClientWidth = 644
@@ -133,7 +133,7 @@ object ParametersSettingForm: TParametersSettingForm
       Width = 453
       Height = 392
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 1
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'grid'
       Transparent = False
@@ -175,7 +175,7 @@ object ParametersSettingForm: TParametersSettingForm
       Width = 19
       Height = 392
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
       Visible = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'vscrollbar'
@@ -206,7 +206,7 @@ object ParametersSettingForm: TParametersSettingForm
       Width = 472
       Height = 66
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 0
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'resizetoolpanel'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -396,7 +396,7 @@ object ParametersSettingForm: TParametersSettingForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 547
     Top = 31
   end

@@ -10,7 +10,7 @@ uses
 type
   TDealHouseListView = class(THouseListView)
     i: TbsSkinStdLabel;
-    cbb1: TbsSkinDBComboBox;
+    cbb1: TbsSkinComboBox;
   private
     { Private declarations }
   public
@@ -21,6 +21,7 @@ var
   DealHouseListView: TDealHouseListView;
 
 implementation
+uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

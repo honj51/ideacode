@@ -222,6 +222,7 @@ begin
         Next;
       end;
     end;
+    self.tv1.autoexpand := true;   //Õ¹¿ª
 end;
 
 procedure THousePosterForm.tv1Change(Sender: TObject; Node: TTreeNode);

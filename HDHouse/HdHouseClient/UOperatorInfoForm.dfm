@@ -1,8 +1,8 @@
 object OperatorInfoForm: TOperatorInfoForm
-  Left = 589
-  Top = 278
-  AutoScroll = False
+  Left = 555
+  Top = 233
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25805#20316#21592#20449#24687
   ClientHeight = 249
   ClientWidth = 369
@@ -176,7 +176,7 @@ object OperatorInfoForm: TOperatorInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -211,7 +211,7 @@ object OperatorInfoForm: TOperatorInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -228,7 +228,7 @@ object OperatorInfoForm: TOperatorInfoForm
       Width = 89
       Height = 20
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 5
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -282,33 +282,6 @@ object OperatorInfoForm: TOperatorInfoForm
       DataSource = ds_usersxxxx
       ParentFont = False
     end
-    object cbbuser_qxbh: TbsSkinDBLookupComboBox
-      Left = 88
-      Top = 110
-      Width = 89
-      Height = 20
-      HintImageIndex = 0
-      TabOrder = 3
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'combobox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 20
-      UseSkinFont = True
-      DataField = 'user_qxbh'
-      DataSource = ds_usersxxxx
-      DefaultColor = clWindow
-      ListBoxDefaultItemHeight = 20
-      ListBoxUseSkinFont = True
-      ListBoxUseSkinItemHeight = True
-      KeyField = 'Qx_bh'
-      ListField = 'Qx_mc'
-      ListSource = ds1
-    end
     object bsknpswrdt_mm2: TbsSkinPasswordEdit
       Left = 248
       Top = 78
@@ -316,7 +289,7 @@ object OperatorInfoForm: TOperatorInfoForm
       Height = 21
       Cursor = crIBeam
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 3
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -339,7 +312,7 @@ object OperatorInfoForm: TOperatorInfoForm
       HelpType = htKeyword
       HelpKeyword = '*'
       HintImageIndex = 0
-      TabOrder = 5
+      TabOrder = 0
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -354,6 +327,33 @@ object OperatorInfoForm: TOperatorInfoForm
       PasswordKind = pkRoundRect
       DataField = 'user_mm'
       DataSource = ds_usersxxxx
+    end
+    object bsSkinDBLookupComboBox1: TbsSkinDBLookupComboBox
+      Left = 91
+      Top = 108
+      Width = 85
+      Height = 20
+      HintImageIndex = 0
+      TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'combobox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 20
+      UseSkinFont = True
+      DataField = 'user_qxbh'
+      DataSource = ds_usersxxxx
+      DefaultColor = clWindow
+      ListBoxDefaultItemHeight = 20
+      ListBoxUseSkinFont = True
+      ListBoxUseSkinItemHeight = True
+      KeyField = 'Qx_bh'
+      ListField = 'Qx_mc'
+      ListSource = ds1
     end
   end
   object bsknpnl1: TbsSkinPanel
@@ -505,26 +505,17 @@ object OperatorInfoForm: TOperatorInfoForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 40
     Top = 200
   end
   object ds_usersxxxx: TDataSource
     DataSet = qry_usersxxxx
-    Left = 104
+    Left = 105
+    Top = 65535
   end
   object qry_usersxxxx: TADOQuery
-    ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Pr' +
-      'oject\delphi\HDHouse\database\hdhouse.mdb;Mode=Share Deny None;E' +
-      'xtended Properties="";Jet OLEDB:System database="";Jet OLEDB:Reg' +
-      'istry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Ty' +
-      'pe=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial ' +
-      'Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Da' +
-      'tabase Password="";Jet OLEDB:Create System Database=False;Jet OL' +
-      'EDB:Encrypt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compac' +
-      't=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB' +
-      ':SFP=False'
+    Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
       item
@@ -538,7 +529,7 @@ object OperatorInfoForm: TOperatorInfoForm
       end>
     SQL.Strings = (
       'select * from users where user_bh=id')
-    Left = 160
+    Left = 168
   end
   object ds1: TDataSource
     DataSet = tbl1
@@ -548,9 +539,8 @@ object OperatorInfoForm: TOperatorInfoForm
     Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
-    MasterSource = ds_usersxxxx
     TableName = 'qx'
-    Left = 280
+    Left = 281
   end
   object bsknmsg_msg: TbsSkinMessage
     ShowAgainFlag = False
@@ -571,7 +561,7 @@ object OperatorInfoForm: TOperatorInfoForm
     DefaultButtonFont.Name = 'Arial'
     DefaultButtonFont.Style = []
     UseSkinFont = True
-    Left = 88
-    Top = 144
+    Left = 305
+    Top = 138
   end
 end

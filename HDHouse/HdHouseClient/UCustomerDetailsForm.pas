@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, bsSkinCtrls, ComCtrls, bsSkinTabs, bsdbctrls, StdCtrls, Mask,
-  bsSkinBoxCtrls, DB, ADODB;
+  bsSkinBoxCtrls, DB, ADODB, BusinessSkinForm, ImgList, bsPngImageList;
 
 type
   TCustomerDetailsForm = class(TForm)
@@ -86,9 +86,22 @@ type
     cbbDqzt: TbsSkinComboBox;
     edtJcnf1: TbsSkinDBNumericEdit;
     edtJcnf2: TbsSkinDBNumericEdit;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
+    qry1: TADOQuery;
+    btn2: TbsSkinSpeedButton;
+    btn3: TbsSkinSpeedButton;
+    btn4: TbsSkinSpeedButton;
+    bspngmglst1: TbsPngImageList;
+    ds1: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure btn1Click(Sender: TObject);
     procedure bsSkinButton1Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
+    procedure btn3Click(Sender: TObject);
+    procedure btn4Click(Sender: TObject);
+    procedure edtZygwClick(Sender: TObject);
+    procedure edtJcssClick(Sender: TObject);
+    procedure edtPtssClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -101,12 +114,16 @@ var
   CustomerDetailsForm: TCustomerDetailsForm;
 
 implementation
- uses UHDHouseDataModule,UParametersDataModule,UCustomerManageForm,Math;
+ uses UHDHouseDataModule,UParametersDataModule,UCustomerManageForm,Math,URealtorListForm,UOtherFacilitiesForm,UBaseFacilitiesForm,Common;
 {$R *.dfm}
 
 //窗体加载
 procedure TCustomerDetailsForm.FormShow(Sender: TObject);
- begin
+var pream:string;
+var datecount:Integer;
+begin
+    self.qryKhzy.Active:=true;//起动客户信息数据信息
+    self.qry1.Active:=true; //起动数据控件
 //客户来源绑定
     cbbKhly.Items.Clear;
     with ParametersDataModule.dsHouseSource.DataSet do
@@ -213,10 +230,28 @@ begin
 //添加
  with qryKhzy do
   begin
-    Append;
-    Randomize;
-    // ParametersDataModule.qryTrackMethod.FindFirst;
-    FieldByName('khzy_bh').Value :=  RandomRange(10000000,99999999);
+    qryKhzy.Close;
+    qryKhzy.Parameters.FindParam('id').Value:='';
+    qryKhzy.Open;
+    qryKhzy.Edit;
+    pream:='KH'+FormatDateTime('yyyymmdd',Now);
+    self.qry1.Filter:='(khzy_bh like '+'''%'+pream+'%'')';
+    self.qry1.Filtered:=true; //开起条件
+    datecount:= self.qry1.Recordset.RecordCount+1;
+    with self.ds1.DataSet do
+    begin
+      First;
+      while not Eof do
+      begin
+        if Trim(VarToStr(FieldValues['khzy_bh']))= Trim(pream + Format('%.4d', [datecount] )) then
+        begin
+          datecount:=datecount+1;
+        end;
+        Next;
+        end;
+      end;
+    self.qry1.Filtered:=false;//关闭条件
+    FieldByName('khzy_bh').Value := pream + Format('%.4d', [datecount]);
     FieldByName('khzy_ws1').Value := 0;
     FieldByName('khzy_ws2').Value := 3;
     FieldByName('khzy_jzmj1').Value := 0;
@@ -262,13 +297,14 @@ end;
 //取消
 procedure TCustomerDetailsForm.btn1Click(Sender: TObject);
 begin
+   qryKhzy.Cancel;
    Close;
 end;
 
 //修改
 procedure TCustomerDetailsForm.bsSkinButton1Click(Sender: TObject);
 begin
-//
+inherited;
 if edtZygw.Text ='' then
 begin
     Application.MessageBox('置业顾问不存在或不是本店员工', '提示', MB_OK+ MB_iconexclamation);
@@ -307,14 +343,36 @@ begin
     edtLxdz.SetFocus;
     Exit;
 end;
-qryKhzy.Edit;
-qryKhzy.FieldByName('khzy_ly').Value:=cbbKhly.Text;
-qryKhzy.FieldByName('khzy_dqzt').Value:=cbbDqzt.Text;
-qryKhzy.FieldByName('khzy_wyyt').Value:=cbbWyyt.Text;
-qryKhzy.FieldByName('khzy_wylb').Value:=cbbWylb.Text;
-qryKhzy.FieldByName('khzy_zxcd').Value:=cbbZxcd.Text;
-qryKhzy.FieldByName('khzy_qy').Value:=cbbQy.Text;
-qryKhzy.FieldByName('khzy_fx').Value:=cbbLx.Text;
+  qryKhzy.Edit;
+  qryKhzy.FieldByName('khzy_ly').Value:=cbbKhly.Text;
+  qryKhzy.FieldByName('khzy_dqzt').Value:=cbbDqzt.Text;
+  qryKhzy.FieldByName('khzy_wyyt').Value:=cbbWyyt.Text;
+  qryKhzy.FieldByName('khzy_wylb').Value:=cbbWylb.Text;
+  qryKhzy.FieldByName('khzy_zxcd').Value:=cbbZxcd.Text;
+  qryKhzy.FieldByName('khzy_qy').Value:=cbbQy.Text;
+  qryKhzy.FieldByName('khzy_fx').Value:=cbbLx.Text;
+  if self.ParmMode='add' then
+  begin
+    qryKhzy.FieldByName('khzy_yn').Value:='N';  //是否签约
+    qryKhzy.FieldByName('khzy_djrq').Value:=Now;  //登记日期
+    qryKhzy.FieldByName('khzy_zhrq').Value:=Now;  //来房日期
+    qryKhzy.FieldByName('khzy_sxrq').Value:=Now+60;//失效日期
+    qryKhzy.FieldByName('khzy_czy').Value:=gs_login_username;// 操作员
+    qryKhzy.FieldByName('khzy_mj').Value:=self.edtMj1.Text+'-'+edtMj2.Text;//面积范围
+    qryKhzy.FieldByName('khzy_nf').Value:=self.edtJcnf1.Text+'-'+self.edtJcnf2.Text;//年份范围
+    qryKhzy.FieldByName('khzy_wssl').Value:=self.edtSl1.Text+'-'+self.edtSl2.Text;//房音数量范围
+    if (bsknchckrdbxQg.Checked)and (bsknchckrdbxQz.Checked) then
+    begin
+     qryKhzy.FieldByName('khzy_zg').Value:='租购';
+     end
+     else
+    begin
+    if bsknchckrdbxQz.Checked then
+      qryKhzy.FieldByName('khzy_zg').Value:='求租';
+    if bsknchckrdbxQg.Checked then
+      qryKhzy.FieldByName('khzy_zg').Value:='求购';
+    end;
+    end;
 if bsknchckrdbxQz.Checked =True then
 begin
   qryKhzy.FieldByName('khzy_qz').Value :='Y';
@@ -332,10 +390,52 @@ end;
 
 qryKhzy.Post;
 //刷新用户管理数据
-
-CustomerManageForm.qryKhzy.Close;
+ self.qry1.Close;
+ CustomerManageForm.qryKhzy.Close;
  CustomerManageForm.qryKhzy.Open;
-Close;
+ self.qry1.Open;
+ Close;
+end;
+  //置业顾问
+procedure TCustomerDetailsForm.btn2Click(Sender: TObject);
+begin
+ edtZygwClick(Sender);
+end;
+   //基础设施
+procedure TCustomerDetailsForm.btn3Click(Sender: TObject);
+begin
+   BaseFacilitiesForm.SelectItems:=self.edtJcss.Text;
+   BaseFacilitiesForm.ShowModal;
+   self.qryKhzy.Edit;
+   self.qryKhzy.FieldByName('khzy_ptss1').Value:=BaseFacilitiesForm.SelectItems;
+end;
+ //  配套设施
+procedure TCustomerDetailsForm.btn4Click(Sender: TObject);
+begin
+   OtherFacilitiesForm.SelectItems:= self.edtPtss.Text;
+   OtherFacilitiesForm.ShowModal;
+   self.qryKhzy.Edit;
+   self.qryKhzy.FieldByName('khzy_ptss2').Value:=OtherFacilitiesForm.SelectItems;
+end;
+
+procedure TCustomerDetailsForm.edtZygwClick(Sender: TObject);
+begin
+   RealtorListForm.ygxm := self.edtZygw.Text;
+   RealtorListForm.ShowModal;
+   self.qryKhzy.Edit;
+   self.qryKhzy.FieldByName('khzy_fwly').Value:=RealtorListForm.ygxm;
+   if RealtorListForm.ygbh<>''then
+   self.qryKhzy.FieldByName('khzy_ygbh').Value:=RealtorListForm.ygbh
+end;
+
+procedure TCustomerDetailsForm.edtJcssClick(Sender: TObject);
+begin
+btn3Click(Sender);
+end;
+
+procedure TCustomerDetailsForm.edtPtssClick(Sender: TObject);
+begin
+btn4Click(Sender);
 end;
 
 end.

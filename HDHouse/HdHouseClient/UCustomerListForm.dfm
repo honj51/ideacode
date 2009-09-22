@@ -1,8 +1,8 @@
 object CustomerListForm: TCustomerListForm
-  Left = 276
-  Top = 192
-  AutoScroll = False
+  Left = 488
+  Top = 274
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #23458#25143#20449#24687
   ClientHeight = 284
   ClientWidth = 483
@@ -292,7 +292,7 @@ object CustomerListForm: TCustomerListForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 434
     Top = 2
   end

@@ -359,6 +359,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -392,6 +393,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -425,6 +427,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -458,6 +461,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -491,6 +495,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -524,6 +529,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -557,6 +563,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -590,6 +597,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -623,6 +631,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -656,6 +665,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -689,6 +699,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -722,6 +733,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -755,6 +767,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -788,6 +801,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -821,6 +835,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -854,6 +869,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -899,6 +915,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       GroupIndex = 0
       Caption = #20986#31199
       DataField = 'fczy_cz'
+      ReadOnly = True
       ValueChecked = 'True'
       ValueUnchecked = 'False'
     end
@@ -932,6 +949,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       GroupIndex = 0
       Caption = #20986#21806
       DataField = 'fczy_cs'
+      ReadOnly = True
       ValueChecked = 'True'
       ValueUnchecked = 'False'
     end
@@ -1059,6 +1077,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -1092,6 +1111,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -1125,6 +1145,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       ButtonMode = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
+      ReadOnly = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = 14
@@ -1153,6 +1174,7 @@ object HouseDetailInfoView: THouseDetailInfoView
       Lines.Strings = (
         'mmo1')
       ParentFont = False
+      ReadOnly = True
       ScrollBars = ssBoth
       TabOrder = 3
       DefaultFont.Charset = DEFAULT_CHARSET

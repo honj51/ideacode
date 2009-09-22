@@ -298,32 +298,32 @@ end;
        strFilter := strFilter + ' (fcgj_txlx like '+'''%'+looktest+'%'')'+' OR ';
        strFilter := strFilter + ' (fcgj_ygbh like '+'''%'+looktest+'%''))';
    end;
-//   if(self.bsknchckrdbx1.Checked)then
-//   begin
-//         if ischange then
-//         begin
-//          strFilter := strFilter +' and ';
-//         end
-//         else
-//         begin
-//           strFilter := strFilter +' where ';
-//         end;
-//         ischange:=true;
-//      strFilter := strFilter +  'cjxx_czssqk='+'''出租''';
-//   end;
-//   if(self.bsknchckrdbx2.Checked)then
-//   begin
-//       if ischange then
-//       begin
-//          strFilter := strFilter +' and ';
-//       end
-//       else
-//       begin
-//           strFilter := strFilter +' where ';
-//       end;
-//       ischange:=true;
-//      strFilter := strFilter +  'cjxx_czssqk='+'''出售''';
-//   end;
+    if(self.bsknchckrdbx1.Checked)then
+   begin
+         if ischange then
+         begin
+          strFilter := strFilter +' and ';
+         end
+         else
+         begin
+           strFilter := strFilter +' where ';
+         end;
+         ischange:=true;
+      strFilter := strFilter + ' fcgj_fybh in (select fczy_bh from fczy where fczy_cz=true)';
+   end;
+   if(self.bsknchckrdbx2.Checked)then
+   begin
+       if ischange then
+       begin
+          strFilter := strFilter +' and ';
+       end
+       else
+       begin
+           strFilter := strFilter +' where ';
+       end;
+       ischange:=true;
+      strFilter := strFilter + ' fcgj_fybh in (select fczy_bh from fczy where fczy_cs=true)';
+   end;
     HDHouseDataModule.qryTrackQuery.SQL.Add(strFilter) ;
      HDHouseDataModule.qryTrackQuery.Open;
  end;
@@ -339,6 +339,8 @@ begin
         HouseTrackInfoForm.ParmId :=IntToStr(RandomRange(10000000,99999999)); //IntToStr(random(10));
         HouseTrackInfoForm.fybh := HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString;
         HouseTrackInfoForm.ShowModal;
+        HDHouseDataModule.tblTrackRecords.Close;
+        HDHouseDataModule.tblTrackRecords.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -354,6 +356,8 @@ begin
         HouseTrackInfoForm.ParmEditorMode:= 'EDIT';
         HouseTrackInfoForm.ParmId := HDHouseDataModule.tblTrackRecords.fieldbyname('fcgj_bh').AsString;
         HouseTrackInfoForm.ShowModal;
+        HDHouseDataModule.tblTrackRecords.Close;
+        HDHouseDataModule.tblTrackRecords.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -362,10 +366,11 @@ end;
 
 procedure THouseTrackForm.trckrcrdvw1btn3Click(Sender: TObject);
 begin
-   if not HDHouseDataModule.tblTrackRecords.IsEmpty then
+    if HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('删除后无法恢复，确定删除吗？', '提示', nil, -1, [mbOK,mbCancel], 0)=2 then
     begin
-      HDHouseDataModule.tblTrackRecords.Delete;
+        Exit;
     end;
+   HDHouseDataModule.tblTrackRecords.Delete;
 end;
 
 procedure THouseTrackForm.trckrcrdvw1bskndbgrd1DblClick(Sender: TObject);

@@ -1,10 +1,11 @@
 object CustomerTrackForm: TCustomerTrackForm
-  Left = 329
-  Top = 181
-  Width = 1174
-  Height = 544
-  BorderIcons = [biSystemMenu, biMinimize]
+  Left = 274
+  Top = 113
+  BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #23458#25143#36319#36827
+  ClientHeight = 532
+  ClientWidth = 958
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +18,8 @@ object CustomerTrackForm: TCustomerTrackForm
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 0
-    Width = 1166
-    Height = 510
+    Width = 958
+    Height = 532
     ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -42,21 +43,24 @@ object CustomerTrackForm: TCustomerTrackForm
     DefaultFont.Style = []
     UseSkinFont = True
     DefaultItemHeight = 20
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'tab'
     object bskntbsht1: TbsSkinTabSheet
       Caption = #36319#36827#31649#29702
       inline cstmrlstvw1: TCustomerListView
         Left = 0
         Top = 0
-        Width = 1164
-        Height = 273
+        Width = 956
+        Height = 297
         Align = alTop
+        AutoScroll = False
         TabOrder = 0
         inherited bvl1: TBevel
-          Width = 1164
+          Width = 956
         end
         inherited bsknpnl1: TbsSkinPanel
-          Width = 1164
+          Width = 956
+          SkinData = HDHouseDataModule.bsSkinData1
           inherited btn1: TbsSkinButtonLabel
             Left = 272
             OnClick = cstmrlstvw1btn1Click
@@ -80,6 +84,7 @@ object CustomerTrackForm: TCustomerTrackForm
           end
           inherited bsknchckrdbx1: TbsSkinCheckRadioBox
             Left = 528
+            SkinData = HDHouseDataModule.bsSkinData1
             SkinDataName = 'checkbox'
             Radio = False
             GroupIndex = 0
@@ -96,12 +101,13 @@ object CustomerTrackForm: TCustomerTrackForm
           end
         end
         inherited bsknpnl2: TbsSkinPanel
-          Width = 1164
-          Height = 230
+          Width = 956
+          Height = 254
           inherited bskndbgrd1: TbsSkinDBGrid
-            Width = 1143
-            Height = 209
+            Width = 935
+            Height = 233
             DataSource = dsKhzy
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
             Columns = <
               item
                 Expanded = False
@@ -249,26 +255,28 @@ object CustomerTrackForm: TCustomerTrackForm
               end>
           end
           inherited bsknscrlbrCustomerDown: TbsSkinScrollBar
-            Top = 210
-            Width = 1162
-            SmallChange = 127
-            LargeChange = 127
+            Top = 234
+            Width = 954
+            Both = True
+            SmallChange = 42
+            LargeChange = 42
           end
           inherited bsknscrlbrCustomerRight: TbsSkinScrollBar
-            Left = 1144
-            Height = 209
-            PageSize = 3
-            Max = 5
+            Left = 936
+            Height = 233
+            Visible = True
+            PageSize = 4
+            Max = 7
           end
         end
       end
       object bsknpgcntrlPageC: TbsSkinPageControl
         Left = 0
-        Top = 273
-        Width = 1164
-        Height = 215
+        Top = 297
+        Width = 956
+        Height = 213
         HelpType = htKeyword
-        ActivePage = bskntbsht3
+        ActivePage = bskntbsht4
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBtnText
@@ -291,113 +299,139 @@ object CustomerTrackForm: TCustomerTrackForm
         DefaultFont.Style = []
         UseSkinFont = True
         DefaultItemHeight = 20
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'tab'
         object bskntbsht4: TbsSkinTabSheet
           Caption = #35814#32454#38656#27714#20449#24687
           inline DetailRequirementInfoView1: TDetailRequirementInfoView
             Left = 0
             Top = 0
-            Width = 1162
-            Height = 193
+            Width = 954
+            Height = 191
             Align = alClient
             AutoScroll = False
             TabOrder = 0
             inherited bsknpnl1: TbsSkinPanel
               inherited edt1: TbsSkinDBEdit
                 Text = ''
+                ReadOnly = True
                 DataField = 'qgjg'
                 DataSource = dsKhzy
               end
               inherited edt2: TbsSkinDBEdit
                 Text = ''
+                ReadOnly = True
                 DataField = 'qzjg'
                 DataSource = dsKhzy
               end
               inherited edt3: TbsSkinDBEdit
-                Text = '1'
+                Text = #26080
+                ReadOnly = True
                 DataField = 'khzy_qzsm'
                 DataSource = dsKhzy
               end
               inherited edt4: TbsSkinDBEdit
                 Text = #26080
+                ReadOnly = True
                 DataField = 'khzy_qgsm'
                 DataSource = dsKhzy
               end
               inherited edt5: TbsSkinDBEdit
                 Text = #26377#25928#23458#25143
+                ReadOnly = True
                 DataField = 'khzy_dqzt'
                 DataSource = dsKhzy
               end
               inherited edt6: TbsSkinDBEdit
                 Text = #26080
+                ReadOnly = True
                 DataField = 'khzy_wymc'
                 DataSource = dsKhzy
               end
               inherited edt7: TbsSkinDBEdit
-                Text = #19981#38480
+                Text = #30707#26223#23665#21306
+                ReadOnly = True
                 DataField = 'khzy_qy'
                 DataSource = dsKhzy
               end
               inherited edt8: TbsSkinDBEdit
                 Text = '1-3'
+                ReadOnly = True
                 DataField = 'khzy_wssl'
                 DataSource = dsKhzy
               end
               inherited edt9: TbsSkinDBEdit
                 Text = #23567#26446
+                ReadOnly = True
                 DataField = 'khzy_fwly'
                 DataSource = dsKhzy
               end
               inherited edt10: TbsSkinDBEdit
                 Text = #26222#36890#20303#23429
+                ReadOnly = True
                 DataField = 'khzy_wyyt'
                 DataSource = dsKhzy
               end
               inherited edt11: TbsSkinDBEdit
                 Text = #26222#35013
+                ReadOnly = True
                 DataField = 'khzy_zxcd'
                 DataSource = dsKhzy
               end
               inherited edt12: TbsSkinDBEdit
                 Text = '0-100'
+                ReadOnly = True
                 DataField = 'khzy_mj'
                 DataSource = dsKhzy
               end
               inherited edt13: TbsSkinDBEdit
                 Text = '2000-2008'
+                ReadOnly = True
                 DataField = 'khzy_nf'
                 DataSource = dsKhzy
               end
               inherited edt14: TbsSkinDBEdit
-                Text = #23567#39640#23618
+                Text = #39640#23618
+                ReadOnly = True
                 DataField = 'khzy_wylb'
                 DataSource = dsKhzy
               end
               inherited edt15: TbsSkinDBEdit
                 Text = #24179#23618
+                ReadOnly = True
                 DataField = 'khzy_fx'
                 DataSource = dsKhzy
+              end
+              inherited edt16: TbsSkinDBEdit
+                ReadOnly = True
               end
             end
             inherited bsknpnl2: TbsSkinPanel
               inherited edt17: TbsSkinDBEdit
                 Text = #26080
+                ReadOnly = True
                 DataField = 'khzy_ptss1'
                 DataSource = dsKhzy
               end
               inherited edt18: TbsSkinDBEdit
                 Text = #26080
+                ReadOnly = True
                 DataField = 'khzy_ptss2'
                 DataSource = dsKhzy
               end
               inherited edt19: TbsSkinDBEdit
                 Text = #26080
+                ReadOnly = True
                 DataField = 'khzy_jtdz'
                 DataSource = dsKhzy
+              end
+              inherited edt20: TbsSkinDBEdit
+                ReadOnly = True
               end
               inherited mmo1: TbsSkinDBMemo
                 Lines.Strings = (
                   #26080)
+                ReadOnly = True
                 DataField = 'khzy_xxbz'
                 DataSource = dsKhzy
               end
@@ -409,8 +443,8 @@ object CustomerTrackForm: TCustomerTrackForm
           inline CustomerSecureInfoView1: TCustomerSecureInfoView
             Left = 0
             Top = 0
-            Width = 1162
-            Height = 193
+            Width = 954
+            Height = 191
             Align = alClient
             AutoScroll = False
             Font.Charset = DEFAULT_CHARSET
@@ -423,52 +457,51 @@ object CustomerTrackForm: TCustomerTrackForm
             inherited bsSkinStdLabel1: TbsSkinStdLabel
               Left = 32
               Width = 57
-              AutoSize = False
               Caption = #19994#20027#22995#21517
             end
             inherited bsSkinStdLabel2: TbsSkinStdLabel
               Left = 240
               Width = 57
-              AutoSize = False
             end
             inherited bsSkinStdLabel3: TbsSkinStdLabel
               Left = 432
               Width = 57
-              AutoSize = False
             end
             inherited bsSkinStdLabel4: TbsSkinStdLabel
               Left = 32
               Width = 57
-              AutoSize = False
             end
             inherited bsSkinStdLabel5: TbsSkinStdLabel
               Left = 32
-              Width = 57
-              AutoSize = False
             end
             inherited edtName: TbsSkinDBEdit
-              Text = #23567#24352'1'
+              Text = #23567#24352
+              ReadOnly = True
               DataField = 'khzy_yzxm'
               DataSource = dsKhzy
             end
             inherited edtPhone: TbsSkinDBEdit
               Text = '685976798'
+              ReadOnly = True
               DataField = 'khzy_dh'
               DataSource = dsKhzy
             end
             inherited edtHandset: TbsSkinDBEdit
               Text = '136558996897'
+              ReadOnly = True
               DataField = 'khzy_tel'
               DataSource = dsKhzy
             end
             inherited edtAddress: TbsSkinDBEdit
               Text = #21335#36890#36335'125'#21495'3'#21495#27004'301'
+              ReadOnly = True
               DataField = 'khzy_jtwz'
               DataSource = dsKhzy
             end
             inherited mmoDescription: TbsSkinDBMemo
               Lines.Strings = (
                 #26080)
+              ReadOnly = True
               DataField = 'khzy_bmbz'
               DataSource = dsKhzy
             end
@@ -479,27 +512,36 @@ object CustomerTrackForm: TCustomerTrackForm
           inline trckrcrdvw1: TTrackRecordView
             Left = 0
             Top = 0
-            Width = 1162
-            Height = 193
+            Width = 954
+            Height = 191
             Align = alClient
+            AutoScroll = False
             TabOrder = 0
             inherited bskntlbr1: TbsSkinToolBar
-              Width = 1162
-              inherited btn1: TbsSkinSpeedButton
+              Width = 954
+              inherited btnadd: TbsSkinSpeedButton
+                SkinDataName = 'resizebutton'
                 OnClick = trckrcrdvw1btn1Click
               end
-              inherited btn2: TbsSkinSpeedButton
+              inherited btnupdate: TbsSkinSpeedButton
+                SkinDataName = 'resizebutton'
                 OnClick = trckrcrdvw1btn2Click
               end
-              inherited btn3: TbsSkinSpeedButton
+              inherited btndelete: TbsSkinSpeedButton
+                SkinDataName = 'resizebutton'
                 OnClick = trckrcrdvw1btn3Click
+              end
+              inherited btn4: TbsSkinSpeedButton
+                SkinDataName = 'resizebutton'
+                OnClick = trckrcrdvw1btn4Click
               end
             end
             inherited bskndbgrd1: TbsSkinDBGrid
-              Width = 1143
-              Height = 125
+              Width = 935
+              Height = 123
               DefaultRowHeight = 18
               DataSource = dsTrack
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
               PopupMenu = pmCustomerTrack
               TitleFont.Color = clBtnText
               TitleFont.Height = 14
@@ -540,16 +582,20 @@ object CustomerTrackForm: TCustomerTrackForm
                 end>
             end
             inherited bsknscrlbr1: TbsSkinScrollBar
-              Top = 174
-              Width = 1162
+              Top = 172
+              Width = 954
             end
             inherited bsknscrlbr2: TbsSkinScrollBar
-              Left = 1143
-              Height = 125
+              Left = 935
+              Height = 123
             end
             inherited bspngmglst24: TbsPngImageList
-              Left = 496
-              Top = 0
+              Left = 634
+              Top = 3
+            end
+            inherited bsSkinFrame1: TbsSkinFrame
+              Left = 537
+              Top = 7
             end
           end
         end
@@ -560,10 +606,11 @@ object CustomerTrackForm: TCustomerTrackForm
       object bsknpnl1: TbsSkinPanel
         Left = 0
         Top = 0
-        Width = 1164
+        Width = 956
         Height = 65
         HintImageIndex = 0
         TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'panel'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -591,7 +638,7 @@ object CustomerTrackForm: TCustomerTrackForm
         Caption = 'bsknpnl1'
         Align = alTop
         object btn4: TbsSkinButtonLabel
-          Left = 520
+          Left = 519
           Top = 8
           Width = 31
           Height = 33
@@ -712,6 +759,7 @@ object CustomerTrackForm: TCustomerTrackForm
           DefaultFont.Height = 14
           DefaultFont.Name = 'Arial'
           DefaultFont.Style = []
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'stdlabel'
           OnClick = btn4Click
         end
@@ -728,6 +776,7 @@ object CustomerTrackForm: TCustomerTrackForm
           DefaultFont.Height = -11
           DefaultFont.Name = 'MS Sans Serif'
           DefaultFont.Style = []
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'stdlabel'
           AutoSize = False
           Caption = #26469#30005#20449#24687#26597#35810
@@ -745,6 +794,7 @@ object CustomerTrackForm: TCustomerTrackForm
           DefaultFont.Height = -11
           DefaultFont.Name = 'MS Sans Serif'
           DefaultFont.Style = []
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'stdlabel'
           AutoSize = False
           Caption = #65293
@@ -762,6 +812,7 @@ object CustomerTrackForm: TCustomerTrackForm
           DefaultFont.Height = -11
           DefaultFont.Name = 'MS Sans Serif'
           DefaultFont.Style = []
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'stdlabel'
           AutoSize = False
           Caption = #26102#38388#33539#22260
@@ -781,6 +832,7 @@ object CustomerTrackForm: TCustomerTrackForm
           DefaultWidth = 0
           DefaultHeight = 0
           ButtonMode = False
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'edit'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -788,7 +840,7 @@ object CustomerTrackForm: TCustomerTrackForm
           Font.Name = 'Arial'
           Font.Style = []
           ParentFont = False
-          TabOrder = 0
+          TabOrder = 2
           LeftImageIndex = -1
           LeftImageHotIndex = -1
           LeftImageDownIndex = -1
@@ -802,12 +854,12 @@ object CustomerTrackForm: TCustomerTrackForm
           Width = 87
           Height = 18
           EditMask = '!0000/99/99;1; '
-          Text = '2009-09-08'
+          Text = '2009-09-19'
           AlphaBlend = False
           AlphaBlendAnimation = False
           AlphaBlendValue = 0
           UseSkinFont = True
-          Date = 40064.455858472220000000
+          Date = 40075.872363275460000000
           TodayDefault = True
           CalendarWidth = 200
           CalendarHeight = 150
@@ -828,6 +880,7 @@ object CustomerTrackForm: TCustomerTrackForm
           DefaultWidth = 0
           DefaultHeight = 0
           ButtonMode = True
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'buttonedit'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -850,12 +903,12 @@ object CustomerTrackForm: TCustomerTrackForm
           Width = 87
           Height = 18
           EditMask = '!0000/99/99;1; '
-          Text = '2009-09-08'
+          Text = '2009-09-19'
           AlphaBlend = False
           AlphaBlendAnimation = False
           AlphaBlendValue = 0
           UseSkinFont = True
-          Date = 40064.455858472220000000
+          Date = 40075.872363275460000000
           TodayDefault = True
           CalendarWidth = 200
           CalendarHeight = 150
@@ -876,6 +929,7 @@ object CustomerTrackForm: TCustomerTrackForm
           DefaultWidth = 0
           DefaultHeight = 0
           ButtonMode = True
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'buttonedit'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -884,7 +938,7 @@ object CustomerTrackForm: TCustomerTrackForm
           Font.Style = []
           MaxLength = 10
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 0
           LeftImageIndex = -1
           LeftImageHotIndex = -1
           LeftImageDownIndex = -1
@@ -899,6 +953,7 @@ object CustomerTrackForm: TCustomerTrackForm
           Height = 25
           HintImageIndex = 0
           TabOrder = 3
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'checkbox'
           DefaultFont.Charset = DEFAULT_CHARSET
           DefaultFont.Color = clWindowText
@@ -929,6 +984,7 @@ object CustomerTrackForm: TCustomerTrackForm
           Height = 25
           HintImageIndex = 0
           TabOrder = 4
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'checkbox'
           DefaultFont.Charset = DEFAULT_CHARSET
           DefaultFont.Color = clWindowText
@@ -956,8 +1012,8 @@ object CustomerTrackForm: TCustomerTrackForm
       object bsknpnl2: TbsSkinPanel
         Left = 0
         Top = 65
-        Width = 1164
-        Height = 423
+        Width = 956
+        Height = 445
         HintImageIndex = 0
         TabOrder = 1
         SkinDataName = 'panel'
@@ -989,10 +1045,11 @@ object CustomerTrackForm: TCustomerTrackForm
         object bskndbgrd1: TbsSkinDBGrid
           Left = 1
           Top = 1
-          Width = 1162
-          Height = 421
+          Width = 954
+          Height = 443
           HintImageIndex = 0
           TabOrder = 0
+          SkinData = HDHouseDataModule.bsSkinData1
           SkinDataName = 'grid'
           Transparent = False
           WallpaperStretch = False
@@ -1009,6 +1066,7 @@ object CustomerTrackForm: TCustomerTrackForm
           PickListBoxCaptionMode = False
           Align = alClient
           DataSource = dsTrackAll
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clBtnText
           TitleFont.Height = 14
@@ -1260,23 +1318,22 @@ object CustomerTrackForm: TCustomerTrackForm
   end
   object dsTrack: TDataSource
     DataSet = tblTrack
-    Left = 825
-    Top = 25
+    Left = 599
+    Top = 19
   end
   object qryTrackAll: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
       'select * from khgj')
-    Left = 873
-    Top = 21
+    Left = 787
+    Top = 22
   end
   object dsTrackAll: TDataSource
     DataSet = qryTrackAll
-    Left = 905
-    Top = 21
+    Left = 836
+    Top = 38
   end
   object pmCustomerTrack: TPopupMenu
     Left = 1096
@@ -1295,6 +1352,413 @@ object CustomerTrackForm: TCustomerTrackForm
     end
     object Z1: TMenuItem
       Caption = '  '#25171' '#21360'  '
+    end
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu]
+    Left = 709
+    Top = 21
+  end
+  object frxDBDataset1: TfrxDBDataset
+    UserName = 'frxDBDataset111'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'khgj_bh=khgj_bh'
+      'khgj_date=khgj_date'
+      'khgj_ms=khgj_ms'
+      'khgj_fs=khgj_fs'
+      'khgj_gjr=khgj_gjr'
+      'khgj_czy=khgj_czy'
+      'khgj_khbh=khgj_khbh'
+      'khgj_txyn=khgj_txyn'
+      'khgj_datetx=khgj_datetx'
+      'khgj_txlx=khgj_txlx')
+    DataSource = dsTrack
+    BCDToCurrency = False
+    Left = 428
+    Top = 323
+  end
+  object frxReport1: TfrxReport
+    Version = '4.7.181'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = #39044#35774
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 40072.661156863400000000
+    ReportOptions.LastChange = 40072.661156863400000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 357
+    Top = 322
+    Datasets = <
+      item
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDBDataset111'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object ReportTitle1: TfrxReportTitle
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Height = 45.354360000000000000
+        ParentFont = False
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Left = 257.008040000000000000
+          Top = 7.559059999999999000
+          Width = 154.960730000000000000
+          Height = 34.015770000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -32
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #28729#12833#22491#29882#29115#32344#28103#8451#20229)
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 536.693260000000000000
+          Top = 22.677180000000000000
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37827#12518#28257)
+          ParentFont = False
+        end
+        object Date: TfrxMemoView
+          Left = 597.165740000000000000
+          Top = 22.677180000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[Date]')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        Height = 30.236240000000000000
+        Top = 170.078850000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDBDataset111'
+        RowCount = 0
+        object frxDBDataset111khgj_bh: TfrxMemoView
+          Top = 7.559059999999988000
+          Width = 124.724490000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'khgj_bh'
+          DataSet = frxDBDataset1
+          DataSetName = 'frxDBDataset111'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDataset111."khgj_bh"]')
+          ParentFont = False
+        end
+        object frxDBDataset111khgj_gjr: TfrxMemoView
+          Left = 124.724490000000000000
+          Top = 7.559059999999988000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'khgj_gjr'
+          DataSet = frxDBDataset1
+          DataSetName = 'frxDBDataset111'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDataset111."khgj_gjr"]')
+          ParentFont = False
+        end
+        object frxDBDataset111khgj_fs: TfrxMemoView
+          Left = 219.212740000000000000
+          Top = 7.559059999999988000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'khgj_fs'
+          DataSet = frxDBDataset1
+          DataSetName = 'frxDBDataset111'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDataset111."khgj_fs"]')
+          ParentFont = False
+        end
+        object frxDBDataset111khgj_date: TfrxMemoView
+          Left = 306.141930000000000000
+          Top = 7.559059999999988000
+          Width = 128.504020000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'khgj_date'
+          DataSet = frxDBDataset1
+          DataSetName = 'frxDBDataset111'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDataset111."khgj_date"]')
+          ParentFont = False
+        end
+        object frxDBDataset111khgj_ms: TfrxMemoView
+          Left = 434.645950000000000000
+          Top = 7.559059999999988000
+          Width = 283.464750000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'khgj_ms'
+          DataSet = frxDBDataset1
+          DataSetName = 'frxDBDataset111'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDataset111."khgj_ms"]')
+          ParentFont = False
+        end
+        object Memo11: TfrxMemoView
+          Left = 3.779530000000000000
+          Top = 11.338590000000010000
+          Width = 714.331170000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Style = fsDot
+          Frame.Typ = [ftBottom]
+          ParentFont = False
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        Height = 22.677180000000000000
+        Top = 86.929190000000000000
+        Width = 718.110700000000000000
+        object Memo3: TfrxMemoView
+          Left = 3.779530000000000000
+          Width = 117.165430000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #29882#29115#32344#32514#26663#24447)
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          Left = 120.944960000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          Left = 215.433210000000000000
+          Width = 86.929190000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #29882#29115#32344#37826#29808#32033)
+          ParentFont = False
+        end
+        object Memo6: TfrxMemoView
+          Left = 430.866420000000000000
+          Width = 283.464750000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #29882#29115#32344#28103#8451#20229)
+          ParentFont = False
+        end
+        object Memo7: TfrxMemoView
+          Left = 302.362400000000000000
+          Width = 128.504020000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #29882#29115#32344#37827#22549#26879)
+          ParentFont = False
+        end
+        object Memo8: TfrxMemoView
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Top = 3.779529999999994000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftBottom]
+          ParentFont = False
+        end
+      end
+      object Footer1: TfrxFooter
+        Height = 22.677180000000000000
+        Top = 222.992270000000000000
+        Width = 718.110700000000000000
+        object Memo9: TfrxMemoView
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+        end
+      end
     end
   end
 end

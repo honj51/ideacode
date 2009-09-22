@@ -10,9 +10,7 @@ type
   TBaseFacilitiesForm = class(TForm)
     btn2: TbsSkinButton;
     btn3: TbsSkinButton;
-    bscmprsdstrdskn1: TbsCompressedStoredSkin;
     bsbsnsknfrm1: TbsBusinessSkinForm;
-    bskndt1: TbsSkinData;
     lst1: TbsSkinCheckListBox;
     procedure btn3Click(Sender: TObject);
     procedure btn2Click(Sender: TObject);
@@ -28,7 +26,7 @@ var
   BaseFacilitiesForm: TBaseFacilitiesForm;
 
 implementation
-   uses StrUtils;
+   uses StrUtils,UHDHouseDataModule;
 {$R *.dfm}
 
 procedure TBaseFacilitiesForm.btn3Click(Sender: TObject);
@@ -72,8 +70,13 @@ end ;
 procedure TBaseFacilitiesForm.FormShow(Sender: TObject);
 var 
 ur:userarray;
-i,j:Integer;
+i,j,m:Integer;
 begin
+    for m := 0 to self.lst1.Items.Count - 1 do
+    begin
+        lst1.Checked[m]:=false;
+    end;
+    
     if Trim(SelectItems)<>'нч'then
     begin
       ur:=split(self.SelectItems,';');
@@ -84,7 +87,9 @@ begin
           for j := 0 to self.lst1.Items.Count - 1 do
           begin
             if Trim(lst1.Items.Strings[j])=Trim(ur[i]) then
-             lst1.Checked[j]:=true;
+            begin
+              lst1.Checked[j]:=true;
+            end;
           end;
       end;
     end;

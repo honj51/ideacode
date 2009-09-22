@@ -1,8 +1,8 @@
 object HousePosterForm: THousePosterForm
-  Left = 242
-  Top = 170
-  AutoScroll = False
+  Left = 259
+  Top = 107
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #38376#24215#25307#36148
   ClientHeight = 469
   ClientWidth = 977
@@ -26,7 +26,7 @@ object HousePosterForm: THousePosterForm
     Height = 64
     HintImageIndex = 0
     SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'toolbutton'
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -61,7 +61,7 @@ object HousePosterForm: THousePosterForm
     Height = 64
     HintImageIndex = 0
     SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'toolbutton'
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -96,7 +96,7 @@ object HousePosterForm: THousePosterForm
     Height = 64
     HintImageIndex = 0
     SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'toolbutton'
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -131,7 +131,7 @@ object HousePosterForm: THousePosterForm
     Height = 64
     HintImageIndex = 0
     SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'toolbutton'
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -336,7 +336,7 @@ object HousePosterForm: THousePosterForm
     Width = 177
     Height = 469
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 5
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -460,7 +460,7 @@ object HousePosterForm: THousePosterForm
     Width = 113
     Height = 17
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 3
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -491,7 +491,7 @@ object HousePosterForm: THousePosterForm
     Width = 111
     Height = 17
     HintImageIndex = 0
-    TabOrder = 5
+    TabOrder = 4
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -610,6 +610,7 @@ object HousePosterForm: THousePosterForm
       PickListBoxCaptionMode = False
       Align = alClient
       DataSource = HDHouseDataModule.dsfczy
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       ParentFont = False
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -837,7 +838,7 @@ object HousePosterForm: THousePosterForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 0
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -885,7 +886,7 @@ object HousePosterForm: THousePosterForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -916,7 +917,7 @@ object HousePosterForm: THousePosterForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -1118,7 +1119,7 @@ object HousePosterForm: THousePosterForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 912
     Top = 13
   end

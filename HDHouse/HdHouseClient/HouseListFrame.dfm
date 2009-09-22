@@ -1,8 +1,8 @@
 object frameHouseList: TframeHouseList
   Left = 0
   Top = 0
-  Width = 1070
-  Height = 545
+  Width = 1069
+  Height = 546
   HelpContext = 1
   AutoScroll = False
   Font.Charset = DEFAULT_CHARSET
@@ -14,8 +14,8 @@ object frameHouseList: TframeHouseList
   TabOrder = 0
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
-    Top = 335
-    Width = 1070
+    Top = 336
+    Width = 1069
     Height = 210
     ActivePage = bsSkinTabSheet1
     Align = alBottom
@@ -25,7 +25,7 @@ object frameHouseList: TframeHouseList
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 2
     TabExtededDraw = False
     TabSpacing = 1
     TextInHorizontal = False
@@ -40,13 +40,14 @@ object frameHouseList: TframeHouseList
     DefaultFont.Style = []
     UseSkinFont = True
     DefaultItemHeight = 20
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'tab'
     object bsSkinTabSheet1: TbsSkinTabSheet
       Caption = #25151#28304#35814#32454#20449#24687
       object mmoHouseDetailInfo: TbsSkinDBMemo
         Left = 0
         Top = 0
-        Width = 1068
+        Width = 1067
         Height = 188
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -54,6 +55,8 @@ object frameHouseList: TframeHouseList
         Font.Height = 14
         Font.Name = 'Arial'
         Font.Style = []
+        Lines.Strings = (
+          'mmoHouseDetailInfo')
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 0
@@ -65,6 +68,7 @@ object frameHouseList: TframeHouseList
         UseSkinFont = True
         UseSkinFontColor = True
         BitMapBG = True
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'memo'
         DataField = 'HouseDetailInfo'
         DataSource = dsHouseList
@@ -75,7 +79,7 @@ object frameHouseList: TframeHouseList
       object mmoHouseSecrecyInfo: TbsSkinDBMemo
         Left = 0
         Top = 0
-        Width = 1068
+        Width = 1067
         Height = 188
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -83,6 +87,8 @@ object frameHouseList: TframeHouseList
         Font.Height = 14
         Font.Name = 'Arial'
         Font.Style = []
+        Lines.Strings = (
+          'mmoHouseSecrecyInfo')
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 0
@@ -94,6 +100,7 @@ object frameHouseList: TframeHouseList
         UseSkinFont = True
         UseSkinFontColor = True
         BitMapBG = True
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'memo'
         DataField = 'HouseSecrecyInfo'
         DataSource = dsHouseList
@@ -104,10 +111,11 @@ object frameHouseList: TframeHouseList
       object bskndbgrd1: TbsSkinDBGrid
         Left = 0
         Top = 0
-        Width = 1049
+        Width = 1048
         Height = 169
         HintImageIndex = 0
         TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'grid'
         Transparent = False
         WallpaperStretch = False
@@ -236,10 +244,12 @@ object frameHouseList: TframeHouseList
       object bsknscrlbrAutoDown: TbsSkinScrollBar
         Left = 0
         Top = 169
-        Width = 1068
+        Width = 1067
         Height = 19
         HintImageIndex = 0
-        TabOrder = 1
+        TabOrder = 2
+        Visible = False
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'hscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -263,13 +273,14 @@ object frameHouseList: TframeHouseList
         LargeChange = 63
       end
       object bsknscrlbrAutoRight: TbsSkinScrollBar
-        Left = 1049
+        Left = 1048
         Top = 0
         Width = 19
         Height = 169
         HintImageIndex = 0
-        TabOrder = 2
+        TabOrder = 1
         Visible = False
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'vscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -298,10 +309,11 @@ object frameHouseList: TframeHouseList
       object bskndbgrd2: TbsSkinDBGrid
         Left = 0
         Top = 0
-        Width = 1049
+        Width = 1048
         Height = 169
         HintImageIndex = 0
         TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'grid'
         Transparent = False
         WallpaperStretch = False
@@ -358,11 +370,12 @@ object frameHouseList: TframeHouseList
       object bsknscrlbrFollowDown: TbsSkinScrollBar
         Left = 0
         Top = 169
-        Width = 1068
+        Width = 1067
         Height = 19
         HintImageIndex = 0
-        TabOrder = 1
+        TabOrder = 2
         Visible = False
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'hscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -372,7 +385,7 @@ object frameHouseList: TframeHouseList
         DefaultWidth = 0
         DefaultHeight = 19
         UseSkinFont = True
-        Both = True
+        Both = False
         BothMarkerWidth = 19
         BothSkinDataName = 'bothhscrollbar'
         CanFocused = False
@@ -386,12 +399,14 @@ object frameHouseList: TframeHouseList
         LargeChange = 127
       end
       object bsknscrlbrFollowRight: TbsSkinScrollBar
-        Left = 1049
+        Left = 1048
         Top = 0
         Width = 19
         Height = 169
         HintImageIndex = 0
-        TabOrder = 2
+        TabOrder = 1
+        Visible = False
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'vscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
@@ -419,10 +434,11 @@ object frameHouseList: TframeHouseList
   object bsSkinPanel1: TbsSkinPanel
     Left = 0
     Top = 0
-    Width = 1070
+    Width = 1069
     Height = 97
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -450,7 +466,7 @@ object frameHouseList: TframeHouseList
     Caption = 'bsSkinPanel1'
     Align = alTop
     DesignSize = (
-      1070
+      1069
       97)
     object lbl1: TbsSkinStdLabel
       Left = 56
@@ -465,11 +481,12 @@ object frameHouseList: TframeHouseList
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       Caption = #36755#20837#25151#28304#20449#24687#26597#35810
     end
     object bsSkinButtonLabel2: TbsSkinButtonLabel
-      Left = 424
+      Left = 331
       Top = 14
       Width = 57
       Height = 33
@@ -590,13 +607,14 @@ object frameHouseList: TframeHouseList
       DefaultFont.Height = 14
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       OnClick = bsSkinButtonLabel2Click
     end
     object bvl1: TBevel
       Left = 0
       Top = 57
-      Width = 1068
+      Width = 1067
       Height = 2
       Anchors = [akLeft, akRight]
     end
@@ -613,6 +631,7 @@ object frameHouseList: TframeHouseList
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #22825#20869#30340#20449#24687
@@ -623,7 +642,8 @@ object frameHouseList: TframeHouseList
       Width = 97
       Height = 25
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -655,6 +675,7 @@ object frameHouseList: TframeHouseList
       Height = 25
       HintImageIndex = 0
       TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -685,7 +706,8 @@ object frameHouseList: TframeHouseList
       Width = 97
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 3
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -716,7 +738,8 @@ object frameHouseList: TframeHouseList
       Width = 97
       Height = 25
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -747,7 +770,8 @@ object frameHouseList: TframeHouseList
       Width = 113
       Height = 25
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 5
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -777,7 +801,8 @@ object frameHouseList: TframeHouseList
       Width = 113
       Height = 25
       HintImageIndex = 0
-      TabOrder = 5
+      TabOrder = 6
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -807,7 +832,8 @@ object frameHouseList: TframeHouseList
       Width = 89
       Height = 25
       HintImageIndex = 0
-      TabOrder = 6
+      TabOrder = 7
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -832,8 +858,8 @@ object frameHouseList: TframeHouseList
       OnClick = bsSkinCheckRadioBox3Click
     end
     object Edit1: TEdit
-      Left = 264
-      Top = 19
+      Left = 168
+      Top = 18
       Width = 145
       Height = 22
       Font.Charset = DEFAULT_CHARSET
@@ -842,7 +868,7 @@ object frameHouseList: TframeHouseList
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 0
     end
     object edtDate: TbsSkinNumericEdit
       Left = 416
@@ -863,6 +889,7 @@ object frameHouseList: TframeHouseList
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -882,10 +909,10 @@ object frameHouseList: TframeHouseList
   object bsSkinPanel2: TbsSkinPanel
     Left = 0
     Top = 97
-    Width = 1070
-    Height = 238
+    Width = 1069
+    Height = 239
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -915,10 +942,11 @@ object frameHouseList: TframeHouseList
     object bsSkinDBGrid1: TbsSkinDBGrid
       Left = 1
       Top = 1
-      Width = 1049
-      Height = 217
+      Width = 1048
+      Height = 218
       HintImageIndex = 0
       TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'grid'
       Transparent = False
       WallpaperStretch = False
@@ -1046,6 +1074,7 @@ object frameHouseList: TframeHouseList
         end
         item
           Expanded = False
+          FieldName = 'fczy_fwly'
           Title.Caption = #32622#19994#39038#38382
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
@@ -1128,11 +1157,12 @@ object frameHouseList: TframeHouseList
     end
     object bsknscrlbrHouseListDown: TbsSkinScrollBar
       Left = 1
-      Top = 218
-      Width = 1068
+      Top = 219
+      Width = 1067
       Height = 19
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'hscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1142,7 +1172,7 @@ object frameHouseList: TframeHouseList
       DefaultWidth = 0
       DefaultHeight = 19
       UseSkinFont = True
-      Both = True
+      Both = False
       BothMarkerWidth = 19
       BothSkinDataName = 'bothhscrollbar'
       CanFocused = False
@@ -1152,16 +1182,18 @@ object frameHouseList: TframeHouseList
       Min = 0
       Max = 127
       Position = 0
-      SmallChange = 31
-      LargeChange = 31
+      SmallChange = 18
+      LargeChange = 18
     end
     object bsknscrlbrHouseRight: TbsSkinScrollBar
-      Left = 1050
+      Left = 1049
       Top = 1
       Width = 19
-      Height = 217
+      Height = 218
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 1
+      Visible = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'vscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1177,21 +1209,77 @@ object frameHouseList: TframeHouseList
       CanFocused = False
       Align = alRight
       Kind = sbVertical
-      PageSize = 10
+      PageSize = 11
       Min = 1
-      Max = 19
+      Max = 21
       Position = 1
       SmallChange = 1
       LargeChange = 1
     end
   end
-  object bsknfrm1: TbsSkinFrame
-    DrawBackground = True
-    Left = 1024
-    Top = 8
+  object dsHouseList: TDataSource
+    DataSet = qryHouseList
+    Left = 781
+    Top = 49
+  end
+  object tblHouseTrack: TADOTable
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'fcgj_fybh'
+    MasterFields = 'fczy_bh'
+    MasterSource = dsHouseList
+    TableName = 'fcgj'
+    Left = 718
+    Top = 47
+  end
+  object dsHouseTrack: TDataSource
+    DataSet = tblHouseTrack
+    Left = 643
+    Top = 48
+  end
+  object qryCustomerTrack: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      '')
+    Left = 549
+    Top = 48
+  end
+  object dsCustomerTrack: TDataSource
+    DataSet = qryCustomerTrack
+    Left = 424
+    Top = 4
+  end
+  object pmAutoCustomer: TPopupMenu
+    Left = 949
+    Top = 54
+    object MenuItem1: TMenuItem
+      Caption = '  '#26174#31034#23458#25143#35814#32454#20449#24687'  '
+      OnClick = MenuItem1Click
+    end
+  end
+  object pmHouse: TPopupMenu
+    Left = 999
+    Top = 55
+    object MenuItem2: TMenuItem
+      Caption = '  '#25151#28304#35814#32454#20449#24687
+    end
+    object N1: TMenuItem
+      Caption = '    '#31199#25151#26597#35810
+    end
+    object N2: TMenuItem
+      Caption = '    '#20080#25151#26597#35810
+    end
+    object N3: TMenuItem
+      Caption = '    '#26032#22686#25151#28304
+    end
+    object N4: TMenuItem
+      Caption = '    '#25171#21360#25151#28304' '
+    end
   end
   object qryHouseList: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     AfterScroll = qryHouseListAfterScroll
@@ -1199,15 +1287,14 @@ object frameHouseList: TframeHouseList
     Parameters = <>
     SQL.Strings = (
       'select * from fczy')
-    Left = 960
-    Top = 8
+    Left = 860
+    Top = 50
     object qryHouseListfczy_bh: TWideStringField
       FieldName = 'fczy_bh'
       Size = 50
     end
-    object qryHouseListfczy_yn: TWideStringField
+    object qryHouseListfczy_yn: TBooleanField
       FieldName = 'fczy_yn'
-      Size = 50
     end
     object qryHouseListfczy_htbh: TWideStringField
       FieldName = 'fczy_htbh'
@@ -1299,9 +1386,8 @@ object frameHouseList: TframeHouseList
       FieldName = 'fczy_ptss2'
       Size = 50
     end
-    object qryHouseListfczy_cz: TWideStringField
+    object qryHouseListfczy_cz: TBooleanField
       FieldName = 'fczy_cz'
-      Size = 50
     end
     object qryHouseListfczy_zj: TFloatField
       FieldName = 'fczy_zj'
@@ -1310,9 +1396,8 @@ object frameHouseList: TframeHouseList
       FieldName = 'fczy_czsm'
       Size = 255
     end
-    object qryHouseListfczy_cs: TWideStringField
+    object qryHouseListfczy_cs: TBooleanField
       FieldName = 'fczy_cs'
-      Size = 50
     end
     object qryHouseListfczy_sj: TFloatField
       FieldName = 'fczy_sj'
@@ -1365,79 +1450,23 @@ object frameHouseList: TframeHouseList
       FieldName = 'fczy_sby'
       Size = 50
     end
-    object strngfldHouseListHouseSecrecyInfo: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'HouseSecrecyInfo'
-      Size = 200
-      Calculated = True
-    end
-    object strngfldHouseListHouseDetailInfo: TStringField
+    object qryHouseListHouseDetailInfo: TStringField
       FieldKind = fkCalculated
       FieldName = 'HouseDetailInfo'
-      Size = 200
+      Size = 500
+      Calculated = True
+    end
+    object qryHouseListHouseSecrecyInfo: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'HouseSecrecyInfo'
+      Size = 500
       Calculated = True
     end
   end
-  object dsHouseList: TDataSource
-    DataSet = qryHouseList
-    Left = 897
-    Top = 9
-  end
-  object tblHouseTrack: TADOTable
-    Active = True
-    Connection = HDHouseDataModule.con1
-    CursorType = ctStatic
-    IndexFieldNames = 'fcgj_fybh'
-    MasterFields = 'fczy_bh'
-    MasterSource = dsHouseList
-    TableName = 'fcgj'
-    Left = 728
-    Top = 56
-  end
-  object dsHouseTrack: TDataSource
-    DataSet = tblHouseTrack
-    Left = 697
-    Top = 57
-  end
-  object qryCustomerTrack: TADOQuery
-    Connection = HDHouseDataModule.con1
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      '')
-    Left = 664
-    Top = 56
-  end
-  object dsCustomerTrack: TDataSource
-    DataSet = qryCustomerTrack
-    Left = 632
-    Top = 56
-  end
-  object pmAutoCustomer: TPopupMenu
-    Left = 784
-    Top = 56
-    object MenuItem1: TMenuItem
-      Caption = '  '#26174#31034#23458#25143#35814#32454#20449#24687'  '
-      OnClick = MenuItem1Click
-    end
-  end
-  object pmHouse: TPopupMenu
-    Left = 856
-    Top = 56
-    object MenuItem2: TMenuItem
-      Caption = '  '#25151#28304#35814#32454#20449#24687
-    end
-    object N1: TMenuItem
-      Caption = '    '#31199#25151#26597#35810
-    end
-    object N2: TMenuItem
-      Caption = '    '#20080#25151#26597#35810
-    end
-    object N3: TMenuItem
-      Caption = '    '#26032#22686#25151#28304
-    end
-    object N4: TMenuItem
-      Caption = '    '#25171#21360#25151#28304' '
-    end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 994
+    Top = 11
   end
 end

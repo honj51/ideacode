@@ -1,7 +1,7 @@
 object DetailRequirementInfoView: TDetailRequirementInfoView
   Left = 0
   Top = 0
-  Width = 760
+  Width = 951
   Height = 202
   AutoScroll = False
   TabOrder = 0
@@ -12,6 +12,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
     Height = 177
     HintImageIndex = 0
     TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -45,6 +46,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Height = 25
       HintImageIndex = 0
       TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -73,7 +75,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 81
       Height = 25
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -103,6 +106,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Height = 21
       HintImageIndex = 0
       TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -131,7 +135,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 82
       Height = 21
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 6
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -160,7 +165,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 8
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -189,7 +195,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 5
+      TabOrder = 14
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -218,7 +225,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 6
+      TabOrder = 20
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -247,7 +255,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 7
+      TabOrder = 26
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -276,7 +285,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 8
+      TabOrder = 10
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -305,7 +315,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 9
+      TabOrder = 16
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -334,7 +345,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 10
+      TabOrder = 22
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -363,7 +375,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 11
+      TabOrder = 28
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -393,6 +406,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Height = 21
       HintImageIndex = 0
       TabOrder = 12
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -421,7 +435,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 13
+      TabOrder = 18
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -450,7 +465,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 14
+      TabOrder = 24
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -479,7 +495,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 76
       Height = 21
       HintImageIndex = 0
-      TabOrder = 15
+      TabOrder = 30
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -518,6 +535,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -525,7 +543,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 16
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -539,6 +557,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Top = 40
       Width = 97
       Height = 18
+      Text = 'edt2'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -549,6 +568,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -556,7 +576,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 17
+      TabOrder = 5
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -581,6 +601,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -588,7 +609,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 18
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -613,6 +634,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -620,7 +642,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 19
+      TabOrder = 7
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -645,6 +667,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -652,7 +675,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 20
+      TabOrder = 9
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -677,6 +700,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -684,7 +708,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 21
+      TabOrder = 15
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -709,6 +733,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -716,7 +741,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 22
+      TabOrder = 21
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -741,6 +766,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -748,7 +774,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 23
+      TabOrder = 27
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -773,6 +799,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -780,7 +807,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 24
+      TabOrder = 11
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -805,6 +832,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -812,7 +840,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 25
+      TabOrder = 17
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -837,6 +865,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -844,7 +873,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 26
+      TabOrder = 23
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -869,6 +898,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -876,7 +906,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 27
+      TabOrder = 29
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -901,6 +931,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -908,7 +939,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 28
+      TabOrder = 13
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -933,6 +964,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -940,7 +972,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 29
+      TabOrder = 19
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -965,6 +997,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -972,7 +1005,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 30
+      TabOrder = 25
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -997,6 +1030,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -1021,6 +1055,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
     Height = 177
     HintImageIndex = 0
     TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -1054,6 +1089,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Height = 21
       HintImageIndex = 0
       TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1082,7 +1118,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1111,7 +1148,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1140,7 +1178,8 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Width = 52
       Height = 21
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 6
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'label'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1179,6 +1218,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -1186,7 +1226,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1211,6 +1251,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -1218,7 +1259,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1243,6 +1284,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -1250,7 +1292,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 5
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1275,6 +1317,7 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -1314,7 +1357,14 @@ object DetailRequirementInfoView: TDetailRequirementInfoView
       UseSkinFont = True
       UseSkinFontColor = True
       BitMapBG = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'memo'
     end
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 901
+    Top = 5
   end
 end

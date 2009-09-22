@@ -40,7 +40,6 @@ type
     bsbsnsknfrm1: TbsBusinessSkinForm;
     qry_ygxxxx: TADOQuery;
     ds_ygxxxx: TDataSource;
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btn2Click(Sender: TObject);
     procedure btn1Click(Sender: TObject);
@@ -119,12 +118,6 @@ begin
   result:=True;
 end;
 
-procedure TEmployeeInfoForm.FormCreate(Sender: TObject);
-begin
-        inherited;
-        //
-end;
-
 procedure TEmployeeInfoForm.FormShow(Sender: TObject);
 
 begin
@@ -181,13 +174,13 @@ begin
 
   inherited;
   if f_CheckValue()=False then  exit;
-            // 数据保存处理
-            if Self.ParmEditorMode ='ADD' then
-            begin
+  // 数据保存处理
+  if Self.ParmEditorMode ='ADD' then
+  begin
      qry_ygxxxx.FieldByName('ygxx_csdate').Value:=edtygxx_csdate.Text+' '+FormatDateTime('tt',Now);
      qry_ygxxxx.FieldByName('ygxx_jzdate').Value:=edtygxx_jzdate.Text+' '+FormatDateTime('tt',Now);
                 qry_ygxxxx.Post;
-            end;
+  end;
 
   HDHouseDataModule.con1.BeginTrans;
   try
@@ -200,7 +193,7 @@ begin
     exit;
   end;
      HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('数据保存成功！', '提示', nil, -1, [mbOk], 0);
-    Close;
+  Close;
 
 end;
 procedure TEmployeeInfoForm.FormCloseQuery(Sender: TObject;

@@ -266,8 +266,13 @@ end;
  //窗体创建时
  procedure THouseDealManageForm.FormCreate(Sender: TObject);
 begin
+    HDHouseDataModule.qryContractQuery.Active:=true;
+    HDHouseDataModule.qryfczy.Active:=true;
+    HDHouseDataModule.qryTrackQuery.Active:=true;
+    HDHouseDataModule.tblTrackRecords.Active:=true;
     self.cntrctqryfrm1.edtBeginDate.Date:=Now-50;
     self.cntrctqryfrm1.edtEndDate.Date:=Now;
+    self.dlhslstvw1.cbb1.ItemIndex:=0;
 end;
  procedure THouseDealManageForm.ContractQuery;
  var isChange:bool;
@@ -379,6 +384,8 @@ begin
         HouseTrackInfoForm.ParmId := str;
         HouseTrackInfoForm.fybh := HDHouseDataModule.qryfczy.fieldbyname('fczy_bh').AsString;
         HouseTrackInfoForm.ShowModal;
+        HDHouseDataModule.qryfczy.Close;
+        HDHouseDataModule.qryfczy.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -394,6 +401,8 @@ begin
         HouseTrackInfoForm.ParmEditorMode:= 'EDIT';
         HouseTrackInfoForm.ParmId := HDHouseDataModule.tblTrackRecords.fieldbyname('fcgj_bh').AsString;
         HouseTrackInfoForm.ShowModal;
+        HDHouseDataModule.qryfczy.Close;
+        HDHouseDataModule.qryfczy.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -402,10 +411,11 @@ end;
      //删除
 procedure THouseDealManageForm.trckrcrdvw1btn3Click(Sender: TObject);
 begin
-   if not HDHouseDataModule.tblTrackRecords.IsEmpty then
+    if HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('删除后无法恢复，确定删除吗？', '提示', nil, -1, [mbOK,mbCancel], 0)=2 then
     begin
-      HDHouseDataModule.tblTrackRecords.Delete;
+        Exit;
     end;
+    HDHouseDataModule.tblTrackRecords.Delete;
 end;
    //选择查看
 procedure THouseDealManageForm.trckrcrdvw1bskndbgrd1DblClick(
@@ -588,7 +598,6 @@ begin
    begin
       filename:= GetCurrentDir +'\Contract\'+HDHouseDataModule.qryContractQuery.fieldbyname('cjxx_htbh').AsString+'.doc';
       ShellExecute(handle, 'Open', PChar(filename), nil, nil, SW_NORMAL);
-
    end;
 end;
 

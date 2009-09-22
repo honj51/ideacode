@@ -9,7 +9,6 @@ uses
 
 type
   TTrackQueryFrame = class(TFrame)
-    bsSkinDBGrid1: TbsSkinDBGrid;
     bsknpnl1: TbsSkinPanel;
     lbl1: TbsSkinStdLabel;
     edt1: TbsSkinDateEdit;
@@ -22,6 +21,7 @@ type
     bsknchckrdbx1: TbsSkinCheckRadioBox;
     bsknchckrdbx2: TbsSkinCheckRadioBox;
     bsknfrm1: TbsSkinFrame;
+    bskndbgrd1: TbsSkinDBGrid;
   private
     { Private declarations }
   public

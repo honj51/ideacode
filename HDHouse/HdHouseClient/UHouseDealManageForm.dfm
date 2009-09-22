@@ -1,10 +1,10 @@
 object HouseDealManageForm: THouseDealManageForm
-  Left = 280
-  Top = 55
-  AutoScroll = False
+  Left = 314
+  Top = 92
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25104#20132#31649#29702' '
-  ClientHeight = 569
+  ClientHeight = 580
   ClientWidth = 876
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object HouseDealManageForm: THouseDealManageForm
     Left = 0
     Top = 0
     Width = 876
-    Height = 569
+    Height = 580
     ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -50,7 +50,7 @@ object HouseDealManageForm: THouseDealManageForm
       Caption = #25104#20132#31649#29702
       DesignSize = (
         874
-        547)
+        558)
       object btn1: TbsSkinSpeedButton
         Left = 23
         Top = 5
@@ -58,7 +58,7 @@ object HouseDealManageForm: THouseDealManageForm
         Height = 64
         HintImageIndex = 0
         SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'toolbutton'
+        SkinDataName = 'resizebutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -93,7 +93,7 @@ object HouseDealManageForm: THouseDealManageForm
         Height = 64
         HintImageIndex = 0
         SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'toolbutton'
+        SkinDataName = 'resizebutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -128,7 +128,7 @@ object HouseDealManageForm: THouseDealManageForm
         Height = 64
         HintImageIndex = 0
         SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'toolbutton'
+        SkinDataName = 'resizebutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -158,9 +158,9 @@ object HouseDealManageForm: THouseDealManageForm
       end
       object bsknpgcntrl2: TbsSkinPageControl
         Left = 0
-        Top = 322
+        Top = 332
         Width = 874
-        Height = 225
+        Height = 226
         ActivePage = bskntbsht3
         Align = alBottom
         Font.Charset = DEFAULT_CHARSET
@@ -192,19 +192,20 @@ object HouseDealManageForm: THouseDealManageForm
             Left = 0
             Top = 0
             Width = 872
-            Height = 203
+            Height = 204
             Align = alClient
             AutoScroll = False
             TabOrder = 0
             inherited bskntlbr1: TbsSkinToolBar
               Width = 872
-              inherited btn1: TbsSkinSpeedButton
+              inherited btnadd: TbsSkinSpeedButton
                 OnClick = trckrcrdvw1btn1Click
               end
-              inherited btn2: TbsSkinSpeedButton
+              inherited btnupdate: TbsSkinSpeedButton
+                Left = 71
                 OnClick = trckrcrdvw1btn2Click
               end
-              inherited btn3: TbsSkinSpeedButton
+              inherited btndelete: TbsSkinSpeedButton
                 OnClick = trckrcrdvw1btn3Click
               end
               inherited btn4: TbsSkinSpeedButton
@@ -214,9 +215,10 @@ object HouseDealManageForm: THouseDealManageForm
             end
             inherited bskndbgrd1: TbsSkinDBGrid
               Width = 853
-              Height = 135
+              Height = 136
               DefaultRowHeight = 18
               DataSource = HDHouseDataModule.dsTrackRecords
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
               PopupMenu = bsSkinPopupMenu1
               TitleFont.Color = clBtnText
               TitleFont.Height = 14
@@ -257,12 +259,12 @@ object HouseDealManageForm: THouseDealManageForm
                 end>
             end
             inherited bsknscrlbr1: TbsSkinScrollBar
-              Top = 184
+              Top = 185
               Width = 872
             end
             inherited bsknscrlbr2: TbsSkinScrollBar
               Left = 853
-              Height = 135
+              Height = 136
             end
             inherited bspngmglst24: TbsPngImageList
               Left = 651
@@ -280,7 +282,7 @@ object HouseDealManageForm: THouseDealManageForm
             Left = 0
             Top = 0
             Width = 872
-            Height = 203
+            Height = 204
             Align = alClient
             AutoScroll = False
             TabOrder = 0
@@ -308,7 +310,7 @@ object HouseDealManageForm: THouseDealManageForm
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt5: TbsSkinDBEdit
-                Text = #20445#30041#29366#24577
+                Text = #27491#24120#29366#24577
                 DataField = 'fczy_dqzt'
                 DataSource = HDHouseDataModule.dsfczy
               end
@@ -318,12 +320,12 @@ object HouseDealManageForm: THouseDealManageForm
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt7: TbsSkinDBEdit
-                Text = #26397#38451#21306
+                Text = #35199#22478#21306
                 DataField = 'fczy_qy'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt8: TbsSkinDBEdit
-                Text = '4'#23460'2'#21381'1'#21355'1'
+                Text = '4'#23460'1'#21381'1'#21355'1'#38451
                 DataField = 'fczy_hxjg'
                 DataSource = HDHouseDataModule.dsfczy
               end
@@ -333,7 +335,7 @@ object HouseDealManageForm: THouseDealManageForm
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt10: TbsSkinDBEdit
-                Text = #21830#19994#29992#25143
+                Text = #21150#20844#29992#25151
                 DataField = 'fczy_wyyt'
                 DataSource = HDHouseDataModule.dsfczy
               end
@@ -363,16 +365,16 @@ object HouseDealManageForm: THouseDealManageForm
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt16: TbsSkinDBEdit
-                Text = '2/10'
+                Text = '36/16'
                 DataField = 'fczy_lccg'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
                 State = cbChecked
-                Checked = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
+                Left = 10
                 State = cbChecked
                 Checked = True
                 DataSource = HDHouseDataModule.dsfczy
@@ -406,13 +408,13 @@ object HouseDealManageForm: THouseDealManageForm
             Left = 0
             Top = 0
             Width = 872
-            Height = 203
+            Height = 204
             Align = alClient
             AutoScroll = False
             TabOrder = 0
             inherited bsknpnl1: TbsSkinPanel
               Width = 872
-              Height = 203
+              Height = 204
               inherited bsSkinStdLabel1: TbsSkinStdLabel
                 Left = 30
                 Top = 32
@@ -461,7 +463,7 @@ object HouseDealManageForm: THouseDealManageForm
                 Left = 102
                 Top = 85
                 Lines.Strings = (
-                  #25105#26159#35841#21834)
+                  #26080)
                 DataSource = HDHouseDataModule.dsfczy
               end
             end
@@ -472,7 +474,7 @@ object HouseDealManageForm: THouseDealManageForm
         Left = 1
         Top = 68
         Width = 865
-        Height = 253
+        Height = 258
         Anchors = [akLeft, akTop, akRight, akBottom]
         AutoScroll = False
         TabOrder = 0
@@ -504,6 +506,7 @@ object HouseDealManageForm: THouseDealManageForm
           Width = 968
           Height = 181
           DataSource = HDHouseDataModule.dsfczy
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           PopupMenu = pm1
           OnDblClick = dlhslstvw1bskndbgrd1DblClick
           Columns = <
@@ -691,7 +694,7 @@ object HouseDealManageForm: THouseDealManageForm
           OnClick = dlhslstvw1btngaojibtn2Click
         end
         inherited bsknscrlbr1: TbsSkinScrollBar
-          Top = 234
+          Top = 239
           Width = 865
           Visible = True
           Max = 127
@@ -715,15 +718,16 @@ object HouseDealManageForm: THouseDealManageForm
           Top = 15
           Width = 43
           Height = 19
-          TabOrder = 4
         end
         inherited edt1: TbsSkinMaskEdit
           Left = 269
           Height = 22
-          TabOrder = 3
+          TabOrder = 2
         end
         inherited cbb1: TbsSkinComboBox
-          TabOrder = 2
+          Left = 65
+          Top = 16
+          TabOrder = 4
         end
       end
     end
@@ -731,7 +735,7 @@ object HouseDealManageForm: THouseDealManageForm
       Caption = #31614#32422#26597#35810
       DesignSize = (
         874
-        547)
+        558)
       object btn4: TbsSkinSpeedButton
         Left = 104
         Top = 5
@@ -739,7 +743,7 @@ object HouseDealManageForm: THouseDealManageForm
         Height = 64
         HintImageIndex = 0
         SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'toolbutton'
+        SkinDataName = 'resizebutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -774,7 +778,7 @@ object HouseDealManageForm: THouseDealManageForm
         Height = 64
         HintImageIndex = 0
         SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'toolbutton'
+        SkinDataName = 'resizebutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -809,7 +813,7 @@ object HouseDealManageForm: THouseDealManageForm
         Height = 64
         HintImageIndex = 0
         SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'toolbutton'
+        SkinDataName = 'resizebutton'
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clWindowText
         DefaultFont.Height = 14
@@ -841,7 +845,7 @@ object HouseDealManageForm: THouseDealManageForm
         Left = 2
         Top = 67
         Width = 947
-        Height = 481
+        Height = 492
         Anchors = [akLeft, akTop, akBottom]
         AutoScroll = False
         TabOrder = 0
@@ -861,12 +865,13 @@ object HouseDealManageForm: THouseDealManageForm
           OnClick = cntrctqryfrm1bsknchckrdbx2Click
         end
         inherited bskndbgrd1: TbsSkinDBGrid
-          Left = -2
-          Top = 47
+          Left = -3
+          Top = 48
           Width = 933
           Height = 407
           Align = alCustom
           DataSource = HDHouseDataModule.dsContractQuery
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           PopupMenu = bsSkinPopupMenu2
           Columns = <
             item
@@ -1014,19 +1019,16 @@ object HouseDealManageForm: THouseDealManageForm
             end>
         end
         inherited bsknscrlbr1: TbsSkinScrollBar
-          Top = 460
+          Top = 471
           Width = 947
           Height = 21
           Visible = True
           SkinData = HDHouseDataModule.bsSkinData1
           Max = 127
         end
-        inherited edt1: TbsSkinMaskEdit
-          Text = ''
-        end
         inherited bsSkinFrame1: TbsSkinFrame
-          Left = 824
-          Top = 6
+          Left = 819
+          Top = 11
         end
       end
     end
@@ -1079,9 +1081,9 @@ object HouseDealManageForm: THouseDealManageForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 842
-    Top = 32
+    BorderIcons = [biSystemMenu]
+    Left = 809
+    Top = 30
   end
   object frxReport1: TfrxReport
     Version = '4.7.181'
@@ -1098,8 +1100,8 @@ object HouseDealManageForm: THouseDealManageForm
       'begin'
       ''
       'end.')
-    Left = 510
-    Top = 1
+    Left = 506
+    Top = 8
     Datasets = <
       item
         DataSet = frxDBDataset1
@@ -1139,8 +1141,8 @@ object HouseDealManageForm: THouseDealManageForm
           ParentFont = False
         end
         object Memo2: TfrxMemoView
-          Left = 548.031850000000000000
-          Top = 30.236240000000000000
+          Left = 548.031849999999900000
+          Top = 30.236239999999990000
           Width = 49.133890000000000000
           Height = 15.118120000000000000
           ShowHint = False
@@ -1149,6 +1151,8 @@ object HouseDealManageForm: THouseDealManageForm
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          Memo.UTF8 = (
+            #37827#12518#28257)
           ParentFont = False
         end
         object Date: TfrxMemoView
@@ -1198,6 +1202,8 @@ object HouseDealManageForm: THouseDealManageForm
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           HAlign = haCenter
+          Memo.UTF8 = (
+            '')
           ParentFont = False
         end
         object Memo5: TfrxMemoView
@@ -1276,6 +1282,8 @@ object HouseDealManageForm: THouseDealManageForm
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           HAlign = haCenter
+          Memo.UTF8 = (
+            #37812#25358#31790#32491#35826#28727)
           ParentFont = False
         end
         object Memo10: TfrxMemoView
@@ -1338,6 +1346,8 @@ object HouseDealManageForm: THouseDealManageForm
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           HAlign = haCenter
+          Memo.UTF8 = (
+            #37714#29256#28257#37827#22549#26879)
           ParentFont = False
         end
       end
@@ -1569,14 +1579,15 @@ object HouseDealManageForm: THouseDealManageForm
     Creator = 'FastReport'
     EmptyLines = True
     SuppressPageHeadersFooters = False
-    Left = 447
+    Left = 445
+    Top = 13
   end
   object frxDBDataset2: TfrxDBDataset
     UserName = 'frxDBDataset2'
     CloseDataSource = False
     DataSet = HDHouseDataModule.qryTrackQuery
     BCDToCurrency = False
-    Left = 578
+    Left = 605
     Top = 48
   end
   object frxReport2: TfrxReport
@@ -1594,8 +1605,8 @@ object HouseDealManageForm: THouseDealManageForm
       'begin'
       ''
       'end.')
-    Left = 513
-    Top = 48
+    Left = 510
+    Top = 49
     Datasets = <
       item
         DataSet = frxDBDataset2
@@ -1721,8 +1732,6 @@ object HouseDealManageForm: THouseDealManageForm
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           HAlign = haCenter
-          Memo.UTF8 = (
-            '')
           ParentFont = False
           VAlign = vaCenter
         end
@@ -1906,8 +1915,8 @@ object HouseDealManageForm: THouseDealManageForm
     end
   end
   object pm1: TPopupMenu
-    Left = 664
-    Top = 34
+    Left = 666
+    Top = 16
     object N1: TMenuItem
       Caption = #31614#32422#25104#20132
       OnClick = N1Click
@@ -1922,8 +1931,8 @@ object HouseDealManageForm: THouseDealManageForm
     end
   end
   object bsSkinPopupMenu1: TbsSkinPopupMenu
-    Left = 744
-    Top = 40
+    Left = 733
+    Top = 34
     object N4: TMenuItem
       Caption = #22686#21152
       OnClick = N4Click
@@ -1942,8 +1951,8 @@ object HouseDealManageForm: THouseDealManageForm
     end
   end
   object bsSkinPopupMenu2: TbsSkinPopupMenu
-    Left = 358
-    Top = 41
+    Left = 362
+    Top = 6
     object N8: TMenuItem
       Caption = #25171#24320#21512#21516
       OnClick = N8Click

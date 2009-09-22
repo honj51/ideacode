@@ -1,11 +1,11 @@
 object HouseStatisticQueryForm: THouseStatisticQueryForm
-  Left = 215
-  Top = 122
-  AutoScroll = False
-  BorderIcons = [biSystemMenu, biMinimize]
+  Left = 211
+  Top = 24
+  BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25151#28304#26597#35810
   ClientHeight = 639
-  ClientWidth = 1073
+  ClientWidth = 1068
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,6 +14,9 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  DesignSize = (
+    1068
+    639)
   PixelsPerInch = 96
   TextHeight = 13
   object bvl1: TBevel
@@ -23,9 +26,9 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Height = 2
   end
   object lbl1: TbsSkinStdLabel
-    Left = 16
+    Left = 10
     Top = 96
-    Width = 48
+    Width = 66
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -35,12 +38,14 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
+    AutoSize = False
     Caption = #26102#38388#33539#22260
   end
   object lbl10: TbsSkinStdLabel
-    Left = 165
-    Top = 94
+    Left = 158
+    Top = 96
     Width = 12
     Height = 13
     EllipsType = bsetNone
@@ -55,9 +60,9 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Caption = #65293
   end
   object lbl2: TbsSkinStdLabel
-    Left = 269
+    Left = 258
     Top = 96
-    Width = 48
+    Width = 60
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -67,13 +72,15 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
+    AutoSize = False
     Caption = #25151#20135#26469#28304
   end
   object lbl3: TbsSkinStdLabel
-    Left = 418
-    Top = 96
-    Width = 48
+    Left = 410
+    Top = 98
+    Width = 59
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -83,13 +90,15 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
+    AutoSize = False
     Caption = #25151#28304#29366#24577
   end
   object lbl4: TbsSkinStdLabel
-    Left = 574
+    Left = 566
     Top = 96
-    Width = 48
+    Width = 58
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -103,9 +112,9 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Caption = #31199#21806#29366#24577
   end
   object lbl5: TbsSkinStdLabel
-    Left = 717
-    Top = 96
-    Width = 48
+    Left = 705
+    Top = 97
+    Width = 63
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -115,7 +124,9 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
+    AutoSize = False
     Caption = #21592#24037#22995#21517
   end
   object btn3: TbsSkinButtonLabel
@@ -199,13 +210,14 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultFont.Height = 14
     DefaultFont.Name = 'Arial'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     OnClick = btn3Click
   end
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 405
-    Width = 1073
+    Width = 1068
     Height = 234
     ActivePage = bsSkinTabSheet1
     Align = alBottom
@@ -215,7 +227,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 11
     TabExtededDraw = False
     TabSpacing = 1
     TextInHorizontal = False
@@ -230,6 +242,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultFont.Style = []
     UseSkinFont = True
     DefaultItemHeight = 20
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'tab'
     object bsSkinTabSheet1: TbsSkinTabSheet
       Caption = #25151#28304#35814#32454#20449#24687
@@ -238,6 +251,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         Top = 7
         Width = 926
         Height = 200
+        AutoScroll = False
         TabOrder = 0
         inherited bsknpnl1: TbsSkinPanel
           inherited edt1: TbsSkinDBEdit
@@ -271,7 +285,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
             DataSource = ds1
           end
           inherited edt7: TbsSkinDBEdit
-            Text = #19996#22478#21306
+            Text = #35199#22478#21306
             DataField = 'fczy_qy'
             DataSource = ds1
           end
@@ -316,8 +330,16 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
             DataSource = ds1
           end
           inherited edt16: TbsSkinDBEdit
-            Text = '16/36'
+            Text = '36/16'
             DataField = 'fczy_lccg'
+            DataSource = ds1
+          end
+          inherited bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
+            DataSource = ds1
+          end
+          inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
+            State = cbChecked
+            Checked = True
             DataSource = ds1
           end
         end
@@ -383,6 +405,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
           Left = 120
           Top = 38
           Text = #20029#20029
+          ReadOnly = True
           DataField = 'fczy_yzxm'
           DataSource = ds1
         end
@@ -390,6 +413,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
           Left = 320
           Top = 38
           Text = '56585658'
+          ReadOnly = True
           DataField = 'fczy_dh'
           DataSource = ds1
         end
@@ -397,6 +421,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
           Left = 520
           Top = 38
           Text = '138666666666'
+          ReadOnly = True
           DataField = 'fczy_tel'
           DataSource = ds1
         end
@@ -404,6 +429,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
           Left = 120
           Top = 70
           Text = #21830#22478#36335'110'#21495
+          ReadOnly = True
           DataField = 'fczy_jtdz'
           DataSource = ds1
         end
@@ -411,6 +437,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
           Left = 120
           Lines.Strings = (
             #26080)
+          ReadOnly = True
           DataField = 'fczy_bmbz'
           DataSource = ds1
         end
@@ -418,17 +445,17 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     end
   end
   object edt1: TbsSkinDateEdit
-    Left = 82
-    Top = 94
-    Width = 80
+    Left = 70
+    Top = 93
+    Width = 92
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-08'
+    Text = '2009-09-21'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40064.619176064810000000
+    Date = 40077.418971886570000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -449,6 +476,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -457,7 +485,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 3
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -466,17 +494,17 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     RightImageDownIndex = -1
   end
   object edt2: TbsSkinDateEdit
-    Left = 185
-    Top = 94
-    Width = 80
+    Left = 172
+    Top = 93
+    Width = 88
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-08'
+    Text = '2009-09-21'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40064.619176064810000000
+    Date = 40077.418971886570000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -497,6 +525,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -505,7 +534,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 4
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -528,6 +557,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -535,7 +565,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 8
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -549,7 +579,8 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 75
     Height = 25
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -581,8 +612,9 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 65
     Height = 57
     HintImageIndex = 0
-    TabOrder = 5
-    SkinDataName = 'button'
+    TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -745,8 +777,9 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 65
     Height = 57
     HintImageIndex = 0
-    TabOrder = 6
-    SkinDataName = 'button'
+    TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -925,7 +958,8 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 89
     Height = 20
     HintImageIndex = 0
-    TabOrder = 7
+    TabOrder = 5
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -973,12 +1007,13 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Style = bscbFixedStyle
   end
   object cbb1: TbsSkinComboBox
-    Left = 472
-    Top = 96
+    Left = 468
+    Top = 93
     Width = 97
     Height = 20
     HintImageIndex = 0
-    TabOrder = 8
+    TabOrder = 6
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -1026,12 +1061,13 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Style = bscbFixedStyle
   end
   object cbb2: TbsSkinComboBox
-    Left = 627
-    Top = 94
+    Left = 621
+    Top = 93
     Width = 81
     Height = 20
     HintImageIndex = 0
-    TabOrder = 9
+    TabOrder = 7
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -1125,7 +1161,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
       Height = 25
       HintImageIndex = 0
       Anchors = [akRight, akBottom]
-      TabOrder = 0
+      TabOrder = 1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1158,7 +1194,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
       Height = 25
       HintImageIndex = 0
       Anchors = [akRight, akBottom]
-      TabOrder = 1
+      TabOrder = 2
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -1190,7 +1226,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
       Width = 351
       Height = 208
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 0
       SkinDataName = 'grid'
       Transparent = False
       WallpaperStretch = False
@@ -1291,10 +1327,11 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     end
   end
   object DBGridEh1: TDBGridEh
-    Left = 8
-    Top = 119
-    Width = 1056
+    Left = 1
+    Top = 120
+    Width = 1066
     Height = 282
+    Anchors = [akLeft, akTop, akRight]
     DataSource = ds1
     EditActions = [geaSelectAllEh]
     EvenRowColor = clInfoBk
@@ -1311,12 +1348,12 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     FooterFont.Name = #26032#23435#20307
     FooterFont.Style = [fsBold]
     FooterRowCount = 1
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghDialogFind, dghColumnResize, dghColumnMove]
     ParentFont = False
     ReadOnly = True
     SumList.Active = True
-    TabOrder = 11
+    TabOrder = 9
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -1330,7 +1367,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         Footer.ValueType = fvtCount
         Footers = <>
         Title.Caption = #25151#28304#32534#21495
-        Width = 144
+        Width = 105
       end
       item
         EditButtons = <>
@@ -1367,196 +1404,112 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         EditButtons = <>
         FieldName = 'fczy_fwly'
         Footers = <>
+        Title.Caption = #32622#19994#39038#38382#13#10
         Width = 107
       end
       item
         EditButtons = <>
         FieldName = 'fczy_dqzt'
         Footers = <>
+        Title.Caption = #24403#21069#29366#24577
         Width = 99
       end
       item
         EditButtons = <>
         FieldName = 'fczy_wymc'
         Footers = <>
+        Title.Caption = #23627#19994#21517#31216
         Width = 108
       end
       item
         EditButtons = <>
         FieldName = 'fczy_wyyt'
         Footers = <>
+        Title.Caption = #23627#19994#29992#36884#13#10
         Width = 80
       end
       item
         EditButtons = <>
         FieldName = 'fczy_wylb'
         Footers = <>
+        Title.Caption = #23627#19994#31867#21035
         Width = 85
       end
       item
         EditButtons = <>
         FieldName = 'fczy_zxcd'
         Footers = <>
+        Title.Caption = #35013#20462#25104#24230
+        Width = 52
       end
       item
         EditButtons = <>
         FieldName = 'fczy_jtdz'
         Footers = <>
+        Title.Caption = #20855#20307#22320#22336
+        Width = 86
       end
       item
         EditButtons = <>
         FieldName = 'fczy_qy'
         Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_jcnf'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_ws'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_kt'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_wc'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_yt'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_hxjg'
-        Footers = <>
+        Title.Caption = #21306#22495
+        Width = 76
       end
       item
         EditButtons = <>
         FieldName = 'fczy_jzmj'
         Footers = <>
+        Title.Caption = #24314#31569#38754#31215
       end
       item
         EditButtons = <>
         FieldName = 'fczy_fx'
         Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_lczs'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_lc'
-        Footers = <>
+        Title.Caption = #25151#22411
+        Width = 38
       end
       item
         EditButtons = <>
         FieldName = 'fczy_lccg'
         Footers = <>
+        Title.Caption = #27004#23618#23618#39640
+        Width = 68
       end
       item
         EditButtons = <>
         FieldName = 'fczy_ptss1'
         Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_ptss2'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_cz'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_zj'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_czsm'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_cs'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_sj'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_cssm'
-        Footers = <>
+        Title.Caption = #22522#30784#35774#26045
+        Width = 107
       end
       item
         EditButtons = <>
         FieldName = 'fczy_yzxm'
         Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_dh'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_tel'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_jtwz'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_bmbz'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_xxbz'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_czy'
-        Footers = <>
+        Title.Caption = #32622#19994#39038#38382
+        Width = 72
       end
       item
         EditButtons = <>
         FieldName = 'fczy_ly'
         Footers = <>
+        Title.Caption = #25151#23627#26469#28304
+        Width = 59
+      end
+      item
+        EditButtons = <>
+        FieldName = 'fczy_hxjg'
+        Footers = <>
+        Title.Caption = #27004#25151#32467#26500
+        Width = 91
       end
       item
         EditButtons = <>
         FieldName = 'fczy_zs'
         Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_ygbh'
-        Footers = <>
-      end
-      item
-        EditButtons = <>
-        FieldName = 'fczy_sby'
-        Footers = <>
+        Title.Caption = #31199'/'#21806
+        Width = 53
       end>
   end
   object ds1: TDataSource
@@ -1578,17 +1531,18 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
   object ds2: TDataSource
     AutoEdit = False
     DataSet = qry2
-    Left = 680
-    Top = 248
+    Left = 952
+    Top = 266
   end
   object qry2: TADOQuery
+    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
       'select ygxx_bh,ygxx_xm from ygxx')
-    Left = 768
-    Top = 240
+    Left = 953
+    Top = 216
   end
   object frxReport1: TfrxReport
     Version = '4.7.181'
@@ -2021,8 +1975,8 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Top = 24
   end
   object za: TXPManifest
-    Left = 744
-    Top = 16
+    Left = 704
+    Top = 18
   end
   object frxXMLExport1: TfrxXMLExport
     UseFileCache = True
@@ -2034,5 +1988,57 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     SuppressPageHeadersFooters = False
     Left = 368
     Top = 24
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu]
+    Left = 916
+    Top = 29
   end
 end

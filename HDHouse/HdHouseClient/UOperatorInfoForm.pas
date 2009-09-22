@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, bsSkinBoxCtrls, bsdbctrls, StdCtrls, Mask, bsSkinCtrls,
-  BusinessSkinForm, DB, ADODB, Grids, DBGrids, bsMessages;
+  BusinessSkinForm, DB, ADODB, Grids, DBGrids, bsMessages, DBCtrls;
 
 type
   TOperatorInfoForm = class(TForm)
@@ -25,12 +25,12 @@ type
     btn2: TbsSkinButton;
     ds_usersxxxx: TDataSource;
     qry_usersxxxx: TADOQuery;
-    cbbuser_qxbh: TbsSkinDBLookupComboBox;
     ds1: TDataSource;
     tbl1: TADOTable;
     bsknpswrdt_mm2: TbsSkinPasswordEdit;
     bskndbpswrdtuser_mm: TbsSkinDBPasswordEdit;
     bsknmsg_msg: TbsSkinMessage;
+    bsSkinDBLookupComboBox1: TbsSkinDBLookupComboBox;
     procedure btn2Click(Sender: TObject);
     procedure btn1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -47,7 +47,7 @@ var
   OperatorInfoForm: TOperatorInfoForm;
 
 implementation
-          uses UHDHouseDataModule;
+          uses UHDHouseDataModule,Math;
 {$R *.dfm}
 
 function TOperatorInfoForm.f_CheckValue:Boolean;
@@ -101,54 +101,41 @@ end;
 
 procedure TOperatorInfoForm.btn1Click(Sender: TObject);
 begin
-      inherited;
-      //
-      if f_CheckValue()=False then Exit;
-               // 数据保存处理
-               if Self.ParmEditorMode='ADD' then
-               begin
-                 qry_usersxxxx.Post;
-               end;  
-
-  HDHouseDataModule.con1.BeginTrans;
-  try
-    qry_usersxxxx.UpdateBatch;
-    //
-    HDHouseDataModule.con1.CommitTrans;
-  except
-    HDHouseDataModule.con1.RollbackTrans;
-      HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('数据保存失败！', '提示', nil, -1, [mbOk], 0);
-       exit;
+  inherited;
+  if f_CheckValue()=False then Exit;
+  if self.ParmEditorMode='ADD'then
+  begin
+     Randomize;
+     qry_usersxxxx.FieldByName('user_xh').Value := RandomRange(10000000,99999999);
+     self.qry_usersxxxx.FieldByName('user_yhje').Value:=0;
   end;
-  
-     HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('数据保存成功！', '提示', nil, -1, [mbOk], 0);
-        with HDHouseDataModule.qry_users do
-    begin
-       Close;
-       Open;
-    end;
-    Close;
+  qry_usersxxxx.Post;
+  HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('数据保存成功！', '提示', nil, -1, [mbOk], 0);
+  with HDHouseDataModule.qry_users do
+  begin
+     Close;
+     Open;
+  end;
+  Close;
 
       
 end;
 
 procedure TOperatorInfoForm.FormShow(Sender: TObject);
 begin
-     inherited;
-     //
-
-     with qry_usersxxxx do
+  inherited;
+  self.tbl1.Active:=true;
+  self.qry_usersxxxx.Active:=true;
+  with qry_usersxxxx do
   begin
     close;
     Parameters.ParamByName('id').Value := ParmId;
     open;
-    //
-  if ParmEditorMode = 'ADD' then
+    qry_usersxxxx.Edit;
+    if ParmEditorMode = 'ADD' then
     begin
-     append;
      FieldByName('user_qxbh').Value :=001;
      FieldByName('user_ztmc').AsString := '可用';
-     
     end;
   end;
 

@@ -2,7 +2,7 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
   Left = 0
   Top = 0
   Width = 728
-  Height = 366
+  Height = 215
   AutoScroll = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,9 +12,9 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
   ParentFont = False
   TabOrder = 0
   object bsSkinStdLabel1: TbsSkinStdLabel
-    Left = 48
-    Top = 32
-    Width = 48
+    Left = 42
+    Top = 34
+    Width = 62
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -24,19 +24,21 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    AutoSize = False
     Caption = #19994#21153#22995#21517
     ParentFont = False
   end
   object bsSkinStdLabel2: TbsSkinStdLabel
-    Left = 248
+    Left = 238
     Top = 32
-    Width = 48
+    Width = 65
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -46,19 +48,21 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    AutoSize = False
     Caption = #32852#31995#30005#35805
     ParentFont = False
   end
   object bsSkinStdLabel3: TbsSkinStdLabel
-    Left = 440
-    Top = 32
-    Width = 48
+    Left = 431
+    Top = 33
+    Width = 61
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -68,19 +72,21 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    AutoSize = False
     Caption = #32852#31995#25163#26426
     ParentFont = False
   end
   object bsSkinStdLabel4: TbsSkinStdLabel
-    Left = 48
-    Top = 72
-    Width = 48
+    Left = 42
+    Top = 76
+    Width = 58
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -90,19 +96,21 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    AutoSize = False
     Caption = #20855#20307#20301#32622
     ParentFont = False
   end
   object bsSkinStdLabel5: TbsSkinStdLabel
-    Left = 48
-    Top = 104
-    Width = 48
+    Left = 41
+    Top = 105
+    Width = 57
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -112,12 +120,14 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    AutoSize = False
     Caption = #22791#27880#35828#26126
     ParentFont = False
   end
@@ -137,6 +147,7 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -169,6 +180,7 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -201,6 +213,7 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -233,6 +246,7 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -272,6 +286,13 @@ object CustomerSecureInfoView: TCustomerSecureInfoView
     UseSkinFont = True
     UseSkinFontColor = True
     BitMapBG = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'memo'
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 648
+    Top = 27
   end
 end

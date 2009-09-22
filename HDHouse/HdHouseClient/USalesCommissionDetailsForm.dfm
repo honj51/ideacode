@@ -1,9 +1,11 @@
 object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
-  Left = 208
-  Top = 163
-  Width = 982
-  Height = 676
+  Left = 283
+  Top = 35
+  BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25552#25104#26126#32454' '
+  ClientHeight = 642
+  ClientWidth = 974
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,18 +13,22 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  DesignSize = (
+    974
+    642)
   PixelsPerInch = 96
   TextHeight = 13
   object bvl1: TBevel
     Left = -197
     Top = 81
-    Width = 1113
+    Width = 1165
     Height = 2
+    Anchors = [akLeft, akTop, akRight, akBottom]
   end
   object lbl1: TbsSkinStdLabel
     Left = 8
     Top = 96
-    Width = 73
+    Width = 65
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -32,7 +38,9 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
+    AutoSize = False
     Caption = #26102#38388#33539#22260
   end
   object lbl10: TbsSkinStdLabel
@@ -64,6 +72,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     Caption = #36755#20837#21592#24037#20449#24687#26597#35810
   end
@@ -148,7 +157,9 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     DefaultFont.Height = 14
     DefaultFont.Name = 'Arial'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
+    OnClick = btn3Click
   end
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
@@ -163,7 +174,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 10
     TabExtededDraw = False
     TabSpacing = 1
     TextInHorizontal = False
@@ -178,6 +189,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     DefaultFont.Style = []
     UseSkinFont = True
     DefaultItemHeight = 20
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'tab'
     object bsSkinTabSheet1: TbsSkinTabSheet
       Caption = #25151#28304#35814#32454#20449#24687
@@ -186,6 +198,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
         Top = 7
         Width = 926
         Height = 200
+        AutoScroll = False
         TabOrder = 0
         inherited bsknpnl1: TbsSkinPanel
           inherited edt1: TbsSkinDBEdit
@@ -269,10 +282,12 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
             DataSource = ds2
           end
           inherited bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
+            State = cbChecked
             Checked = True
             DataSource = ds2
           end
           inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
+            State = cbChecked
             DataSource = ds2
           end
         end
@@ -283,7 +298,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
             DataSource = ds2
           end
           inherited edt18: TbsSkinDBEdit
-            Text = #26080
+            Text = #23485#24102';'
             DataField = 'fczy_ptss2'
             DataSource = ds2
           end
@@ -376,6 +391,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
         Height = 212
         HintImageIndex = 0
         TabOrder = 0
+        SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'grid'
         Transparent = False
         WallpaperStretch = False
@@ -391,6 +407,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
         PickListBoxSkinDataName = 'listbox'
         PickListBoxCaptionMode = False
         Align = alClient
+        DataSource = dsTrackRecords
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clBtnText
         TitleFont.Height = 14
@@ -399,22 +416,29 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
         Columns = <
           item
             Expanded = False
+            FieldName = 'fcgj_date'
             Title.Caption = #36319#36827#26102#38388
             Visible = True
           end
           item
             Expanded = False
+            FieldName = 'fcgj_gjr'
             Title.Caption = #36319#36827#20154
+            Width = 114
             Visible = True
           end
           item
             Expanded = False
+            FieldName = 'fcgj_fs'
             Title.Caption = #36319#36827#26041#24335
+            Width = 94
             Visible = True
           end
           item
             Expanded = False
+            FieldName = 'fcgj_ms'
             Title.Caption = #36319#36827#20869#23481
+            Width = 639
             Visible = True
           end>
       end
@@ -426,12 +450,12 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-08-28'
+    Text = '2009-09-19'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40053.509407731480000000
+    Date = 40075.826257592590000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -452,6 +476,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -460,7 +485,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 5
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -474,12 +499,12 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-08-28'
+    Text = '2009-09-19'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40053.509446793980000000
+    Date = 40075.826257592590000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -500,6 +525,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -508,7 +534,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 6
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -531,6 +557,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -538,7 +565,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 7
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -552,7 +579,8 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 75
     Height = 25
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -579,18 +607,19 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     OnClick = btn4Click
   end
   object bskndbgrd1: TbsSkinDBGrid
-    Left = 6
+    Left = 5
     Top = 120
     Width = 961
     Height = 265
     HintImageIndex = 0
-    TabOrder = 5
+    TabOrder = 8
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
     WallpaperStretch = False
     UseSkinFont = True
     UseSkinCellHeight = True
-    VScrollBar = bsknscrlbr1
+    HScrollBar = bsknscrlbr1
     GridLineColor = clWindowText
     DefaultCellHeight = 20
     DrawGraphicFields = False
@@ -601,6 +630,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
     DataSource = ds1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -609,67 +639,69 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Columns = <
       item
         Expanded = False
-        FieldName = 'cjxx_ygbh'
+        FieldName = 'tcxx_ygbh'
         Title.Caption = #21592#24037#32534#21495
         Width = 82
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_htbh'
+        FieldName = 'tcxx_htbh'
         Title.Caption = #21512#21516#32534#21495
         Width = 112
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_fkfs'
+        FieldName = 'tcxx_jylx'
         Title.Caption = #20132#26131#31867#22411
         Width = 94
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_yjze'
+        FieldName = 'tcxx_yj'
         Title.Caption = #27492#21333#20323#37329
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_tcje'
+        FieldName = 'tcxx_ztc'
         Title.Caption = #27492#21333#24635#25552#25104
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_tcbl'
+        FieldName = 'tcxx_tcbl'
         Title.Caption = #20998#25104#27604#20363
         Visible = True
       end
       item
         Expanded = False
+        FieldName = 'tcxx_tcje'
         Title.Caption = #20998#25104#37329#39069
         Width = 72
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_bz'
+        FieldName = 'tcxx_blmc'
         Title.Caption = #20998#25104#35828#26126
-        Width = 131
+        Width = 194
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_date'
+        FieldName = 'tcxx_tcdate'
         Title.Caption = #25552#25104#26102#38388
-        Width = 133
+        Width = 114
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'cjxx_czy'
+        FieldName = 'tcxx_czy'
         Title.Caption = #25805#20316#21592
+        Width = 90
         Visible = True
       end>
   end
@@ -679,7 +711,8 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 961
     Height = 19
     HintImageIndex = 0
-    TabOrder = 6
+    TabOrder = 9
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'hscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -694,12 +727,12 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     BothSkinDataName = 'bothhscrollbar'
     CanFocused = False
     Kind = sbHorizontal
-    PageSize = 6
-    Min = 1
-    Max = 11
-    Position = 1
-    SmallChange = 1
-    LargeChange = 1
+    PageSize = 0
+    Min = 0
+    Max = 127
+    Position = 0
+    SmallChange = 127
+    LargeChange = 127
   end
   object btn5: TbsSkinButton
     Left = 96
@@ -707,8 +740,9 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 65
     Height = 57
     HintImageIndex = 0
-    TabOrder = 7
-    SkinDataName = 'button'
+    TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -863,6 +897,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     NumGlyphs = 1
     Spacing = 1
     Layout = blGlyphTop
+    OnClick = btn5Click
   end
   object btn2: TbsSkinButton
     Left = 24
@@ -870,8 +905,9 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 65
     Height = 57
     HintImageIndex = 0
-    TabOrder = 8
-    SkinDataName = 'button'
+    TabOrder = 0
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'resizebutton'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
     DefaultFont.Height = 14
@@ -1042,6 +1078,7 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     NumGlyphs = 1
     Spacing = 1
     Layout = blGlyphTop
+    OnClick = btn2Click
   end
   object bsknchckrdbx1: TbsSkinCheckRadioBox
     Left = 663
@@ -1049,7 +1086,8 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 113
     Height = 25
     HintImageIndex = 0
-    TabOrder = 9
+    TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -1079,7 +1117,8 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     Width = 113
     Height = 25
     HintImageIndex = 0
-    TabOrder = 10
+    TabOrder = 4
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -1104,34 +1143,688 @@ object SalesCommissionDetailsForm: TSalesCommissionDetailsForm
     OnClick = bsknchckrdbx2Click
   end
   object ds1: TDataSource
-    DataSet = qry1
-    Left = 272
+    DataSet = qrytcxx
+    Left = 263
     Top = 24
   end
   object ds2: TDataSource
     DataSet = tbl2
-    Left = 400
-    Top = 24
+    Left = 383
+    Top = 22
   end
   object tbl2: TADOTable
     Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     IndexFieldNames = 'fczy_bh'
-    MasterFields = 'cjxx_fybh'
+    MasterFields = 'tcxx_fybh'
     MasterSource = ds1
     TableName = 'fczy'
-    Left = 464
-    Top = 24
+    Left = 441
+    Top = 23
   end
-  object qry1: TADOQuery
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu]
+    Left = 869
+    Top = 8
+  end
+  object dsTrackRecords: TDataSource
+    DataSet = tblTrackRecords
+    Left = 506
+    Top = 22
+  end
+  object tblTrackRecords: TADOTable
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'fcgj_fybh'
+    MasterFields = 'tcxx_fybh'
+    MasterSource = ds1
+    TableName = 'fcgj'
+    Left = 590
+    Top = 25
+  end
+  object frxXMLExport1: TfrxXMLExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    Background = True
+    Creator = 'FastReport'
+    EmptyLines = True
+    SuppressPageHeadersFooters = False
+    Left = 665
+    Top = 18
+  end
+  object frxrprt1: TfrxReport
+    Version = '4.7.181'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = #39044#35774
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 40072.712583541700000000
+    ReportOptions.LastChange = 40072.712583541700000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 737
+    Top = 12
+    Datasets = <
+      item
+        DataSet = frxDBDatasettcmx
+        DataSetName = 'frxDBDatasettcmx'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object ReportTitle1: TfrxReportTitle
+        Height = 49.133890000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Left = 249.448980000000000000
+          Top = 3.779530000000001000
+          Width = 188.976500000000000000
+          Height = 37.795300000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -32
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37819#24877#22426#37828#24227#31887)
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 517.795610000000000000
+          Top = 30.236240000000000000
+          Width = 41.574830000000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37827#12518#28257)
+          ParentFont = False
+        end
+        object Date: TfrxMemoView
+          Left = 559.370440000000000000
+          Top = 30.236240000000000000
+          Width = 102.047310000000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8 = (
+            '[Date]')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        Height = 30.236240000000000000
+        Top = 185.196970000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBDatasettcmx
+        DataSetName = 'frxDBDatasettcmx'
+        RowCount = 0
+        object Memo4: TfrxMemoView
+          Top = 22.677179999999990000
+          Width = 721.890230000000000000
+          Height = 3.779530000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Style = fsDot
+          Frame.Typ = [ftBottom]
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_bh: TfrxMemoView
+          Top = 3.779529999999994000
+          Width = 83.149660000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_bh'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_bh"]')
+        end
+        object frxDBDatasettcmxtcxx_ygbh: TfrxMemoView
+          Left = 83.149660000000000000
+          Top = 3.779529999999994000
+          Width = 37.795300000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_ygbh'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_ygbh"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_htbh: TfrxMemoView
+          Left = 120.944960000000000000
+          Top = 3.779529999999994000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_htbh'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_htbh"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_jylx: TfrxMemoView
+          Left = 215.433210000000000000
+          Top = 3.779529999999994000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_jylx'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_jylx"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_ztc: TfrxMemoView
+          Left = 343.937230000000000000
+          Top = 3.779529999999994000
+          Width = 60.472480000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_ztc'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_ztc"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_yj: TfrxMemoView
+          Left = 283.464750000000000000
+          Top = 3.779529999999994000
+          Width = 60.472480000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_yj'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_yj"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_tcbl: TfrxMemoView
+          Left = 404.409710000000000000
+          Top = 3.779529999999994000
+          Width = 49.133890000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_tcbl'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_tcbl"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_tcje: TfrxMemoView
+          Left = 453.543600000000000000
+          Top = 3.779529999999994000
+          Width = 52.913420000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_tcje'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_tcje"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_czy: TfrxMemoView
+          Left = 574.488560000000000000
+          Top = 3.779529999999994000
+          Width = 52.913420000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_czy'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_czy"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_tcdate: TfrxMemoView
+          Left = 619.842920000000000000
+          Top = 3.779529999999994000
+          Width = 102.047310000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_tcdate'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_tcdate"]')
+          ParentFont = False
+        end
+        object frxDBDatasettcmxtcxx_tcsm: TfrxMemoView
+          Left = 506.457020000000000000
+          Top = 3.779529999999994000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'tcxx_tcsm'
+          DataSet = frxDBDatasettcmx
+          DataSetName = 'frxDBDatasettcmx'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasettcmx."tcxx_tcsm"]')
+          ParentFont = False
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        Height = 34.015770000000000000
+        Top = 90.708720000000000000
+        Width = 718.110700000000000000
+        object Memo3: TfrxMemoView
+          Width = 718.110700000000000000
+          Height = 3.779530000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          Top = 11.338590000000000000
+          Width = 76.439478400000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #25652#24531#24447)
+          ParentFont = False
+        end
+        object Memo6: TfrxMemoView
+          Top = 26.456710000000000000
+          Width = 718.110700000000000000
+          Height = 7.559060000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftBottom]
+          HAlign = haCenter
+          ParentFont = False
+        end
+        object Memo7: TfrxMemoView
+          Left = 76.500112570000000000
+          Top = 11.338590000000000000
+          Width = 50.407207590000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37723#27194#20240#32514#26663#24447)
+          ParentFont = False
+        end
+        object Memo8: TfrxMemoView
+          Left = 126.907320160000000000
+          Top = 11.338590000000000000
+          Width = 88.141873420000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37722#22557#24723#32514#26663#24447)
+          ParentFont = False
+        end
+        object Memo9: TfrxMemoView
+          Left = 226.387783580000000000
+          Top = 11.338590000000000000
+          Width = 53.883566740000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #27996#12422#27095#32491#35826#28727)
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Left = 287.830410320000000000
+          Top = 11.338590000000000000
+          Width = 57.602462570000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #23005#12421#23839#28003#65353#22142)
+          ParentFont = False
+        end
+        object Memo11: TfrxMemoView
+          Left = 345.493507060000000000
+          Top = 11.338590000000000000
+          Width = 50.043402570000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '')
+          ParentFont = False
+        end
+        object Memo12: TfrxMemoView
+          Left = 403.338506310000000000
+          Top = 11.338590000000000000
+          Width = 50.043402570000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37714#21976#22426#23011#26046#32229)
+          ParentFont = False
+        end
+        object Memo13: TfrxMemoView
+          Left = 506.416597220000000000
+          Top = 11.338590000000000000
+          Width = 72.720582570000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37714#21976#22426#29831#23384#27089)
+          ParentFont = False
+        end
+        object Memo14: TfrxMemoView
+          Left = 579.258448130000000000
+          Top = 11.338590000000000000
+          Width = 46.263872570000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '')
+          ParentFont = False
+        end
+        object Memo15: TfrxMemoView
+          Left = 455.382836520000000000
+          Top = 11.338590000000000000
+          Width = 50.043402570000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37714#21976#22426#38322#25126#58754)
+          ParentFont = False
+        end
+        object Memo16: TfrxMemoView
+          Left = 622.712937430000000000
+          Top = 11.338590000000000000
+          Width = 95.397762570000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Width = 2.000000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37714#21976#22426#37827#22549#26879)
+          ParentFont = False
+        end
+      end
+      object Footer1: TfrxFooter
+        Height = 22.677180000000000000
+        Top = 238.110390000000000000
+        Width = 718.110700000000000000
+        object Memo17: TfrxMemoView
+          Width = 721.890230000000000000
+          Height = 11.338590000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+        end
+      end
+    end
+  end
+  object frxDBDatasettcmx: TfrxDBDataset
+    UserName = 'frxDBDatasettcmx'
+    CloseDataSource = False
+    DataSource = ds1
+    BCDToCurrency = False
+    Left = 794
+    Top = 26
+  end
+  object qrytcxx: TADOQuery
     Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from cjxx')
-    Left = 328
-    Top = 24
+      'select * from tcxx')
+    Left = 327
+    Top = 26
   end
 end

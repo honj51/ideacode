@@ -1,8 +1,8 @@
 object ContractInfo: TContractInfo
-  Left = 433
-  Top = 154
-  AutoScroll = False
+  Left = 388
+  Top = 118
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #31614#32422#20449#24687
   ClientHeight = 530
   ClientWidth = 626
@@ -1568,6 +1568,7 @@ object ContractInfo: TContractInfo
     OnClick = bsknchckrdbx2Click
   end
   object qry1: TADOQuery
+    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
@@ -1591,6 +1592,7 @@ object ContractInfo: TContractInfo
     Top = 42
   end
   object qry2: TADOQuery
+    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
@@ -1662,7 +1664,7 @@ object ContractInfo: TContractInfo
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 581
     Top = 9
   end
@@ -1870,6 +1872,7 @@ object ContractInfo: TContractInfo
     Top = 43
   end
   object qrykhzy: TADOQuery
+    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>

@@ -1,8 +1,8 @@
 object PermissionGroupSettingForm: TPermissionGroupSettingForm
   Left = 476
   Top = 174
-  AutoScroll = False
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #26435#38480#32452#35774#32622
   ClientHeight = 434
   ClientWidth = 318
@@ -24,7 +24,7 @@ object PermissionGroupSettingForm: TPermissionGroupSettingForm
     Width = 318
     Height = 318
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 1
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -58,7 +58,7 @@ object PermissionGroupSettingForm: TPermissionGroupSettingForm
       Width = 316
       Height = 19
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 2
       Visible = False
       SkinDataName = 'hscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -121,7 +121,7 @@ object PermissionGroupSettingForm: TPermissionGroupSettingForm
       Indent = 35
       SelectionPen.Color = clBtnShadow
       StateImages = rzchcktr1.CheckImages
-      TabOrder = 2
+      TabOrder = 0
       Items.Data = {
         0500000021000000000000000000000001000000FFFFFFFF0000000006000000
         08C8D5B3A3B9DCC0ED21000000000000000000000001000000FFFFFFFF000000
@@ -172,7 +172,7 @@ object PermissionGroupSettingForm: TPermissionGroupSettingForm
     Width = 318
     Height = 54
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -401,7 +401,7 @@ object PermissionGroupSettingForm: TPermissionGroupSettingForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 32
     Top = 388
   end

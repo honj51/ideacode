@@ -88,7 +88,7 @@ begin
   inherited;
       //
 
-      if f_CheckValue()=False then Exit;
+  if f_CheckValue()=False then Exit;
   With qry_update do
   begin
        close;
@@ -122,7 +122,6 @@ begin
 procedure TChangePasswordForm.FormShow(Sender: TObject);
 begin
     inherited;
-      //
       if gs_login_username='' then Exit;
       edt1.Text:=gs_login_username;
       edt1.Enabled:=False;
