@@ -1,0 +1,10 @@
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\bin\Debug\DBSiteAdmin.exe
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\bin\Debug\DBSiteAdmin.pdb
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\obj\Debug\DBSiteAdmin.Properties.Resources.resources
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\obj\Debug\DBSiteAdmin.csproj.GenerateResource.Cache
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\obj\Debug\DBSiteAdmin.exe
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\obj\Debug\DBSiteAdmin.pdb
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\bin\Debug\Microsoft.SqlServer.Replication.dll
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\bin\Debug\Microsoft.SqlServer.BatchParser.dll
+C:\Documents and Settings\Hello\桌面\TestWeb\HdHouseAdmin\DBSiteAdmin\bin\Debug\zh-CHS\Microsoft.SqlServer.Replication.resources.dll
