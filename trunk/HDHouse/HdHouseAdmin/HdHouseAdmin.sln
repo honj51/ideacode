@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSiteAdmin", "DBSiteAdmin\DBSiteAdmin.csproj", "{69AF2226-6C11-4AFF-8227-CE1C082300E4}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DBCenterAdmin", "DBCenterAdmin\", "{2CD73CF7-80DC-4032-BB54-088691373758}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "2.0"
+		Debug.AspNetCompiler.VirtualPath = "/DBCenterAdmin"
+		Debug.AspNetCompiler.PhysicalPath = "DBCenterAdmin\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\DBCenterAdmin\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/DBCenterAdmin"
+		Release.AspNetCompiler.PhysicalPath = "DBCenterAdmin\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\DBCenterAdmin\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1293"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Release|.NET.ActiveCfg = Release|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{69AF2226-6C11-4AFF-8227-CE1C082300E4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Debug|.NET.ActiveCfg = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Debug|.NET.Build.0 = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|.NET.ActiveCfg = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|.NET.Build.0 = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|Mixed Platforms.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
