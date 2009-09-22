@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
   Dialogs, Mask, bsSkinBoxCtrls, bsdbctrls, bsSkinCtrls, StdCtrls,
-  bsSkinGrids, bsDBGrids, ExtCtrls;
+  bsSkinGrids, bsDBGrids, ExtCtrls, BusinessSkinForm;
 
 type
   TCustomerListView = class(TFrame)
@@ -24,6 +24,7 @@ type
     bsknscrlbrCustomerDown: TbsSkinScrollBar;
     bsknscrlbrCustomerRight: TbsSkinScrollBar;
     edtDate: TbsSkinNumericEdit;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public

@@ -522,7 +522,6 @@ object ContractQueryFrame: TContractQueryFrame
     Top = 15
     Width = 121
     Height = 18
-    Text = 'edtSearch'
     DefaultColor = clWindow
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clBlack

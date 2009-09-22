@@ -1,8 +1,8 @@
 object HouseManageForm: THouseManageForm
-  Left = 329
-  Top = 83
+  Left = 312
+  Top = 63
   BorderIcons = []
-  BorderStyle = bsSingle
+  BorderStyle = bsDialog
   Caption = #25151#28304#31649#29702
   ClientHeight = 594
   ClientWidth = 941
@@ -56,8 +56,8 @@ object HouseManageForm: THouseManageForm
       end
     end
     inherited bsknfrm1: TbsSkinFrame
-      Left = 601
-      Top = 5
+      Left = 588
+      Top = 34
     end
   end
   object bsknpgcntrlPageC: TbsSkinPageControl
@@ -133,7 +133,7 @@ object HouseManageForm: THouseManageForm
             DataSource = dsfczy
           end
           inherited edt7: TbsSkinDBEdit
-            Text = #19996#22478#21306
+            Text = #35199#22478#21306
             DataField = 'fczy_qy'
             DataSource = dsfczy
           end
@@ -178,7 +178,7 @@ object HouseManageForm: THouseManageForm
             DataSource = dsfczy
           end
           inherited edt16: TbsSkinDBEdit
-            Text = '16/36'
+            Text = '36/16'
             DataField = 'fczy_lccg'
             DataSource = dsfczy
           end
@@ -189,6 +189,7 @@ object HouseManageForm: THouseManageForm
           end
           inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
             State = cbChecked
+            Checked = True
             DataSource = dsfczy
           end
         end
@@ -232,25 +233,30 @@ object HouseManageForm: THouseManageForm
           Height = 205
           inherited edtfczy_yzxm: TbsSkinDBEdit
             Text = #20029#20029
+            ReadOnly = True
             DataSource = dsfczy
           end
           inherited edtfczy_yzxm1: TbsSkinDBEdit
             Text = '56585658'
+            ReadOnly = True
             DataSource = dsfczy
           end
           inherited edtfczy_yzxm2: TbsSkinDBEdit
             Text = '138666666666'
+            ReadOnly = True
             DataField = 'fczy_tel'
             DataSource = dsfczy
           end
           inherited edtfczy_yzxm3: TbsSkinDBEdit
             Text = #21830#22478#36335'110'#21495
+            ReadOnly = True
             DataSource = dsfczy
           end
           inherited mmofczy_yzxm: TbsSkinDBMemo
             Top = 88
             Lines.Strings = (
               #26080)
+            ReadOnly = True
             DataSource = dsfczy
           end
         end
@@ -268,6 +274,7 @@ object HouseManageForm: THouseManageForm
         inherited bsSkinScrollBar1: TbsSkinScrollBar
           Left = 920
           Height = 186
+          Max = 17
         end
         inherited bsknscrlbr1: TbsSkinScrollBar
           Top = 186
@@ -279,6 +286,7 @@ object HouseManageForm: THouseManageForm
           SkinData = HDHouseDataModule.bsSkinData1
           DefaultRowHeight = 18
           DataSource = dskhzy
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           PopupMenu = bsSkinPopupMenu2
           TitleFont.Color = clBtnText
           TitleFont.Height = 14
@@ -314,6 +322,7 @@ object HouseManageForm: THouseManageForm
       Height = 222
       Anchors = [akLeft, akTop, akRight, akBottom]
       DataSource = dsfczy
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       PopupMenu = bsSkinPopupMenu1
       OnDblClick = hslstvw1bskndbgrd1DblClick
       Columns = <
@@ -533,8 +542,7 @@ object HouseManageForm: THouseManageForm
   end
   object dskhzy: TDataSource
     DataSet = qrykhzy
-    Left = 787
-    Top = 65534
+    Left = 744
   end
   object qryfczy: TADOQuery
     Active = True
@@ -544,22 +552,20 @@ object HouseManageForm: THouseManageForm
     Parameters = <>
     SQL.Strings = (
       'select * from fczy')
-    Left = 650
-    Top = 13
+    Left = 662
+    Top = 65532
   end
   object dsfczy: TDataSource
     DataSet = qryfczy
-    Left = 698
-    Top = 65532
+    Left = 707
+    Top = 65530
   end
   object qrykhzy: TADOQuery
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>
-    SQL.Strings = (
-      '')
-    Left = 787
-    Top = 51
+    Left = 799
+    Top = 45
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -609,9 +615,9 @@ object HouseManageForm: THouseManageForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 887
-    Top = 26
+    BorderIcons = [biSystemMenu]
+    Left = 889
+    Top = 28
   end
   object bsbsnsknfrm2: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -661,9 +667,9 @@ object HouseManageForm: THouseManageForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 740
-    Top = 65531
+    BorderIcons = [biSystemMenu]
+    Left = 800
+    Top = 65532
   end
   object frxReportfczy: TfrxReport
     Version = '4.7.181'
@@ -1221,16 +1227,16 @@ object HouseManageForm: THouseManageForm
     PageBreaks = False
     EmptyLines = False
     SuppressPageHeadersFooters = False
-    Left = 418
-    Top = 41
+    Left = 455
+    Top = 45
   end
   object frxDBDatasetfczy: TfrxDBDataset
     UserName = 'frxDBDatasetfczy'
     CloseDataSource = False
     DataSet = qryfczy
     BCDToCurrency = False
-    Left = 491
-    Top = 44
+    Left = 527
+    Top = 45
   end
   object frxXMLExport1: TfrxXMLExport
     UseFileCache = True
@@ -1244,8 +1250,8 @@ object HouseManageForm: THouseManageForm
     Top = 65532
   end
   object bsSkinPopupMenu1: TbsSkinPopupMenu
-    Left = 603
-    Top = 38
+    Left = 658
+    Top = 41
     object N1: TMenuItem
       Caption = #28155#21152
       OnClick = N1Click
@@ -1278,5 +1284,28 @@ object HouseManageForm: THouseManageForm
       Caption = #26174#31034#20445#23494#20449#24687
       OnClick = N7Click
     end
+  end
+  object bsknmsg1: TbsSkinMessage
+    ShowAgainFlag = False
+    ShowAgainFlagValue = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    SkinData = HDHouseDataModule.bsSkinData1
+    ButtonSkinDataName = 'button'
+    MessageLabelSkinDataName = 'stdlabel'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultButtonFont.Charset = DEFAULT_CHARSET
+    DefaultButtonFont.Color = clWindowText
+    DefaultButtonFont.Height = 14
+    DefaultButtonFont.Name = 'Arial'
+    DefaultButtonFont.Style = []
+    UseSkinFont = True
+    Left = 861
+    Top = 5
   end
 end

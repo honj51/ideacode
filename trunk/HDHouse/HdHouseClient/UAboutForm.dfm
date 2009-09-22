@@ -1,10 +1,11 @@
 object AboutForm: TAboutForm
   Left = 522
   Top = 397
-  Width = 376
-  Height = 176
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #20851#20110#36719#20214
+  ClientHeight = 142
+  ClientWidth = 368
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -106,7 +107,7 @@ object AboutForm: TAboutForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 304
     Top = 24
   end

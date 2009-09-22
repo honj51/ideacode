@@ -1,9 +1,11 @@
 object HouseTrackInfoForm: THouseTrackInfoForm
-  Left = 565
-  Top = 210
-  Width = 507
-  Height = 328
+  Left = 475
+  Top = 232
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
   Caption = #25151#28304#36319#36827#20449#24687
+  ClientHeight = 294
+  ClientWidth = 499
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

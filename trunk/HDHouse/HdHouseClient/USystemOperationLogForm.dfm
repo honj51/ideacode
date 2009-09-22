@@ -1,8 +1,8 @@
 object SystemOperationLogForm: TSystemOperationLogForm
   Left = 302
   Top = 116
-  AutoScroll = False
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #31995#32479#25805#20316#26085#24535
   ClientHeight = 536
   ClientWidth = 772
@@ -22,7 +22,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Width = 753
     Height = 444
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 1
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
@@ -81,7 +81,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     Width = 772
     Height = 73
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -148,12 +148,12 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 116
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-02'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40058.717666192130000000
+      Date = 40072.736192303240000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -197,12 +197,12 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 120
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-02'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40058.681136423610000000
+      Date = 40072.736192303240000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -416,7 +416,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 648
     Top = 24
   end

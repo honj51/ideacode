@@ -1,8 +1,8 @@
 object DivideIntoInfo: TDivideIntoInfo
-  Left = 782
-  Top = 178
-  AutoScroll = False
+  Left = 571
+  Top = 250
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #20998#25104#20449#24687
   ClientHeight = 209
   ClientWidth = 317
@@ -186,7 +186,6 @@ object DivideIntoInfo: TDivideIntoInfo
       Top = 31
       Width = 155
       Height = 18
-      Text = 'edttcxx_bh'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -625,7 +624,7 @@ object DivideIntoInfo: TDivideIntoInfo
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 262
   end
 end

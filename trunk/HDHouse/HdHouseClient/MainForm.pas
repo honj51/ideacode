@@ -8,7 +8,7 @@ uses
   ImgList, bsPngImageList, ComCtrls, bsSkinTabs, bsColorCtrls, bsDialogs,
   bsMessages, HouseListFrame, DB, ADODB, UCustomerAutoMatchView,
   UTrackInfoView, UDataOperateBarView, UDetailRequirementInfoView,
-  UTrackRecordView, Menus;
+  UTrackRecordView, Menus, frxClass, frxDBSet, ExtCtrls;
 
 type
   TformMain = class(TForm)
@@ -53,6 +53,10 @@ type
     btn30: TbsSkinButton;
     btn31: TbsSkinButton;
     frmhslst1: TframeHouseList;
+    frxDBDatasetfczy: TfrxDBDataset;
+    frxReportfczy: TfrxReport;
+    tmr1: TTimer;
+    qrytx: TADOQuery;
     procedure btn7Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
     procedure btn10Click(Sender: TObject);
@@ -84,10 +88,22 @@ type
     procedure btn18Click(Sender: TObject);
     procedure btn2Click(Sender: TObject);
     procedure frmhslst1qryHouseListCalcFields(DataSet: TDataSet);
+    procedure frmhslst1bsSkinButton3Click(Sender: TObject);
+    procedure frmhslst1bsSkinButton1Click(Sender: TObject);
+    procedure frmhslst1bsSkinButton2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure frmhslst1MenuItem2Click(Sender: TObject);
+    procedure frmhslst1bsSkinButton4Click(Sender: TObject);
+    procedure frmhslst1MenuItem1Click(Sender: TObject);
+    procedure tmr1Timer(Sender: TObject);
+    procedure btn32Click(Sender: TObject);
   private
     { Private declarations }
   public
     state:string;
+    //堤示
+    sound,del:Boolean;
+    close:string;
     { Public declarations }
   end;
 
@@ -95,15 +111,15 @@ var
   formMain: TformMain;
 
 implementation
- uses UHDHouseDataModule,ULoginForm,UAboutForm, UCompanyInfoSettingForm,
-  UOperatePermissionSettingForm, UChangePasswordForm,
+ uses UHDHouseDataModule,ULoginForm,UAboutForm, UCompanyInfoSettingForm,IniFiles,
+  UOperatePermissionSettingForm, UChangePasswordForm,MMSystem,DateUtils,
   UContractSampleSettingForm, UDatabaseMantainForm, UDatabaseInitialForm,UParameterSettingForm,
   USystemOperationLogForm, UParametersSettingForm,UEmployeeManageForm,
   UHouseStatisticQueryForm, UNotificationManageForm,
   USalesCommissionDetailsForm, UStatisticForm, USalesCommissionSumForm,UCustomerManageForm,
-  UContractQueryForm,UCustomerTrackForm, UContactRecordForm,UTrackQueryForm,
+  UCustomerTrackForm, UContactRecordForm,UTrackQueryForm,
   UCustomerDetailsForm, UHouseManageForm,UHouseDealManageForm,
-  UHousePosterForm,UHouseTrackForm, UHouseDetailsForm;
+  UHousePosterForm,UHouseTrackForm, UHouseDetailsForm,UHouseQueryForm,UContractQueryForm;
  {,UCompanyInfoSettingForm,UOperatePermissionSettingForm
  ,UEmployeeManageForm,UChangePasswordForm,UContractSampleSettingForm,UDatabaseMantainForm
  ,UDatabaseInitialForm,UParametersSettingForm,USystemOperationLogForm,UHouseDetailsForm
@@ -124,8 +140,7 @@ end;
 procedure TformMain.btn4Click(Sender: TObject);
 begin
   inherited;
-        //
-    LoginForm.CloseState:=False;
+     LoginForm.CloseState:=False;
      LoginForm.Show;
 end;
 
@@ -182,11 +197,13 @@ end;
 
 procedure TformMain.btn1Click(Sender: TObject);
 begin
-  //HouseDetailsForm.ShowModal;
+   inherited;
     Try
         HouseDetailsForm.ParmId :='';
         HouseDetailsForm.ParmEditorMode:= 'ADD';
         HouseDetailsForm.ShowModal;
+        self.frmhslst1.qryHouseList.Close;
+        self.frmhslst1.qryHouseList.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -234,7 +251,7 @@ end;
 
 procedure TformMain.btn29Click(Sender: TObject);
 begin
-  //HouseStatisticQueryForm.ShowModal;
+  CustomerManageForm.ShowModal;
 end;
 
 procedure TformMain.btn27Click(Sender: TObject);
@@ -259,7 +276,7 @@ end;
 
 procedure TformMain.btn3Click(Sender: TObject);
 begin
-  TrackQueryForm.ShowModal;
+   TrackQueryForm.ShowModal;
 end;
 
 
@@ -281,14 +298,129 @@ end;
 
 procedure TformMain.btn2Click(Sender: TObject);
 begin
-  CustomerDetailsForm.ParmMode:='add';
-  CustomerDetailsForm.ShowModal;
+    CustomerDetailsForm.ParmMode:='add';
+    CustomerDetailsForm.ShowModal;
 end;
 
 procedure TformMain.frmhslst1qryHouseListCalcFields(DataSet: TDataSet);
 begin
   frmhslst1.qryHouseListCalcFields(DataSet);
+end;
 
+procedure TformMain.frmhslst1bsSkinButton3Click(Sender: TObject);
+begin
+   inherited;
+    Try
+        HouseDetailsForm.ParmId :='';
+        HouseDetailsForm.ParmEditorMode:= 'ADD';
+        HouseDetailsForm.ShowModal;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
+end;
+
+procedure TformMain.frmhslst1bsSkinButton1Click(Sender: TObject);
+begin
+  HouseQueryForm.hsqryfrm1.cbb5.ItemIndex:=0;
+  HouseQueryForm.ShowModal;
+  frmhslst1.qryHouseList.Close;
+  frmhslst1.qryHouseList.SQL.Clear;
+  frmhslst1.qryHouseList.SQL.Add(HouseQueryForm.strFilter) ;
+  frmhslst1.qryHouseList.Open;
+end;
+
+procedure TformMain.frmhslst1bsSkinButton2Click(Sender: TObject);
+begin
+  HouseQueryForm.hsqryfrm1.cbb5.ItemIndex:=1;
+  HouseQueryForm.ShowModal;
+  frmhslst1.qryHouseList.Close;
+  frmhslst1.qryHouseList.SQL.Clear;
+  frmhslst1.qryHouseList.SQL.Add(HouseQueryForm.strFilter) ;
+  frmhslst1.qryHouseList.Open;
+end;
+
+procedure TformMain.FormShow(Sender: TObject);
+var myinifile:Tinifile;  //定放类
+var inifile:string;
+begin
+  //起动数据控件
+  self.frmhslst1.tblHouseTrack.Active:=true;
+  self.frmhslst1.qryHouseList.Active:=true;
+  self.frmhslst1.qryCustomerTrack.Active:=true;
+  self.qrytx.Active:=true;
+  //取配置文件
+  inifile:=ExtractFilePath(Paramstr (0))+'weekup.ini';
+  myinifile:=Tinifile.Create(inifile); //打开INI文件
+  self.del:=myinifile.ReadBool('clock','del',false);
+  self.close:=myinifile.ReadString ('clock','close','0');
+  self.sound:=myinifile.ReadBool('clock','sound',false);
+  myinifile.Destroy;
+end;
+//房源详细信息
+procedure TformMain.frmhslst1MenuItem2Click(Sender: TObject);
+begin
+ inherited;
+    Try
+        HouseDetailsForm.ParmEditorMode:= 'EDIT';
+        HouseDetailsForm.ParmId :=self.frmhslst1.qryHouseList.fieldbyname('fczy_bh').AsString;
+        HouseDetailsForm.btn2.Visible:=false; //bsknpgcntrlPageC   bskntbshttab1
+        HouseDetailsForm.ShowModal;
+        HouseDetailsForm.btn2.Visible:=true;
+        self.frmhslst1.qryHouseList.Close;
+        self.frmhslst1.qryHouseList.Open;
+    Finally
+        //HouseDetailsForm.Free;
+    End;
+end;
+ //打印房源
+procedure TformMain.frmhslst1bsSkinButton4Click(Sender: TObject);
+begin
+  if self.frxReportfczy.PrepareReport then
+  begin
+     self.frxReportfczy.ShowPreparedReport;
+  end;
+end;
+
+procedure TformMain.frmhslst1MenuItem1Click(Sender: TObject);
+begin
+  frmhslst1.MenuItem1Click(Sender);
+end;
+  //时间
+procedure TformMain.tmr1Timer(Sender: TObject);
+var messages:string;
+var title:string;
+begin
+    if self.sound then
+    begin
+      self.tmr1.Enabled := false;
+      self.qrytx.Close;
+      self.qrytx.Open;
+      self.qrytx.Filter:='zdtx_dby=#'+FormatdateTime('c',Now)+'#';
+      self.qrytx.Filtered:=true;
+      if not self.qrytx.Eof then
+      begin
+         sndPlaySound(PChar(ExtractFilePath(Paramstr (0))+'Global.wav'),  SND_ASYNC);
+         messages:=self.qrytx.FieldByName('zdtx_xm').Value +'你好'+#13+self.qrytx.FieldByName('zdtx_nr').Value;
+         if self.del then
+         begin
+           self.qrytx.Delete;
+         end;
+         title :='提醒'+FormatdateTime('c',Now);
+        Application.MessageBox(PAnsiChar(messages),PAnsiChar(title), MB_OK + MB_ICONINFORMATION);
+    
+      end;
+//      if (self.qrytx.FieldByName('zdtx_dby').Value<=IncMinute(Now,3))and (self.qrytx.FieldByName('zdtx_dby').Value >=IncMinute(Now,-3)) then
+//      begin
+//         Application.MessageBox('a', 'a', MB_OK);
+//         // sndPlaySound(ExtractFilePath(Paramstr (0))+'Global.wav',  SND_ASYNC);
+//         sndPlaySound('C:\Global.wav',   SND_ASYNC);
+//      end;
+      self.tmr1.Enabled := true;
+    end;
+end;
+procedure TformMain.btn32Click(Sender: TObject);
+begin
+   self.sound := true;
 end;
 
 end.

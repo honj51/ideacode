@@ -3,6 +3,7 @@ object CustomerListView: TCustomerListView
   Top = 0
   Width = 976
   Height = 249
+  AutoScroll = False
   TabOrder = 0
   object bvl1: TBevel
     Left = 0
@@ -57,6 +58,7 @@ object CustomerListView: TCustomerListView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #36755#20837#23458#28304#20449#24687#26597#35810
@@ -183,6 +185,7 @@ object CustomerListView: TCustomerListView
       DefaultFont.Height = 14
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
     end
     object bsSkinStdLabel2: TbsSkinStdLabel
@@ -198,6 +201,7 @@ object CustomerListView: TCustomerListView
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       AutoSize = False
       Caption = #22825#20869#30340#20449#24687
@@ -207,7 +211,7 @@ object CustomerListView: TCustomerListView
       Top = 11
       Width = 145
       Height = 21
-      TabOrder = 0
+      TabOrder = 4
     end
     object btn2: TbsSkinButton
       Left = 336
@@ -215,7 +219,8 @@ object CustomerListView: TCustomerListView
       Width = 89
       Height = 25
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -246,7 +251,8 @@ object CustomerListView: TCustomerListView
       Width = 113
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'radiobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -275,7 +281,7 @@ object CustomerListView: TCustomerListView
       Width = 113
       Height = 25
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 2
       SkinDataName = 'radiobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -304,7 +310,8 @@ object CustomerListView: TCustomerListView
       Width = 89
       Height = 25
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 3
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -345,6 +352,7 @@ object CustomerListView: TCustomerListView
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -401,6 +409,7 @@ object CustomerListView: TCustomerListView
       Height = 185
       HintImageIndex = 0
       TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'grid'
       Transparent = False
       WallpaperStretch = False
@@ -580,7 +589,8 @@ object CustomerListView: TCustomerListView
       Width = 974
       Height = 19
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'hscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -609,8 +619,9 @@ object CustomerListView: TCustomerListView
       Width = 19
       Height = 185
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 1
       Visible = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'vscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -633,5 +644,11 @@ object CustomerListView: TCustomerListView
       SmallChange = 1
       LargeChange = 1
     end
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    SkinData = HDHouseDataModule.bsSkinData1
+    DrawBackground = True
+    Left = 918
+    Top = 6
   end
 end

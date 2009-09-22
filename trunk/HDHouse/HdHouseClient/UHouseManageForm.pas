@@ -8,7 +8,8 @@ uses
   StdCtrls, bsCalendar, bscalc, Mask, bsButtonGroup, bsCategoryButtons,
   bsSkinExCtrls, bsSkinTabs, UHouseSecureInfoView, UHouseDetailInfoView,
   UCustomerAutoMatchView, UDataOperateBarView, DB, ADODB, BusinessSkinForm,
-  frxClass, frxDBSet, frxExportXLS, frxExportXML, Menus, bsSkinMenus;
+  frxClass, frxDBSet, frxExportXLS, frxExportXML, Menus, bsSkinMenus,
+  bsMessages;
 
 type
   THouseManageForm = class(TForm)
@@ -40,6 +41,7 @@ type
     bsSkinPopupMenu2: TbsSkinPopupMenu;
     N6: TMenuItem;
     N7: TMenuItem;
+    bsknmsg1: TbsSkinMessage;
     procedure hslstvw1btn1Click(Sender: TObject);
     procedure hslstvw1bsknchckrdbx2Click(Sender: TObject);
     procedure hslstvw1bsknchckrdbx1Click(Sender: TObject);
@@ -105,6 +107,8 @@ begin
         HouseDetailsForm.ParmEditorMode:= 'EDIT';
         HouseDetailsForm.ParmId := qryfczy.fieldbyname('fczy_bh').AsString;
         HouseDetailsForm.ShowModal;
+        self.qryfczy.Close; //更新一下数据
+        self.qryfczy.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -114,13 +118,15 @@ end;
   //     修改信息
 procedure THouseManageForm.dtprtbrvw1btn2Click(Sender: TObject);
 begin
-    inherited;
+ inherited;
  if not qryfczy.IsEmpty then
   Begin
     Try
         HouseDetailsForm.ParmEditorMode:= 'EDIT';
         HouseDetailsForm.ParmId := qryfczy.fieldbyname('fczy_bh').AsString;
         HouseDetailsForm.ShowModal;
+        qryfczy.Close;
+        qryfczy.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -129,10 +135,14 @@ end;
      //删除
 procedure THouseManageForm.dtprtbrvw1btn3Click(Sender: TObject);
 begin
-inherited;
- if not qryfczy.IsEmpty THEN
+  inherited;
+  if not qryfczy.IsEmpty THEN
   Begin
     Try
+      if HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('删除后无法恢复，确定删除吗？', '提示', nil, -1, [mbOK,mbCancel], 0)=2 then
+      begin
+          Exit;
+      end;
       qryfczy.Delete;
     Finally
         //HouseDetailsForm.Free;
@@ -149,6 +159,8 @@ begin
         HouseDetailsForm.ParmId :='';
         HouseDetailsForm.ParmEditorMode:= 'ADD';
         HouseDetailsForm.ShowModal;
+        self.qryfczy.Close;
+        self.qryfczy.Open;
     Finally
         //HouseDetailsForm.Free;
     End;
@@ -173,6 +185,7 @@ begin
      strFilter := strFilter + ' (khzy_wyyt ='''+dataset.FieldByName('fczy_wyyt').AsString+''')';
      self.qrykhzy.SQL.Add(strfilter);
      self.qrykhzy.Open;
+     self.qrykhzy.Active:=true;
    end;
 
  end;

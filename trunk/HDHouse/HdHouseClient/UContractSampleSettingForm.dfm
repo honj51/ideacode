@@ -1,8 +1,8 @@
 object ContractSampleSettingForm: TContractSampleSettingForm
   Left = 382
   Top = 168
-  AutoScroll = False
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #21512#21516#26679#26412#35774#32622
   ClientHeight = 462
   ClientWidth = 677
@@ -360,7 +360,7 @@ object ContractSampleSettingForm: TContractSampleSettingForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 577
     Top = 31
   end

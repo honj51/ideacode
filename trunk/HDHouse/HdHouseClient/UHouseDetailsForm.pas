@@ -11,11 +11,9 @@ uses
 type
   THouseDetailsForm = class(TForm)
     bsknpgcntrlPageC: TbsSkinPageControl;
-    bskntbsht12: TbsSkinTabSheet;
-    bskntbshtEditsTabSheet: TbsSkinTabSheet;
+    bskntbshttab1: TbsSkinTabSheet;
+    bskntbshttab2: TbsSkinTabSheet;
     bsbsnsknfrm1: TbsBusinessSkinForm;
-    bskndt1: TbsSkinData;
-    bscmprsdstrdskn1: TbsCompressedStoredSkin;
     edtfczy_wylb: TbsSkinDBEdit;
     edtfczy_jtdz: TbsSkinDBEdit;
     edtfczy_ws: TbsSkinDBEdit;
@@ -118,34 +116,63 @@ type
   end;
 
 var
-  HouseDetailsForm: THouseDetailsForm;
+
+
+
+    HouseDetailsForm: THouseDetailsForm;
 
 implementation
-  uses UHDHouseDataModule,UParametersDataModule,URealtorListForm,UHouseManageForm,UBaseFacilitiesForm,UOtherFacilitiesForm;
+  uses UHDHouseDataModule,UParametersDataModule,URealtorListForm,UHouseManageForm,UBaseFacilitiesForm,UOtherFacilitiesForm,Common;
 {$R *.dfm}
  //显示
 procedure THouseDetailsForm.FormShow(Sender: TObject);
 var pream:string;
 var datecount:Integer;
 begin
-   self.edt1.ReadOnly:=true;
+   HDHouseDataModule.qryfczy.Active:=true;  //起动控件
+    self.edt1.ReadOnly:=true;
     with self.qry1 do
     begin
       close;
       Parameters.ParamByName('id').Value := ParmId;
       self.edt1.Text :=ParmId;
+      open;
       if( ParmEditorMode = 'ADD') then
       begin
-           self.edt1.ReadOnly :=false;
            pream:='FC'+FormatDateTime('yyyymmdd',Now);
            HDHouseDataModule.qryfczy.Filter:='(fczy_bh like '+'''%'+pream+'%'')';
            HDHouseDataModule.qryfczy.Filtered:=true;
            datecount:= HDHouseDataModule.qryfczy.Recordset.RecordCount+1;
+            with HDHouseDataModule.dsfczy.DataSet do
+            begin
+              First;
+              while not Eof do
+              begin
+                if Trim(VarToStr(FieldValues['fczy_bh']))= Trim(pream + Format('%.4d', [datecount] )) then
+                begin
+                  datecount:=datecount+1;
+                end;
+                Next;
+                end;
+              end;
            HDHouseDataModule.qryfczy.Filtered :=false;
            self.edt1.Text:=pream + Format('%.4d', [datecount] );
-          // self.qry1.FieldByName('fczy_wyyt').AsString:= ParametersDataModule.qryPropertyUsage.FieldByName('cs_mc').AsString;
+           //设默认值 self.qry1.FieldByName('').Value:=
+           self.qry1.Edit;
+           self.qry1.FieldByName('fczy_ws').Value:=0;
+           self.qry1.FieldByName('fczy_kt').Value:=0;
+           self.qry1.FieldByName('fczy_wc').Value:=0;
+           self.qry1.FieldByName('fczy_yt').Value:=0;
+           self.qry1.FieldByName('fczy_jzmj').Value:=0;
+           self.qry1.FieldByName('fczy_lczs').Value:=0;
+           self.qry1.FieldByName('fczy_lc').Value:=0;
+           self.qry1.FieldByName('fczy_ptss1').Value:='无';
+           self.qry1.FieldByName('fczy_ptss2').Value:='无';
+           self.qry1.FieldByName('fczy_zj').Value:=0;
+           self.qry1.FieldByName('fczy_sj').Value:=0;
+           self.dblkcbbfczy_qy.ListFieldIndex:=1;
       end;
-      open;
+
     end;
 end;
   //保存 数据
@@ -153,6 +180,7 @@ procedure THouseDetailsForm.btn2Click(Sender: TObject);
 var zs:string;
 var checks:Boolean;
 begin
+  inherited;
   checks:=Validate();
   if not checks then
   begin
@@ -173,6 +201,7 @@ begin
         begin
            self.qry1.FindField('fczy_djrq').Value := FormatDateTime('yyyy-mm-dd',Now);
            self.qry1.FindField('fczy_yn').Value := false;
+           self.qry1.FindField('fczy_czy').Value :=gs_login_username;
            if (self.bsSkinDBCheckRadioBox1.Checked and self.bsSkinDBCheckRadioBox2.Checked=false) then
            begin
                zs:='出租';
@@ -190,7 +219,6 @@ begin
            end;
         self.qry1.UpdateBatch;
         HDHouseDataMOdule.con1.CommitTrans;
-        HouseManageForm.qryfczy.Close ;
       except
         HDHouseDataMOdule.con1.RollbackTrans;
         MessageBox(handle,'数据保存失败！','警告',MB_OK);
@@ -198,7 +226,6 @@ begin
       end;
       end;
       MessageBox(handle,'数据保存成功！','提示',MB_OK+MB_ICONINFORMATION);
-       HouseManageForm.qryfczy.Open;
        close;
    end;
 end;
@@ -231,6 +258,7 @@ begin
    RealtorListForm.ShowModal;
    self.qry1.Edit;
    self.qry1.FieldByName('fczy_fwly').Value:=RealtorListForm.ygxm;
+   if RealtorListForm.ygbh<>''then
    self.qry1.FieldByName('fczy_ygbh').Value:=RealtorListForm.ygbh
 end;
 function THouseDetailsForm.Validate():Boolean;

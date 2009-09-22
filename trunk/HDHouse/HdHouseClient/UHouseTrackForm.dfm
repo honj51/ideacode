@@ -1,11 +1,11 @@
 object HouseTrackForm: THouseTrackForm
-  Left = 259
-  Top = 104
-  AutoScroll = False
+  Left = 295
+  Top = 31
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25151#28304#36319#36827
-  ClientHeight = 578
-  ClientWidth = 974
+  ClientHeight = 577
+  ClientWidth = 975
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object HouseTrackForm: THouseTrackForm
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 0
-    Width = 974
-    Height = 578
+    Width = 975
+    Height = 577
     ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -49,13 +49,13 @@ object HouseTrackForm: THouseTrackForm
     object bskntbsht1: TbsSkinTabSheet
       Caption = #36319#36827#31649#29702
       DesignSize = (
-        972
-        556)
+        973
+        555)
       object bsknpgcntrl2: TbsSkinPageControl
         Left = -1
-        Top = 333
-        Width = 972
-        Height = 223
+        Top = 335
+        Width = 973
+        Height = 220
         ActivePage = bskntbsht3
         Anchors = [akLeft, akRight, akBottom]
         Font.Charset = DEFAULT_CHARSET
@@ -86,34 +86,33 @@ object HouseTrackForm: THouseTrackForm
           inline trckrcrdvw1: TTrackRecordView
             Left = 0
             Top = 0
-            Width = 970
-            Height = 201
+            Width = 971
+            Height = 198
             Align = alClient
             AutoScroll = False
             TabOrder = 0
             inherited bskntlbr1: TbsSkinToolBar
-              Width = 970
-              inherited btn1: TbsSkinSpeedButton
-                Left = 23
-                ImageList = trckrcrdvw1.bspngmglst24
-                ImageIndex = -1
+              Width = 971
+              inherited btnadd: TbsSkinSpeedButton
                 OnClick = trckrcrdvw1btn1Click
               end
-              inherited btn2: TbsSkinSpeedButton
+              inherited btnupdate: TbsSkinSpeedButton
                 OnClick = trckrcrdvw1btn2Click
               end
-              inherited btn3: TbsSkinSpeedButton
+              inherited btndelete: TbsSkinSpeedButton
                 OnClick = trckrcrdvw1btn3Click
               end
               inherited btn4: TbsSkinSpeedButton
+                SkinDataName = 'resizebutton'
                 OnClick = trckrcrdvw1btn4Click
               end
             end
             inherited bskndbgrd1: TbsSkinDBGrid
-              Width = 951
-              Height = 133
+              Width = 952
+              Height = 130
               DefaultRowHeight = 18
               DataSource = HDHouseDataModule.dsTrackRecords
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
               PopupMenu = bsSkinPopupMenu1
               TitleFont.Color = clBtnText
               TitleFont.Height = 14
@@ -154,12 +153,12 @@ object HouseTrackForm: THouseTrackForm
                 end>
             end
             inherited bsknscrlbr1: TbsSkinScrollBar
-              Top = 182
-              Width = 970
+              Top = 179
+              Width = 971
             end
             inherited bsknscrlbr2: TbsSkinScrollBar
-              Left = 951
-              Height = 133
+              Left = 952
+              Height = 130
             end
           end
         end
@@ -168,80 +167,95 @@ object HouseTrackForm: THouseTrackForm
           inline hsdtlnfvw1: THouseDetailInfoView
             Left = 0
             Top = 0
-            Width = 970
-            Height = 201
+            Width = 971
+            Height = 198
             Align = alClient
             AutoScroll = False
             TabOrder = 0
             inherited bsknpnl1: TbsSkinPanel
               inherited edt1: TbsSkinDBEdit
+                Text = '6800'
                 DataField = 'fczy_zj'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt2: TbsSkinDBEdit
+                Text = '200'
                 DataField = 'fczy_sj'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt3: TbsSkinDBEdit
+                Text = #20986#31199#19981#21253#25324#27700#30005#36153#29992
                 DataField = 'fczy_czsm'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt4: TbsSkinDBEdit
+                Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
                 DataField = 'fczy_cssm'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt5: TbsSkinDBEdit
+                Text = #27491#24120#29366#24577
                 DataField = 'fczy_dqzt'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt6: TbsSkinDBEdit
+                Text = #37329#25104#22269#36152
                 DataField = 'fczy_wymc'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt7: TbsSkinDBEdit
+                Text = #35199#22478#21306
                 DataField = 'fczy_qy'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt8: TbsSkinDBEdit
+                Text = '4'#23460'1'#21381'1'#21355'1'#38451
                 DataField = 'fczy_hxjg'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt9: TbsSkinDBEdit
+                Text = #23567#29579
                 DataField = 'fczy_fwly'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt10: TbsSkinDBEdit
+                Text = #21150#20844#29992#25151
                 DataField = 'fczy_wyyt'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt11: TbsSkinDBEdit
+                Text = #26222#35013
                 DataField = 'fczy_zxcd'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt12: TbsSkinDBEdit
+                Text = '360'
                 DataField = 'fczy_jzmj'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt13: TbsSkinDBEdit
+                Text = '2005'
                 DataField = 'fczy_jcnf'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt14: TbsSkinDBEdit
+                Text = #24179#23618
                 DataField = 'fczy_fx'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt15: TbsSkinDBEdit
+                Text = #39640#23618
                 DataField = 'fczy_wylb'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt16: TbsSkinDBEdit
+                Text = '16'
                 DataField = 'fczy_lc'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
                 Left = 12
                 State = cbChecked
-                Checked = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
@@ -252,15 +266,18 @@ object HouseTrackForm: THouseTrackForm
             end
             inherited bsknpnl2: TbsSkinPanel
               inherited edt17: TbsSkinDBEdit
+                Text = #23485#24102';'
                 DataField = 'fczy_ptss1'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt18: TbsSkinDBEdit
                 Left = 81
+                Text = #30005#35805';'#23485#24102';'
                 DataField = 'fczy_ptss2'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt19: TbsSkinDBEdit
+                Text = #21830#22478#36335'110'#21495
                 DataField = 'fczy_jtdz'
                 DataSource = HDHouseDataModule.dsfczy
               end
@@ -278,29 +295,38 @@ object HouseTrackForm: THouseTrackForm
           inline hscrnfvw1: THouseSecureInfoView
             Left = 0
             Top = 0
-            Width = 970
-            Height = 201
+            Width = 971
+            Height = 198
             Align = alClient
             AutoScroll = False
             TabOrder = 0
             inherited bsknpnl1: TbsSkinPanel
-              Width = 970
-              Height = 201
+              Width = 971
+              Height = 198
               inherited edtfczy_yzxm: TbsSkinDBEdit
+                Text = #20029#20029
+                ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edtfczy_yzxm1: TbsSkinDBEdit
+                Text = '56585658'
+                ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edtfczy_yzxm2: TbsSkinDBEdit
+                Text = '200'
+                ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edtfczy_yzxm3: TbsSkinDBEdit
+                Text = #21830#22478#36335'110'#21495
+                ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited mmofczy_yzxm: TbsSkinDBMemo
                 Lines.Strings = (
-                  #25105#26159#35841#21834)
+                  #26080)
+                ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
             end
@@ -310,9 +336,9 @@ object HouseTrackForm: THouseTrackForm
       inline dlhslstvw1: TDealHouseListView
         Left = 0
         Top = 0
-        Width = 968
-        Height = 328
-        Anchors = [akLeft, akTop, akRight]
+        Width = 969
+        Height = 332
+        Anchors = [akLeft, akTop, akRight, akBottom]
         AutoScroll = False
         TabOrder = 0
         inherited btn1: TbsSkinButtonLabel
@@ -320,18 +346,23 @@ object HouseTrackForm: THouseTrackForm
           OnClick = dlhslstvw1btn1Click
         end
         inherited bvl1: TBevel
-          Width = 968
+          Width = 969
         end
         inherited bsSkinStdLabel1: TbsSkinStdLabel
           Left = 157
-          Top = 16
+          Top = 18
+        end
+        inherited i: TbsSkinStdLabel
+          Left = 1
+          Top = 19
         end
         inherited bskndbgrd1: TbsSkinDBGrid
-          Left = -27
-          Top = 65
-          Height = 276
+          Left = -20
+          Top = 68
+          Height = 246
           Align = alNone
           DataSource = HDHouseDataModule.dsfczy
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         end
         inherited bsknchckrdbx3: TbsSkinCheckRadioBox
           Top = 9
@@ -339,16 +370,18 @@ object HouseTrackForm: THouseTrackForm
           OnClick = dlhslstvw1bsknchckrdbx3Click
         end
         inherited btngaojibtn2: TbsSkinButton
-          Left = 387
-          Top = 12
+          Left = 384
+          Top = 13
           Width = 79
-          TabOrder = 2
+          TabOrder = 1
           OnClick = dlhslstvw1btngaojibtn2Click
         end
         inherited bsknscrlbr1: TbsSkinScrollBar
-          Top = 305
-          Width = 968
-          Height = 23
+          Top = 310
+          Width = 969
+          Height = 22
+          Visible = True
+          Max = 127
         end
         inherited bsknchckrdbx2: TbsSkinCheckRadioBox
           OnClick = dlhslstvw1bsknchckrdbx2Click
@@ -356,25 +389,25 @@ object HouseTrackForm: THouseTrackForm
         inherited bsknchckrdbx1: TbsSkinCheckRadioBox
           OnClick = dlhslstvw1bsknchckrdbx1Click
         end
-        inherited cbb1: TbsSkinDBComboBox
-          Top = 12
-          Width = 96
-          TabOrder = 1
-          OnChange = dlhslstvw1cbb1Change
-        end
         inherited edt2: TbsSkinMaskEdit
-          TabOrder = 3
+          TabOrder = 2
         end
         inherited edt1: TbsSkinMaskEdit
           Left = 280
+        end
+        inherited cbb1: TbsSkinComboBox
+          Top = 15
+          Width = 88
+          TabOrder = 3
+          OnChange = dlhslstvw1cbb1Change
         end
       end
     end
     object bskntbsht2: TbsSkinTabSheet
       Caption = #36319#36827#26597#35810
       DesignSize = (
-        972
-        556)
+        973
+        555)
       object bsSkinStdLabel1: TbsSkinStdLabel
         Left = 14
         Top = 15
@@ -730,9 +763,9 @@ object HouseTrackForm: THouseTrackForm
       end
       object bskndbgrd1: TbsSkinDBGrid
         Left = 0
-        Top = 46
-        Width = 972
-        Height = 490
+        Top = 48
+        Width = 973
+        Height = 489
         HintImageIndex = 0
         Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 5
@@ -753,6 +786,7 @@ object HouseTrackForm: THouseTrackForm
         PickListBoxSkinDataName = 'listbox'
         PickListBoxCaptionMode = False
         DataSource = HDHouseDataModule.dsTrackQuery
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clBtnText
         TitleFont.Height = 14
@@ -788,14 +822,14 @@ object HouseTrackForm: THouseTrackForm
             Expanded = False
             FieldName = 'fcgj_ms'
             Title.Caption = #36319#36827#20869#23481
-            Width = 350
+            Width = 675
             Visible = True
           end>
       end
       object bsknscrlbr1: TbsSkinScrollBar
         Left = 0
-        Top = 537
-        Width = 972
+        Top = 536
+        Width = 973
         Height = 19
         HintImageIndex = 0
         TabOrder = 6
@@ -873,7 +907,7 @@ object HouseTrackForm: THouseTrackForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 911
     Top = 14
   end
@@ -892,8 +926,8 @@ object HouseTrackForm: THouseTrackForm
       'begin'
       ''
       'end.')
-    Left = 805
-    Top = 2
+    Left = 789
+    Top = 5
     Datasets = <
       item
         DataSet = frxDBDataset2

@@ -1,8 +1,8 @@
 object EmployeeInfoForm: TEmployeeInfoForm
-  Left = 382
-  Top = 249
-  AutoScroll = False
+  Left = 441
+  Top = 214
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #21592#24037#20449#24687
   ClientHeight = 367
   ClientWidth = 507
@@ -14,7 +14,6 @@ object EmployeeInfoForm: TEmployeeInfoForm
   Font.Style = []
   OldCreateOrder = False
   OnCloseQuery = FormCloseQuery
-  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -270,7 +269,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
         'mmo1')
       ParentFont = False
       ScrollBars = ssBoth
-      TabOrder = 0
+      TabOrder = 6
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
       DefaultFont.Height = 14
@@ -308,7 +307,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 5
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -343,7 +342,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 4
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -378,7 +377,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 0
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -413,7 +412,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -448,7 +447,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -483,7 +482,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -686,12 +685,12 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Width = 117
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-07'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40063.727420787030000000
+      Date = 40072.702284606480000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -739,12 +738,12 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Width = 117
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-07'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40063.727360740740000000
+      Date = 40072.702284606480000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -938,22 +937,12 @@ object EmployeeInfoForm: TEmployeeInfoForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 128
     Top = 297
   end
   object qry_ygxxxx: TADOQuery
-    ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Pr' +
-      'oject\delphi\HDHouse\database\hdhouse.mdb;Mode=Share Deny None;E' +
-      'xtended Properties="";Jet OLEDB:System database="";Jet OLEDB:Reg' +
-      'istry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Ty' +
-      'pe=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial ' +
-      'Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Da' +
-      'tabase Password="";Jet OLEDB:Create System Database=False;Jet OL' +
-      'EDB:Encrypt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compac' +
-      't=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB' +
-      ':SFP=False'
+    Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
       item

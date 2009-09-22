@@ -29,7 +29,6 @@ type
     procedure btn6Click(Sender: TObject);
     procedure btn1Click(Sender: TObject);
     procedure btn2Click(Sender: TObject);
-    procedure btn5Click(Sender: TObject);
     procedure bskndbgrd2DblClick(Sender: TObject);
     procedure btn4Click(Sender: TObject);
     procedure btn3Click(Sender: TObject);
@@ -52,14 +51,13 @@ implementation
 
 procedure TOperatePermissionSettingForm.btn6Click(Sender: TObject);
 begin
-  inherited;
-       OperatorInfoForm.ParmEditorMode := 'ADD';
-       OperatorInfoForm.ShowModal;
-        with HDHouseDataModule.qry_users do
-      begin
-        Close;
-        Open;
-      end;
+    inherited;
+    OperatorInfoForm.ParmId:='';
+    OperatorInfoForm.ParmEditorMode := 'ADD';
+    OperatorInfoForm.ShowModal;
+    HDHouseDataModule.qry_users.Close;
+    HDHouseDataModule.qry_users.Open;
+
 end;
 
 procedure TOperatePermissionSettingForm.btn1Click(Sender: TObject);
@@ -102,35 +100,6 @@ begin
         Open;
       end; 
 end;
-
-procedure TOperatePermissionSettingForm.btn5Click(Sender: TObject);
-begin
-   inherited;
-//
-     if not HDHouseDataModule.qry_users.IsEmpty  then
-     begin
-       if HDHouseDataModule.qry_users.FieldByName('user_qxbh').AsString<>'001' then
-       begin
-           Try
-      OperatorInfoForm.ParmEditorMode := 'EDIT';
-      OperatorInfoForm.ParmId := HDHouseDataModule.qry_users.fieldbyname('user_bh').AsString;
-      OperatorInfoForm.ShowModal;
-    Finally
-
-    End;
-       end
-       else
-       begin
-           HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('系统级别操作员不能删除！', '提示', nil, -1, [mbOk], 0);
-       end;
-     end;
-     with HDHouseDataModule.qry_users do
-      begin
-        Close;
-        Open;
-      end;   
-end;
-
 procedure TOperatePermissionSettingForm.bskndbgrd2DblClick(
   Sender: TObject);
 begin
@@ -139,19 +108,18 @@ begin
     if not HDHouseDataModule.qry_users.IsEmpty  then
      begin
         if HDHouseDataModule.qry_users.FieldByName('user_qxbh').AsString<>'001'  then
-     begin
-       Try
-      OperatorInfoForm.ParmEditorMode := 'EDIT';
-      OperatorInfoForm.ParmId := HDHouseDataModule.qry_users.fieldbyname('user_bh').AsString;
-      OperatorInfoForm.ShowModal;
-    Finally
-
-    End;
-       end
-    else
-       begin
-           HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('系统级别操作员不能删除！', '提示', nil, -1, [mbOk], 0);
-       end;
+        begin
+           Try
+            OperatorInfoForm.ParmEditorMode := 'EDIT';
+            OperatorInfoForm.ParmId := HDHouseDataModule.qry_users.fieldbyname('user_bh').AsString;
+            OperatorInfoForm.ShowModal;
+           Finally
+           End;
+        end
+        else
+        begin
+             HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('系统级别操作员不能修改！', '提示', nil, -1, [mbOk], 0);
+        end;
      end;
      with HDHouseDataModule.qry_users do
       begin
@@ -166,7 +134,7 @@ begin
       //
       if not HDHouseDataModule.qry_users.IsEmpty then
    begin
-            if HDHouseDataModule.qry_users.fieldbyname('cs_qxbh').AsString='001'  then
+     if HDHouseDataModule.qry_users.fieldbyname('user_bh').AsString='admin'  then
       begin
        HDHouseDataModule.bsknmsg_msg.CustomMessageDlg('系统级操作员不能删除！', '提示', nil, -1, [mbOk], 0);
        Exit;

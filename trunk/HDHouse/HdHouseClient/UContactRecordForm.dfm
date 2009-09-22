@@ -1,10 +1,11 @@
 object ContactRecordForm: TContactRecordForm
-  Left = 333
-  Top = 176
-  Width = 916
-  Height = 538
-  BorderIcons = [biSystemMenu, biMinimize]
+  Left = 282
+  Top = 128
+  BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #26469#30005#35760#24405
+  ClientHeight = 537
+  ClientWidth = 908
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,12 +15,12 @@ object ContactRecordForm: TContactRecordForm
   OldCreateOrder = False
   DesignSize = (
     908
-    504)
+    537)
   PixelsPerInch = 96
   TextHeight = 13
   object bsSkinStdLabel1: TbsSkinStdLabel
-    Left = 8
-    Top = 96
+    Left = 7
+    Top = 98
     Width = 65
     Height = 17
     EllipsType = bsetNone
@@ -30,6 +31,7 @@ object ContactRecordForm: TContactRecordForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     AutoSize = False
     Caption = #26102#38388#33539#22260
@@ -47,6 +49,7 @@ object ContactRecordForm: TContactRecordForm
     DefaultFont.Height = -11
     DefaultFont.Name = 'MS Sans Serif'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     AutoSize = False
     Caption = #26469#30005#20449#24687#26597#35810
@@ -173,6 +176,7 @@ object ContactRecordForm: TContactRecordForm
     DefaultFont.Height = 14
     DefaultFont.Name = 'Arial'
     DefaultFont.Style = []
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'stdlabel'
     OnClick = btn4Click
   end
@@ -180,7 +184,7 @@ object ContactRecordForm: TContactRecordForm
     Left = -188
     Top = 80
     Width = 1120
-    Height = 1
+    Height = 2
     Align = alCustom
     Anchors = [akLeft, akTop, akRight]
   end
@@ -243,24 +247,28 @@ object ContactRecordForm: TContactRecordForm
       end
       inherited btn4: TbsSkinSpeedButton
         Top = 5
+        OnClick = dtprtbrvw1btn4Click
       end
       inherited btn5: TbsSkinSpeedButton
         Left = 329
         Top = 5
+        OnClick = dtprtbrvw1btn5Click
       end
     end
     inherited bsknfrm1: TbsSkinFrame
-      Left = 575
+      Left = 869
+      Top = 2
     end
   end
   object bskngrpbx1: TbsSkinGroupBox
     Left = -1
     Top = 136
     Width = 925
-    Height = 528
+    Height = 561
     HintImageIndex = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
-    TabOrder = 1
+    TabOrder = 4
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -288,11 +296,11 @@ object ContactRecordForm: TContactRecordForm
     Caption = #25151#28304#20449#24687
     object bsknscrlbr3: TbsSkinScrollBar
       Left = 1
-      Top = 508
+      Top = 541
       Width = 923
       Height = 19
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 1
       Visible = False
       SkinDataName = 'hscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -320,9 +328,10 @@ object ContactRecordForm: TContactRecordForm
       Left = 1
       Top = 23
       Width = 923
-      Height = 485
+      Height = 518
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'grid'
       Transparent = False
       WallpaperStretch = False
@@ -345,6 +354,7 @@ object ContactRecordForm: TContactRecordForm
       PickListBoxCaptionMode = False
       Align = alClient
       DataSource = dsLd
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       ParentFont = False
       PopupMenu = pmLd
       TitleFont.Charset = DEFAULT_CHARSET
@@ -375,7 +385,7 @@ object ContactRecordForm: TContactRecordForm
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
-          Width = 85
+          Width = 106
           Visible = True
         end
         item
@@ -387,7 +397,7 @@ object ContactRecordForm: TContactRecordForm
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
-          Width = 167
+          Width = 135
           Visible = True
         end
         item
@@ -399,7 +409,7 @@ object ContactRecordForm: TContactRecordForm
           Title.Font.Height = -11
           Title.Font.Name = 'MS Sans Serif'
           Title.Font.Style = []
-          Width = 293
+          Width = 226
           Visible = True
         end
         item
@@ -434,12 +444,12 @@ object ContactRecordForm: TContactRecordForm
     Width = 88
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-08'
+    Text = '2009-09-21'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40064.634547696760000000
+    Date = 40077.664221643520000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -460,6 +470,7 @@ object ContactRecordForm: TContactRecordForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -468,7 +479,7 @@ object ContactRecordForm: TContactRecordForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -482,12 +493,12 @@ object ContactRecordForm: TContactRecordForm
     Width = 88
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-08'
+    Text = '2009-09-21'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40064.634547696760000000
+    Date = 40077.664221643520000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -508,6 +519,7 @@ object ContactRecordForm: TContactRecordForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = True
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'buttonedit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -516,7 +528,7 @@ object ContactRecordForm: TContactRecordForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -539,6 +551,7 @@ object ContactRecordForm: TContactRecordForm
     DefaultWidth = 0
     DefaultHeight = 0
     ButtonMode = False
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -546,7 +559,7 @@ object ContactRecordForm: TContactRecordForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -590,5 +603,443 @@ object ContactRecordForm: TContactRecordForm
     object Z1: TMenuItem
       Caption = '  '#25171' '#21360'  '
     end
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu]
+    Left = 873
+    Top = 46
+  end
+  object frxDBDatasetld: TfrxDBDataset
+    UserName = 'frxDBDatasetld'
+    CloseDataSource = False
+    DataSet = qryLd
+    BCDToCurrency = False
+    Left = 717
+    Top = 20
+  end
+  object frxReport1: TfrxReport
+    Version = '4.7.181'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = #39044#35774
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 40072.671092303200000000
+    ReportOptions.LastChange = 40072.671092303200000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 651
+    Top = 18
+    Datasets = <
+      item
+        DataSet = frxDBDatasetld
+        DataSetName = 'frxDBDatasetld'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object ReportTitle1: TfrxReportTitle
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        Height = 45.354360000000000000
+        ParentFont = False
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Left = 238.110390000000000000
+          Width = 173.858380000000000000
+          Height = 41.574830000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -37
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37833#12519#25976#28103#8451#20229)
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 540.472790000000000000
+          Top = 26.456710000000000000
+          Width = 37.795300000000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37827#22549#26879)
+          ParentFont = False
+        end
+        object Date: TfrxMemoView
+          Left = 578.268090000000000000
+          Top = 26.456710000000000000
+          Width = 109.606370000000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8 = (
+            '[Date]')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        Height = 26.456710000000000000
+        Top = 185.196970000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBDatasetld
+        DataSetName = 'frxDBDatasetld'
+        RowCount = 0
+        object frxDBDatasetldldxx_bh: TfrxMemoView
+          Left = 7.559060000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'ldxx_bh'
+          DataSet = frxDBDatasetld
+          DataSetName = 'frxDBDatasetld'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 13408511
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasetld."ldxx_bh"]')
+          ParentFont = False
+        end
+        object frxDBDatasetldldxx_dh: TfrxMemoView
+          Left = 102.047310000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'ldxx_dh'
+          DataSet = frxDBDatasetld
+          DataSetName = 'frxDBDatasetld'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 13408511
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasetld."ldxx_dh"]')
+          ParentFont = False
+        end
+        object frxDBDatasetldldxx_xm: TfrxMemoView
+          Left = 200.315090000000000000
+          Width = 105.826840000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'ldxx_xm'
+          DataSet = frxDBDatasetld
+          DataSetName = 'frxDBDatasetld'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 13408511
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasetld."ldxx_xm"]')
+          ParentFont = False
+        end
+        object frxDBDatasetldldxx_date: TfrxMemoView
+          Left = 396.850650000000000000
+          Width = 109.606370000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'ldxx_date'
+          DataSet = frxDBDatasetld
+          DataSetName = 'frxDBDatasetld'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 13408511
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasetld."ldxx_date"]')
+          ParentFont = False
+        end
+        object frxDBDatasetldldxx_nr: TfrxMemoView
+          Left = 506.457020000000000000
+          Width = 211.653680000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'ldxx_nr'
+          DataSet = frxDBDatasetld
+          DataSetName = 'frxDBDatasetld'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 13408511
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasetld."ldxx_nr"]')
+          ParentFont = False
+        end
+        object frxDBDatasetldldxx_lx: TfrxMemoView
+          Left = 306.141930000000000000
+          Width = 90.708720000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataField = 'ldxx_lx'
+          DataSet = frxDBDatasetld
+          DataSetName = 'frxDBDatasetld'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 13408511
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[frxDBDatasetld."ldxx_lx"]')
+          ParentFont = False
+        end
+        object Memo12: TfrxMemoView
+          Top = 22.677179999999990000
+          Width = 718.110700000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Style = fsDot
+          Frame.Typ = [ftTop]
+          ParentFont = False
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        Height = 37.795300000000000000
+        Top = 86.929190000000000000
+        Width = 718.110700000000000000
+        object Memo6: TfrxMemoView
+          Left = 94.488250000000000000
+          Top = 7.559060000000003000
+          Width = 98.267780000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37833#12519#25976#37721#39118#29212)
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Top = 7.559060000000003000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37833#12519#25976#32514#26663#24447)
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          Left = 306.141930000000000000
+          Top = 7.559060000000003000
+          Width = 90.708720000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37833#12519#25976#28729#12833#22491#32491#35826#28727)
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          Left = 192.756030000000000000
+          Top = 7.559060000000003000
+          Width = 113.385900000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #28729#12833#22491#28654#25779#24725)
+          ParentFont = False
+        end
+        object Memo7: TfrxMemoView
+          Left = 396.850650000000000000
+          Top = 7.559060000000003000
+          Width = 109.606370000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37833#12519#25976#37827#22549#26879)
+          ParentFont = False
+        end
+        object Memo8: TfrxMemoView
+          Left = 506.457020000000000000
+          Top = 7.559060000000003000
+          Width = 204.094620000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8 = (
+            #37819#24538#22570)
+          ParentFont = False
+        end
+        object Memo9: TfrxMemoView
+          Width = 718.110700000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Top = 11.338590000000000000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftBottom]
+          ParentFont = False
+        end
+      end
+      object Footer1: TfrxFooter
+        Height = 22.677180000000000000
+        Top = 234.330860000000000000
+        Width = 718.110700000000000000
+        object Memo11: TfrxMemoView
+          Top = 3.779529999999994000
+          Width = 718.110700000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+        end
+      end
+    end
+  end
+  object frxXMLExport1: TfrxXMLExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    Background = True
+    Creator = 'FastReport'
+    EmptyLines = True
+    SuppressPageHeadersFooters = False
+    Left = 580
+    Top = 18
   end
 end

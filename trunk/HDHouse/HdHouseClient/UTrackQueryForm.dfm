@@ -1,11 +1,11 @@
 object TrackQueryForm: TTrackQueryForm
-  Left = 239
-  Top = 88
-  AutoScroll = False
+  Left = 288
+  Top = 144
   BorderIcons = []
-  Caption = 'TrackQueryForm '
-  ClientHeight = 594
-  ClientWidth = 935
+  BorderStyle = bsDialog
+  Caption = #36319#36827#26597#35810
+  ClientHeight = 570
+  ClientWidth = 931
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,14 +13,15 @@ object TrackQueryForm: TTrackQueryForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 0
-    Width = 935
-    Height = 594
-    ActivePage = bskntbsht2
+    Width = 931
+    Height = 570
+    ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText
@@ -43,30 +44,95 @@ object TrackQueryForm: TTrackQueryForm
     DefaultFont.Style = []
     UseSkinFont = True
     DefaultItemHeight = 20
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'tab'
     object bskntbsht1: TbsSkinTabSheet
       Caption = #25151#28304#36319#36827#26597#35810
       inline trckqryfrm2: TTrackQueryFrame
         Left = 0
         Top = 0
-        Width = 933
-        Height = 572
+        Width = 929
+        Height = 548
         Align = alClient
         AutoScroll = False
         TabOrder = 0
-        inherited bsSkinDBGrid1: TbsSkinDBGrid
-          Width = 933
-          Height = 499
-          DefaultRowHeight = 18
-          TitleFont.Color = clBtnText
-          TitleFont.Height = 14
-          TitleFont.Name = 'Arial'
-        end
         inherited bsknpnl1: TbsSkinPanel
-          Width = 933
+          Width = 929
+          SkinData = HDHouseDataModule.bsSkinData1
+          inherited lbl1: TbsSkinStdLabel
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
           inherited lbl3: TLabel
             Height = 14
           end
+          inherited lbl4: TbsSkinStdLabel
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
+          inherited btn1: TbsSkinButtonLabel
+            Left = 616
+            SkinData = HDHouseDataModule.bsSkinData1
+            OnClick = trckqryfrm2btn1Click
+          end
+          inherited btn2: TbsSkinButtonLabel
+            Left = 611
+            Top = 21
+            Visible = False
+            OnClick = trckqryfrm2btn2Click
+          end
+          inherited edt1: TbsSkinDateEdit
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
+          inherited edt6: TbsSkinEdit
+            Text = ''
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
+          inherited edt5: TbsSkinDateEdit
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
+          inherited bsknchckrdbx1: TbsSkinCheckRadioBox
+            SkinData = HDHouseDataModule.bsSkinData1
+            GroupIndex = 1
+            OnClick = trckqryfrm2bsknchckrdbx1Click
+          end
+          inherited bsknchckrdbx2: TbsSkinCheckRadioBox
+            SkinData = HDHouseDataModule.bsSkinData1
+            GroupIndex = 1
+            OnClick = trckqryfrm2bsknchckrdbx2Click
+          end
+        end
+        inherited bskndbgrd1: TbsSkinDBGrid
+          Width = 929
+          Height = 475
+          DefaultRowHeight = 18
+          DataSource = HDHouseDataModule.dsTrackQuery
+          TitleFont.Color = clBtnText
+          TitleFont.Height = 14
+          TitleFont.Name = 'Arial'
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'fcgj_date'
+              Title.Caption = #36319#36827#20107#20214
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fcgj_gjr'
+              Title.Caption = #36319#36827#20154
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fcgj_fs'
+              Title.Caption = #36319#36827#26041#24335
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'fcgj_ms'
+              Title.Caption = #36319#36827#20869#23481
+              Visible = True
+            end>
         end
       end
     end
@@ -75,27 +141,89 @@ object TrackQueryForm: TTrackQueryForm
       inline trckqryfrm1: TTrackQueryFrame
         Left = 0
         Top = 0
-        Width = 933
-        Height = 572
+        Width = 929
+        Height = 548
         Align = alClient
         AutoScroll = False
         TabOrder = 0
-        inherited bsSkinDBGrid1: TbsSkinDBGrid
-          Width = 933
-          Height = 499
-          DefaultRowHeight = 18
-          TitleFont.Color = clBtnText
-          TitleFont.Height = 14
-          TitleFont.Name = 'Arial'
-        end
         inherited bsknpnl1: TbsSkinPanel
-          Width = 933
+          Width = 929
+          SkinData = HDHouseDataModule.bsSkinData1
+          inherited lbl1: TbsSkinStdLabel
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
           inherited lbl3: TLabel
             Height = 14
           end
           inherited lbl4: TbsSkinStdLabel
             Left = 344
+            SkinData = HDHouseDataModule.bsSkinData1
           end
+          inherited btn1: TbsSkinButtonLabel
+            Left = 612
+            OnClick = trckqryfrm1btn1Click
+          end
+          inherited btn2: TbsSkinButtonLabel
+            SkinData = HDHouseDataModule.bsSkinData1
+            Visible = False
+            OnClick = trckqryfrm1btn2Click
+          end
+          inherited edt1: TbsSkinDateEdit
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
+          inherited edt6: TbsSkinEdit
+            Text = ''
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
+          inherited edt5: TbsSkinDateEdit
+            SkinData = HDHouseDataModule.bsSkinData1
+          end
+          inherited bsknchckrdbx1: TbsSkinCheckRadioBox
+            SkinData = HDHouseDataModule.bsSkinData1
+            GroupIndex = 1
+            Caption = #26174#31034#27714#31199#36319#36827
+            OnClick = trckqryfrm1bsknchckrdbx1Click
+          end
+          inherited bsknchckrdbx2: TbsSkinCheckRadioBox
+            SkinData = HDHouseDataModule.bsSkinData1
+            GroupIndex = 1
+            Caption = #21482#26174#26179#27714#36141#36319#36827
+            OnClick = trckqryfrm1bsknchckrdbx2Click
+          end
+        end
+        inherited bskndbgrd1: TbsSkinDBGrid
+          Width = 929
+          Height = 475
+          DefaultRowHeight = 18
+          DataSource = dsTrackAll
+          TitleFont.Color = clBtnText
+          TitleFont.Height = 14
+          TitleFont.Name = 'Arial'
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'khgj_date'
+              Title.Caption = #36319#36827#20107#20214
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khgj_gjr'
+              Title.Caption = #36319#36827#20154
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khgj_fs'
+              Title.Caption = #36319#36827#26041#24335
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'khgj_ms'
+              Title.Caption = #36319#36827#20869#23481
+              Visible = True
+            end>
         end
       end
     end
@@ -148,8 +276,23 @@ object TrackQueryForm: TTrackQueryForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
-    Left = 832
-    Top = 368
+    BorderIcons = [biSystemMenu]
+    Left = 869
+    Top = 14
+  end
+  object qryTrackAll: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from khgj')
+    Left = 772
+    Top = 5
+  end
+  object dsTrackAll: TDataSource
+    DataSet = qryTrackAll
+    Left = 715
+    Top = 5
   end
 end

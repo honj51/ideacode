@@ -1,10 +1,11 @@
 object CustomerQueryForm: TCustomerQueryForm
-  Left = 534
-  Top = 255
-  Width = 584
-  Height = 310
-  BorderIcons = [biSystemMenu, biMinimize]
+  Left = 499
+  Top = 262
+  BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #23458#25143#26597#35810
+  ClientHeight = 276
+  ClientWidth = 576
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -26,7 +27,7 @@ object CustomerQueryForm: TCustomerQueryForm
     object lbl12: TbsSkinStdLabel
       Left = 16
       Top = 160
-      Width = 48
+      Width = 55
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -36,14 +37,16 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #22320#29702#20301#32622
     end
     object lbl11: TbsSkinStdLabel
       Left = 16
       Top = 128
-      Width = 48
-      Height = 13
+      Width = 55
+      Height = 14
       EllipsType = bsetNone
       UseSkinFont = True
       UseSkinColor = True
@@ -52,7 +55,9 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #29289#19994#21517#31216
     end
     object bvl1: TBevel
@@ -74,6 +79,7 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       Caption = #65293
     end
@@ -90,13 +96,14 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
       Caption = #65293
     end
     object lbl2: TbsSkinStdLabel
       Left = 352
       Top = 28
-      Width = 24
+      Width = 32
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -106,13 +113,15 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #38754#31215
     end
     object lbl1: TbsSkinStdLabel
       Left = 184
       Top = 28
-      Width = 24
+      Width = 32
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -122,13 +131,15 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #21306#22495
     end
     object lbl14: TbsSkinStdLabel
       Left = 16
       Top = 28
-      Width = 48
+      Width = 52
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -138,13 +149,15 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #20132#26131#31867#22411
     end
     object lbl4: TbsSkinStdLabel
       Left = 16
       Top = 56
-      Width = 48
+      Width = 63
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -154,13 +167,15 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #25143#22411#32467#26500
     end
     object lbl5: TbsSkinStdLabel
       Left = 192
       Top = 56
-      Width = 17
+      Width = 12
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -170,13 +185,15 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #65293
     end
     object lbl6: TbsSkinStdLabel
       Left = 352
       Top = 56
-      Width = 24
+      Width = 36
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -186,7 +203,9 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #20215#26684
     end
     object edtdlwz: TbsSkinEdit
@@ -211,7 +230,7 @@ object CustomerQueryForm: TCustomerQueryForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 13
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -241,7 +260,7 @@ object CustomerQueryForm: TCustomerQueryForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 12
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -255,7 +274,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 65
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 8
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -284,7 +304,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 65
       Height = 25
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 9
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -313,7 +334,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 65
       Height = 25
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 10
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -342,7 +364,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 65
       Height = 25
       HintImageIndex = 0
-      TabOrder = 5
+      TabOrder = 11
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'checkbox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -371,7 +394,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 105
       Height = 20
       HintImageIndex = 0
-      TabOrder = 6
+      TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -434,7 +458,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 105
       Height = 20
       HintImageIndex = 0
-      TabOrder = 7
+      TabOrder = 5
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -497,7 +522,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 105
       Height = 20
       HintImageIndex = 0
-      TabOrder = 8
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -554,7 +580,8 @@ object CustomerQueryForm: TCustomerQueryForm
       Width = 105
       Height = 20
       HintImageIndex = 0
-      TabOrder = 9
+      TabOrder = 1
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -619,6 +646,7 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -626,7 +654,7 @@ object CustomerQueryForm: TCustomerQueryForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 6
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -652,6 +680,7 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -659,7 +688,7 @@ object CustomerQueryForm: TCustomerQueryForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 11
+      TabOrder = 7
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -685,6 +714,7 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -692,7 +722,7 @@ object CustomerQueryForm: TCustomerQueryForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 12
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -718,6 +748,7 @@ object CustomerQueryForm: TCustomerQueryForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -725,7 +756,7 @@ object CustomerQueryForm: TCustomerQueryForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 13
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -740,7 +771,8 @@ object CustomerQueryForm: TCustomerQueryForm
     Width = 75
     Height = 25
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 2
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -773,7 +805,8 @@ object CustomerQueryForm: TCustomerQueryForm
     Width = 75
     Height = 25
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 1
+    SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
     DefaultFont.Color = clWindowText
@@ -799,5 +832,57 @@ object CustomerQueryForm: TCustomerQueryForm
     OnClick = btn1Click
     DefActiveFontColor = clBlack
     DefDownFontColor = clBlack
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu]
+    Left = 532
+    Top = 3
   end
 end

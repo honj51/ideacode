@@ -1,8 +1,8 @@
 object HouseQueryForm: THouseQueryForm
-  Left = 772
-  Top = 180
-  AutoScroll = False
+  Left = 512
+  Top = 273
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25151#28304#26597#35810
   ClientHeight = 270
   ClientWidth = 585
@@ -13,6 +13,7 @@ object HouseQueryForm: THouseQueryForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCloseQuery = FormCloseQuery
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -46,7 +47,6 @@ object HouseQueryForm: THouseQueryForm
       inherited lbl10: TbsSkinStdLabel
         Left = 479
         Top = 61
-        Height = 15
       end
       inherited lbl9: TbsSkinStdLabel
         Left = 370
@@ -60,10 +60,15 @@ object HouseQueryForm: THouseQueryForm
         Width = 560
         Anchors = [akLeft, akTop, akRight, akBottom]
       end
+      inherited cbb5: TbsSkinComboBox
+        Left = 80
+        Top = 28
+      end
       inherited cbb6: TbsSkinComboBox
         TabOrder = 1
       end
       inherited cbb4: TbsSkinComboBox
+        Left = 295
         TabOrder = 7
       end
       inherited cbb3: TbsSkinComboBox
@@ -72,7 +77,6 @@ object HouseQueryForm: THouseQueryForm
       inherited edt1: TbsSkinNumericEdit
         Left = 403
         Top = 28
-        Height = 18
         TabOrder = 2
       end
       inherited edt2: TbsSkinNumericEdit
@@ -141,7 +145,7 @@ object HouseQueryForm: THouseQueryForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 501
     Top = 1
   end

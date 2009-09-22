@@ -1,8 +1,8 @@
 object LoginForm: TLoginForm
-  Left = 866
-  Top = 252
+  Left = 482
+  Top = 231
   BorderIcons = []
-  BorderStyle = bsToolWindow
+  BorderStyle = bsDialog
   Caption = #30331#24405#31383#21475
   ClientHeight = 187
   ClientWidth = 363
@@ -56,7 +56,7 @@ object LoginForm: TLoginForm
     Width = 75
     Height = 25
     HintImageIndex = 0
-    TabOrder = 0
+    TabOrder = 2
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -89,7 +89,7 @@ object LoginForm: TLoginForm
     Width = 75
     Height = 25
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 3
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'button'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -122,7 +122,7 @@ object LoginForm: TLoginForm
     Width = 145
     Height = 18
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'combobox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -177,7 +177,7 @@ object LoginForm: TLoginForm
     Height = 18
     Cursor = crIBeam
     HintImageIndex = 0
-    TabOrder = 3
+    TabOrder = 1
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -239,7 +239,7 @@ object LoginForm: TLoginForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biRollUp]
+    BorderIcons = []
     Left = 312
     Top = 16
   end

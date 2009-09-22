@@ -1,8 +1,8 @@
 object DatabaseMantainForm: TDatabaseMantainForm
-  Left = 592
-  Top = 292
-  AutoScroll = False
+  Left = 424
+  Top = 311
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25968#25454#24211#32500#25252
   ClientHeight = 201
   ClientWidth = 401
@@ -71,7 +71,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Width = 75
         Height = 25
         HintImageIndex = 0
-        TabOrder = 0
+        TabOrder = 1
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -121,7 +121,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 0
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -200,7 +200,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Width = 75
         Height = 25
         HintImageIndex = 0
-        TabOrder = 0
+        TabOrder = 1
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -250,7 +250,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 0
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -404,7 +404,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 2
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -439,7 +439,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 3
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -456,7 +456,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Width = 75
         Height = 25
         HintImageIndex = 0
-        TabOrder = 3
+        TabOrder = 4
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -506,7 +506,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 1
         LeftImageIndex = -1
         LeftImageHotIndex = -1
         LeftImageDownIndex = -1
@@ -568,7 +568,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 33
     Top = 149
   end

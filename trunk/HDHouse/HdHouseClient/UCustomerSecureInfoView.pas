@@ -19,6 +19,7 @@ type
     edtAddress: TbsSkinDBEdit;
     bsSkinStdLabel5: TbsSkinStdLabel;
     mmoDescription: TbsSkinDBMemo;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public
@@ -26,7 +27,7 @@ type
   end;
 
 implementation
-
+    uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

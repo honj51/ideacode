@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, bsSkinCtrls, bsSkinShellCtrls, bsSkinGrids, bsDBGrids,
   StdCtrls, Mask, bsSkinBoxCtrls, ExtCtrls, TeeProcs, TeEngine, Chart, DB,
-  ADODB, Series, DbChart, GridsEh, DBGridEh;
+  ADODB, Series, DbChart, GridsEh, DBGridEh, BusinessSkinForm;
 
 type
   TStatisticForm = class(TForm)
@@ -21,16 +21,17 @@ type
     tv1: TbsSkinTreeView;
     ds1: TDataSource;
     qry1: TADOQuery;
-    bsSkinDBGrid1: TbsSkinDBGrid;
     dbcht1: TDBChart;
     brsrsSeries1: TBarSeries;
     DBGridEh1: TDBGridEh;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
     procedure tv1Change(Sender: TObject; Node: TTreeNode);
     procedure FormCreate(Sender: TObject);
     procedure DBGridEh1GetFooterParams(Sender: TObject; DataCol,
       Row: Integer; Column: TColumnEh; AFont: TFont;
       var Background: TColor; var Alignment: TAlignment;
       State: TGridDrawState; var Text: String);
+    procedure btn3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -206,7 +207,8 @@ begin
 
     qry1.SQL.Add(sql);
     qry1.Active := True;
-
+      DBGridEh1.Columns[0].Footer.ValueType := fvtCount;
+    DBGridEh1.Columns[1].Footer.ValueType := fvtSum;
   end;
 end;
 
@@ -222,7 +224,33 @@ procedure TStatisticForm.DBGridEh1GetFooterParams(Sender: TObject; DataCol,
   Row: Integer; Column: TColumnEh; AFont: TFont; var Background: TColor;
   var Alignment: TAlignment; State: TGridDrawState; var Text: String);
 begin
-  Text := Text + '条记录';
+  if (Column.Field.Index = 0) then Text := '共 ' + Text + ' 条记录'
+  else if (Column.Field.Index = 1) then Text := '合计: ' + Text;
+end;
+ //时间查询
+procedure TStatisticForm.btn3Click(Sender: TObject);
+var strFilter:string;
+begin
+ self.qry1.SQL.Clear;
+ self.qry1.Close;
+ strFilter:='select fczy_fwly AS 房屋来源, COUNT(*) AS 数量 FROM fczy ' ;
+ if(self.bsSkinDateEdit1.Date<>0)then
+ begin
+     strFilter := strFilter +'where';
+     if(self.bsSkinDateEdit2.Date <> 0)then
+     begin
+          strFilter := strFilter + ' fczy_djrq >= #'+self.bsSkinDateEdit1.Text+'#' +' AND ';
+          strFilter := strFilter + ' fczy_djrq <= #'+self.bsSkinDateEdit2.Text+'#';
+     end
+     else
+     begin
+          strFilter := strFilter + ' fczy_djrq >= #'+self.bsSkinDateEdit1.Text+'#' +' AND ';
+          strFilter := strFilter + ' fczy_djrq <= #'+DateTimeToStr(Now)+'#';
+     end;
+ end;
+  strFilter:= strFilter +'  GROUP BY fczy_fwly';
+  self.qry1.SQL.Add(strFilter);
+  self.qry1.Open;
 end;
 
 end.

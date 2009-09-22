@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, bsSkinCtrls, bsSkinExCtrls, bsSkinBoxCtrls, bsdbctrls,
-  ExtCtrls, Mask;
+  ExtCtrls, Mask, BusinessSkinForm;
 
 type
   TCustomerQueryForm = class(TForm)
@@ -37,6 +37,7 @@ type
     edtjg2: TbsSkinNumericEdit;
     edtmj1: TbsSkinNumericEdit;
     edtmj2: TbsSkinNumericEdit;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
     procedure btn2Click(Sender: TObject);
     procedure grp1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -52,7 +53,8 @@ var
   CustomerQueryForm: TCustomerQueryForm;
 
 implementation
-uses UParametersDataModule;
+
+  uses UParametersDataModule,UHDHouseDataModule ;
 {$R *.dfm}
 
 //È¡Ïû

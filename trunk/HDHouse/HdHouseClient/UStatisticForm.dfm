@@ -1,8 +1,8 @@
 object StatisticForm: TStatisticForm
-  Left = 260
-  Top = 187
-  AutoScroll = False
-  BorderIcons = [biSystemMenu, biMinimize]
+  Left = 285
+  Top = 51
+  BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #32508#21512#32479#35745
   ClientHeight = 633
   ClientWidth = 879
@@ -170,12 +170,14 @@ object StatisticForm: TStatisticForm
       DefaultFont.Height = 14
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      OnClick = btn3Click
     end
     object bsSkinStdLabel1: TbsSkinStdLabel
-      Left = 16
-      Top = 32
-      Width = 48
+      Left = 12
+      Top = 33
+      Width = 61
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -185,7 +187,9 @@ object StatisticForm: TStatisticForm
       DefaultFont.Height = -11
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #26102#38388#33539#22260
     end
     object lbl10: TbsSkinStdLabel
@@ -210,12 +214,12 @@ object StatisticForm: TStatisticForm
       Width = 80
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-04'
+      Text = '2009-09-16'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40060.473243807870000000
+      Date = 40072.735656284720000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -236,54 +240,7 @@ object StatisticForm: TStatisticForm
       DefaultWidth = 0
       DefaultHeight = 0
       ButtonMode = True
-      SkinDataName = 'buttonedit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      MaxLength = 10
-      ParentFont = False
-      TabOrder = 0
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-    end
-    object bsSkinDateEdit2: TbsSkinDateEdit
-      Left = 179
-      Top = 30
-      Width = 80
-      Height = 18
-      EditMask = '!0000/99/99;1; '
-      Text = '2009-09-04'
-      AlphaBlend = False
-      AlphaBlendAnimation = False
-      AlphaBlendValue = 0
-      UseSkinFont = True
-      Date = 40060.473243807870000000
-      TodayDefault = True
-      CalendarWidth = 200
-      CalendarHeight = 150
-      CalendarFont.Charset = DEFAULT_CHARSET
-      CalendarFont.Color = clWindowText
-      CalendarFont.Height = 14
-      CalendarFont.Name = 'Arial'
-      CalendarFont.Style = []
-      CalendarBoldDays = False
-      CalendarUseSkinFont = True
-      CalendarSkinDataName = 'panel'
-      FirstDayOfWeek = Sun
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'buttonedit'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -300,13 +257,63 @@ object StatisticForm: TStatisticForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
     end
+    object bsSkinDateEdit2: TbsSkinDateEdit
+      Left = 179
+      Top = 30
+      Width = 80
+      Height = 18
+      EditMask = '!0000/99/99;1; '
+      Text = '2009-09-16'
+      AlphaBlend = False
+      AlphaBlendAnimation = False
+      AlphaBlendValue = 0
+      UseSkinFont = True
+      Date = 40072.735656284720000000
+      TodayDefault = True
+      CalendarWidth = 200
+      CalendarHeight = 150
+      CalendarFont.Charset = DEFAULT_CHARSET
+      CalendarFont.Color = clWindowText
+      CalendarFont.Height = 14
+      CalendarFont.Name = 'Arial'
+      CalendarFont.Style = []
+      CalendarBoldDays = False
+      CalendarUseSkinFont = True
+      CalendarSkinDataName = 'panel'
+      FirstDayOfWeek = Sun
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'buttonedit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 2
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+    end
     object btn4: TbsSkinButton
       Left = 313
       Top = 26
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 0
+      SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -330,34 +337,6 @@ object StatisticForm: TStatisticForm
       Caption = #23548#20986
       NumGlyphs = 1
       Spacing = 1
-    end
-    object bsSkinDBGrid1: TbsSkinDBGrid
-      Left = 392
-      Top = 120
-      Width = 233
-      Height = 89
-      HintImageIndex = 0
-      TabOrder = 3
-      SkinDataName = 'grid'
-      Transparent = False
-      WallpaperStretch = False
-      UseSkinFont = True
-      UseSkinCellHeight = True
-      GridLineColor = clWindowText
-      DefaultCellHeight = 20
-      DrawGraphicFields = False
-      UseColumnsFont = False
-      DefaultRowHeight = 17
-      MouseWheelSupport = False
-      SaveMultiSelection = False
-      PickListBoxSkinDataName = 'listbox'
-      PickListBoxCaptionMode = False
-      DataSource = ds1
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'MS Sans Serif'
-      TitleFont.Style = []
     end
     object dbcht1: TDBChart
       Left = 8
@@ -386,10 +365,10 @@ object StatisticForm: TStatisticForm
       end
     end
     object DBGridEh1: TDBGridEh
-      Left = 16
-      Top = 80
-      Width = 320
-      Height = 120
+      Left = 7
+      Top = 72
+      Width = 610
+      Height = 213
       DataSource = ds1
       Flat = False
       FooterColor = clWindow
@@ -401,7 +380,7 @@ object StatisticForm: TStatisticForm
       FooterRowCount = 1
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
       SumList.Active = True
-      TabOrder = 5
+      TabOrder = 3
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
@@ -427,5 +406,57 @@ object StatisticForm: TStatisticForm
         '_fwly')
     Left = 752
     Top = 24
+  end
+  object bsbsnsknfrm1: TbsBusinessSkinForm
+    ClientInActiveEffect = False
+    ClientInActiveEffectType = bsieSemiTransparent
+    DisableSystemMenu = False
+    AlwaysResize = False
+    PositionInMonitor = bspDefault
+    UseFormCursorInNCArea = False
+    MaxMenuItemsInWindow = 0
+    ClientWidth = 0
+    ClientHeight = 0
+    HideCaptionButtons = False
+    AlwaysShowInTray = False
+    LogoBitMapTransparent = False
+    AlwaysMinimizeToTray = False
+    UseSkinFontInMenu = True
+    ShowIcon = False
+    MaximizeOnFullScreen = False
+    AlphaBlend = False
+    AlphaBlendAnimation = False
+    AlphaBlendValue = 200
+    ShowObjectHint = False
+    MenusAlphaBlend = False
+    MenusAlphaBlendAnimation = False
+    MenusAlphaBlendValue = 200
+    DefCaptionFont.Charset = DEFAULT_CHARSET
+    DefCaptionFont.Color = clBtnText
+    DefCaptionFont.Height = 14
+    DefCaptionFont.Name = 'Arial'
+    DefCaptionFont.Style = [fsBold]
+    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
+    DefInActiveCaptionFont.Color = clBtnShadow
+    DefInActiveCaptionFont.Height = 14
+    DefInActiveCaptionFont.Name = 'Arial'
+    DefInActiveCaptionFont.Style = [fsBold]
+    DefMenuItemHeight = 20
+    DefMenuItemFont.Charset = DEFAULT_CHARSET
+    DefMenuItemFont.Color = clWindowText
+    DefMenuItemFont.Height = 14
+    DefMenuItemFont.Name = 'Arial'
+    DefMenuItemFont.Style = []
+    UseDefaultSysMenu = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    MinHeight = 0
+    MinWidth = 0
+    MaxHeight = 0
+    MaxWidth = 0
+    Magnetic = False
+    MagneticSize = 5
+    BorderIcons = [biSystemMenu]
+    Left = 815
+    Top = 44
   end
 end

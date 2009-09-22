@@ -1,8 +1,8 @@
 object CompanyInfoSettingForm: TCompanyInfoSettingForm
   Left = 414
   Top = 238
-  AutoScroll = False
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #20844#21496#20449#24687
   ClientHeight = 308
   ClientWidth = 465
@@ -350,7 +350,7 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
         Width = 75
         Height = 25
         HintImageIndex = 0
-        TabOrder = 0
+        TabOrder = 1
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -383,7 +383,7 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
         Width = 75
         Height = 25
         HintImageIndex = 0
-        TabOrder = 1
+        TabOrder = 0
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -460,9 +460,9 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
-    Left = 168
-    Top = 264
+    BorderIcons = [biSystemMenu]
+    Left = 167
+    Top = 265
   end
   object qry_xtxx: TADOQuery
     Connection = HDHouseDataModule.con1

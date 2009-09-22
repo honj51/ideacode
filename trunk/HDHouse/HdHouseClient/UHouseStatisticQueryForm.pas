@@ -8,7 +8,7 @@ uses
   UHouseDetailInfoView, UCustomerSecureInfoView, ComCtrls, bsSkinTabs,
   bsdbctrls, bsSkinGrids, bsDBGrids, DB, ADODB, Grids, DBGrids, RpDefine,
   RpRave, frxClass, frxDBSet, frxExportXLS, XPMan, frxExportXML, GridsEh,
-  DBGridEh;
+  DBGridEh, BusinessSkinForm;
 
 type
   THouseStatisticQueryForm = class(TForm)
@@ -50,6 +50,7 @@ type
     za: TXPManifest;
     frxXMLExport1: TfrxXMLExport;
     DBGridEh1: TDBGridEh;
+    bsbsnsknfrm1: TbsBusinessSkinForm;
     procedure btn4Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btn1Click(Sender: TObject);
@@ -112,6 +113,8 @@ end;
 
 procedure THouseStatisticQueryForm.FormCreate(Sender: TObject);
 begin
+  self.qry2.Active:=true;
+  self.qry1.Active:=true;
   try
     // 房产来源
     cbb3.Items.Clear;

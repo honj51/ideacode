@@ -14,6 +14,7 @@ type
     function isno():Boolean;
     procedure hsqryfrm1btn2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
   public
@@ -161,6 +162,12 @@ begin
       end;
     end;
     self.hsqryfrm1.cbb6.ItemIndex:=0;
+end;
+
+procedure THouseQueryForm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  self.hsqryfrm1btn2Click(Sender);
 end;
 
 end.

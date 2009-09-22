@@ -101,6 +101,9 @@ implementation
 
 procedure TContractInfo.FormShow(Sender: TObject);
 begin
+  self.qry1.Active:=true;
+  self.qry2.Active:=true;
+  self.qrykhzy.Active:=true;
     with self.qry1 do
     begin
       close;

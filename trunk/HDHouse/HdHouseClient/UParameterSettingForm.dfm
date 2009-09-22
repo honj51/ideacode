@@ -1,8 +1,8 @@
 object ParameterSettingForm: TParameterSettingForm
-  Left = 431
-  Top = 398
-  AutoScroll = False
+  Left = 465
+  Top = 393
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #21442#25968#35774#32622
   ClientHeight = 144
   ClientWidth = 248
@@ -253,7 +253,7 @@ object ParameterSettingForm: TParameterSettingForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 184
   end
   object qry_csxxxx: TADOQuery

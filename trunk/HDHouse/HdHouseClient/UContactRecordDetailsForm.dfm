@@ -1,10 +1,11 @@
 object ContactRecordDetailsForm: TContactRecordDetailsForm
-  Left = 308
-  Top = 186
-  Width = 483
-  Height = 311
+  Left = 436
+  Top = 288
   BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
   Caption = #26469#30005#25552#37266
+  ClientHeight = 277
+  ClientWidth = 475
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -50,7 +51,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl1: TbsSkinStdLabel
       Left = 16
       Top = 40
-      Width = 48
+      Width = 59
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -61,12 +62,13 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
       DefaultFont.Name = 'MS Sans Serif'
       DefaultFont.Style = []
       SkinDataName = 'stdlabel'
+      AutoSize = False
       Caption = #23458#25143#31867#22411
     end
     object lbl2: TbsSkinStdLabel
       Left = 208
       Top = 40
-      Width = 48
+      Width = 60
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -82,7 +84,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl3: TbsSkinStdLabel
       Left = 16
       Top = 72
-      Width = 48
+      Width = 58
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -98,7 +100,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl4: TbsSkinStdLabel
       Left = 208
       Top = 72
-      Width = 48
+      Width = 55
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -114,7 +116,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl5: TbsSkinStdLabel
       Left = 16
       Top = 104
-      Width = 48
+      Width = 60
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -139,7 +141,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
       Font.Style = []
       ParentFont = False
       ScrollBars = ssBoth
-      TabOrder = 0
+      TabOrder = 4
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
       DefaultFont.Height = 14
@@ -258,7 +260,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
       Width = 121
       Height = 20
       HintImageIndex = 0
-      TabOrder = 4
+      TabOrder = 0
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText

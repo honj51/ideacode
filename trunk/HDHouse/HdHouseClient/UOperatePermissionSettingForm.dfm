@@ -1,8 +1,8 @@
 object OperatePermissionSettingForm: TOperatePermissionSettingForm
-  Left = 457
-  Top = 217
-  AutoScroll = False
+  Left = 495
+  Top = 201
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #25805#20316#26435#38480#35774#32622' '
   ClientHeight = 460
   ClientWidth = 641
@@ -55,7 +55,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 1
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -88,7 +88,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -121,7 +121,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 3
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -154,7 +154,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 497
       Height = 137
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 0
       SkinDataName = 'panel'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -333,7 +333,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 3
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -366,7 +366,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 2
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -391,7 +391,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Caption = #20462#25913
       NumGlyphs = 1
       Spacing = 1
-      OnClick = btn5Click
+      OnClick = bskndbgrd2DblClick
     end
     object btn6: TbsSkinButton
       Left = 528
@@ -399,7 +399,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 1
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -432,7 +432,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
       Width = 497
       Height = 275
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 0
       SkinDataName = 'panel'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -632,8 +632,8 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
-    Left = 568
+    BorderIcons = [biSystemMenu]
+    Left = 569
     Top = 193
   end
 end

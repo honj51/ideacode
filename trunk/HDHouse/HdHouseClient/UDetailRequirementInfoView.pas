@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
-  Dialogs, StdCtrls, Mask, bsSkinBoxCtrls, bsSkinCtrls, bsdbctrls;
+  Dialogs, StdCtrls, Mask, bsSkinBoxCtrls, bsSkinCtrls, bsdbctrls,
+  BusinessSkinForm;
 
 type
   TDetailRequirementInfoView = class(TFrame)
@@ -51,6 +52,7 @@ type
     edt19: TbsSkinDBEdit;
     edt20: TbsSkinDBEdit;
     mmo1: TbsSkinDBMemo;
+    bsSkinFrame1: TbsSkinFrame;
   private
     { Private declarations }
   public
@@ -58,7 +60,7 @@ type
   end;
 
 implementation
-
+   uses UHDHouseDataModule;
 {$R *.dfm}
 
 end.

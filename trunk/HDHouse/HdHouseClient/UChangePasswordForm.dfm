@@ -1,8 +1,8 @@
 object ChangePasswordForm: TChangePasswordForm
-  Left = 533
-  Top = 334
-  AutoScroll = False
+  Left = 510
+  Top = 271
   BorderIcons = []
+  BorderStyle = bsDialog
   Caption = #20462#25913#24403#21069#25805#20316#21592#23494#30721
   ClientHeight = 231
   ClientWidth = 270
@@ -125,7 +125,7 @@ object ChangePasswordForm: TChangePasswordForm
       Height = 18
       Cursor = crIBeam
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 1
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'edit'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -163,7 +163,7 @@ object ChangePasswordForm: TChangePasswordForm
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -178,7 +178,7 @@ object ChangePasswordForm: TChangePasswordForm
     Width = 270
     Height = 55
     HintImageIndex = 0
-    TabOrder = 1
+    TabOrder = 3
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'panel'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -212,7 +212,7 @@ object ChangePasswordForm: TChangePasswordForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 1
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -245,7 +245,7 @@ object ChangePasswordForm: TChangePasswordForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 1
+      TabOrder = 0
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -280,7 +280,7 @@ object ChangePasswordForm: TChangePasswordForm
     Height = 18
     Cursor = crIBeam
     HintImageIndex = 0
-    TabOrder = 2
+    TabOrder = 1
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -301,7 +301,7 @@ object ChangePasswordForm: TChangePasswordForm
     Height = 18
     Cursor = crIBeam
     HintImageIndex = 0
-    TabOrder = 3
+    TabOrder = 2
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'edit'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -363,7 +363,7 @@ object ChangePasswordForm: TChangePasswordForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu, biRollUp]
+    BorderIcons = [biSystemMenu]
     Left = 232
     Top = 184
   end
