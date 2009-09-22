@@ -24,6 +24,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DBCenterAdmin", "DBCenterAd
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DBCenterAdminSetup", "DBCenterAdminSetup\DBCenterAdminSetup.vdproj", "{B761CECF-CDBF-46DD-B7DC-E6B4D46A180D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DBSiteAdminSetup", "DBSiteAdminSetup\DBSiteAdminSetup.vdproj", "{E04C98CE-987A-44F9-8B46-AD177FEE48B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -54,6 +58,18 @@ Global
 		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|Any CPU.ActiveCfg = Debug|.NET
 		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
 		{2CD73CF7-80DC-4032-BB54-088691373758}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{B761CECF-CDBF-46DD-B7DC-E6B4D46A180D}.Debug|.NET.ActiveCfg = Debug
+		{B761CECF-CDBF-46DD-B7DC-E6B4D46A180D}.Debug|Any CPU.ActiveCfg = Debug
+		{B761CECF-CDBF-46DD-B7DC-E6B4D46A180D}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{B761CECF-CDBF-46DD-B7DC-E6B4D46A180D}.Release|.NET.ActiveCfg = Release
+		{B761CECF-CDBF-46DD-B7DC-E6B4D46A180D}.Release|Any CPU.ActiveCfg = Release
+		{B761CECF-CDBF-46DD-B7DC-E6B4D46A180D}.Release|Mixed Platforms.ActiveCfg = Release
+		{E04C98CE-987A-44F9-8B46-AD177FEE48B6}.Debug|.NET.ActiveCfg = Debug
+		{E04C98CE-987A-44F9-8B46-AD177FEE48B6}.Debug|Any CPU.ActiveCfg = Debug
+		{E04C98CE-987A-44F9-8B46-AD177FEE48B6}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{E04C98CE-987A-44F9-8B46-AD177FEE48B6}.Release|.NET.ActiveCfg = Release
+		{E04C98CE-987A-44F9-8B46-AD177FEE48B6}.Release|Any CPU.ActiveCfg = Release
+		{E04C98CE-987A-44F9-8B46-AD177FEE48B6}.Release|Mixed Platforms.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
