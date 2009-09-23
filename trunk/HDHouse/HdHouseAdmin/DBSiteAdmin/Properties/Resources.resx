@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,4 +117,117 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>The Sales Orders sample highlights a merge replication topology for delivering data to mobile users, and it also demonstrates the programmability features of merge replication in Microsoft™ SQL Server® 2005. The sample is a Windows Forms-based application that uses standard Microsoft data access technologies and merge replication to enable a salesperson to maintain her own local data while synchronizing periodically with the home office. 
+This sample is supported for Subscribers running all editions of SQL Server 2005. For more information, see "Sales Orders Sample for Merge Replication" in SQL Server 2005 Books Online.
+The publication also supports SQL Server 2005 Mobile Edition Subscribers. For more information see "AdventureWorks Mobile Sample Application" in SQL Server 2005 Mobile Edition Books Online.</value>
+    <comment>The description text in the About dialog box.</comment>
+  </data>
+  <data name="AboutDisclaimer" xml:space="preserve">
+    <value>THIS PROGRAM AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</value>
+    <comment>About dialog disclaimer.</comment>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="DeleteProduct" xml:space="preserve">
+    <value>Delete product from order.</value>
+  </data>
+  <data name="ExceptionCannotConnectLocal" xml:space="preserve">
+    <value>A connection to the local database cannot be established. Verify that the local instance of SQL Server 2005 is running and that the name of the local computer has been correctly set in the configuration file.
+</value>
+  </data>
+  <data name="ExceptionCannotConnectPublisher" xml:space="preserve">
+    <value>A connection to the Publisher cannot be established. Verify network connectivity, that the Publisher is running, and that the name of the Publisher has been correctly set in the configuration file.</value>
+  </data>
+  <data name="ExceptionContactTechSupport" xml:space="preserve">
+    <value>Please verify that the publication has been configured properly and that the InstallSalesOrdersSample.bat batch file was executed.</value>
+  </data>
+  <data name="ExceptionCouldNotReInit" xml:space="preserve">
+    <value>The local sales data could not be reinitialized.</value>
+  </data>
+  <data name="ExceptionFormValidation" xml:space="preserve">
+    <value>You must fill in all fields when using Web sychronization.</value>
+  </data>
+  <data name="ExceptionMergeAgentFailedInit" xml:space="preserve">
+    <value>The Merge Agent failed to initialize the subscription.</value>
+  </data>
+  <data name="ExceptionMergeAgentFailedSync" xml:space="preserve">
+    <value>The Merge Agent failed to synchronize the subscription.</value>
+  </data>
+  <data name="ExceptionProblemLocalData" xml:space="preserve">
+    <value>There may be a problem with your local data.</value>
+  </data>
+  <data name="ExceptionPropertiesNotRetrieved" xml:space="preserve">
+    <value>The subscription properties could not be retrieved.
+Verify the configuration settings.</value>
+  </data>
+  <data name="ExceptionPublicationNotRetrieved" xml:space="preserve">
+    <value>Publication information could not be retrieved from the specified Publisher.
+Ensure that the Publisher is online and that you have the required system administrator login.</value>
+  </data>
+  <data name="ExceptionSalesDataNotAvailable" xml:space="preserve">
+    <value>The AdventureWorks sales data is not available for download.</value>
+  </data>
+  <data name="ExceptionSqlServerError" xml:space="preserve">
+    <value>SQL Server error</value>
+  </data>
+  <data name="ExceptionSubscriptionNotCreated" xml:space="preserve">
+    <value>The subscription could not be created.
+Verify that a valid username and password were provided.</value>
+  </data>
+  <data name="ExceptionSubscriptionNotSync" xml:space="preserve">
+    <value>The subscription could not be synchronized.
+Verify that the snapshot for the publication exists.</value>
+  </data>
+  <data name="ExceptionUnexpectedSessionStatus" xml:space="preserve">
+    <value>The application encountered an unexpected session status code"</value>
+  </data>
+  <data name="ExceptionVerifySqlServerRunning" xml:space="preserve">
+    <value>Please verify that the local instance of SQL Server 2005 is running.</value>
+  </data>
+  <data name="HandlerFriendlyName" xml:space="preserve">
+    <value>Custom Business Logic Handler</value>
+  </data>
+  <data name="StatusCreateDatabase" xml:space="preserve">
+    <value>Creating the local sales orders database {0}.</value>
+  </data>
+  <data name="StatusCreateSubscription" xml:space="preserve">
+    <value>Creating the local subscription to AdventureWorks sales data.</value>
+  </data>
+  <data name="StatusFail" xml:space="preserve">
+    <value>Local sales data could not be synchronized.</value>
+  </data>
+  <data name="StatusInitialize" xml:space="preserve">
+    <value>Initializing: Applying the initial snapshot from {0}.</value>
+  </data>
+  <data name="StatusReinitialize" xml:space="preserve">
+    <value>Reinitializing: Reapplying the initial snapshot from {0}.</value>
+  </data>
+  <data name="StatusSubscriptionAlreadySync" xml:space="preserve">
+    <value>The subscription is already being synchronized.</value>
+  </data>
+  <data name="StatusSuccess" xml:space="preserve">
+    <value>Local sales data has been synchronized successfully.</value>
+  </data>
+  <data name="StatusSyncComplete" xml:space="preserve">
+    <value>Synchronization complete (click here for more information).</value>
+  </data>
+  <data name="StatusSyncFailed" xml:space="preserve">
+    <value>Synchronization failed (click here for more information).</value>
+  </data>
+  <data name="StatusSyncInProgress" xml:space="preserve">
+    <value>Synchronizing...</value>
+  </data>
+  <data name="StatusSyncStarting" xml:space="preserve">
+    <value>Starting synchronization...</value>
+  </data>
+  <data name="TellMeMoreLogin" xml:space="preserve">
+    <value>This form is invoked by selecting Web Synchronization Options in the Advanced Options menu. It is used to manage Web synchronization settings for the subscription. Instead of managing these settings in the application, a MergePullSubscription object is used to store Web synchronization options in and retrieve Web synchronization options from the subscription metadata. In this sample, you must supply a Windows login and password that are passed to the Web server using HTTP Basic Authentication over a secure SSL connection.  For more information, see the "Sample Considerations" section of "Sales Orders Sample Implementation Details" in Books Online for SQL Server 2005. </value>
+    <comment>From the User Interface Elements section in "Sales Orders Sample Implementation Details" in Books Online.</comment>
+  </data>
+  <data name="TellMeMoreWebSync" xml:space="preserve">
+    <value>This form is used to manage Web synchronization settings for the subscription. Instead of managing these settings in the application, a MergePullSubscription object is used to store Web synchronization options in and retrieve Web synchronization options from the subscription metadata. In this sample, you must supply a Windows login and password that are passed to the Web server using HTTP Basic Authentication over a secure SSL connection. In an actual deployment, SQL Authentication credentials should be used instead of Windows credentials. For more information, see the "Sample Considerations" section of the "Sales Orders Sample Implementation Details" topic in Books Online for SQL Server 2005. </value>
+    <comment>From the User Interface Elements section in "Sales Orders Sample Implementation Details" in Books Online.</comment>
+  </data>
 </root>

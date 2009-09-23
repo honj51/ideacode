@@ -4,16 +4,16 @@
 //     运行库版本:2.0.50727.3082
 //
 //     对此文件的更改可能会导致不正确的行为，并且如果
-//     重新生成代码，这些更改将丢失。
+//     重新生成代码，这些更改将会丢失。
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBSiteAdmin.Properties
-{
-
-
+namespace DBSiteAdmin.Properties {
+    using System;
+    
+    
     /// <summary>
-    ///   一个强类型的资源类，用于查找本地化的字符串等。
+    ///   强类型资源类，用于查找本地化字符串等。
     /// </summary>
     // 此类是由 StronglyTypedResourceBuilder
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
@@ -22,49 +22,353 @@ namespace DBSiteAdmin.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
-        ///   返回此类使用的、缓存的 ResourceManager 实例。
+        ///   返回此类使用的缓存 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DBSiteAdmin.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
-        ///   为所有资源查找重写当前线程的 CurrentUICulture 属性，
-        ///   方法是使用此强类型资源类。
+        ///   为使用此强类型资源类的所有资源查找
+        ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The Sales Orders sample highlights a merge replication topology for delivering data to mobile users, and it also demonstrates the programmability features of merge replication in Microsoft™ SQL Server® 2005. The sample is a Windows Forms-based application that uses standard Microsoft data access technologies and merge replication to enable a salesperson to maintain her own local data while synchronizing periodically with the home office. 
+        ///This sample is supported for Subscribers running all editions of SQL [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string AboutDescription {
+            get {
+                return ResourceManager.GetString("AboutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 THIS PROGRAM AND INFORMATION ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE. 的本地化字符串。
+        /// </summary>
+        internal static string AboutDisclaimer {
+            get {
+                return ResourceManager.GetString("AboutDisclaimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Are you sure? 的本地化字符串。
+        /// </summary>
+        internal static string AreYouSure {
+            get {
+                return ResourceManager.GetString("AreYouSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Delete product from order. 的本地化字符串。
+        /// </summary>
+        internal static string DeleteProduct {
+            get {
+                return ResourceManager.GetString("DeleteProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 A connection to the local database cannot be established. Verify that the local instance of SQL Server 2005 is running and that the name of the local computer has been correctly set in the configuration file.
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionCannotConnectLocal {
+            get {
+                return ResourceManager.GetString("ExceptionCannotConnectLocal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 A connection to the Publisher cannot be established. Verify network connectivity, that the Publisher is running, and that the name of the Publisher has been correctly set in the configuration file. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionCannotConnectPublisher {
+            get {
+                return ResourceManager.GetString("ExceptionCannotConnectPublisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please verify that the publication has been configured properly and that the InstallSalesOrdersSample.bat batch file was executed. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionContactTechSupport {
+            get {
+                return ResourceManager.GetString("ExceptionContactTechSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The local sales data could not be reinitialized. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionCouldNotReInit {
+            get {
+                return ResourceManager.GetString("ExceptionCouldNotReInit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 You must fill in all fields when using Web sychronization. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionFormValidation {
+            get {
+                return ResourceManager.GetString("ExceptionFormValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The Merge Agent failed to initialize the subscription. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionMergeAgentFailedInit {
+            get {
+                return ResourceManager.GetString("ExceptionMergeAgentFailedInit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The Merge Agent failed to synchronize the subscription. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionMergeAgentFailedSync {
+            get {
+                return ResourceManager.GetString("ExceptionMergeAgentFailedSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 There may be a problem with your local data. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionProblemLocalData {
+            get {
+                return ResourceManager.GetString("ExceptionProblemLocalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The subscription properties could not be retrieved.
+        ///Verify the configuration settings. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionPropertiesNotRetrieved {
+            get {
+                return ResourceManager.GetString("ExceptionPropertiesNotRetrieved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Publication information could not be retrieved from the specified Publisher.
+        ///Ensure that the Publisher is online and that you have the required system administrator login. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionPublicationNotRetrieved {
+            get {
+                return ResourceManager.GetString("ExceptionPublicationNotRetrieved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The AdventureWorks sales data is not available for download. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionSalesDataNotAvailable {
+            get {
+                return ResourceManager.GetString("ExceptionSalesDataNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SQL Server error 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionSqlServerError {
+            get {
+                return ResourceManager.GetString("ExceptionSqlServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The subscription could not be created.
+        ///Verify that a valid username and password were provided. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionSubscriptionNotCreated {
+            get {
+                return ResourceManager.GetString("ExceptionSubscriptionNotCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The subscription could not be synchronized.
+        ///Verify that the snapshot for the publication exists. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionSubscriptionNotSync {
+            get {
+                return ResourceManager.GetString("ExceptionSubscriptionNotSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The application encountered an unexpected session status code&quot; 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionUnexpectedSessionStatus {
+            get {
+                return ResourceManager.GetString("ExceptionUnexpectedSessionStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please verify that the local instance of SQL Server 2005 is running. 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionVerifySqlServerRunning {
+            get {
+                return ResourceManager.GetString("ExceptionVerifySqlServerRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Custom Business Logic Handler 的本地化字符串。
+        /// </summary>
+        internal static string HandlerFriendlyName {
+            get {
+                return ResourceManager.GetString("HandlerFriendlyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Creating the local sales orders database {0}. 的本地化字符串。
+        /// </summary>
+        internal static string StatusCreateDatabase {
+            get {
+                return ResourceManager.GetString("StatusCreateDatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Creating the local subscription to AdventureWorks sales data. 的本地化字符串。
+        /// </summary>
+        internal static string StatusCreateSubscription {
+            get {
+                return ResourceManager.GetString("StatusCreateSubscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Local sales data could not be synchronized. 的本地化字符串。
+        /// </summary>
+        internal static string StatusFail {
+            get {
+                return ResourceManager.GetString("StatusFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Initializing: Applying the initial snapshot from {0}. 的本地化字符串。
+        /// </summary>
+        internal static string StatusInitialize {
+            get {
+                return ResourceManager.GetString("StatusInitialize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Reinitializing: Reapplying the initial snapshot from {0}. 的本地化字符串。
+        /// </summary>
+        internal static string StatusReinitialize {
+            get {
+                return ResourceManager.GetString("StatusReinitialize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The subscription is already being synchronized. 的本地化字符串。
+        /// </summary>
+        internal static string StatusSubscriptionAlreadySync {
+            get {
+                return ResourceManager.GetString("StatusSubscriptionAlreadySync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Local sales data has been synchronized successfully. 的本地化字符串。
+        /// </summary>
+        internal static string StatusSuccess {
+            get {
+                return ResourceManager.GetString("StatusSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Synchronization complete (click here for more information). 的本地化字符串。
+        /// </summary>
+        internal static string StatusSyncComplete {
+            get {
+                return ResourceManager.GetString("StatusSyncComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Synchronization failed (click here for more information). 的本地化字符串。
+        /// </summary>
+        internal static string StatusSyncFailed {
+            get {
+                return ResourceManager.GetString("StatusSyncFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Synchronizing... 的本地化字符串。
+        /// </summary>
+        internal static string StatusSyncInProgress {
+            get {
+                return ResourceManager.GetString("StatusSyncInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Starting synchronization... 的本地化字符串。
+        /// </summary>
+        internal static string StatusSyncStarting {
+            get {
+                return ResourceManager.GetString("StatusSyncStarting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 This form is invoked by selecting Web Synchronization Options in the Advanced Options menu. It is used to manage Web synchronization settings for the subscription. Instead of managing these settings in the application, a MergePullSubscription object is used to store Web synchronization options in and retrieve Web synchronization options from the subscription metadata. In this sample, you must supply a Windows login and password that are passed to the Web server using HTTP Basic Authentication over a secure  [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string TellMeMoreLogin {
+            get {
+                return ResourceManager.GetString("TellMeMoreLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 This form is used to manage Web synchronization settings for the subscription. Instead of managing these settings in the application, a MergePullSubscription object is used to store Web synchronization options in and retrieve Web synchronization options from the subscription metadata. In this sample, you must supply a Windows login and password that are passed to the Web server using HTTP Basic Authentication over a secure SSL connection. In an actual deployment, SQL Authentication credentials should be use [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string TellMeMoreWebSync {
+            get {
+                return ResourceManager.GetString("TellMeMoreWebSync", resourceCulture);
             }
         }
     }
