@@ -27,16 +27,16 @@ namespace DBSiteAdmin
         {
             try
             {
-                textBox1.AppendText("开始创建订阅");
+                currentStatusTextBox.AppendText("开始创建订阅");
                 
                 CreateSubscription();
                 label1.Text = "创建订阅完成";
-                textBox1.AppendText("创建订阅结束");
+                currentStatusTextBox.AppendText("创建订阅结束");
             }
             catch (Exception ex)
             {
                 label1.Text = "创建订阅失败";
-                textBox1.AppendText(ex.Message);
+                currentStatusTextBox.AppendText(ex.Message);
             }
         }
 
@@ -135,93 +135,7 @@ namespace DBSiteAdmin
                 conn.Disconnect();
             }
         }
-        /*
-        public void InitSync()
-        {
-            // Define the handler for inserts and updates at the Subscriber. 
-            ReplicationServer Subscriber = new ReplicationServer(subscriberConn);
-            //insertUpdateHandler = new BusinessLogicHandler();
-            //insertUpdateHandler.FriendlyName = handlerFriendlyName;
-            //insertUpdateHandler.DotNetAssemblyName = "BusinessLogic.dll";
-            //insertUpdateHandler.DotNetClassName = "Microsoft.Samples.SqlServer.CustomBusinessLogicHandler";
-            //insertUpdateHandler.IsDotNetAssembly = true;
 
-            try
-            {
-                // Create the pull subscription.
-                //currentStatusTextBox.Text += statusCreateSubscription
-                //    + Environment.NewLine;
-                //Application.DoEvents();
-                mergePullSub.Create();
 
-                mergePullSub.Refresh();
-
-                // Get the Merge Agent for synchronous execution.
-                syncAgent = mergePullSub.SynchronizationAgent;
-
-                // We have to set these because of an RMO bug.
-                // Remove for RTM.
-                syncAgent.DistributorSecurityMode = SecurityMode.Integrated;
-                syncAgent.PublisherSecurityMode = SecurityMode.Integrated;
-                syncAgent.SubscriberSecurityMode = SecurityMode.Integrated;
-
-                // Generate a troubleshooting log file.
-                syncAgent.OutputVerboseLevel = outputLevel;
-                syncAgent.Output = outputLogFile;
-
-                // Define the event handler.
-                syncAgent.Status
-                    += new AgentCore.StatusEventHandler(Sync_Status);
-
-                currentStatusTextBox.Text += statusInitialize
-                    + Environment.NewLine;
-                Application.DoEvents();
-
-                // Start the Merge Agent synchronously to apply the initial snapshot.
-                syncAgent.Synchronize();
-
-                // Make sure that the initialization was successful.
-                mergePullSub.Refresh();
-                if (mergePullSub.LastAgentStatus
-                    != ReplicationStatus.Succeeded)
-                {
-                    throw new SubscriptionInitializationException(
-                        Properties.Resources.ExceptionSubscriptionNotSync);
-                }
-                currentStatusTextBox.Text += statusSuccess.ToString()
-                    + Environment.NewLine;
-                statusProgressBar.Value = 100;
-            }
-
-            catch (Exception ex)
-            {
-                currentStatusTextBox.Text += statusFail.ToString()
-                    + Environment.NewLine;
-                statusProgressBar.Value = 0;
-
-                // If an exception occurs, undo subscription registration at both 
-                // the Publisher and Subscriber and remove the handler registration.
-                mergePullSub.Remove();
-                mergePub.RemovePullSubscription(subscriberServer,
-                    subscriptionDatabase);
-                if (isRegistered)
-                {
-                    Subscriber.UnregisterBusinessLogicHandler(insertUpdateHandler);
-                    isRegistered = false;
-                }
-
-                throw new SubscriptionCreationException(
-                    Properties.Resources.ExceptionSubscriptionNotCreated,
-                    ex);
-            }
-
-            finally
-            {
-                closeButton.Enabled = true;
-                subscriberConn.Disconnect();
-                publisherConn.Disconnect();
-            }
-        }
-         * */
     }
 }
