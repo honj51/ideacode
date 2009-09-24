@@ -1,0 +1,108 @@
+#loginbody {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #fff; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.menu {
+	TEXT-ALIGN: center; MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#login {
+	TEXT-ALIGN: center; MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#adminboxall {
+	TEXT-ALIGN: center; MARGIN-TOP: 100px; BACKGROUND: url(logbj.gif) #fff repeat-x
+}
+.clearbox {
+	MARGIN-TOP: -1px !important; VISIBILITY: hidden; CLEAR: both; BORDER-TOP: transparent 1px solid
+}
+.adminboxtop {
+	BACKGROUND: url(admin_top.gif) no-repeat center top; HEIGHT: 167px
+}
+#adminboxmain {
+	BACKGROUND: url(admin_main.gif) no-repeat center top; HEIGHT: 39px
+}
+.menu {
+	TEXT-ALIGN: right; WIDTH: 460px; PADDING-TOP: 6px
+}
+.adminboxbottom {
+	BACKGROUND: url(admin_bottom.gif) no-repeat center top; HEIGHT: 87px
+}
+#login {
+	WIDTH: 550px
+}
+#login UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; PADDING-TOP: 0px
+}
+#login LI {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; PADDING-TOP: 0px
+}
+.text {
+	TEXT-ALIGN: left; FILTER: glow(color=#3171c4,strength=1); COLOR: #fff; FONT-SIZE: 12px
+}
+.textCode {
+	TEXT-ALIGN: left; FILTER: glow(color=#3171c4,strength=1); COLOR: #fff; FONT-SIZE: 12px
+}
+.text {
+	WIDTH: 115px
+}
+.textCode {
+	WIDTH: 200px
+}
+.box1 {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: 21px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 21px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.box2 {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: 21px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 21px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.box3 {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: 21px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 21px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.box4 {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: 21px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 21px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.box1 {
+	PADDING-LEFT: 22px
+}
+.box2 {
+	PADDING-LEFT: 22px
+}
+.box3 {
+	PADDING-LEFT: 22px
+}
+.box4 {
+	PADDING-LEFT: 22px
+}
+.box1 {
+	WIDTH: 85px; BACKGROUND: url(logyh.gif) no-repeat
+}
+.box2 {
+	WIDTH: 85px; BACKGROUND: url(logmm.gif) no-repeat
+}
+.box3 {
+	WIDTH: 85px; BACKGROUND: url(loggl.gif) no-repeat
+}
+.box4 {
+	WIDTH: 180px; BACKGROUND: url(logyz.gif) no-repeat
+}
+.box4 IMG {
+	MARGIN-LEFT: 0px
+}
+.boxcontent {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: 21px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, ËÎÌו; BACKGROUND: none transparent scroll repeat 0% 0%; FLOAT: left; HEIGHT: 21px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.boxcontent2 {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: 21px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, ËÎÌו; BACKGROUND: none transparent scroll repeat 0% 0%; FLOAT: left; HEIGHT: 21px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.boxcontent {
+	MARGIN: 2px 0px; WIDTH: 72px
+}
+.boxcontent2 {
+	MARGIN: 2px 10px 0px 0px; WIDTH: 50px; FONT-FAMILY: ËÎÌו
+}
+.imagebotton1
+{
+	border-right-width: 0px;
+	width: 76px;
+	border-top-width: 0px; 
+	border-bottom-width: 0px;
+    height: 26px; 
+    border-left-width: 0px
+}
