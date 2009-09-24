@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSubscriptionRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:SubscriptionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SubscriptionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="subscriberName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="subscriptionDbName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateSubscriptionRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSubscriptionRequestResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPublicationInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPublicationInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPublicationInfoResult" type="tns:PublicationInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PublicationInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="publicationName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publisherName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publicationDbName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="webSyncUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSubscriptionRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSubscriptionRequest" />
+  </wsdl:message>
+  <wsdl:message name="CreateSubscriptionRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSubscriptionRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPublicationInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPublicationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPublicationInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPublicationInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DBCenterWebServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSubscriptionRequest">
+      <wsdl:input message="tns:CreateSubscriptionRequestSoapIn" />
+      <wsdl:output message="tns:CreateSubscriptionRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPublicationInfo">
+      <wsdl:input message="tns:GetPublicationInfoSoapIn" />
+      <wsdl:output message="tns:GetPublicationInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DBCenterWebServiceSoap" type="tns:DBCenterWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSubscriptionRequest">
+      <soap:operation soapAction="http://tempuri.org/CreateSubscriptionRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPublicationInfo">
+      <soap:operation soapAction="http://tempuri.org/GetPublicationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DBCenterWebServiceSoap12" type="tns:DBCenterWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSubscriptionRequest">
+      <soap12:operation soapAction="http://tempuri.org/CreateSubscriptionRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPublicationInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetPublicationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DBCenterWebService">
+    <wsdl:port name="DBCenterWebServiceSoap" binding="tns:DBCenterWebServiceSoap">
+      <soap:address location="http://localhost:1472/DBCenterAdmin/DBCenterWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DBCenterWebServiceSoap12" binding="tns:DBCenterWebServiceSoap12">
+      <soap12:address location="http://localhost:1472/DBCenterAdmin/DBCenterWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

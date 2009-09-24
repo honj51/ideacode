@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -71,6 +72,7 @@
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -88,6 +90,7 @@
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,30 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutDescription">
-    <value xml:space="preserve">This sample Windows application demonstrates how to use the Subscriber-side monitoring functionality provided by Replication Management Objects (RMO) to monitor merge subscriptions at the Subscriber. This sample can be run standalone on the Subscriber (using SubscriberMonitorUtility.exe). It is also used by the Sales Orders sample to display subscription status.
+  <data name="AboutDescription" xml:space="preserve">
+    <value>数据同步监视器用来监视数据同步信息和状态。
 </value>
   </data>
-  <data name="AboutDisclaimer">
-    <value xml:space="preserve">THIS PROGRAM AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</value>
+  <data name="AboutDisclaimer" xml:space="preserve">
+    <value>互动科技版权所有</value>
   </data>
-  <data name="ArticleName">
-    <value xml:space="preserve">    Article: </value>
+  <data name="ArticleName" xml:space="preserve">
+    <value>    项目: </value>
   </data>
-  <data name="Completed">
-    <value xml:space="preserve">Completed at </value>
+  <data name="Completed" xml:space="preserve">
+    <value>完成 </value>
   </data>
-  <data name="LastRefresh">
-    <value xml:space="preserve">Last refreshed: </value>
+  <data name="LastRefresh" xml:space="preserve">
+    <value>最后更新: </value>
   </data>
-  <data name="LastSync">
-    <value xml:space="preserve">Last successfull synchronization: </value>
+  <data name="LastSync" xml:space="preserve">
+    <value>上次成功同步: </value>
   </data>
-  <data name="MergeSessions">
-    <value xml:space="preserve">Merge Sessions</value>
+  <data name="MergeSessions" xml:space="preserve">
+    <value>合并会话</value>
   </data>
-  <data name="NoSuccessSyncs">
-    <value xml:space="preserve">The subscription as not been successfully synchronized.</value>
+  <data name="NoSuccessSyncs" xml:space="preserve">
+    <value>订阅同步未成功</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SubSideMonitoringUI_ConnectDlg" type="System.Resources.ResXFileRef, System.Windows.Forms">

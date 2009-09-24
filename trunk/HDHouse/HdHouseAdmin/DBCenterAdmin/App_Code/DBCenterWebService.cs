@@ -47,6 +47,7 @@ public class DBCenterWebService : System.Web.Services.WebService
     }
 
     //发布信息
+    [Serializable]
     public class PublicationInfo
     {
         /// <summary>
@@ -61,12 +62,18 @@ public class DBCenterWebService : System.Web.Services.WebService
              publicationDbName = pdbName;//数据库名
              webSyncUrl= "https://" + publisherName + "/HdHouse/replisapi.dll";
         }
-        string publicationName;
-        string publisherName;
-        string publicationDbName;
-        string webSyncUrl;
+
+        public PublicationInfo()
+        {
+        }
+
+        public string publicationName;
+        public string publisherName;
+        public string publicationDbName;
+        public string webSyncUrl;
     }
     //定阅信息
+    [Serializable]
     public class SubscriptionInfo
     {
         /// <summary>
@@ -79,8 +86,13 @@ public class DBCenterWebService : System.Web.Services.WebService
             subscriberName = sbn;
             subscriptionDbName = sdbName;
         }
-        string subscriberName;
-        string subscriptionDbName;
+
+        public SubscriptionInfo()
+        {
+
+        }
+        public string subscriberName;
+        public string subscriptionDbName;
     }
 
 }

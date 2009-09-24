@@ -29,6 +29,7 @@ using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Replication;
 using Microsoft.SqlServer.MessageBox;
+using DBSiteAdmin.dbCenterWebService;
 #endregion
 
 namespace DBSiteAdmin
@@ -62,7 +63,7 @@ namespace DBSiteAdmin
             = Properties.Settings.Default.HostName;
 
         private ServerConnection subscriberConn;
-        private ServerConnection publisherConn;
+        //private ServerConnection publisherConn;
         private MergePullSubscription mergePullSub;
         private string handlerFriendlyName = Properties.Resources.HandlerFriendlyName;
 
@@ -547,18 +548,16 @@ namespace DBSiteAdmin
             ReplicationDatabase replDatabase;
             Server subServer;
             Database newDatabase;
-            MergePublication mergePub;
             MergeSynchronizationAgent syncAgent;
             ReplicationServer Subscriber;
             BusinessLogicHandler insertUpdateHandler;
             Boolean isRegistered = false;
-            Boolean isSubKnown = false;
 
             this.Show();
             Application.DoEvents();
 
             // We need to collect valid Windows credentials to be able to 
-            // store Web synchronization information in the database.
+           //  store Web synchronization information in the database.
             LogonUser logon = new LogonUser();
             DialogResult dr = logon.ShowDialog(this);
             string username = logon.UserName;
@@ -566,24 +565,24 @@ namespace DBSiteAdmin
 
             if (dr == DialogResult.OK)
             {
-                try
-                {
-                    // Create connections to the Publisher and Distributor.
-                    publisherConn = new ServerConnection(publisherServer);
-                    publisherConn.Connect();
-                }
-                catch (Microsoft.SqlServer.Replication.ConnectionFailureException ex)
-                {
-                    ExceptionMessageBox emb = new ExceptionMessageBox(
-                        Properties.Resources.ExceptionCannotConnectPublisher,
-                        Properties.Resources.ExceptionSqlServerError,
-                        ExceptionMessageBoxButtons.OK);
-                    emb.InnerException = ex;
-                    emb.Show(this);
+                //try
+                //{
+                //    // Create connections to the Publisher and Distributor.
+                //    publisherConn = new ServerConnection(publisherServer);
+                //    publisherConn.Connect();
+                //}
+                //catch (Microsoft.SqlServer.Replication.ConnectionFailureException ex)
+                //{
+                //    ExceptionMessageBox emb = new ExceptionMessageBox(
+                //        Properties.Resources.ExceptionCannotConnectPublisher,
+                //        Properties.Resources.ExceptionSqlServerError,
+                //        ExceptionMessageBoxButtons.OK);
+                //    emb.InnerException = ex;
+                //    emb.Show(this);
 
-                    // Shutdown the application because we can't continue.
-                    Application.Exit();
-                }
+                //    // Shutdown the application because we can't continue.
+                //    Application.Exit();
+                //}
 
                 try
                 {
@@ -613,6 +612,20 @@ namespace DBSiteAdmin
                 mergePullSub.PublisherName = publisherServer;
                 mergePullSub.PublicationDBName = publicationDatabase;
                 mergePullSub.DatabaseName = subscriptionDatabase;
+                // Specify an anonymous Subscriber type since we can't 
+                // register at the Publisher with a direct connection.
+                mergePullSub.SubscriberType = MergeSubscriberType.Anonymous;
+                // Enable Web synchronization.
+                mergePullSub.UseWebSynchronization = true;
+                mergePullSub.InternetUrl = Properties.Settings.Default.WebSynchronizationUrl;
+
+                // Specify the same Windows credentials to use when connecting to the
+                // Web server using HTTPS Basic Authentication.
+                mergePullSub.InternetSecurityMode = AuthenticationMethod.BasicAuthentication;
+                //mergePullSub.InternetLogin = username;
+                //mergePullSub.InternetPassword = password;
+                mergePullSub.InternetLogin = "bob";
+                mergePullSub.InternetPassword = "123";
 
                 // Create the subscription database using SMO if it does not exist.
                 subServer = new Server(subscriberConn);
@@ -650,57 +663,19 @@ namespace DBSiteAdmin
                 // Set the HostName property.
                 mergePullSub.HostName = subscriberHostName;
 
-                // Verify that the publication and initial snapshot is available at the Publisher.
-                mergePub = new MergePublication(publicationName,
-                    publicationDatabase, publisherConn);
-
-                // Load publication properties from the Publisher.
-                try
-                {
-                    if (!mergePub.LoadProperties())
-                    {
-                        throw new ApplicationException(
-                            Properties.Resources.ExceptionSalesDataNotAvailable
-                            + Environment.NewLine
-                            + Properties.Resources.ExceptionContactTechSupport);
-                    }
-
-                    // Determine if the subscription is already registered at the Publisher.
-                    foreach (MergeSubscription regSub in mergePub.EnumSubscriptions())
-                    {
-                        if (regSub.DatabaseName == publicationDatabase &&
-                            regSub.SubscriptionDBName == subscriptionDatabase &&
-                            regSub.SubscriberName == subscriberServer &&
-                            regSub.SubscriberType == MergeSubscriberType.Local &&
-                            regSub.SubscriptionType == SubscriptionOption.Pull)
-                        {
-                            // Subscription is already registered at the Publisher.
-                            isSubKnown = true;
-                        }
-                    }
-
-                    if (!isSubKnown)
-                    {
-                        // Register the new subscription at the Publisher. 
-                        mergePub.MakePullSubscriptionWellKnown(subscriberServer,
-                             subscriptionDatabase, SubscriptionSyncType.Automatic,
-                            MergeSubscriberType.Local, 80.0f);
-                    }
-                }
-                catch (InvalidCastException ex)
-                {
-                    throw new ApplicationException(
-                        Properties.Resources.ExceptionPublicationNotRetrieved,
-                        ex);
-                }
-
-                if (!mergePub.SnapshotAvailable)
-                {
-                    throw new ApplicationException(
-                        Properties.Resources.ExceptionSalesDataNotAvailable
-                        + Environment.NewLine
-                        + Properties.Resources.ExceptionContactTechSupport);
-                }
+                // 调用 远程接口注册该订阅
+                DBCenterWebService service = new DBCenterWebService();
+                SubscriptionInfo info = new SubscriptionInfo();
+                info.subscriberName = mergePullSub.Name;
+                info.subscriptionDbName = mergePullSub.DatabaseName;
+                service.CreateSubscriptionRequest(info);
+                //if (!mergePub.SnapshotAvailable)
+                //{
+                //    throw new ApplicationException(
+                //        Properties.Resources.ExceptionSalesDataNotAvailable
+                //        + Environment.NewLine
+                //        + Properties.Resources.ExceptionContactTechSupport);
+                //}
 
                 // Define the handler for inserts and updates at the Subscriber. 
                 Subscriber = new ReplicationServer(subscriberConn);
@@ -766,8 +741,7 @@ namespace DBSiteAdmin
                     // If an exception occurs, undo subscription registration at both 
                     // the Publisher and Subscriber and remove the handler registration.
                     mergePullSub.Remove();
-                    mergePub.RemovePullSubscription(subscriberServer,
-                        subscriptionDatabase);
+                    
                     if (isRegistered)
                     {
                         Subscriber.UnregisterBusinessLogicHandler(insertUpdateHandler);
@@ -783,7 +757,7 @@ namespace DBSiteAdmin
                 {
                     closeButton.Enabled = true;
                     subscriberConn.Disconnect();
-                    publisherConn.Disconnect();
+                    //publisherConn.Disconnect();
                 }
             }
             else

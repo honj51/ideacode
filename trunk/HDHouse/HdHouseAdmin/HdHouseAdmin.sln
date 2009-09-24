@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSiteAdmin", "DBSiteAdmin\
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DBCenterAdmin", "DBCenterAdmin\", "{2CD73CF7-80DC-4032-BB54-088691373758}"
 	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "Svn"
+		SccAuxPath = "Svn"
+		SccLocalPath = "Svn"
+		SccProvider = "SubversionScc"
 		TargetFramework = "2.0"
 		Debug.AspNetCompiler.VirtualPath = "/DBCenterAdmin"
 		Debug.AspNetCompiler.PhysicalPath = "DBCenterAdmin\"
@@ -20,7 +24,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DBCenterAdmin", "DBCenterAd
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1293"
+		VWDPort = "1472"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -33,6 +37,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriberMonitor", "SubscriberMonitor\SubscriberMonitor.csproj", "{65302933-C50A-4E66-9383-58157A62E122}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
 		Debug|Any CPU = Debug|Any CPU
