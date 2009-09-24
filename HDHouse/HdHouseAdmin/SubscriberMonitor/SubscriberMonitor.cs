@@ -74,7 +74,7 @@ namespace Microsoft.Samples.SqlServer
             // and hide the menus.
             //showDialog = false;
 
-            foreach (ToolStripMenuItem menuItem in menuStrip1.Items)
+            foreach (ToolStripMenuItem menuItem in menuStrip2.Items)
             {
                 menuItem.Visible = false;
             }
@@ -99,10 +99,10 @@ namespace Microsoft.Samples.SqlServer
             // and hide the menus.
             //showDialog = false;
 
-            foreach (ToolStripMenuItem menuItem in menuStrip1.Items)
-            {
-                menuItem.Visible = false;
-            }
+            //foreach (ToolStripMenuItem menuItem in menuStrip2.Items)
+            //{
+            //    menuItem.Visible = false;
+            //}
         }
 
         private void AddColumnsToListView()
@@ -111,35 +111,35 @@ namespace Microsoft.Samples.SqlServer
                 HorizontalAlignment.Left);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
 
-            ch = this.detailsListView.Columns.Add("Article", 200, 
+            ch = this.detailsListView.Columns.Add("项目", 200, 
                 HorizontalAlignment.Left);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
 
-            ch = this.detailsListView.Columns.Add("% of Total", 60, 
+            ch = this.detailsListView.Columns.Add("% 总计", 60, 
                 HorizontalAlignment.Center);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
 
-            ch = this.detailsListView.Columns.Add("Duration", 70, 
+            ch = this.detailsListView.Columns.Add("时间", 70, 
                 HorizontalAlignment.Center);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
 
-            ch = this.detailsListView.Columns.Add("Inserts", 55, 
+            ch = this.detailsListView.Columns.Add("增加数", 55, 
                 HorizontalAlignment.Center);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
 
-            ch = this.detailsListView.Columns.Add("Deletes", 55, 
+            ch = this.detailsListView.Columns.Add("删除数", 55, 
                 HorizontalAlignment.Center);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
 
-            ch = this.detailsListView.Columns.Add("Updates", 55, 
+            ch = this.detailsListView.Columns.Add("更新数", 55, 
                 HorizontalAlignment.Center);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
 
-            ch = this.detailsListView.Columns.Add("Conflicts", 55, 
+            ch = this.detailsListView.Columns.Add("冲突数", 55, 
                 HorizontalAlignment.Center);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
 
-            ch = this.detailsListView.Columns.Add("Schema Changes", 55, 
+            ch = this.detailsListView.Columns.Add("架构更改数", 55, 
                 HorizontalAlignment.Center);
             ch.AutoResize(ColumnHeaderAutoResizeStyle.None);
         }
