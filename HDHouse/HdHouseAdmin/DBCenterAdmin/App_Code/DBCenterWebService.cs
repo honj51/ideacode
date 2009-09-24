@@ -31,8 +31,8 @@ public class DBCenterWebService : System.Web.Services.WebService
     [WebMethod]
     public Boolean CreateSubscriptionRequest(SubscriptionInfo info)
     {
-      //  SMO smo=new SMO();
-       // return smo.RegisterSubscriptionOnPublisher(info);
+        SMO smo = new SMO();
+        return smo.RegisterSubscriptionOnPublisher(info.subscriberName,info.subscriptionDbName);
         return true;
     }
     /// <summary>
@@ -42,7 +42,7 @@ public class DBCenterWebService : System.Web.Services.WebService
     [WebMethod]
     public PublicationInfo GetPublicationInfo()
     {
-        PublicationInfo pi = new PublicationInfo("HdHousePub", "HdHouse");
+        PublicationInfo pi = new PublicationInfo(SMO.publicationName, SMO.publicationDatabase);
         return pi;
     }
 
@@ -86,6 +86,7 @@ public class DBCenterWebService : System.Web.Services.WebService
             subscriberName = sbn;
             subscriptionDbName = sdbName;
         }
+
 
         public SubscriptionInfo()
         {

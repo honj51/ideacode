@@ -18,22 +18,55 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (! IsPostBack)
+        {
+            GetData();
+            TextBox3.ReadOnly = true;
+            SetReadOnly(true);
+        } 
+      
+    }
+    public  void SetReadOnly(bool b)
+    {
+        TextBox4.ReadOnly = b;
+        TextBox5.ReadOnly = b;
+        TextBox6.ReadOnly = b;
+        TextBox7.ReadOnly = b;
+        TextBox8.ReadOnly = b;
+    }
+    public void SetData()
+    {
+        SMO.winLogin = TextBox6.Text;
+        SMO.winPassword = TextBox7.Text;
+        SMO.publicationDatabase = TextBox5.Text;
+        SMO.publicationName = TextBox4.Text;
+        SMO.publisherName = TextBox8.Text;
+    }
+    public  void GetData()
+    {
+        TextBox6.Text = SMO.winLogin;
+        TextBox7.Text = SMO.winPassword;
+        TextBox5.Text = SMO.publicationDatabase;
+        TextBox4.Text = SMO.publicationName;
+        TextBox8.Text = SMO.publisherName;
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
         try
         {
+            SMO.publicationDatabase = TextBox5.Text;
             SMO s = new SMO();
             if (s.IsDBExsit())
             {
                 Label1.ForeColor = Color.Green;
                 Label1.Text = "数据库已存在";
+                TextBox3.Text += "数据库已存在 \r\n";
             }
             else
             {
                 Label1.ForeColor = Color.Brown;
                 Label1.Text = "数据库不存在";
+                TextBox3.Text += "数据库不存在 \r\n";
             }
 
         }
@@ -41,44 +74,50 @@ public partial class _Default : System.Web.UI.Page
         {
             Label1.ForeColor = Color.Brown;
             Label1.Text = "操作异常: " + ex.Message;
+            TextBox3.Text += "操作异常: " + ex.Message + " \r\n";
         }
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
         try
         {
+            SMO.publicationDatabase = TextBox5.Text;
             SMO s = new SMO();
-            s.CreatDB();
-            Label2.ForeColor = Color.Green;
-            Label2.Text = "操作成功";
+            s.CreatDB(Server.MapPath("~/App_Data"));
+            Label1.ForeColor = Color.Green;
+            Label1.Text = "操作成功";
+            TextBox3.Text += "操作成功  \r\n";
         }
         catch (Exception ex)
         {
-            Label2.ForeColor = Color.Brown;
-            Label2.Text = "操作异常: " + ex.Message;
+            Label1.ForeColor = Color.Brown;
+            Label1.Text = "操作异常: " + ex.Message;
+            TextBox3.Text += "操作异常: " + ex.Message +" \r\n";
         }
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
         try
         {
+            SMO.publicationDatabase = TextBox5.Text;
             SMO s = new SMO();
             s.DeleteDB();
-            Label3.ForeColor = Color.Green;
-            Label3.Text = "操作成功";
+            Label1.ForeColor = Color.Green;
+            Label1.Text = "操作成功";
+            TextBox3.Text += "操作成功  \r\n";
         }
         catch (Exception ex)
         {
-            Label3.ForeColor = Color.Brown;
-            Label3.Text = "操作异常: " + ex.Message;
+            Label1.ForeColor = Color.Brown;
+            TextBox3.Text += "操作异常: " + ex.Message +" \r\n";
         }
     }
     //创建发布
     protected void Button4_Click(object sender, EventArgs e)
     {
-        string publisherName = "rd01";//发布者名
-        string publicationName = "HdHousePub";//发布名
-        string publicationDbName = "HdHouse";//发布的数据库名 
+        string publisherName = SMO.publisherName;// "rd01";//发布者名
+        string publicationName = SMO.publicationName;// "HdHousePub";//发布名
+        string publicationDbName = SMO.publicationDatabase;// "HdHouse";//发布的数据库名 
         //创建连接
         ServerConnection conn = new ServerConnection(publisherName);
         ReplicationDatabase replicationDatabase = new ReplicationDatabase();
@@ -87,6 +126,7 @@ public partial class _Default : System.Web.UI.Page
         if (!replicationDatabase.LoadProperties())
         {
             Label5.Text = "请确定发布数据库" + publicationDbName + "已存在";
+            TextBox3.Text += "请确定发布数据库" + publicationDbName + "已存在  \r\n";
             return;
         }
 
@@ -112,8 +152,8 @@ public partial class _Default : System.Web.UI.Page
     {
 
         string distributionDbName = "distribution";
-        string publisherName = "rd01";//发布者名
-        string publicationDbName = "HdHouse";//发布的数据库名 
+        string publisherName =SMO.publisherName;//"rd01";发布者服务器名
+        string publicationDbName = SMO.publicationDatabase; //"HdHouse";发布的数据库名 
 
         DistributionDatabase distributionDb;
         ReplicationServer distributor;
@@ -157,6 +197,7 @@ public partial class _Default : System.Web.UI.Page
         {
             // Implement appropriate error handling here.
             throw new ApplicationException("An error occured when installing distribution and publishing.", ex);
+            TextBox3.Text += "An error occured when installing distribution and publishing." + ex + " \r\n";
         }
         finally
         {
@@ -167,11 +208,11 @@ public partial class _Default : System.Web.UI.Page
     protected void Button6_Click(object sender, EventArgs e)
     {
         // Set the Publisher, publication database, and publication names.
-        string publisherName = "rd01";//发布者名
-        string publicationName = "HdHousePub";//发布名
-        string publicationDbName = "HdHouse";//发布的数据库名 
-        string winLogin="y";//
-        string winPassword = "19870312";//
+        string publisherName = SMO.publisherName;// TextBox8.Text; //"rd01";发布者服务器名
+        string publicationName = SMO.publicationName;// TextBox4.Text; //"HdHousePub";发布名
+        string publicationDbName = SMO.publicationDatabase;// TextBox5.Text;//"HdHouse";发布的数据库名 
+        string winLogin = SMO.winLogin;//TextBox6.Text;//"y";系统帐户
+        string winPassword = SMO.winPassword; //TextBox7.Text;//"19870312";//该系统帐户密码！
 
         ReplicationDatabase publicationDb;
         MergePublication publication;
@@ -244,8 +285,9 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-                throw new ApplicationException(String.Format(
-                    "The {0} publication already exists.", publicationName));
+                //throw new ApplicationException(String.Format(
+                //    "The {0} publication already exists.", publicationName));
+                TextBox3.Text += String.Format("发布 {0} 已经存在  \r\n .", publicationName);
             }
         }
 
@@ -262,18 +304,25 @@ public partial class _Default : System.Web.UI.Page
     }
     //添加系统本地用户
     protected void Button7_Click(object sender, EventArgs e)
-    {
+    { 
         ArrayList li = new ArrayList();
         li.Add("net   user   " + TextBox1.Text + "   " + TextBox2.Text + "   /add");
         li.Add("net localgroup administrators " + TextBox1.Text + " /add");
-        TextBox3.Text=ExecuteCmd(li);
+        SMO.winLogin = TextBox1.Text;
+        SMO.winPassword= TextBox2.Text;
+        TextBox3.Text += ExecuteCmd(li) + " \r\n";
+        GetData();
     }
     //删除系统本地用户
     protected void Button12_Click(object sender, EventArgs e)
     {
+        
         ArrayList li = new ArrayList();
         li.Add("net   user   " + TextBox1.Text + "   /del");
-        TextBox3.Text = ExecuteCmd(li);
+        SMO.winLogin ="y";
+        SMO.winPassword ="19870312";
+        TextBox3.Text += ExecuteCmd(li) + " \r\n";
+        GetData();
     }
     /// <summary>
     /// 执行系统CMD命令
@@ -313,6 +362,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 configSection.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
                 config.Save();
+                TextBox3.Text += "配置文件加密成功";
             }
         }
     }
@@ -331,9 +381,8 @@ public partial class _Default : System.Web.UI.Page
 
             if (!(configSection.SectionInformation.IsLocked))
             {
-
                 configSection.SectionInformation.UnprotectSection(); config.Save();
-
+                TextBox3.Text += "配置文件解密成功  \r\n";
             }
         }
     }
@@ -342,19 +391,81 @@ public partial class _Default : System.Web.UI.Page
     {
         ArrayList li = new ArrayList();
         li.Add("net start  \"SQL Server Agent (MSSQLSERVER)\"");
-        TextBox3.Text = ExecuteCmd(li);
+        TextBox3.Text += ExecuteCmd(li) + " \r\n";
     }
     //关闭代理服务器 
     protected void Button11_Click(object sender, EventArgs e)
     {
         ArrayList li = new ArrayList();
         li.Add("net stop  \"SQL Server Agent (MSSQLSERVER)\"");
-        TextBox3.Text = ExecuteCmd(li);
+        TextBox3.Text += ExecuteCmd(li) + " \r\n";
     }
 
     protected void Button13_Click(object sender, EventArgs e)
     {
         SMO smo = new SMO();
-        smo.RegisterSubscriptionOnPublisher();
+        smo.RegisterSubscriptionOnPublisher(TextBox9.Text,TextBox10.Text);
+    }
+    //设置
+    protected void Button14_Click(object sender, EventArgs e)
+    {
+        if (Button14.Text == "设置")
+        {
+            SetReadOnly(false);
+            GetData();
+            Button14.Text = "应用";
+        }
+        else if (Button14.Text == "应用")
+        {
+            SetReadOnly(true);
+            SetData();
+            Button14.Text = "设置";
+            GetData();
+        }
+        else
+        {
+            Button14.Text = "错误";
+        }
+    }
+    //删除
+    protected void Button15_Click(object sender, EventArgs e)
+    {
+        ServerConnection sconn = new ServerConnection(SMO.publisherName);
+        try
+        {
+            MergePublication mpc = new MergePublication();
+            mpc.Name = SMO.publicationName;
+            mpc.DatabaseName = SMO.publicationDatabase;
+            mpc.ConnectionContext = sconn;
+            if (mpc.IsExistingObject)
+            {
+                mpc.Remove();
+            }
+            else
+            {
+                TextBox3.Text = "发布" + SMO.publicationName + "的定义不正确，或者发布不存在。\r\n";
+            }
+            ReplicationDatabase rld = new ReplicationDatabase();
+            rld.ConnectionContext = sconn;
+            rld.Name = SMO.publicationName;
+            if (rld.LoadProperties())
+            {
+                rld.EnabledMergePublishing = false;
+                rld.CommitPropertyChanges();
+            }
+            else
+            {
+                TextBox3.Text = "请验证" + SMO.publicationDatabase + "数据库是否存在。\r\n";
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException(String.Format(
+                "The publication {0} 无法删除.", SMO.publicationName), ex);
+        }
+        finally
+        {
+            sconn.Disconnect();
+        }        
     }
 }

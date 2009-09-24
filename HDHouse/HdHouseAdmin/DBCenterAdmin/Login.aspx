@@ -17,7 +17,9 @@
                   <%--  <input style="border-right-width: 0px; width: 76px; border-top-width: 0px; border-bottom-width: 0px;
                         height: 26px; border-left-width: 0px" id="IbtnEnter" src="Images/admin_menu.gif"
                         type="image" name="IbtnEnter">--%>
-                        <asp:ImageButton ID="ImageButton1" runat="server"  CssClass="imagebotton1" ImageUrl="Images/admin_menu.gif"/>             
+                        <asp:ImageButton ID="ImageButton1" runat="server"  
+                    CssClass="imagebotton1" ImageUrl="Images/admin_menu.gif" 
+                    onclick="ImageButton1_Click"/>             
                 </label>
             </div>
         </div>
