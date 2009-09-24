@@ -16,7 +16,11 @@ using Microsoft.SqlServer.Replication;
 /// </summary>
 public class SMO
 {
-    public const string DataBaseName = "HdHouse";
+    public static string publicationName = "HdHousePub";//发布名
+    public static  string publicationDatabase = "HdHouse";//发布的数据库名 
+    public static string winLogin ="y";//系统帐户
+    public static string winPassword ="19870312";//该系统帐户密码！    
+    public static string publisherName = "rd01";//发布服务器名
 
 	public SMO()
 	{
@@ -25,22 +29,26 @@ public class SMO
 		//
 	}
 
-    public void CreatDB()
+    public void CreatDB(string dataFileDir)
     {
         ServerConnection c = new ServerConnection(".", "sa", "hudongsoft");
         Server s = new Server(c);
         //s.AttachDatabase(
-        Database db = new Database(s, DataBaseName);
-        db.Create();
+        //Database db = new Database(s, DataBaseName);
+        //db.Create();
+        System.Collections.Specialized.StringCollection sc = new System.Collections.Specialized.StringCollection();
+        sc.Add(dataFileDir + @"\HdHouse.mdf");
+        sc.Add(dataFileDir + @"\HdHouse_log.ldf");
+        s.AttachDatabase(publicationDatabase, sc);
     }
 
     public void DeleteDB()
     {
         ServerConnection c = new ServerConnection(".", "sa", "hudongsoft");
         Server s = new Server(c);
-        if (s.Databases[DataBaseName] != null)
+        if (s.Databases[publicationDatabase] != null)
         {
-            s.Databases[DataBaseName].Drop();
+            s.DetachDatabase(publicationDatabase, false);
         }
     }
 
@@ -48,20 +56,22 @@ public class SMO
     {
         ServerConnection c = new ServerConnection(".","sa","hudongsoft");
         Server s = new Server(c);
-        if(s.Databases[DataBaseName] == null)
+        if(s.Databases[publicationDatabase] == null)
             return false;
         else
             return true;
     }
-    public bool RegisterSubscriptionOnPublisher()
+    /// <summary>
+    /// 处理请求的定阅
+    /// </summary>
+    /// <param name="subscriberServer">定阅者服务器名</param>
+    /// <param name="subscriptionDatabase">定阅者本地数据库名</param>
+    /// <returns></returns>
+    public bool RegisterSubscriptionOnPublisher(string subscriberServer, string subscriptionDatabase)
     {
-        string publisherName = "rd01";//发布者名
-        string publicationName = "HdHousePub";//发布名
-        string publicationDatabase = "HdHouse";//发布的数据库名 
-        string subscriptionDatabase = "SHdHouse";//定阅者本地数据库名
-        string subscriberServer = "rd01";//定阅者服务器
+        //string subscriptionDatabase = "SHdHouse";//定阅者本地数据库名
+        //string subscriberServer = "rd01";//定阅者服务器
         Boolean isSubKnown = false;
-
         ServerConnection con = new ServerConnection(publisherName);
         MergePublication mergePub = new MergePublication(publicationName,
                     publicationDatabase, con);

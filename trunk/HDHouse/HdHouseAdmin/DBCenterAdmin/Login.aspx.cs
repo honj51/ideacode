@@ -15,4 +15,9 @@ public partial class Login : System.Web.UI.Page
     {
 
     }
+    //登录
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
 }
