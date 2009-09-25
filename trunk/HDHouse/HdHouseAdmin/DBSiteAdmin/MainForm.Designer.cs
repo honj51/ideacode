@@ -28,24 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.currentStatusTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.同步ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.同步所有数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSynchronizeOnlyUploadData = new System.Windows.Forms.ToolStripMenuItem();
-            this.连接时同步ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSyncWhenConnected = new System.Windows.Forms.ToolStripMenuItem();
             this.高级选择ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.重新初始化数据RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.上传更新并初始化数据UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,101 +43,16 @@
             this.查看同步历史HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于我们AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.syncTimer = new System.Timers.Timer();
+            this.syncWhenConnectedStrip = new System.Windows.Forms.StatusStrip();
+            this.syncWhenConnectedIcon = new System.Windows.Forms.ToolStripStatusLabel();
+            this.syncWhenConnectedStatus = new System.Windows.Forms.ToolStripProgressBar();
+            this.syncWhenConnectedText = new System.Windows.Forms.ToolStripStatusLabel();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.syncTimer)).BeginInit();
+            this.syncWhenConnectedStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(109, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 12);
-            this.label1.TabIndex = 1;
-            // 
-            // currentStatusTextBox
-            // 
-            this.currentStatusTextBox.Location = new System.Drawing.Point(12, 135);
-            this.currentStatusTextBox.Multiline = true;
-            this.currentStatusTextBox.Name = "currentStatusTextBox";
-            this.currentStatusTextBox.ReadOnly = true;
-            this.currentStatusTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.currentStatusTextBox.Size = new System.Drawing.Size(422, 57);
-            this.currentStatusTextBox.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 105);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "操作日志:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "数据库实例名：";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(101, 31);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 5;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(101, 58);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 6;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(278, 31);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 21);
-            this.textBox4.TabIndex = 7;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(278, 58);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.PasswordChar = '*';
-            this.textBox5.Size = new System.Drawing.Size(100, 21);
-            this.textBox5.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "主机名：";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(219, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "登录名：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(207, 61);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "登录密码：";
             // 
             // menuStrip1
             // 
@@ -158,22 +63,30 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(446, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(638, 24);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 文件ToolStripMenuItem
             // 
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configToolStripMenuItem,
             this.退出EToolStripMenuItem});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.文件ToolStripMenuItem.Text = "文件(&F)";
             // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.configToolStripMenuItem.Text = "配置(&C)";
+            this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
+            // 
             // 退出EToolStripMenuItem
             // 
             this.退出EToolStripMenuItem.Name = "退出EToolStripMenuItem";
-            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.退出EToolStripMenuItem.Text = "退出(&E)";
             this.退出EToolStripMenuItem.Click += new System.EventHandler(this.退出EToolStripMenuItem_Click);
             // 
@@ -182,7 +95,7 @@
             this.同步ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.同步所有数据ToolStripMenuItem,
             this.mnuSynchronizeOnlyUploadData,
-            this.连接时同步ToolStripMenuItem,
+            this.mnuSyncWhenConnected,
             this.高级选择ToolStripMenuItem,
             this.查看同步历史HToolStripMenuItem});
             this.同步ToolStripMenuItem.Name = "同步ToolStripMenuItem";
@@ -203,12 +116,12 @@
             this.mnuSynchronizeOnlyUploadData.Text = "只上传数据(&U)";
             this.mnuSynchronizeOnlyUploadData.Click += new System.EventHandler(this.只上传数据ToolStripMenuItem_Click);
             // 
-            // 连接时同步ToolStripMenuItem
+            // mnuSyncWhenConnected
             // 
-            this.连接时同步ToolStripMenuItem.Name = "连接时同步ToolStripMenuItem";
-            this.连接时同步ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.连接时同步ToolStripMenuItem.Text = "连接时同步(&C)";
-            this.连接时同步ToolStripMenuItem.Click += new System.EventHandler(this.连接时同步ToolStripMenuItem_Click);
+            this.mnuSyncWhenConnected.Name = "mnuSyncWhenConnected";
+            this.mnuSyncWhenConnected.Size = new System.Drawing.Size(184, 22);
+            this.mnuSyncWhenConnected.Text = "连接时同步(&C)";
+            this.mnuSyncWhenConnected.Click += new System.EventHandler(this.mnuSyncWhenConnected_Click);
             // 
             // 高级选择ToolStripMenuItem
             // 
@@ -261,41 +174,75 @@
             this.关于我们AToolStripMenuItem.Name = "关于我们AToolStripMenuItem";
             this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.关于我们AToolStripMenuItem.Text = "关于我们(&A)";
+            this.关于我们AToolStripMenuItem.Click += new System.EventHandler(this.关于我们AToolStripMenuItem_Click);
             // 
-            // button1
+            // syncTimer
             // 
-            this.button1.Location = new System.Drawing.Point(293, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "确认修改";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.syncTimer.Interval = 1000;
+            this.syncTimer.SynchronizingObject = this;
+            this.syncTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.syncTimer_Elapsed);
+            // 
+            // syncWhenConnectedStrip
+            // 
+            this.syncWhenConnectedStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.syncWhenConnectedIcon,
+            this.syncWhenConnectedStatus,
+            this.syncWhenConnectedText});
+            this.syncWhenConnectedStrip.Location = new System.Drawing.Point(0, 310);
+            this.syncWhenConnectedStrip.Name = "syncWhenConnectedStrip";
+            this.syncWhenConnectedStrip.Size = new System.Drawing.Size(800, 25);
+            this.syncWhenConnectedStrip.TabIndex = 30;
+            this.syncWhenConnectedStrip.Text = "Ready";
+            this.syncWhenConnectedStrip.Visible = false;
+            // 
+            // syncWhenConnectedIcon
+            // 
+            this.syncWhenConnectedIcon.AutoSize = false;
+            this.syncWhenConnectedIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.syncWhenConnectedIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.syncWhenConnectedIcon.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.syncWhenConnectedIcon.ImageTransparentColor = System.Drawing.Color.White;
+            this.syncWhenConnectedIcon.Name = "syncWhenConnectedIcon";
+            this.syncWhenConnectedIcon.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.syncWhenConnectedIcon.Size = new System.Drawing.Size(32, 20);
+            // 
+            // syncWhenConnectedStatus
+            // 
+            this.syncWhenConnectedStatus.Name = "syncWhenConnectedStatus";
+            this.syncWhenConnectedStatus.Size = new System.Drawing.Size(120, 19);
+            // 
+            // syncWhenConnectedText
+            // 
+            this.syncWhenConnectedText.Name = "syncWhenConnectedText";
+            this.syncWhenConnectedText.Size = new System.Drawing.Size(0, 20);
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 24);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(638, 409);
+            this.propertyGrid1.TabIndex = 34;
+            this.propertyGrid1.ToolbarVisible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 214);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.currentStatusTextBox);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(638, 433);
+            this.Controls.Add(this.propertyGrid1);
+            this.Controls.Add(this.syncWhenConnectedStrip);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "站点数据库管理";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.syncTimer)).EndInit();
+            this.syncWhenConnectedStrip.ResumeLayout(false);
+            this.syncWhenConnectedStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,24 +250,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox currentStatusTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出EToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 同步ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 同步所有数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuSynchronizeOnlyUploadData;
-        private System.Windows.Forms.ToolStripMenuItem 连接时同步ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuSyncWhenConnected;
         private System.Windows.Forms.ToolStripMenuItem 高级选择ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 重新初始化数据RToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 上传更新并初始化数据UToolStripMenuItem;
@@ -328,7 +264,13 @@
         private System.Windows.Forms.ToolStripMenuItem 查看同步历史HToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于我们AToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Timers.Timer syncTimer;
+        private System.Windows.Forms.StatusStrip syncWhenConnectedStrip;
+        private System.Windows.Forms.ToolStripStatusLabel syncWhenConnectedIcon;
+        private System.Windows.Forms.ToolStripProgressBar syncWhenConnectedStatus;
+        private System.Windows.Forms.ToolStripStatusLabel syncWhenConnectedText;
+        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
     }
 }
 

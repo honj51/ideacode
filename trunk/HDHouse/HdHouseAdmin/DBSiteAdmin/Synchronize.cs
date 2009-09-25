@@ -62,6 +62,9 @@ namespace DBSiteAdmin
         private string subscriberHostName
             = Properties.Settings.Default.HostName;
 
+        private string internetLogin = Properties.Settings.Default.InternetLogin;
+        private string internetPassword = Properties.Settings.Default.InternetPassword;
+
         private ServerConnection subscriberConn;
         //private ServerConnection publisherConn;
         private MergePullSubscription mergePullSub;
@@ -624,8 +627,8 @@ namespace DBSiteAdmin
                 mergePullSub.InternetSecurityMode = AuthenticationMethod.BasicAuthentication;
                 //mergePullSub.InternetLogin = username;
                 //mergePullSub.InternetPassword = password;
-                mergePullSub.InternetLogin = "bob";
-                mergePullSub.InternetPassword = "123";
+                mergePullSub.InternetLogin = internetLogin;
+                mergePullSub.InternetPassword = internetPassword;
 
                 // Create the subscription database using SMO if it does not exist.
                 subServer = new Server(subscriberConn);

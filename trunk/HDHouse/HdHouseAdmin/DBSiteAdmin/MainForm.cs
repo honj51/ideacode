@@ -28,6 +28,12 @@ namespace DBSiteAdmin
         public string WinLogin = @"rd03\administrators";
         public string WinPassword = "123";
 
+        private enum ConnectedState
+        {
+            Connected,
+            Disconnected
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -35,30 +41,22 @@ namespace DBSiteAdmin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) || string.IsNullOrEmpty(textBox5.Text))
-            {
-                label1.Text = "数据不能为空";
-                label1.ForeColor = Color.Red;
-                return;
-            }
-            SubscriberInstance = textBox2.Text;
-            WinLogin = textBox4.Text;
-            WinPassword = textBox5.Text;
+
             try
             {
-                currentStatusTextBox.AppendText("开始创建订阅");
-                
-                CreateSubscription();
-                label1.Text = "创建订阅完成";
+                //currentStatusTextBox.AppendText("开始创建订阅");
 
-                currentStatusTextBox.AppendText("\r\n\r\n创建订阅结束");
+                CreateSubscription();
+                // label1.Text = "创建订阅完成";
+
+                //currentStatusTextBox.AppendText("\r\n\r\n创建订阅结束");
 
             }
             catch (Exception ex)
             {
-                label1.Text = "创建订阅失败";
+                //  label1.Text = "创建订阅失败";
 
-                currentStatusTextBox.AppendText("\r\n\r\n"+ex.Message+"\r\n\r\n");
+                //currentStatusTextBox.AppendText("\r\n\r\n"+ex.Message+"\r\n\r\n");
             }
         }
 
@@ -72,7 +70,7 @@ namespace DBSiteAdmin
             string subscriberName = SubscriberInstance;
             string subscriptionDbName = "HdHouseReplica";
             string publicationDbName = "HdHouse";
-            string hostname = textBox3.Text;
+            string hostname = "RD03";
             string webSyncUrl = "https://" + PublisherInstance + "/hdhouse-dbpub/replisapi.dll";
 
             //Create the Subscriber connection.
@@ -176,7 +174,7 @@ namespace DBSiteAdmin
                 }
             }
 
-         
+
         }
 
         private void 退出EToolStripMenuItem_Click(object sender, EventArgs e)
@@ -237,30 +235,30 @@ namespace DBSiteAdmin
             }
         }
 
-        private void 连接时同步ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuSyncWhenConnected_Click(object sender, EventArgs e)
         {
             // Toggle the menu check box.
-            //if (mnuSyncWhenConnected.Checked)
-            //{
-            //    mnuSyncWhenConnected.Checked = false;
-            //    syncTimer.Enabled = false;
-            //    syncWhenConnectedStrip.Visible = false;
-            //    syncWhenConnectedText.Text = "";
-            //}
-            //else
-            //{
-            //    mnuSyncWhenConnected.Checked = true;
-            //    syncTimer.Enabled = true;
-            //    syncTimer.Interval = 1000 * Convert.ToDouble(
-            //        Properties.Settings.Default.SyncWhenConnectedInterval,
-            //        CultureInfo.InvariantCulture);
-            //    syncWhenConnectedStrip.Visible = true;
+            if (mnuSyncWhenConnected.Checked)
+            {
+                mnuSyncWhenConnected.Checked = false;
+                syncTimer.Enabled = false;
+                syncWhenConnectedStrip.Visible = false;
+                syncWhenConnectedText.Text = "";
+            }
+            else
+            {
+                mnuSyncWhenConnected.Checked = true;
+                syncTimer.Enabled = true;
+                syncTimer.Interval = 1000 * Convert.ToDouble(
+                    Properties.Settings.Default.SyncWhenConnectedInterval,
+                    CultureInfo.InvariantCulture);
+                syncWhenConnectedStrip.Visible = true;
 
-            //    // Raise timer event immediately.
-            //    syncTimer_Elapsed(null, null);
+                // Raise timer event immediately.
+                syncTimer_Elapsed(null, null);
 
-            //}
-          
+            }
+
         }
 
         private void 重新初始化数据RToolStripMenuItem_Click(object sender, EventArgs e)
@@ -276,7 +274,7 @@ namespace DBSiteAdmin
 
                 syncSub.ReinitializeSubscription();
 
-              
+
             }
             catch (Exception ex)
             {
@@ -319,18 +317,50 @@ namespace DBSiteAdmin
 
         private void 查看同步历史HToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SubscriberMonitor subMonitor = new SubscriberMonitor(
-                Properties.Settings.Default.Subscriber,
-                Properties.Settings.Default.Publication,
-                (Properties.Settings.Default.Publisher == "localhost"
-                    ? Environment.MachineName : Properties.Settings.Default.Publisher),
-                Properties.Settings.Default.PublicationDatabase,
-                Properties.Settings.Default.SubscriptionDatabase);
+
+            SubscriberMonitor subMonitor = new SubscriberMonitor();
+            //SubscriberMonitor subMonitor = new SubscriberMonitor(
+            //    Properties.Settings.Default.Subscriber,
+            //    Properties.Settings.Default.Publication,
+            //    (Properties.Settings.Default.Publisher == "localhost"
+            //        ? Environment.MachineName : Properties.Settings.Default.Publisher),
+            //    Properties.Settings.Default.PublicationDatabase,
+            //    Properties.Settings.Default.SubscriptionDatabase);
             subMonitor.Show(this);
             Application.DoEvents();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
+        {
+            MyClass c = new MyClass();
+            c.HostName = Properties.Settings.Default.HostName;
+            c.Publication = Properties.Settings.Default.Publication;
+            c.PublicationDatabase = Properties.Settings.Default.PublicationDatabase;
+            c.Publisher = Properties.Settings.Default.Publisher;
+            c.Subscriber = Properties.Settings.Default.Subscriber;
+            c.SubscriptionDatabase = Properties.Settings.Default.SubscriptionDatabase;
+            c.WebSynchronizationUrl = Properties.Settings.Default.WebSynchronizationUrl;
+            propertyGrid1.SelectedObject = c;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
+        private void 关于我们AToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBoxSalesOrders dlgAbout;
+
+            dlgAbout = new AboutBoxSalesOrders();
+            dlgAbout.ShowDialog();
+            dlgAbout.Dispose();
+        }
+        private void LoadSetting()
+        {
+        }
+
+        private void showSyncDialog()
         {
             try
             {
@@ -397,12 +427,214 @@ namespace DBSiteAdmin
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private void syncTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-           //Properties.Settings.Default. textBox2.Text;
-           // textBox3.Text;
-           // textBox4.Text;
-           // textBox5.Text;
+            Synchronize syncSub;
+
+            // Start a background synchronization if an Internet connection is
+            // available and data is not being edited.
+            if (GetConnectionState() == ConnectedState.Connected)
+            {
+                syncWhenConnectedIcon.Image = Properties.Resources.connected;
+
+                if (this.ContainsFocus == true)
+                {
+                    // Instantiate the replication code without the Form.
+                    syncSub = new Synchronize();
+
+
+                    syncWhenConnectedText.Text
+                       = Properties.Resources.StatusSyncStarting;
+
+                    syncWhenConnectedIcon.Image = Properties.Resources.synchronizing;
+
+                    try
+                    {
+                        syncSub.Status += new SyncWhenConnectedStatus(syncSub_Status);
+                        syncSub.SynchronizeSubscriptionFull();
+
+                        syncWhenConnectedText.Text
+                            = Properties.Resources.StatusSyncComplete;
+                    }
+                    catch
+                    {
+                        syncWhenConnectedText.Text
+                            = Properties.Resources.StatusSyncFailed;
+                    }
+                    finally
+                    {
+                        syncWhenConnectedIcon.Image = Properties.Resources.connected;
+
+                        // Reload data from database
+                    }
+                }
+            }
+            else
+            {
+                syncWhenConnectedIcon.Image = Properties.Resources.disconnected;
+            }
+        }
+        void syncSub_Status(object sender, StatusEventArgs e)
+        {
+            // Update the Synchronization Status form.
+            syncWhenConnectedStatus.Value = (int)e.PercentCompleted;
+
+            switch (e.MessageStatus)
+            {
+                case MessageStatus.Start:
+                    syncWhenConnectedText.Text = Properties.Resources.StatusSyncStarting;
+                    break;
+                case MessageStatus.InProgress:
+                    syncWhenConnectedText.Text = Properties.Resources.StatusSyncInProgress;
+                    break;
+                case MessageStatus.Succeed:
+                    syncWhenConnectedText.Text = Properties.Resources.StatusSyncComplete;
+                    break;
+                case MessageStatus.Fail:
+                    syncWhenConnectedText.Text = Properties.Resources.StatusSyncFailed;
+                    break;
+                default:
+                    syncWhenConnectedText.Text = Properties.Resources.StatusSyncComplete;
+                    break;
+            }
+            Application.DoEvents();
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private ConnectedState GetConnectionState()
+        {
+            SelectQuery wmiQuery;
+            ManagementObjectSearcher searcher;
+            bool isConnected;
+
+            try
+            {
+                // Query the WMI provider to determine if we are connected.
+                wmiQuery = new SelectQuery("SELECT * FROM Win32_NetworkAdapter");
+                searcher = new ManagementObjectSearcher(wmiQuery);
+
+                // Assume that we are not connected.
+                isConnected = false;
+
+                // Check the results for a NetConnectionStatus of 2 (connected).
+                foreach (ManagementObject result in searcher.Get())
+                {
+                    if (Convert.ToInt32(result["NetConnectionStatus"],
+                        System.Globalization.CultureInfo.InvariantCulture) == 2)
+                    {
+                        isConnected = true;
+                    }
+                }
+
+                if (isConnected)
+                {
+                    return ConnectedState.Connected;
+                }
+                else
+                {
+                    return ConnectedState.Disconnected;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionMessageBox emb = new ExceptionMessageBox(ex);
+                emb.Show(this);
+                return ConnectedState.Disconnected;
+            }
+        }
+
+        private void configToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DBConnectForm f = new DBConnectForm();
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                ConnectDialog d = new ConnectDialog();
+                if (d.ShowDialog() == DialogResult.OK)
+                {
+                    // 1. 保存配置
+                    Properties.Settings.Default.Subscriber = f.Connection.ServerInstance;
+                    if (!f.Connection.LoginSecure)
+                    {
+                        Properties.Settings.Default.SqlLoginMode = true;
+                        Properties.Settings.Default.SqlUserName = f.Connection.Login;
+                        Properties.Settings.Default.SqlUserPassword = f.Connection.Password;
+                    }
+
+                    Properties.Settings.Default.Publisher = d.Publisher;
+                    Properties.Settings.Default.Publication = d.Publication;
+                    Properties.Settings.Default.PublicationDatabase = d.PublisherDB;
+                    Properties.Settings.Default.WebSynchronizationUrl = d.WebSyncUrl;
+
+                    Properties.Settings.Default.Save();
+                    // 2. 
+                    MessageBox.Show("配置已经更改，需要重新同步数据！", "同步数据", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    showSyncDialog();
+
+                }
+            }
+        }
+
+        class MyClass
+        {
+            private string publication;
+            [CategoryAttribute("系统"),
+           ReadOnlyAttribute(false),
+           DescriptionAttribute("子项文本")]
+          
+            public string Publication
+            {
+                get { return publication; }
+                set { publication = value; }
+            }
+            private string subscriber;
+            [CategoryAttribute("系统"),
+            ReadOnlyAttribute(false),
+            DescriptionAttribute("子项文本")]
+
+            public string Subscriber
+            {
+                get { return subscriber; }
+                set { subscriber = value; }
+            }
+
+            private string publisher;
+
+            public string Publisher
+            {
+                get { return publisher; }
+                set { publisher = value; }
+            }
+            private string publicationDatabase;
+
+            public string PublicationDatabase
+            {
+                get { return publicationDatabase; }
+                set { publicationDatabase = value; }
+            }
+            private string subscriptionDatabase;
+
+            public string SubscriptionDatabase
+            {
+                get { return subscriptionDatabase; }
+                set { subscriptionDatabase = value; }
+            }
+         
+            private string hostName;
+
+            public string HostName
+            {
+                get { return hostName; }
+                set { hostName = value; }
+            }
+            private string webSynchronizationUrl;
+
+            public string WebSynchronizationUrl
+            {
+                get { return webSynchronizationUrl; }
+                set { webSynchronizationUrl = value; }
+            }
+
         }
     }
 }
