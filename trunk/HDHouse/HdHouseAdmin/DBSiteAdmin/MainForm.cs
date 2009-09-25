@@ -578,19 +578,14 @@ namespace DBSiteAdmin
         class MyClass
         {
             private string publication;
-            [CategoryAttribute("系统"),
-           ReadOnlyAttribute(false),
-           DescriptionAttribute("子项文本")]
-          
+            
             public string Publication
             {
                 get { return publication; }
                 set { publication = value; }
             }
             private string subscriber;
-            [CategoryAttribute("系统"),
-            ReadOnlyAttribute(false),
-            DescriptionAttribute("子项文本")]
+           
 
             public string Subscriber
             {
