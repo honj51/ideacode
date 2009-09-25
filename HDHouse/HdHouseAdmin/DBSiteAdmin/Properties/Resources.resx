@@ -130,8 +130,15 @@ The publication also supports SQL Server 2005 Mobile Edition Subscribers. For mo
   <data name="AreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="connected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\connected.GIF;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DeleteProduct" xml:space="preserve">
     <value>Delete product from order.</value>
+  </data>
+  <data name="disconnected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\disconnected.GIF;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExceptionCannotConnectLocal" xml:space="preserve">
     <value>A connection to the local database cannot be established. Verify that the local instance of SQL Server 2005 is running and that the name of the local computer has been correctly set in the configuration file.
@@ -221,6 +228,12 @@ Verify that the snapshot for the publication exists.</value>
   </data>
   <data name="StatusSyncStarting" xml:space="preserve">
     <value>Starting synchronization...</value>
+  </data>
+  <data name="SubSideMonitoringUI_ConnectDlg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SubSideMonitoringUI.ConnectDlg.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="synchronizing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\synchronizing.GIF;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TellMeMoreLogin" xml:space="preserve">
     <value>This form is invoked by selecting Web Synchronization Options in the Advanced Options menu. It is used to manage Web synchronization settings for the subscription. Instead of managing these settings in the application, a MergePullSubscription object is used to store Web synchronization options in and retrieve Web synchronization options from the subscription metadata. In this sample, you must supply a Windows login and password that are passed to the Web server using HTTP Basic Authentication over a secure SSL connection.  For more information, see the "Sample Considerations" section of "Sales Orders Sample Implementation Details" in Books Online for SQL Server 2005. </value>
