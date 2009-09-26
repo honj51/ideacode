@@ -678,5 +678,15 @@ namespace DBSiteAdmin
 
            
         }
+
+        private void httpsDiagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Properties.Settings.Default.WebSynchronizationUrl + "?diag");
+        }
+
+        private void hostResolveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"notepad", @"C:\WINDOWS\system32\drivers\etc\hosts");
+        }
     }
 }

@@ -56,6 +56,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.splashPicture = new System.Windows.Forms.PictureBox();
+            this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hostResolveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpsDiagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.syncTimer)).BeginInit();
             this.syncWhenConnectedStrip.SuspendLayout();
@@ -68,10 +71,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
             this.同步ToolStripMenuItem,
+            this.工具TToolStripMenuItem,
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(529, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(536, 24);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -87,14 +91,14 @@
             // configToolStripMenuItem
             // 
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
-            this.configToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.configToolStripMenuItem.Text = "配置(&C)";
             this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
             // 
             // 退出EToolStripMenuItem
             // 
             this.退出EToolStripMenuItem.Name = "退出EToolStripMenuItem";
-            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.退出EToolStripMenuItem.Text = "退出(&E)";
             this.退出EToolStripMenuItem.Click += new System.EventHandler(this.退出EToolStripMenuItem_Click);
             // 
@@ -180,7 +184,7 @@
             // 关于我们AToolStripMenuItem
             // 
             this.关于我们AToolStripMenuItem.Name = "关于我们AToolStripMenuItem";
-            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.关于我们AToolStripMenuItem.Text = "关于我们(&A)";
             this.关于我们AToolStripMenuItem.Click += new System.EventHandler(this.关于我们AToolStripMenuItem_Click);
             // 
@@ -196,9 +200,9 @@
             this.syncWhenConnectedIcon,
             this.syncWhenConnectedStatus,
             this.syncWhenConnectedText});
-            this.syncWhenConnectedStrip.Location = new System.Drawing.Point(0, 408);
+            this.syncWhenConnectedStrip.Location = new System.Drawing.Point(0, 424);
             this.syncWhenConnectedStrip.Name = "syncWhenConnectedStrip";
-            this.syncWhenConnectedStrip.Size = new System.Drawing.Size(529, 25);
+            this.syncWhenConnectedStrip.Size = new System.Drawing.Size(536, 25);
             this.syncWhenConnectedStrip.TabIndex = 30;
             this.syncWhenConnectedStrip.Text = "Ready";
             // 
@@ -217,6 +221,7 @@
             // 
             this.syncWhenConnectedStatus.Name = "syncWhenConnectedStatus";
             this.syncWhenConnectedStatus.Size = new System.Drawing.Size(120, 19);
+            this.syncWhenConnectedStatus.Visible = false;
             // 
             // syncWhenConnectedText
             // 
@@ -230,7 +235,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGrid1.Location = new System.Drawing.Point(8, 80);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(506, 242);
+            this.propertyGrid1.Size = new System.Drawing.Size(513, 258);
             this.propertyGrid1.TabIndex = 34;
             this.propertyGrid1.ToolbarVisible = false;
             // 
@@ -245,13 +250,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(8, 328);
+            this.groupBox1.Location = new System.Drawing.Point(8, 344);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(507, 72);
+            this.groupBox1.Size = new System.Drawing.Size(514, 72);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "上次同步状态";
@@ -287,15 +294,38 @@
             this.splashPicture.Image = global::DBSiteAdmin.Properties.Resources.SubSideMonitoringUI_ConnectDlg;
             this.splashPicture.Location = new System.Drawing.Point(0, 24);
             this.splashPicture.Name = "splashPicture";
-            this.splashPicture.Size = new System.Drawing.Size(529, 50);
+            this.splashPicture.Size = new System.Drawing.Size(536, 50);
             this.splashPicture.TabIndex = 37;
             this.splashPicture.TabStop = false;
+            // 
+            // 工具TToolStripMenuItem
+            // 
+            this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hostResolveToolStripMenuItem,
+            this.httpsDiagToolStripMenuItem});
+            this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
+            this.工具TToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.工具TToolStripMenuItem.Text = "工具(&T)";
+            // 
+            // hostResolveToolStripMenuItem
+            // 
+            this.hostResolveToolStripMenuItem.Name = "hostResolveToolStripMenuItem";
+            this.hostResolveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hostResolveToolStripMenuItem.Text = "Host解析";
+            this.hostResolveToolStripMenuItem.Click += new System.EventHandler(this.hostResolveToolStripMenuItem_Click);
+            // 
+            // httpsDiagToolStripMenuItem
+            // 
+            this.httpsDiagToolStripMenuItem.Name = "httpsDiagToolStripMenuItem";
+            this.httpsDiagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.httpsDiagToolStripMenuItem.Text = "HTTPS诊断";
+            this.httpsDiagToolStripMenuItem.Click += new System.EventHandler(this.httpsDiagToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 433);
+            this.ClientSize = new System.Drawing.Size(536, 449);
             this.Controls.Add(this.splashPicture);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.syncWhenConnectedStrip);
@@ -349,6 +379,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox splashPicture;
+        private System.Windows.Forms.ToolStripMenuItem 工具TToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hostResolveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpsDiagToolStripMenuItem;
     }
 }
 
