@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +43,9 @@
             this.上传更新并初始化数据UToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.查看同步历史HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hostResolveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpsDiagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于我们AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.syncTimer = new System.Timers.Timer();
@@ -56,14 +60,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.splashPicture = new System.Windows.Forms.PictureBox();
-            this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hostResolveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.httpsDiagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.syncTimer)).BeginInit();
             this.syncWhenConnectedStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splashPicture)).BeginInit();
+            this.notifyIconContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -100,7 +106,7 @@
             this.退出EToolStripMenuItem.Name = "退出EToolStripMenuItem";
             this.退出EToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.退出EToolStripMenuItem.Text = "退出(&E)";
-            this.退出EToolStripMenuItem.Click += new System.EventHandler(this.退出EToolStripMenuItem_Click);
+            this.退出EToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // 同步ToolStripMenuItem
             // 
@@ -173,6 +179,29 @@
             this.查看同步历史HToolStripMenuItem.Text = "查看同步历史(&H)";
             this.查看同步历史HToolStripMenuItem.Click += new System.EventHandler(this.查看同步历史HToolStripMenuItem_Click);
             // 
+            // 工具TToolStripMenuItem
+            // 
+            this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hostResolveToolStripMenuItem,
+            this.httpsDiagToolStripMenuItem});
+            this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
+            this.工具TToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.工具TToolStripMenuItem.Text = "工具(&T)";
+            // 
+            // hostResolveToolStripMenuItem
+            // 
+            this.hostResolveToolStripMenuItem.Name = "hostResolveToolStripMenuItem";
+            this.hostResolveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.hostResolveToolStripMenuItem.Text = "Host解析";
+            this.hostResolveToolStripMenuItem.Click += new System.EventHandler(this.hostResolveToolStripMenuItem_Click);
+            // 
+            // httpsDiagToolStripMenuItem
+            // 
+            this.httpsDiagToolStripMenuItem.Name = "httpsDiagToolStripMenuItem";
+            this.httpsDiagToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.httpsDiagToolStripMenuItem.Text = "HTTPS诊断";
+            this.httpsDiagToolStripMenuItem.Click += new System.EventHandler(this.httpsDiagToolStripMenuItem_Click);
+            // 
             // 帮助ToolStripMenuItem
             // 
             this.帮助ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -184,7 +213,7 @@
             // 关于我们AToolStripMenuItem
             // 
             this.关于我们AToolStripMenuItem.Name = "关于我们AToolStripMenuItem";
-            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.关于我们AToolStripMenuItem.Text = "关于我们(&A)";
             this.关于我们AToolStripMenuItem.Click += new System.EventHandler(this.关于我们AToolStripMenuItem_Click);
             // 
@@ -298,28 +327,35 @@
             this.splashPicture.TabIndex = 37;
             this.splashPicture.TabStop = false;
             // 
-            // 工具TToolStripMenuItem
+            // notifyIcon
             // 
-            this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hostResolveToolStripMenuItem,
-            this.httpsDiagToolStripMenuItem});
-            this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
-            this.工具TToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.工具TToolStripMenuItem.Text = "工具(&T)";
+            this.notifyIcon.ContextMenuStrip = this.notifyIconContextMenuStrip;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "站点数据管理";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
-            // hostResolveToolStripMenuItem
+            // notifyIconContextMenuStrip
             // 
-            this.hostResolveToolStripMenuItem.Name = "hostResolveToolStripMenuItem";
-            this.hostResolveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.hostResolveToolStripMenuItem.Text = "Host解析";
-            this.hostResolveToolStripMenuItem.Click += new System.EventHandler(this.hostResolveToolStripMenuItem_Click);
+            this.notifyIconContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(143, 48);
             // 
-            // httpsDiagToolStripMenuItem
+            // openToolStripMenuItem
             // 
-            this.httpsDiagToolStripMenuItem.Name = "httpsDiagToolStripMenuItem";
-            this.httpsDiagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.httpsDiagToolStripMenuItem.Text = "HTTPS诊断";
-            this.httpsDiagToolStripMenuItem.Click += new System.EventHandler(this.httpsDiagToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.openToolStripMenuItem.Text = "显示/隐藏(&O)";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.exitToolStripMenuItem.Text = "退出(&E)";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -337,6 +373,7 @@
             this.Text = "站点数据库管理";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.syncTimer)).EndInit();
@@ -345,6 +382,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splashPicture)).EndInit();
+            this.notifyIconContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,6 +420,10 @@
         private System.Windows.Forms.ToolStripMenuItem 工具TToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hostResolveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpsDiagToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip notifyIconContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

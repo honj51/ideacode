@@ -27,6 +27,7 @@ namespace DBSiteAdmin
         public string SubscriberInstance = "RD02";
         public string WinLogin = @"rd03\administrators";
         public string WinPassword = "123";
+        private FormWindowState saveWindowState = FormWindowState.Normal;
 
         private enum ConnectedState
         {
@@ -175,11 +176,6 @@ namespace DBSiteAdmin
             }
 
 
-        }
-
-        private void 退出EToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void 同步所有数据ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -679,6 +675,20 @@ namespace DBSiteAdmin
            
         }
 
+        private void showMainForm(bool show)
+        {
+            this.Visible = show;
+            if (show)
+            {
+                this.WindowState = saveWindowState;
+                this.Activate();
+            }
+            else
+            {
+                saveWindowState = this.WindowState;
+            }
+        }
+
         private void httpsDiagToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(Properties.Settings.Default.WebSynchronizationUrl + "?diag");
@@ -687,6 +697,25 @@ namespace DBSiteAdmin
         private void hostResolveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"notepad", @"C:\WINDOWS\system32\drivers\etc\hosts");
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+                showMainForm(false);
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showMainForm(!this.Visible);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("确认退出程序吗？", "确认退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {                
+                this.Close();
+            }
         }
     }
 }
