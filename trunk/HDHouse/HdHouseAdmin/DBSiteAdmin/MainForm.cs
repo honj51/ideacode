@@ -317,14 +317,14 @@ namespace DBSiteAdmin
 
         private void 查看同步历史HToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SubscriberMonitor subMonitor = new SubscriberMonitor();
-            //SubscriberMonitor subMonitor = new SubscriberMonitor(
-            //    Properties.Settings.Default.Subscriber,
-            //    Properties.Settings.Default.Publication,
-            //    (Properties.Settings.Default.Publisher == "localhost"
-            //        ? Environment.MachineName : Properties.Settings.Default.Publisher),
-            //    Properties.Settings.Default.PublicationDatabase,
-            //    Properties.Settings.Default.SubscriptionDatabase);
+            //SubscriberMonitor subMonitor = new SubscriberMonitor();
+            SubscriberMonitor subMonitor = new SubscriberMonitor(
+                Properties.Settings.Default.Subscriber,
+                Properties.Settings.Default.Publication,
+                (Properties.Settings.Default.Publisher == "localhost"
+                    ? Environment.MachineName : Properties.Settings.Default.Publisher),
+                Properties.Settings.Default.PublicationDatabase,
+                Properties.Settings.Default.SubscriptionDatabase);
             subMonitor.Show(this);
             Application.DoEvents();
         }

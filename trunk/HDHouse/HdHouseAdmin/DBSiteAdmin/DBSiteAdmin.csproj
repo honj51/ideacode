@@ -192,6 +192,18 @@
   <ItemGroup>
     <None Include="Resources\SubSideMonitoringUI.ConnectDlg.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database 48.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database add 48.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database remove 48.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database warning 48.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
