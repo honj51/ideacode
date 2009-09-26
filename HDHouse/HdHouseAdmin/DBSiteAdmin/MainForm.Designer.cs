@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,13 +52,15 @@
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.splashPicture = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.syncTimer)).BeginInit();
             this.syncWhenConnectedStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splashPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -84,14 +87,14 @@
             // configToolStripMenuItem
             // 
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
-            this.configToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.configToolStripMenuItem.Text = "配置(&C)";
             this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
             // 
             // 退出EToolStripMenuItem
             // 
             this.退出EToolStripMenuItem.Name = "退出EToolStripMenuItem";
-            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.退出EToolStripMenuItem.Text = "退出(&E)";
             this.退出EToolStripMenuItem.Click += new System.EventHandler(this.退出EToolStripMenuItem_Click);
             // 
@@ -225,9 +228,9 @@
             this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyGrid1.Location = new System.Drawing.Point(8, 27);
+            this.propertyGrid1.Location = new System.Drawing.Point(8, 80);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(506, 295);
+            this.propertyGrid1.Size = new System.Drawing.Size(506, 242);
             this.propertyGrid1.TabIndex = 34;
             this.propertyGrid1.ToolbarVisible = false;
             // 
@@ -253,12 +256,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "上次同步状态";
             // 
-            // textBox1
+            // textBox2
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(152, 21);
-            this.textBox1.TabIndex = 36;
+            this.textBox2.Location = new System.Drawing.Point(192, 41);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(309, 21);
+            this.textBox2.TabIndex = 38;
             // 
             // label2
             // 
@@ -269,22 +273,35 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "状态";
             // 
-            // textBox2
+            // textBox1
             // 
-            this.textBox2.Location = new System.Drawing.Point(192, 41);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(309, 21);
-            this.textBox2.TabIndex = 38;
+            this.textBox1.Location = new System.Drawing.Point(17, 41);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(152, 21);
+            this.textBox1.TabIndex = 36;
+            // 
+            // splashPicture
+            // 
+            this.splashPicture.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splashPicture.Image = global::DBSiteAdmin.Properties.Resources.SubSideMonitoringUI_ConnectDlg;
+            this.splashPicture.Location = new System.Drawing.Point(0, 24);
+            this.splashPicture.Name = "splashPicture";
+            this.splashPicture.Size = new System.Drawing.Size(529, 50);
+            this.splashPicture.TabIndex = 37;
+            this.splashPicture.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(529, 433);
+            this.Controls.Add(this.splashPicture);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.syncWhenConnectedStrip);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.propertyGrid1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "站点数据库管理";
@@ -297,6 +314,7 @@
             this.syncWhenConnectedStrip.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splashPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,6 +348,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox splashPicture;
     }
 }
 
