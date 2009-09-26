@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3D5714F7B4F8631E3427FF34659A7BEF"
+        "OwnerKey" = "8:_A0F39798786B40B1AB217CE7E860A16E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_54C54E773B4BEF40C1AC0AA909909B03"
         "OwnerKey" = "8:_D9AE57964DA541C94BFF7A0EE50DB749"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_72ABE1152DB790F66390B69C163C9D3D"
-        "OwnerKey" = "8:_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
+        "OwnerKey" = "8:_3D5714F7B4F8631E3427FF34659A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_75ADCAB087012DB37A4799FA2EC14364"
-        "OwnerKey" = "8:_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
+        "OwnerKey" = "8:_3D5714F7B4F8631E3427FF34659A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,7 +94,7 @@
         "Entry"
         {
         "MsmKey" = "8:_77A2AF990BAFB93F93588CA02F8C8C52"
-        "OwnerKey" = "8:_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
+        "OwnerKey" = "8:_3D5714F7B4F8631E3427FF34659A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,7 +130,7 @@
         "Entry"
         {
         "MsmKey" = "8:_A2C8D437BBB4486F6D4F67AA9EB5431C"
-        "OwnerKey" = "8:_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
+        "OwnerKey" = "8:_3D5714F7B4F8631E3427FF34659A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -171,12 +177,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
-        "OwnerKey" = "8:_A0F39798786B40B1AB217CE7E860A16E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_BA12E27128A077B08113CD4DDE8A4E11"
         "OwnerKey" = "8:_7D7EDA3669DED36D662238571B33E3E7"
         "MsmSig" = "8:_UNDEFINED"
@@ -213,6 +213,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BF93F17DE93343F4A91CD2CCA16FC554"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C153A55EFD27C29DE2A4A39A4AF5B125"
         "OwnerKey" = "8:_77A2AF990BAFB93F93588CA02F8C8C52"
         "MsmSig" = "8:_UNDEFINED"
@@ -220,6 +226,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C153A55EFD27C29DE2A4A39A4AF5B125"
+        "OwnerKey" = "8:_A0F39798786B40B1AB217CE7E860A16E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C85076BA05AA53C853863FEE99CBFFA6"
         "OwnerKey" = "8:_A0F39798786B40B1AB217CE7E860A16E"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -231,12 +243,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C85076BA05AA53C853863FEE99CBFFA6"
-        "OwnerKey" = "8:_A0F39798786B40B1AB217CE7E860A16E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D9AE57964DA541C94BFF7A0EE50DB749"
         "OwnerKey" = "8:_77A2AF990BAFB93F93588CA02F8C8C52"
         "MsmSig" = "8:_UNDEFINED"
@@ -250,7 +256,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_72ABE1152DB790F66390B69C163C9D3D"
+        "OwnerKey" = "8:_C85076BA05AA53C853863FEE99CBFFA6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -262,7 +268,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
+        "OwnerKey" = "8:_3D5714F7B4F8631E3427FF34659A7BEF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -322,7 +328,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C85076BA05AA53C853863FEE99CBFFA6"
+        "OwnerKey" = "8:_72ABE1152DB790F66390B69C163C9D3D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -387,6 +393,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -431,6 +450,37 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.Replication.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3D5714F7B4F8631E3427FF34659A7BEF"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SubscriberMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3D5714F7B4F8631E3427FF34659A7BEF"
+                    {
+                    "Name" = "8:SubscriberMonitor.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SubscriberMonitor.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
@@ -634,37 +684,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SubscriberMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_B67C1EE6F8C2F9DD2B6E124E95EC9C51"
-                    {
-                    "Name" = "8:SubscriberMonitor.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SubscriberMonitor.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BA12E27128A077B08113CD4DDE8A4E11"
             {
             "AssemblyRegister" = "3:1"
@@ -694,6 +713,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF93F17DE93343F4A91CD2CCA16FC554"
+            {
+            "SourcePath" = "8:\\\\rd03\\Share\\项目\\资源\\图标\\icons2\\Function ico\\ico\\database add 48.ico"
+            "TargetName" = "8:database add 48.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C153A55EFD27C29DE2A4A39A4AF5B125"
@@ -804,6 +843,28 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_423B22E8146249CDA56C81F8F34DFA72"
+                    {
+                    "Name" = "8:互动房产中介"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_48565243E59343458A33A972EDF65DD8"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_181D40AEEC1B4D2C840F79065476E81E"
+                            {
+                            "Name" = "8:DBSiteAdmin"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_082F4A02FCBA4853AE8B38638B7BA2A9"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_67E25215103441BD805152C9129C9B6B"
@@ -844,21 +905,21 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:DBSiteAdminSetup"
+        "ProductName" = "8:房产中介站点数据管理"
         "ProductCode" = "8:{174EDBB3-DC79-471E-B63B-DEFBAE9CA5CC}"
-        "PackageCode" = "8:{1716406C-078C-4CD0-98D3-F010C11CA75B}"
+        "PackageCode" = "8:{C5C0F965-92F2-4DE2-8165-609619F6D778}"
         "UpgradeCode" = "8:{13F67F65-4752-4FAA-97CD-05EB0177FB61}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:accp"
+        "Manufacturer" = "8:江西互动科技"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:DBSiteAdminSetup"
+        "Title" = "8:互动房产中介"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:accp"
+        "ARPCONTACT" = "8:江西互动科技"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -965,6 +1026,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_24E100FE63BF406FAFFB45E1F9FC5810"
+            {
+            "Name" = "8:站点数据管理"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_A0F39798786B40B1AB217CE7E860A16E"
+            "Folder" = "8:_181D40AEEC1B4D2C840F79065476E81E"
+            "WorkingFolder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
+            "Icon" = "8:_BF93F17DE93343F4A91CD2CCA16FC554"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
