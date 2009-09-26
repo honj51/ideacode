@@ -317,7 +317,6 @@ namespace DBSiteAdmin
 
         private void 查看同步历史HToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             SubscriberMonitor subMonitor = new SubscriberMonitor();
             //SubscriberMonitor subMonitor = new SubscriberMonitor(
             //    Properties.Settings.Default.Subscriber,
@@ -340,6 +339,8 @@ namespace DBSiteAdmin
             c.Subscriber = Properties.Settings.Default.Subscriber;
             c.SubscriptionDatabase = Properties.Settings.Default.SubscriptionDatabase;
             c.WebSynchronizationUrl = Properties.Settings.Default.WebSynchronizationUrl;
+            c.UserName = Properties.Settings.Default.InternetLogin;
+            c.UserPassword = Properties.Settings.Default.InternetPassword;
             propertyGrid1.SelectedObject = c;
         }
 
@@ -565,6 +566,8 @@ namespace DBSiteAdmin
                     Properties.Settings.Default.Publication = d.Publication;
                     Properties.Settings.Default.PublicationDatabase = d.PublisherDB;
                     Properties.Settings.Default.WebSynchronizationUrl = d.WebSyncUrl;
+                    Properties.Settings.Default.InternetLogin = d.InternetUserName;
+                    Properties.Settings.Default.InternetPassword = d.InternetUserPassword;
 
                     Properties.Settings.Default.Save();
                     // 2. 
@@ -576,47 +579,96 @@ namespace DBSiteAdmin
         }
 
         class MyClass
-        {
-            private string publication;
-            
+        {  
+            [CategoryAttribute("1.发布标识"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("产生发布的服务器实例")]
+            public string Publisher
+            {
+                get { return publisher; }
+                set { publisher = value; }
+            }
+
+            [CategoryAttribute("1.发布标识"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("发布名称")]
             public string Publication
             {
                 get { return publication; }
                 set { publication = value; }
             }
-            private string subscriber;
-           
 
+            [CategoryAttribute("1.发布标识"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("产生发布的数据库")]
+            public string PublicationDatabase
+            {
+                get { return publicationDatabase; }
+                set { publicationDatabase = value; }
+            }
+
+            [CategoryAttribute("2.订阅标识"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("接收订阅的服务器实例")]
             public string Subscriber
             {
                 get { return subscriber; }
                 set { subscriber = value; }
             }
 
-            private string publisher;
-
-            public string Publisher
-            {
-                get { return publisher; }
-                set { publisher = value; }
-            }
-            private string publicationDatabase;
-
-            public string PublicationDatabase
-            {
-                get { return publicationDatabase; }
-                set { publicationDatabase = value; }
-            }
-            private string subscriptionDatabase;
-
+            [CategoryAttribute("2.订阅标识"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("接收订阅的数据库")]
             public string SubscriptionDatabase
             {
                 get { return subscriptionDatabase; }
                 set { subscriptionDatabase = value; }
             }
+
+            [CategoryAttribute("3.同步"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("同步地址")]
+            public string WebSynchronizationUrl
+            {
+                get { return webSynchronizationUrl; }
+                set { webSynchronizationUrl = value; }
+            }
+
+            [CategoryAttribute("3.同步"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("用户名")]
+            public string UserName
+            {
+                get { return userName; }
+                set { userName = value; }
+            }
+
+            [CategoryAttribute("3.同步"),
+            ReadOnlyAttribute(true),
+            DescriptionAttribute("密码")]
+            public string UserPassword
+            {
+                get { return userPassword; }
+                set { userPassword = value; }
+            }
+
+
+            private string publication;
+            private string subscriber;
+            private string userPassword;
+            private string userName;
+
+            private string publisher;
+
+            
+            private string publicationDatabase;
+
+            private string subscriptionDatabase;
+
          
             private string hostName;
 
+            [Browsable(false)]
             public string HostName
             {
                 get { return hostName; }
@@ -624,12 +676,7 @@ namespace DBSiteAdmin
             }
             private string webSynchronizationUrl;
 
-            public string WebSynchronizationUrl
-            {
-                get { return webSynchronizationUrl; }
-                set { webSynchronizationUrl = value; }
-            }
-
+           
         }
     }
 }

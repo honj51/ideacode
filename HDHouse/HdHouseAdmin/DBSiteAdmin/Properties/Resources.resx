@@ -118,17 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutDescription" xml:space="preserve">
-    <value>The Sales Orders sample highlights a merge replication topology for delivering data to mobile users, and it also demonstrates the programmability features of merge replication in Microsoft™ SQL Server® 2005. The sample is a Windows Forms-based application that uses standard Microsoft data access technologies and merge replication to enable a salesperson to maintain her own local data while synchronizing periodically with the home office. 
-This sample is supported for Subscribers running all editions of SQL Server 2005. For more information, see "Sales Orders Sample for Merge Replication" in SQL Server 2005 Books Online.
-The publication also supports SQL Server 2005 Mobile Edition Subscribers. For more information see "AdventureWorks Mobile Sample Application" in SQL Server 2005 Mobile Edition Books Online.</value>
+    <value>该程序用来管理站点数据库的同步和管理</value>
     <comment>The description text in the About dialog box.</comment>
   </data>
   <data name="AboutDisclaimer" xml:space="preserve">
-    <value>THIS PROGRAM AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.</value>
+    <value>江西互动科技版权所有</value>
     <comment>About dialog disclaimer.</comment>
   </data>
   <data name="AreYouSure" xml:space="preserve">
-    <value>Are you sure?</value>
+    <value>你确定吗?</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="connected" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -197,37 +195,37 @@ Verify that the snapshot for the publication exists.</value>
     <value>Custom Business Logic Handler</value>
   </data>
   <data name="StatusCreateDatabase" xml:space="preserve">
-    <value>Creating the local sales orders database {0}.</value>
+    <value>创建本地数据库 {0}.</value>
   </data>
   <data name="StatusCreateSubscription" xml:space="preserve">
-    <value>Creating the local subscription to AdventureWorks sales data.</value>
+    <value>创建本地订阅</value>
   </data>
   <data name="StatusFail" xml:space="preserve">
-    <value>Local sales data could not be synchronized.</value>
+    <value>本地数据同步失败</value>
   </data>
   <data name="StatusInitialize" xml:space="preserve">
-    <value>Initializing: Applying the initial snapshot from {0}.</value>
+    <value>初始化: 应用来自 {0} 的初始快照.</value>
   </data>
   <data name="StatusReinitialize" xml:space="preserve">
-    <value>Reinitializing: Reapplying the initial snapshot from {0}.</value>
+    <value>重新初始化: 重新应用来自 {0} 的初始快照.</value>
   </data>
   <data name="StatusSubscriptionAlreadySync" xml:space="preserve">
-    <value>The subscription is already being synchronized.</value>
+    <value>订阅正在同步中.</value>
   </data>
   <data name="StatusSuccess" xml:space="preserve">
-    <value>Local sales data has been synchronized successfully.</value>
+    <value>本地数据同步成功</value>
   </data>
   <data name="StatusSyncComplete" xml:space="preserve">
-    <value>Synchronization complete (click here for more information).</value>
+    <value>同步完成 (点击获取详细信息).</value>
   </data>
   <data name="StatusSyncFailed" xml:space="preserve">
-    <value>Synchronization failed (click here for more information).</value>
+    <value>同步失败 (点击获取详细信息).</value>
   </data>
   <data name="StatusSyncInProgress" xml:space="preserve">
-    <value>Synchronizing...</value>
+    <value>同步中...</value>
   </data>
   <data name="StatusSyncStarting" xml:space="preserve">
-    <value>Starting synchronization...</value>
+    <value>开始同步...</value>
   </data>
   <data name="SubSideMonitoringUI_ConnectDlg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SubSideMonitoringUI.ConnectDlg.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

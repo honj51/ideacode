@@ -667,11 +667,12 @@ namespace DBSiteAdmin
                 mergePullSub.HostName = subscriberHostName;
 
                 // 调用 远程接口注册该订阅
-                DBCenterWebService service = new DBCenterWebService();
+                /*DBCenterWebService service = new DBCenterWebService();
                 SubscriptionInfo info = new SubscriptionInfo();
                 info.subscriberName = mergePullSub.Name;
                 info.subscriptionDbName = mergePullSub.DatabaseName;
-                service.CreateSubscriptionRequest(info);
+                service.CreateSubscriptionRequest(info);*/
+
                 //if (!mergePub.SnapshotAvailable)
                 //{
                 //    throw new ApplicationException(

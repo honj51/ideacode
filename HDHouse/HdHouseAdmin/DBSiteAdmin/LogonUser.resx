@@ -475,7 +475,7 @@
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>登录</value>
+    <value>同步代理账户</value>
   </data>
   <data name="&gt;&gt;mnuTellMeMore.Name" xml:space="preserve">
     <value>mnuTellMeMore</value>
