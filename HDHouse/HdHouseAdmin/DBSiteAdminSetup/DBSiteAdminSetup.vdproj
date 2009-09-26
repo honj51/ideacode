@@ -213,7 +213,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BF93F17DE93343F4A91CD2CCA16FC554"
+        "MsmKey" = "8:_C02A0CE7D0734D918F019AA22F6DD5BD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -339,7 +339,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\DBSiteAdminSetup.msi"
+        "OutputFilename" = "8:Debug\\DBSiteAdmin.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -715,9 +715,9 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF93F17DE93343F4A91CD2CCA16FC554"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C02A0CE7D0734D918F019AA22F6DD5BD"
             {
-            "SourcePath" = "8:\\\\rd03\\Share\\项目\\资源\\图标\\icons2\\Function ico\\ico\\database add 48.ico"
+            "SourcePath" = "8:..\\DBSiteAdmin\\Resources\\database add 48.ico"
             "TargetName" = "8:database add 48.ico"
             "Tag" = "8:"
             "Folder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
@@ -907,7 +907,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:房产中介站点数据管理"
         "ProductCode" = "8:{174EDBB3-DC79-471E-B63B-DEFBAE9CA5CC}"
-        "PackageCode" = "8:{C5C0F965-92F2-4DE2-8165-609619F6D778}"
+        "PackageCode" = "8:{27BBA152-481D-4F97-955B-69F860937F0B}"
         "UpgradeCode" = "8:{13F67F65-4752-4FAA-97CD-05EB0177FB61}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -1037,7 +1037,7 @@
             "Target" = "8:_A0F39798786B40B1AB217CE7E860A16E"
             "Folder" = "8:_181D40AEEC1B4D2C840F79065476E81E"
             "WorkingFolder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
-            "Icon" = "8:_BF93F17DE93343F4A91CD2CCA16FC554"
+            "Icon" = "8:_C02A0CE7D0734D918F019AA22F6DD5BD"
             "Feature" = "8:"
             }
         }
