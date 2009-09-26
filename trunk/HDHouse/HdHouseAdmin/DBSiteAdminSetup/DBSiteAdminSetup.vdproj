@@ -905,9 +905,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:房产中介站点数据管理"
+        "ProductName" = "8:站点数据管理"
         "ProductCode" = "8:{174EDBB3-DC79-471E-B63B-DEFBAE9CA5CC}"
-        "PackageCode" = "8:{27BBA152-481D-4F97-955B-69F860937F0B}"
+        "PackageCode" = "8:{CC515974-DE39-4B3F-B9A2-3D4D82CB8E5F}"
         "UpgradeCode" = "8:{13F67F65-4752-4FAA-97CD-05EB0177FB61}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
