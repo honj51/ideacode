@@ -47,7 +47,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "连接";
+            this.btnOK.Text = "连接(&C)";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -58,7 +58,7 @@
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 1;
-            this.btnExit.Text = "取消";
+            this.btnExit.Text = "取消(&E)";
             this.btnExit.UseVisualStyleBackColor = true;
             // 
             // label1

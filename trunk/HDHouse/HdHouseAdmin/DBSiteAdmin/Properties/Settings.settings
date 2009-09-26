@@ -27,7 +27,7 @@
       <Value Profile="(Default)">Rd03</Value>
     </Setting>
     <Setting Name="WebSynchronizationUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://rd02/hdhousewebsync/replisapi.dll</Value>
+      <Value Profile="(Default)">https://rd02/hdhouse/websync/replisapi.dll</Value>
     </Setting>
     <Setting Name="OutputFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">HdHouseSync.log</Value>

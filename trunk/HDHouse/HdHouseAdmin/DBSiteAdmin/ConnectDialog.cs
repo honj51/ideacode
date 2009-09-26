@@ -144,7 +144,7 @@ namespace DBSiteAdmin
             {
                 connectButton.Enabled = false;
                 //editButton.Enabled = false;
-                editButton.Text = "创建";
+                editButton.Text = "创建(&C)";
                 editButton.Enabled = true;                
             }
         }
@@ -247,6 +247,22 @@ namespace DBSiteAdmin
                 return (webSyncUrlTextBox != null) ? webSyncUrlTextBox.Text : string.Empty;
             }
         }
+
+        internal string InternetUserName
+        {
+            get
+            {
+                return (internetUserNameTextBox != null) ? internetUserNameTextBox.Text : string.Empty;
+            }
+        }
+
+        internal string InternetUserPassword
+        {
+            get
+            {
+                return (internetUserPasswordTextBox != null) ? internetUserPasswordTextBox.Text : string.Empty;
+            }
+        }
         // Enable text boxes.
         private void editButton_Click(object sender, EventArgs e)
         {
@@ -255,10 +271,12 @@ namespace DBSiteAdmin
             subscriberDbTextBox.Enabled = true;
             publicationTextBox.Enabled = true;
             webSyncUrlTextBox.Enabled = true;
+            internetUserNameTextBox.Enabled = true;
+            internetUserPasswordTextBox.Enabled = true;
 
-            if (editButton.Text == "创建")
+            if (editButton.Text == "创建(&C)")
             {
-                subscriberDbTextBox.Text = Environment.MachineName;
+                subscriberDbTextBox.Text = "HdHouseLocal";
                 publisherTextBox.Text = "";
                 publicationTextBox.Text = "HdHouse-Pub";
                 publisherDbTextBox.Text = "HdHouse";
