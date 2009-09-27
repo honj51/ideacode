@@ -122,7 +122,7 @@
     <comment>The description text in the About dialog box.</comment>
   </data>
   <data name="AboutDisclaimer" xml:space="preserve">
-    <value>江西互动科技版权所有</value>
+    <value>http://www.hudongsoft.cn\r\n江西互动科技版权所有</value>
     <comment>About dialog disclaimer.</comment>
   </data>
   <data name="AreYouSure" xml:space="preserve">
@@ -216,10 +216,10 @@ Verify that the snapshot for the publication exists.</value>
     <value>本地数据同步成功</value>
   </data>
   <data name="StatusSyncComplete" xml:space="preserve">
-    <value>同步完成 (点击获取详细信息).</value>
+    <value>同步完成</value>
   </data>
   <data name="StatusSyncFailed" xml:space="preserve">
-    <value>同步失败 (点击获取详细信息).</value>
+    <value>同步失败</value>
   </data>
   <data name="StatusSyncInProgress" xml:space="preserve">
     <value>同步中...</value>

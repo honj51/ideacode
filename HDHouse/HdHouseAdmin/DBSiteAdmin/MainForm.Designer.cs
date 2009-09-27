@@ -103,14 +103,14 @@
             // configToolStripMenuItem
             // 
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
-            this.configToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.configToolStripMenuItem.Text = "配置(&C)";
             this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
             // 
             // 退出EToolStripMenuItem
             // 
             this.退出EToolStripMenuItem.Name = "退出EToolStripMenuItem";
-            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.退出EToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.退出EToolStripMenuItem.Text = "退出(&E)";
             this.退出EToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -219,7 +219,7 @@
             // 关于我们AToolStripMenuItem
             // 
             this.关于我们AToolStripMenuItem.Name = "关于我们AToolStripMenuItem";
-            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.关于我们AToolStripMenuItem.Text = "关于我们(&A)";
             this.关于我们AToolStripMenuItem.Click += new System.EventHandler(this.关于我们AToolStripMenuItem_Click);
             // 
@@ -301,9 +301,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(183, 34);
+            this.pictureBox1.Location = new System.Drawing.Point(184, 38);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
             this.pictureBox1.TabIndex = 40;
             this.pictureBox1.TabStop = false;
             // 
