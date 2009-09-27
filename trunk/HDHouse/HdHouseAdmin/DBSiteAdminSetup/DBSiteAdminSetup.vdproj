@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0D3E668B13ED4C309A8B31538FE16702"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_27116229C24937FF9BE8032CFA62D4E1"
         "OwnerKey" = "8:_A0F39798786B40B1AB217CE7E860A16E"
         "MsmSig" = "8:_UNDEFINED"
@@ -436,6 +442,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D3E668B13ED4C309A8B31538FE16702"
+            {
+            "SourcePath" = "8:Images\\install.bmp"
+            "TargetName" = "8:install.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_27116229C24937FF9BE8032CFA62D4E1"
             {
             "AssemblyRegister" = "3:1"
@@ -852,17 +878,6 @@
                     "Property" = "8:_48565243E59343458A33A972EDF65DD8"
                         "Folders"
                         {
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_181D40AEEC1B4D2C840F79065476E81E"
-                            {
-                            "Name" = "8:DBSiteAdmin"
-                            "AlwaysCreate" = "11:FALSE"
-                            "Condition" = "8:"
-                            "Transitive" = "11:FALSE"
-                            "Property" = "8:_082F4A02FCBA4853AE8B38638B7BA2A9"
-                                "Folders"
-                                {
-                                }
-                            }
                         }
                     }
                 }
@@ -905,9 +920,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:站点数据管理"
+        "ProductName" = "8:站点数据同步管理"
         "ProductCode" = "8:{174EDBB3-DC79-471E-B63B-DEFBAE9CA5CC}"
-        "PackageCode" = "8:{CC515974-DE39-4B3F-B9A2-3D4D82CB8E5F}"
+        "PackageCode" = "8:{70F78D82-DEB2-4E18-A48B-FE856FEDE8BD}"
         "UpgradeCode" = "8:{13F67F65-4752-4FAA-97CD-05EB0177FB61}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -1028,14 +1043,14 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_24E100FE63BF406FAFFB45E1F9FC5810"
             {
-            "Name" = "8:站点数据管理"
+            "Name" = "8:站点数据同步管理"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_A0F39798786B40B1AB217CE7E860A16E"
-            "Folder" = "8:_181D40AEEC1B4D2C840F79065476E81E"
+            "Folder" = "8:_423B22E8146249CDA56C81F8F34DFA72"
             "WorkingFolder" = "8:_AD0F4DB1740B475EBDCB3DCFEF2A356F"
             "Icon" = "8:_C02A0CE7D0734D918F019AA22F6DD5BD"
             "Feature" = "8:"
@@ -1067,7 +1082,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1098,7 +1114,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -1133,14 +1150,15 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_EB39D8A0E15D442E963941E712B0DAD5"
                     {
-                    "Sequence" = "3:100"
+                    "Sequence" = "3:110"
                     "DisplayName" = "8:欢迎使用"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1155,7 +1173,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -1179,8 +1198,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1203"
+                            "Setting" = "3:2"
+                            "Value" = "8:房产中介管理软件是江西互动科技推出的一款专业的房地产中介管理系统。\t\t\t它集房源管理、客户管理、销售管理、出租管理，统计分析等强大功能为一身，软件界面简洁优美，操作直观简单，无需专门培训即可正常使用。\t\t\t\t互动房产中介管理系统能广泛适用房介经营商、地产代理商等房屋中介销售出租机构使用。\t\t\t互动房屋中介管理软件是您加强房源管理、客户管理，员工管理，提高工作效率的强大助手！"
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -1218,7 +1237,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -1262,7 +1282,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -1306,7 +1327,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1328,7 +1350,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -1376,7 +1399,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1407,7 +1431,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0D3E668B13ED4C309A8B31538FE16702"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
