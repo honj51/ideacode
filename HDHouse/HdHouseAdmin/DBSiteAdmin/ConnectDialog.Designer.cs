@@ -64,7 +64,7 @@
             this.splashPicture.Image = global::DBSiteAdmin.Properties.Resources.SubSideMonitoringUI_ConnectDlg;
             this.splashPicture.Location = new System.Drawing.Point(0, 0);
             this.splashPicture.Name = "splashPicture";
-            this.splashPicture.Size = new System.Drawing.Size(396, 50);
+            this.splashPicture.Size = new System.Drawing.Size(399, 60);
             this.splashPicture.TabIndex = 0;
             this.splashPicture.TabStop = false;
             // 
@@ -282,7 +282,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(396, 416);
+            this.ClientSize = new System.Drawing.Size(399, 416);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);

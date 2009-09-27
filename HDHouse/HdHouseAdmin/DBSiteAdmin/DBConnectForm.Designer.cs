@@ -46,7 +46,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(61, 189);
+            this.btnOK.Location = new System.Drawing.Point(108, 202);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -57,7 +57,7 @@
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(180, 189);
+            this.btnExit.Location = new System.Drawing.Point(227, 202);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 1;
@@ -67,7 +67,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 60);
+            this.label1.Location = new System.Drawing.Point(75, 73);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 3;
@@ -76,7 +76,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 95);
+            this.label2.Location = new System.Drawing.Point(75, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
@@ -85,7 +85,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 128);
+            this.label3.Location = new System.Drawing.Point(75, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 5;
@@ -94,7 +94,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 161);
+            this.label4.Location = new System.Drawing.Point(75, 174);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 6;
@@ -103,7 +103,7 @@
             // cbxDatabase
             // 
             this.cbxDatabase.FormattingEnabled = true;
-            this.cbxDatabase.Location = new System.Drawing.Point(89, 57);
+            this.cbxDatabase.Location = new System.Drawing.Point(136, 70);
             this.cbxDatabase.Name = "cbxDatabase";
             this.cbxDatabase.Size = new System.Drawing.Size(166, 20);
             this.cbxDatabase.TabIndex = 8;
@@ -115,7 +115,7 @@
             this.cbxLoginMode.Items.AddRange(new object[] {
             "Windows 身份验证",
             "SQL Server 身份验证"});
-            this.cbxLoginMode.Location = new System.Drawing.Point(89, 92);
+            this.cbxLoginMode.Location = new System.Drawing.Point(136, 105);
             this.cbxLoginMode.Name = "cbxLoginMode";
             this.cbxLoginMode.Size = new System.Drawing.Size(166, 20);
             this.cbxLoginMode.TabIndex = 9;
@@ -123,14 +123,14 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(89, 125);
+            this.txtName.Location = new System.Drawing.Point(136, 138);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(166, 21);
             this.txtName.TabIndex = 10;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(89, 158);
+            this.txtPassword.Location = new System.Drawing.Point(136, 171);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(166, 21);
             this.txtPassword.TabIndex = 11;
@@ -142,7 +142,7 @@
             this.splashPicture.Image = global::DBSiteAdmin.Properties.Resources.SubSideMonitoringUI_ConnectDlg;
             this.splashPicture.Location = new System.Drawing.Point(0, 0);
             this.splashPicture.Name = "splashPicture";
-            this.splashPicture.Size = new System.Drawing.Size(287, 51);
+            this.splashPicture.Size = new System.Drawing.Size(401, 60);
             this.splashPicture.TabIndex = 12;
             this.splashPicture.TabStop = false;
             // 
@@ -150,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 224);
+            this.ClientSize = new System.Drawing.Size(401, 244);
             this.Controls.Add(this.splashPicture);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtName);

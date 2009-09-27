@@ -61,7 +61,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.splashPicture = new System.Windows.Forms.PictureBox();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +72,6 @@
             this.syncWhenConnectedStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splashPicture)).BeginInit();
             this.notifyIconContextMenuStrip.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -197,14 +195,14 @@
             // hostResolveToolStripMenuItem
             // 
             this.hostResolveToolStripMenuItem.Name = "hostResolveToolStripMenuItem";
-            this.hostResolveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hostResolveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.hostResolveToolStripMenuItem.Text = "Host解析";
             this.hostResolveToolStripMenuItem.Click += new System.EventHandler(this.hostResolveToolStripMenuItem_Click);
             // 
             // httpsDiagToolStripMenuItem
             // 
             this.httpsDiagToolStripMenuItem.Name = "httpsDiagToolStripMenuItem";
-            this.httpsDiagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.httpsDiagToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.httpsDiagToolStripMenuItem.Text = "HTTPS诊断";
             this.httpsDiagToolStripMenuItem.Click += new System.EventHandler(this.httpsDiagToolStripMenuItem_Click);
             // 
@@ -219,7 +217,7 @@
             // 关于我们AToolStripMenuItem
             // 
             this.关于我们AToolStripMenuItem.Name = "关于我们AToolStripMenuItem";
-            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.关于我们AToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.关于我们AToolStripMenuItem.Text = "关于我们(&A)";
             this.关于我们AToolStripMenuItem.Click += new System.EventHandler(this.关于我们AToolStripMenuItem_Click);
             // 
@@ -268,7 +266,7 @@
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGrid1.Location = new System.Drawing.Point(3, 17);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(547, 317);
+            this.propertyGrid1.Size = new System.Drawing.Size(547, 360);
             this.propertyGrid1.TabIndex = 34;
             this.propertyGrid1.ToolbarVisible = false;
             // 
@@ -342,16 +340,6 @@
             this.textBox1.Size = new System.Drawing.Size(152, 21);
             this.textBox1.TabIndex = 36;
             // 
-            // splashPicture
-            // 
-            this.splashPicture.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splashPicture.Image = global::DBSiteAdmin.Properties.Resources.SubSideMonitoringUI_ConnectDlg;
-            this.splashPicture.Location = new System.Drawing.Point(0, 24);
-            this.splashPicture.Name = "splashPicture";
-            this.splashPicture.Size = new System.Drawing.Size(576, 50);
-            this.splashPicture.TabIndex = 37;
-            this.splashPicture.TabStop = false;
-            // 
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.notifyIconContextMenuStrip;
@@ -385,9 +373,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.propertyGrid1);
-            this.groupBox2.Location = new System.Drawing.Point(9, 81);
+            this.groupBox2.Location = new System.Drawing.Point(9, 38);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(553, 337);
+            this.groupBox2.Size = new System.Drawing.Size(553, 380);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "站点数据配置信息";
@@ -403,7 +391,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 538);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.splashPicture);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.syncWhenConnectedStrip);
             this.Controls.Add(this.menuStrip1);
@@ -422,7 +409,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splashPicture)).EndInit();
             this.notifyIconContextMenuStrip.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -458,7 +444,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox splashPicture;
         private System.Windows.Forms.ToolStripMenuItem 工具TToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hostResolveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpsDiagToolStripMenuItem;

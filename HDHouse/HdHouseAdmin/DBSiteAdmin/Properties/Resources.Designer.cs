@@ -70,7 +70,8 @@ namespace DBSiteAdmin.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://www.hudongsoft.cn\r\n江西互动科技版权所有 的本地化字符串。
+        ///   查找类似 http://www.hudongsoft.cn 
+        ///江西互动科技版权所有 的本地化字符串。
         /// </summary>
         internal static string AboutDisclaimer {
             get {

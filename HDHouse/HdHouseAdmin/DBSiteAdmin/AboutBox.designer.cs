@@ -38,8 +38,9 @@
             // 
             // rtbAboutText
             // 
-            this.rtbAboutText.Location = new System.Drawing.Point(13, 57);
+            this.rtbAboutText.Location = new System.Drawing.Point(13, 66);
             this.rtbAboutText.Name = "rtbAboutText";
+            this.rtbAboutText.ReadOnly = true;
             this.rtbAboutText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.rtbAboutText.Size = new System.Drawing.Size(375, 47);
             this.rtbAboutText.TabIndex = 1;
@@ -57,7 +58,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(298, 169);
+            this.okButton.Location = new System.Drawing.Point(154, 167);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 21);
             this.okButton.TabIndex = 3;
@@ -69,7 +70,7 @@
             this.splashPicture.Image = global::DBSiteAdmin.Properties.Resources.SubSideMonitoringUI_ConnectDlg;
             this.splashPicture.Location = new System.Drawing.Point(0, 0);
             this.splashPicture.Name = "splashPicture";
-            this.splashPicture.Size = new System.Drawing.Size(400, 51);
+            this.splashPicture.Size = new System.Drawing.Size(400, 60);
             this.splashPicture.TabIndex = 4;
             this.splashPicture.TabStop = false;
             // 

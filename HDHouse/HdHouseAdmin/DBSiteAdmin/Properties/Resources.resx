@@ -122,7 +122,8 @@
     <comment>The description text in the About dialog box.</comment>
   </data>
   <data name="AboutDisclaimer" xml:space="preserve">
-    <value>http://www.hudongsoft.cn\r\n江西互动科技版权所有</value>
+    <value>http://www.hudongsoft.cn 
+江西互动科技版权所有</value>
     <comment>About dialog disclaimer.</comment>
   </data>
   <data name="AreYouSure" xml:space="preserve">
