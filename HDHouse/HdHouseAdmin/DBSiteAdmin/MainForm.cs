@@ -189,7 +189,7 @@ namespace DBSiteAdmin
 
                 syncSub.Show(this);
 
-                syncSub.SynchronizeSubscriptionFull();
+                syncSub.SynchronizeSubscriptionFull();                
             }
             catch (Exception ex)
             {
@@ -200,6 +200,7 @@ namespace DBSiteAdmin
             finally
             {
                 // Enable the current form
+                loadLastAgentSessionSummary();
                 this.Enabled = true;
             }
         }
@@ -216,6 +217,7 @@ namespace DBSiteAdmin
                 syncSub.Show(this);
 
                 syncSub.SynchronizeSubscriptionUploadOnly();
+                syncWhenConnectedStatus.Visible = false;
 
             }
             catch (Exception ex)
@@ -252,7 +254,6 @@ namespace DBSiteAdmin
 
                 // Raise timer event immediately.
                 syncTimer_Elapsed(null, null);
-
             }
 
         }
@@ -280,6 +281,7 @@ namespace DBSiteAdmin
             }
             finally
             {
+                loadLastAgentSessionSummary();
                 // Enable the current form
                 this.Enabled = true;
             }
@@ -306,6 +308,7 @@ namespace DBSiteAdmin
             }
             finally
             {
+                loadLastAgentSessionSummary();
                 // Enable the current form
                 this.Enabled = true;
             }
@@ -338,6 +341,72 @@ namespace DBSiteAdmin
             c.UserName = Properties.Settings.Default.InternetLogin;
             c.UserPassword = Properties.Settings.Default.InternetPassword;
             propertyGrid1.SelectedObject = c;
+            loadLastAgentSessionSummary();
+
+            if (Properties.Settings.Default.SyncWhenConnected)
+            {
+                mnuSyncWhenConnected.Checked = true;
+                syncTimer.Enabled = true;
+                syncTimer.Interval = 1000 * Convert.ToDouble(
+                    Properties.Settings.Default.SyncWhenConnectedInterval,
+                    CultureInfo.InvariantCulture);
+                syncWhenConnectedStrip.Visible = true;
+            }
+        }
+
+        private void loadLastAgentSessionSummary()
+        {
+            // Create the connection and monitor objects. 
+            ServerConnection conn = new ServerConnection(Properties.Settings.Default.Subscriber);
+            MergeSubscriberMonitor msmMonitor = new MergeSubscriberMonitor(conn);
+
+            // Set subscription properties.
+            msmMonitor.SubscriberDB = Properties.Settings.Default.SubscriptionDatabase;
+            msmMonitor.Publisher = Properties.Settings.Default.Publisher;
+            msmMonitor.PublisherDB = Properties.Settings.Default.PublicationDatabase;
+            msmMonitor.Publication = Properties.Settings.Default.Publication;
+            MergeSessionSummary s = msmMonitor.GetLastSessionSummary();
+            if (s == null) return;
+            textBox1.Text = s.StartTime.ToString();
+            textBox2.Text = s.LastMessage;
+            switch (s.Status)
+            {
+                case MergeSessionStatus.Failed:
+                    toolTip1.SetToolTip(pictureBox1, "失败");
+                    pictureBox1.BackgroundImage = Properties.Resources.warning_48;
+                    break;
+                case MergeSessionStatus.Interrupted:
+                    toolTip1.SetToolTip(pictureBox1, "中断");
+                    pictureBox1.BackgroundImage = Properties.Resources.warning_48;
+                    break;
+                case MergeSessionStatus.NotStarted:
+                    toolTip1.SetToolTip(pictureBox1, "未启动");
+                    pictureBox1.BackgroundImage = Properties.Resources.warning_48;
+                    break;
+                case MergeSessionStatus.Retry:
+                    toolTip1.SetToolTip(pictureBox1, "重试");
+                    pictureBox1.BackgroundImage = Properties.Resources.warning_48;
+                    break;
+                case MergeSessionStatus.Idle:
+                    toolTip1.SetToolTip(pictureBox1, "空闲");
+                    pictureBox1.BackgroundImage = Properties.Resources.accepted_48;
+                    break;
+                case MergeSessionStatus.Running:
+                    toolTip1.SetToolTip(pictureBox1, "运行中");
+                    pictureBox1.BackgroundImage = Properties.Resources.accepted_48;
+                    break;
+                case MergeSessionStatus.Starting:
+                    toolTip1.SetToolTip(pictureBox1, "正在启动");
+                    pictureBox1.BackgroundImage = Properties.Resources.accepted_48;
+                    break;
+                case MergeSessionStatus.Succeeded:
+                    toolTip1.SetToolTip(pictureBox1, "成功");
+                    pictureBox1.BackgroundImage = Properties.Resources.accepted_48;
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -435,41 +504,40 @@ namespace DBSiteAdmin
             {
                 syncWhenConnectedIcon.Image = Properties.Resources.connected;
 
-                if (this.ContainsFocus == true)
+                // Instantiate the replication code without the Form.
+                syncSub = new Synchronize();
+
+
+                syncWhenConnectedText.Text
+                   = Properties.Resources.StatusSyncStarting;
+
+                syncWhenConnectedIcon.Image = Properties.Resources.synchronizing;
+
+                try
                 {
-                    // Instantiate the replication code without the Form.
-                    syncSub = new Synchronize();
+                    syncSub.Status += new SyncWhenConnectedStatus(syncSub_Status);
+                    syncSub.SynchronizeSubscriptionFull();
 
 
                     syncWhenConnectedText.Text
-                       = Properties.Resources.StatusSyncStarting;
-
-                    syncWhenConnectedIcon.Image = Properties.Resources.synchronizing;
-
-                    try
-                    {
-                        syncSub.Status += new SyncWhenConnectedStatus(syncSub_Status);
-                        syncSub.SynchronizeSubscriptionFull();
-
-                        syncWhenConnectedText.Text
-                            = Properties.Resources.StatusSyncComplete;
-                    }
-                    catch
-                    {
-                        syncWhenConnectedText.Text
-                            = Properties.Resources.StatusSyncFailed;
-                    }
-                    finally
-                    {
-                        syncWhenConnectedIcon.Image = Properties.Resources.connected;
-
-                        // Reload data from database
-                    }
+                        = Properties.Resources.StatusSyncComplete;
+                }
+                catch
+                {
+                    syncWhenConnectedText.Text
+                        = Properties.Resources.StatusSyncFailed;
+                }
+                finally
+                {
+                    syncWhenConnectedIcon.Image = Properties.Resources.connected;
+                    loadLastAgentSessionSummary();
+                    // Reload data from database
                 }
             }
             else
             {
                 syncWhenConnectedIcon.Image = Properties.Resources.disconnected;
+                notifyIcon.Text = "网络连接断开";
             }
         }
         void syncSub_Status(object sender, StatusEventArgs e)
@@ -480,6 +548,7 @@ namespace DBSiteAdmin
             switch (e.MessageStatus)
             {
                 case MessageStatus.Start:
+                    syncWhenConnectedStatus.Visible = true;
                     syncWhenConnectedText.Text = Properties.Resources.StatusSyncStarting;
                     break;
                 case MessageStatus.InProgress:
@@ -487,12 +556,15 @@ namespace DBSiteAdmin
                     break;
                 case MessageStatus.Succeed:
                     syncWhenConnectedText.Text = Properties.Resources.StatusSyncComplete;
+                    syncWhenConnectedStatus.Visible = false;
                     break;
                 case MessageStatus.Fail:
                     syncWhenConnectedText.Text = Properties.Resources.StatusSyncFailed;
+                    syncWhenConnectedStatus.Visible = false;
                     break;
                 default:
                     syncWhenConnectedText.Text = Properties.Resources.StatusSyncComplete;
+                    syncWhenConnectedStatus.Visible = false;
                     break;
             }
             Application.DoEvents();
@@ -644,7 +716,7 @@ namespace DBSiteAdmin
             DescriptionAttribute("密码")]
             public string UserPassword
             {
-                get { return userPassword; }
+                get { return "********"; }
                 set { userPassword = value; }
             }
 

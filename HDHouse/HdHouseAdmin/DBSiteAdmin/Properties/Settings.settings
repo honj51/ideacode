@@ -21,7 +21,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SyncWhenConnectedInterval" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">120</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="HostName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Rd03</Value>
@@ -52,6 +52,9 @@
     </Setting>
     <Setting Name="InternetLogin" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SyncWhenConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

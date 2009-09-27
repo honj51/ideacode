@@ -78,6 +78,13 @@ namespace DBSiteAdmin.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap accepted_48 {
+            get {
+                object obj = ResourceManager.GetObject("accepted_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   查找类似 你确定吗? 的本地化字符串。
         /// </summary>
@@ -396,6 +403,13 @@ namespace DBSiteAdmin.Properties {
         internal static string TellMeMoreWebSync {
             get {
                 return ResourceManager.GetString("TellMeMoreWebSync", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap warning_48 {
+            get {
+                object obj = ResourceManager.GetObject("warning_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

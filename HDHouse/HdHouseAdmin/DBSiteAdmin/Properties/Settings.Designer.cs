@@ -97,7 +97,7 @@ namespace DBSiteAdmin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("120")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public int SyncWhenConnectedInterval {
             get {
                 return ((int)(this["SyncWhenConnectedInterval"]));
@@ -225,6 +225,18 @@ namespace DBSiteAdmin.Properties {
             }
             set {
                 this["InternetLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SyncWhenConnected {
+            get {
+                return ((bool)(this["SyncWhenConnected"]));
+            }
+            set {
+                this["SyncWhenConnected"] = value;
             }
         }
     }
