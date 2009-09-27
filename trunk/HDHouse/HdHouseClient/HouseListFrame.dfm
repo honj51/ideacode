@@ -1223,7 +1223,6 @@ object frameHouseList: TframeHouseList
     Top = 49
   end
   object tblHouseTrack: TADOTable
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     IndexFieldNames = 'fcgj_fybh'

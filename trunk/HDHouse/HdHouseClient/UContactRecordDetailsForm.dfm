@@ -68,7 +68,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl2: TbsSkinStdLabel
       Left = 208
       Top = 40
-      Width = 60
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -84,7 +84,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl3: TbsSkinStdLabel
       Left = 16
       Top = 72
-      Width = 58
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -100,7 +100,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl4: TbsSkinStdLabel
       Left = 208
       Top = 72
-      Width = 55
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -116,7 +116,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     object lbl5: TbsSkinStdLabel
       Left = 16
       Top = 104
-      Width = 60
+      Width = 48
       Height = 13
       EllipsType = bsetNone
       UseSkinFont = True
@@ -159,6 +159,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
       Top = 37
       Width = 121
       Height = 18
+      Text = 'edtCustomerName'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -192,6 +193,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
       Top = 70
       Width = 121
       Height = 18
+      Text = 'edtCustomerTel'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -225,6 +227,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
       Top = 70
       Width = 121
       Height = 18
+      Text = 'edtCustomerDate'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -382,7 +385,6 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
     OnClick = btn2Click
   end
   object qryLdInfo: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
@@ -396,7 +398,7 @@ object ContactRecordDetailsForm: TContactRecordDetailsForm
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from ldxx where ldxx_bh=id')
+      'select * from ldxx where ldxx_bh=:id')
     Left = 344
     Top = 8
   end

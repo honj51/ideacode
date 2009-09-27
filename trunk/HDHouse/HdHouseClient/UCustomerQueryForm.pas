@@ -42,6 +42,7 @@ type
     procedure grp1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btn1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,21 +72,7 @@ end;
 //窗体创建
 procedure TCustomerQueryForm.FormCreate(Sender: TObject);
 begin
-  //
 
-   cbbqy.Items.Clear;
-   cbbqy.Items.Add('不限');
-    //with ParametersDataModule.dsHouseSource.DataSet do
-    with ParametersDataModule.dsHouseRegion.DataSet do
-    begin
-      First;
-      while not Eof do
-      begin
-        cbbqy.Items.Add(VarToStr(FieldValues['cs_mc']));
-        Next;
-      end;
-    end;
-    cbbqy.ItemIndex:=0;
 end;
 
 //确定
@@ -176,6 +163,24 @@ begin
    end;
 
    Close;
+end;
+
+procedure TCustomerQueryForm.FormShow(Sender: TObject);
+begin
+  cbbqy.Items.Clear;
+   cbbqy.Items.Add('不限');
+   ParametersDataModule.qryHouseRegion.Active := True;
+    //with ParametersDataModule.dsHouseSource.DataSet do
+    with ParametersDataModule.dsHouseRegion.DataSet do
+    begin
+      First;
+      while not Eof do
+      begin
+        cbbqy.Items.Add(VarToStr(FieldValues['cs_mc']));
+        Next;
+      end;
+    end;
+    cbbqy.ItemIndex:=0;
 end;
 
 end.

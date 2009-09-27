@@ -1,6 +1,6 @@
 object CustomerQueryForm: TCustomerQueryForm
-  Left = 499
-  Top = 262
+  Left = 593
+  Top = 264
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #23458#25143#26597#35810
@@ -14,6 +14,7 @@ object CustomerQueryForm: TCustomerQueryForm
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object grp1: TGroupBox

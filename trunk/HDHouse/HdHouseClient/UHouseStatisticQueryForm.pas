@@ -115,6 +115,9 @@ procedure THouseStatisticQueryForm.FormCreate(Sender: TObject);
 begin
   self.qry2.Active:=true;
   self.qry1.Active:=true;
+  ParametersDataModule.qryHouseSource.Active:=True;
+  ParametersDataModule.qryHouseStatus.Active:=True;
+
   try
     // 房产来源
     cbb3.Items.Clear;

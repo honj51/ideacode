@@ -478,7 +478,7 @@ object CompanyInfoSettingForm: TCompanyInfoSettingForm
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from xtxx where xtxx_bh =id'
+      'select * from xtxx where xtxx_bh = :id'
       '')
     Left = 104
     Top = 256

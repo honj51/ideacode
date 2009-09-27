@@ -1,6 +1,6 @@
 object HouseStatisticQueryForm: THouseStatisticQueryForm
-  Left = 211
-  Top = 24
+  Left = 293
+  Top = 31
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #25151#28304#26597#35810
@@ -98,7 +98,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
   object lbl4: TbsSkinStdLabel
     Left = 566
     Top = 96
-    Width = 58
+    Width = 48
     Height = 13
     EllipsType = bsetNone
     UseSkinFont = True
@@ -255,82 +255,66 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         TabOrder = 0
         inherited bsknpnl1: TbsSkinPanel
           inherited edt1: TbsSkinDBEdit
-            Text = '6800'
             DataField = 'fczy_zj'
             DataSource = ds1
           end
           inherited edt2: TbsSkinDBEdit
-            Text = '200'
             DataField = 'fczy_sj'
             DataSource = ds1
           end
           inherited edt3: TbsSkinDBEdit
-            Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
             DataField = 'fczy_cssm'
             DataSource = ds1
           end
           inherited edt4: TbsSkinDBEdit
-            Text = #20986#31199#19981#21253#25324#27700#30005#36153#29992
             DataField = 'fczy_czsm'
             DataSource = ds1
           end
           inherited edt5: TbsSkinDBEdit
-            Text = #27491#24120#29366#24577
             DataField = 'fczy_dqzt'
             DataSource = ds1
           end
           inherited edt6: TbsSkinDBEdit
-            Text = #37329#25104#22269#36152
             DataField = 'fczy_wymc'
             DataSource = ds1
           end
           inherited edt7: TbsSkinDBEdit
-            Text = #35199#22478#21306
             DataField = 'fczy_qy'
             DataSource = ds1
           end
           inherited edt8: TbsSkinDBEdit
-            Text = #24179#23618
             DataField = 'fczy_fx'
             DataSource = ds1
           end
           inherited edt9: TbsSkinDBEdit
-            Text = #23567#29579
             DataField = 'fczy_fwly'
             DataSource = ds1
           end
           inherited edt10: TbsSkinDBEdit
-            Text = #21150#20844#29992#25151
             DataField = 'fczy_wyyt'
             DataSource = ds1
           end
           inherited edt11: TbsSkinDBEdit
-            Text = #26222#35013
             DataField = 'fczy_zxcd'
             DataSource = ds1
           end
           inherited edt12: TbsSkinDBEdit
-            Text = '360'
             DataField = 'fczy_jzmj'
             DataSource = ds1
           end
           inherited edt13: TbsSkinDBEdit
-            Text = '2005'
             DataField = 'fczy_jcnf'
             DataSource = ds1
           end
           inherited edt14: TbsSkinDBEdit
-            Text = #24179#23618
             DataField = 'fczy_fx'
             DataSource = ds1
           end
           inherited edt15: TbsSkinDBEdit
-            Text = #39640#23618
             DataField = 'fczy_wylb'
             DataSource = ds1
           end
           inherited edt16: TbsSkinDBEdit
-            Text = '36/16'
             DataField = 'fczy_lccg'
             DataSource = ds1
           end
@@ -345,17 +329,14 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         end
         inherited bsknpnl2: TbsSkinPanel
           inherited edt17: TbsSkinDBEdit
-            Text = #23485#24102';'
             DataField = 'fczy_ptss1'
             DataSource = ds1
           end
           inherited edt18: TbsSkinDBEdit
-            Text = #30005#35805';'#23485#24102';'
             DataField = 'fczy_ptss2'
             DataSource = ds1
           end
           inherited edt19: TbsSkinDBEdit
-            Text = #21830#22478#36335'110'#21495
             DataField = 'fczy_jtdz'
             DataSource = ds1
           end
@@ -404,7 +385,6 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         inherited edtName: TbsSkinDBEdit
           Left = 120
           Top = 38
-          Text = #20029#20029
           ReadOnly = True
           DataField = 'fczy_yzxm'
           DataSource = ds1
@@ -412,7 +392,6 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         inherited edtPhone: TbsSkinDBEdit
           Left = 320
           Top = 38
-          Text = '56585658'
           ReadOnly = True
           DataField = 'fczy_dh'
           DataSource = ds1
@@ -420,7 +399,6 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         inherited edtHandset: TbsSkinDBEdit
           Left = 520
           Top = 38
-          Text = '138666666666'
           ReadOnly = True
           DataField = 'fczy_tel'
           DataSource = ds1
@@ -428,7 +406,6 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
         inherited edtAddress: TbsSkinDBEdit
           Left = 120
           Top = 70
-          Text = #21830#22478#36335'110'#21495
           ReadOnly = True
           DataField = 'fczy_jtdz'
           DataSource = ds1
@@ -450,12 +427,12 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 92
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-21'
+    Text = '2009-09-27'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40077.418971886570000000
+    Date = 40083.759233750000000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -499,12 +476,12 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 88
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-21'
+    Text = '2009-09-27'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40077.418971886570000000
+    Date = 40083.759233750000000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -1519,7 +1496,6 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Top = 24
   end
   object qry1: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>
@@ -1535,7 +1511,6 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Top = 266
   end
   object qry2: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>

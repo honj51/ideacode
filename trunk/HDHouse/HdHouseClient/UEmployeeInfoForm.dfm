@@ -685,12 +685,12 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Width = 117
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-16'
+      Text = '2009-09-27'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40072.702284606480000000
+      Date = 40083.765330393520000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -738,12 +738,12 @@ object EmployeeInfoForm: TEmployeeInfoForm
       Width = 117
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-16'
+      Text = '2009-09-27'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40072.702284606480000000
+      Date = 40083.765330393520000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -955,7 +955,7 @@ object EmployeeInfoForm: TEmployeeInfoForm
         Value = Null
       end>
     SQL.Strings = (
-      'select * from ygxx where ygxx_bh =ID')
+      'select * from ygxx where ygxx_bh = :ID')
     Left = 32
     Top = 297
   end
