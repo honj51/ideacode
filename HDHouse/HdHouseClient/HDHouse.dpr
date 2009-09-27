@@ -73,8 +73,8 @@ uses
   UContractsFile in 'UContractsFile.pas' {ContractsFile},
   UContractQueryForm in 'UContractQueryForm.pas' {ContractQueryForm},
   UCustomerQueryForm in 'UCustomerQueryForm.pas' {CustomerQueryForm},
-  HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
-  UFormMessageBox in 'UFormMessageBox.pas' {FormMessageBox};
+  HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame};
+  //UFormMessageBox in 'UFormMessageBox.pas' {FormMessageBox};
 
 {$R *.res}
 
@@ -83,7 +83,7 @@ begin
 
   Application.Title := '互动房产中介管理';
   Application.CreateForm(TLoginForm, LoginForm);
-  Application.CreateForm(TFormMessageBox, FormMessageBox);
+  //Application.CreateForm(TFormMessageBox, FormMessageBox);
   Application.CreateForm(THDHouseDataModule, HDHouseDataModule);
   Application.CreateForm(TParametersDataModule, ParametersDataModule);
   Application.CreateForm(TformMain, formMain);

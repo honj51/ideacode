@@ -162,6 +162,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 22
       Width = 121
       Height = 18
+      Text = 'edtCustomerName'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -197,6 +198,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 22
       Width = 89
       Height = 18
+      Text = 'edtZygw'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -736,6 +738,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 24
         Width = 121
         Height = 18
+        Text = 'edtWymm'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -770,6 +773,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 57
         Width = 313
         Height = 18
+        Text = 'edtJtwz'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -804,6 +808,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 86
         Width = 49
         Height = 18
+        Text = 'edtSl1'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -838,6 +843,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 86
         Width = 49
         Height = 18
+        Text = 'edtSl2'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -872,6 +878,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 86
         Width = 49
         Height = 18
+        Text = 'edtMj1'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -906,6 +913,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 86
         Width = 49
         Height = 18
+        Text = 'edtMj2'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -940,6 +948,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 117
         Width = 593
         Height = 18
+        Text = 'edtJcss'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -975,6 +984,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 149
         Width = 593
         Height = 18
+        Text = 'edtPtss'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -1442,6 +1452,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 29
         Width = 121
         Height = 18
+        Text = 'edtKhxm'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -1476,6 +1487,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 30
         Width = 121
         Height = 18
+        Text = 'edtLxdh'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -1510,6 +1522,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 30
         Width = 121
         Height = 18
+        Text = 'edtLxsj'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -1544,6 +1557,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Top = 61
         Width = 505
         Height = 18
+        Text = 'edtLxdz'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -1779,6 +1793,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 36
       Width = 49
       Height = 18
+      Text = 'edtC1'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -1813,6 +1828,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 36
       Width = 49
       Height = 18
+      Text = 'edtCj2'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -1847,6 +1863,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 68
       Width = 49
       Height = 18
+      Text = 'edtMaijia1'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -1881,6 +1898,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 68
       Width = 49
       Height = 18
+      Text = 'edtMaijia2'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -1915,6 +1933,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 36
       Width = 337
       Height = 18
+      Text = 'edtQzsm'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -1949,6 +1968,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
       Top = 68
       Width = 337
       Height = 18
+      Text = 'edtQgsm'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -2166,7 +2186,6 @@ object CustomerDetailsForm: TCustomerDetailsForm
     OnClick = btn1Click
   end
   object qryKhzy: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
@@ -2180,7 +2199,7 @@ object CustomerDetailsForm: TCustomerDetailsForm
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from khzy where khzy_bh=id')
+      'select * from khzy where khzy_bh=:id')
     Left = 554
     Top = 88
   end
@@ -2241,7 +2260,6 @@ object CustomerDetailsForm: TCustomerDetailsForm
     Left = 636
   end
   object qry1: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>

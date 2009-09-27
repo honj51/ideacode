@@ -2252,7 +2252,7 @@ object HouseDetailsForm: THouseDetailsForm
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from fczy where fczy_bh=id')
+      'select * from fczy where fczy_bh=:id')
     Left = 741
   end
   object dsfczyinfo: TDataSource

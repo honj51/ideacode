@@ -1,6 +1,6 @@
 object EmployeeManageForm: TEmployeeManageForm
-  Left = 233
-  Top = 167
+  Left = 271
+  Top = 122
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #21592#24037#31649#29702
@@ -257,7 +257,7 @@ object EmployeeManageForm: TEmployeeManageForm
     DefaultWidth = 0
     DefaultHeight = 19
     UseSkinFont = True
-    Both = True
+    Both = False
     BothMarkerWidth = 19
     BothSkinDataName = 'bothhscrollbar'
     CanFocused = False
@@ -277,6 +277,7 @@ object EmployeeManageForm: TEmployeeManageForm
     Height = 370
     HintImageIndex = 0
     TabOrder = 3
+    Visible = False
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'vscrollbar'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -576,7 +577,7 @@ object EmployeeManageForm: TEmployeeManageForm
           Frame.Width = 2.000000000000000000
           HAlign = haCenter
           Memo.UTF8 = (
-            #28751#21342#8364#20860#26857#37832#0)
+            '')
           ParentFont = False
         end
         object Memo10: TfrxMemoView

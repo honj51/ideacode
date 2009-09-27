@@ -90,6 +90,7 @@ object AddContractSampleForm: TAddContractSampleForm
       Top = 32
       Width = 121
       Height = 18
+      Text = 'edtht_mc'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -309,7 +310,6 @@ object AddContractSampleForm: TAddContractSampleForm
     Top = 112
   end
   object qry_htxxxx: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
@@ -323,7 +323,7 @@ object AddContractSampleForm: TAddContractSampleForm
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from ht where ht_bh=id')
+      'select * from ht where ht_bh=:id')
     Left = 128
     Top = 112
   end

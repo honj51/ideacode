@@ -1568,7 +1568,6 @@ object ContractInfo: TContractInfo
     OnClick = bsknchckrdbx2Click
   end
   object qry1: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
@@ -1582,7 +1581,7 @@ object ContractInfo: TContractInfo
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from cjxx where cjxx_fybh=id')
+      'select * from cjxx where cjxx_fybh=:id')
     Left = 489
     Top = 42
   end
@@ -1592,7 +1591,6 @@ object ContractInfo: TContractInfo
     Top = 42
   end
   object qry2: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <
@@ -1606,7 +1604,7 @@ object ContractInfo: TContractInfo
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from tcxx where tcxx_fybh=id'
+      'select * from tcxx where tcxx_fybh=:id'
       '')
     Left = 547
     Top = 45
@@ -1872,7 +1870,6 @@ object ContractInfo: TContractInfo
     Top = 43
   end
   object qrykhzy: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     Parameters = <>
