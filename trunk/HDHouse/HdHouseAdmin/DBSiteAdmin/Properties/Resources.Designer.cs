@@ -70,7 +70,7 @@ namespace DBSiteAdmin.Properties {
         }
         
         /// <summary>
-        ///   查找类似 江西互动科技版权所有 的本地化字符串。
+        ///   查找类似 http://www.hudongsoft.cn\r\n江西互动科技版权所有 的本地化字符串。
         /// </summary>
         internal static string AboutDisclaimer {
             get {
@@ -339,7 +339,7 @@ namespace DBSiteAdmin.Properties {
         }
         
         /// <summary>
-        ///   查找类似 同步完成 (点击获取详细信息). 的本地化字符串。
+        ///   查找类似 同步完成 的本地化字符串。
         /// </summary>
         internal static string StatusSyncComplete {
             get {
@@ -348,7 +348,7 @@ namespace DBSiteAdmin.Properties {
         }
         
         /// <summary>
-        ///   查找类似 同步失败 (点击获取详细信息). 的本地化字符串。
+        ///   查找类似 同步失败 的本地化字符串。
         /// </summary>
         internal static string StatusSyncFailed {
             get {
