@@ -18,7 +18,7 @@ a{color:#737f8d; text-decoration:none;}
     
         <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5'></script>
 </head>
-<body>
+<body style="background-image:url('Imgs/web_bg.jpg'); background-repeat:repeat-x">
     <form id="form1" runat="server">
     <center>
     <table width="760"><tr><td>
@@ -34,7 +34,6 @@ a{color:#737f8d; text-decoration:none;}
          <td style="background-image:url('Imgs/nav-left.gif');">&nbsp;</td><td class="MenuTd">&nbsp;</td><td class="MenuTd"><a href="Index.aspx" style="color:#000000;">首页</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Intro.aspx" style="color:#000000;">产品介绍</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="download.aspx" style="color:#000000;">软件下载</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Price.aspx" style="color:#000000;">产品价格</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Agency.aspx" style="color:#000000;">代理专区</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Career.aspx" style="color:#000000;">诚聘英才</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="LiveSupportLeaveWord.aspx" style="color:#000000;">留言板</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd">
          &nbsp;</td>
          <td style="background-image:url('Imgs/nav-rigth.gif'); width: 9px;"></td></tr></table>
-     <table class="ShowIntro"><tr><td><img src="Imgs/show.jpg" /></td></tr></table>   
       
     <div>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
