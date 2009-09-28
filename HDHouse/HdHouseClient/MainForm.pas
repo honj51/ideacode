@@ -119,7 +119,12 @@ implementation
   USalesCommissionDetailsForm, UStatisticForm, USalesCommissionSumForm,UCustomerManageForm,
   UCustomerTrackForm, UContactRecordForm,UTrackQueryForm,
   UCustomerDetailsForm, UHouseManageForm,UHouseDealManageForm,
-  UHousePosterForm,UHouseTrackForm, UHouseDetailsForm,UHouseQueryForm,UContractQueryForm;
+  UHousePosterForm,UHouseTrackForm, UHouseDetailsForm,UHouseQueryForm,UContractQueryForm,
+  UOperatorInfoForm, UEmployeeInfoForm, UPermissionGroupSettingForm,
+  UAddContractSampleForm, UNotificationInfoForm, UContactRecordDetailsForm,
+  UBaseFacilitiesForm, UOtherFacilitiesForm, URealtorListForm,
+  UContractInfo, UDivideIntoInfo, UCustomerListForm, UHouseTrackInfoForm,
+  UContractsFile, UCustomerQueryForm;
  {,UCompanyInfoSettingForm,UOperatePermissionSettingForm
  ,UEmployeeManageForm,UChangePasswordForm,UContractSampleSettingForm,UDatabaseMantainForm
  ,UDatabaseInitialForm,UParametersSettingForm,USystemOperationLogForm,UHouseDetailsForm
@@ -172,7 +177,7 @@ end;
 
 procedure TformMain.btn9Click(Sender: TObject);
 begin
-         DatabaseMantainForm.ShowModal;
+           DatabaseMantainForm.ShowModal;
 end;
 
 procedure TformMain.btn11Click(Sender: TObject);

@@ -1,11 +1,11 @@
 object LoginForm: TLoginForm
-  Left = 482
-  Top = 231
+  Left = 553
+  Top = 279
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #30331#24405#31383#21475
-  ClientHeight = 187
-  ClientWidth = 363
+  ClientHeight = 137
+  ClientWidth = 253
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object LoginForm: TLoginForm
   PixelsPerInch = 96
   TextHeight = 13
   object lbl1: TbsSkinStdLabel
-    Left = 72
-    Top = 48
+    Left = 24
+    Top = 24
     Width = 60
     Height = 13
     EllipsType = bsetNone
@@ -35,8 +35,8 @@ object LoginForm: TLoginForm
     Caption = #29992#25143#21517#31216#65306
   end
   object lbl2: TbsSkinStdLabel
-    Left = 72
-    Top = 86
+    Left = 24
+    Top = 62
     Width = 60
     Height = 13
     EllipsType = bsetNone
@@ -51,8 +51,8 @@ object LoginForm: TLoginForm
     Caption = #29992#25143#23494#30721#65306
   end
   object btn1: TbsSkinButton
-    Left = 104
-    Top = 136
+    Left = 40
+    Top = 89
     Width = 75
     Height = 25
     HintImageIndex = 0
@@ -84,8 +84,8 @@ object LoginForm: TLoginForm
     OnClick = btn1Click
   end
   object btn2: TbsSkinButton
-    Left = 216
-    Top = 136
+    Left = 144
+    Top = 89
     Width = 75
     Height = 25
     HintImageIndex = 0
@@ -117,8 +117,8 @@ object LoginForm: TLoginForm
     OnClick = btn2Click
   end
   object cbb1: TbsSkinComboBox
-    Left = 136
-    Top = 46
+    Left = 88
+    Top = 22
     Width = 145
     Height = 18
     HintImageIndex = 0
@@ -171,8 +171,8 @@ object LoginForm: TLoginForm
     Style = bscbFixedStyle
   end
   object bsknpswrdt1: TbsSkinPasswordEdit
-    Left = 136
-    Top = 84
+    Left = 88
+    Top = 60
     Width = 145
     Height = 18
     Cursor = crIBeam
@@ -190,6 +190,56 @@ object LoginForm: TLoginForm
     UseSkinFont = True
     DefaultColor = clWindow
     PasswordKind = pkRoundRect
+  end
+  object bsSkinGauge1: TbsSkinGauge
+    Left = 0
+    Top = 113
+    Width = 253
+    Height = 12
+    HintImageIndex = 0
+    TabOrder = 4
+    Visible = False
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'gauge'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    UseSkinSize = True
+    ShowProgressText = False
+    ShowPercent = False
+    MinValue = 0
+    MaxValue = 100
+    Value = 50
+    Vertical = False
+    ProgressAnimationPause = 3000
+    Align = alBottom
+  end
+  object bsSkinAnimateGauge1: TbsSkinAnimateGauge
+    Left = 0
+    Top = 125
+    Width = 253
+    Height = 12
+    HintImageIndex = 0
+    TabOrder = 5
+    Visible = False
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'gauge'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ShowProgressText = False
+    AnimationPause = 1000
+    Align = alBottom
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -240,13 +290,13 @@ object LoginForm: TLoginForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = []
-    Left = 312
-    Top = 16
+    Left = 8
+    Top = 8
   end
   object qry_login: TADOQuery
     Connection = HDHouseDataModule.con1
     Parameters = <>
-    Left = 312
-    Top = 88
+    Left = 8
+    Top = 64
   end
 end

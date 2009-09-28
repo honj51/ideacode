@@ -1,7 +1,7 @@
 object HDHouseDataModule: THDHouseDataModule
   OldCreateOrder = True
-  Left = 829
-  Top = 186
+  Left = 529
+  Top = 182
   Height = 464
   Width = 533
   object dsfczy: TDataSource
