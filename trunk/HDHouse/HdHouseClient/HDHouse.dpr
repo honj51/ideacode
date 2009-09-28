@@ -1,9 +1,5 @@
 program HDHouse;
 
-
-
-
-
 uses
   Forms,
   StdCtrls,
@@ -73,20 +69,20 @@ uses
   UContractsFile in 'UContractsFile.pas' {ContractsFile},
   UContractQueryForm in 'UContractQueryForm.pas' {ContractQueryForm},
   UCustomerQueryForm in 'UCustomerQueryForm.pas' {CustomerQueryForm},
-  HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame};
-  //UFormMessageBox in 'UFormMessageBox.pas' {FormMessageBox};
+  HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
+  CnDebug in '..\..\..\Program Files\Borland\Delphi7\Experts\CnWizards\Source\CnDebug.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
-
+  CnDebugger.LogMsg('Application Start');
+  CnDebugger.LogEnter('窗体创建计时');
   Application.Title := '互动房产中介管理';
-  Application.CreateForm(TLoginForm, LoginForm);
-  //Application.CreateForm(TFormMessageBox, FormMessageBox);
   Application.CreateForm(THDHouseDataModule, HDHouseDataModule);
-  Application.CreateForm(TParametersDataModule, ParametersDataModule);
-  Application.CreateForm(TformMain, formMain);
+  Application.CreateForm(TLoginForm, LoginForm);
+  CnDebugger.LogMsg('LoginForm created');
+  {
   Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);
   Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
   Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
@@ -131,35 +127,8 @@ begin
   Application.CreateForm(TContractsFile, ContractsFile);
   Application.CreateForm(TContractQueryForm, ContractQueryForm);
   Application.CreateForm(TCustomerQueryForm, CustomerQueryForm);
-  {
-  Application.CreateForm(TCustomerTrackForm, CustomerTrackForm);
-  Application.CreateForm(TCustomerDetailsForm, CustomerDetailsForm);
-  Application.CreateForm(THouseDealManageForm, HouseDealManageForm);
-  Application.CreateForm(THouseManageForm, HouseManageForm);
-  Application.CreateForm(TBaseFacilitiesForm, BaseFacilitiesForm);
-  Application.CreateForm(THouseDetailsForm, HouseDetailsForm);
-  Application.CreateForm(TEmployeeManageForm, EmployeeManageForm);
-  Application.CreateForm(TSystemOperationLogForm, SystemOperationLogForm);
-  Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
-  Application.CreateForm(TContractSampleSettingForm, ContractSampleSettingForm);
-  Application.CreateForm(TDatabaseMantainForm, DatabaseMantainForm);
-  Application.CreateForm(TAddContractSampleForm, AddContractSampleForm);
-  Application.CreateForm(TChangePasswordForm, ChangePasswordForm);
-  Application.CreateForm(TAboutForm, AboutForm);
-
-
-  Application.CreateForm(TPermissionGroupSettingForm, PermissionGroupSettingForm);
-  Application.CreateForm(TDatabaseInitialForm, DatabaseInitialForm);
-  Application.CreateForm(TContractQueryForm, ContractQueryForm);
-  Application.CreateForm(TContactRecordForm, ContactRecordForm);
-  Application.CreateForm(TCustomerDetailsForm, CustomerDetailsForm);
-  Application.CreateForm(TContactRecordForm, ContactRecordForm);
-  Application.CreateForm(TRealtorListForm, RealtorListForm);
-  Application.CreateForm(TOtherFacilitiesForm, OtherFacilitiesForm);
-  Application.CreateForm(TEmployeeInfoForm, EmployeeInfoForm);
-  Application.CreateForm(TParameterSettingForm, ParameterSettingForm);
-  Application.CreateForm(TParametersSettingForm, ParametersSettingForm);
-  Application.CreateForm(TDeletelogForm, DeletelogForm);
   }
+  CnDebugger.LogMsg('Other forms created');
+  CnDebugger.LogLeave('窗体创建计时');
   Application.Run;
 end.
