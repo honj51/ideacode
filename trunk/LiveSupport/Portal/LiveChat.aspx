@@ -1,10 +1,23 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" Title="互动科技" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="LiveChat.aspx.cs" Inherits="LiveChat" Title="互动科技 || LiveSupport 在线客服系统" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-    </asp:Content>
+    <style type="text/css">
+        .style1
+        {
+            width: 205px;
+            height: 226px;
+        }
+        .style2
+        {
+            width: 189px;
+        }
+        </style>
+
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <%-- <table class="ContentTable">
+<table class="ShowIntro"><tr><td><img src="Imgs/show.jpg"  alt=""/></td></tr></table> 
+    <table class="ContentTable">
 <tr>
 <td style="width:50px;" valign="top" align="center">
 <table cellpadding="0" cellspacing="0">
@@ -67,75 +80,6 @@
 </tr></table>
 </td>
 </tr>
-</table>--%>
-<table>
-<tr >
-<td colspan="2">
-<img  alt="" src="Imgs/head.jpg" />
-
-</td>
-</tr>
-<tr>
-<td align="left">
-<table>
-    <tr>
-    <td align="center">
-     <a  href="HDHouse.aspx">
-    互动房产中介管理系统
-        </a>
-    </td>
-    </tr>
-        <tr>
-        <td>
-         <table style="width:100%; height: 247px;">
-<tr>
-<td  align="center" >
-    <br />
-    <img src="Imgs/pic-01.gif"  alt=""/><br />
-    <br />
-    </td>
-    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“HDHouse”&nbsp; </b>在房产中介管理系统是江西互动信息技术有限公司出品的一款企业级的房产中介管理系统。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>“HDHouse”&nbsp; </b>是江西最大的房产中介系统，该系统将为企业发掘更多的潜在客户，提高访客成交率，增加企业收入，降低运营成本，提高工作效率，提升客户满意度，是企业进行在线营销、在线客服、在线咨询的有力工具。系统适用于各类网站，是企业进行网络营销的好帮手。 </td>
-<td style="width:15px;"></td></tr>
 </table>
-</td>
-       
-        </tr>
-  </table>
-  </td>
-<td  align="right"> 
-    <table>
-    <tr>
-    <td align="center">
-    <a href="LiveChat.aspx">
-       网络客服
-    </a>
-    </td>
-    </tr>
-        <tr>
-        <td>
-        <table style="width:100%;">
-<tr><td align="center" >
-    <br />
-    <img alt="" src="Imgs/pic-01.gif" /><br />
-    <br />
-    </td>
-    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>在线客服系统是江西互动信息技术有限公司出品的一款企业级的网站沟通平台系统。网站的访客不需要下载任何软件或插件，通过点击网站上的在线客服标志，就能直接和网站客服人员进行即时交流。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>是江西最大的在线客服系统，该系统将为企业发掘更多的潜在客户，提高访客成交率，增加企业收入，降低运营成本，提高工作效率，提升客户满意度，是企业进行在线营销、在线客服、在线咨询的有力工具。系统适用于各类网站，是企业进行网络营销的好帮手。 </td><td style="width:15px;"></td></tr>
-</table>
-        </td>
-            
-        </tr>
-       
-
-  </table>
-  
-  </td>
-
-        </tr>
-       
-
-  </table>
-
 </asp:Content>
 

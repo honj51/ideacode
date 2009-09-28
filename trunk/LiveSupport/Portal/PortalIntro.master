@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    
+    <table class="ShowIntro"><tr><td><img src="Imgs/show.jpg"  alt=""/></td></tr></table>  
     <table class="ContentTable">
 <tr>
 <td style="width:50px;" valign="top">
@@ -15,7 +17,7 @@
     <br />
     <img src="Imgs/sidebar-line.gif" />
     <br />
-    &nbsp;<div style="text-align:left; margin-left:10px;"><img src="Imgs/ul.GIF" />&nbsp;<b >产品介绍</b></div>
+    &nbsp;<div style="text-align:left; margin-left:10px;"><img src="Imgs/ul.GIF"  alt=""/>&nbsp;<b >产品介绍</b></div>
      <div style="text-align:left; margin-left:35px; margin-top:10px; line-height:22px;"><img src="Imgs/li.GIF" />&nbsp;<a href="Intro.aspx">LiveSupport介绍</a><br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_UserType.aspx">用户类型</a><br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_Visitor.aspx">网站访客</a> <br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_Operator.aspx">客服人员</a> <br /><img src="Imgs/li.GIF" />&nbsp;<a href="Intro_Account.aspx">管理员</a><br /> </div>
     <img src="Imgs/sidebar-line.gif" /><br /><br />
     </td></tr>
