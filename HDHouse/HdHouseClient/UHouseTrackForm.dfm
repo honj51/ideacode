@@ -174,88 +174,73 @@ object HouseTrackForm: THouseTrackForm
             TabOrder = 0
             inherited bsknpnl1: TbsSkinPanel
               inherited edt1: TbsSkinDBEdit
-                Text = '6800'
                 DataField = 'fczy_zj'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt2: TbsSkinDBEdit
-                Text = '200'
                 DataField = 'fczy_sj'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt3: TbsSkinDBEdit
-                Text = #20986#31199#19981#21253#25324#27700#30005#36153#29992
                 DataField = 'fczy_czsm'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt4: TbsSkinDBEdit
-                Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
                 DataField = 'fczy_cssm'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt5: TbsSkinDBEdit
-                Text = #27491#24120#29366#24577
                 DataField = 'fczy_dqzt'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt6: TbsSkinDBEdit
-                Text = #37329#25104#22269#36152
                 DataField = 'fczy_wymc'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt7: TbsSkinDBEdit
-                Text = #35199#22478#21306
                 DataField = 'fczy_qy'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt8: TbsSkinDBEdit
-                Text = '4'#23460'1'#21381'1'#21355'1'#38451
                 DataField = 'fczy_hxjg'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt9: TbsSkinDBEdit
-                Text = #23567#29579
                 DataField = 'fczy_fwly'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt10: TbsSkinDBEdit
-                Text = #21150#20844#29992#25151
                 DataField = 'fczy_wyyt'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt11: TbsSkinDBEdit
-                Text = #26222#35013
                 DataField = 'fczy_zxcd'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt12: TbsSkinDBEdit
-                Text = '360'
                 DataField = 'fczy_jzmj'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt13: TbsSkinDBEdit
-                Text = '2005'
                 DataField = 'fczy_jcnf'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt14: TbsSkinDBEdit
-                Text = #24179#23618
                 DataField = 'fczy_fx'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt15: TbsSkinDBEdit
-                Text = #39640#23618
                 DataField = 'fczy_wylb'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt16: TbsSkinDBEdit
-                Text = '16'
                 DataField = 'fczy_lc'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited bsSkinDBCheckRadioBox1: TbsSkinDBCheckRadioBox
                 Left = 12
                 State = cbChecked
+                Checked = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited bsSkinDBCheckRadioBox2: TbsSkinDBCheckRadioBox
@@ -266,18 +251,15 @@ object HouseTrackForm: THouseTrackForm
             end
             inherited bsknpnl2: TbsSkinPanel
               inherited edt17: TbsSkinDBEdit
-                Text = #23485#24102';'
                 DataField = 'fczy_ptss1'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt18: TbsSkinDBEdit
                 Left = 81
-                Text = #30005#35805';'#23485#24102';'
                 DataField = 'fczy_ptss2'
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edt19: TbsSkinDBEdit
-                Text = #21830#22478#36335'110'#21495
                 DataField = 'fczy_jtdz'
                 DataSource = HDHouseDataModule.dsfczy
               end
@@ -304,22 +286,18 @@ object HouseTrackForm: THouseTrackForm
               Width = 971
               Height = 198
               inherited edtfczy_yzxm: TbsSkinDBEdit
-                Text = #20029#20029
                 ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edtfczy_yzxm1: TbsSkinDBEdit
-                Text = '56585658'
                 ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edtfczy_yzxm2: TbsSkinDBEdit
-                Text = '200'
                 ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end
               inherited edtfczy_yzxm3: TbsSkinDBEdit
-                Text = #21830#22478#36335'110'#21495
                 ReadOnly = True
                 DataSource = HDHouseDataModule.dsfczy
               end

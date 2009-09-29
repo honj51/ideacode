@@ -29,7 +29,7 @@ var
   DeletelogForm: TDeletelogForm;
 
 implementation
-         uses UHDHouseDataModule;
+         uses UHDHouseDataModule,Common;
 {$R *.dfm}
 
 procedure TDeletelogForm.btn2Click(Sender: TObject);
@@ -52,7 +52,15 @@ inherited;
         begin
               Close;
               SQL.Clear;
-              SQL.Add('delete from dayjob where dayjob_date Between #'+edt1.Text+'# and #'+edt2.Text+'#');
+              if IsUsingAccess then
+              begin
+                   SQL.Add('delete from dayjob where dayjob_date Between #'+edt1.Text+'# and #'+edt2.Text+'#');
+              end
+              else
+              begin
+                    SQL.Add('delete from dayjob where dayjob_date Between '+QuotedStr(edt1.Text)+' and '+QuotedStr(edt2.Text));
+              end;
+
               ExecSQL;
         end;
         Close;

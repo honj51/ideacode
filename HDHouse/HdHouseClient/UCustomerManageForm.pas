@@ -110,7 +110,7 @@ var
   CustomerManageForm: TCustomerManageForm;
 
 implementation
-uses UHDHouseDataModule,UCustomerDetailsForm,UCustomerQueryForm;
+uses UHDHouseDataModule,UCustomerDetailsForm,UCustomerQueryForm,Common;
 {$R *.dfm}
 //ÐÞ¸Ä
 procedure TCustomerManageForm.dtprtbrvw1btn2Click(Sender: TObject);
@@ -238,7 +238,16 @@ begin
       begin
        paramStr:=paramStr+ ' and ';
       end;
-     paramStr:=paramStr+'khzy_djrq >=#'+FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.cstmrlstvw1.edtDate.text))+'#';
+
+      if IsUsingAccess then
+      begin
+          paramStr:=paramStr+'khzy_djrq >=#'+FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.cstmrlstvw1.edtDate.text))+'#';
+      end
+      else
+      begin
+           paramStr:=paramStr+'khzy_djrq >='+QuotedStr(FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.cstmrlstvw1.edtDate.text)));
+      end;
+
   end;
 
   if self.cstmrlstvw1.bsknchckrdbx2.Checked= True then

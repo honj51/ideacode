@@ -16,20 +16,22 @@ object HDHouseDataModule: THDHouseDataModule
     ShowCaptionButtonGlowFrames = True
     CompressedStoredSkin = bscmprsdstrdskn1
     SkinIndex = 0
-    Left = 120
+    Left = 113
     Top = 5
   end
   object con1: TADOConnection
-    ConnectionString = 'FILE NAME=database\hdhouse.udl'
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\HDHouse-2009-09-' +
+      '08\HDHouse\database\hdhouse.mdb;Persist Security Info=False'
     LoginPrompt = False
     Mode = cmShareDenyNone
-    Provider = 'database\hdhouse.udl'
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 361
     Top = 52
   end
   object bscmprsdstrdskn1: TbsCompressedStoredSkin
     CompressedFileName = 'Office2007.skn'
-    Left = 41
+    Left = 36
     Top = 5
     CompressedData = {
       78DAECBD79701CD79DE709CF6EEC4CEC46EC1F1BB1111D1BD311DEBFD67FECCC
@@ -11591,7 +11593,7 @@ object HDHouseDataModule: THDHouseDataModule
   end
   object ds_ygxx: TDataSource
     DataSet = qry_ygxx
-    Left = 313
+    Left = 302
     Top = 262
   end
   object qry_del: TADOQuery
@@ -11606,7 +11608,7 @@ object HDHouseDataModule: THDHouseDataModule
   end
   object ds_cs: TDataSource
     DataSet = qry_cs
-    Left = 313
+    Left = 296
     Top = 310
   end
   object qry_cs: TADOQuery
@@ -11631,7 +11633,7 @@ object HDHouseDataModule: THDHouseDataModule
   end
   object ds_ht: TDataSource
     DataSet = qry_ht
-    Left = 313
+    Left = 296
     Top = 358
   end
   object qry_dayjob: TADOQuery
@@ -11641,28 +11643,28 @@ object HDHouseDataModule: THDHouseDataModule
       item
         Name = 'BeginDate'
         Attributes = [paNullable]
-        DataType = ftWideString
-        NumericScale = 255
-        Precision = 255
-        Size = 510
+        DataType = ftDateTime
+        NumericScale = 3
+        Precision = 23
+        Size = 16
         Value = Null
       end
       item
         Name = 'EndDate'
         Attributes = [paNullable]
-        DataType = ftWideString
-        NumericScale = 255
-        Precision = 255
-        Size = 510
+        DataType = ftDateTime
+        NumericScale = 3
+        Precision = 23
+        Size = 16
         Value = Null
       end>
     SQL.Strings = (
       
-        'select * from dayjob where dayjob_date BetWeen BeginDate And End' +
-        'Date'
+        'select * from dayjob where dayjob_date BetWeen :BeginDate And :E' +
+        'ndDate'
       ''
       '')
-    Left = 456
+    Left = 467
     Top = 206
   end
   object ds_dayjob: TDataSource
@@ -14215,8 +14217,8 @@ object HDHouseDataModule: THDHouseDataModule
       end>
     PngWidth = 48
     PngHeight = 48
-    Left = 284
-    Top = 107
+    Left = 236
+    Top = 111
     Bitmap = {
       494C01010D000E00040030003000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C0000000C000000001002000000000000040

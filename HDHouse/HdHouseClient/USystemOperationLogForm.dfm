@@ -1,6 +1,6 @@
 object SystemOperationLogForm: TSystemOperationLogForm
-  Left = 355
-  Top = 147
+  Left = 367
+  Top = 130
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #31995#32479#25805#20316#26085#24535
@@ -153,7 +153,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40085.413740324080000000
+      Date = 40085.506892453700000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -202,7 +202,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40085.413740324080000000
+      Date = 40085.506892453700000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150

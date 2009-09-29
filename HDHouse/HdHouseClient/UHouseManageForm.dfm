@@ -195,7 +195,7 @@ object HouseManageForm: THouseManageForm
         end
         inherited bsknpnl2: TbsSkinPanel
           inherited edt17: TbsSkinDBEdit
-            Text = #23485#24102';'
+            Text = #26377#32447';'#23485#24102';'
             DataField = 'fczy_ptss1'
             DataSource = dsfczy
           end

@@ -61,16 +61,27 @@ var
 
 implementation
 
-uses UHDHouseDataModule,URealtorListForm;
+uses UHDHouseDataModule,URealtorListForm,Common;
 {$R *.dfm}
 
 procedure TSalesCommissionSumForm.btn4Click(Sender: TObject);
 var sql : string;
 begin
-  sql:='select a.tcxx_zygw ,b.出售数量,b.出售佣金,b.出售提成,a.出租数量,a.出租佣金 ,a.出租提成 from '+
+    if IsUsingAccess then
+    begin
+         sql:='select a.tcxx_zygw ,b.出售数量,b.出售佣金,b.出售提成,a.出租数量,a.出租佣金 ,a.出租提成 from '+
   '(select tcxx_zygw, count(*) as 出租数量,sum(tcxx_yj)as 出租佣金,sum (tcxx_tcje)as 出租提成 from tcxx where tcxx_jylx=''出租'' and tcxx_tcdate >= #' + edt1.Text +'#' + ' and tcxx_tcdate <= #' + edt2.Text +'#'+' group by tcxx_zygw)'+
   'a, (select tcxx_zygw, count(*) as 出售数量,sum(tcxx_yj)as 出售佣金, sum (tcxx_tcje)as 出售提成 from tcxx where tcxx_jylx=''出售'' and tcxx_tcdate >= #' + edt1.Text +'#' + ' and tcxx_tcdate <= #' + edt2.Text +'#'+' group by tcxx_zygw) '+
   ' b where a.tcxx_zygw=b.tcxx_zygw  ';
+    end
+    else
+    begin
+       sql:='select a.tcxx_zygw ,b.出售数量,b.出售佣金,b.出售提成,a.出租数量,a.出租佣金 ,a.出租提成 from '+
+  '(select tcxx_zygw, count(*) as 出租数量,sum(tcxx_yj)as 出租佣金,sum (tcxx_tcje)as 出租提成 from tcxx where tcxx_jylx=''出租'' and tcxx_tcdate >= ' + QuotedStr(edt1.Text) +'' + ' and tcxx_tcdate <= ' + QuotedStr(edt2.Text) +''+' group by tcxx_zygw)'+
+  'a, (select tcxx_zygw, count(*) as 出售数量,sum(tcxx_yj)as 出售佣金, sum (tcxx_tcje)as 出售提成 from tcxx where tcxx_jylx=''出售'' and tcxx_tcdate >= ' + QuotedStr(edt1.Text) +'' + ' and tcxx_tcdate <= ' + QuotedStr(edt2.Text) +''+' group by tcxx_zygw) '+
+  ' b where a.tcxx_zygw=b.tcxx_zygw  ';
+    end;
+
   if Trim(edt3.Text) <> '' then
   begin
     sql := sql + ' and a.tcxx_zygw = ' + QuotedStr(edt3.Text);

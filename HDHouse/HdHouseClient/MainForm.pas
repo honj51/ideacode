@@ -57,6 +57,7 @@ type
     frxReportfczy: TfrxReport;
     tmr1: TTimer;
     qrytx: TADOQuery;
+    bsSkinFrame1: TbsSkinFrame;
     procedure btn7Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
     procedure btn10Click(Sender: TObject);
@@ -97,6 +98,8 @@ type
     procedure frmhslst1MenuItem1Click(Sender: TObject);
     procedure tmr1Timer(Sender: TObject);
     procedure btn32Click(Sender: TObject);
+    procedure frmhslst1bsSkinButtonLabel2Click(Sender: TObject);
+    procedure btn5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -112,13 +115,13 @@ var
 
 implementation
  uses UHDHouseDataModule,ULoginForm,UAboutForm, UCompanyInfoSettingForm,IniFiles,
-  UOperatePermissionSettingForm, UChangePasswordForm,MMSystem,DateUtils,
+  UOperatePermissionSettingForm, UChangePasswordForm,MMSystem,DateUtils,UformLock,
   UContractSampleSettingForm, UDatabaseMantainForm, UDatabaseInitialForm,UParameterSettingForm,
   USystemOperationLogForm, UParametersSettingForm,UEmployeeManageForm,
   UHouseStatisticQueryForm, UNotificationManageForm,
   USalesCommissionDetailsForm, UStatisticForm, USalesCommissionSumForm,UCustomerManageForm,
   UCustomerTrackForm, UContactRecordForm,UTrackQueryForm,
-  UCustomerDetailsForm, UHouseManageForm,UHouseDealManageForm,
+  UCustomerDetailsForm, UHouseManageForm,UHouseDealManageForm, Common,
   UHousePosterForm,UHouseTrackForm, UHouseDetailsForm,UHouseQueryForm,UContractQueryForm,
   UOperatorInfoForm, UEmployeeInfoForm, UPermissionGroupSettingForm,
   UAddContractSampleForm, UNotificationInfoForm, UContactRecordDetailsForm,
@@ -151,48 +154,118 @@ end;
 
 procedure TformMain.btn10Click(Sender: TObject);
 begin
-      EmployeeManageForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',6)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+         EmployeeManageForm.ShowModal;
+    end;
+    
 end;
 
 procedure TformMain.btn8Click(Sender: TObject);
 begin
-   CompanyInfoSettingForm.ParmId:='001';
-    CompanyInfoSettingForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',0)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       CompanyInfoSettingForm.ParmId:='001';
+       CompanyInfoSettingForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn12Click(Sender: TObject);
 begin
-  OperatePermissionSettingForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',1)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+     OperatePermissionSettingForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn14Click(Sender: TObject);
 begin
-     ChangePasswordForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',2)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       ChangePasswordForm.ShowModal;
+    end;
+    
 end;
 
 procedure TformMain.btn16Click(Sender: TObject);
 begin
-  ContractSampleSettingForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',8)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        ContractSampleSettingForm.ShowModal;
+    end;
+ 
 end;
 
 procedure TformMain.btn9Click(Sender: TObject);
 begin
-           DatabaseMantainForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',3)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        DatabaseMantainForm.ShowModal;
+    end;
+     
 end;
 
 procedure TformMain.btn11Click(Sender: TObject);
 begin
-  DatabaseInitialForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',4)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        DatabaseInitialForm.ShowModal;
+    end;
+ 
 end;
 
 procedure TformMain.btn13Click(Sender: TObject);
 begin
-     ParametersSettingForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',5)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+          ParametersSettingForm.ShowModal;
+    end;
+   
 end;
 
 procedure TformMain.btn15Click(Sender: TObject);
 begin
-  SystemOperationLogForm.ShowModal;
+    if not(CheckPermission('Qx_xtsz',7)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       SystemOperationLogForm.ShowModal;
+    end;
+  
 end;
 
 procedure TformMain.btn17Click(Sender: TObject);
@@ -203,40 +276,86 @@ end;
 procedure TformMain.btn1Click(Sender: TObject);
 begin
    inherited;
-    Try
-        HouseDetailsForm.ParmId :='';
-        HouseDetailsForm.ParmEditorMode:= 'ADD';
-        HouseDetailsForm.ShowModal;
-        self.frmhslst1.qryHouseList.Close;
-        self.frmhslst1.qryHouseList.Open;
-    Finally
-        //HouseDetailsForm.Free;
-    End;
+    if not(CheckPermission('Qx_rcgl',1)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+          Try
+              HouseDetailsForm.ParmId :='';
+              HouseDetailsForm.ParmEditorMode:= 'ADD';
+              HouseDetailsForm.ShowModal;
+              self.frmhslst1.qryHouseList.Close;
+              self.frmhslst1.qryHouseList.Open;
+          Finally
+              //HouseDetailsForm.Free;
+          End;
+    end;
+
 end;
 
 procedure TformMain.btn23Click(Sender: TObject);
 begin
-    HouseDealManageForm.ShowModal;
+    if not(CheckPermission('Qx_sfgl',2)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+           HouseDealManageForm.ShowModal;
+    end;
+
 end;
 
 procedure TformMain.btn25Click(Sender: TObject);
 begin
-   HouseTrackForm.ShowModal;
+    if not(CheckPermission('Qx_sfgl',1)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+      HouseTrackForm.ShowModal;
+    end;
+  
 end;
 
 procedure TformMain.btn24Click(Sender: TObject);
 begin
-   HousePosterForm.ShowModal;
+    if not(CheckPermission('Qx_sfgl',3)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        HousePosterForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn22Click(Sender: TObject);
 begin
-  HouseManageForm.ShowModal;
+    if not(CheckPermission('Qx_sfgl',0)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        HouseManageForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn19Click(Sender: TObject);
 begin
-  ContractQueryForm.ShowModal;
+
+    if not(CheckPermission('Qx_cx',2)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       ContractQueryForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn20Click(Sender: TObject);
@@ -246,42 +365,100 @@ end;
 
 procedure TformMain.btn21Click(Sender: TObject);
 begin
-   ContactRecordForm.ShowModal;
+    if not(CheckPermission('Qx_cx',3)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       ContactRecordForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn28Click(Sender: TObject);
 begin
-   HouseStatisticQueryForm.ShowModal;
+    if not(CheckPermission('Qx_sqfw',0)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+      HouseStatisticQueryForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn29Click(Sender: TObject);
 begin
-  CustomerManageForm.ShowModal;
+    if not(CheckPermission('Qx_sqfw',4)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       CustomerManageForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn27Click(Sender: TObject);
 begin
-  NotificationManageForm.ShowModal;
+    if not(CheckPermission('Qx_sqfw',1)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+      NotificationManageForm.ShowModal;
+    end;
+  
 end;
 
 procedure TformMain.btn26Click(Sender: TObject);
 begin
-  SalesCommissionDetailsForm.ShowModal;
+    if not(CheckPermission('Qx_sqfw',2)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       SalesCommissionDetailsForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn30Click(Sender: TObject);
 begin
-  SalesCommissionSumForm.ShowModal;
+    if not(CheckPermission('Qx_sqfw',3)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       SalesCommissionSumForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn31Click(Sender: TObject);
 begin
-  StatisticForm.ShowModal;
+    if not(CheckPermission('Qx_sqfw',5)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        StatisticForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn3Click(Sender: TObject);
 begin
-   TrackQueryForm.ShowModal;
+    if not(CheckPermission('Qx_rcgl',3)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       TrackQueryForm.ShowModal;
+    end;
+  
 end;
 
 
@@ -298,13 +475,28 @@ end;
 
 procedure TformMain.btn18Click(Sender: TObject);
 begin
-  CustomerManageForm.ShowModal;
+    if not(CheckPermission('Qx_cx',0)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        CustomerManageForm.ShowModal;
+    end;
 end;
 
 procedure TformMain.btn2Click(Sender: TObject);
 begin
-    CustomerDetailsForm.ParmMode:='add';
-    CustomerDetailsForm.ShowModal;
+    if not(CheckPermission('Qx_rcgl',5)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+      CustomerDetailsForm.ParmMode:='add';
+      CustomerDetailsForm.ShowModal;
+    end;
+
 end;
 
 procedure TformMain.frmhslst1qryHouseListCalcFields(DataSet: TDataSet);
@@ -314,34 +506,58 @@ end;
 
 procedure TformMain.frmhslst1bsSkinButton3Click(Sender: TObject);
 begin
-   inherited;
-    Try
-        HouseDetailsForm.ParmId :='';
-        HouseDetailsForm.ParmEditorMode:= 'ADD';
-        HouseDetailsForm.ShowModal;
-    Finally
-        //HouseDetailsForm.Free;
-    End;
+ inherited;
+    if not(CheckPermission('Qx_rcgl',1)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+      Try
+          HouseDetailsForm.ParmId :='';
+          HouseDetailsForm.ParmEditorMode:= 'ADD';
+          HouseDetailsForm.ShowModal;
+      Finally
+          //HouseDetailsForm.Free;
+      End;
+    end;
+
 end;
 
 procedure TformMain.frmhslst1bsSkinButton1Click(Sender: TObject);
 begin
-  HouseQueryForm.hsqryfrm1.cbb5.ItemIndex:=0;
-  HouseQueryForm.ShowModal;
-  frmhslst1.qryHouseList.Close;
-  frmhslst1.qryHouseList.SQL.Clear;
-  frmhslst1.qryHouseList.SQL.Add(HouseQueryForm.strFilter) ;
-  frmhslst1.qryHouseList.Open;
+    if not(CheckPermission('Qx_rcgl',0)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        HouseQueryForm.hsqryfrm1.cbb5.ItemIndex:=0;
+        HouseQueryForm.ShowModal;
+        frmhslst1.qryHouseList.Close;
+        frmhslst1.qryHouseList.SQL.Clear;
+        frmhslst1.qryHouseList.SQL.Add(HouseQueryForm.strFilter) ;
+        frmhslst1.qryHouseList.Open;
+    end;
+
 end;
 
 procedure TformMain.frmhslst1bsSkinButton2Click(Sender: TObject);
 begin
-  HouseQueryForm.hsqryfrm1.cbb5.ItemIndex:=1;
-  HouseQueryForm.ShowModal;
-  frmhslst1.qryHouseList.Close;
-  frmhslst1.qryHouseList.SQL.Clear;
-  frmhslst1.qryHouseList.SQL.Add(HouseQueryForm.strFilter) ;
-  frmhslst1.qryHouseList.Open;
+    if not(CheckPermission('Qx_rcgl',0)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        HouseQueryForm.hsqryfrm1.cbb5.ItemIndex:=1;
+        HouseQueryForm.ShowModal;
+        frmhslst1.qryHouseList.Close;
+        frmhslst1.qryHouseList.SQL.Clear;
+        frmhslst1.qryHouseList.SQL.Add(HouseQueryForm.strFilter) ;
+        frmhslst1.qryHouseList.Open;
+    end;
+
 end;
 
 procedure TformMain.FormShow(Sender: TObject);
@@ -380,10 +596,18 @@ end;
  //打印房源
 procedure TformMain.frmhslst1bsSkinButton4Click(Sender: TObject);
 begin
-  if self.frxReportfczy.PrepareReport then
-  begin
-     self.frxReportfczy.ShowPreparedReport;
-  end;
+    if not(CheckPermission('Qx_rcgl',2)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+        if self.frxReportfczy.PrepareReport then
+        begin
+           self.frxReportfczy.ShowPreparedReport;
+        end;
+    end;
+
 end;
 
 procedure TformMain.frmhslst1MenuItem1Click(Sender: TObject);
@@ -400,7 +624,7 @@ begin
       self.tmr1.Enabled := false;
       self.qrytx.Close;
       self.qrytx.Open;
-      self.qrytx.Filter:='zdtx_dby=#'+FormatdateTime('c',Now)+'#';
+      self.qrytx.Filter:='zdtx_dby='+QuotedStr(FormatdateTime('c',Now));
       self.qrytx.Filtered:=true;
       if not self.qrytx.Eof then
       begin
@@ -412,7 +636,7 @@ begin
          end;
          title :='提醒'+FormatdateTime('c',Now);
         Application.MessageBox(PAnsiChar(messages),PAnsiChar(title), MB_OK + MB_ICONINFORMATION);
-    
+
       end;
 //      if (self.qrytx.FieldByName('zdtx_dby').Value<=IncMinute(Now,3))and (self.qrytx.FieldByName('zdtx_dby').Value >=IncMinute(Now,-3)) then
 //      begin
@@ -426,6 +650,23 @@ end;
 procedure TformMain.btn32Click(Sender: TObject);
 begin
    self.sound := true;
+end;
+
+procedure TformMain.frmhslst1bsSkinButtonLabel2Click(Sender: TObject);
+begin
+    if not(CheckPermission('Qx_rcgl',0)) then
+    begin
+     self.bsknmsg1.MessageDlg2('你没有权限访问','权限提示', mtConfirmation, [mbYes],0) ;
+    end
+    else
+    begin
+       frmhslst1.bsSkinButtonLabel2Click(Sender);
+    end;
+end;
+
+procedure TformMain.btn5Click(Sender: TObject);
+begin
+ formLock.ShowModal;
 end;
 
 end.

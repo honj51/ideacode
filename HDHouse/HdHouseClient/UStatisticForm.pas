@@ -43,7 +43,7 @@ var
 
 implementation
 uses
-  UHDHouseDataModule,StrUtils;
+  UHDHouseDataModule,StrUtils,Common;
 {$R *.dfm}
 
 
@@ -237,16 +237,32 @@ begin
  if(self.bsSkinDateEdit1.Date<>0)then
  begin
      strFilter := strFilter +'where';
-     if(self.bsSkinDateEdit2.Date <> 0)then
-     begin
-          strFilter := strFilter + ' fczy_djrq >= #'+self.bsSkinDateEdit1.Text+'#' +' AND ';
-          strFilter := strFilter + ' fczy_djrq <= #'+self.bsSkinDateEdit2.Text+'#';
-     end
-     else
-     begin
-          strFilter := strFilter + ' fczy_djrq >= #'+self.bsSkinDateEdit1.Text+'#' +' AND ';
-          strFilter := strFilter + ' fczy_djrq <= #'+DateTimeToStr(Now)+'#';
-     end;
+      if IsUsingAccess then
+      begin
+         if(self.bsSkinDateEdit2.Date <> 0)then
+         begin
+              strFilter := strFilter + ' fczy_djrq >= #'+self.bsSkinDateEdit1.Text+'#' +' AND ';
+              strFilter := strFilter + ' fczy_djrq <= #'+self.bsSkinDateEdit2.Text+'#';
+         end
+         else
+         begin
+              strFilter := strFilter + ' fczy_djrq >= #'+self.bsSkinDateEdit1.Text+'#' +' AND ';
+              strFilter := strFilter + ' fczy_djrq <= #'+DateTimeToStr(Now)+'#';
+         end;
+      end
+      else
+      begin
+         if(self.bsSkinDateEdit2.Date <> 0)then
+         begin
+              strFilter := strFilter + ' fczy_djrq >= '+QuotedStr(self.bsSkinDateEdit1.Text)+' AND ';
+              strFilter := strFilter + ' fczy_djrq <= '+QuotedStr(self.bsSkinDateEdit2.Text);
+         end
+         else
+         begin
+              strFilter := strFilter + ' fczy_djrq >= '+QuotedStr(self.bsSkinDateEdit1.Text) +' AND ';
+              strFilter := strFilter + ' fczy_djrq <= '+QuotedStr(DateTimeToStr(Now));
+         end;
+      end;
  end;
   strFilter:= strFilter +'  GROUP BY fczy_fwly';
   self.qry1.SQL.Add(strFilter);

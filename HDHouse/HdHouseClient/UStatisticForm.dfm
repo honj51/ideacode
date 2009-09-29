@@ -1,6 +1,6 @@
 object StatisticForm: TStatisticForm
-  Left = 294
-  Top = 67
+  Left = 270
+  Top = 87
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #32508#21512#32479#35745
@@ -219,7 +219,7 @@ object StatisticForm: TStatisticForm
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40085.407665266200000000
+      Date = 40085.660440173610000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -268,7 +268,7 @@ object StatisticForm: TStatisticForm
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40085.407665266200000000
+      Date = 40085.660440173610000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150

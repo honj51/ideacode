@@ -1,6 +1,6 @@
 object LoginForm: TLoginForm
-  Left = 553
-  Top = 279
+  Left = 556
+  Top = 270
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #30331#24405#31383#21475
@@ -81,6 +81,7 @@ object LoginForm: TLoginForm
     Caption = #30331#24405
     NumGlyphs = 1
     Spacing = 1
+    Default = True
     OnClick = btn1Click
   end
   object btn2: TbsSkinButton
@@ -168,7 +169,7 @@ object LoginForm: TLoginForm
     Font.Name = 'Arial'
     Font.Style = []
     Sorted = False
-    Style = bscbFixedStyle
+    Style = bscbEditStyle
   end
   object bsknpswrdt1: TbsSkinPasswordEdit
     Left = 88

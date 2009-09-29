@@ -226,6 +226,7 @@ begin
         gs_login_username := fieldbyname('user_xm').asstring;
         gs_login_userlevel := fieldbyname('user_xh').asstring;
         gs_login_Password := fieldbyname('user_mm').asstring;
+        gs_login_qxid:= fieldbyname('user_qxbh').asstring;
         gt_login_time := now();
         Login := true;
         bsSkinGauge1.Value := 10;

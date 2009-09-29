@@ -336,7 +336,7 @@ object HousePosterForm: THousePosterForm
     Width = 177
     Height = 469
     HintImageIndex = 0
-    TabOrder = 5
+    TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'groupbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -460,7 +460,7 @@ object HousePosterForm: THousePosterForm
     Width = 113
     Height = 17
     HintImageIndex = 0
-    TabOrder = 3
+    TabOrder = 4
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -491,7 +491,7 @@ object HousePosterForm: THousePosterForm
     Width = 111
     Height = 17
     HintImageIndex = 0
-    TabOrder = 4
+    TabOrder = 5
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'checkbox'
     DefaultFont.Charset = DEFAULT_CHARSET
@@ -838,7 +838,7 @@ object HousePosterForm: THousePosterForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 1
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -886,7 +886,7 @@ object HousePosterForm: THousePosterForm
     Font.Style = []
     MaxLength = 10
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 2
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1
@@ -917,7 +917,7 @@ object HousePosterForm: THousePosterForm
     Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 3
     LeftImageIndex = -1
     LeftImageHotIndex = -1
     LeftImageDownIndex = -1

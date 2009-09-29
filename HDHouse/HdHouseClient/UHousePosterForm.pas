@@ -73,7 +73,7 @@ var
   HousePosterForm: THousePosterForm;
 
 implementation
-     uses UHDHouseDataModule,UParametersDataModule;
+     uses UHDHouseDataModule,UParametersDataModule,Common;
 {$R *.dfm}
   //只显示出租信息
 procedure THousePosterForm.bsknchckrdbx1Click(Sender: TObject);
@@ -110,6 +110,7 @@ begin
          ischange:=true;
          strFilter:=strFilter + 'fczy_qy ='''+noteText+'''';
       end;
+
       if(self.edt2.Date <> 0)then
       begin
          if ischange then
@@ -123,15 +124,33 @@ begin
          ischange:=true;
       if(self.edt3.Date <> 0)then
       begin
-          strFilter := strFilter + ' fczy_djrq >= #'+self.edt2.Text+'#' +' AND ';
-          strFilter := strFilter + ' fczy_djrq <= #'+self.edt3.Text+'#';
+          if IsUsingAccess then
+          begin
+            strFilter := strFilter + ' fczy_djrq >= #'+self.edt2.Text+'#' +' AND ';
+            strFilter := strFilter + ' fczy_djrq <= #'+self.edt3.Text+'#';
+          end
+          else
+          begin
+            strFilter := strFilter + ' fczy_djrq >= '+QuotedStr(self.edt2.Text) +' AND ';
+            strFilter := strFilter + ' fczy_djrq <= '+QuotedStr(self.edt3.Text);
+          end;
+
       end
       else
       begin
-          strFilter := strFilter + ' fczy_djrq >= #'+self.edt2.Text+'#' +' AND ';
-          strFilter := strFilter + ' fczy_djrq <= #'+FormatDateTime('yyyy-mm-dd',Now)+'#'+'';
+          if IsUsingAccess then
+          begin
+            strFilter := strFilter + ' fczy_djrq >= #'+self.edt2.Text+'#' +' AND ';
+            strFilter := strFilter + ' fczy_djrq <= #'+FormatDateTime('yyyy-mm-dd',Now)+'#'+'';
+          end
+          else
+          begin
+            strFilter := strFilter + ' fczy_djrq >= '+QuotedStr(self.edt2.Text) +' AND ';
+            strFilter := strFilter + ' fczy_djrq <= '+QuotedStr(FormatDateTime('yyyy-mm-dd',Now));
+          end;
       end;
       end;
+
       if  trim(self.edt1.Text) <>'' then
       begin
          if ischange then
