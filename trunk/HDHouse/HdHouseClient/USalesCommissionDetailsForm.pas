@@ -60,14 +60,20 @@ var
   SalesCommissionDetailsForm: TSalesCommissionDetailsForm;
 
 implementation
-uses UHDHouseDataModule,URealtorListForm;
+uses UHDHouseDataModule,URealtorListForm,Common;
 {$R *.dfm}
 
 procedure TSalesCommissionDetailsForm.doQuery;
 var sql : string;
 begin
-  sql := 'select * from tcxx where tcxx_tcdate >= #' + edt1.Text +'#' + ' and tcxx_tcdate <= #' + edt2.Text +'#';
-
+    if IsUsingAccess then
+    begin
+       sql := 'select * from tcxx where tcxx_tcdate >= #' + edt1.Text +'#' + ' and tcxx_tcdate <= #' + edt2.Text +'#';
+    end
+    else
+    begin
+       sql := 'select * from tcxx where tcxx_tcdate >= ' + QuotedStr(edt1.Text)  + ' and tcxx_tcdate <= ' +QuotedStr( edt2.Text) ;
+    end;
   if Trim(edt3.Text) <> '' then
   begin
     sql := sql + ' and tcxx_zygw = ' + QuotedStr(Trim(edt3.Text));

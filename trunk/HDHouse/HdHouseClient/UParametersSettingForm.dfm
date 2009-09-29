@@ -1,6 +1,6 @@
 object ParametersSettingForm: TParametersSettingForm
-  Left = 310
-  Top = 168
+  Left = 385
+  Top = 161
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #21442#25968#35774#32622
@@ -13,6 +13,7 @@ object ParametersSettingForm: TParametersSettingForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox

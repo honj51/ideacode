@@ -124,7 +124,7 @@ var
   CustomerTrackForm: TCustomerTrackForm;
 
 implementation
-uses Math,UHDHouseDataModule,UParametersDataModule, UCustomerQueryForm,UCustomerTrackInfoView;
+uses Math,UHDHouseDataModule,UParametersDataModule, UCustomerQueryForm,UCustomerTrackInfoView,Common;
 {$R *.dfm}
 
 procedure TCustomerTrackForm.cstmrlstvw1bsknchckrdbx1Click(
@@ -244,7 +244,15 @@ begin
       begin
        paramStr:=paramStr+ ' and ';
       end;
-     paramStr:=paramStr+'khzy_djrq >=#'+FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.cstmrlstvw1.edtDate.text))+'#';
+      if IsUsingAccess then
+      begin
+         paramStr:=paramStr+'khzy_djrq >=#'+FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.cstmrlstvw1.edtDate.text))+'#';
+      end
+      else
+      begin
+         paramStr:=paramStr+'khzy_djrq >='+QuotedStr(FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.cstmrlstvw1.edtDate.text)));
+      end;
+
   end;
 
   if self.cstmrlstvw1.bsknchckrdbx2.Checked= True then
@@ -302,7 +310,14 @@ var sql:string;
 begin
 //
   sql:='select * from khgj';
-  sql:=sql+' where khgj_date >= #'+edtBeginDate.Text+'# and khgj_date <=#'+edtEndDate.Text+'#';
+      if IsUsingAccess then
+      begin
+          sql:=sql+' where khgj_date >= #'+edtBeginDate.Text+'# and khgj_date <=#'+edtEndDate.Text+'#';
+      end
+      else
+      begin
+         sql:=sql+' where khgj_date >= '+QuotedStr(edtBeginDate.Text)+' and khgj_date <='+QuotedStr(edtEndDate.Text);
+      end;
   if edtSearch.Text <> '' then
   begin
    sql:=sql+'and '+' ('

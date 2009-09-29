@@ -1,5 +1,5 @@
 object HouseStatisticQueryForm: THouseStatisticQueryForm
-  Left = 293
+  Left = 284
   Top = 31
   BorderIcons = []
   BorderStyle = bsDialog
@@ -427,12 +427,12 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 92
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-27'
+    Text = '2009-09-29'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40083.759233750000000000
+    Date = 40085.513135694440000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -476,12 +476,12 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 88
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-27'
+    Text = '2009-09-29'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40083.759233750000000000
+    Date = 40085.513135694440000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150

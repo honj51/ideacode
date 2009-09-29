@@ -74,7 +74,7 @@ var
   HouseTrackForm: THouseTrackForm;
 
 implementation
-   uses UHDHouseDataModule,UHouseTrackInfoForm,Math,UHouseQueryForm;
+   uses UHDHouseDataModule,UHouseTrackInfoForm,Math,UHouseQueryForm,Common;
 {$R *.dfm}
    //添加 房源跟进信息
 procedure THouseTrackForm.dlhslstvw1bsknchckrdbx3Click(Sender: TObject);
@@ -235,7 +235,15 @@ procedure THouseTrackForm.Search;
          end;
          ischange:=true;
          date:= FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.dlhslstvw1.edt2.Text));
-         strFilter := strFilter + ' fczy_djrq >= #'+date+'#'  ;
+        if IsUsingAccess then
+        begin
+            strFilter := strFilter + ' fczy_djrq >= #'+date+'#'  ;
+        end
+        else
+        begin
+           strFilter := strFilter + ' fczy_djrq >= '+QuotedStr(date) ;
+        end;
+
       end;
       HDHouseDataModule.qryfczy.SQL.Add(strFilter) ;
       HDHouseDataModule.qryfczy.Open;
@@ -266,13 +274,29 @@ end;
      ischange:=true;
      if(self.edt3.Date <> 0)then
      begin
-          strFilter := strFilter + ' fcgj_date >= #'+self.edt2.Text+'#' +' AND ';
-          strFilter := strFilter + ' fcgj_date <= #'+self.edt3.Text+'#';
+          if IsUsingAccess then
+          begin
+              strFilter := strFilter + ' fcgj_date >= #'+self.edt2.Text+'#' +' AND ';
+              strFilter := strFilter + ' fcgj_date <= #'+self.edt3.Text+'#';
+          end
+          else
+          begin
+              strFilter := strFilter + ' fcgj_date >= '+QuotedStr(self.edt2.Text) +' AND ';
+              strFilter := strFilter + ' fcgj_date <= '+QuotedStr(self.edt3.Text);
+          end;
      end
      else
      begin
-          strFilter := strFilter + ' fcgj_date >= #'+self.edt2.Text+'#' +' AND ';
-          strFilter := strFilter + ' fcgj_date <= #'+FormatDateTime('yyyy-mm-dd',(Now))+'#';
+          if IsUsingAccess then
+          begin
+             strFilter := strFilter + ' fcgj_date >= #'+self.edt2.Text+'#' +' AND ';
+             strFilter := strFilter + ' fcgj_date <= #'+FormatDateTime('yyyy-mm-dd',(Now))+'#';
+          end
+          else
+          begin
+            strFilter := strFilter + ' fcgj_date >= '+QuotedStr(self.edt2.Text) +' AND ';
+            strFilter := strFilter + ' fcgj_date <= '+QuotedStr(FormatDateTime('yyyy-mm-dd',(Now)));
+          end;
      end;
    end;
 

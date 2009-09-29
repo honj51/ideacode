@@ -41,7 +41,7 @@ var
   DatabaseInitialForm: TDatabaseInitialForm;
 
 implementation
-uses UHDHouseDataModule;
+uses UHDHouseDataModule,Common;
 {$R *.dfm}
 
 procedure TDatabaseInitialForm.btn2Click(Sender: TObject);
@@ -141,28 +141,54 @@ begin
     end;
     if bsknchckrdbx3.Checked then
     begin
+      if IsUsingAccess then
+      begin
+          SQL.Clear;
+          SQL.Add('delete from khgj where khgj_date between #' + edt1.Text + ' ' +
+            edt3.Text + '# and #' + edt2.Text + ' ' + edt4.Text + '#');
+          ExecSQL;
+          SQL.Clear;
+          SQL.Add('delete from khzy where khzy_djrq between #' + edt1.Text +
+            '# and #' + edt2.Text + '#');
+          ExecSQL;
+      end
+      else
+      begin
+          SQL.Clear;
+          SQL.Add('delete from khgj where khgj_date between ' + QuotedStr(edt1.Text + ' ' +edt3.Text) + ' and '+ QuotedStr(edt2.Text + ' ' + edt4.Text));
+          ExecSQL;
+          SQL.Clear;
+          SQL.Add('delete from khzy where khzy_djrq between ' + QuotedStr(edt1.Text) + ' and ' +QuotedStr(edt2.Text));
+          ExecSQL;
+      end;
 
-      SQL.Clear;
-      SQL.Add('delete from khgj where khgj_date between #' + edt1.Text + ' ' +
-        edt3.Text + '# and #' + edt2.Text + ' ' + edt4.Text + '#');
-      ExecSQL;
 
-      SQL.Clear;
-      SQL.Add('delete from khzy where khzy_djrq between #' + edt1.Text +
-        '# and #' + edt2.Text + '#');
-      ExecSQL;
     end;
     if bsknchckrdbx4.Checked then
     begin
-      SQL.Clear;
-      SQL.Add('delete from fcgj where fcgj_date between #' + edt1.Text + ' ' +
-        edt3.Text + '# and #' + edt2.Text + ' ' + edt4.Text + '#');
-      ExecSQL;
+      if IsUsingAccess then
+      begin
+          SQL.Clear;
+          SQL.Add('delete from fcgj where fcgj_date between #' + edt1.Text + ' ' +
+            edt3.Text + '# and #' + edt2.Text + ' ' + edt4.Text + '#');
+          ExecSQL;
 
-      SQL.Clear;
-      SQL.Add('delete from fczy where fczy_djrq between #' + edt1.Text +
-        '# and #' + edt2.Text + '#');
-      ExecSQL;
+          SQL.Clear;
+          SQL.Add('delete from fczy where fczy_djrq between #' + edt1.Text +
+            '# and #' + edt2.Text + '#');
+          ExecSQL;
+      end
+      else
+      begin
+          SQL.Clear;
+          SQL.Add('delete from fcgj where fcgj_date between ' +QuotedStr( edt1.Text + ' ' +edt3.Text )+ ' and ' + QuotedStr(edt2.Text + ' ' + edt4.Text));
+          ExecSQL;
+
+          SQL.Clear;
+          SQL.Add('delete from fczy where fczy_djrq between ' + QuotedStr(edt1.Text) + ' and ' + QuotedStr(edt2.Text));
+          ExecSQL;
+      end;
+
     end;
     end;
 

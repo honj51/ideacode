@@ -74,7 +74,7 @@ var
 
 implementation
 
-uses UHDHouseDataModule, UHouseDetailsForm,UHouseQueryForm;
+uses UHDHouseDataModule, UHouseDetailsForm,UHouseQueryForm,Common;
 
 {$R *.dfm}
    //²éÑ¯
@@ -282,7 +282,15 @@ begin
          end;
          ischange:=true;
          date:= FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.hslstvw1.edt2.Text));
-         strFilter := strFilter + ' fczy_djrq >= #'+date+'#'  ;
+          if IsUsingAccess then
+          begin
+              strFilter := strFilter + ' fczy_djrq >= #'+date+'#'  ;
+          end
+          else
+          begin
+              strFilter := strFilter + ' fczy_djrq >='+QuotedStr(date);
+          end;
+
       end;
       self.qryfczy.SQL.Add(strFilter) ;
       self.qryfczy.Open;

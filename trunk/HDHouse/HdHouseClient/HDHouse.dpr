@@ -70,7 +70,8 @@ uses
   UContractQueryForm in 'UContractQueryForm.pas' {ContractQueryForm},
   UCustomerQueryForm in 'UCustomerQueryForm.pas' {CustomerQueryForm},
   HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
-  CnDebug in '..\..\..\Program Files\Borland\Delphi7\Experts\CnWizards\Source\CnDebug.pas';
+  CnDebug in '..\..\Program Files\Borland\Delphi7\Experts\CnWizards\Source\CnDebug.pas',
+  UformLock in 'UformLock.pas' {formLock};
 
 {$R *.res}
 
@@ -81,6 +82,7 @@ begin
   Application.Title := '互动房产中介管理';
   Application.CreateForm(THDHouseDataModule, HDHouseDataModule);
   Application.CreateForm(TLoginForm, LoginForm);
+  Application.CreateForm(TformLock, formLock);
   CnDebugger.LogMsg('LoginForm created');
   {
   Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);

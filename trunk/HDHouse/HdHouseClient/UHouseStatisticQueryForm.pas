@@ -74,14 +74,21 @@ var
   HouseStatisticQueryForm: THouseStatisticQueryForm;
 
 implementation
-uses UHDHouseDataModule, UParametersDataModule;
+uses UHDHouseDataModule, UParametersDataModule,Common;
 
 {$R *.dfm}
 
 procedure THouseStatisticQueryForm.btn4Click(Sender: TObject);
 var sql : string;
 begin
-  sql := 'select * from fczy where fczy_djrq >= #' + edt1.Text +'#' + ' and fczy_djrq <= #' + edt2.Text +'#';
+  if IsUsingAccess then
+  begin
+     sql := 'select * from fczy where fczy_djrq >= #' + edt1.Text +'#' + ' and fczy_djrq <= #' + edt2.Text +'#';
+  end
+  else
+  begin
+      sql := 'select * from fczy where fczy_djrq >= ' + QuotedStr(edt1.Text)+ ' and fczy_djrq <= ' + QuotedStr(edt2.Text);
+  end;
   if Trim(cbb3.Text) <> 'Ыљга' then
   begin
     sql := sql + ' and fczy_ly = ' + QuotedStr(cbb3.Text);

@@ -94,7 +94,7 @@ var
   HouseDealManageForm: THouseDealManageForm;
 
 implementation
-uses UHDHouseDataModule,UHouseTrackInfoForm,UHouseQueryForm,UContractInfo,UContractsFile,ShellAPI;
+uses UHDHouseDataModule,UHouseTrackInfoForm,UHouseQueryForm,UContractInfo,UContractsFile,ShellAPI,Common;
 {$R *.dfm}
 //  ³öÊÛÑ¡Ôñ¿ò
 procedure THouseDealManageForm.cntrctqryfrm1bsknchckrdbx2Click(
@@ -258,7 +258,14 @@ end;
          strFilter := strFilter +' where ';
        end;
        ischange:=true;
-       strFilter := strFilter + ' fczy_djrq >= #'+FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.dlhslstvw1.edt2.Text))+'#'  ;
+       if IsUsingAccess then
+       begin
+       strFilter := strFilter + ' fczy_djrq >= #'+FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.dlhslstvw1.edt2.Text))+'#' ;
+       end
+       else
+       begin
+        strFilter := strFilter + ' fczy_djrq >= '+QuotedStr(FormatDateTime('yyyy-mm-dd',Now-StrToInt(self.dlhslstvw1.edt2.Text))) ;
+       end;
     end;
     HDHouseDataModule.qryfczy.SQL.Add(strFilter) ;
     HDHouseDataModule.qryfczy.Open;
@@ -292,16 +299,32 @@ end;
          strFilter := strFilter +' where ';
        end;
        ischange:=true;
-     if(self.cntrctqryfrm1.edtEndDate.Date <> 0)then
-     begin
-          strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edtBeginDate.Text+'#' +' AND ';
-          strFilter := strFilter + ' cjxx_date <= #'+self.cntrctqryfrm1.edtEndDate.Text+'#';
-     end
-     else
-     begin
-          strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edtBeginDate.Text+'#' +' AND ';
-          strFilter := strFilter + ' cjxx_date <= #'+DateTimeToStr(Now)+'#';
-     end;
+        if IsUsingAccess then
+        begin
+             if(self.cntrctqryfrm1.edtEndDate.Date <> 0)then
+             begin
+                  strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edtBeginDate.Text +'# AND ';
+                  strFilter := strFilter + ' cjxx_date <= #'+self.cntrctqryfrm1.edtEndDate.Text+'#';
+             end
+             else
+             begin
+                  strFilter := strFilter + ' cjxx_date >= #'+self.cntrctqryfrm1.edtBeginDate.Text +'# AND ';
+                  strFilter := strFilter + ' cjxx_date <= #'+DateTimeToStr(Now)+'#';
+             end;
+        end
+        else
+        begin
+             if(self.cntrctqryfrm1.edtEndDate.Date <> 0)then
+             begin
+                  strFilter := strFilter + ' cjxx_date >= '+QuotedStr(self.cntrctqryfrm1.edtBeginDate.Text) +' AND ';
+                  strFilter := strFilter + ' cjxx_date <= '+QuotedStr(self.cntrctqryfrm1.edtEndDate.Text);
+             end
+             else
+             begin
+                  strFilter := strFilter + ' cjxx_date >= '+QuotedStr(self.cntrctqryfrm1.edtBeginDate.Text) +' AND ';
+                  strFilter := strFilter + ' cjxx_date <= '+QuotedStr(DateTimeToStr(Now));
+             end;
+        end;
    end;
    if(Trim(self.cntrctqryfrm1.edtSearch.Text)<>'') then
    begin

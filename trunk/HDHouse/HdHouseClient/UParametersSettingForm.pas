@@ -23,6 +23,7 @@ type
     procedure bskndbgrd1DblClick(Sender: TObject);
     procedure btn2Click(Sender: TObject);
     procedure btn3Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -110,6 +111,12 @@ begin
    end;  
 
 
+end;
+
+procedure TParametersSettingForm.FormShow(Sender: TObject);
+begin
+  //
+  HDHouseDataModule.qry_cs.Active := True;
 end;
 
 end.

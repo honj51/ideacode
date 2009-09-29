@@ -1,6 +1,6 @@
 object formMain: TformMain
-  Left = 239
-  Top = 95
+  Left = 363
+  Top = 137
   Anchors = [akLeft, akTop, akRight, akBottom]
   BiDiMode = bdLeftToRight
   BorderIcons = []
@@ -26,7 +26,7 @@ object formMain: TformMain
     Top = 90
     Width = 1037
     Height = 511
-    ActivePage = bskntbsht5
+    ActivePage = bskntbsht2
     Align = alClient
     BiDiMode = bdRightToLeft
     Font.Charset = DEFAULT_CHARSET
@@ -237,7 +237,7 @@ object formMain: TformMain
         915
         511)
       object btn22: TbsSkinButton
-        Left = 112
+        Left = 69
         Top = 90
         Width = 100
         Height = 30
@@ -271,7 +271,7 @@ object formMain: TformMain
         OnClick = btn22Click
       end
       object btn23: TbsSkinButton
-        Left = 300
+        Left = 207
         Top = 90
         Width = 100
         Height = 30
@@ -305,7 +305,7 @@ object formMain: TformMain
         OnClick = btn23Click
       end
       object btn24: TbsSkinButton
-        Left = 300
+        Left = 207
         Top = 250
         Width = 100
         Height = 30
@@ -339,7 +339,7 @@ object formMain: TformMain
         OnClick = btn24Click
       end
       object btn25: TbsSkinButton
-        Left = 112
+        Left = 69
         Top = 250
         Width = 100
         Height = 30
@@ -380,7 +380,7 @@ object formMain: TformMain
         915
         511)
       object btn18: TbsSkinButton
-        Left = 112
+        Left = 69
         Top = 90
         Width = 100
         Height = 30
@@ -414,7 +414,7 @@ object formMain: TformMain
         OnClick = btn18Click
       end
       object btn19: TbsSkinButton
-        Left = 300
+        Left = 207
         Top = 90
         Width = 100
         Height = 30
@@ -448,7 +448,7 @@ object formMain: TformMain
         OnClick = btn19Click
       end
       object btn20: TbsSkinButton
-        Left = 300
+        Left = 207
         Top = 250
         Width = 100
         Height = 30
@@ -482,7 +482,7 @@ object formMain: TformMain
         OnClick = btn20Click
       end
       object btn21: TbsSkinButton
-        Left = 112
+        Left = 69
         Top = 250
         Width = 100
         Height = 30
@@ -523,7 +523,7 @@ object formMain: TformMain
         915
         511)
       object btn26: TbsSkinButton
-        Left = 316
+        Left = 218
         Top = 176
         Width = 100
         Height = 30
@@ -557,7 +557,7 @@ object formMain: TformMain
         OnClick = btn26Click
       end
       object btn27: TbsSkinButton
-        Left = 124
+        Left = 78
         Top = 176
         Width = 100
         Height = 30
@@ -591,7 +591,7 @@ object formMain: TformMain
         OnClick = btn27Click
       end
       object btn28: TbsSkinButton
-        Left = 125
+        Left = 78
         Top = 93
         Width = 100
         Height = 30
@@ -625,7 +625,7 @@ object formMain: TformMain
         OnClick = btn28Click
       end
       object btn29: TbsSkinButton
-        Left = 314
+        Left = 217
         Top = 94
         Width = 100
         Height = 30
@@ -659,7 +659,7 @@ object formMain: TformMain
         OnClick = btn29Click
       end
       object btn30: TbsSkinButton
-        Left = 125
+        Left = 78
         Top = 252
         Width = 100
         Height = 30
@@ -693,7 +693,7 @@ object formMain: TformMain
         OnClick = btn30Click
       end
       object btn31: TbsSkinButton
-        Left = 317
+        Left = 219
         Top = 253
         Width = 100
         Height = 30
@@ -734,7 +734,7 @@ object formMain: TformMain
         915
         511)
       object btn8: TbsSkinButton
-        Left = 144
+        Left = 92
         Top = 86
         Width = 100
         Height = 40
@@ -768,7 +768,7 @@ object formMain: TformMain
         OnClick = btn8Click
       end
       object btn9: TbsSkinButton
-        Left = 354
+        Left = 246
         Top = 88
         Width = 100
         Height = 40
@@ -802,7 +802,7 @@ object formMain: TformMain
         OnClick = btn9Click
       end
       object btn10: TbsSkinButton
-        Left = 144
+        Left = 92
         Top = 139
         Width = 100
         Height = 40
@@ -836,7 +836,7 @@ object formMain: TformMain
         OnClick = btn10Click
       end
       object btn11: TbsSkinButton
-        Left = 354
+        Left = 246
         Top = 140
         Width = 100
         Height = 40
@@ -870,7 +870,7 @@ object formMain: TformMain
         OnClick = btn11Click
       end
       object btn12: TbsSkinButton
-        Left = 144
+        Left = 92
         Top = 189
         Width = 100
         Height = 40
@@ -904,8 +904,8 @@ object formMain: TformMain
         OnClick = btn12Click
       end
       object btn13: TbsSkinButton
-        Left = 354
-        Top = 194
+        Left = 245
+        Top = 193
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -938,7 +938,7 @@ object formMain: TformMain
         OnClick = btn13Click
       end
       object btn14: TbsSkinButton
-        Left = 144
+        Left = 92
         Top = 244
         Width = 100
         Height = 40
@@ -972,8 +972,8 @@ object formMain: TformMain
         OnClick = btn14Click
       end
       object btn15: TbsSkinButton
-        Left = 354
-        Top = 246
+        Left = 246
+        Top = 247
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -1006,7 +1006,7 @@ object formMain: TformMain
         OnClick = btn15Click
       end
       object btn16: TbsSkinButton
-        Left = 144
+        Left = 92
         Top = 300
         Width = 100
         Height = 40
@@ -1040,7 +1040,7 @@ object formMain: TformMain
         OnClick = btn16Click
       end
       object btn17: TbsSkinButton
-        Left = 354
+        Left = 246
         Top = 301
         Width = 100
         Height = 40
@@ -1303,6 +1303,7 @@ object formMain: TformMain
       Align = alCustom
       Spacing = 1
       Layout = blGlyphTop
+      OnClick = btn5Click
     end
     object btn6: TbsSkinSpeedButton
       Left = 520
@@ -2069,5 +2070,10 @@ object formMain: TformMain
       'select * from zdtx')
     Left = 805
     Top = 18
+  end
+  object bsSkinFrame1: TbsSkinFrame
+    DrawBackground = True
+    Left = 973
+    Top = 228
   end
 end

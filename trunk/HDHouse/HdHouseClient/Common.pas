@@ -15,9 +15,17 @@ var
   gs_login_password:string;
   gs_login_qxid:string;
   function CheckPermission(pc:String;id:Integer):Boolean;
+  function IsUsingAccess():Boolean;
   //
 implementation
    uses UHDHouseDataModule;
+   function IsUsingAccess():Boolean;
+   begin
+     Result := False;
+    if pos('Jet',HDHouseDataModule.con1.Provider) <> 0 then
+      Result := True;
+     Exit;
+   end;
    function CheckPermission(pc:String;id:Integer):Boolean;
    var strings,str:string;
    begin
