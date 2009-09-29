@@ -1,6 +1,6 @@
 object OperatePermissionSettingForm: TOperatePermissionSettingForm
-  Left = 495
-  Top = 201
+  Left = 450
+  Top = 186
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #25805#20316#26435#38480#35774#32622' '
@@ -13,6 +13,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
@@ -238,6 +239,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         Height = 116
         HintImageIndex = 0
         TabOrder = 1
+        Visible = False
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'vscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -278,7 +280,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         DefaultWidth = 0
         DefaultHeight = 19
         UseSkinFont = True
-        Both = True
+        Both = False
         BothMarkerWidth = 19
         BothSkinDataName = 'bothhscrollbar'
         CanFocused = False
@@ -529,6 +531,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         Height = 254
         HintImageIndex = 0
         TabOrder = 1
+        Visible = False
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'vscrollbar'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -569,7 +572,7 @@ object OperatePermissionSettingForm: TOperatePermissionSettingForm
         DefaultWidth = 0
         DefaultHeight = 19
         UseSkinFont = True
-        Both = True
+        Both = False
         BothMarkerWidth = 19
         BothSkinDataName = 'bothhscrollbar'
         CanFocused = False
