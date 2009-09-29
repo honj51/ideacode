@@ -33,6 +33,7 @@ type
     procedure btn4Click(Sender: TObject);
     procedure btn3Click(Sender: TObject);
     procedure bskndbgrd1DblClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -196,6 +197,13 @@ begin
         Close;
         Open;
       end;
+end;
+
+procedure TOperatePermissionSettingForm.FormShow(Sender: TObject);
+begin
+   HDHouseDataModule.qry_users.Active:=True;
+   HDHouseDataModule.qry_Qx.Filtered:=false;
+   HDHouseDataModule.qry_Qx.Active:=true;
 end;
 
 end.
