@@ -18,11 +18,11 @@ a{color:#737f8d; text-decoration:none;}
     
         <script src='http://lcs.zxkefu.cn/LSBanner.ashx?aid=ec831c14-b4ee-43e0-90c8-b6a350f7daa5'></script>
 </head>
-<body style="background-image:url('Imgs/web_bg.jpg'); background-repeat:repeat-x">
+<body >
     <form id="form1" runat="server">
     <center>
     <table width="760"><tr><td>
-     <table class="headTable"><tr><td><img src="Imgs/headLeft.bmp" /></td><td align="right" valign=middle><asp:Panel ID="PanelShow" runat="server" Visible="false" 
+     <table class="headTable"><tr><td><img src="Imgs/headLeft3.bmp" /></td><td align="right" valign=middle><asp:Panel ID="PanelShow" runat="server" Visible="false" 
                  style="margin-left: 0px">欢迎您：<asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
                     &nbsp;<asp:HyperLink ID="HyperLink1" runat="server" 
                         NavigateUrl="~/AccountAdmin/AccountHome.aspx">管理客服</asp:HyperLink>
@@ -30,12 +30,19 @@ a{color:#737f8d; text-decoration:none;}
              onclick="LinkButton1_Click">退出</asp:LinkButton>
                  </asp:Panel>
                 <asp:Panel ID="PanelLogin" runat="server" Visible="true"><a href="Index.aspx" style="color:#000000;">首页</a>|<a href="Login.aspx" style="color:#000000;">登录</a></asp:Panel></td></tr></table>
-     <table class="MenuTable" cellpadding="0" cellspacing="0"><tr>
+     <table class="MenuTable" cellpadding="0" cellspacing="0">
+     <tr>
          <td style="background-image:url('Imgs/nav-left.gif');">&nbsp;</td><td class="MenuTd">&nbsp;</td><td class="MenuTd"><a href="Index.aspx" style="color:#000000;">首页</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Intro.aspx" style="color:#000000;">产品介绍</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="download.aspx" style="color:#000000;">软件下载</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Price.aspx" style="color:#000000;">产品价格</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Agency.aspx" style="color:#000000;">代理专区</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="Career.aspx" style="color:#000000;">诚聘英才</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd"><a href="LiveSupportLeaveWord.aspx" style="color:#000000;">留言板</a></td><td class="MenuTd"><img src="Imgs/nav-line.gif" /></td><td class="MenuTd">
          &nbsp;</td>
-         <td style="background-image:url('Imgs/nav-rigth.gif'); width: 9px;"></td></tr></table>
-      
+         <td style="background-image:url('Imgs/nav-rigth.gif'); width: 9px;"></td></tr>
+        
+         </table>
+      <table class="ShowIntro" cellpadding="0" cellspacing="0"><tr><td><img src="Imgs/head.jpg"  alt="" 
+      style="height: 155px; width: 782px"
+              /></td></tr></table> 
+
     <div>
+     
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
