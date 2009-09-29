@@ -63,16 +63,14 @@ end;
 
 procedure TSystemOperationLogForm.FormShow(Sender: TObject);
 begin
-  inherited;
-    //
-    
-      with HDHouseDataModule.qry_dayjob do
+    inherited;
+
+    with HDHouseDataModule.qry_dayjob do
     begin
          Close;
             Parameters.ParamByName('BeginDate').Value:=edt1.Text;
             Parameters.ParamByName('EndDate').Value:=edt2.Text;
          Open;
-
     end;
     bskndbgrd1.DataSource:=HDHouseDataModule.ds_dayjob;
 end;

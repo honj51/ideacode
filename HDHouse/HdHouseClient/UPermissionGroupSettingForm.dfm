@@ -415,17 +415,17 @@ object PermissionGroupSettingForm: TPermissionGroupSettingForm
         DataType = ftWideString
         NumericScale = 255
         Precision = 255
-        Size = 510
+        Size = 50
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from Qx where Qx_bh = id')
-    Left = 216
-    Top = 248
+      'select * from Qx where Qx_bh =:id')
+    Left = 231
+    Top = 96
   end
   object ds_qxxxxx: TDataSource
     DataSet = qry_qxxxxx
-    Left = 152
-    Top = 264
+    Left = 229
+    Top = 171
   end
 end
