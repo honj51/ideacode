@@ -1,6 +1,6 @@
 object SystemOperationLogForm: TSystemOperationLogForm
-  Left = 302
-  Top = 116
+  Left = 355
+  Top = 147
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #31995#32479#25805#20316#26085#24535
@@ -148,12 +148,12 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 116
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-16'
+      Text = '2009-09-29'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40072.736192303240000000
+      Date = 40085.413740324080000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -183,7 +183,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -197,12 +197,12 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 120
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-16'
+      Text = '2009-09-29'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40072.736192303240000000
+      Date = 40085.413740324080000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -232,7 +232,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -246,7 +246,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 2
+      TabOrder = 1
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -279,7 +279,7 @@ object SystemOperationLogForm: TSystemOperationLogForm
       Width = 75
       Height = 25
       HintImageIndex = 0
-      TabOrder = 3
+      TabOrder = 0
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
