@@ -385,7 +385,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Top = 78
         Width = 57
         Height = 18
-        Text = '1'
+        Text = 'edtbak_days'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -420,7 +420,7 @@ object DatabaseMantainForm: TDatabaseMantainForm
         Top = 104
         Width = 57
         Height = 18
-        Text = '1'
+        Text = 'edtbak_blsl'
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
