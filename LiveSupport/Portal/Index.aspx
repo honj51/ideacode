@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" Title="互动科技" %>
+<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" Title="�����Ƽ�" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
@@ -12,12 +12,12 @@
 <tr><td style="background-image:url('Imgs/left-centent.GIF');" align="center">
     <br />
 <a href="Login.aspx"><img src="Imgs/signin.gif" /></a><br />
-    <br /><a href="Licence.aspx"><font style="font-size:14px;">申请免费使用!</font></a> 
+    <br /><a href="Licence.aspx"><font style="font-size:14px;">�������ʹ��!</font></a> 
     <br />
     <br />
 
     <img src="Imgs/sidebar-line.gif" />
-    <div style="width:100%; text-align:left; margin-left:20px;"> <b>注册流程：</b></div>
+    <div style="width:100%; text-align:left; margin-left:20px;"> <b>ע�����̣�</b></div>
     <img src="Imgs/regflow.gif" />
     </td></tr>
     <tr><td style="background-image:url('Imgs/left-down.GIF'); height:24px;"></td></tr>
@@ -33,33 +33,33 @@
     <br />
     <img src="Imgs/pic-01.gif" /><br />
     <br />
-    <a href="Download.aspx"><img src="Imgs/download.gif" /></a></td><td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>在线客服系统是江西互动信息技术有限公司出品的一款企业级的网站沟通平台系统。网站的访客不需要下载任何软件或插件，通过点击网站上的在线客服标志，就能直接和网站客服人员进行即时交流。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>是江西最大的在线客服系统，该系统将为企业发掘更多的潜在客户，提高访客成交率，增加企业收入，降低运营成本，提高工作效率，提升客户满意度，是企业进行在线营销、在线客服、在线咨询的有力工具。系统适用于各类网站，是企业进行网络营销的好帮手。 </td><td style="width:15px;"></td></tr>
+    <a href="Download.aspx"><img src="Imgs/download.gif" /></a></td><td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>��LiveSupport��&nbsp; </b>���߿ͷ�ϵͳ�ǽ���������Ϣ�������޹�˾��Ʒ��һ����ҵ������վ��ͨƽ̨ϵͳ����վ�ķÿͲ���Ҫ�����κ�����������ͨ�������վ�ϵ����߿ͷ���־������ֱ�Ӻ���վ�ͷ���Ա���м�ʱ������<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b>��LiveSupport��&nbsp; </b>�ǽ����������߿ͷ�ϵͳ����ϵͳ��Ϊ��ҵ��������Ǳ�ڿͻ�����߷ÿͳɽ��ʣ�������ҵ���룬������Ӫ�ɱ�����߹���Ч�ʣ������ͻ�����ȣ�����ҵ��������Ӫ�������߿ͷ���������ѯ���������ߡ�ϵͳ�����ڸ�����վ������ҵ��������Ӫ���ĺð��֡� </td><td style="width:15px;"></td></tr>
 </table>
 <img src="Imgs/centent-line.gif" />
 <table style="width:100%; text-align:left;font-size:12px; line-height:22px" >
 <tr ><td style="width:15px;"></td><td valign="top"><img src="Imgs/advantage-07.jpg" /></td>
-    <td valign="top" class="style2"><b>增加营销渠道</b><br />改变传统电话、邮件、QQ等客户营销方式，为企业打造主动式营销方式。</td><td style="width:15px;"></td>
+    <td valign="top" class="style2"><b>����Ӫ������</b><br />�ı䴫ͳ�绰���ʼ���QQ�ȿͻ�Ӫ����ʽ��Ϊ��ҵ��������ʽӪ����ʽ��</td><td style="width:15px;"></td>
     <td valign="top"><img src="Imgs/advantage-08.jpg" /></td>
-    <td valign="top"><b>增加销售机会</b><br />
-通过在线为顾客分析和解决复杂的问题来增强顾客的忠诚度进一步提高销售机会和销售量。</td><td style="width:15px;"></td></tr>
+    <td valign="top"><b>�������ۻ���</b><br />
+ͨ������Ϊ�˿ͷ����ͽ�����ӵ���������ǿ�˿͵��ҳ϶Ƚ�һ��������ۻ������������</td><td style="width:15px;"></td></tr>
 <tr><td></td><td valign="top"><img src="Imgs/advantage-09.jpg" /></td>
-    <td valign="top" class="style2"><b>降低运营成本</b><br />每个在线客服人员可通过无限的增加即时的在线服务人数，降低了传统客户服务中通过电话交流所产生的成本。</td><td style="width:15px;"></td>
+    <td valign="top" class="style2"><b>������Ӫ�ɱ�</b><br />ÿ�����߿ͷ���Ա��ͨ�����޵����Ӽ�ʱ�����߷��������������˴�ͳ�ͻ�������ͨ���绰�����������ĳɱ���</td><td style="width:15px;"></td>
     <td valign="top"><img src="Imgs/advantage-10.jpg" /></td>
-    <td valign="top"><b>巩固客户关系</b><br />通过与网民在线人性化的交互作用并且以顾客的地址来判断，您可以发现您的回头客逐渐增多。</td><td style="width:15px;"></td></tr>
+    <td valign="top"><b>���̿ͻ���ϵ</b><br />ͨ���������������Ի��Ľ������ò����Թ˿͵ĵ�ַ���жϣ������Է������Ļ�ͷ�������ࡣ</td><td style="width:15px;"></td></tr>
 <tr><td></td><td valign="top"><img src="Imgs/advantage-01.gif" /></td>
-    <td valign="top" class="style2"><b>无缝沟通</b><br />不用安装任何软件或插件，客户只需轻轻一点，就能够与客服人员进行即时交流，大大降低客户的沟通门槛，提高成交概率。</td><td style="width:15px;"></td>
+    <td valign="top" class="style2"><b>�޷칵ͨ</b><br />���ð�װ�κ������������ͻ�ֻ������һ�㣬���ܹ���ͷ���Ա���м�ʱ��������󽵵Ϳͻ��Ĺ�ͨ�ż�����߳ɽ����ʡ�</td><td style="width:15px;"></td>
     <td valign="top"><img src="Imgs/advantage-02.gif" /></td>
-    <td valign="top"><b>数据分析</b><br />
-提供了访客来访时间和地理位置的统计信息，企业可以根据这些数据调整销售人力安排，销售区域策略等，为进行市场决策提供了有力的依据。</td><td style="width:15px;"></td></tr>
+    <td valign="top"><b>���ݷ���</b><br />
+�ṩ�˷ÿ�����ʱ��͵���λ�õ�ͳ����Ϣ����ҵ���Ը�����Щ���ݵ��������������ţ�����������Եȣ�Ϊ�����г������ṩ�����������ݡ�</td><td style="width:15px;"></td></tr>
 <tr><td></td><td valign="top"><img src="Imgs/advantage-03.gif" /></td>
-    <td valign="top" class="style2"><b>知识储备</b><br />客服可以轻松的通过知识库进行学习；当面对访客的提问时，也可以通过知识库调阅相关资料，快速解答访客问题。</td><td style="width:15px;"></td>
+    <td valign="top" class="style2"><b>֪ʶ����</b><br />�ͷ��������ɵ�ͨ��֪ʶ�����ѧϰ������Էÿ͵�����ʱ��Ҳ����ͨ��֪ʶ�����������ϣ����ٽ��ÿ����⡣</td><td style="width:15px;"></td>
     <td valign="top"><img src="Imgs/advantage-04.gif" /></td>
-    <td valign="top"><b>精准营销</b><br />
-客服人员可以从系统中清楚的知道客户正在访问什么，感兴趣的是什么，并做好充足的准备。</td><td style="width:15px;"></td></tr>
+    <td valign="top"><b>��׼Ӫ��</b><br />
+�ͷ���Ա���Դ�ϵͳ�������֪���ͻ����ڷ���ʲô������Ȥ����ʲô�������ó����׼����</td><td style="width:15px;"></td></tr>
 <tr><td></td><td valign="top"><img src="Imgs/advantage-05.gif" /></td>
-    <td valign="top" class="style2"><b>快捷回复</b><br />将常用的对话内容和网站地址进行分类整理，轻松的对不同的访客快速应答，体现专业，节省效率。</td><td style="width:15px;"></td><td valign="top"><img src="Imgs/advantage-06.gif" /></td><td valign="top"><b>实时监管</b><br />
-管理人员能够实时的对客服人员的工作进行监控，并查看访客对客服的满意度评价。</td><td style="width:15px;"></td></tr>
+    <td valign="top" class="style2"><b>��ݻظ�</b><br />�����õĶԻ����ݺ���վ��ַ���з������������ɵĶԲ�ͬ�ķÿͿ���Ӧ������רҵ����ʡЧ�ʡ�</td><td style="width:15px;"></td><td valign="top"><img src="Imgs/advantage-06.gif" /></td><td valign="top"><b>ʵʱ���</b><br />
+������Ա�ܹ�ʵʱ�ĶԿͷ���Ա�Ĺ������м�أ����鿴�ÿͶԿͷ�����������ۡ�</td><td style="width:15px;"></td></tr>
 </table>
 
 </td>
@@ -68,72 +68,65 @@
 </td>
 </tr>
 </table>--%>
-<table>
-<tr >
-<td colspan="2">
-<img  alt="" src="Imgs/head.jpg" />
 
-</td>
-</tr>
+<table   style=" background-color:White" >
+ <tr><td style="height:28px;" colspan="2">
+ <img  width="100%" alt="" src="Imgs/centent-title-bg.gif" />
+ </td></tr>
+
 <tr>
-<td align="left">
-<table>
-    <tr>
-    <td align="center">
-     <a  href="HDHouse.aspx">
-    互动房产中介管理系统
-        </a>
-    </td>
-    </tr>
+<td align="left" style="height: 279px; width: 50%;">
+<table align="left"  >
+       
+ 
         <tr>
         <td>
-         <table style="width:100%; height: 247px;">
+         <table style="width:100%; height: 350px;">
 <tr>
 <td  align="center" >
     <br />
-    <img src="Imgs/pic-01.gif"  alt=""/><br />
+    <a  href="HDHouse.aspx"><img src="Imgs/pic-01.gif"  alt=""/></a><br />
     <br />
     </td>
-    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“HDHouse”&nbsp; </b>在房产中介管理系统是江西互动信息技术有限公司出品的一款企业级的房产中介管理系统。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>“HDHouse”&nbsp; </b>是江西最大的房产中介系统，该系统将为企业发掘更多的潜在客户，提高访客成交率，增加企业收入，降低运营成本，提高工作效率，提升客户满意度，是企业进行在线营销、在线客服、在线咨询的有力工具。系统适用于各类网站，是企业进行网络营销的好帮手。 </td>
+    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>��HDHouse��&nbsp; </b>�ڷ����н����ϵͳ�ǽ���������Ϣ�������޹�˾��Ʒ��һ����ҵ���ķ����н����ϵͳ��<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<b> </b></td>
 <td style="width:15px;"></td></tr>
 </table>
 </td>
        
         </tr>
+        
   </table>
   </td>
-<td  align="right"> 
-    <table>
-    <tr>
-    <td align="center">
-    <a href="LiveChat.aspx">
-       网络客服
-    </a>
-    </td>
-    </tr>
+<td  align="right" style="height: 279px; width: 50%;"> 
+    <table >
+    
         <tr>
         <td>
-        <table style="width:100%;">
+        <table style="width:100%; height: 357px;">
 <tr><td align="center" >
     <br />
-    <img alt="" src="Imgs/pic-01.gif" /><br />
+    <a href="LiveChat.aspx"><img alt="" src="Imgs/pic-01.gif" />
+    </a>
+    <br />
     <br />
     </td>
-    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>在线客服系统是江西互动信息技术有限公司出品的一款企业级的网站沟通平台系统。网站的访客不需要下载任何软件或插件，通过点击网站上的在线客服标志，就能直接和网站客服人员进行即时交流。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>是江西最大的在线客服系统，该系统将为企业发掘更多的潜在客户，提高访客成交率，增加企业收入，降低运营成本，提高工作效率，提升客户满意度，是企业进行在线营销、在线客服、在线咨询的有力工具。系统适用于各类网站，是企业进行网络营销的好帮手。 </td><td style="width:15px;"></td></tr>
+    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>��LiveSupport��&nbsp; </b>���߿ͷ�ϵͳ�ǽ���������Ϣ�������޹�˾��Ʒ��һ����ҵ������վ��ͨƽ̨ϵͳ����վ�ķÿͲ���Ҫ�����κ�����������ͨ�������վ�ϵ����߿ͷ���־������ֱ�Ӻ���վ�ͷ���Ա���м�ʱ������<br />
+        &nbsp;&nbsp;&nbsp; </td><td style="width:15px;"></td></tr>
 </table>
         </td>
             
         </tr>
-       
+      
 
   </table>
   
   </td>
 
         </tr>
-       
+         <tr><td style=" height:28px;" colspan="2">
+         <img  alt="" width="100%" src="Imgs/centent-title-bg.gif" />
+         </td></tr>
 
   </table>
 
