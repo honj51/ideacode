@@ -22,6 +22,7 @@ type
     procedure btn2Click(Sender: TObject);
     procedure btn3Click(Sender: TObject);
     procedure btn4Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,5 +90,10 @@ begin
      filename:= HDHouseDataModule.qry_ht.fieldbyname('ht_path').AsString;
      ShellExecute(handle, 'Open', PChar(filename), nil, nil, SW_NORMAL);
  end;
+
+procedure TContractSampleSettingForm.FormShow(Sender: TObject);
+begin
+    HDHouseDataModule.qry_ht.Active:=true;
+end;
 
 end.
