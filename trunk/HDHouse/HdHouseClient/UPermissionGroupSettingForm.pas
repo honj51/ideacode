@@ -160,12 +160,11 @@ begin
 
   if ParmEditorMode = 'EDIT' then
     begin
-            f_show(Fieldbyname('Qx_rcgl').AsString,0);
-         f_show(Fieldbyname('Qx_sfgl').AsString,7);
-        f_show(Fieldbyname('Qx_cx').AsString,12);
-           f_show(Fieldbyname('Qx_sqfw').AsString,17);
-           f_show(Fieldbyname('Qx_xtsz').AsString,24);
-
+          f_show(Fieldbyname('Qx_rcgl').AsString,0);
+          f_show(Fieldbyname('Qx_sfgl').AsString,7);
+          f_show(Fieldbyname('Qx_cx').AsString,12);
+          f_show(Fieldbyname('Qx_sqfw').AsString,17);
+          f_show(Fieldbyname('Qx_xtsz').AsString,24);
     end
     ELSE
     BEGIN
