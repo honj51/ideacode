@@ -98,9 +98,8 @@ end;
 
 procedure TDatabaseMantainForm.FormShow(Sender: TObject);
 begin
-     inherited;
-    //
-      
+   HDHouseDataModule.qry_autobak.Active:=True;
+   inherited;
       with HDHouseDataModule.qry_autobak do
     begin
       if fieldbyname('bak_qy').AsString='Y' then
