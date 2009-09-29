@@ -1,6 +1,6 @@
 object ContractSampleSettingForm: TContractSampleSettingForm
-  Left = 382
-  Top = 168
+  Left = 408
+  Top = 175
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #21512#21516#26679#26412#35774#32622
@@ -13,6 +13,7 @@ object ContractSampleSettingForm: TContractSampleSettingForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskngrpbx1: TbsSkinGroupBox
