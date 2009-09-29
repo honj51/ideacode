@@ -125,7 +125,7 @@
 
         </tr>
          <tr><td style=" height:28px;" colspan="2">
-         <img  alt="" width="100%" src="Imgs/centent-title-bg.gif" />
+         <img  alt="" width="100%" src="Imgs/advantage-down.GIF" />
          </td></tr>
 
   </table>
