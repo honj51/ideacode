@@ -1,16 +1,16 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/PortalHDHouse.master" AutoEventWireup="true" CodeFile="HDHouse.aspx.cs" Inherits="HDHouse" Title="互动科技 || 房产中介管理系统" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PortalMasterPage.master" AutoEventWireup="true" CodeFile="HDHouse.aspx.cs" Inherits="HDHouse" Title="互动科技 || 房产中介管理系统" %>
 
 
-<asp:Content ID="Content1"  ContentPlaceHolderID="con1" Runat="Server">
+<asp:Content ID="Content1"  ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <table class="ContentTable">
 <tr>
-<td>
-<img  src="Imgs/right.jpg" alt="" style="height: 627px; width: 342px"/>
+<td valign="top">
+<img  src="Imgs/right.jpg" alt="" style="height: 327px; width: 196px"/>
 </td>
 <td valign="top">
 <table  width="573" cellpadding="0" cellspacing="0">
-<tr><td style="background-image:url('Imgs/centent-title.gif'); height:28px;"></td></tr>
+<tr><td style="background-image:url('Imgs/centent-title1.gif'); height:28px;"></td></tr>
 <tr><td style=" background-image:url('Imgs/centent.GIF'); ">
 <table style="width:100%;">
 <tr><td class="style1" align="center" >
@@ -18,7 +18,7 @@
     <img src="Imgs/pic-01.gif" /><br />
     <br />
     <a href="Download.aspx"><img src="Imgs/download.gif" /></a></td><td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“HDHouse”&nbsp; </b>在房产中介管理系统是江西互动信息技术有限公司出品的一款企业级的房产中介管理系统。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>“HDHouse”&nbsp; </b>是江西最大的房产中介系统，该系统将为企业发掘更多的潜在客户，提高访客成交率，增加企业收入，降低运营成本，提高工作效率，提升客户满意度，是企业进行在线营销、在线客服、在线咨询的有力工具。系统适用于各类网站，是企业进行网络营销的好帮手。 </td>
+&nbsp;&nbsp;&nbsp;&nbsp;它集房源管理、客户管理、销售管理、出租管理，统计分析等强大功能为一身，软件界面简洁优美，操作直观简单，无需专门培训即可正常使用。互动房产中介管理系统能广泛适用房介经营商、地产代理商等房屋中介销售出租机构使用。互动房产中介管理软件是您加强房源管理、客户管理，员工管理，提高工作效率的强大助手。 </td>
 <td style="width:15px;"></td></tr>
 </table>
 <img src="Imgs/centent-line.gif" />
@@ -55,4 +55,22 @@
 </tr>
 </table>
 </asp:Content>
+
+<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+
+    
+    <style type="text/css">
+        .style1
+        {
+            width: 270px;
+        }
+        .style2
+        {
+            width: 204px;
+        }
+    </style>
+
+
+</asp:Content>
+
 
