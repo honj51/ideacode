@@ -524,11 +524,11 @@ object OperatorInfoForm: TOperatorInfoForm
         DataType = ftWideString
         NumericScale = 255
         Precision = 255
-        Size = 510
+        Size = 50
         Value = 'null'
       end>
     SQL.Strings = (
-      'select * from users where user_bh=id')
+      'select * from users where user_bh=:id')
     Left = 168
   end
   object ds1: TDataSource
