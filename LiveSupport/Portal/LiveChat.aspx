@@ -16,7 +16,6 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<table class="ShowIntro"><tr><td><img src="Imgs/show.jpg"  alt=""/></td></tr></table> 
     <table class="ContentTable">
 <tr>
 <td style="width:50px;" valign="top" align="center">
