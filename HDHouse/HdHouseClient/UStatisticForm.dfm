@@ -1,6 +1,6 @@
 object StatisticForm: TStatisticForm
-  Left = 285
-  Top = 51
+  Left = 294
+  Top = 67
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #32508#21512#32479#35745
@@ -214,12 +214,12 @@ object StatisticForm: TStatisticForm
       Width = 80
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-16'
+      Text = '2009-09-29'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40072.735656284720000000
+      Date = 40085.407665266200000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
@@ -263,12 +263,12 @@ object StatisticForm: TStatisticForm
       Width = 80
       Height = 18
       EditMask = '!0000/99/99;1; '
-      Text = '2009-09-16'
+      Text = '2009-09-29'
       AlphaBlend = False
       AlphaBlendAnimation = False
       AlphaBlendValue = 0
       UseSkinFont = True
-      Date = 40072.735656284720000000
+      Date = 40085.407665266200000000
       TodayDefault = True
       CalendarWidth = 200
       CalendarHeight = 150
