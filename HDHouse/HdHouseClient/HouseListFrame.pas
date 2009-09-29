@@ -118,7 +118,7 @@ type
   end;
 
 implementation
-uses UHDHouseDataModule,UHouseQueryForm,UCustomerDetailsForm;
+uses UHDHouseDataModule,UHouseQueryForm,UCustomerDetailsForm,Common;
 {$R *.dfm}
 
 procedure TframeHouseList.bsSkinCheckRadioBox1Click(Sender: TObject);
@@ -213,12 +213,20 @@ begin
   detailStr.Add('');
   detailStr.Add('详细信息:'+qryHouseList.FieldByName('fczy_xxbz').Text);
 
-  //保密信息
-  secrecyStr.Add('业主姓名:'+qryHouseList.FieldByName('fczy_yzxm').Text);
-  secrecyStr.Add('联系电话:'+qryHouseList.FieldByName('fczy_dh').Text);
-  secrecyStr.Add('联系手机:'+qryHouseList.FieldByName('fczy_tel').Text);
-  secrecyStr.Add('联系地址:'+qryHouseList.FieldByName('fczy_jtwz').Text);
-  secrecyStr.Add('备注说明:'+qryHouseList.FieldByName('fczy_bmbz').Text);
+    //保密信息
+    if not(CheckPermission('Qx_rcgl',4)) then
+    begin
+       secrecyStr.Add('你无权查看保密信息！请跟管理员联系');
+    end
+    else
+    begin
+        secrecyStr.Add('业主姓名:'+qryHouseList.FieldByName('fczy_yzxm').Text);
+        secrecyStr.Add('联系电话:'+qryHouseList.FieldByName('fczy_dh').Text);
+        secrecyStr.Add('联系手机:'+qryHouseList.FieldByName('fczy_tel').Text);
+        secrecyStr.Add('联系地址:'+qryHouseList.FieldByName('fczy_jtwz').Text);
+        secrecyStr.Add('备注说明:'+qryHouseList.FieldByName('fczy_bmbz').Text);
+    end;
+
   //
   detailStr.Text;
   secrecyStr.Text;
