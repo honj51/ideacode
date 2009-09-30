@@ -2,6 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
+    <style type="text/css">
+        .style1
+        {
+            width: 171px;
+        }
+        </style>
+
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <%-- <table class="ContentTable">
@@ -69,66 +76,284 @@
 </tr>
 </table>--%>
 
-<table >
- <tr><td style="height:28px;" colspan="2">
- <img  width="100%" alt="" src="Imgs/centent-title-bg.gif" />
- </td></tr>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD  style=" width:2%"><IMG height=25 
+                  src="Imgs/biaodian.jpg" 
+ width=100%></TD>
+                <TD 
+                  background=Imgs/biaodian1.jpg></TD>
+                <TD width=70% 
+                background=Imgs/biaodian1.jpg>&nbsp;</TD></TR></TBODY></TABLE>
 
+<table>
 <tr>
-<td align="left" style="height: 279px; width: 50%;">
-<table align="left"  >
-       
- 
-        <tr>
-        <td>
-         <table style="width:100%; height: 350px;">
-<tr>
-<td  align="center" >
-    <br />
-    <a  href="HDHouse.aspx"><img src="Imgs/pic-01.gif"  alt=""/></a><br />
-    <br />
-    </td>
-    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“HDHouse”&nbsp; </b>在房产中介管理系统是江西互动信息技术有限公司出品的一款企业级的房产中介管理系统。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b> </b></td>
-<td style="width:15px;"></td></tr>
-</table>
-</td>
-       
-        </tr>
-        
-  </table>
-  </td>
-<td  align="right" style="height: 279px; width: 50%;"> 
-    <table >
-    
-        <tr>
-        <td>
-        <table style="width:100%; height: 357px;">
-<tr><td align="center" >
-    <br />
-    <a href="LiveChat.aspx"><img alt="" src="Imgs/pic-01.gif" />
-    </a>
-    <br />
-    <br />
-    </td>
-    <td align="left" style="font-size:12px;line-height:22px">&nbsp;&nbsp;&nbsp;&nbsp;<b>“LiveSupport”&nbsp; </b>在线客服系统是江西互动信息技术有限公司出品的一款企业级的网站沟通平台系统。网站的访客不需要下载任何软件或插件，通过点击网站上的在线客服标志，就能直接和网站客服人员进行即时交流。<br />
-        &nbsp;&nbsp;&nbsp; </td><td style="width:15px;"></td></tr>
-</table>
-        </td>
+<td style="background-image:url('Imgs/bg.bmp'); background-repeat:repeat-x; height: 155px; width: 782px">
+
+
+                
+                
+        <TABLE cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD width=8 
+                      background=Imgs/index_t3_a1.png 
+                      height=32></TD>
+                      <TD align=left 
+                      background=Imgs/index_t3_a2.png>
+                        <TABLE cellSpacing=0 cellPadding=0 border=0>
+                          <TBODY>
+                          <TR>
+                            <TD height=32><IMG height=32 alt="" 
+                              src="Imgs/index_t3_title.png" 
+                              width=106></TD>
+                            <TD></TD>
+                            <TD></TD>
+                            
+                            </TR></TBODY></TABLE></TD>
+                      <TD width=10 
+                      background=Imgs/index_t3_a3.png></TD></TR>
+                    <TR>
+                      <TD 
+                      background=Imgs/index_t3_b1.png 
+                      height=246></TD>
+                      <TD vAlign=center align=middle width=728 
+                      background=Imgs/index_t3_b2.png>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR vAlign=top align=left>
+                            <TD width=221 
+                          
+                            height=70>
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_3.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=175>
+                                <DIV align=center>客户只需轻轻一点，就能够与客服人员进行即时交流，大大降低客户的沟通门槛，提高成交概率。</DIV></TD></TR></TBODY></TABLE></TD>
+                            <TD width=221 
+                            >
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_1.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=175>
+                                <DIV align=center>通过与网民在线人性化的交互作用并且以顾客的地址来判断，您可以发现您的回头客逐渐增多。</DIV></TD></TR></TBODY></TABLE></TD>
+                            <TD width=207 
+                            >
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_2.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=205>
+                                <DIV align=center style="width: 200px">提供了访客来访时间和地理位置的统计信息.</DIV></TD></TR></TBODY></TABLE></TD></TR>
+                          <TR vAlign=top align=left>
+                            <TD 
+                            
+                            height=70>
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_5.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=175>
+                                <DIV align=center><SPAN 
+                                class=style_0066CC><BR></SPAN>管理人员能够实时的对客服人员的工作进行监控，并查看访客对客服的满意度评价。</DIV></TD></TR></TBODY></TABLE></TD>
+                            <TD 
+                            >
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_4.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=175>
+                                <DIV align=center>不用安装任何软件或插件，客户只需轻轻一点，就能够与客服人员进行即时交流，大大降低客户的沟通门槛，提高成交概率。</DIV></TD></TR></TBODY></TABLE></TD>
+                            <TD 
+                            >
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"></A><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_6.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=205>
+                                <DIV align=center>提供了访客来访时间和地理位置的统计信息，企业可以根据这些数据调整销售人力安排，销售区域策略等，为进行市场决策提供了有力的依据。 
+                                </DIV></TD></TR></TBODY></TABLE></TD></TR>
+                          <TR vAlign=top align=left>
+                            <TD height=70><SPAN class=pic01></SPAN>
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_8.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=175>
+                                <DIV align=center><BR>通过在线为顾客分析和解决复杂的问题来增强顾客的忠诚度进一步提高销售机会和销售量。</DIV></TD></TR></TBODY></TABLE></TD>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_0.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=175>
+                                <DIV align=center><BR>将常用的对话内容和网站地址进行分类整理，轻松的对不同的访客快速应答，体现专业，节省效率。</DIV></TD></TR></TBODY></TABLE></TD>
+                            <TD>
+                              <TABLE cellSpacing=0 cellPadding=0 border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=pic01 width=47 height=47><A 
+                                href="http://www.fdcsoft.com/#"><IMG height=47 
+                                src="Imgs/icon45_7.png" 
+                                width=47 border=0></A></TD>
+                                <TD width=7></TD>
+                                <TD vAlign=top align=left width=205>
+                                <DIV align=center><BR>改变传统电话、邮件、QQ等客户营销方式，为企业打造主动式营销方式。<SPAN 
+                                class=style_g2>
+
+</SPAN></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+                      <TD 
+                      background=Imgs/index_t3_b3.png></TD></TR>
+                    <TR>
+                      <TD 
+                      background=Imgs/index_t3_c1.png 
+                      height=11></TD>
+                      <TD 
+                      background=Imgs/index_t3_c2.png></TD>
+                      <TD 
+                      background=Imgs/index_t3_c3.png></TD></TR></TBODY></TABLE>
+                      
+                      
+                      <TABLE cellSpacing=0 cellPadding=0 align=center border=0 width=782px>
+        <TBODY>
+        <TR>
+          <TD align="left" colspan="2" class=white12b background=Imgs/mid_titbj.jpg  style="background-repeat:repeat-y"
+          height=28>　&nbsp;
+          <IMG height=5 src="Imgs/icon7.gif" 
+            width=7>&nbsp;产品中心</TD></TR>
             
-        </tr>
-      
+            <tr>
+            <td  style="width:50%">
+               
+               <TABLE cellSpacing=0 cellPadding=0 width=100% align=center 
+              border=0><TBODY>
+              <TR>
+                <TD colSpan=2 height=1></TD></TR>
+              <TR>
+                <TD width=141 background=Imgs/tit_bj.jpg 
+                height=23>
+                <a href="LiveChat.aspx">
+                &nbsp;<IMG height=14 
+                  src="Imgs/01.jpg" width=22>&nbsp;网站客服</a></TD>
+                <TD align=right>&nbsp;</TD></TR>
+              <TR>
+                <TD colSpan=2 height=3></TD></TR></TBODY></TABLE>
+            <TABLE class=type_k height=71 cellSpacing=0 cellPadding=0 width=100% 
+            align=center border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle width=129>
+                <a href="LiveChat.aspx">
+                <IMG height=67 
+                  src="Imgs/pic01.jpg" width=77></a></TD>
+                <TD vAlign=top>
+                  <TABLE cellSpacing=0 cellPadding=0 width="80%" height=100% align=center 
+                  border=0>
+                    <TBODY>
+                  
+                    <TR>
+                      <TD width=11><IMG height=4 
+                        src="Imgs/icon6.gif" width=4></TD>
+                      <TD class=midlist><A 
+                        href="" 
+                        target=_blank>
+                        
+              </A>一款企业级的网站沟通平台系统</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+               
+               </td>
+            <td style="width=50%">
+             <TABLE   cellSpacing=0 cellPadding=0 width=100% align=center 
+              border=0><TBODY>
+              <TR>
+                <TD colSpan=2 height=1></TD></TR>
+              <TR>
+                <TD background=Imgs/tit_bj.jpg 
+                height=23 class="style1">
+                <a  href="HDHouse.aspx">
+                &nbsp;<IMG height=14 
+                  src="Imgs/02.jpg" width=22>&nbsp;房产中介管理系统
+                  </a>
+                  </TD>
+                <TD align=right>&nbsp;</TD></TR>
+              <TR>
+                <TD colSpan=2 height=3></TD></TR></TBODY></TABLE>
+                
+            <TABLE class=type_k height=71 cellSpacing=0 cellPadding=0 width=100%
+            align=center border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle width=129>
+                <a href="HDHouse.aspx">
+                <IMG height=67 
+                  src="Imgs/pic03.jpg" width=77>
+                  </a>
+                  </TD>
+                <TD vAlign=top>
+                  <TABLE cellSpacing=0 cellPadding=0 width="80%" height=100% align=center 
+                  border=0>
+                    <TBODY>
+                    <TR>
+                      <TD width=11><IMG height=4 
+                        src="Imgs/icon6.gif" width=4></TD>
+                      <TD  >
+                          一款企业级的房产中介管理系统。</td><td><a href="Download.aspx" > <img height=19 
+                        src="Imgs/download.jpg" width=69 
+                        border=0></A></TD></TR>
+                  
+                        
+                        </TBODY></TABLE></TD></TR></TBODY></TABLE>
+            
+            </td>
+            </tr>
+            
+        
+        <TR>
+          <TD colspan="2"><IMG height=6 src="Imgs/mid_bottom.jpg" 
+            ></TD></TR></TBODY></TABLE>
 
-  </table>
-  
-  </td>
+</td>
+</tr>
+</table>
 
-        </tr>
-         <tr><td style=" height:28px;" colspan="2">
-         <img  alt="" width="100%" src="Imgs/advantage-down.GIF" />
-         </td></tr>
 
-  </table>
+
 
 </asp:Content>
 

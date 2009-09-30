@@ -6,7 +6,7 @@
     <table class="ContentTable">
 <tr>
 <td valign="top">
-<img  src="Imgs/right.jpg" alt="" style="height: 327px; width: 196px"/>
+<img  src="Imgs/Left.jpg" alt="" style="height: 327px; width: 196px"/>
 </td>
 <td valign="top">
 <table  width="573" cellpadding="0" cellspacing="0">
