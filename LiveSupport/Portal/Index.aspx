@@ -69,7 +69,7 @@
 </tr>
 </table>--%>
 
-<table   style=" background-color:White" >
+<table >
  <tr><td style="height:28px;" colspan="2">
  <img  width="100%" alt="" src="Imgs/centent-title-bg.gif" />
  </td></tr>
