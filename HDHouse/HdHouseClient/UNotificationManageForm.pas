@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, bsSkinGrids, bsDBGrids,
   bsSkinCtrls, Mask, bsSkinBoxCtrls, bsdbctrls, UDataOperateBarView, DB,
-  ADODB, DBCtrls, BusinessSkinForm, frxClass, frxDBSet, frxExportXML;
+  ADODB, DBCtrls, BusinessSkinForm, frxClass, frxDBSet, frxExportXML, Menus;
 
 type
   TNotificationManageForm = class(TForm)
@@ -30,6 +30,12 @@ type
     frxDBDatasetddd: TfrxDBDataset;
     cbb1: TbsSkinComboBox;
     qry1: TADOQuery;
+    pm1: TPopupMenu;
+    V1: TMenuItem;
+    X1: TMenuItem;
+    Y1: TMenuItem;
+    N1: TMenuItem;
+    N2: TMenuItem;
     procedure dtprtbrvw1btn2Click(Sender: TObject);
     procedure dtprtbrvw1btn1Click(Sender: TObject);
     procedure dtprtbrvw1btn3Click(Sender: TObject);

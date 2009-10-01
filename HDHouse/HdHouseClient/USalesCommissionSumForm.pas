@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, bsSkinGrids, bsDBGrids, bsSkinCtrls, bsSkinBoxCtrls, StdCtrls,
   Mask, ExtCtrls, DB, ADODB, BusinessSkinForm, frxClass, frxExportXML,
-  frxDBSet, GridsEh, DBGridEh;
+  frxDBSet, GridsEh, DBGridEh, Menus;
 
 type
   TSalesCommissionSumForm = class(TForm)
@@ -41,6 +41,9 @@ type
     intgrfldqry1Field: TIntegerField;
     intgrfldqry1Field1: TIntegerField;
     intgrfldqry1Field2: TIntegerField;
+    pm1: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
     procedure btn4Click(Sender: TObject);
     procedure btn3Click(Sender: TObject);
     procedure qry1CalcFields(DataSet: TDataSet);

@@ -6,20 +6,19 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, bsSkinCtrls, StdCtrls, Mask, bsSkinBoxCtrls, bsdbctrls,
   BusinessSkinForm, DB, ADODB, RzBorder, RzStatus, RzPrgres, RzDBProg,
-  ComCtrls, bsDialogs, bsSkinExCtrls;
+  ComCtrls, bsDialogs, bsSkinExCtrls, frxpngimage, ExtCtrls, Buttons;
 
 type
   TLoginForm = class(TForm)
-    lbl1: TbsSkinStdLabel;
-    lbl2: TbsSkinStdLabel;
-    btn1: TbsSkinButton;
-    btn2: TbsSkinButton;
     bsbsnsknfrm1: TbsBusinessSkinForm;
     qry_login: TADOQuery;
-    cbb1: TbsSkinComboBox;
-    bsknpswrdt1: TbsSkinPasswordEdit;
     bsSkinAnimateGauge1: TbsSkinAnimateGauge;
     bsSkinGauge1: TbsSkinGauge;
+    img1: TImage;
+    btn1: TbsSkinButton;
+    btn2: TbsSkinButton;
+    bsknpswrdt1: TbsSkinPasswordEdit;
+    cbb1: TbsSkinComboBox;
     procedure btn2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btn1Click(Sender: TObject);
@@ -273,6 +272,8 @@ begin
   inherited;
   //
   CloseState := True;
+  //Form1.Position Ù–‘…Ë÷√Œ™poScreenCenter
+  self.Position:= poScreenCenter  ;
 end;
 
 end.

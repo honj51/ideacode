@@ -1,6 +1,6 @@
 object HouseStatisticQueryForm: THouseStatisticQueryForm
-  Left = 284
-  Top = 31
+  Left = 239
+  Top = 52
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #25151#28304#26597#35810
@@ -13,6 +13,7 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  PopupMenu = pm1
   OnCreate = FormCreate
   DesignSize = (
     1068
@@ -427,12 +428,12 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 92
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-29'
+    Text = '2009-09-30'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40085.513135694440000000
+    Date = 40086.694855856490000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -476,12 +477,12 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     Width = 88
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-29'
+    Text = '2009-09-30'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40085.513135694440000000
+    Date = 40086.694855856490000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -2015,5 +2016,17 @@ object HouseStatisticQueryForm: THouseStatisticQueryForm
     BorderIcons = [biSystemMenu]
     Left = 916
     Top = 29
+  end
+  object pm1: TPopupMenu
+    Left = 821
+    Top = 35
+    object N1: TMenuItem
+      Caption = #25171#21360'(&Z)'
+      OnClick = btn5Click
+    end
+    object N2: TMenuItem
+      Caption = #23548#20986'(&Y)'
+      OnClick = btn2Click
+    end
   end
 end

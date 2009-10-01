@@ -15,6 +15,7 @@ var
   gs_login_password:string;
   gs_login_qxid:string;
   function CheckPermission(pc:String;id:Integer):Boolean;
+  function CheckFatherPermission(strings:String;id:Integer):Boolean;
   function IsUsingAccess():Boolean;
   //
 implementation
@@ -34,6 +35,20 @@ implementation
      HDHouseDataModule.qry_Qx.Filtered:=true;
      strings:=HDHouseDataModule.qry_Qx.FieldByName(pc).AsString;
      str:=copy(strings,id+1,1);
+     if(str='2')then
+     begin
+        Result := True;
+     end
+     else
+     begin
+        Result := false;
+     end;
+     Exit;
+   end;
+   function CheckFatherPermission(strings:String;id:Integer):Boolean;
+   var str :string;
+   begin
+     str:=copy(strings,id,1);
      if(str='2')then
      begin
         Result := True;

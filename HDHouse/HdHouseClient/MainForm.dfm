@@ -1,6 +1,6 @@
 object formMain: TformMain
-  Left = 363
-  Top = 137
+  Left = 279
+  Top = 100
   Anchors = [akLeft, akTop, akRight, akBottom]
   BiDiMode = bdLeftToRight
   BorderIcons = []
@@ -18,6 +18,7 @@ object formMain: TformMain
   ParentBiDiMode = False
   Scaled = False
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -26,7 +27,7 @@ object formMain: TformMain
     Top = 90
     Width = 1037
     Height = 511
-    ActivePage = bskntbsht2
+    ActivePage = bskntbsht5
     Align = alClient
     BiDiMode = bdRightToLeft
     Font.Charset = DEFAULT_CHARSET
@@ -124,7 +125,7 @@ object formMain: TformMain
           inherited bvl1: TBevel
             Left = -2
             Top = 56
-            Width = 818
+            Width = 918
           end
           inherited bsSkinButton2: TbsSkinButton
             OnClick = frmhslst1bsSkinButton2Click
@@ -164,7 +165,6 @@ object formMain: TformMain
           inherited bsknscrlbrHouseListDown: TbsSkinScrollBar
             Top = 184
             Width = 913
-            Visible = False
           end
           inherited bsknscrlbrHouseRight: TbsSkinScrollBar
             Left = 895
@@ -202,8 +202,8 @@ object formMain: TformMain
           end
         end
         inherited pmHouse: TPopupMenu
-          Left = 715
-          Top = 44
+          Left = 698
+          Top = 56
           inherited MenuItem2: TMenuItem
             OnClick = frmhslst1MenuItem2Click
           end
@@ -236,9 +236,9 @@ object formMain: TformMain
       DesignSize = (
         915
         511)
-      object btn22: TbsSkinButton
-        Left = 69
-        Top = 90
+      object btnfygl1: TbsSkinButton
+        Left = 200
+        Top = 89
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -268,11 +268,11 @@ object formMain: TformMain
         Caption = #25151#28304#31649#29702
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn22Click
+        OnClick = btnfygl1Click
       end
-      object btn23: TbsSkinButton
-        Left = 207
-        Top = 90
+      object btnfygl3: TbsSkinButton
+        Left = 397
+        Top = 88
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -302,11 +302,11 @@ object formMain: TformMain
         Caption = #25104#20132#31649#29702
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn23Click
+        OnClick = btnfygl3Click
       end
-      object btn24: TbsSkinButton
-        Left = 207
-        Top = 250
+      object btnfygl4: TbsSkinButton
+        Left = 397
+        Top = 248
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -336,11 +336,11 @@ object formMain: TformMain
         Caption = #38376#24215#25307#36148
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn24Click
+        OnClick = btnfygl4Click
       end
-      object btn25: TbsSkinButton
-        Left = 69
-        Top = 250
+      object btnfygl2: TbsSkinButton
+        Left = 202
+        Top = 248
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -370,7 +370,7 @@ object formMain: TformMain
         Caption = #25151#28304#36319#36827
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn25Click
+        OnClick = btnfygl2Click
       end
     end
     object bskntbsht4: TbsSkinTabSheet
@@ -379,14 +379,14 @@ object formMain: TformMain
       DesignSize = (
         915
         511)
-      object btn18: TbsSkinButton
-        Left = 69
-        Top = 90
+      object btnkhgl1: TbsSkinButton
+        Left = 209
+        Top = 98
         Width = 100
         Height = 30
         HintImageIndex = 0
         Anchors = []
-        TabOrder = 1
+        TabOrder = 0
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -411,16 +411,16 @@ object formMain: TformMain
         Caption = #23458#25143#31649#29702
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn18Click
+        OnClick = btnkhgl1Click
       end
-      object btn19: TbsSkinButton
-        Left = 207
-        Top = 90
+      object btnkhgl3: TbsSkinButton
+        Left = 422
+        Top = 99
         Width = 100
         Height = 30
         HintImageIndex = 0
         Anchors = []
-        TabOrder = 0
+        TabOrder = 1
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -445,16 +445,16 @@ object formMain: TformMain
         Caption = #31614#32422#26597#35810
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn19Click
+        OnClick = btnkhgl3Click
       end
-      object btn20: TbsSkinButton
-        Left = 207
-        Top = 250
+      object btnkhgl2: TbsSkinButton
+        Left = 422
+        Top = 259
         Width = 100
         Height = 30
         HintImageIndex = 0
         Anchors = []
-        TabOrder = 2
+        TabOrder = 3
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -479,16 +479,16 @@ object formMain: TformMain
         Caption = #23458#25143#36319#36827
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn20Click
+        OnClick = btnkhgl2Click
       end
-      object btn21: TbsSkinButton
-        Left = 69
-        Top = 250
+      object btnkhgl4: TbsSkinButton
+        Left = 209
+        Top = 258
         Width = 100
         Height = 30
         HintImageIndex = 0
         Anchors = []
-        TabOrder = 3
+        TabOrder = 2
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'button'
         DefaultFont.Charset = DEFAULT_CHARSET
@@ -513,7 +513,7 @@ object formMain: TformMain
         Caption = #26469#30005#35760#24405
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn21Click
+        OnClick = btnkhgl4Click
       end
     end
     object bskntbsht3: TbsSkinTabSheet
@@ -522,9 +522,43 @@ object formMain: TformMain
       DesignSize = (
         915
         511)
-      object btn26: TbsSkinButton
-        Left = 218
-        Top = 176
+      object btnnbgl3: TbsSkinButton
+        Left = 402
+        Top = 178
+        Width = 100
+        Height = 30
+        HintImageIndex = 0
+        Anchors = []
+        TabOrder = 3
+        SkinData = HDHouseDataModule.bsSkinData1
+        SkinDataName = 'button'
+        DefaultFont.Charset = DEFAULT_CHARSET
+        DefaultFont.Color = clWindowText
+        DefaultFont.Height = 14
+        DefaultFont.Name = 'Arial'
+        DefaultFont.Style = []
+        DefaultWidth = 100
+        DefaultHeight = 30
+        UseSkinFont = True
+        ImageIndex = -1
+        AlwaysShowLayeredFrame = False
+        UseSkinSize = True
+        UseSkinFontColor = True
+        RepeatMode = False
+        RepeatInterval = 100
+        AllowAllUp = False
+        TabStop = True
+        CanFocused = True
+        Down = False
+        GroupIndex = 0
+        Caption = #25552#25104#26126#32454
+        NumGlyphs = 1
+        Spacing = 1
+        OnClick = btnnbgl3Click
+      end
+      object btnnbgl2: TbsSkinButton
+        Left = 181
+        Top = 174
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -551,48 +585,14 @@ object formMain: TformMain
         CanFocused = True
         Down = False
         GroupIndex = 0
-        Caption = #25552#25104#26126#32454
-        NumGlyphs = 1
-        Spacing = 1
-        OnClick = btn26Click
-      end
-      object btn27: TbsSkinButton
-        Left = 78
-        Top = 176
-        Width = 100
-        Height = 30
-        HintImageIndex = 0
-        Anchors = []
-        TabOrder = 3
-        SkinData = HDHouseDataModule.bsSkinData1
-        SkinDataName = 'button'
-        DefaultFont.Charset = DEFAULT_CHARSET
-        DefaultFont.Color = clWindowText
-        DefaultFont.Height = 14
-        DefaultFont.Name = 'Arial'
-        DefaultFont.Style = []
-        DefaultWidth = 100
-        DefaultHeight = 30
-        UseSkinFont = True
-        ImageIndex = -1
-        AlwaysShowLayeredFrame = False
-        UseSkinSize = True
-        UseSkinFontColor = True
-        RepeatMode = False
-        RepeatInterval = 100
-        AllowAllUp = False
-        TabStop = True
-        CanFocused = True
-        Down = False
-        GroupIndex = 0
         Caption = #25552#37266#31649#29702
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn27Click
+        OnClick = btnnbgl2Click
       end
-      object btn28: TbsSkinButton
-        Left = 78
-        Top = 93
+      object btnnbgl1: TbsSkinButton
+        Left = 181
+        Top = 91
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -622,11 +622,11 @@ object formMain: TformMain
         Caption = #25151#28304#26597#35810
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn28Click
+        OnClick = btnnbgl1Click
       end
-      object btn29: TbsSkinButton
-        Left = 217
-        Top = 94
+      object btnnbgl5: TbsSkinButton
+        Left = 401
+        Top = 96
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -656,11 +656,11 @@ object formMain: TformMain
         Caption = #23458#28304#26597#35810
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn29Click
+        OnClick = btnnbgl5Click
       end
-      object btn30: TbsSkinButton
-        Left = 78
-        Top = 252
+      object btnnbgl4: TbsSkinButton
+        Left = 181
+        Top = 250
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -690,11 +690,11 @@ object formMain: TformMain
         Caption = #25552#25104#24635#27719
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn30Click
+        OnClick = btnnbgl4Click
       end
-      object btn31: TbsSkinButton
-        Left = 219
-        Top = 253
+      object btnnbgl6: TbsSkinButton
+        Left = 402
+        Top = 255
         Width = 100
         Height = 30
         HintImageIndex = 0
@@ -724,7 +724,7 @@ object formMain: TformMain
         Caption = #32508#21512#32479#35745
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn31Click
+        OnClick = btnnbgl6Click
       end
     end
     object bskntbsht5: TbsSkinTabSheet
@@ -733,9 +733,9 @@ object formMain: TformMain
       DesignSize = (
         915
         511)
-      object btn8: TbsSkinButton
-        Left = 92
-        Top = 86
+      object btnxtsz1: TbsSkinButton
+        Left = 171
+        Top = 89
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -765,11 +765,11 @@ object formMain: TformMain
         Caption = #20844#21496#20449#24687#35774#32622
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn8Click
+        OnClick = btnxtsz1Click
       end
-      object btn9: TbsSkinButton
-        Left = 246
-        Top = 88
+      object btnxtsz4: TbsSkinButton
+        Left = 400
+        Top = 92
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -799,11 +799,11 @@ object formMain: TformMain
         Caption = #25968#25454#24211#32500#25252
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn9Click
+        OnClick = btnxtsz4Click
       end
-      object btn10: TbsSkinButton
-        Left = 92
-        Top = 139
+      object btnxtsz7: TbsSkinButton
+        Left = 171
+        Top = 142
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -833,11 +833,11 @@ object formMain: TformMain
         Caption = #21592#24037#31649#29702
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn10Click
+        OnClick = btnxtsz7Click
       end
-      object btn11: TbsSkinButton
-        Left = 246
-        Top = 140
+      object btnxtsz5: TbsSkinButton
+        Left = 400
+        Top = 144
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -867,11 +867,11 @@ object formMain: TformMain
         Caption = #21021#22987#21270#25968#25454
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn11Click
+        OnClick = btnxtsz5Click
       end
-      object btn12: TbsSkinButton
-        Left = 92
-        Top = 189
+      object btnxtsz2: TbsSkinButton
+        Left = 171
+        Top = 192
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -901,11 +901,11 @@ object formMain: TformMain
         Caption = #25805#20316#26435#38480#35774#32622
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn12Click
+        OnClick = btnxtsz2Click
       end
-      object btn13: TbsSkinButton
-        Left = 245
-        Top = 193
+      object btnxtsz6: TbsSkinButton
+        Left = 399
+        Top = 197
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -935,11 +935,11 @@ object formMain: TformMain
         Caption = #21442#25968#20449#24687#35774#32622
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn13Click
+        OnClick = btnxtsz6Click
       end
-      object btn14: TbsSkinButton
-        Left = 92
-        Top = 244
+      object btnxtsz3: TbsSkinButton
+        Left = 171
+        Top = 247
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -969,11 +969,11 @@ object formMain: TformMain
         Caption = #20462#25913#24403#21069#23494#30721
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn14Click
+        OnClick = btnxtsz3Click
       end
-      object btn15: TbsSkinButton
-        Left = 246
-        Top = 247
+      object btnxtsz8: TbsSkinButton
+        Left = 400
+        Top = 251
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -1003,11 +1003,11 @@ object formMain: TformMain
         Caption = #31995#32479#25805#20316#26085#24535
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn15Click
+        OnClick = btnxtsz8Click
       end
-      object btn16: TbsSkinButton
-        Left = 92
-        Top = 300
+      object btnxtsz9: TbsSkinButton
+        Left = 171
+        Top = 303
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -1037,11 +1037,11 @@ object formMain: TformMain
         Caption = #21512#21516#26679#26412#35774#32622
         NumGlyphs = 1
         Spacing = 1
-        OnClick = btn16Click
+        OnClick = btnxtsz9Click
       end
       object btn17: TbsSkinButton
-        Left = 246
-        Top = 301
+        Left = 400
+        Top = 305
         Width = 100
         Height = 40
         HintImageIndex = 0
@@ -2073,7 +2073,7 @@ object formMain: TformMain
   end
   object bsSkinFrame1: TbsSkinFrame
     DrawBackground = True
-    Left = 973
-    Top = 228
+    Left = 976
+    Top = 148
   end
 end
