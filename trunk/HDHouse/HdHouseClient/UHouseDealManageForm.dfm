@@ -21,7 +21,7 @@ object HouseDealManageForm: THouseDealManageForm
     Top = 0
     Width = 876
     Height = 580
-    ActivePage = bskntbsht2
+    ActivePage = bskntbsht1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBtnText

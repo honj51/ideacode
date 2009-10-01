@@ -1,6 +1,6 @@
 object NotificationManageForm: TNotificationManageForm
-  Left = 351
-  Top = 139
+  Left = 272
+  Top = 110
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #25552#37266#31649#29702
@@ -13,6 +13,7 @@ object NotificationManageForm: TNotificationManageForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  PopupMenu = pm1
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
   PixelsPerInch = 96
@@ -1014,5 +1015,29 @@ object NotificationManageForm: TNotificationManageForm
       'select * from zdtx')
     Left = 728
     Top = 17
+  end
+  object pm1: TPopupMenu
+    Left = 840
+    Top = 29
+    object V1: TMenuItem
+      Caption = #28155#21152'(&V)'
+      OnClick = dtprtbrvw1btn1Click
+    end
+    object X1: TMenuItem
+      Caption = #20462#25913'(&W)'
+      OnClick = dtprtbrvw1btn2Click
+    end
+    object Y1: TMenuItem
+      Caption = #21024#38500'(&X)'
+      OnClick = dtprtbrvw1btn3Click
+    end
+    object N1: TMenuItem
+      Caption = #23548#20986'(&Y)'
+      OnClick = dtprtbrvw1btn4Click
+    end
+    object N2: TMenuItem
+      Caption = #25171#21360'(&Z)'
+      OnClick = dtprtbrvw1btn5Click
+    end
   end
 end

@@ -13,6 +13,7 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  PopupMenu = pm1
   DesignSize = (
     938
     563)
@@ -167,12 +168,12 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-29'
+    Text = '2009-09-30'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40085.649926747680000000
+    Date = 40086.703201851850000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -216,12 +217,12 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     Width = 80
     Height = 18
     EditMask = '!0000/99/99;1; '
-    Text = '2009-09-29'
+    Text = '2009-09-30'
     AlphaBlend = False
     AlphaBlendAnimation = False
     AlphaBlendValue = 0
     UseSkinFont = True
-    Date = 40085.649926747680000000
+    Date = 40086.703201851850000000
     TodayDefault = True
     CalendarWidth = 200
     CalendarHeight = 150
@@ -1550,5 +1551,17 @@ object SalesCommissionSumForm: TSalesCommissionSumForm
     SuppressPageHeadersFooters = False
     Left = 623
     Top = 26
+  end
+  object pm1: TPopupMenu
+    Left = 785
+    Top = 24
+    object N1: TMenuItem
+      Caption = #25171#21360'(&Z)'
+      OnClick = btn5Click
+    end
+    object N2: TMenuItem
+      Caption = #23548#20986'(&Y)'
+      OnClick = btn2Click
+    end
   end
 end

@@ -7,7 +7,7 @@ uses
   Dialogs, bsSkinCtrls, bsSkinGrids, bsDBGrids, bsSkinBoxCtrls, StdCtrls,
   Mask, UCustomerSecureInfoView, UHouseDetailInfoView, ComCtrls,
   bsSkinTabs, ExtCtrls, ADODB, DB, BusinessSkinForm, frxClass, frxDBSet,
-  frxExportXML;
+  frxExportXML, Menus;
 
 type
   TSalesCommissionDetailsForm = class(TForm)
@@ -43,6 +43,9 @@ type
     frxrprt1: TfrxReport;
     frxDBDatasettcmx: TfrxDBDataset;
     qrytcxx: TADOQuery;
+    pm1: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
     procedure doQuery;
     procedure btn4Click(Sender: TObject);
     procedure bsknchckrdbx1Click(Sender: TObject);

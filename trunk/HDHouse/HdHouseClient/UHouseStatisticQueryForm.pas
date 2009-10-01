@@ -8,7 +8,7 @@ uses
   UHouseDetailInfoView, UCustomerSecureInfoView, ComCtrls, bsSkinTabs,
   bsdbctrls, bsSkinGrids, bsDBGrids, DB, ADODB, Grids, DBGrids, RpDefine,
   RpRave, frxClass, frxDBSet, frxExportXLS, XPMan, frxExportXML, GridsEh,
-  DBGridEh, BusinessSkinForm;
+  DBGridEh, BusinessSkinForm, Menus;
 
 type
   THouseStatisticQueryForm = class(TForm)
@@ -51,6 +51,9 @@ type
     frxXMLExport1: TfrxXMLExport;
     DBGridEh1: TDBGridEh;
     bsbsnsknfrm1: TbsBusinessSkinForm;
+    pm1: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
     procedure btn4Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btn1Click(Sender: TObject);
