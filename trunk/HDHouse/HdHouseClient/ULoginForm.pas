@@ -270,6 +270,11 @@ end;
 procedure TLoginForm.FormCreate(Sender: TObject);
 begin
   inherited;
+  if not IsLicenseValid then
+  begin
+    Application.MessageBox('试用期已过，请联系互动科技 http://www.hudongsoft.cn。', '试用', MB_OK + MB_ICONSTOP);
+    Application.Terminate;
+  end;
   //
   CloseState := True;
   //Form1.Position属性设置为poScreenCenter

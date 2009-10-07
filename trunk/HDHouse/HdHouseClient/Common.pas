@@ -17,9 +17,22 @@ var
   function CheckPermission(pc:String;id:Integer):Boolean;
   function CheckFatherPermission(strings:String;id:Integer):Boolean;
   function IsUsingAccess():Boolean;
+  function IsLicenseValid():Boolean;
   //
 implementation
    uses UHDHouseDataModule;
+   function IsLicenseValid():Boolean;
+   var
+     EndDate:TDateTime;
+   begin
+     EndDate := StrToDate('2009-11-15');
+     Result := True;
+     if (Now - EndDate) > 0 then
+     begin
+       Result := False;
+     end;
+     Exit;
+   end;
    function IsUsingAccess():Boolean;
    begin
      Result := False;
