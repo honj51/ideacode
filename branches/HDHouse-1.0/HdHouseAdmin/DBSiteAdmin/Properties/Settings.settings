@@ -1,0 +1,60 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DBSiteAdmin.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Publication" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HdHouse-Pub</Value>
+    </Setting>
+    <Setting Name="Subscriber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="Publisher" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Rd02</Value>
+    </Setting>
+    <Setting Name="PublicationDatabase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HdHouse</Value>
+    </Setting>
+    <Setting Name="SubscriptionDatabase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HdHouseLocal</Value>
+    </Setting>
+    <Setting Name="BusinessLogic" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SyncWhenConnectedInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="HostName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Rd03</Value>
+    </Setting>
+    <Setting Name="WebSynchronizationUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://rd02/hdhouse/websync/replisapi.dll</Value>
+    </Setting>
+    <Setting Name="OutputFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HdHouseSync.log</Value>
+    </Setting>
+    <Setting Name="OutputVerboseLevel" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="DBSiteAdmin_dbCenterWebService_DBCenterWebService" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">http://localhost:1472/DBCenterAdmin/DBCenterWebService.asmx</Value>
+    </Setting>
+    <Setting Name="SqlUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SqlUserPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SqlLoginMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="InternetPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="InternetLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SyncWhenConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
