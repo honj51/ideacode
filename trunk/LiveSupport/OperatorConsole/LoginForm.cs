@@ -137,7 +137,7 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                loginStatusChange(true, e.Message);
+                loginStatusChange(true,"Õ¯¬Á÷–∂œ,«Î…‘∫Û‘Ÿ ‘..");
             }
         }
         /// <summary>

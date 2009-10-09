@@ -68,6 +68,7 @@ namespace LiveSupport.OperatorConsole
         event EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChanged;
         event EventHandler<DataLoadCompletedEventArgs> DataLoadCompleted;
         event EventHandler<AsyncCallCompletedEventArg> AsyncCallCompleted;
+        event EventHandler<OperatorForceLogoffEventArgs> OperatorForceLogoff;
         #endregion
 
         #region 公开属性
