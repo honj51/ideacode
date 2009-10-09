@@ -52,5 +52,12 @@ namespace OperatorServiceInterface
         public event EventHandler<VisitorLeaveEventArgs> VisitorLeave;
 
         #endregion
+
+        #region IOperatorServerEvents 成员
+
+
+        public event EventHandler<OperatorForceLogoffEventArgs> OperatorForceLogoff;
+
+        #endregion
     }
 }
