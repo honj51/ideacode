@@ -442,11 +442,6 @@ namespace LiveSupport.OperatorConsole
         #region IOperatorServiceAgent 成员
 
 
-        void IOperatorServiceAgent.GetQuickResponse()
-        {
-            throw new NotImplementedException();
-        }
-
         void IOperatorServiceAgent.GetQuickResponseByDomainName(string domainName)
         {
             throw new NotImplementedException();
@@ -500,6 +495,23 @@ namespace LiveSupport.OperatorConsole
         void IOperatorServiceAgent.GetLeaveWordByDomainName(string domainName)
         {
             throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region IOperatorServiceAgent 成员
+
+
+        public List<string> DomainNames
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         #endregion
