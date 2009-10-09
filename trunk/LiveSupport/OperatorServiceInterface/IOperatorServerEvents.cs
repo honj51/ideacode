@@ -10,7 +10,8 @@ namespace OperatorServiceInterface
     {
         // Operator events
         event EventHandler<OperatorStatusChangeEventArgs> OperatorStatusChanged; // 客服状态改变
-        
+        event EventHandler<OperatorForceLogoffEventArgs> OperatorForceLogoff;
+
         // Chat events
         event EventHandler<VisitorChatRequestEventArgs> VisitorChatRequest; //访客对话请求
         event EventHandler<OperatorChatRequestEventArgs> OperatorChatRequest; //客服对话邀请
@@ -29,6 +30,12 @@ namespace OperatorServiceInterface
         // Visitor event
         event EventHandler<NewVisitingEventArgs> NewVisiting; // 新访问,访客可能已经存在
         event EventHandler<VisitorLeaveEventArgs> VisitorLeave; // 访客离开 
+        
+    }
+
+    [Serializable]
+    public class OperatorForceLogoffEventArgs : EventArgs
+    {
     }
 
     [Serializable]
