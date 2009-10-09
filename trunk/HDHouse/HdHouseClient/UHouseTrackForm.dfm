@@ -1,6 +1,6 @@
 object HouseTrackForm: THouseTrackForm
-  Left = 295
-  Top = 31
+  Left = 329
+  Top = 93
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #25151#28304#36319#36827
@@ -12,7 +12,10 @@ object HouseTrackForm: THouseTrackForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poDefault
+  Visible = True
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13

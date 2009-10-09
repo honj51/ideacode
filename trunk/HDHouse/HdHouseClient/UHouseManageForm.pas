@@ -26,7 +26,6 @@ type
     qryfczy: TADOQuery;
     dsfczy: TDataSource;
     qrykhzy: TADOQuery;
-    bsbsnsknfrm1: TbsBusinessSkinForm;
     bsbsnsknfrm2: TbsBusinessSkinForm;
     frxReportfczy: TfrxReport;
     frxXLSExportfczy: TfrxXLSExport;

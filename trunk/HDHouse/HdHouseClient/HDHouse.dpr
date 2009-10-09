@@ -70,8 +70,10 @@ uses
   UContractQueryForm in 'UContractQueryForm.pas' {ContractQueryForm},
   UCustomerQueryForm in 'UCustomerQueryForm.pas' {CustomerQueryForm},
   HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
-  CnDebug in '..\..\Program Files\Borland\Delphi7\Experts\CnWizards\Source\CnDebug.pas',
-  UformLock in 'UformLock.pas' {formLock};
+  CnDebug in '..\..\..\Program Files\Borland\Delphi7\Experts\CnWizards\Source\CnDebug.pas',
+  UformLock in 'UformLock.pas' {formLock},
+  UMainForm2 in 'UMainForm2.pas' {MainForm2},
+  UMortgageCalculatorForm in 'UMortgageCalculatorForm.pas' {MortgageCalculatorForm};
 
 {$R *.res}
 
@@ -81,56 +83,9 @@ begin
   CnDebugger.LogEnter('窗体创建计时');
   Application.Title := '互动房产中介管理';
   Application.CreateForm(THDHouseDataModule, HDHouseDataModule);
-  Application.CreateForm(TLoginForm, LoginForm);
-  Application.CreateForm(TformLock, formLock);
-  CnDebugger.LogMsg('LoginForm created');
-  {
-  Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);
-  Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
-  Application.CreateForm(TOperatePermissionSettingForm, OperatePermissionSettingForm);
-  Application.CreateForm(TChangePasswordForm, ChangePasswordForm);
-  Application.CreateForm(TContractSampleSettingForm, ContractSampleSettingForm);
-  Application.CreateForm(TDatabaseMantainForm, DatabaseMantainForm);
-  Application.CreateForm(TDatabaseInitialForm, DatabaseInitialForm);
-  Application.CreateForm(TParameterSettingForm, ParameterSettingForm);
-  Application.CreateForm(TSystemOperationLogForm, SystemOperationLogForm);
-  Application.CreateForm(TAboutForm, AboutForm);
-  Application.CreateForm(TParametersSettingForm, ParametersSettingForm);
-  Application.CreateForm(TEmployeeManageForm, EmployeeManageForm);
-  Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
-  Application.CreateForm(TEmployeeInfoForm, EmployeeInfoForm);
-  Application.CreateForm(TPermissionGroupSettingForm, PermissionGroupSettingForm);
-  Application.CreateForm(TAddContractSampleForm, AddContractSampleForm);
-  Application.CreateForm(THouseStatisticQueryForm, HouseStatisticQueryForm);
-  Application.CreateForm(TNotificationInfoForm, NotificationInfoForm);
-  Application.CreateForm(TNotificationManageForm, NotificationManageForm);
-  Application.CreateForm(TSalesCommissionDetailsForm, SalesCommissionDetailsForm);
-  Application.CreateForm(TSalesCommissionSumForm, SalesCommissionSumForm);
-  Application.CreateForm(TStatisticForm, StatisticForm);
-  Application.CreateForm(TCustomerManageForm, CustomerManageForm);
-  Application.CreateForm(TCustomerDetailsForm, CustomerDetailsForm);
-  Application.CreateForm(TCustomerTrackForm, CustomerTrackForm);
-  Application.CreateForm(TContactRecordForm, ContactRecordForm);
-  Application.CreateForm(TContactRecordDetailsForm, ContactRecordDetailsForm);
-  Application.CreateForm(TTrackQueryForm, TrackQueryForm);
-  Application.CreateForm(THouseManageForm, HouseManageForm);
-  Application.CreateForm(TBaseFacilitiesForm, BaseFacilitiesForm);
-  Application.CreateForm(TOtherFacilitiesForm, OtherFacilitiesForm);
-  Application.CreateForm(TRealtorListForm, RealtorListForm);
-  Application.CreateForm(THouseDetailsForm, HouseDetailsForm);
-  Application.CreateForm(TContractInfo, ContractInfo);
-  Application.CreateForm(TDivideIntoInfo, DivideIntoInfo);
-  Application.CreateForm(TCustomerListForm, CustomerListForm);
-  Application.CreateForm(THouseDealManageForm, HouseDealManageForm);
-  Application.CreateForm(THousePosterForm, HousePosterForm);
-  Application.CreateForm(THouseTrackForm, HouseTrackForm);
-  Application.CreateForm(THouseQueryForm, HouseQueryForm);
-  Application.CreateForm(THouseTrackInfoForm, HouseTrackInfoForm);
-  Application.CreateForm(TContractsFile, ContractsFile);
-  Application.CreateForm(TContractQueryForm, ContractQueryForm);
-  Application.CreateForm(TCustomerQueryForm, CustomerQueryForm);
-  }
-  CnDebugger.LogMsg('Other forms created');
-  CnDebugger.LogLeave('窗体创建计时');
+  if CheckPassword then
+    Application.CreateForm(TMainForm2, MainForm2);
+  //Application.CreateForm(TLoginForm, LoginForm);
+  //Application.CreateForm(TformLock, formLock);
   Application.Run;
 end.

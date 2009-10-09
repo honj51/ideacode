@@ -38,9 +38,10 @@ type
 var
   LoginForm: TLoginForm;
   LoginNum: integer;
+  function CheckPassword():Boolean;
 
 implementation
-uses UHDHouseDataModule, Common, MainForm, CnDebug,
+uses UHDHouseDataModule, Common, MainForm,
   UCompanyInfoSettingForm, UOperatePermissionSettingForm,
   UChangePasswordForm, UContractSampleSettingForm, UDatabaseMantainForm,
   UDatabaseInitialForm, UParameterSettingForm, USystemOperationLogForm,
@@ -55,13 +56,23 @@ uses UHDHouseDataModule, Common, MainForm, CnDebug,
   UHouseDetailsForm, UContractInfo, UDivideIntoInfo, UCustomerListForm,
   UHouseDealManageForm, UHousePosterForm, UHouseTrackForm, UHouseQueryForm,
   UHouseTrackInfoForm, UContractsFile, UContractQueryForm,
-  UCustomerQueryForm, UParametersDataModule;
+  UCustomerQueryForm, UParametersDataModule, UMainForm2;
 {$R *.dfm}
+
+function CheckPassword():Boolean;
+begin
+  with TLoginForm.Create(Application) do
+ try
+   Result := ShowModal=mrOK;
+ finally
+   Free;
+ end;
+end;
 procedure TLoginForm.CreateForms();
 begin
   Application.CreateForm(TParametersDataModule, ParametersDataModule);
   Application.CreateForm(TformMain, formMain);
-  CnDebugger.LogMsg('30%');
+  //CnDebugger.LogMsg('30%');
   bsSkinGauge1.Value := 30;
   Self.Refresh;
   Application.CreateForm(TCompanyInfoSettingForm, CompanyInfoSettingForm);
@@ -76,7 +87,7 @@ begin
   Application.CreateForm(TAboutForm, AboutForm);
   Application.CreateForm(TParametersSettingForm, ParametersSettingForm);
   Application.CreateForm(TEmployeeManageForm, EmployeeManageForm);
-    CnDebugger.LogMsg('40%');
+    //CnDebugger.LogMsg('40%');
   bsSkinGauge1.Value := 40;
   Self.Refresh;
   Application.CreateForm(TOperatorInfoForm, OperatorInfoForm);
@@ -87,7 +98,7 @@ begin
   Application.CreateForm(TNotificationInfoForm, NotificationInfoForm);
   Application.CreateForm(TNotificationManageForm, NotificationManageForm);
   Application.CreateForm(TSalesCommissionDetailsForm, SalesCommissionDetailsForm);
-    CnDebugger.LogMsg('50%');
+   // CnDebugger.LogMsg('50%');
   bsSkinGauge1.Value := 50;
   Self.Refresh;
   Application.CreateForm(TSalesCommissionSumForm, SalesCommissionSumForm);
@@ -99,13 +110,13 @@ begin
   Application.CreateForm(TContactRecordDetailsForm, ContactRecordDetailsForm);
   bsSkinGauge1.Value := 60;
   Self.Refresh;
-    CnDebugger.LogMsg('60%');
+    //CnDebugger.LogMsg('60%');
   Application.CreateForm(TTrackQueryForm, TrackQueryForm);
   Application.CreateForm(THouseManageForm, HouseManageForm);
   Application.CreateForm(TBaseFacilitiesForm, BaseFacilitiesForm);
   Application.CreateForm(TOtherFacilitiesForm, OtherFacilitiesForm);
   Application.CreateForm(TRealtorListForm, RealtorListForm);
-  CnDebugger.LogMsg('70%');
+ //CnDebugger.LogMsg('70%');
   bsSkinGauge1.Value := 70;
   Self.Refresh;
   Application.CreateForm(THouseDetailsForm, HouseDetailsForm);
@@ -116,7 +127,7 @@ begin
   Application.CreateForm(THousePosterForm, HousePosterForm);
   bsSkinGauge1.Value := 80;
   Self.Refresh;
-    CnDebugger.LogMsg('80%');
+    //CnDebugger.LogMsg('80%');
   Application.CreateForm(THouseTrackForm, HouseTrackForm);
   Application.CreateForm(THouseQueryForm, HouseQueryForm);
   Application.CreateForm(THouseTrackInfoForm, HouseTrackInfoForm);
@@ -125,7 +136,7 @@ begin
   Application.CreateForm(TCustomerQueryForm, CustomerQueryForm);
   bsSkinGauge1.Value := 90;
   Self.Refresh;
-    CnDebugger.LogMsg('90%');
+    //CnDebugger.LogMsg('90%');
 
 end;  
 procedure TLoginForm.btn2Click(Sender: TObject);
@@ -181,6 +192,7 @@ end;
 procedure TLoginForm.btn1Click(Sender: TObject);
 begin
   inherited;
+  ModalResult := mrCancel;
   //录入检验
   if cbb1.text = '' then
   begin
@@ -230,12 +242,13 @@ begin
         Login := true;
         bsSkinGauge1.Value := 10;
         Self.Refresh;
-        CreateForms;
+        //CreateForms;
 
         Self.Hide;
         //  formMain.state:='show';
-        CnDebugger.LogMsg('dddd');
-        formMain.Show;
+        //CnDebugger.LogMsg('dddd');
+        //MainForm2.Show;
+          ModalResult := mrOk;
       end;
     end
     else
@@ -275,6 +288,7 @@ begin
     Application.MessageBox('试用期已过，请联系互动科技 http://www.hudongsoft.cn。', '试用', MB_OK + MB_ICONSTOP);
     Application.Terminate;
   end;
+
   //
   CloseState := True;
   //Form1.Position属性设置为poScreenCenter
