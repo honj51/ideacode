@@ -262,7 +262,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.zxkefu.cn/download/operatorconsole.msi")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.hudongsoft.cn/download/operatorconsole.msi")]
         public string UpdateUrl {
             get {
                 return ((string)(this["UpdateUrl"]));

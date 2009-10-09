@@ -289,7 +289,22 @@ namespace LiveSupport.OperatorConsole
                        displayStatus();
                        break;
                    case DataLoadEventType.SystemAdvertise:
-                        systemAdvertises=operaterServiceAgent.SystemAdvertise;
+                       {
+                           systemAdvertises = operaterServiceAgent.SystemAdvertise;
+                           foreach (var item in systemAdvertises)
+                           {
+                               if (item.AdvertiseUrl.ToLower().Contains("download.aspx"))
+                               {
+                                   if (MessageBox.Show("客户端已有新版本发布,是否更新", "程序更新", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                   {
+                                       Process.Start("IC.AutoUpdate.exe", "/url" + Properties.Settings.Default.UpdateUrl);
+                                       closedByUser = false;
+                                       Application.Exit();
+                                   }
+
+                               }
+                           }
+                       }
                        break;
                    case DataLoadEventType.LeaveWord:
                        List<LeaveWord> lws = new List<LeaveWord>();
