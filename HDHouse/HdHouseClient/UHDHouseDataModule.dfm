@@ -22,8 +22,16 @@ object HDHouseDataModule: THDHouseDataModule
   object con1: TADOConnection
     Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\HDHouse-2009-09-' +
-      '08\HDHouse\database\hdhouse.mdb;Persist Security Info=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Pr' +
+      'oject\HDHouse\HdHouseClient\database\hdhouse.mdb;Mode=Share Deny' +
+      ' None;Extended Properties="";Persist Security Info=False;Jet OLE' +
+      'DB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Datab' +
+      'ase Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locki' +
+      'ng Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global B' +
+      'ulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:' +
+      'Create System Database=False;Jet OLEDB:Encrypt Database=False;Je' +
+      't OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Wit' +
+      'hout Replica Repair=False;Jet OLEDB:SFP=False'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -11589,7 +11597,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 369
   end
   object qry_ygxx: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11604,7 +11611,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 262
   end
   object qry_del: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     ParamCheck = False
@@ -11620,7 +11626,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 310
   end
   object qry_cs: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11631,7 +11636,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 310
   end
   object qry_ht: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11647,7 +11651,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 358
   end
   object qry_dayjob: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <
@@ -11694,7 +11697,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 270
   end
   object qry_autobak: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11727,6 +11729,7 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 215
   end
   object qryfczy: TADOQuery
+    Active = True
     Connection = con1
     CursorType = ctStatic
     AfterScroll = qryfczyAfterScroll

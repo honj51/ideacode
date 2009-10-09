@@ -1,11 +1,11 @@
 object CustomerManageForm: TCustomerManageForm
-  Left = 280
-  Top = 46
+  Left = 272
+  Top = 80
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #23458#25143#31649#29702
   ClientHeight = 598
-  ClientWidth = 1015
+  ClientWidth = 1066
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,13 +18,13 @@ object CustomerManageForm: TCustomerManageForm
   inline dtprtbrvw1: TDataOperateBarView
     Left = 0
     Top = 0
-    Width = 1015
+    Width = 1066
     Height = 75
     Align = alTop
     AutoScroll = False
     TabOrder = 0
     inherited bskntlbr1: TbsSkinToolBar
-      Width = 1015
+      Width = 1066
       Height = 75
       SkinDataName = 'resizetoolpanel'
       BorderStyle = bvFrame
@@ -50,14 +50,14 @@ object CustomerManageForm: TCustomerManageForm
       end
     end
     inherited bsknfrm1: TbsSkinFrame
-      Left = 680
+      Left = 664
       Top = 18
     end
   end
   object bsknpgcntrlPageC: TbsSkinPageControl
     Left = 0
     Top = 386
-    Width = 1015
+    Width = 1066
     Height = 212
     HelpType = htKeyword
     ActivePage = bskntbsht1
@@ -90,7 +90,7 @@ object CustomerManageForm: TCustomerManageForm
       inline DetailRequirementInfoView1: TDetailRequirementInfoView
         Left = 0
         Top = 0
-        Width = 1013
+        Width = 1064
         Height = 190
         Align = alClient
         AutoScroll = False
@@ -115,96 +115,81 @@ object CustomerManageForm: TCustomerManageForm
             Width = 81
           end
           inherited edt1: TbsSkinDBEdit
-            Text = ''
             ReadOnly = True
             DataField = 'qzjg'
             DataSource = dsKhzy
           end
           inherited edt2: TbsSkinDBEdit
-            Text = ''
             ReadOnly = True
             DataField = 'qgjg'
             DataSource = dsKhzy
           end
           inherited edt3: TbsSkinDBEdit
             Left = 288
-            Text = #26080
             ReadOnly = True
             DataField = 'khzy_qzsm'
             DataSource = dsKhzy
           end
           inherited edt4: TbsSkinDBEdit
             Left = 288
-            Text = #26080
             ReadOnly = True
             DataField = 'khzy_qgsm'
             DataSource = dsKhzy
           end
           inherited edt5: TbsSkinDBEdit
-            Text = #26377#25928#23458#25143
             ReadOnly = True
             DataField = 'khzy_dqzt'
             DataSource = dsKhzy
           end
           inherited edt6: TbsSkinDBEdit
-            Text = #26080
             ReadOnly = True
             DataField = 'khzy_wymc'
             DataSource = dsKhzy
           end
           inherited edt7: TbsSkinDBEdit
-            Text = #30707#26223#23665#21306
             ReadOnly = True
             DataField = 'khzy_qy'
             DataSource = dsKhzy
           end
           inherited edt8: TbsSkinDBEdit
-            Text = '1-3'
             ReadOnly = True
             DataField = 'khzy_wssl'
             DataSource = dsKhzy
           end
           inherited edt9: TbsSkinDBEdit
-            Text = #23567#26446
             ReadOnly = True
             DataField = 'khzy_fwly'
             DataSource = dsKhzy
           end
           inherited edt10: TbsSkinDBEdit
-            Text = #26222#36890#20303#23429
             ReadOnly = True
             DataField = 'khzy_wyyt'
             DataSource = dsKhzy
           end
           inherited edt11: TbsSkinDBEdit
-            Text = #26222#35013
             ReadOnly = True
             DataField = 'khzy_zxcd'
             DataSource = dsKhzy
           end
           inherited edt12: TbsSkinDBEdit
-            Text = '0-100'
             ReadOnly = True
             DataField = 'khzy_mj'
             DataSource = dsKhzy
           end
           inherited edt13: TbsSkinDBEdit
             Left = 368
-            Text = '2000-2008'
             ReadOnly = True
             DataField = 'khzy_nf'
             DataSource = dsKhzy
           end
           inherited edt14: TbsSkinDBEdit
             Left = 368
-            Text = #39640#23618
             ReadOnly = True
             DataField = 'khzy_wylb'
             DataSource = dsKhzy
           end
           inherited edt15: TbsSkinDBEdit
             Left = 368
-            Text = #24179#23618
             ReadOnly = True
             DataField = 'khzy_fx'
             DataSource = dsKhzy
@@ -230,21 +215,18 @@ object CustomerManageForm: TCustomerManageForm
           end
           inherited edt17: TbsSkinDBEdit
             Left = 88
-            Text = #26080
             ReadOnly = True
             DataField = 'khzy_ptss1'
             DataSource = dsKhzy
           end
           inherited edt18: TbsSkinDBEdit
             Left = 88
-            Text = #26080
             ReadOnly = True
             DataField = 'khzy_ptss2'
             DataSource = dsKhzy
           end
           inherited edt19: TbsSkinDBEdit
             Left = 88
-            Text = #26080
             ReadOnly = True
             DataField = 'khzy_jtdz'
             DataSource = dsKhzy
@@ -255,8 +237,6 @@ object CustomerManageForm: TCustomerManageForm
           end
           inherited mmo1: TbsSkinDBMemo
             Left = 88
-            Lines.Strings = (
-              #26080)
             ReadOnly = True
             DataField = 'khzy_xxbz'
             DataSource = dsKhzy
@@ -269,7 +249,7 @@ object CustomerManageForm: TCustomerManageForm
       inline CustomerSecureInfoView1: TCustomerSecureInfoView
         Left = 0
         Top = 0
-        Width = 1013
+        Width = 1064
         Height = 190
         Align = alClient
         AutoScroll = False
@@ -281,32 +261,26 @@ object CustomerManageForm: TCustomerManageForm
         ParentFont = False
         TabOrder = 0
         inherited edtName: TbsSkinDBEdit
-          Text = #23567#24352
           ReadOnly = True
           DataField = 'khzy_yzxm'
           DataSource = dsKhzy
         end
         inherited edtPhone: TbsSkinDBEdit
-          Text = '685976798'
           ReadOnly = True
           DataField = 'khzy_dh'
           DataSource = dsKhzy
         end
         inherited edtHandset: TbsSkinDBEdit
-          Text = '136558996897'
           ReadOnly = True
           DataField = 'khzy_tel'
           DataSource = dsKhzy
         end
         inherited edtAddress: TbsSkinDBEdit
-          Text = #21335#36890#36335'125'#21495'3'#21495#27004'301'
           ReadOnly = True
           DataField = 'khzy_jtwz'
           DataSource = dsKhzy
         end
         inherited mmoDescription: TbsSkinDBMemo
-          Lines.Strings = (
-            #26080)
           ReadOnly = True
           DataField = 'khzy_bmbz'
           DataSource = dsKhzy
@@ -469,17 +443,17 @@ object CustomerManageForm: TCustomerManageForm
   inline cstmrlstvw1: TCustomerListView
     Left = 0
     Top = 75
-    Width = 1015
+    Width = 1066
     Height = 309
     Align = alTop
     Anchors = [akLeft, akTop, akRight, akBottom]
     AutoScroll = False
     TabOrder = 1
     inherited bvl1: TBevel
-      Width = 1015
+      Width = 1066
     end
     inherited bsknpnl1: TbsSkinPanel
-      Width = 1015
+      Width = 1066
       SkinData = HDHouseDataModule.bsSkinData1
       inherited btn1: TbsSkinButtonLabel
         OnClick = cstmrlstvw1btn1Click
@@ -507,10 +481,10 @@ object CustomerManageForm: TCustomerManageForm
       end
     end
     inherited bsknpnl2: TbsSkinPanel
-      Width = 1015
+      Width = 1066
       Height = 266
       inherited bskndbgrd1: TbsSkinDBGrid
-        Width = 994
+        Width = 1045
         Height = 245
         DataSource = dsKhzy
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
@@ -606,16 +580,13 @@ object CustomerManageForm: TCustomerManageForm
       end
       inherited bsknscrlbrCustomerDown: TbsSkinScrollBar
         Top = 246
-        Width = 1013
-        Both = True
+        Width = 1064
         SmallChange = 127
         LargeChange = 127
       end
       inherited bsknscrlbrCustomerRight: TbsSkinScrollBar
-        Left = 995
+        Left = 1046
         Height = 245
-        Visible = True
-        PageSize = 4
         Max = 7
       end
     end
@@ -626,7 +597,6 @@ object CustomerManageForm: TCustomerManageForm
     Top = 17
   end
   object qryKhzy: TADOQuery
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     AfterScroll = qryKhzyAfterScroll
@@ -851,7 +821,7 @@ object CustomerManageForm: TCustomerManageForm
     end
   end
   object pmAutoHouse: TPopupMenu
-    Left = 1032
+    Left = 1016
     Top = 24
     object MenuItem1: TMenuItem
       Caption = '  '#26174#31034#25151#28304#35814#32454#20449#24687'  '

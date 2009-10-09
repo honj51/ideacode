@@ -1,8 +1,8 @@
 object HouseManageForm: THouseManageForm
-  Left = 312
-  Top = 63
+  Left = 317
+  Top = 55
+  AutoScroll = False
   BorderIcons = []
-  BorderStyle = bsDialog
   Caption = #25151#28304#31649#29702
   ClientHeight = 594
   ClientWidth = 941
@@ -13,7 +13,10 @@ object HouseManageForm: THouseManageForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poDefault
+  Visible = True
   PixelsPerInch = 96
   TextHeight = 13
   inline dtprtbrvw1: TDataOperateBarView
@@ -567,58 +570,6 @@ object HouseManageForm: THouseManageForm
     Left = 799
     Top = 45
   end
-  object bsbsnsknfrm1: TbsBusinessSkinForm
-    ClientInActiveEffect = False
-    ClientInActiveEffectType = bsieSemiTransparent
-    DisableSystemMenu = False
-    AlwaysResize = False
-    PositionInMonitor = bspDefault
-    UseFormCursorInNCArea = False
-    MaxMenuItemsInWindow = 0
-    ClientWidth = 0
-    ClientHeight = 0
-    HideCaptionButtons = False
-    AlwaysShowInTray = False
-    LogoBitMapTransparent = False
-    AlwaysMinimizeToTray = False
-    UseSkinFontInMenu = True
-    ShowIcon = False
-    MaximizeOnFullScreen = False
-    AlphaBlend = False
-    AlphaBlendAnimation = False
-    AlphaBlendValue = 200
-    ShowObjectHint = False
-    MenusAlphaBlend = False
-    MenusAlphaBlendAnimation = False
-    MenusAlphaBlendValue = 200
-    DefCaptionFont.Charset = DEFAULT_CHARSET
-    DefCaptionFont.Color = clBtnText
-    DefCaptionFont.Height = 14
-    DefCaptionFont.Name = 'Arial'
-    DefCaptionFont.Style = [fsBold]
-    DefInActiveCaptionFont.Charset = DEFAULT_CHARSET
-    DefInActiveCaptionFont.Color = clBtnShadow
-    DefInActiveCaptionFont.Height = 14
-    DefInActiveCaptionFont.Name = 'Arial'
-    DefInActiveCaptionFont.Style = [fsBold]
-    DefMenuItemHeight = 20
-    DefMenuItemFont.Charset = DEFAULT_CHARSET
-    DefMenuItemFont.Color = clWindowText
-    DefMenuItemFont.Height = 14
-    DefMenuItemFont.Name = 'Arial'
-    DefMenuItemFont.Style = []
-    UseDefaultSysMenu = True
-    SkinData = HDHouseDataModule.bsSkinData1
-    MinHeight = 0
-    MinWidth = 0
-    MaxHeight = 0
-    MaxWidth = 0
-    Magnetic = False
-    MagneticSize = 5
-    BorderIcons = [biSystemMenu]
-    Left = 889
-    Top = 28
-  end
   object bsbsnsknfrm2: TbsBusinessSkinForm
     ClientInActiveEffect = False
     ClientInActiveEffectType = bsieSemiTransparent
@@ -667,7 +618,7 @@ object HouseManageForm: THouseManageForm
     MaxWidth = 0
     Magnetic = False
     MagneticSize = 5
-    BorderIcons = [biSystemMenu]
+    BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
     Left = 800
     Top = 65532
   end

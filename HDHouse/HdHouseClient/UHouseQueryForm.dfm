@@ -1,6 +1,6 @@
 object HouseQueryForm: THouseQueryForm
-  Left = 512
-  Top = 273
+  Left = 357
+  Top = 268
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #25151#28304#26597#35810
