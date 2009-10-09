@@ -97,7 +97,7 @@ namespace LiveSupportInstall
 
                 HttpContext context = HttpContext.Current;
                 string webconfigfile = "";
-                if (!Util.FileExists(webconfigfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Web.config")))
+                if (!LiveSupport.BLL.Utils.Util.FileExists(webconfigfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Web.config")))
                 {
                     return false;
                 }
@@ -165,7 +165,7 @@ namespace LiveSupportInstall
 
         public static bool SystemFolderCheck(string foldername)
         {
-            string physicsPath = Util.GetMapPath(@"..\" + foldername);
+            string physicsPath = LiveSupport.BLL.Utils.Util.GetMapPath(@"..\" + foldername);
             try
             {
                 using (FileStream fs = new FileStream(physicsPath + "\\a.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -218,7 +218,7 @@ namespace LiveSupportInstall
         /// <returns></returns>
         public static bool SystemFileCheck(string filename)
         {
-            filename = Util.GetMapPath(@"..\" + filename);
+            filename = LiveSupport.BLL.Utils.Util.GetMapPath(@"..\" + filename);
             try
             {
                 if (filename.IndexOf("systemfile.aspx") == -1 && !File.Exists(filename))
