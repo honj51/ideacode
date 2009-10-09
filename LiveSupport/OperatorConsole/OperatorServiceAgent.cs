@@ -400,8 +400,8 @@ namespace LiveSupport.OperatorConsole
 
                     socketHandler = new SocketHandler();
                     IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
-                    //socket = socketHandler.Connect(entry.AddressList[0].ToString());
-                    socket = socketHandler.Connect("127.0.0.1");
+                    socket = socketHandler.Connect(entry.AddressList[0].ToString());
+                    //socket = socketHandler.Connect("127.0.0.1");
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
                     socketHandler.Exception += new EventHandler<ExceptionEventArgs>(socketHandler_Exception);
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));

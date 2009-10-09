@@ -137,7 +137,13 @@ namespace LiveSupport.OperatorConsole
             }
             else
             {
-                loginStatusChange(true,"网络中断,请稍后再试..");
+                if (string.IsNullOrEmpty(e.Message))
+                {
+                    loginStatusChange(true, "网络中断,请稍后再试..");
+                }
+                else
+                    loginStatusChange(true, e.Message);
+                
             }
         }
         /// <summary>
