@@ -84,6 +84,7 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + DateTime.Now.ToString();
             initForm();
 
             messagebeginDateTimePicker.MaxDate = DateTime.Now;
@@ -134,6 +135,7 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.VisitorChatRequest += new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
                 operaterServiceAgent.DataLoadCompleted += new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
                 operaterServiceAgent.AsyncCallCompleted += new EventHandler<AsyncCallCompletedEventArg>(operaterServiceAgent_AsyncCallCompleted);
+                operaterServiceAgent.OperatorForceLogoff += new EventHandler<OperatorServiceInterface.OperatorForceLogoffEventArgs>(operaterServiceAgent_OperatorForceLogoff);
             }
             else
             {
@@ -144,17 +146,17 @@ namespace LiveSupport.OperatorConsole
                 operaterServiceAgent.VisitorChatRequest -= new EventHandler<OperatorServiceInterface.VisitorChatRequestEventArgs>(operaterServiceAgent_VisitorChatRequest);
                 operaterServiceAgent.DataLoadCompleted -= new EventHandler<DataLoadCompletedEventArgs>(operaterServiceAgent_DataLoadCompleted);
                 operaterServiceAgent.AsyncCallCompleted -= new EventHandler<AsyncCallCompletedEventArg>(operaterServiceAgent_AsyncCallCompleted);
-                operaterServiceAgent.OperatorForceLogoff += new EventHandler<OperatorServiceInterface.OperatorForceLogoffEventArgs>(operaterServiceAgent_OperatorForceLogoff);
+                operaterServiceAgent.OperatorForceLogoff -= new EventHandler<OperatorServiceInterface.OperatorForceLogoffEventArgs>(operaterServiceAgent_OperatorForceLogoff);
             }
         }
 
         void operaterServiceAgent_OperatorForceLogoff(object sender, OperatorServiceInterface.OperatorForceLogoffEventArgs e)
         {
             MessageBox.Show("此账号在别处登录", "账号异常", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                
-                closedByUser = false;
-                shutdown();
-                this.Close();
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
+            {
+                restartApp(string.Empty);
+            }), e);
             
         }
 
