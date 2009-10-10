@@ -399,9 +399,16 @@ namespace LiveSupport.OperatorConsole
                     ws.AuthenticationHeaderValue = h;
 
                     socketHandler = new SocketHandler();
-                    IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
-                    socket = socketHandler.Connect(entry.AddressList[0].ToString());
-                    //socket = socketHandler.Connect("127.0.0.1");
+                    if (Properties.Settings.Default.OperatorConsole_LiveChatWS_Operator.ToLower().Contains("localhost"))
+                    {
+                        socket = socketHandler.Connect("127.0.0.1");
+                    }
+                    else
+                    {
+                        IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
+                        socket = socketHandler.Connect(entry.AddressList[0].ToString());                        
+                    }
+                    
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
                     socketHandler.Exception += new EventHandler<ExceptionEventArgs>(socketHandler_Exception);
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
@@ -500,7 +507,10 @@ namespace LiveSupport.OperatorConsole
             // 客服状态改变
             if (e.Data.GetType() == typeof(OperatorForceLogoffEventArgs))
             {
-
+                if (OperatorForceLogoff != null)
+                {
+                    OperatorForceLogoff(this, null);
+                }
             }
             else if (e.Data.GetType() == typeof(OperatorStatusChangeEventArgs))
             {
