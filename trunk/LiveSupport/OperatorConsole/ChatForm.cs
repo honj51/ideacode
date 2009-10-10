@@ -170,7 +170,8 @@ namespace LiveSupport.OperatorConsole
                          return;
                      }
                      Directory.CreateDirectory(chat.ChatId);
-                     uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
+                     
+                     uploadURL = "ftp://" + Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
                 }
                  else
                  {

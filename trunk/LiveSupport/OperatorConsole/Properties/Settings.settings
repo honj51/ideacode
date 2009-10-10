@@ -46,13 +46,13 @@
       <Value Profile="(Default)">http://www.zxkefu.cn/Licence.aspx </Value>
     </Setting>
     <Setting Name="FtpUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test</Value>
+      <Value Profile="(Default)">ocftp</Value>
     </Setting>
     <Setting Name="FtpPasssword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test</Value>
+      <Value Profile="(Default)">hdsoftncye$%FkiRF)4</Value>
     </Setting>
     <Setting Name="FtpURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ftp://www.zxkefu.cn/upload</Value>
+      <Value Profile="(Default)">www.zxkefu.cn</Value>
     </Setting>
     <Setting Name="WSUser" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
