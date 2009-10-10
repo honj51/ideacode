@@ -190,7 +190,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ocftp")]
         public string FtpUser {
             get {
                 return ((string)(this["FtpUser"]));
@@ -202,7 +202,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        [global::System.Configuration.DefaultSettingValueAttribute("hdsoftncye$%FkiRF)4")]
         public string FtpPasssword {
             get {
                 return ((string)(this["FtpPasssword"]));
@@ -214,7 +214,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ftp://www.zxkefu.cn/upload")]
+        [global::System.Configuration.DefaultSettingValueAttribute("www.zxkefu.cn")]
         public string FtpURL {
             get {
                 return ((string)(this["FtpURL"]));
