@@ -70,8 +70,8 @@ uses
   UContractQueryForm in 'UContractQueryForm.pas' {ContractQueryForm},
   UCustomerQueryForm in 'UCustomerQueryForm.pas' {CustomerQueryForm},
   HouseListFrame in 'HouseListFrame.pas' {frameHouseList: TFrame},
-  CnDebug in '..\..\Program Files\Borland\Delphi7\Experts\CnWizards\Source\CnDebug.pas',
-  UformLock in 'UformLock.pas' {formLock};
+  UformLock in 'UformLock.pas' {formLock},
+  CnDebug in 'CnDebug.pas';
 
 {$R *.res}
 
