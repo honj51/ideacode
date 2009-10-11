@@ -40,7 +40,7 @@ var
   LoginNum: integer;
 
 implementation
-uses UHDHouseDataModule, Common, MainForm, CnDebug,
+uses UHDHouseDataModule, Common, MainForm,CnDebug,
   UCompanyInfoSettingForm, UOperatePermissionSettingForm,
   UChangePasswordForm, UContractSampleSettingForm, UDatabaseMantainForm,
   UDatabaseInitialForm, UParameterSettingForm, USystemOperationLogForm,
