@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_668B5AADD80C47F9AB027EE2AD217B0B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BCBDE80BC72A415195E1E60CAA4D3E97"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -34,12 +40,6 @@
         "Entry"
         {
         "MsmKey" = "8:_C145DE14E4E544569839AD5AE28DBA0C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCFEE26ADCB74283A63156CE3AF733AB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -180,6 +180,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_668B5AADD80C47F9AB027EE2AD217B0B"
+            {
+            "SourcePath" = "8:..\\..\\database\\hdhouse.dat"
+            "TargetName" = "8:hdhouse.dat"
+            "Tag" = "8:"
+            "Folder" = "8:_DEFF7C0D608C477B919404B5F32F93CA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BCBDE80BC72A415195E1E60CAA4D3E97"
             {
             "SourcePath" = "8:..\\..\\HDHouse.exe"
@@ -204,26 +224,6 @@
             {
             "SourcePath" = "8:..\\..\\database\\hdhouse.udl"
             "TargetName" = "8:hdhouse.udl"
-            "Tag" = "8:"
-            "Folder" = "8:_DEFF7C0D608C477B919404B5F32F93CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CCFEE26ADCB74283A63156CE3AF733AB"
-            {
-            "SourcePath" = "8:..\\..\\database\\hdhouse.mdb"
-            "TargetName" = "8:hdhouse.mdb"
             "Tag" = "8:"
             "Folder" = "8:_DEFF7C0D608C477B919404B5F32F93CA"
             "Condition" = "8:"
@@ -330,7 +330,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:互动房产中介管理系统"
         "ProductCode" = "8:{BAB01E1B-AE76-4C7D-8916-38151019DBCD}"
-        "PackageCode" = "8:{C5A39750-AB41-4CC6-A30B-0FA5A81B998F}"
+        "PackageCode" = "8:{EF64BF99-AA90-469F-A06E-B40DB06E2DE2}"
         "UpgradeCode" = "8:{249FB948-D7DB-4A21-BC51-2568D1530E13}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
