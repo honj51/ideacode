@@ -1,13 +1,14 @@
 ﻿<%@ Page MaintainScrollPositionOnPostback="true" Language="C#" ValidateRequest="false"
-    AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat"  EnableEventValidation="false" viewStateEncryptionMode ="Never" 
- %>
+    AutoEventWireup="true" CodeFile="Chat.aspx.cs" Inherits="Chat" EnableEventValidation="false"
+    ViewStateEncryptionMode="Never" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>在线交流</title>
     <link href="App_Themes/Default/mainCN.css" rel="stylesheet" type="text/css" />
     <link href="App_Themes/Default/skin.css" rel="stylesheet" type="text/css" />
-    <LINK rel=stylesheet type=text/css href="App_Themes/Default/leaveWord.css"><LINK  />
+    <link rel="stylesheet" type="text/css" href="App_Themes/Default/leaveWord.css" />
+
     <script src="js/SendMsg.js" type="text/javascript" language="javascript"></script>
 
     <script src="js/ChatPageScript.js" type="text/javascript" language="javascript"></script>
@@ -125,7 +126,7 @@
         }
     </style>
 </head>
-<body topmargin="0" leftmargin="0">
+<body>
     <form id="formMain" runat="server">
     <div style="background-color: #85c3ff;">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="True">
@@ -133,82 +134,98 @@
                 <asp:ScriptReference Path="~/js/SendMsg.js" />
             </Scripts>
         </asp:ScriptManager>
-        <%--面板1 star--%>
-        
+        <%--留言面板 begin--%>
         <asp:Panel ID="pnlNoOperator" Visible="false" runat="server">
-        <div style="WIDTH: 603px; height="98%" MARGIN-LEFT: 0px">
-  <div class="b">
-  <div  style=" margin:8px 8px 0px 7px ;BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 588px; HEIGHT: 95px; BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid;" >
-      <asp:Image ID="ChatPageOfflineTopImage" runat="server" ImageUrl="Images/topmove1.gif" Width="588px" Height="95px" />
- </div>
-    <div class="b_1">
-    
-      <div class="b_1a">
-        <table width="100%" height="98%" border="0"  >
-          <tr  style="background-image:url(Images/top1.jpg)">
-            <td height="27" colspan="2"  align="center"><asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
-            当前没有客服在线 请留言，我们会尽快给您回复!</td>
-          </tr>
-          <tr >
-            <td width="19%" height="23" align="center" >姓名:</td>
-            <td width="81%"  align="left" style="background-color:#FFFFFF" >
-            <asp:TextBox ID="txt_username"  runat="server" Width="301px"></asp:TextBox>
-                <asp:Label ID="lblUserName" runat="server" ForeColor="Red" Text="*"></asp:Label>
-                <asp:RequiredFieldValidator 
-                    ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_username" 
-                    ErrorMessage="姓名不能为空" ForeColor="#99CCFF" ToolTip="请输入姓名">请输入你的姓名</asp:RequiredFieldValidator>
-              </td>
-          </tr>
-          <tr >
-            <td height="23" align="center" >电话:</td>
-            <td style="background-color:#FFFFFF"  >
-            <asp:TextBox ID="txtPhone" runat="server" Width="300px"></asp:TextBox>
-              </td>
-          </tr>
-          <tr >
-            <td height="23" align="center" >电子邮件:</td>
-            <td style="background-color:#FFFFFF"  >
-            <asp:TextBox ID="txtSendBy" runat="server" Width="300px"></asp:TextBox>
-                <asp:Label ID="lblEmal" runat="server" ForeColor="Red" Text="*"></asp:Label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                    ControlToValidate="txtSendBy" ErrorMessage="邮件不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator 
-                    ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSendBy" 
-                    ErrorMessage="邮件格试错误" ForeColor="#99CCFF" 
-                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-              </td>
-          </tr>
-          <tr >
-            <td height="23" align="center" >主题:</td>
-            <td  style="background-color:#FFFFFF">
-            <asp:TextBox ID="txtTheme" runat="server" Width="300px"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                    ControlToValidate="txtComment" ErrorMessage="留言内容不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
-              </td>
-          </tr>
-          <tr style="background-image:url(Images/top1.jpg)">
-            <td height="23" colspan="2" align="center" >留言内容:</td>
-          </tr>
-          <tr >
-            <td height="124" colspan="2"><div  style="margin:2px 10px 2px 2px;">
-              <asp:TextBox ID="txtComment" TextMode="MultiLine" Height="164px" Width="99%" 
-                    runat="server"></asp:TextBox>
-            </div>
-            </td>
-          </tr>
-          <tr >
-            <td height="23" colspan="2" align="center"><asp:Button ID="btnSendEmail" runat="server" Text="发送邮件"  OnClick="btnSendEmail_Click" /></td>
-          </tr>
-        </table>
-         <div ID="footer0" style=" text-indent :BORDER-BOTTOM: #006600 1px solid; BORDER-LEFT: #006600 1px solid; BACKGROUND-COLOR: #ffffff;BORDER-TOP: #006600 1px solid; BORDER-RIGHT: #006600 1px solid:25px;background-repeat: no-repeat;height: 29px; line-height: 29px; position:static; width: 100%; text-align:center; background-color:#006600;">
-                            Copyright © 2009 LiveSupport, Inc.<a href="LegalNotice.aspx">Terms of Use</a>
+            <div style="width: 603px">
+                <div class="b">
+                    <div style="margin: 8px 8px 0px 7px; border-bottom: #006600 1px solid; border-left: #006600 1px solid;
+                        background-color: #ffffff; width: 588px; height: 95px; border-top: #006600 1px solid;
+                        border-right: #006600 1px solid;">
+                        <asp:Image ID="ChatPageOfflineTopImage" runat="server" ImageUrl="Images/topmove1.gif"
+                            Width="588px" Height="95px" />
                     </div>
-      </div>
-    </div>
-  </div>
-</div>
+                    <div class="b_1">
+                        <div class="b_1a">
+                            <table width="100%" height="98%" border="0">
+                                <tr style="background-image: url(Images/top1.jpg)">
+                                    <td height="27" colspan="2" align="center">
+                                        <asp:Label ID="lblConfirmation" Visible="false" runat="server"></asp:Label>
+                                        当前没有客服在线 请留言，我们会尽快给您回复!
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="19%" height="23" align="center">
+                                        姓名:
+                                    </td>
+                                    <td width="81%" align="left" style="background-color: #FFFFFF">
+                                        <asp:TextBox ID="txt_username" runat="server" Width="301px"></asp:TextBox>
+                                        <asp:Label ID="lblUserName" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_username"
+                                            ErrorMessage="姓名不能为空" ForeColor="#99CCFF" ToolTip="请输入姓名">请输入你的姓名</asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="23" align="center">
+                                        电话:
+                                    </td>
+                                    <td style="background-color: #FFFFFF">
+                                        <asp:TextBox ID="txtPhone" runat="server" Width="300px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="23" align="center">
+                                        电子邮件:
+                                    </td>
+                                    <td style="background-color: #FFFFFF">
+                                        <asp:TextBox ID="txtSendBy" runat="server" Width="300px"></asp:TextBox>
+                                        <asp:Label ID="lblEmal" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSendBy"
+                                            ErrorMessage="邮件不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtSendBy"
+                                            ErrorMessage="邮件格试错误" ForeColor="#99CCFF" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="23" align="center">
+                                        主题:
+                                    </td>
+                                    <td style="background-color: #FFFFFF">
+                                        <asp:TextBox ID="txtTheme" runat="server" Width="300px"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment"
+                                            ErrorMessage="留言内容不能为空" ForeColor="#99CCFF"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr style="background-image: url(Images/top1.jpg)">
+                                    <td height="23" colspan="2" align="center">
+                                        留言内容:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="124" colspan="2">
+                                        <div style="margin: 2px 10px 2px 2px;">
+                                            <asp:TextBox ID="txtComment" TextMode="MultiLine" Height="164px" Width="99%" runat="server"></asp:TextBox>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="23" colspan="2" align="center">
+                                        <asp:Button ID="btnSendEmail" runat="server" Text="发送邮件" OnClick="btnSendEmail_Click" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="footer0" style="text-indent: BORDER-BOTTOM: #006600 1px solid; border-left: #006600 1px solid;
+                                background-color: #ffffff; border-top: #006600 1px solid; border-right: #006600 1px solid:25px;
+                                background-repeat: no-repeat; height: 29px; line-height: 29px; position: static;
+                                width: 100%; text-align: center; background-color: #006600;">
+                                Copyright © 2009 LiveSupport, Inc.<a href="LegalNotice.aspx">Terms of Use</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </asp:Panel>
-        <%--面板1 end--%>
+        <%--留言面板 end--%>
+        <%--聊天请求面板 begin--%>
         <asp:Panel ID="pnlRequest" Visible="true" runat="server">
             <table cellpadding="0" cellspacing="0" style="background-image: url(Images/bg.jpg);
                 background-position: center; height: 100%; width: 100%">
@@ -250,13 +267,15 @@
                                 </td>
                             </tr>
                         </table>
-                        <tr>
-                            <td colspan="2" align="center">
-                                版权所有
-                            </td>
+                        </td>
                         </tr>
+                        <tr><td colspan="2" align="center">互动科技版权所有</td></tr>
+                        
+                        
             </table>
         </asp:Panel>
+        <%--聊天请求面板 end--%>
+        <%--聊天面板 begin--%>
         <asp:Panel ID="pnlChat" runat="server">
             <table id="chatbox" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
                 <tr id="tdhead" style="background-image: url(Images/title_bg.gif);">
@@ -276,14 +295,14 @@
                     </td>
                     <td valign="middle" style="width: 40px; height: 30px;">
                         <div>
-                            <a href="" target="_blank" id="logo" style="font-family: 微软雅黑; font-weight: 100px;
+                            <a href="" target="_blank" id="logo" style="font-family: 微软雅黑; 
                                 font-size: 15px; text-decoration: none">LiveSupport</a>
                         </div>
                     </td>
                 </tr>
                 <tr id="notewrap">
                     <td style="width: 85%; height: 80%;">
-                        <table height="100%" width="100%" style="break: break-all; word-wrap: break-word;
+                        <table height="100%" width="100%" style="
                             table-layout: fixed" cellpadding="0" cellspacing="0">
                             <tr style="height: 100%">
                                 <td height="100%">
@@ -317,8 +336,8 @@
                     </td>
                     <td valign="top" id="bwrap" style="width: 40px; height: 80%;">
                         <div id="banner" style="height: 305px; width: 135px">
-                            <asp:Image ID="chatPageRightImg" runat="server" ImageUrl="Images/operator.jpg"  
-                                width="135px" height="310px"/></div>
+                            <asp:Image ID="chatPageRightImg" runat="server" ImageUrl="Images/operator.jpg" Width="135px"
+                                Height="310px" /></div>
                     </td>
                 </tr>
                 <tr id="tdinput">
@@ -334,7 +353,7 @@
                                 <li style="background-image: url(Images/tools_icn.gif);" id="language" style="display: none;">
                                     语言选择</li>
                             </ul>
-                            <ul id="languageList" style="display:none;">
+                            <ul id="languageList" style="display: none;">
                                 <li lang:value="0">简体中文</li>
                                 <li lang:value="1">繁体中文</li>
                                 <li lang:value="2">English</li>
@@ -344,25 +363,25 @@
                             <div id="exitChat" style="background-image: url(Images/tools_icn.gif);" onclick="Exit()">
                                 结束对话</div>
                         </div>
-    </div>
-    </td> </tr>
-    <tr id="msg">
-        <td id="inputarea" style="width: 85%; height: 90px">
-            <textarea name="message" id="txtMsg" rows="2" runat="server" cols="100" onkeypress="checkEnter(event)" /> </td><td align="center" id="enter_wrap" style="width: 40px; height: 90px">
-            <div id="ewrap">
-                <div id="enter" style="background-image: url(Images/send0.jpg)" onclick="CallSendMsg()">
-                </div>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td id="tdfooter" style="background: url(Images/footer_bg.gif);" colspan="2" valign="top"
-            style="width: 100%;">
-            <div id="footer">
-                <p>
-                    <span id="shortKeyTip">[发送快捷键:Enter]: </span><span id="footerBox"></span></p><div id="shortcutkey" onclick="">
-                    消息发送方式</div><ul id="shortKeyMenu" style="display: none;">
-                    <li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul></div></td></tr></table></asp:Panel></div></form><script type="text/javascript" language="javascript">
+                    </td>
+                </tr>
+                <tr id="msg">
+                    <td id="inputarea" style="width: 85%; height: 90px">
+                        <textarea name="message" id="txtMsg" rows="2" runat="server" cols="100" onkeypress="checkEnter(event)" /> </td><td align="center" id="enter_wrap" style="width: 40px; height: 90px">
+                        <div id="ewrap">
+                            <div id="enter" style="background-image: url(Images/send0.jpg)" onclick="CallSendMsg()">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="tdfooter" style="background: url(Images/footer_bg.gif);" colspan="2" valign="top"
+                        style="width: 100%;">
+                        <div id="footer">
+                            <p>
+                                <span id="shortKeyTip">[发送快捷键:Enter]: </span><span id="footerBox"></span></p><div id="shortcutkey" onclick="">
+                                消息发送方式</div><ul id="shortKeyMenu" style="display: none;">
+                                <li>按Enter键发送消息</li><li>按Ctrl+Enter键发送消息</li></ul></div></td></tr></table></asp:Panel><%--聊天面板 end--%> </div></form><script type="text/javascript" language="javascript">
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
         function EndRequestHandler(sender, args)
         {

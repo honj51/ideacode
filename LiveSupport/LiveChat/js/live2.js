@@ -3,7 +3,7 @@
     var LCS_chatId = "";
     var LCS_invite_panel_time;
     document.write("<script type=\"text/javascript\" language=\"javascript\" src=\"" + LCS_homeUrl + "/js/jquery-1.2.6.js\"></script>");
-    setInterval(hitWebSite, 1000);
+    setInterval(hitWebSite, 5000);
     /*** 主动邀请窗口 ***/
     var LCS_invite_div = document.createElement('div');
     LCS_invite_div.id = 'LCS_invite_panel';
