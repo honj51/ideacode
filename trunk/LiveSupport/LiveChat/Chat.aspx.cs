@@ -406,11 +406,11 @@ public partial class Chat : System.Web.UI.Page
                 m.Text = string.Format("正在传送文件 {0} ...", fileName);
                 m.Type = MessageType.SystemMessage_ToVisitor;
                 ChatService.SendMessage(m);
-                string path = ConfigurationManager.AppSettings["FileUploadPath"] + "\\" + m.ChatId;
-                //string path = Server.MapPath("UploadFile/" + m.ChatId);
+                //string path = ConfigurationManager.AppSettings["FileUploadPath"] + "\\" + m.ChatId;
+                string path = Server.MapPath("~/App_Data/" + m.ChatId);
                 Directory.CreateDirectory(path);
 
-                this.fuFile.PostedFile.SaveAs(path + "\\" + fileName.Trim().ToString());
+                this.fuFile.PostedFile.SaveAs(path + "\\" + fileName.Trim());
 
                 m = new LiveSupport.LiveSupportModel.Message();
                 m.ChatId = CurrentChat.ChatId;
@@ -418,7 +418,7 @@ public partial class Chat : System.Web.UI.Page
                 m.Type = MessageType.SystemMessage_ToVisitor;
                 ChatService.SendMessage(m);
 
-                OperatorService.SendFile(m.ChatId, fileName);
+                OperatorService.SendFile(m.ChatId, fileName.Trim());
             }
 
         }
