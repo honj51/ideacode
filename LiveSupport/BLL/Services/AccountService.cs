@@ -68,7 +68,7 @@ public static class AccountService
         }
         accounts.Add(account);
         Provider.AddAccount(account);
-        Trace.WriteLine(string.Format("新增帐号: AccountId={0} LoginName={1}", account.AccountId, account.AccountNumber));
+        Trace.WriteLine(string.Format("AddAccount: AccountId={0} LoginName={1}", account.AccountId, account.AccountNumber));
     }
     /// <summary>
     /// 跟据ID查找帐号

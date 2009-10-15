@@ -68,7 +68,7 @@ namespace LiveSupport.BLL.Utils
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(string.Format("Error:Util.SendEmail 错误信息：{0}", ex.Message));
+                Trace.WriteLine(string.Format("Error:Util.SendEmail error :{0}", ex.Message));
                 return false;
             }
         }

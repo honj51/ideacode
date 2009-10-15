@@ -185,13 +185,13 @@ public class ChatService
         Chat chat = GetChatById(chatId);
         if (chat == null)
         {
-            Trace.WriteLine("Waring: ChatService.CloseChat()错误 ,ChatId "+ chatId + " 不存在");
+            Trace.WriteLine("Waring: ChatService.CloseChat() error ,ChatId "+ chatId + " not found");
             return false;
         }
 
         if (chat.Status == ChatStatus.Closed)
         {
-            Trace.WriteLine("Waring: ChatService.CloseChat() 对话已是关闭状态 ,ChatId " + chatId + " 不存在");
+            Trace.WriteLine("Waring: ChatService.CloseChat() is closed aleady ,ChatId " + chatId);
             try
             {
                 Directory.Delete(ChatTempDataDir + chatId, true);
@@ -245,7 +245,7 @@ public class ChatService
         Chat chat = GetChatById(chatId);
         if (chat == null)
         {
-            Trace.WriteLine(string.Format("Error: AcceptChatRequest(OperatorId={0},ChatId={1}) 错误，未找到该对话", operatorId, chatId));
+            Trace.WriteLine(string.Format("Error: AcceptChatRequest(OperatorId={0},ChatId={1}) error, can't find this chat", operatorId, chatId));
             return AcceptChatRequestReturn_Error_Others;
         }
 
@@ -292,7 +292,7 @@ public class ChatService
         }
         else
         {
-            Trace.WriteLine(string.Format("ChatService.AccpetChatRequest({0},{1})错误，状态非法: ChatStatus={2}",operatorId,chatId,chat.Status));
+            Trace.WriteLine(string.Format("ChatService.AccpetChatRequest({0},{1}) error，status illegal: ChatStatus={2}",operatorId,chatId,chat.Status));
             return AcceptChatRequestReturn_Error_Others;
         }
     }
@@ -311,7 +311,7 @@ public class ChatService
         Operator op = OperatorService.GetOperatorById(operatorId);
         if (visitor == null || op == null)
         {
-            Trace.WriteLine(string.Format("Error: ChatService.OperatorRequestChat({0},{1}) 错误Opertor或Visitor为空",operatorId,visitorId));
+            Trace.WriteLine(string.Format("Error: ChatService.OperatorRequestChat({0},{1}) error Opertor or Visitor is null",operatorId,visitorId));
             return null;
         }
         
@@ -351,12 +351,12 @@ public class ChatService
         if (chat == null)
         {
             // TODO: 是否需要抛出异常
-            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 不存在");
+            Trace.WriteLine("Error: Send message failed,ChatId " + m.ChatId + " not exsit");
         }
         else if (chat.Status == ChatStatus.Closed)
         {
             // TODO: 是否需要抛出异常
-            Trace.WriteLine("Error: 发生消息失败,ChatId " + m.ChatId + " 状态为已关闭");
+            Trace.WriteLine("Error: Send message failed,ChatId " + m.ChatId + " status is closed");
         }
         else
         {
@@ -392,7 +392,7 @@ public class ChatService
         }
         else
         {
-            Trace.WriteLine(string.Format("Error: ChatService.DeclineOperatorInvitation({0} 错误， 未找到该Chat",chatId));
+            Trace.WriteLine(string.Format("Error: ChatService.DeclineOperatorInvitation({0} error， can't find Chat",chatId));
         }
     }
     /// <summary>
@@ -473,7 +473,7 @@ public class ChatService
         {
             if (item.Status == ChatStatus.Accepted && !OperatorService.IsOperatorOnline(item.OperatorId))
             {
-                SendMessage(new Message(item.ChatId, "该客服已不在线!", MessageType.SystemMessage_ToVisitor));
+                SendMessage(new Message(item.ChatId, "该客服已离线!", MessageType.SystemMessage_ToVisitor));
                 CloseChat(item.ChatId, "系统");
                 continue;
             }
@@ -482,22 +482,22 @@ public class ChatService
             {
                 if (item.IsInviteByOperator)
                 {
-                        SendMessage(new Message(item.ChatId, "访客无应答! 是否继续等待。", MessageType.SystemMessage_ToOperator));
+                        SendMessage(new Message(item.ChatId, "访客暂无应答! 请稍等。。。", MessageType.SystemMessage_ToOperator));
                 }
                 else
                 {
-                      SendMessage(new Message(item.ChatId, "客服正忙! 是否继续等待。", MessageType.SystemMessage_ToVisitor));
+                    SendMessage(new Message(item.ChatId, "客服无应答! 请稍等。。。", MessageType.SystemMessage_ToVisitor));
                 }             
             }
             else if (nowTime > item.CreateTime.AddSeconds(180) && item.Status == ChatStatus.Requested)
             {
                 if (item.IsInviteByOperator)
                 {
-                    SendMessage(new Message(item.ChatId, "访客还是无应答! 系统强行将对话关闭!", MessageType.SystemMessage_ToOperator));
+                    SendMessage(new Message(item.ChatId, "访客无应答! 系统将对话关闭!", MessageType.SystemMessage_ToOperator));
                 }
                 else
                 {
-                    SendMessage(new Message(item.ChatId, "客服很忙!无法应答你!", MessageType.SystemMessage_ToVisitor));
+                    SendMessage(new Message(item.ChatId, "客服忙碌，无法应答您。", MessageType.SystemMessage_ToVisitor));
                 }
                 CloseChat(item.ChatId, "系统");
                 Trace.WriteLine(string.Format("Chat {0} Leave", item.ChatId));

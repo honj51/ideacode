@@ -26,6 +26,8 @@ public class VisitSessionService
         public VisitSession Session;
         public DateTime LastHitTime;
     }
+
+    public static int VisitorHeartBeatTimeout = 15; // seconds
     private static List<VisitSessionHit> sessions = new List<VisitSessionHit>();
 
     public static List<VisitSessionHit> Sessions
@@ -53,7 +55,7 @@ public class VisitSessionService
 
         if (GetSessionById(session.SessionId) != null)
         {
-            Trace.WriteLine("Error:会话已存在！");
+            Trace.WriteLine("Error: chat is aleady exist");
             return;
         }
         sessions.Add(new VisitSessionHit(session));
@@ -100,7 +102,7 @@ public class VisitSessionService
         }
         if (vs == null)
         {
-            Trace.WriteLine(string.Format("Error: VisitSessionService.GetSessionById({0}) 错误 不能在sessions和DB 中找到session",sessionId));
+            Trace.WriteLine(string.Format("Error: VisitSessionService.GetSessionById({0}) error, can't find session in sessions or DB",sessionId));
         }
         return vs;
     }
@@ -139,7 +141,7 @@ public class VisitSessionService
     {
         foreach (VisitSessionHit item in sessions)
         {
-            if (DateTime.Now > item.LastHitTime.AddSeconds(8) && item.Session.Status != VisitSessionStatus.Leave)
+            if (DateTime.Now > item.LastHitTime.AddSeconds(VisitorHeartBeatTimeout) && item.Session.Status != VisitSessionStatus.Leave)
             {
                 item.Session.Status = VisitSessionStatus.Leave;
                 item.Session.LeaveTime = DateTime.Now;
