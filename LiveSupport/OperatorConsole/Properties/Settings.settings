@@ -52,7 +52,7 @@
       <Value Profile="(Default)">hdsoftncye$%FkiRF)4</Value>
     </Setting>
     <Setting Name="FtpURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">www.zxkefu.cn</Value>
+      <Value Profile="(Default)">ftp://www.zxkefu.cn</Value>
     </Setting>
     <Setting Name="WSUser" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -68,6 +68,9 @@
     </Setting>
     <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
       <Value Profile="(Default)">http://lcs.zxkefu.cn/Operator.asmx</Value>
+    </Setting>
+    <Setting Name="AutoLoginInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

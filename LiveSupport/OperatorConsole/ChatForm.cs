@@ -135,10 +135,11 @@ namespace LiveSupport.OperatorConsole
 
         void operatorServiceAgent_AsyncCallCompleted(object sender, AsyncCallCompletedEventArg e)
         {
+            if (e.Result == null) return;
             if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs))
             {
                 LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs;
-                if (arg.Error != null)
+                if (arg != null && arg.Error != null)
                 {
                     LiveSupport.LiveSupportModel.Message m = arg.UserState as LiveSupport.LiveSupportModel.Message;
                     if (m.ChatId == this.chat.ChatId)
@@ -171,7 +172,7 @@ namespace LiveSupport.OperatorConsole
                      }
                      Directory.CreateDirectory(chat.ChatId);
                      
-                     uploadURL = "ftp://" + Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
+                     uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
                 }
                  else
                  {
@@ -204,7 +205,6 @@ namespace LiveSupport.OperatorConsole
                     Trace.WriteLine("sendFile exception:" + arg.Error.Message);
                     chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
                 }
-
             }
             
         }
@@ -452,7 +452,7 @@ namespace LiveSupport.OperatorConsole
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (chat.Status != ChatStatus.Closed)
+            if (chat != null && chat.Status != ChatStatus.Closed)
             {
                 if (!exitConfirm())
                 {
@@ -460,13 +460,17 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
             }
-            foreach (var item in uploadTasks)
+
+            if (uploadTasks != null)
             {
-                if (item == null)
+                foreach (var item in uploadTasks)
                 {
-                    continue;
+                    if (item == null)
+                    {
+                        continue;
+                    }
+                    item.Cancel();
                 }
-                item.Cancel();
             }
 
             this.operatorServiceAgent.NewMessage -= new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);

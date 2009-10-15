@@ -84,7 +84,7 @@ namespace LiveSupport.OperatorConsole
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Text = this.Text + DateTime.Now.ToString();
+            //this.Text = this.Text + DateTime.Now.ToString();
             initForm();
 
             messagebeginDateTimePicker.MaxDate = DateTime.Now;
@@ -283,6 +283,7 @@ namespace LiveSupport.OperatorConsole
                        operatorPannel1.RecieveOperator(operaterServiceAgent.Operators);
                        break;
                    case DataLoadEventType.Visitors:
+                       lstVisitors.Items.Clear();
                        foreach (var item in operaterServiceAgent.Visitors)
                        {
                            processNewVisitor(item);
@@ -447,6 +448,12 @@ namespace LiveSupport.OperatorConsole
                     loginTimer.Enabled = true;
                     notifyIcon.Icon = Properties.Resources.Profile;
                     notifyIcon.Text = "网站客服 - " + "在线";
+                }
+                else if (arg.State == ConnectionState.Connecting)
+                {
+                    loginTimer.Enabled = false;
+                    notifyIcon.Icon = Properties.Resources.Profile1;
+                    notifyIcon.Text = "网站客服 - " + "正在连接...";
                 }
             }), e);
         }
@@ -637,7 +644,7 @@ namespace LiveSupport.OperatorConsole
         {
             loginTimer.Enabled = false;
             notifyIcon.Icon = Properties.Resources.Profile1;
-            notifyIcon.Text = "网站客服 - " + "网络连接中断";
+            notifyIcon.Text = "网站客服 - " + "网络连接中断: "+message;
             //if (status == ExceptionStatus.System)
             //{
             //}
@@ -889,7 +896,11 @@ namespace LiveSupport.OperatorConsole
                     return;
                 }
 
-                 operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, beginTime, endTime);
+                operaterServiceAgent.GetHistoryPageRequests(vlvi.Visitor.VisitorId, beginTime, endTime);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("操作失败,请重试！ " + ex.Message);
             }
             finally
             {
@@ -1357,6 +1368,11 @@ namespace LiveSupport.OperatorConsole
         private void operatorPannel1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void versionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("doc\\ChangeLog.txt");
         }
 
 

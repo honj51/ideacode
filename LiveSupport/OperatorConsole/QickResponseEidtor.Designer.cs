@@ -44,9 +44,9 @@
             // setTalkTreeView
             // 
             this.setTalkTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.setTalkTreeView.Location = new System.Drawing.Point(0, 31);
+            this.setTalkTreeView.Location = new System.Drawing.Point(0, 43);
             this.setTalkTreeView.Name = "setTalkTreeView";
-            this.setTalkTreeView.Size = new System.Drawing.Size(420, 242);
+            this.setTalkTreeView.Size = new System.Drawing.Size(492, 230);
             this.setTalkTreeView.TabIndex = 6;
             this.setTalkTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.setTalkTreeView_AfterLabelEdit);
             this.setTalkTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.setTalkTreeView_AfterSelect);
@@ -65,100 +65,100 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(420, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(492, 43);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // tsbAddType
             // 
-            this.tsbAddType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbAddType.Image = global::LiveSupport.OperatorConsole.Properties.Resources.addType;
             this.tsbAddType.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbAddType.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAddType.Name = "tsbAddType";
             this.tsbAddType.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.tsbAddType.Size = new System.Drawing.Size(38, 28);
+            this.tsbAddType.Size = new System.Drawing.Size(67, 40);
             this.tsbAddType.Text = "添加分类";
+            this.tsbAddType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbAddType.Click += new System.EventHandler(this.addNodeToolStripButton_Click);
             // 
             // tsbDeleteType
             // 
-            this.tsbDeleteType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbDeleteType.Enabled = false;
             this.tsbDeleteType.Image = global::LiveSupport.OperatorConsole.Properties.Resources.deleteType;
             this.tsbDeleteType.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDeleteType.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDeleteType.Name = "tsbDeleteType";
             this.tsbDeleteType.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.tsbDeleteType.Size = new System.Drawing.Size(38, 28);
+            this.tsbDeleteType.Size = new System.Drawing.Size(67, 40);
             this.tsbDeleteType.Text = "删除分类";
+            this.tsbDeleteType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbDeleteType.Click += new System.EventHandler(this.delNodeToolStripButton_Click);
             // 
             // tsbAddMessage
             // 
-            this.tsbAddMessage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbAddMessage.Enabled = false;
             this.tsbAddMessage.Image = global::LiveSupport.OperatorConsole.Properties.Resources.addMessage;
             this.tsbAddMessage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbAddMessage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAddMessage.Name = "tsbAddMessage";
             this.tsbAddMessage.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.tsbAddMessage.Size = new System.Drawing.Size(38, 28);
+            this.tsbAddMessage.Size = new System.Drawing.Size(67, 40);
             this.tsbAddMessage.Text = "添加消息";
+            this.tsbAddMessage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbAddMessage.Click += new System.EventHandler(this.tsbAddMessage_Click);
             // 
             // tsbDeleteMessage
             // 
-            this.tsbDeleteMessage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbDeleteMessage.Enabled = false;
             this.tsbDeleteMessage.Image = global::LiveSupport.OperatorConsole.Properties.Resources.deleteMessage;
             this.tsbDeleteMessage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDeleteMessage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDeleteMessage.Name = "tsbDeleteMessage";
             this.tsbDeleteMessage.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.tsbDeleteMessage.Size = new System.Drawing.Size(38, 28);
+            this.tsbDeleteMessage.Size = new System.Drawing.Size(67, 40);
             this.tsbDeleteMessage.Text = "删除消息";
+            this.tsbDeleteMessage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbDeleteMessage.Click += new System.EventHandler(this.tsbDeleteMessage_Click);
             // 
             // tsbEdit
             // 
-            this.tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbEdit.Enabled = false;
             this.tsbEdit.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Modify;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.tsbEdit.Size = new System.Drawing.Size(38, 28);
+            this.tsbEdit.Size = new System.Drawing.Size(43, 40);
             this.tsbEdit.Text = "修改";
+            this.tsbEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbEdit.Click += new System.EventHandler(this.amendNodeToolStripButton_Click);
             // 
             // tsbSave
             // 
-            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbSave.Image = global::LiveSupport.OperatorConsole.Properties.Resources.Save;
             this.tsbSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSave.Name = "tsbSave";
             this.tsbSave.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.tsbSave.Size = new System.Drawing.Size(38, 28);
+            this.tsbSave.Size = new System.Drawing.Size(43, 40);
             this.tsbSave.Text = "保存";
+            this.tsbSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbSave.Click += new System.EventHandler(this.OkToolStripButton_Click);
             // 
             // domainToolStripComboBox
             // 
+            this.domainToolStripComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.domainToolStripComboBox.Items.AddRange(new object[] {
             "请选择域名"});
             this.domainToolStripComboBox.Name = "domainToolStripComboBox";
-            this.domainToolStripComboBox.Size = new System.Drawing.Size(121, 31);
+            this.domainToolStripComboBox.Size = new System.Drawing.Size(121, 20);
             this.domainToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.domainToolStripComboBox_SelectedIndexChanged);
-           
             // 
             // QickResponseEidtor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(420, 273);
+            this.ClientSize = new System.Drawing.Size(492, 273);
             this.Controls.Add(this.setTalkTreeView);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

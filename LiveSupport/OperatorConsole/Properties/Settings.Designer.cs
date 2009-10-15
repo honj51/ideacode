@@ -214,7 +214,7 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("www.zxkefu.cn")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ftp://www.zxkefu.cn")]
         public string FtpURL {
             get {
                 return ((string)(this["FtpURL"]));
@@ -282,6 +282,18 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
             set {
                 this["OperatorConsole_LiveChatWS_Operator"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
+        public int AutoLoginInterval {
+            get {
+                return ((int)(this["AutoLoginInterval"]));
+            }
+            set {
+                this["AutoLoginInterval"] = value;
             }
         }
     }

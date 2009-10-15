@@ -17,7 +17,7 @@ namespace LiveSupport.OperatorConsole
         {
             HeartBeat, ReConnect, None
         }
-        
+
         private static OperatorServiceAgent _default;
         private List<Visitor> visitors = new List<Visitor>();
         private List<Chat> chats = new List<Chat>();
@@ -33,14 +33,14 @@ namespace LiveSupport.OperatorConsole
         //private NewChangesCheck lastCheck = new NewChangesCheck();
         private LiveSupport.OperatorConsole.LiveChatWS.OperatorWS ws = new LiveSupport.OperatorConsole.LiveChatWS.OperatorWS();
         private Operator currentOperator;
-        private System.Timers.Timer timer = new System.Timers.Timer(10000);
+        private System.Timers.Timer timer = new System.Timers.Timer(Properties.Settings.Default.AutoLoginInterval);
         private TimerAction timerAction = TimerAction.None;
         private string accountNumber;
         private string operatorName;
         private string password;
         private SocketHandler socketHandler;
         private Socket socket;
-        private Dictionary<string, List<LeaveWord>> leaveWords = new Dictionary<string,List<LeaveWord>>();
+        private Dictionary<string, List<LeaveWord>> leaveWords = new Dictionary<string, List<LeaveWord>>();
         private Dictionary<string, List<QuickResponseCategory>> quickResponseCategorys = new Dictionary<string, List<QuickResponseCategory>>();
 
         public Dictionary<string, List<QuickResponseCategory>> QuickResponseCategorys
@@ -125,49 +125,76 @@ namespace LiveSupport.OperatorConsole
             ws.ChangePasswordCompleted += new LiveSupport.OperatorConsole.LiveChatWS.ChangePasswordCompletedEventHandler(ws_ChangePasswordCompleted);
         }
 
-       
+
         #region WebService 异步操作完成 事件处理
 
         void ws_ChangePasswordCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.ChangePasswordCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_ChangePasswordCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
-            } 
+            }
         }
 
         void ws_ResetOperatorPasswordCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.ResetOperatorPasswordCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_ResetOperatorPasswordCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
-            } 
+            }
         }
 
         void ws_SendFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-                if (AsyncCallCompleted != null)
-                {
-                    AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
-                } 
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_SendFileCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
         }
 
 
         void ws_LogoutCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-                ws.GetSystemAdvertiseCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
-                ws.GetLeaveWordCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
-                socketHandler.DataArrive -= new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
-                socket.Disconnect(false);
-                timer.Enabled = false;
-                if (e.Error!=null)
-                {
-                     Trace.TraceError("Logout异常: " + e.Error.Message);
-                }
+            ws.GetSystemAdvertiseCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventHandler(ws_GetSystemAdvertiseCompleted);
+            ws.GetLeaveWordCompleted -= new LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventHandler(ws_GetLeaveWordCompleted);
+            socketHandler.DataArrive -= new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
+            socket.Disconnect(false);
+            timer.Enabled = false;
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_LogoutCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
         }
 
         void ws_GetLeaveWordNotRepliedCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordNotRepliedCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_GetLeaveWordNotRepliedCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
             List<LeaveWord> leaveWords = new List<LeaveWord>();
 
             foreach (var item in e.Result)
@@ -182,6 +209,13 @@ namespace LiveSupport.OperatorConsole
 
         void ws_DelLeaveWordByIdCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.DelLeaveWordByIdCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_DelLeaveWordByIdCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
@@ -190,6 +224,13 @@ namespace LiveSupport.OperatorConsole
 
         void ws_UpdateLeaveWordByIdCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.UpdateLeaveWordByIdCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_UpdateLeaveWordByIdCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
@@ -198,43 +239,49 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetLeaveWordCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordCompletedEventArgs e)
         {
-            if (e.Error == null)
+            if (e.Error != null)
             {
-                leaveWords.Clear();
-                foreach (var item in e.Result)
-                {
-                    LeaveWord lw = Common.Convert(item) as LeaveWord;
-                    if (string.IsNullOrEmpty(lw.DomainName))
-                    {
-                        List<LeaveWord> lws = new List<LeaveWord>();
-                        lws.Add(lw);
-                        leaveWords[""] = lws;
-                    }
-                    else if (leaveWords.ContainsKey(lw.DomainName))
-                    {
-                        leaveWords[lw.DomainName].Add(lw);
-                    }
-                    else
-                    {
-                        List<LeaveWord> lws = new List<LeaveWord>();
-                        lws.Add(lw);
-                        leaveWords[lw.DomainName] = lws;
-                    }
-                }
+                Trace.TraceError("ws_GetLeaveWordCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
 
-                if (DataLoadCompleted != null)
+            leaveWords.Clear();
+            foreach (var item in e.Result)
+            {
+                LeaveWord lw = Common.Convert(item) as LeaveWord;
+                if (string.IsNullOrEmpty(lw.DomainName))
                 {
-                    DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.LeaveWord));
+                    List<LeaveWord> lws = new List<LeaveWord>();
+                    lws.Add(lw);
+                    leaveWords[""] = lws;
+                }
+                else if (leaveWords.ContainsKey(lw.DomainName))
+                {
+                    leaveWords[lw.DomainName].Add(lw);
+                }
+                else
+                {
+                    List<LeaveWord> lws = new List<LeaveWord>();
+                    lws.Add(lw);
+                    leaveWords[lw.DomainName] = lws;
                 }
             }
-            else
+
+            if (DataLoadCompleted != null)
             {
-                Trace.TraceError("Load LeaveWord Failed: " + e.Error.Message);
+                DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.LeaveWord));
             }
         }
 
         void ws_GetLeaveWordByDomainNameCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetLeaveWordByDomainNameCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_GetLeaveWordByDomainNameCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
@@ -243,22 +290,33 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetAccountDomainsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetAccountDomainsCompletedEventArgs e)
         {
-            if (e.Error==null)
+            if (e.Error != null)
             {
-                domainNames = new List<string>(e.Result);
-                foreach (var item in domainNames)
-                {
-                    GetQuickResponseByDomainName(item);
-                }
-                if (DataLoadCompleted != null)
-                {
-                    DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.AccountDomains));
-                }
+                Trace.TraceError("ws_GetAccountDomainsCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
+            domainNames = new List<string>(e.Result);
+            foreach (var item in domainNames)
+            {
+                GetQuickResponseByDomainName(item);
+            }
+            if (DataLoadCompleted != null)
+            {
+                DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.AccountDomains));
             }
         }
 
         void ws_GetHistoryPageRequestsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetHistoryPageRequestsCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_GetHistoryPageRequestsCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
             List<PageRequest> lPageRequest = new List<PageRequest>();
 
             foreach (var item in e.Result)
@@ -274,20 +332,34 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetHistoryChatMessageCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetHistoryChatMessageCompletedEventArgs e)
         {
-            List<Message> lMessage =new List<Message>();
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_GetHistoryChatMessageCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
 
-                foreach (var item in e.Result)
-                {
-                    lMessage.Add(Common.Convert(item) as Message);
-                }
-                if (AsyncCallCompleted != null)
-                {
-                    AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
-                }
+            List<Message> lMessage = new List<Message>();
+
+            foreach (var item in e.Result)
+            {
+                lMessage.Add(Common.Convert(item) as Message);
+            }
+            if (AsyncCallCompleted != null)
+            {
+                AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            }
         }
 
         void ws_SaveQuickResponseByDomainNameCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_SaveQuickResponseByDomainNameCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
@@ -296,6 +368,12 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetQuickResponseCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_GetQuickResponseCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
@@ -304,16 +382,19 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetQuickResponseByDomainNameCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetQuickResponseByDomainNameCompletedEventArgs e)
         {
-
-            if (e.Error == null)
+            if (e.Error != null)
             {
-                List<QuickResponseCategory> qcs = new List<QuickResponseCategory>();
-                foreach (var item in e.Result)
-                {
-                    qcs.Add(Common.Convert(item) as QuickResponseCategory);
-                }
-                quickResponseCategorys[e.UserState.ToString()] = qcs;
+                Trace.TraceError("ws_GetQuickResponseByDomainNameCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
             }
+
+            List<QuickResponseCategory> qcs = new List<QuickResponseCategory>();
+            foreach (var item in e.Result)
+            {
+                qcs.Add(Common.Convert(item) as QuickResponseCategory);
+            }
+            quickResponseCategorys[e.UserState.ToString()] = qcs;
 
             if (DataLoadCompleted != null)
             {
@@ -323,11 +404,24 @@ namespace LiveSupport.OperatorConsole
 
         void ws_CloseChatCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs e)
         {
-           // AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_CloseChatCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+            // AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
         }
 
         void ws_AcceptChatRequestCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_AcceptChatRequestCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
@@ -336,6 +430,13 @@ namespace LiveSupport.OperatorConsole
 
         void ws_InviteChatCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_InviteChatCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+
             if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
@@ -344,7 +445,13 @@ namespace LiveSupport.OperatorConsole
 
         void ws_SendMessageCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs e)
         {
-            if (AsyncCallCompleted  != null)
+            if (e.Error != null)
+            {
+                Trace.TraceError("ws_SendMessageCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+            if (AsyncCallCompleted != null)
             {
                 AsyncCallCompleted(this, new AsyncCallCompletedEventArg(e));
             }
@@ -352,38 +459,45 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetAllVisitorsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetAllVisitorsCompletedEventArgs e)
         {
-            if (e.Error == null)
+            if (e.Error != null)
             {
-                List<Visitor> vs = new List<Visitor>();
-                for (int i = 0; i < e.Result.Length; i++)
-                {
-                    vs.Add((Visitor)Common.Convert(e.Result[i]));
-                }
-                visitors = vs;
-                if (DataLoadCompleted != null)
-                {
-                    DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Visitors));
-                }
+                Trace.TraceError("ws_GetAllVisitorsCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
+            }
+            List<Visitor> vs = new List<Visitor>();
+            for (int i = 0; i < e.Result.Length; i++)
+            {
+                vs.Add((Visitor)Common.Convert(e.Result[i]));
+            }
+            visitors = vs;
+            if (DataLoadCompleted != null)
+            {
+                DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Visitors));
             }
         }
 
         void ws_GetAllOperatorsCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetAllOperatorsCompletedEventArgs e)
         {
-            if (e.Error == null)
+            if (e.Error != null)
             {
-                List<Operator> ops = new List<Operator>();
-                for (int i = 0; i < e.Result.Length; i++)
-                {
-                    ops.Add((Operator)Common.Convert(e.Result[i]));
-                }
-
-                operators = ops;
-                if (DataLoadCompleted != null)
-                {
-                    DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Operators));
-                }
-
+                Trace.TraceError("ws_GetAllOperatorsCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
             }
+
+            List<Operator> ops = new List<Operator>();
+            for (int i = 0; i < e.Result.Length; i++)
+            {
+                ops.Add((Operator)Common.Convert(e.Result[i]));
+            }
+
+            operators = ops;
+            if (DataLoadCompleted != null)
+            {
+                DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.Operators));
+            }
+
         }
         void ws_LoginCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.LoginCompletedEventArgs e)
         {
@@ -406,15 +520,16 @@ namespace LiveSupport.OperatorConsole
                     else
                     {
                         IPHostEntry entry = Dns.GetHostEntry("lcs.zxkefu.cn");
-                        socket = socketHandler.Connect(entry.AddressList[0].ToString());                        
+                        socket = socketHandler.Connect(entry.AddressList[0].ToString());
                     }
-                    
+
                     socketHandler.DataArrive += new EventHandler<DataArriveEventArgs>(socketHandler_DataArrive);
                     socketHandler.Exception += new EventHandler<ExceptionEventArgs>(socketHandler_Exception);
                     socketHandler.SendPacket(socket, new LoginAction(currentOperator.OperatorId));
 
                     fireConnectStateChange(ConnectionState.Connected, "登录成功");
-                    timer.Enabled = false;
+                    timerAction = TimerAction.HeartBeat;
+                    timer.Enabled = true;
                     ws.GetSystemAdvertiseAsync(productVersion, Guid.NewGuid());
                     ws.GetLeaveWordAsync(Guid.NewGuid());
                     ws.GetAllVisitorsAsync(currentOperator.AccountId, Guid.NewGuid());
@@ -443,10 +558,16 @@ namespace LiveSupport.OperatorConsole
                     switch (timerAction)
                     {
                         case TimerAction.HeartBeat:
-                            socketHandler.SendPacket(socket, new HeartBeatAction(CurrentOperator.OperatorId));
+                            if (this.State == ConnectionState.Connected)
+                            {
+                                socketHandler.SendPacket(socket, new HeartBeatAction(CurrentOperator.OperatorId));
+                            }
                             break;
                         case TimerAction.ReConnect:
-                            RestartLogin();
+                            if (this.State == ConnectionState.Disconnected)
+                            {
+                                RestartLogin();
+                            }
                             break;
                         case TimerAction.None:
                             break;
@@ -496,7 +617,8 @@ namespace LiveSupport.OperatorConsole
             {
                 if (autoLoginEnabled)
                 {
-                    timer.Enabled = true;
+                    timerAction = TimerAction.ReConnect;
+                    timer.Start();
                 }
                 fireConnectStateChange(ConnectionState.Disconnected, e.Exception.Message);
             }
@@ -649,7 +771,7 @@ namespace LiveSupport.OperatorConsole
 
                 if (ChatStatusChanged != null)
                 {
-                    ChatStatusChanged(this, cs); 
+                    ChatStatusChanged(this, cs);
                 }
             }
             else if (e.Data.GetType() == typeof(OperatorChatJoinInviteEventArgs))
@@ -710,10 +832,10 @@ namespace LiveSupport.OperatorConsole
             chats.Add(chat);
         }
 
-        private void addVisitor(Visitor visitor) 
+        private void addVisitor(Visitor visitor)
         {
             Visitor v = GetVisitorById(visitor.VisitorId);
-            if (v!=null)
+            if (v != null)
             {
                 visitors.Remove(v);
             }
@@ -769,7 +891,7 @@ namespace LiveSupport.OperatorConsole
 
         public void ChangePassword(string oldPassword, string newPassword)
         {
-            ws.ChangePasswordAsync(oldPassword, newPassword,Guid.NewGuid());
+            ws.ChangePasswordAsync(oldPassword, newPassword, Guid.NewGuid());
         }
 
         public void ResetOperatorPassword(string loginName)
@@ -847,21 +969,21 @@ namespace LiveSupport.OperatorConsole
 
         void ws_GetSystemAdvertiseCompleted(object sender, LiveSupport.OperatorConsole.LiveChatWS.GetSystemAdvertiseCompletedEventArgs e)
         {
-            if (e.Error == null)
+            if (e.Error != null)
             {
-                foreach (var item in e.Result)
-	            {
-		           systemAdvertise.Add(Common.Convert(item) as SystemAdvertise);
-	            }
-                
-                if (DataLoadCompleted != null)
-                {
-                    DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.SystemAdvertise));
-                }
+                Trace.TraceError("ws_GetSystemAdvertiseCompleted Error: " + e.Error.Message);
+                //TODO: 通知窗体
+                return;
             }
-            else
+
+            foreach (var item in e.Result)
             {
-                Trace.TraceWarning("Load SystemAdvertise Failed!");
+                systemAdvertise.Add(Common.Convert(item) as SystemAdvertise);
+            }
+
+            if (DataLoadCompleted != null)
+            {
+                DataLoadCompleted(this, new DataLoadCompletedEventArgs(DataLoadEventType.SystemAdvertise));
             }
         }
 
