@@ -89,6 +89,7 @@ namespace LiveSupport.OperatorConsole
             this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.touchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.handBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDomainName = new System.Windows.Forms.Label();
             this.cbxDomainName = new System.Windows.Forms.ComboBox();
@@ -311,7 +312,7 @@ namespace LiveSupport.OperatorConsole
             // visitingTimeLabel
             // 
             visitingTimeLabel.AutoSize = true;
-            visitingTimeLabel.Location = new System.Drawing.Point(63, 428);
+            visitingTimeLabel.Location = new System.Drawing.Point(63, 20);
             visitingTimeLabel.Name = "visitingTimeLabel";
             visitingTimeLabel.Size = new System.Drawing.Size(83, 12);
             visitingTimeLabel.TabIndex = 44;
@@ -734,6 +735,7 @@ namespace LiveSupport.OperatorConsole
             this.paymentToolStripMenuItem,
             this.touchToolStripMenuItem,
             this.handBookToolStripMenuItem,
+            this.versionsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
@@ -761,6 +763,13 @@ namespace LiveSupport.OperatorConsole
             this.handBookToolStripMenuItem.Text = "软件手册(&M)";
             this.handBookToolStripMenuItem.Visible = false;
             this.handBookToolStripMenuItem.Click += new System.EventHandler(this.handBookToolStripMenuItem_Click);
+            // 
+            // versionsToolStripMenuItem
+            // 
+            this.versionsToolStripMenuItem.Name = "versionsToolStripMenuItem";
+            this.versionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.versionsToolStripMenuItem.Text = "版本记录(&V)";
+            this.versionsToolStripMenuItem.Click += new System.EventHandler(this.versionsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1114,7 +1123,9 @@ namespace LiveSupport.OperatorConsole
             // 
             // leaveTimeDateTimePicker
             // 
+            this.leaveTimeDateTimePicker.CustomFormat = "yyyy/MM/dd hh:mm:ss";
             this.leaveTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitorBindingSource, "CurrentSession.LeaveTime", true));
+            this.leaveTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.leaveTimeDateTimePicker.Location = new System.Drawing.Point(188, 234);
             this.leaveTimeDateTimePicker.Name = "leaveTimeDateTimePicker";
             this.leaveTimeDateTimePicker.Size = new System.Drawing.Size(200, 21);
@@ -1122,8 +1133,10 @@ namespace LiveSupport.OperatorConsole
             // 
             // visitingTimeDateTimePicker
             // 
+            this.visitingTimeDateTimePicker.CustomFormat = "yyyy/MM/dd hh:mm:ss";
             this.visitingTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitorBindingSource, "CurrentSession.VisitingTime", true));
-            this.visitingTimeDateTimePicker.Location = new System.Drawing.Point(188, 424);
+            this.visitingTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.visitingTimeDateTimePicker.Location = new System.Drawing.Point(188, 16);
             this.visitingTimeDateTimePicker.Name = "visitingTimeDateTimePicker";
             this.visitingTimeDateTimePicker.Size = new System.Drawing.Size(200, 21);
             this.visitingTimeDateTimePicker.TabIndex = 45;
@@ -1631,7 +1644,7 @@ namespace LiveSupport.OperatorConsole
             this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon.ContextMenuStrip = this.notifyIconContextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "LiveSupport 座席客户端";
+            this.notifyIcon.Text = "互动网站客服";
             this.notifyIcon.Visible = true;
             this.notifyIcon.DoubleClick += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -1644,12 +1657,12 @@ namespace LiveSupport.OperatorConsole
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem2});
             this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(153, 120);
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(143, 98);
             // 
             // restartConnectionToolStripMenuItem
             // 
             this.restartConnectionToolStripMenuItem.Name = "restartConnectionToolStripMenuItem";
-            this.restartConnectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartConnectionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.restartConnectionToolStripMenuItem.Text = "上线";
             this.restartConnectionToolStripMenuItem.Visible = false;
             this.restartConnectionToolStripMenuItem.Click += new System.EventHandler(this.restartConnectionToolStripMenuItem_Click);
@@ -1657,26 +1670,26 @@ namespace LiveSupport.OperatorConsole
             // changeAccountToolStripMenuItem
             // 
             this.changeAccountToolStripMenuItem.Name = "changeAccountToolStripMenuItem";
-            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeAccountToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.changeAccountToolStripMenuItem.Text = "更换座席(&C)";
             this.changeAccountToolStripMenuItem.Click += new System.EventHandler(this.changeOperatorToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.openToolStripMenuItem.Text = "显示/隐藏(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem2
             // 
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
-            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
             this.exitToolStripMenuItem2.Text = "退出(&E)";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -2132,5 +2145,6 @@ namespace LiveSupport.OperatorConsole
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsReplied;
+        private System.Windows.Forms.ToolStripMenuItem versionsToolStripMenuItem;
     }
 }

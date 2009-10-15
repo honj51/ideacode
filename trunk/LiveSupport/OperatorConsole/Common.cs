@@ -373,6 +373,16 @@ namespace LiveSupport.OperatorConsole
                 v2.Responses =new List<string>(v1.Responses);
                 return v2;  
             }
+            else if (obj is LiveSupportModel.QuickResponseCategory)
+            {
+                LiveSupportModel.QuickResponseCategory v1 = obj as LiveSupportModel.QuickResponseCategory;
+                LiveSupport.OperatorConsole.LiveChatWS.QuickResponseCategory v2 = new LiveSupport.OperatorConsole.LiveChatWS.QuickResponseCategory();
+                v2.AccountId = v1.AccountId;
+                v2.Name = v1.Name;
+                v2.QuickId = v1.QuickId;
+                v2.Responses = v1.Responses.ToArray();
+                return v2;
+            }            
             else if (obj is LiveSupport.OperatorConsole.LiveChatWS.Message)
             {
                 LiveSupport.OperatorConsole.LiveChatWS.Message v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.Message;
@@ -393,6 +403,10 @@ namespace LiveSupport.OperatorConsole
                 v2.AdvertiseMessage = v1.AdvertiseMessage;
                 v2.AdvertiseUrl = v1.AdvertiseUrl;
                 return v2;
+            }
+            else
+            {
+                throw new ArgumentException("Unknow type");
             }
             return null;
         }

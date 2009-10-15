@@ -155,8 +155,11 @@ namespace LiveSupport.OperatorConsole
                 MessageBox.Show(e.Exception.Message);
             }
             else
-            ErrorCaptureUtils.SendError(e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL+"/BugReports",true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
-            //Application.Restart();
+            {
+                string errorID = Guid.NewGuid().ToString();
+                ErrorCaptureUtils.SendError(errorID, e.Exception, "", "", Assembly.GetExecutingAssembly().GetName().Version.ToString(), Properties.Settings.Default.FtpURL + "/BugReports", true, Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
+                ErrorCaptureUtils.SendLogFile(errorID, "MyListener.log", Properties.Settings.Default.FtpURL + "/BugReports", Properties.Settings.Default.FtpUser, Properties.Settings.Default.FtpPasssword);
+            }
         }
 	}
 }
