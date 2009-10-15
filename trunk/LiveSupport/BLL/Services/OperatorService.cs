@@ -442,7 +442,7 @@ public static class OperatorService
         Trace.WriteLine(string.Format("OperatorService.NewOperator(Operator = {0})", op.ToString()));
         if (GetOperatorById(op.OperatorId) != null)
         {
-            Trace.WriteLine(string.Format("Error:OperatorService.NewOperator(Operator = {0}) ¥ÌŒÛoperator“—¥Ê‘⁄", op.ToString()));
+            Trace.WriteLine(string.Format("Error:OperatorService.NewOperator(Operator = {0}) error operator is aleady exsit", op.ToString()));
             return;
         }
         operators.Add(op);

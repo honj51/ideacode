@@ -112,7 +112,7 @@ public class VisitorService
         }
         else
         {
-            Trace.WriteLine("Error: Visitor已经存在");
+            Trace.WriteLine("Error: Visitor is aleady exist");
         }
 
         // 删除多出的Visitor
