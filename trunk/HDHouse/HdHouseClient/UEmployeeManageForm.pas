@@ -21,6 +21,7 @@ type
     frxdbdtstygxx: TfrxDBDataset;
     frxrprtygxx: TfrxReport;
     frxmlxprt1: TfrxXMLExport;
+    bskntlbr2: TbsSkinToolBar;
     procedure dtprtbrvw1btn1Click(Sender: TObject);
     procedure dtprtbrvw1btn2Click(Sender: TObject);
     procedure bskndbgrd1DblClick(Sender: TObject);

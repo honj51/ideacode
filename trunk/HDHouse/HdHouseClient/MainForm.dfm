@@ -1,13 +1,13 @@
 object formMain: TformMain
-  Left = 279
-  Top = 100
+  Left = 222
+  Top = 88
   Anchors = [akLeft, akTop, akRight, akBottom]
   BiDiMode = bdLeftToRight
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #20114#21160#25151#20135#20013#20171#31649#29702#36719#20214
   ClientHeight = 601
-  ClientWidth = 1037
+  ClientWidth = 1063
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,9 +25,9 @@ object formMain: TformMain
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 90
-    Width = 1037
+    Width = 1063
     Height = 511
-    ActivePage = bskntbsht1
+    ActivePage = bskntbsht2
     Align = alClient
     BiDiMode = bdRightToLeft
     Font.Charset = DEFAULT_CHARSET
@@ -67,7 +67,7 @@ object formMain: TformMain
       inline frmhslst1: TframeHouseList
         Left = 0
         Top = 0
-        Width = 915
+        Width = 941
         Height = 511
         HelpContext = 1
         Align = alClient
@@ -81,10 +81,10 @@ object formMain: TformMain
         TabOrder = 0
         inherited bsknpgcntrl1: TbsSkinPageControl
           Top = 301
-          Width = 915
+          Width = 941
           inherited bsSkinTabSheet1: TbsSkinTabSheet
             inherited mmoHouseDetailInfo: TbsSkinDBMemo
-              Width = 913
+              Width = 939
             end
           end
           inherited bskntbsht1: TbsSkinTabSheet
@@ -121,11 +121,11 @@ object formMain: TformMain
           end
         end
         inherited bsSkinPanel1: TbsSkinPanel
-          Width = 915
+          Width = 941
           inherited bvl1: TBevel
             Left = -2
             Top = 56
-            Width = 818
+            Width = 544
           end
           inherited bsSkinButton2: TbsSkinButton
             OnClick = frmhslst1bsSkinButton2Click
@@ -153,10 +153,10 @@ object formMain: TformMain
           end
         end
         inherited bsSkinPanel2: TbsSkinPanel
-          Width = 915
+          Width = 941
           Height = 204
           inherited bsSkinDBGrid1: TbsSkinDBGrid
-            Width = 894
+            Width = 920
             Height = 183
             TabOrder = 1
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
@@ -164,10 +164,12 @@ object formMain: TformMain
           end
           inherited bsknscrlbrHouseListDown: TbsSkinScrollBar
             Top = 184
-            Width = 913
+            Width = 939
+            SmallChange = 18
+            LargeChange = 18
           end
           inherited bsknscrlbrHouseRight: TbsSkinScrollBar
-            Left = 895
+            Left = 921
             Height = 183
             TabOrder = 0
             PageSize = 9
@@ -234,10 +236,10 @@ object formMain: TformMain
       Caption = #25151#28304#31649#29702
       ImageIndex = 7
       DesignSize = (
-        915
+        941
         511)
       object btnfygl1: TbsSkinButton
-        Left = 175
+        Left = 114
         Top = 89
         Width = 100
         Height = 30
@@ -271,7 +273,7 @@ object formMain: TformMain
         OnClick = btnfygl1Click
       end
       object btnfygl3: TbsSkinButton
-        Left = 353
+        Left = 242
         Top = 88
         Width = 100
         Height = 30
@@ -305,7 +307,7 @@ object formMain: TformMain
         OnClick = btnfygl3Click
       end
       object btnfygl4: TbsSkinButton
-        Left = 353
+        Left = 242
         Top = 248
         Width = 100
         Height = 30
@@ -339,7 +341,7 @@ object formMain: TformMain
         OnClick = btnfygl4Click
       end
       object btnfygl2: TbsSkinButton
-        Left = 177
+        Left = 115
         Top = 248
         Width = 100
         Height = 30
@@ -377,10 +379,10 @@ object formMain: TformMain
       Caption = #23458#25143#31649#29702
       ImageIndex = 9
       DesignSize = (
-        915
+        941
         511)
       object btnkhgl1: TbsSkinButton
-        Left = 183
+        Left = 118
         Top = 98
         Width = 100
         Height = 30
@@ -414,7 +416,7 @@ object formMain: TformMain
         OnClick = btnkhgl1Click
       end
       object btnkhgl3: TbsSkinButton
-        Left = 375
+        Left = 257
         Top = 99
         Width = 100
         Height = 30
@@ -448,7 +450,7 @@ object formMain: TformMain
         OnClick = btnkhgl3Click
       end
       object btnkhgl2: TbsSkinButton
-        Left = 375
+        Left = 257
         Top = 259
         Width = 100
         Height = 30
@@ -482,7 +484,7 @@ object formMain: TformMain
         OnClick = btnkhgl2Click
       end
       object btnkhgl4: TbsSkinButton
-        Left = 183
+        Left = 118
         Top = 258
         Width = 100
         Height = 30
@@ -520,10 +522,10 @@ object formMain: TformMain
       Caption = #20869#37096#32479#35745
       ImageIndex = 12
       DesignSize = (
-        915
+        941
         511)
       object btnnbgl3: TbsSkinButton
-        Left = 357
+        Left = 245
         Top = 178
         Width = 100
         Height = 30
@@ -557,7 +559,7 @@ object formMain: TformMain
         OnClick = btnnbgl3Click
       end
       object btnnbgl2: TbsSkinButton
-        Left = 158
+        Left = 101
         Top = 174
         Width = 100
         Height = 30
@@ -591,7 +593,7 @@ object formMain: TformMain
         OnClick = btnnbgl2Click
       end
       object btnnbgl1: TbsSkinButton
-        Left = 158
+        Left = 101
         Top = 91
         Width = 100
         Height = 30
@@ -625,7 +627,7 @@ object formMain: TformMain
         OnClick = btnnbgl1Click
       end
       object btnnbgl5: TbsSkinButton
-        Left = 357
+        Left = 245
         Top = 96
         Width = 100
         Height = 30
@@ -659,7 +661,7 @@ object formMain: TformMain
         OnClick = btnnbgl5Click
       end
       object btnnbgl4: TbsSkinButton
-        Left = 158
+        Left = 101
         Top = 250
         Width = 100
         Height = 30
@@ -693,7 +695,7 @@ object formMain: TformMain
         OnClick = btnnbgl4Click
       end
       object btnnbgl6: TbsSkinButton
-        Left = 357
+        Left = 245
         Top = 255
         Width = 100
         Height = 30
@@ -731,10 +733,10 @@ object formMain: TformMain
       Caption = #31995#32479#35774#32622
       ImageIndex = 11
       DesignSize = (
-        915
+        941
         511)
       object btnxtsz1: TbsSkinButton
-        Left = 149
+        Left = 94
         Top = 89
         Width = 100
         Height = 40
@@ -768,7 +770,7 @@ object formMain: TformMain
         OnClick = btnxtsz1Click
       end
       object btnxtsz4: TbsSkinButton
-        Left = 356
+        Left = 244
         Top = 92
         Width = 100
         Height = 40
@@ -802,7 +804,7 @@ object formMain: TformMain
         OnClick = btnxtsz4Click
       end
       object btnxtsz7: TbsSkinButton
-        Left = 149
+        Left = 94
         Top = 142
         Width = 100
         Height = 40
@@ -836,7 +838,7 @@ object formMain: TformMain
         OnClick = btnxtsz7Click
       end
       object btnxtsz5: TbsSkinButton
-        Left = 356
+        Left = 244
         Top = 144
         Width = 100
         Height = 40
@@ -870,7 +872,7 @@ object formMain: TformMain
         OnClick = btnxtsz5Click
       end
       object btnxtsz2: TbsSkinButton
-        Left = 149
+        Left = 94
         Top = 192
         Width = 100
         Height = 40
@@ -904,7 +906,7 @@ object formMain: TformMain
         OnClick = btnxtsz2Click
       end
       object btnxtsz6: TbsSkinButton
-        Left = 355
+        Left = 244
         Top = 197
         Width = 100
         Height = 40
@@ -938,7 +940,7 @@ object formMain: TformMain
         OnClick = btnxtsz6Click
       end
       object btnxtsz3: TbsSkinButton
-        Left = 149
+        Left = 94
         Top = 247
         Width = 100
         Height = 40
@@ -972,7 +974,7 @@ object formMain: TformMain
         OnClick = btnxtsz3Click
       end
       object btnxtsz8: TbsSkinButton
-        Left = 356
+        Left = 244
         Top = 251
         Width = 100
         Height = 40
@@ -1006,7 +1008,7 @@ object formMain: TformMain
         OnClick = btnxtsz8Click
       end
       object btnxtsz9: TbsSkinButton
-        Left = 149
+        Left = 94
         Top = 303
         Width = 100
         Height = 40
@@ -1040,7 +1042,7 @@ object formMain: TformMain
         OnClick = btnxtsz9Click
       end
       object btn17: TbsSkinButton
-        Left = 356
+        Left = 244
         Top = 305
         Width = 100
         Height = 40
@@ -1078,7 +1080,7 @@ object formMain: TformMain
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 1037
+    Width = 1063
     Height = 90
     HintImageIndex = 0
     TabOrder = 0

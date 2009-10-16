@@ -1,25 +1,28 @@
 object EmployeeManageForm: TEmployeeManageForm
-  Left = 271
-  Top = 122
+  Left = 339
+  Top = 152
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #21592#24037#31649#29702
   ClientHeight = 554
-  ClientWidth = 965
+  ClientWidth = 760
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poDefault
+  Visible = True
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskndbgrd1: TbsSkinDBGrid
     Left = 0
     Top = 165
-    Width = 946
+    Width = 741
     Height = 370
     HintImageIndex = 0
     TabOrder = 2
@@ -148,7 +151,7 @@ object EmployeeManageForm: TEmployeeManageForm
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 93
-    Width = 965
+    Width = 760
     Height = 72
     HintImageIndex = 0
     TabOrder = 1
@@ -243,7 +246,7 @@ object EmployeeManageForm: TEmployeeManageForm
   object bsknscrlbr2: TbsSkinScrollBar
     Left = 0
     Top = 535
-    Width = 965
+    Width = 760
     Height = 19
     HintImageIndex = 0
     TabOrder = 4
@@ -267,11 +270,11 @@ object EmployeeManageForm: TEmployeeManageForm
     Min = 0
     Max = 127
     Position = 0
-    SmallChange = 127
-    LargeChange = 127
+    SmallChange = 63
+    LargeChange = 63
   end
   object bsknscrlbr1: TbsSkinScrollBar
-    Left = 946
+    Left = 741
     Top = 165
     Width = 19
     Height = 370
@@ -304,13 +307,12 @@ object EmployeeManageForm: TEmployeeManageForm
   inline dtprtbrvw1: TDataOperateBarView
     Left = 0
     Top = 0
-    Width = 965
+    Width = 760
     Height = 93
     Align = alTop
     AutoScroll = False
     TabOrder = 0
     inherited bskntlbr1: TbsSkinToolBar
-      Width = 965
       SkinDataName = 'resizetoolpanel'
       inherited btn1: TbsSkinSpeedButton
         OnClick = dtprtbrvw1btn1Click
@@ -328,6 +330,49 @@ object EmployeeManageForm: TEmployeeManageForm
         OnClick = dtprtbrvw1btn5Click
       end
     end
+  end
+  object bskntlbr2: TbsSkinToolBar
+    Left = 408
+    Top = 280
+    Width = 150
+    Height = 25
+    HintImageIndex = 0
+    TabOrder = 5
+    SkinDataName = 'toolpanel'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 0
+    UseSkinFont = True
+    ImagePosition = bsipDefault
+    TransparentMode = False
+    CaptionImageIndex = -1
+    RealHeight = -1
+    AutoEnabledControls = True
+    CheckedMode = False
+    Checked = False
+    DefaultAlignment = taLeftJustify
+    DefaultCaptionHeight = 22
+    BorderStyle = bvNone
+    CaptionMode = False
+    RollUpMode = False
+    RollUpState = False
+    NumGlyphs = 1
+    Spacing = 2
+    Caption = 'bskntlbr2'
+    CanScroll = False
+    HotScroll = False
+    ScrollOffset = 0
+    ScrollTimerInterval = 50
+    AdjustControls = True
+    WidthWithCaptions = 0
+    WidthWithoutCaptions = 0
+    AutoShowHideCaptions = False
+    ShowCaptions = False
+    Flat = False
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
     ClientInActiveEffect = False

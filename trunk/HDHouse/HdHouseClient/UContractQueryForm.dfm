@@ -1,6 +1,6 @@
 object ContractQueryForm: TContractQueryForm
-  Left = 265
-  Top = 98
+  Left = 326
+  Top = 114
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #31614#32422#26597#35810
@@ -12,7 +12,10 @@ object ContractQueryForm: TContractQueryForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poDefault
+  Visible = True
   OnShow = FormShow
   DesignSize = (
     988
@@ -368,94 +371,77 @@ object ContractQueryForm: TContractQueryForm
         inherited bsknpnl1: TbsSkinPanel
           inherited edt1: TbsSkinDBEdit
             Left = 105
-            Text = '3680'
             DataField = 'fczy_zj'
             DataSource = dsFyxxxx
           end
           inherited edt2: TbsSkinDBEdit
-            Text = '0'
             DataField = 'fczy_sj'
             DataSource = dsFyxxxx
           end
           inherited edt3: TbsSkinDBEdit
-            Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
             DataField = 'fczy_cssm'
             DataSource = dsFyxxxx
           end
           inherited edt4: TbsSkinDBEdit
-            Text = #20928#20215#65292#20080#26041#36127#36131#31246#36153
             DataField = 'fczy_cssm'
             DataSource = dsFyxxxx
           end
           inherited edt5: TbsSkinDBEdit
-            Text = #24050#32463#25104#20132
             DataField = 'fczy_dqzt'
             DataSource = dsFyxxxx
           end
           inherited edt6: TbsSkinDBEdit
-            Text = #27946#22478#23567#21306
             DataField = 'fczy_wymc'
             DataSource = dsFyxxxx
           end
           inherited edt7: TbsSkinDBEdit
-            Text = #19996#22478#21306
             DataField = 'fczy_qy'
             DataSource = dsFyxxxx
           end
           inherited edt8: TbsSkinDBEdit
-            Text = '3'#23460'1'#21381'1'#21355'1'#38451
             DataField = 'fczy_hxjg'
             DataSource = dsFyxxxx
           end
           inherited edt9: TbsSkinDBEdit
-            Text = #23567#29579
+            Text = '(MEMO)'
             DataField = 'cjxx_zygw'
             DataSource = dsCjxx
           end
           inherited edt10: TbsSkinDBEdit
-            Text = #26222#36890#20303#23429
             DataField = 'fczy_wyyt'
             DataSource = dsFyxxxx
           end
           inherited edt11: TbsSkinDBEdit
-            Text = #26222#35013
             DataField = 'fczy_zxcd'
             DataSource = dsFyxxxx
           end
           inherited edt12: TbsSkinDBEdit
-            Text = '126'
             DataField = 'fczy_jzmj'
             DataSource = dsFyxxxx
           end
           inherited edt13: TbsSkinDBEdit
-            Text = '2003'
             DataField = 'fczy_jcnf'
             DataSource = dsFyxxxx
           end
           inherited edt14: TbsSkinDBEdit
-            Text = #24179#23618
             DataField = 'fczy_fx'
             DataSource = dsFyxxxx
           end
           inherited edt15: TbsSkinDBEdit
-            Text = #39640#23618
             DataField = 'fczy_wylb'
             DataSource = dsFyxxxx
           end
           inherited edt16: TbsSkinDBEdit
-            Text = '7/6'
             DataField = 'fczy_lccg'
             DataSource = dsFyxxxx
           end
         end
         inherited bsknpnl2: TbsSkinPanel
           inherited edt17: TbsSkinDBEdit
-            Text = #29123#27668';'#26262#27668';'
             DataField = 'fczy_ptss1'
             DataSource = dsFyxxxx
           end
           inherited edt18: TbsSkinDBEdit
-            Text = #23485#24102';'
             DataField = 'fczy_ptss2'
             DataSource = dsFyxxxx
           end
@@ -485,22 +471,18 @@ object ContractQueryForm: TContractQueryForm
           Width = 987
           Height = 197
           inherited edtfczy_yzxm: TbsSkinDBEdit
-            Text = #23567#21016
             ReadOnly = True
             DataSource = dsFyxxxx
           end
           inherited edtfczy_yzxm1: TbsSkinDBEdit
-            Text = '805'
             ReadOnly = True
             DataSource = dsFyxxxx
           end
           inherited edtfczy_yzxm2: TbsSkinDBEdit
-            Text = '0'
             ReadOnly = True
             DataSource = dsFyxxxx
           end
           inherited edtfczy_yzxm3: TbsSkinDBEdit
-            Text = #19996#27827#36335
             ReadOnly = True
             DataSource = dsFyxxxx
           end
@@ -597,7 +579,6 @@ object ContractQueryForm: TContractQueryForm
     Top = 9
   end
   object tblFyxxxx: TADOTable
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     IndexFieldNames = 'fczy_bh'
@@ -614,7 +595,6 @@ object ContractQueryForm: TContractQueryForm
     Top = 8
   end
   object tblFygj: TADOTable
-    Active = True
     Connection = HDHouseDataModule.con1
     CursorType = ctStatic
     IndexFieldNames = 'fcgj_fybh'

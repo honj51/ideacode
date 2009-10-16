@@ -1,6 +1,6 @@
 object CityForm: TCityForm
-  Left = 272
-  Top = 152
+  Left = 282
+  Top = 209
   AutoScroll = False
   BorderIcons = []
   Caption = #22478#24066#29255#21306
@@ -16,6 +16,7 @@ object CityForm: TCityForm
   OldCreateOrder = False
   Position = poDefault
   Visible = True
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -129,6 +130,7 @@ object CityForm: TCityForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn2Click
     end
     object btn3: TbsSkinSpeedButton
       Left = 180
@@ -162,40 +164,7 @@ object CityForm: TCityForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
-    end
-    object btn4: TbsSkinSpeedButton
-      Left = 244
-      Top = 0
-      Width = 64
-      Height = 25
-      HintImageIndex = 0
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'toolbutton'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      UseSkinFontColor = True
-      WidthWithCaption = 0
-      WidthWithoutCaption = 0
-      ImageIndex = 0
-      RepeatMode = False
-      RepeatInterval = 100
-      Transparent = False
-      Flat = False
-      AllowAllUp = False
-      Down = False
-      GroupIndex = 0
-      Caption = #21512#24182#29255#21306
-      ShowCaption = True
-      NumGlyphs = 1
-      Spacing = 1
-      OnClick = btn4Click
+      OnClick = btn3Click
     end
     object btn5: TbsSkinSpeedButton
       Left = 0
@@ -229,6 +198,7 @@ object CityForm: TCityForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn5Click
     end
     object btn6: TbsSkinSpeedButton
       Left = 25
@@ -262,9 +232,10 @@ object CityForm: TCityForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn6Click
     end
     object btn7: TbsSkinSpeedButton
-      Left = 309
+      Left = 245
       Top = 0
       Width = 25
       Height = 25
@@ -295,6 +266,7 @@ object CityForm: TCityForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn7Click
     end
   end
   object bsknpnl1: TbsSkinPanel
@@ -334,7 +306,7 @@ object CityForm: TCityForm
     object tv1: TbsSkinTreeView
       Left = 1
       Top = 1
-      Width = 136
+      Width = 152
       Height = 447
       Items.Data = {
         01000000210000000000000000000000FFFFFFFFFFFFFFFF0000000001000000
@@ -368,12 +340,14 @@ object CityForm: TCityForm
       Font.Style = []
       Indent = 19
       ParentFont = False
+      PopupMenu = bsSkinPopupMenu2
       TabOrder = 0
+      OnChange = tv1Change
     end
     object bskndbgrd1: TbsSkinDBGrid
-      Left = 137
+      Left = 153
       Top = 1
-      Width = 652
+      Width = 636
       Height = 447
       HintImageIndex = 0
       TabOrder = 1
@@ -394,20 +368,26 @@ object CityForm: TCityForm
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
       Align = alClient
+      DataSource = ds1
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      PopupMenu = bsSkinPopupMenu1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDblClick = btn2Click
       Columns = <
         item
           Expanded = False
+          FieldName = 'AreaNo'
           Title.Caption = #24207#21495
           Width = 80
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'AreaName'
           Title.Caption = #29255#21306#21517#31216
           Width = 150
           Visible = True
@@ -420,7 +400,6 @@ object CityForm: TCityForm
       Height = 447
       HintImageIndex = 0
       TabOrder = 2
-      Visible = False
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'vscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -437,10 +416,10 @@ object CityForm: TCityForm
       CanFocused = False
       Align = alRight
       Kind = sbVertical
-      PageSize = 0
-      Min = 0
-      Max = 100
-      Position = 0
+      PageSize = 23
+      Min = 1
+      Max = 121
+      Position = 1
       SmallChange = 1
       LargeChange = 1
     end
@@ -495,5 +474,79 @@ object CityForm: TCityForm
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
     Left = 584
+  end
+  object dsCity: TDataSource
+    DataSet = qrycity
+    Left = 718
+    Top = 41
+  end
+  object qrycity: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from city')
+    Left = 688
+    Top = 48
+  end
+  object dsDistrict: TDataSource
+    DataSet = tblDistrict
+    Left = 726
+    Top = 105
+  end
+  object tblDistrict: TADOTable
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'CityName'
+    MasterFields = 'CityName'
+    MasterSource = dsCity
+    TableName = 'District'
+    Left = 694
+    Top = 105
+  end
+  object qry1: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from Area where FlagDeleted=0')
+    Left = 696
+    Top = 169
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 736
+    Top = 169
+  end
+  object bsSkinPopupMenu1: TbsSkinPopupMenu
+    SkinData = HDHouseDataModule.bsSkinData1
+    Left = 480
+    Top = 41
+    object N3: TMenuItem
+      Caption = #28155#21152#29255#21306
+      OnClick = btn1Click
+    end
+    object N4: TMenuItem
+      Caption = #20462#25913#29255#21306
+      OnClick = btn2Click
+    end
+    object N5: TMenuItem
+      Caption = #21024#38500#29255#21306
+      OnClick = btn3Click
+    end
+  end
+  object bsSkinPopupMenu2: TbsSkinPopupMenu
+    SkinData = HDHouseDataModule.bsSkinData1
+    Left = 600
+    Top = 57
+    object N1: TMenuItem
+      Caption = #23637#24320
+      OnClick = btn5Click
+    end
+    object N2: TMenuItem
+      Caption = #25240#25910
+      OnClick = btn6Click
+    end
   end
 end

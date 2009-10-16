@@ -12,8 +12,12 @@ object NotificationManageForm: TNotificationManageForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
   PopupMenu = pm1
+  Position = poDefault
+  Visible = True
+  OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
   PixelsPerInch = 96

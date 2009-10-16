@@ -1,11 +1,11 @@
 object MainForm2: TMainForm2
-  Left = 257
-  Top = 145
+  Left = 288
+  Top = 102
   AutoScroll = False
   BorderIcons = []
   Caption = #20114#21160#25151#20135#20013#20171#31649#29702#31995#32479
   ClientHeight = 566
-  ClientWidth = 1016
+  ClientWidth = 1015
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object MainForm2: TMainForm2
   object bsknmnmnbr1: TbsSkinMainMenuBar
     Left = 0
     Top = 0
-    Width = 1016
+    Width = 1015
     Height = 22
     HintImageIndex = 0
     TabOrder = 0
@@ -43,9 +43,9 @@ object MainForm2: TMainForm2
   end
   object btn1: TbsSkinButtonsBar
     Left = 0
-    Top = 22
+    Top = 112
     Width = 129
-    Height = 523
+    Height = 433
     HintImageIndex = 0
     TabOrder = 1
     SkinData = HDHouseDataModule.bsSkinData1
@@ -182,6 +182,7 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+            OnClick = btn1Sections0Items2Click
           end
           item
             Enabled = True
@@ -236,6 +237,7 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+            OnClick = btn1Sections0Items2Click
           end
           item
             Enabled = True
@@ -281,6 +283,27 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+            OnClick = btn1Sections3Items1Click
+          end
+          item
+            Enabled = True
+            Text = #26085#31243#35745#21010
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections3Items2Click
+          end
+          item
+            Enabled = True
+            Text = #32463#29702#28857#35780
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections3Items3Click
           end
           item
             Enabled = True
@@ -290,6 +313,47 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+            OnClick = btn1Sections3Items4Click
+          end
+          item
+            Enabled = True
+            Text = #24773#25253#31449
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections3Items5Click
+          end
+          item
+            Enabled = True
+            Text = #19994#21153#38382#31572
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections3Items6Click
+          end
+          item
+            Enabled = True
+            Text = #25104#20132#31649#29702
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections3Items7Click
+          end
+          item
+            Enabled = True
+            Text = #31614#32422#26597#35810
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections3Items8Click
           end>
         Tag = 0
         ImageIndex = 0
@@ -308,6 +372,7 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+            OnClick = btn1Sections4Items0Click
           end
           item
             Enabled = True
@@ -327,6 +392,26 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+          end
+          item
+            Enabled = True
+            Text = #22238#25910#31449
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections4Items3Click
+          end
+          item
+            Enabled = True
+            Text = #25552#37266#31649#29702
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections4Items4Click
           end>
         Tag = 0
         ImageIndex = 0
@@ -354,6 +439,7 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+            OnClick = btn1Sections5Items1Click
           end
           item
             Enabled = True
@@ -363,6 +449,7 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+            OnClick = btn1Sections5Items2Click
           end
           item
             Enabled = True
@@ -381,6 +468,16 @@ object MainForm2: TMainForm2
             Layout = blGlyphTop
             Margin = -1
             Spacing = 1
+          end
+          item
+            Enabled = True
+            Text = #21592#24037#31649#29702
+            ImageIndex = 0
+            Tag = 0
+            Layout = blGlyphTop
+            Margin = -1
+            Spacing = 1
+            OnClick = btn1Sections5Items5Click
           end>
         Tag = 0
         ImageIndex = 0
@@ -392,7 +489,7 @@ object MainForm2: TMainForm2
   object bsknstsbr1: TbsSkinStatusBar
     Left = 0
     Top = 545
-    Width = 1016
+    Width = 1015
     Height = 21
     HintImageIndex = 0
     TabOrder = 2
@@ -460,7 +557,7 @@ object MainForm2: TMainForm2
     object bsknstspnl2: TbsSkinStatusPanel
       Left = 120
       Top = 0
-      Width = 496
+      Width = 495
       Height = 21
       HintImageIndex = 0
       TabOrder = 1
@@ -491,7 +588,7 @@ object MainForm2: TMainForm2
       NumGlyphs = 1
     end
     object bsknstspnl3: TbsSkinStatusPanel
-      Left = 616
+      Left = 615
       Top = 0
       Width = 192
       Height = 21
@@ -524,7 +621,7 @@ object MainForm2: TMainForm2
       NumGlyphs = 1
     end
     object bsknstspnl4: TbsSkinStatusPanel
-      Left = 808
+      Left = 807
       Top = 0
       Width = 208
       Height = 21
@@ -555,6 +652,304 @@ object MainForm2: TMainForm2
       AutoSize = False
       ImageIndex = -1
       NumGlyphs = 1
+    end
+  end
+  object bskntlbr1: TbsSkinToolBar
+    Left = 0
+    Top = 22
+    Width = 1015
+    Height = 90
+    HintImageIndex = 0
+    TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'resizetoolpanel'
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    DefaultWidth = 0
+    DefaultHeight = 90
+    UseSkinFont = True
+    ImagePosition = bsipDefault
+    TransparentMode = False
+    CaptionImageIndex = -1
+    RealHeight = -1
+    AutoEnabledControls = True
+    CheckedMode = False
+    Checked = False
+    DefaultAlignment = taLeftJustify
+    DefaultCaptionHeight = 22
+    BorderStyle = bvFrame
+    CaptionMode = False
+    RollUpMode = False
+    RollUpState = False
+    NumGlyphs = 1
+    Spacing = 2
+    Caption = 'bskntlbr1'
+    Align = alTop
+    CanScroll = False
+    HotScroll = False
+    ScrollOffset = 0
+    ScrollTimerInterval = 50
+    AdjustControls = True
+    WidthWithCaptions = 0
+    WidthWithoutCaptions = 0
+    AutoShowHideCaptions = False
+    ShowCaptions = False
+    Flat = False
+    Images = HDHouseDataModule.bspngmglst48
+    object btn8: TbsSkinSpeedButton
+      Left = 23
+      Top = 14
+      Width = 66
+      Height = 62
+      HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = HDHouseDataModule.bspngmglst48
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 0
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #26032#22686#25151#28304
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
+    end
+    object btn2: TbsSkinSpeedButton
+      Left = 120
+      Top = 5
+      Width = 80
+      Height = 81
+      HintImageIndex = 1
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = HDHouseDataModule.bspngmglst48
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 1
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #26032#22686#23458#25143
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
+    end
+    object btn3: TbsSkinSpeedButton
+      Left = 216
+      Top = 5
+      Width = 80
+      Height = 81
+      HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = HDHouseDataModule.bspngmglst48
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 2
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #36319#36827#26597#35810
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
+    end
+    object btn4: TbsSkinSpeedButton
+      Left = 313
+      Top = 5
+      Width = 89
+      Height = 81
+      HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = HDHouseDataModule.bspngmglst48
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 3
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #20999#25442#29992#25143
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
+    end
+    object btn5: TbsSkinSpeedButton
+      Left = 416
+      Top = 5
+      Width = 89
+      Height = 81
+      HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = HDHouseDataModule.bspngmglst32
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 4
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #38145#23450#23631#24149
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
+    end
+    object btn6: TbsSkinSpeedButton
+      Left = 520
+      Top = 5
+      Width = 65
+      Height = 81
+      HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = HDHouseDataModule.bspngmglstPngImglst64
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 5
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #36719#20214#24110#21161
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
+    end
+    object btn7: TbsSkinSpeedButton
+      Left = 607
+      Top = 5
+      Width = 89
+      Height = 81
+      HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'resizetoolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      ImageList = HDHouseDataModule.bspngmglstPngImglst64
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 6
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = True
+      Flat = True
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #36864#20986#31995#32479
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alCustom
+      Spacing = 1
+      Layout = blGlyphTop
     end
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm

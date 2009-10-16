@@ -1,6 +1,6 @@
 object HouseManageForm: THouseManageForm
-  Left = 317
-  Top = 55
+  Left = 279
+  Top = 73
   AutoScroll = False
   BorderIcons = []
   Caption = #25151#28304#31649#29702

@@ -1,11 +1,11 @@
 object EstateDictionaryForm: TEstateDictionaryForm
-  Left = 490
-  Top = 144
+  Left = 272
+  Top = 161
   AutoScroll = False
   BorderIcons = []
   Caption = #27004#30424#23383#20856
   ClientHeight = 463
-  ClientWidth = 812
+  ClientWidth = 883
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,13 +16,14 @@ object EstateDictionaryForm: TEstateDictionaryForm
   OldCreateOrder = False
   Position = poDefault
   Visible = True
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 812
+    Width = 883
     Height = 25
     HintImageIndex = 0
     TabOrder = 0
@@ -63,41 +64,8 @@ object EstateDictionaryForm: TEstateDictionaryForm
     AutoShowHideCaptions = False
     ShowCaptions = False
     Flat = False
-    object btn1: TbsSkinSpeedButton
-      Left = 288
-      Top = 0
-      Width = 65
-      Height = 25
-      HintImageIndex = 0
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'toolbutton'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      UseSkinFontColor = True
-      WidthWithCaption = 0
-      WidthWithoutCaption = 0
-      ImageIndex = 0
-      RepeatMode = False
-      RepeatInterval = 100
-      Transparent = False
-      Flat = False
-      AllowAllUp = False
-      Down = False
-      GroupIndex = 0
-      Caption = #26597#37325
-      ShowCaption = True
-      NumGlyphs = 1
-      Spacing = 1
-    end
     object btn5: TbsSkinSpeedButton
-      Left = 379
+      Left = 315
       Top = 0
       Width = 25
       Height = 25
@@ -128,9 +96,10 @@ object EstateDictionaryForm: TEstateDictionaryForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn5Click
     end
     object btn6: TbsSkinSpeedButton
-      Left = 404
+      Left = 340
       Top = 0
       Width = 25
       Height = 25
@@ -163,7 +132,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
       Spacing = 1
     end
     object btn7: TbsSkinSpeedButton
-      Left = 480
+      Left = 416
       Top = 0
       Width = 25
       Height = 25
@@ -194,6 +163,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn7Click
     end
     object btn8: TbsSkinSpeedButton
       Left = 25
@@ -227,6 +197,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn8Click
     end
     object btn9: TbsSkinSpeedButton
       Left = 0
@@ -260,6 +231,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn9Click
     end
     object btn10: TbsSkinSpeedButton
       Left = 50
@@ -327,6 +299,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn11Click
     end
     object btn12: TbsSkinSpeedButton
       Left = 115
@@ -360,6 +333,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn12Click
     end
     object lbl1: TbsSkinStdLabel
       Left = 168
@@ -379,7 +353,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
       Caption = #26597#35810
     end
     object btn14: TbsSkinSpeedButton
-      Left = 354
+      Left = 290
       Top = 0
       Width = 25
       Height = 25
@@ -410,9 +384,10 @@ object EstateDictionaryForm: TEstateDictionaryForm
       ShowCaption = True
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn14Click
     end
     object bsknlbl1: TbsSkinLabel
-      Left = 430
+      Left = 366
       Top = 0
       Width = 49
       Height = 25
@@ -472,12 +447,13 @@ object EstateDictionaryForm: TEstateDictionaryForm
       RightImageIndex = -1
       RightImageHotIndex = -1
       RightImageDownIndex = -1
+      OnChange = edt1Change
     end
   end
   object bsknpnl1: TbsSkinPanel
     Left = 0
     Top = 25
-    Width = 150
+    Width = 193
     Height = 438
     HintImageIndex = 0
     TabOrder = 1
@@ -511,7 +487,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
     object tv1: TbsSkinTreeView
       Left = 1
       Top = 1
-      Width = 129
+      Width = 172
       Height = 436
       Items.Data = {
         01000000210000000000000000000000FFFFFFFFFFFFFFFF0000000001000000
@@ -546,10 +522,12 @@ object EstateDictionaryForm: TEstateDictionaryForm
       Font.Style = []
       Indent = 19
       ParentFont = False
+      PopupMenu = bsSkinPopupMenu2
       TabOrder = 0
+      OnChange = tv1Change
     end
     object bsknscrlbr1: TbsSkinScrollBar
-      Left = 130
+      Left = 173
       Top = 1
       Width = 19
       Height = 436
@@ -581,9 +559,9 @@ object EstateDictionaryForm: TEstateDictionaryForm
     end
   end
   object bsknpnl2: TbsSkinPanel
-    Left = 150
+    Left = 193
     Top = 25
-    Width = 662
+    Width = 690
     Height = 438
     HintImageIndex = 0
     TabOrder = 2
@@ -617,7 +595,7 @@ object EstateDictionaryForm: TEstateDictionaryForm
     object bskndbgrd1: TbsSkinDBGrid
       Left = 1
       Top = 1
-      Width = 641
+      Width = 669
       Height = 417
       HintImageIndex = 0
       TabOrder = 0
@@ -639,73 +617,82 @@ object EstateDictionaryForm: TEstateDictionaryForm
       PickListBoxSkinDataName = 'listbox'
       PickListBoxCaptionMode = False
       Align = alClient
+      DataSource = ds1
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      PopupMenu = bsSkinPopupMenu1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'MS Sans Serif'
       TitleFont.Style = []
+      OnDblClick = btn12Click
       Columns = <
         item
           Expanded = False
+          FieldName = 'EstateName'
           Title.Caption = #27004#30424#23383#20856
           Width = 90
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'Spell'
           Title.Caption = #25340#38899
           Width = 50
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'a.DistrictName'
           Title.Caption = #29255#21306
+          Width = 91
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'Address'
           Title.Caption = #27010#35201#22320#22336
-          Width = 120
+          Width = 62
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'LandNo'
           Title.Caption = #26635#25968
           Width = 40
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'LandGrade'
           Title.Caption = #26635#35268
           Width = 40
           Visible = True
         end
         item
           Expanded = False
-          Title.Caption = #25151#35268
-          Width = 40
-          Visible = True
-        end
-        item
-          Expanded = False
+          FieldName = 'PropertyUsage'
           Title.Caption = #29992#36884
           Width = 50
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'PropertyType'
           Title.Caption = #31867#22411
           Width = 50
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'CompleteYear'
           Title.Caption = #24314#25151
           Width = 40
           Visible = True
         end
         item
           Expanded = False
+          FieldName = 'e.FlagDeleted'
           Title.Caption = #29031#29255
           Width = 40
           Visible = True
@@ -714,10 +701,11 @@ object EstateDictionaryForm: TEstateDictionaryForm
     object bsknscrlbr2: TbsSkinScrollBar
       Left = 1
       Top = 418
-      Width = 660
+      Width = 688
       Height = 19
       HintImageIndex = 0
       TabOrder = 1
+      Visible = False
       SkinDataName = 'hscrollbar'
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clWindowText
@@ -735,13 +723,13 @@ object EstateDictionaryForm: TEstateDictionaryForm
       Kind = sbHorizontal
       PageSize = 0
       Min = 0
-      Max = 127
+      Max = 0
       Position = 0
       SmallChange = 127
       LargeChange = 127
     end
     object bsknscrlbr3: TbsSkinScrollBar
-      Left = 642
+      Left = 670
       Top = 1
       Width = 19
       Height = 417
@@ -764,10 +752,10 @@ object EstateDictionaryForm: TEstateDictionaryForm
       CanFocused = False
       Align = alRight
       Kind = sbVertical
-      PageSize = 0
-      Min = 0
-      Max = 100
-      Position = 0
+      PageSize = 22
+      Min = 1
+      Max = 285
+      Position = 1
       SmallChange = 1
       LargeChange = 1
     end
@@ -821,6 +809,111 @@ object EstateDictionaryForm: TEstateDictionaryForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 608
+    Left = 712
+    Top = 65520
+  end
+  object qry1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      
+        'select * from Estate e,area a where e.areaid=a.areaid and a.Flag' +
+        'Deleted=0 and e.FlagDeleted=0')
+    Left = 774
+    Top = 217
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 734
+    Top = 217
+  end
+  object qrycity: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from city')
+    Left = 728
+    Top = 48
+  end
+  object dsDistrict: TDataSource
+    DataSet = tblDistrict
+    Left = 766
+    Top = 105
+  end
+  object dsCity: TDataSource
+    DataSet = qrycity
+    Left = 758
+    Top = 41
+  end
+  object tblDistrict: TADOTable
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'CityName'
+    MasterFields = 'CityName'
+    MasterSource = dsCity
+    TableName = 'District'
+    Left = 734
+    Top = 105
+  end
+  object tblArea: TADOTable
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'DistrictName'
+    MasterFields = 'DistrictName'
+    MasterSource = dsDistrict
+    TableName = 'Area'
+    Left = 734
+    Top = 169
+  end
+  object dsArea: TDataSource
+    DataSet = tblArea
+    Left = 766
+    Top = 169
+  end
+  object tbl1: TADOTable
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    IndexFieldNames = 'EstateID'
+    MasterFields = 'EstateID'
+    MasterSource = ds1
+    TableName = 'Estate'
+    Left = 777
+    Top = 273
+  end
+  object bsSkinPopupMenu1: TbsSkinPopupMenu
+    SkinData = HDHouseDataModule.bsSkinData1
+    Left = 624
+    Top = 344
+    object N1: TMenuItem
+      Caption = #26032#22686#27004#30424#23383#20856
+      OnClick = btn10Click
+    end
+    object N2: TMenuItem
+      Caption = #21024#38500#27004#30424#23383#20856
+      OnClick = btn11Click
+    end
+    object N3: TMenuItem
+      Caption = #20462#25913#27004#30424#23383#20856
+      OnClick = btn12Click
+    end
+    object N4: TMenuItem
+      Caption = #21047#26032#27004#30424#23383#20856
+      OnClick = btn5Click
+    end
+  end
+  object bsSkinPopupMenu2: TbsSkinPopupMenu
+    SkinData = HDHouseDataModule.bsSkinData1
+    Left = 729
+    Top = 345
+    object N5: TMenuItem
+      Caption = #23637#24320
+      OnClick = btn9Click
+    end
+    object N6: TMenuItem
+      Caption = #25240#25910
+      OnClick = btn8Click
+    end
   end
 end

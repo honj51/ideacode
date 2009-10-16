@@ -1,5 +1,5 @@
 object HouseDetailsForm: THouseDetailsForm
-  Left = 331
+  Left = 269
   Top = 64
   BorderIcons = []
   BorderStyle = bsDialog

@@ -1,6 +1,6 @@
 object HouseDealManageForm: THouseDealManageForm
-  Left = 314
-  Top = 92
+  Left = 287
+  Top = 102
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = #25104#20132#31649#29702' '
@@ -12,7 +12,11 @@ object HouseDealManageForm: THouseDealManageForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poDefault
+  Visible = True
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

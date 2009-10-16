@@ -1,7 +1,7 @@
 object HDHouseDataModule: THDHouseDataModule
   OldCreateOrder = True
-  Left = 529
-  Top = 182
+  Left = 416
+  Top = 183
   Height = 464
   Width = 533
   object dsfczy: TDataSource
@@ -23,15 +23,15 @@ object HDHouseDataModule: THDHouseDataModule
     Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Pr' +
-      'oject\HDHouse\HdHouseClient\database\hdhouse.mdb;Mode=Share Deny' +
-      ' None;Extended Properties="";Persist Security Info=False;Jet OLE' +
-      'DB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Datab' +
-      'ase Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locki' +
-      'ng Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global B' +
-      'ulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:' +
-      'Create System Database=False;Jet OLEDB:Encrypt Database=False;Je' +
-      't OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Wit' +
-      'hout Replica Repair=False;Jet OLEDB:SFP=False'
+      'oject\delphi\HDHouse\HdHouseClient\database\hdhouse.mdb;Mode=Sha' +
+      're Deny None;Extended Properties="";Persist Security Info=False;' +
+      'Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OLED' +
+      'B:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Databas' +
+      'e Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:G' +
+      'lobal Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet' +
+      ' OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=F' +
+      'alse;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Comp' +
+      'act Without Replica Repair=False;Jet OLEDB:SFP=False'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -11494,7 +11494,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 60
   end
   object tblTrackRecords: TADOTable
-    Active = True
     Connection = con1
     CursorType = ctStatic
     IndexFieldNames = 'fcgj_fybh'
@@ -11505,7 +11504,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 111
   end
   object tblHouses: TADOTable
-    Active = True
     Connection = con1
     CursorType = ctStatic
     TableName = 'fczy'
@@ -11533,7 +11531,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 262
   end
   object qryygxx: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11567,7 +11564,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 360
   end
   object qry_users: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11587,7 +11583,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 365
   end
   object qry_Qx: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11708,7 +11703,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 270
   end
   object qryContractQuery: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     AfterScroll = qryfczyAfterScroll
@@ -11719,7 +11713,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 166
   end
   object qryTrackQuery: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     Parameters = <>
@@ -11729,7 +11722,6 @@ object HDHouseDataModule: THDHouseDataModule
     Top = 215
   end
   object qryfczy: TADOQuery
-    Active = True
     Connection = con1
     CursorType = ctStatic
     AfterScroll = qryfczyAfterScroll
