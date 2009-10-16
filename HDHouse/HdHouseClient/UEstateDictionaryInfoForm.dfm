@@ -1,11 +1,11 @@
 object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
-  Left = 541
-  Top = 174
+  Left = 584
+  Top = 191
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = #27004#30424#23383#20856
-  ClientHeight = 460
-  ClientWidth = 429
+  ClientHeight = 468
+  ClientWidth = 431
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,13 +13,14 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpntpnl1: TbsSkinPaintPanel
     Left = 0
     Top = 0
-    Width = 429
-    Height = 460
+    Width = 431
+    Height = 468
     HintImageIndex = 0
     TabOrder = 0
     SkinData = HDHouseDataModule.bsSkinData1
@@ -52,7 +53,7 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
     object bsknpgcntrl1: TbsSkinPageControl
       Left = 1
       Top = 1
-      Width = 427
+      Width = 429
       Height = 416
       ActivePage = bskntbsht1
       Align = alTop
@@ -84,8 +85,8 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
         object grp1: TGroupBox
           Left = 0
           Top = 0
-          Width = 425
-          Height = 232
+          Width = 427
+          Height = 231
           Align = alClient
           TabOrder = 0
           object lbl1: TbsSkinStdLabel
@@ -347,6 +348,7 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             Top = 24
             Width = 57
             Height = 18
+            Text = 'edt1'
             DefaultColor = clWindow
             DefaultFont.Charset = DEFAULT_CHARSET
             DefaultFont.Color = clBlack
@@ -374,12 +376,15 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             RightImageHotIndex = -1
             RightImageDownIndex = -1
             AutoSize = False
+            DataField = 'CityName'
+            DataSource = ds1
           end
           object edt2: TbsSkinDBEdit
             Left = 144
             Top = 24
             Width = 57
             Height = 18
+            Text = 'edt2'
             DefaultColor = clWindow
             DefaultFont.Charset = DEFAULT_CHARSET
             DefaultFont.Color = clBlack
@@ -407,12 +412,15 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             RightImageHotIndex = -1
             RightImageDownIndex = -1
             AutoSize = False
+            DataField = 'DistrictName'
+            DataSource = ds1
           end
           object edt3: TbsSkinDBEdit
             Left = 88
             Top = 74
             Width = 113
             Height = 18
+            Text = 'edt3'
             DefaultColor = clWindow
             DefaultFont.Charset = DEFAULT_CHARSET
             DefaultFont.Color = clBlack
@@ -425,7 +433,41 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             ButtonMode = False
             SkinData = HDHouseDataModule.bsSkinData1
             SkinDataName = 'edit'
-            ReadOnly = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = 14
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 2
+            LeftImageIndex = -1
+            LeftImageHotIndex = -1
+            LeftImageDownIndex = -1
+            RightImageIndex = -1
+            RightImageHotIndex = -1
+            RightImageDownIndex = -1
+            AutoSize = False
+            DataField = 'EstateName'
+            DataSource = ds1
+          end
+          object edt4: TbsSkinDBEdit
+            Left = 88
+            Top = 98
+            Width = 113
+            Height = 18
+            Text = 'edt4'
+            DefaultColor = clWindow
+            DefaultFont.Charset = DEFAULT_CHARSET
+            DefaultFont.Color = clBlack
+            DefaultFont.Height = 14
+            DefaultFont.Name = 'Arial'
+            DefaultFont.Style = []
+            UseSkinFont = True
+            DefaultWidth = 0
+            DefaultHeight = 0
+            ButtonMode = False
+            SkinData = HDHouseDataModule.bsSkinData1
+            SkinDataName = 'edit'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = 14
@@ -440,12 +482,15 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             RightImageHotIndex = -1
             RightImageDownIndex = -1
             AutoSize = False
+            DataField = 'Spell'
+            DataSource = ds1
           end
-          object edt4: TbsSkinDBEdit
+          object edt5: TbsSkinDBEdit
             Left = 88
-            Top = 98
-            Width = 113
+            Top = 122
+            Width = 304
             Height = 18
+            Text = 'edt5'
             DefaultColor = clWindow
             DefaultFont.Charset = DEFAULT_CHARSET
             DefaultFont.Color = clBlack
@@ -458,7 +503,6 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             ButtonMode = False
             SkinData = HDHouseDataModule.bsSkinData1
             SkinDataName = 'edit'
-            ReadOnly = True
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = 14
@@ -473,12 +517,15 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             RightImageHotIndex = -1
             RightImageDownIndex = -1
             AutoSize = False
+            DataField = 'Address'
+            DataSource = ds1
           end
-          object edt5: TbsSkinDBEdit
-            Left = 89
-            Top = 122
-            Width = 304
+          object edt6: TbsSkinDBEdit
+            Left = 88
+            Top = 146
+            Width = 303
             Height = 18
+            Text = 'edt6'
             DefaultColor = clWindow
             DefaultFont.Charset = DEFAULT_CHARSET
             DefaultFont.Color = clBlack
@@ -491,7 +538,6 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             ButtonMode = False
             SkinData = HDHouseDataModule.bsSkinData1
             SkinDataName = 'edit'
-            ReadOnly = True
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = 14
@@ -506,45 +552,15 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             RightImageHotIndex = -1
             RightImageDownIndex = -1
             AutoSize = False
-          end
-          object edt6: TbsSkinDBEdit
-            Left = 90
-            Top = 146
-            Width = 303
-            Height = 18
-            DefaultColor = clWindow
-            DefaultFont.Charset = DEFAULT_CHARSET
-            DefaultFont.Color = clBlack
-            DefaultFont.Height = 14
-            DefaultFont.Name = 'Arial'
-            DefaultFont.Style = []
-            UseSkinFont = True
-            DefaultWidth = 0
-            DefaultHeight = 0
-            ButtonMode = False
-            SkinData = HDHouseDataModule.bsSkinData1
-            SkinDataName = 'edit'
-            ReadOnly = True
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = 14
-            Font.Name = 'Arial'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 6
-            LeftImageIndex = -1
-            LeftImageHotIndex = -1
-            LeftImageDownIndex = -1
-            RightImageIndex = -1
-            RightImageHotIndex = -1
-            RightImageDownIndex = -1
-            AutoSize = False
+            DataField = 'Address2'
+            DataSource = ds1
           end
           object edt7: TbsSkinDBEdit
             Left = 280
             Top = 72
             Width = 113
             Height = 18
+            Text = 'edt7'
             DefaultColor = clWindow
             DefaultFont.Charset = DEFAULT_CHARSET
             DefaultFont.Color = clBlack
@@ -557,14 +573,13 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             ButtonMode = False
             SkinData = HDHouseDataModule.bsSkinData1
             SkinDataName = 'edit'
-            ReadOnly = True
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Height = 14
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 11
+            TabOrder = 8
             LeftImageIndex = -1
             LeftImageHotIndex = -1
             LeftImageDownIndex = -1
@@ -572,11 +587,280 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             RightImageHotIndex = -1
             RightImageDownIndex = -1
             AutoSize = False
+            DataField = 'EstateNameA'
+            DataSource = ds1
           end
-          object cbb4: TbsSkinComboBox
+          object cbb3: TbsSkinDBComboBox
+            Left = 280
+            Top = 49
+            Width = 113
+            Height = 17
+            HintImageIndex = 0
+            TabOrder = 7
+            SkinData = HDHouseDataModule.bsSkinData1
+            SkinDataName = 'combobox'
+            DefaultFont.Charset = DEFAULT_CHARSET
+            DefaultFont.Color = clWindowText
+            DefaultFont.Height = 14
+            DefaultFont.Name = 'Arial'
+            DefaultFont.Style = []
+            DefaultWidth = 0
+            DefaultHeight = 0
+            UseSkinFont = True
+            UseSkinSize = True
+            ToolButtonStyle = False
+            AlphaBlend = False
+            AlphaBlendValue = 0
+            AlphaBlendAnimation = False
+            ListBoxCaptionMode = False
+            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultFont.Color = clWindowText
+            ListBoxDefaultFont.Height = 14
+            ListBoxDefaultFont.Name = 'Arial'
+            ListBoxDefaultFont.Style = []
+            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultCaptionFont.Color = clWindowText
+            ListBoxDefaultCaptionFont.Height = 14
+            ListBoxDefaultCaptionFont.Name = 'Arial'
+            ListBoxDefaultCaptionFont.Style = []
+            ListBoxDefaultItemHeight = 20
+            ListBoxCaptionAlignment = taLeftJustify
+            ListBoxUseSkinFont = True
+            ListBoxUseSkinItemHeight = True
+            ListBoxWidth = 0
+            HideSelection = True
+            AutoComplete = True
+            ImageIndex = -1
+            CharCase = ecNormal
+            DefaultColor = clWindow
+            ItemIndex = -1
+            DropDownCount = 8
+            HorizontalExtent = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = 14
+            Font.Name = 'Arial'
+            Font.Style = []
+            Sorted = False
+            Style = bscbFixedStyle
+            DataField = 'PropertyType'
+            DataSource = ds1
+            ParentFont = False
+          end
+          object cbb2: TbsSkinDBComboBox
+            Left = 280
+            Top = 25
+            Width = 113
+            Height = 17
+            HintImageIndex = 0
+            TabOrder = 6
+            SkinData = HDHouseDataModule.bsSkinData1
+            SkinDataName = 'combobox'
+            DefaultFont.Charset = DEFAULT_CHARSET
+            DefaultFont.Color = clWindowText
+            DefaultFont.Height = 14
+            DefaultFont.Name = 'Arial'
+            DefaultFont.Style = []
+            DefaultWidth = 0
+            DefaultHeight = 0
+            UseSkinFont = True
+            UseSkinSize = True
+            ToolButtonStyle = False
+            AlphaBlend = False
+            AlphaBlendValue = 0
+            AlphaBlendAnimation = False
+            ListBoxCaptionMode = False
+            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultFont.Color = clWindowText
+            ListBoxDefaultFont.Height = 14
+            ListBoxDefaultFont.Name = 'Arial'
+            ListBoxDefaultFont.Style = []
+            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultCaptionFont.Color = clWindowText
+            ListBoxDefaultCaptionFont.Height = 14
+            ListBoxDefaultCaptionFont.Name = 'Arial'
+            ListBoxDefaultCaptionFont.Style = []
+            ListBoxDefaultItemHeight = 20
+            ListBoxCaptionAlignment = taLeftJustify
+            ListBoxUseSkinFont = True
+            ListBoxUseSkinItemHeight = True
+            ListBoxWidth = 0
+            HideSelection = True
+            AutoComplete = True
+            ImageIndex = -1
+            CharCase = ecNormal
+            DefaultColor = clWindow
+            ItemIndex = -1
+            DropDownCount = 8
+            HorizontalExtent = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = 14
+            Font.Name = 'Arial'
+            Font.Style = []
+            Sorted = False
+            Style = bscbFixedStyle
+            DataField = 'PropertyUsage'
+            DataSource = ds1
+            ParentFont = False
+          end
+          object bsSkinDBComboBox1: TbsSkinDBComboBox
             Left = 280
             Top = 96
             Width = 65
+            Height = 20
+            HintImageIndex = 0
+            TabOrder = 9
+            SkinData = HDHouseDataModule.bsSkinData1
+            SkinDataName = 'combobox'
+            DefaultFont.Charset = DEFAULT_CHARSET
+            DefaultFont.Color = clWindowText
+            DefaultFont.Height = 14
+            DefaultFont.Name = 'Arial'
+            DefaultFont.Style = []
+            DefaultWidth = 0
+            DefaultHeight = 0
+            UseSkinFont = True
+            UseSkinSize = True
+            ToolButtonStyle = False
+            AlphaBlend = False
+            AlphaBlendValue = 0
+            AlphaBlendAnimation = False
+            ListBoxCaptionMode = False
+            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultFont.Color = clWindowText
+            ListBoxDefaultFont.Height = 14
+            ListBoxDefaultFont.Name = 'Arial'
+            ListBoxDefaultFont.Style = []
+            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultCaptionFont.Color = clWindowText
+            ListBoxDefaultCaptionFont.Height = 14
+            ListBoxDefaultCaptionFont.Name = 'Arial'
+            ListBoxDefaultCaptionFont.Style = []
+            ListBoxDefaultItemHeight = 20
+            ListBoxCaptionAlignment = taLeftJustify
+            ListBoxUseSkinFont = True
+            ListBoxUseSkinItemHeight = True
+            ListBoxWidth = 0
+            HideSelection = True
+            AutoComplete = True
+            ImageIndex = -1
+            CharCase = ecNormal
+            DefaultColor = clWindow
+            ItemIndex = -1
+            DropDownCount = 8
+            HorizontalExtent = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = 14
+            Font.Name = 'Arial'
+            Font.Style = []
+            Sorted = False
+            Style = bscbFixedStyle
+            DataField = 'CompleteYear'
+            DataSource = ds1
+            ParentFont = False
+          end
+          object bsSkinDBComboBox2: TbsSkinDBComboBox
+            Left = 344
+            Top = 96
+            Width = 49
+            Height = 20
+            HintImageIndex = 0
+            TabOrder = 10
+            SkinData = HDHouseDataModule.bsSkinData1
+            SkinDataName = 'combobox'
+            DefaultFont.Charset = DEFAULT_CHARSET
+            DefaultFont.Color = clWindowText
+            DefaultFont.Height = 14
+            DefaultFont.Name = 'Arial'
+            DefaultFont.Style = []
+            DefaultWidth = 0
+            DefaultHeight = 0
+            UseSkinFont = True
+            UseSkinSize = True
+            ToolButtonStyle = False
+            AlphaBlend = False
+            AlphaBlendValue = 0
+            AlphaBlendAnimation = False
+            ListBoxCaptionMode = False
+            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultFont.Color = clWindowText
+            ListBoxDefaultFont.Height = 14
+            ListBoxDefaultFont.Name = 'Arial'
+            ListBoxDefaultFont.Style = []
+            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+            ListBoxDefaultCaptionFont.Color = clWindowText
+            ListBoxDefaultCaptionFont.Height = 14
+            ListBoxDefaultCaptionFont.Name = 'Arial'
+            ListBoxDefaultCaptionFont.Style = []
+            ListBoxDefaultItemHeight = 20
+            ListBoxCaptionAlignment = taLeftJustify
+            ListBoxUseSkinFont = True
+            ListBoxUseSkinItemHeight = True
+            ListBoxWidth = 0
+            HideSelection = True
+            AutoComplete = True
+            ImageIndex = -1
+            CharCase = ecNormal
+            DefaultColor = clWindow
+            Text = '90'#24180
+            Items.Strings = (
+              '90'#24180
+              '80'#24180
+              '70'#24180
+              '60'#24180
+              '50'#24180
+              '40'#24180
+              '30'#24180
+              '20'#24180
+              '10'#24180
+              #19981#38480)
+            ItemIndex = -1
+            DropDownCount = 8
+            HorizontalExtent = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = 14
+            Font.Name = 'Arial'
+            Font.Style = []
+            Sorted = False
+            Style = bscbFixedStyle
+            DataField = 'OwnYear'
+            DataSource = ds1
+            ParentFont = False
+          end
+          object bsSkinDBMemo1: TbsSkinDBMemo
+            Left = 224
+            Top = 168
+            Width = 169
+            Height = 57
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = 14
+            Font.Name = 'Arial'
+            Font.Style = []
+            Lines.Strings = (
+              'bsSkinDBMemo1')
+            ParentFont = False
+            ScrollBars = ssBoth
+            TabOrder = 11
+            DefaultFont.Charset = DEFAULT_CHARSET
+            DefaultFont.Color = clBlack
+            DefaultFont.Height = 14
+            DefaultFont.Name = 'Arial'
+            DefaultFont.Style = []
+            UseSkinFont = True
+            UseSkinFontColor = True
+            BitMapBG = True
+            SkinDataName = 'memo'
+            DataField = 'Remark'
+            DataSource = ds1
+          end
+          object bsSkinComboBox1: TbsSkinComboBox
+            Left = 88
+            Top = 48
+            Width = 113
             Height = 20
             HintImageIndex = 0
             TabOrder = 12
@@ -627,172 +911,8 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             Sorted = False
             Style = bscbFixedStyle
           end
-          object cbb5: TbsSkinComboBox
-            Left = 344
-            Top = 96
-            Width = 49
-            Height = 20
-            HintImageIndex = 0
-            TabOrder = 13
-            SkinData = HDHouseDataModule.bsSkinData1
-            SkinDataName = 'combobox'
-            DefaultFont.Charset = DEFAULT_CHARSET
-            DefaultFont.Color = clWindowText
-            DefaultFont.Height = 14
-            DefaultFont.Name = 'Arial'
-            DefaultFont.Style = []
-            DefaultWidth = 0
-            DefaultHeight = 0
-            UseSkinFont = True
-            UseSkinSize = True
-            ToolButtonStyle = False
-            AlphaBlend = False
-            AlphaBlendValue = 0
-            AlphaBlendAnimation = False
-            ListBoxCaptionMode = False
-            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultFont.Color = clWindowText
-            ListBoxDefaultFont.Height = 14
-            ListBoxDefaultFont.Name = 'Arial'
-            ListBoxDefaultFont.Style = []
-            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultCaptionFont.Color = clWindowText
-            ListBoxDefaultCaptionFont.Height = 14
-            ListBoxDefaultCaptionFont.Name = 'Arial'
-            ListBoxDefaultCaptionFont.Style = []
-            ListBoxDefaultItemHeight = 20
-            ListBoxCaptionAlignment = taLeftJustify
-            ListBoxUseSkinFont = True
-            ListBoxUseSkinItemHeight = True
-            ListBoxWidth = 0
-            HideSelection = True
-            AutoComplete = True
-            ImageIndex = -1
-            CharCase = ecNormal
-            DefaultColor = clWindow
-            ItemIndex = -1
-            DropDownCount = 8
-            HorizontalExtent = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = 14
-            Font.Name = 'Arial'
-            Font.Style = []
-            Sorted = False
-            Style = bscbFixedStyle
-          end
-          object cbb1: TbsSkinDBComboBox
+          object bsSkinDBCurrencyEdit1: TbsSkinDBCurrencyEdit
             Left = 88
-            Top = 50
-            Width = 113
-            Height = 17
-            HintImageIndex = 0
-            TabOrder = 2
-            SkinData = HDHouseDataModule.bsSkinData1
-            SkinDataName = 'combobox'
-            DefaultFont.Charset = DEFAULT_CHARSET
-            DefaultFont.Color = clWindowText
-            DefaultFont.Height = 14
-            DefaultFont.Name = 'Arial'
-            DefaultFont.Style = []
-            DefaultWidth = 0
-            DefaultHeight = 0
-            UseSkinFont = True
-            UseSkinSize = True
-            ToolButtonStyle = False
-            AlphaBlend = False
-            AlphaBlendValue = 0
-            AlphaBlendAnimation = False
-            ListBoxCaptionMode = False
-            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultFont.Color = clWindowText
-            ListBoxDefaultFont.Height = 14
-            ListBoxDefaultFont.Name = 'Arial'
-            ListBoxDefaultFont.Style = []
-            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultCaptionFont.Color = clWindowText
-            ListBoxDefaultCaptionFont.Height = 14
-            ListBoxDefaultCaptionFont.Name = 'Arial'
-            ListBoxDefaultCaptionFont.Style = []
-            ListBoxDefaultItemHeight = 20
-            ListBoxCaptionAlignment = taLeftJustify
-            ListBoxUseSkinFont = True
-            ListBoxUseSkinItemHeight = True
-            ListBoxWidth = 0
-            HideSelection = True
-            AutoComplete = True
-            ImageIndex = -1
-            CharCase = ecNormal
-            DefaultColor = clWindow
-            ItemIndex = -1
-            DropDownCount = 8
-            HorizontalExtent = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = 14
-            Font.Name = 'Arial'
-            Font.Style = []
-            Sorted = False
-            Style = bscbFixedStyle
-            ParentFont = False
-          end
-          object cbb3: TbsSkinDBComboBox
-            Left = 280
-            Top = 49
-            Width = 113
-            Height = 17
-            HintImageIndex = 0
-            TabOrder = 10
-            SkinData = HDHouseDataModule.bsSkinData1
-            SkinDataName = 'combobox'
-            DefaultFont.Charset = DEFAULT_CHARSET
-            DefaultFont.Color = clWindowText
-            DefaultFont.Height = 14
-            DefaultFont.Name = 'Arial'
-            DefaultFont.Style = []
-            DefaultWidth = 0
-            DefaultHeight = 0
-            UseSkinFont = True
-            UseSkinSize = True
-            ToolButtonStyle = False
-            AlphaBlend = False
-            AlphaBlendValue = 0
-            AlphaBlendAnimation = False
-            ListBoxCaptionMode = False
-            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultFont.Color = clWindowText
-            ListBoxDefaultFont.Height = 14
-            ListBoxDefaultFont.Name = 'Arial'
-            ListBoxDefaultFont.Style = []
-            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultCaptionFont.Color = clWindowText
-            ListBoxDefaultCaptionFont.Height = 14
-            ListBoxDefaultCaptionFont.Name = 'Arial'
-            ListBoxDefaultCaptionFont.Style = []
-            ListBoxDefaultItemHeight = 20
-            ListBoxCaptionAlignment = taLeftJustify
-            ListBoxUseSkinFont = True
-            ListBoxUseSkinItemHeight = True
-            ListBoxWidth = 0
-            HideSelection = True
-            AutoComplete = True
-            ImageIndex = -1
-            CharCase = ecNormal
-            DefaultColor = clWindow
-            ItemIndex = -1
-            DropDownCount = 8
-            HorizontalExtent = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = 14
-            Font.Name = 'Arial'
-            Font.Style = []
-            Sorted = False
-            Style = bscbFixedStyle
-            ParentFont = False
-          end
-          object edt8: TbsSkinCurrencyEdit
-            Left = 90
             Top = 168
             Width = 73
             Height = 18
@@ -816,17 +936,19 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 7
+            TabOrder = 13
             LeftImageIndex = -1
             LeftImageHotIndex = -1
             LeftImageDownIndex = -1
             RightImageIndex = -1
             RightImageHotIndex = -1
             RightImageDownIndex = -1
+            DataField = 'Price'
+            DataSource = ds1
           end
-          object edt9: TbsSkinCurrencyEdit
-            Left = 92
-            Top = 190
+          object bsSkinDBCurrencyEdit2: TbsSkinDBCurrencyEdit
+            Left = 88
+            Top = 192
             Width = 73
             Height = 18
             DefaultColor = clWindow
@@ -849,100 +971,21 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 8
+            TabOrder = 14
             LeftImageIndex = -1
             LeftImageHotIndex = -1
             LeftImageDownIndex = -1
             RightImageIndex = -1
             RightImageHotIndex = -1
             RightImageDownIndex = -1
-          end
-          object mmo1: TbsSkinMemo
-            Left = 224
-            Top = 171
-            Width = 169
-            Height = 49
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = 14
-            Font.Name = 'Arial'
-            Font.Style = []
-            Lines.Strings = (
-              'mmo1')
-            ParentFont = False
-            ScrollBars = ssBoth
-            TabOrder = 14
-            DefaultFont.Charset = DEFAULT_CHARSET
-            DefaultFont.Color = clBlack
-            DefaultFont.Height = 14
-            DefaultFont.Name = 'Arial'
-            DefaultFont.Style = []
-            UseSkinFont = True
-            UseSkinFontColor = True
-            BitMapBG = True
-            SkinData = HDHouseDataModule.bsSkinData1
-            SkinDataName = 'memo'
-          end
-          object cbb2: TbsSkinDBComboBox
-            Left = 280
-            Top = 25
-            Width = 113
-            Height = 17
-            HintImageIndex = 0
-            TabOrder = 9
-            SkinData = HDHouseDataModule.bsSkinData1
-            SkinDataName = 'combobox'
-            DefaultFont.Charset = DEFAULT_CHARSET
-            DefaultFont.Color = clWindowText
-            DefaultFont.Height = 14
-            DefaultFont.Name = 'Arial'
-            DefaultFont.Style = []
-            DefaultWidth = 0
-            DefaultHeight = 0
-            UseSkinFont = True
-            UseSkinSize = True
-            ToolButtonStyle = False
-            AlphaBlend = False
-            AlphaBlendValue = 0
-            AlphaBlendAnimation = False
-            ListBoxCaptionMode = False
-            ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultFont.Color = clWindowText
-            ListBoxDefaultFont.Height = 14
-            ListBoxDefaultFont.Name = 'Arial'
-            ListBoxDefaultFont.Style = []
-            ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-            ListBoxDefaultCaptionFont.Color = clWindowText
-            ListBoxDefaultCaptionFont.Height = 14
-            ListBoxDefaultCaptionFont.Name = 'Arial'
-            ListBoxDefaultCaptionFont.Style = []
-            ListBoxDefaultItemHeight = 20
-            ListBoxCaptionAlignment = taLeftJustify
-            ListBoxUseSkinFont = True
-            ListBoxUseSkinItemHeight = True
-            ListBoxWidth = 0
-            HideSelection = True
-            AutoComplete = True
-            ImageIndex = -1
-            CharCase = ecNormal
-            DefaultColor = clWindow
-            ItemIndex = -1
-            DropDownCount = 8
-            HorizontalExtent = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = 14
-            Font.Name = 'Arial'
-            Font.Style = []
-            Sorted = False
-            Style = bscbFixedStyle
-            ParentFont = False
+            DataField = 'MgtPrice'
+            DataSource = ds1
           end
         end
         object grp4: TGroupBox
           Left = 0
-          Top = 232
-          Width = 425
+          Top = 231
+          Width = 427
           Height = 163
           Align = alBottom
           TabOrder = 1
@@ -1095,6 +1138,7 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
             ImageIndex = 0
             Flat = True
             UseSkinFontColor = True
+            TabStop = True
             CanFocused = True
             Radio = False
             Checked = False
@@ -1317,6 +1361,7 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
       Caption = #20445#23384
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
       Left = 336
@@ -1350,6 +1395,7 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
       NumGlyphs = 1
       Spacing = 1
       ModalResult = 2
+      OnClick = btn2Click
     end
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
@@ -1401,7 +1447,95 @@ object EstateDictionaryInfoForm: TEstateDictionaryInfoForm
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu]
-    Left = 42
+    Left = 66
     Top = 421
+  end
+  object qry1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'ID'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from Estate where  EstateID=:ID')
+    Left = 394
+    Top = 246
+  end
+  object qrypream1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from  Reference where refName='#39'PropertyUsage'#39
+      '')
+    Left = 395
+    Top = 288
+  end
+  object qryArea: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'City'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end
+      item
+        Name = 'District'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      
+        'select * from Area where CityName=:City and DistrictName=:Distri' +
+        'ct')
+    Left = 394
+    Top = 381
+  end
+  object dsArea: TDataSource
+    DataSet = qryArea
+    Left = 354
+    Top = 381
+  end
+  object qrypream2: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select  * from  Reference where  refName='#39'PropertyType'#39
+      '')
+    Left = 395
+    Top = 328
+  end
+  object dspream1: TDataSource
+    DataSet = qrypream1
+    Left = 354
+    Top = 285
+  end
+  object dspream2: TDataSource
+    DataSet = qrypream2
+    Left = 354
+    Top = 333
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 354
+    Top = 246
   end
 end

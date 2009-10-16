@@ -48,6 +48,7 @@ type
     procedure clock();
     procedure cbb1Change(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -185,6 +186,13 @@ procedure TNotificationManageForm.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
  self.clock;
+end;
+
+procedure TNotificationManageForm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+   Action:=caFree;
+   NotificationManageForm:=nil;
 end;
 
 end.

@@ -50,6 +50,14 @@ type
     N7: TMenuItem;
     N8: TMenuItem;
     A2: TMenuItem;
+    bskntlbr1: TbsSkinToolBar;
+    btn8: TbsSkinSpeedButton;
+    btn2: TbsSkinSpeedButton;
+    btn3: TbsSkinSpeedButton;
+    btn4: TbsSkinSpeedButton;
+    btn5: TbsSkinSpeedButton;
+    btn6: TbsSkinSpeedButton;
+    btn7: TbsSkinSpeedButton;
     procedure btn1Sections0Items0Click(Sender: TObject);
     procedure btn1Sections0Items1Click(Sender: TObject);
     procedure btn1Sections0Items2Click(Sender: TObject);
@@ -57,6 +65,20 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn1Sections0Items6Click(Sender: TObject);
+    procedure btn1Sections3Items3Click(Sender: TObject);
+    procedure btn1Sections3Items4Click(Sender: TObject);
+    procedure btn1Sections3Items2Click(Sender: TObject);
+    procedure btn1Sections3Items5Click(Sender: TObject);
+    procedure btn1Sections3Items1Click(Sender: TObject);
+    procedure btn1Sections5Items1Click(Sender: TObject);
+    procedure btn1Sections5Items2Click(Sender: TObject);
+    procedure btn1Sections4Items0Click(Sender: TObject);
+    procedure btn1Sections4Items3Click(Sender: TObject);
+    procedure btn1Sections3Items6Click(Sender: TObject);
+    procedure btn1Sections3Items7Click(Sender: TObject);
+    procedure btn1Sections4Items4Click(Sender: TObject);
+    procedure btn1Sections3Items8Click(Sender: TObject);
+    procedure btn1Sections5Items5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,8 +90,8 @@ var
 
 implementation
 uses
-  UHDHouseDataModule,UHouseManageForm, UHouseTrackForm,
-  UCustomerManageForm,UCustomerTrackForm,Common,UMortgageCalculatorForm;
+  UHDHouseDataModule,UHouseManageForm, UHouseTrackForm,UCommentForm,UNewsForm,UPlanForm,
+  UEmployeeManageForm,UContractQueryForm,UNotificationManageForm,UHouseDealManageForm,UBusinessQA,URecycleBin,UElectronicAttendance,UEstateDictionaryForm,UCityForm,UWorkSummaryForm,UMessageForm,UCustomerManageForm,UCustomerTrackForm,Common,UMortgageCalculatorForm;
 {$R *.dfm}
 
 procedure TMainForm2.btn1Sections0Items0Click(Sender: TObject);
@@ -145,6 +167,190 @@ begin
   end;
   MortgageCalculatorForm.Show;
 
+end;
+
+procedure TMainForm2.btn1Sections3Items3Click(Sender: TObject);
+begin
+  if CommentForm = nil then
+  begin
+    CommentForm := TCommentForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    CommentForm.BringToFront;
+  end;
+end;
+
+
+procedure TMainForm2.btn1Sections3Items4Click(Sender: TObject);
+begin
+        if NewsForm = nil then
+  begin
+    NewsForm := TNewsForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    NewsForm.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections3Items2Click(Sender: TObject);
+begin
+             if PlanForm = nil then
+  begin
+    PlanForm := TPlanForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    PlanForm.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections3Items5Click(Sender: TObject);
+begin
+         if MessageForm = nil then
+  begin
+    MessageForm := TMessageForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    MessageForm.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections3Items1Click(Sender: TObject);
+begin
+ if WorkSummaryForm = nil then
+  begin
+    WorkSummaryForm := TWorkSummaryForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    WorkSummaryForm.BringToFront;
+  end;
+
+end;
+
+procedure TMainForm2.btn1Sections5Items1Click(Sender: TObject);
+begin
+      if CityForm = nil then
+  begin
+    CityForm := TCityForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    CityForm.BringToFront;
+  end;
+end;
+
+    procedure TMainForm2.btn1Sections5Items2Click(Sender: TObject);
+begin
+       if EstateDictionaryForm = nil then
+  begin
+    EstateDictionaryForm := TEstateDictionaryForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    EstateDictionaryForm.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections4Items0Click(Sender: TObject);
+begin
+       if ElectronicAttendance = nil then
+  begin
+    ElectronicAttendance := TElectronicAttendance.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    ElectronicAttendance.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections4Items3Click(Sender: TObject);
+begin
+      if RecycleBin = nil then
+  begin
+    RecycleBin :=TRecycleBin.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    RecycleBin.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections3Items6Click(Sender: TObject);
+begin
+      if BusinessQA = nil then
+  begin
+    BusinessQA :=TBusinessQA.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    BusinessQA.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections3Items7Click(Sender: TObject);
+begin
+      if HouseDealManageForm = nil then
+  begin
+    HouseDealManageForm :=THouseDealManageForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    HouseDealManageForm.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections4Items4Click(Sender: TObject);
+begin
+      if NotificationManageForm = nil then
+  begin
+    NotificationManageForm :=TNotificationManageForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    NotificationManageForm.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections3Items8Click(Sender: TObject);
+begin
+       if ContractQueryForm = nil then
+  begin
+    ContractQueryForm :=TContractQueryForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    ContractQueryForm.BringToFront;
+  end;
+end;
+
+procedure TMainForm2.btn1Sections5Items5Click(Sender: TObject);
+begin
+         if EmployeeManageForm = nil then
+  begin
+    EmployeeManageForm :=TEmployeeManageForm.Create(Self);
+    bsbsnsknfrm1.MaximizeAll;
+  end
+  else
+  begin
+    EmployeeManageForm.BringToFront;
+  end;
 end;
 
 end.

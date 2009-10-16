@@ -1,7 +1,7 @@
 object frameHouseList: TframeHouseList
   Left = 0
   Top = 0
-  Width = 1069
+  Width = 760
   Height = 546
   HelpContext = 1
   AutoScroll = False
@@ -15,7 +15,7 @@ object frameHouseList: TframeHouseList
   object bsknpgcntrl1: TbsSkinPageControl
     Left = 0
     Top = 336
-    Width = 1069
+    Width = 760
     Height = 210
     ActivePage = bsSkinTabSheet1
     Align = alBottom
@@ -47,7 +47,7 @@ object frameHouseList: TframeHouseList
       object mmoHouseDetailInfo: TbsSkinDBMemo
         Left = 0
         Top = 0
-        Width = 1067
+        Width = 758
         Height = 188
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -79,7 +79,7 @@ object frameHouseList: TframeHouseList
       object mmoHouseSecrecyInfo: TbsSkinDBMemo
         Left = 0
         Top = 0
-        Width = 1067
+        Width = 758
         Height = 188
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -434,7 +434,7 @@ object frameHouseList: TframeHouseList
   object bsSkinPanel1: TbsSkinPanel
     Left = 0
     Top = 0
-    Width = 1069
+    Width = 760
     Height = 97
     HintImageIndex = 0
     TabOrder = 0
@@ -466,7 +466,7 @@ object frameHouseList: TframeHouseList
     Caption = 'bsSkinPanel1'
     Align = alTop
     DesignSize = (
-      1069
+      760
       97)
     object lbl1: TbsSkinStdLabel
       Left = 56
@@ -614,7 +614,7 @@ object frameHouseList: TframeHouseList
     object bvl1: TBevel
       Left = 0
       Top = 57
-      Width = 1067
+      Width = 758
       Height = 2
       Anchors = [akLeft, akRight]
     end
@@ -909,7 +909,7 @@ object frameHouseList: TframeHouseList
   object bsSkinPanel2: TbsSkinPanel
     Left = 0
     Top = 97
-    Width = 1069
+    Width = 760
     Height = 239
     HintImageIndex = 0
     TabOrder = 1
@@ -942,7 +942,7 @@ object frameHouseList: TframeHouseList
     object bsSkinDBGrid1: TbsSkinDBGrid
       Left = 1
       Top = 1
-      Width = 1048
+      Width = 739
       Height = 218
       HintImageIndex = 0
       TabOrder = 0
@@ -1158,7 +1158,7 @@ object frameHouseList: TframeHouseList
     object bsknscrlbrHouseListDown: TbsSkinScrollBar
       Left = 1
       Top = 219
-      Width = 1067
+      Width = 758
       Height = 19
       HintImageIndex = 0
       TabOrder = 2
@@ -1182,11 +1182,11 @@ object frameHouseList: TframeHouseList
       Min = 0
       Max = 127
       Position = 0
-      SmallChange = 18
-      LargeChange = 18
+      SmallChange = 15
+      LargeChange = 15
     end
     object bsknscrlbrHouseRight: TbsSkinScrollBar
-      Left = 1049
+      Left = 740
       Top = 1
       Width = 19
       Height = 218

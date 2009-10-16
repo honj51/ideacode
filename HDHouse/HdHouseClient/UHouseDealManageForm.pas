@@ -84,6 +84,7 @@ type
     procedure N9Click(Sender: TObject);
     procedure N10Click(Sender: TObject);
     procedure btn6Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -622,6 +623,13 @@ begin
       filename:= GetCurrentDir +'\Contract\'+HDHouseDataModule.qryContractQuery.fieldbyname('cjxx_htbh').AsString+'.doc';
       ShellExecute(handle, 'Open', PChar(filename), nil, nil, SW_NORMAL);
    end;
+end;
+
+procedure THouseDealManageForm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+    Action:=caFree;
+    HouseDealManageForm:=nil;
 end;
 
 end.

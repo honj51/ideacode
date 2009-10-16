@@ -1,14 +1,14 @@
 object DataOperateBarView: TDataOperateBarView
   Left = 0
   Top = 0
-  Width = 783
+  Width = 760
   Height = 93
   AutoScroll = False
   TabOrder = 0
   object bskntlbr1: TbsSkinToolBar
     Left = 0
     Top = 0
-    Width = 783
+    Width = 760
     Height = 93
     HintImageIndex = 0
     TabOrder = 0

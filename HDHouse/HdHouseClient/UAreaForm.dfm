@@ -1,6 +1,6 @@
 object AreaForm: TAreaForm
-  Left = 415
-  Top = 321
+  Left = 627
+  Top = 310
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = #29255#21306
@@ -13,6 +13,7 @@ object AreaForm: TAreaForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object grp1: TGroupBox
@@ -24,7 +25,7 @@ object AreaForm: TAreaForm
     TabOrder = 0
     object lbl1: TbsSkinStdLabel
       Left = 24
-      Top = 52
+      Top = 20
       Width = 57
       Height = 13
       EllipsType = bsetNone
@@ -42,7 +43,7 @@ object AreaForm: TAreaForm
     end
     object lbl2: TbsSkinStdLabel
       Left = 24
-      Top = 20
+      Top = 52
       Width = 57
       Height = 13
       EllipsType = bsetNone
@@ -99,6 +100,7 @@ object AreaForm: TAreaForm
       Top = 111
       Width = 145
       Height = 18
+      Text = 'edt1'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -125,12 +127,15 @@ object AreaForm: TAreaForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'AreaName'
+      DataSource = ds1
     end
     object edt2: TbsSkinDBEdit
       Left = 88
       Top = 17
       Width = 145
       Height = 18
+      Text = 'edt2'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -157,12 +162,15 @@ object AreaForm: TAreaForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'CityName'
+      DataSource = ds1
     end
     object edt3: TbsSkinDBEdit
       Left = 88
       Top = 49
       Width = 145
       Height = 18
+      Text = 'edt3'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -189,12 +197,15 @@ object AreaForm: TAreaForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'DistrictName'
+      DataSource = ds1
     end
     object edt4: TbsSkinDBEdit
       Left = 88
       Top = 81
       Width = 145
       Height = 18
+      Text = 'edt4'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -221,6 +232,8 @@ object AreaForm: TAreaForm
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      DataField = 'AreaNo'
+      DataSource = ds1
     end
   end
   object bsknpnl1: TbsSkinPanel
@@ -288,6 +301,7 @@ object AreaForm: TAreaForm
       Caption = #20445#23384
       NumGlyphs = 1
       Spacing = 1
+      OnClick = btn1Click
     end
     object btn2: TbsSkinButton
       Left = 178
@@ -321,6 +335,7 @@ object AreaForm: TAreaForm
       NumGlyphs = 1
       Spacing = 1
       ModalResult = 2
+      OnClick = btn2Click
     end
   end
   object bsbsnsknfrm1: TbsBusinessSkinForm
@@ -374,5 +389,28 @@ object AreaForm: TAreaForm
     BorderIcons = [biSystemMenu]
     Left = 32
     Top = 160
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 160
+    Top = 128
+  end
+  object qry1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'ID'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from Area where Areaid=:ID')
+    Left = 208
+    Top = 128
   end
 end
