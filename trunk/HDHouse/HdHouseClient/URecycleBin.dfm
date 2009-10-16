@@ -1,21 +1,25 @@
 object RecycleBin: TRecycleBin
-  Left = 355
-  Top = 182
+  Left = 278
+  Top = 213
   AutoScroll = False
   BorderIcons = []
   Caption = #22238#25910#31449
-  ClientHeight = 458
-  ClientWidth = 815
+  ClientHeight = 461
+  ClientWidth = 831
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poDefault
+  Visible = True
+  OnClose = FormClose
   DesignSize = (
-    815
-    458)
+    831
+    461)
   PixelsPerInch = 96
   TextHeight = 13
   object bsSkinToolBar1: TbsSkinToolBar
@@ -94,6 +98,7 @@ object RecycleBin: TRecycleBin
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton1Click
     end
     object bsSkinSpeedButton2: TbsSkinSpeedButton
       Left = 65
@@ -128,6 +133,7 @@ object RecycleBin: TRecycleBin
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton2Click
     end
     object bsSkinSpeedButton3: TbsSkinSpeedButton
       Left = 153
@@ -162,6 +168,7 @@ object RecycleBin: TRecycleBin
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton3Click
     end
     object bsSkinSpeedButton4: TbsSkinSpeedButton
       Left = 257
@@ -196,6 +203,7 @@ object RecycleBin: TRecycleBin
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton4Click
     end
     object bsSkinSpeedButton5: TbsSkinSpeedButton
       Left = 337
@@ -226,40 +234,6 @@ object RecycleBin: TRecycleBin
       Down = False
       GroupIndex = 0
       Caption = #25253#34920
-      ShowCaption = True
-      NumGlyphs = 1
-      Align = alLeft
-      Spacing = 1
-    end
-    object bsSkinSpeedButton6: TbsSkinSpeedButton
-      Left = 409
-      Top = 0
-      Width = 64
-      Height = 25
-      HintImageIndex = 0
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'toolbutton'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      UseSkinFontColor = True
-      WidthWithCaption = 0
-      WidthWithoutCaption = 0
-      ImageIndex = 0
-      RepeatMode = False
-      RepeatInterval = 100
-      Transparent = False
-      Flat = False
-      AllowAllUp = False
-      Down = False
-      GroupIndex = 0
-      Caption = #32479#35745
       ShowCaption = True
       NumGlyphs = 1
       Align = alLeft
@@ -332,12 +306,47 @@ object RecycleBin: TRecycleBin
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton8Click
+    end
+    object bsSkinSpeedButton6: TbsSkinSpeedButton
+      Left = 409
+      Top = 0
+      Width = 64
+      Height = 25
+      HintImageIndex = 0
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'toolbutton'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      UseSkinSize = True
+      UseSkinFontColor = True
+      WidthWithCaption = 0
+      WidthWithoutCaption = 0
+      ImageIndex = 0
+      RepeatMode = False
+      RepeatInterval = 100
+      Transparent = False
+      Flat = False
+      AllowAllUp = False
+      Down = False
+      GroupIndex = 0
+      Caption = #32479#35745
+      ShowCaption = True
+      NumGlyphs = 1
+      Align = alLeft
+      Spacing = 1
     end
   end
   object grp1: TGroupBox
     Left = 3
     Top = 32
-    Width = 806
+    Width = 822
     Height = 57
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 1
@@ -545,32 +554,14 @@ object RecycleBin: TRecycleBin
       UseImagesMenuCaption = False
     end
   end
-  object bsSkinTreeView1: TbsSkinTreeView
-    Left = 4
-    Top = 96
-    Width = 145
-    Height = 357
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    UseSkinFont = True
-    SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'treeview'
-    DefaultColor = clWindow
-    Anchors = [akLeft, akTop, akBottom]
-    Indent = 19
-    TabOrder = 2
-  end
   object bsSkinDBGrid1: TbsSkinDBGrid
     Left = 155
     Top = 96
-    Width = 654
-    Height = 357
+    Width = 670
+    Height = 360
     HintImageIndex = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
-    TabOrder = 3
+    TabOrder = 2
     SkinData = HDHouseDataModule.bsSkinData1
     SkinDataName = 'grid'
     Transparent = False
@@ -586,11 +577,50 @@ object RecycleBin: TRecycleBin
     SaveMultiSelection = False
     PickListBoxSkinDataName = 'listbox'
     PickListBoxCaptionMode = False
+    DataSource = ds1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
+  end
+  object tv1: TbsSkinTreeView
+    Left = 3
+    Top = 96
+    Width = 142
+    Height = 360
+    Items.Data = {
+      010000001F000000000000000000000001000000FFFFFFFF0000000009000000
+      06BBD8CAD5D5BE210000000000000000000000FFFFFFFFFFFFFFFF0000000000
+      00000008B7BFD4B4BCC7C2BC210000000000000000000000FFFFFFFFFFFFFFFF
+      000000000000000008BFCDD4B4BCC7C2BC210000000000000000000000FFFFFF
+      FFFFFFFFFF000000000000000008BEADC0EDD5BCC6C021000000000000000000
+      0000FFFFFFFFFFFFFFFF000000000000000008B9A4D7F7D7DCBDE12100000000
+      00000000000000FFFFFFFFFFFFFFFF000000000000000008D0C2CEC5B9ABB8E6
+      210000000000000000000000FFFFFFFFFFFFFFFF000000000000000008D2B5CE
+      F1CECAB4F0210000000000000000000000FFFFFFFFFFFFFFFF00000000000000
+      0008B2BFC3C5BCC7C2BC210000000000000000000000FFFFFFFFFFFFFFFF0000
+      00000000000008D4B1B9A4BCC7C2BC210000000000000000000000FFFFFFFFFF
+      FFFFFF000000000000000008C2A5C5CCD7D6B5E4}
+    DefaultFont.Charset = DEFAULT_CHARSET
+    DefaultFont.Color = clWindowText
+    DefaultFont.Height = 14
+    DefaultFont.Name = 'Arial'
+    DefaultFont.Style = []
+    UseSkinFont = True
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'treeview'
+    DefaultColor = clWindow
+    Anchors = [akLeft, akTop, akBottom]
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 14
+    Font.Name = 'Arial'
+    Font.Style = []
+    Indent = 19
+    ParentFont = False
+    TabOrder = 3
+    OnChange = tv1Change
   end
   object bsBusinessSkinForm1: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -642,5 +672,19 @@ object RecycleBin: TRecycleBin
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
     Left = 808
+  end
+  object qry1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from fczy')
+    Left = 659
+    Top = 48
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 611
+    Top = 48
   end
 end

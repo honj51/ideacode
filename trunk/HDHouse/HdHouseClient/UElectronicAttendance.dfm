@@ -1,21 +1,26 @@
 object ElectronicAttendance: TElectronicAttendance
-  Left = 273
-  Top = 182
+  Left = 268
+  Top = 151
   AutoScroll = False
   BorderIcons = []
   Caption = #30005#23376#32771#21220
-  ClientHeight = 449
-  ClientWidth = 834
+  ClientHeight = 542
+  ClientWidth = 1039
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poDefault
+  Visible = True
+  OnClose = FormClose
+  OnShow = FormShow
   DesignSize = (
-    834
-    449)
+    1039
+    542)
   PixelsPerInch = 96
   TextHeight = 13
   object bsSkinToolBar1: TbsSkinToolBar
@@ -94,6 +99,7 @@ object ElectronicAttendance: TElectronicAttendance
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton1Click
     end
     object bsSkinSpeedButton2: TbsSkinSpeedButton
       Left = 89
@@ -128,6 +134,7 @@ object ElectronicAttendance: TElectronicAttendance
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton2Click
     end
     object bsSkinSpeedButton3: TbsSkinSpeedButton
       Left = 177
@@ -162,6 +169,7 @@ object ElectronicAttendance: TElectronicAttendance
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton3Click
     end
     object bsSkinSpeedButton4: TbsSkinSpeedButton
       Left = 265
@@ -196,6 +204,7 @@ object ElectronicAttendance: TElectronicAttendance
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton4Click
     end
     object bsSkinSpeedButton5: TbsSkinSpeedButton
       Left = 329
@@ -230,6 +239,7 @@ object ElectronicAttendance: TElectronicAttendance
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton5Click
     end
     object bsSkinSpeedButton6: TbsSkinSpeedButton
       Left = 377
@@ -366,12 +376,13 @@ object ElectronicAttendance: TElectronicAttendance
       NumGlyphs = 1
       Align = alLeft
       Spacing = 1
+      OnClick = bsSkinSpeedButton9Click
     end
   end
   object grp1: TGroupBox
     Left = 3
     Top = 32
-    Width = 827
+    Width = 1032
     Height = 73
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 1
@@ -432,26 +443,9 @@ object ElectronicAttendance: TElectronicAttendance
       AutoSize = False
       Caption = #65293
     end
-    object lbl4: TbsSkinStdLabel
-      Left = 351
-      Top = 16
-      Width = 34
-      Height = 13
-      EllipsType = bsetNone
-      UseSkinFont = True
-      UseSkinColor = True
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = -11
-      DefaultFont.Name = 'MS Sans Serif'
-      DefaultFont.Style = []
-      SkinDataName = 'stdlabel'
-      AutoSize = False
-      Caption = #32844#21153
-    end
     object lbl5: TbsSkinStdLabel
       Left = 351
-      Top = 50
+      Top = 18
       Width = 34
       Height = 13
       EllipsType = bsetNone
@@ -466,10 +460,10 @@ object ElectronicAttendance: TElectronicAttendance
       AutoSize = False
       Caption = #31867#22411
     end
-    object bsSkinComboBox1: TbsSkinComboBox
-      Left = 112
-      Top = 12
-      Width = 153
+    object bsSkinComboBox2: TbsSkinComboBox
+      Left = 264
+      Top = 13
+      Width = 73
       Height = 20
       HintImageIndex = 0
       TabOrder = 0
@@ -509,61 +503,10 @@ object ElectronicAttendance: TElectronicAttendance
       ImageIndex = -1
       CharCase = ecNormal
       DefaultColor = clWindow
-      ItemIndex = -1
-      DropDownCount = 8
-      HorizontalExtent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Sorted = False
-      Style = bscbFixedStyle
-    end
-    object bsSkinComboBox2: TbsSkinComboBox
-      Left = 264
-      Top = 12
-      Width = 73
-      Height = 20
-      HintImageIndex = 0
-      TabOrder = 1
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'combobox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      ToolButtonStyle = False
-      AlphaBlend = False
-      AlphaBlendValue = 0
-      AlphaBlendAnimation = False
-      ListBoxCaptionMode = False
-      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultFont.Color = clWindowText
-      ListBoxDefaultFont.Height = 14
-      ListBoxDefaultFont.Name = 'Arial'
-      ListBoxDefaultFont.Style = []
-      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultCaptionFont.Color = clWindowText
-      ListBoxDefaultCaptionFont.Height = 14
-      ListBoxDefaultCaptionFont.Name = 'Arial'
-      ListBoxDefaultCaptionFont.Style = []
-      ListBoxDefaultItemHeight = 20
-      ListBoxCaptionAlignment = taLeftJustify
-      ListBoxUseSkinFont = True
-      ListBoxUseSkinItemHeight = True
-      ListBoxWidth = 0
-      HideSelection = True
-      AutoComplete = True
-      ImageIndex = -1
-      CharCase = ecNormal
-      DefaultColor = clWindow
-      ItemIndex = -1
+      Text = '('#20840#37096')'
+      Items.Strings = (
+        '('#20840#37096')')
+      ItemIndex = 0
       DropDownCount = 8
       HorizontalExtent = False
       Font.Charset = DEFAULT_CHARSET
@@ -614,7 +557,7 @@ object ElectronicAttendance: TElectronicAttendance
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -662,75 +605,22 @@ object ElectronicAttendance: TElectronicAttendance
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
       RightImageIndex = -1
       RightImageHotIndex = -1
       RightImageDownIndex = -1
-    end
-    object bsSkinComboBox3: TbsSkinComboBox
-      Left = 384
-      Top = 13
-      Width = 105
-      Height = 20
-      HintImageIndex = 0
-      TabOrder = 4
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'combobox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      ToolButtonStyle = False
-      AlphaBlend = False
-      AlphaBlendValue = 0
-      AlphaBlendAnimation = False
-      ListBoxCaptionMode = False
-      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultFont.Color = clWindowText
-      ListBoxDefaultFont.Height = 14
-      ListBoxDefaultFont.Name = 'Arial'
-      ListBoxDefaultFont.Style = []
-      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultCaptionFont.Color = clWindowText
-      ListBoxDefaultCaptionFont.Height = 14
-      ListBoxDefaultCaptionFont.Name = 'Arial'
-      ListBoxDefaultCaptionFont.Style = []
-      ListBoxDefaultItemHeight = 20
-      ListBoxCaptionAlignment = taLeftJustify
-      ListBoxUseSkinFont = True
-      ListBoxUseSkinItemHeight = True
-      ListBoxWidth = 0
-      HideSelection = True
-      AutoComplete = True
-      ImageIndex = -1
-      CharCase = ecNormal
-      DefaultColor = clWindow
-      ItemIndex = -1
-      DropDownCount = 8
-      HorizontalExtent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Sorted = False
-      Style = bscbFixedStyle
+      OnChange = bsSkinDateEdit2Change
     end
     object bsSkinComboBox4: TbsSkinComboBox
-      Left = 384
-      Top = 46
+      Left = 392
+      Top = 14
       Width = 105
       Height = 20
       HintImageIndex = 0
-      TabOrder = 5
+      TabOrder = 3
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -767,6 +657,24 @@ object ElectronicAttendance: TElectronicAttendance
       ImageIndex = -1
       CharCase = ecNormal
       DefaultColor = clWindow
+      Text = #20840#37096
+      Items.Strings = (
+        '('#20840#37096')'
+        #30475#25151
+        #21208#23519
+        #36305#30424
+        #27966#21333
+        #22521#35757
+        #19978#29677
+        #19979#29677
+        #26089#19979#29677
+        #26202#19979#29677
+        #21320#39184
+        #26202#39184
+        #22806#20986
+        #35831#20551
+        #20307#20551
+        #20854#20182)
       ItemIndex = -1
       DropDownCount = 8
       HorizontalExtent = False
@@ -778,45 +686,13 @@ object ElectronicAttendance: TElectronicAttendance
       Sorted = False
       Style = bscbFixedStyle
     end
-    object bsSkinEdit1: TbsSkinEdit
-      Left = 500
-      Top = 13
-      Width = 100
-      Height = 18
-      Text = 'bsSkinEdit1'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 6
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-    end
     object bsSkinButton1: TbsSkinButton
-      Left = 608
-      Top = 12
+      Left = 504
+      Top = 16
       Width = 75
-      Height = 23
+      Height = 18
       HintImageIndex = 0
-      TabOrder = 7
+      TabOrder = 4
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'button'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -841,14 +717,15 @@ object ElectronicAttendance: TElectronicAttendance
       Caption = #26597#35810
       NumGlyphs = 1
       Spacing = 1
+      OnClick = bsSkinButton1Click
     end
     object bsSkinToolBar2: TbsSkinToolBar
-      Left = 500
+      Left = 348
       Top = 40
       Width = 105
       Height = 25
       HintImageIndex = 0
-      TabOrder = 8
+      TabOrder = 5
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'toolpanel'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -918,6 +795,7 @@ object ElectronicAttendance: TElectronicAttendance
         NumGlyphs = 1
         Align = alLeft
         Spacing = 1
+        OnClick = bsSkinSpeedButton10Click
       end
       object bsSkinSpeedButton11: TbsSkinSpeedButton
         Left = 25
@@ -952,6 +830,7 @@ object ElectronicAttendance: TElectronicAttendance
         NumGlyphs = 1
         Align = alLeft
         Spacing = 1
+        OnClick = bsSkinSpeedButton11Click
       end
       object bsSkinSpeedButton12: TbsSkinSpeedButton
         Left = 50
@@ -986,6 +865,7 @@ object ElectronicAttendance: TElectronicAttendance
         NumGlyphs = 1
         Align = alLeft
         Spacing = 1
+        OnClick = bsSkinSpeedButton12Click
       end
       object bsSkinSpeedButton13: TbsSkinSpeedButton
         Left = 75
@@ -1020,21 +900,191 @@ object ElectronicAttendance: TElectronicAttendance
         NumGlyphs = 1
         Align = alLeft
         Spacing = 1
+        OnClick = bsSkinSpeedButton13Click
       end
     end
+    object bsSkinComboBox1: TbsSkinComboBox
+      Left = 112
+      Top = 13
+      Width = 153
+      Height = 20
+      HintImageIndex = 0
+      TabOrder = 6
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'combobox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      UseSkinSize = True
+      ToolButtonStyle = False
+      AlphaBlend = False
+      AlphaBlendValue = 0
+      AlphaBlendAnimation = False
+      ListBoxCaptionMode = False
+      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultFont.Color = clWindowText
+      ListBoxDefaultFont.Height = 14
+      ListBoxDefaultFont.Name = 'Arial'
+      ListBoxDefaultFont.Style = []
+      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultCaptionFont.Color = clWindowText
+      ListBoxDefaultCaptionFont.Height = 14
+      ListBoxDefaultCaptionFont.Name = 'Arial'
+      ListBoxDefaultCaptionFont.Style = []
+      ListBoxDefaultItemHeight = 20
+      ListBoxCaptionAlignment = taLeftJustify
+      ListBoxUseSkinFont = True
+      ListBoxUseSkinItemHeight = True
+      ListBoxWidth = 0
+      HideSelection = True
+      AutoComplete = True
+      ImageIndex = -1
+      CharCase = ecNormal
+      DefaultColor = clWindow
+      ItemIndex = -1
+      DropDownCount = 8
+      HorizontalExtent = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      Sorted = False
+      Style = bscbFixedStyle
+      OnChange = bsSkinComboBox1Change
+    end
   end
-  object dbgrd1: TDBGrid
-    Left = 3
+  object bsSkinDBGrid1: TbsSkinDBGrid
+    Left = 584
     Top = 112
-    Width = 827
-    Height = 329
-    Anchors = [akLeft, akTop, akRight, akBottom]
+    Width = 1
+    Height = 49
+    HintImageIndex = 0
     TabOrder = 2
+    SkinDataName = 'grid'
+    Transparent = False
+    WallpaperStretch = False
+    UseSkinFont = True
+    UseSkinCellHeight = True
+    GridLineColor = clWindowText
+    DefaultCellHeight = 20
+    DrawGraphicFields = False
+    UseColumnsFont = False
+    DefaultRowHeight = 17
+    MouseWheelSupport = False
+    SaveMultiSelection = False
+    PickListBoxSkinDataName = 'listbox'
+    PickListBoxCaptionMode = False
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
+  end
+  object bsSkinDBGrid2: TbsSkinDBGrid
+    Left = 3
+    Top = 112
+    Width = 1030
+    Height = 425
+    HintImageIndex = 0
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    TabOrder = 3
+    SkinData = HDHouseDataModule.bsSkinData1
+    SkinDataName = 'grid'
+    Transparent = False
+    WallpaperStretch = False
+    UseSkinFont = True
+    UseSkinCellHeight = True
+    GridLineColor = clWindowText
+    DefaultCellHeight = 20
+    DrawGraphicFields = False
+    UseColumnsFont = False
+    DefaultRowHeight = 17
+    MouseWheelSupport = False
+    SaveMultiSelection = False
+    PickListBoxSkinDataName = 'listbox'
+    PickListBoxCaptionMode = False
+    DataSource = ds2
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    PopupMenu = bsSkinPopupMenu1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    OnDblClick = bsSkinSpeedButton2Click
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'DeptName'
+        Width = 102
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'EmpName'
+        Width = 68
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'RollDate'
+        Title.Caption = #32771#21220#26085#26399
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'WeekName'
+        Title.Caption = #26143#26399
+        Width = 93
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'RollType'
+        Title.Caption = #31867#22411
+        Width = 67
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Remark'
+        Title.Caption = #22791#27880
+        Width = 89
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'RollIn0'
+        Title.Caption = #22806#20986'/'#35268#23450'('#26102#38388')'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'RollIn1'
+        Title.Caption = #36820#22238'/'#23454#38469'('#26102#38388')'
+        Width = 154
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #26102#38388#24046
+        Width = 92
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FlagReturn'
+        Title.Caption = #36820#22238
+        Width = 106
+        Visible = True
+      end>
   end
   object bsBusinessSkinForm1: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -1085,7 +1135,143 @@ object ElectronicAttendance: TElectronicAttendance
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 824
+    Left = 848
     Top = 8
+  end
+  object qry1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    OnCalcFields = qry1CalcFields
+    Parameters = <>
+    SQL.Strings = (
+      
+        'SELECT d.DeptName,e.EmpName,r.RollID,r.EmpID,r.RollDate,r.WeekNa' +
+        'me,r.RollIn0,r.RollIn1,r.ModDate,r.FlagTrashed,r.FlagDeleted,r.E' +
+        'xDate,r.RollType,r.Remark,r.FlagReturn'
+      
+        ' FROM  roll r,Employee e,Department d where r.EmpID=e.EmpID and ' +
+        'e.DeptID=d.DeptID and r.FlagDeleted=0 and r.FlagTrashed=0')
+    Left = 723
+    Top = 56
+    object qry1DeptName: TWideStringField
+      DisplayLabel = #37096#38376
+      DisplayWidth = 20
+      FieldName = 'DeptName'
+      Size = 50
+    end
+    object qry1EmpName: TWideStringField
+      DisplayLabel = #21592#24037
+      DisplayWidth = 16
+      FieldName = 'EmpName'
+      Size = 50
+    end
+    object qry1RollID: TWideStringField
+      DisplayWidth = 38
+      FieldName = 'RollID'
+      Size = 32
+    end
+    object qry1EmpID: TWideStringField
+      DisplayWidth = 39
+      FieldName = 'EmpID'
+      Size = 32
+    end
+    object qry1RollDate: TDateTimeField
+      DisplayWidth = 22
+      FieldName = 'RollDate'
+    end
+    object qry1WeekName: TWideStringField
+      DisplayWidth = 60
+      FieldName = 'WeekName'
+      Size = 50
+    end
+    object qry1RollIn0: TDateTimeField
+      DisplayWidth = 22
+      FieldName = 'RollIn0'
+    end
+    object qry1RollIn1: TDateTimeField
+      DisplayWidth = 22
+      FieldName = 'RollIn1'
+    end
+    object qry1ModDate: TDateTimeField
+      DisplayWidth = 22
+      FieldName = 'ModDate'
+    end
+    object qry1FlagTrashed: TSmallintField
+      DisplayWidth = 12
+      FieldName = 'FlagTrashed'
+    end
+    object qry1FlagDeleted: TSmallintField
+      DisplayWidth = 12
+      FieldName = 'FlagDeleted'
+    end
+    object qry1ExDate: TDateTimeField
+      DisplayWidth = 22
+      FieldName = 'ExDate'
+    end
+    object qry1RollType: TWideStringField
+      DisplayWidth = 60
+      FieldName = 'RollType'
+      Size = 50
+    end
+    object qry1Remark: TWideStringField
+      DisplayWidth = 60
+      FieldName = 'Remark'
+      Size = 50
+    end
+    object qry1FlagReturn: TSmallintField
+      DisplayWidth = 12
+      FieldName = 'FlagReturn'
+    end
+    object qry1Field: TIntegerField
+      DisplayWidth = 12
+      FieldKind = fkCalculated
+      FieldName = #26102#38388#24046
+      Calculated = True
+    end
+  end
+  object qryDepartment: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from Department')
+    Left = 768
+  end
+  object dsDepartment: TDataSource
+    DataSet = qryDepartment
+    Left = 712
+  end
+  object dsEmployee: TDataSource
+    DataSet = tblEmployee
+    Left = 827
+    Top = 56
+  end
+  object tblEmployee: TADOTable
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    TableName = 'Employee'
+    Left = 875
+    Top = 56
+  end
+  object ds2: TDataSource
+    DataSet = qry1
+    Left = 651
+    Top = 48
+  end
+  object bsSkinPopupMenu1: TbsSkinPopupMenu
+    Left = 680
+    Top = 184
+    object N1: TMenuItem
+      Caption = #30331#35760#32771#21220
+      OnClick = bsSkinSpeedButton1Click
+    end
+    object N2: TMenuItem
+      Caption = #20462#25913#32771#21220
+      OnClick = bsSkinSpeedButton2Click
+    end
+    object N3: TMenuItem
+      Caption = #21024#38500#32771#21220
+      OnClick = bsSkinSpeedButton3Click
+    end
   end
 end
