@@ -1,11 +1,11 @@
 object BusinessQAInfo: TBusinessQAInfo
-  Left = 449
+  Left = 425
   Top = 200
   AutoScroll = False
   BorderIcons = []
   Caption = #19994#21153#38382#31572
-  ClientHeight = 386
-  ClientWidth = 526
+  ClientHeight = 389
+  ClientWidth = 644
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,16 +13,17 @@ object BusinessQAInfo: TBusinessQAInfo
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   DesignSize = (
-    526
-    386)
+    644
+    389)
   PixelsPerInch = 96
   TextHeight = 13
   object bsknpnl1: TbsSkinPanel
     Left = 5
     Top = 8
-    Width = 513
-    Height = 342
+    Width = 631
+    Height = 331
     HintImageIndex = 0
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
@@ -53,11 +54,11 @@ object BusinessQAInfo: TBusinessQAInfo
     Spacing = 2
     Caption = 'bsknpnl1'
     DesignSize = (
-      513
-      342)
+      631
+      331)
     object lbl1: TbsSkinStdLabel
       Left = 8
-      Top = 319
+      Top = 300
       Width = 65
       Height = 13
       EllipsType = bsetNone
@@ -75,8 +76,8 @@ object BusinessQAInfo: TBusinessQAInfo
       Caption = #38382#31572#21442#32771
     end
     object lbl2: TbsSkinStdLabel
-      Left = 384
-      Top = 319
+      Left = 496
+      Top = 300
       Width = 33
       Height = 13
       EllipsType = bsetNone
@@ -95,7 +96,7 @@ object BusinessQAInfo: TBusinessQAInfo
     end
     object lbl3: TbsSkinStdLabel
       Left = 160
-      Top = 319
+      Top = 300
       Width = 33
       Height = 13
       EllipsType = bsetNone
@@ -112,11 +113,28 @@ object BusinessQAInfo: TBusinessQAInfo
       AutoSize = False
       Caption = #31867#21035
     end
+    object lbl6: TbsSkinStdLabel
+      Left = 256
+      Top = 300
+      Width = 49
+      Height = 13
+      EllipsType = bsetNone
+      UseSkinFont = True
+      UseSkinColor = True
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = -11
+      DefaultFont.Name = 'MS Sans Serif'
+      DefaultFont.Style = []
+      SkinDataName = 'stdlabel'
+      Anchors = [akLeft, akBottom]
+      Caption = #30331#35760#20154
+    end
     object bsknpnl2: TbsSkinPanel
       Left = 1
       Top = 1
-      Width = 511
-      Height = 302
+      Width = 629
+      Height = 284
       HintImageIndex = 0
       Anchors = [akLeft, akTop, akRight, akBottom]
       TabOrder = 0
@@ -147,8 +165,8 @@ object BusinessQAInfo: TBusinessQAInfo
       Spacing = 2
       Caption = 'bsknpnl2'
       DesignSize = (
-        511
-        302)
+        629
+        284)
       object lbl4: TbsSkinStdLabel
         Left = 8
         Top = 18
@@ -186,7 +204,7 @@ object BusinessQAInfo: TBusinessQAInfo
         Caption = #35299#31572#20869#23481
       end
       object img1: TImage
-        Left = 478
+        Left = 596
         Top = 16
         Width = 19
         Height = 18
@@ -669,9 +687,8 @@ object BusinessQAInfo: TBusinessQAInfo
       object bsSkinDBEdit1: TbsSkinDBEdit
         Left = 72
         Top = 16
-        Width = 403
-        Height = 19
-        Text = 'bsSkinDBEdit1'
+        Width = 521
+        Height = 18
         DefaultColor = clWindow
         DefaultFont.Charset = DEFAULT_CHARSET
         DefaultFont.Color = clBlack
@@ -699,20 +716,20 @@ object BusinessQAInfo: TBusinessQAInfo
         RightImageHotIndex = -1
         RightImageDownIndex = -1
         AutoSize = False
+        DataField = 'Question'
+        DataSource = ds1
       end
       object bsSkinDBMemo1: TbsSkinDBMemo
         Left = 72
         Top = 48
-        Width = 426
-        Height = 240
+        Width = 544
+        Height = 214
         Anchors = [akLeft, akTop, akRight, akBottom]
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -17
         Font.Name = 'Arial'
         Font.Style = []
-        Lines.Strings = (
-          'bsSkinDBMemo1')
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 1
@@ -726,16 +743,199 @@ object BusinessQAInfo: TBusinessQAInfo
         BitMapBG = True
         SkinData = HDHouseDataModule.bsSkinData1
         SkinDataName = 'memo'
+        DataField = 'Solution'
+        DataSource = ds1
       end
+    end
+    object bsSkinDBEdit2: TbsSkinDBEdit
+      Left = 64
+      Top = 297
+      Width = 89
+      Height = 18
+      DefaultColor = clWindow
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'edit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      Anchors = [akLeft, akBottom]
+      ParentFont = False
+      TabOrder = 1
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataField = 'Reference'
+      DataSource = ds1
+    end
+    object bsSkinDBEdit3: TbsSkinDBEdit
+      Left = 528
+      Top = 297
+      Width = 89
+      Height = 18
+      DefaultColor = clWindow
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'edit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      Anchors = [akLeft, akBottom]
+      ParentFont = False
+      TabOrder = 2
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataField = 'RegDate'
+      DataSource = ds1
+    end
+    object bsSkinComboBox1: TbsSkinComboBox
+      Left = 304
+      Top = 296
+      Width = 105
+      Height = 20
+      HintImageIndex = 0
+      Anchors = [akLeft, akBottom]
+      TabOrder = 3
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'combobox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      UseSkinSize = True
+      ToolButtonStyle = False
+      AlphaBlend = False
+      AlphaBlendValue = 0
+      AlphaBlendAnimation = False
+      ListBoxCaptionMode = False
+      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultFont.Color = clWindowText
+      ListBoxDefaultFont.Height = 14
+      ListBoxDefaultFont.Name = 'Arial'
+      ListBoxDefaultFont.Style = []
+      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultCaptionFont.Color = clWindowText
+      ListBoxDefaultCaptionFont.Height = 14
+      ListBoxDefaultCaptionFont.Name = 'Arial'
+      ListBoxDefaultCaptionFont.Style = []
+      ListBoxDefaultItemHeight = 20
+      ListBoxCaptionAlignment = taLeftJustify
+      ListBoxUseSkinFont = True
+      ListBoxUseSkinItemHeight = True
+      ListBoxWidth = 0
+      HideSelection = True
+      AutoComplete = True
+      ImageIndex = -1
+      CharCase = ecNormal
+      DefaultColor = clWindow
+      ItemIndex = -1
+      DropDownCount = 8
+      HorizontalExtent = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      Sorted = False
+      Style = bscbFixedStyle
+      OnChange = bsSkinComboBox1Change
+    end
+    object bsSkinComboBox2: TbsSkinComboBox
+      Left = 408
+      Top = 296
+      Width = 81
+      Height = 20
+      HintImageIndex = 0
+      Anchors = [akLeft, akBottom]
+      TabOrder = 4
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'combobox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      UseSkinSize = True
+      ToolButtonStyle = False
+      AlphaBlend = False
+      AlphaBlendValue = 0
+      AlphaBlendAnimation = False
+      ListBoxCaptionMode = False
+      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultFont.Color = clWindowText
+      ListBoxDefaultFont.Height = 14
+      ListBoxDefaultFont.Name = 'Arial'
+      ListBoxDefaultFont.Style = []
+      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultCaptionFont.Color = clWindowText
+      ListBoxDefaultCaptionFont.Height = 14
+      ListBoxDefaultCaptionFont.Name = 'Arial'
+      ListBoxDefaultCaptionFont.Style = []
+      ListBoxDefaultItemHeight = 20
+      ListBoxCaptionAlignment = taLeftJustify
+      ListBoxUseSkinFont = True
+      ListBoxUseSkinItemHeight = True
+      ListBoxWidth = 0
+      HideSelection = True
+      AutoComplete = True
+      ImageIndex = -1
+      CharCase = ecNormal
+      DefaultColor = clWindow
+      ItemIndex = -1
+      DropDownCount = 8
+      HorizontalExtent = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      Sorted = False
+      Style = bscbFixedStyle
     end
     object bsSkinDBComboBox1: TbsSkinDBComboBox
       Left = 192
-      Top = 317
-      Width = 113
+      Top = 295
+      Width = 57
       Height = 20
       HintImageIndex = 0
       Anchors = [akLeft, akBottom]
-      TabOrder = 1
+      TabOrder = 5
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -782,133 +982,13 @@ object BusinessQAInfo: TBusinessQAInfo
       Font.Style = []
       Sorted = False
       Style = bscbFixedStyle
+      DataField = 'FaqType'
+      DataSource = ds1
       ParentFont = False
-    end
-    object bsSkinDBComboBox2: TbsSkinDBComboBox
-      Left = 304
-      Top = 317
-      Width = 73
-      Height = 20
-      HintImageIndex = 0
-      Anchors = [akLeft, akBottom]
-      TabOrder = 2
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'combobox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      ToolButtonStyle = False
-      AlphaBlend = False
-      AlphaBlendValue = 0
-      AlphaBlendAnimation = False
-      ListBoxCaptionMode = False
-      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultFont.Color = clWindowText
-      ListBoxDefaultFont.Height = 14
-      ListBoxDefaultFont.Name = 'Arial'
-      ListBoxDefaultFont.Style = []
-      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultCaptionFont.Color = clWindowText
-      ListBoxDefaultCaptionFont.Height = 14
-      ListBoxDefaultCaptionFont.Name = 'Arial'
-      ListBoxDefaultCaptionFont.Style = []
-      ListBoxDefaultItemHeight = 20
-      ListBoxCaptionAlignment = taLeftJustify
-      ListBoxUseSkinFont = True
-      ListBoxUseSkinItemHeight = True
-      ListBoxWidth = 0
-      HideSelection = True
-      AutoComplete = True
-      ImageIndex = -1
-      CharCase = ecNormal
-      DefaultColor = clWindow
-      ItemIndex = -1
-      DropDownCount = 8
-      HorizontalExtent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Sorted = False
-      Style = bscbFixedStyle
-      ParentFont = False
-    end
-    object bsSkinEdit1: TbsSkinEdit
-      Left = 416
-      Top = 317
-      Width = 89
-      Height = 18
-      Text = 'bsSkinEdit1'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Anchors = [akLeft, akBottom]
-      ParentFont = False
-      TabOrder = 3
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-    end
-    object bsSkinEdit2: TbsSkinEdit
-      Left = 64
-      Top = 317
-      Width = 89
-      Height = 18
-      Text = 'bsSkinEdit2'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Anchors = [akLeft, akBottom]
-      ParentFont = False
-      TabOrder = 4
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
     end
   end
   object bsSkinToolBar1: TbsSkinToolBar
-    Left = 220
+    Left = 338
     Top = 352
     Width = 81
     Height = 22
@@ -1058,8 +1138,8 @@ object BusinessQAInfo: TBusinessQAInfo
     end
   end
   object bsSkinButton1: TbsSkinButton
-    Left = 336
-    Top = 357
+    Left = 454
+    Top = 352
     Width = 89
     Height = 25
     HintImageIndex = 0
@@ -1089,10 +1169,11 @@ object BusinessQAInfo: TBusinessQAInfo
     Caption = #20445#23384
     NumGlyphs = 1
     Spacing = 1
+    OnClick = bsSkinButton1Click
   end
   object bsSkinButton2: TbsSkinButton
-    Left = 432
-    Top = 357
+    Left = 550
+    Top = 352
     Width = 89
     Height = 25
     HintImageIndex = 0
@@ -1123,43 +1204,6 @@ object BusinessQAInfo: TBusinessQAInfo
     NumGlyphs = 1
     Spacing = 1
     OnClick = bsSkinButton2Click
-  end
-  object bsSkinDBNavigator1: TbsSkinDBNavigator
-    Left = 5
-    Top = 357
-    Width = 56
-    Height = 25
-    HintImageIndex = 0
-    Anchors = [akLeft, akBottom]
-    TabOrder = 4
-    SkinData = HDHouseDataModule.bsSkinData1
-    SkinDataName = 'panel'
-    DefaultFont.Charset = DEFAULT_CHARSET
-    DefaultFont.Color = clWindowText
-    DefaultFont.Height = 14
-    DefaultFont.Name = 'Arial'
-    DefaultFont.Style = []
-    DefaultWidth = 0
-    DefaultHeight = 0
-    UseSkinFont = True
-    ImagePosition = bsipDefault
-    TransparentMode = False
-    CaptionImageIndex = -1
-    RealHeight = -1
-    AutoEnabledControls = True
-    CheckedMode = False
-    Checked = False
-    DefaultAlignment = taLeftJustify
-    DefaultCaptionHeight = 22
-    BorderStyle = bvNone
-    CaptionMode = False
-    RollUpMode = False
-    RollUpState = False
-    NumGlyphs = 1
-    Spacing = 2
-    AdditionalGlyphs = False
-    VisibleButtons = [nbPrior, nbNext]
-    BtnSkinDataName = 'button'
   end
   object dlgColor1: TColorDialog
     CustomColors.Strings = (
@@ -1233,5 +1277,29 @@ object BusinessQAInfo: TBusinessQAInfo
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
     Left = 29
     Top = 240
+  end
+  object qry1: TADOQuery
+    Active = True
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'ID'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from faq where faqid=:ID')
+    Left = 24
+    Top = 352
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 72
+    Top = 352
   end
 end

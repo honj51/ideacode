@@ -1,6 +1,6 @@
 object ElectronicAttendanceInof: TElectronicAttendanceInof
-  Left = 538
-  Top = 294
+  Left = 562
+  Top = 309
   AutoScroll = False
   BorderIcons = []
   Caption = #30005#23376#32771#21220
@@ -13,6 +13,7 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   DesignSize = (
     405
     203)
@@ -99,7 +100,7 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
     end
     object lbl1: TbsSkinStdLabel
       Left = 24
-      Top = 16
+      Top = 12
       Width = 57
       Height = 13
       EllipsType = bsetNone
@@ -994,13 +995,58 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
         000049454E44AE426082}
       Stretch = True
     end
-    object bsSkinDBComboBox1: TbsSkinDBComboBox
+    object bsSkinDBEdit1: TbsSkinDBEdit
+      Left = 224
+      Top = 38
+      Width = 89
+      Height = 18
+      Text = 'bsSkinDBEdit1'
+      DefaultColor = clWindow
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      UseSkinFont = True
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = False
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'edit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      AutoSize = False
+      DataField = 'WeekName'
+      DataSource = ds1
+    end
+    object dbmmoRemark: TDBMemo
+      Left = 232
+      Top = 88
+      Width = 161
+      Height = 65
+      DataField = 'Remark'
+      DataSource = ds1
+      ScrollBars = ssVertical
+      TabOrder = 1
+    end
+    object bsSkinDBComboBox3: TbsSkinDBComboBox
       Left = 88
-      Top = 12
+      Top = 61
       Width = 137
       Height = 20
       HintImageIndex = 0
-      TabOrder = 0
+      TabOrder = 2
       SkinData = HDHouseDataModule.bsSkinData1
       SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
@@ -1037,6 +1083,23 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
       ImageIndex = -1
       CharCase = ecNormal
       DefaultColor = clWindow
+      Text = #35831#20551
+      Items.Strings = (
+        #30475#25151
+        #21208#23519
+        #36305#30424
+        #27966#21333
+        #22521#35757
+        #19978#29677
+        #19979#29677
+        #26089#19979#29677
+        #26202#19979#29677
+        #21320#39184
+        #26202#39184
+        #22806#20986
+        #35831#20551
+        #20307#20551
+        #20854#20182)
       ItemIndex = -1
       DropDownCount = 8
       HorizontalExtent = False
@@ -1047,67 +1110,15 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
       Font.Style = []
       Sorted = False
       Style = bscbFixedStyle
-      ParentFont = False
-    end
-    object bsSkinDBComboBox2: TbsSkinDBComboBox
-      Left = 224
-      Top = 12
-      Width = 89
-      Height = 20
-      HintImageIndex = 0
-      TabOrder = 1
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'combobox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      ToolButtonStyle = False
-      AlphaBlend = False
-      AlphaBlendValue = 0
-      AlphaBlendAnimation = False
-      ListBoxCaptionMode = False
-      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultFont.Color = clWindowText
-      ListBoxDefaultFont.Height = 14
-      ListBoxDefaultFont.Name = 'Arial'
-      ListBoxDefaultFont.Style = []
-      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultCaptionFont.Color = clWindowText
-      ListBoxDefaultCaptionFont.Height = 14
-      ListBoxDefaultCaptionFont.Name = 'Arial'
-      ListBoxDefaultCaptionFont.Style = []
-      ListBoxDefaultItemHeight = 20
-      ListBoxCaptionAlignment = taLeftJustify
-      ListBoxUseSkinFont = True
-      ListBoxUseSkinItemHeight = True
-      ListBoxWidth = 0
-      HideSelection = True
-      AutoComplete = True
-      ImageIndex = -1
-      CharCase = ecNormal
-      DefaultColor = clWindow
-      ItemIndex = -1
-      DropDownCount = 8
-      HorizontalExtent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Sorted = False
-      Style = bscbFixedStyle
+      OnChange = bsSkinDBComboBox3Change
+      DataField = 'RollType'
+      DataSource = ds1
       ParentFont = False
     end
     object bsSkinDateEdit1: TbsSkinDateEdit
       Left = 88
-      Top = 38
-      Width = 137
+      Top = 96
+      Width = 89
       Height = 18
       EditMask = '!0000/99/99;1; '
       Text = '    -  -  '
@@ -1144,7 +1155,7 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 3
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1152,12 +1163,115 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
       RightImageHotIndex = -1
       RightImageDownIndex = -1
     end
-    object bsSkinDBEdit1: TbsSkinDBEdit
-      Left = 224
-      Top = 38
+    object bsSkinDateEdit2: TbsSkinDateEdit
+      Left = 88
+      Top = 128
       Width = 89
       Height = 18
-      Text = 'bsSkinDBEdit1'
+      EditMask = '!0000/99/99;1; '
+      Text = '    -  -  '
+      AlphaBlend = False
+      AlphaBlendAnimation = False
+      AlphaBlendValue = 0
+      UseSkinFont = True
+      TodayDefault = False
+      CalendarWidth = 200
+      CalendarHeight = 150
+      CalendarFont.Charset = DEFAULT_CHARSET
+      CalendarFont.Color = clWindowText
+      CalendarFont.Height = 14
+      CalendarFont.Name = 'Arial'
+      CalendarFont.Style = []
+      CalendarBoldDays = False
+      CalendarUseSkinFont = True
+      CalendarSkinDataName = 'panel'
+      FirstDayOfWeek = Sun
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'buttonedit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 4
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+    end
+    object bsSkinDBDateEdit1: TbsSkinDBDateEdit
+      Left = 88
+      Top = 37
+      Width = 136
+      Height = 18
+      EditMask = '!0000/99/99;1; '
+      Text = '2009-10-16'
+      AlphaBlend = False
+      AlphaBlendAnimation = False
+      AlphaBlendValue = 0
+      UseSkinFont = True
+      Date = 40102.702085497690000000
+      TodayDefault = True
+      CalendarWidth = 200
+      CalendarHeight = 150
+      CalendarFont.Charset = DEFAULT_CHARSET
+      CalendarFont.Color = clWindowText
+      CalendarFont.Height = 14
+      CalendarFont.Name = 'Arial'
+      CalendarFont.Style = []
+      CalendarBoldDays = False
+      CalendarUseSkinFont = True
+      CalendarSkinDataName = 'panel'
+      FirstDayOfWeek = Sun
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clBlack
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      ButtonMode = True
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'buttonedit'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = 14
+      Font.Name = 'Arial'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 5
+      LeftImageIndex = -1
+      LeftImageHotIndex = -1
+      LeftImageDownIndex = -1
+      RightImageIndex = -1
+      RightImageHotIndex = -1
+      RightImageDownIndex = -1
+      OnChange = bsSkinDBDateEdit1Change
+      AllowNullData = False
+      AutoSize = False
+      DataField = 'RollDate'
+      DataSource = ds1
+    end
+    object bsSkinTimeEdit1: TbsSkinTimeEdit
+      Left = 176
+      Top = 96
+      Width = 49
+      Height = 18
+      EditMask = '!90:00:00;1; '
+      Text = '00:00:00'
       DefaultColor = clWindow
       DefaultFont.Charset = DEFAULT_CHARSET
       DefaultFont.Color = clBlack
@@ -1175,8 +1289,9 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
       Font.Height = 14
       Font.Name = 'Arial'
       Font.Style = []
+      MaxLength = 8
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 6
       LeftImageIndex = -1
       LeftImageHotIndex = -1
       LeftImageDownIndex = -1
@@ -1184,102 +1299,11 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
       RightImageHotIndex = -1
       RightImageDownIndex = -1
       AutoSize = False
+      BorderStyle = bsNone
     end
-    object bsSkinDBComboBox3: TbsSkinDBComboBox
-      Left = 88
-      Top = 61
-      Width = 137
-      Height = 20
-      HintImageIndex = 0
-      TabOrder = 4
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'combobox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      UseSkinSize = True
-      ToolButtonStyle = False
-      AlphaBlend = False
-      AlphaBlendValue = 0
-      AlphaBlendAnimation = False
-      ListBoxCaptionMode = False
-      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultFont.Color = clWindowText
-      ListBoxDefaultFont.Height = 14
-      ListBoxDefaultFont.Name = 'Arial'
-      ListBoxDefaultFont.Style = []
-      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
-      ListBoxDefaultCaptionFont.Color = clWindowText
-      ListBoxDefaultCaptionFont.Height = 14
-      ListBoxDefaultCaptionFont.Name = 'Arial'
-      ListBoxDefaultCaptionFont.Style = []
-      ListBoxDefaultItemHeight = 20
-      ListBoxCaptionAlignment = taLeftJustify
-      ListBoxUseSkinFont = True
-      ListBoxUseSkinItemHeight = True
-      ListBoxWidth = 0
-      HideSelection = True
-      AutoComplete = True
-      ImageIndex = -1
-      CharCase = ecNormal
-      DefaultColor = clWindow
-      ItemIndex = -1
-      DropDownCount = 8
-      HorizontalExtent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      Sorted = False
-      Style = bscbFixedStyle
-      ParentFont = False
-    end
-    object bsknchckrdbx1: TbsSkinCheckRadioBox
-      Left = 232
-      Top = 62
-      Width = 65
-      Height = 17
-      HintImageIndex = 0
-      TabOrder = 5
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'checkbox'
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clWindowText
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      DefaultWidth = 0
-      DefaultHeight = 0
-      UseSkinFont = True
-      WordWrap = False
-      AllowGrayed = False
-      State = cbUnchecked
-      ImageIndex = 0
-      Flat = True
-      UseSkinFontColor = True
-      CanFocused = True
-      Radio = False
-      Checked = False
-      GroupIndex = 0
-      Caption = #24050#36820#22238
-    end
-    object dbmmo1: TDBMemo
-      Left = 232
-      Top = 88
-      Width = 161
-      Height = 65
-      ScrollBars = ssVertical
-      TabOrder = 6
-    end
-    object bsSkinDBTimeEdit1: TbsSkinDBTimeEdit
+    object bsSkinTimeEdit2: TbsSkinTimeEdit
       Left = 176
-      Top = 94
+      Top = 128
       Width = 49
       Height = 18
       EditMask = '!90:00:00;1; '
@@ -1313,141 +1337,143 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
       AutoSize = False
       BorderStyle = bsNone
     end
-    object bsSkinDBTimeEdit2: TbsSkinDBTimeEdit
-      Left = 176
-      Top = 128
-      Width = 49
-      Height = 18
-      EditMask = '!90:00:00;1; '
-      Text = '00:00:00'
-      DefaultColor = clWindow
-      DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
-      DefaultFont.Height = 14
-      DefaultFont.Name = 'Arial'
-      DefaultFont.Style = []
-      UseSkinFont = True
-      DefaultWidth = 0
-      DefaultHeight = 0
-      ButtonMode = False
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'edit'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = 14
-      Font.Name = 'Arial'
-      Font.Style = []
-      MaxLength = 8
-      ParentFont = False
+    object bsSkinComboBox1: TbsSkinComboBox
+      Left = 88
+      Top = 8
+      Width = 137
+      Height = 20
+      HintImageIndex = 0
       TabOrder = 8
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AutoSize = False
-      BorderStyle = bsNone
-    end
-    object bsSkinDBDateEdit1: TbsSkinDBDateEdit
-      Left = 88
-      Top = 94
-      Width = 89
-      Height = 18
-      EditMask = '!0000/99/99;1; '
-      Text = '    -  -  '
-      AlphaBlend = False
-      AlphaBlendAnimation = False
-      AlphaBlendValue = 0
-      UseSkinFont = True
-      TodayDefault = False
-      CalendarWidth = 200
-      CalendarHeight = 150
-      CalendarFont.Charset = DEFAULT_CHARSET
-      CalendarFont.Color = clWindowText
-      CalendarFont.Height = 14
-      CalendarFont.Name = 'Arial'
-      CalendarFont.Style = []
-      CalendarBoldDays = False
-      CalendarUseSkinFont = True
-      CalendarSkinDataName = 'panel'
-      FirstDayOfWeek = Sun
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
+      DefaultFont.Color = clWindowText
       DefaultFont.Height = 14
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
       DefaultWidth = 0
       DefaultHeight = 0
-      ButtonMode = True
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'buttonedit'
+      UseSkinFont = True
+      UseSkinSize = True
+      ToolButtonStyle = False
+      AlphaBlend = False
+      AlphaBlendValue = 0
+      AlphaBlendAnimation = False
+      ListBoxCaptionMode = False
+      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultFont.Color = clWindowText
+      ListBoxDefaultFont.Height = 14
+      ListBoxDefaultFont.Name = 'Arial'
+      ListBoxDefaultFont.Style = []
+      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultCaptionFont.Color = clWindowText
+      ListBoxDefaultCaptionFont.Height = 14
+      ListBoxDefaultCaptionFont.Name = 'Arial'
+      ListBoxDefaultCaptionFont.Style = []
+      ListBoxDefaultItemHeight = 20
+      ListBoxCaptionAlignment = taLeftJustify
+      ListBoxUseSkinFont = True
+      ListBoxUseSkinItemHeight = True
+      ListBoxWidth = 0
+      HideSelection = True
+      AutoComplete = True
+      ImageIndex = -1
+      CharCase = ecNormal
+      DefaultColor = clWindow
+      ItemIndex = -1
+      DropDownCount = 8
+      HorizontalExtent = False
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWindowText
       Font.Height = 14
       Font.Name = 'Arial'
       Font.Style = []
-      MaxLength = 10
-      ParentFont = False
+      Sorted = False
+      Style = bscbFixedStyle
+      OnChange = bsSkinComboBox1Change
+    end
+    object bsSkinComboBox2: TbsSkinComboBox
+      Left = 224
+      Top = 8
+      Width = 89
+      Height = 20
+      HintImageIndex = 0
       TabOrder = 9
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AllowNullData = False
-      AutoSize = False
-    end
-    object bsSkinDBDateEdit2: TbsSkinDBDateEdit
-      Left = 88
-      Top = 128
-      Width = 89
-      Height = 18
-      EditMask = '!0000/99/99;1; '
-      Text = '    -  -  '
-      AlphaBlend = False
-      AlphaBlendAnimation = False
-      AlphaBlendValue = 0
-      UseSkinFont = True
-      TodayDefault = False
-      CalendarWidth = 200
-      CalendarHeight = 150
-      CalendarFont.Charset = DEFAULT_CHARSET
-      CalendarFont.Color = clWindowText
-      CalendarFont.Height = 14
-      CalendarFont.Name = 'Arial'
-      CalendarFont.Style = []
-      CalendarBoldDays = False
-      CalendarUseSkinFont = True
-      CalendarSkinDataName = 'panel'
-      FirstDayOfWeek = Sun
+      SkinData = HDHouseDataModule.bsSkinData1
+      SkinDataName = 'combobox'
       DefaultFont.Charset = DEFAULT_CHARSET
-      DefaultFont.Color = clBlack
+      DefaultFont.Color = clWindowText
       DefaultFont.Height = 14
       DefaultFont.Name = 'Arial'
       DefaultFont.Style = []
       DefaultWidth = 0
       DefaultHeight = 0
-      ButtonMode = True
-      SkinData = HDHouseDataModule.bsSkinData1
-      SkinDataName = 'buttonedit'
+      UseSkinFont = True
+      UseSkinSize = True
+      ToolButtonStyle = False
+      AlphaBlend = False
+      AlphaBlendValue = 0
+      AlphaBlendAnimation = False
+      ListBoxCaptionMode = False
+      ListBoxDefaultFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultFont.Color = clWindowText
+      ListBoxDefaultFont.Height = 14
+      ListBoxDefaultFont.Name = 'Arial'
+      ListBoxDefaultFont.Style = []
+      ListBoxDefaultCaptionFont.Charset = DEFAULT_CHARSET
+      ListBoxDefaultCaptionFont.Color = clWindowText
+      ListBoxDefaultCaptionFont.Height = 14
+      ListBoxDefaultCaptionFont.Name = 'Arial'
+      ListBoxDefaultCaptionFont.Style = []
+      ListBoxDefaultItemHeight = 20
+      ListBoxCaptionAlignment = taLeftJustify
+      ListBoxUseSkinFont = True
+      ListBoxUseSkinItemHeight = True
+      ListBoxWidth = 0
+      HideSelection = True
+      AutoComplete = True
+      ImageIndex = -1
+      CharCase = ecNormal
+      DefaultColor = clWindow
+      ItemIndex = -1
+      DropDownCount = 8
+      HorizontalExtent = False
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clWindowText
       Font.Height = 14
       Font.Name = 'Arial'
       Font.Style = []
-      MaxLength = 10
-      ParentFont = False
+      Sorted = False
+      Style = bscbFixedStyle
+    end
+    object bsknchckrdbx1: TbsSkinCheckRadioBox
+      Left = 224
+      Top = 63
+      Width = 73
+      Height = 17
+      HintImageIndex = 0
       TabOrder = 10
-      LeftImageIndex = -1
-      LeftImageHotIndex = -1
-      LeftImageDownIndex = -1
-      RightImageIndex = -1
-      RightImageHotIndex = -1
-      RightImageDownIndex = -1
-      AllowNullData = False
-      AutoSize = False
+      SkinDataName = 'checkbox'
+      DefaultFont.Charset = DEFAULT_CHARSET
+      DefaultFont.Color = clWindowText
+      DefaultFont.Height = 14
+      DefaultFont.Name = 'Arial'
+      DefaultFont.Style = []
+      DefaultWidth = 0
+      DefaultHeight = 0
+      UseSkinFont = True
+      WordWrap = False
+      AllowGrayed = False
+      State = cbUnchecked
+      ImageIndex = 0
+      Flat = True
+      UseSkinFontColor = True
+      TabStop = True
+      CanFocused = True
+      Radio = False
+      Checked = False
+      GroupIndex = 0
+      Caption = #24050#36820#22238
     end
   end
   object bsSkinButton1: TbsSkinButton
@@ -1479,9 +1505,10 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
     CanFocused = True
     Down = False
     GroupIndex = 0
-    Caption = #20445#23384
+    Caption = #30830#23450
     NumGlyphs = 1
     Spacing = 1
+    OnClick = bsSkinButton1Click
   end
   object bsSkinButton2: TbsSkinButton
     Left = 319
@@ -1515,6 +1542,7 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
     Caption = #21462#28040
     NumGlyphs = 1
     Spacing = 1
+    OnClick = bsSkinButton2Click
   end
   object bsBusinessSkinForm1: TbsBusinessSkinForm
     ClientInActiveEffect = False
@@ -1565,7 +1593,34 @@ object ElectronicAttendanceInof: TElectronicAttendanceInof
     Magnetic = False
     MagneticSize = 5
     BorderIcons = [biSystemMenu, biMinimize, biMaximize, biRollUp]
-    Left = 24
+    Left = 32
     Top = 160
+  end
+  object dsD: TDataSource
+    Left = 80
+    Top = 160
+  end
+  object qry1: TADOQuery
+    Connection = HDHouseDataModule.con1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'ID'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 510
+        Value = 'null'
+      end>
+    SQL.Strings = (
+      'select * from roll where rollid=:ID')
+    Left = 331
+    Top = 80
+  end
+  object ds1: TDataSource
+    DataSet = qry1
+    Left = 363
+    Top = 80
   end
 end
