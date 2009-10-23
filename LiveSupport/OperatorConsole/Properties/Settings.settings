@@ -66,11 +66,11 @@
     <Setting Name="UpdateUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.hudongsoft.cn/download/operatorconsole.msi</Value>
     </Setting>
-    <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://lcs.zxkefu.cn/Operator.asmx</Value>
-    </Setting>
     <Setting Name="AutoLoginInterval" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="OperatorConsole_LiveChatWS_Operator" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">http://lcs.zxkefu.cn/Operator.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

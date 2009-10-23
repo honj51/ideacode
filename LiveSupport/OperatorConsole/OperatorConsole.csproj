@@ -273,10 +273,10 @@
     <None Include="Web References\LiveChatWS\Operator.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3355/LiveChat/Operator.asmx">
+    <WebReferenceUrl Include="http://lcs.zxkefu.cn/Operator.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LiveChatWS\</RelPath>
-      <UpdateFromURL>http://localhost:3355/LiveChat/Operator.asmx</UpdateFromURL>
+      <UpdateFromURL>http://lcs.zxkefu.cn/Operator.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
