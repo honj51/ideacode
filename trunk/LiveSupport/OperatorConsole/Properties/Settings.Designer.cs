@@ -274,6 +274,18 @@ namespace LiveSupport.OperatorConsole.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
+        public int AutoLoginInterval {
+            get {
+                return ((int)(this["AutoLoginInterval"]));
+            }
+            set {
+                this["AutoLoginInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://lcs.zxkefu.cn/Operator.asmx")]
         public string OperatorConsole_LiveChatWS_Operator {
@@ -282,18 +294,6 @@ namespace LiveSupport.OperatorConsole.Properties {
             }
             set {
                 this["OperatorConsole_LiveChatWS_Operator"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
-        public int AutoLoginInterval {
-            get {
-                return ((int)(this["AutoLoginInterval"]));
-            }
-            set {
-                this["AutoLoginInterval"] = value;
             }
         }
     }

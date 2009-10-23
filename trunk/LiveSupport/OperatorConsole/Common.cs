@@ -224,6 +224,10 @@ namespace LiveSupport.OperatorConsole
 
         public static object Convert(object obj)
         {
+            if (obj == null)
+            {
+                return null;
+            }
             if (obj is LiveSupport.OperatorConsole.LiveChatWS.Visitor)
             {
                 LiveSupport.OperatorConsole.LiveChatWS.Visitor v1 = obj as LiveSupport.OperatorConsole.LiveChatWS.Visitor;

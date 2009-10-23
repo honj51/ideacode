@@ -133,80 +133,94 @@ namespace LiveSupport.OperatorConsole
             txtMsg.Focus();
         }
 
+        private void uninitChat()
+        {
+            operatorServiceAgent.NewMessage -= new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
+            operatorServiceAgent.OperatorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs>(operatorServiceAgent_OperatorChatRequestAccepted);
+            operatorServiceAgent.OperatorChatRequestDeclined -= new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
+            operatorServiceAgent.ChatStatusChanged -= new EventHandler<OperatorServiceInterface.ChatStatusChangedEventArgs>(operatorServiceAgent_ChatStatusChanged);
+            operatorServiceAgent.AsyncCallCompleted -= new EventHandler<AsyncCallCompletedEventArg>(operatorServiceAgent_AsyncCallCompleted);
+        }
+
         void operatorServiceAgent_AsyncCallCompleted(object sender, AsyncCallCompletedEventArg e)
         {
             if (e.Result == null) return;
-            if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs))
+
+            this.Invoke(new UpdateUIDelegate(delegate(object obj)
             {
-                LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs;
-                if (arg != null && arg.Error != null)
+
+                if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs))
                 {
-                    LiveSupport.LiveSupportModel.Message m = arg.UserState as LiveSupport.LiveSupportModel.Message;
-                    if (m.ChatId == this.chat.ChatId)
+                    LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.SendMessageCompletedEventArgs;
+                    if (arg != null && arg.Error != null)
                     {
-                        string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>" + m.SentDate + "\r\n\r\n可能由于网络原因“" + m.Text + "”消息发送失败。</span><br />";
-                        chatMessageViewerControl1.AddText(text);
+                        LiveSupport.LiveSupportModel.Message m = arg.UserState as LiveSupport.LiveSupportModel.Message;
+                        if (m.ChatId == this.chat.ChatId)
+                        {
+                            string text = "<span style='color: #cccccc; FONT-SIZE: 15px'>" + m.SentDate + "\r\n\r\n可能由于网络原因“" + m.Text + "”消息发送失败。</span><br />";
+                            chatMessageViewerControl1.AddText(text);
+                        }
                     }
                 }
-            }
-            else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs))
-            {
-               
-                LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs;
-                 if (arg.Error==null)
-                 {
-                     if (arg.Result == -1)
-                     {
-                         chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
-                         receiveMessage = false;
-                         txtMsg.Enabled = false;
-                         TextWriterTraceListener tl = new TextWriterTraceListener();
-                         return;
-                     }
-                     else if (arg.Result == -3)
-                     {
-                         chatMessageViewerControl1.ResetContent("服务器错误");
-                         receiveMessage = false;
-                         txtMsg.Enabled = false;
-                         return;
-                     }
-                     Directory.CreateDirectory(chat.ChatId);
-                     
-                     uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
+                else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs))
+                {
+
+                    LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.AcceptChatRequestCompletedEventArgs;
+                    if (arg.Error == null)
+                    {
+                        if (arg.Result == -1)
+                        {
+                            chatMessageViewerControl1.ResetContent("该访客对话请求已被其他客服接受");
+                            receiveMessage = false;
+                            txtMsg.Enabled = false;
+                            TextWriterTraceListener tl = new TextWriterTraceListener();
+                            return;
+                        }
+                        else if (arg.Result == -3)
+                        {
+                            chatMessageViewerControl1.ResetContent("服务器错误");
+                            receiveMessage = false;
+                            txtMsg.Enabled = false;
+                            return;
+                        }
+                        Directory.CreateDirectory(chat.ChatId);
+
+                        uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
+                    }
+                    else
+                    {
+                        chatMessageViewerControl1.ResetContent("可能由于网络原因,接受访客对话请求操作失败");
+                        receiveMessage = false;
+                        txtMsg.Enabled = false;
+                        return;
+                    }
+
                 }
-                 else
-                 {
-                     chatMessageViewerControl1.ResetContent("可能由于网络原因,接受访客对话请求操作失败");
-                     receiveMessage = false;
-                     txtMsg.Enabled = false;
-                     return;
-                 }
-              
-            }
-            else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs))
-            {
-                LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs;
-                
+                else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs))
+                {
+                    LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.InviteChatCompletedEventArgs;
+
                     chat = (Chat)Common.Convert(arg.Result);
                     operatorServiceAgent.Chats.Add(chat);
                     Directory.CreateDirectory(chat.ChatId);
                     uploadURL = Properties.Settings.Default.FtpURL + "/" + chat.ChatId + "/";
-            }
-            else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs))
-            {
-                LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs;
-              
-            }
-            else if (e.Result.GetType() == typeof(System.ComponentModel.AsyncCompletedEventArgs))
-            {
-                System.ComponentModel.AsyncCompletedEventArgs arg = e.Result as System.ComponentModel.AsyncCompletedEventArgs;
-                if (arg.Error != null)
-                {
-                    Trace.WriteLine("sendFile exception:" + arg.Error.Message);
-                    chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
                 }
-            }
-            
+                else if (e.Result.GetType() == typeof(LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs))
+                {
+                    LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs arg = e.Result as LiveSupport.OperatorConsole.LiveChatWS.CloseChatCompletedEventArgs;
+
+                }
+                else if (e.Result.GetType() == typeof(System.ComponentModel.AsyncCompletedEventArgs))
+                {
+                    System.ComponentModel.AsyncCompletedEventArgs arg = e.Result as System.ComponentModel.AsyncCompletedEventArgs;
+                    if (arg.Error != null)
+                    {
+                        Trace.WriteLine("sendFile exception:" + arg.Error.Message);
+                        chatMessageViewerControl1.AddInformation("网络出现问题,暂时无法获取及发送消息");
+                    }
+                }
+            }), e);
+
         }
 
         public void Invite(string visitorId)
@@ -255,7 +269,7 @@ namespace LiveSupport.OperatorConsole
                 {
                     chatMessageViewerControl1.AddInformation("访客已拒绝该对话邀请！");
                 }), e);
-                }
+            }
             catch (Exception ex)
             {
                 Trace.WriteLine("Error: ChatForm.operatorServiceAgent_OperatorChatRequestDeclined Exception: " + ex.Message);
@@ -473,13 +487,11 @@ namespace LiveSupport.OperatorConsole
                 }
             }
 
-            this.operatorServiceAgent.NewMessage -= new EventHandler<OperatorServiceInterface.ChatMessageEventArgs>(operatorServiceAgent_NewMessage);
-            operatorServiceAgent.OperatorChatRequestAccepted -= new EventHandler<OperatorServiceInterface.OperatorChatRequestAcceptedEventArgs>(operatorServiceAgent_OperatorChatRequestAccepted);
-            operatorServiceAgent.OperatorChatRequestDeclined -= new EventHandler<OperatorServiceInterface.OperatorChatRequestDeclinedEventArgs>(operatorServiceAgent_OperatorChatRequestDeclined);
+            uninitChat();
 
             if (acceptChatRequestResult == 0)
             {
-                 operatorServiceAgent.CloseChat(this.Chat.ChatId);
+                operatorServiceAgent.CloseChat(this.Chat.ChatId);
             }
             try
             {

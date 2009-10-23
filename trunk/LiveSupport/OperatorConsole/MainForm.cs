@@ -820,9 +820,9 @@ namespace LiveSupport.OperatorConsole
                     if (chat != null && vlvi.VisitSession.Status == VisitSessionStatus.ChatRequesting)
                     {
                         ChatForm cf = new ChatForm(operaterServiceAgent);
-                        Program.ChatForms.Add(cf);
-                        cf.Accept(chat);
+                        Program.ChatForms.Add(cf);                        
                         cf.Show();
+                        cf.Accept(chat);
                     }
                     else
                     {
@@ -850,8 +850,8 @@ namespace LiveSupport.OperatorConsole
                     {
                         ChatForm cf = new ChatForm(operaterServiceAgent);
                         Program.ChatForms.Add(cf);
-                        cf.Invite(v.Visitor.VisitorId);
                         cf.Show();
+                        cf.Invite(v.Visitor.VisitorId); // should call after show
                     }
                 }
                 else
