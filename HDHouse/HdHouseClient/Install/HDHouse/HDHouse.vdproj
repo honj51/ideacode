@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_04AA1F6B27F04C1BBCC133D02A9E710A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_36F3AE0AD2E149869AFA28150E75790A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -28,18 +22,6 @@
         "Entry"
         {
         "MsmKey" = "8:_BCBDE80BC72A415195E1E60CAA4D3E97"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C145DE14E4E544569839AD5AE28DBA0C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCFEE26ADCB74283A63156CE3AF733AB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -140,26 +122,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04AA1F6B27F04C1BBCC133D02A9E710A"
-            {
-            "SourcePath" = "8:..\\..\\weekup.ini"
-            "TargetName" = "8:weekup.ini"
-            "Tag" = "8:"
-            "Folder" = "8:_267DBB4502554EA9B730CD0A888D4D10"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36F3AE0AD2E149869AFA28150E75790A"
             {
             "SourcePath" = "8:hdhouse.ico"
@@ -186,46 +148,6 @@
             "TargetName" = "8:HDHouse.exe"
             "Tag" = "8:"
             "Folder" = "8:_267DBB4502554EA9B730CD0A888D4D10"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C145DE14E4E544569839AD5AE28DBA0C"
-            {
-            "SourcePath" = "8:..\\..\\database\\hdhouse.udl"
-            "TargetName" = "8:hdhouse.udl"
-            "Tag" = "8:"
-            "Folder" = "8:_DEFF7C0D608C477B919404B5F32F93CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CCFEE26ADCB74283A63156CE3AF733AB"
-            {
-            "SourcePath" = "8:..\\..\\database\\hdhouse.mdb"
-            "TargetName" = "8:hdhouse.mdb"
-            "Tag" = "8:"
-            "Folder" = "8:_DEFF7C0D608C477B919404B5F32F93CA"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -372,13 +294,49 @@
                         {
                             "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_DC732BA742F14590AB7A71AEA88960D3"
                             {
-                            "Name" = "8:[Manufacturer]"
+                            "Name" = "8:HdHouse"
                             "Condition" = "8:"
                             "AlwaysCreate" = "11:FALSE"
                             "DeleteAtUninstall" = "11:FALSE"
                             "Transitive" = "11:FALSE"
                                 "Keys"
                                 {
+                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_CDBC62902B734DE4BD522BF5EE224EFF"
+                                    {
+                                    "Name" = "8:Agency"
+                                    "Condition" = "8:"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "DeleteAtUninstall" = "11:FALSE"
+                                    "Transitive" = "11:FALSE"
+                                        "Keys"
+                                        {
+                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_BDCC00E0CCED4BFAA2529568045D0F7D"
+                                            {
+                                            "Name" = "8:Database"
+                                            "Condition" = "8:"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "DeleteAtUninstall" = "11:FALSE"
+                                            "Transitive" = "11:FALSE"
+                                                "Keys"
+                                                {
+                                                }
+                                                "Values"
+                                                {
+                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_D05040C06E9C425EAAED39C10CA67EB1"
+                                                    {
+                                                    "Name" = "8:ConnectionString"
+                                                    "Condition" = "8:"
+                                                    "Transitive" = "11:FALSE"
+                                                    "ValueTypes" = "3:1"
+                                                    "Value" = "8:"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        "Values"
+                                        {
+                                        }
+                                    }
                                 }
                                 "Values"
                                 {
