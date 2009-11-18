@@ -1,0 +1,36 @@
+1. 自定义记录类型放到implementation:
+type
+  PSavedRecord = ^TSavedRecord;
+  TSavedRecord = record
+  SavedString:String;
+  //其它你想保存的信息。
+end;
+
+2. 给节点附加数据
+var
+  pSaved : PSavedRecord;
+
+      ChildNode := tv1.Items.AddChild(RootNode,FieldByName('DeptName').AsString);
+      GetMem(pSaved, SizeOf(TSavedRecord));
+      pSaved.SavedString := FieldByName('DeptID').AsString;
+      ChildNode.Data := pSaved;
+
+3. 从节点取出数据 
+  DeptID := PSavedRecord(Node.Data).SavedString;
+
+
+4. 释放内存
+procedure TOrganizationForm.FreeTreeViewData();
+var
+ i:integer;
+ saved: PSavedRecord;
+begin
+  for i:=0 to tv1.Items.Count-1 do
+  begin
+    if tv1.Items[i].Data <> nil then
+    begin
+      saved := tv1.Items[i].Data;
+      FreeMem(saved);
+    end;
+  end;
+end;
