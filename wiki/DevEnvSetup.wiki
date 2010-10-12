@@ -7,10 +7,3 @@
  * Mysql
  * [http://ideacode.googlecode.com/files/mysql-connector-java-5.1.12-bin.jar Mysql 驱动程序, 放在项目文件WEB-INF/lib下]
  * Extjs
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
