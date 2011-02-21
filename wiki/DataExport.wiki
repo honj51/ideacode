@@ -3,7 +3,11 @@
 = 导出客户数据 =
 
 
-= 导出 agency 中的数据=
+= 老版本, 导出 agency 中的数据=
+1. 把数据导出
+2. 在Navicat中执行下面的sql
+3. 使用导出向导导出
+
 修改cityname的值
 {{{
 select p.propertyno as 编号,p.trade as 交易,p.districtname as 城区,a.areaname as 片区,e.estatename as 楼盘,concat(countF,'房-',countT,'厅-',countW,'卫-',countY,'阳') as 房型,p.square as 面积,
