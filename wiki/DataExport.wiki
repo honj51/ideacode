@@ -1,7 +1,83 @@
 #summary 数据导出脚本
 
 = 导出客户数据 =
+ # 复制数据库
+{{{
+mysqldump hdagency -u root -ppassword --add-drop-table | mysql copy_hdagency -u root -ppassword
+}}}
+ # 删除非本tid,城市数据
+{{{
+# 忽略表 
+# advertisment chinesepy city exchangelog flowtype flowdef guide ,sparerequest survey surveyquestion target trent trentact
+# trentcon trust trustact trustcon sysuser
+delete from area where cityname<> '南昌';
+delete from district where  cityname<> '南昌';
 
+
+delete from blacklist where tid<>'xx';
+delete from building  where tid<>'xx'; // TODO
+delete from client where  tid<>'xx';
+delete from comment where  tid<>'xx';
+delete from complain where  tid<>'xx';
+delete from contract where  tid<>'xx';
+delete from contractact where  tid<>'xx';
+delete from contractcomm where  tid<>'xx';
+delete from contractcon where  tid<>'xx';
+delete from contractfee where  tid<>'xx';
+delete from contractfollow where  tid<>'xx';
+delete from department where  tid<>'xx';
+delete from developer where  tid<>'xx';
+delete from empfollow where  tid<>'xx';
+delete from estate where  tid<>'xx' and tid<>'00000000';
+delete from estate_exclude where  tid<>'xx';
+delete from faq where  tid<>'xx';
+delete from fee where  tid<>'xx';
+delete from find where  tid<>'xx';
+delete from flow where  tid<>'xx';
+delete from follow where  tid<>'xx';
+delete from `group`  where  tid<>'xx';
+delete from  group_bookmark where  tid<>'xx';
+delete from group_inquiry where  tid<>'xx';
+delete from group_property where  tid<>'xx';
+delete from group_tenant  where  tid<>'xx';
+delete from honest where  tid<>'xx';
+delete from inquiry where  tid<>'xx';
+delete from inquirybook where  tid<>'xx';
+delete from inquiryfollow where  tid<>'xx';
+delete from inquiryschedule where  tid<>'xx';
+delete from intro where  tid<>'xx';
+delete from livemessage where  tid<>'xx';
+delete from `log` where  tid<>'xx';
+delete from logclient  where  tid<>'xx';
+delete from map where  tid<>'xx';
+delete from message where  tid<>'xx';
+delete from news where  tid<>'xx';
+delete from note  where  tid<>'xx';
+delete from photo where  tid<>'xx';
+delete from phrase where  tid<>'xx';
+delete from plan where  tid<>'xx';
+delete from `position` where  tid<>'xx';
+delete from prepare where  tid<>'xx';
+delete from property where  tid<>'xx';
+delete from propertybook where  tid<>'xx';
+delete from propertyinquiry where  tid<>'xx';
+delete from publish_account where  tid<>'xx';
+delete from publish_config where  tid<>'xx';
+delete from publish_paramname where  tid<>'xx';
+delete from publish_paramvalue where  tid<>'xx';
+delete from publish_website where  tid<>'xx';
+delete from question where  tid<>'xx';
+delete from reference where  tid<>'xx'  and tid<>'00000000';;
+delete from rent where  tid<>'xx';
+delete from report where  tid<>'xx';
+delete from roll where  tid<>'xx';
+delete from rule where  tid<>'xx';
+delete from schedule where  tid<>'xx';
+delete from sms where  tid<>'xx';
+delete from spare where  tid<>'xx';
+delete from sysset where  tid<>'xx';
+delete from tenants where  tid<>'xx';
+}}}
 
 = 老版本, 导出 agency 中的数据=
 1. 把数据导出
