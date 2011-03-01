@@ -85,7 +85,7 @@ delete from tenants where  tid<>'xx';
 2. 在Navicat中执行下面的sql
 3. 使用导出向导导出
 
-修改cityname的值
+修改cityname的值，加入tid限制
 
 == 导出 property表 中的数据 ==
 {{{
