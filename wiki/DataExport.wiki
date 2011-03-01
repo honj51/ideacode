@@ -79,12 +79,15 @@ delete from sysset where  tid<>'xx';
 delete from tenants where  tid<>'xx';
 }}}
 
-= 老版本, 导出 agency 中的数据=
+
+= 导出表数据 =
 1. 把数据导出
 2. 在Navicat中执行下面的sql
 3. 使用导出向导导出
 
 修改cityname的值
+
+== 导出 property表 中的数据 ==
 {{{
 select p.propertyno as 编号,p.trade as 交易,p.districtname as 城区,a.areaname as 片区,e.estatename as 楼盘,concat(countF,'房-',countT,'厅-',countW,'卫-',countY,'阳') as 房型,p.square as 面积,
 concat(CAST(p.price AS CHAR),p.unitname) as 价格,concat(CAST(p.rentprice AS CHAR),p.rentunitname) as 租价,p.roomno as 房号,p.floor as 楼层,p.FloorAll as 总层,p.status as 状态, 
@@ -97,4 +100,18 @@ left join employee emp on  emp.empid=p.empid
 left join department d on emp.deptid=d.deptid
 where p.flagDeleted=0 and p.flagTrashed=0 and p.cityname='杭州'
 order by p.trustdate desc
+}}}
+
+== 导出 inquiry表 中的数据 ==
+{{{
+select i.inquiryno as 编号,i.trade as 交易,i.districtName as 城区,a.areaname as 片区,concat(countF,'房-',countT,'厅-',countW,'卫-',countY,'阳') as 房型,concat(CAST(i.squaremin AS CHAR),'—',CAST(i.squaremax AS CHAR)) as 面积,
+concat(CAST(i.pricemin AS CHAR),'—',CAST(i.pricemax AS CHAR),i.unitname) as 价格,i.floor as 楼层,i.status as 状态, 
+i.PropertyDirection as 朝向,i.PropertyUsage as 用途,i.PropertyType as 类型,i.custName as 客户, i.custTel as 电话,
+i.TrustDate as 委托日,d.deptname as 部门,emp.empname as 员工
+from inquiry i 
+left join area a on i.areaid=a.areaid
+left join employee emp on  emp.empid=i.empid
+left join department d on emp.deptid=d.deptid
+where i.flagDeleted=0 and i.flagTrashed=0 and i.cityname='杭州'
+order by i.trustdate desc
 }}}
