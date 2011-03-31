@@ -1,0 +1,15 @@
+#Http tunnel, Proxy protocols.
+
+= Introduction =
+
+= RFC =
+ * [http://tools.ietf.org/html/draft-luotonen-web-proxy-tunneling-01 Tunneling TCP based protocols through Web proxy servers]
+ * [SOCKS5 http://tools.ietf.org/html/rfc1928]
+
+
+= Tunel project =
+
+Tunnel project on code.google.com:
+  * [http://www.codeproject.com/script/Articles/ListVersions.aspx?aid=7991 HTTP Tunneling (HTTP Proxy Socket Client)]
+  * http://code.google.com/p/socksviahttp/
+  * http://code.google.com/p/httputil-proxy/
