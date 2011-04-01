@@ -13,3 +13,7 @@ Tunnel project on code.google.com:
   * [http://www.codeproject.com/script/Articles/ListVersions.aspx?aid=7991 HTTP Tunneling (HTTP Proxy Socket Client)]
   * http://code.google.com/p/socksviahttp/
   * http://code.google.com/p/httputil-proxy/
+
+= CMWAP 相关 =
+ * [http://www.ugia.cn/?p=115 CMWAP代理服务器，绕过移动限制]
+ * [http://www.ugia.cn/?p=116 继续谈如何穿透cmwap，实现socks代理服务]
