@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MainMaster.master.cs" Inherits="MainMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>深圳市兴联兴投资有限公司</title>
+    <link href="css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="ext/resources/css/ext-all.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="ext/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="ext/ext-all.js"></script>
+    
+    <script type="text/javascript">
+    Ext.onReady(function(){
+       Ext.BLANK_IMAGE_URL="ext/resources/images/default/s.gif";
+       var tree = new Ext.tree.TreePanel({
+            title : '功能菜单',
+			region : 'west',
+			width: 200,
+			useArrows : true,
+			autoScroll : true,
+			animate : true,
+			containerScroll : true,
+			rootVisible : false,
+			split: true,
+			root : {
+				nodeType : 'async'
+			},
+			// auto create TreeLoader
+			dataUrl : 'MainTree.aspx'
+        });
+        tree.expandAll();
+        
+       var viewport = new Ext.Viewport({
+            layout:'border',
+            items:[{               
+                region: 'north',
+                height: 30,
+                html: '深圳市兴联兴投资有限公司'
+            },            
+            tree,
+            {
+                region:'center',
+                html:'xxx',
+                autoScroll:true 
+            },
+            {
+                region:'south',
+                margins:'0 0 0 2',
+                border:false,
+                html:'<div class="menu south">状态栏</div>'
+               }
+            ]
+        });
+        
+//        setTimeout(function(){
+//        Ext.get('loading').remove();
+//        Ext.get('loading-mask').fadeOut({remove:true});
+//        }, 250)
+    });
+    </script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
