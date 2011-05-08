@@ -12,31 +12,15 @@ using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page 
 {
-    JavaScriptSerializer serializer;
 
     protected void Page_Load(object sender, EventArgs e)
     {        
        
-        SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.gyy_fc_lb");
+        //SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.gyy_fc_lb");
 
-        Page.Response.Write(Json.ToJson(r));
-        ////for (int i=0; i<=r.FieldCount; i++)
-        ////{
-        ////    Type type = r.GetValue(i).GetType();
-            
-        ////}
+        //Page.Response.Write(Json.ToJson(r));
 
-        ////while (r.Read())
-        ////{
-            
-        ////    object[] objs = new object[r.FieldCount];
-        ////    r.GetValues(objs);
-        ////    foreach (object item in objs)
-        ////    {
-                
-        ////        //serializer.Serialize()
-        ////        Page.Response.Write(item.ToString());
-        ////    }                                        
-        ////}        
+        string sql = "update sq8szxlx.gyy_fc_lb set 描述='122' where id=25";
+        DBHelper.ExecuteSql(sql);
     }
 }
