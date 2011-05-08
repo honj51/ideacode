@@ -147,7 +147,7 @@ public class Json
                     jsonString += ToJson(dataReader[i].ToString()) + ",";
                 }
             }
-            jsonString = DeleteLast(jsonString) + "}";
+            jsonString = DeleteLast(jsonString) + "},";
         }
         dataReader.Close();
         return DeleteLast(jsonString) + "]";
