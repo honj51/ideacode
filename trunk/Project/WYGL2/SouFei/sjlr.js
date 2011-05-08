@@ -8,7 +8,7 @@ xtype:"grid",
 		autoLoad:true,
 		url: 'sjlr.aspx?action=load_data',
 		fields:[
-		    'id','工业园名称','房产类型','房号','描述','房型'
+		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间'
 		]
 	}),
 	width:802,
@@ -25,42 +25,42 @@ xtype:"grid",
 			header:"编码",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"编码",
 			width:70
 		},
 		{
 			header:"客户名称",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data3",
+			dataIndex:"客户名称",
 			width:70
 		},
 		{
 			header:"所属工业园",
 			sortable:true,
 			resizable:true,
-			dataIndex:"工业园名称",
+			dataIndex:"所属工业园",
 			width:80
 		},
 		{
 			header:"所属房产",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"所属房产",
 			width:80
 		},
 		{
 			header:"合同开始时间",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"合同开始时间",
 			width:100
 		},
 		{
 			header:"合同结束时间",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"合同结束时间",
 			width:100
 		},
 		{
@@ -72,13 +72,6 @@ xtype:"grid",
 		},
 		{
 			header:"录入状态",
-			sortable:true,
-			resizable:true,
-			dataIndex:"",
-			width:100
-		},
-		{
-			header:"操作",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
@@ -135,8 +128,12 @@ xtype:"grid",
 			},
 			{
 				text:"搜索"
+			},
+			{
+			    text:"查看详情"
 			}
+			
 		]
-		Ext.Hudongsoft.MyGrid.superclass.initComponent.call(this);
+		Ext.Hudongsoft.sjlrGrid.superclass.initComponent.call(this);
 	}
 })
