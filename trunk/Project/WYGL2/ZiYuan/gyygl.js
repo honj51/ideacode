@@ -39,7 +39,56 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	initComponent: function(){
 		this.tbar=[
 			{
-				text:"添加工业园"
+				text:"添加工业园",
+				handler: function () {
+                    var form = new Ext.FormPanel({	
+                        id : 'abcdef',			                
+		                padding: 10,
+		                width: 250,
+		                items: [{
+		                    fieldLabel: '序号',
+		                    name: 'id',
+		                    xtype: 'textfield'				                           
+		                },{
+		                    fieldLabel: '工业园名称',
+		                    name: '工业园名称',
+		                    xtype: 'textfield'				                           
+		                },{
+		                    fieldLabel: '面积',
+		                    name: '面积',
+		                    xtype: 'textfield'				                           
+		                }],
+		                buttons: [{
+                            text: '保存',
+                            handler: function (c) {
+                                Ext.Msg.alert('xx');
+                                form.getForm().submit({
+                                    url: 'gyygl.aspx',
+                                    params: {
+                                        action: 'add'
+                                    },
+                                    success: function (form, action) {  
+                                        console.log(action.response.responseText);                                      
+                                        //Ext.Msg.alert(action.result);
+                                    }
+                                });
+                            }
+                        },{
+                            text: '取消',
+                            handler: function (c) {
+                                console.log(c)
+                            }
+                        }]
+		            })
+
+				    var w = new Ext.Window({
+				        title: '添加工业园',				        
+				        items:[
+				            form
+				        ]
+				    });
+				    w.show();
+				}
 			},
 			{
 				text:"修改工业园"
