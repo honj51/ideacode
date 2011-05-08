@@ -1,10 +1,16 @@
-﻿Ext.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
+﻿Ext.namespace('Ext.Hudongsoft');
+
+
+Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"房产管理",
-	store:{
-		xtype:"jsonstore",
-		autoLoad:true
-	},
+	store:new Ext.data.JsonStore({
+		autoLoad:true,
+		url: 'fcgl.aspx?action=load_data',
+		fields:[
+		    'id','工业园名称','房产类型','房号'
+		]
+	}),
 	width:785,
 	height:576,
 	columns:[
@@ -12,28 +18,28 @@ xtype:"grid",
 			header:"序号",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data1",
+			dataIndex:"id",
 			width:100
 		},
 		{
 			header:"工业园名称",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data2",
+			dataIndex:"工业园名称",
 			width:100
 		},
 		{
 			header:"房产类型",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data3",
+			dataIndex:"房产类型",
 			width:100
 		},
 		{
-			header:"编号",
+			header:"房号",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"房号",
 			width:100
 		}
 	],
@@ -41,6 +47,7 @@ xtype:"grid",
 		this.tbar=[
 			{
 				text:"新增房产"
+				
 			},
 			{
 				text:"修改"
@@ -49,6 +56,8 @@ xtype:"grid",
 				text:"删除"
 			}
 		]
-		Ext.MyGrid.superclass.initComponent.call(this);
+		Ext.Hudongsoft.fcglGrid.superclass.initComponent.call(this);
 	}
 })
+
+

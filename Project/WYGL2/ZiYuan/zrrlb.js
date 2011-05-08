@@ -1,11 +1,11 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
-Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
-    xtype:"grid",
-	title:"公司列表",
-    store:new Ext.data.JsonStore({
+Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
+xtype:"grid",
+	title:"自然人列表",
+		store:new Ext.data.JsonStore({
 		autoLoad:true,
-		url: 'gslb.aspx?action=load_data',
+		url: 'zrrlb.aspx?action=load_data',
 		fields:[
 		    'id','编码','名称','描述','联系人','联系电话'
 		]
@@ -13,8 +13,8 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	width:792,
 	height:560,
 	columns:[
-	    {
-			header:"编号",
+		{
+			header:"序号",
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
@@ -79,6 +79,6 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				text:"搜索"
 			}
 		]
-		Ext.Hudongsoft.gslbGrid.superclass.initComponent.call(this);
+		Ext.Hudongsoft.zrrlbGrid.superclass.initComponent.call(this);
 	}
 })

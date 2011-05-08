@@ -1,10 +1,16 @@
-﻿Ext.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
+﻿Ext.namespace('Ext.Hudongsoft');
+
+Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
+    xtype:"grid",
 	title:"工业园管理列表",
-	store:{
-		xtype:"jsonstore",
-		autoLoad:true
-	},
+	store:new Ext.data.JsonStore({
+		//xtype:"jsonstore",
+		autoLoad:true,
+		url: 'gyygl.aspx?action=load_data',
+		fields:[
+		    'id','序号','工业园名称','工业园面积'
+		]
+	}),
 	width:778,
 	height:544,
 	columns:[
@@ -12,21 +18,21 @@ xtype:"grid",
 			header:"编号",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data1",
+			dataIndex:"序号",
 			width:100
 		},
 		{
 			header:"工业园名称",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data2",
+			dataIndex:"工业园名称",
 			width:100
 		},
 		{
 			header:"工业面积（平方米）",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data3",
+			dataIndex:"工业园面积",
 			width:120
 		}
 	],
@@ -45,6 +51,6 @@ xtype:"grid",
 				text:"编辑房产类型"
 			}
 		]
-		Ext.MyGrid.superclass.initComponent.call(this);
+		Ext.Hudongsoft.gyyglGrid.superclass.initComponent.call(this);
 	}
 })
