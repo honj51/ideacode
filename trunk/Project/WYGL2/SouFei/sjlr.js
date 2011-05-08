@@ -8,7 +8,7 @@ xtype:"grid",
 		autoLoad:true,
 		url: 'sjlr.aspx?action=load_data',
 		fields:[
-		    'id',' 工业园名称'
+		    'id','工业园名称','房产类型','房号','描述','房型'
 		]
 	}),
 	width:802,
@@ -25,7 +25,7 @@ xtype:"grid",
 			header:"编码",
 			sortable:true,
 			resizable:true,
-			dataIndex:"工业园名称",
+			dataIndex:"",
 			width:70
 		},
 		{
@@ -39,7 +39,7 @@ xtype:"grid",
 			header:"所属工业园",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"工业园名称",
 			width:80
 		},
 		{
