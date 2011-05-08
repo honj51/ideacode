@@ -1,10 +1,16 @@
-﻿Ext.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
+﻿Ext.namespace('Ext.Hudongsoft');
+
+Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"预定管理",
-	store:{
-		xtype:"jsonstore",
-		autoLoad:true
-	},
+	store:new Ext.data.JsonStore({
+	    autoLoad:true,
+		url: 'ydgl.aspx?action=load_data',
+		fields:[
+		    'id','编码','预定客户名称','所属工业园','所属房产','预定时间','操作时间s'
+		]
+	
+	}),	
 	width:792,
 	height:560,
 	columns:[
@@ -12,49 +18,49 @@ xtype:"grid",
 			header:"编号",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data1",
+			dataIndex:"id",
 			width:100
 		},
 		{
 			header:"编码",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data2",
+			dataIndex:"编码",
 			width:100
 		},
 		{
 			header:"预定客户名称",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data3",
+			dataIndex:"预定客户名称",
 			width:100
 		},
 		{
 			header:"所属工业园",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"所属工业园",
 			width:100
 		},
 		{
 			header:"所属房产",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"所属房产",
 			width:100
 		},
 		{
 			header:"预定时间",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"预定时间",
 			width:100
 		},
 		{
 			header:"操作时间",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"操作时间",
 			width:100,
 			format:"m/d/Y"
 		}
@@ -82,6 +88,6 @@ xtype:"grid",
 				text:"搜索"
 			}
 		]
-		Ext.MyGrid.superclass.initComponent.call(this);
+		Ext.Hudongsoft.ydglGrid.superclass.initComponent.call(this);
 	}
 })
