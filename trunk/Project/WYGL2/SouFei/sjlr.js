@@ -1,6 +1,6 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
-Ext.Hudongsoft.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
+Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"录入列表",
 	store:new Ext.data.JsonStore({
