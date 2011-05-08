@@ -1,16 +1,12 @@
-﻿Ext.namespace('Ext.Hudongsoft');
-
-Ext.Hudongsoft.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
+﻿Ext.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
-	title:"录入列表",
-	store:new Ext.data.JsonStore({
-		//xtype:"jsonstore",
-		autoLoad:true,
+	title:"缴费列表",
+	store:{
+		xtype:"jsonstore",
 		url: 'sjlr.aspx?action=load_data',
-		fields:[
-		    'id',' 工业园名称'
-		]
-	}),
+		
+		autoLoad:true
+	},
 	width:802,
 	height:475,
 	columns:[
@@ -18,14 +14,14 @@ xtype:"grid",
 			header:"序号",
 			sortable:true,
 			resizable:true,
-			dataIndex:"id",
+			dataIndex:"data1",
 			width:40
 		},
 		{
 			header:"编码",
 			sortable:true,
 			resizable:true,
-			dataIndex:"工业园名称",
+			dataIndex:"data2",
 			width:70
 		},
 		{
@@ -64,14 +60,14 @@ xtype:"grid",
 			width:100
 		},
 		{
-			header:"录入月份",
+			header:"月份",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
 			width:70
 		},
 		{
-			header:"录入状态",
+			header:"缴费状态",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
@@ -137,6 +133,6 @@ xtype:"grid",
 				text:"搜索"
 			}
 		]
-		Ext.Hudongsoft.MyGrid.superclass.initComponent.call(this);
+		Ext.MyGrid.superclass.initComponent.call(this);
 	}
 })
