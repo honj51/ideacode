@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WYGL2", "WYGL2\", "{32CF2F60-988A-4ACB-A7A1-BEF9F80A8133}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFramework = "2.0"
+		TargetFramework = "3.5"
 		Debug.AspNetCompiler.VirtualPath = "/WYGL2"
 		Debug.AspNetCompiler.PhysicalPath = "WYGL2\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WYGL2\"
