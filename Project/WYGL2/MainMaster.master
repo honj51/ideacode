@@ -13,6 +13,17 @@
     <script type="text/javascript">
     Ext.onReady(function(){
        Ext.BLANK_IMAGE_URL="ext/resources/images/default/s.gif";
+       var tab = new Ext.TabPanel({
+             region:'center',
+                activeTab: 0,
+                autoScroll:true,
+                items: [{
+                    xtype: 'panel',
+                    title: 'aaa',
+                    html: 'aaaaa'
+                }]
+       });
+       
        var tree = new Ext.tree.TreePanel({
             title : '功能菜单',
 			region : 'west',
@@ -26,8 +37,25 @@
 			root : {
 				nodeType : 'async'
 			},
-			// auto create TreeLoader
-			dataUrl : 'MainTree.aspx'
+			dataUrl : 'MainTree.aspx',
+			listeners: {
+                click: function(n) {
+                    var panel = tab.items.get(n.attributes.text);
+                    //Ext.Msg.alert('Navigation Tree Click', 'You clicked: "' + n.attributes.text + '"');
+                    if (n.attributes.text == "数据录入") {
+                                              
+                        
+                        if () {
+                        }
+                    }
+                    else if (n.attributes.text == "数据录入") {
+                        Ext.Msg.alert("a");
+                    }
+                    else if (n.attributes.text == "数据录入") {
+                        Ext.Msg.alert("a");
+                    }
+                }
+            }
         });
         tree.expandAll();
         
@@ -38,12 +66,7 @@
                 height: 30,
                 html: '深圳市兴联兴投资有限公司'
             },            
-            tree,
-            {
-                region:'center',
-                html:'xxx',
-                autoScroll:true 
-            },
+            tree,tab,
             {
                 region:'south',
                 margins:'0 0 0 2',

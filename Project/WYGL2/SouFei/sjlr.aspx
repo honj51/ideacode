@@ -28,7 +28,7 @@
 				autoHeight:true,
 				frame : true,
 				items : [
-					new Ext.Hudongsoft.MyGrid({region:'center'}),
+					new Ext.Hudongsoft.MyGrid({region:'center'})
 				]
 			});
 		});
