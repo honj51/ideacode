@@ -10,44 +10,48 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
+using System.Collections.Generic;
+using System.Text;
+using System.Web.UI.MobileControls;
 
 public partial class ZiYuan_gyygl : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.HttpMethod != "POST")
-        {
-            return;
-        }
-        Response.ContentType = "application/json";
-
         string action = Request.Params["action"];
         if (String.IsNullOrEmpty(action)) return;
 
+        Response.ContentType = "application/json";
 
-        if (action == "load_data")
+        if (action == "list")
         {
             System.Data.SqlClient.SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.gyy_lb");
-            Response.Write(Json.ToJson(r));
-            Response.End();
+            Response.Write(Json.ToJson(r));            
+        }
+        else if (action == "getbyid")
+        {
+            string sql = "select * from sq8szxlx.gyy_lb where id=" + Request.Form["id"];
+            Response.Write(Json.ToJson(DBHelper.ExecuteSql(sql)));
         }
         else if (action == "add")
         {
-            string a = Request.Params["p"];
-            string sql = jsonToSql(a);
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_lb", "id", true);                
             DBHelper.ExecuteSql(sql);
-            string b = string.Format("{{success: true, msg: '{0}' }}", a);
-            Response.Write(b);
-            Response.End();
+            Response.Write("{success: true}");           
         }
+        else if (action == "update")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_lb", "id", true);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");            
+        }
+        else if (action == "delete")
+        {
+            string sql = "delete from sq8szxlx.gyy_lb where id=" + Request.Form["id"];
+            DBHelper.ExecuteSql(sql);
+            string b = string.Format("{success: true}");
+            Response.Write(b);            
+        }
+        Response.End();
     }
-
-    private string jsonToSql(string a)
-    {
-        a = "{succes: ture, msg:'hello'}";
-        JavaScriptSerializer s = new  JavaScriptSerializer();
-        object o = s.DeserializeObject(a);
-        
-    }
-
 }
