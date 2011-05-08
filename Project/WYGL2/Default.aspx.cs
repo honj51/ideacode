@@ -16,9 +16,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {        
-        serializer = new JavaScriptSerializer();
-        serializer.RegisterConverters(new JavaScriptConverter[] { new DataReaderConverter() });
-
+       
         SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.gyy_fc_lb");
 
         Page.Response.Write(Json.ToJson(r));

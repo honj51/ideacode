@@ -1,53 +1,48 @@
-﻿Ext.namespace('Ext.Hudongsoft');
-
-Ext.Hudongsoft.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
+﻿Ext.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
-	title:"录入列表",
-	store:new Ext.data.JsonStore({
-		//xtype:"jsonstore",
-		autoLoad:true,
-		url: 'sjlr.aspx?action=load_data',
-		fields:[
-		    'id',' 工业园名称'
-		]
-	}),
-	width:802,
-	height:475,
+	title:"详细费用统计列表",
+	store:{
+		xtype:"jsonstore",
+		autoLoad:true
+	},
+	width:843,
+	height:560,
 	columns:[
 		{
 			header:"序号",
 			sortable:true,
 			resizable:true,
-			dataIndex:"id",
+			dataIndex:"data1",
 			width:40
 		},
 		{
 			header:"编码",
 			sortable:true,
 			resizable:true,
-			dataIndex:"工业园名称",
-			width:70
+			dataIndex:"data2",
+			width:100
 		},
 		{
 			header:"客户名称",
 			sortable:true,
 			resizable:true,
 			dataIndex:"data3",
-			width:70
+			width:100
 		},
 		{
 			header:"所属工业园",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
-			width:80
+			width:100
 		},
 		{
 			header:"所属房产",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
-			width:80
+			width:100,
+			format:"m/d/Y"
 		},
 		{
 			header:"合同开始时间",
@@ -64,25 +59,27 @@ xtype:"grid",
 			width:100
 		},
 		{
-			header:"录入月份",
-			sortable:true,
-			resizable:true,
-			dataIndex:"",
-			width:70
-		},
-		{
-			header:"录入状态",
+			header:"消费项目",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
 			width:100
 		},
 		{
-			header:"操作",
+			header:"月份",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
-			width:100
+			width:70,
+			format:"m/d/Y"
+		},
+		{
+			header:"费用",
+			sortable:true,
+			resizable:true,
+			dataIndex:"",
+			width:50,
+			format:"0,000.00"
 		}
 	],
 	initComponent: function(){
@@ -93,8 +90,7 @@ xtype:"grid",
 			},
 			{
 				xtype:"textfield",
-				fieldLabel:"标签",
-				width:70
+				fieldLabel:"标签"
 			},
 			{
 				xtype:"label",
@@ -118,16 +114,17 @@ xtype:"grid",
 			},
 			{
 				xtype:"label",
-				text:"号码："
+				text:"费用类型："
 			},
 			{
-				xtype:"textfield",
+				xtype:"combo",
+				triggerAction:"all",
 				fieldLabel:"标签",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"时间："
+				text:"日期："
 			},
 			{
 				xtype:"datefield",
@@ -137,6 +134,6 @@ xtype:"grid",
 				text:"搜索"
 			}
 		]
-		Ext.Hudongsoft.MyGrid.superclass.initComponent.call(this);
+		Ext.MyGrid.superclass.initComponent.call(this);
 	}
 })
