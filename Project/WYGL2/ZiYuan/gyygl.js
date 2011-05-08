@@ -6,7 +6,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	store:new Ext.data.JsonStore({
 		//xtype:"jsonstore",
 		autoLoad:true,
-		url: 'gyygl.aspx?action=load_data',
+		url: 'gyygl.aspx?action=list',
 		fields:[
 		    'id','序号','工业园名称','工业园面积'
 		]
@@ -46,22 +46,24 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		                padding: 10,
 		                width: 250,
 		                items: [{
+		                    xtype: 'hidden',
+		                    name: 'id'
+		                },{
 		                    fieldLabel: '序号',
-		                    name: 'id',
+		                    name: '序号',
 		                    xtype: 'textfield'				                           
 		                },{
 		                    fieldLabel: '工业园名称',
 		                    name: '工业园名称',
 		                    xtype: 'textfield'				                           
 		                },{
-		                    fieldLabel: '面积',
-		                    name: '面积',
+		                    fieldLabel: '工园业面积',
+		                    name: '工业园面积',
 		                    xtype: 'textfield'				                           
 		                }],
 		                buttons: [{
                             text: '保存',
-                            handler: function (c) {
-                                Ext.Msg.alert('xx');
+                            handler: function (c) {                                
                                 form.getForm().submit({
                                     url: 'gyygl.aspx',
                                     params: {
@@ -69,17 +71,17 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     },
                                     success: function (form, action) {  
                                         console.log(action.response.responseText);                                      
-                                        //Ext.Msg.alert(action.result);
+                                        w.close();
                                     }
                                 });
                             }
                         },{
                             text: '取消',
                             handler: function (c) {
-                                console.log(c)
+                                w.close();
                             }
                         }]
-		            })
+		            });
 
 				    var w = new Ext.Window({
 				        title: '添加工业园',				        
