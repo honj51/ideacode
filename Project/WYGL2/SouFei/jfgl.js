@@ -1,4 +1,6 @@
-﻿Ext.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
+﻿Ext.namespace('Ext.Hudongsoft');
+
+Ext.Hudongsoft.jfglGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"缴费列表",
 	store:{
@@ -83,6 +85,15 @@ xtype:"grid",
 	],
 	initComponent: function(){
 		this.tbar=[
+		    {
+		        text:"新增"
+		    },
+		     {
+		        text:"修改"
+		    },
+		     {
+		        text:"删除"
+		    },
 			{
 				xtype:"label",
 				text:"名称："
@@ -133,6 +144,6 @@ xtype:"grid",
 				text:"搜索"
 			}
 		]
-		Ext.MyGrid.superclass.initComponent.call(this);
+		Ext.Hudongsoft.jfglGrid.superclass.initComponent.call(this);
 	}
 })

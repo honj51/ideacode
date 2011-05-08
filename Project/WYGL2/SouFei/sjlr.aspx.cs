@@ -20,7 +20,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
 
         if (action == "load_data")
         {
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.gyy_fc_lb");
+            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.zpgl");
             Response.ContentType = "application/json";
             Response.ContentEncoding = Encoding.UTF8;
             Response.Write(Json.ToJson(r));
