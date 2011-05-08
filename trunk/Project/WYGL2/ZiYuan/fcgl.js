@@ -6,7 +6,7 @@ xtype:"grid",
 	title:"房产管理",
 	store:new Ext.data.JsonStore({
 		autoLoad:true,
-		url: 'fcgl.aspx?action=load_data',
+		url: 'fcgl.aspx?action=list',
 		fields:[
 		    'id','工业园名称','房产类型','房号'
 		]
@@ -46,7 +46,83 @@ xtype:"grid",
 	initComponent: function(){
 		this.tbar=[
 			{
-				text:"新增房产"
+				text:"新增房产",
+				handler:function () {
+				    var form = new Ext.FormPanel({
+    				    id:'form1',
+    				    padding:10,
+    				    width:500,
+    				    items:[
+    				        {
+                                xtype:'hidden',
+                                name:'id'    				        
+    				        },
+		                    {
+		                        fieldLabel: '工业园名称',
+		                        name: '工业园名称',
+		                        xtype: 'textfield'				                           
+		                    },
+		                    {
+		                        fieldLabel: '房产类型',
+		                        name: '房产类型',
+		                        xtype: 'textfield'				                           
+		                    },
+		                    {
+		                        fieldLabel: '描述',
+		                        name: '描述',
+		                        xtype: 'textfield'				                           
+		                    },
+		                    {
+		                        fieldLabel: '房型',
+		                        name: '房型',
+		                        xtype: 'textfield'				                           
+		                    },
+		                    {
+		                        fieldLabel: '朝向',
+		                        name: '朝向',
+		                        xtype: 'textfield'				                           
+		                    },
+		                    {
+		                        fieldLabel: '房屋结构',
+		                        name: '房屋结构',
+		                        xtype: 'textfield'				                           
+		                    }
+		                    
+		                      
+    				    ],
+    				    buttons:[
+    				        {
+    				            text:'保存',
+    				            handler:function (c) {
+    				                 form.getForm().submit({
+    				                    url:'fcgl.aspx',
+    				                    params:{
+    				                        action:'add'
+    				                    },
+    				                    success:function (form, action) {
+    				                        console.log(action.response.responseText);                                      
+                                            w.close();
+    				                    }
+    				                });
+    				            }
+    				        },
+    				        {
+                                text: '取消',
+                                handler: function (c) {
+                                    w.close();
+                                }
+                            }
+    				    ]
+				    });
+				    
+				    var w = new Ext.Window({
+				        title:"新增厂房",
+				        items:[
+				            form
+				        ]
+				    });
+				    w.show();
+				}
 				
 			},
 			{
