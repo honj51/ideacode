@@ -96,8 +96,8 @@ xtype:"grid",
 		    ],
 		    buttons:[
 		        {
-		            text:'保存',
-		            handler:function (c) {
+		            text:'保存',// callback
+		            handler:function (c) {		                
 		                 form.getForm().submit({
 		                    url:'fcgl.aspx',
 		                    params:{
@@ -105,7 +105,7 @@ xtype:"grid",
 		                    },
 		                    success:function (form, action) {
 		                        console.log(action.response.responseText);                                      
-                                w.close();
+                                w.close();                                
                                 self.store.reload();
 		                    }
 		                });

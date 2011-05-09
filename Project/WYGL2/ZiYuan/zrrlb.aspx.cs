@@ -17,13 +17,33 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
         string action = Request.QueryString["action"];
         if (String.IsNullOrEmpty(action)) return;
 
-        if (action == "load_data")
+        Response.ContentType = "application/json";
+
+        if (action == "list")
         {
             SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.user_zrr");
-            Response.ContentType = "application/json";
+            
             Response.Write(Json.ToJson(r));
-            Response.End();
+
         }
-        
+        else if (action == "add")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_zrr", "id", true);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        else if (action == "update")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_zrr", "id", false);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}"); 
+        }
+        else if (action == "delete")
+        {
+            string sql = "delete from sq8szxlx.user_zrr where id=" + Request.Form["id"];
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        Response.End();
     }
 }
