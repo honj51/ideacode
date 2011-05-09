@@ -7,7 +7,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		autoLoad:true,
 		url: 'gslb.aspx?action=list',
 		fields:[
-		    'id','编码','名称','描述','联系人','联系电话'
+		    'id','编码','名称','描述','联系人','联系电话','助记码','注册号','法人代表','办公地址','联系方法','备注'
 		]
 	}),
 	width:792,

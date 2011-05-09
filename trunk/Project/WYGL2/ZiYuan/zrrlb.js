@@ -7,7 +7,7 @@ xtype:"grid",
 		autoLoad:true,
 		url: 'zrrlb.aspx?action=list',
 		fields:[
-		    'id','编码','名称','描述','联系人','联系电话'
+		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注'
 		]
 	}),
 	width:792,
@@ -96,9 +96,13 @@ xtype:"grid",
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: '性别',
-                name: '性别',
-                xtype: 'textfield'				                           
+                			
+				xtype:"combo",
+				triggerAction:"all",
+				name: '性别',
+				fieldLabel:"性别",
+				width:129,
+			
             },
             {
                 fieldLabel: '出生日期',
@@ -116,9 +120,13 @@ xtype:"grid",
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: '籍贯',
-                name: '籍贯',
-                xtype: 'textfield'				                           
+                			
+				xtype:"combo",
+				triggerAction:"all",
+				name: '籍贯',
+				fieldLabel:"籍贯",
+				width:129,
+			
             },
             {
                 fieldLabel: '联系电话',
@@ -138,7 +146,9 @@ xtype:"grid",
             {
                 fieldLabel: '备注',
                 name: '备注',
-                xtype: 'textfield'				                           
+                width:226,
+                height:63,
+                xtype: 'textarea'				                           
             }
             
               
@@ -181,9 +191,17 @@ xtype:"grid",
         });
         w.show();
     },
+    
+
 	
 	initComponent: function(){
 	    var self = this;
+	    
+	    var iField = new Ext.form.TextField({ //搜索栏
+            emptyText:'请输入姓名',
+	        width:150,
+    	   
+        });
 		this.tbar=[
 			{
 				text:"新增",
@@ -224,10 +242,7 @@ xtype:"grid",
 				xtype:"label",
 				text:"姓名："
 			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签"
-			},
+			iField,
 			{
 				text:"搜索"
 			}

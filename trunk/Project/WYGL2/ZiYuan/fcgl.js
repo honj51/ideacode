@@ -8,7 +8,7 @@ xtype:"grid",
 		autoLoad:true,
 		url: 'fcgl.aspx?action=list',
 		fields:[
-		    'id','工业园名称','房产类型','房号'
+		    'id','工业园名称','房产类型','房号','描述','房型','朝向','房屋结构'
 		]
 	}),
 	width:785,
@@ -36,7 +36,7 @@ xtype:"grid",
 			width:100
 		},
 		{
-			header:"房号",
+			header:"编号",
 			sortable:true,
 			resizable:true,
 			dataIndex:"房号",
@@ -61,6 +61,11 @@ xtype:"grid",
                     xtype:'hidden',
                     name:'id'    				        
 		        },
+		        {
+                    fieldLabel: '房号',
+                    name: '房号',
+                    xtype: 'textfield'				                           
+                },
                 {
                     fieldLabel: '工业园名称',
                     name: '工业园名称',
