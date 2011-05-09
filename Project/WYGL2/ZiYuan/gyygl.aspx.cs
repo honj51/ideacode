@@ -41,7 +41,7 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
         }
         else if (action == "update")
         {
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_lb", "id", true);
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_lb", "id", false);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");            
         }
@@ -49,8 +49,7 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
         {
             string sql = "delete from sq8szxlx.gyy_lb where id=" + Request.Form["id"];
             DBHelper.ExecuteSql(sql);
-            string b = string.Format("{success: true}");
-            Response.Write(b);            
+            Response.Write("{success: true}");   
         }
         Response.End();
     }
