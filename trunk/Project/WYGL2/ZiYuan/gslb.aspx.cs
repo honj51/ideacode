@@ -17,12 +17,32 @@ public partial class ZiYuan_gslb : System.Web.UI.Page
         string action = Request.QueryString["action"];
         if (String.IsNullOrEmpty(action)) return;
 
-        if (action == "load_data")
+        Response.ContentType = "application/json";
+
+        if (action == "list")
         {
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.user_gs");
-            Response.ContentType = "application/json";
+            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.user_gs");          
             Response.Write(Json.ToJson(r));
-            Response.End();
+           
         }
+        else if (action == "add")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_gs", "id", true);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        else if (action == "update")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_gs", "id", false);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        else if (action == "delete")
+        {
+            string sql = "delete from sq8szxlx.user_gs where id=" + Request.Form["id"];
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        Response.End();
     }
 }

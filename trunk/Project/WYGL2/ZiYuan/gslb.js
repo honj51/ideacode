@@ -5,7 +5,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	title:"公司列表",
     store:new Ext.data.JsonStore({
 		autoLoad:true,
-		url: 'gslb.aspx?action=load_data',
+		url: 'gslb.aspx?action=list',
 		fields:[
 		    'id','编码','名称','描述','联系人','联系电话'
 		]
@@ -56,16 +56,164 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			width:100
 		}
 	],
+	
+	listeners : { // 添加监听事件
+	    celldblclick: function(grid, rowIndex, columnIndex, e) {
+	        var r = grid.store.getAt(rowIndex);	
+	        grid.showDetailWindow(false, r.data);
+	    }
+	},
+	
+	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
+    var self = this;
+    var form = new Ext.FormPanel({
+	    id:'form1',
+	    padding:10,
+	    width:500,
+	    items:[
+	        {
+                xtype:'hidden',
+                name:'id'    				        
+	        },
+            {
+                fieldLabel: '编码',
+                name: '编码',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '名称',
+                name: '名称',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '描述',
+                name: '描述',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '助记码',
+                name: '助记码',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '注册号',
+                name: '注册号',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '成立日期',
+                name: '',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '法人代表',
+                name: '法人代表',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '办公地址',
+                name: '办公地址',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '联系电话',
+                name: '联系电话',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '联系方法',
+                name: '联系方法',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '联系人',
+                name: '联系人',
+                xtype: 'textfield'				                           
+            },
+            {
+                fieldLabel: '备注',
+                name: '备注',
+                xtype: 'textfield'				                           
+            }
+            
+              
+	    ],
+	    buttons:[
+	        {
+	            text:'保存',// callback
+	            handler:function (c) {		                
+	                 form.getForm().submit({
+	                    url:'gslb.aspx',
+	                    params:{
+	                        action: add?'add':'update'
+	                    },
+	                    success:function (form, action) {
+	                        console.log(action.response.responseText);                                      
+                            w.close();                                
+                            self.store.reload();
+	                    }
+	                });
+	            }
+	        },
+	        {
+                text: '取消',
+                handler: function (c) {
+                    w.close();
+                }
+            }
+	    ]
+    });
+    
+        if (!add && data) {
+            form.getForm().setValues(data);
+        }
+        
+        var w = new Ext.Window({
+            title:"新增公司",
+            items:[
+                form
+            ]
+        });
+        w.show();
+    },
+	
 	initComponent: function(){
+	    var self = this;
 		this.tbar=[
 			{
-				text:"新增"
+				text:"新增",
+				handler:function () {
+                    self.showDetailWindow(true, null);
+				}
 			},
 			{
-				text:"修改"
+				text:"修改",
+				handler: function() {
+				    var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        self.showDetailWindow(false, r.data);
+				    }				    
+				}
 			},
 			{
-				text:"删除"
+				text:"删除",
+				handler: function () {
+				    var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        Ext.Msg.confirm('删除公司','确定要删除选中的公司吗？',function(btn){
+							if(btn == 'yes') {
+								Ext.Ajax.request({
+									url:'gslb.aspx?action=delete',
+									success:function(){
+										Ext.Msg.alert('删除公司','公司删除成功！');
+										self.store.reload();
+									},
+									params:{id: r.get('id')}
+								});
+							}
+						});
+				    }				    
+				}
 			},
 			{
 				xtype:"label",
