@@ -26,7 +26,19 @@ public partial class ZiYuan_fcgl : System.Web.UI.Page
         {
             string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_fc_lb", "id", true);
             DBHelper.ExecuteSql(sql);
-            Response.Write("{success: true}");  
+            Response.Write("{success: true}");
+        }
+        else if (action == "update")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_fc_lb", "id", false);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");   
+        }
+        else if (action == "delete")
+        {
+            string sql = "delete from sq8szxlx.gyy_fc_lb where id=" + Request.Form["id"];
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
         }
 
         Response.End();
