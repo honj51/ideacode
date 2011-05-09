@@ -43,93 +43,134 @@ xtype:"grid",
 			width:100
 		}
 	],
+	
+	listeners : {
+	    celldblclick: function(grid, rowIndex, columnIndex, e) {
+	        var r = grid.store.getAt(rowIndex);	
+	        grid.showDetailWindow(false, r.data);
+	    }
+	},
+	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
+	    var self = this;
+	    var form = new Ext.FormPanel({
+		    id:'form1',
+		    padding:10,
+		    width:500,
+		    items:[
+		        {
+                    xtype:'hidden',
+                    name:'id'    				        
+		        },
+                {
+                    fieldLabel: '工业园名称',
+                    name: '工业园名称',
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '房产类型',
+                    name: '房产类型',
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '描述',
+                    name: '描述',
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '房型',
+                    name: '房型',
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '朝向',
+                    name: '朝向',
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '房屋结构',
+                    name: '房屋结构',
+                    xtype: 'textfield'				                           
+                }
+                
+                  
+		    ],
+		    buttons:[
+		        {
+		            text:'保存',
+		            handler:function (c) {
+		                 form.getForm().submit({
+		                    url:'fcgl.aspx',
+		                    params:{
+		                        action: add?'add':'update'
+		                    },
+		                    success:function (form, action) {
+		                        console.log(action.response.responseText);                                      
+                                w.close();
+                                self.store.reload();
+		                    }
+		                });
+		            }
+		        },
+		        {
+                    text: '取消',
+                    handler: function (c) {
+                        w.close();
+                    }
+                }
+		    ]
+	    });
+        
+        if (!add && data) {
+            form.getForm().setValues(data);
+        }
+        
+	    var w = new Ext.Window({
+	        title:"新增厂房",
+	        items:[
+	            form
+	        ]
+	    });
+	    w.show();
+	},
+	
 	initComponent: function(){
+	    var self = this;
 		this.tbar=[
 			{
 				text:"新增房产",
 				handler:function () {
-				    var form = new Ext.FormPanel({
-    				    id:'form1',
-    				    padding:10,
-    				    width:500,
-    				    items:[
-    				        {
-                                xtype:'hidden',
-                                name:'id'    				        
-    				        },
-		                    {
-		                        fieldLabel: '工业园名称',
-		                        name: '工业园名称',
-		                        xtype: 'textfield'				                           
-		                    },
-		                    {
-		                        fieldLabel: '房产类型',
-		                        name: '房产类型',
-		                        xtype: 'textfield'				                           
-		                    },
-		                    {
-		                        fieldLabel: '描述',
-		                        name: '描述',
-		                        xtype: 'textfield'				                           
-		                    },
-		                    {
-		                        fieldLabel: '房型',
-		                        name: '房型',
-		                        xtype: 'textfield'				                           
-		                    },
-		                    {
-		                        fieldLabel: '朝向',
-		                        name: '朝向',
-		                        xtype: 'textfield'				                           
-		                    },
-		                    {
-		                        fieldLabel: '房屋结构',
-		                        name: '房屋结构',
-		                        xtype: 'textfield'				                           
-		                    }
-		                    
-		                      
-    				    ],
-    				    buttons:[
-    				        {
-    				            text:'保存',
-    				            handler:function (c) {
-    				                 form.getForm().submit({
-    				                    url:'fcgl.aspx',
-    				                    params:{
-    				                        action:'add'
-    				                    },
-    				                    success:function (form, action) {
-    				                        console.log(action.response.responseText);                                      
-                                            w.close();
-    				                    }
-    				                });
-    				            }
-    				        },
-    				        {
-                                text: '取消',
-                                handler: function (c) {
-                                    w.close();
-                                }
-                            }
-    				    ]
-				    });
-				    
-				    var w = new Ext.Window({
-				        title:"新增厂房",
-				        items:[
-				            form
-				        ]
-				    });
-				    w.show();
+                    self.showDetailWindow(true, null);
 				}
 				
 			},
 			{
-				text:"修改"
+				text:"修改房产",
+				handler: function() {
+				    var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        self.showDetailWindow(false, r.data);
+				    }				    
+				}
 			},
 			{
-				text:"删除"
+				text:"删除房产",
+				handler: function () {
+				    var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        Ext.Msg.confirm('删除房产','确定要删除选中房产吗？',function(btn){
+							if(btn == 'yes') {
+								Ext.Ajax.request({
+									url:'fcgl.aspx?action=delete',
+									success:function(){
+										Ext.Msg.alert('删除房产','房产删除成功！');
+										self.store.reload();
+									},
+									params:{id: r.get('id')}
+								});
+							}
+						});
+				    }				    
+				}
 			}
 		]
 		Ext.Hudongsoft.fcglGrid.superclass.initComponent.call(this);
