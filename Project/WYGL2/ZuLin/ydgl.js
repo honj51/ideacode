@@ -5,9 +5,9 @@ xtype:"grid",
 	title:"预定管理",
 	store:new Ext.data.JsonStore({
 	    autoLoad:true,
-		url: 'ydgl.aspx?action=load_data',
+		url: 'ydgl.aspx?action=list',
 		fields:[
-		    'id','编码','预定客户名称','所属工业园','所属房产','预定时间','操作时间s'
+		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','操作时间','备注'
 		]
 	
 	}),	
@@ -32,7 +32,7 @@ xtype:"grid",
 			header:"预定客户名称",
 			sortable:true,
 			resizable:true,
-			dataIndex:"预定客户名称",
+			dataIndex:"客户名称",
 			width:100
 		},
 		{
@@ -53,7 +53,7 @@ xtype:"grid",
 			header:"预定时间",
 			sortable:true,
 			resizable:true,
-			dataIndex:"预定时间",
+			dataIndex:"合同开始时间",
 			width:100
 		},
 		{
@@ -65,16 +65,154 @@ xtype:"grid",
 			format:"m/d/Y"
 		}
 	],
+	
+	listeners : {
+	    celldblclick: function(grid, rowIndex, columnIndex, e) {
+	        var r = grid.store.getAt(rowIndex);	
+	        grid.showDetailWindow(false, r.data);
+	    }
+	},
+	
+	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
+	    var self = this;
+	    var form = new Ext.FormPanel({
+		    id:'form1',
+		    padding:10,
+		    width:500,
+		    items:[
+		        {
+                    xtype:'hidden',
+                    name:'id'    				        
+		        },
+		        {
+                    fieldLabel: '编码',
+                    name: '编码',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '预定客户名称',
+                    name: '客户名称',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '所属工业园',
+                    name: '所属工业园',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '所属房产',
+                    name: '所属房产',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '预定时间',
+                    name: '合同开始时间',
+                    width:226,
+                    xtype: 'datefield'				                           
+                },
+                {
+                    fieldLabel: '操作时间',
+                    name: '操作时间',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '备注',
+                    name: '备注',
+                    width:226,
+                    height:63,
+                    xtype: 'textarea'				                           
+                }
+                
+                  
+		    ],
+		    buttons:[
+		        {
+		            text:'保存',// callback
+		            handler:function (c) {		                
+		                 form.getForm().submit({
+		                    url:'ydgl.aspx',
+		                    params:{
+		                        action: add?'add':'update'
+		                    },
+		                    success:function (form, action) {
+		                        console.log(action.response.responseText);                                      
+                                w.close();                                
+                                self.store.reload();
+		                    }
+		                });
+		            }
+		        },
+		        {
+                    text: '取消',
+                    handler: function (c) {
+                        w.close();
+                    }
+                }
+		    ]
+	    }); 
+	    
+	    if (!add && data) {
+            form.getForm().setValues(data);
+        }
+        
+	    var w = new Ext.Window({
+	        title:"新增预定",
+	        items:[
+	            form
+	        ]
+	    });
+	    w.show();
+	},  
+	
+	
 	initComponent: function(){
+	    var self = this;
+	    this.bbar = new Ext.PagingToolbar({
+	        pageSize: 20,
+	        store: self.store,
+	        displayInfo: true,
+	        plugins: [new Ext.ux.ProgressBarPager()]
+	    });
 		this.tbar=[
 			{
-				text:"新增"
+				text:"新增",
+				handler:function () {
+                    self.showDetailWindow(true, null);
+				}
 			},
 			{
-				text:"修改"
+				text:"修改",
+				handler: function() {
+				    var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        self.showDetailWindow(false, r.data);
+				    }				    
+				}
 			},
 			{
-				text:"删除"
+				text:"删除",
+				handler: function () {
+				    var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        Ext.Msg.confirm('删除房产','确定要删除选中房产吗？',function(btn){
+							if(btn == 'yes') {
+								Ext.Ajax.request({
+									url:'ydgl.aspx?action=delete',
+									success:function(){
+										Ext.Msg.alert('删除房产','房产删除成功！');
+										self.store.reload();
+									},
+									params:{id: r.get('id')}
+								});
+							}
+						});
+				    }				    
+				}
 			},
 			{
 				xtype:"label",
