@@ -138,7 +138,13 @@ public class Json
             for (int i = 0; i < dataReader.FieldCount; i++)
             {
                 jsonString += "\"" + ToJson(dataReader.GetName(i)) + "\":";
-                if (dataReader.GetFieldType(i) == typeof(DateTime) || dataReader.GetFieldType(i) == typeof(string))
+                if (dataReader.GetFieldType(i) == typeof(DateTime))
+                {
+                    DateTime dt = dataReader.GetDateTime(i);
+                    jsonString += "\"" + ToJson(dt.ToString("yyyy-MM-dd HH:mm:ss")) + "\",";
+                    
+                }
+                else if (dataReader.GetFieldType(i) == typeof(string))
                 {
                     jsonString += "\"" + ToJson(dataReader[i].ToString()) + "\",";
                 }
@@ -180,7 +186,7 @@ public class Json
 
         string temstr;
         temstr = value;
-        temstr = temstr.Replace("{", "｛").Replace("}", "｝").Replace(":", "：").Replace(",", "，").Replace("[", "【").Replace("]", "】").Replace(";", "；").Replace("\n", "<br/>").Replace("\r", "");
+        //temstr = temstr.Replace("{", "｛").Replace("}", "｝").Replace(":", "：").Replace(",", "，").Replace("[", "【").Replace("]", "】").Replace(";", "；").Replace("\n", "<br/>").Replace("\r", "");
 
         temstr = temstr.Replace("\t", "   ");
         temstr = temstr.Replace("'", "\'");
