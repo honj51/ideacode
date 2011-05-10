@@ -66,7 +66,7 @@ xtype:"grid",
 	
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
     var self = this;
-     
+    
     var sex = new Ext.form.ComboBox({
         fieldLabel:'性别',
         width:226,
@@ -220,6 +220,12 @@ xtype:"grid",
 	        width:150,
     	   
         });
+        this.bbar = new Ext.PagingToolbar({
+	        pageSize: 20,
+	        store: self.store,
+	        displayInfo: true,
+	        plugins: [new Ext.ux.ProgressBarPager()]
+	    });
 		this.tbar=[
 			{
 				text:"新增",

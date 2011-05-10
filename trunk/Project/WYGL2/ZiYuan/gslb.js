@@ -192,6 +192,12 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	
 	initComponent: function(){
 	    var self = this;
+	    this.bbar = new Ext.PagingToolbar({
+	        pageSize: 20,
+	        store: self.store,
+	        displayInfo: true,
+	        plugins: [new Ext.ux.ProgressBarPager()]
+	    });
 		this.tbar=[
 			{
 				text:"新增",
