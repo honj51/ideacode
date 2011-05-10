@@ -7,7 +7,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		autoLoad:true,
 		url: 'gslb.aspx?action=list',
 		fields:[
-		    'id','编码','名称','描述','联系人','联系电话','助记码','注册号','法人代表','办公地址','联系方法','备注'
+		    'id','编码','名称','描述','联系人','联系电话','助记码','注册号','法人代表','办公地址','联系方法','备注','成立日期'
 		]
 	}),
 	width:792,
@@ -78,61 +78,74 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
             {
                 fieldLabel: '编码',
                 name: '编码',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '名称',
                 name: '名称',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '描述',
                 name: '描述',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '助记码',
                 name: '助记码',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '注册号',
                 name: '注册号',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '成立日期',
-                name: '',
-                xtype: 'textfield'				                           
+                name: '成立日期',
+                width:226,
+                xtype: 'datefield'				                           
             },
             {
                 fieldLabel: '法人代表',
                 name: '法人代表',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '办公地址',
                 name: '办公地址',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '联系电话',
                 name: '联系电话',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '联系方法',
                 name: '联系方法',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '联系人',
                 name: '联系人',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '备注',
                 name: '备注',
+                width:226,
+                height:60,
                 xtype: 'textfield'				                           
             }
             

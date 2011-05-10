@@ -7,7 +7,7 @@ xtype:"grid",
 		autoLoad:true,
 		url: 'zrrlb.aspx?action=list',
 		fields:[
-		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注'
+		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注','出生日期'
 		]
 	}),
 	width:792,
@@ -66,6 +66,22 @@ xtype:"grid",
 	
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
     var self = this;
+     
+    var sex = new Ext.form.ComboBox({
+        fieldLabel:'性别',
+        width:226,
+        mode:'local',
+        triggerAction:'all',
+        editable:false,
+        store:new Ext.data.SimpleStore({
+            fields : ['myId','displayText'],
+            data :[['男','男'],['女','女']]
+        }),
+        value:'男',
+        valueField:'myId',
+        displayField:'displayText'
+     });
+    
     var form = new Ext.FormPanel({
 	    id:'form1',
 	    padding:10,
@@ -78,45 +94,44 @@ xtype:"grid",
             {
                 fieldLabel: '编码',
                 name: '编码',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '名称',
                 name: '名称',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '描述',
                 name: '描述',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '助记码',
                 name: '助记码',
+                width:226,
                 xtype: 'textfield'				                           
             },
-            {
-                			
-				xtype:"combo",
-				triggerAction:"all",
-				name: '性别',
-				fieldLabel:"性别",
-				width:129,
-			
-            },
+            sex,
             {
                 fieldLabel: '出生日期',
-                name: '',
-                xtype: 'textfield'				                           
+                name: '出生日期',
+                width:226,
+                xtype: 'datefield'				                           
             },
             {
                 fieldLabel: '证件名称',
                 name: '证件名称',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '证件号码',
                 name: '证件号码',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
@@ -125,22 +140,25 @@ xtype:"grid",
 				triggerAction:"all",
 				name: '籍贯',
 				fieldLabel:"籍贯",
-				width:129,
+				width:226,
 			
             },
             {
                 fieldLabel: '联系电话',
                 name: '联系电话',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '联系地址',
                 name: '联系地址',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {
                 fieldLabel: '联系人',
                 name: '联系人',
+                width:226,
                 xtype: 'textfield'				                           
             },
             {

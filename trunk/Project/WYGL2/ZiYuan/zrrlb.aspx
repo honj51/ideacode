@@ -8,6 +8,7 @@
     <link href="~/ext/resources/css/ext-all.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../ext/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="../ext/ext-all.js"></script>
+    <script type="text/javascript" src="../ext/src/locale/ext-lang-zh_CN.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
