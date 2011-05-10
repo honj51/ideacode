@@ -14,7 +14,7 @@ public partial class ZiYuan_gslb : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string action = Request.QueryString["action"];
+        string action = Request.Params["action"];
         if (String.IsNullOrEmpty(action)) return;
 
         Response.ContentType = "application/json";
