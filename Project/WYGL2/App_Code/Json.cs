@@ -140,9 +140,15 @@ public class Json
                 jsonString += "\"" + ToJson(dataReader.GetName(i)) + "\":";
                 if (dataReader.GetFieldType(i) == typeof(DateTime))
                 {
-                    DateTime dt = dataReader.GetDateTime(i);
-                    jsonString += "\"" + ToJson(dt.ToString("yyyy-MM-dd HH:mm:ss")) + "\",";
-                    
+                    if (!dataReader.IsDBNull(i))
+                    {
+                        DateTime dt = dataReader.GetDateTime(i);
+                        jsonString += "\"" + ToJson(dt.ToString("yyyy-MM-dd HH:mm:ss")) + "\",";
+                    }
+                    else
+                    {
+                        jsonString += "\"\",";
+                    }                    
                 }
                 else if (dataReader.GetFieldType(i) == typeof(string))
                 {
