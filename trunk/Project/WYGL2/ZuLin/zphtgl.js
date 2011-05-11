@@ -185,17 +185,15 @@ xtype:"grid",
 	    
 	},
 	
-	initComponent: function(){
-    
+	initComponent: function(){    
 	    var self = this;
-	/**
 	    this.bbar = new Ext.PagingToolbar({
 	        pageSize: 20,
 	        store: self.store,
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
-	 **/
+	    
 		this.tbar=[
 		    
 			{
