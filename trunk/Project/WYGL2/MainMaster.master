@@ -58,21 +58,24 @@
             }
         });
         tree.expandAll();
-        
+       var mainPanel = new Ext.Panel({
+             
+       }); 
        var viewport = new Ext.Viewport({
             layout:'border',
-            items:[{               
-                region: 'north',
-                height: 30,
-                html: '深圳市兴联兴投资有限公司'
-            },            
-            tree,tab,
-            {
-                region:'south',
-                margins:'0 0 0 2',
-                border:false,
-                html:'<div class="menu south">状态栏</div>'
-               }
+            items:[
+                new Ext.Toolbar({
+                    region: 'north',
+                    height: 30,
+                    items: ['->','深圳市兴联兴投资有限公司']                    
+                }),          
+                tree,tab,new Ext.Toolbar({
+                    region: 'south',                    
+                    height: 20,
+                    items: ['状态栏','->',{
+                        text: '退出系统'
+                    }]
+                })
             ]
         });
         
