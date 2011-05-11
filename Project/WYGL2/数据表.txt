@@ -1,0 +1,15 @@
+﻿admin_admin  				登陆用户表 (密码是16位md5加密)
+admin_admin_lb  			空的(不知道啥用)
+gyy_fc_lb  					工业园房产列表
+gyy_lb  					工业园列表
+gyy_lb_fclx_lb  			房产类型列表 (工业园)
+gyy_lb_fclx_lb_xflx   
+reg :						(不知道啥用)
+role: 
+role_lb : 
+user_gs
+user_sf_lb
+user_sf_zb
+user_zrr
+zpgl
+zpgl_lx_lb
