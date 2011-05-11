@@ -43,6 +43,19 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
+        else if (action == "fclx_list")
+        {
+            string sql = "select distinct 工业园名称 from sq8szxlx.gyy_lb_fclx_lb ";
+            SqlDataReader r = DBHelper.GetReader(sql);
+            Response.Write(Json.ToJson(r));
+        }
+        else if (action == "find_gyy_fclx")
+        {
+            string gyy = Request.Params["gyy"];
+            string sql = string.Format("select 房产类型 from sq8szxlx.gyy_lb_fclx_lb where 工业园名称='{0}'", gyy);
+            SqlDataReader r = DBHelper.GetReader(sql);
+            Response.Write(Json.ToJson(r));
+        }
         Response.End();
     }
 }
