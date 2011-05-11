@@ -46,10 +46,7 @@
                     var panel = tab.items.get(n.attributes.text);
                     //Ext.Msg.alert('Navigation Tree Click', 'You clicked: "' + n.attributes.text + '"');
                     if (n.attributes.text == "数据录入") {
-                                              
-                        
-                        if () {
-                        }
+                     
                     }
                     else if (n.attributes.text == "数据录入") {
                         Ext.Msg.alert("a");
