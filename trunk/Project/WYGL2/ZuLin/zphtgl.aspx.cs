@@ -16,12 +16,33 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
     {
         string action =Request.Params["action"];
         if (String.IsNullOrEmpty(action)) return;
-        
-        if (action == "load_data"){
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.zpgl");
-            Response.ContentType = "application/json";
+
+        Response.ContentType = "application/json";
+
+        if (action == "list")
+        {
+            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.zpgl");          
             Response.Write(Json.ToJson(r));
-            Response.End();
+            
         }
+        else if (action == "add")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.zpgl", "id", true);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        else if (action == "update")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.zpgl", "id", false);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        else if (action == "delete")
+        {
+            string sql = "delete from sq8szxlx.zpgl where id=" + Request.Form["id"];
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        Response.End();
     }
 }

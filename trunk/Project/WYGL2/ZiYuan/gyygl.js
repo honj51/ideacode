@@ -45,7 +45,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    var self = this;
         var form = new Ext.FormPanel({	
             padding: 10,
-            width: 250,
+            width: 360,
             items: [{
                 xtype: 'hidden',
                 name: 'id'
@@ -100,6 +100,8 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });
 	    w.show();
 	},
+	
+	
 	initComponent: function(){
 	    var self = this;
 	    this.bbar = new Ext.PagingToolbar({
@@ -145,7 +147,13 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},
 			{
-				text:"编辑房产类型"
+				text:"编辑房产类型",
+				handler:function () {
+				    var r = self.getSelectionModel().getSelected();
+				    alert(r);
+				    
+				
+				}
 			}
 		]
 		Ext.Hudongsoft.gyyglGrid.superclass.initComponent.call(this);
