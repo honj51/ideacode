@@ -13,6 +13,10 @@ public partial class Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        string admin_id = (string)Session["admin_id"];
+        if (string.IsNullOrEmpty(admin_id))
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }
