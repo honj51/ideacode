@@ -24,7 +24,17 @@
 	   		<div style="float: right;">
 			    	<input type="submit" style="width: 80;"  value="  登录  ">
 		   	</div>
-		   	<div id="error" style="margin: 10px 0 0 -20px; clear: left">
+		   	<div id="error" style="margin: 10px 0 0 -20px; clear: left;  ">
+		   	    <% 
+                    switch (Request.Params["error"])
+                    {
+                        case "-1":
+                            Response.Write("<span style=\"color: Red\">用户名或密码错误,请重试!</span>");
+                            break;
+                        default:
+                            break;
+                    }        
+		   	     %> 
 <%--	   			<?php
 	   				switch ($_REQUEST['error']) {
 	   					case -1:
