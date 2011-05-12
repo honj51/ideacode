@@ -24,7 +24,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             string sql = "";
             if (Request.Params["start"] != null && Request["limit"] != null)
             {
-                sql = string.Format("select top {0} * from sq8szxlx.gyy_fc_lb where id not in (select top {1} id from sq8szxlx.gyy_fc_lb)",
+                sql = string.Format("select top {0} * from sq8szxlx.zpgl where id not in (select top {1} id from sq8szxlx.zpgl)",
                     Request["limit"], Request.Params["start"]);
             }
             else

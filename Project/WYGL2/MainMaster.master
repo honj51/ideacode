@@ -14,6 +14,8 @@
     <script type="text/javascript" src="ext/src/locale/ext-lang-zh_CN.js"></script>
     
     <script type="text/javascript" src="js/sjlr.js"></script>
+    <script type="text/javascript" src="js/jfgl.js"></script>
+    <script type="text/javascript" src="js/zphtgl.js"></script>    
     
     <script type="text/javascript">
     Ext.onReady(function(){
@@ -22,11 +24,7 @@
              region:'center',
                 activeTab: 0,
                 autoScroll:true,
-                items: [{
-                    xtype: 'panel',
-                    title: 'aaa',
-                    html: 'aaaaa'
-                }]
+                items: []
        });
        
        var tree = new Ext.tree.TreePanel({
@@ -46,16 +44,41 @@
 			listeners: {
                 click: function(n) {
                     var panel = tab.items.get(n.attributes.text);
-                    //Ext.Msg.alert('Navigation Tree Click', 'You clicked: "' + n.attributes.text + '"');
                     if (n.attributes.text == "数据录入") {
-                        tab.add(new Ext.Hudongsoft.sjlrGrid());      
+                        panel = new Ext.Hudongsoft.sjlrGrid();
                     }
-                    else if (n.attributes.text == "数据录入") {
-                        Ext.Msg.alert("a");
+                    else if (n.attributes.text == "缴费管理") {
+                        panel = new Ext.Hudongsoft.jfglGrid();
                     }
-                    else if (n.attributes.text == "数据录入") {
-                        Ext.Msg.alert("a");
+                    else if (n.attributes.text == "工业园管理") {
+                        window.location.href = "ZiYuan/gyygl.aspx";
                     }
+                    else if (n.attributes.text == "房产管理") {
+                        window.location.href = "ZiYuan/fcgl.aspx";
+                    }
+                    else if (n.attributes.text == "客户管理") {
+                        window.location.href = "ZiYuan/gslb.aspx";
+                    }
+                    else if (n.attributes.text == "预定管理") {
+                        window.location.href = "ZuLin/ydgl.aspx";
+                    }
+                    else if (n.attributes.text == "租赁合同管理") {
+                        panel = new Ext.Hudongsoft.zphtglGrid();
+                    }
+                    else if (n.attributes.text == "合同到期提示") {
+                        window.location.href = "ZuLin/htdqts.aspx";
+                    }
+                    else if (n.attributes.text == "角色管理") {
+                        window.location.href = "XiTong/jsqx.aspx";
+                    }
+                    else if (n.attributes.text == "管理员管理") {
+                        window.location.href = "XiTong/glylb.aspx";
+                    }
+                    else if (n.attributes.text == "修改密码") {
+                       // window.location.href = "ZiYuan/ydgl.aspx";
+                    }
+                    tab.add(panel);      
+                    tab.activate(panel);
                 }
             }
         });
@@ -75,7 +98,10 @@
                     region: 'south',                    
                     height: 20,
                     items: ['状态栏','->',{
-                        text: '退出系统'
+                        text: '退出系统',
+                        handler: function () {
+                            window.location.href = "Login.aspx";
+                        }
                     }]
                 })
             ]
