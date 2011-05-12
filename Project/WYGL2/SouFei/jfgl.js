@@ -86,13 +86,16 @@ xtype:"grid",
 	initComponent: function(){
 		this.tbar=[
 		    {
-		        text:"新增"
+		        text:"新增",
+		        iconCls: 'icon-group-create',
 		    },
 		     {
-		        text:"修改"
+		        text:"修改",
+		        iconCls: 'icon-group-update',
 		    },
 		     {
-		        text:"删除"
+		        text:"删除",
+		        iconCls: 'icon-group-delete',
 		    },
 			{
 				xtype:"label",
@@ -141,7 +144,8 @@ xtype:"grid",
 				fieldLabel:"标签"
 			},
 			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query'
 			}
 		]
 		Ext.Hudongsoft.jfglGrid.superclass.initComponent.call(this);
