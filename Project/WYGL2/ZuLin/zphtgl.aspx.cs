@@ -21,8 +21,23 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
 
         if (action == "list")
         {
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.zpgl");          
-            Response.Write(Json.ToJson(r));
+            string sql = "";
+            if (Request.Params["start"] != null && Request["limit"] != null)
+            {
+                sql = string.Format("select top {0} * from sq8szxlx.gyy_fc_lb where id not in (select top {1} id from sq8szxlx.gyy_fc_lb)",
+                    Request["limit"], Request.Params["start"]);
+            }
+            else
+            {
+                sql = "select * from sq8szxlx.zpgl";
+            }
+            SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.zpgl");
+            if (!c.Read()) return;                
+            SqlDataReader r = DBHelper.GetReader(sql);
+            string data = Json.ToJson(r);
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":",c.GetInt32(0));
+            result = "{" + result + data + "}";
+            Response.Write(result);
             
         }
         else if (action == "add")
@@ -45,14 +60,16 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         }
         else if (action == "fclx_list")
         {
-            string sql = "select distinct 工业园名称 from sq8szxlx.gyy_lb_fclx_lb ";
+            string sql = "select distinct 工业园名称 as gyyName from sq8szxlx.gyy_lb_fclx_lb ";
             SqlDataReader r = DBHelper.GetReader(sql);
             Response.Write(Json.ToJson(r));
+            //string s = "[{\"empId\":\"402881e42986ea4b0129877fdb8e0004\",\"empName\":\"xxx\"},{\"empId\":\"402881e42986ea4b0129877fdb8e00252\",\"empName\":\"yyy\"}]";
+            //Response.Write(s);
         }
         else if (action == "find_gyy_fclx")
         {
             string gyy = Request.Params["gyy"];
-            string sql = string.Format("select 房产类型 from sq8szxlx.gyy_lb_fclx_lb where 工业园名称='{0}'", gyy);
+            string sql = string.Format("select 房产类型 as lx from sq8szxlx.gyy_lb_fclx_lb where 工业园名称='{0}'", gyy);
             SqlDataReader r = DBHelper.GetReader(sql);
             Response.Write(Json.ToJson(r));
         }
