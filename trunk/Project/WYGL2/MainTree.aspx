@@ -35,8 +35,7 @@
         {text: '角色管理',leaf: true},
         {text: '管理员管理',leaf: true},
         {text: '管理员管理',leaf: true},
-        {text: '修改密码',leaf: true},
-        {text: '退出系统',leaf: true}
+        {text: '修改密码',leaf: true}
     ]
 }
 ]

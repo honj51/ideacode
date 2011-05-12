@@ -27,7 +27,7 @@ xtype:"grid",
 			sortable:true,
 			resizable:true,
 			dataIndex:"编码",
-			width:100
+			width:200
 		},
 		{
 			header:"客户名称",
@@ -55,14 +55,14 @@ xtype:"grid",
 			sortable:true,
 			resizable:true,
 			dataIndex:"合同开始时间",
-			width:100
+			width:150
 		},
 		{
 			header:"合同结束时间",
 			sortable:true,
 			resizable:true,
 			dataIndex:"合同结束时间",
-			width:100,
+			width:150,
 			format:"m/d/Y"
 		},
 		{
