@@ -213,6 +213,7 @@ xtype:"grid",
 			},
 			{
 				text:"删除合同",
+				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -251,6 +252,13 @@ xtype:"grid",
 				xtype:"combo",
 				triggerAction:"all",
 				fieldLabel:"标签",
+				store: new Ext.data.JsonStore({
+				    autoLoad:true,
+				    url: "zphtgl.aspx?action=fclx_list",
+				    fields: ['业园名称']
+				}),
+				displayField: '业园名称',
+				valueField: '业园名称',
 				width:70
 			},
 			{
