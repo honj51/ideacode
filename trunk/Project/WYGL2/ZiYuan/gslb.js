@@ -154,6 +154,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    buttons:[
 	        {
 	            text:'保存',// callback
+	            iconCls: 'icon-save',
 	            handler:function (c) {		                
 	                 form.getForm().submit({
 	                    url:'gslb.aspx',
@@ -170,6 +171,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        },
 	        {
                 text: '取消',
+                iconCls: 'icon-cancel',
                 handler: function (c) {
                     w.close();
                 }
@@ -201,12 +203,14 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		this.tbar=[
 			{
 				text:"新增",
+				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
 				text:"修改",
+				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -216,6 +220,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},
 			{
 				text:"删除",
+				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -234,6 +239,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				    }				    
 				}
 			},
+			'->',
 			{
 				xtype:"label",
 				text:"姓名："
@@ -243,7 +249,8 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				fieldLabel:"标签"
 			},
 			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query',
 			}
 		]
 		Ext.Hudongsoft.gslbGrid.superclass.initComponent.call(this);

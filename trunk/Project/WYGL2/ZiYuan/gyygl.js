@@ -67,6 +67,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
             }],
             buttons: [{
                 text: '保存',
+                iconCls: 'icon-save',
                 handler: function (c) {                                
                     form.getForm().submit({
                         url: 'gyygl.aspx',
@@ -82,6 +83,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 }
             },{
                 text: '取消',
+                iconCls: 'icon-cancel',
                 handler: function (c) {
                     w.close();
                 }
@@ -113,12 +115,14 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		this.tbar=[
 			{
 				text:"添加工业园",
+				iconCls: 'icon-group-create',
 				handler: function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
 				text:"修改工业园",
+				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -128,6 +132,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},
 			{
 				text:"删除工业园",
+				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -148,6 +153,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},
 			{
 				text:"编辑房产类型",
+				iconCls: 'icon-xieGenJin',
 				handler:function () {
 				    var r = self.getSelectionModel().getSelected();
 				    alert(r);

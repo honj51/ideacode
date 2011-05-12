@@ -133,6 +133,7 @@ xtype:"grid",
 		    buttons:[
 		        {
 		            text:'保存',// callback
+		            iconCls: 'icon-save',
 		            handler:function (c) {		                
 		                 form.getForm().submit({
 		                    url:'ydgl.aspx',
@@ -149,6 +150,7 @@ xtype:"grid",
 		        },
 		        {
                     text: '取消',
+                    iconCls: 'icon-cancel',
                     handler: function (c) {
                         w.close();
                     }
@@ -181,12 +183,14 @@ xtype:"grid",
 		this.tbar=[
 			{
 				text:"新增",
+				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
 				text:"修改",
+				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -196,6 +200,7 @@ xtype:"grid",
 			},
 			{
 				text:"删除",
+				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -218,12 +223,14 @@ xtype:"grid",
 				xtype:"label",
 				text:""
 			},
+			'->',
 			{
 				xtype:"textfield",
 				fieldLabel:"标签"
 			},
 			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query'
 			}
 		]
 		Ext.Hudongsoft.ydglGrid.superclass.initComponent.call(this);

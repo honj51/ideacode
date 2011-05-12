@@ -2,6 +2,10 @@
 	background-image: url(../images/icon/create.png) !important;
 }
 
+.icon-group-update {
+	background-image: url(../images/icon/update.png) !important;
+}
+
 .icon-group-delete {
 	background-image: url(../images/icon/delete.png) !important;
 }
@@ -9,3 +13,28 @@
 .icon-save {
 	background-image: url(../images/icon/save.png) !important;
 }
+
+.icon-query {
+	background-image: url(../images/icon/query.png) !important;
+}
+
+.icon-cancel {
+	background-image: url(../images/icon/cancel.png) !important;
+}
+
+.icon-list {
+	background-image: url(../images/icon/list.png) !important;
+}
+
+.icon-xieGenJin {
+	background-image: url(../images/icon/xieGenJin.png) !important;
+}
+
+.icon-sheZhi {
+	background-image: url(../images/icon/sheZhi.png) !important;
+}
+
+
+
+
+

@@ -151,6 +151,7 @@ xtype:"grid",
             ],
             buttons: [{
                 text: '保存',
+                iconCls: 'icon-save',
                 handler: function (c) {                                
                     form.getForm().submit({
                         url: 'zphtgl.aspx',
@@ -166,6 +167,7 @@ xtype:"grid",
                 }
             },{
                 text: '取消',
+                iconCls: 'icon-cancel',
                 handler: function (c) {
                     w.close();
                 }
@@ -198,12 +200,14 @@ xtype:"grid",
 		    
 			{
 				text:"新增合同",
+				iconCls: 'icon-group-create',
 				handler: function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
 				text:"修改合同",
+				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -233,7 +237,8 @@ xtype:"grid",
 				}
 			},
 			{
-				text:"编辑固定消费项目"
+				text:"编辑固定消费项目",
+				iconCls: 'icon-xieGenJin'
 			},
 			{
 				xtype:"label",
@@ -281,7 +286,8 @@ xtype:"grid",
 				width:70
 			},
 			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query'
 			}
 		]
 		Ext.Hudongsoft.zphtglGrid.superclass.initComponent.call(this);

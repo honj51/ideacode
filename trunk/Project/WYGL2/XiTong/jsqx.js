@@ -30,7 +30,7 @@ xtype:"grid",
 		}
 	],
 	
-	listeners : { // 添加监听事件
+	listeners : {  // 添加监听事件
         celldblclick: function(grid, rowIndex, columnIndex, e) {
             var r = grid.store.getAt(rowIndex);	
             grid.showDetailWindow(false, r.data);
@@ -66,6 +66,7 @@ xtype:"grid",
 	        buttons:[
 	            {
 	                text:'保存',// callback
+	                iconCls: 'icon-save',
 	                handler:function (c) {		                
 	                     form.getForm().submit({
 	                        url:'jsqx.aspx',
@@ -82,6 +83,7 @@ xtype:"grid",
 	            },
 	            {
                     text: '取消',
+                    iconCls: 'icon-cancel',
                     handler: function (c) {
                         w.close();
                     }
@@ -101,18 +103,26 @@ xtype:"grid",
             });
             w.show();
     },
+    
+    setPermissions:function () {
+        var self = this;
+        alert("设置权限");
+    
+    },
 	
 	initComponent: function(){
 	    var self = this;
 		this.tbar=[
 			{
 				text:"添加",
+				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
 				text:"修改",
+				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -122,6 +132,7 @@ xtype:"grid",
 			},
 			{
 				text:"删除",
+				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -141,7 +152,12 @@ xtype:"grid",
 				}
 			},
 			{
-				text:"设置权限"
+				text:"设置权限",
+				iconCls: 'icon-sheZhi',
+				handler:function () {
+				    self.setPermissions();
+				}
+				
 			}
 		]
 		Ext.Hudongsoft.jsqxGrid.superclass.initComponent.call(this);

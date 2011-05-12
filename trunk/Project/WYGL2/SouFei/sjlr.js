@@ -127,10 +127,12 @@ xtype:"grid",
 				fieldLabel:"标签"
 			},
 			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query'
 			},
 			{
-			    text:"查看详情"
+			    text:"查看详情",
+			    iconCls: 'icon-list'
 			}
 			
 		]

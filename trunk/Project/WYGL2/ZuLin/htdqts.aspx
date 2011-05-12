@@ -6,6 +6,7 @@
 <head runat="server">
     <title>合同到期提示</title>
     <link href="~/ext/resources/css/ext-all.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
     <script type="text/javascript" src="../ext/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="../ext/ext-all.js"></script>
 </head>

@@ -112,7 +112,8 @@ xtype:"grid",
 				width:70
 			},
 			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query',
 			}
 		]
 		Ext.Hudongsoft.htdqtsGrid.superclass.initComponent.call(this);

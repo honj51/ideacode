@@ -102,6 +102,7 @@ xtype:"grid",
 		    buttons:[
 		        {
 		            text:'保存',// callback
+		            iconCls: 'icon-save',
 		            handler:function (c) {		                
 		                 form.getForm().submit({
 		                    url:'fcgl.aspx',
@@ -118,6 +119,7 @@ xtype:"grid",
 		        },
 		        {
                     text: '取消',
+                    iconCls: 'icon-cancel',
                     handler: function (c) {
                         w.close();
                     }
@@ -143,6 +145,7 @@ xtype:"grid",
 		this.tbar=[
 			{
 				text:"新增房产",
+				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
 				}
@@ -150,6 +153,7 @@ xtype:"grid",
 			},
 			{
 				text:"修改房产",
+				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
@@ -159,6 +163,7 @@ xtype:"grid",
 			},
 			{
 				text:"删除房产",
+				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
