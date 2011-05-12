@@ -5,9 +5,11 @@ xtype:"grid",
 	title:"缴费列表",
 	store:{
 		xtype:"jsonstore",
-		url: 'sjlr.aspx?action=load_data',
-		
-		autoLoad:true
+		url: 'jfgl.aspx?action=list',		
+		autoLoad:true,
+		fields:[
+		    'id', '序号','合同编号','客户编号','所属工业园','所属房产','合同开始时间','合同结束时间','月份','缴费状态'
+		]
 	},
 	width:802,
 	height:475,
@@ -16,63 +18,63 @@ xtype:"grid",
 			header:"序号",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data1",
+			dataIndex:"序号",
 			width:40
 		},
 		{
 			header:"编码",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data2",
+			dataIndex:"编码",
 			width:70
 		},
 		{
 			header:"客户名称",
 			sortable:true,
 			resizable:true,
-			dataIndex:"data3",
+			dataIndex:"客户编号",
 			width:70
 		},
 		{
 			header:"所属工业园",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"所属工业园",
 			width:80
 		},
 		{
 			header:"所属房产",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"所属房产",
 			width:80
 		},
 		{
 			header:"合同开始时间",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"日期",
 			width:100
 		},
 		{
 			header:"合同结束时间",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"合同结束时间",
 			width:100
 		},
 		{
 			header:"月份",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"日期月",
 			width:70
 		},
 		{
 			header:"缴费状态",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"缴费状态",
 			width:100
 		},
 		{
