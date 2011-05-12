@@ -6,6 +6,8 @@ xtype:"grid",
 	store:new Ext.data.JsonStore({
 	    autoLoad:true,
 		url: 'zphtgl.aspx?action=list',
+		root : 'data',
+		totalProperty : 'totalProperty',
 		fields:[
 		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间','合同状态','操作时间','备注'
 		]	
@@ -195,9 +197,12 @@ xtype:"grid",
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
-	    
-		this.tbar=[
-		    
+	    var lx_store = new Ext.data.JsonStore({
+		    autoLoad:true,
+		    url: "zphtgl.aspx?action=find_gyy_fclx",
+		    fields: ['lx']
+		});
+		this.tbar=[		    
 			{
 				text:"新增合同",
 				iconCls: 'icon-group-create',
@@ -247,7 +252,7 @@ xtype:"grid",
 			{
 				xtype:"textfield",
 				fieldLabel:"标签",
-				width:70
+				width:120
 			},
 			{
 				xtype:"label",
@@ -257,14 +262,22 @@ xtype:"grid",
 				xtype:"combo",
 				triggerAction:"all",
 				fieldLabel:"标签",
+				width: 100,
+				editable: false,
 				store: new Ext.data.JsonStore({
 				    autoLoad:true,
 				    url: "zphtgl.aspx?action=fclx_list",
-				    fields: ['业园名称']
+				    fields: ['gyyName']
 				}),
-				displayField: '业园名称',
-				valueField: '业园名称',
-				width:70
+				displayField: 'gyyName',
+				valueField: 'gyyName',
+				listeners: {
+				    'select' : function(combo, record,index){
+				        lx_store.reload({params : {
+				            gyy: combo.value
+				        }});
+				    }
+				}
 			},
 			{
 				xtype:"label",
@@ -272,9 +285,13 @@ xtype:"grid",
 			},
 			{
 				xtype:"combo",
+				editable: false,
+				width: 100,
 				triggerAction:"all",
 				fieldLabel:"标签",
-				width:70
+				store: lx_store,
+				displayField: 'lx',
+				valueField: 'lx'
 			},
 			{
 				xtype:"label",
@@ -283,7 +300,7 @@ xtype:"grid",
 			{
 				xtype:"textfield",
 				fieldLabel:"标签",
-				width:70
+				width:120
 			},
 			{
 				text:"搜索",
