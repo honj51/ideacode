@@ -26,7 +26,7 @@ xtype:"grid",
 			sortable:true,
 			resizable:true,
 			dataIndex:"编码",
-			width:70
+			width:130
 		},
 		{
 			header:"客户名称",
@@ -50,6 +50,13 @@ xtype:"grid",
 			width:80
 		},
 		{
+			header:"录入状态",
+			sortable:true,
+			resizable:true,
+			dataIndex:"",
+			width:100
+		},
+		{
 			header:"合同开始时间",
 			sortable:true,
 			resizable:true,
@@ -69,16 +76,16 @@ xtype:"grid",
 			resizable:true,
 			dataIndex:"",
 			width:70
-		},
-		{
-			header:"录入状态",
-			sortable:true,
-			resizable:true,
-			dataIndex:"",
-			width:100
 		}
 	],
 	initComponent: function(){
+	    var self = this;
+	    this.bbar = new Ext.PagingToolbar({
+	        pageSize: 20,
+	        store: self.store,
+	        displayInfo: true,
+	        plugins: [new Ext.ux.ProgressBarPager()]
+	    });
 		this.tbar=[
 			{
 				xtype:"label",
