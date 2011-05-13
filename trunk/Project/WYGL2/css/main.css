@@ -14,8 +14,9 @@
 	background-image: url(../images/icon/save.png) !important;
 }
 
-.icon-query {
-	background-image: url(../images/icon/query.png) !important;
+.icon-query 
+{
+   background-image: url(../images/icon/query.png) !important;
 }
 
 .icon-cancel {
@@ -34,7 +35,8 @@
 	background-image: url(../images/icon/sheZhi.png) !important;
 }
 
-
-
-
+.x-tree-node-leaf .x-tree-node-icon 
+{
+    background-image: url(../images/icon/1_1.gif) !important;
+}
 
