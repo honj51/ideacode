@@ -12,10 +12,28 @@
     <script type="text/javascript" src="ext/ext-all.js"></script>
     <script type="text/javascript" src="ext/examples/ux/ux-all.js"></script>
     <script type="text/javascript" src="ext/src/locale/ext-lang-zh_CN.js"></script>
-    
+    <!-- 收费管理  -->
     <script type="text/javascript" src="js/sfgl/sjlr.js"></script>
-    <script type="text/javascript" src="js/sfgl/jfgl.js"></script>
-    <script type="text/javascript" src="js/zlgl/zphtgl.js"></script>    
+    <script type="text/javascript" src="js/sfgl/jfgl.js"></script> 
+      
+    <!-- 资源管理  -->
+    <script type="text/javascript" src="js/zygl/fcgl.js"></script>
+    <script type="text/javascript" src="js/zygl/gslb.js"></script>
+    <script type="text/javascript" src="js/zygl/gyygl.js"></script>
+    <script type="text/javascript" src="js/zygl/zrrlb.js"></script>  
+   
+    <!-- 租赁管理  -->
+    <script type="text/javascript" src="js/zlgl/zphtgl.js"></script>
+    <script type="text/javascript" src="js/zlgl/ydgl.js"></script>
+    <script type="text/javascript" src="js/zlgl/htdqts.js"></script>
+    <script type="text/javascript" src="js/zlgl/skfltj.js"></script>
+    <script type="text/javascript" src="js/zlgl/xxfytjlb.js"></script>
+    <script type="text/javascript" src="js/zlgl/lskp.js"></script>
+    
+    <!-- 租赁管理  -->
+    <script type="text/javascript" src="js/xtgl/glylb.js"></script>
+    <script type="text/javascript" src="js/xtgl/jsqx.js"></script>
+    <script type="text/javascript" src="js/xtgl/xgmm.js"></script>
     
     <script type="text/javascript">
     Ext.onReady(function(){
@@ -51,31 +69,43 @@
                         panel = new Ext.Hudongsoft.jfglGrid();
                     }
                     else if (n.attributes.text == "工业园管理") {
-                        window.location.href = "ZiYuan/gyygl.aspx";
+                        panel = new Ext.Hudongsoft.gyyglGrid();
                     }
                     else if (n.attributes.text == "房产管理") {
-                        window.location.href = "ZiYuan/fcgl.aspx";
+                        panel = new Ext.Hudongsoft.fcglGrid();
                     }
-                    else if (n.attributes.text == "客户管理") {
-                        window.location.href = "ZiYuan/gslb.aspx";
+                    else if (n.attributes.text == "公司列表") {
+                        panel = new Ext.Hudongsoft.gslbGrid();
+                    }
+                    else if (n.attributes.text == "自然人列表") {
+                        panel = new Ext.Hudongsoft.zrrlbGrid();
                     }
                     else if (n.attributes.text == "预定管理") {
-                        window.location.href = "ZuLin/ydgl.aspx";
+                        panel = new Ext.Hudongsoft.ydglGrid();
                     }
                     else if (n.attributes.text == "租赁合同管理") {
                         panel = new Ext.Hudongsoft.zphtglGrid();
                     }
                     else if (n.attributes.text == "合同到期提示") {
-                        window.location.href = "ZuLin/htdqts.aspx";
+                        panel = new Ext.Hudongsoft.htdqtsGrid();
+                    }
+                    else if (n.attributes.text == "收款分类统计") {
+                        panel = new Ext.Hudongsoft.skfltsGrid();
+                    }
+                    else if (n.attributes.text == "收款详细统计") {
+                        panel = new Ext.Hudongsoft.xxfytjlbGrid();
+                    }
+                    else if (n.attributes.text == "临时开票") {
+                        panel = new Ext.Hudongsoft.zphtglWin();
                     }
                     else if (n.attributes.text == "角色管理") {
-                        window.location.href = "XiTong/jsqx.aspx";
+                        panel = new Ext.Hudongsoft.jsqxGrid();
                     }
                     else if (n.attributes.text == "管理员管理") {
-                        window.location.href = "XiTong/glylb.aspx";
+                        panel = new Ext.Hudongsoft.glylbGrid();
                     }
                     else if (n.attributes.text == "修改密码") {
-                       // window.location.href = "ZiYuan/ydgl.aspx";
+                        panel = new Ext.Hudongsoft.xgmmWin();
                     }
                     tab.add(panel);      
                     tab.activate(panel);
