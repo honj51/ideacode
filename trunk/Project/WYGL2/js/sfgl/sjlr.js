@@ -8,7 +8,7 @@ xtype:"grid",
 		autoLoad:true,
 		url: 'ajax/sfgl/sjlr.aspx?action=load_data',
 		fields:[
-		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间'
+		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间','录入状态'
 		]
 	}),
 	width:802,
@@ -53,7 +53,7 @@ xtype:"grid",
 			header:"录入状态",
 			sortable:true,
 			resizable:true,
-			dataIndex:"",
+			dataIndex:"录入状态",
 			width:100
 		},
 		{
