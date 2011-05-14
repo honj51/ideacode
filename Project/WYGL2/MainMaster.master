@@ -13,9 +13,9 @@
     <script type="text/javascript" src="ext/examples/ux/ux-all.js"></script>
     <script type="text/javascript" src="ext/src/locale/ext-lang-zh_CN.js"></script>
     
-    <script type="text/javascript" src="js/sjlr.js"></script>
-    <script type="text/javascript" src="js/jfgl.js"></script>
-    <script type="text/javascript" src="js/zphtgl.js"></script>    
+    <script type="text/javascript" src="js/sfgl/sjlr.js"></script>
+    <script type="text/javascript" src="js/sfgl/jfgl.js"></script>
+    <script type="text/javascript" src="js/zlgl/zphtgl.js"></script>    
     
     <script type="text/javascript">
     Ext.onReady(function(){
