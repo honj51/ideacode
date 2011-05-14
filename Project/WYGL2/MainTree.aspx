@@ -13,7 +13,8 @@
     children:[
         {text: '工业园管理',leaf: true},
         {text: '房产管理',leaf: true},
-        {text: '客户管理',leaf: true}
+        {text: '公司列表',leaf: true},
+        {text: '自然人列表',leaf: true}
     ]
 },
 {
@@ -33,7 +34,6 @@
     cls: 'folder',
     children:[
         {text: '角色管理',leaf: true},
-        {text: '管理员管理',leaf: true},
         {text: '管理员管理',leaf: true},
         {text: '修改密码',leaf: true}
     ]
