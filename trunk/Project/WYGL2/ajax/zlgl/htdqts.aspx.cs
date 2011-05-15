@@ -16,14 +16,28 @@ public partial class ZuLin_htdqts : System.Web.UI.Page
     {
         string action = Request.Params["action"];
         if (String.IsNullOrEmpty(action)) return;
+        Response.ContentType = "application/json";
 
-        if (action == "load_data")
+        if (action == "list")
         {
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.zpgl");
-            Response.ContentType = "application/json";
-            Response.Write(Json.ToJson(r));
-            Response.End();
+            string sql = "";
+            if (Request.Params["start"] != null && Request["limit"] != null)
+            {
+                sql = string.Format("select top {0} * from sq8szxlx.zpgl where id not in(select top {1} id from sq8szxlx.zpgl)",
+                    Request["limit"], Request.Params["start"]);
+            }
+            else
+            {
+                sql = "select * from sq8szxlx.zpgl";
+            }
+            SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.zpgl");
+            if (!c.Read()) return;
+            SqlDataReader r = DBHelper.GetReader(sql);
+            string data = Json.ToJson(r);
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c.GetInt32(0));
+            result = "{" + result + data + "}";
+            Response.Write(result);    
         }
-        
+        Response.End();
     }
 }
