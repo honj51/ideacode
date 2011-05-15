@@ -1,15 +1,15 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
-
+/************************************************************************/
+/* 不使用                                                                     */
+/************************************************************************/
 Ext.Hudongsoft.jfglGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
 	title:"缴费列表",
-	store:{
-		xtype:"jsonstore",
+	store: new Ext.data.JsonStore({
 		url: 'ajax/sfgl/jfgl.aspx?action=list',		
 		fields:[
 		    'id', '序号','合同编号','客户编号','所属工业园','所属房产','合同开始时间','合同结束时间','月份','缴费状态'
 		]
-	},
+	}),
 	width:802,
 	height:475,
 	columns:[
@@ -156,6 +156,7 @@ xtype:"grid",
 				iconCls: 'icon-query'
 			}
 		];
+		//self.store.load();
 		self.store.load();
 		Ext.Hudongsoft.jfglGrid.superclass.initComponent.call(this);
 	}
