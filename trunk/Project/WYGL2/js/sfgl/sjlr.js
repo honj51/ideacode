@@ -8,22 +8,28 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	jfgl: false,
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list',
+        root : 'data',
+	    totalProperty : 'totalProperty',
 		fields:[
-		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间','录入状态','缴费状态'
+		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月','合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态'
 		]
 	}),
 	width:802,
-	height:475,
-	
+	height:475,	
 	initComponent: function(){
 	    var self = this;
+	    var lx_store = new Ext.data.JsonStore({
+		    autoLoad:true,
+		    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
+		    fields: ['lx']
+		});
 	    self.columns = [
 		    {
 			    header:"序号",
 			    sortable:true,
 			    resizable:true,
 			    dataIndex:"id",
-			    width:40
+			    width:60
 		    },
 		    {
 			    header:"编码",
@@ -65,6 +71,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    sortable:true,
 			    resizable:true,
 			    dataIndex:"合同开始时间",
+			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer,
 			    width:100
 		    },
 		    {
@@ -72,6 +79,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    sortable:true,
 			    resizable:true,
 			    dataIndex:"合同结束时间",
+			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer,
 			    width:100
 		    },
 		    {
@@ -79,6 +87,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    sortable:true,
 			    resizable:true,
 			    dataIndex:"",
+			    renderer: Ext.Hudongsoft.util.Format.yearMonthRenderer,
 			    width:70
 		    }
 	    ];
@@ -88,16 +97,22 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
-		this.tbar=[
-			{
+	    
+	    // 搜索变量
+	    var mc = new Ext.form.TextField({});
+	    var mc = new Ext.form.TextField({});
+	    var mc = new Ext.form.TextField({});
+	    var mc = new Ext.form.ComboBox({});
+		this.tbar=new Ext.Toolbar({		    
+		    items: [{
 				xtype:"label",
 				text:"名称："
 			},
 			{
 				xtype:"textfield",
 				fieldLabel:"标签",
-				width:70
-			},
+				width:100
+			},'  ',
 			{
 				xtype:"label",
 				text:"工业园："
@@ -106,18 +121,37 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 				xtype:"combo",
 				triggerAction:"all",
 				fieldLabel:"标签",
-				width:70
-			},
+				width: 100,
+				editable: false,
+				store: new Ext.data.JsonStore({
+				    autoLoad:true,
+				    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
+				    fields: ['gyyName']
+				}),
+				displayField: 'gyyName',
+				valueField: 'gyyName',
+				listeners: {
+				    'select' : function(combo, record,index){
+				        lx_store.reload({params : {
+				            gyy: combo.value
+				        }});
+				    }
+				}
+			},'  ',
 			{
 				xtype:"label",
 				text:"类型："
 			},
-			{
-				xtype:"combo",
+			{   
+			    xtype:"combo",
+				editable: false,
+				width: 100,
 				triggerAction:"all",
 				fieldLabel:"标签",
-				width:70
-			},
+				store: lx_store,
+				displayField: 'lx',
+				valueField: 'lx'
+			},'  ',
 			{
 				xtype:"label",
 				text:"号码："
@@ -125,20 +159,21 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			{
 				xtype:"textfield",
 				fieldLabel:"标签",
-				width:70
-			},
-			{
-				xtype:"label",
-				text:"时间："
-			},
-			{
-				xtype:"datefield",
-				fieldLabel:"标签"
-			},
-			{
+				width:100
+			},'  ',
+			'年：',new Ext.YearCombox(),'  ',
+			'月：',new Ext.MonthCombox(),'  ',
+            {
 				text:"搜索",
-				iconCls: 'icon-query'
-			},
+				iconCls: 'icon-query',
+				handler: function () {
+				    self.store.load({
+				        params: {
+				            
+				        }
+				    });
+				}
+			},'->',
 			{
 			    text:"查看详情",
 			    iconCls: 'icon-list',
@@ -154,8 +189,12 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    }
 			}
 			
-		];
-		self.store.load();
+		]});
+		self.store.load({
+		    params: {
+		        start: 0,limit:20
+		    }
+		});
 		Ext.Hudongsoft.sjlrGrid.superclass.initComponent.call(this);
 	}
 })
