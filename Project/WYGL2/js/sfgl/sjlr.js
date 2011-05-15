@@ -122,6 +122,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 				handler: function () {
 				    self.store.load({
 				        params: {
+				            start: 0,limit:20,
 				            mc: mc.getValue(),
                             gyy: gyy.getValue(),
                             gyy_lx: gyy_lx.getValue(),
@@ -150,7 +151,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		]});
 		self.store.load({
 		    params: {
-		        start: 0,limit:20
+		        start: 0,limit:20,nian:now_year,yue:now_month
 		    }
 		});
 		Ext.Hudongsoft.sjlrGrid.superclass.initComponent.call(this);

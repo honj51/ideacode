@@ -22,22 +22,35 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             
         if (action == "list")
         {
-            string sql = "";
-            string where = getWhere("u.");
-            if (Request.Params["start"] != null && Request["limit"] != null)
+            // 1. 拼Sql子语句
+            string select = string.Format(@"select top {0} z.*,u.录入状态,u.缴费状态",Request["limit"]);
+            string from = " from sq8szxlx.user_sf_zb u left join sq8szxlx.zpgl z on z.编码=u.合同编号 ";
+            string where = string.Format(@"where u.日期年='{0}' and u.日期月='{1}' ", Request.Form["nian"], Request.Form["yue"]);
+            if (!string.IsNullOrEmpty(Request.Params["mc"]))
             {
-                sql = string.Format(@"select top {0} z.*,u.录入状态,u.缴费状态 from sq8szxlx.user_sf_zb u
-                    left join sq8szxlx.zpgl z on z.编码=u.合同编号 where {1} and u.id not in (select top {2} id from sq8szxlx.user_sf_zb where {3})",
-                    Request["limit"], where, Request.Params["start"], getWhere(""));
+                where += string.Format(" and z.客户名称='{0}'", Request.Params["mc"]);
             }
-            else
+            if (!string.IsNullOrEmpty(Request.Params["gyy"]))
             {
-                sql = string.Format(@"select top 20 z.*,u.录入状态,u.缴费状态 from sq8szxlx.zpgl z
-                    left join sq8szxlx.user_sf_zb u on z.编码=u.合同编号 where {0}",where);
+                where += string.Format(" and z.所属工业园='{0}'", Request.Params["gyy"]);
             }
-            SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.zpgl");
+            if (!string.IsNullOrEmpty(Request.Params["gyy_lx"]))
+            {
+                where += string.Format(" and z.房产类型='{0}'", Request.Params["gyy_lx"]);
+            }
+            if (!string.IsNullOrEmpty(Request.Params["hm"]))
+            {
+                where += string.Format(" and z.编码='{0}'", Request.Params["hm"]);
+            }
+            // 2. 获取总数
+            SqlDataReader c = DBHelper.GetReader("select count(*) " + from + where);
             if (!c.Read()) return;
+            // 3. 获取数据
+            string sql = string.Format(@"{0} {1} {2} and z.id not in (select top {3} z.id {1} {2})",
+                select, from, where, Request.Params["start"]);
+            SqlDataReader exclude = DBHelper.GetReader(sql);
             SqlDataReader r = DBHelper.GetReader(sql);
+            // 4. 拼装结果
             string data = Json.ToJson(r);
             string result = string.Format("success:true,totalProperty:{0},data:", c.GetInt32(0), sql);
             result = "{" + result + data + "}";
@@ -56,9 +69,4 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         Response.End();
     }
 
-    private string getWhere(string prefix)
-    {
-
-        return string.Format(" {0}日期年='2011' and {0}日期月='5' ",prefix);
-    }
 }
