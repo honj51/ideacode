@@ -49,7 +49,7 @@ Ext.MonthCombox = Ext.extend(Ext.form.ComboBox,{
 // 工业园选择
 Ext.GyyCombox = Ext.extend(Ext.form.ComboBox,{
     editable: false,
-	width: 50,
+	width: 120,
 	mode: 'local',
 	triggerAction:"all",
 	lx_store: null,
@@ -60,15 +60,13 @@ Ext.GyyCombox = Ext.extend(Ext.form.ComboBox,{
     }),
 	displayField: 'gyyName',
 	valueField: 'gyyName',
-	//value: now_month,
-	listeners: {
-	    'select' : function(combo, record,index){
-	        lx_store.reload({params : {
+	initComponent: function(){
+	    var self = this;
+	    this.on('select',function (combo, record,index) {
+	        self.lx_store.reload({params : {
 	            gyy: combo.value
 	        }});
-	    }
-	},
-	initComponent: function(){
+	    })
 	    Ext.MonthCombox.superclass.initComponent.call(this);
 	}
 });
@@ -76,16 +74,17 @@ Ext.GyyCombox = Ext.extend(Ext.form.ComboBox,{
 // 房产类型选择 (工业园)
 Ext.GyyLxCombox = Ext.extend(Ext.form.ComboBox,{
     editable: false,
-	width: 50,
+	width: 120,
 	mode: 'local',
 	triggerAction:"all",
     store: new Ext.data.JsonStore({
-        fields: ['n'],
-        data: month_opts
+        //autoLoad:true,
+	    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
+	    fields: ['lx']
     }),
-	displayField: 'n',
-	valueField: 'n',
-	value: now_month,
+	displayField: 'lx',
+	valueField: 'lx',
+	//value: now_month,
 	initComponent: function(){
 	    Ext.MonthCombox.superclass.initComponent.call(this);
 	}
