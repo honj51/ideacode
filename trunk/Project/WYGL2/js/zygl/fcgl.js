@@ -190,7 +190,12 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			}
 		];
-		self.store.load();
+		self.store.load({
+		    params:{
+		        start:0,
+		        limit:20
+		    }
+		});
 		Ext.Hudongsoft.fcglGrid.superclass.initComponent.call(this);
 	}
 })

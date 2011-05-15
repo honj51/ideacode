@@ -43,6 +43,12 @@ public partial class XiTong_glylb : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
+        else if (action="updata_self")
+        {
+            string admin_id = Session["admin_id"];
+            string password = Request.Params["password"];
+            //string sql =string.Format()"update from sq8szxlx.admin_admin admin_pwd="
+        }
         Response.End();
     }
 }

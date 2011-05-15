@@ -81,6 +81,7 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
 		this.tbar=[
+		    '->',
 			{
 				xtype:"label",
 				text:"名称："
@@ -124,7 +125,12 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				iconCls: 'icon-query',
 			}
 		];
-		self.store.load();
+		self.store.load({
+		    params:{
+		        start:0,
+		        limit:20
+		    }
+		});
 		Ext.Hudongsoft.htdqtsGrid.superclass.initComponent.call(this);
 	}
 })

@@ -276,9 +276,23 @@ xtype:"grid",
 			{
 				text:"搜索",
 				iconCls: 'icon-query',
+				handler:function () {
+				    //iField:iField.getValue()
+				    
+				    self.store.load({
+				        params:{
+				            iField:iField.getValue()
+				        }
+				    });
+				}
 			}
 		];
-		self.store.load();		
+		self.store.load({
+		    params:{
+		        start:0,
+		        limit:20
+		    }
+		});		
 		Ext.Hudongsoft.zrrlbGrid.superclass.initComponent.call(this);
 	}
 })
