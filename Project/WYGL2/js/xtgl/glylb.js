@@ -51,6 +51,22 @@ xtype:"grid",
 	
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
         var self = this;
+        var password1 = new Ext.form.TextField({ 
+            fieldLabel: '密码',
+            name: 'admin_pwd',
+            width:226,
+            inputType: 'password',
+            allowBlank:false 	   
+        });
+        
+        var password2 = new Ext.form.TextField({ 
+            fieldLabel: '确认密码',
+            name: 'admin_pwd2',
+            width:226,
+            allowBlank:false,
+            inputType: 'password',	   
+        });
+        
         var form = new Ext.FormPanel({
 	        id:'form1',
 	        padding:10,
@@ -74,20 +90,8 @@ xtype:"grid",
                     width:226,
                     xtype: 'textfield'				                           
                 },
-                {
-                    fieldLabel: '密码',
-                    name: 'admin_pwd',
-                    width:226,
-                    inputType: 'password',
-                    xtype: 'textfield'				                           
-                },
-                {
-                    fieldLabel: '再次输入密码',
-                    name: 'admin_pwd',
-                    width:226,
-                    inputType: 'password',
-                    xtype: 'textfield'				                           
-                },
+                password1,
+                password2,
                 {
                     fieldLabel: '角色',
                     name: 'admin_limit',
@@ -118,7 +122,11 @@ xtype:"grid",
 	            {
 	                text:'保存',// callback
 	                iconCls: 'icon-save',
-	                handler:function (c) {		                
+	                handler:function (c) {	
+	                    if (password1.getValue() != password2.getValue()) {
+	                         Ext.Msg.alert("提示","两次密码输入不一致,请重新输入！");
+	                         return;
+	                    };	                
 	                     form.getForm().submit({
 	                        url:'ajax/xtgl/glylb.aspx',
 	                        params:{
@@ -127,7 +135,7 @@ xtype:"grid",
 	                        success:function (form, action) {
 	                            console.log(action.response.responseText);                                      
                                 w.close();                                
-                                self.store.reload();
+                                Ext.Msg.alert("修改密码","修改密码成功");
 	                        }
 	                    });
 	                }
