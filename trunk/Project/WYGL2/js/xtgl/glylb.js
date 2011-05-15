@@ -4,7 +4,6 @@ Ext.Hudongsoft.glylbGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"管理员列表",
 	store:new Ext.data.JsonStore({
-		autoLoad:true,
 		url: 'ajax/xtgl/glylb.aspx?action=list',
 		fields:[
 		    'id','admin_id','admin_pwd','admin_name','admin_limit','tel','qq','email'
@@ -198,7 +197,8 @@ xtype:"grid",
 				}
 				
 			}
-		]
+		];
+		self.store.load();		
 		Ext.Hudongsoft.glylbGrid.superclass.initComponent.call(this);
 	}
 })

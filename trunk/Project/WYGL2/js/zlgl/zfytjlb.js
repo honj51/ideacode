@@ -5,7 +5,7 @@ xtype:"grid",
 	title:"总费用统计列表",
 	store:{
 		xtype:"jsonstore",
-		autoLoad:true
+		
 	},
 	width:792,
 	height:560,

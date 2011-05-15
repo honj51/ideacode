@@ -4,7 +4,6 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
     xtype:"grid",
 	title:"工业园管理列表",
 	store:new Ext.data.JsonStore({
-		autoLoad:true,
 		url: 'ajax/zygl/gyygl.aspx?action=list',
 		fields:[
 		    'id','序号','工业园名称','工业园面积'
@@ -159,16 +158,8 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				    var win = new Ext.Window({
 				        title:"增加房产类型",
 				        width:400,
-				        height:300,
-				        items:[
-				            new Ext.FormPanel({
-				                padding: 10,
-                                width: 360,
-                                this.items:[
-                                
-                                ]
-				            })
-				        ]
+				        height:300
+				        
 				    });
 				    win.show();
 				    
@@ -176,7 +167,8 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				
 				}
 			}
-		]
+		];
+		self.store.load();
 		Ext.Hudongsoft.gyyglGrid.superclass.initComponent.call(this);
 	}
 })

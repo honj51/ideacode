@@ -4,7 +4,6 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"自然人列表",
 		store:new Ext.data.JsonStore({
-		autoLoad:true,
 		root : 'data',
 		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/zrrlb.aspx?action=list',
@@ -278,7 +277,8 @@ xtype:"grid",
 				text:"搜索",
 				iconCls: 'icon-query',
 			}
-		]
+		];
+		self.store.load();		
 		Ext.Hudongsoft.zrrlbGrid.superclass.initComponent.call(this);
 	}
 })

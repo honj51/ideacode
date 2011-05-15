@@ -6,7 +6,6 @@ xtype:"grid",
 	store:{
 		xtype:"jsonstore",
 		url: 'ajax/sfgl/jfgl.aspx?action=list',		
-		autoLoad:true,
 		fields:[
 		    'id', '序号','合同编号','客户编号','所属工业园','所属房产','合同开始时间','合同结束时间','月份','缴费状态'
 		]
@@ -156,7 +155,8 @@ xtype:"grid",
 				text:"搜索",
 				iconCls: 'icon-query'
 			}
-		]
+		];
+		self.store.load();
 		Ext.Hudongsoft.jfglGrid.superclass.initComponent.call(this);
 	}
 })

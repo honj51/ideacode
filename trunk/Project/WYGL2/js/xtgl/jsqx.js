@@ -4,7 +4,6 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"角色权限",
      store:new Ext.data.JsonStore({
-		autoLoad:true,
 		url: 'ajax/xtgl/jsqx.aspx?action=list',
 		fields:[
 		    'id','role_id','role_name'
@@ -159,7 +158,8 @@ xtype:"grid",
 				}
 				
 			}
-		]
+		];
+		self.store.load();
 		Ext.Hudongsoft.jsqxGrid.superclass.initComponent.call(this);
 	}
 })
