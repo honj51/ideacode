@@ -1,10 +1,12 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
+    xtype:"grid",
 	title:"合同到期列表",
     store : new Ext.data.JsonStore({
-        url: 'ajax/zlgl/htdqts.aspx?action=load_data',
+        root : 'data',
+		totalProperty : 'totalProperty',
+        url: 'ajax/zlgl/htdqts.aspx?action=list',
 		fields:[
 		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间'
 		]	
@@ -71,6 +73,13 @@ xtype:"grid",
 		}
 	],
 	initComponent: function(){
+	    var self = this;
+	    this.bbar = new Ext.PagingToolbar({
+	        pageSize: 20,
+	        store: self.store,
+	        displayInfo: true,
+	        plugins: [new Ext.ux.ProgressBarPager()]
+	    });
 		this.tbar=[
 			{
 				xtype:"label",
