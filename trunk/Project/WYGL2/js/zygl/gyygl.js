@@ -156,7 +156,22 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				iconCls: 'icon-xieGenJin',
 				handler:function () {
 				    var r = self.getSelectionModel().getSelected();
-				    alert(r);
+				    var win = new Ext.Window({
+				        title:"增加房产类型",
+				        width:400,
+				        height:300,
+				        items:[
+				            new Ext.FormPanel({
+				                padding: 10,
+                                width: 360,
+                                this.items:[
+                                
+                                ]
+				            })
+				        ]
+				    });
+				    win.show();
+				    
 				    
 				
 				}

@@ -21,9 +21,23 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
 
         if (action == "list")
         {
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.user_zrr");
-            
-            Response.Write(Json.ToJson(r));
+            string sql = "";
+            if (Request.Params["start"] != null && Request["limit"] != null)
+            {
+                sql = string.Format("select top {0} * from sq8szxlx.user_zrr where id not in (select top {1} id from sq8szxlx.user_zrr)",
+                    Request["limit"], Request.Params["start"]);
+            }
+            else
+            {
+                sql = "select * from sq8szxlx.user_zrr";
+            }
+            SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.user_zrr");
+            if (!c.Read()) return;
+            SqlDataReader r = DBHelper.GetReader(sql);
+            string data = Json.ToJson(r);
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c.GetInt32(0));
+            result = "{" + result + data + "}";
+            Response.Write(result);
 
         }
         else if (action == "add")

@@ -97,6 +97,8 @@
                     }
                     else if (n.attributes.text == "临时开票") {
                         panel = new Ext.Hudongsoft.zphtglWin();
+                        panel.show();
+                        return;
                     }
                     else if (n.attributes.text == "角色管理") {
                         panel = new Ext.Hudongsoft.jsqxGrid();
@@ -106,6 +108,8 @@
                     }
                     else if (n.attributes.text == "修改密码") {
                         panel = new Ext.Hudongsoft.xgmmWin();
+                        panel.show();
+                        return;
                     }
                     tab.add(panel);      
                     tab.activate(panel);
