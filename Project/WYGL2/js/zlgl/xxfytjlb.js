@@ -5,7 +5,7 @@ xtype:"grid",
 	title:"详细费用统计列表",
 	store:{
 		xtype:"jsonstore",
-		autoLoad:true
+		
 	},
 	width:843,
 	height:560,

@@ -4,7 +4,6 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"合同列表",
 	store:new Ext.data.JsonStore({
-	    autoLoad:true,
 		url: 'ajax/zlgl/zphtgl.aspx?action=list',
 		root : 'data',
 		totalProperty : 'totalProperty',
@@ -306,7 +305,8 @@ xtype:"grid",
 				text:"搜索",
 				iconCls: 'icon-query'
 			}
-		]
+		];
+		self.store.load();
 		Ext.Hudongsoft.zphtglGrid.superclass.initComponent.call(this);
 	}
 })

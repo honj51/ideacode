@@ -4,7 +4,6 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
     xtype:"grid",
 	title:"公司列表",
     store:new Ext.data.JsonStore({
-		autoLoad:true,
 		url: 'ajax/zygl/gslb.aspx?action=list',
 		fields:[
 		    'id','编码','名称','描述','联系人','联系电话','助记码','注册号','法人代表','办公地址','联系方法','备注','成立日期'
@@ -252,7 +251,8 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				text:"搜索",
 				iconCls: 'icon-query',
 			}
-		]
+		];
+	    self.store.load();
 		Ext.Hudongsoft.gslbGrid.superclass.initComponent.call(this);
 	}
 })

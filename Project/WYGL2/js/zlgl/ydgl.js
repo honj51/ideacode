@@ -4,7 +4,6 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
 	title:"预定管理",
 	store:new Ext.data.JsonStore({
-	    autoLoad:true,
 		url: 'ajax/zlgl/ydgl.aspx?action=list',
 		fields:[
 		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','操作时间','备注'
@@ -232,7 +231,8 @@ xtype:"grid",
 				text:"搜索",
 				iconCls: 'icon-query'
 			}
-		]
+		];
+		self.store.load();
 		Ext.Hudongsoft.ydglGrid.superclass.initComponent.call(this);
 	}
 })
