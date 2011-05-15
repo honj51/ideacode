@@ -100,76 +100,34 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    
 	    // 搜索变量
 	    var mc = new Ext.form.TextField({});
-	    var mc = new Ext.form.TextField({});
-	    var mc = new Ext.form.TextField({});
-	    var mc = new Ext.form.ComboBox({});
-		this.tbar=new Ext.Toolbar({		    
-		    items: [{
-				xtype:"label",
-				text:"名称："
-			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签",
-				width:100
-			},'  ',
-			{
-				xtype:"label",
-				text:"工业园："
-			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width: 100,
-				editable: false,
-				store: new Ext.data.JsonStore({
-				    autoLoad:true,
-				    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
-				    fields: ['gyyName']
-				}),
-				displayField: 'gyyName',
-				valueField: 'gyyName',
-				listeners: {
-				    'select' : function(combo, record,index){
-				        lx_store.reload({params : {
-				            gyy: combo.value
-				        }});
-				    }
-				}
-			},'  ',
-			{
-				xtype:"label",
-				text:"类型："
-			},
-			{   
-			    xtype:"combo",
-				editable: false,
-				width: 100,
-				triggerAction:"all",
-				fieldLabel:"标签",
-				store: lx_store,
-				displayField: 'lx',
-				valueField: 'lx'
-			},'  ',
-			{
-				xtype:"label",
-				text:"号码："
-			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签",
-				width:100
-			},'  ',
-			'年：',new Ext.YearCombox(),'  ',
-			'月：',new Ext.MonthCombox(),'  ',
+	    var gyy_lx = new Ext.GyyLxCombox();
+	    var gyy = new Ext.GyyCombox({lx_store: gyy_lx.store});
+	    var hm = new Ext.form.TextField({});
+	    var nian = new Ext.YearCombox();
+	    var yue = new Ext.MonthCombox();
+	    this.tbar=new Ext.Toolbar({		    
+		    items: ['名称：',
+			mc,'  ',
+			'工业园：',
+            gyy,'  ',
+            '类型：',
+            gyy_lx,'  ',
+			'号码：',
+			hm,'  ',
+			'年：',nian,'  ',
+			'月：',yue,'  ',
             {
 				text:"搜索",
 				iconCls: 'icon-query',
 				handler: function () {
 				    self.store.load({
 				        params: {
-				            
+				            mc: mc.getValue(),
+                            gyy: gyy.getValue(),
+                            gyy_lx: gyy_lx.getValue(),
+                            hm: hm.getValue(),
+                            nian: nian.getValue(),
+                            yue: yue.getValue()         				            
 				        }
 				    });
 				}
