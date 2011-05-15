@@ -32,7 +32,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             }
             else
             {
-                sql = string.Format(@"select top 20 z.*,u.录入状态,u.缴费状态 from sq8szxlx.zpgl z 
+                sql = string.Format(@"select top 20 z.*,u.录入状态,u.缴费状态 from sq8szxlx.zpgl z
                     left join sq8szxlx.user_sf_zb u on z.编码=u.合同编号 where {0}",where);
             }
             SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.zpgl");
@@ -58,6 +58,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
 
     private string getWhere(string prefix)
     {
+
         return string.Format(" {0}日期年='2011' and {0}日期月='5' ",prefix);
     }
 }
