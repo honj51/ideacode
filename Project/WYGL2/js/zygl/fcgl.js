@@ -2,9 +2,11 @@
 
 
 Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
+    xtype:"grid",
 	title:"房产管理",
 	store:new Ext.data.JsonStore({
+		root : 'data',
+		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/fcgl.aspx?action=list',
 		fields:[
 		    'id','工业园名称','房产类型','房号','描述','房型','朝向','房屋结构'
@@ -141,6 +143,12 @@ xtype:"grid",
 	
 	initComponent: function(){
 	    var self = this;
+	    this.bbar = new Ext.PagingToolbar({
+	        pageSize: 20,
+	        store: self.store,
+	        displayInfo: true,
+	        plugins: [new Ext.ux.ProgressBarPager()]
+	    });
 		this.tbar=[
 			{
 				text:"新增房产",

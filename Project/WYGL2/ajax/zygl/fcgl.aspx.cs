@@ -20,8 +20,23 @@ public partial class ZiYuan_fcgl : System.Web.UI.Page
 
         if (action == "list")
         {
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.gyy_fc_lb  order by 工业园名称,房产类型,房号 asc");          
-            Response.Write(Json.ToJson(r));         
+            string sql = "";
+            if (Request.Params["start"] != null && Request["limit"] != null)
+            {
+                sql = string.Format("select top {0} * from sq8szxlx.gyy_fc_lb where id not in(select top {1} id from sq8szxlx.gyy_fc_lb)",
+                    Request["limit"],Request.Params["start"]);
+            }
+            else
+            {
+                sql = "select * from sq8szxlx.gyy_fc_lb";   
+            }
+            SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.gyy_fc_lb");
+            if (!c.Read()) return;
+            SqlDataReader r = DBHelper.GetReader(sql);
+            string data = Json.ToJson(r);
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c.GetInt32(0));
+            result = "{" + result + data + "}";
+            Response.Write(result);    
         }else if (action == "add")
         {
             string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_fc_lb", "id", true);

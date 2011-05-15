@@ -10,6 +10,6 @@ role_lb :
 user_gs
 user_sf_lb
 user_sf_zb
-user_zrr
+user_zrr				自然人列表
 zpgl
 zpgl_lx_lb

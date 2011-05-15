@@ -5,6 +5,8 @@ xtype:"grid",
 	title:"自然人列表",
 		store:new Ext.data.JsonStore({
 		autoLoad:true,
+		root : 'data',
+		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/zrrlb.aspx?action=list',
 		fields:[
 		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注','出生日期'
@@ -215,14 +217,13 @@ xtype:"grid",
 
 	
 	initComponent: function(){
-	    var self = this;
-	    
+	    var self = this;    
 	    var iField = new Ext.form.TextField({ //搜索栏
             emptyText:'请输入姓名',
 	        width:150,
     	   
         });
-        this.bbar = new Ext.PagingToolbar({
+        this.bbar = new Ext.PagingToolbar({ //分页控件
 	        pageSize: 20,
 	        store: self.store,
 	        displayInfo: true,
