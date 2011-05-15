@@ -34,15 +34,18 @@ public partial class XiTong_glylb : System.Web.UI.Page
         }
         else if (action == "update")
         {
-            string md5 = Common.makeMD5(Request.Form["admin_pwd"]);
-            Request.Form["admin_pwd"] = md5;
             NameValueCollection nvc = new NameValueCollection();
-            foreach (var item in Request.Form)
+            for (int i = 0; i < Request.Form.Count;i++ )
             {
-                NameValuePair p = new NameValuePair();
-                
+                if (Request.Form.GetKey(i) == "admin_pwd")
+                {
+                    string md5 = Common.makeMD5(Request.Form.Get(i));
+                    nvc.Add(Request.Form.GetKey(i), md5);
+                }
+                else
+                    nvc.Add(Request.Form.GetKey(i), Request.Form.Get(i));
             }
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.admin_admin", "id", false);
+            string sql = SqlBuilder.NameValueToSql(nvc, "sq8szxlx.admin_admin", "id", false);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
