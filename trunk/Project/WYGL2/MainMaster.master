@@ -14,7 +14,7 @@
     <script type="text/javascript" src="ext/src/locale/ext-lang-zh_CN.js"></script>
     <!-- 收费管理  -->
     <script type="text/javascript" src="js/sfgl/sjlr.js"></script>
-    <script type="text/javascript" src="js/sfgl/jfgl.js"></script> 
+<%--    <script type="text/javascript" src="js/sfgl/jfgl.js"></script> --%>
       
     <!-- 资源管理  -->
     <script type="text/javascript" src="js/zygl/fcgl.js"></script>
@@ -66,7 +66,7 @@
                         panel = new Ext.Hudongsoft.sjlrGrid();
                     }
                     else if (n.attributes.text == "缴费管理") {
-                        panel = new Ext.Hudongsoft.jfglGrid();
+                        panel = new Ext.Hudongsoft.sjlrGrid({jfgl:true});
                     }
                     else if (n.attributes.text == "工业园管理") {
                         panel = new Ext.Hudongsoft.gyyglGrid();

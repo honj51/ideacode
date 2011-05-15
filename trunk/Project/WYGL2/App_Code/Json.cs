@@ -138,7 +138,8 @@ public class Json
             for (int i = 0; i < dataReader.FieldCount; i++)
             {
                 jsonString += "\"" + ToJson(dataReader.GetName(i)) + "\":";
-                if (dataReader.GetFieldType(i) == typeof(DateTime))
+                Type type = dataReader.GetFieldType(i);
+                if (type == typeof(DateTime))
                 {
                     if (!dataReader.IsDBNull(i))
                     {
@@ -150,13 +151,25 @@ public class Json
                         jsonString += "\"\",";
                     }                    
                 }
-                else if (dataReader.GetFieldType(i) == typeof(string))
+                else if (type == typeof(string))
                 {
                     jsonString += "\"" + ToJson(dataReader[i].ToString()) + "\",";
                 }
+                else if (type == typeof(Int32) || type == typeof(Double) || type == typeof(Decimal))
+                {
+                    if (!dataReader.IsDBNull(i))
+                    {
+                        jsonString += ToJson(dataReader[i].ToString()) + ",";
+                    }
+                    else
+                    {
+                        jsonString += "\"\",";
+                    }
+                }
                 else
                 {
-                    jsonString += ToJson(dataReader[i].ToString()) + ",";
+                    throw new Exception("未知类型:" + type.ToString());
+                    //jsonString += ToJson(dataReader[i].ToString()) + ",";
                 }
             }
             jsonString = DeleteLast(jsonString) + "},";
