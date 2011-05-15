@@ -196,11 +196,58 @@ xtype:"grid",
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
+	    
 	    var lx_store = new Ext.data.JsonStore({
 		    autoLoad:true,
 		    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
 		    fields: ['lx']
 		});
+		
+		var iFieldName = new Ext.form.TextField({ //搜索栏名称
+            emptyText:'请输入客户姓名',
+	        width:100,
+    	   
+        });
+        
+        var iFieldNo = new Ext.form.TextField({ //搜索栏号码
+            emptyText:'请输入编号',
+	        width:150,
+    	   
+        });
+        
+        var gyy = new Ext.form.ComboBox({
+			triggerAction:"all",
+			fieldLabel:"标签",
+			width: 100,
+			editable: false,
+			store: new Ext.data.JsonStore({
+			    autoLoad:true,
+			    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
+			    fields: ['gyyName']
+			}),
+			displayField: 'gyyName',
+			valueField: 'gyyName',
+			emptyText:'请选择',
+			listeners: {
+			    'select' : function(combo, record,index){
+			        lx_store.reload({params : {
+			            gyy: combo.value
+			        }});
+			    }
+			}
+        });
+        
+        var leix = new Ext.form.ComboBox({
+				editable: false,
+				width: 100,
+				triggerAction:"all",
+				fieldLabel:"标签",
+				emptyText:'请选择',
+				store: lx_store,
+				displayField: 'lx',
+				valueField: 'lx'  
+        });
+        
 		this.tbar=[		    
 			{
 				text:"新增合同",
@@ -244,69 +291,40 @@ xtype:"grid",
 				text:"编辑固定消费项目",
 				iconCls: 'icon-xieGenJin'
 			},
-			{
-				xtype:"label",
-				text:"名称："
-			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签",
-				width:120
-			},
+			'->',
+	        iFieldName,
 			{
 				xtype:"label",
 				text:"工业园："
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width: 100,
-				editable: false,
-				store: new Ext.data.JsonStore({
-				    autoLoad:true,
-				    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
-				    fields: ['gyyName']
-				}),
-				displayField: 'gyyName',
-				valueField: 'gyyName',
-				listeners: {
-				    'select' : function(combo, record,index){
-				        lx_store.reload({params : {
-				            gyy: combo.value
-				        }});
-				    }
-				}
-			},
+            gyy,
 			{
 				xtype:"label",
 				text:"类型："
 			},
-			{
-				xtype:"combo",
-				editable: false,
-				width: 100,
-				triggerAction:"all",
-				fieldLabel:"标签",
-				store: lx_store,
-				displayField: 'lx',
-				valueField: 'lx'
-			},
-			{
-				xtype:"label",
-				text:"号码："
-			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签",
-				width:120
-			},
+            leix,
+            iFieldNo,
 			{
 				text:"搜索",
-				iconCls: 'icon-query'
+				iconCls: 'icon-query',
+				handler:function () {
+				    self.store.load({
+				        params:{
+				            iFieldName:iFieldName.getValue(),
+				            iFieldNo:iFieldNo.getValue(), 
+				            gyy:gyy.getValue(),
+				            leix:leix.getValue()
+				        }
+				    });			
+				}
 			}
 		];
-		self.store.load();
+		self.store.load({
+		    params:{
+		        start:0,
+		        limit:20
+		    }
+		});
 		Ext.Hudongsoft.zphtglGrid.superclass.initComponent.call(this);
 	}
 })

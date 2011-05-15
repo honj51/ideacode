@@ -158,8 +158,18 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				    var win = new Ext.Window({
 				        title:"增加房产类型",
 				        width:400,
-				        height:300
-				        
+				        height:300,
+				        items:[
+				            {
+                                xtype: 'hidden',
+                                name: 'id'
+                            },{
+                                fieldLabel: '编号',
+                                name: '编号',
+                                allowBlank:false,
+                                xtype: 'textfield'				                           
+                            }
+				        ]
 				    });
 				    win.show();
 				    

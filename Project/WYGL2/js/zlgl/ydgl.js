@@ -223,18 +223,14 @@ xtype:"grid",
 			{
 				xtype:"label",
 				text:""
-			},
-			'->',
-			{
-				xtype:"textfield",
-				fieldLabel:"标签"
-			},
-			{
-				text:"搜索",
-				iconCls: 'icon-query'
 			}
 		];
-		self.store.load();
+		self.store.load({
+		    params:{
+		        start:0,
+		        limit:20
+		    }
+		});
 		Ext.Hudongsoft.ydglGrid.superclass.initComponent.call(this);
 	}
 })
