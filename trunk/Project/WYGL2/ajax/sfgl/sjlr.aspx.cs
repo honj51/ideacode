@@ -17,17 +17,20 @@ public partial class SouFei_sjlr : System.Web.UI.Page
     {
         string action = Request.QueryString["action"];
         if (String.IsNullOrEmpty(action)) return;
-
-        if (action == "load_data")
+        Response.ContentType = "application/json";
+        Response.ContentEncoding = Encoding.UTF8;
+            
+        if (action == "list")
         {
             SqlDataReader r = DBHelper.GetReader(@"select top 10 z.*,u.录入状态 from sq8szxlx.zpgl z 
                 left join sq8szxlx.user_sf_zb u on z.编码=u.合同编号");
-            Response.ContentType = "application/json";
-            Response.ContentEncoding = Encoding.UTF8;
-            Response.Write(Json.ToJson(r));
-            Response.End();
-            
+            Response.Write(Json.ToJson(r));            
         }
-       
+        else if (action == "list_zb")
+        {
+            SqlDataReader r = DBHelper.GetReader(@"select * from sq8szxlx.user_sf_zb where 合同编号='ht2011391549226637'");
+            Response.Write(Json.ToJson(r));
+        }
+        Response.End();
     }
 }

@@ -17,14 +17,14 @@ public partial class SouFei_jfgl : System.Web.UI.Page
     {
         string action = Request.QueryString["action"];
         if (String.IsNullOrEmpty(action)) return;
+        Response.ContentType = "application/json";
+        Response.ContentEncoding = Encoding.UTF8;
 
         if (action == "list")
         {
             SqlDataReader r = DBHelper.GetReader("select top 20 * from sq8szxlx.user_sf_zb");
-            Response.ContentType = "application/json";
-            Response.ContentEncoding = Encoding.UTF8;
             Response.Write(Json.ToJson(r));
-            Response.End();
         }
+        Response.End();
     }
 }
