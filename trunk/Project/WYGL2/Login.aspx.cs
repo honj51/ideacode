@@ -25,7 +25,7 @@ public partial class Default2 : System.Web.UI.Page
 
             string user = Request.Form["user"];
             string password = Request.Form["password"];
-            password = makeMD5(password);            
+            password = Common.makeMD5(password);            
             SqlParameter[] sps = new SqlParameter[] { new SqlParameter("@admin_id",user),new SqlParameter("@admin_pwd",password) };
 
             SqlDataReader dr = null;
@@ -50,16 +50,14 @@ public partial class Default2 : System.Web.UI.Page
                 }                
             }            
         }
+        else if (action == "md5")
+        {
+            string md5 = Common.makeMD5("123");
+            Response.Write(md5);
+
+        }
     }
 
-    private string makeMD5(string s)
-    {
-        MD5 md5 = new MD5CryptoServiceProvider();
-        byte[] b = UTF8Encoding.Default.GetBytes(s);
-        string result = BitConverter.ToString(md5.ComputeHash(b),4, 8);
-        result = result.Replace("-", string.Empty);
-        result = result.ToLower();
-        return result;
-    }
+
 
 }
