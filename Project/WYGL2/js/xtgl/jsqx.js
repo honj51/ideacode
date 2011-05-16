@@ -103,9 +103,102 @@ xtype:"grid",
             w.show();
     },
     
-    setPermissions:function () {
-        var self = this;
-        alert("设置权限");
+    setPermissions:function () { 
+        var wins = new Ext.Window({
+            title:'修改权限',
+            layout:'fit',
+            width:500,
+            height:400,
+            store:self.PermissionsStore,
+            items:[
+                {
+                    xtype:'panel',
+                    width:400,
+                    height:300,
+                    items:[
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'数据录入',
+                            name:'数据录入'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'缴费管理',
+                            name:'缴费管理'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'工业园管理',
+                            name:'工业园管理'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'房产管理',
+                            name:'房产管理'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'客户管理',
+                            name:'客户管理'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'预定管理',
+                            name:'预定管理'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'租赁合同管理',
+                            name:'租赁合同管理'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'合同到期提示',
+                            name:'合同到期提示'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'收款分类统计',
+                            name:'收款分类统计'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'收款详细统计',
+                            name:'收款详细统计'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'角色权限',
+                            name:'角色权限'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'管理员管理',
+                            name:'管理员管理'
+                        },
+                        {
+                            xtype:'checkbox',
+                            boxLabel:'修改本身密码',
+                            name:'修改本身密码'
+                        }     
+                    ],
+                    buttons:[
+                        {
+                            text:'保存',// callback
+	                        iconCls: 'icon-save'
+                        },
+                        {
+                            text:'取消',
+                            iconCls:'icon-cancel',
+                            handler:function () {
+                                wins.close()
+                            }
+                        }
+                    ]
+                }
+            ]
+        });
+       wins.show();
     
     },
 	
@@ -154,9 +247,24 @@ xtype:"grid",
 				text:"设置权限",
 				iconCls: 'icon-sheZhi',
 				handler:function () {
-				    self.setPermissions();
+				    var per = self.getSelectionModel().getSelected();
+				    if (per) {
+				        if (per.json.role_name=='总管理员') {
+				            Ext.Msg.alert("提示","总管理员拥有最高权限，不能修改！");
+				            return;
+				        }
+				         var PermissionsStore = new Ext.data.JsonStore({
+				            url: 'ajax/xtgl/jsqx.aspx?action=set&role_name='+per.json.role_name,
+		                    fields:[
+		                        'id','role_name','数据录入','缴费管理','工业园管理','房产管理','客户管理','预定管理','租赁合同管理','合同到期提示',
+		                        '收款分类统计','收款详细统计','角色权限','管理员管理','修改本身密码'
+		                    ],
+				         });
+				         self.setPermissions();
+				         PermissionsStore.load();
+				         //console.log(per.json.role_name)
+				    }			   
 				}
-				
 			}
 		];
 		self.store.load();

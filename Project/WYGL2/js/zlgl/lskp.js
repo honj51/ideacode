@@ -1,107 +1,51 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.zphtglWin=Ext.extend(Ext.Window ,{
-xtype:"window",
+    xtype:"window",
 	title:"临时开票",
 	width:520,
 	height:330,
 	initComponent: function(){
-		this.items=[
-			{
-				xtype:"form",
-				title:"",
-				labelWidth:100,
-				labelAlign:"left",
-				layout:"absolute",
-				height:293,
-				items:[
-					{
-						xtype:"label",
-						text:"深圳市兴联兴投资有限公司",
-						x:140,
-						y:20
-					},
-					{
-						xtype:"label",
-						text:"工业园名称：",
-						x:30,
-						y:50
-					},
-					{
-						xtype:"label",
-						text:"客户姓名：",
-						x:40,
-						y:90
-					},
-					{
-						xtype:"label",
-						text:"日期：",
-						x:60,
-						y:130
-					},
-					{
-						xtype:"label",
-						text:"房产类型：",
-						x:40,
-						y:170
-					},
-					{
-						xtype:"label",
-						text:"房产：",
-						x:60,
-						y:210
-					},
-					{
-						xtype:"textfield",
-						fieldLabel:"标签",
-						anchor:"100%",
-						x:100,
-						y:50,
-						width:70
-					},
-					{
-						xtype:"textfield",
-						fieldLabel:"标签",
-						anchor:"100%",
-						x:100,
-						y:90
-					},
-					{
-						xtype:"textfield",
-						fieldLabel:"标签",
-						anchor:"100%",
-						x:100,
-						y:170
-					},
-					{
-						xtype:"textfield",
-						fieldLabel:"标签",
-						anchor:"100%",
-						x:100,
-						y:210
-					},
-					{
-						xtype:"datefield",
-						fieldLabel:"标签",
-						anchor:"100%",
-						x:100,
-						y:120
-					},
-					{
-						xtype:"button",
-						text:"提交",
-						x:170,
-						y:250
-					},
-					{
-						xtype:"button",
-						text:"取消",
-						x:240,
-						y:250
-					}
-				]
-			}
-		]
+	    var form = new Ext.FormPanel({
+	        padding:10,
+	        //width:300,
+	        items:[
+              {
+                xtype: 'textfield',
+                fieldLabel: '工业园名称',
+                name: 'role_id',
+                width:226
+              },
+              {
+                xtype: 'textfield',
+                fieldLabel: '用户姓名',
+                name: 'role_id',
+                width:226
+              },
+              {
+                xtype: 'textfield',
+                fieldLabel: '月份',
+                name: 'role_id',
+                width:226
+              },
+              {
+                xtype: 'textfield',
+                fieldLabel: '客户类型',
+                name: 'role_id',
+                width:226
+              },
+              {
+                xtype: 'textfield',
+                fieldLabel: '房产',
+                name: 'role_id',
+                width:226
+              }
+    	        
+	       ]
+	    });
+	    this.items=[
+	        form
+	    ]
 		Ext.Hudongsoft.zphtglWin.superclass.initComponent.call(this);
 	}
 })

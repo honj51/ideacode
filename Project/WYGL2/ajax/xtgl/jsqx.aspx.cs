@@ -43,6 +43,15 @@ public partial class XiTong_jsqx : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
+        else if (action == "set")
+        {
+            string role_name = Request.Params["role_name"];
+            string sql = string.Format("select * from sq8szxlx.role_lb where role_name='{0}' ", role_name);
+            SqlDataReader r = DBHelper.GetReader(sql);
+           
+            Response.Write(Json.ToJson(r));
+
+        }
         Response.End();
     }
 }
