@@ -46,7 +46,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             SqlDataReader c = DBHelper.GetReader("select count(*) " + from + where);
             if (!c.Read()) return;
             // 3. 获取数据
-            string sql = string.Format(@"{0} {1} {2} and z.id not in (select top {3} z.id {1} {2})",
+            string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2})",
                 select, from, where, Request.Params["start"]);
             SqlDataReader exclude = DBHelper.GetReader(sql);
             SqlDataReader r = DBHelper.GetReader(sql);

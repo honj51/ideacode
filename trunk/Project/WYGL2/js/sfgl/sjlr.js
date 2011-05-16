@@ -11,7 +11,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
         root : 'data',
 	    totalProperty : 'totalProperty',
 		fields:[
-		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月','合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态'
+		    'id','编码','客户名称','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月','合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态'
 		]
 	}),
 	width:802,
@@ -120,15 +120,17 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 				text:"搜索",
 				iconCls: 'icon-query',
 				handler: function () {
+	                self.store.baseParams = {
+			            mc: mc.getValue(),
+                        gyy: gyy.getValue(),
+                        gyy_lx: gyy_lx.getValue(),
+                        hm: hm.getValue(),
+                        nian: nian.getValue(),
+                        yue: yue.getValue()         				            
+                    };
 				    self.store.load({
 				        params: {
 				            start: 0,limit:20,
-				            mc: mc.getValue(),
-                            gyy: gyy.getValue(),
-                            gyy_lx: gyy_lx.getValue(),
-                            hm: hm.getValue(),
-                            nian: nian.getValue(),
-                            yue: yue.getValue()         				            
 				        }
 				    });
 				}
@@ -137,21 +139,42 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    text:"查看详情",
 			    iconCls: 'icon-list',
 			    handler: function () {
-			         var w = new Ext.Window({
-                        title:"录入总表",
-                        layout: 'fit',
-                        items:[
-                            new Ext.Hudongsoft.lrzbGrid()
-                        ]
-                    });
-                    w.show();
+			        var r = self.getSelectionModel().getSelected();
+				    if (r) {
+	                    function printDate(f) {
+	                        var data = r.data;
+	                        return data[f+'_年'] + '/' + data[f+'_月'] + '/' + data[f+'_日'];
+	                    }
+				        var html = '合同编号:'+r.data.编码+'客户编号:'+r.data.编码+'客户名称:'+r.data.客户名称+'<br>'+
+		                '联系电话'+'联系地址<br>'+
+		                '所属工业园'+r.data.所属工业园+'房产类型'+r.data.房产类型+'所属房产'+r.data.所属房产+'<br>'+
+		                '合同开始时间'+printDate('合同开始时间')+'合同结束时间'+printDate('合同结束时间');
+		    
+			            var w = new Ext.Window({
+                            title:"录入总表",
+                            height: 500,
+                            layout: 'border',
+                            items:[
+                                new Ext.Panel({
+                                    region:'north',
+                                    html: html,
+                                }),
+                                new Ext.Hudongsoft.lrzbGrid({region:'center',zbdata:r.data})
+                            ]
+                        });
+                        w.show();
+				    }
 			    }
 			}
 			
 		]});
+		
+		self.store.baseParams = {
+	        nian:now_year,yue:now_month
+	    };
 		self.store.load({
 		    params: {
-		        start: 0,limit:20,nian:now_year,yue:now_month
+		        start: 0,limit:20
 		    }
 		});
 		Ext.Hudongsoft.sjlrGrid.superclass.initComponent.call(this);
@@ -162,7 +185,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
  *	录入总表 (收费总表)
  */
 Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
-	title:"录入总表",
+	zbdata: null,
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_zb',
 		fields:[
@@ -216,7 +239,9 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
-		this.tbar=[{
+	    console.log(self.zbdata);
+		this.tbar=[
+		    {
 		    text: '查看详情',
 		    handler: function () {
 		        var w = new Ext.Window({
