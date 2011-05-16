@@ -45,12 +45,17 @@ Ext.Hudongsoft.util.Format = function(){
 				return new Date(v).format(format);
 			}
         },
-        yearMonthDayRenderer : function(v, metaData, record, rowIndex, colIndex, store){
+        yearMonthDayRenderer_1 : function(v, metaData, record, rowIndex, colIndex, store){
             return record.data.合同开始时间_年 + '-' + record.data.合同开始时间_月+ '-' + record.data.合同开始时间_日;	
+		},
+        yearMonthDayRenderer_2 : function(v, metaData, record, rowIndex, colIndex, store){
+            return record.data.合同结束时间_年 + '-' + record.data.合同结束时间_月+ '-' + record.data.合同结束时间_日;	
 		},
 		yearMonthRenderer : function(v, metaData, record, rowIndex, colIndex, store){
             return record.data.合同开始时间_年 + '/' + record.data.合同开始时间_月;
-			
+		},
+		yearMonthRenderer2 : function(v, metaData, record, rowIndex, colIndex, store){
+            return record.data.日期年 + '/' + record.data.日期月;
 		}
 	}
 }();

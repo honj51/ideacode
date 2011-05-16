@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
 using System.Text;
+using System.Web.Script.Serialization;
 
 public partial class SouFei_sjlr : System.Web.UI.Page
 {
@@ -23,7 +24,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         if (action == "list")
         {
             // 1. 拼Sql子语句
-            string select = string.Format(@"select top {0} z.*,u.录入状态,u.缴费状态",Request["limit"]);
+            string select = string.Format(@"select top {0} z.*,u.录入状态,u.缴费状态,(u.日期年+'/'+u.日期月) as 录入月份", Request["limit"]);
             string from = " from sq8szxlx.user_sf_zb u left join sq8szxlx.zpgl z on z.编码=u.合同编号 ";
             string where = string.Format(@"where u.日期年='{0}' and u.日期月='{1}' ", Request.Form["nian"], Request.Form["yue"]);
             if (!string.IsNullOrEmpty(Request.Params["mc"]))
@@ -46,7 +47,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             SqlDataReader c = DBHelper.GetReader("select count(*) " + from + where);
             if (!c.Read()) return;
             // 3. 获取数据
-            string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2})",
+            string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2}) order by u.日期年,u.日期月,日期日",
                 select, from, where, Request.Params["start"]);
             SqlDataReader exclude = DBHelper.GetReader(sql);
             SqlDataReader r = DBHelper.GetReader(sql);
@@ -58,8 +59,29 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         }
         else if (action == "list_zb")
         {
-            SqlDataReader r = DBHelper.GetReader(@"select * from sq8szxlx.user_sf_zb where 合同编号='ht2011391549226637'");
+            SqlDataReader r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.user_sf_zb where 合同编号='{0}'",Request.Form["htbh"]));            
             Response.Write(Json.ToJson(r));
+
+            //
+            r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.zpgl where 编码='{0}'", Request.Form["htbh"]));
+            int year1 = r.GetInt32(r.GetOrdinal("合同开始时间_年"));
+            int year2 = r.GetInt32(r.GetOrdinal("合同结束时间_年"));
+            int month1 = r.GetInt32(r.GetOrdinal("合同开始时间_月"));
+            int month2 = r.GetInt32(r.GetOrdinal("合同结束时间_月"));
+            
+            for (int i = year1; i <= year2; i++)
+            {
+                int j = 1;
+                if (i == year1) j = month1;
+                int j_max = 12;
+                if (i == year2) j_max = month2;
+
+                for (; j <= j_max; j++)
+                {
+                    JSONObject jo = new JSONObject();
+                    
+                }
+            }
         }
         else if (action == "list_lb")
         {

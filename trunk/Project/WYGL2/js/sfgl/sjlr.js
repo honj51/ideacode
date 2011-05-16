@@ -11,7 +11,8 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
         root : 'data',
 	    totalProperty : 'totalProperty',
 		fields:[
-		    'id','编码','客户名称','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月','合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态'
+		    'id','编码','客户名称','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月',
+		    '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
 		]
 	}),
 	width:802,
@@ -60,18 +61,11 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    width:80
 		    },
 		    {
-			    header:self.jfgl?"缴费状态":"录入状态",
-			    sortable:true,
-			    resizable:true,
-			    dataIndex:self.jfgl?"缴费状态":"录入状态",
-			    width:100
-		    },
-		    {
 			    header:"合同开始时间",
 			    sortable:true,
 			    resizable:true,
 			    dataIndex:"合同开始时间",
-			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer,
+			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer_1,
 			    width:100
 		    },
 		    {
@@ -79,15 +73,21 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    sortable:true,
 			    resizable:true,
 			    dataIndex:"合同结束时间",
-			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer,
+			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer_2,
+			    width:100
+		    },
+		    {
+			    header:self.jfgl?"缴费状态":"录入状态",
+			    sortable:true,
+			    resizable:true,
+			    dataIndex:self.jfgl?"缴费状态":"录入状态",
 			    width:100
 		    },
 		    {
 			    header:"录入月份",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"",
-			    renderer: Ext.Hudongsoft.util.Format.yearMonthRenderer,
+			    dataIndex:"录入月份",
 			    width:70
 		    }
 	    ];
@@ -157,7 +157,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
                             items:[
                                 new Ext.Panel({
                                     region:'north',
-                                    html: html,
+                                    html: html
                                 }),
                                 new Ext.Hudongsoft.lrzbGrid({region:'center',zbdata:r.data})
                             ]
@@ -189,7 +189,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_zb',
 		fields:[
-		    'id','单据编号','客户编号','客户名称','日期','总费用','缴费金额','余额','录入状态','缴费状态'
+		    'id','单据编号','客户编号','客户名称','日期年','日期月','总费用','缴费金额','余额','录入状态','缴费状态'
 		]
 	}),
 	width:700,
@@ -202,7 +202,8 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		},
 		{
 			header:"日期",
-			dataIndex:"日期",
+			dataIndex:"日期年",
+			renderer: Ext.Hudongsoft.util.Format.yearMonthRenderer2,
 			width:100
 		},
 		{
@@ -259,7 +260,9 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    
 		    }
 		}];
-		self.store.load();
+		self.store.load({params:{
+            htbh: self.zbdata.编码
+		}});
 		Ext.Hudongsoft.lrzbGrid.superclass.initComponent.call(this);
 	}
 })
