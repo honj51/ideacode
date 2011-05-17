@@ -89,4 +89,19 @@ Ext.GyyLxCombox = Ext.extend(Ext.form.ComboBox,{
 	    Ext.MonthCombox.superclass.initComponent.call(this);
 	}
 });
-
+ //消费项目
+// Ext.sfxmCombox = Ext.extend(Ext.form.ComboBox,{
+//    editable:false,
+//    width:120,
+//    mode:'local',
+//    triggerAction:'all',
+//    store:new Ext.data.JsonStore({
+//        url:"ajax/zlgl/skfltj.aspx?action=find_sfxm",
+//        field:['sfxm']
+//    }),
+//    displayField: 'sfxm',
+//	valueField: 'sfxm',
+//	initComponent: function(){
+//	    Ext.MonthCombox.superclass.initComponent.call(this);
+//	}
+// });

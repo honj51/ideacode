@@ -119,6 +119,7 @@ xtype:"grid",
                     fieldLabel: '操作时间',
                     name: '操作时间',
                     width:226,
+                    disabled:true,
                     xtype: 'textfield'				                           
                 },
                 {
