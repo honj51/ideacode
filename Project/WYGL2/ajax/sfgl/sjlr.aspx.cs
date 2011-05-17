@@ -59,16 +59,24 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         }
         else if (action == "list_zb")
         {
-            SqlDataReader r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.user_sf_zb where 合同编号='{0}'",Request.Form["htbh"]));            
-            Response.Write(Json.ToJson(r));
+            //SqlDataReader r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.user_sf_zb where 合同编号='{0}'",Request.Form["htbh"]));            
+            //Response.Write(Json.ToJson(r));
 
             //
-            r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.zpgl where 编码='{0}'", Request.Form["htbh"]));
-            int year1 = r.GetInt32(r.GetOrdinal("合同开始时间_年"));
-            int year2 = r.GetInt32(r.GetOrdinal("合同结束时间_年"));
-            int month1 = r.GetInt32(r.GetOrdinal("合同开始时间_月"));
-            int month2 = r.GetInt32(r.GetOrdinal("合同结束时间_月"));
-            
+            SqlDataReader r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.zpgl where 编码='{0}'", Request.Params["htbh"]));
+            if (!r.Read())
+            {
+                Response.Write("success:false");
+                Response.End();
+                return;
+            }
+
+            int year1 = Int32.Parse(r.GetString(r.GetOrdinal("合同开始时间_年")));
+            int year2 = Int32.Parse(r.GetString(r.GetOrdinal("合同结束时间_年")));
+            int month1 = Int32.Parse(r.GetString(r.GetOrdinal("合同开始时间_月")));
+            int month2 = Int32.Parse(r.GetString(r.GetOrdinal("合同结束时间_月")));
+            int no = 1;
+            JSONArray ja = new JSONArray();
             for (int i = year1; i <= year2; i++)
             {
                 int j = 1;
@@ -79,9 +87,40 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 for (; j <= j_max; j++)
                 {
                     JSONObject jo = new JSONObject();
-                    
+                    jo.Add("序号", no);
+                    no++;
+                    r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.user_sf_zb 
+                            where 合同编号='{0}' and 日期年='{1}' and 日期月='{2}'",
+                        Request.Params["htbh"],i,j));
+                    jo.Add("年份月份", string.Format("{0}/{1}", i, j));
+                    if (r.Read())
+                    {
+                        jo.Add("总费用", r.GetDecimal(r.GetOrdinal("总费用")));
+                        jo.Add("缴费金额", r.GetDecimal(r.GetOrdinal("缴费金额")));
+                        jo.Add("余额", r.GetDecimal(r.GetOrdinal("余额")));
+                        jo.Add("录入状态", r.GetString(r.GetOrdinal("录入状态")));
+                        jo.Add("缴费状态", r.GetString(r.GetOrdinal("缴费状态")));
+                    }
+                    else
+                    {
+                        jo.Add("总费用", "-");
+                        jo.Add("缴费金额", "-");
+                        jo.Add("余额", "-");
+                        if (i > DateTime.Now.Year || (i == DateTime.Now.Year && j > DateTime.Now.Month))
+                        {
+                            jo.Add("录入状态", "不能录入");
+                            jo.Add("缴费状态", "不能缴费");
+                        }
+                        else {
+                            jo.Add("录入状态", "-");
+                            jo.Add("缴费状态", "-");
+                        }
+                    }
+                    ja.Add(jo);
                 }
             }
+            string ret = JSONConvert.SerializeArray(ja);
+            Response.Write(ret);
         }
         else if (action == "list_lb")
         {
