@@ -14,7 +14,7 @@ for(var i=1;i<=12;i++) {
 
 Ext.YearCombox = Ext.extend(Ext.form.ComboBox,{
     editable: false,
-	width: 80,
+	width: 60,
 	mode: 'local',
 	triggerAction:"all",
     store: new Ext.data.JsonStore({
@@ -31,7 +31,7 @@ Ext.YearCombox = Ext.extend(Ext.form.ComboBox,{
 
 Ext.MonthCombox = Ext.extend(Ext.form.ComboBox,{
     editable: false,
-	width: 50,
+	width: 40,
 	mode: 'local',
 	triggerAction:"all",
     store: new Ext.data.JsonStore({
@@ -49,7 +49,7 @@ Ext.MonthCombox = Ext.extend(Ext.form.ComboBox,{
 // 工业园选择
 Ext.GyyCombox = Ext.extend(Ext.form.ComboBox,{
     editable: false,
-	width: 120,
+	width: 80,
 	mode: 'local',
 	triggerAction:"all",
 	lx_store: null,
@@ -74,7 +74,7 @@ Ext.GyyCombox = Ext.extend(Ext.form.ComboBox,{
 // 房产类型选择 (工业园)
 Ext.GyyLxCombox = Ext.extend(Ext.form.ComboBox,{
     editable: false,
-	width: 120,
+	width: 80,
 	mode: 'local',
 	triggerAction:"all",
     store: new Ext.data.JsonStore({

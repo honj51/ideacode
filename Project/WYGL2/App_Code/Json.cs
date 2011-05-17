@@ -155,7 +155,7 @@ public class Json
                 {
                     jsonString += "\"" + ToJson(dataReader[i].ToString()) + "\",";
                 }
-                else if (type == typeof(Int32) || type == typeof(Double) || type == typeof(Decimal))
+                else if (type == typeof(Int32) || type == typeof(Int64) || type == typeof(Double) || type == typeof(Decimal))
                 {
                     if (!dataReader.IsDBNull(i))
                     {

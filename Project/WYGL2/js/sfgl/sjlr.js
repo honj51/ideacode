@@ -15,8 +15,8 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
 		]
 	}),
-	width:802,
-	height:475,	
+//	width:802,
+//	height:475,	
 	initComponent: function(){
 	    var self = this;
 	    var lx_store = new Ext.data.JsonStore({
@@ -99,13 +99,14 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });
 	    
 	    // 搜索变量
-	    var mc = new Ext.form.TextField({});
+	    var mc = new Ext.form.TextField({width:80});
 	    var gyy_lx = new Ext.GyyLxCombox();
 	    var gyy = new Ext.GyyCombox({lx_store: gyy_lx.store});
-	    var hm = new Ext.form.TextField({});
+	    var hm = new Ext.form.TextField({width:80});
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
-	    this.tbar=new Ext.Toolbar({		    
+	    this.tbar=new Ext.Toolbar({		
+	        enableOverflow: true,    
 		    items: ['名称：',
 			mc,'  ',
 			'工业园：',
@@ -233,25 +234,28 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	],
 	initComponent: function(){
 	    var self = this;
-	    this.bbar = new Ext.PagingToolbar({
-	        pageSize: 20,
-	        store: self.store,
-	        displayInfo: true,
-	        plugins: [new Ext.ux.ProgressBarPager()]
-	    });
 	    console.log(self.zbdata);
 		this.tbar=[
 		    {
 		    text: '查看详情',
 		    handler: function () {
-		        var w = new Ext.Window({
+		        var r = self.getSelectionModel().getSelected();
+		        if (r) {
+		            var html = '';
+		            var w = new Ext.Window({
                         title:"收款详细列表",
-                        layout: 'fit',
+                        height: 500,
+                        layout: 'border',
                         items:[
-                            new Ext.Hudongsoft.sksjGrid()
+                            new Ext.Panel({
+                                region:'north',
+                                html: html
+                            }),
+                            new Ext.Hudongsoft.sksjGrid({region:'center',djbh:r.data.单据编号})
                         ]
                     });
                     w.show();
+		        }
 		    }
 		},{
 		    text: '录入',
@@ -270,10 +274,11 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
  *	收款详细列表 (收款收据)
  */
 Ext.Hudongsoft.sksjGrid=Ext.extend(Ext.grid.GridPanel ,{
+    djbh: null,
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_lb',
 		fields:[
-		    'id','收费项目','收费类型','日期','值','读数','倍率','损耗','滞纳金','费用','录入状态'
+		    'id','序号','收费项目','收费类型','日期','值','读数','倍率','损耗','滞纳金','费用','录入状态'
 		]
 	}),
 	width:700,
@@ -281,7 +286,7 @@ Ext.Hudongsoft.sksjGrid=Ext.extend(Ext.grid.GridPanel ,{
 	columns:[
 		{
 			header:"序号",
-			dataIndex:"id",
+			dataIndex:"序号",
 			width:40		
 		},
 		{
@@ -342,7 +347,9 @@ Ext.Hudongsoft.sksjGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    handler: function () {		        
 		    }
 		}];
-		self.store.load();
+		self.store.load({params:{
+		    djbh: self.djbh
+		}});
 		Ext.Hudongsoft.sksjGrid.superclass.initComponent.call(this);
 	}
 })
