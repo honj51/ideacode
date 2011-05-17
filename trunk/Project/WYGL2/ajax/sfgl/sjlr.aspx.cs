@@ -59,10 +59,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         }
         else if (action == "list_zb")
         {
-            //SqlDataReader r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.user_sf_zb where 合同编号='{0}'",Request.Form["htbh"]));            
-            //Response.Write(Json.ToJson(r));
-
-            //
+            //取得合同开始结束时间
             SqlDataReader r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.zpgl where 编码='{0}'", Request.Params["htbh"]));
             if (!r.Read())
             {
@@ -89,12 +86,14 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                     JSONObject jo = new JSONObject();
                     jo.Add("序号", no);
                     no++;
+                    // 读取总表数据
                     r = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.user_sf_zb 
                             where 合同编号='{0}' and 日期年='{1}' and 日期月='{2}'",
                         Request.Params["htbh"],i,j));
                     jo.Add("年份月份", string.Format("{0}/{1}", i, j));
                     if (r.Read())
                     {
+                        jo.Add("单据编号", r.GetString(r.GetOrdinal("单据编号")));
                         jo.Add("总费用", r.GetDecimal(r.GetOrdinal("总费用")));
                         jo.Add("缴费金额", r.GetDecimal(r.GetOrdinal("缴费金额")));
                         jo.Add("余额", r.GetDecimal(r.GetOrdinal("余额")));
@@ -103,6 +102,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                     }
                     else
                     {
+                        jo.Add("单据编号", "-");
                         jo.Add("总费用", "-");
                         jo.Add("缴费金额", "-");
                         jo.Add("余额", "-");
@@ -124,7 +124,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         }
         else if (action == "list_lb")
         {
-            SqlDataReader r = DBHelper.GetReader(@"select top 10 * from sq8szxlx.user_sf_lb where 合同编号='ht2011391549226637' and 日期年='2010' and 日期月='3'");
+            SqlDataReader r = DBHelper.GetReader(string.Format(@"select ROW_NUMBER() OVER (ORDER BY id) as 序号,* from sq8szxlx.user_sf_lb 
+                where 单据编号='{0}' and not (收费项目 is null)", Request.Params["djbh"]));
             Response.Write(Json.ToJson(r));
         }
         Response.End();
