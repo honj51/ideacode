@@ -175,7 +175,7 @@ public static class JSONConvert
             }
             else
             {
-                sb.Append(string.Format("\"{0}\":\"{1}\",", kvp.Key, ""));
+                sb.Append(string.Format("\"{0}\":{1},", kvp.Key, kvp.Value));
             }
         }
         if (sb.Length > 1)
@@ -246,3 +246,40 @@ public class JSONObject : Dictionary<string, object>
 /// </summary>
 public class JSONArray : List<object>
 { }
+
+public static class Test{
+    public static void MyTest() {
+        JSONArray _array = new JSONArray();
+        _array.Add("1");
+        _array.Add("2");
+        _array.Add("3");
+        _array.Add("4");
+        JSONObject _object = new JSONObject();//新建json对象作为内嵌
+        _object.Add("oneKey", "one");
+        _object.Add("twoArray", _array);
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.Add("2006");
+        jsonArray.Add("2007");
+        jsonArray.Add("2008");
+        jsonArray.Add("2009");
+        jsonArray.Add("2010");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.Add("domain", "mzwu.com");
+        jsonObject.Add("two", _object);//添加json对象
+        jsonObject.Add("years", jsonArray);
+        Console.WriteLine("json序列化为字符串");
+        Console.WriteLine(JSONConvert.SerializeObject(jsonObject));//执行序列化
+        //反序列化
+        JSONObject json = JSONConvert.DeserializeObject("{\"domain\":\"mzwu.com\",\"two\":{\"oneKey\":\"one\",\"twoArray\":[1,2,3,4]},\"years\":[2006,2007,2008,2009,2010]}");//执行反序列化
+        if (json != null)
+        {
+            Console.WriteLine("将json结构的字符串反序列化为json对象并调用");
+            Console.WriteLine(json["domain"]);
+            Console.WriteLine(((JSONObject)json["two"])["oneKey"]);
+            Console.WriteLine(((JSONArray)((JSONObject)json["two"])["twoArray"])[0]);
+            Console.WriteLine(((JSONArray)json["years"])[3]);
+        }
+        Console.ReadLine();
+    }
+}
+//序列化

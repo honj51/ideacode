@@ -189,7 +189,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_zb',
 		fields:[
-		    'id','单据编号','客户编号','客户名称','日期年','日期月','总费用','缴费金额','余额','录入状态','缴费状态'
+		    '序号','年份月份','单据编号','客户编号','客户名称','日期年','日期月','总费用','缴费金额','余额','录入状态','缴费状态'
 		]
 	}),
 	width:700,
@@ -197,13 +197,12 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	columns:[
 		{
 			header:"序号",
-			dataIndex:"id",
+			dataIndex:"序号",
 			width:60		
 		},
 		{
-			header:"日期",
-			dataIndex:"日期年",
-			renderer: Ext.Hudongsoft.util.Format.yearMonthRenderer2,
+			header:"年份月份",
+			dataIndex:"年份月份",
 			width:100
 		},
 		{
