@@ -1,7 +1,7 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
+    xtype:"grid",
 	title:"费用统计列表",
 	store:{
 		xtype:"jsonstore",
@@ -55,41 +55,52 @@ xtype:"grid",
 		}
 	],
 	initComponent: function(){
+	    var gyy_lx = new Ext.GyyLxCombox({
+	        emptyText:'请选择' 
+	        
+	    });
+	    var gyy = new Ext.GyyCombox({
+	        lx_store: gyy_lx.store,
+	        width:100,
+	        emptyText:'请选择'
+	    });
+	    var nian = new Ext.YearCombox();
+	    var yue = new Ext.MonthCombox();
+        var sf = new Ext.sfxmCombox();
 		this.tbar=[
 			{
 				xtype:"label",
 				text:"工业园名称："
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
+		    gyy,
 			{
 				xtype:"label",
 				text:"房产类型："
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
+			gyy_lx,
+			
 			{
 				xtype:"label",
 				text:"消费项目"
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
+//			{
+//				xtype:"combo",
+//				triggerAction:"all",
+//				fieldLabel:"标签",
+//				width:70
+//			},
+            sf,
 			{
 				xtype:"label",
-				text:"日期："
+				text:"年："
 			},
+			nian,
+			{
+				xtype:"label",
+				text:"月："
+			},
+			yue,
+			
 			{
 				xtype:"datefield",
 				fieldLabel:"标签"
