@@ -289,7 +289,47 @@ xtype:"grid",
 			},
 			{
 				text:"编辑固定消费项目",
-				iconCls: 'icon-xieGenJin'
+				iconCls: 'icon-xieGenJin',
+				handler: function() {
+		            var paramsEditor = new Ext.form.TextField();
+		            var fCombox = new Ext.form.ComboBox({
+			            store : new Ext.data.SimpleStore({
+				            fields : ['v'],
+				            data : [['extract_regx'],['trim'],['append'],['prepend'],['format']]
+			            }),
+			            valueField : 'v',
+			            displayField : 'v',
+			            mode : 'local',
+			            triggerAction : 'all'
+		            });         
+		            var vCombox = new Ext.form.ComboBox({
+			            fieldLabel: '节点取值',
+			            store : new Ext.data.SimpleStore({
+				            fields : ['v'],
+				            data : [['text'],['html'],['attr.href'],['attr.src']]
+			            }),
+			            valueField : 'v',
+			            displayField : 'v',
+			            name: 'v',
+			            value: 'text',
+			            mode : 'local',
+			            triggerAction : 'all'
+		            });         
+				    var grid = new Ext.grid.EditorGridPanel({
+			            height: 150,
+			            sm: sm,
+			            store: new Ext.data.JsonStore({
+				            fields: ['name','params']
+            //				data: [{name:'a',params:'b'}]
+			            }),
+			            columns: [sm,{
+				            header: '函数名', dataIndex: 'name', editor: fCombox, width: 150
+			            },{
+				            header: '参数', dataIndex: 'params', editor: paramsEditor, width: 220
+			            }]
+            		});
+            		
+				}
 			},
 			'->',
 	        iFieldName,
