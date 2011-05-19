@@ -278,7 +278,7 @@ Ext.Hudongsoft.sksjGrid=Ext.extend(Ext.grid.GridPanel ,{
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_lb',
 		fields:[
-		    'id','序号','收费项目','收费类型','日期','值','读数','倍率','损耗','滞纳金','费用','录入状态'
+		    'id','序号','收费项目','收费类型','上月读数','本月读数','值','倍率','损耗','总量','滞纳金','费用','录入状态'
 		]
 	}),
 	width:700,
@@ -296,12 +296,12 @@ Ext.Hudongsoft.sksjGrid=Ext.extend(Ext.grid.GridPanel ,{
 		},
 		{
 			header:"上月读数",
-			dataIndex:"读数",
+			dataIndex:"上月读数",
 			width:60
 		},
 		{
 			header:"本月读数",
-			dataIndex:"读数",
+			dataIndex:"本月读数",
 			width:60
 		},
 		{
@@ -316,7 +316,7 @@ Ext.Hudongsoft.sksjGrid=Ext.extend(Ext.grid.GridPanel ,{
 		},
 		{
 			header:"总量",
-			dataIndex:"",
+			dataIndex:"总量",
 			width:60
 		},
 		{
