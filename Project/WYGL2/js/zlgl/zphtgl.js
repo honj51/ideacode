@@ -205,13 +205,13 @@ xtype:"grid",
 		
 		var iFieldName = new Ext.form.TextField({ //搜索栏名称
             emptyText:'请输入客户姓名',
-	        width:100,
+	        width:100
     	   
         });
         
         var iFieldNo = new Ext.form.TextField({ //搜索栏号码
             emptyText:'请输入编号',
-	        width:150,
+	        width:150
     	   
         });
         

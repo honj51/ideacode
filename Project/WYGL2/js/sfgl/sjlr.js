@@ -131,7 +131,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
                     };
 				    self.store.load({
 				        params: {
-				            start: 0,limit:20,
+				            start: 0,limit:20
 				        }
 				    });
 				}
