@@ -51,6 +51,19 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");   
         }
+        else if (action == "lx_list")
+        {   
+            string  lx = Request.Params["find_id"];
+            string sql = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb where 工业园名称='{0}' ", lx);
+            System.Data.SqlClient.SqlDataReader r = DBHelper.GetReader(sql);
+            Response.Write(Json.ToJson(r));     
+        }
+        else if (action == "addlx")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_lb_fclx_lb", "id", true);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}"); 
+        }
         Response.End();
     }
 }

@@ -82,6 +82,25 @@ xtype:"grid",
         valueField:'myId',
         displayField:'displayText'
      });
+     
+    var jiGuan = new Ext.form.ComboBox({
+        fieldLabel:'籍贯',
+        name:'籍贯',
+        width:226,
+        mode:'local',
+        triggerAction:'all',
+        editable:false,
+        store:new Ext.data.SimpleStore({
+            fields : ['id','Text'],
+            data :[['河北省','河北省'],['山西省','山西省'],['辽宁省','辽宁省'],['吉林省','吉林省'],['黑龙江省','黑龙江省'],['江苏省','江苏省'],['浙江省','浙江省'],['安徽省','安徽省'],['福建省','福建省'],
+                    ['江西省','江西省'],['山东省','山东省'],['河南省','河南省'],['湖北省','湖北省'],['湖南省','湖南省'],['广东省','广东省'],['海南省','海南省'],['四川省','四川省'],['贵州省','贵州省'],
+                    ['云南省','云南省'],['陕西省','陕西省'],['甘肃省','甘肃省'],['青海省','青海省'],['台湾省','台湾省'],['北京市','北京市'],['天津市','天津市'],['重庆市','重庆市'],['上海市','上海市'],
+                    ['香港','香港'],['澳门','澳门'],['内蒙古','内蒙古'],['广西','广西'],['宁夏','宁夏'],['新疆','新疆'],['西藏','西藏']]  
+        }),
+        emptyText:'请选择',
+        valueField:'id',
+        displayField:'Text'
+     });
     
     var form = new Ext.FormPanel({
 	    id:'form1',
@@ -135,15 +154,15 @@ xtype:"grid",
                 width:226,
                 xtype: 'textfield'				                           
             },
-            {
-                			
-				xtype:"combo",
-				triggerAction:"all",
-				name: '籍贯',
-				fieldLabel:"籍贯",
-				width:226,
-			
-            },
+            jiGuan,
+//            {			
+//				xtype:"combo",
+//				triggerAction:"all",
+//				name: '籍贯',
+//				fieldLabel:"籍贯",
+//				width:226,
+//			
+//            },
             {
                 fieldLabel: '联系电话',
                 name: '联系电话',
