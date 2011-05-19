@@ -251,7 +251,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},
 			{
 				text:"搜索",
-				iconCls: 'icon-query',
+				iconCls: 'icon-query'
 			}
 		];
 	    self.store.load();
