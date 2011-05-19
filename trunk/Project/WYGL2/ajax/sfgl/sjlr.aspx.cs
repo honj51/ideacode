@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
 using System.Text;
 using System.Web.Script.Serialization;
+using System.Diagnostics;
 
 public partial class SouFei_sjlr : System.Web.UI.Page
 {
@@ -125,26 +126,34 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         else if (action == "list_lb")
         {
             JSONArray ja = new JSONArray();
-            SqlDataReader r = DBHelper.GetReader(string.Format(@"select ROW_NUMBER() OVER (ORDER BY id) as 序号,* from sq8szxlx.user_sf_lb 
-                where 单据编号='{0}' and not (收费项目 is null)", Request.Params["djbh"]));
+            // 根据单据编号查询收费项目列表
+            string sql_lb = string.Format(@"select ROW_NUMBER() OVER (ORDER BY id) as 序号,* from sq8szxlx.user_sf_lb 
+                where 单据编号='{0}' and not (收费项目 is null)", Request.Params["djbh"]);
+            Debug.WriteLine(string.Format("sql_lb={0}",sql_lb));
+            SqlDataReader r = DBHelper.GetReader(sql_lb);
+            int preNo = int.Parse(Request.Params["djbh"].Split('_')[1])-1;
             while (r.Read())
             {
-                Int64 xh = r.GetInt64(r.GetOrdinal("序号")) - 1;
-                SqlDataReader r2 = DBHelper.GetReader(string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
-                    r.GetString(r.GetOrdinal("合同编号")),xh,r.GetString(r.GetOrdinal("收费项目"))));
-                bool syds = false;
+                // 查询上月收费项目
+                string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
+                    r.GetString(r.GetOrdinal("合同编号")), preNo, r.GetString(r.GetOrdinal("收费项目")));
+                Debug.WriteLine(string.Format("sql_pre_lb={0}", sql_pre_lb));
+                SqlDataReader r2 = DBHelper.GetReader(sql_pre_lb);
+                double syds = -1;
                 if (r2.Read())
                 {
-                    syds = true;
+                    syds = r2.GetDouble(r2.GetOrdinal("读数"));
                 }
                 JSONObject jo = new JSONObject();
+                jo.Add("序号", r.GetInt64(r.GetOrdinal("序号")));
                 string sflx = r.GetString(r.GetOrdinal("收费类型"));
-                float sh = (float)r.GetValue(r.GetOrdinal("损耗"));
-                float bl = r.GetFloat(r.GetOrdinal("倍率"));
-
+                double sh = r.GetDouble(r.GetOrdinal("损耗"));
+                double bl = r.GetDouble(r.GetOrdinal("倍率"));
+                double byds = r.GetDouble(r.GetOrdinal("读数"));
+                
                 jo.Add("收费项目", r.GetString(r.GetOrdinal("收费项目")));
-                if (sflx == "动态" && syds) jo.Add("上月读数", r2.GetInt32(r2.GetOrdinal("读数"))); else jo.Add("上月读数", "-");
-                if (sflx == "动态" || sflx == "单价") jo.Add("本月读数", r.GetInt32(r.GetOrdinal("读数"))); else jo.Add("本月读数", "-");
+                if (sflx == "动态" && syds>-1) jo.Add("上月读数", syds); else jo.Add("上月读数", "-");
+                if (sflx == "动态" || sflx == "单价") jo.Add("本月读数", byds); else jo.Add("本月读数", "-");
                 jo.Add("倍率", bl);
 
                 //损耗
@@ -154,32 +163,33 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 string zl = "-"; 
                 if (bl == 0)
                 {
-                    if (sflx == "动态" && syds)
+                    if (sflx == "动态" && syds>-1)
                     {
-                        int dsc = r.GetInt32(r.GetOrdinal("读数"))-r2.GetInt32(r2.GetOrdinal("读数"));
+                        double dsc = byds - syds;
                         zl = (dsc * (1 - (-bl / 100))).ToString();
                     }
                     else if (sflx == "单价")
                     {
-                        zl = r.GetInt32(r.GetOrdinal("读数")).ToString();
+                        zl = byds.ToString();
                     }
                 }
                 else
                 {
-                    if (sflx == "动态" && syds)
+                    if (sflx == "动态" && syds>-1)
                     {
-                        int dsc = r.GetInt32(r.GetOrdinal("读数")) - r2.GetInt32(r2.GetOrdinal("读数"));
-                        jo.Add("总量", dsc * (1 - (-bl / 100)) * bl);
+                        double dsc = byds - syds;
+                        zl = (dsc * (1 - (-bl / 100)) * bl).ToString();
                     }
                     else if (sflx == "单价")
                     {
-                        zl = (r.GetInt32(r.GetOrdinal("读数"))*bl).ToString();
+                        zl = (byds * bl).ToString();
                     }
                 }
-                jo.Add("总量", zl);                
-                jo.Add("值",r.GetInt32(r.GetOrdinal("值")));
-                jo.Add("滞纳金",r.GetInt32(r.GetOrdinal("滞纳金")));
-                jo.Add("费用",r.GetInt32(r.GetOrdinal("费用")));
+                jo.Add("总量", zl);
+                jo.Add("值", r.GetDouble(r.GetOrdinal("值")));
+                jo.Add("滞纳金", r.GetDouble(r.GetOrdinal("滞纳金")));
+                jo.Add("费用", r.GetDecimal(r.GetOrdinal("费用")));
+                ja.Add(jo);
             }
             string ret = JSONConvert.SerializeArray(ja);
             Response.Write(ret);
