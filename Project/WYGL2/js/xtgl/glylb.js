@@ -67,6 +67,10 @@ xtype:"grid",
             inputType: 'password',	   
         });
         
+        var js = new Ext.form.ComboBox({
+            
+        });
+        
         var form = new Ext.FormPanel({
 	        id:'form1',
 	        padding:10,
@@ -92,12 +96,13 @@ xtype:"grid",
                 },
                 password1,
                 password2,
-                {
-                    fieldLabel: '角色',
-                    name: 'admin_limit',
-                    width:226,
-                    xtype: 'textfield'				                           
-                },
+                js,
+//                {
+//                    fieldLabel: '角色',
+//                    name: 'admin_limit',
+//                    width:226,
+//                    xtype: 'textfield'				                           
+//                },
                 {
                     fieldLabel: '电话',
                     name: 'tel',
