@@ -7,10 +7,10 @@
     <title>欢迎登陆</title>
 </head>
 <body>    
-    <div id='Login' style="margin-left:auto; margin-right:auto; margin-top:0px; background: url('images/login-clip.jpg') no-repeat; width: 580px; height: 400px">	  
+    <div id='Login' style="margin-left:auto; margin-right:auto; margin-top:0px; background: url('images/login.jpg') no-repeat; width: 1280px; height: 655px">	  
 	   <form action="Login.aspx" method="post">
-	    <h1 style="padding: 100px 0px 0px 50px ">欢迎登陆物业管理系统</h1>
-	   	<div  id="login-div" style="padding: 30px 10px 0 100px">	   	    
+	    <h1 style="padding: 100px 0px 0px 480px ">欢迎登陆物业管理系统</h1>
+	   	<div  id="login-div" style="padding: 160px 10px 0 560px">	   	    
 	   		<div style="text-align: left; float: left">
 		   		<div style="width: 200">
 					<input type="hidden" name="action" value="login">
@@ -18,11 +18,11 @@
 			   		<input type="text" name="user" size="30" maxlength="12" style="width:150px">
 		   		</div>
 		   		<div style="width: 200;margin-top: 5px">
-			   		<label >密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+			   		<label >密&nbsp;&nbsp;码:</label>
 			    	<input type="password" name="password" size="30"  style="width:150px">
 		   		</div>		   		
 	   		</div>	  
-	   		<div style="float: right; margin-right: 50px">
+	   		<div style="float: right; margin:5px 500px 0px 0px">
 			    	<input type="submit" style="width: 120;"  value="  登录  ">
 		   	</div>
 		   	<div id="error" style="margin: 10px 0 0 -20px; clear: left;  ">
