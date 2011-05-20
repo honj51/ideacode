@@ -22,8 +22,9 @@
 			    	<input type="password" name="password" size="30"  style="width:150px">
 		   		</div>		   		
 	   		</div>	  
-	   		<div style="float: right; margin:5px 500px 0px 0px">
-			    	<input type="submit" style="width: 120;"  value="  登录  ">
+	   		<div style="float: right; margin:30px 500px 0px 0px">
+			    	<input type="image" src="images/deng.png" > 
+			    	
 		   	</div>
 		   	<div id="error" style="margin: 10px 0 0 -20px; clear: left;  ">
 		   	    <% 
