@@ -1,7 +1,7 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
+    xtype:"grid",
 	title:"预定管理",
 	store:new Ext.data.JsonStore({
 	    root : 'data',
@@ -76,6 +76,17 @@ xtype:"grid",
 	
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
+	    var gyy_lx = new Ext.GyyLxCombox({
+            width:130,
+            fieldLabel:'所属房产类型',
+            name:'所属房产'
+        });
+        var gyy = new Ext.GyyCombox({
+            lx_store: gyy_lx.store,
+            width:226,
+            fieldLabel:'所属工业园',
+            name:'所属工业园'
+        });
 	    var form = new Ext.FormPanel({
 		    id:'form1',
 		    padding:10,
@@ -97,12 +108,13 @@ xtype:"grid",
                     width:226,
                     xtype: 'textfield'				                           
                 },
-                {
-                    fieldLabel: '所属工业园',
-                    name: '所属工业园',
-                    width:226,
-                    xtype: 'textfield'				                           
-                },
+                gyy,
+//                {
+//                    fieldLabel: '所属工业园',
+//                    name: '所属工业园',
+//                    width:226,
+//                    xtype: 'textfield'				                           
+//                },
                 {
                     fieldLabel: '所属房产',
                     name: '所属房产',
