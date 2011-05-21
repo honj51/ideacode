@@ -8,6 +8,13 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+
+public class RowObject : Dictionary<string, object>
+{ }
+
+public class ResultObject : List<RowObject>
+{ }
 
 /// <summary>
 ///DBHelper 的摘要说明
@@ -30,6 +37,7 @@ public static class DBHelper
         SqlConnection conn = DBHelper.Getconn();
         conn.Open();
         SqlCommand cmd = new SqlCommand(sql, conn);
+        
         int i = cmd.ExecuteNonQuery();
         conn.Close();
         return i;
@@ -117,6 +125,38 @@ public static class DBHelper
         }
     }
     #endregion
+
+    public static RowObject GetRow(string sql)
+    {        
+        SqlDataReader r = GetReader(sql);
+        if (r.Read())
+        {
+            RowObject ro = new RowObject();
+            for (int i = 0; i < r.FieldCount; i++)
+            {
+                ro.Add(r.GetName(i), r.GetValue(i));
+            }
+            return ro;
+        }
+        else
+            return null;
+    }
+
+    public static ResultObject GetResult(string sql)
+    {
+        SqlDataReader r = GetReader(sql);
+        ResultObject result = new ResultObject();
+        while (r.Read())
+        {
+            RowObject row = new RowObject();
+            for (int i = 0; i < r.FieldCount; i++)
+            {
+                row.Add(r.GetName(i), r.GetValue(i));
+            }
+            result.Add(row);
+        }
+        return result;
+    }
 
     ///执行查询方法
     #region
@@ -224,7 +264,6 @@ public static class DBHelper
         }
     }
     #endregion
-
 
     public static string ConnectionString = ConfigurationManager.ConnectionStrings["SQLConnectionString"].ToString();
 }
