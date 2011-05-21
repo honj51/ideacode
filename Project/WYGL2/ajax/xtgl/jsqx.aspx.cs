@@ -48,9 +48,24 @@ public partial class XiTong_jsqx : System.Web.UI.Page
             string role_name = Request.Params["role_name"];
             string sql = string.Format("select * from sq8szxlx.role_lb where role_name='{0}' ", role_name);
             SqlDataReader r = DBHelper.GetReader(sql);
-           
-            Response.Write(Json.ToJson(r));
 
+            if (r.Read())
+            {
+                string data = "{";
+                for (int i = 0; i < r.FieldCount; i++)
+                {
+                    string name = r.GetName(i);
+                    string value = r.GetValue(i).ToString();
+                    data += name + ":'" + value + "',";
+                }
+                data = data.Substring(0, data.Length - 1);
+                data += "}";
+                Response.Write(string.Format("{{ success:true,data: {0} }}", data));
+            }
+            else
+            {
+                Response.Write("{ success:false,errorMessage: 'data not found' }");
+            }
         }
         Response.End();
     }
