@@ -107,9 +107,14 @@ xtype:"grid",
         var form = new Ext.form.FormPanel({
             width:400,
             height:300,
-            items:[{
-                    xtype: 'textfield',
-                    name: 'aa'
+            items:[
+                {
+                    xtype: 'hidden',
+                    name: 'id'
+                },
+                {
+                    xtype: 'hidden',
+                    name: 'role_name'
                 },
                 {
                     xtype:'checkbox',
@@ -144,7 +149,7 @@ xtype:"grid",
                 {
                     xtype:'checkbox',
                     boxLabel:'租赁合同管理',
-                    name:'租赁合同管理'
+                    name:'租凭合同管理'
                 },
                 {
                     xtype:'checkbox',
@@ -180,7 +185,18 @@ xtype:"grid",
             buttons:[
                 {
                     text:'保存',// callback
-                    iconCls: 'icon-save'
+                    iconCls: 'icon-save',
+                    handler:function () {
+                        form.getForm().submit({
+                            url: 'ajax/xtgl/jsqx.aspx',
+                            params: {
+                                action:'updatePermissions'
+                            },
+                            success: function (form, action) {                                                               
+                                wins.close();
+                            }
+                        })
+                    }
                 },
                 {
                     text:'取消',
@@ -262,7 +278,7 @@ xtype:"grid",
 //				         var PermissionsStore = new Ext.data.JsonStore({
 //				            url: 'ajax/xtgl/jsqx.aspx?action=set&role_name='+per.json.role_name,
 //		                    fields:[
-//		                        'id','role_name','数据录入','缴费管理','工业园管理','房产管理','客户管理','预定管理','租赁合同管理','合同到期提示',
+//		                        'id','role_name','数据录入','缴费管理','工业园管理','房产管理','客户管理','预定管理','租凭合同管理','合同到期提示',
 //		                        '收款分类统计','收款详细统计','角色权限','管理员管理','修改本身密码'
 //		                    ],
 //				         });

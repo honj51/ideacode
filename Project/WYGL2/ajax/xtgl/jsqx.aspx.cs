@@ -29,6 +29,8 @@ public partial class XiTong_jsqx : System.Web.UI.Page
         {
             string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.role", "id", true);
             DBHelper.ExecuteSql(sql);
+            string sql_1 = string.Format("insert into sq8szxlx.role_lb (role_name) values ('{0}')", Request.Form["role_name"]);
+            DBHelper.ExecuteSql(sql_1);
             Response.Write("{success: true}");
         }
         else if (action == "update")
@@ -66,6 +68,25 @@ public partial class XiTong_jsqx : System.Web.UI.Page
             {
                 Response.Write("{ success:false,errorMessage: 'data not found' }");
             }
+        }
+        else if (action == "updatePermissions")
+        {
+            string sql = "update sq8szxlx.role_lb  set ";
+            string[] allFields = new string[] { "数据录入", "缴费管理", "工业园管理", "房产管理", "客户管理", "预定管理", "租凭合同管理", "合同到期提示", "收款分类统计", "收款详细统计", "角色权限", "管理员管理", "修改本身密码" };
+            foreach (var item in allFields)
+	        {
+                string value = "0";
+                if (Request.Params[item] !=null && Request.Params[item] == "on")
+                {
+                    value = "1";
+                }
+                    
+                sql += item + "=" + value + ',';
+	        }
+            sql = sql.Substring(0, sql.Length - 1);
+            sql += string.Format(" where id='{0}' and role_name='{1}'",Request.Params["id"],Request.Params["role_name"]);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
         }
         Response.End();
     }
