@@ -66,7 +66,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
-        var sf = new Ext.sfxmCombox();
+//        var sf = new Ext.sfxmCombox();
 		this.tbar=[
 			{
 				xtype:"label",
@@ -83,13 +83,13 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				xtype:"label",
 				text:"消费项目"
 			},
-//			{
-//				xtype:"combo",
-//				triggerAction:"all",
-//				fieldLabel:"标签",
-//				width:70
-//			},
-            sf,
+			{
+				xtype:"combo",
+				triggerAction:"all",
+				fieldLabel:"标签",
+				width:70
+			},
+//            sf,
 			{
 				xtype:"label",
 				text:"年："
