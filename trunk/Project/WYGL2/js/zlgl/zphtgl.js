@@ -291,22 +291,29 @@ xtype:"grid",
 				text:"编辑固定消费项目",
 				iconCls: 'icon-xieGenJin',
 				handler: function() {
-		            var paramsEditor = new Ext.form.TextField();
-		            var fCombox = new Ext.form.ComboBox({
+				    var bl_data = [];
+				    for(var i=0;i<=100;i++) {
+				        bl_data[i] = [i];
+				    }				 
+				    var v_data = [];
+				    for(var i=0;i<=20;i++) {
+				        v_data[i] = [i];
+				    }   
+		            var textEditor = new Ext.form.TextField();
+		            var blCombox = new Ext.form.ComboBox({ //倍率
 			            store : new Ext.data.SimpleStore({
 				            fields : ['v'],
-				            data : [['extract_regx'],['trim'],['append'],['prepend'],['format']]
+				            data : bl_data
 			            }),
 			            valueField : 'v',
 			            displayField : 'v',
 			            mode : 'local',
 			            triggerAction : 'all'
 		            });         
-		            var vCombox = new Ext.form.ComboBox({
-			            fieldLabel: '节点取值',
+		            var vCombox = new Ext.form.ComboBox({ //损耗,滞纳金
 			            store : new Ext.data.SimpleStore({
 				            fields : ['v'],
-				            data : [['text'],['html'],['attr.href'],['attr.src']]
+				            data : v_data
 			            }),
 			            valueField : 'v',
 			            displayField : 'v',
@@ -316,19 +323,41 @@ xtype:"grid",
 			            triggerAction : 'all'
 		            });         
 				    var grid = new Ext.grid.EditorGridPanel({
-			            height: 150,
-			            sm: sm,
+			            height: 300,
+			            width: 500,
 			            store: new Ext.data.JsonStore({
-				            fields: ['name','params']
-            //				data: [{name:'a',params:'b'}]
+				            fields: ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明'],
+            				data: [{编号:1,消费项目:'aaa',消费类型:'ccc',值:111,倍率:33,损耗:2,滞纳金:12,前期读数:323,说明:'xxx'}]
 			            }),
-			            columns: [sm,{
-				            header: '函数名', dataIndex: 'name', editor: fCombox, width: 150
+			            columns: [{
+			                header: '编号', dataIndex: '编号', width: 40
 			            },{
-				            header: '参数', dataIndex: 'params', editor: paramsEditor, width: 220
+			                 header: '消费项目', dataIndex: '消费项目', width: 140
+			            },{
+			                header: '消费类型', dataIndex: '消费类型', width: 60
+			            },{
+				            header: '值', dataIndex: '值', editor: textEditor, width: 50
+			            },{
+				            header: '倍率', dataIndex: '倍率', editor: blCombox, width: 40
+			            },{
+				            header: '损耗', dataIndex: '损耗', editor: vCombox, width: 40
+			            },{
+				            header: '滞纳金', dataIndex: '滞纳金', editor: vCombox, width: 40
+			            },{
+				            header: '前期读数', dataIndex: '前期读数', editor: textEditor, width: 40
+			            },{
+				            header: '说明', dataIndex: 'params', editor: textEditor, width: 40
+			            },{
+				            header: '读数导入', dataIndex: 'params',width: 40
+			            },{
+				            header: '项目导入', dataIndex: 'params',width: 40
 			            }]
             		});
-            		
+            		var win = new Ext.Window({
+            		    title: 'xxx',
+            		    items: grid
+            		});
+            		win.show();
 				}
 			},
 			'->',

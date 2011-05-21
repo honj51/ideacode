@@ -160,7 +160,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     region:'north',
                                     html: html
                                 }),
-                                new Ext.Hudongsoft.lrzbGrid({region:'center',zbdata:r.data})
+                                new Ext.Hudongsoft.lrzbGrid({region:'center',jfgl: self.jfgl,zbdata:r.data})
                             ]
                         });
                         w.show();
@@ -187,6 +187,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
  */
 Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	zbdata: null,
+	jfgl: false,
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_zb',
 		fields:[
@@ -235,8 +236,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	initComponent: function(){
 	    var self = this;
 	    console.log(self.zbdata);
-		this.tbar=[
-		    {
+		this.tbar=[{
 		    text: '查看详情',
 		    handler: function () {
 		        var r = self.getSelectionModel().getSelected();
@@ -258,9 +258,9 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		        }
 		    }
 		},{
-		    text: '录入',
+		    text: self.jfgl?'缴费':'录入',
 		    handler: function () {
-		    
+		        alert('a');
 		    }
 		}];
 		self.store.load({params:{
