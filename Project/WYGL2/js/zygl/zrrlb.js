@@ -72,6 +72,7 @@ xtype:"grid",
         fieldLabel:'性别',
         width:226,
         mode:'local',
+        name:'性别'
         triggerAction:'all',
         editable:false,
         store:new Ext.data.SimpleStore({
@@ -88,6 +89,7 @@ xtype:"grid",
         name:'籍贯',
         width:226,
         mode:'local',
+        name:'籍贯',
         triggerAction:'all',
         editable:false,
         store:new Ext.data.SimpleStore({
