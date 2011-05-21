@@ -129,6 +129,10 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             }
             Response.Write(string.Format("{{'success': true, 'data':{0}}}", JSONConvert.SerializeArray(ja)));
         }
+        else if (action == "import_gdxfx") // 导入固定消费项到合同
+        {
+
+        }
         Response.End();
     }
 }
