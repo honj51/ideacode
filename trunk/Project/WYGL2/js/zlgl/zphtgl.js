@@ -291,6 +291,8 @@ xtype:"grid",
 				text:"编辑固定消费项目",
 				iconCls: 'icon-xieGenJin',
 				handler: function() {
+				    var r = self.getSelectionModel().getSelected();
+				    if (!r) return;
 				    var bl_data = [];
 				    for(var i=0;i<=100;i++) {
 				        bl_data[i] = [i];
@@ -325,8 +327,11 @@ xtype:"grid",
 		            var read_only_css = 'background-color: #FFFFAA;border-style:solid;border-color:#0000ff;';
 				    var grid = new Ext.grid.EditorGridPanel({
 			            store: new Ext.data.JsonStore({
-				            fields: ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明','读数导入','项目导入'],
-            				data: [{编号:1,消费项目:'aaa',消费类型:'ccc',值:111,倍率:33,损耗:'2%',滞纳金:'33%',前期读数:323,说明:'xxx',读数导入:'√',项目导入:'×'}]
+			                url: 'ajax/zlgl/zphtgl.aspx?action=edit_gdxfx&id='+r.data.id,
+		                    root : 'data',
+		                    autoLoad: true,
+				            fields: ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明','读数导入','项目导入']				            
+            				//data: [{编号:1,消费项目:'aaa',消费类型:'ccc',值:111,倍率:33,损耗:'2%',滞纳金:'33%',前期读数:323,说明:'xxx',读数导入:'√',项目导入:'×'}]
 			            }),
 			            columns: [{
 			                header: '编号', dataIndex: '编号', width: 40
@@ -352,9 +357,15 @@ xtype:"grid",
 				            header: '项目导入', dataIndex: '项目导入',width: 60,css:read_only_css
 			            }],
 			            buttons: [{
-			                text: '确定'
+			                text: '确定',
+			                handler: function () {
+			                    win.close();
+			                }
 			            },{
-			                text: '取消'
+			                text: '取消',
+			                handler: function () {
+			                    win.close();
+			                }
 			            }   
 			            ]
             		});

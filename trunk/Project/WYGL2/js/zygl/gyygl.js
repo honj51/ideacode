@@ -432,7 +432,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                         fieldLabel:'损耗',
                                                         width:130,
                                                         mode:'local',
-                                                        name:'损耗',
+                                                        hiddenName:'损耗',
                                                         triggerAction:'all',
                                                         editable:false,
                                                         store:new Ext.data.SimpleStore({
@@ -449,7 +449,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                         fieldLabel:'滞纳金',
                                                         width:130,
                                                         mode:'local',
-                                                        name:'滞纳金',
+                                                        hiddenName:'滞纳金',
                                                         triggerAction:'all',
                                                         editable:false,
                                                         store:new Ext.data.SimpleStore({
@@ -516,17 +516,18 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                                 iconCls: 'icon-save',
                                                                 
                                                                 handler:function () {
-                                                                    fcxfUiForm.getForm().submit({
-                                                                        url: 'ajax/zygl/gyygl.aspx',
-                                                                        params: {
-                                                                            action:'add_fcxf'
-                                                                        },
-                                                                        success: function (form, action) {  
-                                                                            //console.log(action.response.responseText);                                      
-                                                                            fcxfWinUi.close();
-                                                                            fcxfStore.reload();
-                                                                        }
-                                                                    });
+                                                                       console.log(fcxfUiForm.getForm().getValues());
+//                                                                    fcxfUiForm.getForm().submit({
+//                                                                        url: 'ajax/zygl/gyygl.aspx',
+//                                                                        params: {
+//                                                                            action:'add_fcxf'
+//                                                                        },
+//                                                                        success: function (form, action) {  
+//                                                                            //console.log(action.response.responseText);                                      
+//                                                                            fcxfWinUi.close();
+//                                                                            fcxfStore.reload();
+//                                                                        }
+//                                                                    });
                                                                 } 
                                                             },
                                                             {
