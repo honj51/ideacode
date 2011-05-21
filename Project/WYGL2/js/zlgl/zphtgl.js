@@ -323,50 +323,61 @@ xtype:"grid",
 			            value: 'text',
 			            mode : 'local',
 			            triggerAction : 'all'
+		            });
+		            var fs = ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明','读数导入','项目导入'];
+		            var xf_store = new Ext.data.JsonStore({
+		                url: 'ajax/zlgl/zphtgl.aspx?action=edit_gdxfx&id='+r.data.id,
+	                    root : 'data',
+	                    autoLoad: true,
+			            fields: fs
 		            });         
-		            var read_only_css = 'background-color: #FFFFAA;border-style:solid;border-color:#0000ff;';
+		            var read_only_css = 'background-color: #D2D2D2;';
+		            function valueRenderer(v, metaData, record, rowIndex, colIndex, store) {
+		                if(v == "-") metaData.attr += 'style="' + read_only_css + '"';
+		                return v;		                   
+		            }		            
+		            var colModel = new Ext.grid.ColumnModel({
+		                columns: [{
+		                    header: '编号', dataIndex: '编号', width: 40
+		                },{
+		                     header: '消费项目', dataIndex: '消费项目', width: 120,css:read_only_css
+		                },{
+		                    header: '消费类型', dataIndex: '消费类型', width: 80,css:read_only_css
+		                },{
+			                header: '值', dataIndex: '值', editor: textEditor, width: 70, renderer: valueRenderer
+		                },{
+			                header: '倍率', dataIndex: '倍率', editor: blCombox, width: 70, renderer: valueRenderer
+		                },{
+			                header: '损耗', dataIndex: '损耗', editor: vCombox, width: 70, renderer: valueRenderer
+		                },{
+			                header: '滞纳金', dataIndex: '滞纳金', editor: vCombox, width: 70, renderer: valueRenderer
+		                },{
+			                header: '前期读数', dataIndex: '前期读数', editor: textEditor, width: 80, renderer: valueRenderer
+		                },{
+			                header: '说明', dataIndex: '说明', editor: textEditor, width: 120
+		                },{
+			                header: '读数导入', dataIndex: '读数导入',width: 60,css:read_only_css
+		                },{
+			                header: '项目导入', dataIndex: '项目导入',width: 60,css:read_only_css
+		                }],
+		                isCellEditable: function(col, row) {
+                            var record = xf_store.getAt(row);
+                            if (record.get(fs[col]) == '-') { // replace with your condition
+                              return false;
+                            }
+                            return Ext.grid.ColumnModel.prototype.isCellEditable.call(this, col, row);
+                        }
+		            });		            
+		            
 				    var grid = new Ext.grid.EditorGridPanel({
-			            store: new Ext.data.JsonStore({
-			                url: 'ajax/zlgl/zphtgl.aspx?action=edit_gdxfx&id='+r.data.id,
-		                    root : 'data',
-		                    autoLoad: true,
-				            fields: ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明','读数导入','项目导入']				            
-            				//data: [{编号:1,消费项目:'aaa',消费类型:'ccc',值:111,倍率:33,损耗:'2%',滞纳金:'33%',前期读数:323,说明:'xxx',读数导入:'√',项目导入:'×'}]
-			            }),
-			            columns: [{
-			                header: '编号', dataIndex: '编号', width: 40
-			            },{
-			                 header: '消费项目', dataIndex: '消费项目', width: 120,css:read_only_css
-			            },{
-			                header: '消费类型', dataIndex: '消费类型', width: 80,css:read_only_css
-			            },{
-				            header: '值', dataIndex: '值', editor: textEditor, width: 70
-			            },{
-				            header: '倍率', dataIndex: '倍率', editor: blCombox, width: 70
-			            },{
-				            header: '损耗', dataIndex: '损耗', editor: vCombox, width: 70
-			            },{
-				            header: '滞纳金', dataIndex: '滞纳金', editor: vCombox, width: 70
-			            },{
-				            header: '前期读数', dataIndex: '前期读数', editor: textEditor, width: 80
-			            },{
-				            header: '说明', dataIndex: '说明', editor: textEditor, width: 120
-			            },{
-				            header: '读数导入', dataIndex: '读数导入',width: 60,css:read_only_css
-			            },{
-				            header: '项目导入', dataIndex: '项目导入',width: 60,css:read_only_css
-			            }],
+			            store: xf_store,
+			            colModel: colModel,
 			            buttons: [{
-			                text: '确定',
+			                text: '导入到合同',
 			                handler: function () {
 			                    win.close();
 			                }
-			            },{
-			                text: '取消',
-			                handler: function () {
-			                    win.close();
-			                }
-			            }   
+			            }  
 			            ]
             		});
             		var win = new Ext.Window({
