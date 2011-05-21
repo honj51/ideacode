@@ -161,116 +161,12 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                         fields:[
                             'id','序号','工业园名称','房产类型'
                         ]
-	                });                
-				    var win = new Ext.Window({
-				        title:"房产类型列表",
-				        width:600,
-				        height:400,
-				        layout:'fit',
-				        tbar:[
-				            {
-				                text:"新增类型",
-				                iconCls: 'icon-group-create',
-				                handler:function(){
-				                    var lxform = new Ext.FormPanel({
-				                        padding:10,
-				                        items:[
-				                            {
-				                                xtype: 'hidden',
-                                                name: 'id',
-                                                value: r.json.id 
-				                            },
-                                            {
-                                                xtype: 'hidden',
-                                                name: '工业园名称',
-                                                value: r.json.工业园名称    
-                                            },
-                                            {
-                                                fieldLabel:'编号',
-                                                name:'序号',
-                                                allowBlank:false,
-                                                xtype: 'textfield' 
-                                            },
-                                            {
-                                                fieldLabel:'房产类型',
-                                                name:'房产类型',
-                                                allowBlank:false,
-                                                xtype: 'textfield' 
-                                            }
-                                            
-                                        ],
-                                        buttons:[
-                                            {
-                                                text: '保存',
-                                                iconCls: 'icon-save',
-                                                handler:function () {
-                                                    lxform.getForm().submit({
-                                                        url: 'ajax/zygl/gyygl.aspx',
-                                                        params: {
-                                                            action: 'addlx'
-                                                        },
-                                                        success: function (form, action) {  
-                                                            //console.log(action.response.responseText);                                      
-                                                            lxWin.close();
-                                                            lxstore.reload();
-                                                        }
-                                                    });
-                                                } 
-                                            },
-                                            {
-                                                text: '取消',
-                                                iconCls: 'icon-cancel',
-                                                handler: function () {
-                                                    lxWin.close();
-                                                }
-                                            }
-                                        ]
-				                    });
-                                    var lxWin = new Ext.Window({
-                                        title:'类型',
-                                        width:300,
-                                        height:150,
-                                        layout:'fit',
-                                        items:[                                     
-                                               lxform 
-                                        ]
-                                    });
-                                lxWin.show();
-                                }
-				            },
-				            {
-				                text:"修改类型",
-				                iconCls: 'icon-group-update'
-				            },
-				            {
-				                text:"删除类型",
-				                iconCls: 'icon-group-delete',
-				                handler: function () {
-				                    var r = self.getSelectionModel().getSelected();
-				                    if (r) {
-				                        Ext.Msg.confirm('删除房产类型','确定要删除选中的房产类型吗？',function(btn){
-							                if(btn == 'yes') {
-								                Ext.Ajax.request({
-									                url:'ajax/zygl/gyygl.aspx?action=deletelx',
-									                success:function(){
-										                Ext.Msg.alert('删除房产类型','房产类型删除成功！');
-										                lxstore.reload();
-									                },
-									                params:{id: r.get('id')}
-								                });
-							                }
-						                });
-				                    }				    
-				                }
-				            }
-				        ],
-				        items:[
-				           {
-				                xtype:'grid',
-				                title:"",
-	                            store:lxstore,
-	                            layout:'fit',
-	                            columns:[
+	                }); 
+	                
+	                var lxgird = new Ext.grid.GridPanel({
+	                    store:lxstore,
+	                    layout:'fit',
+	                    columns:[
 	                                {
 			                            header:"编号",
 			                            sortable:true,
@@ -287,14 +183,134 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                            width:300
 			                            
 		                            }
-	                            ],
+	                            ]
+	                            ,
 	                            listeners : {
 	                                celldblclick: function(grid, rowIndex, columnIndex, e) {
-	                                var d = grid.lxstore.getAt(rowIndex);	
-	                                grid.win(false, d.data);
+	                                    var d = grid.store.getAt(rowIndex);	
+	                                    showLx(false, d.data);
 	                                }
 	                            }
-				           }
+	                });
+	                
+	                function showLx(add,data) {
+	                    var lxform = new Ext.FormPanel({
+	                        padding:10,
+	                        items:[
+	                            {
+	                                xtype: 'hidden',
+                                    name: 'id',
+                                    value: r.json.id 
+	                            },
+                                {
+                                    xtype: 'hidden',
+                                    name: '工业园名称',
+                                    value: r.json.工业园名称    
+                                },
+                                {
+                                    fieldLabel:'编号',
+                                    name:'序号',
+                                    allowBlank:false,
+                                    xtype: 'textfield' 
+                                },
+                                {
+                                    fieldLabel:'房产类型',
+                                    name:'房产类型',
+                                    allowBlank:false,
+                                    xtype: 'textfield' 
+                                }
+                                
+                            ],
+                            buttons:[
+                                {
+                                    text: '保存',
+                                    iconCls: 'icon-save',
+                                    handler:function () {
+                                        lxform.getForm().submit({
+                                            url: 'ajax/zygl/gyygl.aspx',
+                                            params: {
+                                                action:add? 'addlx':'updatelx'
+                                            },
+                                            success: function (form, action) {  
+                                                //console.log(action.response.responseText);                                      
+                                                lxWin.close();
+                                                lxstore.reload();
+                                            }
+                                        });
+                                    } 
+                                },
+                                {
+                                    text: '取消',
+                                    iconCls: 'icon-cancel',
+                                    handler: function () {
+                                        lxWin.close();
+                                    }
+                                }
+                            ]
+	                    });
+                        var lxWin = new Ext.Window({
+                            title:'类型',
+                            width:300,
+                            height:150,
+                            layout:'fit',
+                            items:[                                     
+                                   lxform 
+                            ]
+                        });
+                        
+                    if (!add && data) {
+                        lxform.getForm().setValues(data);
+                    }
+                    
+                    lxWin.show();
+	                }        
+	                       
+				    var win = new Ext.Window({
+				        title:"房产类型列表",
+				        width:600,
+				        height:400,
+				        layout:'fit',
+				        tbar:[
+				            {
+				                text:"新增类型",
+				                iconCls: 'icon-group-create',
+				                handler:function(){
+				                    showLx(true,null);
+                                }
+				            },
+				            {
+				                text:"修改类型",
+				                iconCls: 'icon-group-update',
+				                handler:function () {
+				                    var d = lxgird.getSelectionModel().getSelected();
+                                    showLx(false,d.data); 
+				                    
+				                }
+				            },
+				            {
+				                text:"删除类型",
+				                iconCls: 'icon-group-delete',
+				                handler: function () {
+				                    var d = lxgird.getSelectionModel().getSelected();
+				                    if (d) {
+				                        Ext.Msg.confirm('删除房产类型','确定要删除选中的房产类型吗？',function(btn){
+							                if(btn == 'yes') {
+								                Ext.Ajax.request({
+									                url:'ajax/zygl/gyygl.aspx?action=deletelx',
+									                success:function(){
+										                Ext.Msg.alert('删除房产类型','房产类型删除成功！');
+										                lxstore.reload();
+									                },
+									                params:{id: d.get('id')}
+								                });
+							                }
+						                });
+				                    }				    
+				                }
+				            }
+				        ],
+				        items:[
+				            lxgird
 				        ]
 				        
 				    });

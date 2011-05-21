@@ -64,6 +64,18 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}"); 
         }
+        else if (action == "deletelx")
+        {
+            string sql = "delete from sq8szxlx.gyy_lb_fclx_lb where id=" + Request.Params["id"];
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        else if (action == "updatelx")
+        {
+            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_lb_fclx_lb", "id", false);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}"); 
+        }
         Response.End();
     }
 }
