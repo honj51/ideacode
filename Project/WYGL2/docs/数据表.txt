@@ -3,13 +3,13 @@ admin_admin_lb  			空的(不知道啥用)
 gyy_fc_lb  					工业园房产列表
 gyy_lb  					工业园列表
 gyy_lb_fclx_lb  			房产类型列表 (工业园)
-gyy_lb_fclx_lb_xflx   
+gyy_lb_fclx_lb_xflx			房产消费类型
 reg :						(不知道啥用)
 role: 
 role_lb : 
 user_gs
-user_sf_lb
-user_sf_zb
-user_zrr				自然人列表
-zpgl
-zpgl_lx_lb
+user_sf_lb					收费项目列表
+user_sf_zb					收费总表
+user_zrr					自然人列表
+zpgl						合同
+zpgl_lx_lb					合同中消费类型列表

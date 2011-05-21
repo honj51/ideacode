@@ -82,6 +82,36 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             SqlDataReader r = DBHelper.GetReader(sql);
             Response.Write(Json.ToJson(r));
         }
+        else if (action == "edit_gdxfx") // 编辑固定消费项
+        {
+            string responseError = "{success: false}";
+            string sql1 = string.Format("select * from zpgl where id='{0}'", Request.Params["id"]);
+            RowObject r1 = DBHelper.GetRow(sql1);
+            if (r1 == null)
+            {
+                Response.Write(responseError);
+                Response.End();
+                return;
+            }
+            string gyy_mc = r1["所属工业园"].ToString();
+            string fclx = r1["房产类型"].ToString(); 
+            
+            string sql2 = string.Format("select * from gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
+                gyy_mc, fclx);
+            ResultObject r2 = DBHelper.GetResult(sql2);
+            foreach (var item in r2)
+            {
+                string htbh = item["编码"].ToString();
+                string xfxm = item["消费项目"].ToString();
+                string rq = r1["合同开始时间"].ToString();
+                string sql3 = string.Format("select * from zpgl_lx_lb where 合同编号='{0}' and 消费项目='{1}'", htbh, xfxm);
+                RowObject r3 = DBHelper.GetRow(sql3);
+                string sql4 = string.Format("select * from user_sf_lb where 合同编号='{0}' and 收费项目='{1}' and  日期='{2}'", htbh, xfxm, rq);
+                RowObject r4 = DBHelper.GetRow(sql4);
+               
+                
+            }
+        }
         Response.End();
     }
 }
