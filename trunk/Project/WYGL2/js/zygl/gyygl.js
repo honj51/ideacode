@@ -307,6 +307,267 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 						                });
 				                    }				    
 				                }
+				            },
+				            {
+				                text:"编辑房产消费列表",
+				                iconCls: 'icon-xieGenJin',
+				                handler:function () {
+				                    var d = lxgird.getSelectionModel().getSelected();
+				                    var fcxfStore = new Ext.data.JsonStore({
+				                        url: 'ajax/zygl/gyygl.aspx?action=fcxf_list',
+		                                fields:[
+		                                    'id','序号','工业园名称','房产类型','消费项目','消费类型','值','倍率','损耗','滞纳金','说明'
+		                                ],
+		                                baseParams:{
+		                                    gyyName:d.data.工业园名称,
+		                                    fclx:d.data.房产类型
+		                                }
+				                    });
+				                    //console.log(d);
+				                    
+				                    
+				                    var fcxfGird = new Ext.grid.GridPanel({
+	                                    store:fcxfStore,
+	                                    columns:[
+                                            {
+	                                            header:"编号",
+	                                            sortable:true,
+	                                            resizable:true,
+	                                            dataIndex:"序号",
+	                                            width:50
+        			                           
+                                            },
+                                            {
+	                                            header:"消费项目",
+	                                            sortable:true,
+	                                            resizable:true,
+	                                            dataIndex:"消费项目",
+	                                            width:100
+        			                            
+                                            },
+                                            {
+                                                header:"消费类型",
+	                                            sortable:true,
+	                                            resizable:true,
+	                                            dataIndex:"消费类型",
+	                                            width:100
+                                            },
+                                            {
+                                                header:"值",
+	                                            sortable:true,
+	                                            resizable:true,
+	                                            dataIndex:"值",
+	                                            width:100
+                                            },
+                                            {
+                                                header:"倍率",
+	                                            sortable:true,
+	                                            resizable:true,
+	                                            dataIndex:"倍率",
+	                                            width:100
+                                            },
+                                            {
+                                                header:"损耗",
+	                                            sortable:true,
+	                                            resizable:true,
+	                                            dataIndex:"损耗",
+	                                            width:100
+                                            },
+                                            {
+                                                header:"滞纳金",
+	                                            sortable:true,
+	                                            resizable:true,
+	                                            dataIndex:"滞纳金",
+	                                            width:100
+                                            },
+                                            {
+                                                header:"说明",
+	                                            dataIndex:"说明",
+	                                            width:100
+                                            }
+                                        ]
+	                                });
+	                                var fcxfWin = new Ext.Window({
+	                                    layout:'fit',
+	                                    width:800,
+	                                    height:400,
+	                                    tbar:[
+	                                        {
+	                                            text:"新增房产消费",
+	                                            iconCls: 'icon-group-create',
+	                                            handler:function(){
+	                                                var xflx = new Ext.form.ComboBox({
+                                                        fieldLabel:'消费类型',
+                                                        width:130,
+                                                        mode:'local',
+                                                        name:'消费类型',
+                                                        triggerAction:'all',
+                                                        editable:false,
+                                                        store:new Ext.data.SimpleStore({
+                                                            fields : ['myId','displayText'],
+                                                            data :[['递增','递增'],['固定','固定'],['单价','单价'],['动态','动态']]
+                                                        }),
+                                                        emptyText:'请选择',
+                                                        valueField:'myId',
+                                                        displayField:'displayText'
+                                                     });
+                                                     
+                                                     var beilv = new Ext.form.ComboBox({
+                                                        fieldLabel:'倍率',
+                                                        width:130,
+                                                        mode:'local',
+                                                        name:'倍率',
+                                                        triggerAction:'all',
+                                                        editable:false,
+                                                        store:new Ext.data.SimpleStore({
+                                                            fields : ['myId','displayText'],
+                                                            data :[[0,0],[10,10],[20,20],[30,30],[40,40],[50,50],[60,60],[70,70],[80,80],[90,90],[100,100]]
+                                                        }),
+                                                        emptyText:'请选择',
+                                                        valueField:'myId',
+                                                        displayField:'displayText'
+                                                     });
+                                                     
+                                                    var sunhao = new Ext.form.ComboBox({
+                                                        fieldLabel:'损耗',
+                                                        width:130,
+                                                        mode:'local',
+                                                        name:'损耗',
+                                                        triggerAction:'all',
+                                                        editable:false,
+                                                        store:new Ext.data.SimpleStore({
+                                                            fields : ['myId','displayText'],
+                                                            data :[[0,'0%'],[1,'1%'],[2,'2%'],[3,'3%'],[4,'4%'],[5,'5%'],[6,'6%'],[7,'7%'],[8,'8%'],[9,'9%'],[10,'10%'],[11,'11%']
+                                                                    ,[12,'12%'],[13,'13%'],[14,'14%'],[15,'15%'],[16,'16%'],[17,'17%'],[18,'18%'],[19,'19%'],[20,'20%']]
+                                                        }),
+                                                        emptyText:'请选择',
+                                                        valueField:'myId',
+                                                        displayField:'displayText'
+                                                     });
+                                                     
+                                                     var znj = new Ext.form.ComboBox({
+                                                        fieldLabel:'滞纳金',
+                                                        width:130,
+                                                        mode:'local',
+                                                        name:'滞纳金',
+                                                        triggerAction:'all',
+                                                        editable:false,
+                                                        store:new Ext.data.SimpleStore({
+                                                            fields : ['myId','displayText'],
+                                                            data :[[0,'0%'],[1,'1%'],[2,'2%'],[3,'3%'],[4,'4%'],[5,'5%'],[6,'6%'],[7,'7%'],[8,'8%'],[9,'9%'],[10,'10%'],[11,'11%']
+                                                                    ,[12,'12%'],[13,'13%'],[14,'14%'],[15,'15%'],[16,'16%'],[17,'17%'],[18,'18%'],[19,'19%'],[20,'20%']]
+                                                        }),
+                                                        emptyText:'请选择',
+                                                        valueField:'myId',
+                                                        displayField:'displayText'
+                                                     });
+                                                     
+	                                                var fcxfUiForm = new Ext.FormPanel({
+	                                                    padding:10,
+	                                                   	items:[
+	                                                        {
+	                                                            xtype: 'hidden',
+                                                                name: 'id'
+	                                                        },
+	                                                        {
+	                                                            xtype: 'hidden',
+                                                                name: '房产类型',
+                                                                value: d.data.房产类型 
+	                                                        },
+                                                            {
+                                                                xtype: 'hidden',
+                                                                name: '工业园名称',
+                                                                value: d.data.工业园名称    
+                                                            },
+                                                            {
+                                                                fieldLabel:'编号',
+                                                                name:'序号',
+                                                                allowBlank:false,
+                                                                xtype: 'textfield' 
+                                                            },
+                                                            {
+                                                                fieldLabel:'消费项目',
+                                                                name:'消费项目',
+                                                                allowBlank:false,
+                                                                xtype: 'textfield' 
+                                                            },
+                                                           xflx,
+                                                            {
+                                                                fieldLabel:'值',
+                                                                name:'值',
+                                                                allowBlank:false,
+                                                                xtype: 'textfield' 
+                                                            },
+                                                            beilv,
+                                                            sunhao,
+                                                            znj,
+                                                            {
+                                                                fieldLabel:'说明',
+                                                                name:'说明',
+                                                                allowBlank:false,
+                                                                xtype: 'textfield' 
+                                                            }
+                                                            
+                                                            
+                                                        ],
+                                                        buttons:[
+                                                            {
+                                                                text: '保存',
+                                                                iconCls: 'icon-save',
+                                                                
+                                                                handler:function () {
+                                                                    fcxfUiForm.getForm().submit({
+                                                                        url: 'ajax/zygl/gyygl.aspx',
+                                                                        params: {
+                                                                            action:'add_fcxf'
+                                                                        },
+                                                                        success: function (form, action) {  
+                                                                            //console.log(action.response.responseText);                                      
+                                                                            fcxfWinUi.close();
+                                                                            fcxfStore.reload();
+                                                                        }
+                                                                    });
+                                                                } 
+                                                            },
+                                                            {
+                                                                text: '取消',
+                                                                iconCls: 'icon-cancel',
+                                                                handler: function () {
+                                                                    fcxfWinUi.close();
+                                                                }
+                                                            }
+                                                        ]
+	                                                });
+	                                                
+                                                    var fcxfWinUi  = new Ext.Window({
+                                                        layout:'fit',
+                                                        width:460,
+                                                        height:300,
+                                                        items:[
+                                                            fcxfUiForm
+                                                        ]
+                                                    });
+                                                    
+                                                    fcxfWinUi.show();
+                                                }
+	                                        },
+	                                        {
+	                                            text:"删除房产消费",
+	                                            iconCls: 'icon-group-update',
+	                                            handler:function () {
+	                                              // var d = lxgird.getSelectionModel().getSelected();
+                                                   
+                        		                    
+	                                            }
+	                                        }
+	                                    ],
+				                        items:[
+				                            fcxfGird
+				                        ]
+				                    });
+				                    fcxfWin.show();
+				                    fcxfStore.load();
+				                }
 				            }
 				        ],
 				        items:[
