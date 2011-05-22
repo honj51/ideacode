@@ -3,13 +3,20 @@
 var now = new Date();
 var now_year = now.getFullYear();
 var now_month = now.getMonth()+1;
+var now_day = now.getDate();
 year_opts = [{n:now.getFullYear()}];
 month_opts = [{n:now_month}];
+day_opts = [{n:now_day}];
+
 for(var i=2006;i<=now_year;i++) {
     year_opts.push({n:i});
 }
 for(var i=1;i<=12;i++) {
     month_opts.push({n:i});
+}
+
+for(var i=1;i<=31;i++) {
+    day_opts.push({n:i});
 }
 
 Ext.YearCombox = Ext.extend(Ext.form.ComboBox,{
@@ -41,6 +48,23 @@ Ext.MonthCombox = Ext.extend(Ext.form.ComboBox,{
 	displayField: 'n',
 	valueField: 'n',
 	value: now_month,
+	initComponent: function(){
+	    Ext.MonthCombox.superclass.initComponent.call(this);
+	}
+});
+
+Ext.DayCombox = Ext.extend(Ext.form.ComboBox,{
+    editable: false,
+	width: 40,
+	mode: 'local',
+	triggerAction:"all",
+    store: new Ext.data.JsonStore({
+        fields: ['n'],
+        data: month_opts
+    }),
+	displayField: 'n',
+	valueField: 'n',
+	value: day_opts,
 	initComponent: function(){
 	    Ext.MonthCombox.superclass.initComponent.call(this);
 	}
