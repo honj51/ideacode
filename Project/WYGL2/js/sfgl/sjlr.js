@@ -281,7 +281,83 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		},{
 		    text: self.jfgl?'缴费':'录入',
 		    handler: function () {
-		        alert('a');
+		        function lr() {
+		        	var r = self.getSelectionModel().getSelected();
+				    if (!r) return;
+		            var fs = ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','上月读数','读数','说明','读数输入'];
+		            var xf_store = new Ext.data.JsonStore({
+		                url: 'ajax/sfgl/sfgl.aspx?action=lr&id='+r.data.id,
+	                    root : 'data',
+	                    autoLoad: true,
+			            fields: fs
+		            });         
+		            var colModel = new Ext.grid.ColumnModel({
+		                columns: [{
+		                    header: '编号', dataIndex: '编号', width: 40
+		                },{
+		                     header: '消费项目', dataIndex: '消费项目', width: 120,css:read_only_css
+		                },{
+		                    header: '消费类型', dataIndex: '消费类型', width: 80,css:read_only_css
+		                },{
+			                header: '值', dataIndex: '值', editor: textEditor, width: 70, renderer: valueRenderer
+		                },{
+			                header: '倍率', dataIndex: '倍率', editor: blCombox, width: 70, renderer: valueRenderer
+		                },{
+			                header: '损耗', dataIndex: '损耗', editor: vCombox, width: 70, renderer: percentRenderer
+		                },{
+			                header: '滞纳金', dataIndex: '滞纳金', editor: vCombox, width: 70, renderer: percentRenderer
+		                },{
+			                header: '上月读数', dataIndex: '上月读数', editor: textEditor, width: 80, renderer: valueRenderer
+		                },{
+			                header: '说明', dataIndex: '说明', editor: textEditor, width: 120
+		                },{
+			                header: '读数输入', dataIndex: '读数输入',width: 60,css:read_only_css
+		                }],
+		                isCellEditable: function(col, row) {
+                            var record = xf_store.getAt(row);
+                            if (record.get(fs[col]) == '-') { // replace with your condition
+                              return false;
+                            }
+                            return Ext.grid.ColumnModel.prototype.isCellEditable.call(this, col, row);
+                        }
+		            });		            
+		            
+				    var grid = new Ext.grid.EditorGridPanel({
+			            store: xf_store,
+			            colModel: colModel,
+			            tbar: ['注意:灰色项为不可编辑项。','->',{
+			                text: '提交',
+			                handler: function () {
+			                    var data = [];
+			                    xf_store.each(function(record){
+			                        data.push(record.data);
+			                    });
+			                    Ext.Ajax.request({
+			                         url: "ajax/sfgl/sfgl.aspx?action=list_lr", 
+			                         params: {
+			                            id: r.data.id,
+			                            data: Ext.encode(data)
+			                         },
+			                         success: function () {
+			                            Ext.Msg.alert('提交','数据提交成功！');
+			                            win.close();
+			                         }
+			                    });			                    
+			                }
+			            }  
+			            ]
+            		});
+            		var win = new Ext.Window({
+            		    layout: 'fit',
+			            height: 500,
+			            width: 900,
+            		    title: '固定消费项目',
+            		    items: grid
+            		});
+            		win.show();
+		        }
+		        
+		        lr();
 		    }
 		}];
 		self.store.load({params:{

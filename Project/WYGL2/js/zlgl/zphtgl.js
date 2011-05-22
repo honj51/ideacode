@@ -293,38 +293,6 @@ xtype:"grid",
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (!r) return;
-				    console.log(r.data.id);
-				    var bl_data = [];
-				    for(var i=0;i<=100;i++) {
-				        bl_data[i] = [i];
-				    }				 
-				    var v_data = [];
-				    for(var i=0;i<=20;i++) {
-				        v_data[i] = [''+i+'%'];
-				    }   
-		            var textEditor = new Ext.form.TextField();
-		            var blCombox = new Ext.form.ComboBox({ //倍率
-			            store : new Ext.data.SimpleStore({
-				            fields : ['v'],
-				            data : bl_data
-			            }),
-			            valueField : 'v',
-			            displayField : 'v',
-			            mode : 'local',
-			            triggerAction : 'all'
-		            });         
-		            var vCombox = new Ext.form.ComboBox({ //损耗,滞纳金
-			            store : new Ext.data.SimpleStore({
-				            fields : ['v'],
-				            data : v_data
-			            }),
-			            valueField : 'v',
-			            displayField : 'v',
-			            name: 'v',
-			            value: 'text',
-			            mode : 'local',
-			            triggerAction : 'all'
-		            });
 		            var fs = ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明','读数导入','项目导入'];
 		            var xf_store = new Ext.data.JsonStore({
 		                url: 'ajax/zlgl/zphtgl.aspx?action=edit_gdxfx&id='+r.data.id,
@@ -332,11 +300,6 @@ xtype:"grid",
 	                    autoLoad: true,
 			            fields: fs
 		            });         
-		            var read_only_css = 'background-color: #D2D2D2;';
-		            function valueRenderer(v, metaData, record, rowIndex, colIndex, store) {
-		                if(v == "-") metaData.attr += 'style="' + read_only_css + '"';
-		                return v;		                   
-		            }		            
 		            var colModel = new Ext.grid.ColumnModel({
 		                columns: [{
 		                    header: '编号', dataIndex: '编号', width: 40
@@ -349,9 +312,9 @@ xtype:"grid",
 		                },{
 			                header: '倍率', dataIndex: '倍率', editor: blCombox, width: 70, renderer: valueRenderer
 		                },{
-			                header: '损耗', dataIndex: '损耗', editor: vCombox, width: 70, renderer: valueRenderer
+			                header: '损耗', dataIndex: '损耗', editor: vCombox, width: 70, renderer: percentRenderer
 		                },{
-			                header: '滞纳金', dataIndex: '滞纳金', editor: vCombox, width: 70, renderer: valueRenderer
+			                header: '滞纳金', dataIndex: '滞纳金', editor: vCombox, width: 70, renderer: percentRenderer
 		                },{
 			                header: '前期读数', dataIndex: '前期读数', editor: textEditor, width: 80, renderer: valueRenderer
 		                },{
@@ -373,7 +336,7 @@ xtype:"grid",
 				    var grid = new Ext.grid.EditorGridPanel({
 			            store: xf_store,
 			            colModel: colModel,
-			            buttons: [{
+			            tbar: ['注意:灰色项为不可编辑项。','->',{
 			                text: '导入到合同',
 			                handler: function () {
 			                    var data = [];
@@ -385,9 +348,12 @@ xtype:"grid",
 			                         params: {
 			                            id: r.data.id,
 			                            data: Ext.encode(data)
+			                         },
+			                         success: function () {
+			                            Ext.Msg.alert('固定消费项导入','数据导入成功！');
+			                            win.close();
 			                         }
-			                    });
-			                    win.close();
+			                    });			                    
 			                }
 			            }  
 			            ]
