@@ -147,21 +147,23 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                        return data[f+'_年'] + '/' + data[f+'_月'] + '/' + data[f+'_日'];
 	                    }
 	                    
-	                    var html = '<table>'+
-	                                '<tr>'+
-	                                    '<td>'+'合同编号：'+r.data.编码+'<td>'+
-	                                    '<td>'+'客户编号：'+r.data.客户编码+'<td>'+
-	                                    '<td>'+'客户名称:：'+r.data.客户名称+'<td>'
+	                    var html = '<table class="tab1">'+
+	                                '<tr style="height:20px;">'+
+	                                    '<td>'+'<strong>'+'合同编号：'+'</strong>'+r.data.编码+'<td>'+
+	                                    '<td>'+'<strong>'+'客户编号：'+'</strong>'+r.data.客户编码+'<td>'+
+	                                    '<td>'+'<strong>'+'客户名称:'+'</strong>'+r.data.客户名称+'<td>'
 	                                +'</tr>'
-	                                +'<tr style='padding-top:20px'>'+
-	                                    '<td>'+'联系电话：'+r.data.联系电话+'<td>'+
-	                                    '<td>'+'联系地址：'+r.data.联系地址+'<td>'
+	                                +'<tr style="height:20px;">'+
+	                                    '<td>'+'<strong>'+'联系电话：'+'</strong>'+r.data.联系电话+'<td>'+
+	                                    '<td>'+'<strong>'+'联系地址：'+'</strong>'+r.data.联系地址+'<td>'
 	                                +'</tr>'+
-	                                    '<td>'+'所属工业园：'+r.data.所属工业园+'<td>'+
-	                                    '<td>'+'房产类型：'+r.data.房产类型+'<td>'+
-	                                    '<td>'+'所属房产：'+r.data.所属房产+'<td>'+
-	                                    '<td>'+'合同开始时间：'+printDate('合同开始时间')+'<td>'+
-	                                    '<td>'+'合同结束时间：'+printDate('合同结束时间')+'<td>'
+	                                '<tr style="height:20px;">'+
+	                                    '<td>'+'<strong>'+'所属工业园：'+'</strong>'+r.data.所属工业园+'<td>'+
+	                                    '<td>'+'<strong>'+'房产类型：'+'</strong>'+r.data.房产类型+'<td>'+
+	                                    '<td>'+'<strong>'+'所属房产：'+'</strong>'+r.data.所属房产+'<td>'+
+	                                    '<td>'+'<strong>'+'合同开始时间：'+'</strong>'+printDate('合同开始时间')+'<td>'+
+	                                    '<td>'+'<strong>'+'合同结束时间：'+'</strong>'+printDate('合同结束时间')+'<td>'+
+	                                 '</tr>'
 	                                +'</table>';
 	                    	                    
 //				        var html = '合同编号:'+r.data.编码+'客户编号:'+r.data.编码+'客户名称:'+r.data.客户名称+'<br>'+
@@ -171,6 +173,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    
 			            var w = new Ext.Window({
                             title:"录入总表",
+                            width:924,
                             height: 500,
                             layout: 'border',
                             items:[
