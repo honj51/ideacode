@@ -98,6 +98,7 @@ if request.QueryString("action")=1 then
 	set rs=Server.CreateObject("ADODB.RecordSet")
 	strSql = "select * from admin_admin where admin_id='"&admin_id&"'and admin_pwd='"&admin_pwd&"'"
 	rs.open strSql,conn,1,3
+	stop
 	if rs.eof or rs.bof then
 	response.write"<script>alert('账户或密码或权限出错，请重新登陆');history.go(-1);</script>"	
 	else

@@ -140,19 +140,28 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 Response.End();
                 return;
             }
-            RowObject r1 = DBHelper.GetRow(sql1);
-            if (r1 == null)
-            {
-                Response.Write(responseError);
-                Response.End();
-                return;
-            }
+            
             string gyy_mc = r1["所属工业园"].ToString();
             string fclx = r1["房产类型"].ToString();
             string htbh = r1["编码"].ToString();
-
+            // 清除数据
+            string sql2 = string.Format("delete from zpgl_lx_lb where 合同编号='{0}'",htbh);
+            DBHelper.ExecuteSql(sql2);
+            sql2 = string.Format("delete from user_sf_lb where 单据编号='{0}'",htbh+"_1");
+            DBHelper.ExecuteSql(sql2);
+            sql2 = string.Format("delete from user_sf_zb where 单据编号='{0}'",htbh+"_1");
+            DBHelper.ExecuteSql(sql2);
+            // 新增数据
             string sql2 = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
                 gyy_mc, fclx);
+            ResultObject r2 = DBHelper.GetResult(sql2);
+            JSONArray ja = new JSONArray();
+            int i = 1;
+            foreach (var item in r2)
+            {
+
+            }
+
         }
         Response.End();
     }
