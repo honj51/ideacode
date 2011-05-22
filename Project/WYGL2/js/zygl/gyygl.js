@@ -496,7 +496,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                                 fieldLabel:'值',
                                                                 name:'值',
                                                                 allowBlank:false,
-                                                                xtype: 'textfield' 
+                                                                xtype: 'numberfield' 
                                                             },
                                                             beilv,
                                                             sunhao,
@@ -516,18 +516,18 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                                 iconCls: 'icon-save',
                                                                 
                                                                 handler:function () {
-                                                                       console.log(fcxfUiForm.getForm().getValues());
-//                                                                    fcxfUiForm.getForm().submit({
-//                                                                        url: 'ajax/zygl/gyygl.aspx',
-//                                                                        params: {
-//                                                                            action:'add_fcxf'
-//                                                                        },
-//                                                                        success: function (form, action) {  
-//                                                                            //console.log(action.response.responseText);                                      
-//                                                                            fcxfWinUi.close();
-//                                                                            fcxfStore.reload();
-//                                                                        }
-//                                                                    });
+                                                                       //console.log(fcxfUiForm.getForm().getValues());
+                                                                    fcxfUiForm.getForm().submit({
+                                                                        url: 'ajax/zygl/gyygl.aspx',
+                                                                        params: {
+                                                                            action:'add_fcxf'
+                                                                        },
+                                                                        success: function (form, action) {  
+                                                                            //console.log(action.response.responseText);                                      
+                                                                            fcxfWinUi.close();
+                                                                            fcxfStore.reload();
+                                                                        }
+                                                                    });
                                                                 } 
                                                             },
                                                             {
@@ -556,9 +556,21 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                                            text:"删除房产消费",
 	                                            iconCls: 'icon-group-update',
 	                                            handler:function () {
-	                                              // var d = lxgird.getSelectionModel().getSelected();
-                                                   
-                        		                    
+	                                                var d = fcxfGird.getSelectionModel().getSelected();
+                                                    if (d) {
+				                                        Ext.Msg.confirm('删除房产消费','确定要删除选中的房产消费吗？',function(btn){
+							                                if(btn == 'yes') {
+								                                Ext.Ajax.request({
+									                                url:'ajax/zygl/gyygl.aspx?action=delete_fcxf',
+									                                success:function(){
+										                                Ext.Msg.alert('删除房产消费','房产消费删除成功！');
+										                                fcxfStore.reload();
+									                                },
+									                                params:{id: d.get('id')}
+								                                });
+							                                }
+						                                });
+				                                    } 
 	                                            }
 	                                        }
 	                                    ],
