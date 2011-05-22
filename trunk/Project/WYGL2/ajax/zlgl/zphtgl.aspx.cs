@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
+using System.Collections.Specialized;
 
 public partial class ZuLin_zphtgl : System.Web.UI.Page
 {
@@ -143,7 +144,10 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             
             string gyy_mc = r1["所属工业园"].ToString();
             string fclx = r1["房产类型"].ToString();
+            string ssfc = r1["所属房产"].ToString();
             string htbh = r1["编码"].ToString();
+            string khbm = r1["客户编码"].ToString();
+            string khmc = r1["客户名称"].ToString();
             // 清除数据
             string sql2 = string.Format("delete from zpgl_lx_lb where 合同编号='{0}'",htbh);
             DBHelper.ExecuteSql(sql2);
@@ -160,9 +164,59 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             foreach (var item in r2)
             {
                 // zpgl_lx_lb
-                string sql3 = string.Format("insert into zpgl_lx_lb (合同编号,客户编码,所属工业园,) values()");
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("合同编号", htbh);
+                nv1.Add("客户编码", khbm);
+                nv1.Add("所属工业园", item["工业园名称"]);
+                nv1.Add("房产类型",item["房产类型"]);
+                nv1.Add("所属房产", ssfc);
+                nv1.Add("客户名称", khmc);
+                nv1.Add("消费项目", "");
+                nv1.Add("消费类型", "");
+                nv1.Add("值", "");
+                nv1.Add("损耗", "");
+                nv1.Add("倍率", "");
+                nv1.Add("滞纳金", "");
+                nv1.Add("说明", "");
+                string sql3 = SqlBuilder.NameValueToSql(nv1, "zpgl_lx_lb", "id", true);
                 // user_sf_lb
+                NameValueCollection nv2 = new NameValueCollection();
+                nv1.Add("合同编号", htbh);
+                nv1.Add("单据编号", htbh + "_1");
+                nv1.Add("客户编号", khbm);
+                nv1.Add("日期年", item["合同开始时间_年"]);
+                nv1.Add("日期月", item["合同开始时间_月"]);
+                nv1.Add("日期日", item["合同开始时间_日"]);
+                nv1.Add("日期", item["合同开始时间"]);
+
+                nv1.Add("房产类型", item["房产类型"]);
+                nv1.Add("所属房产", ssfc);
+                nv1.Add("客户名称", khmc);
+                nv1.Add("消费项目", "");
+                nv1.Add("消费类型", "");
+                nv1.Add("值", "");
+                nv1.Add("损耗", "");
+                nv1.Add("倍率", "");
+                nv1.Add("滞纳金", "");
+                nv1.Add("说明", "");
+                string sql4 = SqlBuilder.NameValueToSql(nv2, "user_sf_lb", "id", true);
                 // user_sf_zb
+                NameValueCollection nv3 = new NameValueCollection();
+                nv1.Add("合同编号", htbh);
+                nv1.Add("客户编码", khbm);
+                nv1.Add("所属工业园", item["工业园名称"]);
+                nv1.Add("房产类型", item["房产类型"]);
+                nv1.Add("所属房产", ssfc);
+                nv1.Add("客户名称", khmc);
+                nv1.Add("消费项目", "");
+                nv1.Add("消费类型", "");
+                nv1.Add("值", "");
+                nv1.Add("损耗", "");
+                nv1.Add("倍率", "");
+                nv1.Add("滞纳金", "");
+                nv1.Add("说明", "");
+                string sql5 = SqlBuilder.NameValueToSql(nv3, "user_sf_zb", "id", true);
+
             }
 
         }
