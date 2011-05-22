@@ -293,6 +293,7 @@ xtype:"grid",
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
 				    if (!r) return;
+				    console.log(r.data.id);
 				    var bl_data = [];
 				    for(var i=0;i<=100;i++) {
 				        bl_data[i] = [i];
@@ -380,8 +381,9 @@ xtype:"grid",
 			                        data.push(record.data);
 			                    });
 			                    Ext.Ajax.request({
-			                         url: "ajax/zlgl/zphtgl.aspx?action=import_gdxfx_x", 
+			                         url: "ajax/zlgl/zphtgl.aspx?action=import_gdxfx", 
 			                         params: {
+			                            id: r.data.id,
 			                            data: Ext.encode(data)
 			                         }
 			                    });
