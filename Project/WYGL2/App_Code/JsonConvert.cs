@@ -101,7 +101,7 @@ public static class JSONConvert
     private static string Deserialize(string text)
     {
         text = StrEncode(text);//转义;和,
-
+        _json.Clear();
         int count = 0;
         string key = string.Empty;
         string pattern = "(\\{[^\\[\\]\\{\\}]+\\})|(\\[[^\\[\\]\\{\\}]+\\])";
