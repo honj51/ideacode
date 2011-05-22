@@ -129,3 +129,50 @@ Ext.GyyLxCombox = Ext.extend(Ext.form.ComboBox,{
 //	    Ext.MonthCombox.superclass.initComponent.call(this);
 //	}
 // });
+
+
+//////////////////////////////////////////////////////////////////////////
+// 消费项中的数据显示
+// 倍率,损耗,滞纳金 选择
+//////////////////////////////////////////////////////////////////////////
+
+var bl_data = [];
+for(var i=0;i<=100;i++) {
+    bl_data[i] = [i];
+}				 
+var v_data = [];
+for(var i=0;i<=20;i++) {
+    v_data[i] = [''+i+'%',i];
+}   
+var textEditor = new Ext.form.TextField();
+var blCombox = new Ext.form.ComboBox({ //倍率
+    store : new Ext.data.SimpleStore({
+        fields : ['v'],
+        data : bl_data
+    }),
+    valueField : 'v',
+    displayField : 'v',
+    mode : 'local',
+    triggerAction : 'all'
+});         
+var vCombox = new Ext.form.ComboBox({ //损耗,滞纳金
+    store : new Ext.data.SimpleStore({
+        fields : ['n','v'],
+        data : v_data
+    }),
+    valueField : 'v',
+    displayField : 'n',
+    name: 'n',
+    //value: 'text',
+    mode : 'local',
+    triggerAction : 'all'
+});
+
+var read_only_css = 'background-color: #D2D2D2;';
+function valueRenderer(v, metaData, record, rowIndex, colIndex, store) {
+    if(v == "-") metaData.attr += 'style="' + read_only_css + '"';
+    return v;		                   
+}	
+function percentRenderer(v) {
+    return '%'+v;		         
+}	            

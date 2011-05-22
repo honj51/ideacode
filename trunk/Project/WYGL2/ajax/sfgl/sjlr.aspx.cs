@@ -194,6 +194,35 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             string ret = JSONConvert.SerializeArray(ja);
             Response.Write(ret);
         }
+        else if (action == "list_lr") // 录入  http://www.szxlxtz.com/sfgl/sjlr_xq_lb.asp?id=129&ny=2010&yy=6&xh=5&page=6
+        {
+
+        }
+        else if (action == "lr_tj")  // 录入提交
+        {
+
+        }
+        else if (action == "list_jf") // 缴费 http://www.szxlxtz.com/sfgl/jf_xq_lb.asp?id=113&ny=2011&yy=2&xh=3&page=1
+        {
+
+        }
+        // 缴费提交
+        // 提交页面: http://rd02:81/wygl/sfgl/jf_xq_lb.asp?action=tj&Operation=tj&id=113&xh=3&uid=806&page=1
+        // 提交成功后返回 http://rd02:81/wygl/sfgl/jfxq.asp?id=113&ny=2011&yy=2&xh=3&page=1
+        else if (action == "lr_tj") 
+        {
+            int jfje = int.Parse(Request.Params["缴费金额"]);
+            int zfy = int.Parse(Request.Params["总费用"]);
+            int ye = int.Parse(Request.Params["余额"]);
+            if (jfje-zfy-ye<0)
+            {
+                Response.Write("{success:false, errorMessage:'缴费金额不对'}");
+                Response.End();
+                return;
+            }
+
+
+        }
         Response.End();
     }
 
