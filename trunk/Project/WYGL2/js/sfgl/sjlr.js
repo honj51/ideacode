@@ -146,10 +146,28 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                        var data = r.data;
 	                        return data[f+'_年'] + '/' + data[f+'_月'] + '/' + data[f+'_日'];
 	                    }
-				        var html = '合同编号:'+r.data.编码+'客户编号:'+r.data.编码+'客户名称:'+r.data.客户名称+'<br>'+
-		                '联系电话'+'联系地址<br>'+
-		                '所属工业园'+r.data.所属工业园+'房产类型'+r.data.房产类型+'所属房产'+r.data.所属房产+'<br>'+
-		                '合同开始时间'+printDate('合同开始时间')+'合同结束时间'+printDate('合同结束时间');
+	                    
+	                    var html = '<table>'+
+	                                '<tr>'+
+	                                    '<td>'+'合同编号：'+r.data.编码+'<td>'+
+	                                    '<td>'+'客户编号：'+r.data.客户编码+'<td>'+
+	                                    '<td>'+'客户名称:：'+r.data.客户名称+'<td>'
+	                                +'</tr>'
+	                                +'<tr style='padding-top:20px'>'+
+	                                    '<td>'+'联系电话：'+r.data.联系电话+'<td>'+
+	                                    '<td>'+'联系地址：'+r.data.联系地址+'<td>'
+	                                +'</tr>'+
+	                                    '<td>'+'所属工业园：'+r.data.所属工业园+'<td>'+
+	                                    '<td>'+'房产类型：'+r.data.房产类型+'<td>'+
+	                                    '<td>'+'所属房产：'+r.data.所属房产+'<td>'+
+	                                    '<td>'+'合同开始时间：'+printDate('合同开始时间')+'<td>'+
+	                                    '<td>'+'合同结束时间：'+printDate('合同结束时间')+'<td>'
+	                                +'</table>';
+	                    	                    
+//				        var html = '合同编号:'+r.data.编码+'客户编号:'+r.data.编码+'客户名称:'+r.data.客户名称+'<br>'+
+//		                '联系电话'+'联系地址<br>'+
+//		                '所属工业园'+r.data.所属工业园+'房产类型'+r.data.房产类型+'所属房产'+r.data.所属房产+'<br>'+
+//		                '合同开始时间'+printDate('合同开始时间')+'合同结束时间'+printDate('合同结束时间');
 		    
 			            var w = new Ext.Window({
                             title:"录入总表",

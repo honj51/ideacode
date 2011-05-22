@@ -103,6 +103,23 @@ xtype:"grid",
         valueField:'id',
         displayField:'Text'
      });
+     
+    var year = new Ext.YearCombox({
+        fieldLabel:'年',
+        width:60,
+        name:'出生日期_年'
+     });
+     
+    var mouth = new Ext.MonthCombox({
+        fieldLabel:'月',
+        width:50,
+        name:'出生日期_月'
+    });
+    
+    var day = new Ext.DayCombox({
+        fieldLabel:'日',
+        name:'出生日期_日'
+    });
     
     var form = new Ext.FormPanel({
 	    id:'form1',
@@ -138,6 +155,16 @@ xtype:"grid",
                 xtype: 'textfield'				                           
             },
             sex,
+//            {
+//                xtype: 'container',
+//                layout:'column',
+//                items:[
+//                    year,
+//                    mouth,
+//                    day
+//                ]
+//                
+//            },
             {
                 fieldLabel: '出生日期',
                 name: '出生日期',
