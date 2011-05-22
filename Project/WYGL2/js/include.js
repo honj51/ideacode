@@ -60,13 +60,13 @@ Ext.DayCombox = Ext.extend(Ext.form.ComboBox,{
 	triggerAction:"all",
     store: new Ext.data.JsonStore({
         fields: ['n'],
-        data: month_opts
+        data: day_opts
     }),
 	displayField: 'n',
 	valueField: 'n',
 	value: day_opts,
 	initComponent: function(){
-	    Ext.MonthCombox.superclass.initComponent.call(this);
+	    Ext.DayCombox.superclass.initComponent.call(this);
 	}
 });
 
