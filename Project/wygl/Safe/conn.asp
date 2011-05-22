@@ -48,5 +48,5 @@ return false;
 dim conn 
 on error resume next 
 set conn=server.CreateObject("adodb.connection") 
-conn.open "driver={sql server};server=218.85.134.7;database=sq8szxlx;uid=sq8szxlx;password=fuwei789;" 
+conn.open "driver={sql server};server=192.168.1.101;database=xx;uid=sq8szxlx;password=fuwei789;" 
 %> 
