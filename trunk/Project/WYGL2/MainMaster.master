@@ -97,10 +97,23 @@
                     else if (n.attributes.text == "收款详细统计") {
                         panel = new Ext.Hudongsoft.xxfytjlbGrid();
                     }
-                    else if (n.attributes.text == "临时开票") {
-                        panel = new Ext.Hudongsoft.zphtglWin();
+                    else if (n.attributes.text == "临时开票") {                                            
+                        panel = new Ext.Window({
+                            title:'临时开票',
+                            items: [{
+                                xtype: 'panel',
+	                            //autoWidth: true,
+	                            html:'<iframe src="lskp.aspx" width=1000 height=600 frameborder="0" scrolling="auto"></iframe>'
+	                            
+                            }]
+                        });
                         panel.show();
                         return;
+                        
+                        
+//                        panel = new Ext.Hudongsoft.zphtglWin();
+//                        panel.show();
+//                        return;
                     }
                     else if (n.attributes.text == "角色管理") {
                         panel = new Ext.Hudongsoft.jsqxGrid();
