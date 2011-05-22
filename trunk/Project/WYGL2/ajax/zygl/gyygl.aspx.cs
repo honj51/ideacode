@@ -90,6 +90,13 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
+        else if (action == "delete_fcxf")
+        {
+            string sql = "delete from sq8szxlx.gyy_lb_fclx_lb_xflx where id=" + Request.Params["id"];
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
+        }
+        
         Response.End();
     }
 }
