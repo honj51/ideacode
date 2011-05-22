@@ -195,6 +195,10 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	
 	initComponent: function(){
 	    var self = this;
+	    var iField = new Ext.form.TextField({ //搜索栏
+            emptyText:'请输入姓名',
+	        width:150,
+        });
 	    this.bbar = new Ext.PagingToolbar({
 	        pageSize: 20,
 	        store: self.store,
@@ -245,13 +249,17 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				xtype:"label",
 				text:"姓名："
 			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签"
-			},
+			iField,
 			{
 				text:"搜索",
-				iconCls: 'icon-query'
+				iconCls: 'icon-query',
+				handler:function () {
+				    self.store.load({
+				        params:{
+				            iField:iField.getValue()
+				        }
+				    });
+				}
 			}
 		];
 	    self.store.load();

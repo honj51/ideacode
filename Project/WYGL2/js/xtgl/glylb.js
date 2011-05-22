@@ -68,7 +68,18 @@ xtype:"grid",
         });
         
         var js = new Ext.form.ComboBox({
-            
+            fieldLabel:'角色',
+            width:226,
+            name:'admin_limit',
+            triggerAction:'all',
+            editable:false,
+            store: new Ext.data.JsonStore({
+                autoLoad:true,
+	            url: "ajax/xtgl/glylb.aspx?action=glygl_js",
+	            fields: ['js']
+            }),            
+            valueField:'js',
+            displayField:'js'  
         });
         
         var form = new Ext.FormPanel({
@@ -139,7 +150,8 @@ xtype:"grid",
 	                        },
 	                        success:function (form, action) {
 	                            console.log(action.response.responseText);                                      
-                                w.close();                                
+                                w.close();
+                                self.store.load();                                
                                 Ext.Msg.alert("修改密码","修改密码成功");
 	                        }
 	                    });
@@ -176,6 +188,7 @@ xtype:"grid",
 				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
+                    
 				}
 			},
 			{
@@ -185,6 +198,7 @@ xtype:"grid",
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
 				        self.showDetailWindow(false, r.data);
+				        
 				    }				    
 				}
 			},

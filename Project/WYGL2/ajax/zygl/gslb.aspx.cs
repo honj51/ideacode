@@ -22,10 +22,15 @@ public partial class ZiYuan_gslb : System.Web.UI.Page
         if (action == "list")
         {
             string sql = "";
+            string iField = Request.Params["iField"];
             if (Request.Params["start"] != null && Request["limit"] != null)
             {
                 sql = string.Format("select top {0} * from sq8szxlx.user_gs where id not in(select top {1} id from sq8szxlx.user_gs)",
                     Request["limit"], Request.Params["start"]);
+            }
+            else if (iField != null)
+            {
+                sql = string.Format("select * from sq8szxlx.user_gs where 名称 like '%{0}%' ", iField);
             }
             else
             {
@@ -60,6 +65,7 @@ public partial class ZiYuan_gslb : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
+
         Response.End();
     }
 }
