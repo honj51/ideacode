@@ -375,6 +375,16 @@ xtype:"grid",
 			            buttons: [{
 			                text: '导入到合同',
 			                handler: function () {
+			                    var data = [];
+			                    xf_store.each(function(record){
+			                        data.push(record.data);
+			                    });
+			                    Ext.Ajax.request({
+			                         url: "ajax/zlgl/zphtgl.aspx?action=import_gdxfx_x", 
+			                         params: {
+			                            data: Ext.encode(data)
+			                         }
+			                    });
 			                    win.close();
 			                }
 			            }  

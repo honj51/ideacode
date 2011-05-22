@@ -20,6 +20,16 @@ using System.Data.SqlClient;
 /// </summary>
 public class SqlBuilder
 {
+    public static string NameValueToSql(Dictionary<string,object> dict, string table, string primary, bool insert)
+    {
+        NameValueCollection nvc = new NameValueCollection();
+        foreach (var item in dict)
+        {
+            nvc.Add(item.Key, item.Value.ToString());
+        }
+        return NameValueToSql(nvc, table, primary, insert);
+    }
+
     // 根据form提交的数据生成对应的sql语句
     public static string NameValueToSql(NameValueCollection nvc, string table, string primary, bool insert)
     {

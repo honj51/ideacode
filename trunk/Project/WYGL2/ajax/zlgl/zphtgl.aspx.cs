@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
 using System.Collections.Specialized;
+using System.Collections.Generic;
 
 public partial class ZuLin_zphtgl : System.Web.UI.Page
 {
@@ -132,7 +133,8 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         }
         else if (action == "import_gdxfx") // 导入固定消费项到合同
         {
-            //JSONConvert.DeserializeArray()
+            string responseError = "{success: false}";
+            JSONArray ja = JSONConvert.DeserializeArray(Request.Form["data"]);            
             string sql1 = string.Format("select * from sq8szxlx.zpgl where id='{0}'", Request.Params["id"]);
             RowObject r1 = DBHelper.GetRow(sql1);
             if (r1 == null)
@@ -149,38 +151,40 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             string khbm = r1["客户编码"].ToString();
             string khmc = r1["客户名称"].ToString();
             // 清除数据
-            string sql2 = string.Format("delete from zpgl_lx_lb where 合同编号='{0}'",htbh);
-            DBHelper.ExecuteSql(sql2);
-            sql2 = string.Format("delete from user_sf_lb where 单据编号='{0}'",htbh+"_1");
-            DBHelper.ExecuteSql(sql2);
-            sql2 = string.Format("delete from user_sf_zb where 单据编号='{0}'",htbh+"_1");
-            DBHelper.ExecuteSql(sql2);
+            sql1 = string.Format("delete from zpgl_lx_lb where 合同编号='{0}'", htbh);
+            DBHelper.ExecuteSql(sql1);
+            sql1 = string.Format("delete from user_sf_lb where 单据编号='{0}'", htbh + "_1");
+            DBHelper.ExecuteSql(sql1);
+            sql1 = string.Format("delete from user_sf_zb where 单据编号='{0}'", htbh + "_1");
+            DBHelper.ExecuteSql(sql1);
             // 新增数据
             string sql2 = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
                 gyy_mc, fclx);
             ResultObject r2 = DBHelper.GetResult(sql2);
-            JSONArray ja = new JSONArray();
-            int i = 1;
-            foreach (var item in r2)
+            for (int i = 0; i < r2.Count; i++)
             {
+                JSONObject jo = (JSONObject)ja[i];
+                RowObject item = r2[i];
+
                 // zpgl_lx_lb
-                NameValueCollection nv1 = new NameValueCollection();
+                Dictionary<string, object> nv1 = new Dictionary<string, object>();
                 nv1.Add("合同编号", htbh);
                 nv1.Add("客户编码", khbm);
                 nv1.Add("所属工业园", item["工业园名称"]);
-                nv1.Add("房产类型",item["房产类型"]);
+                nv1.Add("房产类型", item["房产类型"]);
                 nv1.Add("所属房产", ssfc);
                 nv1.Add("客户名称", khmc);
-                nv1.Add("消费项目", "");
-                nv1.Add("消费类型", "");
-                nv1.Add("值", "");
-                nv1.Add("损耗", "");
-                nv1.Add("倍率", "");
-                nv1.Add("滞纳金", "");
-                nv1.Add("说明", "");
-                string sql3 = SqlBuilder.NameValueToSql(nv1, "zpgl_lx_lb", "id", true);
+                nv1.Add("消费项目", jo["消费项目"]);
+                nv1.Add("消费类型", jo["消费类型"]);
+                nv1.Add("值", jo["值"]);
+                nv1.Add("损耗", jo["消费类型"] == "动态" ? jo["损耗"] : 0);
+                nv1.Add("倍率", jo["倍率"]);
+                nv1.Add("滞纳金", jo["滞纳金"]);
+                nv1.Add("说明", jo["说明"]);
+                string sql3 = SqlBuilder.NameValueToSql(nv1, "sq8szxlx.zpgl_lx_lb", "id", true);
+                DBHelper.ExecuteSql(sql3);
                 // user_sf_lb
-                NameValueCollection nv2 = new NameValueCollection();
+                Dictionary<string, object> nv2 = new Dictionary<string, object>();
                 nv1.Add("合同编号", htbh);
                 nv1.Add("单据编号", htbh + "_1");
                 nv1.Add("客户编号", khbm);
@@ -188,35 +192,35 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 nv1.Add("日期月", item["合同开始时间_月"]);
                 nv1.Add("日期日", item["合同开始时间_日"]);
                 nv1.Add("日期", item["合同开始时间"]);
-
-                nv1.Add("房产类型", item["房产类型"]);
-                nv1.Add("所属房产", ssfc);
-                nv1.Add("客户名称", khmc);
-                nv1.Add("消费项目", "");
-                nv1.Add("消费类型", "");
-                nv1.Add("值", "");
-                nv1.Add("损耗", "");
-                nv1.Add("倍率", "");
-                nv1.Add("滞纳金", "");
-                nv1.Add("说明", "");
-                string sql4 = SqlBuilder.NameValueToSql(nv2, "user_sf_lb", "id", true);
+                nv1.Add("收费项目", jo["收费项目"]);
+                nv1.Add("收费类型", jo["收费类型"]);
+                nv1.Add("值", jo["值"]);
+                nv1.Add("录入状态", (jo["消费类型"] == "动态" && jo["读数"] == "") ? "未录入" : "已录入");
+                nv1.Add("缴费状态", "不要交费");
+                nv1.Add("损耗", jo["消费类型"] == "动态" ? jo["损耗"] : 0);
+                nv1.Add("读数", jo["消费类型"] == "动态" ? jo["读数"] : 0);
+                nv1.Add("倍率", jo["倍率"]);
+                nv1.Add("滞纳金", jo["滞纳金"]);
+                nv1.Add("费用",0);
+                nv1.Add("金额", 0);
+                string sql4 = SqlBuilder.NameValueToSql(nv2, "sq8szxlx.user_sf_lb", "id", true);
+                DBHelper.ExecuteSql(sql4);
                 // user_sf_zb
-                NameValueCollection nv3 = new NameValueCollection();
+                Dictionary<string, object> nv3 = new Dictionary<string, object>();
                 nv1.Add("合同编号", htbh);
-                nv1.Add("客户编码", khbm);
-                nv1.Add("所属工业园", item["工业园名称"]);
-                nv1.Add("房产类型", item["房产类型"]);
-                nv1.Add("所属房产", ssfc);
-                nv1.Add("客户名称", khmc);
-                nv1.Add("消费项目", "");
-                nv1.Add("消费类型", "");
-                nv1.Add("值", "");
-                nv1.Add("损耗", "");
-                nv1.Add("倍率", "");
-                nv1.Add("滞纳金", "");
-                nv1.Add("说明", "");
-                string sql5 = SqlBuilder.NameValueToSql(nv3, "user_sf_zb", "id", true);
-
+                nv1.Add("单据编号", htbh + "_1");
+                nv1.Add("客户编号", khbm);
+                nv1.Add("日期年", item["合同开始时间_年"]);
+                nv1.Add("日期月", item["合同开始时间_月"]);
+                nv1.Add("日期日", item["合同开始时间_日"]);
+                nv1.Add("日期", item["合同开始时间"]);
+                nv1.Add("总费用", 0);
+                nv1.Add("缴费金额", 0);
+                nv1.Add("余额", 0);
+                nv1.Add("录入状态", "已录入");
+                nv1.Add("缴费状态", "不要交费");
+                string sql5 = SqlBuilder.NameValueToSql(nv3, "sq8szxlx.user_sf_zb", "id", true);
+                DBHelper.ExecuteSql(sql5);
             }
 
         }
