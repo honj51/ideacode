@@ -56,24 +56,24 @@
     </form>
     
     <div id="div1" style="padding-top:10px;">
-        <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <table style="width:90%; border:0; align:center; cellpadding:0; cellspacing:0;">
             <tr>
                 <td height="40" align="center" valign="middle" style="border-bottom:1px solid #000000">
                     <span class="STYLE2">
-                        <span class="STYLE3" style="font-size:12px;font-weight:bold">深圳市兴联兴投资有限公司&nbsp;<input type="text" /> &nbsp;收款收据&nbsp;( <input type="text" /> - <input type="text" /> )</span>&nbsp;
+                        <span class="STYLE3" style="font-size:14px;font-weight:bold">深圳市兴联兴投资有限公司&nbsp;<input type="text" /> &nbsp;收款收据&nbsp;( <input type="text" /> - <input type="text" /> )</span>&nbsp;
                     </span>
                 </td>
             </tr>
             <tr>
-              <td height="30">&nbsp;&nbsp;&nbsp;收据编码：<input type="text" /> &nbsp;&nbsp;客户名称：<input type="text" /></td>
+              <td height="30">&nbsp;&nbsp;&nbsp;收据编码：<input type="text" /> &nbsp;&nbsp;客户名称：<input type="text" /> </td>
             </tr>
             <tr>
-              <td height="30">&nbsp;&nbsp;&nbsp;工业园名称：<input type="text" />&nbsp;&nbsp;&nbsp;房产类型：&nbsp;&nbsp;<input type="text" /> &nbsp;&nbsp;房产：<input type="text" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<divn id="line">生成<input id="number" type="text" style="width:30px;"/>行 </div><button value="生成" onclick="getVal()">生成</button></td>
+              <td height="30">&nbsp;&nbsp;&nbsp;工业园名称：<input type="text" />&nbsp;&nbsp;&nbsp;房产类型：&nbsp;&nbsp;<input type="text" /> &nbsp;&nbsp;房产：<input type="text" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<div id="line" style="float:right;">生成<input id="number" type="text" style="width:30px;"/>行 <button value="生成" onclick="getVal()">生成</button></div> </td>
             </tr>
         </table>
     </div>
     
-    <div id="div2" style="padding-top:30px;">
+    <div id="div2" style="padding-top:20px;">
         <table id="tb2" width="90%" align="center" cellpadding="0" cellspacing="0"  style="border:1px solid  #000000;">
             <tr style="font-size:12px;">
               <td height="30" align="center" valign="middle" style="border-bottom:1px solid #000000; border-right:1px solid #000000"><strong>费用名称</strong></td>

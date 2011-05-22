@@ -103,7 +103,7 @@
                             items: [{
                                 xtype: 'panel',
 	                            //autoWidth: true,
-	                            html:'<iframe src="lskp.aspx" width=1000 height=600 frameborder="0" scrolling="auto"></iframe>'
+	                            html:'<iframe src="lskp.aspx" width=1000 height=500 frameborder="0" scrolling="auto"></iframe>'
 	                            
                             }]
                         });

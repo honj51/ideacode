@@ -68,6 +68,13 @@ public partial class XiTong_glylb : System.Web.UI.Page
 
             }            
         }
+        else if (action == "glygl_js")
+        {
+            string sql = "";
+            SqlDataReader r = DBHelper.GetReader("select role_name as js from sq8szxlx.role");
+            Response.Write(Json.ToJson(r));
+        }
+        
         Response.End();
     }
 }
