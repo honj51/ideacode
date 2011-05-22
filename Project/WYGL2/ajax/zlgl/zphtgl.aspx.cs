@@ -159,7 +159,10 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             int i = 1;
             foreach (var item in r2)
             {
-
+                // zpgl_lx_lb
+                string sql3 = string.Format("insert into zpgl_lx_lb (合同编号,客户编码,所属工业园,) values()");
+                // user_sf_lb
+                // user_sf_zb
             }
 
         }
