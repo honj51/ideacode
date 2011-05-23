@@ -49,12 +49,23 @@ public partial class ZiYuan_gslb : System.Web.UI.Page
         }
         else if (action == "add")
         {
+            //string s = Request.Params["成立日期"];
+            //string[] a = s.Split('-');
+            //string year = a[0];
+            //string mouth = a[1];
+            //string date = a[2];
             string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_gs", "id", true);
+            //sql += string.Format(" ,成立日期_年='{0}',成立日期_月='{0}',成立日期_日='{0}'",year,mouth,date);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
         else if (action == "update")
         {
+            //string s = Request.Params["成立日期"];
+            //string[] a = s.Split('-');
+            //string year = a[0];
+            //string mouth = a[1];
+            //string date = a[2];
             string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_gs", "id", false);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
