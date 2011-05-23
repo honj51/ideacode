@@ -10,7 +10,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		url: 'ajax/sfgl/sjlr.aspx?action=list',
         root : 'data',
 	    totalProperty : 'totalProperty',
-		fields:[
+		fields:[ // id为合同id
 		    'id','编码','客户名称','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月',
 		    '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
 		]
@@ -212,7 +212,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_zb',
 		fields:[
-		    '序号','年份月份','单据编号','客户编号','客户名称','日期年','日期月','总费用','缴费金额','余额','录入状态','缴费状态'
+		    'id','序号','年份月份','单据编号','客户编号','客户名称','日期年','日期月','总费用','缴费金额','余额','录入状态','缴费状态'
 		]
 	}),
 	width:700,
@@ -281,16 +281,20 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		},{
 		    text: self.jfgl?'缴费':'录入',
 		    handler: function () {
+		        // 录入
 		        function lr() {
 		        	var r = self.getSelectionModel().getSelected();
 				    if (!r) return;
 		            var fs = ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','上月读数','读数','说明','读数输入'];
 		            var xf_store = new Ext.data.JsonStore({
-		                url: 'ajax/sfgl/sfgl.aspx?action=lr&id='+r.data.id,
-	                    root : 'data',
+		                url: 'ajax/sfgl/sjlr.aspx?action=list_lr&id='+self.zbdata.id +'&xh='+r.data.序号, // id为合同id,	                    
 	                    autoLoad: true,
 			            fields: fs
 		            });         
+		            // 网格编辑器
+		            var textEditor = new Ext.form.TextField();
+		            var blCombox = new Ext.BLCombox();
+		            var vCombox = new Ext.SHCombox();
 		            var colModel = new Ext.grid.ColumnModel({
 		                columns: [{
 		                    header: '编号', dataIndex: '编号', width: 40
@@ -308,6 +312,8 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                header: '滞纳金', dataIndex: '滞纳金', editor: vCombox, width: 70, renderer: percentRenderer
 		                },{
 			                header: '上月读数', dataIndex: '上月读数', editor: textEditor, width: 80, renderer: valueRenderer
+		                },{
+			                header: '读数', dataIndex: '读数', editor: textEditor, width: 80
 		                },{
 			                header: '说明', dataIndex: '说明', editor: textEditor, width: 120
 		                },{
@@ -333,9 +339,10 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                        data.push(record.data);
 			                    });
 			                    Ext.Ajax.request({
-			                         url: "ajax/sfgl/sfgl.aspx?action=list_lr", 
+			                         url: "ajax/sfgl/sjlr.aspx?action=lr_tj", 
 			                         params: {
-			                            id: r.data.id,
+			                            htid: self.zbdata.id, // 合同id
+			                            xh: r.data.序号,
 			                            data: Ext.encode(data)
 			                         },
 			                         success: function () {
@@ -351,13 +358,95 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
             		    layout: 'fit',
 			            height: 500,
 			            width: 900,
-            		    title: '固定消费项目',
+            		    title: '录入',
             		    items: grid
             		});
             		win.show();
 		        }
 		        
-		        lr();
+		        // 缴费
+		        function jf() {
+		        	var r = self.getSelectionModel().getSelected();
+				    if (!r) return;		            
+				    Ext.Ajax.request({
+				        url: 'ajax/sfgl/sjlr.aspx?action=list_jf&id='+self.zbdata.id+'&xh='+r.data.序号, // id为合同id
+				            success: function(response, opts) {
+                                var obj = Ext.decode(response.responseText);
+                                var xf_store = new Ext.data.JsonStore({
+                                    url: 'ajax/sfgl/sjlr.aspx?action=list_jf&id='+self.zbdata.id+'&xh='+r.data.序号, // id为合同id
+                                    data: obj.data,
+                                    fields: ['编号','收费项目','收费类型','值','倍率','损耗','滞纳金','上月读数','读数','费用','说明']
+                                });         	            
+                                xf_store.on("load",function (store, records) {
+                                    console.log(records);
+                                })
+                                var x = obj.总金额;
+                                var sf_textfield = new Ext.form.TextField({});		            
+                                var grid = new Ext.grid.GridPanel({
+                                    store: xf_store,
+                                    columns: [{
+                                        header: '编号', dataIndex: '编号', width: 40
+                                    },{
+                                         header: '消费项目', dataIndex: '收费项目', width: 120,
+                                    },{
+                                        header: '消费类型', dataIndex: '收费类型', width: 80,
+                                    },{
+                                        header: '值', dataIndex: '值',  width: 70
+                                    },{
+                                        header: '倍率', dataIndex: '倍率', width: 70
+                                    },{
+                                        header: '损耗', dataIndex: '损耗', width: 70
+                                    },{
+                                        header: '滞纳金', dataIndex: '滞纳金', width: 70
+                                    },{
+                                        header: '上月读数', dataIndex: '上月读数',  width: 80
+                                    },{
+                                        header: '读数', dataIndex: '读数',  width: 80
+                                    },{
+                                        header: '费用', dataIndex: '费用',width: 60,
+                                    },{
+                                        header: '说明', dataIndex: '说明',  width: 120
+                                    }],
+                                    tbar: {
+                                        items: ['xxx']
+                                    },
+                                    bbar: {
+                                        items: ['总金额：￥&nbsp;',''+obj.总金额,'上次结余：￥',''+obj.上次结余,'&nbsp;&nbsp;&nbsp;需要交费金额：￥',''+obj.需要交费金额,'实收金额：&nbsp',sf_textfield]
+                                    },
+                                    buttons: [{
+                                        text: '提交',
+                                        handler: function () {			                    
+                                            Ext.Ajax.request({
+                                                 url: "ajax/sfgl/sfgl.aspx?action=jf_tj&zbid="+r.data.id, 
+                                                 params: {
+                                                    id: r.data.id
+                                                 },
+                                                 success: function () {
+                                                    Ext.Msg.alert('提交','缴费成功！');
+                                                    win.close();
+                                                 }
+                                            });			                    
+                                        }
+                                    }  
+                                    ]
+                                });
+                                var win = new Ext.Window({
+                                    layout: 'fit',
+                                    height: 500,
+                                    width: 900,
+                                    title: '缴费',
+                                    items: grid
+                                });
+                                win.show();
+                            }
+				    });
+		        }
+		        
+		        if (self.jfgl) {
+		            jf();
+		        }
+		        else
+		            lr();
 		    }
 		}];
 		self.store.load({params:{

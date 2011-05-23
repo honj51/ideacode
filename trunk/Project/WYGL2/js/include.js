@@ -91,7 +91,7 @@ Ext.GyyCombox = Ext.extend(Ext.form.ComboBox,{
 	            gyy: combo.value
 	        }});
 	    })
-	    Ext.MonthCombox.superclass.initComponent.call(this);
+	    Ext.GyyCombox.superclass.initComponent.call(this);
 	}
 });
 
@@ -108,9 +108,8 @@ Ext.GyyLxCombox = Ext.extend(Ext.form.ComboBox,{
     }),
 	displayField: 'lx',
 	valueField: 'lx',
-	//value: now_month,
 	initComponent: function(){
-	    Ext.MonthCombox.superclass.initComponent.call(this);
+	    Ext.GyyLxCombox.superclass.initComponent.call(this);
 	}
 });
  //消费项目
@@ -144,8 +143,8 @@ var v_data = [];
 for(var i=0;i<=20;i++) {
     v_data[i] = [''+i+'%',i];
 }   
-var textEditor = new Ext.form.TextField();
-var blCombox = new Ext.form.ComboBox({ //倍率
+
+Ext.BLCombox = Ext.extend(Ext.form.ComboBox,{
     store : new Ext.data.SimpleStore({
         fields : ['v'],
         data : bl_data
@@ -153,9 +152,13 @@ var blCombox = new Ext.form.ComboBox({ //倍率
     valueField : 'v',
     displayField : 'v',
     mode : 'local',
-    triggerAction : 'all'
-});         
-var vCombox = new Ext.form.ComboBox({ //损耗,滞纳金
+    triggerAction : 'all',
+    initComponent: function(){
+	    Ext.BLCombox.superclass.initComponent.call(this);
+	}
+});
+
+Ext.SHCombox = Ext.extend(Ext.form.ComboBox,{//损耗,滞纳金
     store : new Ext.data.SimpleStore({
         fields : ['n','v'],
         data : v_data
@@ -163,9 +166,11 @@ var vCombox = new Ext.form.ComboBox({ //损耗,滞纳金
     valueField : 'v',
     displayField : 'n',
     name: 'n',
-    //value: 'text',
     mode : 'local',
-    triggerAction : 'all'
+    triggerAction : 'all',
+    initComponent: function(){
+	    Ext.SHCombox.superclass.initComponent.call(this);
+	}
 });
 
 var read_only_css = 'background-color: #D2D2D2;';
@@ -173,6 +178,10 @@ function valueRenderer(v, metaData, record, rowIndex, colIndex, store) {
     if(v == "-") metaData.attr += 'style="' + read_only_css + '"';
     return v;		                   
 }	
-function percentRenderer(v) {
-    return '%'+v;		         
+function percentRenderer(v, metaData, record, rowIndex, colIndex, store) {
+    if(v == "-") {
+        metaData.attr += 'style="' + read_only_css + '"';
+        return v;
+    }
+    return '%'+v;		             
 }	            
