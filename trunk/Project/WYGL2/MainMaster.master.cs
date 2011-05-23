@@ -13,6 +13,12 @@ public partial class MainMaster : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+           /************************************************************************/
+           /* 权限控制                                                                     */
+           /************************************************************************/
+
+        //string admin_id = (string)Session["admin_id"];
+        //string sql = string.Format("select * from sq8szxlx.role_lb where admind_id='{0}'",admin_id);
 
     }
 }

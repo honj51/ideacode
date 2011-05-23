@@ -169,7 +169,8 @@ xtype:"grid",
                 fieldLabel: '出生日期',
                 name: '出生日期',
                 width:226,
-                xtype: 'datefield'				                           
+                xtype: 'datefield',
+                format:'Y-m-d'				                           
             },
             {
                 fieldLabel: '证件名称',
