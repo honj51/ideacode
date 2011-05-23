@@ -110,7 +110,8 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
                 fieldLabel: '成立日期',
                 name: '成立日期',
                 width:226,
-                xtype: 'datefield'				                           
+                xtype: 'datefield',
+                format:'Y-m-d'				                           
             },
             {
                 fieldLabel: '法人代表',
