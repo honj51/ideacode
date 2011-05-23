@@ -14,6 +14,7 @@ using System.Web.Script.Serialization;
 using System.Diagnostics;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using System.Collections.Specialized;
 
 public partial class SouFei_sjlr : System.Web.UI.Page
 {
@@ -26,6 +27,11 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             
         if (action == "list")
         {
+            NameValueCollection nvc = new NameValueCollection();
+            foreach (var item in Request.Form)
+            {
+                
+            }
             // 1. 拼Sql子语句
             string select = string.Format(@"select top {0} z.*,u.录入状态,u.缴费状态,(u.日期年+'/'+u.日期月) as 录入月份", Request["limit"]);
             string from = " from sq8szxlx.user_sf_zb u left join sq8szxlx.zpgl z on z.编码=u.合同编号 ";
@@ -251,7 +257,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         }
         else if (action == "lr_tj")  // 录入提交
         {
-            JArray ja = (JArray)Newtonsoft.Json.JsonConvert.DeserializeObject(Request.Form["data"]);
+            JArray ja1 = JArray.Parse(Request.Form["data"]);
             string responseError = "{success: false}";
             
             //JSONArray ja = JSONConvert.DeserializeArray(Request.Form["data"]);
@@ -281,7 +287,10 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             ResultObject zpgl_lx_lb = DBHelper.GetResult(sql2);
             for (int i = 0; i < zpgl_lx_lb.Count; i++)
             {
-                JObject jo = (Newtonsoft.Json.Linq.JObject)ja[i];                
+                //JSONObject jo = (JSONObject)ja[i];                
+                JToken jo = ja1[i]; // TODO: 要确定ja是否和查出数据一一对应
+                string xflx = jo["消费类型"].ToString();
+                
                 RowObject item = zpgl_lx_lb[i];
 
                 // user_sf_lb
@@ -296,58 +305,58 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 nv2.Add("收费项目", Request.Params["消费项目"]);
                 nv2.Add("收费类型", Request.Params["消费类型"]);
                 nv2.Add("值", Request.Params["值"]);
-                nv2.Add("录入状态", (jo["消费类型"] == "动态" && jo["读数"] == "") ? "未录入" : "已录入");// TODO: 正确?
+                nv2.Add("录入状态", (xflx == "动态" && jo["读数"].ToString() == "") ? "未录入" : "已录入");// TODO: 正确?
                 nv2.Add("缴费状态", "未缴费");
 
-                nv2.Add("损耗", jo["消费类型"] == "动态" ? jo["损耗"] : 0);
-                nv2.Add("读数", (jo["消费类型"] == "动态" || jo["消费类型"] == "单价") ? jo["读数"] : 0);
+                nv2.Add("损耗", xflx == "动态" ? jo["损耗"] : 0);
+                nv2.Add("读数", (xflx == "动态" || xflx == "单价") ? jo["读数"].ToString() : "0");
                 nv2.Add("倍率", jo["倍率"]);
                 nv2.Add("滞纳金", jo["滞纳金"]);
                 //// 查询上月收费项目
                 string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
-                    zpgl["合同编号"], xh-1, item["收费项目"]);
+                    zpgl["编码"], xh - 1, item["消费类型"]);
                 RowObject pre = DBHelper.GetRow(sql_pre_lb);
-                double ds = Convert.ToDouble(jo["读数"]);
-                double ds_sy = Convert.ToDouble(pre["读数"]);
-                double zi = Convert.ToDouble(jo["值"]);
-                double znj = Convert.ToDouble(jo["滞纳金"]);
-                double sh = Convert.ToDouble(jo["损耗"]);
-                double bl = Convert.ToDouble(jo["倍率"]);
+                double ds = Convert.ToDouble(jo["读数"].ToString());
+                double ds_sy = Convert.ToDouble(pre["读数"].ToString());
+                double zi = Convert.ToDouble(jo["值"].ToString());
+                double znj = Convert.ToDouble(jo["滞纳金"].ToString());
+                double sh = Convert.ToDouble(jo["损耗"].ToString());
+                double bl = Convert.ToDouble(jo["倍率"].ToString());
                 double fy = -1;
                 if (bl != 0)
                 {
-                    if (jo["消费类型"] == "动态")
+                    if (xflx == "动态")
                     {
                         fy = (ds-ds_sy)*zi*(1-(-znj)/100)*(1-(-sh)/100)*bl;
                     }
-                    else if (jo["消费类型"] == "单价")
+                    else if (xflx == "单价")
                     {
                         fy = ds_sy * zi * (1 - (-znj) / 100) * bl;
                     }
-                    else if (jo["消费类型"] == "固定")
+                    else if (xflx == "固定")
                     {
                         fy = zi * (1 - (-znj) / 100) * bl;
                     }
-                    else if (jo["消费类型"] == "递增")
+                    else if (xflx == "递增")
                     {
                         fy = (Convert.ToDouble(item["费用"]) - (-zi) * (xh - 1)) * (1 - (-znj) / 100) * bl;
                     }
                 }
                 else
                 {
-                    if (jo["消费类型"] == "动态")
+                    if (xflx == "动态")
                     {
                         fy = (ds - Convert.ToDouble(item["读数"])) * zi * (1 - (-znj) / 100) * (1 - (-sh) / 100);                        
                     }
-                    else if (jo["消费类型"] == "单价")
+                    else if (xflx == "单价")
                     {
                         fy = Convert.ToDouble(item["读数"]) * zi * (1 - (-znj) / 100);
                     }
-                    else if (jo["消费类型"] == "固定")
+                    else if (xflx == "固定")
                     {
                         fy = zi*(1-(-znj)/100);
                     }
-                    else if (jo["消费类型"] == "递增")
+                    else if (xflx == "递增")
                     {
                         fy = (Convert.ToDouble(item["费用"])-(-zi))*(xh-1)*(1-(-znj)/100);
                     }
