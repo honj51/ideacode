@@ -56,19 +56,21 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    //实例化combox组件
 	    var gyy_lx = new Ext.GyyLxCombox({
 	        width:130,
+	        emptyText:'请选择',
 	        fieldLabel:'类型',
 	        name:'房产类型'
 	    });
 	    var gyy = new Ext.GyyCombox({
 	        lx_store: gyy_lx.store,
 	        width:130,
+	        emptyText:'请选择',
 	        fieldLabel:'工业园',
 	        name:'工业园名称'
 	    });
 	    var form = new Ext.FormPanel({
 		    id:'form1',
 		    padding:10,
-		    width:500,
+		    width:360,
 		    items:[
 		        {
                     xtype:'hidden',
@@ -81,18 +83,6 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 },
                 gyy,
                 gyy_lx,
-                
-                
-//                {
-//                    fieldLabel: '工业园名称',
-//                    name: '工业园名称',
-//                    xtype: 'textfield'				                           
-//                },
-//                {
-//                    fieldLabel: '房产类型',
-//                    name: '房产类型',
-//                    xtype: 'textfield'				                           
-//                },
                 {
                     fieldLabel: '描述',
                     name: '描述',
