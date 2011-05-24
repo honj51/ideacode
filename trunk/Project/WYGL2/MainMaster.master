@@ -16,27 +16,26 @@
     <script type="text/javascript" src="js/include.js"></script>
     <!-- 收费管理  -->
     <script type="text/javascript" src="js/sfgl/sjlr.js"></script>
-<%--    <script type="text/javascript" src="js/sfgl/jfgl.js"></script> --%>
       
-    <!-- 资源管理  -->
+    <!-- 资源管理  
     <script type="text/javascript" src="js/zygl/fcgl.js"></script>
     <script type="text/javascript" src="js/zygl/gslb.js"></script>
     <script type="text/javascript" src="js/zygl/gyygl.js"></script>
     <script type="text/javascript" src="js/zygl/zrrlb.js"></script>  
-   
-    <!-- 租赁管理  -->
+   -->
+    <!-- 租赁管理  
     <script type="text/javascript" src="js/zlgl/zphtgl.js"></script>
     <script type="text/javascript" src="js/zlgl/ydgl.js"></script>
     <script type="text/javascript" src="js/zlgl/htdqts.js"></script>
     <script type="text/javascript" src="js/zlgl/skfltj.js"></script>
     <script type="text/javascript" src="js/zlgl/xxfytjlb.js"></script>
     <script type="text/javascript" src="js/zlgl/lskp.js"></script>
-    
-    <!-- 租赁管理  -->
+    -->
+    <!-- 租赁管理  
     <script type="text/javascript" src="js/xtgl/glylb.js"></script>
     <script type="text/javascript" src="js/xtgl/jsqx.js"></script>
     <script type="text/javascript" src="js/xtgl/xgmm.js"></script>
-    
+    -->
     <script type="text/javascript">
     Ext.onReady(function(){
        Ext.BLANK_IMAGE_URL="ext/resources/images/default/s.gif";
