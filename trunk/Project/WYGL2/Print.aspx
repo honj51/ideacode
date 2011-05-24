@@ -19,13 +19,36 @@
         }
     </style>
     <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
-    
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
     <script type="text/javascript">
-        function print1() {
-            $("input").hide();
-            print();
-        }
+function print1() {
+    $("input").hide();
+    print();
+}
+var makrup = "<tr>"+
+      "<td height='30' align='center' valign='middle'>${序号}</td>"+
+      "<td height='30' align='center' valign='middle'>${收费项目}</td>"+
+      "<td height='30' align='center' valign='middle'>${上月读数}</td>"+
+      "<td height='30' align='center' valign='middle'>${本月读数}</td>"+
+      "<td width='67' align='center' valign='middle'>${倍率}</td>"+
+      "<td width='67' align='center' valign='middle'>${损耗}</td>"+
+      "<td align='center' valign='middle'>${总量}</td>"+
+      "<td align='center' valign='middle'>${值}</td>"+
+      "<td align='center' valign='middle'>${滞纳金}</td>"+
+      "<td align='center' valign='middle'>${费用}</td>"+
+      "<td align='center' valign='middle'>${说明}</td>"+
+    "</tr>";    
     
+$.template( "dataTemplate", makrup);
+
+
+var dataUrl = '<%=dataUrl%>';
+$.get(dataUrl, function(data){
+    $.tmpl( "dataTemplate", data.data ).appendTo( "#dataList" );
+    $("#v7").html(''+data.总金额);
+    $("#v8").html(''+data.上次结余);
+});
+
     </script>
 </head>
 <body>
@@ -43,10 +66,10 @@
         </td>
         </tr>
         <tr>
-          <td height="30">&nbsp;&nbsp;&nbsp;合同编号：      &nbsp;&nbsp;工业园名称：     &nbsp;&nbsp;房产类型：       &nbsp;&nbsp;所属房产：      &nbsp;</td>
+          <td height="30">&nbsp;&nbsp;&nbsp;合同编号： <span id="v1"></span>     &nbsp;&nbsp;工业园名称： <span id="v2"></span>    &nbsp;&nbsp;房产类型： <span id="v3"></span>      &nbsp;&nbsp;所属房产： <span id="v4"></span>      &nbsp;</td>
         </tr>
         <tr>
-          <td height="30">&nbsp;&nbsp;&nbsp;用户名称：      &nbsp;&nbsp;用户编码：       &nbsp;</td>
+          <td height="30">&nbsp;&nbsp;&nbsp;用户名称：<span id="v5"></span>      &nbsp;&nbsp;用户编码： <span id="v6"></span>      &nbsp;</td>
         </tr>
     </table>
     <table id="tab2" width="90%" align="center" cellpadding="0" cellspacing="0"  style="border:1px solid  #000000;">
@@ -64,25 +87,26 @@
           <td align="center" valign="middle"><strong>说明</strong></td>
         </tr>
         
-         <tr>
-          <td height="30" align="center" valign="middle"><!--编号 --></td>
-          <td height="30" align="center" valign="middle"><!--消费项目 --></td>
-          <td height="30" align="center" valign="middle"><!--上月读数 --></td>
-          <td height="30" align="center" valign="middle"><!--本月读数 --></td>
-          <td width="67" align="center" valign="middle"><!--倍率 --></td>
-          <td width="67" align="center" valign="middle"><!--损耗 --></td>
-          <td align="center" valign="middle"><!--总量 --></td>
-          <td align="center" valign="middle"><!--值 --></td>
-          <td align="center" valign="middle"><!--滞纳金 --></td>
-          <td align="center" valign="middle"><!--费用 --></td>
-          <td align="center" valign="middle"><!--说明 --></td>
-        </tr>
+<%--         <tr>
+          <td height="30" align="center" valign="middle"><!--编号--></td>
+          <td height="30" align="center" valign="middle"><!--消费项目--></td>
+          <td height="30" align="center" valign="middle"><!--上月读数--></td>
+          <td height="30" align="center" valign="middle"><!--本月读数--></td>
+          <td width="67" align="center" valign="middle"><!--倍率--></td>
+          <td width="67" align="center" valign="middle"><!--损耗--></td>
+          <td align="center" valign="middle"><!--总量--></td>
+          <td align="center" valign="middle"><!--值--></td>
+          <td align="center" valign="middle"><!--滞纳金--></td>
+          <td align="center" valign="middle"><!--费用--></td>
+          <td align="center" valign="middle"><!--说明--></td>
+        </tr>--%>
+        <tbody id="dataList"></tbody>
         
         <tr>
           <td height="40" colspan="12" align="left" valign="middle" style="border-bottom:1px solid #000000">&nbsp;&nbsp;
-		      总金额：￥          &nbsp;&nbsp;
-		      上次结余：￥        &nbsp;&nbsp;
-		      需要交费金额：￥    &nbsp;&nbsp;
+		      总金额：￥ <span id="v7"></span>         &nbsp;&nbsp;
+		      上次结余：￥ <span id="v8></span>       &nbsp;&nbsp;
+		      需要交费金额：￥ <span id="v9"></span>   &nbsp;&nbsp;
 		  </td>
         </tr>
     </table>
