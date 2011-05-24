@@ -70,7 +70,7 @@
 			root : {
 				nodeType : 'async'
 			},
-			dataUrl : 'MainTree.aspx',
+			dataUrl : 'Tree.aspx',
 			listeners: {
                 click: function(n) {
                     var text = n.attributes.text;
