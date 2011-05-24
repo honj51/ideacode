@@ -181,6 +181,9 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         string sql1 = string.Format("select * from sq8szxlx.user_sf_zb where 单据编号='{0}'", Request.Params["djbh"]);
         RowObject user_sf_zb = DBHelper.GetRow(sql1);
         int preNo = int.Parse(Request.Params["djbh"].Split('_')[1]) - 1;
+        // 合同信息
+        sql1 = string.Format("select * from sq8szxlx.zpgl where 编码='{0}'", user_sf_zb["合同编号"]);
+        RowObject zpgl = DBHelper.GetRow(sql1);
 
         for (int i = 0; i < r.Count; i++)
         {
@@ -249,11 +252,18 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         double ye = Convert.ToDouble(user_sf_zb["余额"]);
         result.Add("success", "true");
         result.Add("data", ja);
+        // 合同信息
+        result.Add("合同编号", user_sf_zb["合同编号"]);
+        result.Add("客户编码", zpgl["客户编码"]);
+        result.Add("客户名称", zpgl["客户名称"]);
+        result.Add("所属工业园", zpgl["所属工业园"]);
+        result.Add("房产类型", zpgl["房产类型"]);
+        result.Add("所属房产", zpgl["所属房产"]);
+        // 收费信息
         result.Add("总金额", user_sf_zb["总费用"]);
         result.Add("上次结余", user_sf_zb["余额"]);
         result.Add("需要交费金额", zfy - ye);
         Response.Write(JSONConvert.SerializeObject(result));
-
     }
 
     private void list_lr()

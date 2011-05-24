@@ -17,29 +17,30 @@
     <!-- 收费管理  -->
     <script type="text/javascript" src="js/sfgl/sjlr.js"></script>
       
-    <!-- 资源管理  
+    <!-- 资源管理  -->
     <script type="text/javascript" src="js/zygl/fcgl.js"></script>
     <script type="text/javascript" src="js/zygl/gslb.js"></script>
     <script type="text/javascript" src="js/zygl/gyygl.js"></script>
     <script type="text/javascript" src="js/zygl/zrrlb.js"></script>  
-   -->
-    <!-- 租赁管理  
+   
+    <!-- 租赁管理  -->
     <script type="text/javascript" src="js/zlgl/zphtgl.js"></script>
     <script type="text/javascript" src="js/zlgl/ydgl.js"></script>
     <script type="text/javascript" src="js/zlgl/htdqts.js"></script>
     <script type="text/javascript" src="js/zlgl/skfltj.js"></script>
     <script type="text/javascript" src="js/zlgl/xxfytjlb.js"></script>
     <script type="text/javascript" src="js/zlgl/lskp.js"></script>
-    -->
-    <!-- 租赁管理  
+    
+    <!-- 租赁管理  -->
     <script type="text/javascript" src="js/xtgl/glylb.js"></script>
     <script type="text/javascript" src="js/xtgl/jsqx.js"></script>
     <script type="text/javascript" src="js/xtgl/xgmm.js"></script>
-    -->
+    
     <script type="text/javascript">
+    var main_tab = null;
     Ext.onReady(function(){
        Ext.BLANK_IMAGE_URL="ext/resources/images/default/s.gif";
-       var tab = new Ext.TabPanel({
+       main_tab = new Ext.TabPanel({
              region:'center',
                 activeTab: 0,
                 autoScroll:true,
@@ -62,41 +63,45 @@
 			dataUrl : 'MainTree.aspx',
 			listeners: {
                 click: function(n) {
-                    var panel = tab.items.get(n.attributes.text);
-                    if (n.attributes.text == "数据录入") {
-                        panel = new Ext.Hudongsoft.sjlrGrid();
+                    var text = n.attributes.text;
+                    var panel = main_tab.items.get(text);
+                    if (panel != null) {
+                        panel.show();
                     }
-                    else if (n.attributes.text == "缴费管理") {
-                        panel = new Ext.Hudongsoft.sjlrGrid({jfgl:true});
+                    if (text == "数据录入") {
+                        panel = new Ext.Hudongsoft.sjlrGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "工业园管理") {
-                        panel = new Ext.Hudongsoft.gyyglGrid();
+                    else if (text == "缴费管理") {
+                        panel = new Ext.Hudongsoft.sjlrGrid({jfgl:true,itemId: text});
                     }
-                    else if (n.attributes.text == "房产管理") {
-                        panel = new Ext.Hudongsoft.fcglGrid();
+                    else if (text == "工业园管理") {
+                        panel = new Ext.Hudongsoft.gyyglGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "公司列表") {
-                        panel = new Ext.Hudongsoft.gslbGrid();
+                    else if (text == "房产管理") {
+                        panel = new Ext.Hudongsoft.fcglGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "自然人列表") {
-                        panel = new Ext.Hudongsoft.zrrlbGrid();
+                    else if (text == "公司列表") {
+                        panel = new Ext.Hudongsoft.gslbGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "预定管理") {
-                        panel = new Ext.Hudongsoft.ydglGrid();
+                    else if (text == "自然人列表") {
+                        panel = new Ext.Hudongsoft.zrrlbGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "租赁合同管理") {
-                        panel = new Ext.Hudongsoft.zphtglGrid();
+                    else if (text == "预定管理") {
+                        panel = new Ext.Hudongsoft.ydglGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "合同到期提示") {
-                        panel = new Ext.Hudongsoft.htdqtsGrid();
+                    else if (text == "租赁合同管理") {
+                        panel = new Ext.Hudongsoft.zphtglGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "收款分类统计") {
-                        panel = new Ext.Hudongsoft.skfltsGrid();
+                    else if (text == "合同到期提示") {
+                        panel = new Ext.Hudongsoft.htdqtsGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "收款详细统计") {
-                        panel = new Ext.Hudongsoft.xxfytjlbGrid();
+                    else if (text == "收款分类统计") {
+                        panel = new Ext.Hudongsoft.skfltsGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "临时开票") {                                            
+                    else if (text == "收款详细统计") {
+                        panel = new Ext.Hudongsoft.xxfytjlbGrid({itemId: text});
+                    }
+                    else if (text == "临时开票") {                                            
                         panel = new Ext.Window({
                             title:'临时开票',
                             items: [{
@@ -114,19 +119,19 @@
 //                        panel.show();
 //                        return;
                     }
-                    else if (n.attributes.text == "角色管理") {
-                        panel = new Ext.Hudongsoft.jsqxGrid();
+                    else if (text == "角色管理") {
+                        panel = new Ext.Hudongsoft.jsqxGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "管理员管理") {
-                        panel = new Ext.Hudongsoft.glylbGrid();
+                    else if (text == "管理员管理") {
+                        panel = new Ext.Hudongsoft.glylbGrid({itemId: text});
                     }
-                    else if (n.attributes.text == "修改密码") {
+                    else if (text == "修改密码") {
                         panel = new Ext.Hudongsoft.xgmmWin();
                         panel.show();
                         return;
                     }
-                    tab.add(panel);      
-                    tab.activate(panel);
+                    main_tab.add(panel);      
+                    main_tab.activate(panel);
                 }
             }
         });
@@ -142,7 +147,7 @@
                     height: 30,
                     items: ['->','深圳市兴联兴投资有限公司']                    
                 }),          
-                tree,tab,new Ext.Toolbar({
+                tree,main_tab,new Ext.Toolbar({
                     region: 'south',                    
                     height: 20,
                     items: ['状态栏','->',{

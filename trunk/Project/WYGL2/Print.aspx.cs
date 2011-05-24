@@ -11,11 +11,13 @@ using System.Web.UI.WebControls.WebParts;
 
 public partial class Print : System.Web.UI.Page
 {
-    protected string dataUrl = "ajax/sfgl/sjlr.aspx?action=list_lb&djbh=ht2011228131285526_3";
-
+    protected string dataUrl = "";
+    protected string user = "";
+    protected string dt = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-
+        user = (string)Session["admin_id"];
+        dt = DateTime.Now.ToShortDateString();
+        dataUrl = "ajax/sfgl/sjlr.aspx?action=list_lb&djbh=" + Request.Params["djbh"];
     }
 }

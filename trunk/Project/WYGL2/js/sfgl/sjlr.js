@@ -3,8 +3,7 @@
 /************************************************************************/
 /* 录入列表                                                             */
 /************************************************************************/
-Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
-	title:"录入列表",
+Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{	
 	jfgl: false,
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list',
@@ -15,10 +14,9 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
 		]
 	}),
-//	width:802,
-//	height:475,	
 	initComponent: function(){
 	    var self = this;
+	    self.title = self.jfgl? "缴费管理":"录入管理";
 	    var lx_store = new Ext.data.JsonStore({
 		    autoLoad:true,
 		    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
@@ -166,20 +164,21 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                                 '</tr>'
 	                                +'</table>';
 		    
-			            var w = new Ext.Window({
-                            title:"录入总表",
-                            width:800,
-                            height: 500,
-                            layout: 'border',
-                            items:[
-                                new Ext.Panel({
-                                    region:'north',
-                                    html: html
-                                }),
-                                new Ext.Hudongsoft.lrzbGrid({region:'center',jfgl: self.jfgl,zbdata:r.data})
-                            ]
-                        });
-                        w.show();
+//			            var w = new Ext.Window({
+//                            title:"录入总表",
+//                            width:800,
+//                            height: 500,
+//                            layout: 'border',
+//                            items:[
+//                                new Ext.Panel({
+//                                    region:'north',
+//                                    html: html
+//                                }),
+//                                
+//                            ]
+//                        });
+//                        w.show();
+                        main_tab.add(new Ext.Hudongsoft.lrzbGrid({region:'center',jfgl: self.jfgl,zbdata:r.data}));
 				    }
 			    }
 			}
@@ -262,13 +261,17 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		            var w = new Ext.Window({
                         title:"收款详细列表",
                         height: 500,
-                        layout: 'border',
+                        //layout: 'border',
                         items:[
-                            new Ext.Panel({
-                                region:'north',
-                                html: html
-                            }),
-                            new Ext.Hudongsoft.sksjGrid({region:'center',djbh:r.data.单据编号})
+//                            new Ext.Panel({
+//                                region:'north',
+//                                html: html
+//                            }),
+//                            new Ext.Hudongsoft.sksjGrid({region:'center',djbh:r.data.单据编号})
+                            {
+                                xtype: 'panel',
+	                            html:'<iframe src="Print.aspx?djbh='+r.data.单据编号+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
+	                         }
                         ]
                     });
                     w.show();
