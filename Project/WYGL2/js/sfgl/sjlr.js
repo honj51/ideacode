@@ -168,7 +168,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    
 			            var w = new Ext.Window({
                             title:"录入总表",
-                            width:924,
+                            width:800,
                             height: 500,
                             layout: 'border',
                             items:[
@@ -355,7 +355,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
             		var win = new Ext.Window({
             		    layout: 'fit',
 			            height: 500,
-			            width: 900,
+			            width: 800,
             		    title: '录入',
             		    items: grid
             		});
@@ -431,7 +431,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                 var win = new Ext.Window({
                                     layout: 'fit',
                                     height: 500,
-                                    width: 900,
+                                    width: 800,
                                     title: '缴费',
                                     items: grid
                                 });
