@@ -41,10 +41,20 @@
     Ext.onReady(function(){
        Ext.BLANK_IMAGE_URL="ext/resources/images/default/s.gif";
        main_tab = new Ext.TabPanel({
-             region:'center',
-                activeTab: 0,
-                autoScroll:true,
-                items: []
+            region:'center',
+            activeTab: 0,            
+            autoScroll:true,
+            items: [],
+            enableTabScroll:true,
+            defaults: {
+                closable : true
+            },
+	        plugins: new Ext.ux.TabCloseMenu({
+					closeTabText:'关闭',
+					closeOtherTabsText:'关闭其他',
+					closeAllTabsText :'关闭全部'
+	        	
+	        })
        });
        
        var tree = new Ext.tree.TreePanel({
@@ -69,37 +79,37 @@
                         panel.show();
                     }
                     if (text == "数据录入") {
-                        panel = new Ext.Hudongsoft.sjlrGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.sjlrGrid();
                     }
                     else if (text == "缴费管理") {
-                        panel = new Ext.Hudongsoft.sjlrGrid({jfgl:true,itemId: text});
+                        panel = new Ext.Hudongsoft.sjlrGrid({jfgl:true});
                     }
                     else if (text == "工业园管理") {
-                        panel = new Ext.Hudongsoft.gyyglGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.gyyglGrid();
                     }
                     else if (text == "房产管理") {
-                        panel = new Ext.Hudongsoft.fcglGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.fcglGrid();
                     }
                     else if (text == "公司列表") {
-                        panel = new Ext.Hudongsoft.gslbGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.gslbGrid();
                     }
                     else if (text == "自然人列表") {
-                        panel = new Ext.Hudongsoft.zrrlbGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.zrrlbGrid();
                     }
                     else if (text == "预定管理") {
-                        panel = new Ext.Hudongsoft.ydglGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.ydglGrid();
                     }
                     else if (text == "租赁合同管理") {
-                        panel = new Ext.Hudongsoft.zphtglGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.zphtglGrid();
                     }
                     else if (text == "合同到期提示") {
-                        panel = new Ext.Hudongsoft.htdqtsGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.htdqtsGrid();
                     }
                     else if (text == "收款分类统计") {
-                        panel = new Ext.Hudongsoft.skfltsGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.skfltsGrid();
                     }
                     else if (text == "收款详细统计") {
-                        panel = new Ext.Hudongsoft.xxfytjlbGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.xxfytjlbGrid();
                     }
                     else if (text == "临时开票") {                                            
                         panel = new Ext.Window({
@@ -120,16 +130,17 @@
 //                        return;
                     }
                     else if (text == "角色管理") {
-                        panel = new Ext.Hudongsoft.jsqxGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.jsqxGrid();
                     }
                     else if (text == "管理员管理") {
-                        panel = new Ext.Hudongsoft.glylbGrid({itemId: text});
+                        panel = new Ext.Hudongsoft.glylbGrid();
                     }
                     else if (text == "修改密码") {
                         panel = new Ext.Hudongsoft.xgmmWin();
                         panel.show();
                         return;
                     }
+                    panel.itemId  = text;
                     main_tab.add(panel);      
                     main_tab.activate(panel);
                 }

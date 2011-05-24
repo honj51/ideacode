@@ -14,6 +14,52 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
 		]
 	}),
+	dispalyDetails: function() {
+	    var self = this;
+	    var r = self.getSelectionModel().getSelected();
+	    if (r) {
+            function printDate(f) {
+                var data = r.data;
+                return data[f+'_年'] + '/' + data[f+'_月'] + '/' + data[f+'_日'];
+            }
+            
+            var html = '<table class="tab1">'+
+                        '<tr style="height:20px;">'+
+                            '<td>'+'<strong>'+'合同编号：'+'</strong>'+r.data.编码+'<td>'+
+                            '<td>'+'<strong>'+'客户编号：'+'</strong>'+r.data.客户编码+'<td>'+
+                            '<td>'+'<strong>'+'客户名称:'+'</strong>'+r.data.客户名称+'<td>'
+                        +'</tr>'
+                        +'<tr style="height:20px;">'+
+                            '<td>'+'<strong>'+'联系电话：'+'</strong>'+r.data.联系电话+'<td>'+
+                            '<td>'+'<strong>'+'联系地址：'+'</strong>'+r.data.联系地址+'<td>'
+                        +'</tr>'+
+                        '<tr style="height:20px;">'+
+                            '<td>'+'<strong>'+'所属工业园：'+'</strong>'+r.data.所属工业园+'<td>'+
+                            '<td>'+'<strong>'+'房产类型：'+'</strong>'+r.data.房产类型+'<td>'+
+                            '<td>'+'<strong>'+'所属房产：'+'</strong>'+r.data.所属房产+'<td>'+
+                            '<td>'+'<strong>'+'合同开始时间：'+'</strong>'+printDate('合同开始时间')+'<td>'+
+                            '<td>'+'<strong>'+'合同结束时间：'+'</strong>'+printDate('合同结束时间')+'<td>'+
+                         '</tr>'
+                        +'</table>';
+            var panel = new Ext.Panel({
+                title: self.jfgl?'缴费总表':'录入总表',
+                layout: 'border',
+                frame: true,
+                items: [{
+                    region:'north',
+                    html: html
+                },
+                new Ext.Hudongsoft.lrzbGrid({region:'center',jfgl: self.jfgl,zbdata:r.data})]
+            });
+            main_tab.add(panel).show();
+	    }
+	},
+	listeners : { // 添加监听事件
+	    celldblclick: function(grid, rowIndex, columnIndex, e) {
+	        var r = grid.store.getAt(rowIndex);	
+	        grid.dispalyDetails();
+	    }
+	},
 	initComponent: function(){
 	    var self = this;
 	    self.title = self.jfgl? "缴费管理":"录入管理";
@@ -138,48 +184,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    text:"查看详情",
 			    iconCls: 'icon-list',
 			    handler: function () {
-			        var r = self.getSelectionModel().getSelected();
-				    if (r) {
-	                    function printDate(f) {
-	                        var data = r.data;
-	                        return data[f+'_年'] + '/' + data[f+'_月'] + '/' + data[f+'_日'];
-	                    }
-	                    
-	                    var html = '<table class="tab1">'+
-	                                '<tr style="height:20px;">'+
-	                                    '<td>'+'<strong>'+'合同编号：'+'</strong>'+r.data.编码+'<td>'+
-	                                    '<td>'+'<strong>'+'客户编号：'+'</strong>'+r.data.客户编码+'<td>'+
-	                                    '<td>'+'<strong>'+'客户名称:'+'</strong>'+r.data.客户名称+'<td>'
-	                                +'</tr>'
-	                                +'<tr style="height:20px;">'+
-	                                    '<td>'+'<strong>'+'联系电话：'+'</strong>'+r.data.联系电话+'<td>'+
-	                                    '<td>'+'<strong>'+'联系地址：'+'</strong>'+r.data.联系地址+'<td>'
-	                                +'</tr>'+
-	                                '<tr style="height:20px;">'+
-	                                    '<td>'+'<strong>'+'所属工业园：'+'</strong>'+r.data.所属工业园+'<td>'+
-	                                    '<td>'+'<strong>'+'房产类型：'+'</strong>'+r.data.房产类型+'<td>'+
-	                                    '<td>'+'<strong>'+'所属房产：'+'</strong>'+r.data.所属房产+'<td>'+
-	                                    '<td>'+'<strong>'+'合同开始时间：'+'</strong>'+printDate('合同开始时间')+'<td>'+
-	                                    '<td>'+'<strong>'+'合同结束时间：'+'</strong>'+printDate('合同结束时间')+'<td>'+
-	                                 '</tr>'
-	                                +'</table>';
-		    
-//			            var w = new Ext.Window({
-//                            title:"录入总表",
-//                            width:800,
-//                            height: 500,
-//                            layout: 'border',
-//                            items:[
-//                                new Ext.Panel({
-//                                    region:'north',
-//                                    html: html
-//                                }),
-//                                
-//                            ]
-//                        });
-//                        w.show();
-                        main_tab.add(new Ext.Hudongsoft.lrzbGrid({region:'center',jfgl: self.jfgl,zbdata:r.data}));
-				    }
+			        self.dispalyDetails();
 			    }
 			}
 			
