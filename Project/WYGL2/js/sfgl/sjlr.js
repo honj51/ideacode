@@ -11,7 +11,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
         root : 'data',
 	    totalProperty : 'totalProperty',
 		fields:[ // id为合同id
-		    'id','编码','客户名称','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月',
+		    'id','编码','客户名称','客户编码','联系电话','联系地址','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月',
 		    '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
 		]
 	}),
@@ -165,11 +165,6 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                                    '<td>'+'<strong>'+'合同结束时间：'+'</strong>'+printDate('合同结束时间')+'<td>'+
 	                                 '</tr>'
 	                                +'</table>';
-	                    	                    
-//				        var html = '合同编号:'+r.data.编码+'客户编号:'+r.data.编码+'客户名称:'+r.data.客户名称+'<br>'+
-//		                '联系电话'+'联系地址<br>'+
-//		                '所属工业园'+r.data.所属工业园+'房产类型'+r.data.房产类型+'所属房产'+r.data.所属房产+'<br>'+
-//		                '合同开始时间'+printDate('合同开始时间')+'合同结束时间'+printDate('合同结束时间');
 		    
 			            var w = new Ext.Window({
                             title:"录入总表",
@@ -257,8 +252,9 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	initComponent: function(){
 	    var self = this;
 	    console.log(self.zbdata);
-		this.tbar=[{
-		    text: '查看详情',
+	    var btnXQ = new Ext.Button({
+	        text: '查看详情',
+	        disabled: true,
 		    handler: function () {
 		        var r = self.getSelectionModel().getSelected();
 		        if (r) {
@@ -278,8 +274,10 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                     w.show();
 		        }
 		    }
-		},{
-		    text: self.jfgl?'缴费':'录入',
+	    });
+	    var btnLR = new Ext.Button({
+	        text: self.jfgl?'缴费':'录入',
+	        disabled: true,
 		    handler: function () {
 		        // 录入
 		        function lr() {
@@ -447,8 +445,23 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		        }
 		        else
 		            lr();
-		    }
-		}];
+		    }// handler
+	    });
+	    self.getSelectionModel().on('rowselect', function(sm, rowIdx, r) {
+	        btnLR.setDisabled(true);
+	        btnXQ.setDisabled(true);
+	        if (self.jfgl) { //缴费	            
+	            if (r.data.缴费状态=='已缴费') btnXQ.setDisabled(false);
+	            if (r.data.缴费状态=='未缴费') btnLR.setDisabled(false);
+	        }	        
+	        else // 录入
+	        {
+	            if ((r.data.录入状态=='已录入') && (r.data.缴费状态!='不要交费')) btnXQ.setDisabled(false);
+	            if (r.data.录入状态=='未录入') btnLR.setDisabled(false);
+	        }	            
+	    });
+		this.tbar=['->',btnXQ,btnLR];
+		
 		self.store.load({params:{
             htbh: self.zbdata.编码
 		}});
