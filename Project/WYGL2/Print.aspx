@@ -41,12 +41,13 @@ var makrup = "<tr>"+
     
 $.template( "dataTemplate", makrup);
 
-
+var fs = ['合同编号','所属工业园','房产类型','所属房产','客户名称','客户编码','总金额','上次结余','需要交费金额'];
 var dataUrl = '<%=dataUrl%>';
 $.get(dataUrl, function(data){
     $.tmpl( "dataTemplate", data.data ).appendTo( "#dataList" );
-    $("#v7").html(''+data.总金额);
-    $("#v8").html(''+data.上次结余);
+    for(var i=0;i< fs.length;i++) {
+        $("#v"+(i+1)).html(''+data[fs[i]]);
+    }
 });
 
     </script>
@@ -113,7 +114,7 @@ $.get(dataUrl, function(data){
     
     <table id="tab3" width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="30" align="right" valign="middle">开票人：      &nbsp;&nbsp;开票时间：      &nbsp;&nbsp;</td>
+          <td height="30" align="right" valign="middle">开票人： <%=user%>     &nbsp;&nbsp;开票时间： <%=dt%>     &nbsp;&nbsp;</td>
         </tr>
     </table>
     <div style="text-align:center">
