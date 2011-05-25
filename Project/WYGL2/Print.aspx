@@ -55,7 +55,7 @@ $.get(dataUrl, function(data){
 <body>
     <form id="form1" runat="server">
     <div>
-    
+        
     </div>
     </form>
     <table id="tab1" width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -106,9 +106,14 @@ $.get(dataUrl, function(data){
         <tr>
           <td height="40" colspan="12" align="left" valign="middle" style="border-bottom:1px solid #000000">&nbsp;&nbsp;
 		      总金额：￥ <span id="v7"></span>         &nbsp;&nbsp;
-		      上次结余：￥ <span id="v8></span>       &nbsp;&nbsp;
+		      上次结余：￥ <span id="v8"></span>       &nbsp;&nbsp;
 		      需要交费金额：￥ <span id="v9"></span>   &nbsp;&nbsp;
 		  </td>
+        </tr>
+        <tr>
+            <td colspan="12" >
+            备注：
+            </td>
         </tr>
     </table>
     
