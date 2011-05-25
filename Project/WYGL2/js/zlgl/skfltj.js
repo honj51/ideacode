@@ -3,58 +3,50 @@
 Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
     xtype:"grid",
 	title:"费用统计列表",
-	store:{
-		xtype:"jsonstore",
-		
-	},
+	store : new Ext.data.JsonStore({
+        //root : 'data',
+		totalProperty : 'totalProperty',
+        url: 'ajax/zlgl/tj.aspx?action=fltj',
+		fields:[
+		    '序号','工业园名称','房产类型','消费项目','月份','费用'
+		]	
+    }),
 	width:792,
 	height:560,
 	columns:[
 		{
 			header:"序号",
-			sortable:true,
-			resizable:true,
-			dataIndex:"data1",
+			dataIndex:"序号",
 			width:100
 		},
 		{
 			header:"工业园名称",
-			sortable:true,
-			resizable:true,
-			dataIndex:"data2",
+			dataIndex:"工业园名称",
 			width:100
 		},
 		{
 			header:"房产类型",
-			sortable:true,
-			resizable:true,
-			dataIndex:"data3",
+			dataIndex:"房产类型",
 			width:100
 		},
 		{
 			header:"消费项目",
-			sortable:true,
-			resizable:true,
-			dataIndex:"",
+			dataIndex:"消费项目",
 			width:100
 		},
 		{
 			header:"月份",
-			sortable:true,
-			resizable:true,
-			dataIndex:"",
-			width:100,
-			format:"m/d/Y"
+			dataIndex:"月份",
+			width:100
 		},
 		{
 			header:"费用",
-			sortable:true,
-			resizable:true,
-			dataIndex:"",
+			dataIndex:"费用",
 			width:100
 		}
 	],
 	initComponent: function(){
+	    var self = this;
 	    var gyy_lx = new Ext.GyyLxCombox({
 	        emptyText:'请选择' 
 	        
@@ -108,7 +100,8 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			{
 				text:"搜索"
 			}
-		]
+		];
+		self.store.load();
 		Ext.Hudongsoft.skfltsGrid.superclass.initComponent.call(this);
 	}
 })

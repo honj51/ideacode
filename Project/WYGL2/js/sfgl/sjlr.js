@@ -42,11 +42,12 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
                          '</tr>'
                         +'</table>';
             var panel = new Ext.Panel({
-                title: self.jfgl?'缴费总表':'录入总表',
-                layout: 'border',
-                frame: true,
+                title: self.jfgl?'缴费总表':'录入总表',                
+                layout: 'border',                
                 items: [{
+                    xtype: 'panel',
                     region:'north',
+                    cls: 'side_col',
                     html: html
                 },
                 new Ext.Hudongsoft.lrzbGrid({region:'center',jfgl: self.jfgl,zbdata:r.data})]
