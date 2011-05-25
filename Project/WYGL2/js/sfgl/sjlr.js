@@ -267,7 +267,6 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		            var w = new Ext.Window({
                         title:"收款详细列表",
                         autoScroll: true,
-                        autoHeight: true,
                         items:[{
                             xtype: 'panel',
                             html:'<iframe src="Print.aspx?djbh='+r.data.单据编号+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
