@@ -80,7 +80,7 @@
                         panel.show();
                     }
                     if (text == "数据录入") {
-                        panel = new Ext.Hudongsoft.sjlrGrid();
+						 panel = new Ext.Hudongsoft.sjlrGrid();        
                     }
                     else if (text == "缴费管理") {
                         panel = new Ext.Hudongsoft.sjlrGrid({jfgl:true});
