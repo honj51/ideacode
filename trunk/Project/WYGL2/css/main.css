@@ -40,11 +40,16 @@
     background-image: url(../images/icon/1_1.gif) !important;    
 }
 
-
-.tab1 strong
+.tab1 
 {
-	font-size:12px;
-	font-weight:bold;
+	font-size:11px;
 }
 
-
+.side_col {
+	padding: 0 0 0 0;
+	width: 310;
+	height: 130;
+	background: url("../images/side_col_bg.png") repeat-x scroll left top
+		#FFFFFF;
+	border: 1px solid #D0D0D0;
+}
