@@ -23,6 +23,11 @@
     <script type="text/javascript">
 function print1() {
     $("input").hide();
+    $("#bz").hide();
+    $("#bz").after("<span>"+$("#bz").val()+"</span>");
+    $("#btn").hide()
+    $("#select").hide();
+    $("#title").after("<span>"+$("#op1").html()+"</span>");
     print();
 }
 var makrup = "<tr>"+
@@ -50,6 +55,14 @@ $.get(dataUrl, function(data){
     }
 });
 
+function update() {
+    var name = prompt("请输入公司名字","");
+   // alert($("#op1").val());
+    $("#op1").html(name);
+    
+}
+
+
     </script>
 </head>
 <body>
@@ -61,9 +74,20 @@ $.get(dataUrl, function(data){
     <table id="tab1" width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
           <td height="40" align="center" valign="middle" style="border-bottom:1px solid #000000">
-            <span>
-                <span style="font-size:16px;font-weight:bold;">深圳市兴联兴投资有限公司        &nbsp;&nbsp;收款收据       &nbsp;</span>&nbsp;
+            <span style="font-size:16px;font-weight:bold;">
+                <span id="title" style="font-size:16px;font-weight:bold;">
+                    <select size="1" id="select" name="select">
+                        <option id="op1">深圳市兴联兴投资有限公司</option>
+                        <option>xxxxxx投资有限公司</option>
+                        <option>wwwwww投资有限公司</option>
+                    </select> 
+                    <button id="btn" onclick="update()">修改</button>        
+                    
+                </span>&nbsp;&nbsp;&nbsp;&nbsp;收款收据       &nbsp;&nbsp;
             </span>
+            
+            
+            
         </td>
         </tr>
         <tr>
@@ -112,7 +136,8 @@ $.get(dataUrl, function(data){
         </tr>
         <tr>
             <td colspan="12" >
-            备注：
+            备注：<textarea id="bz" style="width:625px;height:50px;"></textarea>
+            
             </td>
         </tr>
     </table>
