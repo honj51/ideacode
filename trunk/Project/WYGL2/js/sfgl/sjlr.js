@@ -266,19 +266,12 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		            var html = '';
 		            var w = new Ext.Window({
                         title:"收款详细列表",
-                        height: 500,
-                        //layout: 'border',
-                        items:[
-//                            new Ext.Panel({
-//                                region:'north',
-//                                html: html
-//                            }),
-//                            new Ext.Hudongsoft.sksjGrid({region:'center',djbh:r.data.单据编号})
-                            {
-                                xtype: 'panel',
-	                            html:'<iframe src="Print.aspx?djbh='+r.data.单据编号+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
-	                         }
-                        ]
+                        autoScroll: true,
+                        autoHeight: true,
+                        items:[{
+                            xtype: 'panel',
+                            html:'<iframe src="Print.aspx?djbh='+r.data.单据编号+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
+                         }]
                     });
                     w.show();
 		        }
