@@ -56,6 +56,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        width:100,
 	        emptyText:'请选择'
 	    });
+	    
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
 //        var sf = new Ext.sfxmCombox();
@@ -92,13 +93,9 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				text:"月："
 			},
 			yue,
-			
 			{
-				xtype:"datefield",
-				fieldLabel:"标签"
-			},
-			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query'
 			}
 		];
 		self.store.load();
