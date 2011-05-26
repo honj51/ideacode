@@ -8,9 +8,9 @@
 </head>
 <body>    
     <div id='Login' style="margin-left:auto; margin-right:auto; margin-top:0px; background: url('images/login.jpg') no-repeat; width: 1280px; height: 655px">	  
-	   <form action="Login.aspx" method="post">
+	   <form action="Login.aspx" method="post" style="height:570px;">
 	    <h1 style="padding: 100px 0px 0px 480px ">欢迎登陆物业管理系统</h1>
-	   	<div  id="login-div" style="padding: 160px 10px 0 560px">	   	    
+	   	<div  id="login-div" style="padding: 120px 10px 0 560px">	   	    
 	   		<div style="text-align: left; float: left">
 		   		<div style="width: 200">
 					<input type="hidden" name="action" value="login">
@@ -20,7 +20,12 @@
 		   		<div style="width: 200;margin-top: 5px">
 			   		<label >密&nbsp;&nbsp;码:</label>
 			    	<input type="password" name="password" size="30"  style="width:150px">
-		   		</div>		   		
+		   		</div>
+		   		<div style="width: 200;margin-top: 5px">
+			   		<label >验证码:</label>
+			    	<input name="yanzheng" style="width:150px" />&nbsp;&nbsp;<asp:Image ID="Image1" runat="server" ImageUrl="png.aspx?aa2" />
+		   		</div>
+		   			   		
 	   		</div>	  
 	   		<div style="float: right; margin:30px 500px 0px 0px">
 			    	<input type="image" src="images/deng.png" > 
@@ -32,6 +37,9 @@
                     {
                         case "-1":
                             Response.Write("<span style=\"color: Red\">用户名或密码错误,请重试!</span>");
+                            break;
+                        case "-2":
+                            Response.Write("<span style=\"color: Red\">验证码错误,请重试!</span>");
                             break;
                         default:
                             break;
@@ -51,8 +59,12 @@
 		   
 <%--		   	<div style="margin: 20px 0 0 -60px;color:yellow; font-size: 9;clear: left">提示: 如有时输入用户名密码无法登陆时，请按F5刷新后重试。</div>
 --%>		</div>
-		
+	        
 	   </form>
+	   <div style="text-align:center;margin-bottom:20px;">
+	    <p style="font-size:10px;color:White">深圳市兴联兴投资有限公司&nbsp;&nbsp;版权所有&nbsp;&nbsp;  技术支持：互动科技有限公司</p> 
 	</div>
+	</div>
+	
 </body>
 </html>

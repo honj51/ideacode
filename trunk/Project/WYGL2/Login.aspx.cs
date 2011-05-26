@@ -29,6 +29,14 @@ public partial class Default2 : System.Web.UI.Page
             SqlParameter[] sps = new SqlParameter[] { new SqlParameter("@admin_id",user),new SqlParameter("@admin_pwd",password) };
 
             SqlDataReader dr = null;
+
+            String gif = (string)Session["gif"];
+            string yanzheng = Request.Form["yanzheng"];
+            if (gif != yanzheng)
+            {
+                Response.Redirect("Login.aspx?error=-2"); 
+            }
+
             try
             {
                 dr = DBHelper.ExecuteReader("select * from sq8szxlx.admin_admin where admin_id=@admin_id and admin_pwd=@admin_pwd", sps);
