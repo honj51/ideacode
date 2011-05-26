@@ -73,7 +73,7 @@ public partial class XiTong_jsqx : System.Web.UI.Page
         {
             string sql = "update sq8szxlx.role_lb  set ";
             string[] allFields = new string[] { "数据录入", "缴费管理", "工业园管理", "房产管理", "客户管理", "预定管理", "租凭合同管理", "合同到期提示", "收款分类统计", "收款详细统计", "角色权限", "管理员管理", "修改本身密码" };
-            foreach (var item in allFields)
+            foreach (string item in allFields)
 	        {
                 string value = "0";
                 if (Request.Params[item] !=null && Request.Params[item] == "on")

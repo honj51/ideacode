@@ -1,25 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-[
-{
-    text: '收费管理', 
-    cls: 'folder',
-    children:[
-    
-    <% 
-        int i =1;
-        if (i==1) {
-     %>
-        {text: '数据录入',leaf: true},
-    <% 
-        }
-    else
-        {
-    %>
-        {text: '缴费管理',leaf: true}
-    <% 
-        }
-    %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-    ]
-},
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+</asp:Content>
+

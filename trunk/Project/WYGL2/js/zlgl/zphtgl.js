@@ -85,7 +85,6 @@ xtype:"grid",
 	    var self = this;
 	    var form = new Ext.FormPanel({	
             padding: 10,
-            width:366,
             items: [{
                 xtype: 'hidden',
                 name: 'id'
@@ -160,7 +159,6 @@ xtype:"grid",
                             action: add?'add':'update'
                         },
                         success: function (form, action) {  
-                            console.log(action.response.responseText);                                      
                             w.close();
                             self.store.reload();
                         }
@@ -180,6 +178,7 @@ xtype:"grid",
         
 	    var w = new Ext.Window({
 	        title: '添加合同',				        
+            width:366,
 	        items:[
 	            form
 	        ]

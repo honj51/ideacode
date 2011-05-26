@@ -41,7 +41,6 @@ xtype:"grid",
         var form = new Ext.FormPanel({
 	        id:'form1',
 	        padding:10,
-	        width:500,
 	        items:[
 	            {
                     xtype:'hidden',
@@ -73,8 +72,7 @@ xtype:"grid",
 	                            action: add?'add':'update'
 	                        },
 	                        success:function (form, action) {
-	                            console.log(action.response.responseText);                                      
-                                w.close();                                
+	                            w.close();                                
                                 self.store.reload();
 	                        }
 	                    });
@@ -96,6 +94,7 @@ xtype:"grid",
             
             var w = new Ext.Window({
                 title:"添加角色",
+    	        width:500,
                 items:[
                     form
                 ]

@@ -1,9 +1,6 @@
 ﻿
 <% 
-string admin_id = (string)Session["admin_id"];
-string sql = string.Format("select admin_name from sq8szxlx.admin_admin where admin_id='{0}'",admin_id);
-string role_name = DBHelper.GetRow(sql)["admin_name"].ToString();
-string sql_2 = string.Format("select * from sq8szxlx.role_lb where role_name='{0}'", role_name);
+
  
     
 %>

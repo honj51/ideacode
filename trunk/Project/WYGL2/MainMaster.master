@@ -9,7 +9,7 @@
     <link href="ext/resources/css/ext-all.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="ext/examples/ux/css/ux-all.css" />
     <script type="text/javascript" src="ext/adapter/ext/ext-base.js"></script>
-    <script type="text/javascript" src="ext/ext-all-debug.js"></script>
+    <script type="text/javascript" src="ext/ext-all.js"></script>
     <script type="text/javascript" src="ext/examples/ux/ux-all.js"></script>
     <script type="text/javascript" src="ext/src/locale/ext-lang-zh_CN.js"></script>
     <script type="text/javascript" src="js/format.js"></script>
@@ -115,10 +115,10 @@
                     else if (text == "临时开票") {                                            
                         panel = new Ext.Window({
                             title:'临时开票',
+                            width: 800,
                             items: [{
                                 xtype: 'panel',
-	                            //autoWidth: true,
-	                            html:'<iframe src="lskp.aspx" width=1000 height=500 frameborder="0" scrolling="auto"></iframe>'
+	                            html:'<iframe src="lskp.aspx" width=790 height=500 frameborder="0" scrolling="auto"></iframe>'
 	                            
                             }]
                         });

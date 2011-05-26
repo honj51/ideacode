@@ -43,8 +43,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	showDetailWindow: function (add, data) { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
         var form = new Ext.FormPanel({	
-            padding: 10,
-            width: 360,
+            padding: 10,            
             items: [{
                 xtype: 'hidden',
                 name: 'id'
@@ -74,7 +73,6 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                             action: add?'add':'update'
                         },
                         success: function (form, action) {  
-                            console.log(action.response.responseText);                                      
                             w.close();
                             self.store.reload();
                         }
@@ -94,7 +92,8 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
         }
         
 	    var w = new Ext.Window({
-	        title: '添加工业园',				        
+	        title: '添加工业园',	
+	        width: 370,			        
 	        items:[
 	            form
 	        ]
@@ -155,9 +154,9 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				iconCls: 'icon-xieGenJin',
 				handler:function () {
 				    var r = self.getSelectionModel().getSelected();
-				    //console.log(r.json.工业园名称);
+				    if (!r) return;
 				    var lxstore = new Ext.data.JsonStore({
-                        url: 'ajax/zygl/gyygl.aspx?action=lx_list&find_id='+r.json.工业园名称,
+                        url: 'ajax/zygl/gyygl.aspx?action=lx_list&find_id='+escape(r.data.工业园名称),
                         fields:[
                             'id','序号','工业园名称','房产类型'
                         ]

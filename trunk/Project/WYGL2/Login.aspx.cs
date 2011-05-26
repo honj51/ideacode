@@ -35,7 +35,7 @@ public partial class Default2 : System.Web.UI.Page
                 if (dr.HasRows)
                 {
                     Session["admin_id"] = user;
-                    Response.Redirect("Admin.aspx");                    
+                    Response.Redirect("Default.aspx");                    
                 }
                 else
                 {

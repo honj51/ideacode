@@ -90,7 +90,6 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    var form = new Ext.FormPanel({
 		    id:'form1',
 		    padding:10,
-		    width:500,
 		    items:[
 		        {
                     xtype:'hidden',
@@ -155,8 +154,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		                        action: add?'add':'update'
 		                    },
 		                    success:function (form, action) {
-		                        console.log(action.response.responseText);                                      
-                                w.close();                                
+		                        w.close();                                
                                 self.store.reload();
 		                    }
 		                });
@@ -178,6 +176,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
         
 	    var w = new Ext.Window({
 	        title:"新增预定",
+		    width:500,
 	        items:[
 	            form
 	        ]

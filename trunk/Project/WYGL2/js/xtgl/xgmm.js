@@ -19,7 +19,7 @@ Ext.Hudongsoft.xgmmWin=Ext.extend(Ext.Window ,{
             fieldLabel: '确认密码',
             name: 'admin_pwd2',
             allowBlank:false,
-            inputType: 'password',	   
+            inputType: 'password'	   
         });
         
 		var form = new Ext.FormPanel({
