@@ -3,6 +3,7 @@ using System.Data;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
+using System.Collections.Specialized;
 
 /// <summary>
 ///Common 的摘要说明
@@ -17,5 +18,26 @@ public class Common
         result = result.Replace("-", string.Empty);
         result = result.ToLower();
         return result;
+    }
+
+    public static NameValueCollection copyForm(NameValueCollection nv, string[] deleteItems)
+    {
+        NameValueCollection nvc = new NameValueCollection();
+        for (int i = 0; i < nv.Count; i++)
+        {
+            bool toDelete = false;
+            foreach (string item in deleteItems)
+            {
+                if (item == nv.GetKey(i))
+                {
+                    toDelete = true;
+                    break;
+                }
+            }
+            if (toDelete) continue;
+            
+            nvc.Add(nv.GetKey(i), nv.Get(i));
+        }
+        return nvc;
     }
 }

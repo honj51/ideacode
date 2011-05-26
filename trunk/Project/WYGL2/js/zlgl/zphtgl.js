@@ -122,22 +122,27 @@ xtype:"grid",
                 name: '合同开始时间',
                 width:226,
                 allowBlank:false,
-                xtype: 'textfield'				                           
+                format: 'Y-m-d',
+                xtype: 'datefield',
+                value: new Date()				                           
             },
             {
                 fieldLabel: '合同结束时间',
                 name: '合同结束时间',
                 width:226,
                 allowBlank:false,
-                xtype: 'textfield'				                           
+                format: 'Y-m-d',
+                xtype: 'datefield',
+                value: new Date()					                           
             },
             {
                 fieldLabel: '操作时间',
                 name: '操作时间',
                 width:226,
-                disabled:true,
-                allowBlank:false,
-                xtype: 'textfield'				                           
+                readOnly: true,
+                format: 'Y-m-d',
+                xtype: 'datefield',
+                value: new Date()					                           
             },
             {
                 fieldLabel: '备注',
