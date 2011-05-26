@@ -120,36 +120,80 @@ public static class DBHelper
     }
     #endregion
 
-    public static RowObject GetRow(string sql)
-    {        
-        SqlDataReader r = GetReader(sql);
-        if (r.Read())
+    public static object GetVar(string sql) 
+    {
+        SqlDataReader r = null;
+        try
         {
-            RowObject ro = new RowObject();
-            for (int i = 0; i < r.FieldCount; i++)
+            r = GetReader(sql);
+            if (r.Read())
             {
-                ro.Add(r.GetName(i), r.GetValue(i));
+                return r.GetValue(0);
             }
-            return ro;
+            else
+                return null;
         }
-        else
-            return null;
+        finally
+        {
+            if (r != null)
+            {
+                r.Close();
+            }
+        }
+    }
+
+    public static RowObject GetRow(string sql)
+    {
+        SqlDataReader r = null;
+        try
+        {
+            r = GetReader(sql);
+            if (r.Read())
+            {
+                RowObject ro = new RowObject();
+                for (int i = 0; i < r.FieldCount; i++)
+                {
+                    ro.Add(r.GetName(i), r.GetValue(i));
+                }
+                return ro;
+            }
+            else
+                return null;
+        }
+        finally
+        {
+            if (r != null)
+            {
+                r.Close();
+            }
+        }
     }
 
     public static ResultObject GetResult(string sql)
     {
-        SqlDataReader r = GetReader(sql);
-        ResultObject result = new ResultObject();
-        while (r.Read())
+        SqlDataReader r = null;
+        try
         {
-            RowObject row = new RowObject();
-            for (int i = 0; i < r.FieldCount; i++)
+            r = GetReader(sql);
+            ResultObject result = new ResultObject();
+            while (r.Read())
             {
-                row.Add(r.GetName(i), r.GetValue(i));
+                RowObject row = new RowObject();
+                for (int i = 0; i < r.FieldCount; i++)
+                {
+                    row.Add(r.GetName(i), r.GetValue(i));
+                }
+                result.Add(row);
             }
-            result.Add(row);
+            return result;
         }
-        return result;
+        finally
+        {
+            if (r != null)
+            {
+                r.Close();
+            }
+        }
     }
 
     ///执行查询方法

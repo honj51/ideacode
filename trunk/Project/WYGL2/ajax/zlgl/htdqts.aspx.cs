@@ -36,7 +36,8 @@ public partial class ZuLin_htdqts : System.Web.UI.Page
             string data = Json.ToJson(r);
             string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c.GetInt32(0));
             result = "{" + result + data + "}";
-            Response.Write(result);    
+            Response.Write(result);
+            r.Close();
         }
         Response.End();
     }

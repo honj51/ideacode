@@ -116,6 +116,7 @@ public class SqlBuilder
             string xtype = reader.GetValue(1).ToString();
             result.Add(name, xtype);
         }
+        reader.Close();
         return result;
     }
 
