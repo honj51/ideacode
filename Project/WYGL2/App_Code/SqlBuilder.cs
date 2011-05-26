@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using System.Collections.Specialized;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
 using System.Text;
 using System.Data.SqlClient;
 
@@ -23,7 +14,7 @@ public class SqlBuilder
     public static string NameValueToSql(Dictionary<string,object> dict, string table, string primary, bool insert)
     {
         NameValueCollection nvc = new NameValueCollection();
-        foreach (var item in dict)
+        foreach (KeyValuePair<string,object> item in dict)
         {
             nvc.Add(item.Key, item.Value.ToString());
         }
@@ -106,12 +97,12 @@ public class SqlBuilder
     }
 
     // 根据提交的json字符串生成对应sql语句
-    public static string JsonToSql(string json, string table, string primary, bool insert)
-    {
-        JavaScriptSerializer s = new JavaScriptSerializer();
-        NameValueCollection og = (NameValueCollection)s.DeserializeObject(json);
-        return NameValueToSql(og, table, primary, insert);
-    }
+    //public static string JsonToSql(string json, string table, string primary, bool insert)
+    //{
+    //    JavaScriptSerializer s = new JavaScriptSerializer();
+    //    NameValueCollection og = (NameValueCollection)s.DeserializeObject(json);
+    //    return NameValueToSql(og, table, primary, insert);
+    //}
 
     public static Dictionary<string, string> GetAllTableColumns(string table)
     {

@@ -1,7 +1,6 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.zphtglWin=Ext.extend(Ext.Window ,{
-    xtype:"window",
 	title:"临时开票",
 	width:520,
 	height:330,

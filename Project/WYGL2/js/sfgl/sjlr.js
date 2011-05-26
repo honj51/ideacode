@@ -256,7 +256,6 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	],
 	initComponent: function(){
 	    var self = this;
-	    console.log(self.zbdata);
 	    var btnXQ = new Ext.Button({
 	        text: '查看详情',
 	        disabled: true,
@@ -266,6 +265,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		            var html = '';
 		            var w = new Ext.Window({
                         title:"收款详细列表",
+            	        width:815,
                         autoScroll: true,
                         items:[{
                             xtype: 'panel',
@@ -377,7 +377,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     fields: ['编号','收费项目','收费类型','值','倍率','损耗','滞纳金','上月读数','读数','费用','说明']
                                 });         	            
                                 xf_store.on("load",function (store, records) {
-                                    console.log(records);
+                                    
                                 })
                                 var x = obj.总金额;
                                 var sf_textfield = new Ext.form.TextField({});		            
@@ -386,9 +386,9 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     columns: [{
                                         header: '编号', dataIndex: '编号', width: 40
                                     },{
-                                         header: '消费项目', dataIndex: '收费项目', width: 120,
+                                         header: '消费项目', dataIndex: '收费项目', width: 120
                                     },{
-                                        header: '消费类型', dataIndex: '收费类型', width: 80,
+                                        header: '消费类型', dataIndex: '收费类型', width: 80
                                     },{
                                         header: '值', dataIndex: '值',  width: 70
                                     },{
@@ -402,7 +402,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     },{
                                         header: '读数', dataIndex: '读数',  width: 80
                                     },{
-                                        header: '费用', dataIndex: '费用',width: 60,
+                                        header: '费用', dataIndex: '费用',width: 60
                                     },{
                                         header: '说明', dataIndex: '说明',  width: 120
                                     }],

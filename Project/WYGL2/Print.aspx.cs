@@ -18,6 +18,7 @@ public partial class Print : System.Web.UI.Page
     {
         user = (string)Session["admin_id"];
         dt = DateTime.Now.ToShortDateString();
-        dataUrl = "ajax/sfgl/sjlr.aspx?action=list_lb&djbh=" + Request.Params["djbh"];
+        Random rand = new Random();        
+        dataUrl = string.Format("ajax/sfgl/sjlr.aspx?action=list_lb&djbh={0}&_rand={1}",Request.Params["djbh"],rand.Next());
     }
 }

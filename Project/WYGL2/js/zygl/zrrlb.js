@@ -123,8 +123,7 @@ xtype:"grid",
     
     var form = new Ext.FormPanel({
 	    id:'form1',
-	    padding:10,
-	    width:500,
+	    padding:10,	    
 	    items:[
 	        {
                 xtype:'hidden',
@@ -232,8 +231,7 @@ xtype:"grid",
 	                        action: add?'add':'update'
 	                    },
 	                    success:function (form, action) {
-	                        console.log(action.response.responseText);                                      
-                            w.close();                                
+	                        w.close();                                
                             self.store.reload();
 	                    }
 	                });
@@ -255,6 +253,7 @@ xtype:"grid",
         
         var w = new Ext.Window({
             title:"新增自然人",
+            width:500,
             items:[
                 form
             ]
@@ -268,7 +267,7 @@ xtype:"grid",
 	    var self = this;    
 	    var iField = new Ext.form.TextField({ //搜索栏
             emptyText:'请输入姓名',
-	        width:150,
+	        width:150
     	   
         });
         this.bbar = new Ext.PagingToolbar({ //分页控件

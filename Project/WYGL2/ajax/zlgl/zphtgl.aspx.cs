@@ -104,7 +104,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             ResultObject r2 = DBHelper.GetResult(sql2);
             JSONArray ja = new JSONArray();
             int i = 1;
-            foreach (var item in r2)
+            foreach (RowObject item in r2)
             {
                 JSONObject jo = new JSONObject();
                 

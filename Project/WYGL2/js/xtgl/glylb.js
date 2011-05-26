@@ -64,7 +64,7 @@ xtype:"grid",
             name: 'admin_pwd2',
             width:226,
             allowBlank:false,
-            inputType: 'password',	   
+            inputType: 'password'	   
         });
         
         var js = new Ext.form.ComboBox({
@@ -85,7 +85,6 @@ xtype:"grid",
         var form = new Ext.FormPanel({
 	        id:'form1',
 	        padding:10,
-	        width:500,
 	        items:[
 	            {
 	                xtype: 'textfield',
@@ -149,8 +148,7 @@ xtype:"grid",
 	                            action: add?'add':'update'
 	                        },
 	                        success:function (form, action) {
-	                            console.log(action.response.responseText);                                      
-                                w.close();
+	                            w.close();
                                 self.store.load();                                
                                 Ext.Msg.alert("修改密码","修改密码成功");
 	                        }
@@ -173,6 +171,7 @@ xtype:"grid",
         
         var w = new Ext.Window({
             title:"添加管理员",
+	        width:500,
             items:[
                 form
             ]
