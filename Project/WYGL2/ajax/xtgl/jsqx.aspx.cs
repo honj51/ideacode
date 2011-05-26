@@ -23,7 +23,7 @@ public partial class XiTong_jsqx : System.Web.UI.Page
         {
             SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.role");
             Response.Write(Json.ToJson(r));
-
+            r.Close();
         }
         else if (action == "add")
         {
@@ -68,6 +68,7 @@ public partial class XiTong_jsqx : System.Web.UI.Page
             {
                 Response.Write("{ success:false,errorMessage: 'data not found' }");
             }
+            r.Close();
         }
         else if (action == "updatePermissions")
         {

@@ -24,7 +24,7 @@ public partial class XiTong_glylb : System.Web.UI.Page
         {
             SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.admin_admin");
             Response.Write(Json.ToJson(r));
-
+            r.Close();
         }
         else if (action == "add")
         {
@@ -73,6 +73,7 @@ public partial class XiTong_glylb : System.Web.UI.Page
             string sql = "";
             SqlDataReader r = DBHelper.GetReader("select role_name as js from sq8szxlx.role");
             Response.Write(Json.ToJson(r));
+            r.Close();
         }
         
         Response.End();
