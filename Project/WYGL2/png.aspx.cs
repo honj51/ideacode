@@ -66,7 +66,7 @@ public partial class png : System.Web.UI.Page
     private String GetRandomint()
     {
         Random random = new Random();
-        return (random.Next(100000, 999999).ToString());
+        return (random.Next(1000, 9999).ToString());
     }
             /**//* 
         此函数在汉字编码范围内随机创建含两个元素的十六进制字节数组，每个字节数组代表一个汉字，并将 

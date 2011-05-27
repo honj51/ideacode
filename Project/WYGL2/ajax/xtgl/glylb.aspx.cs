@@ -39,7 +39,7 @@ public partial class XiTong_glylb : System.Web.UI.Page
             {
                 if (Request.Form.GetKey(i) == "admin_pwd")
                 {
-                    string md5 = Common.makeMD5(Request.Form.Get(i));
+                    string md5 = Common.MakeMD5(Request.Form.Get(i));
                     nvc.Add(Request.Form.GetKey(i), md5);
                 }
                 else
@@ -59,7 +59,7 @@ public partial class XiTong_glylb : System.Web.UI.Page
         {
             string admin_id = (string)Session["admin_id"];
             string password = Request.Params["admin_pwd"];
-            password = Common.makeMD5(password);
+            password = Common.MakeMD5(password);
             if (admin_id != null)
             {
                 string sql = string.Format("update sq8szxlx.admin_admin set admin_pwd='{0}' where admin_id='{1}' ", password, admin_id);

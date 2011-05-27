@@ -4,13 +4,14 @@ using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Specialized;
+using System.Collections.Generic;
 
 /// <summary>
 ///Common 的摘要说明
 /// </summary>
 public class Common
 {
-    public static string makeMD5(string s)
+    public static string MakeMD5(string s)
     {
         MD5 md5 = new MD5CryptoServiceProvider();
         byte[] b = UTF8Encoding.Default.GetBytes(s);
@@ -20,24 +21,33 @@ public class Common
         return result;
     }
 
-    public static NameValueCollection copyForm(NameValueCollection nv, string[] deleteItems)
+    public static Dictionary<string, object> CopyFormToDict(NameValueCollection nv)
     {
-        NameValueCollection nvc = new NameValueCollection();
+        return CopyFormToDict(nv, null);
+    }
+
+    public static Dictionary<string, object> CopyFormToDict(NameValueCollection nv, string[] deleteItems)
+    {
+        Dictionary<string, object> dict = new Dictionary<string, object>();
+        
         for (int i = 0; i < nv.Count; i++)
         {
             bool toDelete = false;
-            foreach (string item in deleteItems)
+            if (deleteItems != null)
             {
-                if (item == nv.GetKey(i))
+                foreach (string item in deleteItems)
                 {
-                    toDelete = true;
-                    break;
+                    if (item == nv.GetKey(i))
+                    {
+                        toDelete = true;
+                        break;
+                    }
                 }
             }
             if (toDelete) continue;
-            
-            nvc.Add(nv.GetKey(i), nv.Get(i));
+
+            dict.Add(nv.GetKey(i), nv.Get(i));
         }
-        return nvc;
+        return dict;
     }
 }
