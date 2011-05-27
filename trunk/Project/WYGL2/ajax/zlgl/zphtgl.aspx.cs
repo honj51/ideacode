@@ -58,8 +58,19 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             Response.Write("{success: true}");
         }
         else if (action == "update")
-        {
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.zpgl", "id", false);
+        {            
+            Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+            DateTime dt1 = DateTime.Parse(dict["合同开始时间"].ToString());
+            DateTime dt2 = DateTime.Parse(dict["合同结束时间"].ToString());
+            dict.Remove("合同开始时间");
+            dict.Remove("合同结束时间");
+            dict.Add("合同开始时间_年", dt1.Year);
+            dict.Add("合同开始时间_月", dt1.Month);
+            dict.Add("合同开始时间_日", dt1.Day);
+            dict.Add("合同结束时间_年", dt2.Year);
+            dict.Add("合同结束时间_月", dt2.Month);
+            dict.Add("合同结束时间_日", dt2.Day);
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl", "id", false);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }

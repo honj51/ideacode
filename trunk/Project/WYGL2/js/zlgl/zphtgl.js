@@ -140,7 +140,7 @@ xtype:"grid",
                 name: '操作时间',
                 width:226,
                 readOnly: true,
-                format: 'Y-m-d',
+                format: 'Y-m-d H:i:s',
                 xtype: 'datefield',
                 value: new Date()					                           
             },
@@ -178,6 +178,14 @@ xtype:"grid",
             }]
         });
         if (!add && data) {
+            console.log(data);
+            function trim_time(f,data) {
+                var d = data[f];
+                return d.substring(0,d.indexOf(' '));                
+            }
+            data.合同开始时间 = trim_time('合同开始时间',data);
+            data.合同结束时间 = trim_time('合同结束时间',data);
+            console.log(data);
             form.getForm().setValues(data);
         }
         

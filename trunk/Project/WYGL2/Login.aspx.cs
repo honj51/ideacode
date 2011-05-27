@@ -25,7 +25,7 @@ public partial class Default2 : System.Web.UI.Page
 
             string user = Request.Form["user"];
             string password = Request.Form["password"];
-            password = Common.makeMD5(password);            
+            password = Common.MakeMD5(password);            
             SqlParameter[] sps = new SqlParameter[] { new SqlParameter("@admin_id",user),new SqlParameter("@admin_pwd",password) };
 
             SqlDataReader dr = null;
@@ -60,7 +60,7 @@ public partial class Default2 : System.Web.UI.Page
         }
         else if (action == "md5")
         {
-            string md5 = Common.makeMD5("123");
+            string md5 = Common.MakeMD5("123");
             Response.Write(md5);
 
         }
