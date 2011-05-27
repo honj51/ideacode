@@ -93,7 +93,8 @@ xtype:"grid",
                 fieldLabel: '编码',
                 name: '编码',
                 width:226,
-                allowBlank:false,
+                readOnly: true,
+                value: '自动产生',                
                 xtype: 'textfield'				                           
             },
              {

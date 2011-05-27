@@ -42,6 +42,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             {
                 sql = "select * from sq8szxlx.zpgl";
             }
+            sql += " order by 操作时间 desc";
             SqlDataReader c = DBHelper.GetReader(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
             if (!c.Read()) return;                
             SqlDataReader r = DBHelper.GetReader(sql);
@@ -51,15 +52,14 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             Response.Write(result);
             
         }
-        else if (action == "add")
-        {
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.zpgl", "id", true);
-            DBHelper.ExecuteSql(sql);
-            Response.Write("{success: true}");
-        }
-        else if (action == "update")
+        else if (action == "update" || action == "add")
         {            
             Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+            if (dict["编码"].ToString() == "自动产生")
+            {
+                string dt = DateTime.Now.ToString("yyyyMMddhhmmssffff");
+                dict["编码"] = "ht"+dt;
+            }
             DateTime dt1 = DateTime.Parse(dict["合同开始时间"].ToString());
             DateTime dt2 = DateTime.Parse(dict["合同结束时间"].ToString());
             dict.Remove("合同开始时间");
@@ -70,7 +70,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             dict.Add("合同结束时间_年", dt2.Year);
             dict.Add("合同结束时间_月", dt2.Month);
             dict.Add("合同结束时间_日", dt2.Day);
-            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl", "id", false);
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl", "id", action=="add");
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
