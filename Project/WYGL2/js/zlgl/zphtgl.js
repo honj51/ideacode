@@ -1,7 +1,6 @@
 ﻿Ext.namespace('Ext.Hudongsoft')
 
 Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
 	title:"合同列表",
 	store:new Ext.data.JsonStore({
 		url: 'ajax/zlgl/zphtgl.aspx?action=list',
@@ -13,6 +12,16 @@ xtype:"grid",
 	}),
 	width:792,
 	height:560,
+	viewConfig : {
+		getRowClass : function(record, rowIndex, rowParams, store) {
+			var zfq = record.data.增浮期;
+			if (!zfq) return;
+			var num = new Date(zfq).dateDiff('d',new Date());
+			if (num>=0) {
+				return 'x-grid-record-red';
+			}
+		}
+	},
 	columns:[
 		{
 			header:"序号",
@@ -142,6 +151,15 @@ xtype:"grid",
                 value: new Date()					                           
             },
             {
+                fieldLabel: '增浮期',
+                name: '增浮期',
+                width:226,
+                allowBlank:false,
+                format: 'Y-m-d',
+                xtype: 'datefield',
+                value: new Date()
+            },            
+            {
                 fieldLabel: '操作时间',
                 name: '操作时间',
                 width:226,
@@ -184,14 +202,6 @@ xtype:"grid",
             }]
         });
         if (!add && data) {
-            console.log(data);
-            function trim_time(f,data) {
-                var d = data[f];
-                return d.substring(0,d.indexOf(' '));                
-            }
-            data.合同开始时间 = trim_time('合同开始时间',data);
-            data.合同结束时间 = trim_time('合同结束时间',data);
-            console.log(data);
             form.getForm().setValues(data);
         }
         
