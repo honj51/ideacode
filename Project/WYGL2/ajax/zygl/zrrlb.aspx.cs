@@ -36,11 +36,9 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
             {
                 sql = "select * from sq8szxlx.user_zrr";
             }
-            SqlDataReader c = DBHelper.GetReader(string.Format("select count(*) as total from sq8szxlx.user_zrr where 名称 like '%{0}%' ", iField));
-            if (!c.Read()) return;
-            SqlDataReader r = DBHelper.GetReader(sql);
-            string data = Json.ToJson(r);
-            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c.GetInt32(0));
+            int count = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.user_zrr where 名称 like '%{0}%' ", iField));
+            string data = DBHelper.GetResult(sql).ToJson();
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", count);
             result = "{" + result + data + "}";
             Response.Write(result);
 

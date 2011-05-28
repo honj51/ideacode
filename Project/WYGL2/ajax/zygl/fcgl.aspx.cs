@@ -30,11 +30,9 @@ public partial class ZiYuan_fcgl : System.Web.UI.Page
             {
                 sql = "select * from sq8szxlx.gyy_fc_lb";   
             }
-            SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.gyy_fc_lb");
-            if (!c.Read()) return;
-            SqlDataReader r = DBHelper.GetReader(sql);
-            string data = Json.ToJson(r);
-            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c.GetInt32(0));
+            int count = (int)DBHelper.GetVar("select count(*) as total from sq8szxlx.gyy_fc_lb");
+            string data = DBHelper.GetResult(sql).ToJson();
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", count);
             result = "{" + result + data + "}";
             Response.Write(result);    
         }else if (action == "add")
