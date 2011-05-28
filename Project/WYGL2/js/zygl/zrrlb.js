@@ -7,7 +7,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/zrrlb.aspx?action=list',
 		fields:[
-		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注','出生日期'
+		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注','出生日期_年','出生日期_月','出生日期_日'
 		]
 	}),
 	width:792,
@@ -63,191 +63,175 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	},
 	
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
-    var self = this;
-    
-    var sex = new Ext.form.ComboBox({
-        fieldLabel:'性别',
-        width:226,
-        mode:'local',
-        name:'性别',
-        triggerAction:'all',
-        editable:false,
-        store:new Ext.data.SimpleStore({
-            fields : ['myId','displayText'],
-            data :[['男','男'],['女','女']]
-        }),
-        value:'男',
-        valueField:'myId',
-        displayField:'displayText'
-     });
-     
-    var jiGuan = new Ext.form.ComboBox({
-        fieldLabel:'籍贯',
-        name:'籍贯',
-        width:226,
-        mode:'local',
-        name:'籍贯',
-        triggerAction:'all',
-        editable:false,
-        store:new Ext.data.SimpleStore({
-            fields : ['id','Text'],
-            data :[['河北省','河北省'],['山西省','山西省'],['辽宁省','辽宁省'],['吉林省','吉林省'],['黑龙江省','黑龙江省'],['江苏省','江苏省'],['浙江省','浙江省'],['安徽省','安徽省'],['福建省','福建省'],
-                    ['江西省','江西省'],['山东省','山东省'],['河南省','河南省'],['湖北省','湖北省'],['湖南省','湖南省'],['广东省','广东省'],['海南省','海南省'],['四川省','四川省'],['贵州省','贵州省'],
-                    ['云南省','云南省'],['陕西省','陕西省'],['甘肃省','甘肃省'],['青海省','青海省'],['台湾省','台湾省'],['北京市','北京市'],['天津市','天津市'],['重庆市','重庆市'],['上海市','上海市'],
-                    ['香港','香港'],['澳门','澳门'],['内蒙古','内蒙古'],['广西','广西'],['宁夏','宁夏'],['新疆','新疆'],['西藏','西藏']]  
-        }),
-        emptyText:'请选择',
-        valueField:'id',
-        displayField:'Text'
-     });
-     
-    var year = new Ext.YearCombox({
-        fieldLabel:'年',
-        width:60,
-        name:'出生日期_年'
-     });
-     
-    var mouth = new Ext.MonthCombox({
-        fieldLabel:'月',
-        width:50,
-        name:'出生日期_月'
-    });
-    
-    var day = new Ext.DayCombox({
-        fieldLabel:'日',
-        name:'出生日期_日'
-    });
-    
-    var form = new Ext.FormPanel({
-	    id:'form1',
-	    padding:10,	    
-	    items:[
-	        {
-                xtype:'hidden',
-                name:'id'    				        
-	        },
-            {
-                fieldLabel: '编码',
-                name: '编码',
-                width:226,
-                readOnly: true, 
-                value: '自动产生',
-                xtype: 'textfield'				                           
-            },
-            {
-                fieldLabel: '名称',
-                name: '名称',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            {
-                fieldLabel: '描述',
-                name: '描述',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            {
-                fieldLabel: '助记码',
-                name: '助记码',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            sex,
-            {
-                fieldLabel: '出生日期',
-                name: '出生日期',
-                width:226,
-                xtype: 'datefield',
-                format:'Y-m-d'				                           
-            },
-            {
-                fieldLabel: '证件名称',
-                name: '证件名称',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            {
-                fieldLabel: '证件号码',
-                name: '证件号码',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            jiGuan,
-//            {			
-//				xtype:"combo",
-//				triggerAction:"all",
-//				name: '籍贯',
-//				fieldLabel:"籍贯",
-//				width:226,
-//			
-//            },
-            {
-                fieldLabel: '联系电话',
-                name: '联系电话',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            {
-                fieldLabel: '联系地址',
-                name: '联系地址',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            {
-                fieldLabel: '联系人',
-                name: '联系人',
-                width:226,
-                xtype: 'textfield'				                           
-            },
-            {
-                fieldLabel: '备注',
-                name: '备注',
-                width:226,
-                height:63,
-                xtype: 'textarea'				                           
+        var self = this;
+        
+        var sex = new Ext.form.ComboBox({
+            fieldLabel:'性别',
+            width:226,
+            mode:'local',
+            name:'性别',
+            triggerAction:'all',
+            editable:false,
+            store:new Ext.data.SimpleStore({
+                fields : ['myId','displayText'],
+                data :[['男','男'],['女','女']]
+            }),
+            value:'男',
+            valueField:'myId',
+            displayField:'displayText'
+         });
+         
+        var jiGuan = new Ext.form.ComboBox({
+            fieldLabel:'籍贯',
+            name:'籍贯',
+            width:226,
+            mode:'local',
+            name:'籍贯',
+            triggerAction:'all',
+            editable:false,
+            store:new Ext.data.SimpleStore({
+                fields : ['id','Text'],
+                data :[['河北省','河北省'],['山西省','山西省'],['辽宁省','辽宁省'],['吉林省','吉林省'],['黑龙江省','黑龙江省'],['江苏省','江苏省'],['浙江省','浙江省'],['安徽省','安徽省'],['福建省','福建省'],
+                        ['江西省','江西省'],['山东省','山东省'],['河南省','河南省'],['湖北省','湖北省'],['湖南省','湖南省'],['广东省','广东省'],['海南省','海南省'],['四川省','四川省'],['贵州省','贵州省'],
+                        ['云南省','云南省'],['陕西省','陕西省'],['甘肃省','甘肃省'],['青海省','青海省'],['台湾省','台湾省'],['北京市','北京市'],['天津市','天津市'],['重庆市','重庆市'],['上海市','上海市'],
+                        ['香港','香港'],['澳门','澳门'],['内蒙古','内蒙古'],['广西','广西'],['宁夏','宁夏'],['新疆','新疆'],['西藏','西藏']]  
+            }),
+            emptyText:'请选择',
+            valueField:'id',
+            displayField:'Text'
+         });
+        
+        var form = new Ext.FormPanel({
+	        id:'form1',
+	        padding:10,	    
+	        items:[
+	            {
+                    xtype:'hidden',
+                    name:'id'    				        
+	            },
+                {
+                    fieldLabel: '编码',
+                    name: '编码',
+                    width:226,
+                    readOnly: true, 
+                    value: '自动产生',
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '名称',
+                    name: '名称',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '描述',
+                    name: '描述',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '助记码',
+                    name: '助记码',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                sex,
+                {
+                    fieldLabel: '出生日期',
+                    name: '出生日期',
+                    width:226,
+                    xtype: 'datefield',
+                    format:'Y-m-d'				                           
+                },
+                {
+                    fieldLabel: '证件名称',
+                    name: '证件名称',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '证件号码',
+                    name: '证件号码',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                jiGuan,
+    //            {			
+    //				xtype:"combo",
+    //				triggerAction:"all",
+    //				name: '籍贯',
+    //				fieldLabel:"籍贯",
+    //				width:226,
+    //			
+    //            },
+                {
+                    fieldLabel: '联系电话',
+                    name: '联系电话',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '联系地址',
+                    name: '联系地址',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '联系人',
+                    name: '联系人',
+                    width:226,
+                    xtype: 'textfield'				                           
+                },
+                {
+                    fieldLabel: '备注',
+                    name: '备注',
+                    width:226,
+                    height:63,
+                    xtype: 'textarea'				                           
+                }
+                
+                  
+	        ],
+	        buttons:[
+	            {
+	                text:'保存',// callback
+	                iconCls: 'icon-save',
+	                handler:function (c) {		                
+	                     form.getForm().submit({
+	                        url:'ajax/zygl/zrrlb.aspx',
+	                        params:{
+	                            action: add?'add':'update'
+	                        },
+	                        success:function (form, action) {
+	                            w.close();                                
+                                self.store.reload();
+	                        }
+	                    });
+	                }
+	            },
+	            {
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function (c) {
+                        w.close();
+                    }
+                }
+	        ]
+        });
+        
+            if (!add && data) {
+                data.出生日期 = new Date(data.出生日期_年,data.出生日期_月,data.出生日期_日);
+                form.getForm().setValues(data);
             }
             
-              
-	    ],
-	    buttons:[
-	        {
-	            text:'保存',// callback
-	            iconCls: 'icon-save',
-	            handler:function (c) {		                
-	                 form.getForm().submit({
-	                    url:'ajax/zygl/zrrlb.aspx',
-	                    params:{
-	                        action: add?'add':'update'
-	                    },
-	                    success:function (form, action) {
-	                        w.close();                                
-                            self.store.reload();
-	                    }
-	                });
-	            }
-	        },
-	        {
-                text: '取消',
-                iconCls: 'icon-cancel',
-                handler: function (c) {
-                    w.close();
-                }
-            }
-	    ]
-    });
-    
-        if (!add && data) {
-            form.getForm().setValues(data);
-        }
-        
-        var w = new Ext.Window({
-            title:"新增自然人",
-            width:500,
-            items:[
-                form
-            ]
-        });
-        w.show();
+            var w = new Ext.Window({
+                title:"新增自然人",
+                width:500,
+                items:[
+                    form
+                ]
+            });
+            w.show();
     },
     
 
