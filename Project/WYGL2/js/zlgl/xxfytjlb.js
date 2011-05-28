@@ -75,12 +75,14 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
-        var xfxm = new Ext.sfxmCombox({
-            emptyText:'请选择'         
+	    
+	    var iField = new Ext.form.TextField({ //搜索栏
+            emptyText:'请输入姓名',
+	        width:80
+    	   
         });
 
 	    var gyy_lx = new Ext.GyyLxCombox({
-	        xfxm_store: xfxm.store,
 	        emptyText:'请选择',	        
 	    });
 
@@ -95,10 +97,7 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    var yue = new Ext.MonthCombox();
 		this.tbar=[
 			"名称：",
-			{
-				xtype:"textfield",
-				fieldLabel:"标签"
-			},
+			iField,
 			{
 				xtype:"label",
 				text:"工业园："
@@ -117,13 +116,31 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			yue,
 			{
 				text:"搜索",
-				iconCls: 'icon-query'
+				iconCls: 'icon-query',
+				handler:function () {
+				    self.store.baseParams = {
+			            gyy: gyy.getValue(),
+			            gyy_lx:gyy_lx.getValue(),
+			            iField:iField.getValue(),
+			            nian:nian.getValue(),
+			            yue:yue.getValue()
+				    };
+				    self.store.load({
+				        params: {
+				            start:0,
+		                    limit:20
+				        }
+				    });	
+				}
 			}
 		];
 		self.store.load({
 		    params:{
+		        nian:nian.getValue(),
+			    yue:yue.getValue(),
 		        start:0,
-		        limit:20
+		        limit:20,
+		        
 		    }
 		});
 		Ext.Hudongsoft.xxfytjlbGrid.superclass.initComponent.call(this);

@@ -403,14 +403,18 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				text:"搜索",
 				iconCls: 'icon-query',
 				handler:function () {
+				    self.store.baseParams = {
+			            iFieldName:iFieldName.getValue(),
+			            iFieldNo:iFieldNo.getValue(), 
+			            gyy:gyy.getValue(),
+			            leix:leix.getValue()
+				    };
 				    self.store.load({
-				        params:{
-				            iFieldName:iFieldName.getValue(),
-				            iFieldNo:iFieldNo.getValue(), 
-				            gyy:gyy.getValue(),
-				            leix:leix.getValue()
+				        params: {
+				            start:0,
+		                    limit:20
 				        }
-				    });			
+				    });						
 				}
 			}
 		];

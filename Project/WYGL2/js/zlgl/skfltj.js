@@ -62,7 +62,6 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        emptyText:'请选择'
 	    });
 	    
-	    
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
 //        var sf = new Ext.sfxmCombox();
@@ -102,14 +101,19 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				            gyy: gyy.getValue(),
 				            gyy_lx:gyy_lx.getValue(),
 				            xfxm:xfxm.getValue(),
-				            nian:nian.getValue(),
-				            yue:yue.getValue()
+//				            nian:nian.getValue(),
+//				            yue:yue.getValue()
 				        }
 				    });
 				}
 			}
 		];
-		self.store.load();
+		self.store.load({
+//		    params:{
+//		        nian:nian.getValue(),
+//			    yue:yue.getValue()
+//		    }
+		});
 		Ext.Hudongsoft.skfltsGrid.superclass.initComponent.call(this);
 	}
 })
