@@ -30,12 +30,23 @@ public partial class ZuLin_ydgl : System.Web.UI.Page
             else
             {
                 sql = "select * from sq8szxlx.zpgl";
-            }
-            SqlDataReader c = DBHelper.GetReader("select count(*) as total from sq8szxlx.zpgl");
-            if (!c.Read()) return;
-            SqlDataReader r = DBHelper.GetReader(sql);
-            string data = Json.ToJson(r);
-            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c.GetInt32(0));
+            }                        
+
+            int count = (int)DBHelper.GetVar("select count(*) as total from sq8szxlx.zpgl");            
+
+            ResultObject ro = DBHelper.GetResult(sql);
+            //foreach (RowObject row in ro)
+            //{
+            //    string sj = row["合同开始时间"].ToString();
+            //    sj = sj.Substring(0,sj.IndexOf(" "));
+
+            //    row["合同开始时间"] = sj;
+            //}
+            string data = ro.ToJson();
+
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", count);
+
+            
             result = "{" + result + data + "}";
             Response.Write(result);    
             //SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.zpgl");

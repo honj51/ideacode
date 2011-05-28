@@ -55,6 +55,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"合同开始时间",
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			width:100
 		},
 		{
@@ -63,7 +64,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			resizable:true,
 			dataIndex:"操作时间",
 			width:100,
-			format:"m/d/Y"
+			renderer: Ext.Hudongsoft.util.Format.dateTimeRenderer()
 		}
 	],
 	
