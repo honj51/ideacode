@@ -24,8 +24,7 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
 
         if (action == "list")
         {
-            System.Data.SqlClient.SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.gyy_lb");
-            Response.Write(Json.ToJson(r));            
+            Response.Write(DBHelper.GetResult("select * from sq8szxlx.gyy_lb").ToJson());    
         }
         else if (action == "getbyid")
         {
@@ -54,8 +53,7 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
         {   
             string  lx = Request.Params["find_id"];
             string sql = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb where 工业园名称='{0}' ", lx);
-            System.Data.SqlClient.SqlDataReader r = DBHelper.GetReader(sql);
-            Response.Write(Json.ToJson(r));     
+            Response.Write(DBHelper.GetResult(sql).ToJson());     
         }
         else if (action == "addlx")
         {
@@ -80,8 +78,7 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
             string gyyName = Request.Params["gyyName"];
             string fclx = Request.Params["fclx"];
             string sql = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}'", gyyName, fclx);
-            System.Data.SqlClient.SqlDataReader r = DBHelper.GetReader(sql);
-            Response.Write(Json.ToJson(r)); 
+            Response.Write(DBHelper.GetResult(sql).ToJson()); 
         }
         else if (action == "add_fcxf")
         {

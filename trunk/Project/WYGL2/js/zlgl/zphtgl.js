@@ -54,6 +54,7 @@ xtype:"grid",
 			sortable:true,
 			resizable:true,
 			dataIndex:"合同开始时间",
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			width:150
 		},
 		{
@@ -61,8 +62,9 @@ xtype:"grid",
 			sortable:true,
 			resizable:true,
 			dataIndex:"合同结束时间",
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			width:150,
-			format:"m/d/Y"
+			
 		},
 		{
 			header:"合同状态",
