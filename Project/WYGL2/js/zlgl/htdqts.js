@@ -164,12 +164,16 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				text:"搜索",
 				iconCls: 'icon-query',
 				handler:function () {
-				    self.store.load({
-				        params:{
+				    self.store.baseParams = {
 				            iFieldName:iFieldName.getValue(),
 				            iFieldNo:iFieldNo.getValue(), 
 				            gyy:gyy.getValue(),
 				            leix:leix.getValue()
+				        };
+				    self.store.load({
+				        params: {
+				            start:0,
+		                    limit:20
 				        }
 				    });			
 				}

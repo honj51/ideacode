@@ -66,7 +66,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         string where = string.Format(@"where u.日期年='{0}' and u.日期月='{1}' ", Request.Form["nian"], Request.Form["yue"]);
         if (!string.IsNullOrEmpty(Request.Params["mc"]))
         {
-            where += string.Format(" and z.客户名称='{0}'", Request.Params["mc"]);
+            where += string.Format(" and z.客户名称 like '%{0}%'", Request.Params["mc"]);
         }
         if (!string.IsNullOrEmpty(Request.Params["gyy"]))
         {
@@ -78,7 +78,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(Request.Params["hm"]))
         {
-            where += string.Format(" and z.编码='{0}'", Request.Params["hm"]);
+            where += string.Format(" and z.编码 like '%{0}%'", Request.Params["hm"]);
         }
         // 2. 获取总数
         string count = DBHelper.GetVar("select count(*) " + from + where).ToString();
