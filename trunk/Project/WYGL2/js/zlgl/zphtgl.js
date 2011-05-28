@@ -8,7 +8,7 @@ xtype:"grid",
 		root : 'data',
 		totalProperty : 'totalProperty',
 		fields:[
-		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间','合同状态','操作时间','备注'
+		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间','增浮期','合同状态','操作时间','备注'
 		]	
 	}),
 	width:792,
@@ -59,12 +59,15 @@ xtype:"grid",
 		},
 		{
 			header:"合同结束时间",
-			sortable:true,
-			resizable:true,
 			dataIndex:"合同结束时间",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			width:150,
-			
+			width:150
+		},
+		{
+			header:"增浮期",
+			dataIndex:"增浮期",
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
+			width:150		
 		},
 		{
 			header:"合同状态",
