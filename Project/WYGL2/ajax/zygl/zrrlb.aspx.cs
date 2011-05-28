@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 public partial class ZiYuan_zrrlb : System.Web.UI.Page
 {
@@ -36,6 +37,7 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
             {
                 sql = "select * from sq8szxlx.user_zrr";
             }
+            sql += " order by id desc ";
             int count = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.user_zrr where 名称 like '%{0}%' ", iField));
             string data = DBHelper.GetResult(sql).ToJson();
             string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", count);
@@ -45,7 +47,14 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
         }
         else if (action == "add")
         {
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_zrr", "id", true);
+            Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+            if (dict["编码"].ToString() == "自动产生")
+            {
+                string dt = DateTime.Now.ToString("yyyyMMddhhmmssffff");
+                dict["编码"] = "zrr" + dt;
+            }
+
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.user_zrr", "id", true);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
@@ -61,7 +70,11 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
-
+        else if (action == "list_names")
+        {
+            string data = DBHelper.GetResult("select 编码 as bm,名称 as mc from sq8szxlx.user_zrr").ToJson();
+            Response.Write(data);
+        }
         //搜索
         
         //if (iField!=null)

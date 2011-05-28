@@ -99,9 +99,17 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	
 	showDetailWindow: function (add, data) { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
-        var gyy_lx = new Ext.GyyLxCombox({width:226});
-	    var gyy = new Ext.GyyCombox({lx_store: gyy_lx.store,width:226});	    
-	    
+        var gyy_lx = new Ext.GyyLxCombox({
+            width:226,            
+            fieldLabel:'所属房产',
+            name:'所属房产'
+        });
+	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx,width:226,fieldLabel:'所属工业园',name:'所属工业园'});	    
+	    var kehu = new Ext.KehuCombox({
+	        width:226,            
+            name:'客户名称',
+            fieldLabel:'客户名称'
+	    });
 	    var form = new Ext.FormPanel({	
             padding: 10,
             items: [{
@@ -112,17 +120,10 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 fieldLabel: '编码',
                 name: '编码',
                 width:226,
-                readOnly: true,
+                readOnly: true, 
                 value: '自动产生',                
                 xtype: 'textfield'				                           
-            },
-             {
-                fieldLabel: '客户名称',
-                name: '客户名称',
-                width:226,
-                allowBlank:false,
-                xtype: 'textfield'				                           
-            },
+            },kehu,
             gyy,gyy_lx,
             {
                 fieldLabel: '合同开始时间',

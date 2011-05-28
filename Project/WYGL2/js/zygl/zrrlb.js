@@ -1,7 +1,6 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
 	title:"自然人列表",
 		store:new Ext.data.JsonStore({
 		root : 'data',
@@ -23,8 +22,6 @@ xtype:"grid",
 		},
 		{
 			header:"编码",
-			sortable:true,
-			resizable:true,
 			dataIndex:"编码",
 			width:160
 		},
@@ -133,6 +130,8 @@ xtype:"grid",
                 fieldLabel: '编码',
                 name: '编码',
                 width:226,
+                readOnly: true, 
+                value: '自动产生',
                 xtype: 'textfield'				                           
             },
             {
@@ -154,16 +153,6 @@ xtype:"grid",
                 xtype: 'textfield'				                           
             },
             sex,
-//            {
-//                xtype: 'container',
-//                layout:'column',
-//                items:[
-//                    year,
-//                    mouth,
-//                    day
-//                ]
-//                
-//            },
             {
                 fieldLabel: '出生日期',
                 name: '出生日期',
