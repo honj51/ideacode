@@ -43,11 +43,14 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 sql = "select * from sq8szxlx.zpgl";
             }
             sql += " order by 操作时间 desc";
-            SqlDataReader c = DBHelper.GetReader(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
-            if (!c.Read()) return;                
-            SqlDataReader r = DBHelper.GetReader(sql);
-            string data = Json.ToJson(r);
-            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":",c.GetInt32(0));
+            //SqlDataReader c = DBHelper.GetReader(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
+            //if (!c.Read()) return;
+            //SqlDataReader r = DBHelper.GetReader(sql);
+            //string data = Json.ToJson(r);
+            int c = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
+            ResultObject r = DBHelper.GetResult(sql);
+            string data = r.ToJson();
+            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":",c);
             result = "{" + result + data + "}";
             Response.Write(result);
             
@@ -83,17 +86,15 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         else if (action == "fclx_list")
         {
             string sql = "select distinct 工业园名称 as gyyName from sq8szxlx.gyy_lb_fclx_lb ";
-            SqlDataReader r = DBHelper.GetReader(sql);
-            Response.Write(Json.ToJson(r));
-            //string s = "[{\"empId\":\"402881e42986ea4b0129877fdb8e0004\",\"empName\":\"xxx\"},{\"empId\":\"402881e42986ea4b0129877fdb8e00252\",\"empName\":\"yyy\"}]";
-            //Response.Write(s);
+
+            ResultObject r = DBHelper.GetResult(sql);            
+            Response.Write(r.ToJson());
         }
         else if (action == "find_gyy_fclx")
         {
             string gyy = Request.Params["gyy"];
             string sql = string.Format("select 房产类型 as lx from sq8szxlx.gyy_lb_fclx_lb where 工业园名称='{0}'", gyy);
-            SqlDataReader r = DBHelper.GetReader(sql);
-            Response.Write(Json.ToJson(r));
+            Response.Write(DBHelper.GetResult(sql).ToJson());
         }
         else if (action == "edit_gdxfx") // 编辑固定消费项
         {

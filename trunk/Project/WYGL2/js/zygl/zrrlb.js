@@ -26,7 +26,7 @@ xtype:"grid",
 			sortable:true,
 			resizable:true,
 			dataIndex:"编码",
-			width:100
+			width:160
 		},
 		{
 			header:"名称",

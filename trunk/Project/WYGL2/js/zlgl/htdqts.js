@@ -70,6 +70,11 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			resizable:true,
 			dataIndex:"",
 			width:100
+		},
+		{
+		    header:"增浮期提示",
+		    sortable:true,
+		    dataIndex:"" 
 		}
 	],
 	initComponent: function(){
@@ -80,49 +85,93 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
+	    
+	    var lx_store = new Ext.data.JsonStore({
+		    autoLoad:true,
+		    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
+		    fields: ['lx']
+		});
+		
+		var iFieldName = new Ext.form.TextField({ //搜索栏名称
+            emptyText:'请输入客户姓名',
+	        width:100
+    	   
+        });
+        
+        var iFieldNo = new Ext.form.TextField({ //搜索栏号码
+            emptyText:'请输入编号',
+	        width:150
+    	   
+        });
+	    
+	    var gyy = new Ext.form.ComboBox({ 
+			triggerAction:"all",
+			fieldLabel:"标签",
+			width: 100,
+			editable: false,
+			store: new Ext.data.JsonStore({
+			    autoLoad:true,
+			    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
+			    fields: ['gyyName']
+			}),
+			displayField: 'gyyName',
+			valueField: 'gyyName',
+			emptyText:'请选择',
+			listeners: {
+			    'select' : function(combo, record,index){
+			        lx_store.reload({params : {
+			            gyy: combo.value
+			        }});
+			    }
+			}
+        });
+        
+        var leix = new Ext.form.ComboBox({
+				editable: false,
+				width: 100,
+				triggerAction:"all",
+				fieldLabel:"标签",
+				emptyText:'请选择',
+				store: lx_store,
+				displayField: 'lx',
+				valueField: 'lx'  
+        });
+        
 		this.tbar=[
 		    '->',
 			{
 				xtype:"label",
-				text:"名称："
+				text:"客户名称："
 			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签",
-				width:70
-			},
+			iFieldName,
 			{
 				xtype:"label",
 				text:"工业园："
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
+			gyy,
 			{
 				xtype:"label",
 				text:"类型："
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
+			leix,
 			{
 				xtype:"label",
 				text:"号码："
 			},
-			{
-				xtype:"textfield",
-				fieldLabel:"标签",
-				width:70
-			},
+			iFieldNo,
 			{
 				text:"搜索",
-				iconCls: 'icon-query'
+				iconCls: 'icon-query',
+				handler:function () {
+				    self.store.load({
+				        params:{
+				            iFieldName:iFieldName.getValue(),
+				            iFieldNo:iFieldNo.getValue(), 
+				            gyy:gyy.getValue(),
+				            leix:leix.getValue()
+				        }
+				    });			
+				}
 			}
 		];
 		self.store.load({
