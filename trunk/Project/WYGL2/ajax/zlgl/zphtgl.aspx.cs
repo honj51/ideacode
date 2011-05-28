@@ -23,34 +23,70 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
 
         if (action == "list")
         {
-            string sql = "";
-            string iFieldName = Request.Params["iFieldName"];
-            string iFieldNo = Request.Params["iFieldNo"];
-            string gyy = Request.Params["gyy"];
-            string leix = Request.Params["leix"];
+            //string sql = "";
+            //string iFieldName = Request.Params["iFieldName"];
+            //string iFieldNo = Request.Params["iFieldNo"];
+            //string gyy = Request.Params["gyy"];
+            //string leix = Request.Params["leix"];
 
-            if (Request.Params["start"] != null && Request["limit"] != null)
-            {
-                sql = string.Format("select top {0} * from sq8szxlx.zpgl where id not in (select top {1} id from sq8szxlx.zpgl)",
-                    Request["limit"], Request.Params["start"]);
-            }
-            else if (iFieldName != null || iFieldNo != null || gyy != null || leix != null)
-            {
-                sql = string.Format("select * from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%'", iFieldName, iFieldNo, gyy,leix);
-            }
-            else
-            {
-                sql = "select * from sq8szxlx.zpgl";
-            }
-            sql += " order by 操作时间 desc";
+            //if (Request.Params["start"] != null && Request["limit"] != null)
+            //{
+            //    sql = string.Format("select top {0} * from sq8szxlx.zpgl where id not in (select top {1} id from sq8szxlx.zpgl)",
+            //        Request["limit"], Request.Params["start"]);
+            //}
+            //else if (iFieldName != null || iFieldNo != null || gyy != null || leix != null)
+            //{
+            //    sql = string.Format("select * from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%'", iFieldName, iFieldNo, gyy,leix);
+            //}
+            //else
+            //{
+            //    sql = "select * from sq8szxlx.zpgl";
+            //}
+            //sql += " order by 操作时间 desc";
             //SqlDataReader c = DBHelper.GetReader(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
             //if (!c.Read()) return;
             //SqlDataReader r = DBHelper.GetReader(sql);
             //string data = Json.ToJson(r);
-            int c = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
-            ResultObject r = DBHelper.GetResult(sql);
-            string data = r.ToJson();
-            string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":",c);
+            //int c = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
+            //ResultObject r = DBHelper.GetResult(sql);
+            //foreach (RowObject item in r)
+            //{
+            //    item["所属房产"] = item["房产类型"] +"-"+ item["所属房产"];
+            //}
+            //string data = r.ToJson();
+            //string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":",c);
+            //result = "{" + result + data + "}";
+            //Response.Write(result);
+            string select = string.Format(@"select top {0} * ", Request["limit"]);
+            string from = " from sq8szxlx.zpgl ";
+            string where = " where ";
+            if (!string.IsNullOrEmpty(Request.Params["iFieldName"]))
+            {
+                where += string.Format(" and 客户名称 like '%{0}%' ", Request.Params["iFieldName"]);
+            }
+            if (!string.IsNullOrEmpty(Request.Params["iFieldNo"]))
+            {
+                where += string.Format(" and 编码 like '%{0}%' ", Request.Params["iFieldNo"]);
+            }
+            if (!string.IsNullOrEmpty(Request.Params["gyy"]))
+            {
+                where += string.Format(" and 所属工业园='{0}' ", Request.Params["gyy"]);
+            }
+
+            if (!string.IsNullOrEmpty(Request.Params["leix"]))
+            {
+                where += string.Format(" and 房产类型='{0}' ", Request.Params["leix"]);
+            }
+            // 2. 获取总数
+            string count = DBHelper.GetVar("select count(*) " + from + where).ToString();
+            if (count == null) return;
+
+            string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2})",
+                select, from, where, Request.Params["start"]);
+            // 4. 拼装结果
+            string data = DBHelper.GetResult(sql).ToJson();
+
+            string result = string.Format("success:true,totalProperty:{0},data:", count, sql);
             result = "{" + result + data + "}";
             Response.Write(result);
             
