@@ -47,20 +47,23 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	],
 	initComponent: function(){
 	    var self = this;
-        var xfxm = new Ext.sfxmCombox({
-            emptyText:'请选择'         
-        });
+//        var xfxm = new Ext.sfxmCombox({
+//            emptyText:'请选择'         
+//        });
 
-	    var gyy_lx = new Ext.GyyLxCombox({
-	        xfxm_store: xfxm.store,
-	        emptyText:'请选择',	        
-	    });
+//	    var gyy_lx = new Ext.GyyLxCombox({
+//	        xfxm_store: xfxm.store,
+//	        emptyText:'请选择',	        
+//	    });
 
-	    var gyy = new Ext.GyyCombox({
-	        lx_store: gyy_lx.store,
-	        width:100,
-	        emptyText:'请选择'
-	    });
+//	    var gyy = new Ext.GyyCombox({
+//	        lx_store: gyy_lx.store,
+//	        width:100,
+//	        emptyText:'请选择'
+//	    });
+        var xfxm = new Ext.sfxmCombox();
+        var gyy_lx = new Ext.GyyLxCombox({nextCombox: xfxm});
+	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});
 	    
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
@@ -101,18 +104,18 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				            gyy: gyy.getValue(),
 				            gyy_lx:gyy_lx.getValue(),
 				            xfxm:xfxm.getValue(),
-//				            nian:nian.getValue(),
-//				            yue:yue.getValue()
+				            nian:nian.getValue(),
+				            yue:yue.getValue()
 				        }
 				    });
 				}
 			}
 		];
 		self.store.load({
-//		    params:{
-//		        nian:nian.getValue(),
-//			    yue:yue.getValue()
-//		    }
+		    params:{
+		        nian:nian.getValue(),
+			    yue:yue.getValue()
+		    }
 		});
 		Ext.Hudongsoft.skfltsGrid.superclass.initComponent.call(this);
 	}

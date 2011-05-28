@@ -214,7 +214,8 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
 
 // 工业园选择
 Ext.GyyCombox = Ext.extend(Ext.LinkCombox,{
-	width: 80,
+	width: 100,
+	appendItems: ['(全部)'],
     store: new Ext.data.JsonStore({
         autoLoad:true,
 	    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
@@ -229,6 +230,8 @@ Ext.GyyCombox = Ext.extend(Ext.LinkCombox,{
 
 // 房产类型选择 (工业园)
 Ext.GyyLxCombox = Ext.extend(Ext.LinkCombox,{
+    width: 100,
+    appendItems: ['(全部)'],
     store: new Ext.data.JsonStore({
 	    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
 	    fields: ['lx']

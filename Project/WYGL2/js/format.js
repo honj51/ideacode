@@ -45,10 +45,10 @@ Ext.Hudongsoft.util.Format = function(){
 				    var now = new Date();
 				    var num = now.dateDiff('d',dt);
 				    if (num<=0) {
-				        return "<span style='color:FF0000'>到期</span>";
+				        return "<span style='color:red'>到期</span>";
 				    }
 				    else if (num<90) {				    
-                        return "<span style='color:FF0000'>"+num+"天到期</span>";
+                        return "<span style='color:red'>"+num+"天到期</span>";
 				    }
 				    else
 				        return "正常";
