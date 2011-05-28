@@ -7,7 +7,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		root : 'data',
 		totalProperty : 'totalProperty',
 		fields:[
-		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间','增浮期','合同状态','操作时间','备注'
+		    'id','编码','客户名称','所属工业园','房产类型','所属房产','合同开始时间','合同结束时间','增浮期','合同状态','操作时间','备注'
 		]	
 	}),
 	width:792,
@@ -56,6 +56,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"所属房产",
+			renderer: Ext.Hudongsoft.util.Format.ssfcRenderer(),
 			width:100
 		},
 		{
@@ -98,6 +99,9 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	
 	showDetailWindow: function (add, data) { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
+        var gyy_lx = new Ext.GyyLxCombox({width:226});
+	    var gyy = new Ext.GyyCombox({lx_store: gyy_lx.store,width:226});	    
+	    
 	    var form = new Ext.FormPanel({	
             padding: 10,
             items: [{
@@ -119,20 +123,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 allowBlank:false,
                 xtype: 'textfield'				                           
             },
-            
-            {
-                fieldLabel: '所属工业园',
-                name: '所属工业园',
-                width:226,
-                allowBlank:false,
-                xtype: 'textfield'				                           
-            },{
-                fieldLabel: '所属房产',
-                name: '所属房产',
-                width:226,
-                allowBlank:false,
-                xtype: 'textfield'				                           
-            },
+            gyy,gyy_lx,
             {
                 fieldLabel: '合同开始时间',
                 name: '合同开始时间',
@@ -155,7 +146,6 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 fieldLabel: '增浮期',
                 name: '增浮期',
                 width:226,
-                allowBlank:false,
                 format: 'Y-m-d',
                 xtype: 'datefield',
                 value: new Date()
@@ -170,12 +160,11 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 value: new Date()					                           
             },
             {
+                xtype: 'textfield',
                 fieldLabel: '备注',
                 name: '备注',
                 width:226,
-                height:60,
-                allowBlank:false,
-                xtype: 'textfield'				                           
+                height:60
             }
            
             ],

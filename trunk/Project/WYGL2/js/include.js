@@ -195,3 +195,21 @@ function percentRenderer(v, metaData, record, rowIndex, colIndex, store) {
     }
     return '%'+v;		             
 }	            
+
+
+Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
+    editable:false,    
+    triggerAction:'all',
+    appendItems: [],
+    nextCombox: null,
+    setValue: function (v) {
+        
+    },
+	initComponent: function(){
+	    this.store.on('load',function (store) {
+	        
+	    })
+	    Ext.LinkCombox.superclass.initComponent.call(this);
+	}
+});
+
