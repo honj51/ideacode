@@ -29,6 +29,34 @@ Ext.Hudongsoft.util.Format = function(){
                 }	
             };
         },
+        htztRenderer: function () { // 合同状态
+            return function(v, metaData, record, rowIndex, colIndex, store){
+                var dt = record.data.合同结束时间;
+            	if(dt)
+				{
+				    var now = new Date();
+				    var num = now.dateDiff('d',dt);
+				    if (num<=0) {
+				        return "<span style='color:FF0000'>到期</span>";
+				    }
+				    else if (num<90) {				    
+                        return "<span style='color:FF0000'>"+num+"天到期</span>";
+				    }
+				    else
+				        return "正常";
+				}
+			};
+        },
+        htjsRenderer: function () { // 合同结束
+            return function(v, metaData, record, rowIndex, colIndex, store){
+                if(v!=null)
+				{
+					if(record.data.合同结束时间)
+					{
+					}
+				}
+			};
+        },
 		lastFollowDateRenderer : function (format){
 			 return function(v, metaData, record, rowIndex, colIndex, store){
                 if(v!=null)

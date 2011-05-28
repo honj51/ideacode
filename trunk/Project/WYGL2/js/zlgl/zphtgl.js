@@ -83,7 +83,8 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"合同状态",
-			width:100
+			width:100,
+			renderer: Ext.Hudongsoft.util.Format.htztRenderer()
 		}
 	],
 	
