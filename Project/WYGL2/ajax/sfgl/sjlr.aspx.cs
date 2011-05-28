@@ -86,10 +86,9 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         // 3. 获取数据
         string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2}) order by u.日期年,u.日期月,日期日",
             select, from, where, Request.Params["start"]);
-        SqlDataReader r = DBHelper.GetReader(sql);
         // 4. 拼装结果
-        string data = Json.ToJson(r);
-        r.Close();
+        string data = DBHelper.GetResult(sql).ToJson();
+        
         string result = string.Format("success:true,totalProperty:{0},data:", count, sql);
         result = "{" + result + data + "}";
         Response.Write(result);

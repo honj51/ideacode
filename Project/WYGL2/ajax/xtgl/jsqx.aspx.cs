@@ -21,9 +21,7 @@ public partial class XiTong_jsqx : System.Web.UI.Page
 
         if (action == "list")
         {
-            SqlDataReader r = DBHelper.GetReader("select * from sq8szxlx.role");
-            Response.Write(Json.ToJson(r));
-            r.Close();
+            Response.Write(DBHelper.GetResult("select * from sq8szxlx.role").ToJson());
         }
         else if (action == "add")
         {
@@ -49,26 +47,16 @@ public partial class XiTong_jsqx : System.Web.UI.Page
         {
             string role_name = Request.Params["role_name"];
             string sql = string.Format("select * from sq8szxlx.role_lb where role_name='{0}' ", role_name);
-            SqlDataReader r = DBHelper.GetReader(sql);
 
-            if (r.Read())
+            RowObject row = DBHelper.GetRow(sql);
+            if (row != null)
             {
-                string data = "{";
-                for (int i = 0; i < r.FieldCount; i++)
-                {
-                    string name = r.GetName(i);
-                    string value = r.GetValue(i).ToString();
-                    data += name + ":'" + value + "',";
-                }
-                data = data.Substring(0, data.Length - 1);
-                data += "}";
-                Response.Write(string.Format("{{ success:true,data: {0} }}", data));
+                Response.Write(string.Format("{{ success:true,data: {0} }}", row.ToJson()));
             }
             else
             {
                 Response.Write("{ success:false,errorMessage: 'data not found' }");
             }
-            r.Close();
         }
         else if (action == "updatePermissions")
         {
