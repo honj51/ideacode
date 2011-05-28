@@ -19,7 +19,7 @@ xtype:"grid",
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
-			width:100
+			width:50
 		},
 		{
 			header:"编码",

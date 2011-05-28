@@ -17,7 +17,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 		{
 			header:"序号",
 			dataIndex:"序号",
-			width:100
+			width:50
 		},
 		{
 			header:"工业园名称",
@@ -47,15 +47,21 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	],
 	initComponent: function(){
 	    var self = this;
+        var xfxm = new Ext.sfxmCombox({
+            emptyText:'请选择'         
+        });
+
 	    var gyy_lx = new Ext.GyyLxCombox({
-	        emptyText:'请选择' 
-	        
+	        xfxm_store: xfxm.store,
+	        emptyText:'请选择',	        
 	    });
+
 	    var gyy = new Ext.GyyCombox({
 	        lx_store: gyy_lx.store,
 	        width:100,
 	        emptyText:'请选择'
 	    });
+	    
 	    
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
@@ -76,13 +82,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				xtype:"label",
 				text:"消费项目"
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
-//            sf,
+			xfxm,
 			{
 				xtype:"label",
 				text:"年："
@@ -95,7 +95,18 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			yue,
 			{
 				text:"搜索",
-				iconCls: 'icon-query'
+				iconCls: 'icon-query',
+			    handler:function () {
+				    self.store.load({
+				        params:{
+				            gyy: gyy.getValue(),
+				            gyy_lx:gyy_lx.getValue(),
+				            xfxm:xfxm.getValue(),
+				            nian:nian.getValue(),
+				            yue:yue.getValue()
+				        }
+				    });
+				}
 			}
 		];
 		self.store.load();

@@ -20,14 +20,14 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
-			width:100
+			width:50
 		},
 		{
 			header:"编码",
 			sortable:true,
 			resizable:true,
 			dataIndex:"编码",
-			width:100
+			width:160
 		},
 		{
 			header:"预定客户名称",

@@ -87,6 +87,7 @@ Ext.GyyCombox = Ext.extend(Ext.form.ComboBox,{
 	initComponent: function(){
 	    var self = this;
 	    this.on('select',function (combo, record,index) {
+	        self.lx_store.gyy = combo.value;
 	        self.lx_store.reload({params : {
 	            gyy: combo.value
 	        }});
@@ -101,6 +102,7 @@ Ext.GyyLxCombox = Ext.extend(Ext.form.ComboBox,{
 	width: 80,
 	mode: 'local',
 	triggerAction:"all",
+	xfxm_store: null,
     store: new Ext.data.JsonStore({
         //autoLoad:true,
 	    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
@@ -109,25 +111,33 @@ Ext.GyyLxCombox = Ext.extend(Ext.form.ComboBox,{
 	displayField: 'lx',
 	valueField: 'lx',
 	initComponent: function(){
+	    var self = this;
+	    this.on('select',function (combo, record,index) {
+	        
+	        self.xfxm_store.reload({params : {
+	            gyy: self.store.gyy,
+	            fclx: combo.value
+	        }});
+	    })
 	    Ext.GyyLxCombox.superclass.initComponent.call(this);
 	}
 });
+ 
  //消费项目
-// Ext.sfxmCombox = Ext.extend(Ext.form.ComboBox,{
-//    editable:false,
-//    width:120,
-//    mode:'local',
-//    triggerAction:'all',
-//    store:new Ext.data.JsonStore({
-//        url:"ajax/zlgl/skfltj.aspx?action=find_sfxm",
-//        field:['sfxm']
-//    }),
-//    displayField: 'sfxm',
-//	valueField: 'sfxm',
-//	initComponent: function(){
-//	    Ext.MonthCombox.superclass.initComponent.call(this);
-//	}
-// });
+ Ext.sfxmCombox = Ext.extend(Ext.form.ComboBox,{
+    editable:false,
+    width:120,
+    triggerAction:'all',
+    store:new Ext.data.JsonStore({
+        url:"ajax/zlgl/tj.aspx?action=xfxm",
+        fields:['sfxm']
+    }),
+    displayField: 'sfxm',
+	valueField: 'sfxm',
+	initComponent: function(){
+	    Ext.sfxmCombox.superclass.initComponent.call(this);
+	}
+ });
 
 
 //////////////////////////////////////////////////////////////////////////

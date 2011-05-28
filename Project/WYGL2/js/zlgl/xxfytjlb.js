@@ -16,17 +16,17 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		{
 			header:"序号",
 			dataIndex:"序号",
-			width:40
+			width:50
 		},
 		{
 			header:"编码",
 			dataIndex:"编码",
-			width:100
+			width:160
 		},
 		{
 			header:"客户名称",
 			dataIndex:"客户名称",
-			width:100
+			width:80
 		},
 		{
 			header:"所属工业园",
@@ -41,14 +41,14 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		{
 			header:"合同开始时间",
 			dataIndex:"合同开始时间",
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			width:100,
-			format:"m/d/Y"
 		},
 		{
 			header:"合同结束时间",
 			dataIndex:"合同结束时间",
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			width:100,
-			format:"m/d/Y"
 		},
 		{
 			header:"消费项目",
@@ -58,13 +58,12 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		{
 			header:"月份",
 			dataIndex:"月份",
-			width:70,
-			format:"m/d/Y"
+			width:50,
 		},
 		{
 			header:"费用",
 			dataIndex:"费用",
-			width:50,
+			width:100,
 			format:"0,000.00"
 		}
 	],
@@ -76,11 +75,26 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
+        var xfxm = new Ext.sfxmCombox({
+            emptyText:'请选择'         
+        });
+
+	    var gyy_lx = new Ext.GyyLxCombox({
+	        xfxm_store: xfxm.store,
+	        emptyText:'请选择',	        
+	    });
+
+	    var gyy = new Ext.GyyCombox({
+	        lx_store: gyy_lx.store,
+	        width:100,
+	        emptyText:'请选择'
+	    });
+	    
+	    
+	    var nian = new Ext.YearCombox();
+	    var yue = new Ext.MonthCombox();
 		this.tbar=[
-			{
-				xtype:"label",
-				text:"名称："
-			},
+			"名称：",
 			{
 				xtype:"textfield",
 				fieldLabel:"标签"
@@ -89,42 +103,21 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				xtype:"label",
 				text:"工业园："
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
+			gyy,
 			{
 				xtype:"label",
-				text:"类型："
+				text:"房产类型："
 			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
-			{
-				xtype:"label",
-				text:"费用类型："
-			},
-			{
-				xtype:"combo",
-				triggerAction:"all",
-				fieldLabel:"标签",
-				width:70
-			},
+			gyy_lx,
 			{
 				xtype:"label",
 				text:"日期："
 			},
+			nian,
+			yue,
 			{
-				xtype:"datefield",
-				fieldLabel:"标签"
-			},
-			{
-				text:"搜索"
+				text:"搜索",
+				iconCls: 'icon-query'
 			}
 		];
 		self.store.load({
