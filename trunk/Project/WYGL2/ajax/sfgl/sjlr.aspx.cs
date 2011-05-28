@@ -129,10 +129,10 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                     Request.Params["htbh"], i, j));
                 jo.Add("年份月份", string.Format("{0}/{1}", i, j));
                 if (r != null)
-                {
+                {                    
                     jo.Add("id", r["id"]);
                     jo.Add("单据编号", r["单据编号"]);
-                    jo.Add("总费用", r["总费用"]);
+                    jo.Add("总费用", Math.Round(Convert.ToDecimal(r["总费用"]), 1));
                     jo.Add("缴费金额", r["缴费金额"]);
                     jo.Add("余额", r["余额"]);
                     jo.Add("录入状态", r["录入状态"]);
@@ -257,9 +257,9 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         result.Add("房产类型", zpgl["房产类型"]);
         result.Add("所属房产", zpgl["所属房产"]);
         // 收费信息
-        result.Add("总金额", user_sf_zb["总费用"]);
+        result.Add("总金额", Math.Round(Convert.ToDecimal(user_sf_zb["总费用"]), 1));
         result.Add("上次结余", user_sf_zb["余额"]);
-        result.Add("需要交费金额", zfy - ye);
+        result.Add("需要交费金额", Math.Round((zfy - ye), 1));
         Response.Write(JSONConvert.SerializeObject(result));
     }
 
@@ -517,9 +517,9 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         double ye = Convert.ToDouble(user_sf_zb["余额"]);
         result.Add("success", "true");
         result.Add("data", ja);
-        result.Add("总金额", user_sf_zb["总费用"]);
+        result.Add("总金额", Math.Round(Convert.ToDecimal(user_sf_zb["总费用"]), 1));
         result.Add("上次结余", user_sf_zb["余额"]);
-        result.Add("需要交费金额", zfy - ye);
+        result.Add("需要交费金额", Math.Round((zfy - ye), 1));
         Response.Write(JSONConvert.SerializeObject(result));
     }
 
