@@ -21,6 +21,10 @@ public partial class ZuLin_htdqts : System.Web.UI.Page
         if (action == "list")
         {
             string sql = "";
+            string iFieldName = Request.Params["iFieldName"];
+            string iFieldNo = Request.Params["iFieldNo"];
+            string gyy = Request.Params["gyy"];
+            string leix = Request.Params["leix"];
             if (Request.Params["start"] != null && Request["limit"] != null)
             {
                 sql = string.Format("select top {0} * from sq8szxlx.zpgl where id not in(select top {1} id from sq8szxlx.zpgl)",
@@ -32,8 +36,11 @@ public partial class ZuLin_htdqts : System.Web.UI.Page
             }
             int c = (int)DBHelper.GetVar("select count(*) as total from sq8szxlx.zpgl");
             ResultObject r = DBHelper.GetResult(sql);
+            foreach (RowObject item in r)
+            {
+                item["所属房产"] = item["房产类型"] +"-"+ item["所属房产"];
+            }
             string data = r.ToJson();
-
             string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", c);
             result = "{" + result + data + "}";
             Response.Write(result);

@@ -49,6 +49,10 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             //string data = Json.ToJson(r);
             int c = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
             ResultObject r = DBHelper.GetResult(sql);
+            foreach (RowObject item in r)
+            {
+                item["所属房产"] = item["房产类型"] +"-"+ item["所属房产"];
+            }
             string data = r.ToJson();
             string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":",c);
             result = "{" + result + data + "}";

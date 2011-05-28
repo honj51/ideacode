@@ -28,14 +28,14 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
-			width:100
+			width:50
 		},
 		{
 			header:"编码",
 			sortable:true,
 			resizable:true,
 			dataIndex:"编码",
-			width:200
+			width:160
 		},
 		{
 			header:"客户名称",
@@ -64,13 +64,13 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			resizable:true,
 			dataIndex:"合同开始时间",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			width:150
+			width:100
 		},
 		{
 			header:"合同结束时间",
 			dataIndex:"合同结束时间",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			width:150
+			width:100,
 		},
 		{
 			header:"增浮期",

@@ -19,14 +19,14 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
-			width:100
+			width:50
 		},
 		{
 			header:"编码",
 			sortable:true,
 			resizable:true,
 			dataIndex:"编码",
-			width:100
+			width:160
 		},
 		{
 			header:"客户名称",
@@ -53,6 +53,7 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			header:"合同开始时间",
 			sortable:true,
 			resizable:true,
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			dataIndex:"合同开始时间",
 			width:100
 		},
@@ -61,8 +62,8 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"合同结束时间",
+			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			width:100,
-			format:"m/d/Y"
 		},
 		{
 			header:"合同状态",
