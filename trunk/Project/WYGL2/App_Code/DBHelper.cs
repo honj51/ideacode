@@ -4,13 +4,14 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 // 单行数据
 public class RowObject : Dictionary<string, object>
 {
     public string ToJson()
     {
-        return JsonConvert.SerializeObject(this);
+        return JsonConvert.SerializeObject(this, new JavaScriptDateTimeConverter());
     }
 }
 
@@ -19,7 +20,7 @@ public class ResultObject : List<RowObject>
 {
     public string ToJson()
     {
-        return JsonConvert.SerializeObject(this);
+        return JsonConvert.SerializeObject(this, new JavaScriptDateTimeConverter());
     }
 }
 
