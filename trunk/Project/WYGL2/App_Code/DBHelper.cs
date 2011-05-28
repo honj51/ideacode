@@ -3,21 +3,114 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
+// 单行数据
 public class RowObject : Dictionary<string, object>
-{ }
+{
+    public string ToJson()
+    {
+        return JsonConvert.SerializeObject(this);
+    }
+}
 
+// 多行数据
 public class ResultObject : List<RowObject>
-{ }
+{
+    public string ToJson()
+    {
+        return JsonConvert.SerializeObject(this);
+    }
+}
 
 /// <summary>
 ///DBHelper 的摘要说明
 /// </summary>
 public static class DBHelper
 {
+    // 查询单个值
+    public static object GetVar(string sql)
+    {
+        SqlDataReader r = null;
+        try
+        {
+            r = GetReader(sql);
+            if (r.Read())
+            {
+                return r.GetValue(0);
+            }
+            else
+                return null;
+        }
+        finally
+        {
+            if (r != null)
+            {
+                r.Close();
+            }
+        }
+    }
+
+    // 查询单行数据
+    public static RowObject GetRow(string sql)
+    {
+        SqlDataReader r = null;
+        try
+        {
+            r = GetReader(sql);
+            if (r.Read())
+            {
+                RowObject ro = new RowObject();
+                for (int i = 0; i < r.FieldCount; i++)
+                {
+                    ro.Add(r.GetName(i), r.GetValue(i));
+                }
+                return ro;
+            }
+            else
+                return null;
+        }
+        finally
+        {
+            if (r != null)
+            {
+                r.Close();
+            }
+        }
+    }
+
+    // 查询多行数据
+    public static ResultObject GetResult(string sql)
+    {
+        SqlDataReader r = null;
+        try
+        {
+            r = GetReader(sql);
+            ResultObject result = new ResultObject();
+            while (r.Read())
+            {
+                RowObject row = new RowObject();
+                for (int i = 0; i < r.FieldCount; i++)
+                {
+                    row.Add(r.GetName(i), r.GetValue(i));
+                }
+                result.Add(row);
+            }
+            return result;
+        }
+        finally
+        {
+            if (r != null)
+            {
+                r.Close();
+            }
+        }
+    }
+
+
     ///获得连接对象
     #region
-    public static SqlConnection Getconn()
+    private static SqlConnection Getconn()
     {
         SqlConnection conn = new SqlConnection(ConnectionString);
         return conn;
@@ -120,85 +213,9 @@ public static class DBHelper
     }
     #endregion
 
-    public static object GetVar(string sql) 
-    {
-        SqlDataReader r = null;
-        try
-        {
-            r = GetReader(sql);
-            if (r.Read())
-            {
-                return r.GetValue(0);
-            }
-            else
-                return null;
-        }
-        finally
-        {
-            if (r != null)
-            {
-                r.Close();
-            }
-        }
-    }
-
-    public static RowObject GetRow(string sql)
-    {
-        SqlDataReader r = null;
-        try
-        {
-            r = GetReader(sql);
-            if (r.Read())
-            {
-                RowObject ro = new RowObject();
-                for (int i = 0; i < r.FieldCount; i++)
-                {
-                    ro.Add(r.GetName(i), r.GetValue(i));
-                }
-                return ro;
-            }
-            else
-                return null;
-        }
-        finally
-        {
-            if (r != null)
-            {
-                r.Close();
-            }
-        }
-    }
-
-    public static ResultObject GetResult(string sql)
-    {
-        SqlDataReader r = null;
-        try
-        {
-            r = GetReader(sql);
-            ResultObject result = new ResultObject();
-            while (r.Read())
-            {
-                RowObject row = new RowObject();
-                for (int i = 0; i < r.FieldCount; i++)
-                {
-                    row.Add(r.GetName(i), r.GetValue(i));
-                }
-                result.Add(row);
-            }
-            return result;
-        }
-        finally
-        {
-            if (r != null)
-            {
-                r.Close();
-            }
-        }
-    }
-
     ///执行查询方法
     #region
-    public static SqlDataReader GetReader(String sql)
+    private static SqlDataReader GetReader(String sql)
     {
 
         SqlConnection conn = DBHelper.Getconn();
@@ -210,7 +227,7 @@ public static class DBHelper
 
     ///查询返回Int型 方法
     #region
-    public static int GetCount(String sql)
+    private static int GetCount(String sql)
     {
         SqlConnection con = DBHelper.Getconn();
         con.Open();
