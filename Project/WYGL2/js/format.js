@@ -4,13 +4,31 @@ Ext.Hudongsoft.util.Format = function(){
 	return {
 		dateRenderer : function (format){
 			 return function(v){
-                if(v!=null)
-				{			
-					return new Date(v).format(format);
-				}
-            };		
-		},	
-		
+                if(v==null) return v;
+                
+                var f = format?format: 'yyyy-MM-dd';
+                if (typeof(v) == 'string') {
+                    return new Date(v).format(f);
+                }
+                else
+                {
+                    return v.format(f);
+                }					
+            };
+		},			
+		dateTimeRenderer : function(v,format){
+		    return function(v){
+                if(v==null) return v;
+                var f = format?format: 'yyyy-MM-dd hh:mm:ss';
+                if (typeof(v) == 'string') {
+                    return new Date(v).format(f);
+                }
+                else
+                {                
+                    return v.format(f);
+                }	
+            };
+        },
 		lastFollowDateRenderer : function (format){
 			 return function(v, metaData, record, rowIndex, colIndex, store){
                 if(v!=null)
@@ -38,13 +56,6 @@ Ext.Hudongsoft.util.Format = function(){
 				}
             };		
 		},	
-		
-		dateTimeRenderer : function(v,format){
-            if(v!=null)
-			{
-				return new Date(v).format(format);
-			}
-        },
         yearMonthDayRenderer_1 : function(v, metaData, record, rowIndex, colIndex, store){
             return record.data.合同开始时间_年 + '-' + record.data.合同开始时间_月+ '-' + record.data.合同开始时间_日;	
 		},
