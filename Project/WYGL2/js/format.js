@@ -29,6 +29,14 @@ Ext.Hudongsoft.util.Format = function(){
                 }	
             };
         },
+        ssfcRenderer: function () {
+            return function(v, metaData, record, rowIndex, colIndex, store){
+                if(v)
+				{
+				    return record.data.房产类型 + '-' + v;
+				}
+			};
+        },
         htztRenderer: function () { // 合同状态
             return function(v, metaData, record, rowIndex, colIndex, store){
                 var dt = record.data.合同结束时间;
