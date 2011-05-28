@@ -234,39 +234,8 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
     	   
         });
         
-        var gyy = new Ext.form.ComboBox({
-			triggerAction:"all",
-			fieldLabel:"标签",
-			width: 100,
-			editable: false,
-			store: new Ext.data.JsonStore({
-			    autoLoad:true,
-			    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
-			    fields: ['gyyName']
-			}),
-			displayField: 'gyyName',
-			valueField: 'gyyName',
-			emptyText:'请选择',
-			listeners: {
-			    'select' : function(combo, record,index){
-			        lx_store.reload({params : {
-			            gyy: combo.value
-			        }});
-			    }
-			}
-        });
-        
-        var leix = new Ext.form.ComboBox({
-				editable: false,
-				width: 100,
-				triggerAction:"all",
-				fieldLabel:"标签",
-				emptyText:'请选择',
-				store: lx_store,
-				displayField: 'lx',
-				valueField: 'lx'  
-        });
-        
+        var gyy_lx = new Ext.GyyLxCombox();
+	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});        
 		this.tbar=[		    
 			{
 				text:"新增合同",
@@ -398,7 +367,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				xtype:"label",
 				text:"类型："
 			},
-            leix,
+            gyy_lx,
             iFieldNo,
 			{
 				text:"搜索",

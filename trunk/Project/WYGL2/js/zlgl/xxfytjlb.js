@@ -82,17 +82,8 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
     	   
         });
 
-	    var gyy_lx = new Ext.GyyLxCombox({
-	        emptyText:'请选择',	        
-	    });
-
-	    var gyy = new Ext.GyyCombox({
-	        lx_store: gyy_lx.store,
-	        width:100,
-	        emptyText:'请选择'
-	    });
-	    
-	    
+        var gyy_lx = new Ext.GyyLxCombox();
+	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
 		this.tbar=[

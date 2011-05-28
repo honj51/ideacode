@@ -146,7 +146,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    // 搜索变量
 	    var mc = new Ext.form.TextField({width:80});
 	    var gyy_lx = new Ext.GyyLxCombox();
-	    var gyy = new Ext.GyyCombox({lx_store: gyy_lx.store});
+	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});
 	    var hm = new Ext.form.TextField({width:80});
 	    var nian = new Ext.YearCombox();
 	    var yue = new Ext.MonthCombox();
