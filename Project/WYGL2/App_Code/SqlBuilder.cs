@@ -109,14 +109,14 @@ public class SqlBuilder
 
         Dictionary<string, string> result = new Dictionary<string, string>();
         string sql = string.Format("select name,xtype from syscolumns where id=(select max(id) from sysobjects where xtype='u' and name='{0}')", table);
-        SqlDataReader reader = DBHelper.GetReader(sql);
-        while (reader.Read())
+
+        ResultObject ro = DBHelper.GetResult(sql);
+        foreach (RowObject row in ro)
         {
-            string name = reader.GetValue(0).ToString();
-            string xtype = reader.GetValue(1).ToString();
+            string name = row["name"].ToString();
+            string xtype = row["xtype"].ToString(); 
             result.Add(name, xtype);
         }
-        reader.Close();
         return result;
     }
 
