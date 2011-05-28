@@ -53,3 +53,19 @@
 		#FFFFFF;
 	border: 1px solid #D0D0D0;
 }
+
+.x-grid-record-purple table {
+	color: purple;
+}
+
+.x-grid-record-red table {
+	color: #FF0000;
+}
+
+.x-grid-record-gray table {
+	color: gray;
+}
+
+.x-grid-record-green table {
+	color: green;
+}
