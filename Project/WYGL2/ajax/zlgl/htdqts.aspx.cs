@@ -21,19 +21,19 @@ public partial class ZuLin_htdqts : System.Web.UI.Page
         string select = string.Format(@"select top {0} * ", Request["limit"]);
         string from = " from sq8szxlx.zpgl ";
         string where = " where 1=1 ";
-        if (!string.IsNullOrEmpty(Request.Params["iFieldName"]))
+        if (Common.hasValue(Request.Params["iFieldName"]))
         {
             where += string.Format(" and 客户名称 like '%{0}%' ", Request.Params["iFieldName"]);
         }
-        if (!string.IsNullOrEmpty(Request.Params["iFieldNo"]))
+        if (Common.hasValue(Request.Params["iFieldNo"]))
         {
             where += string.Format(" and 编码 like '%{0}%' ", Request.Params["iFieldNo"]);
         }
-        if (!string.IsNullOrEmpty(Request.Params["gyy"]))
+        if (Common.hasValue(Request.Params["gyy"]))
         {
             where += string.Format(" and 所属工业园='{0}' ", Request.Params["gyy"]);
         }
-        if (!string.IsNullOrEmpty(Request.Params["leix"]))
+        if (Common.hasValue(Request.Params["leix"]))
         {
             where += string.Format(" and 房产类型='{0}' ", Request.Params["leix"]);
         }
@@ -44,6 +44,7 @@ public partial class ZuLin_htdqts : System.Web.UI.Page
 
         string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2})",
             select, from, where, Request.Params["start"]);
+        sql += " order by 合同结束时间 ";
         // 4. 拼装结果
         string data = DBHelper.GetResult(sql).ToJson();
 

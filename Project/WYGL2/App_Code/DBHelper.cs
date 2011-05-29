@@ -38,7 +38,12 @@ public static class DBHelper
             r = GetReader(sql);
             if (r.Read())
             {
-                return r.GetValue(0);
+                object o = r.GetValue(0);
+                if (o is DBNull)
+                {
+                    return null;
+                }
+                return o;
             }
             else
                 return null;

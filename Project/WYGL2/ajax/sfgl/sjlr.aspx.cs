@@ -64,19 +64,19 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         string select = string.Format(@"select top {0} z.*,uz.联系电话,uz.联系地址,u.录入状态,u.缴费状态,(u.日期年+'/'+u.日期月) as 录入月份", Request["limit"]);
         string from = " from sq8szxlx.user_sf_zb u left join sq8szxlx.zpgl z on z.编码=u.合同编号 left join sq8szxlx.user_zrr uz on u.客户编号=uz.编码 ";
         string where = string.Format(@"where u.日期年='{0}' and u.日期月='{1}' ", Request.Form["nian"], Request.Form["yue"]);
-        if (!string.IsNullOrEmpty(Request.Params["mc"]))
+        if (Common.hasValue(Request.Params["mc"]))
         {
             where += string.Format(" and z.客户名称 like '%{0}%'", Request.Params["mc"]);
         }
-        if (!string.IsNullOrEmpty(Request.Params["gyy"]))
+        if (Common.hasValue(Request.Params["gyy"]))
         {
             where += string.Format(" and z.所属工业园='{0}'", Request.Params["gyy"]);
         }
-        if (!string.IsNullOrEmpty(Request.Params["gyy_lx"]))
+        if (Common.hasValue(Request.Params["gyy_lx"]))
         {
             where += string.Format(" and z.房产类型='{0}'", Request.Params["gyy_lx"]);
         }
-        if (!string.IsNullOrEmpty(Request.Params["hm"]))
+        if (Common.hasValue(Request.Params["hm"]))
         {
             where += string.Format(" and z.编码 like '%{0}%'", Request.Params["hm"]);
         }

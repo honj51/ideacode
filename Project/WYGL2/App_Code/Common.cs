@@ -50,4 +50,11 @@ public class Common
         }
         return dict;
     }
+
+    public static bool hasValue(string p)
+    {
+        if (string.IsNullOrEmpty(p) || p == "(全部)") return false;
+        return true;
+    }
+
 }

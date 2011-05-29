@@ -8,11 +8,21 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 		totalProperty : 'totalProperty',
         url: 'ajax/zlgl/htdqts.aspx?action=list',
 		fields:[
-		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间'
+		    'id','编码','客户名称','所属工业园','所属房产','合同开始时间','合同结束时间','增浮期'
 		]	
     }),
 	width:792,
 	height:560,
+	viewConfig : {
+		getRowClass : function(record, rowIndex, rowParams, store) {
+			var zfq = record.data.增浮期;
+			if (!zfq) return;
+			var num = new Date(zfq).dateDiff('d',new Date());
+			if (num>=0) {
+				return 'x-grid-record-red';
+			}
+		}
+	},
 	columns:[
 		{
 			header:"序号",
@@ -70,12 +80,15 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
-			width:100
+			width:100,
+			renderer: Ext.Hudongsoft.util.Format.htztRenderer()
 		},
 		{
 		    header:"增浮期提示",
 		    sortable:true,
-		    dataIndex:"" 
+		    dataIndex:"增浮期" ,
+		    renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
+		    value: new Date()
 		}
 	],
 	initComponent: function(){
@@ -138,7 +151,7 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				            iFieldName:iFieldName.getValue(),
 				            iFieldNo:iFieldNo.getValue(), 
 				            gyy:gyy.getValue(),
-				            leix:leix.getValue()
+				            leix:gyy_lx.getValue()
 				        };
 				    self.store.load({
 				        params: {
