@@ -56,7 +56,6 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"所属房产",
-			renderer: Ext.Hudongsoft.util.Format.ssfcRenderer(),
 			width:100
 		},
 		{
@@ -99,17 +98,27 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	
 	showDetailWindow: function (add, data) { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
-        var gyy_lx = new Ext.GyyLxCombox({
-            width:226,            
+        var gyy_lx = new Ext.LinkCombox({
+            store: new Ext.data.JsonStore({
+                url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb",
+	            fields: ['fc']
+            }),
+	        displayField: 'fc',
+	        valueField: 'fc',
+	        keyField: ['gyy'],
+	        initComponent: function(){	    
+	            Ext.LinkCombox.superclass.initComponent.call(this);	    
+	        },
             fieldLabel:'所属房产',
             name:'所属房产'
         });
 	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx,width:226,fieldLabel:'所属工业园',name:'所属工业园'});	    
 	    var kehu = new Ext.KehuCombox({
 	        width:226,            
-            name:'客户名称',
+            hiddenName:'客户编码',
             fieldLabel:'客户名称'
 	    });
+	    var kehumc = new Ext.form.Hidden({name: '客户名称'});
 	    var form = new Ext.FormPanel({	
             padding: 10,
             items: [{
@@ -123,7 +132,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 readOnly: true, 
                 value: '自动产生',                
                 xtype: 'textfield'				                           
-            },kehu,
+            },kehu, kehumc,
             gyy,gyy_lx,
             {
                 fieldLabel: '合同开始时间',
@@ -172,7 +181,8 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
             buttons: [{
                 text: '保存',
                 iconCls: 'icon-save',
-                handler: function (c) {                                
+                handler: function (c) {
+                    kehumc.setValue(kehu.getRawValue());
                     form.getForm().submit({
                         url: 'ajax/zlgl/zphtgl.aspx',
                         params: {
@@ -377,7 +387,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			            iFieldName:iFieldName.getValue(),
 			            iFieldNo:iFieldNo.getValue(), 
 			            gyy:gyy.getValue(),
-			            leix:leix.getValue()
+			            leix:gyy_lx.getValue()
 				    };
 				    self.store.load({
 				        params: {

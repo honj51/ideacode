@@ -1,7 +1,6 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.glylbGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
 	title:"管理员列表",
 	store:new Ext.data.JsonStore({
 		url: 'ajax/xtgl/glylb.aspx?action=list',
@@ -14,29 +13,21 @@ xtype:"grid",
 	columns:[
 		{
 			header:"编号",
-			sortable:true,
-			resizable:true,
 			dataIndex:"id",
 			width:100
 		},
 		{
 			header:"管理员帐号",
-			sortable:true,
-			resizable:true,
 			dataIndex:"admin_id",
 			width:100
 		},
 		{
 			header:"名称",
-			sortable:true,
-			resizable:true,
 			dataIndex:"admin_name",
 			width:100
 		},
 		{
 			header:"角色",
-			sortable:true,
-			resizable:true,
 			dataIndex:"admin_limit",
 			width:100
 		}
@@ -83,7 +74,6 @@ xtype:"grid",
         });
         
         var form = new Ext.FormPanel({
-	        id:'form1',
 	        padding:10,
 	        items:[
 	            {
@@ -107,12 +97,6 @@ xtype:"grid",
                 password1,
                 password2,
                 js,
-//                {
-//                    fieldLabel: '角色',
-//                    name: 'admin_limit',
-//                    width:226,
-//                    xtype: 'textfield'				                           
-//                },
                 {
                     fieldLabel: '电话',
                     name: 'tel',
@@ -150,7 +134,7 @@ xtype:"grid",
 	                        success:function (form, action) {
 	                            w.close();
                                 self.store.load();                                
-                                Ext.Msg.alert("修改密码","修改密码成功");
+                                Ext.Msg.alert("管理员管理","数据保存成功!");
 	                        }
 	                    });
 	                }
@@ -166,11 +150,12 @@ xtype:"grid",
         });
     
         if (!add && data) {
+            data.admin_pwd2 = data.admin_pwd;
             form.getForm().setValues(data);
         }
         
         var w = new Ext.Window({
-            title:"添加管理员",
+            title:add?"添加管理员":'修改管理员',
 	        width:500,
             items:[
                 form

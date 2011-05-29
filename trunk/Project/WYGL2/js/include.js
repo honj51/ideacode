@@ -190,9 +190,11 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
 	                }				    
 	            }
 	        }
-	        if (self.selectFirst) {
+	        if (self.selectFirst && store.getCount()>0) {
 	            var firstValue = store.getAt(0).data[self.valueField];
-	            self.setValue(firstValue);
+	            if (firstValue) {
+	                self.setValue(firstValue);
+	            }	            
 	        }
 	    });
 	    self.on('select', function (combo, record,index) {

@@ -1,7 +1,6 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
-xtype:"grid",
 	title:"角色权限",
      store:new Ext.data.JsonStore({
 		url: 'ajax/xtgl/jsqx.aspx?action=list',
@@ -11,32 +10,28 @@ xtype:"grid",
 	}),
 	width:814,
 	height:450,
-	columns:[
-	
-		{
+	columns:[{
 			header:"编号",
-			sortable:true,
-			resizable:true,
 			dataIndex:"role_id",
 			width:100
 		},
 		{
 			header:"角色名称",
-			sortable:true,
-			resizable:true,
 			dataIndex:"role_name",
 			width:300
 		}
 	],
-	
 	listeners : {  // 添加监听事件
         celldblclick: function(grid, rowIndex, columnIndex, e) {
             var r = grid.store.getAt(rowIndex);	
             grid.showDetailWindow(false, r.data);
         }
 	},
-	
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
+	    if (!add && data.role_name=="总管理员") {
+	        Ext.Msg.alert("提示","总管理员不能修改！");
+		    return;
+	    }
         var self = this;
         var form = new Ext.FormPanel({
 	        id:'form1',
@@ -65,7 +60,11 @@ xtype:"grid",
 	            {
 	                text:'保存',// callback
 	                iconCls: 'icon-save',
-	                handler:function (c) {		                
+	                handler:function (c) {		
+	                    if (add && form.getForm().getValues().role_name == '总管理员') {
+	                        Ext.Msg.alert("提示","总管理员不能新增！");
+	                        return;
+	                    }                
 	                     form.getForm().submit({
 	                        url:'ajax/xtgl/jsqx.aspx',
 	                        params:{
@@ -93,8 +92,8 @@ xtype:"grid",
             }
             
             var w = new Ext.Window({
-                title:"添加角色",
-    	        width:500,
+                title: add?"添加角色":'修改角色',
+    	        width:400,
                 items:[
                     form
                 ]
@@ -249,6 +248,10 @@ xtype:"grid",
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
+				        if (r.data.role_name == "总管理员") {
+				            Ext.Msg.alert("提示","总管理员不能删除！");
+		                    return;
+				        }
 				        Ext.Msg.confirm('删除角色','确定要删除选中的角色吗？',function(btn){
 							if(btn == 'yes') {
 								Ext.Ajax.request({
@@ -274,16 +277,7 @@ xtype:"grid",
 				            Ext.Msg.alert("提示","总管理员拥有最高权限，不能修改！");
 				            return;
 				        }
-//				         var PermissionsStore = new Ext.data.JsonStore({
-//				            url: 'ajax/xtgl/jsqx.aspx?action=set&role_name='+per.json.role_name,
-//		                    fields:[
-//		                        'id','role_name','数据录入','缴费管理','工业园管理','房产管理','客户管理','预定管理','租凭合同管理','合同到期提示',
-//		                        '收款分类统计','收款详细统计','角色权限','管理员管理','修改本身密码'
-//		                    ],
-//				         });
 				         self.setPermissions(per.data);
-				         //PermissionsStore.load();
-				         //console.log(per.json.role_name)
 				    }			   
 				}
 			}

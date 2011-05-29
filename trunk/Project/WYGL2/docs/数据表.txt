@@ -6,10 +6,15 @@ gyy_lb_fclx_lb  			房产类型列表 (工业园)
 gyy_lb_fclx_lb_xflx			房产消费类型
 reg :						(不知道啥用)
 role: 
-role_lb : 
+role_lb :					角色列表
 user_gs
 user_sf_lb					收费项目列表
 user_sf_zb					收费总表
 user_zrr					自然人列表
 zpgl						合同
 zpgl_lx_lb					合同中消费类型列表
+
+
+数据库修改:
+
+1. role_lb 修改 收款详细统计字段类型改为int

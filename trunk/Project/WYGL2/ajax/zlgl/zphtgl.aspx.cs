@@ -23,57 +23,23 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
 
         if (action == "list")
         {
-            //string sql = "";
-            //string iFieldName = Request.Params["iFieldName"];
-            //string iFieldNo = Request.Params["iFieldNo"];
-            //string gyy = Request.Params["gyy"];
-            //string leix = Request.Params["leix"];
-
-            //if (Request.Params["start"] != null && Request["limit"] != null)
-            //{
-            //    sql = string.Format("select top {0} * from sq8szxlx.zpgl where id not in (select top {1} id from sq8szxlx.zpgl)",
-            //        Request["limit"], Request.Params["start"]);
-            //}
-            //else if (iFieldName != null || iFieldNo != null || gyy != null || leix != null)
-            //{
-            //    sql = string.Format("select * from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%'", iFieldName, iFieldNo, gyy,leix);
-            //}
-            //else
-            //{
-            //    sql = "select * from sq8szxlx.zpgl";
-            //}
-            //sql += " order by 操作时间 desc";
-            //SqlDataReader c = DBHelper.GetReader(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
-            //if (!c.Read()) return;
-            //SqlDataReader r = DBHelper.GetReader(sql);
-            //string data = Json.ToJson(r);
-            //int c = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.zpgl where 客户名称 like '%{0}%' and 编码 like '%{1}%' and 所属工业园 like '%{2}%' and 房产类型 like '%{3}%' ", iFieldName, iFieldNo, gyy, leix));
-            //ResultObject r = DBHelper.GetResult(sql);
-            //foreach (RowObject item in r)
-            //{
-            //    item["所属房产"] = item["房产类型"] +"-"+ item["所属房产"];
-            //}
-            //string data = r.ToJson();
-            //string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":",c);
-            //result = "{" + result + data + "}";
-            //Response.Write(result);
             string select = string.Format(@"select top {0} * ", Request["limit"]);
             string from = " from sq8szxlx.zpgl ";
             string where = " where 1=1";
-            if (!string.IsNullOrEmpty(Request.Params["iFieldName"]))
+            if (Common.hasValue(Request.Params["iFieldName"]))
             {
                 where += string.Format(" and 客户名称 like '%{0}%' ", Request.Params["iFieldName"]);
             }
-            if (!string.IsNullOrEmpty(Request.Params["iFieldNo"]))
+            if (Common.hasValue(Request.Params["iFieldNo"]))
             {
                 where += string.Format(" and 编码 like '%{0}%' ", Request.Params["iFieldNo"]);
             }
-            if (!string.IsNullOrEmpty(Request.Params["gyy"]))
+            if (Common.hasValue(Request.Params["gyy"]))
             {
                 where += string.Format(" and 所属工业园='{0}' ", Request.Params["gyy"]);
             }
 
-            if (!string.IsNullOrEmpty(Request.Params["leix"]))
+            if (Common.hasValue(Request.Params["leix"]))
             {
                 where += string.Format(" and 房产类型='{0}' ", Request.Params["leix"]);
             }
@@ -83,9 +49,14 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
 
             string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2})",
                 select, from, where, Request.Params["start"]);
+            sql += " order by id desc ";
             // 4. 拼装结果
-            string data = DBHelper.GetResult(sql).ToJson();
-
+            ResultObject ro = DBHelper.GetResult(sql);
+            foreach (RowObject row in ro)
+            {
+                row["所属房产"] = row["房产类型"].ToString() +"-"+ row["所属房产"].ToString();
+            }
+            string data = ro.ToJson();
             string result = string.Format("success:true,totalProperty:{0},data:", count, sql);
             result = "{" + result + data + "}";
             Response.Write(result);
@@ -99,6 +70,11 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 string dt = DateTime.Now.ToString("yyyyMMddhhmmssffff");
                 dict["编码"] = "ht"+dt;
             }
+            string fc = dict["所属房产"].ToString();
+            string[] fcl = fc.Split('-');
+            dict["房产类型"] = fcl[0];
+            dict["所属房产"] = fcl[1];
+
             DateTime dt1 = DateTime.Parse(dict["合同开始时间"].ToString());
             DateTime dt2 = DateTime.Parse(dict["合同结束时间"].ToString());
             dict.Remove("合同开始时间");
@@ -119,6 +95,14 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
+        else if (action == "gyy_fc_lb")
+        {
+            string gyy = Request.Params["gyy"];
+            string sql = string.Format("select 房产类型+'-'+房号 as fc from sq8szxlx.gyy_fc_lb where 工业园名称='{0}'", gyy);
+
+            ResultObject r = DBHelper.GetResult(sql);            
+            Response.Write(r.ToJson());
+        }            
         else if (action == "fclx_list")
         {
             string sql = "select distinct 工业园名称 as gyyName from sq8szxlx.gyy_lb_fclx_lb ";
