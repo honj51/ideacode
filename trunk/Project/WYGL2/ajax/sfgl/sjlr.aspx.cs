@@ -104,7 +104,16 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             else
             {
                 row["录入状态"] = "未录入";
-            }            
+            }
+            if (row2 != null)
+            {
+                row["缴费状态"] = row2["缴费状态"];
+            }
+            else
+            {
+                row["缴费状态"] = "未缴费";
+            }
+            
         }
         string data = ro.ToJson();
         
@@ -209,7 +218,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                     if (i == DateTime.Now.Year && j == DateTime.Now.Month)
                     {
                         jo.Add("录入状态", "未录入");
-                        jo.Add("缴费状态", "-");
+                        jo.Add("缴费状态", "未缴费");
                     }
                     else if (i > DateTime.Now.Year || (i == DateTime.Now.Year && j > DateTime.Now.Month))
                     {
@@ -354,7 +363,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             jo.Add("消费类型", row["消费类型"]);
             jo.Add("值", row["值"]);
             jo.Add("倍率", row["倍率"]);
-            jo.Add("损耗", row["消费项目"] == "动态" ? row["损耗"] : "-");
+            jo.Add("损耗", row["消费类型"].ToString() == "动态" ? row["损耗"] : "-");
 
             // 查询收费列表
             string sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
@@ -369,11 +378,23 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 zpgl["编码"], xh - 1, row["消费项目"]);
             RowObject pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
 
-            jo.Add("滞纳金", (pre_user_sf_zb["缴费状态"] == "已缴费" || pre_user_sf_zb["缴费状态"] == "不要交费") ? 0 : row["滞纳金"]);
-            jo.Add("上月读数", row["消费类型"] == "动态" ? pre_user_sf_lb["读数"] : "-");
-            jo.Add("读数", (row["消费类型"] == "动态" || row["消费类型"] == "单价") ? row["读数"] : "");
+            jo.Add("滞纳金", (pre_user_sf_zb["缴费状态"].ToString() == "已缴费" || pre_user_sf_zb["缴费状态"].ToString() == "不要交费") ? 0 : row["滞纳金"]);
+            jo.Add("上月读数", row["消费类型"].ToString() == "动态" ? pre_user_sf_lb["读数"] : "-");
+            if (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价")
+            {
+                if (user_sf_lb !=null)
+                {
+                    jo.Add("读数", user_sf_lb["读数"]);
+                }
+                else {
+                    jo.Add("读数", "");
+                }
+            }
+            else {
+                jo.Add("读数","-");
+            }
             jo.Add("说明", row["说明"]);
-            jo.Add("读数输入", (user_sf_lb!=null && user_sf_lb["录入状态"] == "已录入") ? "√" : "×");
+            jo.Add("读数输入", (user_sf_lb != null && user_sf_lb["录入状态"].ToString() == "已录入") ? "√" : "×");
             ja.Add(jo);
         }
         Response.Write(JSONConvert.SerializeArray(ja));
@@ -561,7 +582,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             jo.Add("收费类型", row["消费类型"]);
             jo.Add("值", row["值"]);
             jo.Add("倍率", row["倍率"]);
-            jo.Add("损耗", row["消费类型"] == "动态" ? row["损耗"] : "-");
+            jo.Add("损耗", row["消费类型"].ToString() == "动态" ? row["损耗"] : "-");
             jo.Add("滞纳金", row["滞纳金"]);
             // 查询收费列表
             string sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
@@ -572,8 +593,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh - 1, row["消费类型"]);
             RowObject r2 = DBHelper.GetRow(sql_pre_lb);
-            jo.Add("上月读数", row["消费类型"] == "动态" ? r2["读数"] : "-");
-            jo.Add("读数", (row["消费类型"] == "动态" || row["消费类型"] == "单价") ? user_sf_lb["读数"] : "-");
+            jo.Add("上月读数", row["消费类型"].ToString() == "动态" ? r2["读数"] : "-");
+            jo.Add("读数", (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价") ? user_sf_lb["读数"] : "-");
             jo.Add("费用", user_sf_lb["费用"]);
             jo.Add("说明", row["说明"]);
             ja.Add(jo);
