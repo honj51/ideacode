@@ -71,23 +71,6 @@ Ext.DayCombox = Ext.extend(Ext.form.ComboBox,{
 });
 
  
- //消费项目
- Ext.sfxmCombox = Ext.extend(Ext.form.ComboBox,{
-    editable:false,
-    width:120,
-    triggerAction:'all',
-    store:new Ext.data.JsonStore({
-        url:"ajax/zlgl/tj.aspx?action=xfxm",
-        fields:['sfxm']
-    }),
-    displayField: 'sfxm',
-	valueField: 'sfxm',
-	initComponent: function(){
-	    Ext.sfxmCombox.superclass.initComponent.call(this);
-	}
- });
-
-
 //////////////////////////////////////////////////////////////////////////
 // 消费项中的数据显示
 // 倍率,损耗,滞纳金 选择
@@ -149,9 +132,11 @@ function percentRenderer(v, metaData, record, rowIndex, colIndex, store) {
  *	后台请求规则:
  *  参数: key:'xxx'
  *  返回: [] 数组
+ *  不要设置 autoLoad属性
  */
 Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
-    appendItems: [],    // 附加的选项
+    appendItems: null,    // 附加的选项
+    preCombox: null,
     nextCombox: null,   // 下一个关联Combox
     keyField: null,     // 条件字段
     selectFirst: true, // 自动选中第一项
@@ -164,14 +149,7 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
         // 选中项没改变
         if (self.lastValue && self.lastValue == v) return;
         // 忽略附加的选项
-        var skip = false;
-        for(var i=0; i<self.appendItems.length;i++) {
-            if (self.appendItems[i] == v) {
-                skip = true;
-                break;
-            }
-        }
-        if (skip) return;
+        if (self.appendItems && self.appendItems.indexOf(v)>0) return;
         
         if(!self.nextCombox) return;
         // 刷新下级关联框
@@ -179,43 +157,61 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
     },
     reloadNextCombox: function (v) {
         var self = this;
-        var key = self.nextCombox.keyField?self.nextCombox.keyField:self.nextCombox.valueField;
         var p = {};
-        p[key] = v;
+        var kfs = self.nextCombox.keyField?self.nextCombox.keyField:[self.nextCombox.valueField];
+        var c = self;
+        for(var k in kfs) {
+            if (!c) break;
+            p[kfs[k]] = c.value;
+            c = c.preCombox;
+        }
         self.nextCombox.store.load({
             params : p
         });
     },
 	initComponent: function(){
 	    var self = this;
-	    this.store.on('load',function (store,record,opts) {
-	        for(var i=0; i<self.appendItems.length;i++) {
-	            // 增加附加的选项
-	            var toAppend = self.appendItems[i];
-	            var df = self.displayField;
-	            var vf = self.valueField;
-	            var r = new Ext.data.Record({ df:toAppend, vf: toAppend}); 
-				store.add(r);
+	    if (self.nextCombox) {
+	        self.nextCombox.preCombox = this;
+	    }
+	    self.store.on('load',function (store,record,opts) {
+	        console.log("store load: appendItems=");
+	        console.log(self.appendItems);
+	        // 增加附加的选项
+	        if (self.appendItems) {
+	            for(var i=0; i<self.appendItems.length;i++) {	            
+	                var toAppend = self.appendItems[i];
+	                var p = {};
+	                p[self.displayField] = toAppend;
+	                p[self.valueField] = toAppend;
+	                var r = new Ext.data.Record(p); 
+	                if (store.findExact(self.valueField,toAppend) == -1) {
+	                    store.add(r);
+	                }				    
+	            }
 	        }
 	        if (self.selectFirst) {
 	            //self.setValue(record[0].data.value);
 	        }
 	    });
-	    this.on('select', function (combo, record,index) {
+	    self.on('select', function (combo, record,index) {
 	        self.lastValue = combo.value;
 
 	        if(!self.nextCombox) return;
 	        // 刷新下级关联框
 	        //self.reloadNextCombox(combo.value);
 	    });
+	    if (!self.preCombox) { // 没有上一个关联框
+	        self.store.load();
+	    }	    
 	    Ext.LinkCombox.superclass.initComponent.call(this);
 	}
 });
 
 // 工业园选择
 Ext.GyyCombox = Ext.extend(Ext.LinkCombox,{
-	width: 100,
-	appendItems: ['(全部)'],
+	width: 100,	
+	appendItems:  ['(全部)'],
     store: new Ext.data.JsonStore({
         autoLoad:true,
 	    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
@@ -224,24 +220,42 @@ Ext.GyyCombox = Ext.extend(Ext.LinkCombox,{
 	displayField: 'gyyName',
 	valueField: 'gyyName',
 	initComponent: function(){	    
-	    Ext.GyyCombox.superclass.initComponent.call(this);
+	    Ext.GyyCombox.superclass.initComponent.call(this);	    
 	}
 });
 
 // 房产类型选择 (工业园)
 Ext.GyyLxCombox = Ext.extend(Ext.LinkCombox,{
     width: 100,
-    appendItems: ['(全部)'],
+    appendItems:  ['(全部)'],
     store: new Ext.data.JsonStore({
 	    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
 	    fields: ['lx']
     }),
 	displayField: 'lx',
 	valueField: 'lx',
-	keyField: 'gyy',
+	keyField: ['gyy'],
 	initComponent: function(){
-	    Ext.GyyLxCombox.superclass.initComponent.call(this);
+	    Ext.GyyLxCombox.superclass.initComponent.call(this);        
 	}
+});
+
+ //消费项目
+Ext.sfxmCombox = Ext.extend(Ext.LinkCombox,{
+    editable:false,
+    width:120,
+    triggerAction:'all',
+    appendItems:  ['(全部)'],
+    store:new Ext.data.JsonStore({
+        url:"ajax/zlgl/tj.aspx?action=xfxm",
+        fields:['sfxm']
+    }),
+    displayField: 'sfxm',
+    valueField: 'sfxm',
+    keyField: ['fclx','gyy'],
+    initComponent: function(){
+        Ext.sfxmCombox.superclass.initComponent.call(this);
+    }
 });
 
 // 客户选择
