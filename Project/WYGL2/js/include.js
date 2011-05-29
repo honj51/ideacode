@@ -135,7 +135,8 @@ function percentRenderer(v, metaData, record, rowIndex, colIndex, store) {
  *  不要设置 autoLoad属性
  */
 Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
-    appendItems: null,    // 附加的选项
+    appendItems: ['(全部)'],    // 附加的选项
+    append: true,
     preCombox: null,
     nextCombox: null,   // 下一个关联Combox
     keyField: null,     // 条件字段
@@ -175,10 +176,8 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
 	        self.nextCombox.preCombox = this;
 	    }
 	    self.store.on('load',function (store,record,opts) {
-	        console.log("store load: appendItems=");
-	        console.log(self.appendItems);
 	        // 增加附加的选项
-	        if (self.appendItems) {
+	        if (self.append && self.appendItems) {
 	            for(var i=0; i<self.appendItems.length;i++) {	            
 	                var toAppend = self.appendItems[i];
 	                var p = {};
@@ -189,12 +188,17 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
 	                    store.insert(0,r);
 	                }				    
 	            }
+	        }	        
+	        if (self.getValue()) {
+	            self.setValue(self.getValue());
 	        }
-	        if (self.selectFirst && store.getCount()>0) {
-	            var firstValue = store.getAt(0).data[self.valueField];
-	            if (firstValue) {
-	                self.setValue(firstValue);
-	            }	            
+	        else {
+	            if (self.selectFirst && store.getCount()>0) {
+	                var firstValue = store.getAt(0).data[self.valueField];
+	                if (firstValue) {
+	                    self.setValue(firstValue);
+	                }	            
+	            }
 	        }
 	    });
 	    self.on('select', function (combo, record,index) {
@@ -210,7 +214,6 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
 // 工业园选择
 Ext.GyyCombox = Ext.extend(Ext.LinkCombox,{
 	width: 100,	
-	appendItems:  ['(全部)'],
     store: new Ext.data.JsonStore({
         autoLoad:true,
 	    url: "ajax/zlgl/zphtgl.aspx?action=fclx_list",
@@ -225,8 +228,7 @@ Ext.GyyCombox = Ext.extend(Ext.LinkCombox,{
 
 // 房产类型选择 (工业园)
 Ext.GyyLxCombox = Ext.extend(Ext.LinkCombox,{
-    width: 100,
-    appendItems:  ['(全部)'],
+    width: 100,    
     store: new Ext.data.JsonStore({
 	    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
 	    fields: ['lx']

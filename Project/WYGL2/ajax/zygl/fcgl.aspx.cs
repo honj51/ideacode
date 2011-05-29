@@ -31,6 +31,7 @@ public partial class ZiYuan_fcgl : System.Web.UI.Page
             {
                 sql = "select * from sq8szxlx.gyy_fc_lb";   
             }
+            sql += " order by id desc ";
             int count = (int)DBHelper.GetVar("select count(*) as total from sq8szxlx.gyy_fc_lb");
             string data = DBHelper.GetResult(sql).ToJson();
             string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", count);

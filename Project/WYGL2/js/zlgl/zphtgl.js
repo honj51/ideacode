@@ -99,6 +99,8 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	showDetailWindow: function (add, data) { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
         var gyy_lx = new Ext.LinkCombox({
+            width:226,
+            append: false,
             store: new Ext.data.JsonStore({
                 url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb",
 	            fields: ['fc']
@@ -112,13 +114,18 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
             fieldLabel:'所属房产',
             name:'所属房产'
         });
-	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx,width:226,fieldLabel:'所属工业园',name:'所属工业园'});	    
+	    var gyy = new Ext.GyyCombox({
+	        append: false,
+	        nextCombox: gyy_lx,
+	        width:226,
+	        fieldLabel:'所属工业园',
+	        name:'所属工业园'
+	    });	    
 	    var kehu = new Ext.KehuCombox({
 	        width:226,            
-            hiddenName:'客户编码',
+            name:'客户名称',
             fieldLabel:'客户名称'
 	    });
-	    var kehumc = new Ext.form.Hidden({name: '客户名称'});
 	    var form = new Ext.FormPanel({	
             padding: 10,
             items: [{
@@ -132,7 +139,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 readOnly: true, 
                 value: '自动产生',                
                 xtype: 'textfield'				                           
-            },kehu, kehumc,
+            },kehu,
             gyy,gyy_lx,
             {
                 fieldLabel: '合同开始时间',
@@ -181,8 +188,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
             buttons: [{
                 text: '保存',
                 iconCls: 'icon-save',
-                handler: function (c) {
-                    kehumc.setValue(kehu.getRawValue());
+                handler: function (c) {                                
                     form.getForm().submit({
                         url: 'ajax/zlgl/zphtgl.aspx',
                         params: {
@@ -298,6 +304,10 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                    autoLoad: true,
 			            fields: fs
 		            });         
+		            // 网格编辑器
+		            var textEditor = new Ext.form.TextField();
+		            var blCombox = new Ext.BLCombox();
+		            var vCombox = new Ext.SHCombox();
 		            var colModel = new Ext.grid.ColumnModel({
 		                columns: [{
 		                    header: '编号', dataIndex: '编号', width: 40

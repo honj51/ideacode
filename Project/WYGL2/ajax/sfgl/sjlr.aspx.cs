@@ -58,6 +58,11 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         Response.End();
     }
 
+    private void list2()
+    {
+
+    }
+
     private void list()
     {
         // 1. 拼Sql子语句
@@ -84,10 +89,16 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         string count = DBHelper.GetVar("select count(*) " + from + where).ToString();
         if (count == null) return;
         // 3. 获取数据
-        string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2}) order by u.日期年,u.日期月,日期日",
+        //string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2}) order by u.日期年,u.日期月,日期日",
+        string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2}) order by z.所属工业园,z.房产类型,z.所属房产 asc",        
             select, from, where, Request.Params["start"]);
         // 4. 拼装结果
-        string data = DBHelper.GetResult(sql).ToJson();
+        ResultObject ro = DBHelper.GetResult(sql);
+        foreach (RowObject row in ro)
+        {
+            
+        }
+        string data = ro.ToJson();
         
         string result = string.Format("success:true,totalProperty:{0},data:", count, sql);
         result = "{" + result + data + "}";
