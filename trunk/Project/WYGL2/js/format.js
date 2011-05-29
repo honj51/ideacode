@@ -55,6 +55,33 @@ Ext.Hudongsoft.util.Format = function(){
 				}
 			};
         },
+        lrztRenderer:function () { //数据录入状态
+            return function(v, metaData, record, rowIndex, colIndex, store){
+                var dt = record.data.录入状态;
+                if (dt == "已录入") {
+                    return "<span style='color:red'>已录入</span>";
+                }
+                else if(dt == "未录入"){
+                    return "<span style='color:green'>未录入</span>";
+                }
+            }
+        },
+        
+        jfztRenderer:function () { //缴费状态
+            return function(v, metaData, record, rowIndex, colIndex, store){
+                var dt = record.data.缴费状态;
+                if (dt == "已缴费") {
+                    return "<span style='color:red'>已缴费</span>";
+                }
+                else if(dt == "未缴费"){
+                    return "<span style='color:green'>未缴费</span>";
+                }                
+                else if(dt == "不要交费"){
+                    return "<span style='color:black'>不要交费</span>";
+                }
+            }
+        },
+        
         htjsRenderer: function () { // 合同结束
             return function(v, metaData, record, rowIndex, colIndex, store){
                 if(v!=null)

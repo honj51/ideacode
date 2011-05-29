@@ -226,7 +226,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
             
             var w = new Ext.Window({
                 title:add?"新增自然人":"修改自然人",
-                width:500,
+                width:400,
                 items:[
                     form
                 ]
