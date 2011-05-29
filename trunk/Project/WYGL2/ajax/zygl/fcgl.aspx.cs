@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 public partial class ZiYuan_fcgl : System.Web.UI.Page
 {
@@ -37,7 +38,12 @@ public partial class ZiYuan_fcgl : System.Web.UI.Page
             Response.Write(result);    
         }else if (action == "add")
         {
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.gyy_fc_lb", "id", true);
+            Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+            dict["状态"] = "未租";
+            dict["业主"] = "无";
+            dict["create_date"] = DateTime.Now;
+
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.gyy_fc_lb", "id", true);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
