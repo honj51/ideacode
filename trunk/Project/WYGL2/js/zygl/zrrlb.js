@@ -220,7 +220,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
         });
         
             if (!add && data) {
-                data.出生日期 = new Date(data.出生日期_年,data.出生日期_月,data.出生日期_日);
+                data.出生日期 = new Date(data.出生日期_年,data.出生日期_月-1,data.出生日期_日);
                 form.getForm().setValues(data);
             }
             

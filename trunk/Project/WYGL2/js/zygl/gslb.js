@@ -8,7 +8,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/gslb.aspx?action=list',
 		fields:[
-		    'id','编码','名称','描述','联系人','联系电话','助记码','注册号','法人代表','办公地址','联系方法','备注','成立日期'
+		    'id','编码','名称','描述','联系人','联系电话','助记码','注册号','法人代表','办公地址','联系方法','备注','成立日期_年','成立日期_月','成立日期_日'
 		]
 	}),
 	width:792,
@@ -180,6 +180,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
     });
     
         if (!add && data) {
+            data.成立日期 = new Date(data.成立日期_年,data.成立日期_月-1,data.成立日期_日);
             form.getForm().setValues(data);
         }
         
