@@ -591,7 +591,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
 
             // 查询上月收费项目
             string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
-                zpgl["编码"], xh - 1, row["消费类型"]);
+                zpgl["编码"], xh - 1, row["消费项目"]);
             RowObject r2 = DBHelper.GetRow(sql_pre_lb);
             jo.Add("上月读数", row["消费类型"].ToString() == "动态" ? r2["读数"] : "-");
             jo.Add("读数", (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价") ? user_sf_lb["读数"] : "-");

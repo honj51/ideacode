@@ -389,9 +389,9 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     columns: [{
                                         header: '编号', dataIndex: '编号', width: 40
                                     },{
-                                         header: '消费项目', dataIndex: '收费项目', width: 120
+                                         header: '消费项目', dataIndex: '收费项目', width: 110
                                     },{
-                                        header: '消费类型', dataIndex: '收费类型', width: 80
+                                        header: '消费类型', dataIndex: '收费类型', width: 70
                                     },{
                                         header: '值', dataIndex: '值',  width: 70
                                     },{
@@ -401,16 +401,16 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     },{
                                         header: '滞纳金', dataIndex: '滞纳金', width: 70
                                     },{
-                                        header: '上月读数', dataIndex: '上月读数',  width: 80
+                                        header: '上月读数', dataIndex: '上月读数',  width: 70
                                     },{
                                         header: '读数', dataIndex: '读数',  width: 80
                                     },{
                                         header: '费用', dataIndex: '费用',width: 60
                                     },{
-                                        header: '说明', dataIndex: '说明',  width: 120
+                                        header: '说明', dataIndex: '说明',  width: 110
                                     }],
                                     tbar: {
-                                        items: ['xxx']
+                                        items: ['']
                                     },
                                     bbar: {
                                         items: ['总金额：￥&nbsp;',''+obj.总金额,'上次结余：￥',''+obj.上次结余,'&nbsp;&nbsp;&nbsp;需要交费金额：￥',''+obj.需要交费金额,'实收金额：&nbsp',sf_textfield]
@@ -435,7 +435,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                 var win = new Ext.Window({
                                     layout: 'fit',
                                     height: 500,
-                                    width: 800,
+                                    width: 850,
                                     title: '缴费',
                                     items: grid
                                 });
