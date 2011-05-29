@@ -186,7 +186,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
         
         var w = new Ext.Window({
             title:add?"新增公司":"修改公司",
-             width:500,
+             width:400,
             items:[
                 form
             ]

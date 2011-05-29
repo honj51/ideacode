@@ -140,7 +140,7 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
         
 	    var w = new Ext.Window({
 	        title:add?"新增房产":"修改房产",
-		    width:360,
+		    width:300,
 	        items:[
 	            form
 	        ]

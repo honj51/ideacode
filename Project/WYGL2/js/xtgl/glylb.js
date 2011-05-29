@@ -156,7 +156,7 @@ Ext.Hudongsoft.glylbGrid=Ext.extend(Ext.grid.GridPanel ,{
         
         var w = new Ext.Window({
             title:add?"添加管理员":'修改管理员',
-	        width:500,
+	        width:400,
             items:[
                 form
             ]

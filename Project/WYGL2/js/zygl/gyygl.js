@@ -93,7 +93,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
         
 	    var w = new Ext.Window({
 	        title: add?'新增工业园':'修改工业园',	
-	        width: 370,			        
+	        width: 300,			        
 	        items:[
 	            form
 	        ]
@@ -542,7 +542,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                     var fcxfWinUi  = new Ext.Window({
                                                         title:'新增房产消费',
                                                         layout:'fit',
-                                                        width:460,
+                                                        width:300,
                                                         height:300,
                                                         items:[
                                                             fcxfUiForm
