@@ -460,14 +460,14 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             nv2.Add("滞纳金", jo["滞纳金"]);
             //// 查询上月收费项目
             string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
-                zpgl["编码"], xh - 1, item["消费类型"]);
+                zpgl["编码"], xh - 1, item["消费项目"]);
             RowObject pre = DBHelper.GetRow(sql_pre_lb);
-            double ds = Convert.ToDouble(jo["读数"].ToString());
-            double ds_sy = Convert.ToDouble(pre["读数"].ToString());
-            double zi = Convert.ToDouble(jo["值"].ToString());
-            double znj = Convert.ToDouble(jo["滞纳金"].ToString());
-            double sh = Convert.ToDouble(jo["损耗"].ToString());
-            double bl = Convert.ToDouble(jo["倍率"].ToString());
+            double ds = jo["读数"].ToString()=="-"?-1:Convert.ToDouble(jo["读数"].ToString());
+            double ds_sy = pre["读数"].ToString() == "-" ? -1 : Convert.ToDouble(pre["读数"].ToString());
+            double zi = jo["值"].ToString() == "-" ? -1 : Convert.ToDouble(jo["值"].ToString());
+            double znj = jo["滞纳金"].ToString() == "-" ? -1 : Convert.ToDouble(jo["滞纳金"].ToString());
+            double sh = jo["损耗"].ToString() == "-" ? -1 : Convert.ToDouble(jo["损耗"].ToString());
+            double bl = jo["倍率"].ToString() == "-" ? -1 : Convert.ToDouble(jo["倍率"].ToString());
             double fy = -1;
             if (bl != 0)
             {
@@ -507,12 +507,12 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                     fy = (Convert.ToDouble(item["费用"]) - (-zi)) * (xh - 1) * (1 - (-znj) / 100);
                 }
             }
-            nv2.Add("费用", fy == -1 ? '-' : fy);
-            int zfy = Convert.ToInt32(item["费用"]); // TODO:
+            nv2.Add("费用", fy == -1 ? '-' : fy);            
             nv2.Add("金额", 0);
             string sql4 = SqlBuilder.NameValueToSql(nv2, "sq8szxlx.user_sf_lb", "id", true);
             DBHelper.ExecuteSql(sql4);
             // user_sf_zb
+            int zfy = Convert.ToInt32(item["费用"]); // TODO:
             Dictionary<string, object> nv3 = new Dictionary<string, object>();
             nv3.Add("合同编号", htbh);
             nv3.Add("单据编号", htbh + Request.Params["xh"]);
