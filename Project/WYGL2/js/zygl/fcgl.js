@@ -54,19 +54,21 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
 	    //实例化combox组件
-	    var gyy_lx = new Ext.GyyLxCombox({
-	        width:130,
+
+        var gyy_lx = new Ext.GyyLxCombox({
+            width:130,
 	        emptyText:'请选择',
 	        fieldLabel:'类型',
 	        name:'房产类型'
-	    });
+        });
 	    var gyy = new Ext.GyyCombox({
-	        lx_store: gyy_lx.store,
+	        nextCombox: gyy_lx,
 	        width:130,
 	        emptyText:'请选择',
 	        fieldLabel:'工业园',
 	        name:'工业园名称'
 	    });
+	    
 	    var form = new Ext.FormPanel({
 		    id:'form1',
 		    padding:10,
