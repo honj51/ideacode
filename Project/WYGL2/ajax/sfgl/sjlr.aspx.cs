@@ -201,12 +201,17 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 }
                 else
                 {
-                    jo.Add("id", "-");
+                    //jo.Add("id", "-");
                     jo.Add("单据编号", "-");
                     jo.Add("总费用", "-");
                     jo.Add("缴费金额", "-");
                     jo.Add("余额", "-");
-                    if (i > DateTime.Now.Year || (i == DateTime.Now.Year && j > DateTime.Now.Month))
+                    if (i == DateTime.Now.Year && j == DateTime.Now.Month)
+                    {
+                        jo.Add("录入状态", "未录入");
+                        jo.Add("缴费状态", "-");
+                    }
+                    else if (i > DateTime.Now.Year || (i == DateTime.Now.Year && j > DateTime.Now.Month))
                     {
                         jo.Add("录入状态", "不能录入");
                         jo.Add("缴费状态", "不能缴费");
@@ -368,7 +373,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             jo.Add("上月读数", row["消费类型"] == "动态" ? pre_user_sf_lb["读数"] : "-");
             jo.Add("读数", (row["消费类型"] == "动态" || row["消费类型"] == "单价") ? row["读数"] : "");
             jo.Add("说明", row["说明"]);
-            jo.Add("读数输入", user_sf_lb["录入状态"] == "已录入" ? "√" : "×");
+            jo.Add("读数输入", (user_sf_lb!=null && user_sf_lb["录入状态"] == "已录入") ? "√" : "×");
             ja.Add(jo);
         }
         Response.Write(JSONConvert.SerializeArray(ja));
