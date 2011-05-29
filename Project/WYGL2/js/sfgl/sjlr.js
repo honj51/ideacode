@@ -422,6 +422,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     },
                                     buttons: [{
                                         text: '提交',
+                                        iconCls: 'icon-wanChen',
                                         handler: function () {			                    
                                             Ext.Ajax.request({
                                                  url: "ajax/sfgl/sfgl.aspx?action=jf_tj&zbid="+r.data.id, 
