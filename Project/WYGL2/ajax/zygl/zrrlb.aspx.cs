@@ -48,6 +48,13 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
         else if (action == "add")
         {
             Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+
+            string birthday = Request.Form["出生日期"];
+            string[]bir = birthday.Split('-');
+            dict["出生日期_年"] = bir[0];
+            dict["出生日期_月"] = bir[1];
+            dict["出生日期_日"] = bir[2];
+
             if (dict["编码"].ToString() == "自动产生")
             {
                 string dt = DateTime.Now.ToString("yyyyMMddhhmmssffff");
@@ -60,7 +67,15 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
         }
         else if (action == "update")
         {
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_zrr", "id", false);
+            Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+
+            string birthday = Request.Form["出生日期"];
+            string[] bir = birthday.Split('-');
+            dict["出生日期_年"] = bir[0];
+            dict["出生日期_月"] = bir[1];
+            dict["出生日期_日"] = bir[2];
+
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.user_zrr", "id", false);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}"); 
         }

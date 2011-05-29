@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 public partial class ZiYuan_gslb : System.Web.UI.Page
 {
@@ -47,24 +48,29 @@ public partial class ZiYuan_gslb : System.Web.UI.Page
         }
         else if (action == "add")
         {
-            //string s = Request.Params["成立日期"];
-            //string[] a = s.Split('-');
-            //string year = a[0];
-            //string mouth = a[1];
-            //string date = a[2];
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_gs", "id", true);
-            //sql += string.Format(" ,成立日期_年='{0}',成立日期_月='{0}',成立日期_日='{0}'",year,mouth,date);
+            Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+
+            string s = Request.Form["成立日期"];
+            string[] cl = s.Split('-');
+            dict["成立日期_年"] = cl[0];
+            dict["成立日期_月"] = cl[1];
+            dict["成立日期_日"] = cl[2];
+
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.user_gs", "id", true);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
         else if (action == "update")
         {
-            //string s = Request.Params["成立日期"];
-            //string[] a = s.Split('-');
-            //string year = a[0];
-            //string mouth = a[1];
-            //string date = a[2];
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.user_gs", "id", false);
+            Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+
+            string s = Request.Form["成立日期"];
+            string[] cl = s.Split('-');
+            dict["成立日期_年"] = cl[0];
+            dict["成立日期_月"] = cl[1];
+            dict["成立日期_日"] = cl[2];
+
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.user_gs", "id", false);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
