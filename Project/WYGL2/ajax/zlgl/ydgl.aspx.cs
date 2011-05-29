@@ -29,8 +29,10 @@ public partial class ZuLin_ydgl : System.Web.UI.Page
             }
             else
             {
-                sql = "select * from sq8szxlx.zpgl";
-            }                        
+                sql = "select * from sq8szxlx.zpgl where 1=1";
+            }
+
+            sql = " and 合同结束时间_年='' order by 客户名称 asc ";
 
             int count = (int)DBHelper.GetVar("select count(*) as total from sq8szxlx.zpgl");            
 

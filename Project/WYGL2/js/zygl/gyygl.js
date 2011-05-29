@@ -248,7 +248,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                             ]
 	                    });
                         var lxWin = new Ext.Window({
-                            title:'类型',
+                            title:add?'新增类型':'修改类型',
                             width:300,
                             height:150,
                             layout:'fit',
@@ -540,6 +540,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                                                });
 	                                                
                                                     var fcxfWinUi  = new Ext.Window({
+                                                        title:'新增房产消费',
                                                         layout:'fit',
                                                         width:460,
                                                         height:300,
