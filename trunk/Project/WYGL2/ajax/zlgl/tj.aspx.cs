@@ -122,7 +122,6 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
             // 2. 查询合同
             string sql_sf = string.Format(@"select sum(u.费用) as total from sq8szxlx.user_sf_lb u left join sq8szxlx.zpgl z on 
 	            u.合同编号=z.编码 where z.所属工业园='{0}' {1} {2} {3} {4}", gyy_mc, where_fclx, where_xfxm, where_nian, where_yue);
-            Debug.WriteLine("sql_sf:" + sql_sf);
             object total = DBHelper.GetVar(sql_sf);
             JSONObject jo = new JSONObject();
             jo.Add("序号",i+1);

@@ -70,7 +70,6 @@ public partial class ZuLin_ydgl : System.Web.UI.Page
             dict.Add("合同开始时间_月", dt1.Month);
             dict.Add("合同开始时间_日", dt1.Day);
             string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl", "id", action == "add");
-            Debug.WriteLine(sql);
             DBHelper.ExecuteSql(sql);
 
             // 修改房产状态
@@ -107,7 +106,6 @@ public partial class ZuLin_ydgl : System.Web.UI.Page
         dict2["状态"] = zt;
         dict2["业主"] = yezu;
         sql = SqlBuilder.NameValueToSql(dict2, "sq8szxlx.gyy_fc_lb", "id", false);
-        Debug.WriteLine(sql);
         DBHelper.ExecuteSql(sql);
     }
 }

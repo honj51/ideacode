@@ -355,6 +355,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                         success: function () {
 			                            Ext.Msg.alert('提交','数据提交成功！');
 			                            win.close();
+			                            self.store.reload();
 			                         }
 			                    });			                    
 			                }
@@ -425,13 +426,17 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                         iconCls: 'icon-wanChen',
                                         handler: function () {			                    
                                             Ext.Ajax.request({
-                                                 url: "ajax/sfgl/sfgl.aspx?action=jf_tj&zbid="+r.data.id, 
+                                                 url: "ajax/sfgl/sjlr.aspx?action=jf_tj", 
                                                  params: {
-                                                    id: r.data.id
+                                                    zbid: r.data.id,
+                                                    缴费金额: sf_textfield.getValue(),
+                                                    总费用: obj.总金额,
+                                                    余额: obj.上次结余
                                                  },
                                                  success: function () {
                                                     Ext.Msg.alert('提交','缴费成功！');
                                                     win.close();
+                                                    self.store.reload();
                                                  }
                                             });			                    
                                         }
