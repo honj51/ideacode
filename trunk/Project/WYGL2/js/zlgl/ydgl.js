@@ -179,7 +179,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
         }
         
 	    var w = new Ext.Window({
-	        title:"新增预定",
+	        title:add?"新增预定":"修改预定",
 		    width:500,
 	        items:[
 	            form
