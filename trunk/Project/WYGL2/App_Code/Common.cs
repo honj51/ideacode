@@ -57,4 +57,10 @@ public class Common
         return true;
     }
 
+    // 获取客户编号
+    public static string getKhbh(string khmc)
+    {
+        string sql = string.Format("select 编码 from sq8szxlx.user_zrr where 名称='{0}'", khmc);
+        return DBHelper.GetVar(sql).ToString();
+    }
 }

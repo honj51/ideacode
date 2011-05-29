@@ -1,7 +1,6 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
-    xtype:"grid",
 	title:"预定管理",
 	store:new Ext.data.JsonStore({
 	    root : 'data',
@@ -77,19 +76,29 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	
 	showDetailWindow: function (add, data) {    // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
-	    var gyy_lx = new Ext.GyyLxCombox({
-            width:130,
+	    var gyy_lx = new Ext.LinkCombox({
+            width:226,
+            store: new Ext.data.JsonStore({
+                url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb",
+	            fields: ['fc']
+            }),
+	        displayField: 'fc',
+	        valueField: 'fc',
+	        keyField: ['gyy'],
+	        initComponent: function(){	    
+	            Ext.LinkCombox.superclass.initComponent.call(this);	    
+	        },
             fieldLabel:'所属房产类型',
             name:'所属房产'
         });
-        var gyy = new Ext.GyyCombox({
-            lx_store: gyy_lx.store,
-            width:226,
-            fieldLabel:'所属工业园',
-            name:'所属工业园'
-        });
+	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx,width:226,fieldLabel:'所属工业园',name:'所属工业园'});	    
+	    var kehu = new Ext.KehuCombox({
+	        width:226,            
+            name:'客户名称',
+            fieldLabel:'预定客户名称'
+	    });	    	    
+        
 	    var form = new Ext.FormPanel({
-		    id:'form1',
 		    padding:10,
 		    items:[
 		        {
@@ -100,27 +109,13 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
                     fieldLabel: '编码',
                     name: '编码',
                     width:226,
+                    readOnly: true, 
+                    value: '自动产生',  
                     xtype: 'textfield'				                           
                 },
-                {
-                    fieldLabel: '预定客户名称',
-                    name: '客户名称',
-                    width:226,
-                    xtype: 'textfield'				                           
-                },
+                kehu,
                 gyy,
-//                {
-//                    fieldLabel: '所属工业园',
-//                    name: '所属工业园',
-//                    width:226,
-//                    xtype: 'textfield'				                           
-//                },
-                {
-                    fieldLabel: '所属房产',
-                    name: '所属房产',
-                    width:226,
-                    xtype: 'textfield'				                           
-                },
+                gyy_lx,
                 {
                     fieldLabel: '预定时间',
                     name: '合同开始时间',
@@ -132,10 +127,10 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
                     fieldLabel: '操作时间',
                     name: '操作时间',
                     width:226,
-                    disabled:true,
-                    editable:false,
+                    readOnly: true,
+                    format: 'Y-m-d H:i:s',
                     xtype: 'datefield',
-                    format:'Y-m-d'				                           
+                    value: new Date()		                           
                 },
                 {
                     fieldLabel: '备注',
@@ -180,7 +175,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
         
 	    var w = new Ext.Window({
 	        title:add?"新增预定":"修改预定",
-		    width:500,
+		    width:400,
 	        items:[
 	            form
 	        ]
@@ -235,10 +230,26 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 						});
 				    }				    
 				}
-			},
-			{
-				xtype:"label",
-				text:""
+			},'->',
+			{				
+				text:"转为正式合同",
+				handler: function () {
+				    var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        Ext.Msg.confirm('转为正式合同','确定要转为正式合同吗？',function(btn){
+							if(btn == 'yes') {
+								Ext.Ajax.request({
+									url:'ajax/zlgl/ydgl.aspx?action=change',
+									success:function(){
+										Ext.Msg.alert('转为正式合同','转为正式合同成功！');
+										self.store.reload();
+									},
+									params:{id: r.get('id')}
+								});
+							}
+						});
+				    }
+				}
 			}
 		];
 		self.store.load({
