@@ -18,3 +18,4 @@ zpgl_lx_lb					合同中消费类型列表
 数据库修改:
 
 1. role_lb 修改 收款详细统计字段类型改为int
+2. zpgl 增加 "增浮期" 字段, datetime类型

@@ -83,6 +83,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             dict.Add("合同结束时间_年", dt2.Year);
             dict.Add("合同结束时间_月", dt2.Month);
             dict.Add("合同结束时间_日", dt2.Day);
+            dict.Add("客户编码", Common.getKhbh(dict["客户名称"].ToString()));
             string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl", "id", action=="add");
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");

@@ -194,15 +194,15 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 jo.Add("序号", no);
                 no++;
                 // 读取总表数据
-                r = DBHelper.GetRow(string.Format(@"select * from sq8szxlx.user_sf_zb 
-                            where 合同编号='{0}' and 日期年='{1}' and 日期月='{2}'",
-                    Request.Params["htbh"], i, j));
+                string sql = string.Format(@"select * from sq8szxlx.user_sf_zb where 合同编号='{0}' and 日期年='{1}' and 日期月='{2}' order by id desc",
+                    Request.Params["htbh"], i, j);
+                r = DBHelper.GetRow(sql);
                 jo.Add("年份月份", string.Format("{0}/{1}", i, j));
                 if (r != null)
                 {                    
                     jo.Add("id", r["id"]);
                     jo.Add("单据编号", r["单据编号"]);
-                    jo.Add("总费用", Math.Round(Convert.ToDecimal(r["总费用"]), 1));
+                    jo.Add("总费用", (r["总费用"] is DBNull)?0: Math.Round(Convert.ToDecimal(r["总费用"]), 1));
                     jo.Add("缴费金额", r["缴费金额"]);
                     jo.Add("余额", r["余额"]);
                     jo.Add("录入状态", r["录入状态"]);
@@ -210,7 +210,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 }
                 else
                 {
-                    //jo.Add("id", "-");
                     jo.Add("单据编号", "-");
                     jo.Add("总费用", "-");
                     jo.Add("缴费金额", "-");
@@ -246,7 +245,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             from sq8szxlx.user_sf_lb u left join sq8szxlx.zpgl_lx_lb z on 
             (u.合同编号=z.合同编号 and z.消费项目=u.收费项目 and z.消费类型=u.收费类型)
                 where u.单据编号='{0}' and not (u.收费项目 is null)", Request.Params["djbh"]);
-        Debug.WriteLine(string.Format("sql_lb={0}", sql_lb));
         ResultObject r = DBHelper.GetResult(sql_lb);
 
         // 本月消费总表
@@ -263,7 +261,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             // 查询上月收费项目
             string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 row["合同编号"], preNo, row["收费项目"]);
-            Debug.WriteLine(string.Format("sql_pre_lb={0}", sql_pre_lb));
             RowObject row2 = DBHelper.GetRow(sql_pre_lb);
             double syds = -1;
             if (row2 != null)
@@ -406,7 +403,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         JArray ja1 = JArray.Parse(Request.Form["data"]);
         string responseError = "{success: false}";
 
-        //JSONArray ja = JSONConvert.DeserializeArray(Request.Form["data"]);
         string sql1 = string.Format("select * from sq8szxlx.zpgl where id='{0}'", Request.Params["htid"]);
         RowObject zpgl = DBHelper.GetRow(sql1);
         if (zpgl == null)
@@ -423,6 +419,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         string khbm = zpgl["客户编码"].ToString();
         string khmc = zpgl["客户名称"].ToString();
         int xh = Convert.ToInt32(Request.Params["xh"]);
+        double zfy = 0;
         // 清除数据
         sql1 = string.Format("delete from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}'", htbh, xh);
         DBHelper.ExecuteSql(sql1);
@@ -433,7 +430,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         ResultObject zpgl_lx_lb = DBHelper.GetResult(sql2);
         for (int i = 0; i < zpgl_lx_lb.Count; i++)
         {
-            //JSONObject jo = (JSONObject)ja[i];                
             JToken jo = ja1[i]; // TODO: 要确定ja是否和查出数据一一对应
             string xflx = jo["消费类型"].ToString();
 
@@ -442,15 +438,15 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             // user_sf_lb
             Dictionary<string, object> nv2 = new Dictionary<string, object>();
             nv2.Add("合同编号", htbh);
-            nv2.Add("单据编号", htbh + Request.Params["xh"]);
+            nv2.Add("单据编号", htbh +"_"+ Request.Params["xh"]);
             nv2.Add("客户编号", khbm);
-            nv2.Add("日期年", Request.Params["ny"]);
-            nv2.Add("日期月", Request.Params["yy"]);
-            nv2.Add("日期日", Request.Params["ny"]);
+            nv2.Add("日期年", DateTime.Now.Year);
+            nv2.Add("日期月", DateTime.Now.Month);
+            nv2.Add("日期日", DateTime.Now.Day);
             nv2.Add("日期", DateTime.Now.ToShortDateString());
-            nv2.Add("收费项目", Request.Params["消费项目"]);
-            nv2.Add("收费类型", Request.Params["消费类型"]);
-            nv2.Add("值", Request.Params["值"]);
+            nv2.Add("收费项目", jo["消费项目"].ToString());
+            nv2.Add("收费类型", jo["消费类型"].ToString());
+            nv2.Add("值", jo["值"].ToString());
             nv2.Add("录入状态", (xflx == "动态" && jo["读数"].ToString() == "") ? "未录入" : "已录入");// TODO: 正确?
             nv2.Add("缴费状态", "未缴费");
 
@@ -485,18 +481,18 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 }
                 else if (xflx == "递增")
                 {
-                    fy = (Convert.ToDouble(item["费用"]) - (-zi) * (xh - 1)) * (1 - (-znj) / 100) * bl;
+                    fy = ( zi * (xh - 1)) * (1 - (-znj) / 100) * bl;
                 }
             }
             else
             {
                 if (xflx == "动态")
                 {
-                    fy = (ds - Convert.ToDouble(item["读数"])) * zi * (1 - (-znj) / 100) * (1 - (-sh) / 100);
+                    fy = (ds - ds_sy) * zi * (1 - (-znj) / 100) * (1 - (-sh) / 100);
                 }
                 else if (xflx == "单价")
                 {
-                    fy = Convert.ToDouble(item["读数"]) * zi * (1 - (-znj) / 100);
+                    fy = ds * zi * (1 - (-znj) / 100);
                 }
                 else if (xflx == "固定")
                 {
@@ -504,43 +500,46 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 }
                 else if (xflx == "递增")
                 {
-                    fy = (Convert.ToDouble(item["费用"]) - (-zi)) * (xh - 1) * (1 - (-znj) / 100);
+                    fy = ((zi)) * (xh - 1) * (1 - (-znj) / 100);
                 }
             }
+            zfy += fy;
             nv2.Add("费用", fy == -1 ? '-' : fy);            
             nv2.Add("金额", 0);
             string sql4 = SqlBuilder.NameValueToSql(nv2, "sq8szxlx.user_sf_lb", "id", true);
-            DBHelper.ExecuteSql(sql4);
-            // user_sf_zb
-            int zfy = Convert.ToInt32(item["费用"]); // TODO:
-            Dictionary<string, object> nv3 = new Dictionary<string, object>();
-            nv3.Add("合同编号", htbh);
-            nv3.Add("单据编号", htbh + Request.Params["xh"]);
-            nv3.Add("客户编号", khbm);
-            nv3.Add("日期年", Request.Params["ny"]);
-            nv3.Add("日期月", Request.Params["yy"]);
-            nv3.Add("日期日", Request.Params["ny"]);
-            nv3.Add("日期", DateTime.Now.ToShortDateString());
-            nv3.Add("总费用", zfy);
-            nv3.Add("缴费金额", 0);
-            // 查询上月收费项目
-            sql4 = string.Format("select * from user_sf_zb where 单据编号='{0}_{1}'", htbh, int.Parse(Request.Params["xh"]) - 1);
-            RowObject r4 = DBHelper.GetRow(sql4);
-            nv3.Add("余额", r4["余额"]);
-            nv3.Add("录入状态", "已录入");
-            nv3.Add("缴费状态", "未缴费");
-            string sql5 = SqlBuilder.NameValueToSql(nv3, "sq8szxlx.user_sf_zb", "id", true);
-            DBHelper.ExecuteSql(sql5);
+            Debug.WriteLine(sql4);
+            DBHelper.ExecuteSql(sql4);            
         }
+
+        // user_sf_zb        
+        Dictionary<string, object> nv3 = new Dictionary<string, object>();
+        nv3.Add("合同编号", htbh);
+        nv3.Add("单据编号", htbh + "_" + Request.Params["xh"]);
+        nv3.Add("客户编号", khbm);
+        nv3.Add("日期年", DateTime.Now.Year);
+        nv3.Add("日期月", DateTime.Now.Month);
+        nv3.Add("日期日", DateTime.Now.Day);
+        nv3.Add("日期", DateTime.Now.ToShortDateString());
+        nv3.Add("总费用", zfy);
+        nv3.Add("缴费金额", 0);
+        // 查询上月收费项目
+        string sql5 = string.Format("select * from sq8szxlx.user_sf_zb where 单据编号='{0}_{1}'", htbh, int.Parse(Request.Params["xh"]) - 1);
+        RowObject user_sf_zb = DBHelper.GetRow(sql5);
+        nv3.Add("余额", user_sf_zb["余额"]);
+        nv3.Add("录入状态", "已录入");
+        nv3.Add("缴费状态", "未缴费");
+        string sql6 = SqlBuilder.NameValueToSql(nv3, "sq8szxlx.user_sf_zb", "id", true);
+        Debug.WriteLine(sql6);
+        DBHelper.ExecuteSql(sql6);
 
         Response.Write("{success:true}");
     }
 
     private void jf_tj()
     {
-        int jfje = int.Parse(Request.Params["缴费金额"]);
-        int zfy = int.Parse(Request.Params["总费用"]);
-        int ye = int.Parse(Request.Params["余额"]);
+        double jfje = double.Parse(Request.Params["缴费金额"]);
+        double zfy = double.Parse(Request.Params["总费用"]);
+        double ye = int.Parse(Request.Params["余额"]);
         int id = int.Parse(Request.Params["zbid"]);
         if (jfje - zfy - ye < 0)
         {
