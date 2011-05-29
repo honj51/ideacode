@@ -37,7 +37,7 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			width:100
 		},
 		{
-			header:"编号",
+			header:"房号",
 			sortable:true,
 			resizable:true,
 			dataIndex:"房号",
