@@ -26,7 +26,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             
         if (action == "list")
         {
-            list();
+            list2();
         }
         else if (action == "list_zb")
         {
@@ -60,7 +60,57 @@ public partial class SouFei_sjlr : System.Web.UI.Page
 
     private void list2()
     {
+        // 1. 拼Sql子语句
+        string select = string.Format("select top {0} * ", Request["limit"]);
+        string from = " from sq8szxlx.zpgl ";
+        string where = " where 合同开始时间< getdate() and 合同结束时间>getdate() ";
+        if (Common.hasValue(Request.Params["mc"]))
+        {
+            where += string.Format(" and 客户名称 like '%{0}%'", Request.Params["mc"]);
+        }
+        if (Common.hasValue(Request.Params["gyy"]))
+        {
+            where += string.Format(" and 所属工业园='{0}'", Request.Params["gyy"]);
+        }
+        if (Common.hasValue(Request.Params["gyy_lx"]))
+        {
+            where += string.Format(" and 房产类型='{0}'", Request.Params["gyy_lx"]);
+        }
+        if (Common.hasValue(Request.Params["hm"]))
+        {
+            where += string.Format(" and 编码 like '%{0}%'", Request.Params["hm"]);
+        }
+        // 2. 获取总数
+        string count = DBHelper.GetVar("select count(*) " + from + where).ToString();
+        if (count == null) return;
 
+        // 3. 获取数据
+        string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2}) order by 所属工业园,房产类型,所属房产 asc",
+            select, from, where, Request.Params["start"]);
+        // 4. 拼装结果
+        ResultObject ro = DBHelper.GetResult(sql);
+        foreach (RowObject row in ro)
+        {
+            row["房产类型"] = row["所属房产"];
+            row["合同结束时间"] = row["合同结束时间"] is DBNull ? "未签订合同" : row["合同结束时间"];
+            row["录入月份"] = Request.Form["nian"] + "/" + Request.Form["yue"];
+
+            sql = string.Format("select * from sq8szxlx.user_sf_zb where 合同编号='{0}' and 日期年='{1}' and 日期月='{2}'",row["编码"], Request.Form["nian"], Request.Form["yue"]);
+            RowObject row2 = DBHelper.GetRow(sql);
+            if (row2 != null)
+            {
+                row["录入状态"] = "已录入";
+            }
+            else
+            {
+                row["录入状态"] = "未录入";
+            }            
+        }
+        string data = ro.ToJson();
+        
+        string result = string.Format("success:true,totalProperty:{0},data:", count, sql);
+        result = "{" + result + data + "}";
+        Response.Write(result);         
     }
 
     private void list()
