@@ -177,11 +177,11 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 value: new Date()					                           
             },
             {
-                xtype: 'textfield',
                 fieldLabel: '备注',
                 name: '备注',
                 width:226,
-                height:60
+                height:63,
+                xtype: 'textarea'		
             }
            
             ],
