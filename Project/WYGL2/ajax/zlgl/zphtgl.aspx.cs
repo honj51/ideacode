@@ -153,9 +153,9 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 jo.Add("倍率", (r3 == null) ? item["倍率"] : r3["倍率"]);
                 jo.Add("损耗", (r3 == null) ? item["损耗"] : r3["损耗"]);
                 jo.Add("滞纳金", (r3 == null) ? item["滞纳金"] : r3["滞纳金"]);
-                jo.Add("前期读数", item["消费类型"] == "动态" ? r4["读数"] : "-");
+                jo.Add("前期读数", item["消费类型"].ToString() == "动态" ? r4["读数"] : "-");
                 jo.Add("说明", (r3 == null) ? item["说明"] : r3["说明"]);
-                jo.Add("读数导入", (r4 != null && r4["录入状态"] == "已录入") ? "√" : "×");
+                jo.Add("读数导入", (r4 != null && r4["录入状态"].ToString() == "已录入") ? "√" : "×");
                 jo.Add("项目导入", (r4 != null && r4["值"] != "") ? "√" : "×");
                 i++;
                 ja.Add(jo);
@@ -208,7 +208,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 nv1.Add("消费项目", jo["消费项目"]);
                 nv1.Add("消费类型", jo["消费类型"]);
                 nv1.Add("值", jo["值"]);
-                nv1.Add("损耗", jo["消费类型"] == "动态" ? jo["损耗"] : 0);
+                nv1.Add("损耗", jo["消费类型"].ToString() == "动态" ? jo["损耗"] : 0);
                 nv1.Add("倍率", jo["倍率"]);
                 nv1.Add("滞纳金", jo["滞纳金"]);
                 nv1.Add("说明", jo["说明"]);
@@ -226,10 +226,14 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 nv2.Add("收费项目", jo["消费项目"]);
                 nv2.Add("收费类型", jo["消费类型"]);
                 nv2.Add("值", jo["值"]);
-                nv2.Add("录入状态", (jo["消费类型"] == "动态" && jo["读数"] == "") ? "未录入" : "已录入");
+                nv2.Add("录入状态", (jo["消费类型"].ToString() == "动态" && jo["前期读数"].ToString() == "-") ? "未录入" : "已录入");
                 nv2.Add("缴费状态", "不要交费");
-                nv2.Add("损耗", jo["消费类型"] == "动态" ? jo["损耗"] : 0);
-                nv2.Add("读数", jo["消费类型"] == "动态" ? jo["读数"] : 0);
+                nv2.Add("损耗", jo["消费类型"].ToString() == "动态" ? jo["损耗"] : 0);
+                if (jo["消费类型"].ToString() == "动态" && jo["前期读数"].ToString() != "-")
+                    nv2.Add("读数", jo["前期读数"]);
+                else
+                    nv2.Add("读数", 0);
+                
                 nv2.Add("倍率", jo["倍率"]);
                 nv2.Add("滞纳金", jo["滞纳金"]);
                 nv2.Add("费用",0);
