@@ -63,7 +63,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			sortable:true,
 			resizable:true,
 			dataIndex:"操作时间",
-			width:100,
+			width:150,
 			renderer: Ext.Hudongsoft.util.Format.dateTimeRenderer()
 		}
 	],
@@ -125,14 +125,17 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
                     fieldLabel: '预定时间',
                     name: '合同开始时间',
                     width:226,
-                    xtype: 'datefield'				                           
+                    xtype: 'datefield',
+                    format:'Y-m-d'				                           
                 },
                 {
                     fieldLabel: '操作时间',
                     name: '操作时间',
                     width:226,
                     disabled:true,
-                    xtype: 'textfield'				                           
+                    editable:false,
+                    xtype: 'datefield',
+                    format:'Y-m-d'				                           
                 },
                 {
                     fieldLabel: '备注',

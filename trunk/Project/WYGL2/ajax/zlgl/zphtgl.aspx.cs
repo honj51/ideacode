@@ -77,8 +77,6 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
 
             DateTime dt1 = DateTime.Parse(dict["合同开始时间"].ToString());
             DateTime dt2 = DateTime.Parse(dict["合同结束时间"].ToString());
-            dict.Remove("合同开始时间");
-            dict.Remove("合同结束时间");
             dict.Add("合同开始时间_年", dt1.Year);
             dict.Add("合同开始时间_月", dt1.Month);
             dict.Add("合同开始时间_日", dt1.Day);
