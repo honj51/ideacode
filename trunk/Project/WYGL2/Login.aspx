@@ -28,7 +28,7 @@
 		   	    <div style="float:right;margin:20px 80px 20px 0px;">
 			    	<input type="image" src="images/deng.png" > 
 		   	    </div><br /><br /><br />		   		
-		   	    <div style="float:right;width:200px;" id="error">
+		   	    <div style="float:right;width:200px;margin-right:50px;" id="error">
 		   	        <% 
                         switch (Request.Params["error"])
                         {
