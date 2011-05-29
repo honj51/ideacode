@@ -59,10 +59,13 @@ Ext.Hudongsoft.util.Format = function(){
             return function(v, metaData, record, rowIndex, colIndex, store){
                 var dt = record.data.录入状态;
                 if (dt == "已录入") {
-                    return "<span style='color:red'>已录入</span>";
+                    return "<span style='color:green'>已录入</span>";
                 }
                 else if(dt == "未录入"){
-                    return "<span style='color:green'>未录入</span>";
+                    return "<span style='color:red'>未录入</span>";
+                }
+                else if(dt == "不能录入"){
+                    return "<span style='color:black'>不能录入</span>";
                 }
             }
         },
@@ -71,10 +74,13 @@ Ext.Hudongsoft.util.Format = function(){
             return function(v, metaData, record, rowIndex, colIndex, store){
                 var dt = record.data.缴费状态;
                 if (dt == "已缴费") {
-                    return "<span style='color:red'>已缴费</span>";
+                    return "<span style='color:green'>已缴费</span>";
                 }
                 else if(dt == "未缴费"){
-                    return "<span style='color:green'>未缴费</span>";
+                    return "<span style='color:red'>未缴费</span>";
+                }
+                else if(dt == "不能缴费"){
+                    return "<span style='color:black'>不能缴费</span>";
                 }                
                 else if(dt == "不要交费"){
                     return "<span style='color:black'>不要交费</span>";

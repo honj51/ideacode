@@ -247,12 +247,13 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		{
 			header:"录入状态",
 			dataIndex:"录入状态",
-			//renderer: Ext.Hudongsoft.util.Format.lrztRenderer(),
+			renderer: Ext.Hudongsoft.util.Format.lrztRenderer(),
 			width:100
 		},
 		{
 			header:"缴费状态",
 			dataIndex:"缴费状态",
+			renderer: Ext.Hudongsoft.util.Format.jfztRenderer(),
 			width:100
 		}
 	],
