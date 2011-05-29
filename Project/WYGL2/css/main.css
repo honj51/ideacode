@@ -35,6 +35,11 @@
 	background-image: url(../images/icon/sheZhi.png) !important;
 }
 
+.icon-jiSuan {
+	background-image: url(../images/icon/jiSuan.png) !important;
+}
+
+
 .x-tree-node-leaf .x-tree-node-icon 
 {
     background-image: url(../images/icon/1_1.gif) !important;    

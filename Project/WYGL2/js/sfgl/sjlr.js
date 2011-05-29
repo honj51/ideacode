@@ -261,6 +261,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    var self = this;
 	    var btnXQ = new Ext.Button({
 	        text: '查看详情',
+	        iconCls: 'icon-list',
 	        disabled: true,
 		    handler: function () {
 		        var r = self.getSelectionModel().getSelected();
@@ -281,6 +282,8 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });
 	    var btnLR = new Ext.Button({
 	        text: self.jfgl?'缴费':'录入',
+	        iconCls: 'icon-jiSuan',
+	        width:90,
 	        disabled: true,
 		    handler: function () {
 		        // 录入
