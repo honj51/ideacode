@@ -338,6 +338,8 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			            colModel: colModel,
 			            tbar: ['注意:灰色项为不可编辑项。','->',{
 			                text: '提交',
+			                width:80,
+			                iconCls: 'icon-wanChen',
 			                handler: function () {
 			                    var data = [];
 			                    xf_store.each(function(record){

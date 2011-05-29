@@ -39,6 +39,9 @@
 	background-image: url(../images/icon/jiSuan.png) !important;
 }
 
+.icon-wanChen {
+	background-image: url(../images/icon/wanChen.png) !important;
+}
 
 .x-tree-node-leaf .x-tree-node-icon 
 {
