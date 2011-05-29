@@ -186,20 +186,17 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
 	                p[self.valueField] = toAppend;
 	                var r = new Ext.data.Record(p); 
 	                if (store.findExact(self.valueField,toAppend) == -1) {
-	                    store.add(r);
+	                    store.insert(0,r);
 	                }				    
 	            }
 	        }
 	        if (self.selectFirst) {
-	            //self.setValue(record[0].data.value);
+	            var firstValue = store.getAt(0).data[self.valueField];
+	            self.setValue(firstValue);
 	        }
 	    });
 	    self.on('select', function (combo, record,index) {
 	        self.lastValue = combo.value;
-
-	        if(!self.nextCombox) return;
-	        // 刷新下级关联框
-	        //self.reloadNextCombox(combo.value);
 	    });
 	    if (!self.preCombox) { // 没有上一个关联框
 	        self.store.load();
