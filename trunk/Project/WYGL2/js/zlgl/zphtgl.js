@@ -76,7 +76,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			header:"增浮期",
 			dataIndex:"增浮期",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			width:150		
+			width:100		
 		},
 		{
 			header:"合同状态",
@@ -214,7 +214,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
         
 	    var w = new Ext.Window({
 	        title: '添加合同',				        
-            width:400,
+            width:390,
 	        items:[
 	            form
 	        ]

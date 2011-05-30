@@ -159,11 +159,14 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
     reloadNextCombox: function (v) {
         var self = this;
         var p = {};
-        var kfs = self.nextCombox.keyField?self.nextCombox.keyField:[self.nextCombox.valueField];
+        var f = self.nextCombox.keyField? self.nextCombox.keyField: self.nextCombox.valueField;
+        if (!Ext.isArray(f)) f = [f];
+        
+        //var kfs = Ext.isArray(self.nextCombox.keyField)?self.nextCombox.keyField:[self.nextCombox.valueField];
         var c = self;
-        for(var k in kfs) {
+        for (i=0;i<=f.length;i++) {
             if (!c) break;
-            p[kfs[k]] = c.value;
+            p[f[i]] = c.value;
             c = c.preCombox;
         }
         self.nextCombox.store.load({
@@ -171,6 +174,8 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
         });
     },
 	initComponent: function(){
+	    Ext.LinkCombox.superclass.initComponent.call(this);
+
 	    var self = this;
 	    if (self.nextCombox) {
 	        self.nextCombox.preCombox = this;
@@ -207,7 +212,6 @@ Ext.LinkCombox = Ext.extend(Ext.form.ComboBox,{
 	    if (!self.preCombox) { // 没有上一个关联框
 	        self.store.load();
 	    }	    
-	    Ext.LinkCombox.superclass.initComponent.call(this);
 	}
 });
 
