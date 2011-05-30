@@ -42,13 +42,13 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			header:"合同开始时间",
 			dataIndex:"合同开始时间",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			width:100,
+			width:100
 		},
 		{
 			header:"合同结束时间",
 			dataIndex:"合同结束时间",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			width:100,
+			width:100
 		},
 		{
 			header:"消费项目",
@@ -58,7 +58,7 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		{
 			header:"月份",
 			dataIndex:"月份",
-			width:50,
+			width:50
 		},
 		{
 			header:"费用",
@@ -130,8 +130,7 @@ Ext.Hudongsoft.xxfytjlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		        nian:nian.getValue(),
 			    yue:yue.getValue(),
 		        start:0,
-		        limit:20,
-		        
+		        limit:20
 		    }
 		});
 		Ext.Hudongsoft.xxfytjlbGrid.superclass.initComponent.call(this);
