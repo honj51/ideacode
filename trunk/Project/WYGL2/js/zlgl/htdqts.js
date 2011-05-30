@@ -73,7 +73,7 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			resizable:true,
 			dataIndex:"合同结束时间",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			width:100,
+			width:100
 		},
 		{
 			header:"合同状态",
