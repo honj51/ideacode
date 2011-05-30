@@ -3,8 +3,11 @@ Ext.namespace("Ext.Hudongsoft.util.Format");
 Ext.Hudongsoft.util.Format = function(){
 	return {
 		dateRenderer : function (format){
-			 return function(v){
-                if(v==null) return v;
+			 return function(v, metaData, record, rowIndex, colIndex, store){
+                
+                if(v==null  || v=='') {
+                    return '';
+                }
                 
                 var f = format?format: 'yyyy-MM-dd';
                 if (typeof(v) == 'string') {
