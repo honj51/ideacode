@@ -26,6 +26,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             string select = string.Format(@"select top {0} * ", Request["limit"]);
             string from = " from sq8szxlx.zpgl ";
             string where = " where 合同结束时间_年 is not null ";
+            string order = " order by 所属工业园,房产类型,所属房产 asc ";
             if (Common.hasValue(Request.Params["iFieldName"]))
             {
                 where += string.Format(" and 客户名称 like '%{0}%' ", Request.Params["iFieldName"]);
@@ -47,9 +48,8 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             string count = DBHelper.GetVar("select count(*) " + from + where).ToString();
             if (count == null) return;
 
-            string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2})",
-                select, from, where, Request.Params["start"]);
-            sql += " order by id desc ";
+            string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2} {4}) {4}",
+                select, from, where, Request.Params["start"], order);            
             // 4. 拼装结果
             ResultObject ro = DBHelper.GetResult(sql);
             foreach (RowObject row in ro)
