@@ -64,6 +64,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         string select = string.Format("select top {0} * ", Request["limit"]);
         string from = " from sq8szxlx.zpgl ";
         string where = " where 合同开始时间< getdate() and 合同结束时间>getdate() ";
+        string order = " order by 所属工业园,房产类型,所属房产 asc ";
         if (Common.hasValue(Request.Params["mc"]))
         {
             where += string.Format(" and 客户名称 like '%{0}%'", Request.Params["mc"]);
@@ -85,8 +86,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         if (count == null) return;
 
         // 3. 获取数据
-        string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2}) order by 所属工业园,房产类型,所属房产 asc",
-            select, from, where, Request.Params["start"]);
+        string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2} {4}) {4}",
+            select, from, where, Request.Params["start"], order);
         // 4. 拼装结果
         ResultObject ro = DBHelper.GetResult(sql);
         foreach (RowObject row in ro)
@@ -120,48 +121,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         string result = string.Format("success:true,totalProperty:{0},data:", count, sql);
         result = "{" + result + data + "}";
         Response.Write(result);         
-    }
-
-    private void list()
-    {
-        // 1. 拼Sql子语句
-        string select = string.Format(@"select top {0} z.*,uz.联系电话,uz.联系地址,u.录入状态,u.缴费状态,(u.日期年+'/'+u.日期月) as 录入月份", Request["limit"]);
-        string from = " from sq8szxlx.user_sf_zb u left join sq8szxlx.zpgl z on z.编码=u.合同编号 left join sq8szxlx.user_zrr uz on u.客户编号=uz.编码 ";
-        string where = string.Format(@"where u.日期年='{0}' and u.日期月='{1}' ", Request.Form["nian"], Request.Form["yue"]);
-        if (Common.hasValue(Request.Params["mc"]))
-        {
-            where += string.Format(" and z.客户名称 like '%{0}%'", Request.Params["mc"]);
-        }
-        if (Common.hasValue(Request.Params["gyy"]))
-        {
-            where += string.Format(" and z.所属工业园='{0}'", Request.Params["gyy"]);
-        }
-        if (Common.hasValue(Request.Params["gyy_lx"]))
-        {
-            where += string.Format(" and z.房产类型='{0}'", Request.Params["gyy_lx"]);
-        }
-        if (Common.hasValue(Request.Params["hm"]))
-        {
-            where += string.Format(" and z.编码 like '%{0}%'", Request.Params["hm"]);
-        }
-        // 2. 获取总数
-        string count = DBHelper.GetVar("select count(*) " + from + where).ToString();
-        if (count == null) return;
-        // 3. 获取数据
-        //string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2}) order by u.日期年,u.日期月,日期日",
-        string sql = string.Format(@"{0} {1} {2} and u.id not in (select top {3} u.id {1} {2}) order by z.所属工业园,z.房产类型,z.所属房产 asc",        
-            select, from, where, Request.Params["start"]);
-        // 4. 拼装结果
-        ResultObject ro = DBHelper.GetResult(sql);
-        foreach (RowObject row in ro)
-        {
-            
-        }
-        string data = ro.ToJson();
-        
-        string result = string.Format("success:true,totalProperty:{0},data:", count, sql);
-        result = "{" + result + data + "}";
-        Response.Write(result);
     }
 
     private void list_zb()
