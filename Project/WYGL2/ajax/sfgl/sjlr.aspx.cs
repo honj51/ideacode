@@ -360,6 +360,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
     private void lr_tj()
     {
         JArray ja1 = JArray.Parse(Request.Form["data"]);
+        string year = Request.Params["year"];
+        string month = Request.Params["month"];
         string responseError = "{success: false}";
 
         string sql1 = string.Format("select * from sq8szxlx.zpgl where id='{0}'", Request.Params["htid"]);
@@ -399,8 +401,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             nv2.Add("合同编号", htbh);
             nv2.Add("单据编号", htbh +"_"+ Request.Params["xh"]);
             nv2.Add("客户编号", khbm);
-            nv2.Add("日期年", DateTime.Now.Year);
-            nv2.Add("日期月", DateTime.Now.Month);
+            nv2.Add("日期年", year);
+            nv2.Add("日期月", month);
             nv2.Add("日期日", DateTime.Now.Day);
             nv2.Add("日期", DateTime.Now.ToShortDateString());
             nv2.Add("收费项目", jo["消费项目"].ToString());
@@ -475,8 +477,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         nv3.Add("合同编号", htbh);
         nv3.Add("单据编号", htbh + "_" + Request.Params["xh"]);
         nv3.Add("客户编号", khbm);
-        nv3.Add("日期年", DateTime.Now.Year);
-        nv3.Add("日期月", DateTime.Now.Month);
+        nv3.Add("日期年", year);
+        nv3.Add("日期月", month);
         nv3.Add("日期日", DateTime.Now.Day);
         nv3.Add("日期", DateTime.Now.ToShortDateString());
         nv3.Add("总费用", zfy);
@@ -498,15 +500,16 @@ public partial class SouFei_sjlr : System.Web.UI.Page
     {
         double jfje = double.Parse(Request.Params["缴费金额"]);
         double zfy = double.Parse(Request.Params["总费用"]);
-        double ye = int.Parse(Request.Params["余额"]);
+        double syye = int.Parse(Request.Params["上次余额"]);
         int id = int.Parse(Request.Params["zbid"]);
-        if (jfje - zfy - ye < 0)
+        double ye = jfje - (zfy - syye);
+        if (ye < 0)
         {
             Response.Write("{success:false, errorMessage:'缴费金额不对'}");
             Response.End();
             return;
         }
-        string sql = string.Format("update sq8szxlx.user_sf_zb set 缴费金额={0},余额={1},缴费状态='已缴费' where id={2}", jfje, jfje - zfy - ye, id);
+        string sql = string.Format("update sq8szxlx.user_sf_zb set 缴费金额={0},余额={1},缴费状态='已缴费' where id={2}", jfje, ye, id);
         DBHelper.ExecuteSql(sql);
         Response.Write("{success: true}");
     }

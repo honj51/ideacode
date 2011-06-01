@@ -350,6 +350,8 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                         params: {
 			                            htid: self.zbdata.id, // 合同id
 			                            xh: r.data.序号,
+			                            year: r.data.年份月份.split('/')[0],
+			                            month: r.data.年份月份.split('/')[1],
 			                            data: Ext.encode(data)
 			                         },
 			                         success: function () {
@@ -431,12 +433,18 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                     zbid: r.data.id,
                                                     缴费金额: sf_textfield.getValue(),
                                                     总费用: obj.总金额,
-                                                    余额: obj.上次结余
+                                                    上次余额: obj.上次结余
                                                  },
-                                                 success: function () {
-                                                    Ext.Msg.alert('提交','缴费成功！');
-                                                    win.close();
-                                                    self.store.reload();
+                                                 success: function (response, opts) {
+                                                    var obj = Ext.decode(response.responseText);
+                                                    if (obj.success) {
+                                                        Ext.Msg.alert('提交','缴费成功！');
+                                                        self.store.reload();
+                                                        win.close();
+                                                    }
+                                                    else {
+                                                        Ext.Msg.alert('提交失败', obj.errorMessage);                                                        
+                                                    }
                                                  }
                                             });			                    
                                         }
@@ -470,8 +478,13 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	            if (r.data.缴费状态=='未缴费') btnLR.setDisabled(false);
 	        }	        
 	        else // 录入
-	        {
-	            if ((r.data.录入状态=='已录入') && (r.data.缴费状态!='不要交费')) btnXQ.setDisabled(false);
+	        {	       
+	            btnLR.setText('录入');     
+	            if ((r.data.录入状态=='已录入') && (r.data.缴费状态!='不要交费')) {
+	                btnXQ.setDisabled(false);
+	                btnLR.setDisabled(false);
+	                btnLR.setText('修改录入');
+                }
 	            if (r.data.录入状态=='未录入') btnLR.setDisabled(false);
 	        }	            
 	    });

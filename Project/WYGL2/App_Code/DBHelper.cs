@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Diagnostics;
 
 // 单行数据
 public class RowObject : Dictionary<string, object>
@@ -223,6 +224,7 @@ public static class DBHelper
     #region
     private static SqlDataReader GetReader(String sql)
     {
+        //Debug.WriteLine("GetReader: " + sql);
 
         SqlConnection conn = DBHelper.Getconn();
         conn.Open();
@@ -253,6 +255,7 @@ public static class DBHelper
     /// <returns>影响的记录数</returns>
     public static int ExecuteSql(string SQLString, params SqlParameter[] cmdParms)
     {
+        Debug.WriteLine("ExecuteSql: " + SQLString);
         using (SqlConnection connection = DBHelper.Getconn())
         {
             using (SqlCommand cmd = new SqlCommand())

@@ -30,6 +30,13 @@ function print1() {
     $("#title").after("<span>"+$("#op1").html()+"</span>");
     print();
 }
+
+function save_remark() {    
+    $.post('',{action:'save_remark',remark:$("#bz").val()},function () {
+        alert('保存成功！');
+    }); 
+}
+
 var makrup = "<tr>"+
       "<td height='30' align='center' valign='middle'>${序号}</td>"+
       "<td height='30' align='center' valign='middle'>${收费项目}</td>"+
@@ -136,8 +143,8 @@ function update() {
         </tr>
         <tr>
             <td colspan="12" >
-            备注：<textarea id="bz" style="width:625px;height:50px;"></textarea>
-            
+            备注：<textarea id="bz" cols="80" rows="3" ><%=beizu%></textarea>
+            <input type="button"  onclick="save_remark()" value="保存备注"/>
             </td>
         </tr>
     </table>
