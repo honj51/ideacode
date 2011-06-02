@@ -19,3 +19,21 @@ zpgl_lx_lb					合同中消费类型列表
 
 1. role_lb 修改 收款详细统计字段类型改为int
 2. zpgl 增加 "增浮期" 字段, datetime类型
+3. 增加表 config
+
+USE [sq8szxlx]
+GO
+/****** 对象:  Table [dbo].[config]    脚本日期: 06/02/2011 13:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[config](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Value] [nvarchar](50) NULL,
+ CONSTRAINT [PK_config] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
