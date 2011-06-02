@@ -7,7 +7,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		root : 'data',
 		totalProperty : 'totalProperty',
 		fields:[
-		    'id','编码','客户名称','所属工业园','房产类型','所属房产','合同开始时间','合同结束时间','增浮期','合同状态','操作时间','备注'
+		    'id','编码','客户名称','所属工业园','房产类型','所属房产','合同开始时间','合同结束时间','增浮期','合同状态','操作时间','备注','客户编码'
 		]	
 	}),
 	width:792,
@@ -213,7 +213,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
         }
         
 	    var w = new Ext.Window({
-	        title: '添加合同',				        
+	        title: add?"新增合同":"修改合同",				        
             width:390,
 	        items:[
 	            form
@@ -296,8 +296,8 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				iconCls: 'icon-xieGenJin',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
-				    if (!r) return;
-		            var fs = ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明','读数导入','项目导入'];
+				    if (!r) return;			    
+		            var fs = ['id','编号','消费项目','消费类型','值','倍率','损耗','滞纳金','前期读数','说明','读数导入','项目导入','合同编号'];
 		            var xf_store = new Ext.data.JsonStore({
 		                url: 'ajax/zlgl/zphtgl.aspx?action=edit_gdxfx&id='+r.data.id,
 	                    root : 'data',
@@ -339,31 +339,69 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
                             }
                             return Ext.grid.ColumnModel.prototype.isCellEditable.call(this, col, row);
                         }
-		            });		            
+		            });
+	            
 		            
 				    var grid = new Ext.grid.EditorGridPanel({
 			            store: xf_store,
+			            id: 'xxxxxxxx',
 			            colModel: colModel,
-			            tbar: ['注意:灰色项为不可编辑项。','->',{
-			                text: '导入到合同',
-			                handler: function () {
-			                    var data = [];
-			                    xf_store.each(function(record){
-			                        data.push(record.data);
-			                    });
-			                    Ext.Ajax.request({
-			                         url: "ajax/zlgl/zphtgl.aspx?action=import_gdxfx", 
-			                         params: {
-			                            id: r.data.id,
-			                            data: Ext.encode(data)
-			                         },
-			                         success: function () {
-			                            Ext.Msg.alert('固定消费项导入','数据导入成功！');
-			                            win.close();
-			                         }
-			                    });			                    
-			                }
-			            }  
+			            tbar: ['注意:灰色项为不可编辑项。',
+			                {
+			                    text:'新增消费项',
+			                    iconCls: 'icon-group-create',
+			                    handler:function(){			                     
+	                                var r = self.getSelectionModel().getSelected();
+	                                console.log(r);
+	                                addxfx(null,xf_store,r);
+			                       
+			                        
+			                    }
+			                },
+			                {
+			                    text:'删除消费项',
+			                    iconCls: 'icon-group-delete',
+			                    handler:function () {
+			                        console.log(grid.getSelectionModel());
+			                        var r = grid.getSelectionModel().getSelectedCell();
+			                        if(r) {
+			                            var id = grid.store.getAt(r[0]).data.id;
+			                            Ext.Msg.confirm('删除消费项','确定要删除选中的消费项吗？',function(btn){
+							                if(btn == 'yes') {
+								                Ext.Ajax.request({
+									                url:'ajax/zlgl/zphtgl.aspx?action=delete_xfx',
+									                success:function(){
+										                Ext.Msg.alert('删除消费项','消费项删除成功！');
+										                grid.store.reload();
+									                },
+									                params:{id:id}
+								                });
+							                }
+						                });
+			                        }
+			                    }
+			                },
+			                 '->',
+			                {
+			                    text: '导入到合同',
+			                    handler: function () {
+			                        var data = [];
+			                        xf_store.each(function(record){
+			                            data.push(record.data);
+			                        });
+			                        Ext.Ajax.request({
+			                             url: "ajax/zlgl/zphtgl.aspx?action=import_gdxfx", 
+			                             params: {
+			                                id: r.data.id,
+			                                data: Ext.encode(data)
+			                             },
+			                             success: function () {
+			                                Ext.Msg.alert('固定消费项导入','数据导入成功！');
+			                                win.close();
+			                             }
+			                        });			                    
+			                    }
+			                }  
 			            ]
             		});
             		var win = new Ext.Window({

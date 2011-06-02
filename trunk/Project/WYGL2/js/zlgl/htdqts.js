@@ -86,9 +86,10 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 		{
 		    header:"增浮期提示",
 		    sortable:true,
+		    resizable:true,
 		    dataIndex:"增浮期" ,
-		    renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-		    value: new Date()
+		    //value: new Date(),
+		    renderer: Ext.Hudongsoft.util.Format.dateRenderer()		    
 		}
 	],
 	initComponent: function(){
