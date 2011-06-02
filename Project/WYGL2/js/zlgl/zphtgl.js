@@ -352,7 +352,6 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                    iconCls: 'icon-group-create',
 			                    handler:function(){			                     
 	                                var r = self.getSelectionModel().getSelected();
-	                                console.log(r);
 	                                addxfx(null,xf_store,r);
 			                       
 			                        
