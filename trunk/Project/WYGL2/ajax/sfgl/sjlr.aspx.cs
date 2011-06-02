@@ -185,8 +185,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                     }
                     else
                     {
-                        jo.Add("录入状态", "-");
-                        jo.Add("缴费状态", "-");
+                        jo.Add("录入状态", "未录入");
+                        jo.Add("缴费状态", "未缴费");
                     }
                 }
                 ja.Add(jo);
