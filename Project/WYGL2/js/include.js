@@ -368,22 +368,22 @@ function addxfx (d,fcxfStore,r){
             {
                 xtype: 'hidden',
                 name: '所属房产',
-                value:r.data.所属房产   
+                value:d?'':r.data.所属房产   
             },
             {
                 xtype: 'hidden',
                 name: '客户名称',
-                value:r.data.客户名称   
+                value:d?'':r.data.客户名称   
             },
             {
                 xtype: 'hidden',
                 name: '合同编号',
-                value:r.data.编码   
+                value:d?'':r.data.编码   
             },
             {
                 xtype: 'hidden',
                 name: '客户编码',
-                value:r.data.客户编码   
+                value:d?'':r.data.客户编码   
             },
             {
                 fieldLabel:'编号',
