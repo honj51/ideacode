@@ -156,14 +156,6 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
                     xtype: 'textfield'				                           
                 },
                 jiGuan,
-    //            {			
-    //				xtype:"combo",
-    //				triggerAction:"all",
-    //				name: '籍贯',
-    //				fieldLabel:"籍贯",
-    //				width:226,
-    //			
-    //            },
                 {
                     fieldLabel: '联系电话',
                     name: '联系电话',
@@ -235,7 +227,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
     },
     
     //新增合同
-    addhtWindow: function () { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
+    addhtWindow: function (data) { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
 	    var self = this;
         var gyy_lx = new Ext.LinkCombox({
             width:226,
@@ -261,12 +253,11 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        name:'所属工业园'
 	    });	    
 	    var kehu = new Ext.KehuCombox({
-	        width:226,            
-            name:'客户名称',
+	        width:226,        
+            name:'名称',
             fieldLabel:'客户名称'
 	    });
-	    
-
+        
 	    var form = new Ext.FormPanel({	
             padding: 10,
             items: [{
@@ -357,6 +348,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        ]
 	    });
 	    win.show();
+	    kehu.setValue(data.客户名称);
 	},
 	
 	initComponent: function(){
@@ -415,7 +407,11 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    text:"添加合同",
 			    iconCls: 'icon-group-create',
 			    handler:function () {
-			        self.addhtWindow(); 
+			        var r = self.getSelectionModel().getSelected();
+				    if (r) {
+				        self.addhtWindow(r.data); 
+				    }
+			        
 			    }
 			},
 			'->',
