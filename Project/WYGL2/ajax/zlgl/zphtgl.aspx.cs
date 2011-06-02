@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
 using System.Collections.Specialized;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public partial class ZuLin_zphtgl : System.Web.UI.Page
 {
@@ -117,51 +118,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         }
         else if (action == "edit_gdxfx") // 编辑固定消费项
         {
-            string responseError = "{success: false}";
-            string sql1 = string.Format("select * from sq8szxlx.zpgl where id='{0}'", Request.Params["id"]);
-            RowObject r1 = DBHelper.GetRow(sql1);
-            if (r1 == null)
-            {
-                Response.Write(responseError);
-                Response.End();
-                return;
-            }
-            string gyy_mc = r1["所属工业园"].ToString();
-            string fclx = r1["房产类型"].ToString();
-            string htbh = r1["编码"].ToString();
-
-            string sql2 = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
-                gyy_mc, fclx);
-            ResultObject r2 = DBHelper.GetResult(sql2);
-            JSONArray ja = new JSONArray();
-            int i = 1;
-            foreach (RowObject item in r2)
-            {
-                JSONObject jo = new JSONObject();
-                
-                string xfxm = item["消费项目"].ToString();
-                string rq = r1["合同开始时间"].ToString();
-                string sql3 = string.Format("select * from sq8szxlx.zpgl_lx_lb where 合同编号='{0}' and 消费项目='{1}'", htbh, xfxm);
-                RowObject r3 = DBHelper.GetRow(sql3);
-                string sql4 = string.Format("select * from sq8szxlx.user_sf_lb where 合同编号='{0}' and 收费项目='{1}' and  日期='{2}'", htbh, xfxm, rq);
-                RowObject r4 = DBHelper.GetRow(sql4);
-
-                jo.Add("id", item["id"]);
-                jo.Add("编号", i);
-                jo.Add("消费项目", xfxm);
-                jo.Add("消费类型", item["消费类型"]);
-                jo.Add("值", (r3 == null) ? item["值"] : r3["值"]);
-                jo.Add("倍率", (r3 == null) ? item["倍率"] : r3["倍率"]);
-                jo.Add("损耗", (r3 == null) ? item["损耗"] : r3["损耗"]);
-                jo.Add("滞纳金", (r3 == null) ? item["滞纳金"] : r3["滞纳金"]);
-                jo.Add("前期读数", item["消费类型"].ToString() == "动态" ? r4["读数"] : "-");
-                jo.Add("说明", (r3 == null) ? item["说明"] : r3["说明"]);
-                jo.Add("读数导入", (r4 != null && r4["录入状态"].ToString() == "已录入") ? "√" : "×");
-                jo.Add("项目导入", (r4 != null && r4["值"] != "") ? "√" : "×");
-                i++;
-                ja.Add(jo);
-            }
-            Response.Write(string.Format("{{'success': true, 'data':{0}}}", JSONConvert.SerializeArray(ja)));
+            edit_gdxfx2();            
         }
         else if (action == "import_gdxfx") // 导入固定消费项到合同
         {
@@ -275,5 +232,117 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             Response.Write("{success: true}");
         }
         Response.End();
+    }
+
+    private void edit_gdxfx2()
+    {
+        // 1. 查合同信息
+        string responseError = "{success: false}";
+        string sql = string.Format("select * from sq8szxlx.zpgl where id='{0}'", Request.Params["id"]);
+        RowObject r1 = DBHelper.GetRow(sql);
+        if (r1 == null)
+        {
+            Response.Write(responseError);
+            Response.End();
+            return;
+        }
+        string gyy_mc = r1["所属工业园"].ToString();
+        string fclx = r1["房产类型"].ToString();
+        string htbh = r1["编码"].ToString();
+        // 2. 查zpgl_lx_lb看是否有记录
+        sql = string.Format("select * from sq8szxlx.zpgl_lx_lb where 合同编号='{0}'", htbh);
+        ResultObject zpgl_lx_lb = DBHelper.GetResult(sql);
+        if (zpgl_lx_lb.Count<=0) // 没有记录则从gyy_lb_fclx_lb_xflx复制一份
+        {
+            sql = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
+            gyy_mc, fclx);
+            ResultObject gyy_lb_fclx_lb_xflx = DBHelper.GetResult(sql);
+            foreach (RowObject item in gyy_lb_fclx_lb_xflx)
+            {
+                NameValueCollection nvc = new NameValueCollection();
+                nvc.Add("合同编号",htbh);
+                nvc.Add("客户编码", r1["客户编码"].ToString());
+                nvc.Add("所属工业园",gyy_mc);
+                nvc.Add("房产类型",fclx);
+                nvc.Add("所属房产", r1["所属房产"].ToString());
+                nvc.Add("客户名称", r1["客户名称"].ToString());
+                nvc.Add("消费项目", item["消费项目"].ToString());
+                nvc.Add("消费类型", item["消费类型"].ToString());
+                nvc.Add("值", item["值"].ToString());
+                nvc.Add("倍率", item["倍率"].ToString());
+                nvc.Add("损耗", item["损耗"].ToString());
+                nvc.Add("滞纳金", item["滞纳金"].ToString());
+                nvc.Add("说明", item["说明"].ToString());
+                string insertSql = SqlBuilder.NameValueToSql(nvc,"sq8szxlx.zpgl_lx_lb","id",true);
+                DBHelper.ExecuteSql(insertSql);                
+            }
+            zpgl_lx_lb = DBHelper.GetResult(sql);// 重新查询
+        }
+
+        // 合成数据       
+        int i = 1;
+        foreach (RowObject item in zpgl_lx_lb)
+        {
+            string xfxm = item["消费项目"].ToString();
+            string rq = r1["合同开始时间"].ToString();
+            sql = string.Format("select * from sq8szxlx.user_sf_lb where 合同编号='{0}' and 收费项目='{1}' and  日期='{2}'", htbh, xfxm, rq);
+            RowObject r4 = DBHelper.GetRow(sql);
+
+            item.Add("编号", i);
+            item.Add("前期读数", item["消费类型"].ToString() == "动态" ? r4["读数"] : "-");
+            item.Add("读数导入", (r4 != null && r4["录入状态"].ToString() == "已录入") ? "√" : "×");
+            item.Add("项目导入", (r4 != null && r4["值"] != "") ? "√" : "×");
+            i++;
+        }
+        Response.Write(string.Format("{{'success': true, 'data':{0}}}", JsonConvert.SerializeObject(zpgl_lx_lb)));
+    }
+
+    private void edit_gdxfx()
+    {
+        string responseError = "{success: false}";
+        string sql1 = string.Format("select * from sq8szxlx.zpgl where id='{0}'", Request.Params["id"]);
+        RowObject r1 = DBHelper.GetRow(sql1);
+        if (r1 == null)
+        {
+            Response.Write(responseError);
+            Response.End();
+            return;
+        }
+        string gyy_mc = r1["所属工业园"].ToString();
+        string fclx = r1["房产类型"].ToString();
+        string htbh = r1["编码"].ToString();
+
+        string sql2 = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
+            gyy_mc, fclx);
+        ResultObject r2 = DBHelper.GetResult(sql2);
+        JSONArray ja = new JSONArray();
+        int i = 1;
+        foreach (RowObject item in r2)
+        {
+            JSONObject jo = new JSONObject();
+
+            string xfxm = item["消费项目"].ToString();
+            string rq = r1["合同开始时间"].ToString();
+            string sql3 = string.Format("select * from sq8szxlx.zpgl_lx_lb where 合同编号='{0}' and 消费项目='{1}'", htbh, xfxm);
+            RowObject r3 = DBHelper.GetRow(sql3);
+            string sql4 = string.Format("select * from sq8szxlx.user_sf_lb where 合同编号='{0}' and 收费项目='{1}' and  日期='{2}'", htbh, xfxm, rq);
+            RowObject r4 = DBHelper.GetRow(sql4);
+
+            jo.Add("id", item["id"]);
+            jo.Add("编号", i);
+            jo.Add("消费项目", xfxm);
+            jo.Add("消费类型", item["消费类型"]);
+            jo.Add("值", (r3 == null) ? item["值"] : r3["值"]);
+            jo.Add("倍率", (r3 == null) ? item["倍率"] : r3["倍率"]);
+            jo.Add("损耗", (r3 == null) ? item["损耗"] : r3["损耗"]);
+            jo.Add("滞纳金", (r3 == null) ? item["滞纳金"] : r3["滞纳金"]);
+            jo.Add("前期读数", item["消费类型"].ToString() == "动态" ? r4["读数"] : "-");
+            jo.Add("说明", (r3 == null) ? item["说明"] : r3["说明"]);
+            jo.Add("读数导入", (r4 != null && r4["录入状态"].ToString() == "已录入") ? "√" : "×");
+            jo.Add("项目导入", (r4 != null && r4["值"] != "") ? "√" : "×");
+            i++;
+            ja.Add(jo);
+        }
+        Response.Write(string.Format("{{'success': true, 'data':{0}}}", JSONConvert.SerializeArray(ja)));
     }
 }
