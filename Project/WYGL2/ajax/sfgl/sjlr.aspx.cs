@@ -271,7 +271,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             jo.Add("值", row["值"]);
             jo.Add("滞纳金", row["滞纳金"]);
             jo.Add("费用", row["费用"]);
-            jo.Add("说明", row["说明"]);
+            jo.Add("说明", row["说明"].ToString());
             ja.Add(jo);
         }
         
@@ -419,8 +419,8 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh - 1, item["消费项目"]);
             RowObject pre = DBHelper.GetRow(sql_pre_lb);
-            double ds = jo["读数"].ToString()=="-"?-1:Convert.ToDouble(jo["读数"].ToString());
-            double ds_sy = pre["读数"].ToString() == "-" ? -1 : Convert.ToDouble(pre["读数"].ToString());
+            double ds_sy = (pre != null && pre["读数"].ToString() != "-") ? Convert.ToDouble(pre["读数"].ToString()) : 0;
+            double ds = jo["读数"].ToString()=="-"?-1:Convert.ToDouble(jo["读数"].ToString());            
             double zi = jo["值"].ToString() == "-" ? -1 : Convert.ToDouble(jo["值"].ToString());
             double znj = jo["滞纳金"].ToString() == "-" ? -1 : Convert.ToDouble(jo["滞纳金"].ToString());
             double sh = jo["损耗"].ToString() == "-" ? -1 : Convert.ToDouble(jo["损耗"].ToString());
@@ -430,38 +430,38 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             {
                 if (xflx == "动态")
                 {
-                    fy = (ds - ds_sy) * zi * (1 - (-znj) / 100) * (1 - (-sh) / 100) * bl;
+                    fy = (ds - ds_sy) * zi * (1 +znj/100) * (1 + sh/100) * bl;
                 }
                 else if (xflx == "单价")
                 {
-                    fy = ds_sy * zi * (1 - (-znj) / 100) * bl;
+                    fy = ds_sy * zi * (1+znj/100) * bl;
                 }
                 else if (xflx == "固定")
                 {
-                    fy = zi * (1 - (-znj) / 100) * bl;
+                    fy = zi * (1+znj/100) * bl;
                 }
                 else if (xflx == "递增")
                 {
-                    fy = ( zi * (xh - 1)) * (1 - (-znj) / 100) * bl;
+                    fy = ( zi * (xh - 1)) * (1+znj/100) * bl;
                 }
             }
             else
             {
                 if (xflx == "动态")
                 {
-                    fy = (ds - ds_sy) * zi * (1 - (-znj) / 100) * (1 - (-sh) / 100);
+                    fy = (ds - ds_sy) * zi * (1+znj/100) * (1 - (-sh) / 100);
                 }
                 else if (xflx == "单价")
                 {
-                    fy = ds * zi * (1 - (-znj) / 100);
+                    fy = ds * zi * (1+znj/100);
                 }
                 else if (xflx == "固定")
                 {
-                    fy = zi * (1 - (-znj) / 100);
+                    fy = zi * (1+znj/100);
                 }
                 else if (xflx == "递增")
                 {
-                    fy = ((zi)) * (xh - 1) * (1 - (-znj) / 100);
+                    fy = ((zi)) * (xh - 1) * (1+znj/100);
                 }
             }
             zfy += fy;
@@ -549,12 +549,13 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             string sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh, row["消费项目"]);
             RowObject user_sf_lb = DBHelper.GetRow(sql_lb);
-
+            if (user_sf_lb == null) continue; // 没有收费该项目
+            
             // 查询上月收费项目
             string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh - 1, row["消费项目"]);
             RowObject r2 = DBHelper.GetRow(sql_pre_lb);
-            jo.Add("上月读数", row["消费类型"].ToString() == "动态" ? r2["读数"] : "-");
+            jo.Add("上月读数", (row["消费类型"].ToString() == "动态" && r2 !=null)? r2["读数"] : "-");
             jo.Add("读数", (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价") ? user_sf_lb["读数"] : "-");
             jo.Add("费用", user_sf_lb["费用"]);
             jo.Add("说明", row["说明"]);
