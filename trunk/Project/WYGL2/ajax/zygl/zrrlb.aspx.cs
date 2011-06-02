@@ -24,10 +24,11 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
         {       
             string sql = "";
             string iField = Request.Params["iField"];
+            string order = " order by id desc ";
             if (Request.Params["start"] != null && Request["limit"] != null)
             {
-                sql = string.Format("select top {0} * from sq8szxlx.user_zrr where id not in (select top {1} id from sq8szxlx.user_zrr)",
-                    Request["limit"], Request.Params["start"]);
+                sql = string.Format("select top {0} * from sq8szxlx.user_zrr where id not in (select top {1} id from sq8szxlx.user_zrr {2})",
+                    Request["limit"], Request.Params["start"], order);
             }
             else if (iField != null)
             {
@@ -37,9 +38,22 @@ public partial class ZiYuan_zrrlb : System.Web.UI.Page
             {
                 sql = "select * from sq8szxlx.user_zrr";
             }
-            sql += " order by id desc ";
+            sql += order;
             int count = (int)DBHelper.GetVar(string.Format("select count(*) as total from sq8szxlx.user_zrr where 名称 like '%{0}%' ", iField));
-            string data = DBHelper.GetResult(sql).ToJson();
+            ResultObject ro = DBHelper.GetResult(sql);
+            foreach (RowObject row in ro)
+            {
+                int c = (int)DBHelper.GetVar(string.Format("select count(*) from sq8szxlx.gyy_fc_lb where 业主='{0}'", row["编码"]));
+                if (c>0)
+                {
+                    row["canDelete"] = false;
+                }
+                else
+                {
+                    row["canDelete"] = true;
+                }
+            }
+            string data = ro.ToJson();
             string result = string.Format("\"success\":true,\"totalProperty\":{0},\"data\":", count);
             result = "{" + result + data + "}";
             Response.Write(result);

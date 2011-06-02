@@ -7,7 +7,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/zrrlb.aspx?action=list',
 		fields:[
-		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注','出生日期_年','出生日期_月','出生日期_日'
+		    'id','编码','名称','描述','联系人','联系电话','助记码','性别','证件名称','证件号码','籍贯','联系地址','备注','出生日期_年','出生日期_月','出生日期_日','canDelete'
 		]
 	}),
 	width:792,
@@ -348,7 +348,8 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        ]
 	    });
 	    win.show();
-	    kehu.setValue(data.客户名称);
+	    kehu.setValue(data.名称);
+
 	},
 	
 	initComponent: function(){
@@ -364,6 +365,27 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
+	    var btnDelete = new Ext.Button({
+			text:"删除",
+			iconCls: 'icon-group-delete',
+			handler: function () {
+			    var r = self.getSelectionModel().getSelected();
+			    if (r) {
+			        Ext.Msg.confirm('删除自然人','确定要删除选中的自然人吗？',function(btn){
+						if(btn == 'yes') {
+							Ext.Ajax.request({
+								url:'ajax/zygl/zrrlb.aspx?action=delete',
+								success:function(){
+									Ext.Msg.alert('删除自然人','自然人删除成功！');
+									self.store.reload();
+								},
+								params:{id: r.get('id')}
+							});
+						}
+					});
+			    }				    
+			}
+		});
 		this.tbar=[
 			{
 				text:"新增",
@@ -382,27 +404,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				    }				    
 				}
 			},
-			{
-				text:"删除",
-				iconCls: 'icon-group-delete',
-				handler: function () {
-				    var r = self.getSelectionModel().getSelected();
-				    if (r) {
-				        Ext.Msg.confirm('删除自然人','确定要删除选中的自然人吗？',function(btn){
-							if(btn == 'yes') {
-								Ext.Ajax.request({
-									url:'ajax/zygl/zrrlb.aspx?action=delete',
-									success:function(){
-										Ext.Msg.alert('删除自然人','自然人删除成功！');
-										self.store.reload();
-									},
-									params:{id: r.get('id')}
-								});
-							}
-						});
-				    }				    
-				}
-			},
+			btnDelete,
 			{
 			    text:"添加合同",
 			    iconCls: 'icon-group-create',
@@ -434,6 +436,9 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			}
 		];
+		self.getSelectionModel().on('rowselect', function(sm, rowIdx, r) {
+		    btnDelete.setDisabled(!r.data.canDelete);
+		});
 		self.store.load({
 		    params:{
 		        start:0,
@@ -442,4 +447,4 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		});		
 		Ext.Hudongsoft.zrrlbGrid.superclass.initComponent.call(this);
 	}
-})
+});
