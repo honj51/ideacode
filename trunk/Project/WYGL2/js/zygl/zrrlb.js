@@ -234,7 +234,133 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
             w.show();
     },
     
+    //新增合同
+    addhtWindow: function () { // 显示详细窗体: add: 是否是新增数据, data: 数据参数
+	    var self = this;
+        var gyy_lx = new Ext.LinkCombox({
+            width:226,
+            append: false,
+            store: new Ext.data.JsonStore({
+                url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb&gl=true",//过滤已经有的房产号
+                baseParams:{
+                    
+                },
+	            fields: ['fc']
+            }),
+	        displayField: 'fc',
+	        valueField: 'fc',
+	        keyField: ['gyy'],
+	        initComponent: function(){	    
+	            Ext.LinkCombox.superclass.initComponent.call(this);	    
+	        },
+            fieldLabel:'所属房产',
+            name:'所属房产'
+        });
+	    var gyy = new Ext.GyyCombox({
+	        append: false,
+	        nextCombox: gyy_lx,
+	        width:226,
+	        fieldLabel:'所属工业园',
+	        name:'所属工业园'
+	    });	    
+	    var kehu = new Ext.KehuCombox({
+	        width:226,            
+            name:'客户名称',
+            fieldLabel:'客户名称'
+	    });
+	    
 
+	    var form = new Ext.FormPanel({	
+            padding: 10,
+            items: [{
+                xtype: 'hidden',
+                name: 'id'
+            },
+            {
+                fieldLabel: '编码',
+                name: '编码',
+                width:226,
+                readOnly: true, 
+                value: '自动产生',                
+                xtype: 'textfield'				                           
+            },kehu,
+            gyy,gyy_lx,
+            {
+                fieldLabel: '合同开始时间',
+                name: '合同开始时间',
+                width:226,
+                allowBlank:false,
+                format: 'Y-m-d',
+                xtype: 'datefield',
+                value: new Date()				                           
+            },
+            {
+                fieldLabel: '合同结束时间',
+                name: '合同结束时间',
+                width:226,
+                allowBlank:false,
+                format: 'Y-m-d',
+                xtype: 'datefield',
+                value: new Date()					                           
+            },
+            {
+                fieldLabel: '增浮期',
+                name: '增浮期',
+                width:226,
+                format: 'Y-m-d',
+                xtype: 'datefield',
+                value: new Date()
+            },            
+            {
+                fieldLabel: '操作时间',
+                name: '操作时间',
+                width:226,
+                readOnly: true,
+                format: 'Y-m-d H:i:s',
+                xtype: 'datefield',
+                value: new Date()					                           
+            },
+            {
+                fieldLabel: '备注',
+                name: '备注',
+                width:226,
+                height:63,
+                xtype: 'textarea'		
+            }
+           
+            ],
+            buttons: [{
+                text: '保存',
+                iconCls: 'icon-save',
+                handler: function (c) {                                
+                    form.getForm().submit({
+                        url: 'ajax/zlgl/zphtgl.aspx',
+                        params: {
+                            action:'add'
+                        },
+                        success: function (form, action) {  
+                            win.close();
+                        }
+                    });
+                }
+            },{
+                text: '取消',
+                iconCls: 'icon-cancel',
+                handler: function (c) {
+                    win.close();
+                }
+            }]
+        });
+        
+	    var win = new Ext.Window({
+	        title:"新增合同",				        
+            width:390,
+	        items:[
+	            form
+	        ]
+	    });
+	    win.show();
+	},
 	
 	initComponent: function(){
 	    var self = this;    
@@ -287,6 +413,13 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 						});
 				    }				    
 				}
+			},
+			{
+			    text:"添加合同",
+			    iconCls: 'icon-group-create',
+			    handler:function () {
+			        self.addhtWindow(); 
+			    }
 			},
 			'->',
 			{
