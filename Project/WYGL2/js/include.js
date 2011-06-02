@@ -278,3 +278,181 @@ Ext.KehuCombox = Ext.extend(Ext.form.ComboBox,{
 	    Ext.KehuCombox.superclass.initComponent.call(this);
 	}
 });
+
+
+//新增消费项窗体
+function addxfx (d,fcxfStore,r){
+    var xflx = new Ext.form.ComboBox({
+        fieldLabel:'消费类型',
+        width:130,
+        mode:'local',
+        name:'消费类型',
+        triggerAction:'all',
+        editable:false,
+        store:new Ext.data.SimpleStore({
+            fields : ['myId','displayText'],
+            data :[['递增','递增'],['固定','固定'],['单价','单价'],['动态','动态']]
+        }),
+        emptyText:'请选择',
+        valueField:'myId',
+        displayField:'displayText'
+    });
+     
+    var beilv = new Ext.form.ComboBox({
+        fieldLabel:'倍率',
+        width:130,
+        mode:'local',
+        name:'倍率',
+        triggerAction:'all',
+        editable:false,
+        store:new Ext.data.SimpleStore({
+            fields : ['myId','displayText'],
+            data :[[0,0],[10,10],[20,20],[30,30],[40,40],[50,50],[60,60],[70,70],[80,80],[90,90],[100,100]]
+        }),
+        emptyText:'请选择',
+        valueField:'myId',
+        displayField:'displayText'
+     });
+                 
+    var sunhao = new Ext.form.ComboBox({
+        fieldLabel:'损耗',
+        width:130,
+        mode:'local',
+        hiddenName:'损耗',
+        triggerAction:'all',
+        editable:false,
+        store:new Ext.data.SimpleStore({
+            fields : ['myId','displayText'],
+            data :[[0,'0%'],[1,'1%'],[2,'2%'],[3,'3%'],[4,'4%'],[5,'5%'],[6,'6%'],[7,'7%'],[8,'8%'],[9,'9%'],[10,'10%'],[11,'11%']
+                    ,[12,'12%'],[13,'13%'],[14,'14%'],[15,'15%'],[16,'16%'],[17,'17%'],[18,'18%'],[19,'19%'],[20,'20%']]
+        }),
+        emptyText:'请选择',
+        valueField:'myId',
+        displayField:'displayText'
+     });
+     
+     var znj = new Ext.form.ComboBox({
+        fieldLabel:'滞纳金',
+        width:130,
+        mode:'local',
+        hiddenName:'滞纳金',
+        triggerAction:'all',
+        editable:false,
+        store:new Ext.data.SimpleStore({
+            fields : ['myId','displayText'],
+            data :[[0,'0%'],[1,'1%'],[2,'2%'],[3,'3%'],[4,'4%'],[5,'5%'],[6,'6%'],[7,'7%'],[8,'8%'],[9,'9%'],[10,'10%'],[11,'11%']
+                    ,[12,'12%'],[13,'13%'],[14,'14%'],[15,'15%'],[16,'16%'],[17,'17%'],[18,'18%'],[19,'19%'],[20,'20%']]
+        }),
+        emptyText:'请选择',
+        valueField:'myId',
+        displayField:'displayText'
+     });
+     
+    var fcxfUiForm = new Ext.FormPanel({
+        padding:10,
+       	items:[
+            {
+                xtype: 'hidden',
+                name: 'id'
+            },
+            {
+                xtype: 'hidden',
+                name: '房产类型',
+                value: d?d.data.房产类型:r.data.房产类型 
+            },
+            {
+                xtype: 'hidden',
+                name: d?'工业园名称':'所属工业园',
+                value: d?d.data.工业园名称:r.data.所属工业园   
+            },
+            {
+                xtype: 'hidden',
+                name: '所属房产',
+                value:r.data.所属房产   
+            },
+            {
+                xtype: 'hidden',
+                name: '客户名称',
+                value:r.data.客户名称   
+            },
+            {
+                xtype: 'hidden',
+                name: '合同编号',
+                value:r.data.编码   
+            },
+            {
+                xtype: 'hidden',
+                name: '客户编码',
+                value:r.data.客户编码   
+            },
+            {
+                fieldLabel:'编号',
+                name:'序号',
+                allowBlank:false,
+                xtype: 'textfield' 
+            },
+            {
+                fieldLabel:'消费项目',
+                name:'消费项目',
+                allowBlank:false,
+                xtype: 'textfield' 
+            },
+           xflx,
+            {
+                fieldLabel:'值',
+                name:'值',
+                allowBlank:false,
+                xtype: 'numberfield' 
+            },
+            beilv,
+            sunhao,
+            znj,
+            {
+                fieldLabel:'说明',
+                name:'说明',
+                allowBlank:false,
+                xtype: 'textfield' 
+            }     
+        ],
+        buttons:[
+            {
+                text: '保存',
+                iconCls: 'icon-save',
+                
+                handler:function () {
+                       //console.log(fcxfUiForm.getForm().getValues());
+                    fcxfUiForm.getForm().submit({
+                        url: d?'ajax/zygl/gyygl.aspx':'ajax/zlgl/zphtgl.aspx',
+                        params: {
+                            action:'add_fcxf'
+                        },
+                        success: function (form, action) {  
+                            //console.log(action.response.responseText);                                      
+                            fcxfWinUi.close();
+                            fcxfStore.reload();
+                        }
+                    });
+                } 
+            },
+            {
+                text: '取消',
+                iconCls: 'icon-cancel',
+                handler: function () {
+                    fcxfWinUi.close();
+                }
+            }
+        ]
+    });
+    
+    var fcxfWinUi  = new Ext.Window({
+        title:'新增房产消费',
+        layout:'fit',
+        width:300,
+        height:300,
+        items:[
+            fcxfUiForm
+        ]
+    });
+    
+    fcxfWinUi.show();
+}
