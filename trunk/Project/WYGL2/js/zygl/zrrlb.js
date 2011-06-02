@@ -241,10 +241,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
             width:226,
             append: false,
             store: new Ext.data.JsonStore({
-                url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb&gl=true",//过滤已经有的房产号
-                baseParams:{
-                    
-                },
+                url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb",//过滤已经有的房产号
 	            fields: ['fc']
             }),
 	        displayField: 'fc',
