@@ -475,7 +475,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        btnXQ.setDisabled(true);
 	        if (self.jfgl) { //缴费	            
 	            if (r.data.缴费状态=='已缴费') btnXQ.setDisabled(false);
-	            if (r.data.缴费状态=='未缴费') btnLR.setDisabled(false);
+	            if (r.data.缴费状态=='未缴费' && r.data.录入状态=='已录入') btnLR.setDisabled(false);
 	        }	        
 	        else // 录入
 	        {	       
