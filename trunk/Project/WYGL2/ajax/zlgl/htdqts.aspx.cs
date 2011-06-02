@@ -41,10 +41,10 @@ public partial class ZuLin_htdqts : System.Web.UI.Page
         // 2. 获取总数
         string count = DBHelper.GetVar("select count(*) " + from + where).ToString();
         if (count == null) return;
-
-        string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2})",
-            select, from, where, Request.Params["start"]);
-        sql += " order by 合同结束时间 ";
+        string order = " order by 合同结束时间 ";
+        string sql = string.Format(@"{0} {1} {2} and id not in (select top {3} id {1} {2} {4}) {4}",
+            select, from, where, Request.Params["start"],order);
+        
         // 4. 拼装结果
         string data = DBHelper.GetResult(sql).ToJson();
 
