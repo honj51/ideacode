@@ -361,7 +361,6 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                    text:'删除消费项',
 			                    iconCls: 'icon-group-delete',
 			                    handler:function () {
-			                        console.log(grid.getSelectionModel());
 			                        var r = grid.getSelectionModel().getSelectedCell();
 			                        if(r) {
 			                            var id = grid.store.getAt(r[0]).data.id;
