@@ -146,6 +146,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 string sql4 = string.Format("select * from sq8szxlx.user_sf_lb where 合同编号='{0}' and 收费项目='{1}' and  日期='{2}'", htbh, xfxm, rq);
                 RowObject r4 = DBHelper.GetRow(sql4);
 
+                jo.Add("id", item["id"]);
                 jo.Add("编号", i);
                 jo.Add("消费项目", xfxm);
                 jo.Add("消费类型", item["消费类型"]);
@@ -258,6 +259,20 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 DBHelper.ExecuteSql(sql5);
             }
 
+        }
+        else if (action == "delete_xfx")
+        {
+            string sql = "delete from sq8szxlx.zpgl_lx_lb where id=" + Request.Params["id"];
+            DBHelper.ExecuteSql(sql);
+        }
+        else if (action == "add_fcxf") {
+            Dictionary<string, object> dict = Common.CopyFormToDict(Request.Form);
+            string aa= Request.Form["所属房产"].ToString();
+            string[] a = aa.Split('-');
+            dict["所属房产"] = a[1];
+            string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl_lx_lb", "id", true);
+            DBHelper.ExecuteSql(sql);
+            Response.Write("{success: true}");
         }
         Response.End();
     }
