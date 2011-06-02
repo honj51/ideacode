@@ -97,11 +97,19 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         }
         else if (action == "gyy_fc_lb")
         {
+            string gl = Request.Params["gl"];
             string gyy = Request.Params["gyy"];
-            string sql = string.Format("select 房产类型+'-'+房号 as fc from sq8szxlx.gyy_fc_lb where 工业园名称='{0}'", gyy);
+            if (gl == "true")
+            {
 
-            ResultObject r = DBHelper.GetResult(sql);            
-            Response.Write(r.ToJson());
+            }
+            else
+            {
+                string sql = string.Format("select 房产类型+'-'+房号 as fc from sq8szxlx.gyy_fc_lb where 工业园名称='{0}'", gyy);
+                ResultObject r = DBHelper.GetResult(sql);
+                Response.Write(r.ToJson());
+            }
+            
         }            
         else if (action == "fclx_list")
         {
