@@ -99,7 +99,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         {
             string gyy = Request.Params["gyy"];
 
-            string sql = string.Format("select 房产类型+'-'+房号 as fc from sq8szxlx.gyy_fc_lb where 工业园名称='{0}' and and 状态='未租' ", gyy);
+            string sql = string.Format("select 房产类型+'-'+房号 as fc from sq8szxlx.gyy_fc_lb where 工业园名称='{0}' and 状态='未租' ", gyy);
             ResultObject r = DBHelper.GetResult(sql);
             Response.Write(r.ToJson());
 
