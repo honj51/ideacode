@@ -74,7 +74,7 @@ public partial class ZuLin_ydgl : System.Web.UI.Page
 
             // 修改房产状态
             string yezu = Common.getKhbh(dict["客户名称"].ToString());
-            updateFCZT(dict["所属工业园"].ToString(), dict["房产类型"].ToString(), dict["所属房产"].ToString(), yezu, "预定");
+            Common.updateFCZT(dict["所属工业园"].ToString(), dict["房产类型"].ToString(), dict["所属房产"].ToString(), yezu, "预定");
             Response.Write("{success: true}");
         }
         else if (action == "change")
@@ -86,7 +86,7 @@ public partial class ZuLin_ydgl : System.Web.UI.Page
         {
             RowObject row = DBHelper.GetRow("select * from sq8szxlx.zpgl where id=" + Request.Form["id"]);
             // 修改房产状态            
-            updateFCZT(row["所属工业园"].ToString(), row["房产类型"].ToString(), row["所属房产"].ToString(), "", "未租");
+            Common.updateFCZT(row["所属工业园"].ToString(), row["房产类型"].ToString(), row["所属房产"].ToString(), "无", "未租");
 
             string sql = "delete from sq8szxlx.zpgl where id=" + Request.Form["id"];
             DBHelper.ExecuteSql(sql);
@@ -94,18 +94,5 @@ public partial class ZuLin_ydgl : System.Web.UI.Page
             Response.Write("{success: true}");
         }
         Response.End();
-    }
-
-    private void updateFCZT(string gyy, string fclx, string fh, string yezu, string zt)
-    {
-        string sql = string.Format("select id from sq8szxlx.gyy_fc_lb where 工业园名称='{0}' and 房产类型='{1}' and 房号='{2}'", gyy, fclx, fh);
-        string id = DBHelper.GetVar(sql).ToString();
-
-        Dictionary<string, object> dict2 = new Dictionary<string, object>();
-        dict2["id"] = id;
-        dict2["状态"] = zt;
-        dict2["业主"] = yezu;
-        sql = SqlBuilder.NameValueToSql(dict2, "sq8szxlx.gyy_fc_lb", "id", false);
-        DBHelper.ExecuteSql(sql);
     }
 }
