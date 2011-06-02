@@ -91,6 +91,10 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         }
         else if (action == "delete")
         {
+            RowObject row = DBHelper.GetRow("select * from sq8szxlx.zpgl where id=" + Request.Form["id"]);
+            // 修改房产状态            
+            Common.updateFCZT(row["所属工业园"].ToString(), row["房产类型"].ToString(), row["所属房产"].ToString(), "无", "未租");
+
             string sql = "delete from sq8szxlx.zpgl where id=" + Request.Form["id"];
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");

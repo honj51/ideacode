@@ -63,4 +63,18 @@ public class Common
         string sql = string.Format("select 编码 from sq8szxlx.user_zrr where 名称='{0}'", khmc);
         return DBHelper.GetVar(sql).ToString();
     }
+
+    // 更新房产状态
+    public static void updateFCZT(string gyy, string fclx, string fh, string yezu, string zt)
+    {
+        string sql = string.Format("select id from sq8szxlx.gyy_fc_lb where 工业园名称='{0}' and 房产类型='{1}' and 房号='{2}'", gyy, fclx, fh);
+        string id = DBHelper.GetVar(sql).ToString();
+
+        Dictionary<string, object> dict2 = new Dictionary<string, object>();
+        dict2["id"] = id;
+        dict2["状态"] = zt;
+        dict2["业主"] = yezu;
+        sql = SqlBuilder.NameValueToSql(dict2, "sq8szxlx.gyy_fc_lb", "id", false);
+        DBHelper.ExecuteSql(sql);
+    }
 }
