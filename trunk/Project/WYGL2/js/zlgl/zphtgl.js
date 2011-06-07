@@ -352,9 +352,13 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                    iconCls: 'icon-group-create',
 			                    handler:function(){			                     
 	                                var r = self.getSelectionModel().getSelected();
-	                                addxfx(null,xf_store,r);
-			                       
-			                        
+//	                                addxfx(null,xf_store,r);
+                                    addxfx(null,xf_store,r,function (values) {
+                                        console.log(values);
+                                        var r = new Ext.data.Record(values);
+                                        xf_store.add(r);
+                                    });
+                                    
 			                    }
 			                },
 			                {
@@ -363,19 +367,26 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                    handler:function () {
 			                        var r = grid.getSelectionModel().getSelectedCell();
 			                        if(r) {
-			                            var id = grid.store.getAt(r[0]).data.id;
 			                            Ext.Msg.confirm('删除消费项','确定要删除选中的消费项吗？',function(btn){
-							                if(btn == 'yes') {
-								                Ext.Ajax.request({
-									                url:'ajax/zlgl/zphtgl.aspx?action=delete_xfx',
-									                success:function(){
-										                Ext.Msg.alert('删除消费项','消费项删除成功！');
-										                grid.store.reload();
-									                },
-									                params:{id:id}
-								                });
-							                }
-						                });
+			                                if(btn == 'yes') {
+			                                    grid.store.removeAt(r[0]);
+			                                }
+			                            });
+			                        
+//			                            var id = grid.store.getAt(r[0]).data.id;
+//			                            Ext.Msg.confirm('删除消费项','确定要删除选中的消费项吗？',function(btn){
+//							                if(btn == 'yes') {
+//								                Ext.Ajax.request({
+//									                url:'ajax/zlgl/zphtgl.aspx?action=delete_xfx',
+//									                success:function(){
+//										                Ext.Msg.alert('删除消费项','消费项删除成功！');
+//										                grid.store.reload();
+//									                },
+//									                params:{id:id}
+//								                });
+//							                }
+//						                });
+                                        
 			                        }
 			                    }
 			                },

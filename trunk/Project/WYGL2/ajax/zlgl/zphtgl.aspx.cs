@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Collections.Specialized;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public partial class ZuLin_zphtgl : System.Web.UI.Page
 {
@@ -129,7 +130,8 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
         else if (action == "import_gdxfx") // 导入固定消费项到合同
         {
             string responseError = "{success: false}";
-            JSONArray ja = JSONConvert.DeserializeArray(Request.Form["data"]);            
+            //JSONArray ja = JSONConvert.DeserializeArray(Request.Form["data"]);            
+            JArray ja = JArray.Parse(Request.Form["data"]);            
             string sql1 = string.Format("select * from sq8szxlx.zpgl where id='{0}'", Request.Params["id"]);
             RowObject r1 = DBHelper.GetRow(sql1);
             if (r1 == null)
@@ -153,24 +155,26 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             sql1 = string.Format("delete from sq8szxlx.user_sf_zb where 单据编号='{0}'", htbh + "_1");
             DBHelper.ExecuteSql(sql1);
             // 新增数据
-            string sql2 = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
-                gyy_mc, fclx);
-            ResultObject r2 = DBHelper.GetResult(sql2);
-            for (int i = 0; i < r2.Count; i++)
+            //string sql2 = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' order by 序号 asc",
+            //    gyy_mc, fclx);
+            //ResultObject r2 = DBHelper.GetResult(sql2);
+            //for (int i = 0; i < r2.Count; i++)
+            for (int i = 0; i < ja.Count; i++)
             {
-                JSONObject jo = (JSONObject)ja[i];
-                RowObject item = r2[i];
+                //JSONObject jo = (JSONObject)ja[i];
+                JToken jo = ja[i];
+                //RowObject item = r2[i];
 
                 // zpgl_lx_lb
                 Dictionary<string, object> nv1 = new Dictionary<string, object>();
                 nv1.Add("合同编号", htbh);
                 nv1.Add("客户编码", khbm);
-                nv1.Add("所属工业园", item["工业园名称"]);
-                nv1.Add("房产类型", item["房产类型"]);
+                nv1.Add("所属工业园", gyy_mc);
+                nv1.Add("房产类型", fclx);
                 nv1.Add("所属房产", ssfc);
                 nv1.Add("客户名称", khmc);
-                nv1.Add("消费项目", jo["消费项目"]);
-                nv1.Add("消费类型", jo["消费类型"]);
+                nv1.Add("消费项目", jo["消费项目"].ToString());
+                nv1.Add("消费类型", jo["消费类型"].ToString());
                 nv1.Add("值", jo["值"]);
                 nv1.Add("损耗", jo["消费类型"].ToString() == "动态" ? jo["损耗"] : 0);
                 nv1.Add("倍率", jo["倍率"]);
