@@ -32,7 +32,7 @@ function print1() {
 }
 
 function save_remark() {    
-    $.post('',{action:'save_remark',remark:$("#bz").val()},function () {
+    $.post('Print.aspx',{action:'save_remark',remark:$("#bz").val()},function () {
         alert('保存成功！');
     }); 
 }
