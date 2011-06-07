@@ -306,7 +306,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             return;
         }
         string sql = string.Format("select * from sq8szxlx.zpgl_lx_lb where 合同编号='{0}' order by id asc", zpgl["编码"]);
-        JSONArray ja = new JSONArray();
 
         ResultObject zpgl_lx_lb = DBHelper.GetResult(sql);
         int xh = int.Parse(Request.Params["xh"]);
@@ -314,12 +313,11 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         {
             JSONObject jo = new JSONObject();
             RowObject row = zpgl_lx_lb[i];
-            jo.Add("编号", i + 1);
-            jo.Add("消费项目", row["消费项目"]);
-            jo.Add("消费类型", row["消费类型"]);
-            jo.Add("值", row["值"]);
-            jo.Add("倍率", row["倍率"]);
-            jo.Add("损耗", row["消费类型"].ToString() == "动态" ? row["损耗"] : "-");
+            row["编号"] = i + 1;
+            if (row["消费类型"].ToString() != "动态")
+            {
+                row["损耗"] = "-";
+            }            
 
             // 查询收费列表
             string sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
@@ -334,27 +332,38 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 zpgl["编码"], xh - 1, row["消费项目"]);
             RowObject pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
 
-            jo.Add("滞纳金", (pre_user_sf_zb["缴费状态"].ToString() == "已缴费" || pre_user_sf_zb["缴费状态"].ToString() == "不要交费") ? 0 : row["滞纳金"]);
-            jo.Add("上月读数", row["消费类型"].ToString() == "动态" ? pre_user_sf_lb["读数"] : "-");
+            if (pre_user_sf_zb["缴费状态"].ToString() == "已缴费" || pre_user_sf_zb["缴费状态"].ToString() == "不要交费")
+            {
+                row["滞纳金"] = 0;
+            }
+            row["上月读数"] = row["消费类型"].ToString() == "动态" ? pre_user_sf_lb["读数"] : "-";
+
             if (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价")
             {
                 if (user_sf_lb !=null)
                 {
-                    jo.Add("读数", user_sf_lb["读数"]);
+                    row["读数"] = user_sf_lb["读数"];
                 }
                 else {
-                    jo.Add("读数", "");
+                    row["读数"] = "";                    
                 }
             }
             else {
-                jo.Add("读数","-");
+                row["读数"] = "-";                
             }
-            jo.Add("说明", row["说明"]);
-            jo.Add("读数输入", (user_sf_lb != null && user_sf_lb["录入状态"].ToString() == "已录入") ? "√" : "×");
-            ja.Add(jo);
+            row["读数输入"] = (user_sf_lb != null && user_sf_lb["录入状态"].ToString() == "已录入") ? "√" : "×";            
         }
-        Response.Write(JSONConvert.SerializeArray(ja));
+        Response.Write(zpgl_lx_lb.ToJson());
 
+    }
+
+    private bool hasNumber(object o)
+    {
+        if (o == null || o.ToString() == "" || o.ToString() == "-")
+        {
+            return false;
+        }
+        return true;
     }
 
     private void lr_tj()
@@ -420,11 +429,11 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 zpgl["编码"], xh - 1, item["消费项目"]);
             RowObject pre = DBHelper.GetRow(sql_pre_lb);
             double ds_sy = (pre != null && pre["读数"].ToString() != "-") ? Convert.ToDouble(pre["读数"].ToString()) : 0;
-            double ds = jo["读数"].ToString()=="-"?-1:Convert.ToDouble(jo["读数"].ToString());            
-            double zi = jo["值"].ToString() == "-" ? -1 : Convert.ToDouble(jo["值"].ToString());
-            double znj = jo["滞纳金"].ToString() == "-" ? -1 : Convert.ToDouble(jo["滞纳金"].ToString());
-            double sh = jo["损耗"].ToString() == "-" ? -1 : Convert.ToDouble(jo["损耗"].ToString());
-            double bl = jo["倍率"].ToString() == "-" ? -1 : Convert.ToDouble(jo["倍率"].ToString());
+            double ds = hasNumber(jo["读数"]) ?  Convert.ToDouble(jo["读数"].ToString()):0;            
+            double zi = hasNumber(jo["值"]) ?   Convert.ToDouble(jo["值"].ToString()):0;
+            double znj = hasNumber(jo["滞纳金"]) ?  Convert.ToDouble(jo["滞纳金"].ToString()):0;
+            double sh = hasNumber(jo["损耗"]) ?  Convert.ToDouble(jo["损耗"].ToString()):0;
+            double bl = hasNumber(jo["倍率"]) ?  Convert.ToDouble(jo["倍率"].ToString()):0;
             double fy = -1;
             if (bl != 0)
             {
@@ -524,7 +533,6 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             Response.End();
             return;
         }
-        JSONArray ja = new JSONArray();
 
         // 本月消费总表
         sql1 = string.Format("select * from sq8szxlx.user_sf_zb where 单据编号='{0}_{1}'", zpgl["编码"], Request.Params["xh"]);
@@ -536,15 +544,12 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         int xh = int.Parse(Request.Params["xh"]);
         for (int i = 0; i < zpgl_lx_lb.Count; i++)
         {
-            JSONObject jo = new JSONObject();
             RowObject row = zpgl_lx_lb[i];
-            jo.Add("编号", i + 1);
-            jo.Add("收费项目", row["消费项目"]);
-            jo.Add("收费类型", row["消费类型"]);
-            jo.Add("值", row["值"]);
-            jo.Add("倍率", row["倍率"]);
-            jo.Add("损耗", row["消费类型"].ToString() == "动态" ? row["损耗"] : "-");
-            jo.Add("滞纳金", row["滞纳金"]);
+            row["编号"] = i + 1;
+            row["收费项目"] = row["消费项目"];
+            row["收费类型"] = row["消费类型"];                        
+            row["损耗"] = row["消费类型"].ToString() == "动态" ? row["损耗"] : "-";
+            
             // 查询收费列表
             string sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh, row["消费项目"]);
@@ -555,21 +560,34 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh - 1, row["消费项目"]);
             RowObject r2 = DBHelper.GetRow(sql_pre_lb);
-            jo.Add("上月读数", (row["消费类型"].ToString() == "动态" && r2 !=null)? r2["读数"] : "-");
-            jo.Add("读数", (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价") ? user_sf_lb["读数"] : "-");
-            jo.Add("费用", user_sf_lb["费用"]);
-            jo.Add("说明", row["说明"]);
-            ja.Add(jo);
-        }
-        JSONObject result = new JSONObject();
+            row["上月读数"] = (row["消费类型"].ToString() == "动态" && r2 !=null)? r2["读数"] : "-";
+            row["读数"]  = (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价") ? user_sf_lb["读数"] : "-";
+            row["费用"] = user_sf_lb["费用"];            
+        }        
         double zfy = Convert.ToDouble(user_sf_zb["总费用"]);
         double ye = Convert.ToDouble(user_sf_zb["余额"]);
-        result.Add("success", "true");
-        result.Add("data", ja);
-        result.Add("总金额", Math.Round(Convert.ToDecimal(user_sf_zb["总费用"]), 1));
-        result.Add("上次结余", user_sf_zb["余额"]);
-        result.Add("需要交费金额", Math.Round((zfy - ye), 1));
-        Response.Write(JSONConvert.SerializeObject(result));
+        //JObject jo = new JObject(new JProperty("success","true"),
+        //    new JProperty("data",zpgl_lx_lb),
+        //    new JProperty("总金额",Math.Round(Convert.ToDecimal(user_sf_zb["总费用"]), 1)),
+        //    new JProperty("上次结余",user_sf_zb["余额"]),
+        //    new JProperty("需要交费金额",Math.Round((zfy - ye), 1)));
+        //JSONObject result = new JSONObject();
+        //result.Add("success", "true");
+        //result.Add("data", zpgl_lx_lb);
+        //result.Add("总金额", Math.Round(Convert.ToDecimal(user_sf_zb["总费用"]), 1));
+        //result.Add("上次结余", user_sf_zb["余额"]);
+        //result.Add("需要交费金额", Math.Round((zfy - ye), 1));
+        //Response.Write(JSONConvert.SerializeObject(result));
+
+        StringBuilder sb = new StringBuilder();
+        sb.Append("{");
+        sb.AppendFormat("success: true,");
+        sb.AppendFormat("data:{0}," , zpgl_lx_lb.ToJson());
+        sb.AppendFormat("总金额:{0},", Math.Round(Convert.ToDecimal(user_sf_zb["总费用"]), 1));
+        sb.AppendFormat("上次结余:{0},", user_sf_zb["余额"]);
+        sb.AppendFormat("需要交费金额:{0}", Math.Round((zfy - ye), 1));
+        sb.Append("}");
+        Response.Write(sb.ToString());        
     }
 
 }

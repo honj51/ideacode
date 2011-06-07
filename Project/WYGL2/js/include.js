@@ -281,7 +281,7 @@ Ext.KehuCombox = Ext.extend(Ext.form.ComboBox,{
 
 
 //新增消费项窗体
-function addxfx (d,fcxfStore,r){
+function addxfx (d,fcxfStore,r,local_callback){
     var xflx = new Ext.form.ComboBox({
         fieldLabel:'消费类型',
         width:130,
@@ -420,6 +420,10 @@ function addxfx (d,fcxfStore,r){
                 iconCls: 'icon-save',
                 
                 handler:function () {
+                    if (local_callback) {
+                        local_callback(fcxfUiForm.getForm().getValues());
+                        return;
+                    }
                        //console.log(fcxfUiForm.getForm().getValues());
                     fcxfUiForm.getForm().submit({
                         url: d?'ajax/zygl/gyygl.aspx':'ajax/zlgl/zphtgl.aspx',

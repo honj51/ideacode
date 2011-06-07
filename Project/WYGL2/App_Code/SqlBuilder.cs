@@ -46,7 +46,7 @@ public class SqlBuilder
                 {
                     continue;
                 }
-                else if (columns[name] == "56") // 数字
+                else if (value=="null" || columns[name] == "56") // 数字
                 {
                     quote = false;
                 }
