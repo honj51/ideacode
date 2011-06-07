@@ -422,6 +422,7 @@ function addxfx (d,fcxfStore,r,local_callback){
                 handler:function () {
                     if (local_callback) {
                         local_callback(fcxfUiForm.getForm().getValues());
+                        fcxfWinUi.close();
                         return;
                     }
                        //console.log(fcxfUiForm.getForm().getValues());

@@ -354,7 +354,7 @@ Ext.Hudongsoft.zphtglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                                var r = self.getSelectionModel().getSelected();
 //	                                addxfx(null,xf_store,r);
                                     addxfx(null,xf_store,r,function (values) {
-                                        console.log(values);
+                                        //console.log(values);
                                         var r = new Ext.data.Record(values);
                                         xf_store.add(r);
                                     });
