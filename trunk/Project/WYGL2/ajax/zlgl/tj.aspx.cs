@@ -129,7 +129,7 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
             jo.Add("房产类型", fclx);
             jo.Add("消费项目", xfxm);
             jo.Add("月份",yf);
-            jo.Add("费用", Math.Round(Convert.ToDouble(total), 1));
+            jo.Add("费用", Math.Round(Convert.ToDouble(total), 0));
             ja.Add(jo);
         }
         Response.Write(JSONConvert.SerializeArray(ja));
