@@ -31,7 +31,7 @@ GO
 CREATE TABLE [dbo].[config](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
-	[Value] [nvarchar](50) NULL,
+	[Value] [nvarchar](500) NULL,
  CONSTRAINT [PK_config] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
