@@ -287,9 +287,15 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        iconCls: 'icon-jiSuan',
 	        width:90,
 	        disabled: true,
-		    handler: function () {
+		    handler: function () {		        
 		        // 录入
 		        function lr() {
+		            if (btnLR.text == "修改录入") {
+		                if (permission_xglr == false) {
+		                    Ext.Msg.alert("提示","没有权限修改已录入的数据");
+		                    return;
+		                }
+		            }
 		        	var r = self.getSelectionModel().getSelected();
 				    if (!r) return;
 		            var fs = ['编号','消费项目','消费类型','值','倍率','损耗','滞纳金','上月读数','读数','说明','读数输入'];
