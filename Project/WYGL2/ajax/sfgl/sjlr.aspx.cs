@@ -336,7 +336,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             {
                 row["滞纳金"] = 0;
             }
-            row["上月读数"] = row["消费类型"].ToString() == "动态" ? pre_user_sf_lb["读数"] : "-";
+            row["上月读数"] = (pre_user_sf_lb!=null && row["消费类型"].ToString() == "动态") ? pre_user_sf_lb["读数"] : "-";
 
             if (row["消费类型"].ToString() == "动态" || row["消费类型"].ToString() == "单价")
             {
