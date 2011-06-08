@@ -239,7 +239,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             jo.Add("倍率", bl);
 
             //损耗
-            if (sflx == "动态") jo.Add("损耗", sh); else jo.Add("损耗", "-");
+            if (sflx == "动态") jo.Add("损耗", string.Format("%{0}", sh)); else jo.Add("损耗", "-");
 
             //总量
             string zl = "-";
@@ -248,7 +248,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 if (sflx == "动态" && syds > -1)
                 {
                     double dsc = byds - syds;
-                    zl = (dsc * (1 - (-bl / 100))).ToString();
+                    zl = (dsc * (1 + sh/100)).ToString();
                 }
                 else if (sflx == "单价")
                 {
@@ -260,7 +260,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 if (sflx == "动态" && syds > -1)
                 {
                     double dsc = byds - syds;
-                    zl = (dsc * (1 - (-bl / 100)) * bl).ToString();
+                    zl = (dsc * (1 + sh / 100) * bl).ToString();
                 }
                 else if (sflx == "单价")
                 {
