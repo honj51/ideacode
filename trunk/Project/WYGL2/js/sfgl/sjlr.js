@@ -305,7 +305,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			            fields: fs
 		            });         
 		            // 网格编辑器
-		            var textEditor = new Ext.form.TextField();
+		            var textEditor = new Ext.form.NumberField();
 		            var blCombox = new Ext.BLCombox();
 		            var vCombox = new Ext.SHCombox();
 		            var colModel = new Ext.grid.ColumnModel({
@@ -350,9 +350,19 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                iconCls: 'icon-wanChen',
 			                handler: function () {
 			                    var data = [];
+			                    var validate_pass = true;
 			                    xf_store.each(function(record){
+			                        var ds = record.data.读数;
+			                        if (!ds || ds == '') {
+			                            validate_pass = false;
+			                            return false;
+			                        }
 			                        data.push(record.data);
 			                    });
+			                    if (!validate_pass) {
+			                        Ext.Msg.alert('录入','请输入读数');
+			                        return;
+			                    }
 			                    Ext.Ajax.request({
 			                         url: "ajax/sfgl/sjlr.aspx?action=lr_tj", 
 			                         params: {
