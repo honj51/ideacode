@@ -385,11 +385,14 @@ function addxfx (d,fcxfStore,r,local_callback){
                 name: '客户编码',
                 value:d?'':r.data.客户编码   
             },
-            {
+            {   
                 fieldLabel:'编号',
                 name:'序号',
                 allowBlank:false,
-                xtype: 'textfield' 
+                xtype: 'textfield' ,
+                disabled:d?false:true,
+                emptyText:d?'':'自动产生'
+                
             },
             {
                 fieldLabel:'消费项目',

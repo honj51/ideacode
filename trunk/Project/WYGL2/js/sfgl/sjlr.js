@@ -5,15 +5,6 @@
 /************************************************************************/
 Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{	
 	jfgl: false,
-	store:new Ext.data.JsonStore({
-		url: 'ajax/sfgl/sjlr.aspx?action=list',
-        root : 'data',
-	    totalProperty : 'totalProperty',
-		fields:[ // id为合同id
-		    'id','编码','客户名称','客户编码','联系电话','联系地址','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月',
-		    '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
-		]
-	}),
 	dispalyDetails: function() {
 	    var self = this;
 	    var r = self.getSelectionModel().getSelected();
@@ -64,6 +55,17 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	initComponent: function(){
 	    var self = this;
 	    self.title = self.jfgl? "缴费管理":"录入管理";
+	    self.store = new Ext.data.JsonStore({
+	        storeId:self.jfgl?'jiaofei':'luru',
+		    url: 'ajax/sfgl/sjlr.aspx?action=list',
+            root : 'data',
+	        totalProperty : 'totalProperty',
+		    fields:[ // id为合同id
+		        'id','编码','客户名称','客户编码','联系电话','联系地址','所属工业园','所属房产','房产类型','合同开始时间_年','合同开始时间_月','合同开始时间_日','合同结束时间_年','合同结束时间_月',
+		        '合同结束时间_日','合同开始时间','合同结束时间','录入状态','缴费状态','录入月份'
+		    ]
+	    });
+	    
 	    var lx_store = new Ext.data.JsonStore({
 		    autoLoad:true,
 		    url: "ajax/zlgl/zphtgl.aspx?action=find_gyy_fclx",
@@ -356,8 +358,9 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                         },
 			                         success: function () {
 			                            Ext.Msg.alert('提交','数据提交成功！');
-			                            win.close();
 			                            self.store.reload();
+			                            win.close();
+			                            Ext.StoreMgr.get('luru').reload();
 			                         }
 			                    });			                    
 			                }
@@ -391,7 +394,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     
                                 })
                                 var x = obj.总金额;
-                                var sf_textfield = new Ext.form.TextField({});		            
+                                var sf_textfield = new Ext.form.NumberField({});		            
                                 var grid = new Ext.grid.GridPanel({
                                     store: xf_store,
                                     columns: [{
@@ -441,6 +444,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                         Ext.Msg.alert('提交','缴费成功！');
                                                         self.store.reload();
                                                         win.close();
+                                                        Ext.StoreMgr.get('jiaofei').reload();
                                                     }
                                                     else {
                                                         Ext.Msg.alert('提交失败', obj.errorMessage);                                                        
