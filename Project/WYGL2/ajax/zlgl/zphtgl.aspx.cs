@@ -194,10 +194,10 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 nv2.Add("收费项目", jo["消费项目"]);
                 nv2.Add("收费类型", jo["消费类型"]);
                 nv2.Add("值", jo["值"]);
-                nv2.Add("录入状态", (jo["消费类型"].ToString() == "动态" && jo["前期读数"].ToString() == "-") ? "未录入" : "已录入");
+                nv2.Add("录入状态", (jo["消费类型"].ToString() == "动态" && (jo["前期读数"] == null || jo["前期读数"].ToString() == "-")) ? "未录入" : "已录入");
                 nv2.Add("缴费状态", "不要交费");
                 nv2.Add("损耗", jo["消费类型"].ToString() == "动态" ? jo["损耗"] : 0);
-                if (jo["消费类型"].ToString() == "动态" && jo["前期读数"].ToString() != "-")
+                if (jo["消费类型"].ToString() == "动态" && (jo["前期读数"] != null && jo["前期读数"].ToString() != "-"))
                     nv2.Add("读数", jo["前期读数"]);
                 else
                     nv2.Add("读数", 0);
