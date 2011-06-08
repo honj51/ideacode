@@ -42,7 +42,8 @@ public partial class Default2 : System.Web.UI.Page
                 dr = DBHelper.ExecuteReader("select * from sq8szxlx.admin_admin where admin_id=@admin_id and admin_pwd=@admin_pwd", sps);
                 if (dr.HasRows)
                 {
-                    Session["admin_id"] = user;
+                    dr.Read();
+                    Session["admin_id"] = user;                    
                     Response.Redirect("Default.aspx");                    
                 }
                 else
