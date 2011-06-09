@@ -72,6 +72,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
                 string dt = DateTime.Now.ToString("yyyyMMddhhmmssffff");
                 dict["编码"] = "ht"+dt;
             }
+            string admin_id = (string)Session["admin_id"];
             string fc = dict["所属房产"].ToString();
             string[] fcl = fc.Split('-');
             dict["房产类型"] = fcl[0];
@@ -86,8 +87,39 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             dict.Add("合同结束时间_月", dt2.Month);
             dict.Add("合同结束时间_日", dt2.Day);
             dict.Add("客户编码", Common.getKhbh(dict["客户名称"].ToString()));
+            dict.Add("操作人", admin_id);
             string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl", "id", action=="add");
             DBHelper.ExecuteSql(sql);
+            if (action == "add") //新增合同时添加 导入消费项
+            {
+                string fclx = dict["房产类型"].ToString();
+                string ssgyy =dict["所属工业园"].ToString();
+                string ssfc = dict["所属房产"].ToString();
+                string kumc = dict["客户名称"].ToString();
+
+                string sql2 = string.Format("select * from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' and 房产类型='{1}' ", ssgyy, fclx);
+                ResultObject fcxflx= DBHelper.GetResult(sql2);
+                foreach (RowObject item in fcxflx)
+                {
+                    NameValueCollection fcxf = new NameValueCollection();
+                    fcxf.Add("所属工业园",item["工业园名称"].ToString());
+                    fcxf.Add("房产类型", item["房产类型"].ToString());
+                    fcxf.Add("所属房产", ssfc);
+                    fcxf.Add("消费项目", item["消费项目"].ToString());
+                    fcxf.Add("消费类型", item["消费类型"].ToString());
+                    fcxf.Add("值", item["值"].ToString());
+                    fcxf.Add("倍率", item["倍率"].ToString());
+                    fcxf.Add("损耗", item["损耗"].ToString());
+                    fcxf.Add("滞纳金", item["滞纳金"].ToString());
+                    fcxf.Add("说明", item["说明"].ToString());
+                    fcxf.Add("客户名称", kumc);
+                    fcxf.Add("合同编号", dict["编码"].ToString());
+                    fcxf.Add("客户编码", Common.getKhbh(kumc));
+                    string insertSql = SqlBuilder.NameValueToSql(fcxf, "sq8szxlx.zpgl_lx_lb", "id", true);
+                    DBHelper.ExecuteSql(insertSql);      
+                }
+                
+            }
             Response.Write("{success: true}");
         }
         else if (action == "delete")
@@ -297,12 +329,24 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             string rq = r1["合同开始时间"].ToString();
             sql = string.Format("select * from sq8szxlx.user_sf_lb where 合同编号='{0}' and 收费项目='{1}' and  日期='{2}'", htbh, xfxm, rq);
             RowObject r4 = DBHelper.GetRow(sql);
-
-            item.Add("编号", i);
-            item.Add("前期读数", item["消费类型"].ToString() == "动态" ? r4["读数"] : "-");
-            item.Add("读数导入", (r4 != null && r4["录入状态"].ToString() == "已录入") ? "√" : "×");
-            item.Add("项目导入", (r4 != null && r4["值"] != "") ? "√" : "×");
-            i++;
+            if (r4 == null)
+            {
+                item.Add("编号", i);
+                item.Add("前期读数", item["消费类型"].ToString() == "动态" ? "-" : "");
+                item.Add("读数导入", "×");
+                item.Add("项目导入", "×");
+                i++;
+            }
+            else
+            {
+                item.Add("编号", i);
+                item.Add("前期读数", item["消费类型"].ToString() == "动态" ? r4["读数"] : "-");
+                item.Add("读数导入", (r4 != null && r4["录入状态"].ToString() == "已录入") ? "√" : "×");
+                item.Add("项目导入", (r4 != null && r4["值"] != "") ? "√" : "×");
+                i++;
+            }
+            
+            
         }
         Response.Write(string.Format("{{'success': true, 'data':{0}}}", JsonConvert.SerializeObject(zpgl_lx_lb)));
     }

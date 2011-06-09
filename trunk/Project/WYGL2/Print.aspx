@@ -80,7 +80,7 @@ function update() {
     </form>
     <table id="tab1" width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="40" align="center" valign="middle" style="border-bottom:1px solid #000000">
+          <td height="35" align="center" valign="middle" style="border-bottom:1px solid #000000">
             <span style="font-size:16px;font-weight:bold;">
                 <span id="title" style="font-size:16px;font-weight:bold;">
                     <select size="1" id="select" name="select">
@@ -90,7 +90,7 @@ function update() {
                     </select> 
                     <button id="btn" onclick="update()">修改</button>        
                     
-                </span>&nbsp;&nbsp;&nbsp;&nbsp;收款收据       &nbsp;&nbsp;
+                </span>&nbsp;&nbsp;&nbsp;&nbsp;收款收据       &nbsp;&nbsp;(<%=ny %>)
             </span>
             
             
@@ -98,10 +98,10 @@ function update() {
         </td>
         </tr>
         <tr>
-          <td height="30">&nbsp;&nbsp;&nbsp;合同编号： <span id="v1"></span>     &nbsp;&nbsp;工业园名称： <span id="v2"></span>    &nbsp;&nbsp;房产类型： <span id="v3"></span>      &nbsp;&nbsp;所属房产： <span id="v4"></span>      &nbsp;</td>
+          <td height="25">&nbsp;&nbsp;&nbsp;合同编号： <span id="v1"></span>     &nbsp;&nbsp;工业园名称： <span id="v2"></span>    &nbsp;&nbsp;房产类型： <span id="v3"></span>      &nbsp;&nbsp;所属房产： <span id="v4"></span>      &nbsp;</td>
         </tr>
         <tr>
-          <td height="30">&nbsp;&nbsp;&nbsp;用户名称：<span id="v5"></span>      &nbsp;&nbsp;用户编码： <span id="v6"></span>      &nbsp;</td>
+          <td height="25">&nbsp;&nbsp;&nbsp;用户名称：<span id="v5"></span>      &nbsp;&nbsp;用户编码： <span id="v6"></span>      &nbsp;&nbsp;&nbsp;<%=ny %></td>
         </tr>
     </table>
     <table id="tab2" width="90%" align="center" cellpadding="0" cellspacing="0"  style="border:1px solid  #000000;">

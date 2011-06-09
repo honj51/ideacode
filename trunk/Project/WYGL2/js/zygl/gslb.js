@@ -147,7 +147,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
                 name: '备注',
                 width:226,
                 height:60,
-                xtype: 'textfield'				                           
+                xtype: 'textarea'				                           
             }
             
               

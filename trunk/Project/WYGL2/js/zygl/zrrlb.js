@@ -254,7 +254,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });	    
 	    var kehu = new Ext.KehuCombox({
 	        width:226,        
-            name:'名称',
+            name:'客户名称',
             fieldLabel:'客户名称'
 	    });
         

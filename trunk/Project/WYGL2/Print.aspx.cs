@@ -15,6 +15,7 @@ public partial class Print : System.Web.UI.Page
     protected string user = "";
     protected string dt = "";
     protected string beizu = "";
+    protected string ny = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!string.IsNullOrEmpty(Request.Params["action"]) && Request.Params["action"] == "save_remark")
@@ -25,7 +26,10 @@ public partial class Print : System.Web.UI.Page
             return;
         }
 
-        user = (string)Session["admin_id"];
+        string admin_id = (string)Session["admin_id"];
+        string sql = string.Format("select admin_name from sq8szxlx.admin_admin where admin_id='{0}'", admin_id);
+        user = DBHelper.GetVar(sql).ToString();
+        ny = Request.Params["ny"];
         dt = DateTime.Now.ToShortDateString();
         Random rand = new Random();        
         dataUrl = string.Format("ajax/sfgl/sjlr.aspx?action=list_lb&djbh={0}&_rand={1}",Request.Params["djbh"],rand.Next());
