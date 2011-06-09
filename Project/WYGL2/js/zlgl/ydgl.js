@@ -233,6 +233,7 @@ Ext.Hudongsoft.ydglGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},'->',
 			{				
 				text:"转为正式合同",
+				iconCls: 'icon-jobSum',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
