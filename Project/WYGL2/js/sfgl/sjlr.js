@@ -275,7 +275,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                         autoScroll: true,
                         items:[{
                             xtype: 'panel',
-                            html:'<iframe src="Print.aspx?djbh='+r.data.单据编号+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
+                            html:'<iframe src="Print.aspx?djbh='+r.data.单据编号+ '&ny='+r.data.年份月份+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
                          }]
                     });
                     w.show();
