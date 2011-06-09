@@ -351,6 +351,24 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                handler: function () {
 			                    var data = [];
 			                    var validate_pass = true;
+			                    function tis(){
+			                        Ext.Ajax.request({
+	                                     url: "ajax/sfgl/sjlr.aspx?action=lr_tj", 
+	                                     params: {
+	                                        htid: self.zbdata.id, // 合同id
+	                                        xh: r.data.序号,
+	                                        year: r.data.年份月份.split('/')[0],
+	                                        month: r.data.年份月份.split('/')[1],
+	                                        data: Ext.encode(data)
+	                                     },
+	                                     success: function () {
+	                                        Ext.Msg.alert('提交','数据提交成功！');
+	                                        self.store.reload();
+	                                        win.close();
+	                                        Ext.StoreMgr.get('luru').reload();
+	                                     }
+	                                });	
+			                    };
 			                    xf_store.each(function(record){
 			                        var ds = record.data.读数;
 			                        if (!ds || ds == '') {
@@ -363,22 +381,16 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                        Ext.Msg.alert('录入','请输入读数');
 			                        return;
 			                    }
-			                    Ext.Ajax.request({
-			                         url: "ajax/sfgl/sjlr.aspx?action=lr_tj", 
-			                         params: {
-			                            htid: self.zbdata.id, // 合同id
-			                            xh: r.data.序号,
-			                            year: r.data.年份月份.split('/')[0],
-			                            month: r.data.年份月份.split('/')[1],
-			                            data: Ext.encode(data)
-			                         },
-			                         success: function () {
-			                            Ext.Msg.alert('提交','数据提交成功！');
-			                            self.store.reload();
-			                            win.close();
-			                            Ext.StoreMgr.get('luru').reload();
-			                         }
-			                    });			                    
+			                    if (r.data.缴费状态=='已缴费') {
+			                        Ext.Msg.confirm('提示', '该条录入已缴费，更改数据会清除缴费信息，需要重新缴费', function(btn){
+                                        if (btn == 'yes'){
+                                            tis();
+                                        }
+                                    });
+			                    }else{
+			                        tis();
+			                    }
+		                    
 			                }
 			            }  
 			            ]
