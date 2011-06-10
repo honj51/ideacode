@@ -68,6 +68,7 @@ public class Common
     public static void updateFCZT(string gyy, string fclx, string fh, string yezu, string zt)
     {
         string sql = string.Format("select id from sq8szxlx.gyy_fc_lb where 工业园名称='{0}' and 房产类型='{1}' and 房号='{2}'", gyy, fclx, fh);
+        if (DBHelper.GetVar(sql) == null) return;
         string id = DBHelper.GetVar(sql).ToString();
 
         Dictionary<string, object> dict2 = new Dictionary<string, object>();
