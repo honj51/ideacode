@@ -17,6 +17,7 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["admin_id"] == null) throw new SessionLostException();  
         string action = Request.Params["action"];
         if (String.IsNullOrEmpty(action)) return;
 
@@ -45,8 +46,23 @@ public partial class ZiYuan_gyygl : System.Web.UI.Page
         }
         else if (action == "delete")
         {
+            string id = Request.Form["id"];
+            string sql1 = "select 工业园名称 from sq8szxlx.gyy_lb where id=" + id;
+            string gyymc = DBHelper.GetVar(sql1).ToString();
+
+            string sql2 = string.Format("delete from sq8szxlx.gyy_fc_lb where 工业园名称='{0}' ", gyymc);
+
+            DBHelper.ExecuteSql(sql2);
+
+            string sql3 = string.Format("delete from sq8szxlx.gyy_lb_fclx_lb_xflx where 工业园名称='{0}' ", gyymc);
+            DBHelper.ExecuteSql(sql3);
+
+            string sql4 = string.Format("delete from sq8szxlx.gyy_lb_fclx_lb where 工业园名称='{0}' ", gyymc);
+            DBHelper.ExecuteSql(sql4);
+
             string sql = "delete from sq8szxlx.gyy_lb where id=" + Request.Form["id"];
             DBHelper.ExecuteSql(sql);
+
             Response.Write("{success: true}");   
         }
         else if (action == "lx_list")

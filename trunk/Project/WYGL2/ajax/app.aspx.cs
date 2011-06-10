@@ -13,12 +13,7 @@ public partial class ajax_app : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["admin_id"] == null)
-        {
-            Response.Write("{'success':true, 'data':{}, errorMessage: 'user not logged in',sessionstatus:'timeout'}"); 
-            Response.End(); 
-            return;
-        }
+        if (Session["admin_id"] == null) throw new SessionLostException();    
 
         bool xglr2 = true;
         string admin_id = (string)Session["admin_id"];
