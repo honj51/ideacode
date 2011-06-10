@@ -29,11 +29,11 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			dataIndex:"房产类型",
 			width:100
 		},
-		{
-			header:"消费项目",
-			dataIndex:"消费项目",
-			width:100
-		},
+//		{
+//			header:"消费项目",
+//			dataIndex:"消费项目",
+//			width:100
+//		},
 		{
 			header:"月份",
 			dataIndex:"月份",
@@ -61,8 +61,8 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 //	        width:100,
 //	        emptyText:'请选择'
 //	    });
-        var xfxm = new Ext.sfxmCombox();
-        var gyy_lx = new Ext.GyyLxCombox({nextCombox: xfxm});
+       // var xfxm = new Ext.sfxmCombox();
+        var gyy_lx = new Ext.GyyLxCombox(); //{nextCombox: xfxm}
 	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});
 	    
 	    var nian = new Ext.YearCombox();
@@ -80,11 +80,11 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},
 			gyy_lx,
 			
-			{
-				xtype:"label",
-				text:"消费项目"
-			},
-			xfxm,
+//			{
+//				xtype:"label",
+//				text:"消费项目"
+//			},
+//			xfxm,
 			{
 				xtype:"label",
 				text:"年："
@@ -103,7 +103,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				        params:{
 				            gyy: gyy.getValue(),
 				            gyy_lx:gyy_lx.getValue(),
-				            xfxm:xfxm.getValue(),
+				            //xfxm:xfxm.getValue(),
 				            nian:nian.getValue(),
 				            yue:yue.getValue()
 				        }
