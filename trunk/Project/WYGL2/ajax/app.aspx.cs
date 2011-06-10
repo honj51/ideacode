@@ -13,6 +13,13 @@ public partial class ajax_app : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["admin_id"] == null)
+        {
+            Response.Write("{'success':true, 'data':{}, errorMessage: 'user not logged in',sessionstatus:'timeout'}"); 
+            Response.End(); 
+            return;
+        }
+
         bool xglr2 = true;
         string admin_id = (string)Session["admin_id"];
         string sql1 = string.Format("select admin_limit from sq8szxlx.admin_admin where admin_id='{0}'",admin_id);

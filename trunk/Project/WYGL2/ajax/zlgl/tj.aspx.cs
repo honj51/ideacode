@@ -94,7 +94,7 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
     {
         string gyy = Request.Params["gyy"];
         string gyy_fclx = Request.Params["gyy_lx"];
-        string gyy_xfxm = Request.Params["xfxm"];
+        //string gyy_xfxm = Request.Params["xfxm"];
         string nian = Request.Params["nian"];
         string yue = Request.Params["yue"];
 
@@ -105,7 +105,7 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
             sql = string.Format("select * from sq8szxlx.gyy_lb where 工业园名称='{0}'", gyy);
         }
         string where_fclx = Common.hasValue(gyy_fclx) ? string.Format(" and z.房产类型='{0}'", gyy_fclx) : "";
-        string where_xfxm = Common.hasValue(gyy_xfxm) ? string.Format(" and u.收费项目='{0}'", gyy_xfxm) : "";
+       // string where_xfxm = Common.hasValue(gyy_xfxm) ? string.Format(" and u.收费项目='{0}'", gyy_xfxm) : "";
         string where_nian = Common.hasValue(nian) ? string.Format(" and u.日期年='{0}'", nian) : "";
         string where_yue = Common.hasValue(yue) ? string.Format(" and u.日期月='{0}'", yue) : "";
         ResultObject gyy_lb = DBHelper.GetResult(sql);
@@ -116,18 +116,18 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
             RowObject row = gyy_lb[i];
             string gyy_mc = row["工业园名称"].ToString();
             string fclx = gyy_fclx;
-            string xfxm =  gyy_xfxm;
+            //string xfxm =  gyy_xfxm;
             string yf = yue;
             
             // 2. 查询合同
             string sql_sf = string.Format(@"select sum(u.费用) as total from sq8szxlx.user_sf_lb u left join sq8szxlx.zpgl z on 
-	            u.合同编号=z.编码 where z.所属工业园='{0}' {1} {2} {3} {4}", gyy_mc, where_fclx, where_xfxm, where_nian, where_yue);
+	            u.合同编号=z.编码 where z.所属工业园='{0}' {1} {2} {3} ", gyy_mc, where_fclx, where_nian, where_yue);  //where_xfxm,
             object total = DBHelper.GetVar(sql_sf);
             JSONObject jo = new JSONObject();
             jo.Add("序号",i+1);
             jo.Add("工业园名称",gyy_mc);
             jo.Add("房产类型", fclx);
-            jo.Add("消费项目", xfxm);
+           // jo.Add("消费项目", xfxm);
             jo.Add("月份",yf);
             jo.Add("费用", Math.Round(Convert.ToDouble(total), 0));
             ja.Add(jo);

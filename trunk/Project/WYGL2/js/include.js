@@ -464,3 +464,16 @@ function addxfx (d,fcxfStore,r,local_callback){
     
     fcxfWinUi.show();
 }
+
+
+
+// Session超时处理
+Ext.Ajax.on('requestcomplete',checkUserSessionStatus, this);   
+function checkUserSessionStatus(conn,response,options){  
+	if(response.responseText && Ext.decode(response.responseText).sessionstatus == 'timeout'){ 
+		Ext.MessageBox.alert('提示','会话超时!请重新登录!', function(){
+			window.location.href='Login.aspx'; 
+		});
+		return;
+	}   
+}  
