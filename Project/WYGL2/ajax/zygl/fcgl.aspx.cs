@@ -15,6 +15,7 @@ public partial class ZiYuan_fcgl : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["admin_id"] == null) throw new SessionLostException();  
         string action = Request.Params["action"];
         if (String.IsNullOrEmpty(action)) return;
         Response.ContentType = "application/json";
@@ -24,7 +25,7 @@ public partial class ZiYuan_fcgl : System.Web.UI.Page
             string sql = "";
             if (Request.Params["start"] != null && Request["limit"] != null)
             {
-                sql = string.Format("select top {0} * from sq8szxlx.gyy_fc_lb where id not in(select top {1} id from sq8szxlx.gyy_fc_lb)",
+                sql = string.Format("select top {0} * from sq8szxlx.gyy_fc_lb where id not in(select top {1} id from sq8szxlx.gyy_fc_lb order by id desc)",
                     Request["limit"],Request.Params["start"]);
             }
             else

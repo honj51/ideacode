@@ -18,6 +18,7 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["admin_id"] == null) throw new SessionLostException();  
         string action =Request.Params["action"];
         if (String.IsNullOrEmpty(action)) return;
 
@@ -90,8 +91,15 @@ public partial class ZuLin_zphtgl : System.Web.UI.Page
             dict.Add("操作人", admin_id);
             string sql = SqlBuilder.NameValueToSql(dict, "sq8szxlx.zpgl", "id", action=="add");
             DBHelper.ExecuteSql(sql);
-            if (action == "add") //新增合同时添加 导入消费项
+            //新增，修改合同时 修改 gyy_fc_lb里的出租状态和业主编号
+            string khbm= Common.getKhbh(dict["客户名称"].ToString());
+            string sql1 = string.Format("update sq8szxlx.gyy_fc_lb set 业主='{0}',状态='已租' where 工业园名称='{1}' and 房产类型='{2}' and 房号='{3}' ", khbm, dict["所属工业园"].ToString(), dict["房产类型"].ToString(), dict["所属房产"].ToString());
+            DBHelper.ExecuteSql(sql1);
+           
+
+            if (action == "add") //新增合同时添加 导入消费项  
             {
+
                 string fclx = dict["房产类型"].ToString();
                 string ssgyy =dict["所属工业园"].ToString();
                 string ssfc = dict["所属房产"].ToString();

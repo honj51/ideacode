@@ -16,6 +16,7 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["admin_id"] == null) throw new SessionLostException();  
         string action = Request.QueryString["action"];
         if (String.IsNullOrEmpty(action)) return;
         Response.ContentType = "application/json";
