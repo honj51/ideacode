@@ -358,7 +358,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                    var validate_pass = true;
 			                    xf_store.each(function(record){
 			                        var ds = record.data.读数;
-			                        if (!ds || ds == '') {
+			                        if (ds === '') {
 			                            validate_pass = false;
 			                            return false;
 			                        }
