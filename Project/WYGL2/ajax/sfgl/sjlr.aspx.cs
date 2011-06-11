@@ -331,6 +331,12 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             string pre_sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh - 1, row["消费项目"]);
             RowObject pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
+            if (pre_user_sf_lb == null) // 没有上月读数信息，读取序号为1的单据(前期读数)
+            {
+                pre_sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
+                zpgl["编码"], 1, row["消费项目"]);
+                pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
+            }
 
             if (pre_user_sf_zb["缴费状态"].ToString() == "已缴费" || pre_user_sf_zb["缴费状态"].ToString() == "不要交费")
             {
