@@ -218,13 +218,20 @@ public partial class SouFei_sjlr : System.Web.UI.Page
         {
             RowObject row = r[i];
             // 查询上月收费项目
-            string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
+            string pre_sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 row["合同编号"], preNo, row["收费项目"]);
-            RowObject row2 = DBHelper.GetRow(sql_pre_lb);
+            RowObject pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
+            if (pre_user_sf_lb == null) // 没有上月读数信息，读取序号为1的单据(前期读数)
+            {
+                pre_sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
+                row["合同编号"], 1, row["收费项目"]);
+                pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
+            }
+
             double syds = -1;
-            if (row2 != null)
+            if (pre_user_sf_lb != null)
             {                
-                syds = Convert.ToDouble(row2["读数"]);
+                syds = Convert.ToDouble(pre_user_sf_lb["读数"]);
             }
             JSONObject jo = new JSONObject();
             jo.Add("序号", row["序号"]);
@@ -431,10 +438,16 @@ public partial class SouFei_sjlr : System.Web.UI.Page
             nv2.Add("倍率", jo["倍率"]);
             nv2.Add("滞纳金", jo["滞纳金"]);
             //// 查询上月收费项目
-            string sql_pre_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
+            string pre_sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
                 zpgl["编码"], xh - 1, item["消费项目"]);
-            RowObject pre = DBHelper.GetRow(sql_pre_lb);
-            double ds_sy = (pre != null && pre["读数"].ToString() != "-") ? Convert.ToDouble(pre["读数"].ToString()) : 0;
+            RowObject pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
+            if (pre_user_sf_lb == null) // 没有上月读数信息，读取序号为1的单据(前期读数)
+            {
+                pre_sql_lb = string.Format(@"select * from sq8szxlx.user_sf_lb where 单据编号='{0}_{1}' and 收费项目='{2}'",
+                zpgl["编码"], 1, item["消费项目"]);
+                pre_user_sf_lb = DBHelper.GetRow(pre_sql_lb);
+            }
+            double ds_sy = (pre_user_sf_lb != null && pre_user_sf_lb["读数"].ToString() != "-") ? Convert.ToDouble(pre_user_sf_lb["读数"].ToString()) : 0;
             double ds = hasNumber(jo["读数"]) ?  Convert.ToDouble(jo["读数"].ToString()):0;            
             double zi = hasNumber(jo["值"]) ?   Convert.ToDouble(jo["值"].ToString()):0;
             double znj = hasNumber(jo["滞纳金"]) ?  Convert.ToDouble(jo["滞纳金"].ToString()):0;
