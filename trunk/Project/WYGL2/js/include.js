@@ -11,9 +11,12 @@ day_opts = [{n:now_day}];
 for(var i=2006;i<=now_year;i++) {
     year_opts.push({n:i});
 }
+year_opts.push({n:'(全部)'});
+
 for(var i=1;i<=12;i++) {
     month_opts.push({n:i});
 }
+month_opts.push({n:'(全部)'});
 
 for(var i=1;i<=31;i++) {
     day_opts.push({n:i});
@@ -38,7 +41,7 @@ Ext.YearCombox = Ext.extend(Ext.form.ComboBox,{
 
 Ext.MonthCombox = Ext.extend(Ext.form.ComboBox,{
     editable: false,
-	width: 40,
+	width: 60,
 	mode: 'local',
 	triggerAction:"all",
     store: new Ext.data.JsonStore({
@@ -468,7 +471,7 @@ function addxfx (d,fcxfStore,r,local_callback){
 
 
 // Session超时处理
-Ext.Ajax.on('requestcomplete',checkUserSessionStatus, this);   
+Ext.Ajax.on('requestexception',checkUserSessionStatus, this);   
 function checkUserSessionStatus(conn,response,options){  
     if (response.responseText.indexOf("SessionLostException") >= 0) {
     //}
