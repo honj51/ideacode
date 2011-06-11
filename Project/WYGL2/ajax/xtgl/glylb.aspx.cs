@@ -27,7 +27,19 @@ public partial class XiTong_glylb : System.Web.UI.Page
         }
         else if (action == "add")
         {
-            string sql = SqlBuilder.NameValueToSql(Request.Form, "sq8szxlx.admin_admin", "id", true);
+            NameValueCollection nvc = new NameValueCollection();
+            for (int i = 0; i < Request.Form.Count; i++)
+            {
+                if (Request.Form.GetKey(i) == "admin_pwd")
+                {
+                    string md5 = Common.MakeMD5(Request.Form.Get(i));
+                    nvc.Add(Request.Form.GetKey(i), md5);
+                }
+                else
+                    nvc.Add(Request.Form.GetKey(i), Request.Form.Get(i));
+            }
+
+            string sql = SqlBuilder.NameValueToSql(nvc, "sq8szxlx.admin_admin", "id", true);
             DBHelper.ExecuteSql(sql);
             Response.Write("{success: true}");
         }
