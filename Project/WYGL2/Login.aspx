@@ -53,7 +53,7 @@
 <body>    
     <div id="loading-mask" style=""></div>
 	<div id="loading">
-	    <div class="loading-indicator"><img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>房介之星 3<br /><span id="loading-msg">载入图片和样式...</span></div>
+	    <div class="loading-indicator"><img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>物业管理系统<br /><span id="loading-msg">载入图片和样式...</span></div>
 	</div>
 	<% if (Request.IsLocal)
 	{
