@@ -4,12 +4,101 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
+    <style type="text/css">
+		 #loading-mask{
+	        position:absolute;
+	        left:0;
+	        top:0;
+	        width:100%;
+	        height:100%;
+	        z-index:20000;
+	        background-color:white;
+	    }
+	    #loading{
+	        position:absolute;
+	        left:45%;
+	        top:40%;
+	        padding:2px;
+	        z-index:20001;
+	        height:auto;
+	    }
+	    #loading a {
+	        color:#225588;
+	    }
+	    #loading .loading-indicator{
+	        background:white;
+	        color:#444;
+	        font:bold 13px tahoma,arial,helvetica;
+	        padding:10px;
+	        margin:0;
+	        height:auto;
+	    }
+	    #loading-msg {
+	        font: normal 10px arial,tahoma,sans-serif;
+	    }
+		body {
+			margin:0;padding:0;text-align:center;
+			background-color: #e1f3ff ;
+		}
+		#login-div {
+			margin: 0 auto; width: 300;
+			vertical-align: middle;
+		}
+		#error {
+			color: red;
+		}
+	</style>
     <title>欢迎登陆</title>
 </head>
 <body>    
+    <div id="loading-mask" style=""></div>
+	<div id="loading">
+	    <div class="loading-indicator"><img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>房介之星 3<br /><span id="loading-msg">载入图片和样式...</span></div>
+	</div>
+	<% if (Request.IsLocal)
+	{
+    %>
+	<div>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入样式...';</script>		
+	    <link rel="stylesheet" type="text/css" href="http://localhost/extjs/resources/css/ext-all.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost/extjs/examples/ux/css/ux-all.css" />
+    	<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入基础库...';</script>		
+	    <script type="text/javascript" src="http://localhost/extjs/adapter/ext/ext-base.js"></script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入界面库...';</script>	    
+	    <script type="text/javascript" src="http://localhost/extjs/ext-all.js"></script>
+	    <script type="text/javascript" src="http://localhost/extjs/examples/ux/ux-all.js"></script>
+        <script type="text/javascript" src="http://localhost/extjs/src/locale/ext-lang-zh_CN.js"></script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '初始化...';</script>
+	    <script type="text/javascript">
+	    	Ext.get('loading-mask').setVisible(false);
+	    	Ext.get('loading').setVisible(false);
+	    </script>	    
+	</div>
+    <%     
+	} else {
+	 %>
+	<div>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入样式...';</script>		
+	    <link rel="stylesheet" type="text/css" href="ext/resources/css/ext-all.css" />
+        <link rel="stylesheet" type="text/css" href="ext/examples/ux/css/ux-all.css" />
+    	<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入基础库...';</script>		
+	    <script type="text/javascript" src="ext/adapter/ext/ext-base.js"></script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入界面库...';</script>	    
+	    <script type="text/javascript" src="ext/ext-all.js"></script>
+	    <script type="text/javascript" src="ext/examples/ux/ux-all.js"></script>
+        <script type="text/javascript" src="ext/src/locale/ext-lang-zh_CN.js"></script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '初始化...';</script>
+	    <script type="text/javascript">
+	    	Ext.get('loading-mask').setVisible(false);
+	    	Ext.get('loading').setVisible(false);
+	    </script>	    
+	</div>
+    <%     
+	} 
+	 %>
     <div id='Login' style="margin-left:auto; margin-right:auto; margin-top:0px; background: url('images/login.jpg') no-repeat; width: 1280px; height: 655px">	  
 	   <form action="Login.aspx" method="post" style="height:570px;">
-	    <h1 style="padding: 100px 0px 0px 480px ">欢迎登陆物业管理系统</h1>
+	    <h1 style="padding: 160px 0px 0px 480px "></h1>
 	   	<div  id="login-div" style="padding: 120px 10px 0 560px">	   	    
 	   		<div style="text-align: left; float: left;width:368px;">
 		   		<div style="width: 200">
@@ -42,17 +131,7 @@
                                 break;
                         }        
 		   	         %> 
-    <%--	   			<?php
-	   				    switch ($_REQUEST['error']) {
-	   					    case -1:
-	   						    echo "<span class='red'>用户名或密码错误,请重试!</span>";
-	   					    break;
-	   					    case -2:
-	   						    echo "<span class='red'>登录失败，账户已被禁用!</span>";
-	   					    break;
-	   				    }
-	        	    ?>				
-    --%>		   	</div>
+    		   	</div>
     		   
     <%--		   	<div style="margin: 20px 0 0 -60px;color:yellow; font-size: 9;clear: left">提示: 如有时输入用户名密码无法登陆时，请按F5刷新后重试。</div>
     --%>		</div>
