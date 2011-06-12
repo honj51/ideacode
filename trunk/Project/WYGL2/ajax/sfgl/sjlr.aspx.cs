@@ -200,7 +200,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
     {
         JSONArray ja = new JSONArray();
         // 根据单据编号查询收费项目列表
-        string sql_lb = string.Format(@"select ROW_NUMBER() OVER (ORDER BY u.id) as 序号,u.*,z.说明 
+        string sql_lb = string.Format(@"select u.*,z.说明 
             from sq8szxlx.user_sf_lb u left join sq8szxlx.zpgl_lx_lb z on 
             (u.合同编号=z.合同编号 and z.消费项目=u.收费项目 and z.消费类型=u.收费类型)
                 where u.单据编号='{0}' and not (u.收费项目 is null)", Request.Params["djbh"]);
@@ -234,7 +234,7 @@ public partial class SouFei_sjlr : System.Web.UI.Page
                 syds = Convert.ToDouble(pre_user_sf_lb["读数"]);
             }
             JSONObject jo = new JSONObject();
-            jo.Add("序号", row["序号"]);
+            jo.Add("序号", i+1);
             string sflx = row["收费类型"].ToString();
             double sh = Convert.ToDouble(row["损耗"]);
             double bl = Convert.ToDouble(row["倍率"]);
