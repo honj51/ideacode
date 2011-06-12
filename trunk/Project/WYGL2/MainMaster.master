@@ -5,13 +5,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>深圳市兴联兴投资有限公司</title>
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
-    <link href="ext/resources/css/ext-all.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!-- extjs stuff -->
+    
+   	<% if (Request.IsLocal)
+	{
+    %>
+    <link rel="stylesheet" type="text/css" href="http://localhost/extjs/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost/extjs/examples/ux/css/ux-all.css" />
+    <script type="text/javascript" src="http://localhost/extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="http://localhost/extjs/ext-all.js"></script>
+    <script type="text/javascript" src="http://localhost/extjs/examples/ux/ux-all.js"></script>
+    <script type="text/javascript" src="http://localhost/extjs/src/locale/ext-lang-zh_CN.js"></script>
+    <%     
+	} else {
+	 %>
+    <link rel="stylesheet" type="text/css" href="ext/resources/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="ext/examples/ux/css/ux-all.css" />
     <script type="text/javascript" src="ext/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="ext/ext-all.js"></script>
     <script type="text/javascript" src="ext/examples/ux/ux-all.js"></script>
     <script type="text/javascript" src="ext/src/locale/ext-lang-zh_CN.js"></script>
+    <%     
+	} 
+	 %>
+    
     <script type="text/javascript" src="js/format.js"></script>
     <script type="text/javascript" src="js/include.js"></script>
     
