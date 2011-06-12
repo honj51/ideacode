@@ -60,7 +60,17 @@
     <script type="text/javascript">
     var main_tab = null;
     Ext.onReady(function(){
-       Ext.BLANK_IMAGE_URL="ext/resources/images/default/s.gif";
+    <% if (Request.IsLocal)
+	{
+    %>
+    Ext.BLANK_IMAGE_URL="http://localhost/extjs/resources/images/default/s.gif";
+    <%     
+	} else {
+	 %>
+    Ext.BLANK_IMAGE_URL="ext/resources/images/default/s.gif";
+     <%     
+	} 
+	 %>
        main_tab = new Ext.TabPanel({
             region:'center',
             activeTab: 0,            
@@ -162,9 +172,11 @@
                         panel.show();
                         return;
                     }
-                    panel.itemId  = text;
-                    main_tab.add(panel);      
-                    main_tab.activate(panel);
+                    if(panel) {
+                        panel.itemId  = text;
+                        main_tab.add(panel);      
+                        main_tab.activate(panel);
+                    }
                 }
             }
         });
