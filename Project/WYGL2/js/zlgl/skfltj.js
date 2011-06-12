@@ -1,16 +1,7 @@
 ﻿Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
-    xtype:"grid",
-	title:"费用统计列表",
-	store : new Ext.data.JsonStore({
-        //root : 'data',
-		totalProperty : 'totalProperty',
-        url: 'ajax/zlgl/tj.aspx?action=fltj',
-		fields:[
-		    '序号','工业园名称','房产类型','消费项目','月份','费用'
-		]	
-    }),
+    xfxtj: false,		
 	width:792,
 	height:560,
 	columns:[
@@ -29,11 +20,11 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			dataIndex:"房产类型",
 			width:100
 		},
-//		{
-//			header:"消费项目",
-//			dataIndex:"消费项目",
-//			width:100
-//		},
+		{
+			header:"消费项目",
+			dataIndex:"消费项目",
+			width:100
+		},
 		{
 			header:"月份",
 			dataIndex:"月份",
@@ -47,22 +38,9 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	],
 	initComponent: function(){
 	    var self = this;
-//        var xfxm = new Ext.sfxmCombox({
-//            emptyText:'请选择'         
-//        });
-
-//	    var gyy_lx = new Ext.GyyLxCombox({
-//	        xfxm_store: xfxm.store,
-//	        emptyText:'请选择',	        
-//	    });
-
-//	    var gyy = new Ext.GyyCombox({
-//	        lx_store: gyy_lx.store,
-//	        width:100,
-//	        emptyText:'请选择'
-//	    });
-        var xfxm = new Ext.sfxmCombox();
-        var gyy_lx = new Ext.GyyLxCombox(); //{nextCombox: xfxm}
+	    self.title = self.xfxtj?"收款详细统计":"收款分类统计";
+        var xfxm = new Ext.sfxmCombox({hidden: !self.xfxtj});
+        var gyy_lx = new Ext.GyyLxCombox({value:'厂房'}); //{nextCombox: xfxm}
 	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});
 	    
 	    var nian = new Ext.YearCombox();
@@ -82,7 +60,8 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			
 			{
 				xtype:"label",
-				text:"消费项目"
+				text:"消费项目",
+				hidden: !self.xfxtj
 			},
 			xfxm,
 			{
@@ -101,6 +80,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    handler:function () {
 				    self.store.load({
 				        params:{
+				            xfxtj: self.xfxtj,
 				            gyy: gyy.getValue(),
 				            gyy_lx:gyy_lx.getValue(),
 				            xfxm:xfxm.getValue(),
@@ -109,10 +89,27 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 				        }
 				    });
 				}
-			}
+			},
+			'->',
+			{
+			    text:"打印",
+			    iconCls:'icon-batch_print',
+			    handler:function () {
+			        window.open("Print2.aspx?gyy="+gyy.getValue()+'&gyy_lx='+gyy_lx.getValue()+'&xfxm='+xfxm.getValue()+'&nian='+nian.getValue()+'&yue='+yue.getValue()+'&xfxtj='+self.xfxtj);
+			    }
+			}			
 		];
+		self.store = new Ext.data.JsonStore({
+            totalProperty : 'totalProperty',
+            url: 'ajax/zlgl/tj.aspx?action=fltj',
+		    fields:[
+		        '序号','工业园名称','房产类型','消费项目','月份','费用'
+		    ]	
+        });
 		self.store.load({
 		    params:{
+		        xfxtj: self.xfxtj,
+		        gyy_lx: '厂房',
 		        nian:nian.getValue(),
 			    yue:yue.getValue()
 		    }
