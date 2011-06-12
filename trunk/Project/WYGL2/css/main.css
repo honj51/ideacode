@@ -46,6 +46,11 @@
 	background-image: url(../images/icon/jobSum.png) !important;
 }
 
+.icon-batch_print
+{
+    background-image: url(../images/icon/batch_print.png) !important;    
+}
+
 .x-tree-node-leaf .x-tree-node-icon 
 {
     background-image: url(../images/icon/1_1.gif) !important;    
