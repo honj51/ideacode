@@ -126,13 +126,13 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
                 // 查询工业园所有消费项
                 sql = string.Format(" select distinct 消费项目 as sfxm from sq8szxlx.zpgl_lx_lb where 房产类型='厂房' and 所属工业园='{0}'",gyy_mc);
                 ResultObject zpgl_lx_lb = DBHelper.GetResult(sql);
-                for (int j = 0; j < zpgl_lx_lb.Count; j++)
+                for (int j = 0; j < zpgl_lx_lb.Count; j++) //详细统计
                 {
                     k++;
                     RowObject row2 = zpgl_lx_lb[j];
                     where_xfxm = string.Format(" and u.收费项目='{0}'", row2["sfxm"]);
                     string sql_sf = string.Format(@"select sum(u.费用) as total from sq8szxlx.user_sf_lb u left join sq8szxlx.zpgl z on 
-	                u.合同编号=z.编码 where z.所属工业园='{0}' {1} {2} {3} {4}", gyy_mc, where_fclx, where_xfxm, where_nian, where_yue);
+	                u.合同编号=z.编码 left join sq8szxlx.user_sf_zb zb on zb.合同编号=u.合同编号 and zb.日期年=u.日期年 and zb.日期月=u.日期月  where zb.缴费状态<>'未缴费' and z.所属工业园='{0}' {1} {2} {3} {4}", gyy_mc, where_fclx, where_xfxm, where_nian, where_yue);
                     object total = DBHelper.GetVar(sql_sf);
                     JSONObject jo = new JSONObject();
                     jo.Add("序号", k);
@@ -145,10 +145,11 @@ public partial class ajax_zygl_tj : System.Web.UI.Page
                 }
             }
             else
-            {
+            {      
+                //分类统计
                 // 2. 查询合同
                 string sql_sf = string.Format(@"select sum(u.费用) as total from sq8szxlx.user_sf_lb u left join sq8szxlx.zpgl z on 
-	                u.合同编号=z.编码 where z.所属工业园='{0}' {1} {2} {3} {4}", gyy_mc, where_fclx, where_xfxm, where_nian, where_yue);  
+	                u.合同编号=z.编码 left join sq8szxlx.user_sf_zb zb on zb.合同编号=u.合同编号 and zb.日期年=u.日期年 and zb.日期月=u.日期月 where zb.缴费状态<>'未缴费' and z.所属工业园='{0}' {1} {2} {3} {4}", gyy_mc, where_fclx, where_xfxm, where_nian, where_yue);  
                 object total = DBHelper.GetVar(sql_sf);
                 JSONObject jo = new JSONObject();
                 jo.Add("序号",i+1);

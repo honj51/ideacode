@@ -112,7 +112,7 @@
 		   		</div>
 		   		<div style="width: 200;margin-top: 5px">
 			   		<label >验证码:</label>
-			    	<input name="yanzheng" style="width:150px" />&nbsp;&nbsp;<asp:Image ID="Image1" runat="server" Width="60px" ImageUrl="png.aspx?aa2" />
+			    	<input name="yanzheng" style="width:150px" autocomplete="off" />&nbsp;&nbsp;<asp:Image ID="Image1" runat="server" Width="60px" ImageUrl="png.aspx?aa2" />
 		   		</div>
 		   	    <div style="float:right;margin:20px 80px 20px 0px;">
 			    	<input type="image" src="images/deng.png" > 
