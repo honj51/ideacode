@@ -108,6 +108,7 @@
                     var panel = main_tab.items.get(text);
                     if (panel != null) {
                         panel.show();
+                        return;
                     }
                     if (text == "数据录入") {
 						 panel = new Ext.Hudongsoft.sjlrGrid();        
