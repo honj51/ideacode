@@ -95,7 +95,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			    text:"打印",
 			    iconCls:'icon-batch_print',
 			    handler:function () {
-			        window.open("Print2.aspx?gyy="+gyy.getValue()+'&gyy_lx='+gyy_lx.getValue()+'&xfxm='+xfxm.getValue()+'&nian='+nian.getValue()+'&yue='+yue.getValue()+'&xfxtj='+self.xfxtj);
+			        window.open("Print2.aspx?gyy="+ escape(gyy.getValue()) +'&gyy_lx=' + escape(gyy_lx.getValue()) +'&xfxm='+ escape(xfxm.getValue()) +'&nian='+nian.getValue()+'&yue='+yue.getValue()+'&xfxtj='+self.xfxtj);
 			    }
 			}			
 		];
