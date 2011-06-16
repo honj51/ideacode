@@ -46,7 +46,7 @@ public class SqlBuilder
                 {
                     continue;
                 }
-                else if (value=="null" || columns[name] == "56") // 数字
+                else if (value == "null" || columns[name] == "56" || columns[name] == "60") // 数字
                 {
                     quote = false;
                 }
@@ -81,7 +81,7 @@ public class SqlBuilder
                         // TODO: 自增？
                     }
                 }
-                else if (columns[s] == "56") // 数字
+                else if (columns[s] == "56" || columns[s] == "60") // 数字,money
                 {
                     sb.AppendFormat("{0}={1},", s, nvc.Get(s));
                 }
