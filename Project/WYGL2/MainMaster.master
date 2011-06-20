@@ -11,12 +11,12 @@
    	<% if (Request.IsLocal)
 	{
     %>
-    <link rel="stylesheet" type="text/css" href="http://localhost/extjs/resources/css/ext-all.css" />
-    <link rel="stylesheet" type="text/css" href="http://localhost/extjs/examples/ux/css/ux-all.css" />
-    <script type="text/javascript" src="http://localhost/extjs/adapter/ext/ext-base.js"></script>
-    <script type="text/javascript" src="http://localhost/extjs/ext-all.js"></script>
-    <script type="text/javascript" src="http://localhost/extjs/examples/ux/ux-all.js"></script>
-    <script type="text/javascript" src="http://localhost/extjs/src/locale/ext-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:81/extjs/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:81/extjs/examples/ux/css/ux-all.css" />
+    <script type="text/javascript" src="http://localhost:81/extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="http://localhost:81/extjs/ext-all.js"></script>
+    <script type="text/javascript" src="http://localhost:81/extjs/examples/ux/ux-all.js"></script>
+    <script type="text/javascript" src="http://localhost:81/extjs/src/locale/ext-lang-zh_CN.js"></script>
     <%     
 	} else {
 	 %>
@@ -32,8 +32,11 @@
     
     <script type="text/javascript" src="js/format.js"></script>
     <script type="text/javascript" src="js/include.js"></script>
-    
+        
     <script type="text/javascript" src="ajax/app.aspx"></script>
+    
+    <script type="text/javascript" src="js/all-script.js"></script>
+    <%--  
     <!-- 收费管理  -->
     <script type="text/javascript" src="js/sfgl/sjlr.js"></script>
       
@@ -55,7 +58,7 @@
     <!-- 租赁管理  -->
     <script type="text/javascript" src="js/xtgl/glylb.js"></script>
     <script type="text/javascript" src="js/xtgl/jsqx.js"></script>
-    <script type="text/javascript" src="js/xtgl/xgmm.js"></script>
+    <script type="text/javascript" src="js/xtgl/xgmm.js"></script>--%>
     
     <script type="text/javascript">
     var main_tab = null;
@@ -63,7 +66,7 @@
     <% if (Request.IsLocal)
 	{
     %>
-    Ext.BLANK_IMAGE_URL="http://localhost/extjs/resources/images/default/s.gif";
+    Ext.BLANK_IMAGE_URL="http://localhost:81/extjs/resources/images/default/s.gif";
     <%     
 	} else {
 	 %>

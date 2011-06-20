@@ -60,14 +60,14 @@
     %>
 	<div>
 	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入样式...';</script>		
-	    <link rel="stylesheet" type="text/css" href="http://localhost/extjs/resources/css/ext-all.css" />
-        <link rel="stylesheet" type="text/css" href="http://localhost/extjs/examples/ux/css/ux-all.css" />
+	    <link rel="stylesheet" type="text/css" href="http://localhost:81/extjs/resources/css/ext-all.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:81/extjs/examples/ux/css/ux-all.css" />
     	<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入基础库...';</script>		
-	    <script type="text/javascript" src="http://localhost/extjs/adapter/ext/ext-base.js"></script>
+	    <script type="text/javascript" src="http://localhost:81/extjs/adapter/ext/ext-base.js"></script>
 	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '载入界面库...';</script>	    
-	    <script type="text/javascript" src="http://localhost/extjs/ext-all.js"></script>
-	    <script type="text/javascript" src="http://localhost/extjs/examples/ux/ux-all.js"></script>
-        <script type="text/javascript" src="http://localhost/extjs/src/locale/ext-lang-zh_CN.js"></script>
+	    <script type="text/javascript" src="http://localhost:81/extjs/ext-all.js"></script>
+	    <script type="text/javascript" src="http://localhost:81/extjs/examples/ux/ux-all.js"></script>
+        <script type="text/javascript" src="http://localhost:81/extjs/src/locale/ext-lang-zh_CN.js"></script>
 	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '初始化...';</script>
 	    <script type="text/javascript">
 	    	Ext.get('loading-mask').setVisible(false);
