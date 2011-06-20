@@ -1,7 +1,7 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
-	title:"è§’è‰²æƒé™",
+	title:"½ÇÉ«È¨ÏŞ",
      store:new Ext.data.JsonStore({
 		url: 'ajax/xtgl/jsqx.aspx?action=list',
 		fields:[
@@ -11,25 +11,25 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 	width:814,
 	height:450,
 	columns:[{
-			header:"ç¼–å·",
+			header:"±àºÅ",
 			dataIndex:"role_id",
 			width:100
 		},
 		{
-			header:"è§’è‰²åç§°",
+			header:"½ÇÉ«Ãû³Æ",
 			dataIndex:"role_name",
 			width:300
 		}
 	],
-	listeners : {  // æ·»åŠ ç›‘å¬äº‹ä»¶
+	listeners : {  // Ìí¼Ó¼àÌıÊÂ¼ş
         celldblclick: function(grid, rowIndex, columnIndex, e) {
             var r = grid.store.getAt(rowIndex);	
             grid.showDetailWindow(false, r.data);
         }
 	},
-	showDetailWindow: function (add, data) {    // æ˜¾ç¤ºè¯¦ç»†çª—ä½“: add: æ˜¯å¦æ˜¯æ–°å¢æ•°æ®, data: æ•°æ®å‚æ•°
-	    if (!add && data.role_name=="æ€»ç®¡ç†å‘˜") {
-	        Ext.Msg.alert("æç¤º","æ€»ç®¡ç†å‘˜ä¸èƒ½ä¿®æ”¹ï¼");
+	showDetailWindow: function (add, data) {    // ÏÔÊ¾ÏêÏ¸´°Ìå: add: ÊÇ·ñÊÇĞÂÔöÊı¾İ, data: Êı¾İ²ÎÊı
+	    if (!add && data.role_name=="×Ü¹ÜÀíÔ±") {
+	        Ext.Msg.alert("ÌáÊ¾","×Ü¹ÜÀíÔ±²»ÄÜĞŞ¸Ä£¡");
 		    return;
 	    }
         var self = this;
@@ -42,13 +42,13 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
                     name:'id'    				        
 	            },
                 {
-                    fieldLabel: 'è§’è‰²æ’åˆ—åºå·',
+                    fieldLabel: '½ÇÉ«ÅÅÁĞĞòºÅ',
                     name: 'role_id',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'è§’è‰²åç§°',
+                    fieldLabel: '½ÇÉ«Ãû³Æ',
                     name: 'role_name',
                     width:226,
                     xtype: 'textfield'				                           
@@ -58,11 +58,11 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        ],
 	        buttons:[
 	            {
-	                text:'ä¿å­˜',// callback
+	                text:'±£´æ',// callback
 	                iconCls: 'icon-save',
 	                handler:function (c) {		
-	                    if (add && form.getForm().getValues().role_name == 'æ€»ç®¡ç†å‘˜') {
-	                        Ext.Msg.alert("æç¤º","æ€»ç®¡ç†å‘˜ä¸èƒ½æ–°å¢ï¼");
+	                    if (add && form.getForm().getValues().role_name == '×Ü¹ÜÀíÔ±') {
+	                        Ext.Msg.alert("ÌáÊ¾","×Ü¹ÜÀíÔ±²»ÄÜĞÂÔö£¡");
 	                        return;
 	                    }                
 	                     form.getForm().submit({
@@ -78,7 +78,7 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                }
 	            },
 	            {
-                    text: 'å–æ¶ˆ',
+                    text: 'È¡Ïû',
                     iconCls: 'icon-cancel',
                     handler: function (c) {
                         w.close();
@@ -92,7 +92,7 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
             }
             
             var w = new Ext.Window({
-                title: add?"æ·»åŠ è§’è‰²":'ä¿®æ”¹è§’è‰²',
+                title: add?"Ìí¼Ó½ÇÉ«":'ĞŞ¸Ä½ÇÉ«',
     	        width:400,
                 items:[
                     form
@@ -116,73 +116,73 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'æ•°æ®å½•å…¥',
-                    name:'æ•°æ®å½•å…¥'
+                    boxLabel:'Êı¾İÂ¼Èë',
+                    name:'Êı¾İÂ¼Èë'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'ç¼´è´¹ç®¡ç†',
-                    name:'ç¼´è´¹ç®¡ç†'
+                    boxLabel:'½É·Ñ¹ÜÀí',
+                    name:'½É·Ñ¹ÜÀí'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'å·¥ä¸šå›­ç®¡ç†',
-                    name:'å·¥ä¸šå›­ç®¡ç†'
+                    boxLabel:'¹¤ÒµÔ°¹ÜÀí',
+                    name:'¹¤ÒµÔ°¹ÜÀí'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'æˆ¿äº§ç®¡ç†',
-                    name:'æˆ¿äº§ç®¡ç†'
+                    boxLabel:'·¿²ú¹ÜÀí',
+                    name:'·¿²ú¹ÜÀí'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'å®¢æˆ·ç®¡ç†',
-                    name:'å®¢æˆ·ç®¡ç†'
+                    boxLabel:'¿Í»§¹ÜÀí',
+                    name:'¿Í»§¹ÜÀí'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'é¢„å®šç®¡ç†',
-                    name:'é¢„å®šç®¡ç†'
+                    boxLabel:'Ô¤¶¨¹ÜÀí',
+                    name:'Ô¤¶¨¹ÜÀí'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'ç§ŸèµåˆåŒç®¡ç†',
-                    name:'ç§Ÿå‡­åˆåŒç®¡ç†'
+                    boxLabel:'×âÁŞºÏÍ¬¹ÜÀí',
+                    name:'×âÆ¾ºÏÍ¬¹ÜÀí'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'åˆåŒåˆ°æœŸæç¤º',
-                    name:'åˆåŒåˆ°æœŸæç¤º'
+                    boxLabel:'ºÏÍ¬µ½ÆÚÌáÊ¾',
+                    name:'ºÏÍ¬µ½ÆÚÌáÊ¾'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'æ”¶æ¬¾åˆ†ç±»ç»Ÿè®¡',
-                    name:'æ”¶æ¬¾åˆ†ç±»ç»Ÿè®¡'
+                    boxLabel:'ÊÕ¿î·ÖÀàÍ³¼Æ',
+                    name:'ÊÕ¿î·ÖÀàÍ³¼Æ'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'æ”¶æ¬¾è¯¦ç»†ç»Ÿè®¡',
-                    name:'æ”¶æ¬¾è¯¦ç»†ç»Ÿè®¡'
+                    boxLabel:'ÊÕ¿îÏêÏ¸Í³¼Æ',
+                    name:'ÊÕ¿îÏêÏ¸Í³¼Æ'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'è§’è‰²æƒé™',
-                    name:'è§’è‰²æƒé™'
+                    boxLabel:'½ÇÉ«È¨ÏŞ',
+                    name:'½ÇÉ«È¨ÏŞ'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'ç®¡ç†å‘˜ç®¡ç†',
-                    name:'ç®¡ç†å‘˜ç®¡ç†'
+                    boxLabel:'¹ÜÀíÔ±¹ÜÀí',
+                    name:'¹ÜÀíÔ±¹ÜÀí'
                 },
                 {
                     xtype:'checkbox',
-                    boxLabel:'ä¿®æ”¹æœ¬èº«å¯†ç ',
-                    name:'ä¿®æ”¹æœ¬èº«å¯†ç '
+                    boxLabel:'ĞŞ¸Ä±¾ÉíÃÜÂë',
+                    name:'ĞŞ¸Ä±¾ÉíÃÜÂë'
                 }     
             ],
             buttons:[
                 {
-                    text:'ä¿å­˜',// callback
+                    text:'±£´æ',// callback
                     iconCls: 'icon-save',
                     handler:function () {
                         form.getForm().submit({
@@ -197,7 +197,7 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
                     }
                 },
                 {
-                    text:'å–æ¶ˆ',
+                    text:'È¡Ïû',
                     iconCls:'icon-cancel',
                     handler:function () {
                         wins.close()
@@ -206,7 +206,7 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
             ]
         });        
         var wins = new Ext.Window({
-            title:'ä¿®æ”¹æƒé™',
+            title:'ĞŞ¸ÄÈ¨ÏŞ',
             layout:'fit',
             width:500,
             height:400,
@@ -226,14 +226,14 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    var self = this;
 		this.tbar=[
 			{
-				text:"æ·»åŠ ",
+				text:"Ìí¼Ó",
 				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
-				text:"ä¿®æ”¹",
+				text:"ĞŞ¸Ä",
 				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
@@ -243,21 +243,21 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},
 			{
-				text:"åˆ é™¤",
+				text:"É¾³ı",
 				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
-				        if (r.data.role_name == "æ€»ç®¡ç†å‘˜") {
-				            Ext.Msg.alert("æç¤º","æ€»ç®¡ç†å‘˜ä¸èƒ½åˆ é™¤ï¼");
+				        if (r.data.role_name == "×Ü¹ÜÀíÔ±") {
+				            Ext.Msg.alert("ÌáÊ¾","×Ü¹ÜÀíÔ±²»ÄÜÉ¾³ı£¡");
 		                    return;
 				        }
-				        Ext.Msg.confirm('åˆ é™¤è§’è‰²','ç¡®å®šè¦åˆ é™¤é€‰ä¸­çš„è§’è‰²å—ï¼Ÿ',function(btn){
+				        Ext.Msg.confirm('É¾³ı½ÇÉ«','È·¶¨ÒªÉ¾³ıÑ¡ÖĞµÄ½ÇÉ«Âğ£¿',function(btn){
 							if(btn == 'yes') {
 								Ext.Ajax.request({
 									url:'ajax/xtgl/jsqx.aspx?action=delete',
 									success:function(){
-										Ext.Msg.alert('åˆ é™¤è§’è‰²','è§’è‰²åˆ é™¤æˆåŠŸï¼');
+										Ext.Msg.alert('É¾³ı½ÇÉ«','½ÇÉ«É¾³ı³É¹¦£¡');
 										self.store.reload();
 									},
 									params:{id: r.get('id')}
@@ -268,13 +268,13 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},
 			{
-				text:"è®¾ç½®æƒé™",
+				text:"ÉèÖÃÈ¨ÏŞ",
 				iconCls: 'icon-sheZhi',
 				handler:function () {
 				    var per = self.getSelectionModel().getSelected();
 				    if (per) {
-				        if (per.json.role_name=='æ€»ç®¡ç†å‘˜') {
-				            Ext.Msg.alert("æç¤º","æ€»ç®¡ç†å‘˜æ‹¥æœ‰æœ€é«˜æƒé™ï¼Œä¸èƒ½ä¿®æ”¹ï¼");
+				        if (per.json.role_name=='×Ü¹ÜÀíÔ±') {
+				            Ext.Msg.alert("ÌáÊ¾","×Ü¹ÜÀíÔ±ÓµÓĞ×î¸ßÈ¨ÏŞ£¬²»ÄÜĞŞ¸Ä£¡");
 				            return;
 				        }
 				         self.setPermissions(per.data);
@@ -285,4 +285,4 @@ Ext.Hudongsoft.jsqxGrid=Ext.extend(Ext.grid.GridPanel ,{
 		self.store.load();
 		Ext.Hudongsoft.jsqxGrid.superclass.initComponent.call(this);
 	}
-})
+});

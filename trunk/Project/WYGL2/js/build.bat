@@ -1,0 +1,1 @@
+java -jar "E:\安装程序\JSBuilder2\JSBuilder2.jar" --projectFile "C:\Documents and Settings\Administrator\桌面\wygl2\Project\WYGL2\js\hd.jsb2"  --homeDir .

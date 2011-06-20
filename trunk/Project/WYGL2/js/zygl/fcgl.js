@@ -1,46 +1,46 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 
 Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
     xtype:"grid",
-	title:"æˆ¿äº§ç®¡ç†",
+	title:"·¿²ú¹ÜÀí",
 	store:new Ext.data.JsonStore({
 		root : 'data',
 		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/fcgl.aspx?action=list',
 		fields:[
-		    'id','å·¥ä¸šå›­åç§°','æˆ¿äº§ç±»å‹','æˆ¿å·','æè¿°','æˆ¿å‹','æœå‘','æˆ¿å±‹ç»“æ„'
+		    'id','¹¤ÒµÔ°Ãû³Æ','·¿²úÀàĞÍ','·¿ºÅ','ÃèÊö','·¿ĞÍ','³¯Ïò','·¿Îİ½á¹¹'
 		]
 	}),
 	width:785,
 	height:576,
 	columns:[
 		{
-			header:"åºå·",
+			header:"ĞòºÅ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
 			width:100
 		},
 		{
-			header:"å·¥ä¸šå›­åç§°",
+			header:"¹¤ÒµÔ°Ãû³Æ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"å·¥ä¸šå›­åç§°",
+			dataIndex:"¹¤ÒµÔ°Ãû³Æ",
 			width:100
 		},
 		{
-			header:"æˆ¿äº§ç±»å‹",
+			header:"·¿²úÀàĞÍ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"æˆ¿äº§ç±»å‹",
+			dataIndex:"·¿²úÀàĞÍ",
 			width:100
 		},
 		{
-			header:"æˆ¿å·",
+			header:"·¿ºÅ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"æˆ¿å·",
+			dataIndex:"·¿ºÅ",
 			width:100
 		}
 	],
@@ -51,22 +51,22 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        grid.showDetailWindow(false, r.data);
 	    }
 	},
-	showDetailWindow: function (add, data) {    // æ˜¾ç¤ºè¯¦ç»†çª—ä½“: add: æ˜¯å¦æ˜¯æ–°å¢æ•°æ®, data: æ•°æ®å‚æ•°
+	showDetailWindow: function (add, data) {    // ÏÔÊ¾ÏêÏ¸´°Ìå: add: ÊÇ·ñÊÇĞÂÔöÊı¾İ, data: Êı¾İ²ÎÊı
 	    var self = this;
-	    //å®ä¾‹åŒ–comboxç»„ä»¶
+	    //ÊµÀı»¯combox×é¼ş
 
         var gyy_lx = new Ext.GyyLxCombox({
             width:130,
-	        emptyText:'è¯·é€‰æ‹©',
-	        fieldLabel:'ç±»å‹',
-	        name:'æˆ¿äº§ç±»å‹'
+	        emptyText:'ÇëÑ¡Ôñ',
+	        fieldLabel:'ÀàĞÍ',
+	        name:'·¿²úÀàĞÍ'
         });
 	    var gyy = new Ext.GyyCombox({
 	        nextCombox: gyy_lx,
 	        width:130,
-	        emptyText:'è¯·é€‰æ‹©',
-	        fieldLabel:'å·¥ä¸šå›­',
-	        name:'å·¥ä¸šå›­åç§°'
+	        emptyText:'ÇëÑ¡Ôñ',
+	        fieldLabel:'¹¤ÒµÔ°',
+	        name:'¹¤ÒµÔ°Ãû³Æ'
 	    });
 	    
 	    var form = new Ext.FormPanel({
@@ -78,30 +78,30 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
                     name:'id'    				        
 		        },
 		        {
-                    fieldLabel: 'æˆ¿å·',
-                    name: 'æˆ¿å·',
+                    fieldLabel: '·¿ºÅ',
+                    name: '·¿ºÅ',
                     xtype: 'textfield'				                           
                 },
                 gyy,
                 gyy_lx,
                 {
-                    fieldLabel: 'æè¿°',
-                    name: 'æè¿°',
+                    fieldLabel: 'ÃèÊö',
+                    name: 'ÃèÊö',
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'æˆ¿å‹',
-                    name: 'æˆ¿å‹',
+                    fieldLabel: '·¿ĞÍ',
+                    name: '·¿ĞÍ',
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'æœå‘',
-                    name: 'æœå‘',
+                    fieldLabel: '³¯Ïò',
+                    name: '³¯Ïò',
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'æˆ¿å±‹ç»“æ„',
-                    name: 'æˆ¿å±‹ç»“æ„',
+                    fieldLabel: '·¿Îİ½á¹¹',
+                    name: '·¿Îİ½á¹¹',
                     xtype: 'textfield'				                           
                 }
                 
@@ -109,7 +109,7 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    ],
 		    buttons:[
 		        {
-		            text:'ä¿å­˜',// callback
+		            text:'±£´æ',// callback
 		            iconCls: 'icon-save',
 		            handler:function (c) {		                
 		                 form.getForm().submit({
@@ -125,7 +125,7 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		            }
 		        },
 		        {
-                    text: 'å–æ¶ˆ',
+                    text: 'È¡Ïû',
                     iconCls: 'icon-cancel',
                     handler: function (c) {
                         w.close();
@@ -139,7 +139,7 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
         }
         
 	    var w = new Ext.Window({
-	        title:add?"æ–°å¢æˆ¿äº§":"ä¿®æ”¹æˆ¿äº§",
+	        title:add?"ĞÂÔö·¿²ú":"ĞŞ¸Ä·¿²ú",
 		    width:300,
 	        items:[
 	            form
@@ -158,7 +158,7 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });
 		this.tbar=[
 			{
-				text:"æ–°å¢æˆ¿äº§",
+				text:"ĞÂÔö·¿²ú",
 				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
@@ -166,7 +166,7 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				
 			},
 			{
-				text:"ä¿®æ”¹æˆ¿äº§",
+				text:"ĞŞ¸Ä·¿²ú",
 				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
@@ -176,17 +176,17 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},
 			{
-				text:"åˆ é™¤æˆ¿äº§",
+				text:"É¾³ı·¿²ú",
 				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
-				        Ext.Msg.confirm('åˆ é™¤æˆ¿äº§','ç¡®å®šè¦åˆ é™¤é€‰ä¸­æˆ¿äº§å—ï¼Ÿ',function(btn){
+				        Ext.Msg.confirm('É¾³ı·¿²ú','È·¶¨ÒªÉ¾³ıÑ¡ÖĞ·¿²úÂğ£¿',function(btn){
 							if(btn == 'yes') {
 								Ext.Ajax.request({
 									url:'ajax/zygl/fcgl.aspx?action=delete',
 									success:function(){
-										Ext.Msg.alert('åˆ é™¤æˆ¿äº§','æˆ¿äº§åˆ é™¤æˆåŠŸï¼');
+										Ext.Msg.alert('É¾³ı·¿²ú','·¿²úÉ¾³ı³É¹¦£¡');
 										self.store.reload();
 									},
 									params:{id: r.get('id')}
@@ -205,6 +205,6 @@ Ext.Hudongsoft.fcglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		});
 		Ext.Hudongsoft.fcglGrid.superclass.initComponent.call(this);
 	}
-})
+});
 
 

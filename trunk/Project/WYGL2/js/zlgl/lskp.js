@@ -1,7 +1,7 @@
-ÔªøExt.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.zphtglWin=Ext.extend(Ext.Window ,{
-	title:"‰∏¥Êó∂ÂºÄÁ•®",
+	title:"¡Ÿ ±ø™∆±",
 	width:520,
 	height:330,
 	initComponent: function(){
@@ -11,31 +11,31 @@ Ext.Hudongsoft.zphtglWin=Ext.extend(Ext.Window ,{
 	        items:[
               {
                 xtype: 'textfield',
-                fieldLabel: 'Â∑•‰∏öÂõ≠ÂêçÁß∞',
+                fieldLabel: 'π§“µ‘∞√˚≥∆',
                 name: 'role_id',
                 width:226
               },
               {
                 xtype: 'textfield',
-                fieldLabel: 'Áî®Êà∑ÂßìÂêç',
+                fieldLabel: '”√ªß–’√˚',
                 name: 'role_id',
                 width:226
               },
               {
                 xtype: 'textfield',
-                fieldLabel: 'Êúà‰ªΩ',
+                fieldLabel: '‘¬∑›',
                 name: 'role_id',
                 width:226
               },
               {
                 xtype: 'textfield',
-                fieldLabel: 'ÂÆ¢Êà∑Á±ªÂûã',
+                fieldLabel: 'øÕªß¿‡–Õ',
                 name: 'role_id',
                 width:226
               },
               {
                 xtype: 'textfield',
-                fieldLabel: 'Êàø‰∫ß',
+                fieldLabel: '∑ø≤˙',
                 name: 'role_id',
                 width:226
               }
@@ -47,4 +47,4 @@ Ext.Hudongsoft.zphtglWin=Ext.extend(Ext.Window ,{
 	    ]
 		Ext.Hudongsoft.zphtglWin.superclass.initComponent.call(this);
 	}
-})
+});
