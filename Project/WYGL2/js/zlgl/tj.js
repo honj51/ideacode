@@ -1,46 +1,46 @@
-ÔªøExt.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.fltjGrid=Ext.extend(Ext.grid.GridPanel ,{
-    title:"ÂàÜÁ±ªÁªüËÆ°",
+    title:"∑÷¿‡Õ≥º∆",
     store : new Ext.data.JsonStore({
         //root : 'data',
 		totalProperty : 'totalProperty',
         url: 'ajax/zlgl/tj.aspx?action=fltj',
 		fields:[
-		    'Â∫èÂè∑','Â∑•‰∏öÂõ≠ÂêçÁß∞','Êàø‰∫ßÁ±ªÂûã','Ê∂àË¥πÈ°πÁõÆ','Êúà‰ªΩ','Ë¥πÁî®'
+		    '–Ú∫≈','π§“µ‘∞√˚≥∆','∑ø≤˙¿‡–Õ','œ˚∑—œÓƒø','‘¬∑›','∑—”√'
 		]	
     }),
 	width:792,
 	height:560,
 	columns:[
 		{
-			header:"Â∫èÂè∑",
-			dataIndex:"Â∫èÂè∑",
+			header:"–Ú∫≈",
+			dataIndex:"–Ú∫≈",
 			width:100
 		},
 		{
-			header:"Â∑•‰∏öÂõ≠ÂêçÁß∞",
-			dataIndex:"Â∑•‰∏öÂõ≠ÂêçÁß∞",
+			header:"π§“µ‘∞√˚≥∆",
+			dataIndex:"π§“µ‘∞√˚≥∆",
 			width:100
 		},
 		{
-			header:"Êàø‰∫ßÁ±ªÂûã",
-			dataIndex:"Êàø‰∫ßÁ±ªÂûã",
+			header:"∑ø≤˙¿‡–Õ",
+			dataIndex:"∑ø≤˙¿‡–Õ",
 			width:100
 		},
 		{
-			header:"Ê∂àË¥πÈ°πÁõÆ",
-			dataIndex:"Ê∂àË¥πÈ°πÁõÆ",
+			header:"œ˚∑—œÓƒø",
+			dataIndex:"œ˚∑—œÓƒø",
 			width:100
 		},
 		{
-			header:"Êúà‰ªΩ",
-			dataIndex:"Êúà‰ªΩ",
+			header:"‘¬∑›",
+			dataIndex:"‘¬∑›",
 			width:100
 		},
 		{
-			header:"Ë¥πÁî®",
-			dataIndex:"Ë¥πÁî®",
+			header:"∑—”√",
+			dataIndex:"∑—”√",
 			width:100
 		}
 	],
@@ -56,44 +56,44 @@ Ext.Hudongsoft.fltjGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    '->',
 			{
 				xtype:"label",
-				text:"ÂêçÁß∞Ôºö"
+				text:"√˚≥∆£∫"
 			},
 			{
 				xtype:"textfield",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"Â∑•‰∏öÂõ≠Ôºö"
+				text:"π§“µ‘∞£∫"
 			},
 			{
 				xtype:"combo",
 				triggerAction:"all",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"Á±ªÂûãÔºö"
+				text:"¿‡–Õ£∫"
 			},
 			{
 				xtype:"combo",
 				triggerAction:"all",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"Âè∑Á†ÅÔºö"
+				text:"∫≈¬Î£∫"
 			},
 			{
 				xtype:"textfield",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
-				text:"ÊêúÁ¥¢",
+				text:"À—À˜",
 				iconCls: 'icon-query'
 			}
 		];
@@ -108,70 +108,70 @@ Ext.Hudongsoft.fltjGrid=Ext.extend(Ext.grid.GridPanel ,{
 });
 
 Ext.Hudongsoft.xxtjGrid=Ext.extend(Ext.grid.GridPanel ,{
-    title:"ÂàÜÁ±ªÁªüËÆ°",
+    title:"∑÷¿‡Õ≥º∆",
     store : new Ext.data.JsonStore({
         root : 'data',
 		totalProperty : 'totalProperty',
         url: 'ajax/zlgl/tj.aspx?action=xxtj',
 		fields:[
-		    'id','ÁºñÁ†Å','ÂÆ¢Êà∑ÂêçÁß∞','ÊâÄÂ±ûÂ∑•‰∏öÂõ≠','ÊâÄÂ±ûÊàø‰∫ß','ÂêàÂêåÂºÄÂßãÊó∂Èó¥','ÂêàÂêåÁªìÊùüÊó∂Èó¥'
+		    'id','±‡¬Î','øÕªß√˚≥∆','À˘ Ùπ§“µ‘∞','À˘ Ù∑ø≤˙','∫œÕ¨ø™ º ±º‰','∫œÕ¨Ω· ¯ ±º‰'
 		]	
     }),
 	width:792,
 	height:560,
 	columns:[
 		{
-			header:"Â∫èÂè∑",
+			header:"–Ú∫≈",
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
 			width:100
 		},
 		{
-			header:"ÁºñÁ†Å",
+			header:"±‡¬Î",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ÁºñÁ†Å",
+			dataIndex:"±‡¬Î",
 			width:100
 		},
 		{
-			header:"ÂÆ¢Êà∑ÂêçÁß∞",
+			header:"øÕªß√˚≥∆",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ÂÆ¢Êà∑ÂêçÁß∞",
+			dataIndex:"øÕªß√˚≥∆",
 			width:100
 		},
 		{
-			header:"ÊâÄÂ±ûÂ∑•‰∏öÂõ≠",
+			header:"À˘ Ùπ§“µ‘∞",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ÊâÄÂ±ûÂ∑•‰∏öÂõ≠",
+			dataIndex:"À˘ Ùπ§“µ‘∞",
 			width:100
 		},
 		{
-			header:"ÊâÄÂ±ûÊàø‰∫ß",
+			header:"À˘ Ù∑ø≤˙",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ÊâÄÂ±ûÊàø‰∫ß",
+			dataIndex:"À˘ Ù∑ø≤˙",
 			width:100
 		},
 		{
-			header:"ÂêàÂêåÂºÄÂßãÊó∂Èó¥",
+			header:"∫œÕ¨ø™ º ±º‰",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ÂêàÂêåÂºÄÂßãÊó∂Èó¥",
+			dataIndex:"∫œÕ¨ø™ º ±º‰",
 			width:100
 		},
 		{
-			header:"ÂêàÂêåÁªìÊùüÊó∂Èó¥",
+			header:"∫œÕ¨Ω· ¯ ±º‰",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ÂêàÂêåÁªìÊùüÊó∂Èó¥",
+			dataIndex:"∫œÕ¨Ω· ¯ ±º‰",
 			width:100,
 			format:"m/d/Y"
 		},
 		{
-			header:"ÂêàÂêåÁä∂ÊÄÅ",
+			header:"∫œÕ¨◊¥Ã¨",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
@@ -190,44 +190,44 @@ Ext.Hudongsoft.xxtjGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    '->',
 			{
 				xtype:"label",
-				text:"ÂêçÁß∞Ôºö"
+				text:"√˚≥∆£∫"
 			},
 			{
 				xtype:"textfield",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"Â∑•‰∏öÂõ≠Ôºö"
+				text:"π§“µ‘∞£∫"
 			},
 			{
 				xtype:"combo",
 				triggerAction:"all",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"Á±ªÂûãÔºö"
+				text:"¿‡–Õ£∫"
 			},
 			{
 				xtype:"combo",
 				triggerAction:"all",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"Âè∑Á†ÅÔºö"
+				text:"∫≈¬Î£∫"
 			},
 			{
 				xtype:"textfield",
-				fieldLabel:"Ê†áÁ≠æ",
+				fieldLabel:"±Í«©",
 				width:70
 			},
 			{
-				text:"ÊêúÁ¥¢",
+				text:"À—À˜",
 				iconCls: 'icon-query'
 			}
 		];

@@ -1,36 +1,36 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
     xtype:"grid",
-	title:"å·¥ä¸šå›­ç®¡ç†åˆ—è¡¨",
+	title:"¹¤ÒµÔ°¹ÜÀíÁĞ±í",
 	store:new Ext.data.JsonStore({
 		url: 'ajax/zygl/gyygl.aspx?action=list',
 		fields:[
-		    'id','åºå·','å·¥ä¸šå›­åç§°','å·¥ä¸šå›­é¢ç§¯'
+		    'id','ĞòºÅ','¹¤ÒµÔ°Ãû³Æ','¹¤ÒµÔ°Ãæ»ı'
 		]
 	}),
 	width:778,
 	height:544,
 	columns:[
 		{
-			header:"ç¼–å·",
+			header:"±àºÅ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"åºå·",
+			dataIndex:"ĞòºÅ",
 			width:100
 		},
 		{
-			header:"å·¥ä¸šå›­åç§°",
+			header:"¹¤ÒµÔ°Ãû³Æ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"å·¥ä¸šå›­åç§°",
+			dataIndex:"¹¤ÒµÔ°Ãû³Æ",
 			width:100
 		},
 		{
-			header:"å·¥ä¸šé¢ç§¯ï¼ˆå¹³æ–¹ç±³ï¼‰",
+			header:"¹¤ÒµÃæ»ı£¨Æ½·½Ã×£©",
 			sortable:true,
 			resizable:true,
-			dataIndex:"å·¥ä¸šå›­é¢ç§¯",
+			dataIndex:"¹¤ÒµÔ°Ãæ»ı",
 			width:120
 		}
 	],
@@ -40,7 +40,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        grid.showDetailWindow(false, r.data);
 	    }
 	},
-	showDetailWindow: function (add, data) { // æ˜¾ç¤ºè¯¦ç»†çª—ä½“: add: æ˜¯å¦æ˜¯æ–°å¢æ•°æ®, data: æ•°æ®å‚æ•°
+	showDetailWindow: function (add, data) { // ÏÔÊ¾ÏêÏ¸´°Ìå: add: ÊÇ·ñÊÇĞÂÔöÊı¾İ, data: Êı¾İ²ÎÊı
 	    var self = this;
         var form = new Ext.FormPanel({	
             padding: 10,            
@@ -48,23 +48,23 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                 xtype: 'hidden',
                 name: 'id'
             },{
-                fieldLabel: 'åºå·',
-                name: 'åºå·',
+                fieldLabel: 'ĞòºÅ',
+                name: 'ĞòºÅ',
                 allowBlank:false,
                 xtype: 'textfield'				                           
             },{
-                fieldLabel: 'å·¥ä¸šå›­åç§°',
-                name: 'å·¥ä¸šå›­åç§°',
+                fieldLabel: '¹¤ÒµÔ°Ãû³Æ',
+                name: '¹¤ÒµÔ°Ãû³Æ',
                 allowBlank:false,
                 xtype: 'textfield'				                           
             },{
-                fieldLabel: 'å·¥å›­ä¸šé¢ç§¯',
-                name: 'å·¥ä¸šå›­é¢ç§¯',
+                fieldLabel: '¹¤Ô°ÒµÃæ»ı',
+                name: '¹¤ÒµÔ°Ãæ»ı',
                 allowBlank:false,
                 xtype: 'textfield'				                           
             }],
             buttons: [{
-                text: 'ä¿å­˜',
+                text: '±£´æ',
                 iconCls: 'icon-save',
                 handler: function (c) {                                
                     form.getForm().submit({
@@ -79,7 +79,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                     });
                 }
             },{
-                text: 'å–æ¶ˆ',
+                text: 'È¡Ïû',
                 iconCls: 'icon-cancel',
                 handler: function (c) {
                     w.close();
@@ -92,7 +92,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
         }
         
 	    var w = new Ext.Window({
-	        title: add?'æ–°å¢å·¥ä¸šå›­':'ä¿®æ”¹å·¥ä¸šå›­',	
+	        title: add?'ĞÂÔö¹¤ÒµÔ°':'ĞŞ¸Ä¹¤ÒµÔ°',	
 	        width: 300,			        
 	        items:[
 	            form
@@ -112,14 +112,14 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });
 		this.tbar=[
 			{
-				text:"æ·»åŠ å·¥ä¸šå›­",
+				text:"Ìí¼Ó¹¤ÒµÔ°",
 				iconCls: 'icon-group-create',
 				handler: function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
-				text:"ä¿®æ”¹å·¥ä¸šå›­",
+				text:"ĞŞ¸Ä¹¤ÒµÔ°",
 				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
@@ -129,17 +129,17 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},
 			{
-				text:"åˆ é™¤å·¥ä¸šå›­",
+				text:"É¾³ı¹¤ÒµÔ°",
 				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
-				        Ext.Msg.confirm('åˆ é™¤å·¥ä¸šå›­','ç¡®å®šè¦åˆ é™¤é€‰ä¸­å·¥ä¸šå›­å—ï¼Ÿ',function(btn){
+				        Ext.Msg.confirm('É¾³ı¹¤ÒµÔ°','È·¶¨ÒªÉ¾³ıÑ¡ÖĞ¹¤ÒµÔ°Âğ£¿',function(btn){
 							if(btn == 'yes') {
 								Ext.Ajax.request({
 									url:'ajax/zygl/gyygl.aspx?action=delete',
 									success:function(){
-										Ext.Msg.alert('åˆ é™¤å·¥ä¸šå›­','å·¥ä¸šå›­åˆ é™¤æˆåŠŸï¼');
+										Ext.Msg.alert('É¾³ı¹¤ÒµÔ°','¹¤ÒµÔ°É¾³ı³É¹¦£¡');
 										self.store.reload();
 									},
 									params:{id: r.get('id')}
@@ -150,15 +150,15 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},
 			{
-				text:"ç¼–è¾‘æˆ¿äº§ç±»å‹",
+				text:"±à¼­·¿²úÀàĞÍ",
 				iconCls: 'icon-xieGenJin',
 				handler:function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (!r) return;
 				    var lxstore = new Ext.data.JsonStore({
-                        url: 'ajax/zygl/gyygl.aspx?action=lx_list&find_id='+escape(r.data.å·¥ä¸šå›­åç§°),
+                        url: 'ajax/zygl/gyygl.aspx?action=lx_list&find_id='+escape(r.data.¹¤ÒµÔ°Ãû³Æ),
                         fields:[
-                            'id','åºå·','å·¥ä¸šå›­åç§°','æˆ¿äº§ç±»å‹'
+                            'id','ĞòºÅ','¹¤ÒµÔ°Ãû³Æ','·¿²úÀàĞÍ'
                         ]
 	                }); 
 	                
@@ -167,18 +167,18 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                    layout:'fit',
 	                    columns:[
 	                                {
-			                            header:"ç¼–å·",
+			                            header:"±àºÅ",
 			                            sortable:true,
 			                            resizable:true,
-			                            dataIndex:"åºå·",
+			                            dataIndex:"ĞòºÅ",
 			                            width:200
 			                           
 		                            },
 		                            {
-			                            header:"æˆ¿äº§ç±»å‹",
+			                            header:"·¿²úÀàĞÍ",
 			                            sortable:true,
 			                            resizable:true,
-			                            dataIndex:"æˆ¿äº§ç±»å‹",
+			                            dataIndex:"·¿²úÀàĞÍ",
 			                            width:300
 			                            
 		                            }
@@ -203,18 +203,18 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                            },
                                 {
                                     xtype: 'hidden',
-                                    name: 'å·¥ä¸šå›­åç§°',
-                                    value: r.json.å·¥ä¸šå›­åç§°    
+                                    name: '¹¤ÒµÔ°Ãû³Æ',
+                                    value: r.json.¹¤ÒµÔ°Ãû³Æ    
                                 },
                                 {
-                                    fieldLabel:'ç¼–å·',
-                                    name:'åºå·',
+                                    fieldLabel:'±àºÅ',
+                                    name:'ĞòºÅ',
                                     allowBlank:false,
                                     xtype: 'textfield' 
                                 },
                                 {
-                                    fieldLabel:'æˆ¿äº§ç±»å‹',
-                                    name:'æˆ¿äº§ç±»å‹',
+                                    fieldLabel:'·¿²úÀàĞÍ',
+                                    name:'·¿²úÀàĞÍ',
                                     allowBlank:false,
                                     xtype: 'textfield' 
                                 }
@@ -222,7 +222,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                             ],
                             buttons:[
                                 {
-                                    text: 'ä¿å­˜',
+                                    text: '±£´æ',
                                     iconCls: 'icon-save',
                                     handler:function () {
                                         lxform.getForm().submit({
@@ -239,7 +239,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     } 
                                 },
                                 {
-                                    text: 'å–æ¶ˆ',
+                                    text: 'È¡Ïû',
                                     iconCls: 'icon-cancel',
                                     handler: function () {
                                         lxWin.close();
@@ -249,7 +249,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                    });
 	                    
                         var lxWin = new Ext.Window({
-                            title:add?'æ–°å¢ç±»å‹':'ä¿®æ”¹ç±»å‹',
+                            title:add?'ĞÂÔöÀàĞÍ':'ĞŞ¸ÄÀàĞÍ',
                             width:300,
                             height:150,
                             layout:'fit',
@@ -266,20 +266,20 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                }        
 	                       
 				    var win = new Ext.Window({
-				        title:"æˆ¿äº§ç±»å‹åˆ—è¡¨",
+				        title:"·¿²úÀàĞÍÁĞ±í",
 				        width:600,
 				        height:400,
 				        layout:'fit',
 				        tbar:[
 				            {
-				                text:"æ–°å¢ç±»å‹",
+				                text:"ĞÂÔöÀàĞÍ",
 				                iconCls: 'icon-group-create',
 				                handler:function(){
 				                    showLx(true,null);
                                 }
 				            },
 				            {
-				                text:"ä¿®æ”¹ç±»å‹",
+				                text:"ĞŞ¸ÄÀàĞÍ",
 				                iconCls: 'icon-group-update',
 				                handler:function () {
 				                    var d = lxgird.getSelectionModel().getSelected();
@@ -288,17 +288,17 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				                }
 				            },
 				            {
-				                text:"åˆ é™¤ç±»å‹",
+				                text:"É¾³ıÀàĞÍ",
 				                iconCls: 'icon-group-delete',
 				                handler: function () {
 				                    var d = lxgird.getSelectionModel().getSelected();
 				                    if (d) {
-				                        Ext.Msg.confirm('åˆ é™¤æˆ¿äº§ç±»å‹','ç¡®å®šè¦åˆ é™¤é€‰ä¸­çš„æˆ¿äº§ç±»å‹å—ï¼Ÿ',function(btn){
+				                        Ext.Msg.confirm('É¾³ı·¿²úÀàĞÍ','È·¶¨ÒªÉ¾³ıÑ¡ÖĞµÄ·¿²úÀàĞÍÂğ£¿',function(btn){
 							                if(btn == 'yes') {
 								                Ext.Ajax.request({
 									                url:'ajax/zygl/gyygl.aspx?action=deletelx',
 									                success:function(){
-										                Ext.Msg.alert('åˆ é™¤æˆ¿äº§ç±»å‹','æˆ¿äº§ç±»å‹åˆ é™¤æˆåŠŸï¼');
+										                Ext.Msg.alert('É¾³ı·¿²úÀàĞÍ','·¿²úÀàĞÍÉ¾³ı³É¹¦£¡');
 										                lxstore.reload();
 									                },
 									                params:{id: d.get('id')}
@@ -309,18 +309,18 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 				                }
 				            },
 				            {
-				                text:"ç¼–è¾‘æˆ¿äº§æ¶ˆè´¹åˆ—è¡¨",
+				                text:"±à¼­·¿²úÏû·ÑÁĞ±í",
 				                iconCls: 'icon-xieGenJin',
 				                handler:function () {
 				                    var d = lxgird.getSelectionModel().getSelected();
 				                    var fcxfStore = new Ext.data.JsonStore({
 				                        url: 'ajax/zygl/gyygl.aspx?action=fcxf_list',
 		                                fields:[
-		                                    'id','åºå·','å·¥ä¸šå›­åç§°','æˆ¿äº§ç±»å‹','æ¶ˆè´¹é¡¹ç›®','æ¶ˆè´¹ç±»å‹','å€¼','å€ç‡','æŸè€—','æ»çº³é‡‘','è¯´æ˜'
+		                                    'id','ĞòºÅ','¹¤ÒµÔ°Ãû³Æ','·¿²úÀàĞÍ','Ïû·ÑÏîÄ¿','Ïû·ÑÀàĞÍ','Öµ','±¶ÂÊ','ËğºÄ','ÖÍÄÉ½ğ','ËµÃ÷'
 		                                ],
 		                                baseParams:{
-		                                    gyyName:d.data.å·¥ä¸šå›­åç§°,
-		                                    fclx:d.data.æˆ¿äº§ç±»å‹
+		                                    gyyName:d.data.¹¤ÒµÔ°Ãû³Æ,
+		                                    fclx:d.data.·¿²úÀàĞÍ
 		                                }
 				                    });
 				                    //console.log(d);
@@ -330,59 +330,59 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                                    store:fcxfStore,
 	                                    columns:[
                                             {
-	                                            header:"ç¼–å·",
+	                                            header:"±àºÅ",
 	                                            sortable:true,
 	                                            resizable:true,
-	                                            dataIndex:"åºå·",
+	                                            dataIndex:"ĞòºÅ",
 	                                            width:50
         			                           
                                             },
                                             {
-	                                            header:"æ¶ˆè´¹é¡¹ç›®",
+	                                            header:"Ïû·ÑÏîÄ¿",
 	                                            sortable:true,
 	                                            resizable:true,
-	                                            dataIndex:"æ¶ˆè´¹é¡¹ç›®",
+	                                            dataIndex:"Ïû·ÑÏîÄ¿",
 	                                            width:100
         			                            
                                             },
                                             {
-                                                header:"æ¶ˆè´¹ç±»å‹",
+                                                header:"Ïû·ÑÀàĞÍ",
 	                                            sortable:true,
 	                                            resizable:true,
-	                                            dataIndex:"æ¶ˆè´¹ç±»å‹",
+	                                            dataIndex:"Ïû·ÑÀàĞÍ",
 	                                            width:100
                                             },
                                             {
-                                                header:"å€¼",
+                                                header:"Öµ",
 	                                            sortable:true,
 	                                            resizable:true,
-	                                            dataIndex:"å€¼",
+	                                            dataIndex:"Öµ",
 	                                            width:100
                                             },
                                             {
-                                                header:"å€ç‡",
+                                                header:"±¶ÂÊ",
 	                                            sortable:true,
 	                                            resizable:true,
-	                                            dataIndex:"å€ç‡",
+	                                            dataIndex:"±¶ÂÊ",
 	                                            width:100
                                             },
                                             {
-                                                header:"æŸè€—",
+                                                header:"ËğºÄ",
 	                                            sortable:true,
 	                                            resizable:true,
-	                                            dataIndex:"æŸè€—",
+	                                            dataIndex:"ËğºÄ",
 	                                            width:100
                                             },
                                             {
-                                                header:"æ»çº³é‡‘",
+                                                header:"ÖÍÄÉ½ğ",
 	                                            sortable:true,
 	                                            resizable:true,
-	                                            dataIndex:"æ»çº³é‡‘",
+	                                            dataIndex:"ÖÍÄÉ½ğ",
 	                                            width:100
                                             },
                                             {
-                                                header:"è¯´æ˜",
-	                                            dataIndex:"è¯´æ˜",
+                                                header:"ËµÃ÷",
+	                                            dataIndex:"ËµÃ÷",
 	                                            width:100
                                             }
                                         ]
@@ -394,7 +394,7 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                                    height:400,
 	                                    tbar:[
 	                                        {
-	                                            text:"æ–°å¢æˆ¿äº§æ¶ˆè´¹",
+	                                            text:"ĞÂÔö·¿²úÏû·Ñ",
 	                                            iconCls: 'icon-group-create',
 	                                            handler:function(){
                                                      addxfx(d,fcxfStore,null);
@@ -402,17 +402,17 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
                                                 }
 	                                        },
 	                                        {
-	                                            text:"åˆ é™¤æˆ¿äº§æ¶ˆè´¹",
+	                                            text:"É¾³ı·¿²úÏû·Ñ",
 	                                            iconCls: 'icon-group-update',
 	                                            handler:function () {
 	                                                var d = fcxfGird.getSelectionModel().getSelected();
                                                     if (d) {
-				                                        Ext.Msg.confirm('åˆ é™¤æˆ¿äº§æ¶ˆè´¹','ç¡®å®šè¦åˆ é™¤é€‰ä¸­çš„æˆ¿äº§æ¶ˆè´¹å—ï¼Ÿ',function(btn){
+				                                        Ext.Msg.confirm('É¾³ı·¿²úÏû·Ñ','È·¶¨ÒªÉ¾³ıÑ¡ÖĞµÄ·¿²úÏû·ÑÂğ£¿',function(btn){
 							                                if(btn == 'yes') {
 								                                Ext.Ajax.request({
 									                                url:'ajax/zygl/gyygl.aspx?action=delete_fcxf',
 									                                success:function(){
-										                                Ext.Msg.alert('åˆ é™¤æˆ¿äº§æ¶ˆè´¹','æˆ¿äº§æ¶ˆè´¹åˆ é™¤æˆåŠŸï¼');
+										                                Ext.Msg.alert('É¾³ı·¿²úÏû·Ñ','·¿²úÏû·ÑÉ¾³ı³É¹¦£¡');
 										                                fcxfStore.reload();
 									                                },
 									                                params:{id: d.get('id')}
@@ -447,4 +447,4 @@ Ext.Hudongsoft.gyyglGrid=Ext.extend(Ext.grid.GridPanel ,{
 		self.store.load();
 		Ext.Hudongsoft.gyyglGrid.superclass.initComponent.call(this);
 	}
-})
+});

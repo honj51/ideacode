@@ -1,0 +1,115 @@
+{
+    "projectName": "HdAgency JS",
+    "deployDir": "build",
+    "licenseText": "HdAgency JS. Hudongsoft.cn",
+    "pkgs": [
+		{
+			"name": "sfgl",
+			"file": "pkgs/sfgl.js",
+			"isDebug": true,
+			"fileIncludes": [
+				{
+					"text": "sjlr.js",
+					"path": "sfgl/"
+				}
+			]
+		},		
+		{
+			"name": "xtgl",
+			"file": "pkgs/xtgl.js",
+			"isDebug": true,
+			"fileIncludes": [
+				{
+					"text": "glylb.js",
+					"path": "xtgl/"
+				},
+				{
+					"text": "jsqx.js",
+					"path": "xtgl/"
+				},
+				{
+					"text": "xgmm.js",
+					"path": "xtgl/"
+				}
+			]
+		},
+		{
+			"name": "zlgl",
+			"file": "pkgs/zlgl.js",
+			"isDebug": true,
+			"fileIncludes": [
+				{
+					"text": "htdqts.js",
+					"path": "zlgl/"
+				},
+				{
+					"text": "lskp.js",
+					"path": "zlgl/"
+				},				
+				{
+					"text": "skfltj.js",
+					"path": "zlgl/"
+				},
+				{
+					"text": "tj.js",
+					"path": "zlgl/"
+				},
+				{
+					"text": "xxfytjlb.js",
+					"path": "zlgl/"
+				},
+				{
+					"text": "ydgl.js",
+					"path": "zlgl/"
+				},
+				{
+					"text": "zfytjlb.js",
+					"path": "zlgl/"
+				},
+				{
+					"text": "zphtgl.js",
+					"path": "zlgl/"
+				}
+			]
+		},
+		{
+			"name": "zygl",
+			"file": "pkgs/zygl.js",
+			"isDebug": true,
+			"fileIncludes": [
+				{
+					"text": "fcgl.js",
+					"path": "zygl/"
+				},
+				{
+					"text": "gslb.js",
+					"path": "zygl/"
+				},
+				{
+					"text": "gyygl.js",
+					"path": "zygl/"
+				},
+				{
+					"text": "zrrlb.js",
+					"path": "zygl/"
+				}
+			]
+		},
+		{
+			"name": "allScript",
+			"file": "all-script.js",
+			"isDebug": true,
+			"includeDeps": true,
+			"pkgDeps": [
+				"pkgs/sfgl.js",
+				"pkgs/xtgl.js",
+				"pkgs/zlgl.js",
+				"pkgs/zygl.js"
+			],
+			"fileIncludes": [
+			]
+		}
+	],
+	"resources": [
+	]
+}

@@ -1,22 +1,22 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.xgmmWin=Ext.extend(Ext.Window ,{
     xtype:"window",
-	title:"ä¿®æ”¹å¯†ç ",
+	title:"ĞŞ¸ÄÃÜÂë",
 	layout: 'fit',
 	width:320,
 	height:150,
 	initComponent: function(){
 	    var self = this;
 	    var password1 = new Ext.form.TextField({ 
-            fieldLabel: 'å¯†ç ',
+            fieldLabel: 'ÃÜÂë',
             name: 'admin_pwd',
             inputType: 'password',
             allowBlank:false 	   
         });
         
         var password2 = new Ext.form.TextField({ 
-            fieldLabel: 'ç¡®è®¤å¯†ç ',
+            fieldLabel: 'È·ÈÏÃÜÂë',
             name: 'admin_pwd2',
             allowBlank:false,
             inputType: 'password'	   
@@ -31,11 +31,11 @@ Ext.Hudongsoft.xgmmWin=Ext.extend(Ext.Window ,{
 		    ],
 		    buttons:[
 		        {
-		            text:'ä¿å­˜',// callback
+		            text:'±£´æ',// callback
 	                iconCls: 'icon-save',
 	                handler:function () {
 	                    if (password1.getValue() != password2.getValue()) {
-	                         Ext.Msg.alert("æç¤º","ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´,è¯·é‡æ–°è¾“å…¥ï¼");
+	                         Ext.Msg.alert("ÌáÊ¾","Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ,ÇëÖØĞÂÊäÈë£¡");
 	                         return;
 	                    };
 	                    form.getForm().submit({
@@ -45,14 +45,14 @@ Ext.Hudongsoft.xgmmWin=Ext.extend(Ext.Window ,{
 	                        },
 	                        success:function () {
 	                            self.close();
-	                            Ext.Msg.alert("ä¿®æ”¹å¯†ç ","å¯†ç ä¿®æ”¹æˆåŠŸ");
+	                            Ext.Msg.alert("ĞŞ¸ÄÃÜÂë","ÃÜÂëĞŞ¸Ä³É¹¦");
 	                        }
 	                    });
 	                }
 	                
 		        },
 		        {
-		            text:'å–æ¶ˆ',// callback
+		            text:'È¡Ïû',// callback
 	                iconCls: 'icon-cancel',
 	                handler: function () {
                         self.close();
@@ -66,4 +66,4 @@ Ext.Hudongsoft.xgmmWin=Ext.extend(Ext.Window ,{
 
 		Ext.Hudongsoft.xgmmWin.superclass.initComponent.call(this);
 	}
-})
+});

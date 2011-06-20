@@ -1,71 +1,71 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
     xtype:"grid",
-	title:"å…¬å¸åˆ—è¡¨",
+	title:"¹«Ë¾ÁĞ±í",
     store:new Ext.data.JsonStore({
         root : 'data',
 		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/gslb.aspx?action=list',
 		fields:[
-		    'id','ç¼–ç ','åç§°','æè¿°','è”ç³»äºº','è”ç³»ç”µè¯','åŠ©è®°ç ','æ³¨å†Œå·','æ³•äººä»£è¡¨','åŠå…¬åœ°å€','è”ç³»æ–¹æ³•','å¤‡æ³¨','æˆç«‹æ—¥æœŸ_å¹´','æˆç«‹æ—¥æœŸ_æœˆ','æˆç«‹æ—¥æœŸ_æ—¥'
+		    'id','±àÂë','Ãû³Æ','ÃèÊö','ÁªÏµÈË','ÁªÏµµç»°','Öú¼ÇÂë','×¢²áºÅ','·¨ÈË´ú±í','°ì¹«µØÖ·','ÁªÏµ·½·¨','±¸×¢','³ÉÁ¢ÈÕÆÚ_Äê','³ÉÁ¢ÈÕÆÚ_ÔÂ','³ÉÁ¢ÈÕÆÚ_ÈÕ'
 		]
 	}),
 	width:792,
 	height:560,
 	columns:[
 	    {
-			header:"ç¼–å·",
+			header:"±àºÅ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
 			width:100
 		},
 		{
-			header:"ç¼–ç ",
+			header:"±àÂë",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ç¼–ç ",
+			dataIndex:"±àÂë",
 			width:100
 		},
 		{
-			header:"åç§°",
+			header:"Ãû³Æ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"åç§°",
+			dataIndex:"Ãû³Æ",
 			width:100
 		},
 		{
-			header:"æè¿°",
+			header:"ÃèÊö",
 			sortable:true,
 			resizable:true,
-			dataIndex:"æè¿°",
+			dataIndex:"ÃèÊö",
 			width:100
 		},
 		{
-			header:"è”ç³»äºº",
+			header:"ÁªÏµÈË",
 			sortable:true,
 			resizable:true,
-			dataIndex:"è”ç³»äºº",
+			dataIndex:"ÁªÏµÈË",
 			width:100
 		},
 		{
-			header:"è”ç³»ç”µè¯",
+			header:"ÁªÏµµç»°",
 			sortable:true,
 			resizable:true,
-			dataIndex:"è”ç³»ç”µè¯",
+			dataIndex:"ÁªÏµµç»°",
 			width:100
 		}
 	],
 	
-	listeners : { // æ·»åŠ ç›‘å¬äº‹ä»¶
+	listeners : { // Ìí¼Ó¼àÌıÊÂ¼ş
 	    celldblclick: function(grid, rowIndex, columnIndex, e) {
 	        var r = grid.store.getAt(rowIndex);	
 	        grid.showDetailWindow(false, r.data);
 	    }
 	},
 	
-	showDetailWindow: function (add, data) {    // æ˜¾ç¤ºè¯¦ç»†çª—ä½“: add: æ˜¯å¦æ˜¯æ–°å¢æ•°æ®, data: æ•°æ®å‚æ•°
+	showDetailWindow: function (add, data) {    // ÏÔÊ¾ÏêÏ¸´°Ìå: add: ÊÇ·ñÊÇĞÂÔöÊı¾İ, data: Êı¾İ²ÎÊı
     var self = this;
     var form = new Ext.FormPanel({
 	    id:'form1',
@@ -76,75 +76,75 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
                 name:'id'    				        
 	        },
             {
-                fieldLabel: 'ç¼–ç ',
-                name: 'ç¼–ç ',
+                fieldLabel: '±àÂë',
+                name: '±àÂë',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'åç§°',
-                name: 'åç§°',
+                fieldLabel: 'Ãû³Æ',
+                name: 'Ãû³Æ',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'æè¿°',
-                name: 'æè¿°',
+                fieldLabel: 'ÃèÊö',
+                name: 'ÃèÊö',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'åŠ©è®°ç ',
-                name: 'åŠ©è®°ç ',
+                fieldLabel: 'Öú¼ÇÂë',
+                name: 'Öú¼ÇÂë',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'æ³¨å†Œå·',
-                name: 'æ³¨å†Œå·',
+                fieldLabel: '×¢²áºÅ',
+                name: '×¢²áºÅ',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'æˆç«‹æ—¥æœŸ',
-                name: 'æˆç«‹æ—¥æœŸ',
+                fieldLabel: '³ÉÁ¢ÈÕÆÚ',
+                name: '³ÉÁ¢ÈÕÆÚ',
                 width:226,
                 xtype: 'datefield',
                 format:'Y-m-d'				                           
             },
             {
-                fieldLabel: 'æ³•äººä»£è¡¨',
-                name: 'æ³•äººä»£è¡¨',
+                fieldLabel: '·¨ÈË´ú±í',
+                name: '·¨ÈË´ú±í',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'åŠå…¬åœ°å€',
-                name: 'åŠå…¬åœ°å€',
+                fieldLabel: '°ì¹«µØÖ·',
+                name: '°ì¹«µØÖ·',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'è”ç³»ç”µè¯',
-                name: 'è”ç³»ç”µè¯',
+                fieldLabel: 'ÁªÏµµç»°',
+                name: 'ÁªÏµµç»°',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'è”ç³»æ–¹æ³•',
-                name: 'è”ç³»æ–¹æ³•',
+                fieldLabel: 'ÁªÏµ·½·¨',
+                name: 'ÁªÏµ·½·¨',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'è”ç³»äºº',
-                name: 'è”ç³»äºº',
+                fieldLabel: 'ÁªÏµÈË',
+                name: 'ÁªÏµÈË',
                 width:226,
                 xtype: 'textfield'				                           
             },
             {
-                fieldLabel: 'å¤‡æ³¨',
-                name: 'å¤‡æ³¨',
+                fieldLabel: '±¸×¢',
+                name: '±¸×¢',
                 width:226,
                 height:60,
                 xtype: 'textarea'				                           
@@ -154,7 +154,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    ],
 	    buttons:[
 	        {
-	            text:'ä¿å­˜',// callback
+	            text:'±£´æ',// callback
 	            iconCls: 'icon-save',
 	            handler:function (c) {		                
 	                 form.getForm().submit({
@@ -170,7 +170,7 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	            }
 	        },
 	        {
-                text: 'å–æ¶ˆ',
+                text: 'È¡Ïû',
                 iconCls: 'icon-cancel',
                 handler: function (c) {
                     w.close();
@@ -180,12 +180,12 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
     });
     
         if (!add && data) {
-            data.æˆç«‹æ—¥æœŸ = new Date(data.æˆç«‹æ—¥æœŸ_å¹´,data.æˆç«‹æ—¥æœŸ_æœˆ-1,data.æˆç«‹æ—¥æœŸ_æ—¥);
+            data.³ÉÁ¢ÈÕÆÚ = new Date(data.³ÉÁ¢ÈÕÆÚ_Äê,data.³ÉÁ¢ÈÕÆÚ_ÔÂ-1,data.³ÉÁ¢ÈÕÆÚ_ÈÕ);
             form.getForm().setValues(data);
         }
         
         var w = new Ext.Window({
-            title:add?"æ–°å¢å…¬å¸":"ä¿®æ”¹å…¬å¸",
+            title:add?"ĞÂÔö¹«Ë¾":"ĞŞ¸Ä¹«Ë¾",
              width:400,
             items:[
                 form
@@ -196,8 +196,8 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	
 	initComponent: function(){
 	    var self = this;
-	    var iField = new Ext.form.TextField({ //æœç´¢æ 
-            emptyText:'è¯·è¾“å…¥å§“å',
+	    var iField = new Ext.form.TextField({ //ËÑË÷À¸
+            emptyText:'ÇëÊäÈëĞÕÃû',
 	        width:150
         });
 	    this.bbar = new Ext.PagingToolbar({
@@ -208,14 +208,14 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    });
 		this.tbar=[
 			{
-				text:"æ–°å¢",
+				text:"ĞÂÔö",
 				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
-				text:"ä¿®æ”¹",
+				text:"ĞŞ¸Ä",
 				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
@@ -225,17 +225,17 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},
 			{
-				text:"åˆ é™¤",
+				text:"É¾³ı",
 				iconCls: 'icon-group-delete',
 				handler: function () {
 				    var r = self.getSelectionModel().getSelected();
 				    if (r) {
-				        Ext.Msg.confirm('åˆ é™¤å…¬å¸','ç¡®å®šè¦åˆ é™¤é€‰ä¸­çš„å…¬å¸å—ï¼Ÿ',function(btn){
+				        Ext.Msg.confirm('É¾³ı¹«Ë¾','È·¶¨ÒªÉ¾³ıÑ¡ÖĞµÄ¹«Ë¾Âğ£¿',function(btn){
 							if(btn == 'yes') {
 								Ext.Ajax.request({
 									url:'ajax/zygl/gslb.aspx?action=delete',
 									success:function(){
-										Ext.Msg.alert('åˆ é™¤å…¬å¸','å…¬å¸åˆ é™¤æˆåŠŸï¼');
+										Ext.Msg.alert('É¾³ı¹«Ë¾','¹«Ë¾É¾³ı³É¹¦£¡');
 										self.store.reload();
 									},
 									params:{id: r.get('id')}
@@ -248,11 +248,11 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			'->',
 			{
 				xtype:"label",
-				text:"å§“åï¼š"
+				text:"ĞÕÃû£º"
 			},
 			iField,
 			{
-				text:"æœç´¢",
+				text:"ËÑË÷",
 				iconCls: 'icon-query',
 				handler:function () {
 				    self.store.load({
@@ -266,4 +266,4 @@ Ext.Hudongsoft.gslbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    self.store.load();
 		Ext.Hudongsoft.gslbGrid.superclass.initComponent.call(this);
 	}
-})
+});

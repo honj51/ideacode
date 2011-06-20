@@ -1,8 +1,8 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.MyGrid=Ext.extend(Ext.grid.GridPanel ,{
 xtype:"grid",
-	title:"æ€»è´¹ç”¨ç»Ÿè®¡åˆ—è¡¨",
+	title:"×Ü·ÑÓÃÍ³¼ÆÁĞ±í",
 	store:{
 		xtype:"jsonstore",
 		
@@ -11,35 +11,35 @@ xtype:"grid",
 	height:560,
 	columns:[
 		{
-			header:"åºå·",
+			header:"ĞòºÅ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"data1",
 			width:40
 		},
 		{
-			header:"ç¼–ç ",
+			header:"±àÂë",
 			sortable:true,
 			resizable:true,
 			dataIndex:"data2",
 			width:100
 		},
 		{
-			header:"å®¢æˆ·åç§°",
+			header:"¿Í»§Ãû³Æ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"data3",
 			width:100
 		},
 		{
-			header:"æ‰€å±å·¥ä¸šå›­",
+			header:"ËùÊô¹¤ÒµÔ°",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
 			width:100
 		},
 		{
-			header:"æ‰€å±æˆ¿äº§",
+			header:"ËùÊô·¿²ú",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
@@ -47,21 +47,21 @@ xtype:"grid",
 			format:"m/d/Y"
 		},
 		{
-			header:"åˆåŒå¼€å§‹æ—¶é—´",
+			header:"ºÏÍ¬¿ªÊ¼Ê±¼ä",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
 			width:100
 		},
 		{
-			header:"åˆåŒç»“æŸæ—¶é—´",
+			header:"ºÏÍ¬½áÊøÊ±¼ä",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
 			width:100
 		},
 		{
-			header:"æœˆä»½",
+			header:"ÔÂ·İ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
@@ -69,7 +69,7 @@ xtype:"grid",
 			format:"m/d/Y"
 		},
 		{
-			header:"è´¹ç”¨",
+			header:"·ÑÓÃ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
@@ -81,44 +81,44 @@ xtype:"grid",
 		this.tbar=[
 			{
 				xtype:"label",
-				text:"åç§°ï¼š"
+				text:"Ãû³Æ£º"
 			},
 			{
 				xtype:"textfield",
-				fieldLabel:"æ ‡ç­¾"
+				fieldLabel:"±êÇ©"
 			},
 			{
 				xtype:"label",
-				text:"å·¥ä¸šå›­ï¼š"
+				text:"¹¤ÒµÔ°£º"
 			},
 			{
 				xtype:"combo",
 				triggerAction:"all",
-				fieldLabel:"æ ‡ç­¾",
+				fieldLabel:"±êÇ©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"ç±»å‹ï¼š"
+				text:"ÀàĞÍ£º"
 			},
 			{
 				xtype:"combo",
 				triggerAction:"all",
-				fieldLabel:"æ ‡ç­¾",
+				fieldLabel:"±êÇ©",
 				width:70
 			},
 			{
 				xtype:"label",
-				text:"æ—¥æœŸï¼š"
+				text:"ÈÕÆÚ£º"
 			},
 			{
 				xtype:"datefield",
-				fieldLabel:"æ ‡ç­¾"
+				fieldLabel:"±êÇ©"
 			},
 			{
-				text:"æœç´¢"
+				text:"ËÑË÷"
 			}
 		]
 		Ext.MyGrid.superclass.initComponent.call(this);
 	}
-})
+});

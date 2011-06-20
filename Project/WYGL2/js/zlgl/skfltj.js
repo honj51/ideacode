@@ -1,4 +1,4 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
     xfxtj: false,		
@@ -6,41 +6,41 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	height:560,
 	columns:[
 		{
-			header:"åºå·",
-			dataIndex:"åºå·",
+			header:"ĞòºÅ",
+			dataIndex:"ĞòºÅ",
 			width:50
 		},
 		{
-			header:"å·¥ä¸šå›­åç§°",
-			dataIndex:"å·¥ä¸šå›­åç§°",
+			header:"¹¤ÒµÔ°Ãû³Æ",
+			dataIndex:"¹¤ÒµÔ°Ãû³Æ",
 			width:100
 		},
 		{
-			header:"æˆ¿äº§ç±»å‹",
-			dataIndex:"æˆ¿äº§ç±»å‹",
+			header:"·¿²úÀàĞÍ",
+			dataIndex:"·¿²úÀàĞÍ",
 			width:100
 		},
 		{
-			header:"æ¶ˆè´¹é¡¹ç›®",
-			dataIndex:"æ¶ˆè´¹é¡¹ç›®",
+			header:"Ïû·ÑÏîÄ¿",
+			dataIndex:"Ïû·ÑÏîÄ¿",
 			width:100
 		},
 		{
-			header:"æœˆä»½",
-			dataIndex:"æœˆä»½",
+			header:"ÔÂ·İ",
+			dataIndex:"ÔÂ·İ",
 			width:100
 		},
 		{
-			header:"è´¹ç”¨",
-			dataIndex:"è´¹ç”¨",
+			header:"·ÑÓÃ",
+			dataIndex:"·ÑÓÃ",
 			width:100
 		}
 	],
 	initComponent: function(){
 	    var self = this;
-	    self.title = self.xfxtj?"æ”¶æ¬¾è¯¦ç»†ç»Ÿè®¡":"æ”¶æ¬¾åˆ†ç±»ç»Ÿè®¡";
+	    self.title = self.xfxtj?"ÊÕ¿îÏêÏ¸Í³¼Æ":"ÊÕ¿î·ÖÀàÍ³¼Æ";
         var xfxm = new Ext.sfxmCombox({hidden: !self.xfxtj});
-        var gyy_lx = new Ext.GyyLxCombox({value:'å‚æˆ¿'}); //{nextCombox: xfxm}
+        var gyy_lx = new Ext.GyyLxCombox({value:'³§·¿'}); //{nextCombox: xfxm}
 	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});
 	    
 	    var nian = new Ext.YearCombox();
@@ -49,33 +49,33 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 		this.tbar=[
 			{
 				xtype:"label",
-				text:"å·¥ä¸šå›­åç§°ï¼š"
+				text:"¹¤ÒµÔ°Ãû³Æ£º"
 			},
 		    gyy,
 			{
 				xtype:"label",
-				text:"æˆ¿äº§ç±»å‹ï¼š"
+				text:"·¿²úÀàĞÍ£º"
 			},
 			gyy_lx,
 			
 			{
 				xtype:"label",
-				text:"æ¶ˆè´¹é¡¹ç›®",
+				text:"Ïû·ÑÏîÄ¿",
 				hidden: !self.xfxtj
 			},
 			xfxm,
 			{
 				xtype:"label",
-				text:"å¹´ï¼š"
+				text:"Äê£º"
 			},
 			nian,
 			{
 				xtype:"label",
-				text:"æœˆï¼š"
+				text:"ÔÂ£º"
 			},
 			yue,
 			{
-				text:"æœç´¢",
+				text:"ËÑË÷",
 				iconCls: 'icon-query',
 			    handler:function () {
 				    self.store.load({
@@ -92,7 +92,7 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},
 			'->',
 			{
-			    text:"æ‰“å°",
+			    text:"´òÓ¡",
 			    iconCls:'icon-batch_print',
 			    handler:function () {
 			        window.open("Print2.aspx?gyy="+ escape(gyy.getValue()) +'&gyy_lx=' + escape(gyy_lx.getValue()) +'&xfxm='+ escape(xfxm.getValue()) +'&nian='+nian.getValue()+'&yue='+yue.getValue()+'&xfxtj='+self.xfxtj);
@@ -103,17 +103,17 @@ Ext.Hudongsoft.skfltsGrid=Ext.extend(Ext.grid.GridPanel ,{
             totalProperty : 'totalProperty',
             url: 'ajax/zlgl/tj.aspx?action=fltj',
 		    fields:[
-		        'åºå·','å·¥ä¸šå›­åç§°','æˆ¿äº§ç±»å‹','æ¶ˆè´¹é¡¹ç›®','æœˆä»½','è´¹ç”¨'
+		        'ĞòºÅ','¹¤ÒµÔ°Ãû³Æ','·¿²úÀàĞÍ','Ïû·ÑÏîÄ¿','ÔÂ·İ','·ÑÓÃ'
 		    ]	
         });
 		self.store.load({
 		    params:{
 		        xfxtj: self.xfxtj,
-		        gyy_lx: 'å‚æˆ¿',
+		        gyy_lx: '³§·¿',
 		        nian:nian.getValue(),
 			    yue:yue.getValue()
 		    }
 		});
 		Ext.Hudongsoft.skfltsGrid.superclass.initComponent.call(this);
 	}
-})
+});

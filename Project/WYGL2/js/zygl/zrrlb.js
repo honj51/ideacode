@@ -1,102 +1,102 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
-	title:"è‡ªç„¶äººåˆ—è¡¨",
+	title:"×ÔÈ»ÈËÁĞ±í",
 		store:new Ext.data.JsonStore({
 		root : 'data',
 		totalProperty : 'totalProperty',
 		url: 'ajax/zygl/zrrlb.aspx?action=list',
 		fields:[
-		    'id','ç¼–ç ','åç§°','æè¿°','è”ç³»äºº','è”ç³»ç”µè¯','åŠ©è®°ç ','æ€§åˆ«','è¯ä»¶åç§°','è¯ä»¶å·ç ','ç±è´¯','è”ç³»åœ°å€','å¤‡æ³¨','å‡ºç”Ÿæ—¥æœŸ_å¹´','å‡ºç”Ÿæ—¥æœŸ_æœˆ','å‡ºç”Ÿæ—¥æœŸ_æ—¥','canDelete'
+		    'id','±àÂë','Ãû³Æ','ÃèÊö','ÁªÏµÈË','ÁªÏµµç»°','Öú¼ÇÂë','ĞÔ±ğ','Ö¤¼şÃû³Æ','Ö¤¼şºÅÂë','¼®¹á','ÁªÏµµØÖ·','±¸×¢','³öÉúÈÕÆÚ_Äê','³öÉúÈÕÆÚ_ÔÂ','³öÉúÈÕÆÚ_ÈÕ','canDelete'
 		]
 	}),
 	width:792,
 	height:560,
 	columns:[
 		{
-			header:"åºå·",
+			header:"ĞòºÅ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
 			width:50
 		},
 		{
-			header:"ç¼–ç ",
-			dataIndex:"ç¼–ç ",
+			header:"±àÂë",
+			dataIndex:"±àÂë",
 			width:160
 		},
 		{
-			header:"åç§°",
+			header:"Ãû³Æ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"åç§°",
+			dataIndex:"Ãû³Æ",
 			width:100
 		},
 		{
-			header:"æè¿°",
+			header:"ÃèÊö",
 			sortable:true,
 			resizable:true,
-			dataIndex:"æè¿°",
+			dataIndex:"ÃèÊö",
 			width:100
 		},
 		{
-			header:"è”ç³»äºº",
+			header:"ÁªÏµÈË",
 			sortable:true,
 			resizable:true,
-			dataIndex:"è”ç³»äºº",
+			dataIndex:"ÁªÏµÈË",
 			width:100
 		},
 		{
-			header:"è”ç³»ç”µè¯",
+			header:"ÁªÏµµç»°",
 			sortable:true,
 			resizable:true,
-			dataIndex:"è”ç³»ç”µè¯",
+			dataIndex:"ÁªÏµµç»°",
 			width:100
 		}
 	],
 	
-	listeners : { // æ·»åŠ ç›‘å¬äº‹ä»¶
+	listeners : { // Ìí¼Ó¼àÌıÊÂ¼ş
 	    celldblclick: function(grid, rowIndex, columnIndex, e) {
 	        var r = grid.store.getAt(rowIndex);	
 	        grid.showDetailWindow(false, r.data);
 	    }
 	},
 	
-	showDetailWindow: function (add, data) {    // æ˜¾ç¤ºè¯¦ç»†çª—ä½“: add: æ˜¯å¦æ˜¯æ–°å¢æ•°æ®, data: æ•°æ®å‚æ•°
+	showDetailWindow: function (add, data) {    // ÏÔÊ¾ÏêÏ¸´°Ìå: add: ÊÇ·ñÊÇĞÂÔöÊı¾İ, data: Êı¾İ²ÎÊı
         var self = this;
         
         var sex = new Ext.form.ComboBox({
-            fieldLabel:'æ€§åˆ«',
+            fieldLabel:'ĞÔ±ğ',
             width:226,
             mode:'local',
-            name:'æ€§åˆ«',
+            name:'ĞÔ±ğ',
             triggerAction:'all',
             editable:false,
             store:new Ext.data.SimpleStore({
                 fields : ['myId','displayText'],
-                data :[['ç”·','ç”·'],['å¥³','å¥³']]
+                data :[['ÄĞ','ÄĞ'],['Å®','Å®']]
             }),
-            value:'ç”·',
+            value:'ÄĞ',
             valueField:'myId',
             displayField:'displayText'
          });
          
         var jiGuan = new Ext.form.ComboBox({
-            fieldLabel:'ç±è´¯',
-            name:'ç±è´¯',
+            fieldLabel:'¼®¹á',
+            name:'¼®¹á',
             width:226,
             mode:'local',
-            name:'ç±è´¯',
+            name:'¼®¹á',
             triggerAction:'all',
             editable:false,
             store:new Ext.data.SimpleStore({
                 fields : ['id','Text'],
-                data :[['æ²³åŒ—çœ','æ²³åŒ—çœ'],['å±±è¥¿çœ','å±±è¥¿çœ'],['è¾½å®çœ','è¾½å®çœ'],['å‰æ—çœ','å‰æ—çœ'],['é»‘é¾™æ±Ÿçœ','é»‘é¾™æ±Ÿçœ'],['æ±Ÿè‹çœ','æ±Ÿè‹çœ'],['æµ™æ±Ÿçœ','æµ™æ±Ÿçœ'],['å®‰å¾½çœ','å®‰å¾½çœ'],['ç¦å»ºçœ','ç¦å»ºçœ'],
-                        ['æ±Ÿè¥¿çœ','æ±Ÿè¥¿çœ'],['å±±ä¸œçœ','å±±ä¸œçœ'],['æ²³å—çœ','æ²³å—çœ'],['æ¹–åŒ—çœ','æ¹–åŒ—çœ'],['æ¹–å—çœ','æ¹–å—çœ'],['å¹¿ä¸œçœ','å¹¿ä¸œçœ'],['æµ·å—çœ','æµ·å—çœ'],['å››å·çœ','å››å·çœ'],['è´µå·çœ','è´µå·çœ'],
-                        ['äº‘å—çœ','äº‘å—çœ'],['é™•è¥¿çœ','é™•è¥¿çœ'],['ç”˜è‚ƒçœ','ç”˜è‚ƒçœ'],['é’æµ·çœ','é’æµ·çœ'],['å°æ¹¾çœ','å°æ¹¾çœ'],['åŒ—äº¬å¸‚','åŒ—äº¬å¸‚'],['å¤©æ´¥å¸‚','å¤©æ´¥å¸‚'],['é‡åº†å¸‚','é‡åº†å¸‚'],['ä¸Šæµ·å¸‚','ä¸Šæµ·å¸‚'],
-                        ['é¦™æ¸¯','é¦™æ¸¯'],['æ¾³é—¨','æ¾³é—¨'],['å†…è’™å¤','å†…è’™å¤'],['å¹¿è¥¿','å¹¿è¥¿'],['å®å¤','å®å¤'],['æ–°ç–†','æ–°ç–†'],['è¥¿è—','è¥¿è—']]  
+                data :[['ºÓ±±Ê¡','ºÓ±±Ê¡'],['É½Î÷Ê¡','É½Î÷Ê¡'],['ÁÉÄşÊ¡','ÁÉÄşÊ¡'],['¼ªÁÖÊ¡','¼ªÁÖÊ¡'],['ºÚÁú½­Ê¡','ºÚÁú½­Ê¡'],['½­ËÕÊ¡','½­ËÕÊ¡'],['Õã½­Ê¡','Õã½­Ê¡'],['°²»ÕÊ¡','°²»ÕÊ¡'],['¸£½¨Ê¡','¸£½¨Ê¡'],
+                        ['½­Î÷Ê¡','½­Î÷Ê¡'],['É½¶«Ê¡','É½¶«Ê¡'],['ºÓÄÏÊ¡','ºÓÄÏÊ¡'],['ºş±±Ê¡','ºş±±Ê¡'],['ºşÄÏÊ¡','ºşÄÏÊ¡'],['¹ã¶«Ê¡','¹ã¶«Ê¡'],['º£ÄÏÊ¡','º£ÄÏÊ¡'],['ËÄ´¨Ê¡','ËÄ´¨Ê¡'],['¹óÖİÊ¡','¹óÖİÊ¡'],
+                        ['ÔÆÄÏÊ¡','ÔÆÄÏÊ¡'],['ÉÂÎ÷Ê¡','ÉÂÎ÷Ê¡'],['¸ÊËàÊ¡','¸ÊËàÊ¡'],['Çàº£Ê¡','Çàº£Ê¡'],['Ì¨ÍåÊ¡','Ì¨ÍåÊ¡'],['±±¾©ÊĞ','±±¾©ÊĞ'],['Ìì½òÊĞ','Ìì½òÊĞ'],['ÖØÇìÊĞ','ÖØÇìÊĞ'],['ÉÏº£ÊĞ','ÉÏº£ÊĞ'],
+                        ['Ïã¸Û','Ïã¸Û'],['°ÄÃÅ','°ÄÃÅ'],['ÄÚÃÉ¹Å','ÄÚÃÉ¹Å'],['¹ãÎ÷','¹ãÎ÷'],['ÄşÏÄ','ÄşÏÄ'],['ĞÂ½®','ĞÂ½®'],['Î÷²Ø','Î÷²Ø']]  
             }),
-            emptyText:'è¯·é€‰æ‹©',
+            emptyText:'ÇëÑ¡Ôñ',
             valueField:'id',
             displayField:'Text'
          });
@@ -110,73 +110,73 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
                     name:'id'    				        
 	            },
                 {
-                    fieldLabel: 'ç¼–ç ',
-                    name: 'ç¼–ç ',
+                    fieldLabel: '±àÂë',
+                    name: '±àÂë',
                     width:226,
                     readOnly: true, 
-                    value: 'è‡ªåŠ¨äº§ç”Ÿ',
+                    value: '×Ô¶¯²úÉú',
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'åç§°',
-                    name: 'åç§°',
+                    fieldLabel: 'Ãû³Æ',
+                    name: 'Ãû³Æ',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'æè¿°',
-                    name: 'æè¿°',
+                    fieldLabel: 'ÃèÊö',
+                    name: 'ÃèÊö',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'åŠ©è®°ç ',
-                    name: 'åŠ©è®°ç ',
+                    fieldLabel: 'Öú¼ÇÂë',
+                    name: 'Öú¼ÇÂë',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 sex,
                 {
-                    fieldLabel: 'å‡ºç”Ÿæ—¥æœŸ',
-                    name: 'å‡ºç”Ÿæ—¥æœŸ',
+                    fieldLabel: '³öÉúÈÕÆÚ',
+                    name: '³öÉúÈÕÆÚ',
                     width:226,
                     xtype: 'datefield',
                     format:'Y-m-d'				                           
                 },
                 {
-                    fieldLabel: 'è¯ä»¶åç§°',
-                    name: 'è¯ä»¶åç§°',
+                    fieldLabel: 'Ö¤¼şÃû³Æ',
+                    name: 'Ö¤¼şÃû³Æ',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'è¯ä»¶å·ç ',
-                    name: 'è¯ä»¶å·ç ',
+                    fieldLabel: 'Ö¤¼şºÅÂë',
+                    name: 'Ö¤¼şºÅÂë',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 jiGuan,
                 {
-                    fieldLabel: 'è”ç³»ç”µè¯',
-                    name: 'è”ç³»ç”µè¯',
+                    fieldLabel: 'ÁªÏµµç»°',
+                    name: 'ÁªÏµµç»°',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'è”ç³»åœ°å€',
-                    name: 'è”ç³»åœ°å€',
+                    fieldLabel: 'ÁªÏµµØÖ·',
+                    name: 'ÁªÏµµØÖ·',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'è”ç³»äºº',
-                    name: 'è”ç³»äºº',
+                    fieldLabel: 'ÁªÏµÈË',
+                    name: 'ÁªÏµÈË',
                     width:226,
                     xtype: 'textfield'				                           
                 },
                 {
-                    fieldLabel: 'å¤‡æ³¨',
-                    name: 'å¤‡æ³¨',
+                    fieldLabel: '±¸×¢',
+                    name: '±¸×¢',
                     width:226,
                     height:63,
                     xtype: 'textarea'				                           
@@ -186,7 +186,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        ],
 	        buttons:[
 	            {
-	                text:'ä¿å­˜',// callback
+	                text:'±£´æ',// callback
 	                iconCls: 'icon-save',
 	                handler:function (c) {		                
 	                     form.getForm().submit({
@@ -202,7 +202,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	                }
 	            },
 	            {
-                    text: 'å–æ¶ˆ',
+                    text: 'È¡Ïû',
                     iconCls: 'icon-cancel',
                     handler: function (c) {
                         w.close();
@@ -212,12 +212,12 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
         });
         
             if (!add && data) {
-                data.å‡ºç”Ÿæ—¥æœŸ = new Date(data.å‡ºç”Ÿæ—¥æœŸ_å¹´,data.å‡ºç”Ÿæ—¥æœŸ_æœˆ-1,data.å‡ºç”Ÿæ—¥æœŸ_æ—¥);
+                data.³öÉúÈÕÆÚ = new Date(data.³öÉúÈÕÆÚ_Äê,data.³öÉúÈÕÆÚ_ÔÂ-1,data.³öÉúÈÕÆÚ_ÈÕ);
                 form.getForm().setValues(data);
             }
             
             var w = new Ext.Window({
-                title:add?"æ–°å¢è‡ªç„¶äºº":"ä¿®æ”¹è‡ªç„¶äºº",
+                title:add?"ĞÂÔö×ÔÈ»ÈË":"ĞŞ¸Ä×ÔÈ»ÈË",
                 width:400,
                 items:[
                     form
@@ -226,14 +226,14 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
             w.show();
     },
     
-    //æ–°å¢åˆåŒ
-    addhtWindow: function (data) { // æ˜¾ç¤ºè¯¦ç»†çª—ä½“: add: æ˜¯å¦æ˜¯æ–°å¢æ•°æ®, data: æ•°æ®å‚æ•°
+    //ĞÂÔöºÏÍ¬
+    addhtWindow: function (data) { // ÏÔÊ¾ÏêÏ¸´°Ìå: add: ÊÇ·ñÊÇĞÂÔöÊı¾İ, data: Êı¾İ²ÎÊı
 	    var self = this;
         var gyy_lx = new Ext.LinkCombox({
             width:226,
             append: false,
             store: new Ext.data.JsonStore({
-                url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb",//è¿‡æ»¤å·²ç»æœ‰çš„æˆ¿äº§å·
+                url: "ajax/zlgl/zphtgl.aspx?action=gyy_fc_lb",//¹ıÂËÒÑ¾­ÓĞµÄ·¿²úºÅ
 	            fields: ['fc']
             }),
 	        displayField: 'fc',
@@ -242,20 +242,20 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        initComponent: function(){	    
 	            Ext.LinkCombox.superclass.initComponent.call(this);	    
 	        },
-            fieldLabel:'æ‰€å±æˆ¿äº§',
-            name:'æ‰€å±æˆ¿äº§'
+            fieldLabel:'ËùÊô·¿²ú',
+            name:'ËùÊô·¿²ú'
         });
 	    var gyy = new Ext.GyyCombox({
 	        append: false,
 	        nextCombox: gyy_lx,
 	        width:226,
-	        fieldLabel:'æ‰€å±å·¥ä¸šå›­',
-	        name:'æ‰€å±å·¥ä¸šå›­'
+	        fieldLabel:'ËùÊô¹¤ÒµÔ°',
+	        name:'ËùÊô¹¤ÒµÔ°'
 	    });	    
 	    var kehu = new Ext.KehuCombox({
 	        width:226,        
-            name:'å®¢æˆ·åç§°',
-            fieldLabel:'å®¢æˆ·åç§°'
+            name:'¿Í»§Ãû³Æ',
+            fieldLabel:'¿Í»§Ãû³Æ'
 	    });
         
 	    var form = new Ext.FormPanel({	
@@ -265,17 +265,17 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
                 name: 'id'
             },
             {
-                fieldLabel: 'ç¼–ç ',
-                name: 'ç¼–ç ',
+                fieldLabel: '±àÂë',
+                name: '±àÂë',
                 width:226,
                 readOnly: true, 
-                value: 'è‡ªåŠ¨äº§ç”Ÿ',                
+                value: '×Ô¶¯²úÉú',                
                 xtype: 'textfield'				                           
             },kehu,
             gyy,gyy_lx,
             {
-                fieldLabel: 'åˆåŒå¼€å§‹æ—¶é—´',
-                name: 'åˆåŒå¼€å§‹æ—¶é—´',
+                fieldLabel: 'ºÏÍ¬¿ªÊ¼Ê±¼ä',
+                name: 'ºÏÍ¬¿ªÊ¼Ê±¼ä',
                 width:226,
                 allowBlank:false,
                 format: 'Y-m-d',
@@ -283,8 +283,8 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
                 value: new Date()				                           
             },
             {
-                fieldLabel: 'åˆåŒç»“æŸæ—¶é—´',
-                name: 'åˆåŒç»“æŸæ—¶é—´',
+                fieldLabel: 'ºÏÍ¬½áÊøÊ±¼ä',
+                name: 'ºÏÍ¬½áÊøÊ±¼ä',
                 width:226,
                 allowBlank:false,
                 format: 'Y-m-d',
@@ -292,16 +292,16 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
                 value: new Date()					                           
             },
             {
-                fieldLabel: 'å¢æµ®æœŸ',
-                name: 'å¢æµ®æœŸ',
+                fieldLabel: 'Ôö¸¡ÆÚ',
+                name: 'Ôö¸¡ÆÚ',
                 width:226,
                 format: 'Y-m-d',
                 xtype: 'datefield',
                 value: new Date()
             },            
             {
-                fieldLabel: 'æ“ä½œæ—¶é—´',
-                name: 'æ“ä½œæ—¶é—´',
+                fieldLabel: '²Ù×÷Ê±¼ä',
+                name: '²Ù×÷Ê±¼ä',
                 width:226,
                 readOnly: true,
                 format: 'Y-m-d H:i:s',
@@ -309,8 +309,8 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
                 value: new Date()					                           
             },
             {
-                fieldLabel: 'å¤‡æ³¨',
-                name: 'å¤‡æ³¨',
+                fieldLabel: '±¸×¢',
+                name: '±¸×¢',
                 width:226,
                 height:63,
                 xtype: 'textarea'		
@@ -318,7 +318,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
            
             ],
             buttons: [{
-                text: 'ä¿å­˜',
+                text: '±£´æ',
                 iconCls: 'icon-save',
                 handler: function (c) {                                
                     form.getForm().submit({
@@ -332,7 +332,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
                     });
                 }
             },{
-                text: 'å–æ¶ˆ',
+                text: 'È¡Ïû',
                 iconCls: 'icon-cancel',
                 handler: function (c) {
                     win.close();
@@ -341,42 +341,42 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
         });
         
 	    var win = new Ext.Window({
-	        title:"æ–°å¢åˆåŒ",				        
+	        title:"ĞÂÔöºÏÍ¬",				        
             width:390,
 	        items:[
 	            form
 	        ]
 	    });
 	    win.show();
-	    kehu.setValue(data.åç§°);
+	    kehu.setValue(data.Ãû³Æ);
 
 	},
 	
 	initComponent: function(){
 	    var self = this;    
-	    var iField = new Ext.form.TextField({ //æœç´¢æ 
-            emptyText:'è¯·è¾“å…¥å§“å',
+	    var iField = new Ext.form.TextField({ //ËÑË÷À¸
+            emptyText:'ÇëÊäÈëĞÕÃû',
 	        width:150
     	   
         });
-        this.bbar = new Ext.PagingToolbar({ //åˆ†é¡µæ§ä»¶
+        this.bbar = new Ext.PagingToolbar({ //·ÖÒ³¿Ø¼ş
 	        pageSize: 20,
 	        store: self.store,
 	        displayInfo: true,
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
 	    var btnDelete = new Ext.Button({
-			text:"åˆ é™¤",
+			text:"É¾³ı",
 			iconCls: 'icon-group-delete',
 			handler: function () {
 			    var r = self.getSelectionModel().getSelected();
 			    if (r) {
-			        Ext.Msg.confirm('åˆ é™¤è‡ªç„¶äºº','ç¡®å®šè¦åˆ é™¤é€‰ä¸­çš„è‡ªç„¶äººå—ï¼Ÿ',function(btn){
+			        Ext.Msg.confirm('É¾³ı×ÔÈ»ÈË','È·¶¨ÒªÉ¾³ıÑ¡ÖĞµÄ×ÔÈ»ÈËÂğ£¿',function(btn){
 						if(btn == 'yes') {
 							Ext.Ajax.request({
 								url:'ajax/zygl/zrrlb.aspx?action=delete',
 								success:function(){
-									Ext.Msg.alert('åˆ é™¤è‡ªç„¶äºº','è‡ªç„¶äººåˆ é™¤æˆåŠŸï¼');
+									Ext.Msg.alert('É¾³ı×ÔÈ»ÈË','×ÔÈ»ÈËÉ¾³ı³É¹¦£¡');
 									self.store.reload();
 								},
 								params:{id: r.get('id')}
@@ -388,14 +388,14 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		});
 		this.tbar=[
 			{
-				text:"æ–°å¢",
+				text:"ĞÂÔö",
 				iconCls: 'icon-group-create',
 				handler:function () {
                     self.showDetailWindow(true, null);
 				}
 			},
 			{
-				text:"ä¿®æ”¹",
+				text:"ĞŞ¸Ä",
 				iconCls: 'icon-group-update',
 				handler: function() {
 				    var r = self.getSelectionModel().getSelected();
@@ -406,7 +406,7 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			},
 			btnDelete,
 			{
-			    text:"æ·»åŠ åˆåŒ",
+			    text:"Ìí¼ÓºÏÍ¬",
 			    iconCls: 'icon-group-create',
 			    handler:function () {
 			        var r = self.getSelectionModel().getSelected();
@@ -419,11 +419,11 @@ Ext.Hudongsoft.zrrlbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			'->',
 			{
 				xtype:"label",
-				text:"å§“åï¼š"
+				text:"ĞÕÃû£º"
 			},
 			iField,
 			{
-				text:"æœç´¢",
+				text:"ËÑË÷",
 				iconCls: 'icon-query',
 				handler:function () {
 				    //iField:iField.getValue()

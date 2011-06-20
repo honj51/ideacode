@@ -1,7 +1,7 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 /************************************************************************/
-/* å½•å…¥åˆ—è¡¨                                                             */
+/* Â¼ÈëÁĞ±í                                                             */
 /************************************************************************/
 Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{	
 	jfgl: false,
@@ -11,29 +11,29 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    if (r) {
             function printDate(f) {
                 var data = r.data;
-                return data[f+'_å¹´'] + '/' + data[f+'_æœˆ'] + '/' + data[f+'_æ—¥'];
+                return data[f+'_Äê'] + '/' + data[f+'_ÔÂ'] + '/' + data[f+'_ÈÕ'];
             }
             
             var html = '<table class="tab1">'+
                         '<tr style="height:20px;">'+
-                            '<td>'+'<strong>'+'åˆåŒç¼–å·ï¼š'+'</strong>'+r.data.ç¼–ç +'<td>'+
-                            '<td>'+'<strong>'+'å®¢æˆ·ç¼–å·ï¼š'+'</strong>'+r.data.å®¢æˆ·ç¼–ç +'<td>'+
-                            '<td>'+'<strong>'+'å®¢æˆ·åç§°:'+'</strong>'+r.data.å®¢æˆ·åç§°+'<td>'
+                            '<td>'+'<strong>'+'ºÏÍ¬±àºÅ£º'+'</strong>'+r.data.±àÂë+'<td>'+
+                            '<td>'+'<strong>'+'¿Í»§±àºÅ£º'+'</strong>'+r.data.¿Í»§±àÂë+'<td>'+
+                            '<td>'+'<strong>'+'¿Í»§Ãû³Æ:'+'</strong>'+r.data.¿Í»§Ãû³Æ+'<td>'
                         +'</tr>'
                         +'<tr style="height:20px;">'+
-                            '<td>'+'<strong>'+'è”ç³»ç”µè¯ï¼š'+'</strong>'+r.data.è”ç³»ç”µè¯+'<td>'+
-                            '<td>'+'<strong>'+'è”ç³»åœ°å€ï¼š'+'</strong>'+r.data.è”ç³»åœ°å€+'<td>'
+                            '<td>'+'<strong>'+'ÁªÏµµç»°£º'+'</strong>'+r.data.ÁªÏµµç»°+'<td>'+
+                            '<td>'+'<strong>'+'ÁªÏµµØÖ·£º'+'</strong>'+r.data.ÁªÏµµØÖ·+'<td>'
                         +'</tr>'+
                         '<tr style="height:20px;">'+
-                            '<td>'+'<strong>'+'æ‰€å±å·¥ä¸šå›­ï¼š'+'</strong>'+r.data.æ‰€å±å·¥ä¸šå›­+'<td>'+
-                            '<td>'+'<strong>'+'æˆ¿äº§ç±»å‹ï¼š'+'</strong>'+r.data.æˆ¿äº§ç±»å‹+'<td>'+
-                            '<td>'+'<strong>'+'æ‰€å±æˆ¿äº§ï¼š'+'</strong>'+r.data.æ‰€å±æˆ¿äº§+'<td>'+
-                            '<td>'+'<strong>'+'åˆåŒå¼€å§‹æ—¶é—´ï¼š'+'</strong>'+printDate('åˆåŒå¼€å§‹æ—¶é—´')+'<td>'+
-                            '<td>'+'<strong>'+'åˆåŒç»“æŸæ—¶é—´ï¼š'+'</strong>'+printDate('åˆåŒç»“æŸæ—¶é—´')+'<td>'+
+                            '<td>'+'<strong>'+'ËùÊô¹¤ÒµÔ°£º'+'</strong>'+r.data.ËùÊô¹¤ÒµÔ°+'<td>'+
+                            '<td>'+'<strong>'+'·¿²úÀàĞÍ£º'+'</strong>'+r.data.·¿²úÀàĞÍ+'<td>'+
+                            '<td>'+'<strong>'+'ËùÊô·¿²ú£º'+'</strong>'+r.data.ËùÊô·¿²ú+'<td>'+
+                            '<td>'+'<strong>'+'ºÏÍ¬¿ªÊ¼Ê±¼ä£º'+'</strong>'+printDate('ºÏÍ¬¿ªÊ¼Ê±¼ä')+'<td>'+
+                            '<td>'+'<strong>'+'ºÏÍ¬½áÊøÊ±¼ä£º'+'</strong>'+printDate('ºÏÍ¬½áÊøÊ±¼ä')+'<td>'+
                          '</tr>'
                         +'</table>';
             var panel = new Ext.Panel({
-                title: self.jfgl?'ç¼´è´¹æ€»è¡¨':'å½•å…¥æ€»è¡¨',                
+                title: self.jfgl?'½É·Ñ×Ü±í':'Â¼Èë×Ü±í',                
                 layout: 'border',                
                 items: [{
                     xtype: 'panel',
@@ -46,7 +46,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
             main_tab.add(panel).show();
 	    }
 	},
-	listeners : { // æ·»åŠ ç›‘å¬äº‹ä»¶
+	listeners : { // Ìí¼Ó¼àÌıÊÂ¼ş
 	    celldblclick: function(grid, rowIndex, columnIndex, e) {
 	        var r = grid.store.getAt(rowIndex);	
 	        grid.dispalyDetails();
@@ -54,15 +54,15 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	},
 	initComponent: function(){
 	    var self = this;
-	    self.title = self.jfgl? "ç¼´è´¹ç®¡ç†":"å½•å…¥ç®¡ç†";
+	    self.title = self.jfgl? "½É·Ñ¹ÜÀí":"Â¼Èë¹ÜÀí";
 	    self.store = new Ext.data.JsonStore({
 	        storeId:self.jfgl?'jiaofei':'luru',
 		    url: 'ajax/sfgl/sjlr.aspx?action=list',
             root : 'data',
 	        totalProperty : 'totalProperty',
-		    fields:[ // idä¸ºåˆåŒid
-		        'id','ç¼–ç ','å®¢æˆ·åç§°','å®¢æˆ·ç¼–ç ','è”ç³»ç”µè¯','è”ç³»åœ°å€','æ‰€å±å·¥ä¸šå›­','æ‰€å±æˆ¿äº§','æˆ¿äº§ç±»å‹','åˆåŒå¼€å§‹æ—¶é—´_å¹´','åˆåŒå¼€å§‹æ—¶é—´_æœˆ','åˆåŒå¼€å§‹æ—¶é—´_æ—¥','åˆåŒç»“æŸæ—¶é—´_å¹´','åˆåŒç»“æŸæ—¶é—´_æœˆ',
-		        'åˆåŒç»“æŸæ—¶é—´_æ—¥','åˆåŒå¼€å§‹æ—¶é—´','åˆåŒç»“æŸæ—¶é—´','å½•å…¥çŠ¶æ€','ç¼´è´¹çŠ¶æ€','å½•å…¥æœˆä»½'
+		    fields:[ // idÎªºÏÍ¬id
+		        'id','±àÂë','¿Í»§Ãû³Æ','¿Í»§±àÂë','ÁªÏµµç»°','ÁªÏµµØÖ·','ËùÊô¹¤ÒµÔ°','ËùÊô·¿²ú','·¿²úÀàĞÍ','ºÏÍ¬¿ªÊ¼Ê±¼ä_Äê','ºÏÍ¬¿ªÊ¼Ê±¼ä_ÔÂ','ºÏÍ¬¿ªÊ¼Ê±¼ä_ÈÕ','ºÏÍ¬½áÊøÊ±¼ä_Äê','ºÏÍ¬½áÊøÊ±¼ä_ÔÂ',
+		        'ºÏÍ¬½áÊøÊ±¼ä_ÈÕ','ºÏÍ¬¿ªÊ¼Ê±¼ä','ºÏÍ¬½áÊøÊ±¼ä','Â¼Èë×´Ì¬','½É·Ñ×´Ì¬','Â¼ÈëÔÂ·İ'
 		    ]
 	    });
 	    
@@ -73,69 +73,69 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 		});
 	    self.columns = [
 		    {
-			    header:"åºå·",
+			    header:"ĞòºÅ",
 			    sortable:true,
 			    resizable:true,
 			    dataIndex:"id",
 			    width:60
 		    },
 		    {
-			    header:"ç¼–ç ",
+			    header:"±àÂë",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"ç¼–ç ",
+			    dataIndex:"±àÂë",
 			    width:150
 		    },
 		    {
-			    header:"å®¢æˆ·åç§°",
+			    header:"¿Í»§Ãû³Æ",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"å®¢æˆ·åç§°",
+			    dataIndex:"¿Í»§Ãû³Æ",
 			    width:70
 		    },
 		    {
-			    header:"æ‰€å±å·¥ä¸šå›­",
+			    header:"ËùÊô¹¤ÒµÔ°",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"æ‰€å±å·¥ä¸šå›­",
+			    dataIndex:"ËùÊô¹¤ÒµÔ°",
 			    width:80
 		    },
 		    {
-			    header:"æ‰€å±æˆ¿äº§",
+			    header:"ËùÊô·¿²ú",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"æ‰€å±æˆ¿äº§",
+			    dataIndex:"ËùÊô·¿²ú",
 			    width:80
 		    },
 		    {
-			    header:"åˆåŒå¼€å§‹æ—¶é—´",
+			    header:"ºÏÍ¬¿ªÊ¼Ê±¼ä",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"åˆåŒå¼€å§‹æ—¶é—´",
+			    dataIndex:"ºÏÍ¬¿ªÊ¼Ê±¼ä",
 			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer_1,
 			    width:100
 		    },
 		    {
-			    header:"åˆåŒç»“æŸæ—¶é—´",
+			    header:"ºÏÍ¬½áÊøÊ±¼ä",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"åˆåŒç»“æŸæ—¶é—´",
+			    dataIndex:"ºÏÍ¬½áÊøÊ±¼ä",
 			    renderer: Ext.Hudongsoft.util.Format.yearMonthDayRenderer_2,
 			    width:100
 		    },
 		    {
-			    header:self.jfgl?"ç¼´è´¹çŠ¶æ€":"å½•å…¥çŠ¶æ€",
+			    header:self.jfgl?"½É·Ñ×´Ì¬":"Â¼Èë×´Ì¬",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:self.jfgl?"ç¼´è´¹çŠ¶æ€":"å½•å…¥çŠ¶æ€",
+			    dataIndex:self.jfgl?"½É·Ñ×´Ì¬":"Â¼Èë×´Ì¬",
 			    renderer:self.jfgl?Ext.Hudongsoft.util.Format.jfztRenderer():Ext.Hudongsoft.util.Format.lrztRenderer(),
 			    width:100
 		    },
 		    {
-			    header:"å½•å…¥æœˆä»½",
+			    header:"Â¼ÈëÔÂ·İ",
 			    sortable:true,
 			    resizable:true,
-			    dataIndex:"å½•å…¥æœˆä»½",
+			    dataIndex:"Â¼ÈëÔÂ·İ",
 			    width:70
 		    }
 	    ];
@@ -146,7 +146,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	        plugins: [new Ext.ux.ProgressBarPager()]
 	    });
 	    
-	    // æœç´¢å˜é‡
+	    // ËÑË÷±äÁ¿
 	    var mc = new Ext.form.TextField({width:80});
 	    var gyy_lx = new Ext.GyyLxCombox();
 	    var gyy = new Ext.GyyCombox({nextCombox: gyy_lx});
@@ -155,18 +155,18 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    var yue = new Ext.MonthCombox();
 	    this.tbar=new Ext.Toolbar({		
 	        enableOverflow: true,    
-		    items: ['åç§°ï¼š',
+		    items: ['Ãû³Æ£º',
 			mc,'  ',
-			'å·¥ä¸šå›­ï¼š',
+			'¹¤ÒµÔ°£º',
             gyy,'  ',
-            'ç±»å‹ï¼š',
+            'ÀàĞÍ£º',
             gyy_lx,'  ',
-			'å·ç ï¼š',
+			'ºÅÂë£º',
 			hm,'  ',
-			'å¹´ï¼š',nian,'  ',
-			'æœˆï¼š',yue,'  ',
+			'Äê£º',nian,'  ',
+			'ÔÂ£º',yue,'  ',
             {
-				text:"æœç´¢",
+				text:"ËÑË÷",
 				iconCls: 'icon-query',
 				handler: function () {
 	                self.store.baseParams = {
@@ -185,7 +185,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 				}
 			},'->',
 			{
-			    text:"æŸ¥çœ‹è¯¦æƒ…",
+			    text:"²é¿´ÏêÇé",
 			    iconCls: 'icon-list',
 			    handler: function () {
 			        self.dispalyDetails();
@@ -207,7 +207,7 @@ Ext.Hudongsoft.sjlrGrid=Ext.extend(Ext.grid.GridPanel ,{
 })
 
 /*
- *	å½•å…¥æ€»è¡¨ (æ”¶è´¹æ€»è¡¨)
+ *	Â¼Èë×Ü±í (ÊÕ·Ñ×Ü±í)
  */
 Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	zbdata: null,
@@ -215,46 +215,46 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_zb',
 		fields:[
-		    'id','åºå·','å¹´ä»½æœˆä»½','å•æ®ç¼–å·','å®¢æˆ·ç¼–å·','å®¢æˆ·åç§°','æ—¥æœŸå¹´','æ—¥æœŸæœˆ','æ€»è´¹ç”¨','ç¼´è´¹é‡‘é¢','ä½™é¢','å½•å…¥çŠ¶æ€','ç¼´è´¹çŠ¶æ€'
+		    'id','ĞòºÅ','Äê·İÔÂ·İ','µ¥¾İ±àºÅ','¿Í»§±àºÅ','¿Í»§Ãû³Æ','ÈÕÆÚÄê','ÈÕÆÚÔÂ','×Ü·ÑÓÃ','½É·Ñ½ğ¶î','Óà¶î','Â¼Èë×´Ì¬','½É·Ñ×´Ì¬'
 		]
 	}),
 	width:700,
 	height:500,
 	columns:[
 		{
-			header:"åºå·",
-			dataIndex:"åºå·",
+			header:"ĞòºÅ",
+			dataIndex:"ĞòºÅ",
 			width:60		
 		},
 		{
-			header:"å¹´ä»½æœˆä»½",
-			dataIndex:"å¹´ä»½æœˆä»½",
+			header:"Äê·İÔÂ·İ",
+			dataIndex:"Äê·İÔÂ·İ",
 			width:100
 		},
 		{
-			header:"æ€»è´¹ç”¨",
-			dataIndex:"æ€»è´¹ç”¨",
+			header:"×Ü·ÑÓÃ",
+			dataIndex:"×Ü·ÑÓÃ",
 			width:80
 		},
 		{
-			header:"ç¼´è´¹é‡‘é¢",
-			dataIndex:"ç¼´è´¹é‡‘é¢",
+			header:"½É·Ñ½ğ¶î",
+			dataIndex:"½É·Ñ½ğ¶î",
 			width:80
 		},
 		{
-			header:"ä½™é¢",
-			dataIndex:"ä½™é¢",
+			header:"Óà¶î",
+			dataIndex:"Óà¶î",
 			width:80
 		},
 		{
-			header:"å½•å…¥çŠ¶æ€",
-			dataIndex:"å½•å…¥çŠ¶æ€",
+			header:"Â¼Èë×´Ì¬",
+			dataIndex:"Â¼Èë×´Ì¬",
 			renderer: Ext.Hudongsoft.util.Format.lrztRenderer(),
 			width:100
 		},
 		{
-			header:"ç¼´è´¹çŠ¶æ€",
-			dataIndex:"ç¼´è´¹çŠ¶æ€",
+			header:"½É·Ñ×´Ì¬",
+			dataIndex:"½É·Ñ×´Ì¬",
 			renderer: Ext.Hudongsoft.util.Format.jfztRenderer(),
 			width:100
 		}
@@ -262,7 +262,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	initComponent: function(){
 	    var self = this;
 	    var btnXQ = new Ext.Button({
-	        text: 'æŸ¥çœ‹è¯¦æƒ…',
+	        text: '²é¿´ÏêÇé',
 	        iconCls: 'icon-list',
 	        disabled: true,
 		    handler: function () {
@@ -270,12 +270,12 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		        if (r) {
 		            var html = '';
 		            var w = new Ext.Window({
-                        title:"æ”¶æ¬¾è¯¦ç»†åˆ—è¡¨",
+                        title:"ÊÕ¿îÏêÏ¸ÁĞ±í",
             	        width:815,
                         autoScroll: true,
                         items:[{
                             xtype: 'panel',
-                            html:'<iframe src="Print.aspx?djbh='+r.data.å•æ®ç¼–å·+ '&ny='+r.data.å¹´ä»½æœˆä»½+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
+                            html:'<iframe src="Print.aspx?djbh='+r.data.µ¥¾İ±àºÅ+ '&ny='+r.data.Äê·İÔÂ·İ+'" width=800 height=500 frameborder="0" scrolling="auto"></iframe>'
                          }]
                     });
                     w.show();
@@ -283,59 +283,59 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    }
 	    });
 	    var btnLR = new Ext.Button({
-	        text: self.jfgl?'ç¼´è´¹':'å½•å…¥',
+	        text: self.jfgl?'½É·Ñ':'Â¼Èë',
 	        iconCls: 'icon-jiSuan',
 	        width:90,
 	        disabled: true,
 		    handler: function () {	
 //		        var r = self.getSelectionModel().getSelected();
-//		        if (btnLR.text == "ä¿®æ”¹å½•å…¥" && r.data.ç¼´è´¹çŠ¶æ€=='å·²ç¼´è´¹') {
-//	                Ext.Msg.alert("æç¤º","è¯¥æ¡å½•å…¥å·²ç¼´è´¹ï¼Œæ›´æ”¹æ•°æ®ä¼šæ¸…é™¤ç¼´è´¹ä¿¡æ¯ï¼Œéœ€è¦é‡æ–°ç¼´è´¹"); 
+//		        if (btnLR.text == "ĞŞ¸ÄÂ¼Èë" && r.data.½É·Ñ×´Ì¬=='ÒÑ½É·Ñ') {
+//	                Ext.Msg.alert("ÌáÊ¾","¸ÃÌõÂ¼ÈëÒÑ½É·Ñ£¬¸ü¸ÄÊı¾İ»áÇå³ı½É·ÑĞÅÏ¢£¬ĞèÒªÖØĞÂ½É·Ñ"); 
 //	            }
     
-		        // å½•å…¥
+		        // Â¼Èë
 		        function lr() {
-		            if (btnLR.text == "ä¿®æ”¹å½•å…¥") {
+		            if (btnLR.text == "ĞŞ¸ÄÂ¼Èë") {
 		                if (permission_xglr == false) {
-		                    Ext.Msg.alert("æç¤º","æ²¡æœ‰æƒé™ä¿®æ”¹å·²å½•å…¥çš„æ•°æ®");
+		                    Ext.Msg.alert("ÌáÊ¾","Ã»ÓĞÈ¨ÏŞĞŞ¸ÄÒÑÂ¼ÈëµÄÊı¾İ");
 		                    return;
 		                }
 		            }
 		        	var r = self.getSelectionModel().getSelected();
 				    if (!r) return;
-		            var fs = ['ç¼–å·','æ¶ˆè´¹é¡¹ç›®','æ¶ˆè´¹ç±»å‹','å€¼','å€ç‡','æŸè€—','æ»çº³é‡‘','ä¸Šæœˆè¯»æ•°','è¯»æ•°','è¯´æ˜','è¯»æ•°è¾“å…¥'];
+		            var fs = ['±àºÅ','Ïû·ÑÏîÄ¿','Ïû·ÑÀàĞÍ','Öµ','±¶ÂÊ','ËğºÄ','ÖÍÄÉ½ğ','ÉÏÔÂ¶ÁÊı','¶ÁÊı','ËµÃ÷','¶ÁÊıÊäÈë'];
 		            var xf_store = new Ext.data.JsonStore({
-		                url: 'ajax/sfgl/sjlr.aspx?action=list_lr&id='+self.zbdata.id +'&xh='+r.data.åºå·, // idä¸ºåˆåŒid,	                    
+		                url: 'ajax/sfgl/sjlr.aspx?action=list_lr&id='+self.zbdata.id +'&xh='+r.data.ĞòºÅ, // idÎªºÏÍ¬id,	                    
 	                    autoLoad: true,
 			            fields: fs
 		            });         
-		            // ç½‘æ ¼ç¼–è¾‘å™¨
+		            // Íø¸ñ±à¼­Æ÷
 		            var textEditor = new Ext.form.NumberField();
 		            var blCombox = new Ext.BLCombox();
 		            var vCombox = new Ext.SHCombox();
 		            var colModel = new Ext.grid.ColumnModel({
 		                columns: [{
-		                    header: 'ç¼–å·', dataIndex: 'ç¼–å·', width: 40
+		                    header: '±àºÅ', dataIndex: '±àºÅ', width: 40
 		                },{
-		                     header: 'æ¶ˆè´¹é¡¹ç›®', dataIndex: 'æ¶ˆè´¹é¡¹ç›®', width: 110,css:read_only_css
+		                     header: 'Ïû·ÑÏîÄ¿', dataIndex: 'Ïû·ÑÏîÄ¿', width: 110,css:read_only_css
 		                },{
-		                    header: 'æ¶ˆè´¹ç±»å‹', dataIndex: 'æ¶ˆè´¹ç±»å‹', width: 70,css:read_only_css
+		                    header: 'Ïû·ÑÀàĞÍ', dataIndex: 'Ïû·ÑÀàĞÍ', width: 70,css:read_only_css
 		                },{
-			                header: 'å€¼', dataIndex: 'å€¼', width: 70, css:read_only_css
+			                header: 'Öµ', dataIndex: 'Öµ', width: 70, css:read_only_css
 		                },{
-			                header: 'å€ç‡', dataIndex: 'å€ç‡', width: 70, css:read_only_css
+			                header: '±¶ÂÊ', dataIndex: '±¶ÂÊ', width: 70, css:read_only_css
 		                },{
-			                header: 'æŸè€—', dataIndex: 'æŸè€—',  width: 70, css:read_only_css
+			                header: 'ËğºÄ', dataIndex: 'ËğºÄ',  width: 70, css:read_only_css
 		                },{
-			                header: 'æ»çº³é‡‘', dataIndex: 'æ»çº³é‡‘',  width: 60, css:read_only_css
+			                header: 'ÖÍÄÉ½ğ', dataIndex: 'ÖÍÄÉ½ğ',  width: 60, css:read_only_css
 		                },{
-			                header: 'ä¸Šæœˆè¯»æ•°', dataIndex: 'ä¸Šæœˆè¯»æ•°', width: 80,  css:read_only_css
+			                header: 'ÉÏÔÂ¶ÁÊı', dataIndex: 'ÉÏÔÂ¶ÁÊı', width: 80,  css:read_only_css
 		                },{
-			                header: 'è¯»æ•°', dataIndex: 'è¯»æ•°', editor: textEditor, width: 80
+			                header: '¶ÁÊı', dataIndex: '¶ÁÊı', editor: textEditor, width: 80
 		                },{
-			                header: 'è¯´æ˜', dataIndex: 'è¯´æ˜', width: 110,  css:read_only_css
+			                header: 'ËµÃ÷', dataIndex: 'ËµÃ÷', width: 110,  css:read_only_css
 		                },{
-			                header: 'è¯»æ•°è¾“å…¥', dataIndex: 'è¯»æ•°è¾“å…¥',width: 60,css:read_only_css
+			                header: '¶ÁÊıÊäÈë', dataIndex: '¶ÁÊıÊäÈë',width: 60,css:read_only_css
 		                }],
 		                isCellEditable: function(col, row) {
                             var record = xf_store.getAt(row);
@@ -349,15 +349,15 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 				    var grid = new Ext.grid.EditorGridPanel({
 			            store: xf_store,
 			            colModel: colModel,
-			            tbar: ['æ³¨æ„:ç°è‰²é¡¹ä¸ºä¸å¯ç¼–è¾‘é¡¹ã€‚','->',{
-			                text: 'æäº¤',
+			            tbar: ['×¢Òâ:»ÒÉ«ÏîÎª²»¿É±à¼­Ïî¡£','->',{
+			                text: 'Ìá½»',
 			                width:80,
 			                iconCls: 'icon-wanChen',
 			                handler: function () {
 			                    var data = [];
 			                    var validate_pass = true;
 			                    xf_store.each(function(record){
-			                        var ds = record.data.è¯»æ•°;
+			                        var ds = record.data.¶ÁÊı;
 			                        if (ds === '') {
 			                            validate_pass = false;
 			                            return false;
@@ -365,20 +365,20 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 			                        data.push(record.data);
 			                    });
 			                    if (!validate_pass) {
-			                        Ext.Msg.alert('å½•å…¥','è¯·è¾“å…¥è¯»æ•°');
+			                        Ext.Msg.alert('Â¼Èë','ÇëÊäÈë¶ÁÊı');
 			                        return;
 			                    }
 			                    Ext.Ajax.request({
 			                         url: "ajax/sfgl/sjlr.aspx?action=lr_tj", 
 			                         params: {
-			                            htid: self.zbdata.id, // åˆåŒid
-			                            xh: r.data.åºå·,
-			                            year: r.data.å¹´ä»½æœˆä»½.split('/')[0],
-			                            month: r.data.å¹´ä»½æœˆä»½.split('/')[1],
+			                            htid: self.zbdata.id, // ºÏÍ¬id
+			                            xh: r.data.ĞòºÅ,
+			                            year: r.data.Äê·İÔÂ·İ.split('/')[0],
+			                            month: r.data.Äê·İÔÂ·İ.split('/')[1],
 			                            data: Ext.encode(data)
 			                         },
 			                         success: function () {
-			                            Ext.Msg.alert('æäº¤','æ•°æ®æäº¤æˆåŠŸï¼');
+			                            Ext.Msg.alert('Ìá½»','Êı¾İÌá½»³É¹¦£¡');
 			                            self.store.reload();
 			                            win.close();
 			                            Ext.StoreMgr.get('luru').reload();
@@ -392,12 +392,12 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
             		    layout: 'fit',
 			            height: 500,
 			            width: 850,
-            		    title: 'å½•å…¥',
+            		    title: 'Â¼Èë',
             		    items: grid
             		});
             		
-            		if (btnLR.text == "ä¿®æ”¹å½•å…¥" && r.data.ç¼´è´¹çŠ¶æ€=='å·²ç¼´è´¹'){
-            		    Ext.MessageBox.confirm("æç¤º","è¯¥æ¡å½•å…¥å·²ç¼´è´¹ï¼Œæ›´æ”¹æ•°æ®ä¼šæ¸…é™¤ç¼´è´¹ä¿¡æ¯ï¼Œéœ€è¦é‡æ–°ç¼´è´¹", function(btn){
+            		if (btnLR.text == "ĞŞ¸ÄÂ¼Èë" && r.data.½É·Ñ×´Ì¬=='ÒÑ½É·Ñ'){
+            		    Ext.MessageBox.confirm("ÌáÊ¾","¸ÃÌõÂ¼ÈëÒÑ½É·Ñ£¬¸ü¸ÄÊı¾İ»áÇå³ı½É·ÑĞÅÏ¢£¬ĞèÒªÖØĞÂ½É·Ñ", function(btn){
                             if (btn == 'yes'){
                                 win.show();
                             }
@@ -407,77 +407,77 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
             		}  
 		        }
 	       
-		        // ç¼´è´¹
+		        // ½É·Ñ
 		        function jf() {
 		        	var r = self.getSelectionModel().getSelected();
 				    if (!r) return;		            
 				    Ext.Ajax.request({
-				        url: 'ajax/sfgl/sjlr.aspx?action=list_jf&id='+self.zbdata.id+'&xh='+r.data.åºå·, // idä¸ºåˆåŒid
+				        url: 'ajax/sfgl/sjlr.aspx?action=list_jf&id='+self.zbdata.id+'&xh='+r.data.ĞòºÅ, // idÎªºÏÍ¬id
 				            success: function(response, opts) {
                                 var obj = Ext.decode(response.responseText);
                                 var xf_store = new Ext.data.JsonStore({
-                                    url: 'ajax/sfgl/sjlr.aspx?action=list_jf&id='+self.zbdata.id+'&xh='+r.data.åºå·, // idä¸ºåˆåŒid
+                                    url: 'ajax/sfgl/sjlr.aspx?action=list_jf&id='+self.zbdata.id+'&xh='+r.data.ĞòºÅ, // idÎªºÏÍ¬id
                                     data: obj.data,
-                                    fields: ['ç¼–å·','æ”¶è´¹é¡¹ç›®','æ”¶è´¹ç±»å‹','å€¼','å€ç‡','æŸè€—','æ»çº³é‡‘','ä¸Šæœˆè¯»æ•°','è¯»æ•°','è´¹ç”¨','è¯´æ˜']
+                                    fields: ['±àºÅ','ÊÕ·ÑÏîÄ¿','ÊÕ·ÑÀàĞÍ','Öµ','±¶ÂÊ','ËğºÄ','ÖÍÄÉ½ğ','ÉÏÔÂ¶ÁÊı','¶ÁÊı','·ÑÓÃ','ËµÃ÷']
                                 });         	            
                                 xf_store.on("load",function (store, records) {
                                     
                                 })
-                                var x = obj.æ€»é‡‘é¢;
+                                var x = obj.×Ü½ğ¶î;
                                 var sf_textfield = new Ext.form.NumberField({});		            
                                 var grid = new Ext.grid.GridPanel({
                                     store: xf_store,
                                     columns: [{
-                                        header: 'ç¼–å·', dataIndex: 'ç¼–å·', width: 40
+                                        header: '±àºÅ', dataIndex: '±àºÅ', width: 40
                                     },{
-                                         header: 'æ¶ˆè´¹é¡¹ç›®', dataIndex: 'æ”¶è´¹é¡¹ç›®', width: 110
+                                         header: 'Ïû·ÑÏîÄ¿', dataIndex: 'ÊÕ·ÑÏîÄ¿', width: 110
                                     },{
-                                        header: 'æ¶ˆè´¹ç±»å‹', dataIndex: 'æ”¶è´¹ç±»å‹', width: 70
+                                        header: 'Ïû·ÑÀàĞÍ', dataIndex: 'ÊÕ·ÑÀàĞÍ', width: 70
                                     },{
-                                        header: 'å€¼', dataIndex: 'å€¼',  width: 70
+                                        header: 'Öµ', dataIndex: 'Öµ',  width: 70
                                     },{
-                                        header: 'å€ç‡', dataIndex: 'å€ç‡', width: 70
+                                        header: '±¶ÂÊ', dataIndex: '±¶ÂÊ', width: 70
                                     },{
-                                        header: 'æŸè€—', dataIndex: 'æŸè€—', width: 70
+                                        header: 'ËğºÄ', dataIndex: 'ËğºÄ', width: 70
                                     },{
-                                        header: 'æ»çº³é‡‘', dataIndex: 'æ»çº³é‡‘', width: 70
+                                        header: 'ÖÍÄÉ½ğ', dataIndex: 'ÖÍÄÉ½ğ', width: 70
                                     },{
-                                        header: 'ä¸Šæœˆè¯»æ•°', dataIndex: 'ä¸Šæœˆè¯»æ•°',  width: 70
+                                        header: 'ÉÏÔÂ¶ÁÊı', dataIndex: 'ÉÏÔÂ¶ÁÊı',  width: 70
                                     },{
-                                        header: 'è¯»æ•°', dataIndex: 'è¯»æ•°',  width: 80
+                                        header: '¶ÁÊı', dataIndex: '¶ÁÊı',  width: 80
                                     },{
-                                        header: 'è´¹ç”¨', dataIndex: 'è´¹ç”¨',width: 60
+                                        header: '·ÑÓÃ', dataIndex: '·ÑÓÃ',width: 60
                                     },{
-                                        header: 'è¯´æ˜', dataIndex: 'è¯´æ˜',  width: 110
+                                        header: 'ËµÃ÷', dataIndex: 'ËµÃ÷',  width: 110
                                     }],
                                     tbar: {
                                         items: ['']
                                     },
                                     bbar: {
-                                        items: ['æ€»é‡‘é¢ï¼šï¿¥&nbsp;',''+obj.æ€»é‡‘é¢,'ä¸Šæ¬¡ç»“ä½™ï¼šï¿¥',''+obj.ä¸Šæ¬¡ç»“ä½™,'&nbsp;&nbsp;&nbsp;éœ€è¦äº¤è´¹é‡‘é¢ï¼šï¿¥',''+obj.éœ€è¦äº¤è´¹é‡‘é¢,'å®æ”¶é‡‘é¢ï¼š&nbsp',sf_textfield]
+                                        items: ['×Ü½ğ¶î£º£¤&nbsp;',''+obj.×Ü½ğ¶î,'ÉÏ´Î½áÓà£º£¤',''+obj.ÉÏ´Î½áÓà,'&nbsp;&nbsp;&nbsp;ĞèÒª½»·Ñ½ğ¶î£º£¤',''+obj.ĞèÒª½»·Ñ½ğ¶î,'ÊµÊÕ½ğ¶î£º&nbsp',sf_textfield]
                                     },
                                     buttons: [{
-                                        text: 'æäº¤',
+                                        text: 'Ìá½»',
                                         iconCls: 'icon-wanChen',
                                         handler: function () {			                    
                                             Ext.Ajax.request({
                                                  url: "ajax/sfgl/sjlr.aspx?action=jf_tj", 
                                                  params: {
                                                     zbid: r.data.id,
-                                                    ç¼´è´¹é‡‘é¢: sf_textfield.getValue(),
-                                                    æ€»è´¹ç”¨: obj.æ€»é‡‘é¢,
-                                                    ä¸Šæ¬¡ä½™é¢: obj.ä¸Šæ¬¡ç»“ä½™
+                                                    ½É·Ñ½ğ¶î: sf_textfield.getValue(),
+                                                    ×Ü·ÑÓÃ: obj.×Ü½ğ¶î,
+                                                    ÉÏ´ÎÓà¶î: obj.ÉÏ´Î½áÓà
                                                  },
                                                  success: function (response, opts) {
                                                     var obj = Ext.decode(response.responseText);
                                                     if (obj.success) {
-                                                        Ext.Msg.alert('æäº¤','ç¼´è´¹æˆåŠŸï¼');
+                                                        Ext.Msg.alert('Ìá½»','½É·Ñ³É¹¦£¡');
                                                         self.store.reload();
                                                         win.close();
                                                         Ext.StoreMgr.get('jiaofei').reload();
                                                     }
                                                     else {
-                                                        Ext.Msg.alert('æäº¤å¤±è´¥', obj.errorMessage);                                                        
+                                                        Ext.Msg.alert('Ìá½»Ê§°Ü', obj.errorMessage);                                                        
                                                     }
                                                  }
                                             });			                    
@@ -489,7 +489,7 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
                                     layout: 'fit',
                                     height: 500,
                                     width: 850,
-                                    title: 'ç¼´è´¹',
+                                    title: '½É·Ñ',
                                     items: grid
                                 });
                                 win.show();
@@ -507,104 +507,104 @@ Ext.Hudongsoft.lrzbGrid=Ext.extend(Ext.grid.GridPanel ,{
 	    self.getSelectionModel().on('rowselect', function(sm, rowIdx, r) {
 	        btnLR.setDisabled(true);
 	        btnXQ.setDisabled(true);
-	        if (self.jfgl) { //ç¼´è´¹	            
-	            if (r.data.ç¼´è´¹çŠ¶æ€=='å·²ç¼´è´¹') btnXQ.setDisabled(false);
-	            if (r.data.ç¼´è´¹çŠ¶æ€=='æœªç¼´è´¹' && r.data.å½•å…¥çŠ¶æ€=='å·²å½•å…¥') btnLR.setDisabled(false);
+	        if (self.jfgl) { //½É·Ñ	            
+	            if (r.data.½É·Ñ×´Ì¬=='ÒÑ½É·Ñ') btnXQ.setDisabled(false);
+	            if (r.data.½É·Ñ×´Ì¬=='Î´½É·Ñ' && r.data.Â¼Èë×´Ì¬=='ÒÑÂ¼Èë') btnLR.setDisabled(false);
 	        }	        
-	        else // å½•å…¥
+	        else // Â¼Èë
 	        {	       
-	            btnLR.setText('å½•å…¥');     
-	            if ((r.data.å½•å…¥çŠ¶æ€=='å·²å½•å…¥') && (r.data.ç¼´è´¹çŠ¶æ€!='ä¸è¦äº¤è´¹')) {
+	            btnLR.setText('Â¼Èë');     
+	            if ((r.data.Â¼Èë×´Ì¬=='ÒÑÂ¼Èë') && (r.data.½É·Ñ×´Ì¬!='²»Òª½»·Ñ')) {
 	                btnXQ.setDisabled(false);
 	                btnLR.setDisabled(false);
-	                btnLR.setText('ä¿®æ”¹å½•å…¥');
+	                btnLR.setText('ĞŞ¸ÄÂ¼Èë');
                 }
-	            if (r.data.å½•å…¥çŠ¶æ€=='æœªå½•å…¥') btnLR.setDisabled(false);
+	            if (r.data.Â¼Èë×´Ì¬=='Î´Â¼Èë') btnLR.setDisabled(false);
 	        }	            
 	    });
 		this.tbar=['->',btnXQ,btnLR];
 		
 		self.store.load({params:{
-            htbh: self.zbdata.ç¼–ç 
+            htbh: self.zbdata.±àÂë
 		}});
 		Ext.Hudongsoft.lrzbGrid.superclass.initComponent.call(this);
 	}
 })
 
 /*
- *	æ”¶æ¬¾è¯¦ç»†åˆ—è¡¨ (æ”¶æ¬¾æ”¶æ®)
+ *	ÊÕ¿îÏêÏ¸ÁĞ±í (ÊÕ¿îÊÕ¾İ)
  */
 Ext.Hudongsoft.sksjGrid=Ext.extend(Ext.grid.GridPanel ,{
     djbh: null,
 	store:new Ext.data.JsonStore({
 		url: 'ajax/sfgl/sjlr.aspx?action=list_lb',
 		fields:[
-		    'id','åºå·','æ”¶è´¹é¡¹ç›®','æ”¶è´¹ç±»å‹','ä¸Šæœˆè¯»æ•°','æœ¬æœˆè¯»æ•°','å€¼','å€ç‡','æŸè€—','æ€»é‡','æ»çº³é‡‘','è´¹ç”¨','å½•å…¥çŠ¶æ€'
+		    'id','ĞòºÅ','ÊÕ·ÑÏîÄ¿','ÊÕ·ÑÀàĞÍ','ÉÏÔÂ¶ÁÊı','±¾ÔÂ¶ÁÊı','Öµ','±¶ÂÊ','ËğºÄ','×ÜÁ¿','ÖÍÄÉ½ğ','·ÑÓÃ','Â¼Èë×´Ì¬'
 		]
 	}),
 	width:700,
 	height:400,
 	columns:[
 		{
-			header:"åºå·",
-			dataIndex:"åºå·",
+			header:"ĞòºÅ",
+			dataIndex:"ĞòºÅ",
 			width:40		
 		},
 		{
-			header:"æ”¶è´¹é¡¹ç›®",
-			dataIndex:"æ”¶è´¹é¡¹ç›®",
+			header:"ÊÕ·ÑÏîÄ¿",
+			dataIndex:"ÊÕ·ÑÏîÄ¿",
 			width:100
 		},
 		{
-			header:"ä¸Šæœˆè¯»æ•°",
-			dataIndex:"ä¸Šæœˆè¯»æ•°",
+			header:"ÉÏÔÂ¶ÁÊı",
+			dataIndex:"ÉÏÔÂ¶ÁÊı",
 			width:60
 		},
 		{
-			header:"æœ¬æœˆè¯»æ•°",
-			dataIndex:"æœ¬æœˆè¯»æ•°",
+			header:"±¾ÔÂ¶ÁÊı",
+			dataIndex:"±¾ÔÂ¶ÁÊı",
 			width:60
 		},
 		{
-			header:"å€ç‡",
-			dataIndex:"å€ç‡",
+			header:"±¶ÂÊ",
+			dataIndex:"±¶ÂÊ",
 			width:60
 		},
 		{
-			header:"æŸè€—",
-			dataIndex:"æŸè€—",
+			header:"ËğºÄ",
+			dataIndex:"ËğºÄ",
 			width:60
 		},
 		{
-			header:"æ€»é‡",
-			dataIndex:"æ€»é‡",
+			header:"×ÜÁ¿",
+			dataIndex:"×ÜÁ¿",
 			width:60
 		},
 		{
-			header:"å€¼",
-			dataIndex:"å€¼",
+			header:"Öµ",
+			dataIndex:"Öµ",
 			width:60
 		},
 		{
-			header:"æ»çº³é‡‘",
-			dataIndex:"æ»çº³é‡‘",
+			header:"ÖÍÄÉ½ğ",
+			dataIndex:"ÖÍÄÉ½ğ",
 			width:60
 		},
 		{
-			header:"è´¹ç”¨",
-			dataIndex:"è´¹ç”¨",
+			header:"·ÑÓÃ",
+			dataIndex:"·ÑÓÃ",
 			width:60
 		},
 		{
-			header:"è¯´æ˜",
-			dataIndex:"è¯´æ˜",
+			header:"ËµÃ÷",
+			dataIndex:"ËµÃ÷",
 			width:80
 		}
 	],
 	initComponent: function(){
 	    var self = this;
 		this.tbar=['->',{
-		    text: 'æ‰“å°',
+		    text: '´òÓ¡',
 		    handler: function () {		        
 		    }
 		}];

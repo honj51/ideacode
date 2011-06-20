@@ -1,21 +1,21 @@
-ï»¿Ext.namespace('Ext.Hudongsoft');
+Ext.namespace('Ext.Hudongsoft');
 
 Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
     xtype:"grid",
-	title:"åˆåŒåˆ°æœŸåˆ—è¡¨",
+	title:"ºÏÍ¬µ½ÆÚÁĞ±í",
     store : new Ext.data.JsonStore({
         root : 'data',
 		totalProperty : 'totalProperty',
         url: 'ajax/zlgl/htdqts.aspx?action=list',
 		fields:[
-		    'id','ç¼–ç ','å®¢æˆ·åç§°','æ‰€å±å·¥ä¸šå›­','æ‰€å±æˆ¿äº§','åˆåŒå¼€å§‹æ—¶é—´','åˆåŒç»“æŸæ—¶é—´','å¢æµ®æœŸ'
+		    'id','±àÂë','¿Í»§Ãû³Æ','ËùÊô¹¤ÒµÔ°','ËùÊô·¿²ú','ºÏÍ¬¿ªÊ¼Ê±¼ä','ºÏÍ¬½áÊøÊ±¼ä','Ôö¸¡ÆÚ'
 		]	
     }),
 	width:792,
 	height:560,
 	viewConfig : {
 		getRowClass : function(record, rowIndex, rowParams, store) {
-			var zfq = record.data.å¢æµ®æœŸ;
+			var zfq = record.data.Ôö¸¡ÆÚ;
 			if (!zfq) return;
 			var num = new Date(zfq).dateDiff('d',new Date());
 			if (num>=0) {
@@ -25,58 +25,58 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 	},
 	columns:[
 		{
-			header:"åºå·",
+			header:"ĞòºÅ",
 			sortable:true,
 			resizable:true,
 			dataIndex:"id",
 			width:50
 		},
 		{
-			header:"ç¼–ç ",
+			header:"±àÂë",
 			sortable:true,
 			resizable:true,
-			dataIndex:"ç¼–ç ",
+			dataIndex:"±àÂë",
 			width:160
 		},
 		{
-			header:"å®¢æˆ·åç§°",
+			header:"¿Í»§Ãû³Æ",
 			sortable:true,
 			resizable:true,
-			dataIndex:"å®¢æˆ·åç§°",
+			dataIndex:"¿Í»§Ãû³Æ",
 			width:100
 		},
 		{
-			header:"æ‰€å±å·¥ä¸šå›­",
+			header:"ËùÊô¹¤ÒµÔ°",
 			sortable:true,
 			resizable:true,
-			dataIndex:"æ‰€å±å·¥ä¸šå›­",
+			dataIndex:"ËùÊô¹¤ÒµÔ°",
 			width:100
 		},
 		{
-			header:"æ‰€å±æˆ¿äº§",
+			header:"ËùÊô·¿²ú",
 			sortable:true,
 			resizable:true,
-			dataIndex:"æ‰€å±æˆ¿äº§",
+			dataIndex:"ËùÊô·¿²ú",
 			width:100
 		},
 		{
-			header:"åˆåŒå¼€å§‹æ—¶é—´",
+			header:"ºÏÍ¬¿ªÊ¼Ê±¼ä",
 			sortable:true,
 			resizable:true,
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
-			dataIndex:"åˆåŒå¼€å§‹æ—¶é—´",
+			dataIndex:"ºÏÍ¬¿ªÊ¼Ê±¼ä",
 			width:100
 		},
 		{
-			header:"åˆåŒç»“æŸæ—¶é—´",
+			header:"ºÏÍ¬½áÊøÊ±¼ä",
 			sortable:true,
 			resizable:true,
-			dataIndex:"åˆåŒç»“æŸæ—¶é—´",
+			dataIndex:"ºÏÍ¬½áÊøÊ±¼ä",
 			renderer: Ext.Hudongsoft.util.Format.dateRenderer(),
 			width:100
 		},
 		{
-			header:"åˆåŒçŠ¶æ€",
+			header:"ºÏÍ¬×´Ì¬",
 			sortable:true,
 			resizable:true,
 			dataIndex:"",
@@ -84,10 +84,10 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 			renderer: Ext.Hudongsoft.util.Format.htztRenderer()
 		},
 		{
-		    header:"å¢æµ®æœŸæç¤º",
+		    header:"Ôö¸¡ÆÚÌáÊ¾",
 		    sortable:true,
 		    resizable:true,
-		    dataIndex:"å¢æµ®æœŸ" ,
+		    dataIndex:"Ôö¸¡ÆÚ" ,
 		    //value: new Date(),
 		    renderer: Ext.Hudongsoft.util.Format.dateRenderer()		    
 		}
@@ -107,14 +107,14 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    fields: ['lx']
 		});
 		
-		var iFieldName = new Ext.form.TextField({ //æœç´¢æ åç§°
-            emptyText:'è¯·è¾“å…¥å®¢æˆ·å§“å',
+		var iFieldName = new Ext.form.TextField({ //ËÑË÷À¸Ãû³Æ
+            emptyText:'ÇëÊäÈë¿Í»§ĞÕÃû',
 	        width:100
     	   
         });
         
-        var iFieldNo = new Ext.form.TextField({ //æœç´¢æ å·ç 
-            emptyText:'è¯·è¾“å…¥ç¼–å·',
+        var iFieldNo = new Ext.form.TextField({ //ËÑË÷À¸ºÅÂë
+            emptyText:'ÇëÊäÈë±àºÅ',
 	        width:150
     	   
         });
@@ -126,26 +126,26 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 		    '->',
 			{
 				xtype:"label",
-				text:"å®¢æˆ·åç§°ï¼š"
+				text:"¿Í»§Ãû³Æ£º"
 			},
 			iFieldName,
 			{
 				xtype:"label",
-				text:"å·¥ä¸šå›­ï¼š"
+				text:"¹¤ÒµÔ°£º"
 			},
 			gyy,
 			{
 				xtype:"label",
-				text:"ç±»å‹ï¼š"
+				text:"ÀàĞÍ£º"
 			},
 			gyy_lx,
 			{
 				xtype:"label",
-				text:"å·ç ï¼š"
+				text:"ºÅÂë£º"
 			},
 			iFieldNo,
 			{
-				text:"æœç´¢",
+				text:"ËÑË÷",
 				iconCls: 'icon-query',
 				handler:function () {
 				    self.store.baseParams = {
@@ -171,4 +171,4 @@ Ext.Hudongsoft.htdqtsGrid=Ext.extend(Ext.grid.GridPanel ,{
 		});
 		Ext.Hudongsoft.htdqtsGrid.superclass.initComponent.call(this);
 	}
-})
+});
