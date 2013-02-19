@@ -1,10 +1,14 @@
 package com.miraclew.gs.test;
 
-import static org.junit.Assert.*;
+import java.io.IOException;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.msgpack.MessagePack;
+
+import com.miraclew.gs.main.message.LoginMessage;
 
 public class ServerTest {
 
@@ -17,8 +21,16 @@ public class ServerTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void test() throws IOException {
+		LoginMessage m = new LoginMessage();
+		m.password = "123";
+		m.uid = "abc";
+		
+		MessagePack msgpack = new MessagePack();
+		// serialize
+		byte[] bytes = msgpack.write(m);		
+		LoginMessage m2 = msgpack.read(bytes, LoginMessage.class);
+		Assert.assertEquals(m2.uid, m.uid);
 	}
 
 }
