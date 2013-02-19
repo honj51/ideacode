@@ -1,4 +1,4 @@
-package com.miraclew.gs;
+package com.miraclew.gs.main;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
