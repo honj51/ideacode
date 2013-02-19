@@ -65,7 +65,7 @@ public class JdbcTest {
 		
 		conn = getConnection();	//同样先要获取连接，即连接到数据库
 		try {
-			String sql = "select * from staff";		// 查询数据的sql语句
+			String sql = "select * from users";		// 查询数据的sql语句
 			st = (Statement) conn.createStatement();	//创建用于执行静态sql语句的Statement对象，st属局部变量
 			
 			ResultSet rs = st.executeQuery(sql);	//执行sql查询语句，返回查询数据的结果集
@@ -73,17 +73,16 @@ public class JdbcTest {
 			while (rs.next()) {	// 判断是否还有下一个数据
 				
 				// 根据字段名获取相应的值
-				String name = rs.getString("name");
-				int age = rs.getInt("age");
-				String sex = rs.getString("sex");
-				String address = rs.getString("address");
-				String depart = rs.getString("depart");
-				String worklen = rs.getString("worklen");
-				String wage = rs.getString("wage");
+				String name = rs.getString("uid");
+//				int age = rs.getInt("age");
+//				String sex = rs.getString("sex");
+//				String address = rs.getString("address");
+//				String depart = rs.getString("depart");
+//				String worklen = rs.getString("worklen");
+//				String wage = rs.getString("wage");
 				
 				//输出查到的记录的各个字段的值
-				System.out.println(name + " " + age + " " + sex + " " + address
-						+ " " + depart + " " + worklen + " " + wage);
+				System.out.println(name);
 			
 			}
 			conn.close();	//关闭数据库连接
@@ -120,7 +119,7 @@ public class JdbcTest {
 			Class.forName("com.mysql.jdbc.Driver");// 加载Mysql数据驱动
 			
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/myuser", "root", "root");// 创建数据连接
+					"jdbc:mysql://localhost:3306/dod", "root", "fw123456");// 创建数据连接
 			
 		} catch (Exception e) {
 			System.out.println("数据库连接失败" + e.getMessage());
