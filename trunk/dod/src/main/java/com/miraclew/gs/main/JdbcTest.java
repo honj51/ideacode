@@ -1,4 +1,4 @@
-package com.miraclew.gs;
+package com.miraclew.gs.main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package com.miraclew.gs;
+package com.miraclew.gs.main;
 
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ExceptionEvent;
